@@ -1,0 +1,14 @@
+#!/bin/sh
+# Repository-local guard. Git passes the remote name and resolved push URL.
+remote_name=$1
+remote_url=$2
+case "$remote_name:$remote_url" in
+  origin:https://github.com/LarryBUPT/conweave-ns3|\
+  origin:https://github.com/LarryBUPT/conweave-ns3.git|\
+  origin:git@github.com:LarryBUPT/conweave-ns3.git|\
+  origin:ssh://git@github.com/LarryBUPT/conweave-ns3.git)
+    exit 0
+    ;;
+esac
+echo "Push blocked: only origin at LarryBUPT/conweave-ns3 is allowed." >&2
+exit 1

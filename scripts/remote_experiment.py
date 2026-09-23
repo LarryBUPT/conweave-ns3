@@ -102,6 +102,10 @@ def protect_fork(repo):
         subprocess.check_call(['git', '-C', repo, 'config', '--local',
                                'remote.' + name + '.pushurl', 'no-push://read-only-reference'])
     subprocess.check_call(['git', '-C', repo, 'config', '--local', 'push.default', 'nothing'])
+    hook = os.path.join(repo, '.githooks', 'pre-push')
+    if os.path.isfile(hook):
+        subprocess.check_call(['git', '-C', repo, 'config', '--local',
+                               'core.hooksPath', '.githooks'])
     print(git_output(repo, 'remote', '-v'))
 
 

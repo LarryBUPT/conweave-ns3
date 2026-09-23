@@ -20,7 +20,7 @@ upstream              https://github.com/conweave-project/conweave-ns3.git  只�
 reference-maplerime   https://github.com/maplerime/conweave-ns3.git         只读
 ```
 
-两个只读 remote 的本地 `pushurl` 都设为 `no-push://read-only-reference`，且 `push.default=nothing`。项目脚本在 push、同步和编译前再次检查 `origin` 所属者及个人开发分支。请使用脚本推送；直接指定第三方 URL 的原生命令可绕过本地 remote 保护，因此仍须遵守只读规则。
+两个只读 remote 的本地 `pushurl` 都设为 `no-push://read-only-reference`，且 `push.default=nothing`。版本化的 `.githooks/pre-push` 只允许向个人仓库的 `origin` 推送，也会拦截直接指定第三方 URL 的推送；项目脚本在 push、同步和编译前再次检查 `origin` 所属者及个人开发分支。现有两份参考克隆还在各自 `.git/hooks/pre-push` 中设置了无条件拒绝钩子。人为关闭 Git hook 可以绕过保护，仍须遵守只读规则。
 
 ## 2. 一次性配置
 
@@ -37,7 +37,7 @@ python scripts\remote_experiment.py check
 
 本机 `.project/remote.env` 被 Git 忽略，只含主机、用户和工作区路径；不放密码、Token 或私钥。SSH 使用现有 `~/.ssh` 凭据，不复制进项目。`deploy` 只向 `/home/fnl/lzy/.research-workflow/remote_worker.py` 写项目脚本；会检查真实根路径。
 
-服务器已有 Docker 客户端，但 `fnl` 无权访问 Docker socket，因此目前采用工作区内的原生 Waf 编译。不能为 Docker 修改用户组或 daemon。默认编译 `-j2`，一次只运行一个仿真，保留 CPU 和内存给服务器其他任务。远程 Python 3.5 和 GCC 5.4 较旧；当前原始基线的 Waf `configure` 已通过，完整编译与个人分支运行应以本次验证记录为准。
+服务器已有 Docker 客户端，但 `fnl` 无权访问 Docker socket，因此目前采用工作区内的原生 Waf 编译。不能为 Docker 修改用户组或 daemon。默认编译 `-j2`，一次只运行一个仿真，保留 CPU 和内存给服务器其他任务。远程 Python 3.5 和 GCC 5.4 较旧；原始基线的 Waf `configure` 和完整编译已在隔离目录通过。新代码仍要逐次编译验证。
 
 ## 3. 日常流程
 
