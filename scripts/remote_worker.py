@@ -17,6 +17,7 @@ ID_RE = re.compile(r'^[0-9]{8}-[0-9]{6}-[a-z0-9][a-z0-9-]{0,40}$')
 SHA_RE = re.compile(r'^[0-9a-f]{40}$')
 REPO_RE = re.compile(r'^https://github[.]com/LarryBUPT/[A-Za-z0-9_.-]+(?:[.]git)?$')
 REFERENCE_PUSH = 'no-push://read-only-reference'
+_LOGIN_ATTEMPTED = False
 
 
 def inside(path, allow_root=False):
@@ -40,15 +41,22 @@ def make_dir(path):
     inside(path)
 
 
-def run_checked(argv, cwd=None, log=None):
+def run_checked(argv, cwd=None, log=None, timeout=None):
     if cwd:
         inside(cwd)
     if log:
         inside(log)
         with open(log, 'ab') as output:
-            result = subprocess.call(argv, cwd=cwd, stdout=output, stderr=subprocess.STDOUT)
+            try:
+                result = subprocess.call(argv, cwd=cwd, stdout=output,
+                                         stderr=subprocess.STDOUT, timeout=timeout)
+            except subprocess.TimeoutExpired:
+                raise RuntimeError('Command timed out: ' + ' '.join(argv[:3]))
     else:
-        result = subprocess.call(argv, cwd=cwd)
+        try:
+            result = subprocess.call(argv, cwd=cwd, timeout=timeout)
+        except subprocess.TimeoutExpired:
+            raise RuntimeError('Command timed out: ' + ' '.join(argv[:3]))
     if result:
         raise RuntimeError('Command failed (exit %d): %s' % (result, ' '.join(argv[:3])))
 
@@ -119,8 +127,9 @@ def configure_references(repo):
 
 
 def network_retry(argv, cwd=None):
+    global _LOGIN_ATTEMPTED
     try:
-        run_checked(argv, cwd=cwd)
+        run_checked(argv, cwd=cwd, timeout=45)
         return
     except RuntimeError:
         pass
@@ -130,11 +139,15 @@ def network_retry(argv, cwd=None):
     except Exception:
         print('DNS github.com: failed')
     login = inside(os.path.join(ROOT, 'login.sh'))
-    if os.path.isfile(login) and not os.path.islink(login):
+    if not _LOGIN_ATTEMPTED and os.path.isfile(login) and not os.path.islink(login):
+        _LOGIN_ATTEMPTED = True
         print('Network retry after workspace login.sh (output suppressed)')
         with open(os.devnull, 'w') as null:
-            subprocess.call(['bash', login], cwd=ROOT, stdout=null, stderr=null)
-    run_checked(argv, cwd=cwd)
+            try:
+                subprocess.call(['bash', login], cwd=ROOT, stdout=null, stderr=null, timeout=30)
+            except subprocess.TimeoutExpired:
+                pass
+    run_checked(argv, cwd=cwd, timeout=45)
 
 
 def audit():
@@ -157,7 +170,7 @@ def sync(repo_url, sha):
     code = inside(os.path.join(ROOT, 'code', 'conweave-ns3'))
     make_dir(os.path.dirname(code))
     if not os.path.exists(code):
-        network_retry(['git', 'clone', '--no-checkout', repo_url, code])
+        network_retry(['git', 'clone', repo_url, code])
     if os.path.islink(code) or not os.path.isdir(os.path.join(code, '.git')):
         raise RuntimeError('Code cache is not a plain Git checkout')
     if output(['git', 'config', '--get', 'remote.origin.url'], cwd=code).rstrip('/') != repo_url.rstrip('/'):
