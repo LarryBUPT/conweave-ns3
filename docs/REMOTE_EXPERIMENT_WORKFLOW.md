@@ -96,9 +96,3 @@ python scripts\analyze_result.py 20260923-170000-conweave-baseline
 ## 5. 首次最小验证记录
 
 `20260923-165542-smoke-fecmp` 使用个人 fork 的 `edd2b72e52c4d01fd5b86e22ee1173c03f821f92`，在隔离目录以 `-j2` 完整编译，执行 `fecmp`、`leaf_spine_128_100G_OS2`、10% 负载、0.01 秒模拟，状态为 `SUCCEEDED`。FCT 原始文件和元数据已通过 `scp` 回到本机；本机摘要从 19,388 条原始记录中按原项目时间窗选出 9,708 条完成流，成功生成 JSON、CSV 与 SVG。数据只证明工作链路可用，不代表论文性能结论。
-
-## 6. 下一步研究入口
-
-先在个人分支重跑同一拓扑、负载和随机种子的 `fecmp`、`conga`、`letflow`、`conweave`，确认输出与分析链路。入口为 `run.py`（参数、流量生成与配置）→ `scratch/network-load-balance.cc`（拓扑、节点、应用、统计）→ `src/point-to-point/model/switch-node.cc`（按 LB 模式分发）→ `conga-routing.cc`、`letflow-routing.cc`、`conweave-routing.cc` 与 `conweave-voq.cc`（选路及重排）；`switch-mmu.cc` 管理队列/PFC，`rdma-hw.cc` 管理 RNIC/拥塞控制，`settings.cc` 承载全局配置。优先加新策略和参数，在相同输入 trace 上做独立对照，保留四种原始 baseline。
-
-按一次运行的实际数据流阅读：`config/` 的拓扑文本与 `traffic_gen/traffic_gen.py` 生成的流量文件由 `run.py` 写入单次配置；`scratch/network-load-balance.cc` 读配置、构建拓扑和 RDMA 应用，交换机通过 `switch-node.cc` 选择 LB 实现，ConWeave 的乱序包进入 `conweave-voq.cc`，交换机队列/PFC 走 `switch-mmu.cc`，RNIC 与拥塞控制走 `rdma-hw.cc`；仿真输出 FCT/队列等原始文件，`fctAnalysis.py` 和 `queueAnalysis.py` 生成统计文件，下载后再由本机分析脚本生成按实验 ID 归档的图表。新增 idea 时从 `switch-node.cc` 的 LB 分派、对应 `*-routing.{h,cc}` 与 `run.py`/scratch 的参数映射切入，避免改坏原基线。
