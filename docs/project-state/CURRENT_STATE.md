@@ -16,7 +16,7 @@
 
 ## 当前版本快照
 
-2026-09-24 03:01 中国时间的只读核验：本地个人 fork 位于干净的 `feature/mixed-flow-traces@ccdbd780b017c1541e22a18e6b07f992d6266f18`，GitHub 同名分支指向相同 SHA；`main@236a801a00e35de9078635e04acae2f701c21ded`。本地 `feature/remote-experiment-workflow@f46abb3`，GitHub 同名分支仍为 `a8d2db5`；`f46abb3` 已包含在混合流量分支的历史中。远程项目代码缓存仍为干净的 `main@236a801`，没有同步最新混合流量分支；四次 baseline 的独立源码副本保持 `a8d2db5`。远程原有的另一份工作树有既存的 `mix/.history` 修改，不碰它。
+2026-09-24 03:01 中国时间的只读核验：混合输入资产的源码修订为 `feature/mixed-flow-traces@ccdbd780b017c1541e22a18e6b07f992d6266f18`；此后同一分支又加入了本组项目状态文档，因此**执行时用 Git 查询当前 HEAD**，不要把资产修订误当永久分支指针。`main@236a801a00e35de9078635e04acae2f701c21ded`。本地 `feature/remote-experiment-workflow@f46abb3`，GitHub 同名分支仍为 `a8d2db5`；`f46abb3` 已包含在混合流量分支的历史中。远程项目代码缓存仍为干净的 `main@236a801`，没有同步最新混合流量分支；四次 baseline 的独立源码副本保持 `a8d2db5`。远程原有的另一份工作树有既存的 `mix/.history` 修改，不碰它。
 
 论文项目根目录 `E:\研\毕业论文` 本身**不是 Git 仓库**。本状态文件及 Handoff、ADR、项目 Skill 因而放在个人 fork 内，避免“项目记忆”只存在于未版本化目录。
 
