@@ -185,6 +185,39 @@ def sync(repo_url, sha):
     print('synced fork commit=' + sha)
 
 
+def sync_bundle(repo_url, sha, branch, bundle_name):
+    """Fallback: transfer Git history from a verified local fork checkout."""
+    if not REPO_RE.match(repo_url) or not SHA_RE.match(sha):
+        raise RuntimeError('Invalid personal fork or commit')
+    if not re.match(r'^(feature|experiment|idea|research)/[A-Za-z0-9._/-]+$', branch):
+        raise RuntimeError('Invalid personal branch')
+    if not re.match(r'^sync-[0-9a-f]{40}-[0-9]+[.]bundle$', bundle_name):
+        raise RuntimeError('Invalid bundle name')
+    resources_ok()
+    bundle = inside(os.path.join(ROOT, '.research-workflow', bundle_name))
+    if os.path.islink(bundle) or not os.path.isfile(bundle):
+        raise RuntimeError('Workspace Git bundle is missing or redirected')
+    code = inside(os.path.join(ROOT, 'code', 'conweave-ns3'))
+    make_dir(os.path.dirname(code))
+    if not os.path.exists(code):
+        run_checked(['git', 'clone', bundle, code])
+        run_checked(['git', 'remote', 'set-url', 'origin', repo_url], cwd=code)
+    if os.path.islink(code) or not os.path.isdir(os.path.join(code, '.git')):
+        raise RuntimeError('Code cache is not a plain Git checkout')
+    if output(['git', 'config', '--get', 'remote.origin.url'], cwd=code).rstrip('/') != repo_url.rstrip('/'):
+        raise RuntimeError('Code cache origin differs from the personal fork')
+    if output(['git', 'status', '--porcelain'], cwd=code):
+        raise RuntimeError('Code cache has local modifications')
+    run_checked(['git', 'fetch', bundle,
+                 'refs/heads/' + branch + ':refs/remotes/origin/' + branch], cwd=code)
+    run_checked(['git', 'cat-file', '-e', sha + '^{commit}'], cwd=code)
+    if output(['git', 'rev-parse', 'refs/remotes/origin/' + branch], cwd=code) != sha:
+        raise RuntimeError('Bundle branch does not match requested commit')
+    configure_references(code)
+    os.remove(bundle)  # Only this exact temporary bundle, after successful fetch.
+    print('synced personal fork commit via workspace Git bundle=' + sha)
+
+
 def build(experiment_id, sha, branch):
     if not SHA_RE.match(sha) or not re.match(r'^[A-Za-z0-9._/-]{1,100}$', branch):
         raise RuntimeError('Invalid commit or branch')
@@ -349,6 +382,11 @@ def main():
     sync_cmd = sub.add_parser('sync')
     sync_cmd.add_argument('--repo', required=True)
     sync_cmd.add_argument('--sha', required=True)
+    bundle_cmd = sub.add_parser('sync-bundle')
+    bundle_cmd.add_argument('--repo', required=True)
+    bundle_cmd.add_argument('--sha', required=True)
+    bundle_cmd.add_argument('--branch', required=True)
+    bundle_cmd.add_argument('--bundle-name', required=True)
     build_cmd = sub.add_parser('build')
     build_cmd.add_argument('--id', required=True)
     build_cmd.add_argument('--sha', required=True)
@@ -368,6 +406,8 @@ def main():
         audit()
     elif args.command == 'sync':
         sync(args.repo, args.sha)
+    elif args.command == 'sync-bundle':
+        sync_bundle(args.repo, args.sha, args.branch, args.bundle_name)
     elif args.command == 'build':
         build(args.id, args.sha, args.branch)
     elif args.command == 'run':

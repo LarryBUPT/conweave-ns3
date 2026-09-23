@@ -67,7 +67,7 @@ python scripts\remote_experiment.py fetch 20260923-170000-conweave-baseline
 python scripts\analyze_result.py 20260923-170000-conweave-baseline
 ```
 
-`sync` 只从个人 fork 获取已推送的 SHA。`build` 从缓存复制一个**全新、固定 commit** 的实验源码目录，Waf `optimized` 模式以 2 个任务编译；它从不切换服务器现有的 `/home/fnl/lzy/conweave-ns3` 工作树。`run` 使用独立后台进程，SSH 断开仍继续。`status` 返回 PID、状态、SHA、参数和时间。默认小实验只接受 0.005–0.1 秒仿真时间及 1–50 的负载；扩大规模前先检查资源并修改项目安全上限，不直接运行 `autorun.sh`。
+`sync` 只接受已推送到个人 fork 的 SHA；服务器访问 GitHub 失败时，先诊断并静默运行一次 `~/lzy/login.sh` 后重试，再从本机通过 SSH 传送 Git bundle，仍保持相同 SHA。也可直接使用 `python scripts\remote_experiment.py sync-bundle --repo-local .`。`build` 从缓存复制一个**全新、固定 commit** 的实验源码目录，Waf `optimized` 模式以 2 个任务编译；它从不切换服务器现有的 `/home/fnl/lzy/conweave-ns3` 工作树。`run` 使用独立后台进程，SSH 断开仍继续。`status` 返回 PID、状态、SHA、参数和时间。默认小实验只接受 0.005–0.1 秒仿真时间及 1–50 的负载；扩大规模前先检查资源并修改项目安全上限，不直接运行 `autorun.sh`。
 
 ### 结果和分析
 
@@ -86,7 +86,7 @@ python scripts\analyze_result.py 20260923-170000-conweave-baseline
 | 情况 | 日常处理 |
 | --- | --- |
 | SSH 断开 | 重新连接后运行 `status <实验ID>`；结果和日志仍在 `results/<实验ID>`。|
-| GitHub / 下载失败 | 先区分 DNS、TLS、认证和外网；远程 `sync` 失败时在同轮最多静默执行一次 `~/lzy/login.sh` 并重试，不输出脚本内容。仍失败则停下排查，不改系统网络。|
+| GitHub / 下载失败 | 先区分 DNS、TLS、认证和外网；远程 `sync` 失败时在同轮最多静默执行一次 `~/lzy/login.sh` 并重试，不输出脚本内容。仍失败则自动使用本机已验证的个人 fork 提交制作 Git bundle，经 SSH 传入 `~/lzy`；其他依赖下载若仍失败则停下排查，不改系统网络。|
 | 编译失败 | 看 `results/<实验ID>/logs/build.log`；该 ID 保留失败记录，修复个人分支后创建新 ID。|
 | 仿真失败 | 看 `status`、`logs/worker.log`、`logs/simulation.log`。`run.py` 可能吞掉子命令退出码，工具额外要求 FCT 输出非空才标成功。|
 | 结果同步失败 | `fetch` 保留本机 `.incoming-<实验ID>-<PID>` 临时目录；核对后重新下载，不自动覆盖正式结果。|

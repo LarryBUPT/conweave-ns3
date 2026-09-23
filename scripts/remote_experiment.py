@@ -156,12 +156,39 @@ def fetch(cfg, experiment_id):
     print('Local results: ' + target)
 
 
+def sync_by_bundle(cfg, repo, origin, branch, sha):
+    """Use Git history over SSH when the server cannot reach GitHub."""
+    results_root = os.path.realpath(os.path.join(PROJECT, 'results'))
+    if not results_root.startswith(PROJECT + os.sep):
+        raise RuntimeError('Local results path escapes project')
+    bundle_dir = os.path.join(results_root, '.sync-bundles')
+    os.makedirs(bundle_dir, exist_ok=True)
+    bundle_name = 'sync-' + sha + '-' + str(os.getpid()) + '.bundle'
+    bundle = os.path.join(bundle_dir, bundle_name)
+    if os.path.lexists(bundle):
+        raise RuntimeError('Git bundle staging path already exists')
+    subprocess.check_call(['git', '-C', repo, 'bundle', 'create', bundle,
+                           'refs/heads/' + branch])
+    # The destination is under the already verified workspace tool directory.
+    remote_path = '/home/fnl/lzy/.research-workflow/' + bundle_name
+    check = ('test ! -e ' + shlex.quote(remote_path) +
+             ' && test "$(readlink -f /home/fnl/lzy)" = /home/fnl/lzy' +
+             ' && test "$(readlink -f /home/fnl/lzy/.research-workflow)" = /home/fnl/lzy/.research-workflow')
+    subprocess.check_call(ssh_base(cfg) + [check])
+    destination = cfg['REMOTE_USER'] + '@' + cfg['REMOTE_HOST'] + ':' + remote_path
+    subprocess.check_call(['scp', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
+                           bundle, destination])
+    worker_call(cfg, 'sync-bundle', '--repo', origin, '--sha', sha,
+                '--branch', branch, '--bundle-name', bundle_name)
+    print('Source synchronized through workspace Git bundle')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command')
     for name in ('deploy', 'check'):
         sub.add_parser(name)
-    for name in ('push', 'sync', 'build'):
+    for name in ('push', 'sync', 'sync-bundle', 'build'):
         item = sub.add_parser(name)
         item.add_argument('--repo-local', required=True)
         if name == 'build':
@@ -187,14 +214,20 @@ def main():
         worker_call(cfg, 'audit')
     elif args.command == 'protect-fork':
         protect_fork(args.repo_local)
-    elif args.command in ('push', 'sync', 'build'):
+    elif args.command in ('push', 'sync', 'sync-bundle', 'build'):
         repo, origin, branch, sha = local_fork(args.repo_local,
                                                require_pushed=args.command != 'push')
         if args.command == 'push':
             subprocess.check_call(['git', '-C', repo, 'push', 'origin',
                                    'HEAD:refs/heads/' + branch])
         elif args.command == 'sync':
-            worker_call(cfg, 'sync', '--repo', origin, '--sha', sha)
+            try:
+                worker_call(cfg, 'sync', '--repo', origin, '--sha', sha)
+            except subprocess.CalledProcessError:
+                print('Server GitHub fetch failed; using Git bundle over SSH.', file=sys.stderr)
+                sync_by_bundle(cfg, repo, origin, branch, sha)
+        elif args.command == 'sync-bundle':
+            sync_by_bundle(cfg, repo, origin, branch, sha)
         else:
             label = re.sub(r'[^a-z0-9-]', '-', args.label.lower()).strip('-')
             experiment_id = args.id or datetime.datetime.now().strftime('%Y%m%d-%H%M%S-') + label
