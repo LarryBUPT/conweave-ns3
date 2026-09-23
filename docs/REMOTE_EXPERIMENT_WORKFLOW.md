@@ -39,6 +39,8 @@ python scripts\remote_experiment.py check
 
 服务器已有 Docker 客户端，但 `fnl` 无权访问 Docker socket，因此目前采用工作区内的原生 Waf 编译。不能为 Docker 修改用户组或 daemon。默认编译 `-j2`，一次只运行一个仿真，保留 CPU 和内存给服务器其他任务。远程 Python 3.5 和 GCC 5.4 较旧；原始基线的 Waf `configure` 和完整编译已在隔离目录通过。新代码仍要逐次编译验证。
 
+只读审计摘要：本机 Windows（12 个逻辑处理器），Git 2.54、OpenSSH 9.5、Python 3.12；本机没有 `rsync`，结果下载采用 `scp`。服务器报告 40 个逻辑 CPU（项目仍按 20 核预算）、125 GiB 内存、无 swap、约 5.9 TiB 可用磁盘；GCC/G++ 5.4、Python 2.7/3.5、Git 2.7、Make 4.1、CMake 3.17、NumPy 1.11，`tmux`、`screen`、`nohup`、`rsync` 已有。Waf 报告 GTK2、GSL、部分 Boost/OpenFlow 和 Python 绑定等可选功能未启用；原始基线编译不需要它们。若个人 idea 引入更新的 C++、Python 或可选库依赖，优先在 `~/lzy` 内建立用户级工具链；确实需要系统级安装时先停下说明影响。
+
 ## 3. 日常流程
 
 ### 本地改代码并推送个人 fork
@@ -62,6 +64,7 @@ python scripts\remote_experiment.py build --repo-local . --label conweave-baseli
 python scripts\remote_experiment.py run 20260923-170000-conweave-baseline --lb conweave --simul-time 0.01 --netload 10
 python scripts\remote_experiment.py status 20260923-170000-conweave-baseline
 python scripts\remote_experiment.py fetch 20260923-170000-conweave-baseline
+python scripts\analyze_result.py 20260923-170000-conweave-baseline
 ```
 
 `sync` 只从个人 fork 获取已推送的 SHA。`build` 从缓存复制一个**全新、固定 commit** 的实验源码目录，Waf `optimized` 模式以 2 个任务编译；它从不切换服务器现有的 `/home/fnl/lzy/conweave-ns3` 工作树。`run` 使用独立后台进程，SSH 断开仍继续。`status` 返回 PID、状态、SHA、参数和时间。默认小实验只接受 0.005–0.1 秒仿真时间及 1–50 的负载；扩大规模前先检查资源并修改项目安全上限，不直接运行 `autorun.sh`。
@@ -76,7 +79,7 @@ python scripts\remote_experiment.py fetch 20260923-170000-conweave-baseline
 本地结果      个人 fork 克隆内的 results/<实验ID>/（Git 忽略）
 ```
 
-每个结果记录 Git 仓库、SHA、分支、拓扑、负载、算法、种子（当前原始 `run.py` 固定为 1）、编译模式、服务器、启动命令、开始与结束时间、状态、PID。`run.py` 的 `mix/output` 在单次实验副本中指向该实验的 `raw/`，不会覆盖另一组。`fetch` 先检查远程结果没有符号链接，再下载到本机临时目录；已有同 ID 结果时拒绝覆盖。分析脚本在本地对 `results/<实验ID>/raw` 工作，论文图表记录实验 ID 和 SHA。大规模原始数据不提交 Git。
+每个结果记录 Git 仓库、SHA、分支、拓扑、负载、算法、种子（当前原始 `run.py` 固定为 1）、编译模式、服务器、启动命令、开始与结束时间、状态、PID。`run.py` 的 `mix/output` 在单次实验副本中指向该实验的 `raw/`，不会覆盖另一组。`fetch` 先检查远程结果没有符号链接，再下载到本机临时目录；已有同 ID 结果时拒绝覆盖。`analyze_result.py` 在本机读取 FCT 原始数据，生成 `processed/fct_summary.json`、`processed/fct_percentiles.csv` 和 `figures/fct_slowdown.svg`，无需额外 Python 包；重复运行时不会覆盖已生成文件。论文图表记录实验 ID 和 SHA。大规模原始数据不提交 Git。
 
 ## 4. 失败与恢复
 
@@ -90,6 +93,10 @@ python scripts\remote_experiment.py fetch 20260923-170000-conweave-baseline
 
 不执行仓库自带 `cleanup.sh`：它包含 `rm -rf ./mix/output/*` 和删除分析 PDF。远程现有工作树的 `mix/.history` 已有未提交修改，保持原状。任何系统级安装、Docker 权限变更、已有结果删除、强制 Git 操作和接近全部 CPU 的长时间实验，仍须先由开发者明确确认。
 
-## 5. 下一步研究入口
+## 5. 首次最小验证记录
+
+`20260923-165542-smoke-fecmp` 使用个人 fork 的 `edd2b72e52c4d01fd5b86e22ee1173c03f821f92`，在隔离目录以 `-j2` 完整编译，执行 `fecmp`、`leaf_spine_128_100G_OS2`、10% 负载、0.01 秒模拟，状态为 `SUCCEEDED`。FCT 原始文件和元数据已通过 `scp` 回到本机；本机摘要从 19,388 条原始记录中按原项目时间窗选出 9,708 条完成流，成功生成 JSON、CSV 与 SVG。数据只证明工作链路可用，不代表论文性能结论。
+
+## 6. 下一步研究入口
 
 先在个人分支重跑同一拓扑、负载和随机种子的 `fecmp`、`conga`、`letflow`、`conweave`，确认输出与分析链路。入口为 `run.py`（参数、流量生成与配置）→ `scratch/network-load-balance.cc`（拓扑、节点、应用、统计）→ `src/point-to-point/model/switch-node.cc`（按 LB 模式分发）→ `conga-routing.cc`、`letflow-routing.cc`、`conweave-routing.cc` 与 `conweave-voq.cc`（选路及重排）；`switch-mmu.cc` 管理队列/PFC，`rdma-hw.cc` 管理 RNIC/拥塞控制，`settings.cc` 承载全局配置。优先加新策略和参数，在相同输入 trace 上做独立对照，保留四种原始 baseline。
