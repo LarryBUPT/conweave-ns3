@@ -109,8 +109,22 @@ def resources_ok():
     match = re.search(r'^MemAvailable:\s+(\d+) kB', memory, re.M)
     if not match or int(match.group(1)) < 4 * 1024 * 1024:
         raise RuntimeError('Less than 4 GiB memory available')
-    if os.getloadavg()[0] > 30:
+    if os.getloadavg()[0] > 20:
         raise RuntimeError('Server load is high; retry later')
+
+
+def active_simulations():
+    found = []
+    listing = output(['ps', '-eo', 'pid=,comm=,args='])
+    for line in listing.splitlines():
+        parts = line.strip().split(None, 2)
+        if len(parts) != 3:
+            continue
+        pid, command, arguments = parts
+        if command.startswith('network-load-ba') or (command.startswith('python') and
+                                                       ' run.py --lb ' in ' ' + arguments):
+            found.append(pid)
+    return found
 
 
 def configure_references(repo):
@@ -156,6 +170,7 @@ def audit():
     print('host=' + socket.gethostname())
     print('cpu_logical=' + str(os.cpu_count()))
     print('load_1m=' + str(os.getloadavg()[0]))
+    print('active_simulation_pids=' + ','.join(active_simulations()))
     print('python=' + sys.version.split()[0])
     print('docker_access=' + ('yes' if os.access('/var/run/docker.sock', os.R_OK | os.W_OK) else 'no'))
     print('free_gib=%.1f' % (os.statvfs(ROOT).f_bavail * os.statvfs(ROOT).f_frsize / float(1024 ** 3)))
@@ -310,6 +325,8 @@ def execute(experiment_id):
 
 def start(experiment_id, params):
     resources_ok()
+    if active_simulations():
+        raise RuntimeError('An ns-3 experiment process is already running')
     base, source = paths(experiment_id)
     data = load_metadata(base)
     if data.get('status') != 'BUILT':
@@ -343,7 +360,10 @@ def status(experiment_id):
     data = load_metadata(base)
     print(json.dumps(data, indent=2, sort_keys=True))
     if data.get('status') == 'RUNNING':
-        print('process_alive=' + str(pid_alive(data.get('pid'))))
+        alive = pid_alive(data.get('pid'))
+        print('process_alive=' + str(alive))
+        if not alive:
+            print('effective_status=INTERRUPTED; inspect worker.log')
 
 
 def fetch_check(experiment_id):

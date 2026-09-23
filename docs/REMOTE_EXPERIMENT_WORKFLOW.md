@@ -37,7 +37,7 @@ python scripts\remote_experiment.py check
 
 本机 `.project/remote.env` 被 Git 忽略，只含主机、用户和工作区路径；不放密码、Token 或私钥。SSH 使用现有 `~/.ssh` 凭据，不复制进项目。`deploy` 只向 `/home/fnl/lzy/.research-workflow/remote_worker.py` 写项目脚本；会检查真实根路径。
 
-服务器已有 Docker 客户端，但 `fnl` 无权访问 Docker socket，因此目前采用工作区内的原生 Waf 编译。不能为 Docker 修改用户组或 daemon。默认编译 `-j2`，一次只运行一个仿真，保留 CPU 和内存给服务器其他任务。远程 Python 3.5 和 GCC 5.4 较旧；原始基线的 Waf `configure` 和完整编译已在隔离目录通过。新代码仍要逐次编译验证。
+服务器已有 Docker 客户端，但 `fnl` 无权访问 Docker socket，因此目前采用工作区内的原生 Waf 编译。不能为 Docker 修改用户组或 daemon。默认编译 `-j2`，一次只运行一个仿真；启动前检查负载、可用内存、磁盘和现有 ns-3 进程，保留 CPU 和内存给服务器其他任务。远程 Python 3.5 和 GCC 5.4 较旧；原始基线的 Waf `configure` 和完整编译已在隔离目录通过。新代码仍要逐次编译验证。
 
 只读审计摘要：本机 Windows（12 个逻辑处理器），Git 2.54、OpenSSH 9.5、Python 3.12；本机没有 `rsync`，结果下载采用 `scp`。服务器报告 40 个逻辑 CPU（项目仍按 20 核预算）、125 GiB 内存、无 swap、约 5.9 TiB 可用磁盘；GCC/G++ 5.4、Python 2.7/3.5、Git 2.7、Make 4.1、CMake 3.17、NumPy 1.11，`tmux`、`screen`、`nohup`、`rsync` 已有。Waf 报告 GTK2、GSL、部分 Boost/OpenFlow 和 Python 绑定等可选功能未启用；原始基线编译不需要它们。若个人 idea 引入更新的 C++、Python 或可选库依赖，优先在 `~/lzy` 内建立用户级工具链；确实需要系统级安装时先停下说明影响。
 
