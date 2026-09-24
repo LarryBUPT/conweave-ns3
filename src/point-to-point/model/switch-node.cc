@@ -23,11 +23,18 @@ namespace ns3 {
 
 static std::map<uint32_t, uint64_t> workload_tag_packets;
 static uint64_t missing_workload_tag_packets = 0;
+static uint64_t dualtrack_flow_packets = 0;
+static uint64_t dualtrack_packet_packets = 0;
+static uint64_t dualtrack_packet_multipath = 0;
 
 void SwitchNode::PrintWorkloadTagCounts() {
     for (const auto &entry : workload_tag_packets)
         std::cout << "WS06_ROUTING_TAG tag=" << entry.first << " packets=" << entry.second << std::endl;
     std::cout << "WS06_ROUTING_TAG missing=" << missing_workload_tag_packets << std::endl;
+    if (Settings::lb_mode == 12)
+        std::cout << "WS07_DUALTRACK flow_packets=" << dualtrack_flow_packets
+                  << " packet_packets=" << dualtrack_packet_packets
+                  << " packet_multipath=" << dualtrack_packet_multipath << std::endl;
 }
 
 TypeId SwitchNode::GetTypeId(void) {
@@ -95,6 +102,26 @@ uint32_t SwitchNode::DoLbFlowECMP(Ptr<const Packet> p, const CustomHeader &ch,
     uint32_t hashVal = EcmpHash(buf.u8, 12, m_ecmpSeed);
     uint32_t idx = hashVal % nexthops.size();
     return nexthops[idx];
+}
+
+// tag=2 uses a deterministic per-packet ECMP hash. tag=0/1 and all control
+// traffic retain the original flow hash. No transport or receiver setting changes.
+uint32_t SwitchNode::DoLbDualTrack(Ptr<const Packet> p, const CustomHeader &ch,
+                                   const std::vector<int> &nexthops) {
+    WorkloadTag label;
+    if (!p->PeekPacketTag(label) || label.GetValue() != 2) {
+        if (m_isToR && m_isToR_hostIP.count(ch.sip)) ++dualtrack_flow_packets;
+        return DoLbFlowECMP(p, ch, nexthops);
+    }
+    if (m_isToR && m_isToR_hostIP.count(ch.sip)) {
+        ++dualtrack_packet_packets;
+        if (nexthops.size() > 1) ++dualtrack_packet_multipath;
+    }
+    uint32_t key[4] = {ch.sip, ch.dip,
+                       uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16),
+                       ch.udp.seq};
+    return nexthops[EcmpHash(reinterpret_cast<const uint8_t *>(key), sizeof(key), m_ecmpSeed)
+                    % nexthops.size()];
 }
 
 /*-----------------CONGA-----------------*/
@@ -292,6 +319,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbLetflow(p, ch, nexthops);
         case 9:
             return DoLbConWeave(p, ch, nexthops); /** DUMMY: Do ECMP */
+        case 12:
+            return DoLbDualTrack(p, ch, nexthops);
         default:
             std::cout << "Unknown lb_mode(" << Settings::lb_mode << ")" << std::endl;
             assert(false);

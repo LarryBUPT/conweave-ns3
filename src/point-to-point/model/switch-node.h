@@ -43,6 +43,8 @@ class SwitchNode : public Node {
     // Flow ECMP (lb_mode = 0)
     uint32_t DoLbFlowECMP(Ptr<const Packet> p, const CustomHeader &ch,
                           const std::vector<int> &nexthops);
+    uint32_t DoLbDualTrack(Ptr<const Packet> p, const CustomHeader &ch,
+                           const std::vector<int> &nexthops);
     // DRILL (lb_mode = 2)
     uint32_t DoLbDrill(Ptr<const Packet> p, const CustomHeader &ch,
                        const std::vector<int> &nexthops);     // choose egress port

@@ -103,6 +103,7 @@ cc_modes = {
 
 lb_modes = {
     "fecmp": 0,
+    "dualtrack": 12,
     "drill": 2,
     "conga": 3,
     "letflow": 6,

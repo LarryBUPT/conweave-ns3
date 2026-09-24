@@ -198,7 +198,7 @@ def main():
     protect_cmd.add_argument('--repo-local', required=True)
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('id')
-    run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave'], default='fecmp')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave', 'dualtrack'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)
