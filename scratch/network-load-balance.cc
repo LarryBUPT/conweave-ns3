@@ -1276,8 +1276,10 @@ int main(int argc, char *argv[]) {
         double error_rate;
         topof >> src >> dst >> data_rate >> link_delay >> error_rate;
 
-        /** ASSUME: fixed one-hop delay across network */
-        assert(std::to_string(one_hop_delay) + "ns" == link_delay);
+        // The imported MoE topology has 10ns host links and 100ns fabric links.
+        // pairRtt/pairBdp below use each link's actual QbbChannel delay.
+        if (topology_file != "config/topo_1280_400G_400G_OS1.txt")
+            assert(std::to_string(one_hop_delay) + "ns" == link_delay);
 
         link_pairs.push_back(std::make_pair(src, dst));
         Ptr<Node> snode = n.Get(src), dnode = n.Get(dst);
