@@ -113,6 +113,7 @@ topo2bdp = {
     "leaf_spine_128_100G_OS2": 104000,  # 2-tier -> all 100Gbps
     "fat_k8_100G_OS2": 156000,  # 3-tier -> all 100Gbps
     "fat_k4_100G_OS2": 156000,  # small 3-tier correctness topology
+    "topo_1280_400G_400G_OS1": 18000,  # imported MoE topology; 400G NICs
 }
 
 FLOWGEN_DEFAULT_TIME = 2.0  # see /traffic_gen/traffic_gen.py::base_t

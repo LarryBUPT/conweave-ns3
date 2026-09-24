@@ -295,7 +295,8 @@ def execute(experiment_id):
     params = data['parameters']
     command = [sys.executable, 'run.py', '--lb', params['lb'], '--pfc', str(params['pfc']),
                '--irn', str(params['irn']), '--simul_time', params['simul_time'],
-               '--netload', str(params['netload']), '--topo', params['topo'], '--cdf', params['cdf']]
+               '--netload', str(params['netload']), '--bw', str(params['bw']),
+               '--topo', params['topo'], '--cdf', params['cdf']]
     if params.get('flow_file'):
         command.extend(['--flow-file', 'config/' + params['flow_file']])
     log = inside(os.path.join(base, 'logs', 'simulation.log'))
@@ -447,6 +448,7 @@ def main():
     run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
+    run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file')
@@ -467,11 +469,15 @@ def main():
             raise RuntimeError('Small-run safety bounds: load 1-50, simulation time 0.005-0.1 s')
         if not re.match(r'^[A-Za-z0-9_-]+$', args.topo) or not re.match(r'^[A-Za-z0-9_-]+$', args.cdf):
             raise RuntimeError('Invalid topology or CDF name')
-        if args.flow_file and not re.match(r'^[A-Za-z0-9_.-]+[.]txt$', args.flow_file):
+        flow_file = args.flow_file
+        if flow_file and flow_file.startswith('config/'):
+            flow_file = flow_file[len('config/'):]
+        if flow_file and not re.match(r'^[A-Za-z0-9_.-]+[.]txt$', flow_file):
             raise RuntimeError('Flow file must be a config/*.txt basename')
         start(args.id, {'lb': args.lb, 'pfc': 1, 'irn': 0, 'simul_time': args.simul_time,
-                        'netload': args.netload, 'topo': args.topo, 'cdf': args.cdf,
-                        'flow_file': args.flow_file})
+                        'netload': args.netload, 'bw': args.bw,
+                        'topo': args.topo, 'cdf': args.cdf,
+                        'flow_file': flow_file})
     elif args.command == 'execute':
         execute(args.id)
     elif args.command == 'status':

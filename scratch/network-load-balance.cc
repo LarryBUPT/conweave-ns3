@@ -30,6 +30,7 @@
 #include <fstream>
 #include <iostream>
 #include <cmath>
+#include <cstdlib>
 #include <limits>
 #include <map>
 #include <sstream>
@@ -1196,11 +1197,14 @@ int main(int argc, char *argv[]) {
                   << " / " << flow_file << std::endl;
         return 1;
     }
+    int64_t declared_flows;
     if (!(topof >> node_num >> switch_num >> link_num) ||
-        !(flowf >> flow_num) || node_num <= switch_num) {
+        !(flowf >> declared_flows) || node_num <= switch_num || link_num == 0 ||
+        declared_flows < 0 || declared_flows > std::numeric_limits<uint32_t>::max()) {
         std::cerr << "INPUT_ERROR invalid topology or flow header" << std::endl;
         return 1;
     }
+    flow_num = static_cast<uint32_t>(declared_flows);
     std::string header_remainder;
     std::getline(flowf, header_remainder);
     if (header_remainder.find_first_not_of(" \t\r") != std::string::npos) {
@@ -1430,6 +1434,7 @@ int main(int argc, char *argv[]) {
     topo2bdpMap[std::string("leaf_spine_128_100G_OS2")] = 104000;  // RTT=8320
     topo2bdpMap[std::string("fat_k8_100G_OS2")] = 156000;      // RTT=12480 --> all 100G links
     topo2bdpMap[std::string("fat_k4_100G_OS2")] = 156000;      // same three-tier link rates
+    topo2bdpMap[std::string("topo_1280_400G_400G_OS1")] = 18000;  // imported MoE topology
 
     // topology_file
     bool found_topo2bdpMap = false;

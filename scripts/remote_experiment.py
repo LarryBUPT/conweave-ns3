@@ -201,6 +201,7 @@ def main():
     run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
+    run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file', help='existing tracked config/*.txt trace')
@@ -238,7 +239,8 @@ def main():
             print('Experiment ID: ' + experiment_id)
     elif args.command == 'run':
         command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
-                   '--netload', str(args.netload), '--topo', args.topo, '--cdf', args.cdf]
+                   '--netload', str(args.netload), '--bw', str(args.bw),
+                   '--topo', args.topo, '--cdf', args.cdf]
         if args.flow_file:
             command.extend(['--flow-file', args.flow_file])
         worker_call(cfg, *command)
