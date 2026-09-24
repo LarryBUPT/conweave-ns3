@@ -1,6 +1,6 @@
 # 冲突、过期内容与待核验点
 
-更新：2026-09-24。记录“哪里说法不一致、当前采用什么口径、怎样消除”，不把旧文档直接删除。
+更新：2026-09-25。记录“哪里说法不一致、当前采用什么口径、怎样消除”，不把旧文档直接删除。
 
 | ID | 不一致或风险 | 当前采用的口径 | 后续处理 |
 | --- | --- | --- | --- |
@@ -14,3 +14,5 @@
 | C-08 | 仿真 seed 可能被误认为控制了流量生成。 | 原始 `traffic_gen.py` 未独立播种；配对实验必须固定 trace 内容及哈希。 | WS-07 补生成 seed 与不可变 trace 契约。 |
 | C-09 | 论文项目根目录不在 Git 中，若只在根目录写状态文件，仍无法形成版本化项目记忆。 | 把当前状态、ADR、Handoff 和项目 Skill 放在个人 fork；根目录 `AGENTS.md` 提供入口。 | 若未来为论文资料建立独立版本库，再显式迁移唯一权威位置。 |
 | C-10 | 导入 400G 拓扑同时有 10ns/100ns 链路；参考仓库手填 18,000 B BDP 与实测 30,000 B 不一致，ConWeave 部分时序仍假定统一 `one_hop_delay`。 | WS-06 按实际链路核对 30,000 B，并只以 ECMP 四流探测验证该拓扑输入；见 [ADR-005](../decisions/ADR-005-imported-topology-bdp.md)。 | WS-07 若在此拓扑比较 ConWeave 或双轨模式，先审计和验证时序估计；不外推本轮探测。 |
+| C-11 | 旧 GuardHash 草案主要写背景长流受 MoE 喷洒影响；ANT 聊天最先追问背景增加时 MoE 小流劣化。 | 论文项目 `docs/research/12-screenshot-lessons-and-mechanism-selection.md` 与 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)把 MoE 受害方向列为首要诊断，同时测背景侧代价；受害方向尚未实测定论。 | WS-07 用双向、配对指标检验；不因研究选择直接实现 GuardHash。 |
+| C-12 | `8round` 文件名和旧 `2.005s` FCT 窗口容易被误读成八轮依次运行且已有有效 MoE 汇总。 | 静态 trace 均为 `2.000s` 同启、无轮次字段；默认窗口会排除目标流。四 rail 拓扑的现有输入只打 rail 0。 | WS-07 先建按 tag 的完成率/FCT/合成批次分析；主实验明确 rail 与输入约束，保留旧 baseline 分析口径。 |
