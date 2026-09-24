@@ -1,0 +1,18 @@
+{
+  "moe_flows": 256,
+  "source_mixed_sha256": "83d0b2ff46d683d243bcd1d4b2fc4c2fefa330324062d13dcfb878af5abdd7dc",
+  "source_moe_sha256": "9e00baa5c79ab45b107b82b4c18d43cbb9a1073101bf14123aedd2d90d2e89fd",
+  "trace_seed": 20260925,
+  "traces": {
+    "ws07_pilot_s20260925_n256_bg0.txt": {
+      "flows": 256,
+      "offered_bytes": 2097152,
+      "sha256": "d60ca03e36f1607328f7af0e79b39f4c9bf74cd0feca8d59f1283de56d778560"
+    },
+    "ws07_pilot_s20260925_n256_bg64.txt": {
+      "flows": 320,
+      "offered_bytes": 538968064,
+      "sha256": "cbfa0e5a95b7c3b6b56dfd563e855dff8b83f4f54db2747909039285184f58e1"
+    }
+  }
+}
