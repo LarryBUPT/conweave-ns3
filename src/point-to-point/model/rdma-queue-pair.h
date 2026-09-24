@@ -68,6 +68,7 @@ class RdmaQueuePair : public Object {
     uint32_t wp;          // current window of packets
     uint32_t lastPktSize;
     int32_t m_flow_id;
+    uint32_t m_workload_tag;
     Time m_timeout;
 
     /******************************

@@ -18,6 +18,7 @@
 #include "ns3/settings.h"
 #include "ns3/switch-node.h"
 #include "ns3/uinteger.h"
+#include "ns3/workload-tag.h"
 #include "ppp-header.h"
 #include "qbb-header.h"
 
@@ -182,7 +183,7 @@ Ptr<RdmaQueuePair> RdmaHw::GetQp(uint64_t key) {
 }
 void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Address dip,
                           uint16_t sport, uint16_t dport, uint32_t win, uint64_t baseRtt,
-                          int32_t flow_id) {
+                          int32_t flow_id, uint32_t workload_tag) {
     // create qp
     Ptr<RdmaQueuePair> qp = CreateObject<RdmaQueuePair>(pg, sip, dip, sport, dport);
     qp->SetSize(size);
@@ -190,6 +191,7 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
     qp->SetBaseRtt(baseRtt);
     qp->SetVarWin(m_var_win);
     qp->SetFlowId(flow_id);
+    qp->m_workload_tag = workload_tag;
     qp->SetTimeout(m_waitAckTimeout);
 
     if (m_irn) {
@@ -763,6 +765,9 @@ Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) {
     qp->stat.txTotalBytes += payload_size;
 
     Ptr<Packet> p = Create<Packet>(payload_size);
+    WorkloadTag label;
+    label.SetValue(qp->m_workload_tag);
+    p->AddPacketTag(label);
     // add SeqTsHeader
     SeqTsHeader seqTs;
     seqTs.SetSeq(seq);

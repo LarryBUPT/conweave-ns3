@@ -13,10 +13,22 @@
 #include "ns3/pause-header.h"
 #include "ns3/settings.h"
 #include "ns3/uinteger.h"
+#include "ns3/workload-tag.h"
+#include <iostream>
+#include <map>
 #include "ppp-header.h"
 #include "qbb-net-device.h"
 
 namespace ns3 {
+
+static std::map<uint32_t, uint64_t> workload_tag_packets;
+static uint64_t missing_workload_tag_packets = 0;
+
+void SwitchNode::PrintWorkloadTagCounts() {
+    for (const auto &entry : workload_tag_packets)
+        std::cout << "WS06_ROUTING_TAG tag=" << entry.first << " packets=" << entry.second << std::endl;
+    std::cout << "WS06_ROUTING_TAG missing=" << missing_workload_tag_packets << std::endl;
+}
 
 TypeId SwitchNode::GetTypeId(void) {
     static TypeId tid =
@@ -196,6 +208,14 @@ bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> pack
 }
 
 void SwitchNode::SendToDev(Ptr<Packet> p, CustomHeader &ch) {
+    // Count only data packets as they enter their source ToR, before any LB dispatch.
+    if (ch.l3Prot == 0x11 && m_isToR && m_isToR_hostIP.count(ch.sip)) {
+        WorkloadTag label;
+        if (p->PeekPacketTag(label))
+            ++workload_tag_packets[label.GetValue()];
+        else
+            ++missing_workload_tag_packets;
+    }
     /** HIJACK: hijack the packet and run DoSwitchSend internally for Conga and ConWeave.
      * Note that DoLbConWeave() and DoLbConga() are flow-ECMP function for control packets
      * or intra-ToR traffic.

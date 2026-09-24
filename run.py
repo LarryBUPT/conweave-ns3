@@ -20,7 +20,7 @@ MAX_RAND_RANGE = 1000000000
 
 # config template
 config_template = """TOPOLOGY_FILE config/{topo}.txt
-FLOW_FILE config/{flow}.txt
+FLOW_FILE {flow_file}
 
 FLOW_INPUT_FILE mix/output/{id}/{id}_in.txt
 CNP_OUTPUT_FILE mix/output/{id}/{id}_out_cnp.txt
@@ -112,6 +112,7 @@ lb_modes = {
 topo2bdp = {
     "leaf_spine_128_100G_OS2": 104000,  # 2-tier -> all 100Gbps
     "fat_k8_100G_OS2": 156000,  # 3-tier -> all 100Gbps
+    "fat_k4_100G_OS2": 156000,  # small 3-tier correctness topology
 }
 
 FLOWGEN_DEFAULT_TIME = 2.0  # see /traffic_gen/traffic_gen.py::base_t
@@ -145,6 +146,8 @@ def main():
                         default='leaf_spine_128_100G', help="the name of the topology file (default: leaf_spine_128_100G_OS2)")
     parser.add_argument('--cdf', dest='cdf', action='store',
                         default='AliStorage2019', help="the name of the cdf file (default: AliStorage2019)")
+    parser.add_argument('--flow-file', '--flow_file', dest='flow_file',
+                        help="existing flow trace inside config/ (five or six columns)")
     parser.add_argument('--enforce_win', dest='enforce_win', action='store',
                         type=int, default=0, help="enforce to use window scheme (default: 0)")
     parser.add_argument('--sw_monitoring_interval', dest='sw_monitoring_interval', action='store',
@@ -217,11 +220,23 @@ def main():
     flow = "L_{load:.2f}_CDF_{cdf}_N_{n_host}_T_{time}ms_B_{bw}_flow".format(
         load=hostload, cdf=args.cdf, n_host=n_host, time=int(float(args.simul_time)*1000), bw=bw)
 
+    # An explicit input is immutable for this run; never generate or replace it.
+    if args.flow_file:
+        flow_file = os.path.realpath(args.flow_file)
+        config_dir = os.path.realpath('config')
+        if os.path.commonpath((config_dir, flow_file)) != config_dir:
+            parser.error('--flow-file must be an existing file inside config/')
+        if not os.path.isfile(flow_file):
+            parser.error('--flow-file does not exist: ' + args.flow_file)
+        flow_file = os.path.relpath(flow_file, os.getcwd()).replace(os.sep, '/')
+        print('Using existing flow trace: ' + flow_file)
+    else:
+        flow_file = 'config/' + flow + '.txt'
     # check the file exists
-    if (exists(os.getcwd() + "/config/" + flow + ".txt")):
+    if not args.flow_file and exists(os.getcwd() + "/config/" + flow + ".txt"):
         print("Input traffic file with load:{load:.2f}, cdf:{cdf}, n_host:{n_host} already exists".format(
             load=hostload, cdf=cdf, n_host=n_host))
-    else:  # make the input traffic file
+    elif not args.flow_file:  # make the input traffic file
         print("Generate a input traffic file...")
         print("python ./traffic_gen/traffic_gen.py -c {cdf} -n {n_host} -l {load} -b {bw} -t {time} -o {output}".format(
             cdf=os.getcwd() + "/../traffic_gen/" + args.cdf + ".txt",
@@ -231,13 +246,13 @@ def main():
             time=args.simul_time,
             output=os.getcwd() + "/config/" + flow + ".txt"))
 
-        os.system("python ./traffic_gen/traffic_gen.py -c {cdf} -n {n_host} -l {load} -b {bw} -t {time} -o {output}".format(
-            cdf=os.getcwd() + "/traffic_gen/" + args.cdf + ".txt",
-            n_host=n_host,
-            load=hostload / 100.0,
-            bw=args.bw + "G",
-            time=args.simul_time,
-            output=os.getcwd() + "/config/" + flow + ".txt"))
+        subprocess.check_call([sys.executable, './traffic_gen/traffic_gen.py',
+                               '-c', os.path.join('traffic_gen', args.cdf + '.txt'),
+                               '-n', str(n_host), '-l', str(hostload / 100.0),
+                               '-b', args.bw + 'G', '-t', args.simul_time,
+                               '-o', flow_file])
+    if not os.path.isfile(flow_file):
+        parser.error('flow trace was not created: ' + flow_file)
 
     # sanity check - bandwidth
     with open("config/{topo}.txt".format(topo=args.topo), 'r') as f_topo:
@@ -358,7 +373,7 @@ def main():
         int_multi = 1
         ewma_gain = 0.00390625
 
-        config = config_template.format(id=config_ID, topo=topo, flow=flow,
+        config = config_template.format(id=config_ID, topo=topo, flow_file=flow_file,
                                         qlen_mon_start=qlen_mon_start, qlen_mon_end=qlen_mon_end, flowgen_start_time=flowgen_start_time,
                                         flowgen_stop_time=flowgen_stop_time, sw_monitoring_interval=sw_monitoring_interval,
                                         load=netload, buffer_size=buffer, lb_mode=lb_mode, cwh_tx_expiry_time=cwh_tx_expiry_time,
@@ -390,8 +405,9 @@ def main():
         history.write("\n")
 
     print(run_command)
-    os.system("./waf --run 'scratch/network-load-balance {config_name}' > {output_log} 2>&1".format(
-        config_name=config_name, output_log=output_log))
+    with open(output_log, 'w') as simulation_log:
+        subprocess.check_call(['./waf', '--run', 'scratch/network-load-balance ' + config_name],
+                              stdout=simulation_log, stderr=subprocess.STDOUT)
 
     ####################################################
     #                 Analyze the output FCT           #

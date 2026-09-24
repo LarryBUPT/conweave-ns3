@@ -69,6 +69,7 @@ class SwitchNode : public Node {
     void AddTableEntry(Ipv4Address &dstAddr, uint32_t intf_idx);
     void ClearTable();
     bool SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet, CustomHeader &ch);
+    static void PrintWorkloadTagCounts();
     void SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p);
     uint64_t GetTxBytesOutDev(uint32_t outdev);
 };

@@ -203,6 +203,7 @@ def main():
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
+    run_cmd.add_argument('--flow-file', help='existing tracked config/*.txt trace')
     for name in ('status', 'fetch', 'transfer-smoke'):
         item = sub.add_parser(name)
         item.add_argument('id')
@@ -236,8 +237,11 @@ def main():
             worker_call(cfg, 'build', '--id', experiment_id, '--sha', sha, '--branch', branch)
             print('Experiment ID: ' + experiment_id)
     elif args.command == 'run':
-        worker_call(cfg, 'run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
-                    '--netload', str(args.netload), '--topo', args.topo, '--cdf', args.cdf)
+        command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
+                   '--netload', str(args.netload), '--topo', args.topo, '--cdf', args.cdf]
+        if args.flow_file:
+            command.extend(['--flow-file', args.flow_file])
+        worker_call(cfg, *command)
     elif args.command == 'status':
         worker_call(cfg, 'status', args.id)
     elif args.command == 'fetch':

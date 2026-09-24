@@ -29,6 +29,10 @@
 
 #include <fstream>
 #include <iostream>
+#include <cmath>
+#include <limits>
+#include <map>
+#include <sstream>
 #include <unordered_map>
 
 #include "ns3/applications-module.h"
@@ -47,6 +51,7 @@
 #include "ns3/qbb-net-device.h"
 #include "ns3/rdma-hw.h"
 #include "ns3/settings.h"
+#include "ns3/workload-tag.h"
 
 using namespace ns3;
 using namespace std;
@@ -188,24 +193,67 @@ struct FlowInput {
     uint32_t src, dst, pg, maxPacketCount, port;
     double start_time;
     uint32_t idx;
+    uint32_t workload_tag;
 };
 FlowInput flow_input = {0};  // global variable
 uint32_t flow_num;
+uint32_t flow_line_number = 1;
+double previous_flow_start = -1.0;
+std::map<uint32_t, uint64_t> input_tag_counts;
 
 /**
  * Read flow input from file "flowf"
  */
 void ReadFlowInput() {
     if (flow_input.idx < flow_num) {
-        flowf >> flow_input.src >> flow_input.dst >> flow_input.pg >> flow_input.maxPacketCount >>
-            flow_input.start_time;
-        assert(n.Get(flow_input.src)->GetNodeType() == 0 &&
-               n.Get(flow_input.dst)->GetNodeType() == 0);
+        std::string line;
+        if (!std::getline(flowf, line)) {
+            std::cerr << "FLOW_INPUT_ERROR line " << flow_line_number + 1
+                      << ": fewer records than declared " << flow_num << std::endl;
+            std::exit(1);
+        }
+        ++flow_line_number;
+        std::istringstream fields(line);
+        int64_t src, dst, pg, bytes, tag = 0;
+        double start;
+        std::string extra;
+        if (!(fields >> src >> dst >> pg >> bytes >> start) ||
+            (fields >> tag && (fields >> extra)) ||
+            (!fields.eof() && fields.fail() && !fields.eof())) {
+            std::cerr << "FLOW_INPUT_ERROR line " << flow_line_number
+                      << ": expected src dst pg bytes start_s [tag]" << std::endl;
+            std::exit(1);
+        }
+        if (src < 0 || dst < 0 || src >= static_cast<int64_t>(Settings::host_num) ||
+            dst >= static_cast<int64_t>(Settings::host_num) || src == dst || pg < 0 || pg > 7 ||
+            bytes <= 0 || bytes > std::numeric_limits<uint32_t>::max() || tag < 0 ||
+            tag > std::numeric_limits<uint32_t>::max() || !std::isfinite(start) || start < 0 ||
+            start < previous_flow_start ||
+            n.Get(src)->GetNodeType() != 0 || n.Get(dst)->GetNodeType() != 0) {
+            std::cerr << "FLOW_INPUT_ERROR line " << flow_line_number
+                      << ": invalid host, priority, size, time order, or tag" << std::endl;
+            std::exit(1);
+        }
+        flow_input.src = src;
+        flow_input.dst = dst;
+        flow_input.pg = pg;
+        flow_input.maxPacketCount = bytes;
+        flow_input.start_time = start;
+        flow_input.workload_tag = tag;
+        previous_flow_start = start;
+        ++input_tag_counts[flow_input.workload_tag];
     } else {
-        std::cout << "*** input flow is over the prefixed number -- flow number : " << flow_num
-                  << std::endl;
-        std::cout << "*** flow_input.idx : " << flow_input.idx << std::endl;
-        std::cout << "*** THIS IS THE LAST FLOW TO SEND :) " << std::endl;
+        std::string extra;
+        while (std::getline(flowf, extra)) {
+            ++flow_line_number;
+            if (extra.find_first_not_of(" \t\r") != std::string::npos) {
+                std::cerr << "FLOW_INPUT_ERROR line " << flow_line_number
+                          << ": more records than declared " << flow_num << std::endl;
+                std::exit(1);
+            }
+        }
+        for (const auto &entry : input_tag_counts)
+            std::cout << "WS06_INPUT_TAG tag=" << entry.first << " flows=" << entry.second << std::endl;
     }
 }
 
@@ -274,6 +322,7 @@ void ScheduleFlowInputs(FILE *infile) {
             has_win ? (global_t == 1 ? maxBdp : pairBdp[n.Get(src)][n.Get(dst)]) : 0,
             global_t == 1 ? maxRtt : pairRtt[n.Get(src)][n.Get(dst)]);
         clientHelper.SetAttribute("StatFlowID", IntegerValue(flow_input.idx));
+        clientHelper.SetAttribute("WorkloadTag", UintegerValue(flow_input.workload_tag));
 
         ApplicationContainer appCon = clientHelper.Install(n.Get(src));  // SRC
         appCon.Start(Seconds(Time(0)));
@@ -1142,8 +1191,22 @@ int main(int argc, char *argv[]) {
     topof.open(topology_file.c_str());
     flowf.open(flow_file.c_str());
     uint32_t node_num, switch_num, link_num;
-    topof >> node_num >> switch_num >> link_num;
-    flowf >> flow_num;
+    if (!topof || !flowf) {
+        std::cerr << "INPUT_ERROR cannot open topology or flow file: " << topology_file
+                  << " / " << flow_file << std::endl;
+        return 1;
+    }
+    if (!(topof >> node_num >> switch_num >> link_num) ||
+        !(flowf >> flow_num) || node_num <= switch_num) {
+        std::cerr << "INPUT_ERROR invalid topology or flow header" << std::endl;
+        return 1;
+    }
+    std::string header_remainder;
+    std::getline(flowf, header_remainder);
+    if (header_remainder.find_first_not_of(" \t\r") != std::string::npos) {
+        std::cerr << "FLOW_INPUT_ERROR line 1: expected only a flow count" << std::endl;
+        return 1;
+    }
 
     /*-------Parameter of Settings-------*/
     Settings::node_num = node_num;
@@ -1791,6 +1854,7 @@ int main(int argc, char *argv[]) {
                         &stop_simulation_middle);  // check every 100us
     Simulator::Stop(Seconds(flowgen_stop_time + 10.0));
     Simulator::Run();
+    SwitchNode::PrintWorkloadTagCounts();
 
     /*-----------------------------------------------------------------------------*/
     /*----- we don't need below. Just we can enforce to close this simulation. -----*/

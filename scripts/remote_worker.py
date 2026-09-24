@@ -296,10 +296,21 @@ def execute(experiment_id):
     command = [sys.executable, 'run.py', '--lb', params['lb'], '--pfc', str(params['pfc']),
                '--irn', str(params['irn']), '--simul_time', params['simul_time'],
                '--netload', str(params['netload']), '--topo', params['topo'], '--cdf', params['cdf']]
+    if params.get('flow_file'):
+        command.extend(['--flow-file', 'config/' + params['flow_file']])
     log = inside(os.path.join(base, 'logs', 'simulation.log'))
     data['command'] = ' '.join(command)
     save_metadata(base, data)
     try:
+        if params.get('flow_file'):
+            selected = inside(os.path.join(source, 'config', params['flow_file']))
+            if not os.path.isfile(selected) or os.path.islink(selected):
+                raise RuntimeError('Explicit flow file is missing or a symlink')
+            import hashlib
+            with open(selected, 'rb') as handle:
+                before_hash = hashlib.sha256(handle.read()).hexdigest()
+            data['input_flow_sha256'] = before_hash
+            save_metadata(base, data)
         # Source writes through this link into this experiment's unique raw directory.
         output_dir = inside(os.path.join(source, 'mix', 'output'))
         if os.path.lexists(output_dir):
@@ -312,6 +323,26 @@ def execute(experiment_id):
             raise RuntimeError('run.py ended without a nonempty FCT output; inspect simulation.log')
         for config in glob.glob(os.path.join(base, 'raw', '*', 'config.txt')):
             shutil.copy2(config, inside(os.path.join(base, 'config', 'config.txt')))
+            config_text = open(config).read()
+            flow_lines = [line.split(None, 1)[1].strip() for line in config_text.splitlines()
+                          if line.startswith('FLOW_FILE ')]
+            if len(flow_lines) != 1:
+                raise RuntimeError('Simulation config has no unique FLOW_FILE')
+            flow_source = os.path.realpath(os.path.join(source, flow_lines[0]))
+            config_root = os.path.realpath(os.path.join(source, 'config'))
+            if not flow_source.startswith(config_root + os.sep) or not os.path.isfile(flow_source):
+                raise RuntimeError('FLOW_FILE escaped source config or is missing')
+            import hashlib
+            with open(flow_source, 'rb') as handle:
+                flow_hash = hashlib.sha256(handle.read()).hexdigest()
+            if data.get('input_flow_sha256') and data['input_flow_sha256'] != flow_hash:
+                raise RuntimeError('Explicit flow file changed during simulation')
+            shutil.copy2(flow_source, inside(os.path.join(base, 'config', 'traffic_trace.txt')))
+            data['input_flow_sha256'] = flow_hash
+            topology_source = os.path.join(source, 'config', params['topo'] + '.txt')
+            shutil.copy2(topology_source, inside(os.path.join(base, 'config', 'topology.txt')))
+            with open(topology_source, 'rb') as handle:
+                data['topology_sha256'] = hashlib.sha256(handle.read()).hexdigest()
         data['status'] = 'SUCCEEDED'
         data['raw_directory'] = os.path.basename(raw_dirs[0])
     except Exception as error:
@@ -418,6 +449,7 @@ def main():
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
+    run_cmd.add_argument('--flow-file')
     for name in ('execute', 'status', 'fetch-check', 'transfer-smoke'):
         command = sub.add_parser(name)
         command.add_argument('id')
@@ -435,8 +467,11 @@ def main():
             raise RuntimeError('Small-run safety bounds: load 1-50, simulation time 0.005-0.1 s')
         if not re.match(r'^[A-Za-z0-9_-]+$', args.topo) or not re.match(r'^[A-Za-z0-9_-]+$', args.cdf):
             raise RuntimeError('Invalid topology or CDF name')
+        if args.flow_file and not re.match(r'^[A-Za-z0-9_.-]+[.]txt$', args.flow_file):
+            raise RuntimeError('Flow file must be a config/*.txt basename')
         start(args.id, {'lb': args.lb, 'pfc': 1, 'irn': 0, 'simul_time': args.simul_time,
-                        'netload': args.netload, 'topo': args.topo, 'cdf': args.cdf})
+                        'netload': args.netload, 'topo': args.topo, 'cdf': args.cdf,
+                        'flow_file': args.flow_file})
     elif args.command == 'execute':
         execute(args.id)
     elif args.command == 'status':
