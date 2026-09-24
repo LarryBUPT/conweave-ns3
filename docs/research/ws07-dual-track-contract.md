@@ -20,4 +20,6 @@
 3. **双向 MixTax 诊断：**同一 MoE 子 trace，四格为 `MoE=packet/flow × 背景=0/64`。MoE 侧主观察量为合成批次完成时间交互：`(packet,64 − packet,0) − (flow,64 − flow,0)`；背景侧为同一 64 背景 trace 的背景 FCT `packet − flow`。报告完成率、P99、逐包重传/CNP/PFC 与链路利用率。单个 trace seed 的流不是独立重复，不能从流数得到统计置信度。
 4. **固定总负载主实验准备：**独立于仿真 seed 指定 trace seed，生成并保存每个 seed 的不可变 trace、生成脚本版本、拓扑与 trace SHA；在每个 seed 内固定总提供字节、目标 MoE 子 trace、发送时刻、端点/rail 约束，用替换式背景组合改变类别构成。各算法复用同一 seed 的字节级相同 trace。正式重复数及固定字节预算须在 pilot 的资源结果后冻结，不能基于一次 P99 结果挑选。
 
+`scripts/make_ws07_pilot_traces.py` 已为 seed 20260925 生成 256 条同一 MoE 子 trace 的 0/64 背景资源样本，哈希见 `ws07-pilot-manifest.json`。`scripts/make_ws07_fixed_load_traces.py` 另生成 0/2/4 背景替换式**设计样本**：目标 MoE 256 条不变，竞争字节固定为 32 MiB，总提供字节均为 35,651,584 B，哈希见 `ws07-fixed-load-manifest.json`。后者的 tag=2 还包含随背景数变化的填充 MoE 流；正式分析使用 `analyze_moe_tags.py --target-trace config/<manifest 的 target_file>` 按固定目标集合另算 MoE 指标，不能把全部 tag=2 批次当作同一个目标集合。两套生成资产均尚未验证大规模仿真可承受。
+
 **Go / no-go：**进入 WS-08 前，至少三个独立 trace seed 的同向交互应达到预先冻结的实际意义门槛，且 MoE 改善不能仅以背景 FCT/完成率明显恶化为代价；同时需确认损害不是由未完成流或不对称传输配置伪造。当前暂定实际意义门槛为合成批次完成时间差异 ≥5%，背景 P99 恶化不得超过 5% 且两类完成率均为 100%；pilot 后、正式运行前只可基于精度与资源约束调整并留痕。若无稳定损害或逐包流不能可靠完成，WS-08 保持条件状态。ConWeave 若进入导入混合延迟拓扑的比较，须先审计其统一 `one_hop_delay` 推导的 ToR 时序值；当前不把它作为此双轨实验的对照。
