@@ -166,11 +166,26 @@ def network_retry(argv, cwd=None):
 
 def audit():
     inside(ROOT, allow_root=True)
+    with open('/proc/meminfo') as handle:
+        meminfo = handle.read()
+    available = re.search(r'^MemAvailable:\s+(\d+) kB', meminfo, re.M)
+    rss_mib = 0.0
+    for pid in active_simulations():
+        try:
+            with open('/proc/%s/status' % pid) as handle:
+                status_text = handle.read()
+            resident = re.search(r'^VmRSS:\s+(\d+) kB', status_text, re.M)
+            if resident:
+                rss_mib = max(rss_mib, int(resident.group(1)) / 1024.0)
+        except (IOError, OSError):
+            pass
     print('workspace=' + ROOT)
     print('host=' + socket.gethostname())
     print('cpu_logical=' + str(os.cpu_count()))
     print('load_1m=' + str(os.getloadavg()[0]))
     print('active_simulation_pids=' + ','.join(active_simulations()))
+    print('mem_available_gib=%.2f' % (int(available.group(1)) / float(1024 ** 2) if available else 0.0))
+    print('simulation_max_process_rss_mib=%.1f' % rss_mib)
     print('python=' + sys.version.split()[0])
     print('docker_access=' + ('yes' if os.access('/var/run/docker.sock', os.R_OK | os.W_OK) else 'no'))
     print('free_gib=%.1f' % (os.statvfs(ROOT).f_bavail * os.statvfs(ROOT).f_frsize / float(1024 ** 3)))

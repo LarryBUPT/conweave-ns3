@@ -36,6 +36,7 @@ def main():
         raise ValueError('Insufficient distinct MoE pairs for this byte budget')
     rng = random.Random(args.seed)
     chosen = rng.sample(range(len(moe)), args.target_moe + filler_max)
+    background_indices = rng.sample(range(len(background)), args.max_background)
     target_indices = set(chosen[:args.target_moe])
     filler_indices = chosen[args.target_moe:]
     target = [row for i, row in enumerate(moe) if i in target_indices]
@@ -47,6 +48,7 @@ def main():
                 'total_offered_bytes': (args.target_moe * SMALL +
                                         args.max_background * LARGE),
                 'source_moe_sha256': digest(MOE), 'source_mixed_sha256': digest(MIXED),
+                'background_source_indices': background_indices,
                 'traces': {}}
     target_path = os.path.join(CONFIG, stem + '_target.txt')
     if os.path.exists(target_path):
@@ -59,7 +61,7 @@ def main():
         filler_count = (args.max_background - bg_count) * LARGE // SMALL
         selected = target_indices | set(filler_indices[:filler_count])
         moe_rows = [row for i, row in enumerate(moe) if i in selected]
-        rows = background[:bg_count] + moe_rows
+        rows = [background[i] for i in background_indices[:bg_count]] + moe_rows
         name = stem + '_bg%d.txt' % bg_count
         path = os.path.join(CONFIG, name)
         if os.path.exists(path):

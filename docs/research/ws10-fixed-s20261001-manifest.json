@@ -1,0 +1,37 @@
+{
+  "background_source_indices": [
+    61,
+    30,
+    51,
+    12
+  ],
+  "competing_bytes": 33554432,
+  "simulator_seed": 1,
+  "source_mixed_sha256": "83d0b2ff46d683d243bcd1d4b2fc4c2fefa330324062d13dcfb878af5abdd7dc",
+  "source_moe_sha256": "9e00baa5c79ab45b107b82b4c18d43cbb9a1073101bf14123aedd2d90d2e89fd",
+  "target_file": "ws07_fixed_s20261001_t256_b4_target.txt",
+  "target_moe_flows": 256,
+  "target_sha256": "d39bf68f4ccd27f94aaa2cfce5b949abd4581ccdd30f236896a3682c80ca2920",
+  "total_offered_bytes": 35651584,
+  "trace_seed": 20261001,
+  "traces": {
+    "ws07_fixed_s20261001_t256_b4_bg0.txt": {
+      "background_flows": 0,
+      "moe_flows": 4352,
+      "offered_bytes": 35651584,
+      "sha256": "ac283ff8e177f85fa43747cc6ba837af3823906d80dbc96a8cbb2afc575c5ee5"
+    },
+    "ws07_fixed_s20261001_t256_b4_bg2.txt": {
+      "background_flows": 2,
+      "moe_flows": 2304,
+      "offered_bytes": 35651584,
+      "sha256": "b3a181c5a7ffab43327954526df4c8de60bcb37d2f04a60290d6e42d4fd43050"
+    },
+    "ws07_fixed_s20261001_t256_b4_bg4.txt": {
+      "background_flows": 4,
+      "moe_flows": 256,
+      "offered_bytes": 35651584,
+      "sha256": "5b87dba832e2ae14666c18baf140274a799ed59469486f980cd30130d9fd5ae2"
+    }
+  }
+}
