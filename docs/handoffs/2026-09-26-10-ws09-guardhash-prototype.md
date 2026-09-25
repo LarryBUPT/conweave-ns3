@@ -1,6 +1,6 @@
 # Handoff 10：WS-09 GuardHash/HarmGate v0 工程原型与正确性
 
-来源：协调任务 `01a0cfac-3176-7590-bf34-c0f176a45118` 派发的「WS-09：GuardHash/HarmGate 最小工程原型与正确性验证」；日期：2026-09-26（中国时间）。本交接只关闭工程原型、计数和有限资源技术 pilot。可重跑规格见 [冻结文档](../research/ws09-guardhash-v0-spec.md)，逐 ID 原始数据核验见 [机器摘要](../research/ws09-validation-summary.json)，效果门槛仍按 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
+来源：协调任务 `01a0cfac-3176-7590-bf34-c0f176a45118` 派发的 WS-09 任务 `01a0d998-0930-77e1-a813-093956e8a84f`（「WS-09 GuardHash 与 HarmGate 原型验证」）；日期：2026-09-26（中国时间）。本交接只关闭工程原型、计数和有限资源技术 pilot。可重跑规格见 [冻结文档](../research/ws09-guardhash-v0-spec.md)，逐 ID 原始数据核验见 [机器摘要](../research/ws09-validation-summary.json)，效果门槛仍按 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 
 ## 1. 本对话目标
 
@@ -52,3 +52,5 @@
 ## 9. CONTEXT SNAPSHOT
 
 个人 fork `feature/ws09-guardhash-prototype` 从已推送 WS-08 `c45d41d` 分出。`7930168f` 编译通过，九个无丢包正确性/单 seed pilot 格均 `SUCCEEDED` 且队列违规 0；三格 320 流同 trace 的 MoE 批次 `shortq2/guardhash/gate=1.421/1.415/1.49 µs`，背景 P99 相同，门控有 39 次激活、9 次退出。`9c34945` 修复丢包分类，独立压力格 `20260926-025616-ws09-drop-probe` 两类 MMU 准入丢包合计 3,041,296 B、守恒违规 0。十格机器核验见 `docs/research/ws09-validation-summary.json`。工程范围闭环，WS-08 效果 no-go 未变；WS-10 固定总字节/多 seed 与 WS-11 正式强对照仍待后续任务。
+
+集成核验（2026-09-26）：再次运行 `scripts/verify_ws09_prototype.py`，十个正式结果 ID 的状态、trace/拓扑哈希、FCT 完成数、逐端口队列守恒、三格共同输入及单类退化均通过；重新生成的 `ws09-validation-summary.json` SHA-256 与版本化文件完全相同。个人 fork 本地、`origin/feature/ws09-guardhash-prototype` 集成前同为 `6a32df51d67b84b0a1f416e8b0c669946af15401`，工作树干净；该 SHA 在 WS-09 Handoff 提交后仅增加术语问答文档与状态入口，没有改变实验代码。WS-09 **按工程原型与单 seed 技术 pilot 范围闭环**，保留 `queue_reject/queued_drop` 未动态覆盖及正式效果未证实两项后续边界。

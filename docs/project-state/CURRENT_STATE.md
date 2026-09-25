@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-09 GuardHash/HarmGate v0 工程原型、正确性与单 seed 技术 pilot 已按范围闭环；WS-10 现象复核待预注册。**WS-07 的 PFC=1、IRN=0 逐包无背景约 4 ms 尾部已对应四个末段 RTO；WS-08 的 PFC=0、IRN=1 共同契约去除了该格超时尾部，但四格交互 `−0.053 µs`（`−3.7456%`），背景 P99 无差异。WS-09 的 320 流单 seed 三模式技术 pilot 完成，但没有反转效果 no-go；固定总字节与五独立 seed 尚未仿真，正式收益门槛不变。工程证据见 [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)。
+阶段：**WS-09 GuardHash/HarmGate v0 工程原型、正确性与单 seed 技术 pilot 已按范围闭环；WS-10 启动固定总字节与多 seed 现象复核。**WS-07 的 PFC=1、IRN=0 逐包无背景约 4 ms 尾部已对应四个末段 RTO；WS-08 的 PFC=0、IRN=1 共同契约去除了该格超时尾部，但四格交互 `−0.053 µs`（`−3.7456%`），背景 P99 无差异。WS-09 的 320 流单 seed 三模式技术 pilot 完成，但没有反转效果 no-go；固定总字节与五独立 seed 尚未仿真，正式收益门槛不变。工程证据见 [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)。
 
 ## 已完成且可核验
 
@@ -19,6 +19,8 @@
 - WS-09 工程原型：从已推送 `c45d41d42157dd3589e37ebe1953c75a68d5b6c2` 建 `feature/ws09-guardhash-prototype`；`shortq2/guardhash/guardhashgate` 模式 `13/14/15` 共用双候选哈希，HarmGate 是类别评分激活门槛。固定 `7930168f7bb43afbe6cc87bd134d91d28667e8c1` 完成 32 主机单/双类、导入 1280 跨 ToR 四流、同源码旧 `fecmp/dualtrack` 退化回归和 320 流同 trace 三格单 seed pilot；全部原始队列计数守恒。三格 MoE 合成批次 1.421/1.415/1.49 µs，背景 P99 均 688.41974 µs，门控实际激活 39 次、退出 9 次；仅属技术 pilot。修复提交 `9c34945c79b44476166f2f1f4dc26f6b2f6163a0` 的独立丢包探针 `20260926-025616-ws09-drop-probe` 两类准入丢包合计 3,041,296 B、计数违规 0。十格详证见 [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)、[冻结规格](../research/ws09-guardhash-v0-spec.md)、[机器摘要](../research/ws09-validation-summary.json)；不作效果结论。
 
 ## 当前版本快照
+
+2026-09-26 WS-09 交接集成核验：`scripts/verify_ws09_prototype.py` 重新读取十个终态 ID 的元数据与原始结果，逐项通过；重生的 `docs/research/ws09-validation-summary.json` 与已提交文件 SHA-256 相同。个人 fork 本地与 `origin/feature/ws09-guardhash-prototype` 在集成前同为 `6a32df51d67b84b0a1f416e8b0c669946af15401`、工作树干净；其最后一提交只新增术语问答和状态入口。Handoff 10 已补真实 WS-09 任务 ID。集成提交会移动 HEAD。工程范围闭环，`queue_reject/queued_drop` 动态覆盖和正式类别增量仍留待后续。
 
 2026-09-26 WS-09 集成核验：个人 fork `feature/ws09-guardhash-prototype` 机制/压力探针提交 `9c34945c79b44476166f2f1f4dc26f6b2f6163a0` 已推送；本 Handoff/状态集成提交会移动 HEAD，执行时重新查询。`scripts/verify_ws09_prototype.py` 对十个终态 ID 的元数据、trace/拓扑哈希、FCT 行数、逐端口守恒与三格共同输入重算通过。九个常规格固定 `7930168f`；修复版丢包压力格固定 `9c34945`。WS-09 工程范围完成；正式机制效果仍 no-go，WS-10/11 待独立执行。
 
@@ -43,7 +45,7 @@
 3. **正式现象实验，尚未开始：**共同 IRN 契约的单 seed 交互 `−0.053 µs`（`−3.7456%`），背景 P99 差为 0；不满足预设的正向 5% 损害门槛。固定目标、固定总字节 0/2/4 样本仅静态验证，五个独立 seed 未运行，不能作不存在跨类损害的普遍结论。WS-10 要先冻结条件与预算，再按 [原契约判据](../research/ws07-dual-track-contract.md) 或版本化新契约执行。
 4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-11 的效果判断仍依赖 WS-10 的稳定损害和等信息强对照，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 
-下一个里程碑：**WS-10 在看原型效果前冻结条件、固定总字节样本、五个独立 trace seed 与资源预算，复核跨类损害是否可重复。**不以看过的一次单 seed 数值调参追求正结果；机制能运行和机制有效是两个不同结论。依赖与停机条件见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
+下一个里程碑：**WS-10 在任何新效果运行前冻结条件、固定总字节样本、五个独立 trace seed 与资源预算，复核跨类损害是否可重复。**WS-09 的单 seed pilot 数值已经可见，不能声称完全盲于先导数据；不得据此事后挑选场景或参数。不以技术可运行推断机制有效。依赖与停机条件见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
 
 ## 证据边界
 
