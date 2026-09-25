@@ -22,7 +22,7 @@ HarmGate 是类别评分的激活条件，不是第二套选路协议。按交�
 
 ## 队列守恒与停机
 
-在 BEgressQueue 真正接受包后按出口端口和 tag 计 `enqueued_bytes`；出队前按原 tag 计 `dequeued_bytes`；MMU 准入失败或 BEgressQueue 拒绝时计 `dropped_bytes`，但不增加队列余额；链路下线清空已排队包时同时冲减余额并计丢弃。对每个 `(switch,port,tag)` 要满足 `enqueued - dequeued - queued_drop = current`；各 tag 的 `current` 之和必须等于同一出口 BEgressQueue 的 `GetNBytesTotal()`。日志给出逐端口、逐 tag 的原始计数与全局违规数；任一违规或类别观测不可用时停止效果 pilot。`admission_drop` 与 `queued_drop` 分开记录，避免把未入队的包当成队列流失。
+在 BEgressQueue 真正接受包后按出口端口和 tag 计 `enqueued_bytes`；出队前按原 tag 计 `dequeued_bytes`；MMU 准入失败计 `admission_drop`，BEgressQueue 拒绝入队计 `queue_reject`，两者均不增加队列余额；链路下线清空已排队包时冲减余额并计 `queued_drop`。对每个 `(switch,port,tag)` 要满足 `enqueued - dequeued - queued_drop = current`；`admission_drop` 和 `queue_reject` 不进入这项等式。各 tag 的 `current` 之和必须等于同一出口 BEgressQueue 的 `GetNBytesTotal()`。日志给出逐端口、逐 tag 的原始计数与全局违规数；任一违规或类别观测不可用时停止效果 pilot。
 
 ## 比较边界
 

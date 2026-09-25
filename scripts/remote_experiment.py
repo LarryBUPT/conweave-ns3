@@ -202,6 +202,8 @@ def main():
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)
+    run_cmd.add_argument('--buffer', type=int, choices=range(1, 10), default=9,
+                         help='switch buffer size in MiB (1-9; default: 9)')
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file', help='existing tracked config/*.txt trace')
@@ -244,6 +246,7 @@ def main():
             parser.error('Exactly one of --pfc and --irn must be enabled')
         command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
                     '--netload', str(args.netload), '--bw', str(args.bw),
+                    '--buffer', str(args.buffer),
                     '--topo', args.topo, '--cdf', args.cdf,
                     '--pfc', str(args.pfc), '--irn', str(args.irn)]
         if args.flow_file:

@@ -296,6 +296,7 @@ def execute(experiment_id):
     command = [sys.executable, 'run.py', '--lb', params['lb'], '--pfc', str(params['pfc']),
                '--irn', str(params['irn']), '--simul_time', params['simul_time'],
                '--netload', str(params['netload']), '--bw', str(params['bw']),
+               '--buffer', str(params.get('buffer', 9)),
                '--topo', params['topo'], '--cdf', params['cdf']]
     if params.get('flow_file'):
         command.extend(['--flow-file', 'config/' + params['flow_file']])
@@ -451,6 +452,7 @@ def main():
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)
+    run_cmd.add_argument('--buffer', type=int, choices=range(1, 10), default=9)
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file')
@@ -482,7 +484,7 @@ def main():
             raise RuntimeError('Flow file must be a config/*.txt basename')
         start(args.id, {'lb': args.lb, 'pfc': args.pfc, 'irn': args.irn,
                         'simul_time': args.simul_time,
-                        'netload': args.netload, 'bw': args.bw,
+                        'netload': args.netload, 'bw': args.bw, 'buffer': args.buffer,
                         'topo': args.topo, 'cdf': args.cdf,
                         'flow_file': flow_file})
     elif args.command == 'execute':

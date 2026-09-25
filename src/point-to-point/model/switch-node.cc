@@ -35,7 +35,7 @@ static uint64_t guard_activations = 0, guard_exits = 0;
 static uint64_t guard_queue_violations = 0;
 struct GuardQueueStat {
     uint64_t enqueued = 0, dequeued = 0, admissionDropped = 0;
-    uint64_t queueDropped = 0, current = 0;
+    uint64_t queueRejected = 0, queuedDropped = 0, current = 0;
 };
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, GuardQueueStat> guard_queue_stats;
 
@@ -72,14 +72,15 @@ void SwitchNode::PrintWorkloadTagCounts() {
                   << guard_activations << " exits=" << guard_exits << std::endl;
         for (const auto &entry : guard_queue_stats) {
             const GuardQueueStat &s = entry.second;
-            if (s.enqueued != s.dequeued + s.queueDropped + s.current)
+            if (s.enqueued != s.dequeued + s.queuedDropped + s.current)
                 ++guard_queue_violations;
             std::cout << "WS09_QUEUE switch=" << std::get<0>(entry.first)
                       << " port=" << std::get<1>(entry.first)
                       << " tag=" << std::get<2>(entry.first)
                       << " enqueued=" << s.enqueued << " dequeued=" << s.dequeued
                       << " admission_drop=" << s.admissionDropped
-                      << " queue_drop=" << s.queueDropped
+                      << " queue_reject=" << s.queueRejected
+                      << " queued_drop=" << s.queuedDropped
                       << " current=" << s.current << std::endl;
         }
         std::cout << "WS09_QUEUE_CHECK violations=" << guard_queue_violations << std::endl;
@@ -506,11 +507,11 @@ void SwitchNode::SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p
 void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
                                        Ptr<const Packet> p, bool wasQueued) {
     GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
-    s.queueDropped += p->GetSize();
     if (wasQueued) {
+        s.queuedDropped += p->GetSize();
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash queue drop underflow");
         s.current -= p->GetSize();
-    }
+    } else s.queueRejected += p->GetSize();
     if (qIndex != 0) {
         FlowIdTag t;
         p->PeekPacketTag(t);
