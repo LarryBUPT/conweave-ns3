@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**可复现实验底座及五/六列输入与 tag 通路已完成轻量技术验证；包/流双轨语义与 MoE 分组分析待建立。**研究问题是在同一网络承载按包和按流/flowlet 选路的通信时，是否出现可重复的跨类性能损害。最新研究筛选保留 HarmGate 问题，以 GuardHash 本地双候选规则作为有条件的唯一优先原型；先测背景增加对 MoE 的额外伤害，同时检查背景侧代价。只有损害稳定且强基线未解释类别信号增量，才进入机制实现。当前没有新算法实现或正式性能结论。
+阶段：**WS-07 的独立 MoE 分组分析、最小包/流双轨及单 seed 四格资源 pilot 已完成；共同接收/重传语义须先排查后才能进入正式主实验。**研究问题仍是在同一网络承载逐包和按流选路时，是否存在可重复且有实际意义的跨类损害。当前 pilot 的逐包无背景批次已出现约 4 ms 尾部，不能把它归因于背景；四格交互仅为该逐包基线的约 0.051%。GuardHash/HarmGate 保持 WS-08 的条件性选择，本阶段没有新机制实现或正式性能结论。
 
 ## 已完成且可核验
 
@@ -14,8 +14,11 @@
 - baseline：ECMP、CONGA、LetFlow、ConWeave 在相同 trace、拓扑和公共配置下各完成一次最小运行。实验 ID 为 `20260923-180001-fidelity-fecmp` 至 `20260923-180004-fidelity-conweave`，源码 SHA 均为 `a8d2db5f057172ce89730b4f6344c531e34a9302`。核验记录见论文项目 `results/baseline_fidelity_20260923.json`；**不能用于性能排序**。
 - 输入资产：个人 fork 的 `feature/mixed-flow-traces` 已迁入 maplerime 的四份六列 MoE/背景流文件、拓扑和生成脚本，逐文件哈希见 `docs/research/mixed-flow-trace-provenance.md`。未迁入 MixHash 选路或接收端机制。
 - WS-06 输入兼容：个人 fork `feature/ws06-flow-tags` 支持显式选择版本化 `config/*.txt`、五/六列流记录（五列默认 `tag=0`）及工作负载 tag 到源 ToR 选路入口的可见通路。32 主机和导入 1280 拓扑的四流六列探测各完成 4/4；四种旧五列 baseline 在固定旧 trace 下各完成 19,388 条流，原始 FCT 文件哈希逐模式与 WS-05 相同。证据和实验 ID 见 [Handoff 06](../handoffs/2026-09-24-06-six-column-input-and-tags.md)；这是输入与回归核验，不是双轨或性能验证。
+- WS-07 技术 pilot：`feature/ws07-dual-track-mixtax` 新增 `dualtrack` (`tag=2` UDP 数据逐包哈希，`tag=1/0` 流 ECMP)、按输入 tag 的完成率/FCT/合成批次统计、可重生 pilot/固定总字节设计样本及配对检查。32 主机按流单类 FCT 原始哈希与同 trace `fecmp` 完全相同；导入 1280 拓扑跨 ToR 四流均完成且逐包决策触及多下一跳。四格 256-MoE × 背景 0/64 单 seed pilot 均全数完成；固定源码 SHA `8c99e5407ef41d14a6b67fc7dad55aada273946a`，结果与限制见 [Handoff 08](../handoffs/2026-09-25-08-ws07-dual-track-mixtax.md) 和 [摘要](../research/ws07-pilot-summary.json)。旧 2.005s baseline 分析保持原样；固定总字节样本尚未运行。
 
 ## 当前版本快照
+
+2026-09-25 WS-07 交接观察：个人 fork 新分支 `feature/ws07-dual-track-mixtax` 的四格 pilot 固定在 `8c99e54`，0/64 trace SHA 分别为 `d60ca03e…7560`、`cbfa0e5a…8e1`；原始结果在 `results/<实验ID>/` 及远程同 ID 目录。交接/集成提交会移动分支 HEAD，执行时重新查询。四份导入完整 MoE trace 仍未全量仿真；WS-07 的固定总字节设计样本只有静态验证。
 
 2026-09-24 WS-06 交接核验：`feature/ws06-flow-tags` 的输入兼容代码与资产固定在 `dba99face4b026443220e4b73e655a86aecc1aca`；九段 Handoff 已在 `267af27e445f03ee62fb46f8bf30267da780f0ab` 提交并推送到个人 fork。该分支从 `feature/mixed-flow-traces@30734578e7468a8cf156588de0aded5f96095e43` 分出。集成提交会继续移动分支指针，**执行时必须重新查询 HEAD**。`main@236a801a00e35de9078635e04acae2f701c21ded`；旧 `feature/remote-experiment-workflow` 本地 `f46abb3`、GitHub `a8d2db5` 的分支指针差异仍在。WS-06 实验各有固定 SHA 的独立远程源码副本；不据此推断远程代码缓存或既存工作树的当前状态。
 
@@ -25,12 +28,12 @@
 
 ## 正在推进、未完成及依赖
 
-1. **公共输入底座，已完成轻量核验：**六列/五列解析、显式流文件和 tag 到源 ToR 入口已可用；四份完整 1280 节点 MoE trace 只做静态格式核对，尚无全量仿真或资源 pilot。
-2. **双轨语义与分析，未完成：**`tag=1/2` 只是数据标签，不证明接收端乱序能力；当前没有同网并行运行包级与流级选路的模式。四份 MoE 输入全部于 `2.000s` 启动，旧 `2.005s` FCT 窗口会漏掉目标流。WS-07 须固定两类流量共同的传输、PFC 和重排规则，补按 tag 的输入/完成/未完成、FCT 与合成批次指标，再做单类及混合小测试。若在导入混合延迟拓扑上比较 ConWeave，还须先审计其统一 `one_hop_delay` 时序估计。
-3. **现象实验，依赖 2：**先在固定 MoE 子 trace 下配对比较 packet/flow × 背景 0/64，分别估计背景对 MoE 的额外影响和 MoE 逐包选路对背景流的影响。四份现有输入只打 rail 0，且背景字节数随档位增加，不能直接作为“只改变混合比例”的因果比较；主实验需固定总负载、可重生 trace 和独立 trace seed。
-4. **算法实验，依赖 3：**仅在 MixTax 可重复且有实际意义时实现 GuardHash v0；先与普通本地短队列二选一比较类别信号增量，再与静态隔离及 APS/FLB 类同模型对照。若无损害、无增量或只把代价转移给背景流，则停止机制主张。
+1. **公共输入底座与最小双轨，已完成技术核验：**六列/五列解析、显式流文件、tag 到源 ToR、独立 MoE 分组分析和 `dualtrack` 均可用；32 主机单类及双类、导入 1280 拓扑跨 ToR 四流已全数完成。四份完整 1280 节点 MoE trace 仍未全量运行。
+2. **共同接收/重传语义，下一门槛：**当前 `dualtrack` 在共同 DCQCN、PFC=1、IRN=0 下可全部完成，但 256 条 MoE 无背景逐包批次约 4002.653 µs，全流约 1.415 µs，伴随乱序 CNP 与更多源包；具体致因尚未隔离。须先找出 4 ms 尾部机制，并对两类/两算法采用同一、可解释的接收模型后重做四格；不能把 tag 当能力标签。若在导入混合延迟拓扑比较 ConWeave，仍须先审计其统一 `one_hop_delay`。
+3. **正式现象实验，依赖 2：**本轮 packet/flow × 背景 0/64 仅一组独立 trace seed 的技术 pilot，绝对交互 +2.038 µs、约逐包无背景基线的 0.051%，背景 P99 未恶化；不能据此作可重复性或因果结论。已生成固定目标、固定总字节的 0/2/4 背景设计样本，尚未运行；主实验需 5 个独立 seed 并遵守 [冻结指标与门槛](../research/ws07-dual-track-contract.md)。
+4. **算法实验，依赖 3：**WS-08 GuardHash v0 继续 conditional；仅在共同语义下有稳定且实际有意义的 MixTax 时，先与普通本地短队列二选一比较类别信号增量，再做强对照。当前 pilot 不满足启动门槛。
 
-下一个里程碑：**WS-07 修正 MoE 统计窗口并建立分类观测与共同传输语义，再通过单类退化及双类共存的小规模正确性检查。**此后才进入双向 MixTax pilot。具体任务和阻塞关系见 [WORKSTREAMS.md](WORKSTREAMS.md)，顺序见 [ROADMAP.md](ROADMAP.md)。
+下一个里程碑：**定位当前逐包无背景 4 ms 尾部并形成所有模式共享的接收/重传契约，重跑四格正确性与 pilot。**固定总字节设计和多 seed 正式实验必须随后进行。具体依赖见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
 
 ## 证据边界
 
@@ -40,4 +43,4 @@
 
 ## 本次整合的来源
 
-前五份 [Handoff](../handoffs/) 从早期对话及落地文件整理；[Handoff 06](../handoffs/2026-09-24-06-six-column-input-and-tags.md) 由 WS-06 任务提交并核验；[Handoff 07](../handoffs/2026-09-25-07-ant-project-experience.md) 由本次集成按 ANT 对话、根目录研究文档、Git 与静态画像整理。冲突与旧文档漂移见 [CONFLICTS.md](CONFLICTS.md)。本文件由集成工作流维护；原对话用于追溯理由，不作为实时状态数据库。
+前五份 [Handoff](../handoffs/) 从早期对话及落地文件整理；[Handoff 06](../handoffs/2026-09-24-06-six-column-input-and-tags.md) 为 WS-06 输入底座，[Handoff 07](../handoffs/2026-09-25-07-ant-project-experience.md) 为研究筛选，[Handoff 08](../handoffs/2026-09-25-08-ws07-dual-track-mixtax.md) 为 WS-07 技术 pilot。冲突与旧文档漂移见 [CONFLICTS.md](CONFLICTS.md)。本文件由集成工作流维护；原对话用于追溯理由，不作为实时状态数据库。

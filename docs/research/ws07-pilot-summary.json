@@ -1,0 +1,27 @@
+{
+  "background_p99_fct_us": {
+    "flow64": 1206.59807,
+    "packet64": 1200.7128599999999
+  },
+  "background_packet_minus_flow_p99_us": -5.885210000000143,
+  "experiment_ids": {
+    "flow0": "20260925-052000-ws07-pilot-bg0-flow",
+    "flow64": "20260925-054000-ws07-pilot-bg64-flow",
+    "packet0": "20260925-053000-ws07-pilot-bg0-packet",
+    "packet64": "20260925-060000-ws07-pilot-bg64-packet"
+  },
+  "git_commit": "8c99e5407ef41d14a6b67fc7dad55aada273946a",
+  "kind": "single-seed technical pilot, not formal inference",
+  "moe_background_interaction_us": 2.0380000000000473,
+  "moe_batch_us": {
+    "flow0": 1.415,
+    "flow64": 1.625,
+    "packet0": 4002.653,
+    "packet64": 4004.901
+  },
+  "moe_interaction_pct_of_packet0": 0.05091622981057932,
+  "trace_sha256": {
+    "bg0": "d60ca03e36f1607328f7af0e79b39f4c9bf74cd0feca8d59f1283de56d778560",
+    "bg64": "cbfa0e5a95b7c3b6b56dfd563e855dff8b83f4f54db2747909039285184f58e1"
+  }
+}
