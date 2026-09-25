@@ -1,10 +1,10 @@
 # ConWeave 毕业论文项目状态
 
-更新：2026-09-25（中国时间）。本文件是跨对话的**状态入口**，不是实验原始证据。状态会过期；执行代码、实验或对外陈述前，应核对当前 Git、源码、实验 ID 与原始数据。工作规则以 `docs/REMOTE_EXPERIMENT_WORKFLOW.md` 为准，baseline 和指标口径以 `docs/research/10-baseline-fidelity-and-dataflow-audit.md` 为准。
+更新：2026-09-26（中国时间）。本文件是跨对话的**状态入口**，不是实验原始证据。状态会过期；执行代码、实验或对外陈述前，应核对当前 Git、源码、实验 ID 与原始数据。工作规则以 `docs/REMOTE_EXPERIMENT_WORKFLOW.md` 为准，baseline 和指标口径以 `docs/research/10-baseline-fidelity-and-dataflow-audit.md` 为准。
 
 ## 当前阶段与目标
 
-阶段：**WS-08 前置接收/重传诊断和共同 IRN 契约的单 seed 四格技术 pilot 已完成；当前证据对 GuardHash/HarmGate 为 no-go。**研究问题仍是在同一网络承载逐包和按流选路时，是否存在可重复且有实际意义的跨类损害。WS-07 的 PFC=1、IRN=0 逐包无背景约 4 ms 尾部已对应到四个末段 RTO；本轮 PFC=0、IRN=1 共同契约去除了该格的超时尾部，但四格交互为 `−0.053 µs`（`−3.7456%`），背景 P99 无差异。这是一个 trace seed 的技术 pilot；固定总字节样本和五独立 seed 未仿真，没有新机制实现或正式性能结论。
+阶段：**WS-08 前置诊断与单 seed IRN pilot 已按范围闭环；WS-09 启动 GuardHash/HarmGate 工程原型。**WS-07 的 PFC=1、IRN=0 逐包无背景约 4 ms 尾部已对应四个末段 RTO；WS-08 的 PFC=0、IRN=1 共同契约去除了该格超时尾部，但四格交互 `−0.053 µs`（`−3.7456%`），背景 P99 无差异。这是一个 trace seed 的技术 pilot，仍不支持机制效果主张。用户现要求加快实现与验证，按 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md) 允许先做可关闭原型和正确性；固定总字节与五独立 seed 尚未仿真，正式收益门槛不变。
 
 ## 已完成且可核验
 
@@ -18,6 +18,8 @@
 - WS-08 前置诊断：从个人 fork 已推送 `4649fb1928160c603f7df9ffd6400c091116ab60` 分支开工。只加日志的 `20260925-210024-ws08-nack-diagnostic@c8ca6a601dd4380bae36233053b654307d61d292` 与 WS-07 packet0 原始 FCT SHA 相同，四个约 4 ms 尾流恰与四个 4,000,000 ns 超时对应，超时均剩最后 192 B 未确认。共享 PFC=0、IRN=1、DCQCN 契约的 32 主机单类/双类及 1280 跨 ToR 四流正确性通过；同 SHA `445593fbc07236e18983d233407265220d360521` 四格各类全数完成，MoE 批次 flow0/packet0/flow64/packet64 为 1.415/1.415/1.625/1.572 µs，背景 P99 flow64/packet64 均 688.41974 µs。详证见 [Handoff 09](../handoffs/2026-09-25-09-ws08-receiver-gate.md)、[诊断](../research/ws08-receiver-preflight.md) 与 [机器摘要](../research/ws08-irn-pilot-summary.json)。固定总字节样本仅静态验证；无五 seed 推断。
 
 ## 当前版本快照
+
+2026-09-26 WS-08 集成核验：个人 fork `feature/ws08-guardhash-gate` 本地与 `origin` 同为 `653250a5381bb1992a4d8acececb62593cf343aa`、工作树干净。四格正式结果均 `SUCCEEDED`、固定 `445593fbc07236e18983d233407265220d360521`、PFC=0/IRN=1；四组 trace/FCT SHA-256 逐格与记录相符，FCT 行数 256/256/320/320，原始 OoO CNP 0/0/0/1516，PFC 行数均为 0。诊断复跑 FCT 与 WS-07 packet0 逐字节相同，日志含 601 RX NACK、571 TX NACK、四个末段 TX TIMEOUT。Handoff 09 已补真实任务 ID。集成提交会移动 HEAD。WS-08 的技术范围闭环，正式跨 seed 现象仍未解决；WS-09 是根据用户新指示的工程原型工作流。
 
 2026-09-25 WS-08 诊断观察：个人 fork `feature/ws08-guardhash-gate` 的实验代码/运行器固定在 `445593fbc07236e18983d233407265220d360521`；本状态和 Handoff 的集成提交将移动 HEAD，须再次查询。四格原始结果 `20260925-211439-ws08-irn-flow0`、`20260925-210820-ws08-irn-packet0`、`20260925-212042-ws08-irn-flow64`、`20260925-212745-ws08-irn-packet64` 均 `SUCCEEDED`、PFC=0、IRN=1、共同 trace/seed，配对脚本通过。单 seed 交互未达预设方向与幅度，GuardHash 当前不启动。32 主机/跨 ToR 的小规模正确性 ID 见 Handoff 09。固定总字节 0/2/4 与五 seed 未运行。
 
@@ -35,10 +37,10 @@
 
 1. **公共输入底座与最小双轨，已完成技术核验：**六列/五列解析、显式流文件、tag 到源 ToR、独立 MoE 分组分析和 `dualtrack` 均可用；32 主机单类及双类、导入 1280 拓扑跨 ToR 四流已全数完成。四份完整 1280 节点 MoE trace 仍未全量运行。
 2. **共同接收/重传语义，技术诊断已完成：**旧 PFC+非 IRN 的四个 4 ms 尾流对应四个末段 RTO；共享 IRN+无 PFC 契约在一个 seed 的 0/64 四格全部完成且无超时。它是新的传输条件，不能与 WS-07 旧四格合并。若在导入混合延迟拓扑比较 ConWeave，仍须先审计其统一 `one_hop_delay`。
-3. **正式现象实验，当前不启动：**共同 IRN 契约的单 seed 交互 `−0.053 µs`（`−3.7456%`），背景 P99 差为 0；不满足预设的正向 5% 损害门槛。固定目标、固定总字节 0/2/4 样本仅静态验证，五个独立 seed 未运行，不能作不存在跨类损害的普遍结论。若提出新条件，须预先冻结预算和 [原契约判据](../research/ws07-dual-track-contract.md) 或明确版本化新契约。
-4. **算法实验，当前 no-go：**WS-08 GuardHash v0 和强对照未实现；只有以后在共同语义下满足稳定且实际有意义的 MixTax 门槛，才重新评估类别信号增量。
+3. **正式现象实验，尚未开始：**共同 IRN 契约的单 seed 交互 `−0.053 µs`（`−3.7456%`），背景 P99 差为 0；不满足预设的正向 5% 损害门槛。固定目标、固定总字节 0/2/4 样本仅静态验证，五个独立 seed 未运行，不能作不存在跨类损害的普遍结论。WS-10 要先冻结条件与预算，再按 [原契约判据](../research/ws07-dual-track-contract.md) 或版本化新契约执行。
+4. **算法工程与效果分离：**WS-09 可先实现 GuardHash 和 HarmGate 门控的研究原型、做正确性与技术 pilot；目前没有机制收益或类别信号增量证据。WS-11 的效果判断仍依赖 WS-10 的稳定损害和等信息强对照，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 
-下一个里程碑：**集成本轮负结果，决定是否提出可证伪的新损害条件或转向传输尾流的解释性研究。**当前不以看到一次单 seed 数值后的调参去追求 GuardHash 正结果。若重启，先冻结共同契约、固定总字节设计与独立 seed 预算，再按 [WORKSTREAMS.md](WORKSTREAMS.md) 和 [ROADMAP.md](ROADMAP.md) 过门槛。
+下一个里程碑：**完成 WS-09 可关闭原型与等输入的正确性/计数守恒核验，同时准备 WS-10 的预注册现象实验。**不以看过的一次单 seed 数值调参追求正结果；机制能运行和机制有效是两个不同结论。依赖与停机条件见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
 
 ## 证据边界
 

@@ -1,6 +1,6 @@
 # Handoff 09：WS-08 前置接收门槛诊断与当前 no-go
 
-来源：协调任务 `01a0cfac-3176-7590-bf34-c0f176a45118` 派发的 WS-08 前置门槛任务；日期：2026-09-25（中国时间）。本交接是技术诊断与单 seed pilot，**没有实现 GuardHash/HarmGate，也没有正式多 seed 性能结论**。详证见 [诊断记录](../research/ws08-receiver-preflight.md)、[机器摘要](../research/ws08-irn-pilot-summary.json)、[WS-07 契约](../research/ws07-dual-track-contract.md) 与 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)。
+来源：协调任务 `01a0cfac-3176-7590-bf34-c0f176a45118` 派发的 WS-08 任务 `01a0d8a3-143f-7f40-b9cc-8e21949f82c1`（「WS-08 共同接收语义与机制门槛」）；日期：2026-09-25（中国时间）。本交接是技术诊断与单 seed pilot，**没有实现 GuardHash/HarmGate，也没有正式多 seed 性能结论**。详证见 [诊断记录](../research/ws08-receiver-preflight.md)、[机器摘要](../research/ws08-irn-pilot-summary.json)、[WS-07 契约](../research/ws07-dual-track-contract.md) 与 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)。
 
 ## 1. 本对话目标
 
@@ -58,3 +58,5 @@ WS-08 **COMPLETE FOR PREFLIGHT DIAGNOSIS; MECHANISM NO-GO ON CURRENT EVIDENCE**�
 ## 9. CONTEXT SNAPSHOT
 
 个人 fork `feature/ws08-guardhash-gate` 从已推送 `4649fb1` 分出。原 `dualtrack` packet0 的四条 4 ms 尾流由诊断 ID `20260925-210024-ws08-nack-diagnostic@c8ca6a6` 精确对应四个 `4,000,000 ns` RTO，均只剩最后 192 B 未确认。共同 PFC=0/IRN=1 契约在固定源码 `445593f` 上完成 32 主机单类/双类、1280 跨 ToR 四流以及四格单 seed pilot。四格 MoE 批次 flow0/packet0/flow64/packet64 为 1.415/1.415/1.625/1.572 µs，交互 `−0.053 µs`（`−3.7456%`），背景 P99 相同。固定总字节样本未仿真，五独立 seed 未运行，GuardHash 保持 no-go。原始数据以具体 ID 回查，正文见 `docs/research/ws08-receiver-preflight.md`。
+
+集成核验（2026-09-26）：正式四格的 `metadata.json` 均为 `SUCCEEDED`、源码 `445593fbc07236e18983d233407265220d360521`、`ENABLE_PFC 0`、`ENABLE_IRN 1`；逐格 trace/FCT SHA-256 与元数据/分析相符，FCT 行数依次为 256/256/320/320，原始 OoO CNP 为 0/0/0/1516，PFC 行数均为 0。诊断复跑的 FCT SHA-256 为 `dd922036f6b15f0aee324c9bf9ca1b3c0d4141bc78a3becb655bbdd8004f085e`，日志 SHA-256 为 `82106084907be4dcb21eefc2c844f8a114713605bf49ee0ae26f1fd50c9ec707`，日志有 601 条 RX NACK、571 条 TX NACK、4 条 TX TIMEOUT。集成前个人 fork 本地与 `origin/feature/ws08-guardhash-gate` 同为 `653250a5381bb1992a4d8acececb62593cf343aa`、工作树干净。WS-08 按前置诊断及单 seed pilot 范围闭环；后续用户要求另见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)，不倒改本轮实验结论。
