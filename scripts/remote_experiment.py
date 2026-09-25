@@ -205,6 +205,8 @@ def main():
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file', help='existing tracked config/*.txt trace')
+    run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
+    run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     for name in ('status', 'fetch', 'transfer-smoke'):
         item = sub.add_parser(name)
         item.add_argument('id')
@@ -238,9 +240,12 @@ def main():
             worker_call(cfg, 'build', '--id', experiment_id, '--sha', sha, '--branch', branch)
             print('Experiment ID: ' + experiment_id)
     elif args.command == 'run':
+        if args.pfc + args.irn != 1:
+            parser.error('Exactly one of --pfc and --irn must be enabled')
         command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
-                   '--netload', str(args.netload), '--bw', str(args.bw),
-                   '--topo', args.topo, '--cdf', args.cdf]
+                    '--netload', str(args.netload), '--bw', str(args.bw),
+                    '--topo', args.topo, '--cdf', args.cdf,
+                    '--pfc', str(args.pfc), '--irn', str(args.irn)]
         if args.flow_file:
             command.extend(['--flow-file', args.flow_file])
         worker_call(cfg, *command)

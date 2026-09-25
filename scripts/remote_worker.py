@@ -454,6 +454,8 @@ def main():
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file')
+    run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
+    run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     for name in ('execute', 'status', 'fetch-check', 'transfer-smoke'):
         command = sub.add_parser(name)
         command.add_argument('id')
@@ -467,6 +469,8 @@ def main():
     elif args.command == 'build':
         build(args.id, args.sha, args.branch)
     elif args.command == 'run':
+        if args.pfc + args.irn != 1:
+            raise RuntimeError('Exactly one of PFC and IRN must be enabled')
         if args.netload < 1 or args.netload > 50 or not 0.005 <= float(args.simul_time) <= 0.1:
             raise RuntimeError('Small-run safety bounds: load 1-50, simulation time 0.005-0.1 s')
         if not re.match(r'^[A-Za-z0-9_-]+$', args.topo) or not re.match(r'^[A-Za-z0-9_-]+$', args.cdf):
@@ -476,7 +480,8 @@ def main():
             flow_file = flow_file[len('config/'):]
         if flow_file and not re.match(r'^[A-Za-z0-9_.-]+[.]txt$', flow_file):
             raise RuntimeError('Flow file must be a config/*.txt basename')
-        start(args.id, {'lb': args.lb, 'pfc': 1, 'irn': 0, 'simul_time': args.simul_time,
+        start(args.id, {'lb': args.lb, 'pfc': args.pfc, 'irn': args.irn,
+                        'simul_time': args.simul_time,
                         'netload': args.netload, 'bw': args.bw,
                         'topo': args.topo, 'cdf': args.cdf,
                         'flow_file': flow_file})
