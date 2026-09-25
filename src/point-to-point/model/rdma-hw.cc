@@ -327,7 +327,13 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
     }
 
     bool cnp_check = false;
+    uint32_t expected_before = rxQp->ReceiverNextExpectedSeq;
     int x = ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
+    if (x == 2 && !m_irn) {
+        std::cout << "WS08_RX_NACK time_ns=" << Simulator::Now().GetTimeStep()
+                  << " flow_id=" << rxQp->m_flow_id << " seq=" << ch.udp.seq
+                  << " expected=" << expected_before << " size=" << payload_size << std::endl;
+    }
 
     if (x == 1 || x == 2 || x == 6) {  // generate ACK or NACK
         qbbHeader seqh;
@@ -542,8 +548,13 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
             }
         }
 
-    } else if (ch.l3Prot == 0xFD)  // NACK
+    } else if (ch.l3Prot == 0xFD) {  // NACK
+        std::cout << "WS08_TX_NACK time_ns=" << Simulator::Now().GetTimeStep()
+                  << " flow_id=" << qp->m_flow_id << " ack=" << seq
+                  << " snd_una=" << qp->snd_una << " snd_nxt=" << qp->snd_nxt
+                  << std::endl;
         RecoverQueue(qp);
+    }
 
     // handle cnp
     if (cnp) {
@@ -869,6 +880,11 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
 
     // IRN: disable timeouts when PFC is enabled to prevent spurious retransmissions
     if (qp->irn.m_enabled && dev->IsQbbEnabled()) return;
+
+    std::cout << "WS08_TX_TIMEOUT time_ns=" << Simulator::Now().GetTimeStep()
+              << " flow_id=" << qp->m_flow_id << " snd_una=" << qp->snd_una
+              << " snd_nxt=" << qp->snd_nxt << " rto_ns=" << rto.GetTimeStep()
+              << std::endl;
 
     if (acc_timeout_count.find(qp->m_flow_id) == acc_timeout_count.end())
         acc_timeout_count[qp->m_flow_id] = 0;
