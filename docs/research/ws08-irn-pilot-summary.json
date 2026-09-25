@@ -1,0 +1,27 @@
+{
+  "background_p99_fct_us": {
+    "flow64": 688.41974,
+    "packet64": 688.41974
+  },
+  "background_packet_minus_flow_p99_us": 0.0,
+  "experiment_ids": {
+    "flow0": "20260925-211439-ws08-irn-flow0",
+    "flow64": "20260925-212042-ws08-irn-flow64",
+    "packet0": "20260925-210820-ws08-irn-packet0",
+    "packet64": "20260925-212745-ws08-irn-packet64"
+  },
+  "git_commit": "445593fbc07236e18983d233407265220d360521",
+  "kind": "single-seed technical pilot, not formal inference",
+  "moe_background_interaction_us": -0.052999999999999936,
+  "moe_batch_us": {
+    "flow0": 1.415,
+    "flow64": 1.625,
+    "packet0": 1.415,
+    "packet64": 1.572
+  },
+  "moe_interaction_pct_of_packet0": -3.7455830388692535,
+  "trace_sha256": {
+    "bg0": "d60ca03e36f1607328f7af0e79b39f4c9bf74cd0feca8d59f1283de56d778560",
+    "bg64": "cbfa0e5a95b7c3b6b56dfd563e855dff8b83f4f54db2747909039285184f58e1"
+  }
+}
