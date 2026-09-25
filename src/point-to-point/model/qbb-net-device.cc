@@ -51,6 +51,7 @@
 #include "ns3/rdma-hw.h"
 #include "ns3/seq-ts-header.h"
 #include "ns3/settings.h"
+#include "ns3/switch-node.h"
 #include "ns3/simulator.h"
 #include "ns3/udp-header.h"
 #include "ns3/uinteger.h"
@@ -405,9 +406,9 @@ bool QbbNetDevice::SwitchSend(uint32_t qIndex, Ptr<Packet> packet, CustomHeader 
     if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) {
         bool accepted = m_queue->Enqueue(packet, qIndex);
         if (accepted)
-            m_node->SwitchNotifyEnqueue(m_ifIndex, packet);
+            m_node->GetObject<SwitchNode>()->SwitchNotifyEnqueue(m_ifIndex, packet);
         else {
-            m_node->SwitchNotifyQueueDrop(m_ifIndex, qIndex, packet, false);
+            m_node->GetObject<SwitchNode>()->SwitchNotifyQueueDrop(m_ifIndex, qIndex, packet, false);
             m_traceDrop(packet, qIndex);
             return false;
         }
@@ -511,7 +512,7 @@ void QbbNetDevice::TakeDown() {
             Ptr<Packet> p = m_queue->DequeueRR(m_paused);
             if (p == 0) break;
             if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
-                m_node->SwitchNotifyQueueDrop(m_ifIndex, m_queue->GetLastQueue(), p, true);
+                m_node->GetObject<SwitchNode>()->SwitchNotifyQueueDrop(m_ifIndex, m_queue->GetLastQueue(), p, true);
             m_traceDrop(p, m_queue->GetLastQueue());
         }
         // TODO: Notify switch that this link is down
