@@ -2,6 +2,8 @@
 
 冻结日期：2026-09-26（中国时间），**任何 WS-10 新效果仿真之前**。本文件与六份 `ws10-fixed-s*-manifest.json`、对应 `config/ws07_fixed_s*_t256_b4_*.txt` 和生成器一起固定在个人 fork 的一次提交；运行只接受该提交的单一完整 SHA。WS-09 的 1.421/1.415/1.490 µs 单 seed 技术 pilot 已知，本设计不称盲于它，也不使用其数值筛场景或调机制参数。WS-10 仅比较 `fecmp`（全流哈希）与 `dualtrack`（tag=2 逐包、tag=1 按流）；不比较 GuardHash 收益。
 
+**资源监控修订 v1.1（正式五 seed 前，2026-09-26）：**首次提交 `43963c411fea37a5b24e8963a0e4081ab6184a25` 的资源审计用了远程 Ubuntu 16.04 `ps` 不兼容的列格式，导致运行中的 ns-3 PID 和 RSS 漏报为 0。发现时仅已运行 pilot seed `20260926` 的 `bg0/fecmp`（完成）与 `bg0/dualtrack`（在途）；这两格保留为**诊断格**，不纳入六格资源 pilot 或正式五 seed。修复只改 `scripts/remote_worker.py` 的 `ps` 列格式，不改模拟器机制、输入、场景、seed 或任何效果判据。修复提交推送后，六格 pilot 与全部正式格均以该**同一新完整源码 SHA** 从头运行，并核对实际进程 RSS。此修订在新效果仿真前版本化；旧格不会与新 SHA 混算。
+
 ## 固定输入与共同运行条件
 
 - 导入的 `topo_1280_400G_400G_OS1.txt`，SHA-256 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`；四 rail 中输入位于 rail 0。`bw=400`、`buffer=9 MiB`、`simul_time=0.01 s`、`netload=10`、`AliStorage2019`、`RANDOM_SEED=1`；两模式和各档均为 DCQCN、`PFC=0`、`IRN=1`。仿真 seed 固定不是 trace seed。任何单格改变传输/接收参数均作协议偏离，不并入主比较。

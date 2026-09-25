@@ -115,7 +115,9 @@ def resources_ok():
 
 def active_simulations():
     found = []
-    listing = output(['ps', '-eo', 'pid=,comm=,args='])
+    # procps on the Ubuntu 16.04 host does not parse comma-separated fields
+    # when each field has an '=' header override; it returns only PIDs.
+    listing = output(['ps', '-eo', 'pid,comm,args', '--no-headers'])
     for line in listing.splitlines():
         parts = line.strip().split(None, 2)
         if len(parts) != 3:
