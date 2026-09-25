@@ -1,6 +1,6 @@
 # Handoff 08：WS-07 包/流双轨与 MixTax 技术 pilot
 
-来源：协调任务 `01a0cfac-3176-7590-bf34-c0f176a45118` 派发的「WS-07 包/流双轨及 MixTax」。交接日期：2026-09-25（中国时间）。本交接冻结一个**可核验的技术 pilot 阶段**；没有正式性能比较，也没有实现 WS-08 GuardHash。远程写入遵循 [工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)，旧基线和指标边界遵循论文项目 `docs/research/10-baseline-fidelity-and-dataflow-audit.md`。
+来源：协调任务 `01a0cfac-3176-7590-bf34-c0f176a45118` 派发的 WS-07 任务 `01a0d510-565c-7732-a794-ca2ee68323a3`（「WS-07 双轨基线与 MixTax」）。交接日期：2026-09-25（中国时间）。本交接冻结一个**可核验的技术 pilot 阶段**；没有正式性能比较，也没有实现 WS-08 GuardHash。远程写入遵循 [工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)，旧基线和指标边界遵循论文项目 `docs/research/10-baseline-fidelity-and-dataflow-audit.md`。
 
 ## 1. 本对话目标
 
@@ -64,3 +64,5 @@ WS-07 **COMPLETE FOR MINIMUM DUAL-TRACK AND SINGLE-SEED PILOT**，正式主实�
 ## 9. CONTEXT SNAPSHOT
 
 分支 `feature/ws07-dual-track-mixtax` 已实现 `tag=2` 逐包、`tag=1/0` 按流的最小模式与独立 MoE 分组分析；32 主机和 1280 跨 ToR 四流均全数完成，按流单类 FCT 与 `fecmp` 原始 SHA 相同。四格资源 pilot 使用 `8c99e54`、seed 20260925 的同一 256 条 MoE 子 trace，0/64 两档哈希和四 ID 见上表；绝对交互 +2.038 µs，仅为逐包无背景 4 ms 批次的 0.0509%，背景 P99 未恶化。严重无背景逐包尾部与 OoO CNP 同时出现，原因待隔离；WS-08 仍 conditional。固定总字节生成器和目标子集分析已备但未运行正式实验。下一步先建立并验证共同接收/重传语义，再重做四格和多 seed 门槛。
+
+集成核验（2026-09-25）：本机逐格读取四个正式 `results/<实验ID>/metadata.json`、`config/traffic_trace.txt`、`processed/moe_tag_summary.json` 和原始 FCT/CNP/PFC。四格均为 `SUCCEEDED`，固定源码 SHA 相同；trace 与 FCT 的 SHA-256 均和元数据/分析记录相符，FCT 行数依次为 256/256/320/320，OoO CNP 原始计数依次为 0/601/0/733，PFC 行数均为 0。个人 fork 本地与 `origin/feature/ws07-dual-track-mixtax` 在集成前同为 `2b30d11c1efa42afa22a632a4789789cc3937526`，工作树干净；集成提交会移动 HEAD。WS-07 **按本交接限定的技术试点范围闭环**，正式主实验与 4 ms 长尾诊断明确移交后续任务。
