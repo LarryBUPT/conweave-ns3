@@ -76,7 +76,7 @@ bool BEgressQueue::DoEnqueue(Ptr<Packet> p, uint32_t qIndex) {
 
     if (m_bytesInQueueTotal + p->GetSize() < m_maxBytes)  // infinite queue
     {
-        m_queues[qIndex]->Enqueue(p);
+        if (!m_queues[qIndex]->Enqueue(p)) return false;
         m_bytesInQueueTotal += p->GetSize();
         m_bytesInQueue[qIndex] += p->GetSize();
     } else {

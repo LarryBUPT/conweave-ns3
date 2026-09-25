@@ -62,6 +62,10 @@ NS_LOG_COMPONENT_DEFINE("GENERIC_SIMULATION");
 /*------Load balancing parameters-----*/
 // mode for load balancer, 0: flow ECMP, 2: DRILL, 3: Conga, 6: Letflow, 9: ConWeave
 uint32_t lb_mode = 0;
+uint32_t guardhash_lambda = 1;
+uint32_t guardhash_tau_bytes = 0;
+uint32_t harm_gate_on_bytes = 8192;
+uint32_t harm_gate_off_bytes = 4096;
 
 // Conga params (based on paper recommendation)
 Time conga_flowletTimeout = MicroSeconds(100);  // 100us
@@ -811,6 +815,14 @@ int main(int argc, char *argv[]) {
                 conf >> v;
                 lb_mode = v;
                 std::cerr << "LB_MODE\t\t\t" << lb_mode << "\n";
+            } else if (key.compare("GUARDHASH_LAMBDA") == 0) {
+                conf >> guardhash_lambda;
+            } else if (key.compare("GUARDHASH_TAU_BYTES") == 0) {
+                conf >> guardhash_tau_bytes;
+            } else if (key.compare("HARM_GATE_ON_BYTES") == 0) {
+                conf >> harm_gate_on_bytes;
+            } else if (key.compare("HARM_GATE_OFF_BYTES") == 0) {
+                conf >> harm_gate_off_bytes;
             } else if (key.compare("SW_MONITORING_INTERVAL") == 0) {
                 uint32_t v;
                 conf >> v;
@@ -1217,6 +1229,8 @@ int main(int argc, char *argv[]) {
     Settings::host_num = node_num - switch_num;
     Settings::switch_num = switch_num;
     Settings::lb_mode = lb_mode;
+    SwitchNode::ConfigureGuardHash(guardhash_lambda, guardhash_tau_bytes,
+                                   harm_gate_on_bytes, harm_gate_off_bytes);
     Settings::packet_payload = packet_payload_size;
     // Settings::MTU = packet_payload_size + 48;  // for simplicity
     /*------------------------------------*/

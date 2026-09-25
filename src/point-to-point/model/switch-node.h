@@ -17,6 +17,7 @@ class SwitchNode : public Node {
     static const unsigned qCnt = 8;    // Number of queues/priorities used
     static const unsigned pCnt = 128;  // port 0 is not used so + 1	// Number of ports used
     uint32_t m_ecmpSeed;
+    std::map<uint64_t, bool> m_guardGateActive;
     std::unordered_map<uint32_t, std::vector<int> >
         m_rtTable;  // map from ip address (u32) to possible ECMP port (index of dev)
 
@@ -35,6 +36,7 @@ class SwitchNode : public Node {
     static uint32_t EcmpHash(const uint8_t *key, size_t len, uint32_t seed);
     void CheckAndSendPfc(uint32_t inDev, uint32_t qIndex);
     void CheckAndSendResume(uint32_t inDev, uint32_t qIndex);
+    void CheckGuardQueue(uint32_t ifIndex);
 
     /* Sending packet to Egress port */
     void DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, uint32_t qIndex);
@@ -44,6 +46,8 @@ class SwitchNode : public Node {
     uint32_t DoLbFlowECMP(Ptr<const Packet> p, const CustomHeader &ch,
                           const std::vector<int> &nexthops);
     uint32_t DoLbDualTrack(Ptr<const Packet> p, const CustomHeader &ch,
+                           const std::vector<int> &nexthops);
+    uint32_t DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
                            const std::vector<int> &nexthops);
     // DRILL (lb_mode = 2)
     uint32_t DoLbDrill(Ptr<const Packet> p, const CustomHeader &ch,
@@ -72,6 +76,12 @@ class SwitchNode : public Node {
     void ClearTable();
     bool SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet, CustomHeader &ch);
     static void PrintWorkloadTagCounts();
+    static void ConfigureGuardHash(uint32_t lambda, uint32_t tau,
+                                   uint32_t gateOnBytes, uint32_t gateOffBytes);
+    void SwitchNotifyEnqueue(uint32_t ifIndex, Ptr<const Packet> p);
+    void SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p);
+    void SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
+                               Ptr<const Packet> p, bool wasQueued);
     void SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p);
     uint64_t GetTxBytesOutDev(uint32_t outdev);
 };

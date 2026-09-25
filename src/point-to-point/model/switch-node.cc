@@ -16,6 +16,7 @@
 #include "ns3/workload-tag.h"
 #include <iostream>
 #include <map>
+#include <tuple>
 #include "ppp-header.h"
 #include "qbb-net-device.h"
 
@@ -26,6 +27,32 @@ static uint64_t missing_workload_tag_packets = 0;
 static uint64_t dualtrack_flow_packets = 0;
 static uint64_t dualtrack_packet_packets = 0;
 static uint64_t dualtrack_packet_multipath = 0;
+static uint32_t guard_lambda = 1, guard_tau = 0;
+static uint32_t guard_on_bytes = 8192, guard_off_bytes = 4096;
+static uint64_t guard_packets = 0, guard_two_candidates = 0;
+static uint64_t guard_scored = 0, guard_diverted = 0;
+static uint64_t guard_activations = 0, guard_exits = 0;
+static uint64_t guard_queue_violations = 0;
+struct GuardQueueStat {
+    uint64_t enqueued = 0, dequeued = 0, admissionDropped = 0;
+    uint64_t queueDropped = 0, current = 0;
+};
+static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, GuardQueueStat> guard_queue_stats;
+
+static uint32_t GuardTag(Ptr<const Packet> p) {
+    WorkloadTag label;
+    if (!p->PeekPacketTag(label)) return 0;
+    return label.GetValue() <= 2 ? label.GetValue() : 3;
+}
+
+void SwitchNode::ConfigureGuardHash(uint32_t lambda, uint32_t tau,
+                                     uint32_t gateOnBytes, uint32_t gateOffBytes) {
+    NS_ASSERT_MSG(gateOffBytes < gateOnBytes, "HarmGate exit must be below activation");
+    guard_lambda = lambda;
+    guard_tau = tau;
+    guard_on_bytes = gateOnBytes;
+    guard_off_bytes = gateOffBytes;
+}
 
 void SwitchNode::PrintWorkloadTagCounts() {
     for (const auto &entry : workload_tag_packets)
@@ -35,6 +62,29 @@ void SwitchNode::PrintWorkloadTagCounts() {
         std::cout << "WS07_DUALTRACK flow_packets=" << dualtrack_flow_packets
                   << " packet_packets=" << dualtrack_packet_packets
                   << " packet_multipath=" << dualtrack_packet_multipath << std::endl;
+    if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) {
+        std::cout << "WS09_CONFIG mode=" << Settings::lb_mode
+                  << " lambda=" << guard_lambda << " tau=" << guard_tau
+                  << " gate_on=" << guard_on_bytes << " gate_off=" << guard_off_bytes << std::endl;
+        std::cout << "WS09_ROUTE packets=" << guard_packets << " two_candidates="
+                  << guard_two_candidates << " scored=" << guard_scored
+                  << " diverted=" << guard_diverted << " activations="
+                  << guard_activations << " exits=" << guard_exits << std::endl;
+        for (const auto &entry : guard_queue_stats) {
+            const GuardQueueStat &s = entry.second;
+            if (s.enqueued != s.dequeued + s.queueDropped + s.current)
+                ++guard_queue_violations;
+            std::cout << "WS09_QUEUE switch=" << std::get<0>(entry.first)
+                      << " port=" << std::get<1>(entry.first)
+                      << " tag=" << std::get<2>(entry.first)
+                      << " enqueued=" << s.enqueued << " dequeued=" << s.dequeued
+                      << " admission_drop=" << s.admissionDropped
+                      << " queue_drop=" << s.queueDropped
+                      << " current=" << s.current << std::endl;
+        }
+        std::cout << "WS09_QUEUE_CHECK violations=" << guard_queue_violations << std::endl;
+        NS_ASSERT_MSG(guard_queue_violations == 0, "GuardHash queue counters do not conserve bytes");
+    }
 }
 
 TypeId SwitchNode::GetTypeId(void) {
@@ -122,6 +172,46 @@ uint32_t SwitchNode::DoLbDualTrack(Ptr<const Packet> p, const CustomHeader &ch,
                        ch.udp.seq};
     return nexthops[EcmpHash(reinterpret_cast<const uint8_t *>(key), sizeof(key), m_ecmpSeed)
                     % nexthops.size()];
+}
+
+uint32_t SwitchNode::DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
+                                   const std::vector<int> &nexthops) {
+    WorkloadTag label;
+    if (ch.l3Prot != 0x11 || !p->PeekPacketTag(label) || label.GetValue() != 2)
+        return DoLbFlowECMP(p, ch, nexthops);
+    ++guard_packets;
+    uint32_t key[4] = {ch.sip, ch.dip,
+                       uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16),
+                       ch.udp.seq};
+    uint32_t first = nexthops[EcmpHash(reinterpret_cast<const uint8_t *>(key),
+                                       sizeof(key), m_ecmpSeed) % nexthops.size()];
+    if (nexthops.size() == 1) return first;
+    uint32_t second = nexthops[EcmpHash(reinterpret_cast<const uint8_t *>(key),
+                                        sizeof(key), m_ecmpSeed ^ 0x9e3779b9U)
+                                % nexthops.size()];
+    if (first == second) return first;
+    ++guard_two_candidates;
+    uint32_t qFirst = CalculateInterfaceLoad(first);
+    uint32_t qSecond = CalculateInterfaceLoad(second);
+    if (Settings::lb_mode == 15) {
+        uint32_t low = std::min(first, second), high = std::max(first, second);
+        uint64_t pair = (uint64_t(low) << 32) | high;
+        bool &active = m_guardGateActive[pair];
+        uint32_t peak = std::max(qFirst, qSecond);
+        if (!active && peak >= guard_on_bytes) { active = true; ++guard_activations; }
+        else if (active && peak <= guard_off_bytes) { active = false; ++guard_exits; }
+        if (!active) return first;
+    }
+    ++guard_scored;
+    uint64_t scoreFirst = qFirst, scoreSecond = qSecond;
+    if (Settings::lb_mode != 13) {
+        auto a = guard_queue_stats.find(std::make_tuple(m_id, first, 1));
+        auto b = guard_queue_stats.find(std::make_tuple(m_id, second, 1));
+        if (a != guard_queue_stats.end()) scoreFirst += uint64_t(guard_lambda) * a->second.current;
+        if (b != guard_queue_stats.end()) scoreSecond += uint64_t(guard_lambda) * b->second.current;
+    }
+    if (scoreSecond + guard_tau < scoreFirst) { ++guard_diverted; return second; }
+    return first;
 }
 
 /*-----------------CONGA-----------------*/
@@ -321,6 +411,10 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbConWeave(p, ch, nexthops); /** DUMMY: Do ECMP */
         case 12:
             return DoLbDualTrack(p, ch, nexthops);
+        case 13:
+        case 14:
+        case 15:
+            return DoLbGuardHash(p, ch, nexthops);
         default:
             std::cout << "Unknown lb_mode(" << Settings::lb_mode << ")" << std::endl;
             assert(false);
@@ -360,6 +454,8 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 //           << ",At " << Simulator::Now() << std::endl;
 #endif
                 Settings::dropped_pkt_sw_ingress++;
+                if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
+                    SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
             }
         } else { /** DROP: At Egress */
@@ -370,6 +466,8 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
             //           << Simulator::Now() << std::endl;
 #endif
             Settings::dropped_pkt_sw_egress++;
+            if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
+                SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
         }
 
@@ -379,7 +477,59 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
     m_devices[outDev]->SwitchSend(qIndex, p, ch);
 }
 
+void SwitchNode::CheckGuardQueue(uint32_t ifIndex) {
+    uint64_t counted = 0;
+    for (uint32_t tag = 0; tag <= 3; ++tag) {
+        auto it = guard_queue_stats.find(std::make_tuple(m_id, ifIndex, tag));
+        if (it != guard_queue_stats.end()) counted += it->second.current;
+    }
+    Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[ifIndex]);
+    NS_ASSERT_MSG(dev && dev->GetQueue(), "GuardHash missing egress queue");
+    if (counted != dev->GetQueue()->GetNBytesTotal()) {
+        ++guard_queue_violations;
+        NS_ASSERT_MSG(false, "GuardHash queue bytes differ from BEgressQueue");
+    }
+}
+
+void SwitchNode::SwitchNotifyEnqueue(uint32_t ifIndex, Ptr<const Packet> p) {
+    GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
+    s.enqueued += p->GetSize();
+    s.current += p->GetSize();
+    CheckGuardQueue(ifIndex);
+}
+
+void SwitchNode::SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p) {
+    guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))].admissionDropped += p->GetSize();
+    CheckGuardQueue(ifIndex);
+}
+
+void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
+                                       Ptr<const Packet> p, bool wasQueued) {
+    GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
+    s.queueDropped += p->GetSize();
+    if (wasQueued) {
+        NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash queue drop underflow");
+        s.current -= p->GetSize();
+    }
+    if (qIndex != 0) {
+        FlowIdTag t;
+        p->PeekPacketTag(t);
+        uint32_t inDev = t.GetFlowId();
+        if (inDev != Settings::CONWEAVE_CTRL_DUMMY_INDEV)
+            m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
+        m_mmu->RemoveFromEgressAdmission(ifIndex, qIndex, p->GetSize());
+    }
+    CheckGuardQueue(ifIndex);
+}
+
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
+    if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) {
+        GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
+        NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
+        s.current -= p->GetSize();
+        s.dequeued += p->GetSize();
+        CheckGuardQueue(ifIndex);
+    }
     FlowIdTag t;
     p->PeekPacketTag(t);
     if (qIndex != 0) {

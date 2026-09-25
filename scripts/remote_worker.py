@@ -447,7 +447,7 @@ def main():
     build_cmd.add_argument('--branch', required=True)
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('--id', required=True)
-    run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave', 'dualtrack'], default='fecmp')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)

@@ -43,6 +43,10 @@ BUFFER_SIZE {buffer_size}
 
 CC_MODE {cc_mode}
 LB_MODE {lb_mode}
+GUARDHASH_LAMBDA 1
+GUARDHASH_TAU_BYTES 0
+HARM_GATE_ON_BYTES 8192
+HARM_GATE_OFF_BYTES 4096
 ENABLE_PFC {enabled_pfc}
 ENABLE_IRN {enabled_irn}
 
@@ -104,6 +108,9 @@ cc_modes = {
 lb_modes = {
     "fecmp": 0,
     "dualtrack": 12,
+    "shortq2": 13,
+    "guardhash": 14,
+    "guardhashgate": 15,
     "drill": 2,
     "conga": 3,
     "letflow": 6,
