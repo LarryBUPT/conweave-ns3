@@ -1,10 +1,10 @@
 # ConWeave 毕业论文项目状态
 
-更新：2026-09-26（中国时间）。本文件是跨对话的**状态入口**，不是实验原始证据。状态会过期；执行代码、实验或对外陈述前，应核对当前 Git、源码、实验 ID 与原始数据。工作规则以 `docs/REMOTE_EXPERIMENT_WORKFLOW.md` 为准，baseline 和指标口径以 `docs/research/10-baseline-fidelity-and-dataflow-audit.md` 为准。
+更新：2026-09-27（中国时间）。本文件是跨对话的**状态入口**，不是实验原始证据。状态会过期；执行代码、实验或对外陈述前，应核对当前 Git、源码、实验 ID 与原始数据。工作规则以 `docs/REMOTE_EXPERIMENT_WORKFLOW.md` 为准，baseline 和指标口径以 `docs/research/10-baseline-fidelity-and-dataflow-audit.md` 为准。
 
 ## 当前阶段与目标
 
-阶段：**WS-10 固定总字节与五 seed 正式现象复核已完成，预注册主判据 no-go；WS-11 启动独立全量输入现象验证，效果实验门槛仍未打开。**WS-07 的 PFC=1、IRN=0 逐包无背景约 4 ms 尾部已对应四个末段 RTO；WS-08 的 PFC=0、IRN=1 单 seed 交互为 `−0.053 µs`（`−3.7456%`）。WS-09 GuardHash/HarmGate v0 工程原型完成，但没有正式效果证据。WS-10 的 30/30 个正式格全类完成，4 背景档五 seed 交互仅 1 个正向、归一化中位数 `−1.3947%`，见 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md) 与 [正式报告](../research/ws10-fixed-load-formal-report.md)。
+阶段：**WS-10 固定总字节正式现象复核与 WS-11 全量输入正式现象验证均已完成，各自预注册复合判据 no-go；机制效果门槛仍关闭，下一步可进入 WS-12 解释性负结果路线。**WS-10 的 30/30 格中，主 4 背景档五 seed 仅 1 个正向、归一化中位数 `−1.3947%`。WS-11 的 40/40 格中，192 背景档 MoE 交互 5/5 正向、中位数 `+35.9057%`，但原始输入组背景 P99 恶化 `6.6527%`，超过预定 5% 安全线。两场景输入与总字节契约不同，不能合并或互相重判；详见 [WS-10 报告](../research/ws10-fixed-load-formal-report.md) 与 [WS-11 报告](../research/ws11-full-moe-formal-report.md)。WS-09 GuardHash/HarmGate v0 仅完成工程原型，没有正式效果证据。
 
 ## 已完成且可核验
 
@@ -18,8 +18,11 @@
 - WS-08 前置诊断：从个人 fork 已推送 `4649fb1928160c603f7df9ffd6400c091116ab60` 分支开工。只加日志的 `20260925-210024-ws08-nack-diagnostic@c8ca6a601dd4380bae36233053b654307d61d292` 与 WS-07 packet0 原始 FCT SHA 相同，四个约 4 ms 尾流恰与四个 4,000,000 ns 超时对应，超时均剩最后 192 B 未确认。共享 PFC=0、IRN=1、DCQCN 契约的 32 主机单类/双类及 1280 跨 ToR 四流正确性通过；同 SHA `445593fbc07236e18983d233407265220d360521` 四格各类全数完成，MoE 批次 flow0/packet0/flow64/packet64 为 1.415/1.415/1.625/1.572 µs，背景 P99 flow64/packet64 均 688.41974 µs。详证见 [Handoff 09](../handoffs/2026-09-25-09-ws08-receiver-gate.md)、[诊断](../research/ws08-receiver-preflight.md) 与 [机器摘要](../research/ws08-irn-pilot-summary.json)。固定总字节样本仅静态验证；无五 seed 推断。
 - WS-09 工程原型：从已推送 `c45d41d42157dd3589e37ebe1953c75a68d5b6c2` 建 `feature/ws09-guardhash-prototype`；`shortq2/guardhash/guardhashgate` 模式 `13/14/15` 共用双候选哈希，HarmGate 是类别评分激活门槛。固定 `7930168f7bb43afbe6cc87bd134d91d28667e8c1` 完成 32 主机单/双类、导入 1280 跨 ToR 四流、同源码旧 `fecmp/dualtrack` 退化回归和 320 流同 trace 三格单 seed pilot；全部原始队列计数守恒。三格 MoE 合成批次 1.421/1.415/1.49 µs，背景 P99 均 688.41974 µs，门控实际激活 39 次、退出 9 次；仅属技术 pilot。修复提交 `9c34945c79b44476166f2f1f4dc26f6b2f6163a0` 的独立丢包探针 `20260926-025616-ws09-drop-probe` 两类准入丢包合计 3,041,296 B、计数违规 0。十格详证见 [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)、[冻结规格](../research/ws09-guardhash-v0-spec.md)、[机器摘要](../research/ws09-validation-summary.json)；不作效果结论。
 - WS-10 正式现象复核：预注册 v1.1 固定五个 trace seed、0/2/4 背景档、`fecmp/dualtrack`、总提供 35,651,584 B、统一 `aa778ac523bc0319999395dd3cf8085b41e73a98`。资源 pilot 6/6、正式 30/30 完成；4 档交互 1 正 4 负，归一化中位数 −1.3947%，背景安全 10/10 通过，2 档五 seed 均正但非单调，故现象 no-go。一次 SSH 状态解析故障的诊断格被同 SHA/trace 正式重跑替换，两份 FCT SHA 相同；详见 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)、[报告](../research/ws10-fixed-load-formal-report.md)、[机器摘要](../research/ws10-fixed-load-formal-summary.json)。
+- WS-11 全量输入正式现象验证：固定仿真源码 `208fcee4c541da9b24ed26792b32ae681a30977f`、16,384 条同步 MoE 与原始 0/64/128/192 背景输入，加四组确定性行顺序置换；40/40 正式格两类流全完成且原始文件与资源收据核验通过。主 192 档交互 5/5 正向、归一化中位数 +35.9057%，但原始组背景 P99 +6.6527% 超过 5% 安全线，复合门槛 no-go。置换组不是独立需求样本，背景增加也增加总字节。见 [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)、[报告](../research/ws11-full-moe-formal-report.md)、[机器摘要](../research/ws11-full-moe-formal-summary.json)。
 
 ## 当前版本快照
+
+2026-09-27 WS-11 集成前核验：个人 fork `feature/ws11-full-moe-mixtax` 当时本地 HEAD 为 `91a8f6e8b7cf013217f661ddc9fab535ea015352`；40 格仿真源码统一为 `208fcee4c541da9b24ed26792b32ae681a30977f`，后续控制器和状态提交不是仿真 SHA。`scripts/verify_ws11_formal.py` 从逐格原始结果、trace、拓扑和资源收据重算 `phenomenon_go=false`。20 物理核/40 逻辑线程的服务器上，运行器使用 18 个共享 CPU 令牌（每次 `-j2` 编译占 2、单格仿真占 1），峰值采样 1 分钟负载 17.24；没有在途仿真。缺资源采样收据的旧 ID `20260926-144756-ws11-02-b192-f` 排除，用 `20260927-002500-ws11-02-b192-f-r` 同 SHA/trace/seed 重跑，原始 FCT SHA 相同。状态集成提交会移动 HEAD，执行时重新查询。
 
 2026-09-26 WS-10 独立集成核验：来源任务 ID `01a0da7c-8d4d-7522-b1c9-1bfb967bd170`；个人 fork `feature/ws10-fixed-load-mixtax` 的实验源码固定 `aa778ac523bc0319999395dd3cf8085b41e73a98`。`scripts/verify_ws10_formal.py` 再次从正式 30 格的元数据、原始文件哈希、目标/类别完成率和资源收据重算通过，`phenomenon_go=false`。集成前本地、origin、GitHub 同名分支均为 `6cc47c6cffa3d00f7cb3ec71411c68844f57ff76`、工作树干净。状态提交会移动分支 HEAD，不能把新 HEAD 误作仿真源码 SHA。WS-11 的全量验证已规划，效果主张仍为条件性 no-go。
 
@@ -43,13 +46,13 @@
 
 ## 正在推进、未完成及依赖
 
-1. **公共输入底座与最小双轨，已完成技术核验：**六列/五列解析、显式流文件、tag 到源 ToR、独立 MoE 分组分析和 `dualtrack` 均可用；32 主机单类及双类、导入 1280 拓扑跨 ToR 四流已全数完成。四份完整 1280 节点 MoE trace 仍未全量运行。
+1. **公共输入底座与最小双轨，已完成技术核验：**六列/五列解析、显式流文件、tag 到源 ToR、独立 MoE 分组分析和 `dualtrack` 均可用；32 主机单类及双类、导入 1280 拓扑跨 ToR 四流已全数完成。四份完整 MoE trace 已在 WS-11 全量运行，结果按 WS-11 独立契约解释。
 2. **共同接收/重传语义，技术诊断已完成：**旧 PFC+非 IRN 的四个 4 ms 尾流对应四个末段 RTO；共享 IRN+无 PFC 契约在一个 seed 的 0/64 四格全部完成且无超时。它是新的传输条件，不能与 WS-07 旧四格合并。若在导入混合延迟拓扑比较 ConWeave，仍须先审计其统一 `one_hop_delay`。
-3. **正式现象实验，按 WS-10 预注册范围完成：**共同 IRN 契约、固定目标/总字节 0/2/4、五个独立 trace seed 和 30 个配对格均已运行核验。主 4 档只有 1/5 正向、归一化中位数 `−1.3947%`，不满足至少 4/5 正向且中位数 ≥5% 的门槛；本场景 no-go，不推断其他负载普遍无损害。2 档正向趋势作为非单调剂量结果保留。
-4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10 的正式场景没有通过稳定损害门槛，WS-11 先做独立全量输入现象验证，不启动效果主张，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
-5. **全量阶段与资源准则：**16,384 条同步 MoE + 0/64/128/192 条背景输入尚未仿真；WS-11 先预注册新场景、做资源 pilot、核验热点及双侧指标。原始输入随背景增加总字节，需单列负载控制，不能与 WS-10 固定总字节场景合并。远程矩阵按更新的 [工作流](../REMOTE_EXPERIMENT_WORKFLOW.md) 静默监控；确认服务器无人并审计并发隔离后，提高空闲资源利用率。现有运行器仍强制一次一个仿真，须先修改并验证，不能绕过保护。
+3. **正式现象实验，两种契约分别完成：**WS-10 的固定总字节 0/2/4、五个独立 trace seed 与 30 格主 4 档结果为 1/5 正向、中位数 `−1.3947%`；WS-11 的完整 MoE、随背景增加总字节的 40 格主 192 档为 5/5 正向、中位数 `+35.9057%`，但背景安全 14/15，原始 192 档越过 5% 线。两个预注册复合判据分别 no-go，不合并统计、不后改门槛。
+4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10/11 均未打开正式效果比较门槛，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
+5. **全量阶段与资源准则：**WS-11 已按预注册完成资源 pilot、并发隔离审计与 40 格矩阵；20 物理核预算下的 18 共享 CPU 令牌和阶梯并发实测可用。原始输入随背景增加总字节，不能称纯混合比例效应，也不能与 WS-10 固定总字节场景合并。未来远程矩阵仍按[工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)先核对空闲资源和隔离，再按实测占用提高并发并静默监控。
 
-下一个里程碑：**WS-11 独立预注册并验证完整 MoE 混合输入；同时解释 WS-10 的 2/4 档非单调性。**新场景不并入既有 30 格；只有新场景通过预先冻结的现象门槛，才考虑等信息效果对照。若仍未通过，按 WS-12 的解释性负结果路线组织论文证据。依赖与停机条件见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
+下一个里程碑：**WS-12 整理 WS-10/11 的解释性负结果、非单调性、热点与背景代价，并厘清传输/输入边界。**若未来另立场景研究类别机制收益，先前瞻性预注册双侧现象与安全门槛；不能用现有数据回填。依赖与停机条件见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
 
 ## 证据边界
 
@@ -68,3 +71,5 @@
 [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md) 记录 WS-09 可关闭原型、十个实验 ID 的正确性/守恒与单 seed 技术 pilot；它不改变 WS-08 效果 no-go，也不替代 WS-10/11 的正式证据门槛。
 
 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md) 记录 WS-10 预注册五 seed 正式复核、一次控制器恢复和现象 no-go；所有正式格与原始 SHA 索引在 [机器摘要](../research/ws10-fixed-load-formal-summary.json)。
+
+[Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md) 记录 WS-11 全量输入 40 格、资源并发验证和复合 no-go；逐格原始 SHA 与资源收据索引在 [机器摘要](../research/ws11-full-moe-formal-summary.json)。

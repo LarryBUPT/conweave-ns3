@@ -1,0 +1,5583 @@
+{
+  "background_safety_all_pass": false,
+  "cells": [
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T14:57:50Z",
+      "group": "original",
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 15.653,
+          "p99_fct_us": 15.61316
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.389,
+          "p99_fct_us": 14.379520000000001
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.339,
+          "p99_fct_us": 15.335840000000001
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.343,
+          "p99_fct_us": 14.33286
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.431,
+          "p99_fct_us": 14.431
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 13.917,
+          "p99_fct_us": 13.913920000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.167,
+          "p99_fct_us": 14.1054
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.287,
+          "p99_fct_us": 14.28546
+        }
+      ],
+      "id": "20260926-144756-ws11-o-b0-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.254832397460937,
+        "p50_fct_us": 12.0855,
+        "p95_fct_us": 13.944,
+        "p99_complete_source_batch_us": 15.5988,
+        "p99_fct_us": 14.476680000000002,
+        "synthetic_batch_completion_us": 15.653,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "190392761",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "4c72ea2f069e1a8653f0916795e07fd38b956e517cf666f58afe7c4fd91bc3f9"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "4f24189d8df4b50cf66dfbddbf5e8d12027f2dc4e40e3143e88408d25a333ff6"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-o-b0-f",
+        "minimum_free_gib": 5939.692085266113,
+        "minimum_mem_available_gib": 114.25256729125977,
+        "peak_tree_rss_mib": 4540.515625,
+        "samples": 41
+      },
+      "resource_samples_sha256": "5f4810f6bc4273d2daf0666d3e2052e18b1aa0e45578bd33010eff8ea377ed62",
+      "sampled_max_load_1m": 4.17,
+      "seed": 1,
+      "simulation_seconds": 199.0,
+      "started_utc": "2026-09-26T14:54:31Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "9e00baa5c79ab45b107b82b4c18d43cbb9a1073101bf14123aedd2d90d2e89fd",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.1456488,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.3727946411714433,
+        "tor_imbalance_p99": 0.5570532041839922,
+        "total_port_tx_bytes": 146651492,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T14:57:48Z",
+      "group": "original",
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 15.634,
+          "p99_fct_us": 15.63068
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.389,
+          "p99_fct_us": 14.379520000000001
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.42,
+          "p99_fct_us": 15.40104
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.39,
+          "p99_fct_us": 14.3744
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.458,
+          "p99_fct_us": 14.454880000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 13.916,
+          "p99_fct_us": 13.912920000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.076,
+          "p99_fct_us": 14.076
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.265,
+          "p99_fct_us": 14.26192
+        }
+      ],
+      "id": "20260926-144756-ws11-o-b0-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.251237915039063,
+        "p50_fct_us": 12.084,
+        "p95_fct_us": 13.88085,
+        "p99_complete_source_batch_us": 15.6238,
+        "p99_fct_us": 14.673190000000002,
+        "synthetic_batch_completion_us": 15.634,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "872577288",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "e1403482dcdf203f98ec87317f2f502c36fb96aea218581c169dbe1df4075127"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "6907beb7222412f508508a7fe7747ca7dcd2733e76931c8993434143e8e8062a"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-o-b0-p",
+        "minimum_free_gib": 5939.692676544189,
+        "minimum_mem_available_gib": 114.25256729125977,
+        "peak_tree_rss_mib": 4540.19140625,
+        "samples": 40
+      },
+      "resource_samples_sha256": "d0ad8f76560210b9fa1e7c2b86358aeaebd46fbdfc20b3235551aea31e9e8934",
+      "sampled_max_load_1m": 4.17,
+      "seed": 1,
+      "simulation_seconds": 196.0,
+      "started_utc": "2026-09-26T14:54:32Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "9e00baa5c79ab45b107b82b4c18d43cbb9a1073101bf14123aedd2d90d2e89fd",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.1275232,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.12240240312486203,
+        "tor_imbalance_p99": 0.19081679653526273,
+        "total_port_tx_bytes": 147195520,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 472.077921875,
+        "p50_fct_us": 487.585,
+        "p95_fct_us": 687.49285,
+        "p99_complete_source_batch_us": 688.49608,
+        "p99_fct_us": 688.48888,
+        "synthetic_batch_completion_us": 688.504,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:09:53Z",
+      "group": "original",
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 18.666,
+          "p99_fct_us": 17.111410000000003
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 15.76,
+          "p99_fct_us": 14.882309999999991
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 16.105,
+          "p99_fct_us": 16.067079999999997
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 18.25,
+          "p99_fct_us": 17.75002
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 19.807,
+          "p99_fct_us": 17.035659999999996
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.974,
+          "p99_fct_us": 14.241730000000004
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 15.993,
+          "p99_fct_us": 15.178340000000004
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.464,
+          "p99_fct_us": 14.45322
+        }
+      ],
+      "id": "20260926-144756-ws11-o-b64-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.467177612304688,
+        "p50_fct_us": 12.224,
+        "p95_fct_us": 14.513,
+        "p99_complete_source_batch_us": 19.5918,
+        "p99_fct_us": 16.356360000000002,
+        "synthetic_batch_completion_us": 19.807,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "826395894",
+      "raw_files": {
+        "cnp": {
+          "bytes": 6260,
+          "sha256": "2f21d86d3d9166404748f93132f0e29774d24126ca98eac79c5d04f5366c5418"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "d42948e566f6596827003c9364cdc52c3bd165b18c95ea27f1a99672542f7187"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2013404,
+          "sha256": "16fbf2fe802bca765e135d9632e69205d3eb13fd377fa99a16d065716f3f6e80"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-o-b64-p",
+        "minimum_free_gib": 5936.572593688965,
+        "minimum_mem_available_gib": 105.4262466430664,
+        "peak_tree_rss_mib": 4540.32421875,
+        "samples": 46
+      },
+      "resource_samples_sha256": "f5318a5eddff41f1c15dd8af946a90de0e9053c461a9ca4bcbf082debd5c49f8",
+      "sampled_max_load_1m": 7.66,
+      "seed": 1,
+      "simulation_seconds": 227.0,
+      "started_utc": "2026-09-26T15:06:06Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "83d0b2ff46d683d243bcd1d4b2fc4c2fefa330324062d13dcfb878af5abdd7dc",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.7804402285714286,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.2544317902325313,
+        "tor_imbalance_p99": 6.415999426544966,
+        "total_port_tx_bytes": 746625840,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 470.740609375,
+        "p50_fct_us": 510.087,
+        "p95_fct_us": 687.8541,
+        "p99_complete_source_batch_us": 688.47208,
+        "p99_fct_us": 688.46488,
+        "synthetic_batch_completion_us": 688.48,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:09:45Z",
+      "group": "original",
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 15.668,
+          "p99_fct_us": 15.65223
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.577,
+          "p99_fct_us": 14.43164
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.308,
+          "p99_fct_us": 15.28904
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 15.035,
+          "p99_fct_us": 14.498359999999998
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.938,
+          "p99_fct_us": 14.91382
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 13.935,
+          "p99_fct_us": 13.93192
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.786,
+          "p99_fct_us": 14.77984
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.811,
+          "p99_fct_us": 14.401360000000002
+        }
+      ],
+      "id": "20260926-144756-ws11-o-b64-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.316365051269532,
+        "p50_fct_us": 12.135,
+        "p95_fct_us": 14.043,
+        "p99_complete_source_batch_us": 15.6074,
+        "p99_fct_us": 14.906170000000001,
+        "synthetic_batch_completion_us": 15.668,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "47975115",
+      "raw_files": {
+        "cnp": {
+          "bytes": 1326,
+          "sha256": "e3eec9be782f69bd1be9fe26399b2c88fb266ea2969f58bb4bac275ebeb8aaf6"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "b95164a76881edd9bab36ac03b56197184b9404d728e4804bfc9a61035815d16"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2013440,
+          "sha256": "1445bfea00169764d15a4d60ab7baec58097d7c488b56083c86c63f261efdb97"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-o-b64-f",
+        "minimum_free_gib": 5936.574424743652,
+        "minimum_mem_available_gib": 105.42536544799805,
+        "peak_tree_rss_mib": 4539.90625,
+        "samples": 45
+      },
+      "resource_samples_sha256": "d97913ecd211480552bdea3b76302cf8e528522b770bf8e7d8dcb1b9e9785f7f",
+      "sampled_max_load_1m": 7.66,
+      "seed": 1,
+      "simulation_seconds": 218.0,
+      "started_utc": "2026-09-26T15:06:07Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "83d0b2ff46d683d243bcd1d4b2fc4c2fefa330324062d13dcfb878af5abdd7dc",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.7784384,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.260879353926078,
+        "tor_imbalance_p99": 6.447807387513194,
+        "total_port_tx_bytes": 741507172,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 604.3284765625,
+        "p50_fct_us": 527.802,
+        "p95_fct_us": 1122.5905500000001,
+        "p99_complete_source_batch_us": 1306.55195,
+        "p99_fct_us": 1298.24936,
+        "synthetic_batch_completion_us": 1306.624,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:10:10Z",
+      "group": "original",
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 15.679,
+          "p99_fct_us": 15.64414
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.397,
+          "p99_fct_us": 14.39147
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.262,
+          "p99_fct_us": 15.243039999999999
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.537,
+          "p99_fct_us": 14.42546
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 16.616,
+          "p99_fct_us": 16.477159999999998
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.787,
+          "p99_fct_us": 14.664570000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 15.581,
+          "p99_fct_us": 15.058170000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 15.148,
+          "p99_fct_us": 14.863870000000002
+        }
+      ],
+      "id": "20260926-144756-ws11-o-b128-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.413971252441407,
+        "p50_fct_us": 12.164,
+        "p95_fct_us": 14.36885,
+        "p99_complete_source_batch_us": 16.64465,
+        "p99_fct_us": 15.488,
+        "synthetic_batch_completion_us": 16.925,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "262874959",
+      "raw_files": {
+        "cnp": {
+          "bytes": 3008,
+          "sha256": "eb1fa05664f4bc2b1c6665a0452c62c477777adead76d3468c48f77a12921d90"
+        },
+        "fct": {
+          "bytes": 731868,
+          "sha256": "d5beffd0ccdf9b977f514f8db9f312b6aab3c46e171bada9e79b038e1364ad00"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4009588,
+          "sha256": "652735606fbb0caf4de0849c348cb90a4f1533016b660f6305fffc55f9f0c575"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-o-b128-f",
+        "minimum_free_gib": 5936.561428070068,
+        "minimum_mem_available_gib": 105.4258804321289,
+        "peak_tree_rss_mib": 4540.19921875,
+        "samples": 50
+      },
+      "resource_samples_sha256": "d7ed0a7c383bee8021916c7bafd96133e42bf07b846d46eb8ea70207bde39916",
+      "sampled_max_load_1m": 7.66,
+      "seed": 1,
+      "simulation_seconds": 244.0,
+      "started_utc": "2026-09-26T15:06:06Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "d1dd382fb7cefc368cbfe10ad5a7db21566aa417e16248172559a7bd9283f5c5",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5076491999999999,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.512692097278727,
+        "tor_imbalance_p99": 5.157903987890534,
+        "total_port_tx_bytes": 1317773612,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 610.929796875,
+        "p50_fct_us": 529.9335,
+        "p95_fct_us": 1133.32935,
+        "p99_complete_source_batch_us": 1296.4583500000003,
+        "p99_fct_us": 1225.1356,
+        "synthetic_batch_completion_us": 1376.991,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:10:12Z",
+      "group": "original",
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 20.442,
+          "p99_fct_us": 19.7448
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 18.232,
+          "p99_fct_us": 16.06976999999998
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 17.038,
+          "p99_fct_us": 16.309619999999995
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 18.43,
+          "p99_fct_us": 18.25138
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 19.077,
+          "p99_fct_us": 18.9951
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 15.929,
+          "p99_fct_us": 15.745740000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 15.4,
+          "p99_fct_us": 15.067360000000003
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 17.208,
+          "p99_fct_us": 16.308640000000004
+        }
+      ],
+      "id": "20260926-144756-ws11-o-b128-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.77298046875,
+        "p50_fct_us": 12.442,
+        "p95_fct_us": 15.498,
+        "p99_complete_source_batch_us": 20.2885,
+        "p99_fct_us": 17.481170000000002,
+        "synthetic_batch_completion_us": 20.589,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "187801530",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7154,
+          "sha256": "914581152ee082aec531ab11d2e3d277319b6749e57d56fdf0d415679317e976"
+        },
+        "fct": {
+          "bytes": 731867,
+          "sha256": "bd3922a3d670f90866c4ea0c1e1364d039ac144594f23802203b01bff2a2c2f1"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4009985,
+          "sha256": "bb31282e66163de41c481086ba7c40521a4d07a69689d09f2ec804ba96a0c2f9"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-o-b128-p",
+        "minimum_free_gib": 5936.561424255371,
+        "minimum_mem_available_gib": 105.4262466430664,
+        "peak_tree_rss_mib": 4540.16015625,
+        "samples": 50
+      },
+      "resource_samples_sha256": "c334dd19594ccb9e8704e6dc7b42a9b52fc305a07d031dd3cfc2e9ea6ddb1ee1",
+      "sampled_max_load_1m": 7.66,
+      "seed": 1,
+      "simulation_seconds": 246.0,
+      "started_utc": "2026-09-26T15:06:06Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "d1dd382fb7cefc368cbfe10ad5a7db21566aa417e16248172559a7bd9283f5c5",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5104137714285715,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.4949913388212868,
+        "tor_imbalance_p99": 5.100705032460433,
+        "total_port_tx_bytes": 1327038036,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 787.7037552083333,
+        "p50_fct_us": 756.9970000000001,
+        "p95_fct_us": 1398.4034,
+        "p99_complete_source_batch_us": 1595.3297999999998,
+        "p99_fct_us": 1505.7474100000002,
+        "synthetic_batch_completion_us": 1665.072,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:30:39Z",
+      "group": "original",
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 18.792,
+          "p99_fct_us": 17.717150000000004
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 17.955,
+          "p99_fct_us": 16.76920999999999
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 17.521,
+          "p99_fct_us": 16.904799999999994
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 18.233,
+          "p99_fct_us": 18.158900000000003
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 19.801,
+          "p99_fct_us": 19.59274
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 15.839,
+          "p99_fct_us": 15.075160000000004
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.935,
+          "p99_fct_us": 14.767140000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 17.608,
+          "p99_fct_us": 16.715570000000007
+        }
+      ],
+      "id": "20260926-144756-ws11-o-b192-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 13.038209594726563,
+        "p50_fct_us": 12.631,
+        "p95_fct_us": 16.35085,
+        "p99_complete_source_batch_us": 20.7854,
+        "p99_fct_us": 18.32334,
+        "synthetic_batch_completion_us": 21.369,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "120195426",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7808,
+          "sha256": "5ccb0ec13ea327737ad57041d8679db531177ffbe000909a20914f760719694f"
+        },
+        "fct": {
+          "bytes": 735184,
+          "sha256": "e76888a283e7587ea90d4953b8bb7e95d030e26aaaaead34ccac014173d3e311"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4872960,
+          "sha256": "cb09629e89cb08f57a94be07e9a314c90fcdf6f5f546b283f5658350dfd9f2c4"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-o-b192-p",
+        "minimum_free_gib": 5930.303146362305,
+        "minimum_mem_available_gib": 105.42436218261719,
+        "peak_tree_rss_mib": 4539.95703125,
+        "samples": 55
+      },
+      "resource_samples_sha256": "edc332aa718ba903542031015f81ec00c08dea43dd79b7920c11c31c51d65edc",
+      "sampled_max_load_1m": 8.6,
+      "seed": 1,
+      "simulation_seconds": 268.0,
+      "started_utc": "2026-09-26T15:26:11Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5231636235294118,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.438586814178812,
+        "tor_imbalance_p99": 5.211384682001885,
+        "total_port_tx_bytes": 1914717656,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 783.64190625,
+        "p50_fct_us": 738.479,
+        "p95_fct_us": 1368.90585,
+        "p99_complete_source_batch_us": 1429.6204,
+        "p99_fct_us": 1411.82244,
+        "synthetic_batch_completion_us": 1443.874,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:30:35Z",
+      "group": "original",
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 15.664,
+          "p99_fct_us": 15.65238
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 15.49,
+          "p99_fct_us": 14.628899999999993
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.997,
+          "p99_fct_us": 15.396599999999996
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 16.019,
+          "p99_fct_us": 15.586879999999999
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 16.372,
+          "p99_fct_us": 16.2199
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 15.346,
+          "p99_fct_us": 15.311350000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 15.445,
+          "p99_fct_us": 15.35876
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 15.241,
+          "p99_fct_us": 15.056970000000002
+        }
+      ],
+      "id": "20260926-144756-ws11-o-b192-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.514504821777344,
+        "p50_fct_us": 12.191,
+        "p95_fct_us": 14.91455,
+        "p99_complete_source_batch_us": 18.5828,
+        "p99_fct_us": 16.06117,
+        "synthetic_batch_completion_us": 18.92,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "828440857",
+      "raw_files": {
+        "cnp": {
+          "bytes": 4741,
+          "sha256": "68fd0e73ef692cc2143d7a853d2d1a2d68577026eff7d4fc59dd1996d489c3df"
+        },
+        "fct": {
+          "bytes": 735183,
+          "sha256": "9d600f055044d50a20ed0d036552922c9de916665af5a44a6791e77a755038e1"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4301768,
+          "sha256": "aad00509bb53ff043ee724e22ef6c3f924f089813649d9afe33ca8ea2b13294b"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-o-b192-f",
+        "minimum_free_gib": 5930.303741455078,
+        "minimum_mem_available_gib": 105.42537689208984,
+        "peak_tree_rss_mib": 4540.1484375,
+        "samples": 54
+      },
+      "resource_samples_sha256": "befb69c6d9d5e0e4cd3414cbe35e1388cb94963cc5fb1d21ff78d3d04c588c6e",
+      "sampled_max_load_1m": 8.65,
+      "seed": 1,
+      "simulation_seconds": 266.0,
+      "started_utc": "2026-09-26T15:26:09Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5910805866666666,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.4629847277920933,
+        "tor_imbalance_p99": 5.252674092616968,
+        "total_port_tx_bytes": 1903334672,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T15:23:01Z",
+      "group": 20261101,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.932,
+          "p99_fct_us": 14.92868
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.405,
+          "p99_fct_us": 14.321259999999999
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.281,
+          "p99_fct_us": 14.27784
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.323,
+          "p99_fct_us": 14.15764
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.191,
+          "p99_fct_us": 14.18788
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.266,
+          "p99_fct_us": 13.989570000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.27,
+          "p99_fct_us": 14.051320000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 13.989,
+          "p99_fct_us": 13.98592
+        }
+      ],
+      "id": "20260926-144756-ws11-01-b0-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 11.999333374023438,
+        "p50_fct_us": 11.728,
+        "p95_fct_us": 13.56685,
+        "p99_complete_source_batch_us": 14.9156,
+        "p99_fct_us": 14.13134,
+        "synthetic_batch_completion_us": 14.932,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "588169669",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "6868d9a77e8740c417d5e20dd4fcb65c739b05b3b76e26ca11fcf513c878b6e3"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "042e6efa28662d1cf1f21f7088d2471d1cbe84ead262622cbcdc0a3e48fb052d"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-01-b0-f",
+        "minimum_free_gib": 5931.834770202637,
+        "minimum_mem_available_gib": 104.0337905883789,
+        "peak_tree_rss_mib": 4540.05859375,
+        "samples": 42
+      },
+      "resource_samples_sha256": "1357aa1ba1a3ce0d274fd666f569da9056502dc424db1f02ea668478446d2a2b",
+      "sampled_max_load_1m": 12.12,
+      "seed": 1,
+      "simulation_seconds": 206.0,
+      "started_utc": "2026-09-26T15:19:35Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "c03bd3ff4fa7e97ae54b38e8d5625da988d9025296b1ecd68a0e567b48fccb16",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.1467256,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.38830574884187974,
+        "tor_imbalance_p99": 0.6662409267984063,
+        "total_port_tx_bytes": 146651492,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T15:23:07Z",
+      "group": 20261101,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.939,
+          "p99_fct_us": 14.91908
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.338,
+          "p99_fct_us": 14.33484
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.281,
+          "p99_fct_us": 14.27784
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.096,
+          "p99_fct_us": 14.092880000000001
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.214,
+          "p99_fct_us": 14.210880000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 13.932,
+          "p99_fct_us": 13.928920000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 13.991,
+          "p99_fct_us": 13.98792
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 13.951,
+          "p99_fct_us": 13.94792
+        }
+      ],
+      "id": "20260926-144756-ws11-01-b0-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 11.986137939453124,
+        "p50_fct_us": 11.728,
+        "p95_fct_us": 13.530850000000001,
+        "p99_complete_source_batch_us": 14.9088,
+        "p99_fct_us": 14.118,
+        "synthetic_batch_completion_us": 14.939,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "600811555",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "9abb742537bea3e853fa85de179ba7d973c3455f13d03de662e27ec05147ba9a"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "ac859015bcf4086e561ff0fd0237d0930d1ac760640e464f4a2233b77bafe8e2"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-01-b0-p",
+        "minimum_free_gib": 5931.790481567383,
+        "minimum_mem_available_gib": 104.09866333007812,
+        "peak_tree_rss_mib": 4540.0546875,
+        "samples": 44
+      },
+      "resource_samples_sha256": "bc7103fb99750ff41d82291cecf3cec16af05fe4e42c9d910ac176f9ae2a0da2",
+      "sampled_max_load_1m": 12.12,
+      "seed": 1,
+      "simulation_seconds": 212.0,
+      "started_utc": "2026-09-26T15:19:35Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "c03bd3ff4fa7e97ae54b38e8d5625da988d9025296b1ecd68a0e567b48fccb16",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.12423920000000001,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.12851382514413068,
+        "tor_imbalance_p99": 0.23080085180833415,
+        "total_port_tx_bytes": 146865636,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 467.733515625,
+        "p50_fct_us": 466.83349999999996,
+        "p95_fct_us": 688.0847,
+        "p99_complete_source_batch_us": 697.45991,
+        "p99_fct_us": 694.07801,
+        "synthetic_batch_completion_us": 701.18,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:29:43Z",
+      "group": 20261101,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 16.885,
+          "p99_fct_us": 15.576920000000003
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.636,
+          "p99_fct_us": 14.62889
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 16.357,
+          "p99_fct_us": 14.97765999999999
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 16.21,
+          "p99_fct_us": 15.97678
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 16.991,
+          "p99_fct_us": 16.68992
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 16.19,
+          "p99_fct_us": 15.037310000000005
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 17.22,
+          "p99_fct_us": 14.878430000000012
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 17.739,
+          "p99_fct_us": 15.024750000000015
+        }
+      ],
+      "id": "20260926-144756-ws11-01-b64-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.324765625,
+        "p50_fct_us": 11.9465,
+        "p95_fct_us": 14.464950000000002,
+        "p99_complete_source_batch_us": 18.5285,
+        "p99_fct_us": 16.536340000000003,
+        "synthetic_batch_completion_us": 18.976,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "149549629",
+      "raw_files": {
+        "cnp": {
+          "bytes": 6258,
+          "sha256": "20da620d00fb7acdde49684da12d02a5132f881fa7ed7cc4ee8cdc686f226caa"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "fccebdd58f9265ab4a0ef02bf1e46a8963986716c43dc0f29117eb7ae3a867ba"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2297585,
+          "sha256": "5fba421d6474749c13d64c239317d1143f564fa444def4bf31c84722fcce5f5d"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-01-b64-p",
+        "minimum_free_gib": 5930.318035125732,
+        "minimum_mem_available_gib": 105.42539596557617,
+        "peak_tree_rss_mib": 4539.984375,
+        "samples": 43
+      },
+      "resource_samples_sha256": "81f92e55c60f1867a8c0cf28a9570bb8f5b691f95d58c07206badc458f8b310d",
+      "sampled_max_load_1m": 8.6,
+      "seed": 1,
+      "simulation_seconds": 211.0,
+      "started_utc": "2026-09-26T15:26:12Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "06906b5c3e1df3b5d358a89350723ba3904b7d5b6bd89bf760064a21999f9c26",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.6823718,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.1479759495085338,
+        "tor_imbalance_p99": 5.77587825261923,
+        "total_port_tx_bytes": 746290164,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 460.61853125,
+        "p50_fct_us": 476.9785,
+        "p95_fct_us": 687.5006000000001,
+        "p99_complete_source_batch_us": 688.5745900000001,
+        "p99_fct_us": 688.52149,
+        "synthetic_batch_completion_us": 688.633,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:29:41Z",
+      "group": 20261101,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.975,
+          "p99_fct_us": 14.97168
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.41,
+          "p99_fct_us": 14.357859999999999
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.278,
+          "p99_fct_us": 14.26378
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.406,
+          "p99_fct_us": 14.3436
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.19,
+          "p99_fct_us": 14.1783
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.268,
+          "p99_fct_us": 14.042390000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.272,
+          "p99_fct_us": 14.14495
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.248,
+          "p99_fct_us": 14.029320000000002
+        }
+      ],
+      "id": "20260926-144756-ws11-01-b64-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.110632629394532,
+        "p50_fct_us": 11.823,
+        "p95_fct_us": 13.77785,
+        "p99_complete_source_batch_us": 15.8104,
+        "p99_fct_us": 14.43317,
+        "synthetic_batch_completion_us": 16.011,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "366005710",
+      "raw_files": {
+        "cnp": {
+          "bytes": 644,
+          "sha256": "1228a0bc0acf46df61883338bf4ed387fc714d916fd11c0aadfe384141269e92"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "17d178e8aa071e66594a02e288be9476d64690bd04adfb6f7eaac1379e669839"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2013670,
+          "sha256": "4023d2ce1053c044d1ee65e469bdf047aca5509e8bfe2e62ef706c20c7024e70"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-01-b64-f",
+        "minimum_free_gib": 5930.318759918213,
+        "minimum_mem_available_gib": 105.42438888549805,
+        "peak_tree_rss_mib": 4540.15234375,
+        "samples": 43
+      },
+      "resource_samples_sha256": "65f4dfe11d8d21246ce32ca923bfa293494af0952a94e5896d8db1be157ccee1",
+      "sampled_max_load_1m": 8.65,
+      "seed": 1,
+      "simulation_seconds": 211.0,
+      "started_utc": "2026-09-26T15:26:10Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "06906b5c3e1df3b5d358a89350723ba3904b7d5b6bd89bf760064a21999f9c26",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.7743113142857143,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.175411675564038,
+        "tor_imbalance_p99": 5.810743821074847,
+        "total_port_tx_bytes": 741507172,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 601.2535390625,
+        "p50_fct_us": 528.3615,
+        "p95_fct_us": 1087.71835,
+        "p99_complete_source_batch_us": 1388.5344500000003,
+        "p99_fct_us": 1306.7400200000004,
+        "synthetic_batch_completion_us": 1465.249,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:24:05Z",
+      "group": 20261101,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 16.828,
+          "p99_fct_us": 15.700860000000002
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 16.936,
+          "p99_fct_us": 16.597879999999996
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.386,
+          "p99_fct_us": 14.28251
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 15.12,
+          "p99_fct_us": 14.736239999999999
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.832,
+          "p99_fct_us": 14.7189
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 16.399,
+          "p99_fct_us": 16.34664
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 15.635,
+          "p99_fct_us": 14.985890000000003
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.852,
+          "p99_fct_us": 14.762680000000001
+        }
+      ],
+      "id": "20260926-144756-ws11-01-b128-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.256153991699218,
+        "p50_fct_us": 11.881,
+        "p95_fct_us": 14.239,
+        "p99_complete_source_batch_us": 17.07125,
+        "p99_fct_us": 15.746170000000001,
+        "synthetic_batch_completion_us": 17.428,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "466981725",
+      "raw_files": {
+        "cnp": {
+          "bytes": 3073,
+          "sha256": "bf76b8dff786b080ee4183e96c674cea2ef769edddfcee0e8b5543963cbfea5b"
+        },
+        "fct": {
+          "bytes": 731870,
+          "sha256": "48e6755cc8a8e758a7e947f06533099d6656c76888c0bc6c13f8d261badcd218"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4294742,
+          "sha256": "569249005b921a0948ab3c079303976d7099a79ebb6134d2647ecc4ebc7785db"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-01-b128-f",
+        "minimum_free_gib": 5931.525783538818,
+        "minimum_mem_available_gib": 103.84364700317383,
+        "peak_tree_rss_mib": 4540.3671875,
+        "samples": 55
+      },
+      "resource_samples_sha256": "4678c34e5b5d918fb8fbe389d264ad6e23f2cc89e2cf46593cb77ed3a9be3e11",
+      "sampled_max_load_1m": 12.12,
+      "seed": 1,
+      "simulation_seconds": 269.0,
+      "started_utc": "2026-09-26T15:19:36Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "214f0c46a548483c709ae02a38db8acfde8b3978ba0661702aa5a8fdb292bc77",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.37114672,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.469544342589103,
+        "tor_imbalance_p99": 5.958846468046306,
+        "total_port_tx_bytes": 1317773612,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 604.0822890625,
+        "p50_fct_us": 531.094,
+        "p95_fct_us": 1113.7104000000002,
+        "p99_complete_source_batch_us": 1301.3845000000003,
+        "p99_fct_us": 1239.5140900000001,
+        "synthetic_batch_completion_us": 1375.409,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:24:14Z",
+      "group": 20261101,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 19.251,
+          "p99_fct_us": 17.16438
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 20.05,
+          "p99_fct_us": 19.929129999999997
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 18.155,
+          "p99_fct_us": 17.199889999999993
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 18.485,
+          "p99_fct_us": 17.94446
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 19.657,
+          "p99_fct_us": 18.79978
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 20.603,
+          "p99_fct_us": 19.912310000000005
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 20.455,
+          "p99_fct_us": 19.552560000000007
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 15.064,
+          "p99_fct_us": 14.665140000000001
+        }
+      ],
+      "id": "20260926-144756-ws11-01-b128-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.72515625,
+        "p50_fct_us": 12.2375,
+        "p95_fct_us": 15.813,
+        "p99_complete_source_batch_us": 21.1546,
+        "p99_fct_us": 18.391,
+        "synthetic_batch_completion_us": 21.884,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "715083398",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7192,
+          "sha256": "efdc0922fffadad71d8eda673b9db15ae3ba253cc427bb4cbdd6699b08005d0c"
+        },
+        "fct": {
+          "bytes": 731865,
+          "sha256": "b8fb278a72a7e0be5fb8dcc5e7ea82fdfaf94de022b8e0911bb7e1df83882213"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4010394,
+          "sha256": "5d5d4e70c5d6bd0ea1087003935d97079ac9641e871877ffdf90e0202e679596"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-01-b128-p",
+        "minimum_free_gib": 5931.47998046875,
+        "minimum_mem_available_gib": 103.76379776000977,
+        "peak_tree_rss_mib": 4540.04296875,
+        "samples": 57
+      },
+      "resource_samples_sha256": "5b52e0b1f3269f294722550c9e7df24184f408a0cf99c90f9137ef40a1ee96fa",
+      "sampled_max_load_1m": 12.12,
+      "seed": 1,
+      "simulation_seconds": 278.0,
+      "started_utc": "2026-09-26T15:19:36Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "214f0c46a548483c709ae02a38db8acfde8b3978ba0661702aa5a8fdb292bc77",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.3993528,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.4681389361891948,
+        "tor_imbalance_p99": 5.935689839204776,
+        "total_port_tx_bytes": 1326660332,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 792.2762291666667,
+        "p50_fct_us": 753.455,
+        "p95_fct_us": 1375.4218999999998,
+        "p99_complete_source_batch_us": 1516.6142,
+        "p99_fct_us": 1507.38134,
+        "synthetic_batch_completion_us": 1526.333,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:57:43Z",
+      "group": 20261101,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 19.551,
+          "p99_fct_us": 16.936500000000006
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 21.537,
+          "p99_fct_us": 21.243119999999998
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 19.241,
+          "p99_fct_us": 16.979229999999983
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 20.36,
+          "p99_fct_us": 20.15642
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 19.84,
+          "p99_fct_us": 19.836879999999997
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 19.019,
+          "p99_fct_us": 18.60397
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 16.752,
+          "p99_fct_us": 15.060310000000008
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 21.274,
+          "p99_fct_us": 21.016820000000003
+        }
+      ],
+      "id": "20260926-144756-ws11-01-b192-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 13.082431640625,
+        "p50_fct_us": 12.423,
+        "p95_fct_us": 17.23325,
+        "p99_complete_source_batch_us": 24.14405,
+        "p99_fct_us": 19.83351,
+        "synthetic_batch_completion_us": 24.491,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "972505087",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7802,
+          "sha256": "56eea8c11b253a14d7815a607c5ab1a525a9ceb4020758d37112e57e84ef0bf4"
+        },
+        "fct": {
+          "bytes": 735179,
+          "sha256": "9b430506c01decbb55e245a723790a2429ac0af858c6c903e7f301fe1ef21ae9"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4588349,
+          "sha256": "b602f056ae9938eda53a5d9a620507a1a5ad8f030ed5e2b4887bfdfb7666e272"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-01-b192-p",
+        "minimum_free_gib": 5925.623706817627,
+        "minimum_mem_available_gib": 114.24608993530273,
+        "peak_tree_rss_mib": 4539.7734375,
+        "samples": 60
+      },
+      "resource_samples_sha256": "6f422692870e7a4d0424d3425ba8f54e6f443e34114088289d8e39451956b2e3",
+      "sampled_max_load_1m": 4.56,
+      "seed": 1,
+      "simulation_seconds": 297.0,
+      "started_utc": "2026-09-26T15:52:46Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "c0a9dcec3ad8a9bfb882f1dc75a5eb986ca030ea092ae99af0f1070d7757c0f7",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.4647714,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.406878456509947,
+        "tor_imbalance_p99": 5.867962936752645,
+        "total_port_tx_bytes": 1914079024,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 795.230171875,
+        "p50_fct_us": 738.5505,
+        "p95_fct_us": 1353.9296,
+        "p99_complete_source_batch_us": 1684.2966,
+        "p99_fct_us": 1647.4958100000001,
+        "synthetic_batch_completion_us": 1686.387,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T15:51:16Z",
+      "group": 20261101,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 15.008,
+          "p99_fct_us": 14.98227
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 17.508,
+          "p99_fct_us": 16.648479999999996
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.269,
+          "p99_fct_us": 14.474259999999994
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 15.865,
+          "p99_fct_us": 15.26362
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.597,
+          "p99_fct_us": 14.422279999999999
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 15.152,
+          "p99_fct_us": 14.930240000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 16.497,
+          "p99_fct_us": 15.090210000000008
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 15.306,
+          "p99_fct_us": 14.894820000000003
+        }
+      ],
+      "id": "20260926-144756-ws11-01-b192-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.35737255859375,
+        "p50_fct_us": 11.994,
+        "p95_fct_us": 14.662700000000001,
+        "p99_complete_source_batch_us": 18.776799999999998,
+        "p99_fct_us": 16.44668,
+        "synthetic_batch_completion_us": 19.053,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "295382383",
+      "raw_files": {
+        "cnp": {
+          "bytes": 4325,
+          "sha256": "1f889d57828e54c1e671f53de65378b69fec9bc97ad249b0f3fbedf816ae140e"
+        },
+        "fct": {
+          "bytes": 735187,
+          "sha256": "4730a34cbe2c0eff0f928f94864bbbb0fa53b5011510dae7692842a01d76768e"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4873534,
+          "sha256": "968796db495b9504df445a684fe9c8d247f39044691eca46c0683c1ce31425ac"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-01-b192-f",
+        "minimum_free_gib": 5926.1611976623535,
+        "minimum_mem_available_gib": 113.44613265991211,
+        "peak_tree_rss_mib": 4540.25,
+        "samples": 58
+      },
+      "resource_samples_sha256": "26f1e9249984af4eb0f8a8df55b45007f97ae041a7e12aadd2ff9d50464535cc",
+      "sampled_max_load_1m": 5.8,
+      "seed": 1,
+      "simulation_seconds": 282.0,
+      "started_utc": "2026-09-26T15:46:34Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "c0a9dcec3ad8a9bfb882f1dc75a5eb986ca030ea092ae99af0f1070d7757c0f7",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.4360573176470588,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.4171333841458393,
+        "tor_imbalance_p99": 5.913078015276904,
+        "total_port_tx_bytes": 1903334672,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T15:56:03Z",
+      "group": 20261102,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.913,
+          "p99_fct_us": 14.90636
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.28,
+          "p99_fct_us": 14.27684
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.979,
+          "p99_fct_us": 14.95688
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.094,
+          "p99_fct_us": 14.09088
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.114,
+          "p99_fct_us": 14.11088
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.067,
+          "p99_fct_us": 14.063920000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 13.968,
+          "p99_fct_us": 13.964920000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 13.95,
+          "p99_fct_us": 13.94692
+        }
+      ],
+      "id": "20260926-144756-ws11-02-b0-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.012800415039063,
+        "p50_fct_us": 11.699,
+        "p95_fct_us": 13.666,
+        "p99_complete_source_batch_us": 15.0528,
+        "p99_fct_us": 14.42768,
+        "synthetic_batch_completion_us": 15.067,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "475387923",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "87237ae9710fdc2021972ec401b5cc467a923fa82353e4dd6ced874f3f2e82bb"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "4ae4cd46afd2f0090cd507f60495cd8ea4eabeaf43e32640d3f07d91ced4753f"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-02-b0-f",
+        "minimum_free_gib": 5925.632930755615,
+        "minimum_mem_available_gib": 114.2444076538086,
+        "peak_tree_rss_mib": 4540.0234375,
+        "samples": 40
+      },
+      "resource_samples_sha256": "aa6e3948def089b648a38b56d83df9069159c270ede14d1b3a5d779b86aa55bd",
+      "sampled_max_load_1m": 4.56,
+      "seed": 1,
+      "simulation_seconds": 196.0,
+      "started_utc": "2026-09-26T15:52:47Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ba3bbd3410b854b12270784820cc0d8d58f314eb11e446d97059a88e56375658",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.1345472,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.3836688479838902,
+        "tor_imbalance_p99": 0.5211985617185911,
+        "total_port_tx_bytes": 146651492,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T15:49:55Z",
+      "group": 20261102,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.928,
+          "p99_fct_us": 14.92468
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.28,
+          "p99_fct_us": 14.27684
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.262,
+          "p99_fct_us": 14.25884
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.134,
+          "p99_fct_us": 14.130880000000001
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.116,
+          "p99_fct_us": 14.11288
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.068,
+          "p99_fct_us": 14.06492
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.008,
+          "p99_fct_us": 14.00492
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 13.93,
+          "p99_fct_us": 13.92692
+        }
+      ],
+      "id": "20260926-144756-ws11-02-b0-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 11.980847412109375,
+        "p50_fct_us": 11.721,
+        "p95_fct_us": 13.568,
+        "p99_complete_source_batch_us": 14.9178,
+        "p99_fct_us": 14.06634,
+        "synthetic_batch_completion_us": 14.928,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "976141384",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "d12fda69defb58ca767099dd72ab8c86ac85f052f7dc4ba8d6bb646db386f6eb"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "fc8865eea39d106635ca2d23de6b0dacd0369bf4d3d069eb67dc5b97654a2d9c"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-02-b0-p",
+        "minimum_free_gib": 5926.370380401611,
+        "minimum_mem_available_gib": 113.3732681274414,
+        "peak_tree_rss_mib": 4540.14453125,
+        "samples": 41
+      },
+      "resource_samples_sha256": "40d9f88b0a7af341f0a22743c57aca707095725f4a8aae3c1ffc69df0fe686ef",
+      "sampled_max_load_1m": 5.8,
+      "seed": 1,
+      "simulation_seconds": 202.0,
+      "started_utc": "2026-09-26T15:46:33Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ba3bbd3410b854b12270784820cc0d8d58f314eb11e446d97059a88e56375658",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.1267608,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.13720760235040375,
+        "tor_imbalance_p99": 0.2239849981653587,
+        "total_port_tx_bytes": 146906332,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 479.3104375,
+        "p50_fct_us": 497.5735,
+        "p95_fct_us": 687.9891,
+        "p99_complete_source_batch_us": 688.45691,
+        "p99_fct_us": 688.43501,
+        "synthetic_batch_completion_us": 688.481,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:08:22Z",
+      "group": 20261102,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 16.764,
+          "p99_fct_us": 16.038580000000003
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 16.379,
+          "p99_fct_us": 16.054309999999997
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.498,
+          "p99_fct_us": 14.729329999999994
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 16.237,
+          "p99_fct_us": 16.1278
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 16.482,
+          "p99_fct_us": 16.438319999999997
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 15.826,
+          "p99_fct_us": 15.749
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 18.369,
+          "p99_fct_us": 15.412970000000016
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 17.007,
+          "p99_fct_us": 15.39154000000001
+        }
+      ],
+      "id": "20260926-144756-ws11-02-b64-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.322046875,
+        "p50_fct_us": 11.961,
+        "p95_fct_us": 14.594850000000001,
+        "p99_complete_source_batch_us": 19.506449999999997,
+        "p99_fct_us": 16.495510000000003,
+        "synthetic_batch_completion_us": 19.712,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "339638741",
+      "raw_files": {
+        "cnp": {
+          "bytes": 6312,
+          "sha256": "5a64d834de4692c9d4ab383641bda59758190c3bb81551b7aa0b0432f6ca156d"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "eeb4e9dbb4896dc096dbdcf0f1c92f258f1583c270c7c2cf0f9bceede5f94262"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2013690,
+          "sha256": "41fb28da82fad335e0c2d33a3909ccc483c53d9e6e5985dcc8aed7463a2d7717"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-02-b64-p",
+        "minimum_free_gib": 5922.996501922607,
+        "minimum_mem_available_gib": 111.98245239257812,
+        "peak_tree_rss_mib": 4540.1875,
+        "samples": 48
+      },
+      "resource_samples_sha256": "0e98a1794ede332b89031482abd3528affecfb23fe5c7bccf17a36447e9dba6b",
+      "sampled_max_load_1m": 14.02,
+      "seed": 1,
+      "simulation_seconds": 239.0,
+      "started_utc": "2026-09-26T16:04:23Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "4962629a5fc9bda748a67a268204e25ec8147dab662626e7ccfdaee1381893f9",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5304921142857143,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.2112940023542302,
+        "tor_imbalance_p99": 5.660649061378364,
+        "total_port_tx_bytes": 746661760,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 471.332421875,
+        "p50_fct_us": 471.52,
+        "p95_fct_us": 688.16725,
+        "p99_complete_source_batch_us": 688.43882,
+        "p99_fct_us": 688.42502,
+        "synthetic_batch_completion_us": 688.454,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:08:25Z",
+      "group": 20261102,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.97,
+          "p99_fct_us": 14.95257
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.926,
+          "p99_fct_us": 14.397489999999996
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.338,
+          "p99_fct_us": 15.3064
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.864,
+          "p99_fct_us": 14.26574
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.798,
+          "p99_fct_us": 14.751199999999999
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.75,
+          "p99_fct_us": 14.236410000000003
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 13.98,
+          "p99_fct_us": 13.95536
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 13.961,
+          "p99_fct_us": 13.93328
+        }
+      ],
+      "id": "20260926-144756-ws11-02-b64-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.127833190917968,
+        "p50_fct_us": 11.796,
+        "p95_fct_us": 13.817,
+        "p99_complete_source_batch_us": 15.54455,
+        "p99_fct_us": 14.851510000000001,
+        "synthetic_batch_completion_us": 15.663,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "62965203",
+      "raw_files": {
+        "cnp": {
+          "bytes": 1126,
+          "sha256": "629ce17d8df1403c1b52d6e63a9c16b27d495502b811dccba82326cedae18360"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "6c4a480a54778074b8be4da73bcff72f7758a4dc290b08ba9b75a1c029261299"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2013649,
+          "sha256": "b1dfdadc77b8c05f85e3c61ccc8fdc3485e0a6fd228f2b32f4a2b2550b08b909"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-02-b64-f",
+        "minimum_free_gib": 5922.971302032471,
+        "minimum_mem_available_gib": 112.02050399780273,
+        "peak_tree_rss_mib": 4540.2578125,
+        "samples": 48
+      },
+      "resource_samples_sha256": "9f7ce767f74d225e606243bccac6de7860297e29377132ea81b13f3f0490636e",
+      "sampled_max_load_1m": 14.02,
+      "seed": 1,
+      "simulation_seconds": 239.0,
+      "started_utc": "2026-09-26T16:04:26Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "4962629a5fc9bda748a67a268204e25ec8147dab662626e7ccfdaee1381893f9",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5279986285714285,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.2239946240468607,
+        "tor_imbalance_p99": 5.729955508975774,
+        "total_port_tx_bytes": 741507172,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 605.59059375,
+        "p50_fct_us": 529.1614999999999,
+        "p95_fct_us": 1141.9409500000002,
+        "p99_complete_source_batch_us": 1375.9942500000002,
+        "p99_fct_us": 1327.5616500000003,
+        "synthetic_batch_completion_us": 1409.877,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:15:15Z",
+      "group": 20261102,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 16.43,
+          "p99_fct_us": 15.551860000000001
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 16.241,
+          "p99_fct_us": 15.966869999999998
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.852,
+          "p99_fct_us": 14.773
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 15.975,
+          "p99_fct_us": 15.81978
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 15.229,
+          "p99_fct_us": 15.09952
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.332,
+          "p99_fct_us": 14.3166
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.183,
+          "p99_fct_us": 14.07212
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.832,
+          "p99_fct_us": 14.725740000000002
+        }
+      ],
+      "id": "20260926-144756-ws11-02-b128-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.261442260742188,
+        "p50_fct_us": 11.882,
+        "p95_fct_us": 14.35285,
+        "p99_complete_source_batch_us": 17.097199999999997,
+        "p99_fct_us": 15.945210000000001,
+        "synthetic_batch_completion_us": 17.631,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "303044127",
+      "raw_files": {
+        "cnp": {
+          "bytes": 2891,
+          "sha256": "ec494cec95b0aae19385538e562a8e76343dcf147cf57631dc1d55fe096b1fb7"
+        },
+        "fct": {
+          "bytes": 731867,
+          "sha256": "bfdf5bcc67fe2da608ae9217d0b5282a689fc5f03d28ce1fb9ce7d4f71a05781"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4294873,
+          "sha256": "0c437fe8ec5b39820a23f83fe52e271471ea0012bbcd4a28ca87ed2c1e342bc1"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-02-b128-f",
+        "minimum_free_gib": 5920.946758270264,
+        "minimum_mem_available_gib": 107.00788116455078,
+        "peak_tree_rss_mib": 4539.82421875,
+        "samples": 51
+      },
+      "resource_samples_sha256": "67d7670ac97332da2fc83a308b78bc9afa0f7dac074405114600847de50d5f19",
+      "sampled_max_load_1m": 12.03,
+      "seed": 1,
+      "simulation_seconds": 250.0,
+      "started_utc": "2026-09-26T16:11:05Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "41b9dfd0f2f63de824f08f64e414fb944302edced18d378644f7892df64a82ec",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.48146602666666666,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.4647072079135315,
+        "tor_imbalance_p99": 6.043546596520847,
+        "total_port_tx_bytes": 1317773612,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 613.2777734375,
+        "p50_fct_us": 545.9365,
+        "p95_fct_us": 1184.7543,
+        "p99_complete_source_batch_us": 1383.1921500000003,
+        "p99_fct_us": 1321.5831900000003,
+        "synthetic_batch_completion_us": 1443.872,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:21:59Z",
+      "group": 20261102,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 19.124,
+          "p99_fct_us": 17.61589
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 19.511,
+          "p99_fct_us": 19.41146
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.817,
+          "p99_fct_us": 14.78935
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 19.555,
+          "p99_fct_us": 17.801559999999995
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 17.689,
+          "p99_fct_us": 17.57122
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 20.579,
+          "p99_fct_us": 18.83880000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 19.466,
+          "p99_fct_us": 17.67652000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 16.78,
+          "p99_fct_us": 16.51666
+        }
+      ],
+      "id": "20260926-144756-ws11-02-b128-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.74527813720703,
+        "p50_fct_us": 12.224499999999999,
+        "p95_fct_us": 15.98,
+        "p99_complete_source_batch_us": 20.24425,
+        "p99_fct_us": 18.07834,
+        "synthetic_batch_completion_us": 20.587,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "468074072",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7235,
+          "sha256": "8322462a2dbe8ad95bd8b6edea6f7edaf6ee4e88c54d89e207901a213af9f8db"
+        },
+        "fct": {
+          "bytes": 731868,
+          "sha256": "a32a5e50446f0fedd48aceb8adac85dd15a7ca03474a43701ef9054e1cb8d846"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4295378,
+          "sha256": "c3f3c070a63a72b4c975ed824c2f976c2fc7a6419c85a52020749aacf48ef441"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-02-b128-p",
+        "minimum_free_gib": 5920.917263031006,
+        "minimum_mem_available_gib": 110.1866569519043,
+        "peak_tree_rss_mib": 4540.34375,
+        "samples": 50
+      },
+      "resource_samples_sha256": "c8e7c74c9d784618fdb3a09b9e9118a3291e9f05907b9a18498028f4a6528e9f",
+      "sampled_max_load_1m": 2.99,
+      "seed": 1,
+      "simulation_seconds": 253.0,
+      "started_utc": "2026-09-26T16:17:46Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "41b9dfd0f2f63de824f08f64e414fb944302edced18d378644f7892df64a82ec",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.48454896,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.4654072251652215,
+        "tor_imbalance_p99": 5.96850879258195,
+        "total_port_tx_bytes": 1326784576,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 790.1693385416667,
+        "p50_fct_us": 735.7145,
+        "p95_fct_us": 1363.9237999999998,
+        "p99_complete_source_batch_us": 1617.5487999999998,
+        "p99_fct_us": 1482.9990000000005,
+        "synthetic_batch_completion_us": 1670.452,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:19:07Z",
+      "group": 20261102,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 20.027,
+          "p99_fct_us": 19.641050000000003
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 18.662,
+          "p99_fct_us": 18.263049999999996
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 17.652,
+          "p99_fct_us": 16.658969999999993
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 15.652,
+          "p99_fct_us": 15.637179999999999
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 18.103,
+          "p99_fct_us": 17.7793
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 17.487,
+          "p99_fct_us": 17.45543
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 18.605,
+          "p99_fct_us": 16.73390000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 22.363,
+          "p99_fct_us": 20.33020000000001
+        }
+      ],
+      "id": "20260926-144756-ws11-02-b192-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.921467651367188,
+        "p50_fct_us": 12.413,
+        "p95_fct_us": 16.32285,
+        "p99_complete_source_batch_us": 22.38865,
+        "p99_fct_us": 18.46734,
+        "synthetic_batch_completion_us": 22.792,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "743242016",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7630,
+          "sha256": "1263fefb824c6b6833a282f17891e4a0b88494fad89390eb24c8bfa8b6cecb55"
+        },
+        "fct": {
+          "bytes": 735181,
+          "sha256": "03c86a7e62bb45baa95376cb10fc00584014ff73f6b464548f6fd55034e81c02"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4874360,
+          "sha256": "09b5c565540909efb11046431943fcb68b0becc1654862847b3b173101270bb2"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-02-b192-p",
+        "minimum_free_gib": 5920.925994873047,
+        "minimum_mem_available_gib": 109.83777618408203,
+        "peak_tree_rss_mib": 4540.234375,
+        "samples": 47
+      },
+      "resource_samples_sha256": "14cd64e0e86cc9fd325e89bc5e057052b8f190a3147b450420c1f641b7f11aa5",
+      "sampled_max_load_1m": 3.42,
+      "seed": 1,
+      "simulation_seconds": 274.0,
+      "started_utc": "2026-09-26T16:14:33Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "be70b8e10c9c4de836783ebc69be3077bb93b178fafb518ef49af9508a65cccb",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5291073411764706,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.406732856398474,
+        "tor_imbalance_p99": 5.997319691320281,
+        "total_port_tx_bytes": 1913620796,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 800.402015625,
+        "p50_fct_us": 749.31,
+        "p95_fct_us": 1376.29685,
+        "p99_complete_source_batch_us": 1565.0094,
+        "p99_fct_us": 1555.64093,
+        "synthetic_batch_completion_us": 1567.764,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:37:02Z",
+      "group": 20261102,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 16.651,
+          "p99_fct_us": 16.2526
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 16.514,
+          "p99_fct_us": 16.35363
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.055,
+          "p99_fct_us": 14.95309
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 15.589,
+          "p99_fct_us": 15.22552
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 15.706,
+          "p99_fct_us": 15.58354
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 16.256,
+          "p99_fct_us": 15.516030000000004
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.691,
+          "p99_fct_us": 14.60861
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 16.843,
+          "p99_fct_us": 16.82683
+        }
+      ],
+      "id": "20260927-002500-ws11-02-b192-f-r",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.3832041015625,
+        "p50_fct_us": 12.006,
+        "p95_fct_us": 14.747,
+        "p99_complete_source_batch_us": 17.5038,
+        "p99_fct_us": 16.08885,
+        "synthetic_batch_completion_us": 17.571,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "381610881",
+      "raw_files": {
+        "cnp": {
+          "bytes": 4542,
+          "sha256": "e61e2a375cb20c47feb62913eecd4be76d9fb1f42818cfc330eaeca73ff0dac9"
+        },
+        "fct": {
+          "bytes": 735182,
+          "sha256": "33d2258be60ca4b202ff9bc98af0a22ebf28ec5d1525b94e284a0ead3fab734d"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4588080,
+          "sha256": "154da582365b67bf2e9c140d502f09476b8ccc33ea5d651301cbf3307b497a7f"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260927-002500-ws11-02-b192-f-r",
+        "minimum_free_gib": 5920.13187789917,
+        "minimum_mem_available_gib": 118.64529418945312,
+        "peak_tree_rss_mib": 4540.37890625,
+        "samples": 54
+      },
+      "resource_samples_sha256": "36f56e6f2843e5b673baa82afe3542aa316cbd854e96126fe6dbddb5313205bf",
+      "sampled_max_load_1m": 1.93,
+      "seed": 1,
+      "simulation_seconds": 267.0,
+      "started_utc": "2026-09-26T16:32:35Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "be70b8e10c9c4de836783ebc69be3077bb93b178fafb518ef49af9508a65cccb",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.56067895,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.405788043172718,
+        "tor_imbalance_p99": 6.00007524823507,
+        "total_port_tx_bytes": 1903334672,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T16:17:43Z",
+      "group": 20261103,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.896,
+          "p99_fct_us": 14.89268
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.235,
+          "p99_fct_us": 14.23184
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.232,
+          "p99_fct_us": 14.22884
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.17,
+          "p99_fct_us": 14.16688
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.151,
+          "p99_fct_us": 14.14788
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 13.996,
+          "p99_fct_us": 13.97752
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 13.97,
+          "p99_fct_us": 13.96692
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 13.991,
+          "p99_fct_us": 13.98792
+        }
+      ],
+      "id": "20260926-144756-ws11-03-b0-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.005464294433594,
+        "p50_fct_us": 11.720500000000001,
+        "p95_fct_us": 13.565850000000001,
+        "p99_complete_source_batch_us": 14.8638,
+        "p99_fct_us": 14.025170000000001,
+        "synthetic_batch_completion_us": 14.896,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "220619796",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "7a942799e01b2cbbe6236a22ce3f0450d2952ef39e8ede85f9c950394e75f112"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "e007817b3fd4e08038a04332b20cbbb8fb0fcc93ecaed58bbbca875d2e69664b"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-03-b0-f",
+        "minimum_free_gib": 5920.943897247314,
+        "minimum_mem_available_gib": 107.05337905883789,
+        "peak_tree_rss_mib": 4540.29296875,
+        "samples": 39
+      },
+      "resource_samples_sha256": "021ec598ffd1076bd07d2ff1d9d67bb48e921f7f9a70ed96924ae7e4e173f9d1",
+      "sampled_max_load_1m": 3.42,
+      "seed": 1,
+      "simulation_seconds": 193.0,
+      "started_utc": "2026-09-26T16:14:30Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "6d250ad2dc74723cda532ead92859384cfcac7d65171eb2317aed4d3fed66eba",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.1430632,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.4285766850820456,
+        "tor_imbalance_p99": 0.6225740126396382,
+        "total_port_tx_bytes": 146651492,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T16:14:26Z",
+      "group": 20261103,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.881,
+          "p99_fct_us": 14.87768
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.239,
+          "p99_fct_us": 14.23584
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.242,
+          "p99_fct_us": 14.23884
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.145,
+          "p99_fct_us": 14.14188
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.152,
+          "p99_fct_us": 14.14888
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 13.984,
+          "p99_fct_us": 13.980920000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 13.949,
+          "p99_fct_us": 13.945920000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.009,
+          "p99_fct_us": 14.005920000000001
+        }
+      ],
+      "id": "20260926-144756-ws11-03-b0-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 11.98472039794922,
+        "p50_fct_us": 11.739,
+        "p95_fct_us": 13.535,
+        "p99_complete_source_batch_us": 14.8708,
+        "p99_fct_us": 14.07134,
+        "synthetic_batch_completion_us": 14.881,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "56708718",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "54f4e18aefd5ef80caeda596adfc8b09d8a27bf9f771ba7d2b11face45e01eb1"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "3195b81b7b8e5b39ba769e2296c3be1a507f49f241e7911e9208cc0e09055df5"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-03-b0-p",
+        "minimum_free_gib": 5920.954544067383,
+        "minimum_mem_available_gib": 114.23114013671875,
+        "peak_tree_rss_mib": 4540.13671875,
+        "samples": 41
+      },
+      "resource_samples_sha256": "9d41be1d96e4baae531ebf95617e52c9d7f1c6cac7664796ceddae6434b5069c",
+      "sampled_max_load_1m": 12.03,
+      "seed": 1,
+      "simulation_seconds": 200.0,
+      "started_utc": "2026-09-26T16:11:06Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "6d250ad2dc74723cda532ead92859384cfcac7d65171eb2317aed4d3fed66eba",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.126084,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.13176638282320918,
+        "tor_imbalance_p99": 0.24307361446846198,
+        "total_port_tx_bytes": 146919628,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 472.013234375,
+        "p50_fct_us": 503.4425,
+        "p95_fct_us": 686.97685,
+        "p99_complete_source_batch_us": 689.29548,
+        "p99_fct_us": 688.92228,
+        "synthetic_batch_completion_us": 689.706,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:50:00Z",
+      "group": 20261103,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 15.7,
+          "p99_fct_us": 15.58712
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 18.838,
+          "p99_fct_us": 18.77954
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 16.043,
+          "p99_fct_us": 14.670769999999989
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.482,
+          "p99_fct_us": 14.3611
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.664,
+          "p99_fct_us": 14.42766
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.275,
+          "p99_fct_us": 14.215710000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.06,
+          "p99_fct_us": 14.04614
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.112,
+          "p99_fct_us": 14.10045
+        }
+      ],
+      "id": "20260926-144756-ws11-03-b64-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.301671569824219,
+        "p50_fct_us": 11.976,
+        "p95_fct_us": 14.235700000000001,
+        "p99_complete_source_batch_us": 19.021749999999997,
+        "p99_fct_us": 16.650679999999998,
+        "synthetic_batch_completion_us": 19.836,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "51930206",
+      "raw_files": {
+        "cnp": {
+          "bytes": 6230,
+          "sha256": "327288c50ac7d1cac95cb28f3fca518f646875562da2048449ce756ff0254ea8"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "52318bb49ef6176774947c6f951e38610f8c386860e4cbc0be5702a944887788"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2013684,
+          "sha256": "0dff0715ec65a62904fa12a343a05c94094f18d9c03e0e44d940b87d2d751355"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-03-b64-p",
+        "minimum_free_gib": 5911.735248565674,
+        "minimum_mem_available_gib": 90.24920272827148,
+        "peak_tree_rss_mib": 4540.0234375,
+        "samples": 49
+      },
+      "resource_samples_sha256": "b58a13fc9540e2fd31e74557dd3acd1fb91b9b838e037e02fdb214876bfff7e0",
+      "sampled_max_load_1m": 17.24,
+      "seed": 1,
+      "simulation_seconds": 245.0,
+      "started_utc": "2026-09-26T16:45:55Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "abced9265ead03c3357568a4fc1949e9701bb89eb7e820d2eaf6ff699d924765",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5334866285714286,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 1.6995346384774233,
+        "tor_imbalance_p99": 5.6848017491713305,
+        "total_port_tx_bytes": 746243968,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 463.081953125,
+        "p50_fct_us": 467.4255,
+        "p95_fct_us": 687.60275,
+        "p99_complete_source_batch_us": 698.5194,
+        "p99_fct_us": 694.0133999999999,
+        "synthetic_batch_completion_us": 703.476,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:49:59Z",
+      "group": 20261103,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.9,
+          "p99_fct_us": 14.9
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 16.034,
+          "p99_fct_us": 15.99924
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.261,
+          "p99_fct_us": 14.258629999999998
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.781,
+          "p99_fct_us": 14.28882
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.191,
+          "p99_fct_us": 14.18788
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.858,
+          "p99_fct_us": 14.74558
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 13.954,
+          "p99_fct_us": 13.95092
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.046,
+          "p99_fct_us": 14.03907
+        }
+      ],
+      "id": "20260926-144756-ws11-03-b64-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.124825927734374,
+        "p50_fct_us": 11.831,
+        "p95_fct_us": 13.7087,
+        "p99_complete_source_batch_us": 16.2538,
+        "p99_fct_us": 14.81202,
+        "synthetic_batch_completion_us": 16.286,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "654983961",
+      "raw_files": {
+        "cnp": {
+          "bytes": 887,
+          "sha256": "b30696fc802bd10020eecfe5acbc15cd62b7925631fb0bd3db08c56f3e9dab2b"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "e0d710ca210f7990d9a3d7cb9b564b29b286fa80cd17e599015d29752be03be0"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2297845,
+          "sha256": "3c2b9e63b4c44ca55e736a1d40dfce39d504e25be99fbad9e986caa875e9a3fc"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-03-b64-f",
+        "minimum_free_gib": 5911.73189163208,
+        "minimum_mem_available_gib": 90.37601852416992,
+        "peak_tree_rss_mib": 4540.05078125,
+        "samples": 49
+      },
+      "resource_samples_sha256": "697c94782ee57df0b03f76ab45638f2d0f3be1306cbba076cb5f4a4cc4cb700b",
+      "sampled_max_load_1m": 17.24,
+      "seed": 1,
+      "simulation_seconds": 243.0,
+      "started_utc": "2026-09-26T16:45:56Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "abced9265ead03c3357568a4fc1949e9701bb89eb7e820d2eaf6ff699d924765",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.4604761,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 1.8020198466030792,
+        "tor_imbalance_p99": 5.767060613965094,
+        "total_port_tx_bytes": 741507172,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 601.6244765625,
+        "p50_fct_us": 531.3905,
+        "p95_fct_us": 1146.54905,
+        "p99_complete_source_batch_us": 1247.3061,
+        "p99_fct_us": 1238.58141,
+        "synthetic_batch_completion_us": 1256.446,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:57:16Z",
+      "group": 20261103,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.952,
+          "p99_fct_us": 14.94619
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 16.048,
+          "p99_fct_us": 15.175049999999992
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.526,
+          "p99_fct_us": 14.52284
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.618,
+          "p99_fct_us": 14.253739999999999
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.815,
+          "p99_fct_us": 14.7643
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.834,
+          "p99_fct_us": 14.713880000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 15.515,
+          "p99_fct_us": 15.080720000000003
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 15.15,
+          "p99_fct_us": 14.848160000000002
+        }
+      ],
+      "id": "20260926-144756-ws11-03-b128-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.254874389648437,
+        "p50_fct_us": 11.901,
+        "p95_fct_us": 14.203850000000001,
+        "p99_complete_source_batch_us": 16.37025,
+        "p99_fct_us": 15.131680000000001,
+        "synthetic_batch_completion_us": 16.716,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "34942526",
+      "raw_files": {
+        "cnp": {
+          "bytes": 2868,
+          "sha256": "25a903a47a2e6e8de558b80b0f813a8a039970a706af632b7ea713964eb346c9"
+        },
+        "fct": {
+          "bytes": 731868,
+          "sha256": "e5cc01afd6ba4c070c135d41d017673675e13ec472d69002c09d33b3137ba059"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 3725714,
+          "sha256": "aa51429da586168fa253d6d82e53eb4b6298e780df5d8bab8481c88daaf6ad4c"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-03-b128-f",
+        "minimum_free_gib": 5909.193893432617,
+        "minimum_mem_available_gib": 97.41081619262695,
+        "peak_tree_rss_mib": 4540.3515625,
+        "samples": 53
+      },
+      "resource_samples_sha256": "d56da53c1507313f44f7c6894127a83a978d05524bf50922ed39071fcba30a5f",
+      "sampled_max_load_1m": 12.77,
+      "seed": 1,
+      "simulation_seconds": 262.0,
+      "started_utc": "2026-09-26T16:52:54Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "d4c7c089380d072cf22ca83c52a28609b05d721ae82b4c76c9793c99e03a1d2d",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.42726787692307694,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.425633060213456,
+        "tor_imbalance_p99": 5.470304872428135,
+        "total_port_tx_bytes": 1317773612,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 606.9238515625,
+        "p50_fct_us": 530.5835,
+        "p95_fct_us": 1177.9426,
+        "p99_complete_source_batch_us": 1262.4705000000001,
+        "p99_fct_us": 1250.04231,
+        "synthetic_batch_completion_us": 1276.094,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:57:11Z",
+      "group": 20261103,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 19.502,
+          "p99_fct_us": 18.169020000000003
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 17.612,
+          "p99_fct_us": 17.423979999999997
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 15.077,
+          "p99_fct_us": 14.655139999999996
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.972,
+          "p99_fct_us": 14.9603
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 18.607,
+          "p99_fct_us": 17.5735
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 17.838,
+          "p99_fct_us": 17.619320000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 18.814,
+          "p99_fct_us": 18.7755
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.86,
+          "p99_fct_us": 14.64825
+        }
+      ],
+      "id": "20260926-144756-ws11-03-b128-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.656884094238281,
+        "p50_fct_us": 12.25,
+        "p95_fct_us": 15.414250000000001,
+        "p99_complete_source_batch_us": 19.95379999999999,
+        "p99_fct_us": 17.356170000000002,
+        "synthetic_batch_completion_us": 20.452,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "465867646",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7091,
+          "sha256": "2c2ebb69f0f65279d8f8c864404776706b680dd2de58ab83fd9eea3087d2813e"
+        },
+        "fct": {
+          "bytes": 731866,
+          "sha256": "552589319cbe8465d73e36e87c974bb327e443218d1d785f01e4e475f8cb48bb"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 3726138,
+          "sha256": "f26f89ca188794761ff5c18068a8d3cf0d33c67ffa1034ea806486871f2b9c03"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-03-b128-p",
+        "minimum_free_gib": 5909.197437286377,
+        "minimum_mem_available_gib": 97.36178970336914,
+        "peak_tree_rss_mib": 4540.4140625,
+        "samples": 52
+      },
+      "resource_samples_sha256": "f7add32b7f2eef00aedbe589013af0ecdb61f2def3bd041aafd74b8fffd625c1",
+      "sampled_max_load_1m": 12.77,
+      "seed": 1,
+      "simulation_seconds": 257.0,
+      "started_utc": "2026-09-26T16:52:54Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "d4c7c089380d072cf22ca83c52a28609b05d721ae82b4c76c9793c99e03a1d2d",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.4303152,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.4150056587748736,
+        "tor_imbalance_p99": 5.394397826667254,
+        "total_port_tx_bytes": 1326560504,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 797.6929270833333,
+        "p50_fct_us": 761.0,
+        "p95_fct_us": 1347.0143,
+        "p99_complete_source_batch_us": 1557.5012,
+        "p99_fct_us": 1516.87894,
+        "synthetic_batch_completion_us": 1592.546,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:57:38Z",
+      "group": 20261103,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 17.974,
+          "p99_fct_us": 17.005390000000002
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 19.953,
+          "p99_fct_us": 19.85425
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 16.478,
+          "p99_fct_us": 16.087739999999997
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 16.488,
+          "p99_fct_us": 16.421699999999998
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 22.652,
+          "p99_fct_us": 21.19496
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 20.92,
+          "p99_fct_us": 20.75445
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 17.181,
+          "p99_fct_us": 16.47876
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 16.979,
+          "p99_fct_us": 16.589380000000002
+        }
+      ],
+      "id": "20260926-144756-ws11-03-b192-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.992669372558593,
+        "p50_fct_us": 12.427,
+        "p95_fct_us": 16.64355,
+        "p99_complete_source_batch_us": 22.540899999999997,
+        "p99_fct_us": 18.88417,
+        "synthetic_batch_completion_us": 23.639,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "775628591",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7845,
+          "sha256": "c6beddfa65ff2d49d3668d2c7e17a766f095b482fe66b80793b9e0e9924437b9"
+        },
+        "fct": {
+          "bytes": 735182,
+          "sha256": "821300c3ab30239aac9a7a8b1813345506d430763a0999aa624de0fd6722cce6"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4587980,
+          "sha256": "5e39369777b4673a5b8e920781ab3405bba3c4266782c38877a649c8c63233e9"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-03-b192-p",
+        "minimum_free_gib": 5909.182052612305,
+        "minimum_mem_available_gib": 97.36320877075195,
+        "peak_tree_rss_mib": 4540.19140625,
+        "samples": 58
+      },
+      "resource_samples_sha256": "33d51893b861401f135ab42a3a5e87ea68e9893b067d7d52035070edc10bcda5",
+      "sampled_max_load_1m": 13.27,
+      "seed": 1,
+      "simulation_seconds": 289.0,
+      "started_utc": "2026-09-26T16:52:49Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ab0504b9bb8644068da1528fe433d4bce21fd3b5b656397a82c05bfd91c9b87c",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.45137245,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.4440797507543217,
+        "tor_imbalance_p99": 5.1858672204967435,
+        "total_port_tx_bytes": 1914068268,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 805.6725520833334,
+        "p50_fct_us": 755.3665,
+        "p95_fct_us": 1357.1355499999997,
+        "p99_complete_source_batch_us": 1680.3953999999997,
+        "p99_fct_us": 1602.27702,
+        "synthetic_batch_completion_us": 1769.757,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:57:41Z",
+      "group": 20261103,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 16.197,
+          "p99_fct_us": 15.586950000000002
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 17.991,
+          "p99_fct_us": 16.71277999999999
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 16.136,
+          "p99_fct_us": 15.997749999999998
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 15.866,
+          "p99_fct_us": 15.631219999999999
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 16.153,
+          "p99_fct_us": 15.596079999999999
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 16.321,
+          "p99_fct_us": 16.04303
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 16.434,
+          "p99_fct_us": 15.995870000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.988,
+          "p99_fct_us": 14.96105
+        }
+      ],
+      "id": "20260926-144756-ws11-03-b192-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.37024365234375,
+        "p50_fct_us": 11.974499999999999,
+        "p95_fct_us": 14.74785,
+        "p99_complete_source_batch_us": 17.858349999999998,
+        "p99_fct_us": 15.874170000000001,
+        "synthetic_batch_completion_us": 17.991,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "518940468",
+      "raw_files": {
+        "cnp": {
+          "bytes": 4736,
+          "sha256": "862d2a769de6428bfae9f2553d9e3559209e273f60b66fed9f664246307360a6"
+        },
+        "fct": {
+          "bytes": 735183,
+          "sha256": "002605a355dcd2447d672d1178e68d3c1506fa735382ad832ab1818a8d5bb559"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 5158452,
+          "sha256": "71aa96839fd37cf7bcb035c294855d3745de91df8e970fc6b06e047d52787d8b"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-03-b192-f",
+        "minimum_free_gib": 5909.18147277832,
+        "minimum_mem_available_gib": 97.36037063598633,
+        "peak_tree_rss_mib": 4540.20703125,
+        "samples": 59
+      },
+      "resource_samples_sha256": "f27c23dac746ce5cc5b9c69efc52c211387b43f14fdc9913bc59e5428e3f9921",
+      "sampled_max_load_1m": 13.27,
+      "seed": 1,
+      "simulation_seconds": 292.0,
+      "started_utc": "2026-09-26T16:52:49Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ab0504b9bb8644068da1528fe433d4bce21fd3b5b656397a82c05bfd91c9b87c",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.39999964444444447,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.459662218401346,
+        "tor_imbalance_p99": 5.35550937486896,
+        "total_port_tx_bytes": 1903334672,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T16:49:29Z",
+      "group": 20261104,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.952,
+          "p99_fct_us": 14.94868
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.279,
+          "p99_fct_us": 14.27584
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.273,
+          "p99_fct_us": 14.26984
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.069,
+          "p99_fct_us": 14.06588
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.051,
+          "p99_fct_us": 14.03228
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 13.938,
+          "p99_fct_us": 13.93492
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 13.97,
+          "p99_fct_us": 13.96692
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 13.956,
+          "p99_fct_us": 13.95292
+        }
+      ],
+      "id": "20260926-144756-ws11-04-b0-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.00193048095703,
+        "p50_fct_us": 11.732,
+        "p95_fct_us": 13.545,
+        "p99_complete_source_batch_us": 14.9418,
+        "p99_fct_us": 14.023,
+        "synthetic_batch_completion_us": 14.952,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "581001522",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "2a8aa317f0099a882b033509312f743e6bb04e5dadb6355d35e95fcb6fec261a"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "9a1b9745eb6a7fb3788a1b959f81769de9f54ce79293b52f093822b78175a6c3"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-04-b0-f",
+        "minimum_free_gib": 5911.900646209717,
+        "minimum_mem_available_gib": 90.2983283996582,
+        "peak_tree_rss_mib": 4540.1640625,
+        "samples": 42
+      },
+      "resource_samples_sha256": "cc375629b6661426233355f994a0b1c3c95977d8986736d420bd69b75b681395",
+      "sampled_max_load_1m": 17.24,
+      "seed": 1,
+      "simulation_seconds": 208.0,
+      "started_utc": "2026-09-26T16:46:01Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "3c2f5aaaf5ddc74b59ac90577fd2c23a9893ae78d149d66cfdf00a15ab9b2f64",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.1432824,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.3778355759472061,
+        "tor_imbalance_p99": 0.792867192756901,
+        "total_port_tx_bytes": 146651492,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 0,
+      "background_flows": null,
+      "finished_utc": "2026-09-26T16:49:31Z",
+      "group": 20261104,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 14.935,
+          "p99_fct_us": 14.93168
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.286,
+          "p99_fct_us": 14.28284
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.346,
+          "p99_fct_us": 14.34284
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.071,
+          "p99_fct_us": 14.06788
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.092,
+          "p99_fct_us": 14.08888
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 13.929,
+          "p99_fct_us": 13.925920000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 13.972,
+          "p99_fct_us": 13.96892
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 13.967,
+          "p99_fct_us": 13.9516
+        }
+      ],
+      "id": "20260926-144756-ws11-04-b0-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 11.982926391601563,
+        "p50_fct_us": 11.729,
+        "p95_fct_us": 13.553,
+        "p99_complete_source_batch_us": 14.9226,
+        "p99_fct_us": 14.05117,
+        "synthetic_batch_completion_us": 14.935,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "499426734",
+      "raw_files": {
+        "cnp": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "fct": {
+          "bytes": 725306,
+          "sha256": "280e99b9d53f281d7d6fc454708d93a4053b18b9a00f56b8c37f75ebf74e7951"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 309920,
+          "sha256": "2dd44d04c16ccaade077d33f32e3e4e4c658fca2e8feb0f9b5144c69f87405ff"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-04-b0-p",
+        "minimum_free_gib": 5911.883373260498,
+        "minimum_mem_available_gib": 90.58841323852539,
+        "peak_tree_rss_mib": 4540.41796875,
+        "samples": 43
+      },
+      "resource_samples_sha256": "96c2775d591d5054961eeccaf8b4ff20aa951e7995316a1eb12ff7823e3c2a7f",
+      "sampled_max_load_1m": 17.24,
+      "seed": 1,
+      "simulation_seconds": 211.0,
+      "started_utc": "2026-09-26T16:46:00Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "3c2f5aaaf5ddc74b59ac90577fd2c23a9893ae78d149d66cfdf00a15ab9b2f64",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.13314959999999998,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 0.12828170798531724,
+        "tor_imbalance_p99": 0.21286219480185375,
+        "total_port_tx_bytes": 146856472,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 469.908109375,
+        "p50_fct_us": 465.64,
+        "p95_fct_us": 686.7667,
+        "p99_complete_source_batch_us": 688.69324,
+        "p99_fct_us": 688.67164,
+        "synthetic_batch_completion_us": 688.717,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:50:06Z",
+      "group": 20261104,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 15.123,
+          "p99_fct_us": 15.11055
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 15.213,
+          "p99_fct_us": 14.557299999999994
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.786,
+          "p99_fct_us": 14.518189999999997
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 16.173,
+          "p99_fct_us": 15.91248
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 16.602,
+          "p99_fct_us": 15.549
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 14.187,
+          "p99_fct_us": 14.1177
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 15.695,
+          "p99_fct_us": 14.920380000000003
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 16.438,
+          "p99_fct_us": 15.992170000000002
+        }
+      ],
+      "id": "20260926-144756-ws11-04-b64-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.320294860839844,
+        "p50_fct_us": 11.970500000000001,
+        "p95_fct_us": 14.431700000000001,
+        "p99_complete_source_batch_us": 19.5355,
+        "p99_fct_us": 16.45717,
+        "synthetic_batch_completion_us": 21.036,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "46250530",
+      "raw_files": {
+        "cnp": {
+          "bytes": 6306,
+          "sha256": "479aef2ee918183a0987828b13a8653a6f40617e557e8432a4e7ae64524dc765"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "e9d5cc7ef67da5aa0e251e0df0ec912b4955f6b9ec1ca874d723da97ff6c5afe"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2013626,
+          "sha256": "236376e0ffe8a6c808671010c4f48a6c9611e040e901d339498e826a5c1f3b68"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-04-b64-p",
+        "minimum_free_gib": 5911.6970863342285,
+        "minimum_mem_available_gib": 90.57962417602539,
+        "peak_tree_rss_mib": 4540.0546875,
+        "samples": 50
+      },
+      "resource_samples_sha256": "db2d3b785fba33639699b15d66466af86a07bf4b9873c3073790f65ff3ec605b",
+      "sampled_max_load_1m": 17.24,
+      "seed": 1,
+      "simulation_seconds": 248.0,
+      "started_utc": "2026-09-26T16:45:58Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "172842d35cdbd9d455ae60d824e0b7eca61f79f5ccc21ccfbb172e8588452782",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5307701714285714,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 1.8094045857957557,
+        "tor_imbalance_p99": 6.3328800127853375,
+        "total_port_tx_bytes": 746335276,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 64,
+      "background_flows": {
+        "complete_sources": 34,
+        "completed_flows": 64,
+        "completion_rate": 1.0,
+        "input_flows": 64,
+        "input_sources": 34,
+        "mean_fct_us": 457.46090625,
+        "p50_fct_us": 461.519,
+        "p95_fct_us": 686.9632,
+        "p99_complete_source_batch_us": 688.468,
+        "p99_fct_us": 688.468,
+        "synthetic_batch_completion_us": 688.468,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:54:03Z",
+      "group": 20261104,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 15.199,
+          "p99_fct_us": 14.993160000000001
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 14.302,
+          "p99_fct_us": 14.29884
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.393,
+          "p99_fct_us": 14.303729999999998
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.671,
+          "p99_fct_us": 14.23654
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.114,
+          "p99_fct_us": 14.10776
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 15.107,
+          "p99_fct_us": 15.0069
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 13.979,
+          "p99_fct_us": 13.96822
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 14.963,
+          "p99_fct_us": 14.91372
+        }
+      ],
+      "id": "20260926-144756-ws11-04-b64-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.120188781738282,
+        "p50_fct_us": 11.839,
+        "p95_fct_us": 13.80585,
+        "p99_complete_source_batch_us": 15.713449999999998,
+        "p99_fct_us": 14.74634,
+        "synthetic_batch_completion_us": 16.758,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "131206091",
+      "raw_files": {
+        "cnp": {
+          "bytes": 1154,
+          "sha256": "9a08a4f8931468f7c2f813e4b7d0cc607cc9e0acf40b760b4ee7daaa37923dbf"
+        },
+        "fct": {
+          "bytes": 728582,
+          "sha256": "53e8c52eceef02c3b7fc4268280a406422831f137bc7368fb9e1f14781c4d497"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 2013710,
+          "sha256": "ad4ba97db002c29da2021a3ba5b46bf94acde85339fc1755c1fbe8611010a2ba"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-04-b64-f",
+        "minimum_free_gib": 5909.567440032959,
+        "minimum_mem_available_gib": 98.19693756103516,
+        "peak_tree_rss_mib": 4540.2109375,
+        "samples": 47
+      },
+      "resource_samples_sha256": "1a61d8aecc868b74651591e127d9576d45d61e9e834d80fd32fd54d3689fdb12",
+      "sampled_max_load_1m": 15.66,
+      "seed": 1,
+      "simulation_seconds": 231.0,
+      "started_utc": "2026-09-26T16:50:12Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "172842d35cdbd9d455ae60d824e0b7eca61f79f5ccc21ccfbb172e8588452782",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5278756571428571,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 1.8297039231459307,
+        "tor_imbalance_p99": 6.391506758149777,
+        "total_port_tx_bytes": 741507172,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 599.1305859375,
+        "p50_fct_us": 530.307,
+        "p95_fct_us": 1109.4572000000007,
+        "p99_complete_source_batch_us": 1271.6873000000003,
+        "p99_fct_us": 1224.4872500000004,
+        "synthetic_batch_completion_us": 1308.281,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T17:00:46Z",
+      "group": 20261104,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 16.145,
+          "p99_fct_us": 15.363970000000002
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 16.206,
+          "p99_fct_us": 14.678139999999988
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.269,
+          "p99_fct_us": 14.26584
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 14.108,
+          "p99_fct_us": 14.10098
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 16.765,
+          "p99_fct_us": 16.57702
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 15.125,
+          "p99_fct_us": 14.447400000000004
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 14.51,
+          "p99_fct_us": 14.349070000000001
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 15.768,
+          "p99_fct_us": 15.489260000000002
+        }
+      ],
+      "id": "20260926-144756-ws11-04-b128-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.251925842285157,
+        "p50_fct_us": 11.918,
+        "p95_fct_us": 14.295,
+        "p99_complete_source_batch_us": 16.9918,
+        "p99_fct_us": 15.55917,
+        "synthetic_batch_completion_us": 17.696,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "957611779",
+      "raw_files": {
+        "cnp": {
+          "bytes": 3174,
+          "sha256": "ef4b5567f346cc453a959738186fbe4a22e56dd78b816698abed5cbb3b956177"
+        },
+        "fct": {
+          "bytes": 731864,
+          "sha256": "faa491ce9ec7f515ec2a3e553e5f41217342e3c84e545d0ecc33ea0f1035d8c1"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4010255,
+          "sha256": "0216ca235b164e08945b9197b9f043230efcbc0c4532557c2754c2e7eeab6b27"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-04-b128-f",
+        "minimum_free_gib": 5909.173225402832,
+        "minimum_mem_available_gib": 97.43301773071289,
+        "peak_tree_rss_mib": 4540.3671875,
+        "samples": 48
+      },
+      "resource_samples_sha256": "b74d4bcc14d98ffed4fbb06144f2dd134bd06fe3e75ba8d3f5d5f5223c7a1890",
+      "sampled_max_load_1m": 7.13,
+      "seed": 1,
+      "simulation_seconds": 236.0,
+      "started_utc": "2026-09-26T16:56:50Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "c77974bd1ce3acf792c5125afdf36a8e0899fa74ddb673ec6fa919fd88c54028",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5067484571428572,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.7057894176834028,
+        "tor_imbalance_p99": 5.1685274984543845,
+        "total_port_tx_bytes": 1317773612,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 128,
+      "background_flows": {
+        "complete_sources": 56,
+        "completed_flows": 128,
+        "completion_rate": 1.0,
+        "input_flows": 128,
+        "input_sources": 56,
+        "mean_fct_us": 606.2076640625,
+        "p50_fct_us": 569.8205,
+        "p95_fct_us": 1033.54935,
+        "p99_complete_source_batch_us": 1178.2089,
+        "p99_fct_us": 1157.9916600000001,
+        "synthetic_batch_completion_us": 1186.24,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:57:20Z",
+      "group": 20261104,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 18.039,
+          "p99_fct_us": 17.149240000000002
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 16.77,
+          "p99_fct_us": 16.100869999999993
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 17.62,
+          "p99_fct_us": 16.698069999999994
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 17.322,
+          "p99_fct_us": 16.08258
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 22.379,
+          "p99_fct_us": 21.56234
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 18.483,
+          "p99_fct_us": 17.110860000000006
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 18.299,
+          "p99_fct_us": 17.781560000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 19.118,
+          "p99_fct_us": 18.186300000000006
+        }
+      ],
+      "id": "20260926-144756-ws11-04-b128-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.762576110839843,
+        "p50_fct_us": 12.215,
+        "p95_fct_us": 16.183400000000002,
+        "p99_complete_source_batch_us": 22.3916,
+        "p99_fct_us": 18.51621,
+        "synthetic_batch_completion_us": 22.828,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "804419174",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7173,
+          "sha256": "c09eb9d97c2f260accf3510acd2f3c8ad0af85ce8283b090bef2cb2b9be3e81b"
+        },
+        "fct": {
+          "bytes": 731868,
+          "sha256": "37bf1b11e03641605d29c1d00e169d8503dc0a33dcb58659faaa4c359060597e"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 3440833,
+          "sha256": "6b5cf753519a77061a6c581f32009bba19101c05f409425d9ecc9e1fdd14df69"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-04-b128-p",
+        "minimum_free_gib": 5909.192523956299,
+        "minimum_mem_available_gib": 97.53236389160156,
+        "peak_tree_rss_mib": 4540.09375,
+        "samples": 53
+      },
+      "resource_samples_sha256": "780845243eb2d0b3acf39c755515067e67e625e1c2902d44c589109a4e4b3957",
+      "sampled_max_load_1m": 12.38,
+      "seed": 1,
+      "simulation_seconds": 262.0,
+      "started_utc": "2026-09-26T16:52:58Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "c77974bd1ce3acf792c5125afdf36a8e0899fa74ddb673ec6fa919fd88c54028",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.5957614,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.7080736030651966,
+        "tor_imbalance_p99": 5.093971502124018,
+        "total_port_tx_bytes": 1326932512,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 805.1165364583334,
+        "p50_fct_us": 708.2535,
+        "p95_fct_us": 1386.1694499999999,
+        "p99_complete_source_batch_us": 1553.7212,
+        "p99_fct_us": 1519.2156400000001,
+        "synthetic_batch_completion_us": 1581.734,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:51:21Z",
+      "group": 20261104,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 18.317,
+          "p99_fct_us": 18.17673
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 18.105,
+          "p99_fct_us": 17.84825
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 19.124,
+          "p99_fct_us": 17.323589999999985
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 16.9,
+          "p99_fct_us": 16.56382
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 18.398,
+          "p99_fct_us": 18.306739999999998
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 19.48,
+          "p99_fct_us": 18.813950000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 18.673,
+          "p99_fct_us": 18.5652
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 21.08,
+          "p99_fct_us": 21.02148
+        }
+      ],
+      "id": "20260926-144756-ws11-04-b192-p",
+      "mode": "dualtrack",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.970886962890624,
+        "p50_fct_us": 12.4255,
+        "p95_fct_us": 16.576700000000002,
+        "p99_complete_source_batch_us": 22.472749999999998,
+        "p99_fct_us": 18.803,
+        "synthetic_batch_completion_us": 23.096,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "347382837",
+      "raw_files": {
+        "cnp": {
+          "bytes": 7767,
+          "sha256": "adbcfd4296b05551f33f1443f2ebbfa1f83fb04c83c3f207717266f206c977f9"
+        },
+        "fct": {
+          "bytes": 735179,
+          "sha256": "4a3dacd7da80a40f1b290d6cf16c61f077dc2ae098a36a369295dbf082904a39"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4587469,
+          "sha256": "e4537b1d0295ba8e9a622a2833f0e96f5204bfaffe60bf682858fe176721dbab"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-04-b192-p",
+        "minimum_free_gib": 5911.042804718018,
+        "minimum_mem_available_gib": 90.32885360717773,
+        "peak_tree_rss_mib": 4540.25,
+        "samples": 64
+      },
+      "resource_samples_sha256": "a4a8ab42a9566572a275e3ce9dbba83b0e8bd3a62b14f23f8497d70af02d33e2",
+      "sampled_max_load_1m": 17.24,
+      "seed": 1,
+      "simulation_seconds": 319.0,
+      "started_utc": "2026-09-26T16:46:02Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "0ab9bddc85b402066633da50264c6cff32705ba93cac32598775c5f12610200c",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.46530589999999994,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.8669715703045506,
+        "tor_imbalance_p99": 5.839333805689088,
+        "total_port_tx_bytes": 1913867176,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    },
+    {
+      "background": 192,
+      "background_flows": {
+        "complete_sources": 61,
+        "completed_flows": 192,
+        "completion_rate": 1.0,
+        "input_flows": 192,
+        "input_sources": 61,
+        "mean_fct_us": 794.97325,
+        "p50_fct_us": 754.509,
+        "p95_fct_us": 1377.9954999999998,
+        "p99_complete_source_batch_us": 1662.8002,
+        "p99_fct_us": 1625.3650200000002,
+        "synthetic_batch_completion_us": 1696.597,
+        "unfinished_flows": 0
+      },
+      "finished_utc": "2026-09-26T16:51:28Z",
+      "group": 20261104,
+      "hotspot_destinations": [
+        {
+          "completed_flows": 84,
+          "destination": 1032,
+          "input_flows": 84,
+          "last_completion_us": 16.768,
+          "p99_fct_us": 16.14882
+        },
+        {
+          "completed_flows": 80,
+          "destination": 412,
+          "input_flows": 80,
+          "last_completion_us": 15.788,
+          "p99_fct_us": 15.416699999999997
+        },
+        {
+          "completed_flows": 80,
+          "destination": 1236,
+          "input_flows": 80,
+          "last_completion_us": 14.326,
+          "p99_fct_us": 14.318100000000001
+        },
+        {
+          "completed_flows": 79,
+          "destination": 560,
+          "input_flows": 79,
+          "last_completion_us": 15.894,
+          "p99_fct_us": 15.51102
+        },
+        {
+          "completed_flows": 79,
+          "destination": 596,
+          "input_flows": 79,
+          "last_completion_us": 14.294,
+          "p99_fct_us": 14.17466
+        },
+        {
+          "completed_flows": 78,
+          "destination": 148,
+          "input_flows": 78,
+          "last_completion_us": 17.431,
+          "p99_fct_us": 17.079880000000003
+        },
+        {
+          "completed_flows": 78,
+          "destination": 444,
+          "input_flows": 78,
+          "last_completion_us": 15.279,
+          "p99_fct_us": 14.871670000000002
+        },
+        {
+          "completed_flows": 78,
+          "destination": 644,
+          "input_flows": 78,
+          "last_completion_us": 17.425,
+          "p99_fct_us": 16.922960000000003
+        }
+      ],
+      "id": "20260926-144756-ws11-04-b192-f",
+      "mode": "fecmp",
+      "moe": {
+        "complete_sources": 256,
+        "completed_flows": 16384,
+        "completion_rate": 1.0,
+        "input_flows": 16384,
+        "input_sources": 256,
+        "mean_fct_us": 12.366582092285157,
+        "p50_fct_us": 11.9545,
+        "p95_fct_us": 14.847700000000001,
+        "p99_complete_source_batch_us": 18.191699999999997,
+        "p99_fct_us": 16.18117,
+        "synthetic_batch_completion_us": 18.659,
+        "unfinished_flows": 0
+      },
+      "raw_directory": "389037515",
+      "raw_files": {
+        "cnp": {
+          "bytes": 4838,
+          "sha256": "2f1e5366ab1557f12caaca96ca01ce7c530f8b1726d3cee1b3ba71a2ba8e1cb8"
+        },
+        "fct": {
+          "bytes": 735180,
+          "sha256": "e9b4cb57c793360f9ea205ea75d4d2aaae916cec779d11ee1bb53fbf07a04939"
+        },
+        "pfc": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "uplink": {
+          "bytes": 4872539,
+          "sha256": "8fc074bb6366300af21a8d121b37527831a8513041173e585724dfc9cc55fd34"
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20260926-144756-ws11-04-b192-f",
+        "minimum_free_gib": 5910.978427886963,
+        "minimum_mem_available_gib": 90.46928787231445,
+        "peak_tree_rss_mib": 4540.05859375,
+        "samples": 65
+      },
+      "resource_samples_sha256": "b7f9a686457d19a357a5b82867bd30ab601dde2489057611f9f0ebae7f64c5c6",
+      "sampled_max_load_1m": 17.24,
+      "seed": 1,
+      "simulation_seconds": 322.0,
+      "started_utc": "2026-09-26T16:46:06Z",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "0ab9bddc85b402066633da50264c6cff32705ba93cac32598775c5f12610200c",
+      "uplink_window": {
+        "active_tors": 40,
+        "max_port_mean_utilization_fraction": 0.4364631529411765,
+        "observed_tors": 160,
+        "tor_imbalance_p50": 2.8728023544156707,
+        "tor_imbalance_p99": 5.923982822786575,
+        "total_port_tx_bytes": 1903334672,
+        "uplink_ports": 1280,
+        "window_end_ns": 2010000000,
+        "window_start_ns": 2000000000
+      }
+    }
+  ],
+  "diagnostic_excluded_id": "20260926-144756-ws11-02-b192-f",
+  "diagnostic_replacement_id": "20260927-002500-ws11-02-b192-f-r",
+  "formal_cell_count": 40,
+  "groups": [
+    {
+      "flow0_batch_us": 15.653,
+      "group": "original",
+      "levels": {
+        "128": {
+          "background_p99_degradation_pct": -5.631719317774203,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 1.2720000000000002,
+          "flow_moe_batch_us": 16.925,
+          "moe_interaction_us": 3.682999999999998,
+          "normalized_interaction_pct": 23.557630804656505,
+          "packet_moe_batch_us": 20.589
+        },
+        "192": {
+          "background_p99_degradation_pct": 6.652746644259334,
+          "background_safety_pass": false,
+          "flow_load_increment_us": 3.2670000000000012,
+          "flow_moe_batch_us": 18.92,
+          "moe_interaction_us": 2.467999999999998,
+          "normalized_interaction_pct": 15.786107202251491,
+          "packet_moe_batch_us": 21.369
+        },
+        "64": {
+          "background_p99_degradation_pct": 0.0034860165997139766,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 0.014999999999998792,
+          "flow_moe_batch_us": 15.668,
+          "moe_interaction_us": 4.1579999999999995,
+          "normalized_interaction_pct": 26.595880772674935,
+          "packet_moe_batch_us": 19.807
+        }
+      },
+      "packet0_batch_us": 15.634
+    },
+    {
+      "flow0_batch_us": 14.932,
+      "group": 20261101,
+      "levels": {
+        "128": {
+          "background_p99_degradation_pct": -5.1445527779887135,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 2.4960000000000004,
+          "flow_moe_batch_us": 17.428,
+          "moe_interaction_us": 4.449,
+          "normalized_interaction_pct": 29.781109846709953,
+          "packet_moe_batch_us": 21.884
+        },
+        "192": {
+          "background_p99_degradation_pct": -8.504693556701683,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 4.121,
+          "flow_moe_batch_us": 19.053,
+          "moe_interaction_us": 5.430999999999999,
+          "normalized_interaction_pct": 36.354508333891154,
+          "packet_moe_batch_us": 24.491
+        },
+        "64": {
+          "background_p99_degradation_pct": 0.8070220146650728,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 1.0789999999999988,
+          "flow_moe_batch_us": 16.011,
+          "moe_interaction_us": 2.958,
+          "normalized_interaction_pct": 19.800522123301427,
+          "packet_moe_batch_us": 18.976
+        }
+      },
+      "packet0_batch_us": 14.939
+    },
+    {
+      "flow0_batch_us": 15.067,
+      "group": 20261102,
+      "levels": {
+        "128": {
+          "background_p99_degradation_pct": -0.4503338884487993,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 2.564,
+          "flow_moe_batch_us": 17.631,
+          "moe_interaction_us": 3.094999999999999,
+          "normalized_interaction_pct": 20.732851018220785,
+          "packet_moe_batch_us": 20.587
+        },
+        "192": {
+          "background_p99_degradation_pct": -4.669582073801539,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 2.5040000000000013,
+          "flow_moe_batch_us": 17.571,
+          "moe_interaction_us": 5.359999999999999,
+          "normalized_interaction_pct": 35.90568060021436,
+          "packet_moe_batch_us": 22.792
+        },
+        "64": {
+          "background_p99_degradation_pct": 0.0014511384260868603,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 0.5960000000000001,
+          "flow_moe_batch_us": 15.663,
+          "moe_interaction_us": 4.187999999999999,
+          "normalized_interaction_pct": 28.054662379421213,
+          "packet_moe_batch_us": 19.712
+        }
+      },
+      "packet0_batch_us": 14.928
+    },
+    {
+      "flow0_batch_us": 14.896,
+      "group": 20261103,
+      "levels": {
+        "128": {
+          "background_p99_degradation_pct": 0.9253247229021496,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 1.8200000000000003,
+          "flow_moe_batch_us": 16.716,
+          "moe_interaction_us": 3.7510000000000012,
+          "normalized_interaction_pct": 25.206639338754126,
+          "packet_moe_batch_us": 20.452
+        },
+        "192": {
+          "background_p99_degradation_pct": -5.3297949689124255,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 3.094999999999999,
+          "flow_moe_batch_us": 17.991,
+          "moe_interaction_us": 5.663,
+          "normalized_interaction_pct": 38.05523822323769,
+          "packet_moe_batch_us": 23.639
+        },
+        "64": {
+          "background_p99_degradation_pct": -0.7335766139385684,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 1.3900000000000006,
+          "flow_moe_batch_us": 16.286,
+          "moe_interaction_us": 3.5649999999999977,
+          "normalized_interaction_pct": 23.9567233384853,
+          "packet_moe_batch_us": 19.836
+        }
+      },
+      "packet0_batch_us": 14.881
+    },
+    {
+      "flow0_batch_us": 14.952,
+      "group": 20261104,
+      "levels": {
+        "128": {
+          "background_p99_degradation_pct": -5.430484474215652,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 2.7440000000000015,
+          "flow_moe_batch_us": 17.696,
+          "moe_interaction_us": 5.148999999999997,
+          "normalized_interaction_pct": 34.476062939404066,
+          "packet_moe_batch_us": 22.828
+        },
+        "192": {
+          "background_p99_degradation_pct": -6.530802539358208,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 3.706999999999999,
+          "flow_moe_batch_us": 18.659,
+          "moe_interaction_us": 4.454000000000001,
+          "normalized_interaction_pct": 29.82256444593238,
+          "packet_moe_batch_us": 23.096
+        },
+        "64": {
+          "background_p99_degradation_pct": 0.02957871680311416,
+          "background_safety_pass": true,
+          "flow_load_increment_us": 1.8059999999999992,
+          "flow_moe_batch_us": 16.758,
+          "moe_interaction_us": 4.295000000000002,
+          "normalized_interaction_pct": 28.757951121526627,
+          "packet_moe_batch_us": 21.036
+        }
+      },
+      "packet0_batch_us": 14.935
+    }
+  ],
+  "main_192_median_normalized_interaction_pct": 35.90568060021436,
+  "main_192_positive_groups": 5,
+  "phenomenon_go": false,
+  "prereg": "docs/research/ws11-full-moe-prereg-v1.md",
+  "resource": {
+    "max_sampled_load_1m": 17.24,
+    "max_tree_rss_mib": 4540.515625,
+    "min_free_gib": 5909.173225402832,
+    "min_mem_available_gib": 90.24920272827148,
+    "sum_simulation_seconds": 9768.0
+  },
+  "simulation_git_commit": "208fcee4c541da9b24ed26792b32ae681a30977f",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
