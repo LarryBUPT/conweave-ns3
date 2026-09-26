@@ -15,6 +15,7 @@
 #include "ns3/uinteger.h"
 #include "ns3/workload-tag.h"
 #include <iostream>
+#include <cstdlib>
 #include <map>
 #include <tuple>
 #include "ppp-header.h"
@@ -27,6 +28,9 @@ static uint64_t missing_workload_tag_packets = 0;
 static uint64_t dualtrack_flow_packets = 0;
 static uint64_t dualtrack_packet_packets = 0;
 static uint64_t dualtrack_packet_multipath = 0;
+static uint64_t ws12_moe_packets = 0, ws12_background_packets = 0;
+static uint64_t ws12_multipath_packets = 0;
+static std::map<std::pair<uint32_t, uint32_t>, uint64_t> ws12_source_port_choices;
 static uint32_t guard_lambda = 1, guard_tau = 0;
 static uint32_t guard_on_bytes = 8192, guard_off_bytes = 4096;
 static uint64_t guard_packets = 0, guard_two_candidates = 0;
@@ -62,6 +66,16 @@ void SwitchNode::PrintWorkloadTagCounts() {
         std::cout << "WS07_DUALTRACK flow_packets=" << dualtrack_flow_packets
                   << " packet_packets=" << dualtrack_packet_packets
                   << " packet_multipath=" << dualtrack_packet_multipath << std::endl;
+    if (Settings::lb_mode >= 16 && Settings::lb_mode <= 19) {
+        std::cout << "WS12_ROUTE mode=" << Settings::lb_mode
+                  << " moe_packets=" << ws12_moe_packets
+                  << " background_packets=" << ws12_background_packets
+                  << " moe_multipath=" << ws12_multipath_packets << std::endl;
+        for (const auto &entry : ws12_source_port_choices)
+            std::cout << "WS12_PORT switch=" << entry.first.first
+                      << " port=" << entry.first.second
+                      << " packets=" << entry.second << std::endl;
+    }
     if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) {
         std::cout << "WS09_CONFIG mode=" << Settings::lb_mode
                   << " lambda=" << guard_lambda << " tau=" << guard_tau
@@ -173,6 +187,56 @@ uint32_t SwitchNode::DoLbDualTrack(Ptr<const Packet> p, const CustomHeader &ch,
                        ch.udp.seq};
     return nexthops[EcmpHash(reinterpret_cast<const uint8_t *>(key), sizeof(key), m_ecmpSeed)
                     % nexthops.size()];
+}
+
+// WS-12: isolate each packet strategy to tag=2 UDP data.  Background and
+// control traffic use the original flow ECMP hash on the same next-hop set.
+uint32_t SwitchNode::DoLbPacketStrategy(Ptr<const Packet> p, const CustomHeader &ch,
+                                        const std::vector<int> &nexthops) {
+    WorkloadTag label;
+    const bool moe = ch.l3Prot == 0x11 && p->PeekPacketTag(label) &&
+                     label.GetValue() == 2;
+    const bool sourceTor = m_isToR && m_isToR_hostIP.count(ch.sip);
+    if (!moe) {
+        if (sourceTor && ch.l3Prot == 0x11) ++ws12_background_packets;
+        return DoLbFlowECMP(p, ch, nexthops);
+    }
+    uint32_t chosen = nexthops[0];
+    switch (Settings::lb_mode) {
+        case 16: {  // round robin per switch and destination, reset with the switch
+            uint32_t &next = m_packetRoundRobinNext[ch.dip];
+            chosen = nexthops[next % nexthops.size()];
+            next = (next + 1) % nexthops.size();
+            break;
+        }
+        case 17:  // uniform random spray, matching hybrid-ss's effective rule
+            chosen = nexthops[std::rand() % nexthops.size()];
+            break;
+        case 18: {  // hybrid-as effective path: local queue, no probes in mode 13
+            double totalWeight = 0.0;
+            for (int port : nexthops)
+                totalWeight += 1.0 / (static_cast<double>(CalculateInterfaceLoad(port)) + 8193.0);
+            const double draw = (static_cast<double>(std::rand()) / RAND_MAX) * totalWeight;
+            double cumulative = 0.0;
+            chosen = nexthops.back();
+            for (int port : nexthops) {
+                cumulative += 1.0 / (static_cast<double>(CalculateInterfaceLoad(port)) + 8193.0);
+                if (draw < cumulative) { chosen = port; break; }
+            }
+            break;
+        }
+        case 19:  // original DRILL's local queue + per-destination cached best
+            chosen = DoLbDrill(p, ch, nexthops);
+            break;
+        default:
+            NS_ASSERT_MSG(false, "Unknown WS-12 packet strategy");
+    }
+    if (sourceTor) {
+        ++ws12_moe_packets;
+        if (nexthops.size() > 1) ++ws12_multipath_packets;
+        ++ws12_source_port_choices[std::make_pair(m_id, chosen)];
+    }
+    return chosen;
 }
 
 uint32_t SwitchNode::DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
@@ -412,6 +476,11 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbConWeave(p, ch, nexthops); /** DUMMY: Do ECMP */
         case 12:
             return DoLbDualTrack(p, ch, nexthops);
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+            return DoLbPacketStrategy(p, ch, nexthops);
         case 13:
         case 14:
         case 15:

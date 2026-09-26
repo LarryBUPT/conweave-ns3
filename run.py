@@ -108,6 +108,10 @@ cc_modes = {
 lb_modes = {
     "fecmp": 0,
     "dualtrack": 12,
+    "packet-rr": 16,
+    "packet-random": 17,
+    "packet-adaptive": 18,
+    "packet-drill": 19,
     "shortq2": 13,
     "guardhash": 14,
     "guardhashgate": 15,

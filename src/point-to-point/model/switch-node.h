@@ -47,6 +47,9 @@ class SwitchNode : public Node {
                           const std::vector<int> &nexthops);
     uint32_t DoLbDualTrack(Ptr<const Packet> p, const CustomHeader &ch,
                            const std::vector<int> &nexthops);
+    uint32_t DoLbPacketStrategy(Ptr<const Packet> p, const CustomHeader &ch,
+                                const std::vector<int> &nexthops);
+    std::map<uint32_t, uint32_t> m_packetRoundRobinNext;  // destination IP -> next index
     uint32_t DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
                            const std::vector<int> &nexthops);
     // DRILL (lb_mode = 2)
