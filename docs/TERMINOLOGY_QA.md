@@ -78,6 +78,8 @@
 
 **本项目口径。**ns-3 在 RDMA 队列对完成回调 `qp_finish` 中写一行原始 FCT，含源/目的、端口、字节数、开始时间、`Simulator::Now() − startTime` 和单独计算的理想无争用时间；原始时间单位为纳秒，分析时换成微秒。WS-11 的[标签分析脚本](../scripts/analyze_moe_tags.py)把每行完成记录与输入 trace 的对应流匹配，再分别统计 MoE (`tag=2`) 与背景 (`tag=1`)。原始生产位置见 [仿真源码](../scratch/network-load-balance.cc)，WS-11 的全类完成与指标见[机器摘要](research/ws11-full-moe-formal-summary.json)。
 
+**相关指标。**平均 FCT 是这些单流耗时的算术平均，最大 FCT 是最慢一条；完成率是已完成流数除以输入流数。旧分析里的 `slowdown`（放慢倍数）是 `max(1, 实际 FCT / 理想无争用 FCT)`：例如理想需 10 微秒、实际需 20 微秒，放慢倍数是 2。它用一个理想时间作参照，既不是 FCT 的时间单位，也不是吞吐量；WS-11 的预注册主判据没有用它替代 MoE 整批完成时间或背景 P99。
+
 **容易误解：**FCT 不是发送时刻、吞吐率，也不是整个 MoE 任务的完成时间；一条 8 MiB 背景流与一条 8 KiB MoE 流的 FCT 不能脱离流大小直接比较优劣。本项目旧 baseline 分析还有 `2.005–2.060` 秒的完成流筛选窗口，它排除了 `2.000` 秒同启的 WS-11 MoE；WS-11 使用输入 trace 为分母的独立按标签分析，不沿用那个旧窗口。旧口径见论文项目的 `docs/research/10-baseline-fidelity-and-dataflow-audit.md`。
 
 <a id="tq-007"></a>
