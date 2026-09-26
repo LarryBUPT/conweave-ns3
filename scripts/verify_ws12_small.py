@@ -15,6 +15,10 @@ IDS = {'fecmp': '20260927-023500-ws12-small-f',
        'packet-drill': '20260927-023500-ws12-small-d'}
 FLOW_SHA = '2d55bb4d5dc07904532e0949ba31c2b105db735086deb0fff57623a84ed418b6'
 WS08_DUALTRACK_FCT = '3a12b4a9fadbcfefbd73451d3fcc0764b8b3412709a6bb9c9b61bf30ab79353f'
+WS08_FLOW_ONLY_FCT = '50eff7c6a0303b2fd91980f737cb8b801857e687942c125ce7a5165b68004d0e'
+SMALL_32 = {'flow': ('20260927-031000-ws12-32-flow', {'1': 4}),
+            'packet': ('20260927-031000-ws12-32-packet', {'2': 4}),
+            'dual': ('20260927-031000-ws12-32-dual', {'1': 2, '2': 2})}
 
 
 def main():
@@ -49,7 +53,30 @@ def main():
                             'source_ports_used': len(ports)}
         else:
             result[mode] = {'experiment_id': experiment_id}
-    print(json.dumps({'complete': True, 'modes': result}, sort_keys=True))
+    small32 = {}
+    for name, (experiment_id, expected) in SMALL_32.items():
+        base = ROOT / 'results' / experiment_id
+        with (base / 'metadata.json').open(encoding='utf-8') as source:
+            meta = json.load(source)
+        assert meta['status'] == 'SUCCEEDED' and meta['git_commit'] == SIMULATION_COMMIT
+        assert meta['algorithm'] == 'packet-rr' and meta['seed'] == 1
+        assert meta['parameters']['pfc'] == 0 and meta['parameters']['irn'] == 1
+        summary = full_summary(experiment_id)
+        assert {tag: stats['completed_flows'] for tag, stats in summary['tags'].items()} == expected
+        raw = base / 'raw' / str(meta['raw_directory'])
+        with (raw / 'config.log').open(encoding='utf-8') as source:
+            log = source.read()
+        route = re.search(r'WS12_ROUTE mode=16 moe_packets=(\d+) background_packets=(\d+) moe_multipath=(\d+)', log)
+        assert route is not None
+        moe, background, multipath = map(int, route.groups())
+        assert (moe > 0) == ('2' in expected)
+        assert (background > 0) == ('1' in expected)
+        assert multipath == moe
+        if name == 'flow':
+            assert summary['fct_sha256'] == WS08_FLOW_ONLY_FCT
+        small32[name] = {'experiment_id': experiment_id,
+                         'completed_flows': sum(stats['completed_flows'] for stats in summary['tags'].values())}
+    print(json.dumps({'complete': True, 'modes': result, 'small_32': small32}, sort_keys=True))
 
 
 if __name__ == '__main__':
