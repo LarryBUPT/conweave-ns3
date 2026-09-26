@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Run/recover preregistered WS-11 full-input cells with isolated receipts."""
 import argparse
+import contextlib
 import concurrent.futures
 import datetime
 import glob
@@ -24,7 +25,19 @@ SEQUENCE = ((0, 'fecmp'), (0, 'dualtrack'), (64, 'dualtrack'),
             (64, 'fecmp'), (128, 'fecmp'), (128, 'dualtrack'),
             (192, 'dualtrack'), (192, 'fecmp'))
 LOCK = threading.Lock()
-BUILD_SLOTS = threading.Semaphore(4)
+BUILD_SLOTS = threading.Semaphore(8)
+CPU_TOKENS = threading.BoundedSemaphore(18)  # Reserve two of 20 physical cores.
+
+
+@contextlib.contextmanager
+def cpu_tokens(count):
+    for _ in range(count):
+        CPU_TOKENS.acquire()
+    try:
+        yield
+    finally:
+        for _ in range(count):
+            CPU_TOKENS.release()
 
 
 def sha(path):
@@ -161,45 +174,62 @@ def verify(cell, commit):
     return summary
 
 
-def run_cell(cell, commit, cap):
+def run_cell(cell, commit, cap, simulation_slots, stop_event):
+    if stop_event.is_set():
+        raise RuntimeError('Batch stopped before this cell')
     experiment_id = cell['id']
     local = os.path.join(RESULTS, experiment_id)
     if os.path.isdir(local):
         summary = verify(cell, commit)
         receipt('verified', cell, fct_sha256=summary['fct_sha256'], resumed=True)
         return
-    audit()
     try:
-        state = status(experiment_id)
-    except RuntimeError as error:
-        if 'metadata.json' not in str(error) and 'No such file' not in str(error):
-            raise
-        started = time.monotonic()
-        with BUILD_SLOTS:
-            audit()
-            controller('build', '--repo-local', ROOT, '--id', experiment_id,
-                       '--source-sha', commit)
-        state = status(experiment_id)
-        receipt('built', cell, build_seconds=time.monotonic() - started)
-    if state['git_commit'] != commit:
-        raise RuntimeError('Source SHA mismatch: ' + experiment_id)
-    if state['status'] == 'BUILT':
         audit()
-        controller('run', experiment_id, '--lb', cell['mode'], '--pfc', '0',
-                   '--irn', '1', '--simul-time', '0.01', '--netload', '10',
-                   '--bw', '400', '--buffer', '9', '--topo', 'topo_1280_400G_400G_OS1',
-                   '--cdf', 'AliStorage2019', '--flow-file', cell['flow_file'],
-                   '--max-concurrent', str(cap))
-        receipt('started', cell, concurrency_cap=cap)
-        state = status(experiment_id)
-    if state['status'] == 'RUNNING':
-        start_watch(experiment_id)
-        while state['status'] == 'RUNNING':
-            time.sleep(60)
+        try:
             state = status(experiment_id)
-            audit()
-    if state['status'] != 'SUCCEEDED':
-        raise RuntimeError('Experiment stopped: %s %s' % (experiment_id, state['status']))
+        except RuntimeError as error:
+            if 'metadata.json' not in str(error) and 'No such file' not in str(error):
+                raise
+            started = time.monotonic()
+            with BUILD_SLOTS, cpu_tokens(2):
+                if stop_event.is_set():
+                    raise RuntimeError('Batch stopped before build')
+                audit()
+                controller('build', '--repo-local', ROOT, '--id', experiment_id,
+                           '--source-sha', commit)
+            state = status(experiment_id)
+            receipt('built', cell, build_seconds=time.monotonic() - started)
+        if state['git_commit'] != commit:
+            raise RuntimeError('Source SHA mismatch: ' + experiment_id)
+        if state['status'] in ('BUILT', 'RUNNING'):
+            with simulation_slots, cpu_tokens(1):
+                if state['status'] == 'BUILT':
+                    if stop_event.is_set():
+                        raise RuntimeError('Batch stopped before simulation')
+                    audit()
+                    controller('run', experiment_id, '--lb', cell['mode'], '--pfc', '0',
+                               '--irn', '1', '--simul-time', '0.01', '--netload', '10',
+                               '--bw', '400', '--buffer', '9',
+                               '--topo', 'topo_1280_400G_400G_OS1',
+                               '--cdf', 'AliStorage2019', '--flow-file', cell['flow_file'],
+                               '--max-concurrent', str(cap))
+                    receipt('started', cell, concurrency_cap=cap)
+                    state = status(experiment_id)
+                if state['status'] == 'RUNNING':
+                    start_watch(experiment_id)
+                    while state['status'] == 'RUNNING':
+                        time.sleep(60)
+                        state = status(experiment_id)
+                        try:
+                            audit()
+                        except RuntimeError:
+                            # Preserve the in-flight result; prevent new cells.
+                            stop_event.set()
+        if state['status'] != 'SUCCEEDED':
+            raise RuntimeError('Experiment stopped: %s %s' % (experiment_id, state['status']))
+    except Exception:
+        stop_event.set()
+        raise
     wait_watch(experiment_id)
     controller('fetch', experiment_id)
     summary = verify(cell, commit)
@@ -231,21 +261,25 @@ def main():
         if args.max_new_cells <= 0:
             raise RuntimeError('max-new-cells must be positive')
         cells = cells[:args.max_new_cells]
-    for offset in range(0, len(cells), args.concurrency):
-        batch = cells[offset:offset + args.concurrency]
-        audit()
-        with concurrent.futures.ThreadPoolExecutor(max_workers=args.concurrency) as pool:
-            futures = [pool.submit(run_cell, cell, plan['git_commit'], args.concurrency)
-                       for cell in batch]
-            problems = []
-            for cell, future in zip(batch, futures):
-                try:
-                    future.result()
-                except Exception as error:
-                    receipt('stopped', cell, error=str(error))
-                    problems.append(error)
-            if problems:
-                raise RuntimeError('%d cell(s) stopped; no new batch launched' % len(problems))
+    if not cells:
+        print('All planned WS-11 cells are already verified')
+        return
+    audit()
+    stop_event = threading.Event()
+    simulation_slots = threading.Semaphore(args.concurrency)
+    with concurrent.futures.ThreadPoolExecutor(
+            max_workers=min(len(cells), args.concurrency + 8)) as pool:
+        futures = [pool.submit(run_cell, cell, plan['git_commit'], args.concurrency,
+                               simulation_slots, stop_event) for cell in cells]
+        problems = []
+        for cell, future in zip(cells, futures):
+            try:
+                future.result()
+            except Exception as error:
+                receipt('stopped', cell, error=str(error))
+                problems.append(error)
+        if problems:
+            raise RuntimeError('%d cell(s) stopped; inspect receipts before recovery' % len(problems))
 
 
 if __name__ == '__main__':
