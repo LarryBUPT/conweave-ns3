@@ -117,13 +117,15 @@ def start_watch(experiment_id):
                'nohup python3 /home/fnl/lzy/.research-workflow/ws11_resource_watch.py '
                '%s > %s/resource-watch.log 2>&1 < /dev/null &') % (
                    remote, experiment_id, remote)
-    call(['ssh', '-o', 'BatchMode=yes', 'fnl@10.112.14.167', command])
+    call(['ssh', '-o', 'BatchMode=yes', '-o', 'ClearAllForwardings=yes',
+          'fnl@10.112.14.167', command])
 
 
 def wait_watch(experiment_id):
     remote = ('/home/fnl/lzy/results/%s/logs/resource-summary.json' % experiment_id)
     for _ in range(8):
-        check = subprocess.run(['ssh', '-o', 'BatchMode=yes', 'fnl@10.112.14.167',
+        check = subprocess.run(['ssh', '-o', 'BatchMode=yes',
+                                '-o', 'ClearAllForwardings=yes', 'fnl@10.112.14.167',
                                 'test -s ' + remote], stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE)
         if check.returncode == 0:
@@ -175,7 +177,8 @@ def run_cell(cell, commit, cap):
         started = time.monotonic()
         with BUILD_SLOTS:
             audit()
-            controller('build', '--repo-local', ROOT, '--id', experiment_id)
+            controller('build', '--repo-local', ROOT, '--id', experiment_id,
+                       '--source-sha', commit)
         state = status(experiment_id)
         receipt('built', cell, build_seconds=time.monotonic() - started)
     if state['git_commit'] != commit:

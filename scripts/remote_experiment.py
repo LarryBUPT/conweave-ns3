@@ -43,7 +43,8 @@ def config():
 
 def ssh_base(cfg):
     return ['ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
-            '-o', 'ConnectTimeout=10', cfg['REMOTE_USER'] + '@' + cfg['REMOTE_HOST']]
+            '-o', 'ConnectTimeout=10', '-o', 'ClearAllForwardings=yes',
+            cfg['REMOTE_USER'] + '@' + cfg['REMOTE_HOST']]
 
 
 def worker_call(cfg, *args):
@@ -194,6 +195,7 @@ def main():
         if name == 'build':
             item.add_argument('--id')
             item.add_argument('--label', default='baseline')
+            item.add_argument('--source-sha', help='previously synced ancestor commit for recovery')
     protect_cmd = sub.add_parser('protect-fork')
     protect_cmd.add_argument('--repo-local', required=True)
     run_cmd = sub.add_parser('run')
@@ -225,6 +227,14 @@ def main():
     elif args.command in ('push', 'sync', 'sync-bundle', 'build'):
         repo, origin, branch, sha = local_fork(args.repo_local,
                                                require_pushed=args.command != 'push')
+        if args.command == 'build' and args.source_sha:
+            if not re.fullmatch(r'[0-9a-f]{40}', args.source_sha):
+                raise RuntimeError('Build source SHA must be a full commit hash')
+            ancestor = subprocess.run(['git', '-C', repo, 'merge-base', '--is-ancestor',
+                                       args.source_sha, sha])
+            if ancestor.returncode:
+                raise RuntimeError('Build source SHA is not an ancestor of pushed HEAD')
+            sha = args.source_sha
         if args.command == 'push':
             subprocess.check_call(['git', '-C', repo, 'push', 'origin',
                                    'HEAD:refs/heads/' + branch])
