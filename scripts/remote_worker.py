@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Workspace-only ConWeave experiment worker (Python 3.5 compatible)."""
 import argparse
+import contextlib
 import datetime
 import glob
 import json
@@ -126,6 +127,52 @@ def active_simulations():
         if command.startswith('network-load-ba') or (command.startswith('python') and
                                                        ' run.py --lb ' in ' ' + arguments):
             found.append(pid)
+    return found
+
+
+@contextlib.contextmanager
+def simulation_start_lock():
+    """Serialize admission even when separate controllers launch together."""
+    import fcntl  # The worker runs on Linux; keep local tooling portable.
+    folder = inside(os.path.join(ROOT, '.research-workflow'))
+    make_dir(folder)
+    path = inside(os.path.join(folder, 'simulation-start.lock'))
+    if os.path.islink(path):
+        raise RuntimeError('Simulation start lock is a symlink')
+    descriptor = os.open(path, os.O_CREAT | os.O_RDWR, 0o600)
+    try:
+        fcntl.flock(descriptor, fcntl.LOCK_EX)
+        yield
+    finally:
+        fcntl.flock(descriptor, fcntl.LOCK_UN)
+        os.close(descriptor)
+
+
+def descendant_of(pid, ancestor):
+    """Identify run.py/ns-3 children belonging to a recorded worker PID."""
+    seen = set()
+    while pid and pid not in seen:
+        if pid == ancestor:
+            return True
+        seen.add(pid)
+        try:
+            with open('/proc/%s/status' % pid) as handle:
+                match = re.search(r'^PPid:\s+(\d+)', handle.read(), re.M)
+            pid = int(match.group(1)) if match else 0
+        except (IOError, OSError):
+            return False
+    return False
+
+
+def running_workers():
+    found = []
+    for existing in glob.glob(os.path.join(ROOT, 'results', '*', 'metadata.json')):
+        try:
+            other = json.load(open(existing))
+            if other.get('status') == 'RUNNING' and pid_alive(other.get('pid')):
+                found.append((other['experiment_id'], int(other['pid'])))
+        except (IOError, OSError, ValueError, KeyError):
+            raise RuntimeError('Cannot audit running experiment metadata: ' + existing)
     return found
 
 
@@ -373,36 +420,43 @@ def execute(experiment_id):
         save_metadata(base, data)
 
 
-def start(experiment_id, params):
+def start(experiment_id, params, max_concurrent=1):
     resources_ok()
-    if active_simulations():
-        raise RuntimeError('An ns-3 experiment process is already running')
-    base, source = paths(experiment_id)
-    data = load_metadata(base)
-    if data.get('status') != 'BUILT':
-        raise RuntimeError('Experiment must be built and not previously started')
-    for existing in glob.glob(os.path.join(ROOT, 'results', '*', 'metadata.json')):
-        other = json.load(open(existing))
-        if other.get('status') == 'RUNNING' and pid_alive(other.get('pid')):
-            raise RuntimeError('Another experiment is running; default concurrency is one')
-    if output(['git', 'rev-parse', 'HEAD'], cwd=source) != data['git_commit']:
-        raise RuntimeError('Source commit changed after build')
-    if output(['git', 'status', '--porcelain'], cwd=source):
-        raise RuntimeError('Source changed after build')
-    data['parameters'] = params
-    data['topology'] = params['topo']
-    data['load'] = params['netload']
-    data['algorithm'] = params['lb']
-    data['started_utc'] = stamp()
-    data['status'] = 'RUNNING'
-    worker_log = inside(os.path.join(base, 'logs', 'worker.log'))
-    with open(worker_log, 'ab') as log:
-        process = subprocess.Popen([sys.executable, os.path.realpath(__file__), 'execute', experiment_id],
-                                   cwd=ROOT, stdin=subprocess.DEVNULL, stdout=log,
-                                   stderr=subprocess.STDOUT, start_new_session=True)
-    data['pid'] = process.pid
-    save_metadata(base, data)
-    print('started experiment=%s pid=%d' % (experiment_id, process.pid))
+    if max_concurrent not in (1, 2, 4):
+        raise RuntimeError('Concurrency must be 1, 2, or 4 after resource pilot')
+    with simulation_start_lock():
+        resources_ok()
+        workers = running_workers()
+        active = active_simulations()
+        unknown = [pid for pid in active if not any(descendant_of(int(pid), worker_pid)
+                   for _, worker_pid in workers)]
+        if unknown:
+            raise RuntimeError('Unknown ns-3 process; no new run: ' + ','.join(unknown))
+        if len(workers) >= max_concurrent:
+            raise RuntimeError('Concurrency cap reached (%d)' % max_concurrent)
+        base, source = paths(experiment_id)
+        data = load_metadata(base)
+        if data.get('status') != 'BUILT':
+            raise RuntimeError('Experiment must be built and not previously started')
+        if output(['git', 'rev-parse', 'HEAD'], cwd=source) != data['git_commit']:
+            raise RuntimeError('Source commit changed after build')
+        if output(['git', 'status', '--porcelain'], cwd=source):
+            raise RuntimeError('Source changed after build')
+        data['parameters'] = params
+        data['topology'] = params['topo']
+        data['load'] = params['netload']
+        data['algorithm'] = params['lb']
+        data['concurrency_cap'] = max_concurrent
+        data['started_utc'] = stamp()
+        data['status'] = 'RUNNING'
+        worker_log = inside(os.path.join(base, 'logs', 'worker.log'))
+        with open(worker_log, 'ab') as log:
+            process = subprocess.Popen([sys.executable, os.path.realpath(__file__), 'execute', experiment_id],
+                                       cwd=ROOT, stdin=subprocess.DEVNULL, stdout=log,
+                                       stderr=subprocess.STDOUT, start_new_session=True)
+        data['pid'] = process.pid
+        save_metadata(base, data)
+        print('started experiment=%s pid=%d cap=%d' % (experiment_id, process.pid, max_concurrent))
 
 
 def status(experiment_id):
@@ -468,6 +522,7 @@ def main():
     run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
+    run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4), default=1)
     run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)
     run_cmd.add_argument('--buffer', type=int, choices=range(1, 10), default=9)
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
@@ -503,7 +558,7 @@ def main():
                         'simul_time': args.simul_time,
                         'netload': args.netload, 'bw': args.bw, 'buffer': args.buffer,
                         'topo': args.topo, 'cdf': args.cdf,
-                        'flow_file': flow_file})
+                        'flow_file': flow_file}, max_concurrent=args.max_concurrent)
     elif args.command == 'execute':
         execute(args.id)
     elif args.command == 'status':

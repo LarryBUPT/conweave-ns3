@@ -1,0 +1,203 @@
+{
+  "inputs": {
+    "0": {
+      "background_bytes": 0,
+      "background_destination_count": 0,
+      "background_source_count": 0,
+      "count": 16384,
+      "file": "moe_1280group_256to8_8round_8KB.txt",
+      "moe_bytes": 134217728,
+      "moe_destination_count": 256,
+      "moe_destination_max_flows": 84,
+      "moe_destination_top8": [
+        [
+          1032,
+          84
+        ],
+        [
+          1236,
+          80
+        ],
+        [
+          412,
+          80
+        ],
+        [
+          596,
+          79
+        ],
+        [
+          560,
+          79
+        ],
+        [
+          148,
+          78
+        ],
+        [
+          644,
+          78
+        ],
+        [
+          444,
+          78
+        ]
+      ],
+      "moe_pair_max_flows": 1,
+      "moe_source_count": 256,
+      "moe_source_max_flows": 64,
+      "offered_bytes": 134217728,
+      "sha256": "9e00baa5c79ab45b107b82b4c18d43cbb9a1073101bf14123aedd2d90d2e89fd"
+    },
+    "128": {
+      "background_bytes": 1073741824,
+      "background_destination_count": 58,
+      "background_source_count": 56,
+      "count": 16512,
+      "file": "moe_1280group_256to8_8round_8KB_hybrid_128fecmp.txt",
+      "moe_bytes": 134217728,
+      "moe_destination_count": 256,
+      "moe_destination_max_flows": 84,
+      "moe_destination_top8": [
+        [
+          1032,
+          84
+        ],
+        [
+          1236,
+          80
+        ],
+        [
+          412,
+          80
+        ],
+        [
+          596,
+          79
+        ],
+        [
+          560,
+          79
+        ],
+        [
+          148,
+          78
+        ],
+        [
+          644,
+          78
+        ],
+        [
+          444,
+          78
+        ]
+      ],
+      "moe_pair_max_flows": 1,
+      "moe_source_count": 256,
+      "moe_source_max_flows": 64,
+      "offered_bytes": 1207959552,
+      "sha256": "d1dd382fb7cefc368cbfe10ad5a7db21566aa417e16248172559a7bd9283f5c5"
+    },
+    "192": {
+      "background_bytes": 1610612736,
+      "background_destination_count": 62,
+      "background_source_count": 61,
+      "count": 16576,
+      "file": "moe_1280group_256to8_8round_8KB_hybrid_192fecmp.txt",
+      "moe_bytes": 134217728,
+      "moe_destination_count": 256,
+      "moe_destination_max_flows": 84,
+      "moe_destination_top8": [
+        [
+          1032,
+          84
+        ],
+        [
+          1236,
+          80
+        ],
+        [
+          412,
+          80
+        ],
+        [
+          596,
+          79
+        ],
+        [
+          560,
+          79
+        ],
+        [
+          148,
+          78
+        ],
+        [
+          644,
+          78
+        ],
+        [
+          444,
+          78
+        ]
+      ],
+      "moe_pair_max_flows": 1,
+      "moe_source_count": 256,
+      "moe_source_max_flows": 64,
+      "offered_bytes": 1744830464,
+      "sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a"
+    },
+    "64": {
+      "background_bytes": 536870912,
+      "background_destination_count": 40,
+      "background_source_count": 34,
+      "count": 16448,
+      "file": "moe_1280group_256to8_8round_8KB_hybrid_64fecmp.txt",
+      "moe_bytes": 134217728,
+      "moe_destination_count": 256,
+      "moe_destination_max_flows": 84,
+      "moe_destination_top8": [
+        [
+          1032,
+          84
+        ],
+        [
+          1236,
+          80
+        ],
+        [
+          412,
+          80
+        ],
+        [
+          596,
+          79
+        ],
+        [
+          560,
+          79
+        ],
+        [
+          148,
+          78
+        ],
+        [
+          644,
+          78
+        ],
+        [
+          444,
+          78
+        ]
+      ],
+      "moe_pair_max_flows": 1,
+      "moe_source_count": 256,
+      "moe_source_max_flows": 64,
+      "offered_bytes": 671088640,
+      "sha256": "83d0b2ff46d683d243bcd1d4b2fc4c2fefa330324062d13dcfb878af5abdd7dc"
+    }
+  },
+  "nested_background_across_levels": true,
+  "same_ordered_moe_in_all_files": true,
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
