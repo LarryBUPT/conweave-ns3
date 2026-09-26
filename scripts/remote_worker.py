@@ -422,8 +422,8 @@ def execute(experiment_id):
 
 def start(experiment_id, params, max_concurrent=1):
     resources_ok()
-    if max_concurrent not in (1, 2, 4):
-        raise RuntimeError('Concurrency must be 1, 2, or 4 after resource pilot')
+    if max_concurrent not in (1, 2, 4, 8, 12):
+        raise RuntimeError('Concurrency must be 1, 2, 4, 8, or 12 after resource pilot')
     with simulation_start_lock():
         resources_ok()
         workers = running_workers()
@@ -522,7 +522,7 @@ def main():
     run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
-    run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4), default=1)
+    run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12), default=1)
     run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)
     run_cmd.add_argument('--buffer', type=int, choices=range(1, 10), default=9)
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
