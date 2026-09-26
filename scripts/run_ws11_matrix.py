@@ -25,6 +25,8 @@ SEQUENCE = ((0, 'fecmp'), (0, 'dualtrack'), (64, 'dualtrack'),
             (64, 'fecmp'), (128, 'fecmp'), (128, 'dualtrack'),
             (192, 'dualtrack'), (192, 'fecmp'))
 LOCK = threading.Lock()
+REMOTE_SLOTS = threading.Semaphore(8)
+QUICK_REMOTE_SLOTS = threading.Semaphore(2)
 BUILD_SLOTS = threading.Semaphore(8)
 CPU_TOKENS = threading.BoundedSemaphore(18)  # Reserve two of 20 physical cores.
 
@@ -57,7 +59,19 @@ def call(argv):
 
 
 def controller(*args):
-    return call([sys.executable, CONTROLLER] + list(args))
+    if args and args[0] == 'build':
+        with REMOTE_SLOTS:
+            return call([sys.executable, CONTROLLER] + list(args))
+    with QUICK_REMOTE_SLOTS, REMOTE_SLOTS:
+        for attempt in range(2 if args and args[0] in ('check', 'status') else 1):
+            try:
+                return call([sys.executable, CONTROLLER] + list(args))
+            except RuntimeError as error:
+                if attempt == 0 and ('Connection closed' in str(error) or
+                                     'exit status 255' in str(error)):
+                    time.sleep(5)
+                    continue
+                raise
 
 
 def status(experiment_id):
@@ -130,17 +144,19 @@ def start_watch(experiment_id):
                'nohup python3 /home/fnl/lzy/.research-workflow/ws11_resource_watch.py '
                '%s > %s/resource-watch.log 2>&1 < /dev/null &') % (
                    remote, experiment_id, remote)
-    call(['ssh', '-o', 'BatchMode=yes', '-o', 'ClearAllForwardings=yes',
-          'fnl@10.112.14.167', command])
+    with QUICK_REMOTE_SLOTS, REMOTE_SLOTS:
+        call(['ssh', '-o', 'BatchMode=yes', '-o', 'ClearAllForwardings=yes',
+              'fnl@10.112.14.167', command])
 
 
 def wait_watch(experiment_id):
     remote = ('/home/fnl/lzy/results/%s/logs/resource-summary.json' % experiment_id)
     for _ in range(8):
-        check = subprocess.run(['ssh', '-o', 'BatchMode=yes',
-                                '-o', 'ClearAllForwardings=yes', 'fnl@10.112.14.167',
-                                'test -s ' + remote], stdout=subprocess.PIPE,
-                               stderr=subprocess.PIPE)
+        with QUICK_REMOTE_SLOTS, REMOTE_SLOTS:
+            check = subprocess.run(['ssh', '-o', 'BatchMode=yes',
+                                    '-o', 'ClearAllForwardings=yes', 'fnl@10.112.14.167',
+                                    'test -s ' + remote], stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE)
         if check.returncode == 0:
             return
         time.sleep(5)
