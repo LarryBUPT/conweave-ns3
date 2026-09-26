@@ -140,10 +140,11 @@ def make_plan():
 
 def start_watch(experiment_id):
     remote = '/home/fnl/lzy/results/%s/logs' % experiment_id
-    command = ('test -e %s/resource-samples.jsonl || '
+    command = ('if test ! -e %s/resource-samples.jsonl; then '
                'nohup python3 /home/fnl/lzy/.research-workflow/ws11_resource_watch.py '
-               '%s > %s/resource-watch.log 2>&1 < /dev/null &') % (
-                   remote, experiment_id, remote)
+               '%s > %s/resource-watch.log 2>&1 < /dev/null & fi; '
+               'sleep 1; test -e %s/resource-samples.jsonl') % (
+                   remote, experiment_id, remote, remote)
     with QUICK_REMOTE_SLOTS, REMOTE_SLOTS:
         call(['ssh', '-o', 'BatchMode=yes', '-o', 'ClearAllForwardings=yes',
               'fnl@10.112.14.167', command])
@@ -223,6 +224,7 @@ def run_cell(cell, commit, cap, simulation_slots, stop_event):
                     if stop_event.is_set():
                         raise RuntimeError('Batch stopped before simulation')
                     audit()
+                    start_watch(experiment_id)
                     controller('run', experiment_id, '--lb', cell['mode'], '--pfc', '0',
                                '--irn', '1', '--simul-time', '0.01', '--netload', '10',
                                '--bw', '400', '--buffer', '9',
