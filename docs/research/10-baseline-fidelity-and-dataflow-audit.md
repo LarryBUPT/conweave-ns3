@@ -1,6 +1,6 @@
 # ConWeave 研究入口：Baseline Fidelity Check 与实验数据流审计
 
-记录日期：2026-09-23。审计源码：个人 fork `LarryBUPT/conweave-ns3` 的 `a8d2db5f057172ce89730b4f6344c531e34a9302`。本轮仅核对基线、运行输入和既有观测链路，不把最小运行结果解释为性能结论。
+记录日期：2026-09-23；后续状态同步：2026-09-26（WS-10 交接）。审计源码：个人 fork `LarryBUPT/conweave-ns3` 的 `a8d2db5f057172ce89730b4f6344c531e34a9302`。第 1–4 节仅核对当时的四个基线、运行输入和既有观测链路，不把最小运行结果解释为性能结论。后续工作流的证据与路线见第 5 节；它们不改写这组基线的固定 SHA、参数或原始结果。
 
 ## 1. 实验契约与可复现输入
 
@@ -110,3 +110,19 @@ ConWeave 的 TxToR 按 flow key 保存 epoch、phase、当前路径、reply/noti
 - trace 生成未播种是跨运行可比性的主要陷阱；以后必须继续共享不可变 trace 或先独立记录生成 seed 与文件哈希。
 - `queueAnalysis.py` 的 queue 语义限于 ConWeave VOQ。若下一阶段假设涉及 MMU 物理占用，应先建立单独观测口径，再做最小实验。
 - 若算法专属计数器为 0，须把“模式被选中”与“关键动态分支被触发”分开报告，不推断算法全部行为已验证。
+
+## 5. 后续证据与研究路线同步（2026-09-26，WS-10 闭环）
+
+本文件第 1–4 节是 **2026-09-23 四模式 fidelity 的历史审计**。后续 WS-06 至 WS-09 使用新增六列输入、`dualtrack`、GuardHash/HarmGate 原型和不同接收契约，不能把它们的数字并入上表做同条件排名。跨对话的实时状态与任务边界以个人 fork 的 [CURRENT_STATE](../project-state/CURRENT_STATE.md)、[WORKSTREAMS](../project-state/WORKSTREAMS.md) 和 [ROADMAP](../project-state/ROADMAP.md) 为入口，运行时仍以源码、实验 ID 的元数据和原始数据为准。
+
+| 阶段 | 已核验事实 | 证据等级与边界 |
+| --- | --- | --- |
+| WS-06 输入兼容 | 显式 flow file、五/六列解析和 tag 通路；旧五列四 baseline 的 FCT 哈希与此前同输入运行一致 | [Handoff 06](../handoffs/2026-09-24-06-six-column-input-and-tags.md)：输入与回归核验，不是双轨性能证据 |
+| WS-07 最小双轨 | `dualtrack` 中 `tag=2` UDP 数据逐包哈希、`tag=1/0` 按流 ECMP；单类/双类与跨 ToR 正确性通过。PFC=1、IRN=0 的单 seed 四格中，逐包无背景批次为 4002.653 µs，背景交互仅 +2.038 µs | [Handoff 08](../handoffs/2026-09-25-08-ws07-dual-track-mixtax.md)、[四格摘要](../research/ws07-pilot-summary.json)：技术 pilot；4 ms 尾部不能归因于背景 |
+| WS-08 接收诊断 | 只加日志的复跑把四条约 4 ms 尾流逐一对应到最后 192 B 未确认后的 4 ms RTO；共同 PFC=0、IRN=1 的四格全部完成，MoE 交互为 −0.053 µs（−3.7456%），背景 P99 差为 0 | [Handoff 09](../handoffs/2026-09-25-09-ws08-receiver-gate.md)、[诊断](../research/ws08-receiver-preflight.md)：另一套传输条件的单 seed pilot；不证明其他条件无跨类损害 |
+| WS-09 工程原型 | `shortq2/guardhash/guardhashgate`（模式 13/14/15）与真实出口 per-port/per-tag 计数已实现；十个终态 ID 的完成数、trace/拓扑哈希、队列守恒和同输入配对复核通过。三格单 seed MoE 合成批次为 1.421/1.415/1.490 µs，背景 P99 相同；门控激活 39 次、退出 9 次 | [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)、[冻结规格](../research/ws09-guardhash-v0-spec.md)、[十格摘要](../research/ws09-validation-summary.json)：正确性与技术 pilot；门控格在此输入下较无门控格慢，不能宣称机制收益 |
+| WS-10 固定总字节正式复核 | 统一 `aa778ac523bc0319999395dd3cf8085b41e73a98`，资源 pilot 6/6、五 seed × 六格正式 30/30；全类 100% 完成，主 4 档交互 1/5 正向、归一化中位数 −1.3947%，背景安全 10/10 通过；2 档均正而 4 档多数负 | [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)、[预注册](../research/ws10-fixed-load-prereg-v1.md)、[报告](../research/ws10-fixed-load-formal-report.md)、[30 格原始索引与摘要](../research/ws10-fixed-load-formal-summary.json)：正式现象 **no-go**；不证明 GuardHash 效果，也不推断其他负载普遍无损害 |
+
+**当前决策：**WS-08 的单 seed 结果未达到正向损害门槛；WS-09 已按工程范围完成；WS-10 的正式五 seed 场景也未达到主 4 档正向方向与幅度门槛，故 WS-11 的 GuardHash/HarmGate 效果主张目前不启动。[ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)允许先实现和技术验证，同时保留 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)的正式效果判据。ADR 是 Architecture Decision Record（架构决策记录），用于保存会影响后续实验的决策及理由，不是性能结果。WS-09 已冻结：HarmGate 是按本地总队列字节激活类别评分的门控，GuardHash 是同一双候选上的 `q+b` 评分；二者不是两套独立协议。WS-09 的队列字节来自真实 BEgressQueue，**不回填**为本文件旧四模式的 MMU 队列观测。
+
+**后续顺序：**WS-10 已按事前固定的场景、目标/总字节、五独立 trace seed、判据和资源预算完成；主判据 no-go，不能事后把 2 档正向趋势替换成 4 档成功结论。WS-11 已明确设立**全量输入现象验证阶段**：完整 16,384 条同步 MoE 与原始 0/64/128/192 背景档从未正式仿真，先独立预注册问题、热点与双侧指标、判据和资源 pilot。原始档位的总字节随背景增加，须并列设置负载归因控制，不得将总体负载上升直接写成包流混合损害。新场景与 WS-10 的 30 格分开报告；仅当新的现象门槛通过，才进行 GuardHash/HarmGate 等信息强对照、消融与双侧效果判断。远程仿真按[工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)静默运行；确认服务器无人、隔离与资源 pilot 通过后逐级提高并行度。WS-12 可先整理当前负结果、非单调性和传输/接收边界。旧 `2.005s` FCT 窗口排除 `2.000s` 同启 MoE，本轮使用独立按 tag 的输入分母、完成率、FCT 和合成批次指标；无轮次字段，不称“八轮 job CCT”。ConWeave VOQ 仍不等于 MMU 物理队列。

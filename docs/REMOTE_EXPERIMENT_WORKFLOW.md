@@ -1,6 +1,6 @@
 # ConWeave 本地开发与远程实验
 
-更新：2026-09-23。日常操作从本机 `workspace/LarryBUPT-conweave-ns3`（个人 fork 克隆）执行。源码进 Git，原始实验数据进独立结果目录。
+更新：2026-09-26。日常操作从本机 `workspace/LarryBUPT-conweave-ns3`（个人 fork 克隆）执行。源码进 Git，原始实验数据进独立结果目录。
 
 ## 1. 三处职责与当前状态
 
@@ -37,7 +37,7 @@ python scripts\remote_experiment.py check
 
 本机 `.project/remote.env` 被 Git 忽略，只含主机、用户和工作区路径；不放密码、Token 或私钥。SSH 使用现有 `~/.ssh` 凭据，不复制进项目。`deploy` 只向 `/home/fnl/lzy/.research-workflow/remote_worker.py` 写项目脚本；会检查真实根路径。
 
-服务器已有 Docker 客户端，但 `fnl` 无权访问 Docker socket，因此目前采用工作区内的原生 Waf 编译。不能为 Docker 修改用户组或 daemon。默认编译 `-j2`，一次只运行一个仿真；启动前检查负载、可用内存、磁盘和现有 ns-3 进程，保留 CPU 和内存给服务器其他任务。远程 Python 3.5 和 GCC 5.4 较旧；原始基线的 Waf `configure` 和完整编译已在隔离目录通过。新代码仍要逐次编译验证。
+服务器已有 Docker 客户端，但 `fnl` 无权访问 Docker socket，因此目前采用工作区内的原生 Waf 编译。不能为 Docker 修改用户组或 daemon。现有 `remote_worker.py` 默认编译 `-j2`、一次只允许运行一个仿真；这是当前实现限制，不是后续矩阵的资源目标。启动前检查服务器上其他用户/任务的 CPU、内存、磁盘与现有 ns-3 进程。确认无人使用且隔离安全后，按实测单格 CPU/RSS/磁盘占用和资源余量提高并行度，尽可能充分利用空闲服务器；优先让不同实验 ID 的独立源码、输出和日志并行，避免共用可写缓存、trace 或结果目录。先做资源 pilot，逐级增加并发并观察吞吐、失败率和内存峰值；出现争用、其他用户任务或资源不足时自动降低并发或暂停新格。当前运行器的单仿真拦截和构建负载阈值必须经过并发隔离审计与实现修改后才能解除，不可通过绕过检查多开。远程 Python 3.5 和 GCC 5.4 较旧；原始基线的 Waf `configure` 和完整编译已在隔离目录通过。新代码仍要逐次编译验证。
 
 只读审计摘要：本机 Windows（12 个逻辑处理器），Git 2.54、OpenSSH 9.5、Python 3.12；本机没有 `rsync`，结果下载采用 `scp`。服务器报告 40 个逻辑 CPU（项目仍按 20 核预算）、125 GiB 内存、无 swap、约 5.9 TiB 可用磁盘；GCC/G++ 5.4、Python 2.7/3.5、Git 2.7、Make 4.1、CMake 3.17、NumPy 1.11，`tmux`、`screen`、`nohup`、`rsync` 已有。Waf 报告 GTK2、GSL、部分 Boost/OpenFlow 和 Python 绑定等可选功能未启用；原始基线编译不需要它们。若个人 idea 引入更新的 C++、Python 或可选库依赖，优先在 `~/lzy` 内建立用户级工具链；确实需要系统级安装时先停下说明影响。
 
@@ -91,7 +91,11 @@ python scripts\analyze_result.py 20260923-170000-conweave-baseline
 | 仿真失败 | 看 `status`、`logs/worker.log`、`logs/simulation.log`。`run.py` 可能吞掉子命令退出码，工具额外要求 FCT 输出非空才标成功。|
 | 结果同步失败 | `fetch` 保留本机 `.incoming-<实验ID>-<PID>` 临时目录；核对后重新下载，不自动覆盖正式结果。|
 
-不执行仓库自带 `cleanup.sh`：它包含 `rm -rf ./mix/output/*` 和删除分析 PDF。远程现有工作树的 `mix/.history` 已有未提交修改，保持原状。任何系统级安装、Docker 权限变更、已有结果删除、强制 Git 操作和接近全部 CPU 的长时间实验，仍须先由开发者明确确认。
+### 长时矩阵运行准则
+
+仿真与批量编译在后台静默进行，结果及资源收据落盘；不把逐格日志、重复状态或完整 JSON 持续送入对话。低频汇总检查即可，正常运行时不反复唤醒任务；只在完成、失败、资源异常或需要用户决定时报告。监控间隔按单格时长调整，避免频繁 SSH 轮询和额外 token 消耗；报告使用实验 ID、完成数、失败数、资源峰值及下一动作的简表。矩阵可并行但每格必须保持固定源码 SHA、输入哈希、seed、独立目录与可恢复状态；中断后从已核验收据继续，不覆盖既有原始结果。
+
+不执行仓库自带 `cleanup.sh`：它包含 `rm -rf ./mix/output/*` 和删除分析 PDF。远程现有工作树的 `mix/.history` 已有未提交修改，保持原状。任何系统级安装、Docker 权限变更、已有结果删除和强制 Git 操作仍须先由开发者明确确认。用户已授权在确认服务器无人、隔离与资源 pilot 通过后尽可能调度空闲资源运行研究矩阵；不需为这一授权重复询问，但须记录并发度、资源依据与降载条件。
 
 ## 5. 首次最小验证记录
 

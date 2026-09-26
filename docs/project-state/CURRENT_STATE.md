@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-10 固定总字节与五 seed 正式现象复核已完成，预注册主判据 no-go；WS-11 效果实验门槛未打开。**WS-07 的 PFC=1、IRN=0 逐包无背景约 4 ms 尾部已对应四个末段 RTO；WS-08 的 PFC=0、IRN=1 单 seed 交互为 `−0.053 µs`（`−3.7456%`）。WS-09 GuardHash/HarmGate v0 工程原型完成，但没有正式效果证据。WS-10 的 30/30 个正式格全类完成，4 背景档五 seed 交互仅 1 个正向、归一化中位数 `−1.3947%`，见 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md) 与 [正式报告](../research/ws10-fixed-load-formal-report.md)。
+阶段：**WS-10 固定总字节与五 seed 正式现象复核已完成，预注册主判据 no-go；WS-11 启动独立全量输入现象验证，效果实验门槛仍未打开。**WS-07 的 PFC=1、IRN=0 逐包无背景约 4 ms 尾部已对应四个末段 RTO；WS-08 的 PFC=0、IRN=1 单 seed 交互为 `−0.053 µs`（`−3.7456%`）。WS-09 GuardHash/HarmGate v0 工程原型完成，但没有正式效果证据。WS-10 的 30/30 个正式格全类完成，4 背景档五 seed 交互仅 1 个正向、归一化中位数 `−1.3947%`，见 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md) 与 [正式报告](../research/ws10-fixed-load-formal-report.md)。
 
 ## 已完成且可核验
 
@@ -21,7 +21,7 @@
 
 ## 当前版本快照
 
-2026-09-26 WS-10 集成核验：个人 fork `feature/ws10-fixed-load-mixtax` 的实验源码固定 `aa778ac523bc0319999395dd3cf8085b41e73a98`；正式 30 格的元数据、原始文件哈希、目标/类别完成率和资源收据由 `scripts/verify_ws10_formal.py` 重新读取通过。状态文件提交会移动分支 HEAD，不能把新 HEAD 误作仿真源码 SHA。WS-11 仍为条件性 no-go。
+2026-09-26 WS-10 独立集成核验：来源任务 ID `01a0da7c-8d4d-7522-b1c9-1bfb967bd170`；个人 fork `feature/ws10-fixed-load-mixtax` 的实验源码固定 `aa778ac523bc0319999395dd3cf8085b41e73a98`。`scripts/verify_ws10_formal.py` 再次从正式 30 格的元数据、原始文件哈希、目标/类别完成率和资源收据重算通过，`phenomenon_go=false`。集成前本地、origin、GitHub 同名分支均为 `6cc47c6cffa3d00f7cb3ec71411c68844f57ff76`、工作树干净。状态提交会移动分支 HEAD，不能把新 HEAD 误作仿真源码 SHA。WS-11 的全量验证已规划，效果主张仍为条件性 no-go。
 
 2026-09-26 WS-09 交接集成核验：`scripts/verify_ws09_prototype.py` 重新读取十个终态 ID 的元数据与原始结果，逐项通过；重生的 `docs/research/ws09-validation-summary.json` 与已提交文件 SHA-256 相同。个人 fork 本地与 `origin/feature/ws09-guardhash-prototype` 在集成前同为 `6a32df51d67b84b0a1f416e8b0c669946af15401`、工作树干净；其最后一提交只新增术语问答和状态入口。Handoff 10 已补真实 WS-09 任务 ID。集成提交会移动 HEAD。工程范围闭环，`queue_reject/queued_drop` 动态覆盖和正式类别增量仍留待后续。
 
@@ -46,9 +46,10 @@
 1. **公共输入底座与最小双轨，已完成技术核验：**六列/五列解析、显式流文件、tag 到源 ToR、独立 MoE 分组分析和 `dualtrack` 均可用；32 主机单类及双类、导入 1280 拓扑跨 ToR 四流已全数完成。四份完整 1280 节点 MoE trace 仍未全量运行。
 2. **共同接收/重传语义，技术诊断已完成：**旧 PFC+非 IRN 的四个 4 ms 尾流对应四个末段 RTO；共享 IRN+无 PFC 契约在一个 seed 的 0/64 四格全部完成且无超时。它是新的传输条件，不能与 WS-07 旧四格合并。若在导入混合延迟拓扑比较 ConWeave，仍须先审计其统一 `one_hop_delay`。
 3. **正式现象实验，按 WS-10 预注册范围完成：**共同 IRN 契约、固定目标/总字节 0/2/4、五个独立 trace seed 和 30 个配对格均已运行核验。主 4 档只有 1/5 正向、归一化中位数 `−1.3947%`，不满足至少 4/5 正向且中位数 ≥5% 的门槛；本场景 no-go，不推断其他负载普遍无损害。2 档正向趋势作为非单调剂量结果保留。
-4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10 的正式场景没有通过稳定损害门槛，WS-11 不启动效果主张，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
+4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10 的正式场景没有通过稳定损害门槛，WS-11 先做独立全量输入现象验证，不启动效果主张，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
+5. **全量阶段与资源准则：**16,384 条同步 MoE + 0/64/128/192 条背景输入尚未仿真；WS-11 先预注册新场景、做资源 pilot、核验热点及双侧指标。原始输入随背景增加总字节，需单列负载控制，不能与 WS-10 固定总字节场景合并。远程矩阵按更新的 [工作流](../REMOTE_EXPERIMENT_WORKFLOW.md) 静默监控；确认服务器无人并审计并发隔离后，提高空闲资源利用率。现有运行器仍强制一次一个仿真，须先修改并验证，不能绕过保护。
 
-下一个里程碑：**整理 WS-10 负结果及 2/4 档非单调性，决定是否另立可证伪的新现象场景。**新场景须另行预注册，不并入当前 30 格；只有新场景重新通过现象门槛，才考虑 WS-11 等信息效果对照。也可按 WS-12 的解释性负结果路线组织论文证据。依赖与停机条件见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
+下一个里程碑：**WS-11 独立预注册并验证完整 MoE 混合输入；同时解释 WS-10 的 2/4 档非单调性。**新场景不并入既有 30 格；只有新场景通过预先冻结的现象门槛，才考虑等信息效果对照。若仍未通过，按 WS-12 的解释性负结果路线组织论文证据。依赖与停机条件见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
 
 ## 证据边界
 
