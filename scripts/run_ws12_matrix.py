@@ -143,6 +143,26 @@ def make_plan():
     return plan
 
 
+def make_pilot_plan():
+    path = os.path.join(RESULTS, 'ws12-pilot-plan.json')
+    if os.path.exists(path):
+        with open(path, encoding='utf-8') as source:
+            return json.load(source)
+    name, expected = input_for('original', 192, None)
+    assert sha(os.path.join(ROOT, 'config', name)) == expected
+    assert sha(os.path.join(ROOT, 'config', 'topo_1280_400G_400G_OS1.txt')) == TOPO_SHA
+    cells = [{'id': '20260927-030000-ws12-pilot-' + MODE_CODES[mode],
+              'group': 'original', 'background': 192, 'mode': mode,
+              'flow_file': name, 'flow_sha256': expected} for mode in MODES]
+    plan = {'git_commit': SIMULATION_COMMIT, 'topology_sha256': TOPO_SHA,
+            'prereg': 'docs/research/ws12-packet-strategies-prereg-v1.md',
+            'role': 'resource-and-correctness-pilot', 'cells': cells}
+    with open(path, 'x', encoding='utf-8') as target:
+        json.dump(plan, target, indent=2, sort_keys=True)
+        target.write('\n')
+    return plan
+
+
 def start_watch(experiment_id):
     remote = '/home/fnl/lzy/results/%s/logs' % experiment_id
     command = ('if test ! -e %s/resource-samples.jsonl; then '
@@ -264,7 +284,7 @@ def run_cell(cell, commit, cap, simulation_slots, stop_event):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('phase', choices=('plan', 'formal'))
+    parser.add_argument('phase', choices=('plan', 'pilot', 'formal'))
     parser.add_argument('--concurrency', type=int, choices=(1, 2, 4, 8, 12), default=1)
     parser.add_argument('--cpu-tokens', type=int, choices=(18, 19, 20), default=18)
     parser.add_argument('--max-new-cells', type=int,
@@ -272,7 +292,12 @@ def main():
     args = parser.parse_args()
     global CPU_TOKENS
     CPU_TOKENS = threading.BoundedSemaphore(args.cpu_tokens)
-    plan = make_plan()
+    global RECEIPTS
+    if args.phase == 'pilot':
+        RECEIPTS = os.path.join(RESULTS, 'ws12-pilot-receipts.jsonl')
+        plan = make_pilot_plan()
+    else:
+        plan = make_plan()
     if args.phase == 'plan':
         print('Planned %d cells at %s' % (len(plan['cells']), plan['git_commit']))
         return
