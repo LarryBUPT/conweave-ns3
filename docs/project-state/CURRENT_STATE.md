@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-10 固定总字节正式现象复核与 WS-11 全量输入正式现象验证均已完成，各自预注册复合判据 no-go；机制效果门槛仍关闭，下一步可进入 WS-12 解释性负结果路线。**WS-10 的 30/30 格中，主 4 背景档五 seed 仅 1 个正向、归一化中位数 `−1.3947%`。WS-11 的 40/40 格中，192 背景档 MoE 交互 5/5 正向、中位数 `+35.9057%`，但原始输入组背景 P99 恶化 `6.6527%`，超过预定 5% 安全线。两场景输入与总字节契约不同，不能合并或互相重判；详见 [WS-10 报告](../research/ws10-fixed-load-formal-report.md) 与 [WS-11 报告](../research/ws11-full-moe-formal-report.md)。WS-09 GuardHash/HarmGate v0 仅完成工程原型，没有正式效果证据。
+阶段：**WS-10 固定总字节正式现象复核与 WS-11 全量输入正式现象验证均已完成，各自预注册复合判据 no-go；机制效果门槛仍关闭，WS-12 已启动多策略对照前置阶段与解释性负结果路线。**WS-10 的 30/30 格中，主 4 背景档五 seed 仅 1 个正向、归一化中位数 `−1.3947%`。WS-11 的 40/40 格中，192 背景档 MoE 交互 5/5 正向、中位数 `+35.9057%`，但原始输入组背景 P99 恶化 `6.6527%`，超过预定 5% 安全线。两场景输入与总字节契约不同，不能合并或互相重判；详见 [WS-10 报告](../research/ws10-fixed-load-formal-report.md) 与 [WS-11 报告](../research/ws11-full-moe-formal-report.md)。WS-09 GuardHash/HarmGate v0 仅完成工程原型，没有正式效果证据。
 
 ## 已完成且可核验
 
@@ -21,6 +21,8 @@
 - WS-11 全量输入正式现象验证：固定仿真源码 `208fcee4c541da9b24ed26792b32ae681a30977f`、16,384 条同步 MoE 与原始 0/64/128/192 背景输入，加四组确定性行顺序置换；40/40 正式格两类流全完成且原始文件与资源收据核验通过。主 192 档交互 5/5 正向、归一化中位数 +35.9057%，但原始组背景 P99 +6.6527% 超过 5% 安全线，复合门槛 no-go。置换组不是独立需求样本，背景增加也增加总字节。见 [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)、[报告](../research/ws11-full-moe-formal-report.md)、[机器摘要](../research/ws11-full-moe-formal-summary.json)。
 
 ## 当前版本快照
+
+2026-09-27 WS-11 独立交接核验：来源任务 ID `01a0de18-0f20-7201-ab7c-0a6c92c1b727` 已结束；集成前本地、origin、GitHub 的 `feature/ws11-full-moe-mixtax` 同为 `ef9c190fa119be8a8ca9ba4321a44c02d1dbc39f`，工作树干净。重新执行 `scripts/verify_ws11_formal.py` 读取 40 格原始结果与资源收据，返回码 0，输出 `positive_groups=5`、中位数 `35.90568060021436%`、`background_safety_all_pass=false`、`phenomenon_go=false`。正式仿真源码仍固定 `208fcee4c541da9b24ed26792b32ae681a30977f`；新状态提交不会改变实验归属。WS-11 按预注册现象与资源并发范围可闭环归档，条件性机制效果未启动。WS-12 承接既定多逐包策略加 ECMP 对照及解释性负结果路线。
 
 2026-09-27 WS-11 集成前核验：个人 fork `feature/ws11-full-moe-mixtax` 当时本地 HEAD 为 `91a8f6e8b7cf013217f661ddc9fab535ea015352`；40 格仿真源码统一为 `208fcee4c541da9b24ed26792b32ae681a30977f`，后续控制器和状态提交不是仿真 SHA。`scripts/verify_ws11_formal.py` 从逐格原始结果、trace、拓扑和资源收据重算 `phenomenon_go=false`。20 物理核/40 逻辑线程的服务器上，运行器使用 18 个共享 CPU 令牌（每次 `-j2` 编译占 2、单格仿真占 1），峰值采样 1 分钟负载 17.24；没有在途仿真。缺资源采样收据的旧 ID `20260926-144756-ws11-02-b192-f` 排除，用 `20260927-002500-ws11-02-b192-f-r` 同 SHA/trace/seed 重跑，原始 FCT SHA 相同。状态集成提交会移动 HEAD，执行时重新查询。
 

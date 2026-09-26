@@ -1,6 +1,6 @@
 # Handoff 12：WS-11 全量同步 MoE 加背景正式现象验证
 
-日期：2026-09-27（中国时间）。来源：由 [项目集成任务](codex://threads/01a0cfac-3176-7590-bf34-c0f176a45118) 委派的 WS-11 任务；本次执行的具体实验 ID 以 [40 格机器摘要](../research/ws11-full-moe-formal-summary.json) 为准，不以对话代替原始证据。
+日期：2026-09-27（中国时间）。来源：[WS-11 全量输入现象验证与条件性机制对照](codex://threads/01a0de18-0f20-7201-ab7c-0a6c92c1b727)，任务 ID `01a0de18-0f20-7201-ab7c-0a6c92c1b727`；本次执行的具体实验 ID 以 [40 格机器摘要](../research/ws11-full-moe-formal-summary.json) 为准，不以对话代替原始证据。
 
 ## 1. 本对话目标
 
@@ -40,3 +40,7 @@ WS-06 的六列 tag 输入、WS-07 `dualtrack`/MoE 分组分析、WS-08 共同 I
 ## 9. CONTEXT SNAPSHOT
 
 个人 fork `feature/ws11-full-moe-mixtax` 从 WS-10 集成 `a0467d6` 分出；40 格全量输入现象数据固定在仿真源码 `208fcee4c541da9b24ed26792b32ae681a30977f`。原始 0/64/128/192 trace 与四组行顺序置换均完成 `fecmp/dualtrack` 配对；40/40 两类流全完成、SHA/原始 FCT/资源收据通过。主 192 档 MoE 交互 5/5 正向、中位数 +35.9057%，但原始 192 背景 P99 +6.6527% >5% 安全线，故**预注册复合 no-go**，不做 GuardHash/HarmGate 效果比较。旧缺采样器 ID 排除、新 ID 复跑 FCT SHA 一致；原始结果与逐格哈希见 [机器摘要](../research/ws11-full-moe-formal-summary.json)，解释与限制见 [正式报告](../research/ws11-full-moe-formal-report.md)。WS-10 固定总字节 no-go 不变；下步为 WS-12 解释性路线或另立新场景预注册。
+
+## 集成交接核验（2026-09-27）
+
+独立重跑 `python scripts/verify_ws11_formal.py` 返回码 0，重新读取 40 个正式实验 ID 的原始数据与收据；输出 `positive_groups=5`、`median_normalized_interaction_pct=35.90568060021436`、`background_safety_all_pass=false`、`phenomenon_go=false`。集成前本地、origin 与 GitHub 同名分支均为 `ef9c190fa119be8a8ca9ba4321a44c02d1dbc39f`，工作树干净。WS-11 的预注册现象和资源并发阶段无未结实验格；条件性机制效果阶段因复合门槛未打开而不属于本轮待补项。可归档对话，WS-12 按 [WORKSTREAMS](../project-state/WORKSTREAMS.md) 的多策略对照前置阶段与解释性路线接续。

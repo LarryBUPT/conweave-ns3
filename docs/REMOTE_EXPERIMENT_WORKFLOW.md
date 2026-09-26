@@ -1,6 +1,6 @@
 # ConWeave 本地开发与远程实验
 
-更新：2026-09-26。日常操作从本机 `workspace/LarryBUPT-conweave-ns3`（个人 fork 克隆）执行。源码进 Git，原始实验数据进独立结果目录。
+更新：2026-09-27。日常操作从本机 `workspace/LarryBUPT-conweave-ns3`（个人 fork 克隆）执行。源码进 Git，原始实验数据进独立结果目录。
 
 ## 1. 三处职责与当前状态
 
@@ -37,7 +37,7 @@ python scripts\remote_experiment.py check
 
 本机 `.project/remote.env` 被 Git 忽略，只含主机、用户和工作区路径；不放密码、Token 或私钥。SSH 使用现有 `~/.ssh` 凭据，不复制进项目。`deploy` 只向 `/home/fnl/lzy/.research-workflow/remote_worker.py` 写项目脚本；会检查真实根路径。
 
-服务器已有 Docker 客户端，但 `fnl` 无权访问 Docker socket，因此目前采用工作区内的原生 Waf 编译。不能为 Docker 修改用户组或 daemon。现有 `remote_worker.py` 默认编译 `-j2`、一次只允许运行一个仿真；这是当前实现限制，不是后续矩阵的资源目标。启动前检查服务器上其他用户/任务的 CPU、内存、磁盘与现有 ns-3 进程。确认无人使用且隔离安全后，按实测单格 CPU/RSS/磁盘占用和资源余量提高并行度，尽可能充分利用空闲服务器；优先让不同实验 ID 的独立源码、输出和日志并行，避免共用可写缓存、trace 或结果目录。先做资源 pilot，逐级增加并发并观察吞吐、失败率和内存峰值；出现争用、其他用户任务或资源不足时自动降低并发或暂停新格。当前运行器的单仿真拦截和构建负载阈值必须经过并发隔离审计与实现修改后才能解除，不可通过绕过检查多开。远程 Python 3.5 和 GCC 5.4 较旧；原始基线的 Waf `configure` 和完整编译已在隔离目录通过。新代码仍要逐次编译验证。
+服务器已有 Docker 客户端，但 `fnl` 无权访问 Docker socket，因此目前采用工作区内的原生 Waf 编译。不能为 Docker 修改用户组或 daemon。`remote_worker.py` 每份独立源码仍以 `-j2` 编译；WS-11 已把原单仿真限制改为互斥锁保护、上限 1/2/4/8/12 的并发启动，并以 18 个共享 CPU 令牌完成全量矩阵。该实测配置不是永久资源上限。启动前核对其他用户/任务、系统负载、CPU、可用内存、磁盘、现有 ns-3 进程及运维状态。确认没有其他用户作业、系统健康且每格隔离安全后，按资源 pilot 与吞吐实测逐级提高编译加仿真的总调度量；可继续验证 19–20 个物理核等效令牌，目标是尽可能利用 20C/40 逻辑 CPU 的空闲算力，而非只追求最高并发进程数。保持系统及 SSH/存储可用，出现其他用户作业、争用、负载异常、内存/磁盘压力或吞吐下降时降低并发或暂停新格。不同实验 ID 的源码、`mix/output`、日志、元数据和结果必须独立；提高运行器上限时先审计锁、资源阈值与失败恢复，不绕过保护。远程 Python 3.5 和 GCC 5.4 较旧；原始基线的 Waf `configure` 和完整编译已在隔离目录通过。新代码仍要逐次编译验证。
 
 只读审计摘要：本机 Windows（12 个逻辑处理器），Git 2.54、OpenSSH 9.5、Python 3.12；本机没有 `rsync`，结果下载采用 `scp`。服务器报告 40 个逻辑 CPU（项目仍按 20 核预算）、125 GiB 内存、无 swap、约 5.9 TiB 可用磁盘；GCC/G++ 5.4、Python 2.7/3.5、Git 2.7、Make 4.1、CMake 3.17、NumPy 1.11，`tmux`、`screen`、`nohup`、`rsync` 已有。Waf 报告 GTK2、GSL、部分 Boost/OpenFlow 和 Python 绑定等可选功能未启用；原始基线编译不需要它们。若个人 idea 引入更新的 C++、Python 或可选库依赖，优先在 `~/lzy` 内建立用户级工具链；确实需要系统级安装时先停下说明影响。
 
@@ -67,7 +67,7 @@ python scripts\remote_experiment.py fetch 20260923-170000-conweave-baseline
 python scripts\analyze_result.py 20260923-170000-conweave-baseline
 ```
 
-`sync` 只接受已推送到个人 fork 的 SHA；服务器访问 GitHub 失败时，先诊断并静默运行一次 `~/lzy/login.sh` 后重试，再从本机通过 SSH 传送 Git bundle，仍保持相同 SHA。也可直接使用 `python scripts\remote_experiment.py sync-bundle --repo-local .`。`build` 从缓存复制一个**全新、固定 commit** 的实验源码目录，Waf `optimized` 模式以 2 个任务编译；它从不切换服务器现有的 `/home/fnl/lzy/conweave-ns3` 工作树。`run` 使用独立后台进程，SSH 断开仍继续。`status` 返回 PID、状态、SHA、参数和时间。默认小实验只接受 0.005–0.1 秒仿真时间及 1–50 的负载；扩大规模前先检查资源并修改项目安全上限，不直接运行 `autorun.sh`。
+`sync` 只接受已推送到个人 fork 的 SHA；服务器访问 GitHub 失败时，先诊断并静默运行一次 `~/lzy/login.sh` 后重试，再从本机通过 SSH 传送 Git bundle，仍保持相同 SHA。也可直接使用 `python scripts\remote_experiment.py sync-bundle --repo-local .`。`build` 从缓存复制一个**全新、固定 commit** 的实验源码目录，Waf `optimized` 模式每份以 2 个任务编译；它从不切换服务器现有的 `/home/fnl/lzy/conweave-ns3` 工作树。`run` 使用独立后台进程，SSH 断开仍继续；默认并发上限为 1，经资源核验可显式提高。`status` 返回 PID、状态、SHA、参数和时间。默认小实验只接受 0.005–0.1 秒仿真时间及 1–50 的负载；扩大规模前先检查资源并修改项目安全上限，不直接运行 `autorun.sh`。
 
 ### 结果和分析
 
