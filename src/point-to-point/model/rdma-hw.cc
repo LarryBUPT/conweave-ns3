@@ -40,7 +40,8 @@ static bool Ws13BackgroundQp(Ptr<RdmaQueuePair> qp) {
            (dst->second == 856 || dst->second == 576);
 }
 
-static void Ws13LogQp(const char *event, Ptr<RdmaQueuePair> qp) {
+static void Ws13LogQp(const char *event, Ptr<RdmaQueuePair> qp,
+                      uint16_t irn_nack_size = 0) {
     auto src = Settings::hostIp2IdMap.find(qp->sip.Get());
     auto dst = Settings::hostIp2IdMap.find(qp->dip.Get());
     NS_ASSERT_MSG(src != Settings::hostIp2IdMap.end() && dst != Settings::hostIp2IdMap.end(),
@@ -50,7 +51,8 @@ static void Ws13LogQp(const char *event, Ptr<RdmaQueuePair> qp) {
               << " src=" << src->second << " dst=" << dst->second
               << " sport=" << qp->sport << " dport=" << qp->dport
               << " flow_id=" << qp->m_flow_id << " snd_una=" << qp->snd_una
-              << " snd_nxt=" << qp->snd_nxt << std::endl;
+              << " snd_nxt=" << qp->snd_nxt
+              << " irn_nack_size=" << irn_nack_size << std::endl;
 }
 
 NS_LOG_COMPONENT_DEFINE("RdmaHw");
@@ -586,8 +588,11 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
     }
 
     if (Ws13BackgroundQp(qp)) {
-        if (ch.l3Prot == 0xFD) Ws13LogQp("nack", qp);
-        if (cnp) Ws13LogQp("cnp", qp);
+        // IRN ACKs and SACK feedback both use 0xFD; only a nonzero size is SACK.
+        if (ch.l3Prot == 0xFD)
+            Ws13LogQp(ch.ack.irnNackSize ? "sack" : "irn_ack", qp,
+                      ch.ack.irnNackSize);
+        if (cnp) Ws13LogQp("cnp", qp, ch.ack.irnNackSize);
     }
 
     // handle cnp
