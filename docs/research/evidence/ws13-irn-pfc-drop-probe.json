@@ -1,0 +1,71 @@
+{
+  "admission_drop_events": 161,
+  "admission_drop_reasons": {
+    "egress": 161
+  },
+  "admission_drops_by_source": {
+    "0": 27,
+    "10": 11,
+    "13": 22,
+    "14": 36,
+    "15": 21,
+    "2": 22,
+    "8": 14,
+    "9": 8
+  },
+  "completed_flows": 13,
+  "fct_byte_identical": true,
+  "fct_sha256": "c413060eff18204cb714570d7f78379aca5edf2dc02998b6b5681a04ef30c35f",
+  "input_flows": 16,
+  "matched_missing_flows": {
+    "13": {
+      "all_data_admission_drops_for_flow": 22,
+      "drop_switches": [
+        42,
+        49
+      ],
+      "first_matching_drop_ns": 2006839083,
+      "matching_drop_events": 2,
+      "snd_nxt": 564000,
+      "snd_una": 408000,
+      "timeout_ns": 2016820975
+    },
+    "14": {
+      "all_data_admission_drops_for_flow": 36,
+      "drop_switches": [
+        42,
+        49
+      ],
+      "first_matching_drop_ns": 2006839166,
+      "matching_drop_events": 2,
+      "snd_nxt": 425000,
+      "snd_una": 269000,
+      "timeout_ns": 2007524560
+    },
+    "15": {
+      "all_data_admission_drops_for_flow": 21,
+      "drop_switches": [
+        42,
+        49
+      ],
+      "first_matching_drop_ns": 2006839332,
+      "matching_drop_events": 2,
+      "snd_nxt": 536000,
+      "snd_una": 380000,
+      "timeout_ns": 2014441262
+    }
+  },
+  "missing_sources": [
+    13,
+    14,
+    15
+  ],
+  "original_id": "20260927-215700-irnpfcstress-11",
+  "original_sha": "babd1b90d7c027cd09ac8c7d67380511a92883a6",
+  "original_suppressed_timeout_events": 3,
+  "probe_id": "20260927-223000-irnpfcdrop-11",
+  "probe_sha": "7af917af2743529882c3d8524d08114e4677b3ed",
+  "queue_reject_events": 0,
+  "suppressed_timeout_events": 3,
+  "trace_sha256": "bc2db1513cbde20f12eea6efa4e2265cf74954be4fa45f2a147ff0ce84b33985"
+}
