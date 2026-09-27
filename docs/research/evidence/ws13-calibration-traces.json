@@ -1,0 +1,45 @@
+{
+  "role": "calibration-only",
+  "generator": "scripts/make_ws13_calibration_traces.py",
+  "sampling_frame": "320 hosts where host_id % 4 == 0; independently sample 256 experts, 64 background hosts per seed",
+  "trace_replicates": [
+    {
+      "seed": 20261301,
+      "file": "ws13_calibration_seed20261301_b192.txt",
+      "sha256": "d9be7e1af10994bfe5d8700b987f6abcd4366145b05c64fab11ee93daea61013",
+      "moe_flows": 16384,
+      "background_flows": 192,
+      "moe_bytes": 134217728,
+      "background_bytes": 1610612736,
+      "total_offered_bytes": 1744830464,
+      "expert_membership_sha256": "935383120215b547a17858b2d92ca2f2dfecadb9412f0a38b2f278f1ce6a4211",
+      "background_pairs_sha256": "a9a9c6310372dfac6969f7eb6452e9c93a8d003266891345dda4eb2b6ec09bcd"
+    },
+    {
+      "seed": 20261302,
+      "file": "ws13_calibration_seed20261302_b192.txt",
+      "sha256": "02feb1e8d5a50d79426c547f7a181766fbe15e9116fc8c3052d0811e681170fd",
+      "moe_flows": 16384,
+      "background_flows": 192,
+      "moe_bytes": 134217728,
+      "background_bytes": 1610612736,
+      "total_offered_bytes": 1744830464,
+      "expert_membership_sha256": "86e1f28f3720ed7d3abc45a5d917583817e94276a44f11a93250becb9f31cf8d",
+      "background_pairs_sha256": "e3f836449fa8b0b0fb986ef00e3309d7309f3ce6797d395e5f41c37ff192a93d"
+    },
+    {
+      "seed": 20261303,
+      "file": "ws13_calibration_seed20261303_b192.txt",
+      "sha256": "4dc0ac150b72f42b9c793670861de8dc2253f0e7fbab8ea1690fcaf1d43f4ff1",
+      "moe_flows": 16384,
+      "background_flows": 192,
+      "moe_bytes": 134217728,
+      "background_bytes": 1610612736,
+      "total_offered_bytes": 1744830464,
+      "expert_membership_sha256": "3f9799ae304c8daf4256ebc91cdf69745bb4edc6e20168a09e784c811a056f95",
+      "background_pairs_sha256": "eccf3004e15a61f33747b7312635228afd1dc86f73afa9483cd13aacde88dc38"
+    }
+  ],
+  "simulator_seed": 1,
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
