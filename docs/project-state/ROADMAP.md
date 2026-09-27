@@ -1,6 +1,6 @@
 # 下一阶段路线与停机条件
 
-更新：2026-09-27。集成工作流只维护顺序和证据门槛；具体代码和实验在对应 workstream 执行。参照 [CURRENT_STATE.md](CURRENT_STATE.md) 的实时快照，在执行前再核验 Git 与远程资源。研究筛选见 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)；用户要求的提前工程原型见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
+更新：2026-09-28。集成工作流只维护顺序和证据门槛；具体代码和实验在对应 workstream 执行。参照 [CURRENT_STATE.md](CURRENT_STATE.md) 的实时快照，在执行前再核验 Git 与远程资源。研究筛选见 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)；用户要求的提前工程原型见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 
 已完成的前置核验：**WS-06 输入兼容**见 [Handoff 06](../handoffs/2026-09-24-06-six-column-input-and-tags.md)；**WS-07 最小双轨与单 seed 技术 pilot**见 [Handoff 08](../handoffs/2026-09-25-08-ws07-dual-track-mixtax.md)；**WS-08 接收尾流诊断与共享 IRN 单 seed pilot**见 [Handoff 09](../handoffs/2026-09-25-09-ws08-receiver-gate.md)；**WS-09 可关闭原型与技术核验**见 [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)；**WS-10 固定总字节正式复核**见 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)；**WS-11 完整 MoE 全量输入正式验证**见 [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)；**WS-12 六策略全量配对**见 [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)；**WS-13 长尾反馈语义与目的出口诊断**见 [Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)。三场正式研究各保留自身输入、判据和 no-go。
 
@@ -13,6 +13,6 @@
 7. **WS-12 边界与论文整合，按证据提纲完成：**[WS-10/11/12 解释性负结果](../research/ws12-ws10-ws11-negative-evidence.md)已并列整理固定总字节和固定 MoE 加背景两种输入契约、WS-12 同档绝对批次与交互、热点/背景长尾、策略信息成本及不可观测项。用户已在 [ADR-008](../decisions/ADR-008-additive-background-workload.md) 指定未来固定 MoE 流、追加背景流且允许总字节增长；WS-10 旧契约保留为独立结果。新的机制收益主张须另立前瞻性场景、独立需求重复和双侧安全门槛，再决定是否测类别机制增量、错标、反馈延迟、路径不对称、资源/标签开销与不同拓扑。所有图表指向固定仿真 SHA、实验 ID 和原始数据；不声称真实硬件验证。
 
 8. **WS-13 背景尾流诊断，完成诊断和 IRN×PFC 技术 pilot；无业务安全线：**逐流越线清单、绝对指标/ECMP 连续权衡、三条独立需求校准 trace、成熟方案评价口径和修正后的反馈探针均已完成。目标 QP 无 SACK；最慢背景流的目的 ToR 出口队列等待约 3.14–3.99 µs，伴随 CNP。另做 IRN/PFC 00/01/10/11 四格：常规输入 PFC 无事件；受控 incast 的双开格仅 13/16 完成，定向探针确认三条未完成流的关键数据序号发生出口准入丢包，随后三次超时被抑制。当前实现不能把 11 作为正常性能格。旧 `0xFD=nack` 事件标签作废；新压力探针的超时日志已在原始 `config.log` 核验。用户暂无可核验业务 SLO，保留权衡与敏感性，不设通用阈值。详见 [Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)、[长尾报告](../research/ws13-tail-diagnosis-and-experiment-contract.md)和[四格报告](../research/ws13-irn-pfc-factorial-pilot-report.md)。
-9. **WS-14–16 条件路线：**如继续，WS-14 必须明确是研究性单机制小样而非业务安全验证，事前声明连续损害曲线、对照信息预算、观测缺口和停止条件；目前可检验目的出口排队及每 QP CNP，但因果贡献未确定。只有双侧信号清晰后，才用独立需求 trace 和事前冻结判据进行 WS-15 正式验证。若研究问题或证据不足，转入 WS-16 负结果与复现收束。既有 WS-10/11/12 no-go 永不因新场景回填或改判。
+9. **WS-14 单机制小样已按停止规则结束；进入 WS-16 收束：**预注册 GuardHash 背景队列惩罚，与普通双候选仅评分项不同，并以同输入 ECMP、逐包哈希、DRILL 对照。7/7 个 0/192 极端格完成且守恒检查通过；192 档候选背景 P99 优于普通双候选，但 MoE 批次较 ECMP 慢 0.731 µs、较普通双候选慢 0.552 µs，背景尾流转移且目的出口等待未一致下降，故不运行 64/128 档或 WS-15。见[契约](../research/ws14-single-mechanism-prereg-v1.md)、[报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)、[Handoff 15](../handoffs/2026-09-28-15-ws14-guardhash-single-mechanism-pilot.md)。数据只支持单输入描述，不构成业务安全或因果结论；WS-10/11/12 no-go 保持原样。
 
 本路线记录研究顺序与门槛。WS-09 工程范围、WS-10/11/12 的各自正式对照及 WS-12 解释性证据提纲均已闭环；三次 no-go 均未打开机制效果门槛。后续工作流按阶段 Handoff 与用户指示创建，不因台账状态自动创建对话。

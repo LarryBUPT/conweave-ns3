@@ -1,0 +1,2974 @@
+{
+  "cells": [
+    {
+      "background": 0,
+      "background_completed": 0,
+      "background_max_us": null,
+      "background_p95_us": null,
+      "background_p99_us": null,
+      "ecmp_slowest_paired": [],
+      "fct_sha256": "ebebc9c3687932ee8b6a854b5d2ba4c7100c3118af0a9a4b3a46847bcd2b8600",
+      "five_slowest": [],
+      "git_commit": "73401ce3ac0a5c27bf0e3e0636c9337056d9355e",
+      "id": "20260927-233000-ws14-0-q",
+      "mode": "shortq2",
+      "moe_batch_us": 15.637,
+      "moe_completed": 16384,
+      "paired_background_better_count": 0,
+      "paired_background_worse_count": 0,
+      "route": {
+        "diverted": 69721,
+        "packets": 673436,
+        "scored": 229915,
+        "two_candidates": 229915
+      },
+      "trace_sha256": "9e00baa5c79ab45b107b82b4c18d43cbb9a1073101bf14123aedd2d90d2e89fd"
+    },
+    {
+      "background": 0,
+      "background_completed": 0,
+      "background_max_us": null,
+      "background_p95_us": null,
+      "background_p99_us": null,
+      "ecmp_slowest_paired": [],
+      "fct_sha256": "ebebc9c3687932ee8b6a854b5d2ba4c7100c3118af0a9a4b3a46847bcd2b8600",
+      "five_slowest": [],
+      "git_commit": "73401ce3ac0a5c27bf0e3e0636c9337056d9355e",
+      "id": "20260927-233000-ws14-0-g",
+      "mode": "guardhash",
+      "moe_batch_us": 15.637,
+      "moe_completed": 16384,
+      "paired_background_better_count": 0,
+      "paired_background_worse_count": 0,
+      "route": {
+        "diverted": 69721,
+        "packets": 673436,
+        "scored": 229915,
+        "two_candidates": 229915
+      },
+      "trace_sha256": "9e00baa5c79ab45b107b82b4c18d43cbb9a1073101bf14123aedd2d90d2e89fd"
+    },
+    {
+      "background": 192,
+      "background_completed": 192,
+      "background_max_us": 1443.874,
+      "background_p95_us": 1368.90585,
+      "background_p99_us": 1411.82244,
+      "ecmp_slowest_paired": [
+        {
+          "fct_us": 1443.874,
+          "flow": [
+            308,
+            576,
+            10000,
+            100
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 42968,
+              "queued_bytes_sum": 2087068,
+              "switch": 1313,
+              "wait_ns_max": 871,
+              "wait_ns_sum": 42353
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 186544,
+              "queued_bytes_sum": 254386868,
+              "switch": 1346,
+              "wait_ns_max": 3617,
+              "wait_ns_sum": 4962218
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 5240,
+              "queued_bytes_sum": 127864,
+              "switch": 1478,
+              "wait_ns_max": 121,
+              "wait_ns_sum": 9831
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 98136,
+              "queued_bytes_sum": 7137060,
+              "switch": 1510,
+              "wait_ns_max": 2028,
+              "wait_ns_sum": 155286
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 24104,
+              "queued_bytes_sum": 719160,
+              "switch": 1652,
+              "wait_ns_max": 470,
+              "wait_ns_sum": 22485
+            }
+          ],
+          "qp_events": {
+            "cnp": 56,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1420.118,
+          "flow": [
+            748,
+            576,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 186604,
+              "queued_bytes_sum": 280527536,
+              "switch": 1346,
+              "wait_ns_max": 3625,
+              "wait_ns_sum": 5444812
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 151960,
+              "queued_bytes_sum": 11395408,
+              "switch": 1351,
+              "wait_ns_max": 3051,
+              "wait_ns_sum": 242099
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 164072,
+              "queued_bytes_sum": 11205544,
+              "switch": 1506,
+              "wait_ns_max": 3203,
+              "wait_ns_sum": 248697
+            }
+          ],
+          "qp_events": {
+            "cnp": 82,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1411.002,
+          "flow": [
+            924,
+            856,
+            10000,
+            103
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 195976,
+              "queued_bytes_sum": 420928088,
+              "switch": 1378,
+              "wait_ns_max": 3937,
+              "wait_ns_sum": 8351681
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 18864,
+              "queued_bytes_sum": 1143648,
+              "switch": 1380,
+              "wait_ns_max": 390,
+              "wait_ns_sum": 24165
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 22008,
+              "queued_bytes_sum": 1247352,
+              "switch": 1541,
+              "wait_ns_max": 457,
+              "wait_ns_sum": 26332
+            }
+          ],
+          "qp_events": {
+            "cnp": 65,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1405.355,
+          "flow": [
+            856,
+            576,
+            10001,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 187592,
+              "queued_bytes_sum": 254581424,
+              "switch": 1346,
+              "wait_ns_max": 3620,
+              "wait_ns_sum": 4945641
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 37788,
+              "queued_bytes_sum": 1944780,
+              "switch": 1378,
+              "wait_ns_max": 772,
+              "wait_ns_sum": 47110
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 163264,
+              "queued_bytes_sum": 10236672,
+              "switch": 1506,
+              "wait_ns_max": 3199,
+              "wait_ns_sum": 224851
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 90128,
+              "queued_bytes_sum": 5484836,
+              "switch": 1538,
+              "wait_ns_max": 1795,
+              "wait_ns_sum": 117003
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 16768,
+              "queued_bytes_sum": 205560,
+              "switch": 1620,
+              "wait_ns_max": 340,
+              "wait_ns_sum": 4507
+            }
+          ],
+          "qp_events": {
+            "cnp": 61,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1397.063,
+          "flow": [
+            772,
+            576,
+            10003,
+            102
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 187592,
+              "queued_bytes_sum": 213080764,
+              "switch": 1346,
+              "wait_ns_max": 3635,
+              "wait_ns_sum": 4160724
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 91492,
+              "queued_bytes_sum": 4859064,
+              "switch": 1376,
+              "wait_ns_max": 1819,
+              "wait_ns_sum": 114135
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 58248,
+              "queued_bytes_sum": 2044448,
+              "switch": 1511,
+              "wait_ns_max": 1152,
+              "wait_ns_sum": 40897
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 10,
+              "queued_bytes_max": 3204,
+              "queued_bytes_sum": 13984,
+              "switch": 1543,
+              "wait_ns_max": 62,
+              "wait_ns_sum": 675
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 14672,
+              "queued_bytes_sum": 194300,
+              "switch": 1657,
+              "wait_ns_max": 302,
+              "wait_ns_sum": 4222
+            }
+          ],
+          "qp_events": {
+            "cnp": 47,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "fct_sha256": "9d600f055044d50a20ed0d036552922c9de916665af5a44a6791e77a755038e1",
+      "five_slowest": [
+        {
+          "fct_us": 1443.874,
+          "flow": [
+            308,
+            576,
+            10000,
+            100
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 42968,
+              "queued_bytes_sum": 2087068,
+              "switch": 1313,
+              "wait_ns_max": 871,
+              "wait_ns_sum": 42353
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 186544,
+              "queued_bytes_sum": 254386868,
+              "switch": 1346,
+              "wait_ns_max": 3617,
+              "wait_ns_sum": 4962218
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 5240,
+              "queued_bytes_sum": 127864,
+              "switch": 1478,
+              "wait_ns_max": 121,
+              "wait_ns_sum": 9831
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 98136,
+              "queued_bytes_sum": 7137060,
+              "switch": 1510,
+              "wait_ns_max": 2028,
+              "wait_ns_sum": 155286
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 24104,
+              "queued_bytes_sum": 719160,
+              "switch": 1652,
+              "wait_ns_max": 470,
+              "wait_ns_sum": 22485
+            }
+          ],
+          "qp_events": {
+            "cnp": 56,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1420.118,
+          "flow": [
+            748,
+            576,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 186604,
+              "queued_bytes_sum": 280527536,
+              "switch": 1346,
+              "wait_ns_max": 3625,
+              "wait_ns_sum": 5444812
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 151960,
+              "queued_bytes_sum": 11395408,
+              "switch": 1351,
+              "wait_ns_max": 3051,
+              "wait_ns_sum": 242099
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 164072,
+              "queued_bytes_sum": 11205544,
+              "switch": 1506,
+              "wait_ns_max": 3203,
+              "wait_ns_sum": 248697
+            }
+          ],
+          "qp_events": {
+            "cnp": 82,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1411.002,
+          "flow": [
+            924,
+            856,
+            10000,
+            103
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 195976,
+              "queued_bytes_sum": 420928088,
+              "switch": 1378,
+              "wait_ns_max": 3937,
+              "wait_ns_sum": 8351681
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 18864,
+              "queued_bytes_sum": 1143648,
+              "switch": 1380,
+              "wait_ns_max": 390,
+              "wait_ns_sum": 24165
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 22008,
+              "queued_bytes_sum": 1247352,
+              "switch": 1541,
+              "wait_ns_max": 457,
+              "wait_ns_sum": 26332
+            }
+          ],
+          "qp_events": {
+            "cnp": 65,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1405.355,
+          "flow": [
+            856,
+            576,
+            10001,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 187592,
+              "queued_bytes_sum": 254581424,
+              "switch": 1346,
+              "wait_ns_max": 3620,
+              "wait_ns_sum": 4945641
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 37788,
+              "queued_bytes_sum": 1944780,
+              "switch": 1378,
+              "wait_ns_max": 772,
+              "wait_ns_sum": 47110
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 163264,
+              "queued_bytes_sum": 10236672,
+              "switch": 1506,
+              "wait_ns_max": 3199,
+              "wait_ns_sum": 224851
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 90128,
+              "queued_bytes_sum": 5484836,
+              "switch": 1538,
+              "wait_ns_max": 1795,
+              "wait_ns_sum": 117003
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 16768,
+              "queued_bytes_sum": 205560,
+              "switch": 1620,
+              "wait_ns_max": 340,
+              "wait_ns_sum": 4507
+            }
+          ],
+          "qp_events": {
+            "cnp": 61,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1397.063,
+          "flow": [
+            772,
+            576,
+            10003,
+            102
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 187592,
+              "queued_bytes_sum": 213080764,
+              "switch": 1346,
+              "wait_ns_max": 3635,
+              "wait_ns_sum": 4160724
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 91492,
+              "queued_bytes_sum": 4859064,
+              "switch": 1376,
+              "wait_ns_max": 1819,
+              "wait_ns_sum": 114135
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 58248,
+              "queued_bytes_sum": 2044448,
+              "switch": 1511,
+              "wait_ns_max": 1152,
+              "wait_ns_sum": 40897
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 10,
+              "queued_bytes_max": 3204,
+              "queued_bytes_sum": 13984,
+              "switch": 1543,
+              "wait_ns_max": 62,
+              "wait_ns_sum": 675
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 14672,
+              "queued_bytes_sum": 194300,
+              "switch": 1657,
+              "wait_ns_max": 302,
+              "wait_ns_sum": 4222
+            }
+          ],
+          "qp_events": {
+            "cnp": 47,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "git_commit": "73401ce3ac0a5c27bf0e3e0636c9337056d9355e",
+      "id": "20260927-233000-ws14-192-f",
+      "mode": "fecmp",
+      "moe_batch_us": 18.92,
+      "moe_completed": 16384,
+      "paired_background_better_count": 0,
+      "paired_background_worse_count": 0,
+      "route": null,
+      "trace_sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a"
+    },
+    {
+      "background": 192,
+      "background_completed": 192,
+      "background_max_us": 1665.072,
+      "background_p95_us": 1398.4034,
+      "background_p99_us": 1505.7474100000002,
+      "ecmp_slowest_paired": [
+        {
+          "fct_us": 1032.231,
+          "flow": [
+            308,
+            576,
+            10000,
+            100
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 14732,
+              "queued_bytes_sum": 314240,
+              "switch": 1313,
+              "wait_ns_max": 293,
+              "wait_ns_sum": 7174
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188700,
+              "queued_bytes_sum": 201563456,
+              "switch": 1346,
+              "wait_ns_max": 3782,
+              "wait_ns_sum": 3959432
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 16920,
+              "queued_bytes_sum": 494744,
+              "switch": 1478,
+              "wait_ns_max": 345,
+              "wait_ns_sum": 23605
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 94464,
+              "queued_bytes_sum": 8569500,
+              "switch": 1510,
+              "wait_ns_max": 1883,
+              "wait_ns_sum": 183786
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 25212,
+              "queued_bytes_sum": 688396,
+              "switch": 1652,
+              "wait_ns_max": 507,
+              "wait_ns_sum": 27843
+            }
+          ],
+          "qp_events": {
+            "cnp": 38,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1296.241,
+          "flow": [
+            748,
+            576,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 189688,
+              "queued_bytes_sum": 282691488,
+              "switch": 1346,
+              "wait_ns_max": 3780,
+              "wait_ns_sum": 5511354
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 260048,
+              "queued_bytes_sum": 19016540,
+              "switch": 1351,
+              "wait_ns_max": 5056,
+              "wait_ns_sum": 392248
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 178216,
+              "queued_bytes_sum": 9917260,
+              "switch": 1506,
+              "wait_ns_max": 3454,
+              "wait_ns_sum": 224528
+            }
+          ],
+          "qp_events": {
+            "cnp": 51,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1417.258,
+          "flow": [
+            924,
+            856,
+            10000,
+            103
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197144,
+              "queued_bytes_sum": 353862604,
+              "switch": 1378,
+              "wait_ns_max": 3960,
+              "wait_ns_sum": 7076623
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 41920,
+              "queued_bytes_sum": 3753396,
+              "switch": 1380,
+              "wait_ns_max": 858,
+              "wait_ns_sum": 76579
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 32024,
+              "queued_bytes_sum": 2339376,
+              "switch": 1541,
+              "wait_ns_max": 626,
+              "wait_ns_sum": 48101
+            }
+          ],
+          "qp_events": {
+            "cnp": 80,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1196.658,
+          "flow": [
+            856,
+            576,
+            10001,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188760,
+              "queued_bytes_sum": 262755880,
+              "switch": 1346,
+              "wait_ns_max": 3769,
+              "wait_ns_sum": 5124699
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 70216,
+              "queued_bytes_sum": 4079028,
+              "switch": 1378,
+              "wait_ns_max": 1391,
+              "wait_ns_sum": 94366
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 176420,
+              "queued_bytes_sum": 11937324,
+              "switch": 1506,
+              "wait_ns_max": 3392,
+              "wait_ns_sum": 262226
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 66024,
+              "queued_bytes_sum": 6924964,
+              "switch": 1538,
+              "wait_ns_max": 1317,
+              "wait_ns_sum": 158082
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 17816,
+              "queued_bytes_sum": 298220,
+              "switch": 1620,
+              "wait_ns_max": 373,
+              "wait_ns_sum": 6377
+            }
+          ],
+          "qp_events": {
+            "cnp": 63,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1496.648,
+          "flow": [
+            772,
+            576,
+            10003,
+            102
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 199604396,
+              "switch": 1346,
+              "wait_ns_max": 3763,
+              "wait_ns_sum": 3903448
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 236028,
+              "queued_bytes_sum": 14888128,
+              "switch": 1376,
+              "wait_ns_max": 4573,
+              "wait_ns_sum": 303163
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 14672,
+              "queued_bytes_sum": 279140,
+              "switch": 1511,
+              "wait_ns_max": 296,
+              "wait_ns_sum": 5951
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 10,
+              "queued_bytes_max": 3144,
+              "queued_bytes_sum": 13296,
+              "switch": 1543,
+              "wait_ns_max": 68,
+              "wait_ns_sum": 507
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 21020,
+              "queued_bytes_sum": 231800,
+              "switch": 1657,
+              "wait_ns_max": 420,
+              "wait_ns_sum": 4752
+            }
+          ],
+          "qp_events": {
+            "cnp": 48,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "fct_sha256": "e76888a283e7587ea90d4953b8bb7e95d030e26aaaaead34ccac014173d3e311",
+      "five_slowest": [
+        {
+          "fct_us": 1665.072,
+          "flow": [
+            1016,
+            856,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197024,
+              "queued_bytes_sum": 322153404,
+              "switch": 1378,
+              "wait_ns_max": 3949,
+              "wait_ns_sum": 6442471
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 45064,
+              "queued_bytes_sum": 3891812,
+              "switch": 1383,
+              "wait_ns_max": 892,
+              "wait_ns_sum": 85163
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 61952,
+              "queued_bytes_sum": 6321428,
+              "switch": 1543,
+              "wait_ns_max": 1242,
+              "wait_ns_sum": 136863
+            }
+          ],
+          "qp_events": {
+            "cnp": 100,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1548.835,
+          "flow": [
+            740,
+            856,
+            10000,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 9,
+              "queued_bytes_max": 74992,
+              "queued_bytes_sum": 4081268,
+              "switch": 1351,
+              "wait_ns_max": 1446,
+              "wait_ns_sum": 80601
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197084,
+              "queued_bytes_sum": 306974372,
+              "switch": 1378,
+              "wait_ns_max": 3959,
+              "wait_ns_sum": 6138142
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 41920,
+              "queued_bytes_sum": 2897752,
+              "switch": 1504,
+              "wait_ns_max": 851,
+              "wait_ns_sum": 67612
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 9432,
+              "queued_bytes_sum": 166460,
+              "switch": 1536,
+              "wait_ns_max": 203,
+              "wait_ns_sum": 4046
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 79800,
+              "queued_bytes_sum": 5547464,
+              "switch": 1604,
+              "wait_ns_max": 1538,
+              "wait_ns_sum": 116952
+            }
+          ],
+          "qp_events": {
+            "cnp": 94,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1501.486,
+          "flow": [
+            176,
+            856,
+            10000,
+            100
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 10480,
+              "queued_bytes_sum": 304444,
+              "switch": 1285,
+              "wait_ns_max": 206,
+              "wait_ns_sum": 6744
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197024,
+              "queued_bytes_sum": 306262200,
+              "switch": 1378,
+              "wait_ns_max": 3945,
+              "wait_ns_sum": 6120139
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 50616,
+              "queued_bytes_sum": 2145752,
+              "switch": 1442,
+              "wait_ns_max": 986,
+              "wait_ns_sum": 50415
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 230880,
+              "queued_bytes_sum": 12533236,
+              "switch": 1538,
+              "wait_ns_max": 4513,
+              "wait_ns_sum": 257027
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 17876,
+              "queued_bytes_sum": 588180,
+              "switch": 1623,
+              "wait_ns_max": 364,
+              "wait_ns_sum": 18375
+            }
+          ],
+          "qp_events": {
+            "cnp": 74,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1498.615,
+          "flow": [
+            656,
+            856,
+            10006,
+            106
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 23056,
+              "queued_bytes_sum": 745988,
+              "switch": 1348,
+              "wait_ns_max": 456,
+              "wait_ns_sum": 24010
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197084,
+              "queued_bytes_sum": 296069132,
+              "switch": 1378,
+              "wait_ns_max": 3952,
+              "wait_ns_sum": 5921866
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 4312,
+              "queued_bytes_sum": 44828,
+              "switch": 1510,
+              "wait_ns_max": 92,
+              "wait_ns_sum": 1399
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 14672,
+              "queued_bytes_sum": 202600,
+              "switch": 1542,
+              "wait_ns_max": 291,
+              "wait_ns_sum": 4441
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 15780,
+              "queued_bytes_sum": 225652,
+              "switch": 1655,
+              "wait_ns_max": 307,
+              "wait_ns_sum": 14422
+            }
+          ],
+          "qp_events": {
+            "cnp": 92,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1496.648,
+          "flow": [
+            772,
+            576,
+            10003,
+            102
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 199604396,
+              "switch": 1346,
+              "wait_ns_max": 3763,
+              "wait_ns_sum": 3903448
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 236028,
+              "queued_bytes_sum": 14888128,
+              "switch": 1376,
+              "wait_ns_max": 4573,
+              "wait_ns_sum": 303163
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 14672,
+              "queued_bytes_sum": 279140,
+              "switch": 1511,
+              "wait_ns_max": 296,
+              "wait_ns_sum": 5951
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 10,
+              "queued_bytes_max": 3144,
+              "queued_bytes_sum": 13296,
+              "switch": 1543,
+              "wait_ns_max": 68,
+              "wait_ns_sum": 507
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 21020,
+              "queued_bytes_sum": 231800,
+              "switch": 1657,
+              "wait_ns_max": 420,
+              "wait_ns_sum": 4752
+            }
+          ],
+          "qp_events": {
+            "cnp": 48,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "git_commit": "73401ce3ac0a5c27bf0e3e0636c9337056d9355e",
+      "id": "20260927-233000-ws14-192-h",
+      "mode": "dualtrack",
+      "moe_batch_us": 21.369,
+      "moe_completed": 16384,
+      "paired_background_better_count": 108,
+      "paired_background_worse_count": 84,
+      "route": null,
+      "trace_sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a"
+    },
+    {
+      "background": 192,
+      "background_completed": 192,
+      "background_max_us": 1650.169,
+      "background_p95_us": 1376.2318500000001,
+      "background_p99_us": 1552.65965,
+      "ecmp_slowest_paired": [
+        {
+          "fct_us": 1297.524,
+          "flow": [
+            308,
+            576,
+            10000,
+            100
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 3264,
+              "queued_bytes_sum": 121820,
+              "switch": 1313,
+              "wait_ns_max": 80,
+              "wait_ns_sum": 3188
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188760,
+              "queued_bytes_sum": 325882908,
+              "switch": 1346,
+              "wait_ns_max": 3769,
+              "wait_ns_sum": 6329595
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 5240,
+              "queued_bytes_sum": 105104,
+              "switch": 1478,
+              "wait_ns_max": 101,
+              "wait_ns_sum": 8207
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 147252,
+              "queued_bytes_sum": 9686048,
+              "switch": 1510,
+              "wait_ns_max": 2931,
+              "wait_ns_sum": 203462
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 31560,
+              "queued_bytes_sum": 1093192,
+              "switch": 1652,
+              "wait_ns_max": 626,
+              "wait_ns_sum": 31263
+            }
+          ],
+          "qp_events": {
+            "cnp": 45,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1208.113,
+          "flow": [
+            748,
+            576,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188700,
+              "queued_bytes_sum": 363580360,
+              "switch": 1346,
+              "wait_ns_max": 3769,
+              "wait_ns_sum": 7056700
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 35692,
+              "queued_bytes_sum": 2188276,
+              "switch": 1351,
+              "wait_ns_max": 725,
+              "wait_ns_sum": 59198
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 262208,
+              "queued_bytes_sum": 19559924,
+              "switch": 1506,
+              "wait_ns_max": 5021,
+              "wait_ns_sum": 417904
+            }
+          ],
+          "qp_events": {
+            "cnp": 50,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1546.052,
+          "flow": [
+            924,
+            856,
+            10000,
+            103
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197144,
+              "queued_bytes_sum": 325246776,
+              "switch": 1378,
+              "wait_ns_max": 3952,
+              "wait_ns_sum": 6499290
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 4192,
+              "queued_bytes_sum": 127712,
+              "switch": 1380,
+              "wait_ns_max": 80,
+              "wait_ns_sum": 3706
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 50836,
+              "queued_bytes_sum": 3159184,
+              "switch": 1541,
+              "wait_ns_max": 1007,
+              "wait_ns_sum": 64485
+            }
+          ],
+          "qp_events": {
+            "cnp": 84,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1284.497,
+          "flow": [
+            856,
+            576,
+            10001,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188760,
+              "queued_bytes_sum": 323404944,
+              "switch": 1346,
+              "wait_ns_max": 3758,
+              "wait_ns_sum": 6272974
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 6348,
+              "queued_bytes_sum": 176608,
+              "switch": 1378,
+              "wait_ns_max": 137,
+              "wait_ns_sum": 8023
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 262268,
+              "queued_bytes_sum": 16348532,
+              "switch": 1506,
+              "wait_ns_max": 5026,
+              "wait_ns_sum": 352044
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 8384,
+              "queued_bytes_sum": 832088,
+              "switch": 1538,
+              "wait_ns_max": 185,
+              "wait_ns_sum": 24336
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 23116,
+              "queued_bytes_sum": 523556,
+              "switch": 1620,
+              "wait_ns_max": 463,
+              "wait_ns_sum": 10966
+            }
+          ],
+          "qp_events": {
+            "cnp": 39,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1376.239,
+          "flow": [
+            772,
+            576,
+            10003,
+            102
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 189688,
+              "queued_bytes_sum": 235701920,
+              "switch": 1346,
+              "wait_ns_max": 3765,
+              "wait_ns_sum": 4598253
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 6288,
+              "queued_bytes_sum": 222124,
+              "switch": 1376,
+              "wait_ns_max": 125,
+              "wait_ns_sum": 24145
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 79400,
+              "queued_bytes_sum": 3474052,
+              "switch": 1511,
+              "wait_ns_max": 1567,
+              "wait_ns_sum": 69386
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 10,
+              "queued_bytes_max": 2096,
+              "queued_bytes_sum": 22640,
+              "switch": 1543,
+              "wait_ns_max": 52,
+              "wait_ns_sum": 934
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 29344,
+              "queued_bytes_sum": 621288,
+              "switch": 1657,
+              "wait_ns_max": 595,
+              "wait_ns_sum": 12623
+            }
+          ],
+          "qp_events": {
+            "cnp": 29,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "fct_sha256": "07eee6e895bbc0c1d8bb478a7344726059c6618cd1e6fc7ea3a7762d723caa70",
+      "five_slowest": [
+        {
+          "fct_us": 1650.169,
+          "flow": [
+            176,
+            856,
+            10000,
+            100
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 3204,
+              "queued_bytes_sum": 70400,
+              "switch": 1285,
+              "wait_ns_max": 65,
+              "wait_ns_sum": 2012
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197024,
+              "queued_bytes_sum": 278369752,
+              "switch": 1378,
+              "wait_ns_max": 3941,
+              "wait_ns_sum": 5556142
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 4192,
+              "queued_bytes_sum": 67824,
+              "switch": 1442,
+              "wait_ns_max": 84,
+              "wait_ns_sum": 9572
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 224000,
+              "queued_bytes_sum": 11681472,
+              "switch": 1538,
+              "wait_ns_max": 4324,
+              "wait_ns_sum": 239491
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 25212,
+              "queued_bytes_sum": 820676,
+              "switch": 1623,
+              "wait_ns_max": 505,
+              "wait_ns_sum": 23219
+            }
+          ],
+          "qp_events": {
+            "cnp": 82,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1557.287,
+          "flow": [
+            356,
+            856,
+            10000,
+            102
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 14672,
+              "queued_bytes_sum": 899816,
+              "switch": 1315,
+              "wait_ns_max": 291,
+              "wait_ns_sum": 25753
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197084,
+              "queued_bytes_sum": 294783416,
+              "switch": 1378,
+              "wait_ns_max": 3953,
+              "wait_ns_sum": 5894619
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 1108,
+              "queued_bytes_sum": 20004,
+              "switch": 1479,
+              "wait_ns_max": 37,
+              "wait_ns_sum": 832
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 82304,
+              "queued_bytes_sum": 6091644,
+              "switch": 1543,
+              "wait_ns_max": 1637,
+              "wait_ns_sum": 131799
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 30496,
+              "queued_bytes_sum": 975072,
+              "switch": 1660,
+              "wait_ns_max": 603,
+              "wait_ns_sum": 27097
+            }
+          ],
+          "qp_events": {
+            "cnp": 92,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1552.202,
+          "flow": [
+            1016,
+            856,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197144,
+              "queued_bytes_sum": 323875972,
+              "switch": 1378,
+              "wait_ns_max": 3949,
+              "wait_ns_sum": 6470407
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 7396,
+              "queued_bytes_sum": 287680,
+              "switch": 1383,
+              "wait_ns_max": 156,
+              "wait_ns_sum": 17601
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 82632,
+              "queued_bytes_sum": 7902244,
+              "switch": 1543,
+              "wait_ns_max": 1656,
+              "wait_ns_sum": 169584
+            }
+          ],
+          "qp_events": {
+            "cnp": 84,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1546.052,
+          "flow": [
+            924,
+            856,
+            10000,
+            103
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197144,
+              "queued_bytes_sum": 325246776,
+              "switch": 1378,
+              "wait_ns_max": 3952,
+              "wait_ns_sum": 6499290
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 4192,
+              "queued_bytes_sum": 127712,
+              "switch": 1380,
+              "wait_ns_max": 80,
+              "wait_ns_sum": 3706
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 50836,
+              "queued_bytes_sum": 3159184,
+              "switch": 1541,
+              "wait_ns_max": 1007,
+              "wait_ns_sum": 64485
+            }
+          ],
+          "qp_events": {
+            "cnp": 84,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1529.143,
+          "flow": [
+            740,
+            856,
+            10000,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 9,
+              "queued_bytes_max": 8384,
+              "queued_bytes_sum": 277636,
+              "switch": 1351,
+              "wait_ns_max": 175,
+              "wait_ns_sum": 6551
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197144,
+              "queued_bytes_sum": 300455844,
+              "switch": 1378,
+              "wait_ns_max": 3954,
+              "wait_ns_sum": 6005772
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 7336,
+              "queued_bytes_sum": 162416,
+              "switch": 1504,
+              "wait_ns_max": 160,
+              "wait_ns_sum": 13368
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 16768,
+              "queued_bytes_sum": 602316,
+              "switch": 1536,
+              "wait_ns_max": 344,
+              "wait_ns_sum": 12953
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 59736,
+              "queued_bytes_sum": 4309436,
+              "switch": 1604,
+              "wait_ns_max": 1183,
+              "wait_ns_sum": 92291
+            }
+          ],
+          "qp_events": {
+            "cnp": 94,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "git_commit": "73401ce3ac0a5c27bf0e3e0636c9337056d9355e",
+      "id": "20260927-233000-ws14-192-q",
+      "mode": "shortq2",
+      "moe_batch_us": 19.099,
+      "moe_completed": 16384,
+      "paired_background_better_count": 90,
+      "paired_background_worse_count": 102,
+      "route": {
+        "diverted": 90503,
+        "packets": 711287,
+        "scored": 242954,
+        "two_candidates": 242954
+      },
+      "trace_sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a"
+    },
+    {
+      "background": 192,
+      "background_completed": 192,
+      "background_max_us": 1620.967,
+      "background_p95_us": 1335.24485,
+      "background_p99_us": 1457.0731200000007,
+      "ecmp_slowest_paired": [
+        {
+          "fct_us": 1286.587,
+          "flow": [
+            308,
+            576,
+            10000,
+            100
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 2336,
+              "queued_bytes_sum": 104332,
+              "switch": 1313,
+              "wait_ns_max": 61,
+              "wait_ns_sum": 2909
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 304657588,
+              "switch": 1346,
+              "wait_ns_max": 3647,
+              "wait_ns_sum": 5923057
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 3204,
+              "queued_bytes_sum": 61684,
+              "switch": 1478,
+              "wait_ns_max": 72,
+              "wait_ns_sum": 15117
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 104944,
+              "queued_bytes_sum": 7769744,
+              "switch": 1510,
+              "wait_ns_max": 2141,
+              "wait_ns_sum": 170524
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 25152,
+              "queued_bytes_sum": 779336,
+              "switch": 1652,
+              "wait_ns_max": 508,
+              "wait_ns_sum": 24735
+            }
+          ],
+          "qp_events": {
+            "cnp": 73,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1391.441,
+          "flow": [
+            748,
+            576,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 320138220,
+              "switch": 1346,
+              "wait_ns_max": 3645,
+              "wait_ns_sum": 6213183
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 23056,
+              "queued_bytes_sum": 2080752,
+              "switch": 1351,
+              "wait_ns_max": 467,
+              "wait_ns_sum": 62933
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 205432,
+              "queued_bytes_sum": 18094720,
+              "switch": 1506,
+              "wait_ns_max": 3973,
+              "wait_ns_sum": 385027
+            }
+          ],
+          "qp_events": {
+            "cnp": 94,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1371.012,
+          "flow": [
+            924,
+            856,
+            10000,
+            103
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197024,
+              "queued_bytes_sum": 328547476,
+              "switch": 1378,
+              "wait_ns_max": 3954,
+              "wait_ns_sum": 6547710
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 3144,
+              "queued_bytes_sum": 63244,
+              "switch": 1380,
+              "wait_ns_max": 63,
+              "wait_ns_sum": 2067
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 51412,
+              "queued_bytes_sum": 3424088,
+              "switch": 1541,
+              "wait_ns_max": 1049,
+              "wait_ns_sum": 70242
+            }
+          ],
+          "qp_events": {
+            "cnp": 78,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1620.967,
+          "flow": [
+            856,
+            576,
+            10001,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 270271348,
+              "switch": 1346,
+              "wait_ns_max": 3639,
+              "wait_ns_sum": 5234706
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 3204,
+              "queued_bytes_sum": 92976,
+              "switch": 1378,
+              "wait_ns_max": 74,
+              "wait_ns_sum": 7486
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 204416,
+              "queued_bytes_sum": 14427620,
+              "switch": 1506,
+              "wait_ns_max": 3950,
+              "wait_ns_sum": 305155
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 26200,
+              "queued_bytes_sum": 1477880,
+              "switch": 1538,
+              "wait_ns_max": 510,
+              "wait_ns_sum": 34239
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 24164,
+              "queued_bytes_sum": 528976,
+              "switch": 1620,
+              "wait_ns_max": 482,
+              "wait_ns_sum": 11054
+            }
+          ],
+          "qp_events": {
+            "cnp": 81,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1335.226,
+          "flow": [
+            772,
+            576,
+            10003,
+            102
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 259399404,
+              "switch": 1346,
+              "wait_ns_max": 3654,
+              "wait_ns_sum": 5047341
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 3204,
+              "queued_bytes_sum": 89236,
+              "switch": 1376,
+              "wait_ns_max": 71,
+              "wait_ns_sum": 22981
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 58980,
+              "queued_bytes_sum": 1947488,
+              "switch": 1511,
+              "wait_ns_max": 1147,
+              "wait_ns_sum": 39267
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 10,
+              "queued_bytes_max": 1108,
+              "queued_bytes_sum": 17788,
+              "switch": 1543,
+              "wait_ns_max": 38,
+              "wait_ns_sum": 746
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 30392,
+              "queued_bytes_sum": 523496,
+              "switch": 1657,
+              "wait_ns_max": 600,
+              "wait_ns_sum": 10739
+            }
+          ],
+          "qp_events": {
+            "cnp": 65,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "fct_sha256": "fd1c232d4743b77ff84075d2a7e96b85a2c6a8b645bbff52da927567c0cd1618",
+      "five_slowest": [
+        {
+          "fct_us": 1620.967,
+          "flow": [
+            856,
+            576,
+            10001,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 270271348,
+              "switch": 1346,
+              "wait_ns_max": 3639,
+              "wait_ns_sum": 5234706
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 3204,
+              "queued_bytes_sum": 92976,
+              "switch": 1378,
+              "wait_ns_max": 74,
+              "wait_ns_sum": 7486
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 204416,
+              "queued_bytes_sum": 14427620,
+              "switch": 1506,
+              "wait_ns_max": 3950,
+              "wait_ns_sum": 305155
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 26200,
+              "queued_bytes_sum": 1477880,
+              "switch": 1538,
+              "wait_ns_max": 510,
+              "wait_ns_sum": 34239
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 24164,
+              "queued_bytes_sum": 528976,
+              "switch": 1620,
+              "wait_ns_max": 482,
+              "wait_ns_sum": 11054
+            }
+          ],
+          "qp_events": {
+            "cnp": 81,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1600.278,
+          "flow": [
+            656,
+            856,
+            10006,
+            106
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 3144,
+              "queued_bytes_sum": 93312,
+              "switch": 1348,
+              "wait_ns_max": 63,
+              "wait_ns_sum": 8097
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197204,
+              "queued_bytes_sum": 275960020,
+              "switch": 1378,
+              "wait_ns_max": 3948,
+              "wait_ns_sum": 5483460
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 2096,
+              "queued_bytes_sum": 25544,
+              "switch": 1510,
+              "wait_ns_max": 48,
+              "wait_ns_sum": 888
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 23056,
+              "queued_bytes_sum": 559932,
+              "switch": 1542,
+              "wait_ns_max": 468,
+              "wait_ns_sum": 11721
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 16768,
+              "queued_bytes_sum": 270984,
+              "switch": 1655,
+              "wait_ns_max": 339,
+              "wait_ns_sum": 12076
+            }
+          ],
+          "qp_events": {
+            "cnp": 68,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1442.91,
+          "flow": [
+            56,
+            576,
+            10002,
+            103
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 5240,
+              "queued_bytes_sum": 155108,
+              "switch": 1281,
+              "wait_ns_max": 120,
+              "wait_ns_sum": 14448
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 298058820,
+              "switch": 1346,
+              "wait_ns_max": 3637,
+              "wait_ns_sum": 5779628
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 2156,
+              "queued_bytes_sum": 43540,
+              "switch": 1442,
+              "wait_ns_max": 60,
+              "wait_ns_sum": 19718
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 202620,
+              "queued_bytes_sum": 14804260,
+              "switch": 1506,
+              "wait_ns_max": 3926,
+              "wait_ns_sum": 317019
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 38776,
+              "queued_bytes_sum": 1336104,
+              "switch": 1623,
+              "wait_ns_max": 779,
+              "wait_ns_sum": 35117
+            }
+          ],
+          "qp_events": {
+            "cnp": 80,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1423.759,
+          "flow": [
+            772,
+            680,
+            10000,
+            102
+          ],
+          "hops": [],
+          "qp_events": {}
+        },
+        {
+          "fct_us": 1391.441,
+          "flow": [
+            748,
+            576,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 320138220,
+              "switch": 1346,
+              "wait_ns_max": 3645,
+              "wait_ns_sum": 6213183
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 23056,
+              "queued_bytes_sum": 2080752,
+              "switch": 1351,
+              "wait_ns_max": 467,
+              "wait_ns_sum": 62933
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 205432,
+              "queued_bytes_sum": 18094720,
+              "switch": 1506,
+              "wait_ns_max": 3973,
+              "wait_ns_sum": 385027
+            }
+          ],
+          "qp_events": {
+            "cnp": 94,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "git_commit": "73401ce3ac0a5c27bf0e3e0636c9337056d9355e",
+      "id": "20260927-233000-ws14-192-d",
+      "mode": "packet-drill",
+      "moe_batch_us": 17.675,
+      "moe_completed": 16384,
+      "paired_background_better_count": 86,
+      "paired_background_worse_count": 106,
+      "route": null,
+      "trace_sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a"
+    },
+    {
+      "background": 192,
+      "background_completed": 192,
+      "background_max_us": 1640.274,
+      "background_p95_us": 1340.91425,
+      "background_p99_us": 1431.1826100000003,
+      "ecmp_slowest_paired": [
+        {
+          "fct_us": 1035.831,
+          "flow": [
+            308,
+            576,
+            10000,
+            100
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 4192,
+              "queued_bytes_sum": 138472,
+              "switch": 1313,
+              "wait_ns_max": 94,
+              "wait_ns_sum": 3516
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188640,
+              "queued_bytes_sum": 220170132,
+              "switch": 1346,
+              "wait_ns_max": 3664,
+              "wait_ns_sum": 4312210
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 3204,
+              "queued_bytes_sum": 85612,
+              "switch": 1478,
+              "wait_ns_max": 80,
+              "wait_ns_sum": 15329
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 155640,
+              "queued_bytes_sum": 9961920,
+              "switch": 1510,
+              "wait_ns_max": 3089,
+              "wait_ns_sum": 217487
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 28296,
+              "queued_bytes_sum": 1073864,
+              "switch": 1652,
+              "wait_ns_max": 556,
+              "wait_ns_sum": 33839
+            }
+          ],
+          "qp_events": {
+            "cnp": 45,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1391.383,
+          "flow": [
+            748,
+            576,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 189688,
+              "queued_bytes_sum": 252633292,
+              "switch": 1346,
+              "wait_ns_max": 3683,
+              "wait_ns_sum": 4912647
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 35692,
+              "queued_bytes_sum": 2263728,
+              "switch": 1351,
+              "wait_ns_max": 721,
+              "wait_ns_sum": 60032
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 274152,
+              "queued_bytes_sum": 23739120,
+              "switch": 1506,
+              "wait_ns_max": 5240,
+              "wait_ns_sum": 493414
+            }
+          ],
+          "qp_events": {
+            "cnp": 66,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1344.842,
+          "flow": [
+            924,
+            856,
+            10000,
+            103
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197144,
+              "queued_bytes_sum": 354479116,
+              "switch": 1378,
+              "wait_ns_max": 3954,
+              "wait_ns_sum": 7074711
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 3264,
+              "queued_bytes_sum": 124000,
+              "switch": 1380,
+              "wait_ns_max": 73,
+              "wait_ns_sum": 3422
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 40872,
+              "queued_bytes_sum": 2895556,
+              "switch": 1541,
+              "wait_ns_max": 817,
+              "wait_ns_sum": 59527
+            }
+          ],
+          "qp_events": {
+            "cnp": 70,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1396.184,
+          "flow": [
+            856,
+            576,
+            10001,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188700,
+              "queued_bytes_sum": 228897960,
+              "switch": 1346,
+              "wait_ns_max": 3664,
+              "wait_ns_sum": 4454717
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 4312,
+              "queued_bytes_sum": 149240,
+              "switch": 1378,
+              "wait_ns_max": 97,
+              "wait_ns_sum": 9467
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 271008,
+              "queued_bytes_sum": 21651864,
+              "switch": 1506,
+              "wait_ns_max": 5201,
+              "wait_ns_sum": 450792
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 12576,
+              "queued_bytes_sum": 569844,
+              "switch": 1538,
+              "wait_ns_max": 255,
+              "wait_ns_sum": 19496
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 24104,
+              "queued_bytes_sum": 485408,
+              "switch": 1620,
+              "wait_ns_max": 478,
+              "wait_ns_sum": 10075
+            }
+          ],
+          "qp_events": {
+            "cnp": 54,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1340.887,
+          "flow": [
+            772,
+            576,
+            10003,
+            102
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 189688,
+              "queued_bytes_sum": 208366040,
+              "switch": 1346,
+              "wait_ns_max": 3673,
+              "wait_ns_sum": 4083418
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 4344,
+              "queued_bytes_sum": 177928,
+              "switch": 1376,
+              "wait_ns_max": 102,
+              "wait_ns_sum": 24857
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 61080,
+              "queued_bytes_sum": 2568028,
+              "switch": 1511,
+              "wait_ns_max": 1192,
+              "wait_ns_sum": 51573
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 10,
+              "queued_bytes_max": 2096,
+              "queued_bytes_sum": 30064,
+              "switch": 1543,
+              "wait_ns_max": 58,
+              "wait_ns_sum": 1079
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 30452,
+              "queued_bytes_sum": 705308,
+              "switch": 1657,
+              "wait_ns_max": 607,
+              "wait_ns_sum": 14304
+            }
+          ],
+          "qp_events": {
+            "cnp": 48,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "fct_sha256": "635129dd0af1e8c62bb48d43ec7597559e66a38cc5e421798e4eed510d422f2b",
+      "five_slowest": [
+        {
+          "fct_us": 1640.274,
+          "flow": [
+            656,
+            856,
+            10006,
+            106
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 5240,
+              "queued_bytes_sum": 129064,
+              "switch": 1348,
+              "wait_ns_max": 115,
+              "wait_ns_sum": 10165
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197144,
+              "queued_bytes_sum": 283354816,
+              "switch": 1378,
+              "wait_ns_max": 3950,
+              "wait_ns_sum": 5651549
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 1288,
+              "queued_bytes_sum": 19884,
+              "switch": 1510,
+              "wait_ns_max": 39,
+              "wait_ns_sum": 1039
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 17816,
+              "queued_bytes_sum": 381320,
+              "switch": 1542,
+              "wait_ns_max": 366,
+              "wait_ns_sum": 8247
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 15720,
+              "queued_bytes_sum": 273964,
+              "switch": 1655,
+              "wait_ns_max": 323,
+              "wait_ns_sum": 12065
+            }
+          ],
+          "qp_events": {
+            "cnp": 71,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1489.813,
+          "flow": [
+            356,
+            856,
+            10000,
+            102
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 19912,
+              "queued_bytes_sum": 1222396,
+              "switch": 1315,
+              "wait_ns_max": 394,
+              "wait_ns_sum": 30093
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 197084,
+              "queued_bytes_sum": 312813708,
+              "switch": 1378,
+              "wait_ns_max": 3945,
+              "wait_ns_sum": 6234743
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 2096,
+              "queued_bytes_sum": 19404,
+              "switch": 1479,
+              "wait_ns_max": 44,
+              "wait_ns_sum": 776
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 82240,
+              "queued_bytes_sum": 5354796,
+              "switch": 1543,
+              "wait_ns_max": 1618,
+              "wait_ns_sum": 111901
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 28296,
+              "queued_bytes_sum": 1026740,
+              "switch": 1660,
+              "wait_ns_max": 562,
+              "wait_ns_sum": 26603
+            }
+          ],
+          "qp_events": {
+            "cnp": 68,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1425.384,
+          "flow": [
+            772,
+            680,
+            10000,
+            102
+          ],
+          "hops": [],
+          "qp_events": {}
+        },
+        {
+          "fct_us": 1396.184,
+          "flow": [
+            856,
+            576,
+            10001,
+            101
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 188700,
+              "queued_bytes_sum": 228897960,
+              "switch": 1346,
+              "wait_ns_max": 3664,
+              "wait_ns_sum": 4454717
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 4312,
+              "queued_bytes_sum": 149240,
+              "switch": 1378,
+              "wait_ns_max": 97,
+              "wait_ns_sum": 9467
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 271008,
+              "queued_bytes_sum": 21651864,
+              "switch": 1506,
+              "wait_ns_max": 5201,
+              "wait_ns_sum": 450792
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 12576,
+              "queued_bytes_sum": 569844,
+              "switch": 1538,
+              "wait_ns_max": 255,
+              "wait_ns_sum": 19496
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 24104,
+              "queued_bytes_sum": 485408,
+              "switch": 1620,
+              "wait_ns_max": 478,
+              "wait_ns_sum": 10075
+            }
+          ],
+          "qp_events": {
+            "cnp": 54,
+            "irn_ack": 8389
+          }
+        },
+        {
+          "fct_us": 1391.383,
+          "flow": [
+            748,
+            576,
+            10000,
+            104
+          ],
+          "hops": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 189688,
+              "queued_bytes_sum": 252633292,
+              "switch": 1346,
+              "wait_ns_max": 3683,
+              "wait_ns_sum": 4912647
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 35692,
+              "queued_bytes_sum": 2263728,
+              "switch": 1351,
+              "wait_ns_max": 721,
+              "wait_ns_sum": 60032
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 274152,
+              "queued_bytes_sum": 23739120,
+              "switch": 1506,
+              "wait_ns_max": 5240,
+              "wait_ns_sum": 493414
+            }
+          ],
+          "qp_events": {
+            "cnp": 66,
+            "irn_ack": 8389
+          }
+        }
+      ],
+      "git_commit": "73401ce3ac0a5c27bf0e3e0636c9337056d9355e",
+      "id": "20260927-233000-ws14-192-g",
+      "mode": "guardhash",
+      "moe_batch_us": 19.651,
+      "moe_completed": 16384,
+      "paired_background_better_count": 97,
+      "paired_background_worse_count": 94,
+      "route": {
+        "diverted": 92322,
+        "packets": 711296,
+        "scored": 243011,
+        "two_candidates": 243011
+      },
+      "trace_sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a"
+    }
+  ],
+  "git_commit": "73401ce3ac0a5c27bf0e3e0636c9337056d9355e",
+  "interpretation": "Single-input technical pilot; destination queue and per-QP CNP are associations, not causal decomposition.",
+  "role": "ws14-preregistered-research-small-sample",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "zero_background_shortq2_guardhash_fct_identical": true
+}

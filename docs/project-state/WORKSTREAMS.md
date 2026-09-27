@@ -1,6 +1,6 @@
 # 工作流台账
 
-更新：2026-09-27。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。
+更新：2026-09-28。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
@@ -18,8 +18,8 @@
 | WS-12 对照 | 全量 MoE 加背景的多逐包策略对照 | COMPLETE FOR PREREGISTERED 120-CELL COMPARISON; FOUR STRATEGIES NO-GO | [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)、[正式报告](../research/ws12-packet-strategies-formal-report.md)、[120 格摘要](../research/ws12-packet-strategies-formal-summary.json)：16,384 条固定 MoE、0/64/128/192 追加背景、五顺序组 × 六模式；120/120 两类全完成，旧两模式 40/40 FCT 哈希同 WS-11。RR/随机/自适应/DRILL 主档相对哈希缩短中位数 16.116%/18.406%/21.056%/22.549%，但背景安全各有越线，复合判据全部 no-go | 仿真源码固定 `adae7956...`；背景逐流 ECMP，顺序组非独立需求样本。WS-10/11 no-go 不变，不打开 GuardHash/HarmGate 效果比较 |
 | WS-12 解释 | 边界、成本与论文证据整合 | COMPLETE FOR THREE-STUDY EVIDENCE SYNTHESIS; MECHANISM CONDITIONAL | [WS-10/11/12 解释性负结果](../research/ws12-ws10-ws11-negative-evidence.md)已并列整理三种研究问题、两类输入契约、绝对批次与背景交互、热点及背景长尾、不等信息策略与不可观测项；预注册实验结果均保留 no-go。未来机制实验须另立前瞻性场景、独立需求重复与双侧安全门槛 | 不合并 WS-10/11/12 的判据，不把 ns-3 原型称为硬件部署，不回填效果结论 |
 | WS-13 | 背景长尾定位与新实验契约 | COMPLETE FOR DIAGNOSTIC AND IRN×PFC TECHNICAL PILOTS; NO BUSINESS SAFETY LINE | [Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)、[诊断报告](../research/ws13-tail-diagnosis-and-experiment-contract.md)与[IRN×PFC 四格报告](../research/ws13-irn-pfc-factorial-pilot-report.md)：逐流配对、三条独立校准 trace 和修正反馈探针已核验；四格常规输入 PFC 未触发，压力输入双开格仅 13/16 完成。定向探针证实缺失的三流发生出口准入丢包，随后三次超时被抑制。用户暂无可核验业务 SLO，保留连续权衡 | 单输入 pilot 不证明普遍效应；当前 IRN+PFC 实现不可直接用于正式四格性能对照。若进入 WS-14，先明示研究性门槛、观测缺口与停止条件。不得改判 WS-10/11/12 |
-| WS-14 | 单一针对性机制小样 | CONDITIONAL | 由 WS-13 的证据选择一个候选改动；GuardHash/HarmGate 可参与，但须同输入对照 ECMP、逐包哈希、普通双候选与 DRILL，先验正确性、队列守恒和双侧极端格 | 只有目标尾流及 MoE 相对 ECMP 都有可解释改善，才考虑正式实验 |
-| WS-15 | 独立需求正式验证 | CONDITIONAL | 多个独立生成 trace、预注册双侧门槛和等信息强对照；报告绝对性能与连续权衡，保留完整原始数据 | WS-14 小样通过后才运行；失败保留负结果，不回填旧矩阵 |
-| WS-16 | 论文证据与复现收束 | PLANNED | 串联输入、源码 SHA、实验 ID、图表、局限与开题报告主张；形成可复现论文材料 | 准确区分已实现的交换机原型与尚未验证的端侧/硬件部分，详见 [后续路线](WS13_PLUS_PLAN.md) |
+| WS-14 | 单一针对性机制小样 | COMPLETE FOR PREREGISTERED EXTREME-CELL PILOT; STOPPED AT TWO-SIDED GATE | [Handoff 15](../handoffs/2026-09-28-15-ws14-guardhash-single-mechanism-pilot.md)、[契约](../research/ws14-single-mechanism-prereg-v1.md)、[报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)：7/7 格完成，0 背景普通双候选/GuardHash FCT 相同；192 档 GuardHash 背景 P99 优于普通双候选，但 MoE 批次不优于 ECMP，且最慢背景 QP 转移，按预注册规则停止 | 单输入描述性 pilot，不代表普遍机制或业务安全；64/128 未运行，不启动 WS-15；WS-10/11/12 no-go 不变 |
+| WS-15 | 独立需求正式验证 | NOT STARTED; WS-14 STOP GATE FAILED | 多个独立生成 trace、预注册双侧门槛和等信息强对照；报告绝对性能与连续权衡，保留完整原始数据 | 当前候选未通过 WS-14 双侧门槛；须有新的独立研究理由后才能另行启动 |
+| WS-16 | 论文证据与复现收束 | ACTIVE | 汇总 WS-10/11/12 no-go、WS-13 诊断边界和 WS-14 单输入 stop-gate 负结果；串联输入、源码 SHA、实验 ID、图表与局限，形成可复现论文材料 | 准确区分已实现的交换机原型与尚未验证的端侧/硬件部分，详见 [后续路线](WS13_PLUS_PLAN.md) |
 
 `CHECKPOINTED` 表示研究资料已收口，但研究假设仍开放；各项 `COMPLETE FOR ...` 都只覆盖行内注明的核验范围，不等于论文性能实验完成。对话是否归档不改变工作流状态。
