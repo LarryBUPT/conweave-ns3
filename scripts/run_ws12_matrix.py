@@ -170,9 +170,19 @@ def start_watch(experiment_id):
                '%s > %s/resource-watch.log 2>&1 < /dev/null & fi; '
                'sleep 1; test -e %s/resource-samples.jsonl') % (
                    remote, experiment_id, remote, remote)
-    with QUICK_REMOTE_SLOTS, REMOTE_SLOTS:
-        call(['ssh', '-o', 'BatchMode=yes', '-o', 'ClearAllForwardings=yes',
-              'fnl@10.112.14.167', command])
+    # The watcher is idempotently guarded by the receipt path.  A short SSH
+    # readiness check can fail during many simultaneous builds even after the
+    # watcher has created that path; retry without touching the experiment.
+    for attempt in range(3):
+        try:
+            with QUICK_REMOTE_SLOTS, REMOTE_SLOTS:
+                call(['ssh', '-o', 'BatchMode=yes', '-o', 'ClearAllForwardings=yes',
+                      'fnl@10.112.14.167', command])
+            return
+        except RuntimeError:
+            if attempt == 2:
+                raise
+            time.sleep(5)
 
 
 def wait_watch(experiment_id):
