@@ -26,6 +26,8 @@
 
 ## 当前版本快照
 
+2026-09-28 WS-15 独立闭环核验：来源任务 `01a0e3c8-49d4-7053-9060-9360c34dfcc3` 已结束；集成前个人 fork `feature/ws15-gate-review` 本地与 origin 同为 `f7c5a2c5098f50948337c9a6ed7bcac7a316fdb6`，工作树干净。重跑 WS-14 七格原始核验通过，分析 JSON SHA-256 `dbce7a845c8e18bd4f4ef95b6164ba2bfa8d54adf7fefd20ae2731ade07dacda` 未变；重跑 WS-13 三条独立需求六格校准，`complete=true` 且摘要哈希未变。本次无新远程实验，门槛 no-go 只阻止确认性矩阵启动，不代表新机制性能零效应。WS-15 在复核与交接范围内可归档；WS-16 承接论文负结果与复现收束。本集成提交只移动文档 HEAD。
+
 2026-09-28 WS-15 门槛复核：从 `feature/ws14-single-mechanism@a12519938c81ce9ee35683975c86f0f39f8f7340` 建 `feature/ws15-gate-review`，本地/个人 origin 起点相同。重跑 WS-14 七格原始核验和分析，JSON SHA-256 `dbce7a845c8e18bd4f4ef95b6164ba2bfa8d54adf7fefd20ae2731ade07dacda` 未变；重跑 WS-13 三条独立需求六格校准成功。筛选结论与重开条件见[报告](../research/ws15-independent-demand-gate-review.md)及[Handoff 16](../handoffs/2026-09-28-16-ws15-gate-review.md)。本次只做本地分析与文档，无新远程仿真，正式矩阵关闭；提交后须再查 Git SHA。
 
 2026-09-28 WS-14 独立闭环核验：来源任务 `01a0e380-6362-71f0-a95b-9b14d8ce8765` 已结束；集成前 `feature/ws14-single-mechanism` 本地与 origin 同为 `735e0b3c3ea7f13d0797f802eef9bbf698e6971a`，工作树干净。`scripts/run_ws14_small.py verify` 从实验 ID 原始目录核验 7/7 格通过；`scripts/analyze_ws14_small.py` 重生的机器摘要 SHA-256 与提交版完全相同（`dbce7a845c8e18bd4f4ef95b6164ba2bfa8d54adf7fefd20ae2731ade07dacda`）。192 档 GuardHash 相对 ECMP 的 MoE 批次慢 0.731 µs，触发事前停止规则；WS-14 在极端小样范围内可归档。用户要求启动 WS-15 对话，先复核新机制理由与门槛；正式确认性矩阵仍关闭。仿真源码 SHA `73401ce3ac0a5c27bf0e3e0636c9337056d9355e` 不随本次文档提交改变。
