@@ -111,7 +111,7 @@ ConWeave 的 TxToR 按 flow key 保存 epoch、phase、当前路径、reply/noti
 - `queueAnalysis.py` 的 queue 语义限于 ConWeave VOQ。若下一阶段假设涉及 MMU 物理占用，应先建立单独观测口径，再做最小实验。
 - 若算法专属计数器为 0，须把“模式被选中”与“关键动态分支被触发”分开报告，不推断算法全部行为已验证。
 
-## 5. 后续证据与研究路线同步（2026-09-27，WS-11 闭环）
+## 5. 后续证据与研究路线同步（2026-09-27，WS-12 闭环）
 
 本文件第 1–4 节是 **2026-09-23 四模式 fidelity 的历史审计**。后续 WS-06 至 WS-09 使用新增六列输入、`dualtrack`、GuardHash/HarmGate 原型和不同接收契约，不能把它们的数字并入上表做同条件排名。跨对话的实时状态与任务边界以个人 fork 的 [CURRENT_STATE](../project-state/CURRENT_STATE.md)、[WORKSTREAMS](../project-state/WORKSTREAMS.md) 和 [ROADMAP](../project-state/ROADMAP.md) 为入口，运行时仍以源码、实验 ID 的元数据和原始数据为准。
 
@@ -123,7 +123,10 @@ ConWeave 的 TxToR 按 flow key 保存 epoch、phase、当前路径、reply/noti
 | WS-09 工程原型 | `shortq2/guardhash/guardhashgate`（模式 13/14/15）与真实出口 per-port/per-tag 计数已实现；十个终态 ID 的完成数、trace/拓扑哈希、队列守恒和同输入配对复核通过。三格单 seed MoE 合成批次为 1.421/1.415/1.490 µs，背景 P99 相同；门控激活 39 次、退出 9 次 | [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)、[冻结规格](../research/ws09-guardhash-v0-spec.md)、[十格摘要](../research/ws09-validation-summary.json)：正确性与技术 pilot；门控格在此输入下较无门控格慢，不能宣称机制收益 |
 | WS-10 固定总字节正式复核 | 统一 `aa778ac523bc0319999395dd3cf8085b41e73a98`，资源 pilot 6/6、五 seed × 六格正式 30/30；全类 100% 完成，主 4 档交互 1/5 正向、归一化中位数 −1.3947%，背景安全 10/10 通过；2 档均正而 4 档多数负 | [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)、[预注册](../research/ws10-fixed-load-prereg-v1.md)、[报告](../research/ws10-fixed-load-formal-report.md)、[30 格原始索引与摘要](../research/ws10-fixed-load-formal-summary.json)：正式现象 **no-go**；不证明 GuardHash 效果，也不推断其他负载普遍无损害 |
 | WS-11 全量输入正式复核 | 固定仿真源码 `208fcee4c541da9b24ed26792b32ae681a30977f`；完整 16,384 条同步 MoE 加 0/64/128/192 背景，原始输入及四组行顺序置换共 40/40 格两类流全完成；主 192 档交互 5/5 正向、中位数 +35.9057%，但原始组背景 P99 恶化 +6.6527%，越过预注册 5% 安全线 | [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)、[预注册](../research/ws11-full-moe-prereg-v1.md)、[报告](../research/ws11-full-moe-formal-report.md)、[40 格摘要](../research/ws11-full-moe-formal-summary.json)：复合现象 **no-go**；四组置换并非独立需求样本，不能声称机制收益 |
+| WS-12 多策略全量对照 | 固定仿真源码 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`；同一 16,384 条 MoE 加 0/64/128/192 背景，五顺序组 × 六模式共 120/120 格两类流全完成；旧 `fecmp/dualtrack` FCT 哈希 40/40 与 WS-11 相同。RR/随机/自适应/DRILL 主档相对逐包哈希的 MoE 批次中位缩短 16.116%/18.406%/21.056%/22.549%，但各有背景 P99 安全越线 | [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)、[报告](../research/ws12-packet-strategies-formal-report.md)、[120 格摘要](../research/ws12-packet-strategies-formal-summary.json)：四策略预注册复合 **no-go**；不构成 GuardHash/HarmGate 效果证据 |
 
-**当前决策：**WS-10 固定总字节主档 no-go 保持不变；WS-11 完整输入主 192 档的 MoE 交互虽 5/5 正向，但原始组背景 P99 +6.6527% 超过预注册 5% 安全线，故复合判据同样 no-go，GuardHash/HarmGate 效果门槛仍关闭。[ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)允许先做工程原型，不把原型当作收益证据。WS-09 的真实 BEgressQueue 计数不回填为本文件旧四模式的 MMU 队列观测。
+**当前决策：**WS-10 固定总字节主档 no-go、WS-11 全量输入背景安全越线的复合 no-go、WS-12 四个新增策略的双侧 no-go 均保持各自预注册结论。WS-12 的主档 MoE 相对逐包哈希缩短是有利观测，但所有新增策略至少一格背景 P99 越过旧研究 5% 保护线；该线是本项目历史预注册门槛，不是成熟方案通用标准。GuardHash/HarmGate 仍只有 WS-09 工程原型证据。[ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)不允许由原型直接推出机制收益。
 
-**后续顺序：**WS-11 的全量 40 格已按独立预注册完成，资源 pilot 与并发隔离也已核验；四组顺序置换并非四组独立需求样本，总提供字节随追加背景流而增加，不称纯混合比例效应，也不合并 WS-10 固定总字节结果。用户已在 [ADR-008](../decisions/ADR-008-additive-background-workload.md) 决定未来保持 MoE 流集合、逐档追加背景流。WS-12 先在同输入和背景逐流 ECMP 条件下补充逐包哈希、轮询、随机、自适应、DRILL 与全流 ECMP 的前瞻性对照，再整理 WS-10/11 的非单调性、热点、背景长尾和传输边界；新对照不回填 WS-11 门槛，也不自动构成 GuardHash/HarmGate 效果证据。长时矩阵按[远程实验准则](../REMOTE_EXPERIMENT_WORKFLOW.md)静默、低频监控；确认服务器无人且系统健康时按实测吞吐争取利用 20C/40 逻辑 CPU。旧 `2.005s` FCT 窗口排除 `2.000s` 同启 MoE，后续使用独立按 tag 的输入分母、完成率、FCT 和合成批次指标；无轮次字段，不称“八轮 job CCT”。ConWeave VOQ 仍不等于 MMU 物理队列。
+**证据边界：**WS-10 的独立 trace seed 与 WS-11/12 共用流记录的四组行顺序置换不能合并为同一种重复；全量场景追加背景会增加总字节，不能称纯混合比例效应。旧四模式 baseline 第 1–4 节的最小 fidelity 数据不参与这些性能排名。WS-12 的绝对 MoE 批次、相对逐包哈希改善、相对 ECMP 差值和背景代价须分列报告。物理 MMU 队列、可靠独立 NACK/超时计数仍不可得，不能以零填补。
+
+**当前状态与后续顺序：**WS-12 多策略 120/120 格和三场[解释性证据提纲](../research/ws12-ws10-ws11-negative-evidence.md)已完成。WS-10 固定总字节、WS-11 全量现象、WS-12 四新增策略各自预注册的 no-go 保留，不合并判据。WS-13 先用已收集的流级原始数据定位背景长尾及共享链路代价，核对成熟方案评价口径、独立校准输入的基线波动和实际业务目标后，才提出新的限制指标；不能沿用未经论证的任意百分比，也不事后改动旧 5% 判据。诊断支持单一可证伪机制时进入小样，只有双侧信号才开展独立需求正式验证。详见[后续任务流](../project-state/WS13_PLUS_PLAN.md)。以上同步不修改第 1–4 节历史 baseline 审计。

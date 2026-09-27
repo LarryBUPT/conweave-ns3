@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-10、WS-11 和 WS-12 多策略正式对照均已完成，各自预注册复合判据 no-go；WS-12 解释性证据提纲已收口，机制效果门槛仍关闭。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 维持 16,384 条固定 MoE 与 0/64/128/192 条追加背景，120/120 格完成；RR、随机、自适应、DRILL 主档 MoE 批次相对既有逐包哈希均有中位缩短，但各有背景 P99 越线，四策略全部复合 no-go。三者输入/策略问题与判据各自独立，见 [三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-10 报告](../research/ws10-fixed-load-formal-report.md)、[WS-11 报告](../research/ws11-full-moe-formal-report.md)和[WS-12 报告](../research/ws12-packet-strategies-formal-report.md)。WS-09 GuardHash/HarmGate v0 仅有工程原型证据。
+阶段：**WS-10、WS-11 和 WS-12 多策略正式对照均已完成，各自预注册复合判据 no-go；WS-12 解释性证据提纲已收口，WS-13 启动背景尾流诊断与新实验契约，机制效果门槛仍关闭。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 维持 16,384 条固定 MoE 与 0/64/128/192 条追加背景，120/120 格完成；RR、随机、自适应、DRILL 主档 MoE 批次相对既有逐包哈希均有中位缩短，但各有背景 P99 越线，四策略全部复合 no-go。三者输入/策略问题与判据各自独立，见 [三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-10 报告](../research/ws10-fixed-load-formal-report.md)、[WS-11 报告](../research/ws11-full-moe-formal-report.md)和[WS-12 报告](../research/ws12-packet-strategies-formal-report.md)。WS-09 GuardHash/HarmGate v0 仅有工程原型证据。
 
 ## 已完成且可核验
 
@@ -22,6 +22,9 @@
 - WS-12 多策略正式对照：固定仿真源码 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`，同一全量 MoE 与追加背景输入下，五顺序组 × 四档 × 全流 ECMP/既有逐包哈希/RR/随机/自适应/DRILL 六模式共 120/120 格两类流全完成。旧 `fecmp/dualtrack` 40/40 FCT 哈希与 WS-11 一致。四个新增策略主 192 档相对哈希的批次中位缩短 16.116%/18.406%/21.056%/22.549%，但背景安全通过数仅 14/15、14/15、13/15、14/15，因此双侧判据均 no-go。见 [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)、[报告](../research/ws12-packet-strategies-formal-report.md)、[120 格摘要](../research/ws12-packet-strategies-formal-summary.json)。
 
 ## 当前版本快照
+
+2026-09-27 WS-12 独立交接核验：来源任务 ID `01a0def1-82cd-7941-89a2-759e0072d8ef` 已结束；集成前个人 fork `feature/ws12-packet-strategies` 本地、origin 与 GitHub 均为 `2c1fea5eeb4a20c404b9b6d949b1e7d7169e03c1`，工作树干净。重新运行 `scripts/verify_ws12_formal.py` 从 120 格原始结果及资源收据得到 `complete=true`、旧 `fecmp/dualtrack` FCT 哈希 40/40 匹配，RR/随机/自适应/DRILL 均 `two_sided_acceptable=false`。仿真源码固定 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`；本集成提交只移动文档 HEAD。WS-12 正式对照及解释性提纲可闭环归档。WS-13 起遵照[后续计划](WS13_PLUS_PLAN.md)先诊断长尾、核对成熟方案评价口径与基线波动，再论证新限制指标。
+
 
 2026-09-27 WS-12 解释性收尾核验：更新前个人 fork `feature/ws12-packet-strategies` 本地与 `origin/feature/ws12-packet-strategies` 同为 `12b06ff`、工作树干净；独立重跑 WS-10/11/12 三份正式核验脚本，返回码均为 0。WS-12 输出 `complete=true`、120 格、旧模式 FCT 哈希 40/40 匹配，四个新模式 `two_sided_acceptable=false`。三场[解释性证据提纲](../research/ws12-ws10-ws11-negative-evidence.md)和本状态提交会移动文档 HEAD，但不改变三场固定仿真源码 SHA 或原始结果。正式矩阵及 WS-12 解释性整理均无待补项。
 
@@ -59,7 +62,7 @@
 4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10/11 均未打开正式效果比较门槛，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 5. **全量阶段与资源准则：**WS-11 已按预注册完成资源 pilot、并发隔离审计与 40 格矩阵；20 物理核预算下的 18 共享 CPU 令牌和阶梯并发实测可用。原始输入随背景增加总字节，不能称纯混合比例效应，也不能与 WS-10 固定总字节场景合并。未来远程矩阵仍按[工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)先核对空闲资源和隔离，再按实测占用提高并发并静默监控。
 
-下一个里程碑：**在已收口的三场负结果证据上确定论文论点与新研究问题。**[解释性证据提纲](../research/ws12-ws10-ws11-negative-evidence.md)已区分固定总字节和全量追加背景、同档绝对批次与交互、热点和背景长尾代价；WS-12 无待补正式格。任何新的机制收益主张都需要另立前瞻性场景、独立需求重复与双侧安全门槛，不能回填 WS-10/11/12 的 no-go。依赖见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
+下一个里程碑：**WS-13 用现有逐流原始数据定位背景尾部代价，并建立有依据的新实验判据。**先检查 ECMP/DRILL 等强对照和成熟方案的评价设计、独立校准输入的基线波动及业务目标；不自行无据设限制百分比。只有找到可证伪、可观测的尾因，才进入 WS-14 单一改动的小样；有双侧信号后，WS-15 用独立需求 trace 正式验证。WS-16 汇总论文与复现材料。既有 WS-10/11/12 no-go 保持原样。详见[后续计划](WS13_PLUS_PLAN.md)、[WORKSTREAMS](WORKSTREAMS.md)与[ROADMAP](ROADMAP.md)。
 
 后续场景口径（用户 2026-09-27 明确决定）：**保持同一批 MoE 业务流不变，逐档追加背景流，总提供字节随之增加**；不再为这条路线构造“背景增加但总字节不变”的替换式输入。每档各算法仍用相同流量配对，跨档结果解释为新增背景及相应负载的共同影响，不称纯混合比例效应。既有 WS-10 固定总字节结果作为历史独立契约保留，不重判。详见 [ADR-008](../decisions/ADR-008-additive-background-workload.md)。
 

@@ -1,6 +1,6 @@
 # Handoff 13：WS-12 全量 MoE 加背景多逐包策略对照
 
-日期：2026-09-27（中国时间）。来源：当前 WS-12 多策略对照任务；120 个正式实验 ID 与逐格证据见[机器摘要](../research/ws12-packet-strategies-formal-summary.json)，以原始结果而非对话为准。
+日期：2026-09-27（中国时间）。来源：[WS-12 多逐包策略对照与双侧证据整合](codex://threads/01a0def1-82cd-7941-89a2-759e0072d8ef)，任务 ID `01a0def1-82cd-7941-89a2-759e0072d8ef`；120 个正式实验 ID 与逐格证据见[机器摘要](../research/ws12-packet-strategies-formal-summary.json)，以原始结果而非对话为准。
 
 ## 1. 本对话目标
 
@@ -40,3 +40,7 @@ WS-06 输入 tag、WS-07 `dualtrack`、WS-08 共同 IRN、WS-11 全量 trace 与
 ## 9. CONTEXT SNAPSHOT
 
 `feature/ws12-packet-strategies` 的正式仿真固定 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`；16,384 条 MoE 加 0/64/128/192 条追加背景，5 顺序组 × 4 档 × 6 模式，共 120/120 格核验完成、两类流 100% 完成、PFC 文件均空、旧两模式 40/40 FCT 哈希与 WS-11 相同。RR/随机/自适应/DRILL 的主 192 档 MoE 批次相对哈希中位缩短 16.116%/18.406%/21.056%/22.549%，但各有背景 P99 >5% 越线，四者复合 no-go。正式报告、逐格哈希/指标和核验脚本分别见[报告](../research/ws12-packet-strategies-formal-report.md)、[摘要](../research/ws12-packet-strategies-formal-summary.json)、[脚本](../../scripts/verify_ws12_formal.py)。无剩余正式格；WS-10/11 no-go 和机制效果门槛维持原状。
+
+## 集成交接核验（2026-09-27）
+
+集成任务再次运行 `python scripts/verify_ws12_formal.py`，返回码 0；从 120 个正式实验 ID 的原始数据与资源收据重算 `complete=true`、旧两模式 FCT 哈希 `40/40` 匹配，RR/随机/自适应/DRILL 均 `two_sided_acceptable=false`。集成前本地、`origin` 和 GitHub 的 `feature/ws12-packet-strategies` 均为 `2c1fea5eeb4a20c404b9b6d949b1e7d7169e03c1`，工作树干净。WS-12 的预注册对照、解释性证据提纲和本任务问答已收口；正式仿真源码 SHA 仍为 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`。可以归档；未解决的背景尾部因果解释与独立需求重复列为 WS-13 及以后新任务，不回填 WS-12 判据。
