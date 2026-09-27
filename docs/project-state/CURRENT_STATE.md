@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-10、WS-11 和 WS-12 多策略正式对照均已完成，各自预注册复合判据 no-go；WS-12 解释性证据提纲已收口，WS-13 启动背景尾流诊断与新实验契约，机制效果门槛仍关闭。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 维持 16,384 条固定 MoE 与 0/64/128/192 条追加背景，120/120 格完成；RR、随机、自适应、DRILL 主档 MoE 批次相对既有逐包哈希均有中位缩短，但各有背景 P99 越线，四策略全部复合 no-go。三者输入/策略问题与判据各自独立，见 [三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-10 报告](../research/ws10-fixed-load-formal-report.md)、[WS-11 报告](../research/ws11-full-moe-formal-report.md)和[WS-12 报告](../research/ws12-packet-strategies-formal-report.md)。WS-09 GuardHash/HarmGate v0 仅有工程原型证据。
+阶段：**WS-10、WS-11 和 WS-12 多策略正式对照均已完成，各自预注册复合判据 no-go；WS-13 背景尾流诊断 pilot 已完成，WS-14 机制效果门槛仍关闭。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 维持 16,384 条固定 MoE 与 0/64/128/192 条追加背景，120/120 格完成；RR、随机、自适应、DRILL 主档 MoE 批次相对既有逐包哈希均有中位缩短，但各有背景 P99 越线，四策略全部复合 no-go。WS-13 修正探针在四个同输入格观察到 0 个目标 QP SACK、每格 500–881 个 QP CNP 事件，且最慢背景流目的 ToR 出口出现 3.14–3.99 µs 等待；这是单 seed 相关性诊断，没有可核验业务 SLO，故保留连续权衡、不新增通用安全线。详见 [三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-13 合约与结果](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[WS-10 报告](../research/ws10-fixed-load-formal-report.md)、[WS-11 报告](../research/ws11-full-moe-formal-report.md)和[WS-12 报告](../research/ws12-packet-strategies-formal-report.md)。WS-09 GuardHash/HarmGate v0 仅有工程原型证据。
 
 ## 已完成且可核验
 
@@ -20,6 +20,7 @@
 - WS-10 正式现象复核：预注册 v1.1 固定五个 trace seed、0/2/4 背景档、`fecmp/dualtrack`、总提供 35,651,584 B、统一 `aa778ac523bc0319999395dd3cf8085b41e73a98`。资源 pilot 6/6、正式 30/30 完成；4 档交互 1 正 4 负，归一化中位数 −1.3947%，背景安全 10/10 通过，2 档五 seed 均正但非单调，故现象 no-go。一次 SSH 状态解析故障的诊断格被同 SHA/trace 正式重跑替换，两份 FCT SHA 相同；详见 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)、[报告](../research/ws10-fixed-load-formal-report.md)、[机器摘要](../research/ws10-fixed-load-formal-summary.json)。
 - WS-11 全量输入正式现象验证：固定仿真源码 `208fcee4c541da9b24ed26792b32ae681a30977f`、16,384 条同步 MoE 与原始 0/64/128/192 背景输入，加四组确定性行顺序置换；40/40 正式格两类流全完成且原始文件与资源收据核验通过。主 192 档交互 5/5 正向、归一化中位数 +35.9057%，但原始组背景 P99 +6.6527% 超过 5% 安全线，复合门槛 no-go。置换组不是独立需求样本，背景增加也增加总字节。见 [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)、[报告](../research/ws11-full-moe-formal-report.md)、[机器摘要](../research/ws11-full-moe-formal-summary.json)。
 - WS-12 多策略正式对照：固定仿真源码 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`，同一全量 MoE 与追加背景输入下，五顺序组 × 四档 × 全流 ECMP/既有逐包哈希/RR/随机/自适应/DRILL 六模式共 120/120 格两类流全完成。旧 `fecmp/dualtrack` 40/40 FCT 哈希与 WS-11 一致。四个新增策略主 192 档相对哈希的批次中位缩短 16.116%/18.406%/21.056%/22.549%，但背景安全通过数仅 14/15、14/15、13/15、14/15，因此双侧判据均 no-go。见 [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)、[报告](../research/ws12-packet-strategies-formal-report.md)、[120 格摘要](../research/ws12-packet-strategies-formal-summary.json)。
+- WS-13 诊断 pilot：源码观测修正提交 `a985798ef78a95f502cf8eb56982c6e3a3b1168d`；新版四格 `20260927-160000-ws13-feedback-{o-f,o-a,03-f,03-d}` 均 SUCCEEDED，FCT SHA 与 WS-12 对应格 4/4 完全一致。IRN 反馈语义复核为 0 个 SACK；CNP 事件数 751/881/500/580；最慢目标背景流在目的 ToR 出口观察到 3.14–3.99 µs 最大排队等待。原 `0xFD` 误标日志作废；逐格信息见 [机器分析](../research/evidence/ws13-feedback-probe-analysis.json)、[诊断报告](../research/ws13-tail-diagnosis-and-experiment-contract.md)及 [Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)。这是单 seed 相关证据，不作因果或安全结论。
 
 ## 当前版本快照
 
@@ -62,7 +63,7 @@
 4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10/11 均未打开正式效果比较门槛，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 5. **全量阶段与资源准则：**WS-11 已按预注册完成资源 pilot、并发隔离审计与 40 格矩阵；20 物理核预算下的 18 共享 CPU 令牌和阶梯并发实测可用。原始输入随背景增加总字节，不能称纯混合比例效应，也不能与 WS-10 固定总字节场景合并。未来远程矩阵仍按[工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)先核对空闲资源和隔离，再按实测占用提高并发并静默监控。
 
-下一个里程碑：**WS-13 用现有逐流原始数据定位背景尾部代价，并建立有依据的新实验判据。**先检查 ECMP/DRILL 等强对照和成熟方案的评价设计、独立校准输入的基线波动及业务目标；不自行无据设限制百分比。只有找到可证伪、可观测的尾因，才进入 WS-14 单一改动的小样；有双侧信号后，WS-15 用独立需求 trace 正式验证。WS-16 汇总论文与复现材料。既有 WS-10/11/12 no-go 保持原样。详见[后续计划](WS13_PLUS_PLAN.md)、[WORKSTREAMS](WORKSTREAMS.md)与[ROADMAP](ROADMAP.md)。
+下一个里程碑：**决定是否开展标注为研究性判断的 WS-14 单机制小样，或转入负结果收束。**目的 ToR 出口排队与每 QP CNP 是可观测候选尾因，但尚非因果解释；暂无可核验业务 SLO，因此须保持连续权衡，不创建通用安全百分比。若继续，先冻结研究性损害曲线、同输入 ECMP/DRILL 对照、观测缺口与停止规则；双侧信号通过后才规划独立需求 trace 的 WS-15。WS-16 汇总论文与复现材料。既有 WS-10/11/12 no-go 保持原样。详见[后续计划](WS13_PLUS_PLAN.md)、[WORKSTREAMS](WORKSTREAMS.md)与[ROADMAP](ROADMAP.md)。
 
 后续场景口径（用户 2026-09-27 明确决定）：**保持同一批 MoE 业务流不变，逐档追加背景流，总提供字节随之增加**；不再为这条路线构造“背景增加但总字节不变”的替换式输入。每档各算法仍用相同流量配对，跨档结果解释为新增背景及相应负载的共同影响，不称纯混合比例效应。既有 WS-10 固定总字节结果作为历史独立契约保留，不重判。详见 [ADR-008](../decisions/ADR-008-additive-background-workload.md)。
 
@@ -87,3 +88,5 @@
 [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md) 记录 WS-11 全量输入 40 格、资源并发验证和复合 no-go；逐格原始 SHA 与资源收据索引在 [机器摘要](../research/ws11-full-moe-formal-summary.json)。
 
 [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md) 记录 WS-12 六策略 120 格全量配对、资源恢复、四策略复合 no-go；逐格原始 SHA、指标与收据索引在 [机器摘要](../research/ws12-packet-strategies-formal-summary.json)。
+
+[Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md) 记录 WS-13 的 IRN `0xFD` ACK/SACK 语义修正、四格同输入反馈/目的出口探针、FCT 哈希回归与 SLO 缺口；逐流及逐跳机器摘要见 [探针分析](../research/evidence/ws13-feedback-probe-analysis.json)。它是单 seed 诊断，不打开 WS-14 效果门槛。

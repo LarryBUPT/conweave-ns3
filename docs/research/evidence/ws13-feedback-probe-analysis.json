@@ -1,0 +1,604 @@
+{
+  "cells": [
+    {
+      "background": 192,
+      "config_log_mib": 15.57,
+      "fct_rows": 16576,
+      "fct_sha256": "9d600f055044d50a20ed0d036552922c9de916665af5a44a6791e77a755038e1",
+      "git_commit": "a985798ef78a95f502cf8eb56982c6e3a3b1168d",
+      "group": "original",
+      "hop_packet_sum": 536896,
+      "hop_queue_bytes_max": 206456,
+      "hop_records": 64,
+      "hop_wait_ns_max": 4080,
+      "hop_wait_packet_ns_mean": 175.3,
+      "id": "20260927-160000-ws13-feedback-o-f",
+      "mode": "fecmp",
+      "qp_event_totals": {
+        "cnp": 751,
+        "irn_ack": 117446
+      },
+      "sack_flow_count": 0,
+      "status": "SUCCEEDED",
+      "trace_sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a",
+      "two_slowest_background_flows": [
+        {
+          "dport": 100,
+          "dst": 576,
+          "fct_ns": 1443874,
+          "fct_us": 1443.874,
+          "hop_queues": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 42968,
+              "queued_bytes_sum": 2087068,
+              "switch": 1313,
+              "wait_ns_max": 871,
+              "wait_ns_sum": 42353
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 186544,
+              "queued_bytes_sum": 254386868,
+              "switch": 1346,
+              "wait_ns_max": 3617,
+              "wait_ns_sum": 4962218
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 5240,
+              "queued_bytes_sum": 127864,
+              "switch": 1478,
+              "wait_ns_max": 121,
+              "wait_ns_sum": 9831
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 98136,
+              "queued_bytes_sum": 7137060,
+              "switch": 1510,
+              "wait_ns_max": 2028,
+              "wait_ns_sum": 155286
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 24104,
+              "queued_bytes_sum": 719160,
+              "switch": 1652,
+              "wait_ns_max": 470,
+              "wait_ns_sum": 22485
+            }
+          ],
+          "qp_events": {
+            "cnp": 56,
+            "irn_ack": 8389
+          },
+          "sack_sizes_bytes": [],
+          "size_bytes": 8388608,
+          "sport": 10000,
+          "src": 308,
+          "standalone_ns": 176425
+        },
+        {
+          "dport": 104,
+          "dst": 576,
+          "fct_ns": 1420118,
+          "fct_us": 1420.118,
+          "hop_queues": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 186604,
+              "queued_bytes_sum": 280527536,
+              "switch": 1346,
+              "wait_ns_max": 3625,
+              "wait_ns_sum": 5444812
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 151960,
+              "queued_bytes_sum": 11395408,
+              "switch": 1351,
+              "wait_ns_max": 3051,
+              "wait_ns_sum": 242099
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 164072,
+              "queued_bytes_sum": 11205544,
+              "switch": 1506,
+              "wait_ns_max": 3203,
+              "wait_ns_sum": 248697
+            }
+          ],
+          "qp_events": {
+            "cnp": 82,
+            "irn_ack": 8389
+          },
+          "sack_sizes_bytes": [],
+          "size_bytes": 8388608,
+          "sport": 10000,
+          "src": 748,
+          "standalone_ns": 175985
+        }
+      ],
+      "unpaired_packets": 0
+    },
+    {
+      "background": 192,
+      "config_log_mib": 15.61,
+      "fct_rows": 16576,
+      "fct_sha256": "b2f93b2e7f1641acf7a0807a64a3eaccb3198e8c4407260089cf27bcb19dd1b3",
+      "git_commit": "a985798ef78a95f502cf8eb56982c6e3a3b1168d",
+      "group": "original",
+      "hop_packet_sum": 536896,
+      "hop_queue_bytes_max": 199120,
+      "hop_records": 64,
+      "hop_wait_ns_max": 3990,
+      "hop_wait_packet_ns_mean": 156.3,
+      "id": "20260927-160000-ws13-feedback-o-a",
+      "mode": "packet-adaptive",
+      "qp_event_totals": {
+        "cnp": 881,
+        "irn_ack": 117446
+      },
+      "sack_flow_count": 0,
+      "status": "SUCCEEDED",
+      "trace_sha256": "bf1a1960651b2d5bd27cd1304433d489363727a7c02d08c5c05df2b2415d9c8a",
+      "two_slowest_background_flows": [
+        {
+          "dport": 106,
+          "dst": 856,
+          "fct_ns": 1706348,
+          "fct_us": 1706.348,
+          "hop_queues": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 15,
+              "queued_bytes_max": 9492,
+              "queued_bytes_sum": 331776,
+              "switch": 1348,
+              "wait_ns_max": 193,
+              "wait_ns_sum": 14858
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 198192,
+              "queued_bytes_sum": 282425044,
+              "switch": 1378,
+              "wait_ns_max": 3971,
+              "wait_ns_sum": 5634931
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 16,
+              "queued_bytes_max": 4252,
+              "queued_bytes_sum": 32252,
+              "switch": 1510,
+              "wait_ns_max": 86,
+              "wait_ns_sum": 962
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 15780,
+              "queued_bytes_sum": 319776,
+              "switch": 1542,
+              "wait_ns_max": 325,
+              "wait_ns_sum": 6829
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 13684,
+              "queued_bytes_sum": 239256,
+              "switch": 1655,
+              "wait_ns_max": 283,
+              "wait_ns_sum": 11579
+            }
+          ],
+          "qp_events": {
+            "cnp": 86,
+            "irn_ack": 8389
+          },
+          "sack_sizes_bytes": [],
+          "size_bytes": 8388608,
+          "sport": 10006,
+          "src": 656,
+          "standalone_ns": 176425
+        },
+        {
+          "dport": 103,
+          "dst": 856,
+          "fct_ns": 1614425,
+          "fct_us": 1614.425,
+          "hop_queues": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 198192,
+              "queued_bytes_sum": 327104920,
+              "switch": 1378,
+              "wait_ns_max": 3986,
+              "wait_ns_sum": 6532149
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 13684,
+              "queued_bytes_sum": 570400,
+              "switch": 1380,
+              "wait_ns_max": 290,
+              "wait_ns_sum": 12739
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 29776,
+              "queued_bytes_sum": 1796360,
+              "switch": 1541,
+              "wait_ns_max": 607,
+              "wait_ns_sum": 37367
+            }
+          ],
+          "qp_events": {
+            "cnp": 97,
+            "irn_ack": 8389
+          },
+          "sack_sizes_bytes": [],
+          "size_bytes": 8388608,
+          "sport": 10000,
+          "src": 924,
+          "standalone_ns": 175985
+        }
+      ],
+      "unpaired_packets": 0
+    },
+    {
+      "background": 128,
+      "config_log_mib": 13.59,
+      "fct_rows": 16512,
+      "fct_sha256": "e5cc01afd6ba4c070c135d41d017673675e13ec472d69002c09d33b3137ba059",
+      "git_commit": "a985798ef78a95f502cf8eb56982c6e3a3b1168d",
+      "group": "20261103",
+      "hop_packet_sum": 453006,
+      "hop_queue_bytes_max": 167740,
+      "hop_records": 54,
+      "hop_wait_ns_max": 3265,
+      "hop_wait_packet_ns_mean": 159.7,
+      "id": "20260927-160000-ws13-feedback-03-f",
+      "mode": "fecmp",
+      "qp_event_totals": {
+        "cnp": 500,
+        "irn_ack": 100668
+      },
+      "sack_flow_count": 0,
+      "status": "SUCCEEDED",
+      "trace_sha256": "d4c7c089380d072cf22ca83c52a28609b05d721ae82b4c76c9793c99e03a1d2d",
+      "two_slowest_background_flows": [
+        {
+          "dport": 102,
+          "dst": 576,
+          "fct_ns": 1256446,
+          "fct_us": 1256.446,
+          "hop_queues": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 76496,
+              "queued_bytes_sum": 4377288,
+              "switch": 1313,
+              "wait_ns_max": 1570,
+              "wait_ns_sum": 89447
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 161452,
+              "queued_bytes_sum": 252055600,
+              "switch": 1346,
+              "wait_ns_max": 3138,
+              "wait_ns_sum": 4895296
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 9,
+              "queued_bytes_max": 2096,
+              "queued_bytes_sum": 25872,
+              "switch": 1476,
+              "wait_ns_max": 54,
+              "wait_ns_sum": 1100
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 96936,
+              "queued_bytes_sum": 6599692,
+              "switch": 1508,
+              "wait_ns_max": 1900,
+              "wait_ns_sum": 139179
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 3144,
+              "queued_bytes_sum": 28868,
+              "switch": 1632,
+              "wait_ns_max": 62,
+              "wait_ns_sum": 994
+            }
+          ],
+          "qp_events": {
+            "cnp": 48,
+            "irn_ack": 8389
+          },
+          "sack_sizes_bytes": [],
+          "size_bytes": 8388608,
+          "sport": 10001,
+          "src": 308,
+          "standalone_ns": 176425
+        },
+        {
+          "dport": 101,
+          "dst": 576,
+          "fct_ns": 1239828,
+          "fct_us": 1239.828,
+          "hop_queues": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 161392,
+              "queued_bytes_sum": 253201352,
+              "switch": 1346,
+              "wait_ns_max": 3138,
+              "wait_ns_sum": 4913799
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 141296,
+              "queued_bytes_sum": 9022584,
+              "switch": 1378,
+              "wait_ns_max": 2845,
+              "wait_ns_sum": 183098
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 12636,
+              "queued_bytes_sum": 326716,
+              "switch": 1506,
+              "wait_ns_max": 250,
+              "wait_ns_sum": 20606
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 5240,
+              "queued_bytes_sum": 51684,
+              "switch": 1538,
+              "wait_ns_max": 121,
+              "wait_ns_sum": 10216
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 2096,
+              "queued_bytes_sum": 14404,
+              "switch": 1621,
+              "wait_ns_max": 48,
+              "wait_ns_sum": 603
+            }
+          ],
+          "qp_events": {
+            "cnp": 47,
+            "irn_ack": 8389
+          },
+          "sack_sizes_bytes": [],
+          "size_bytes": 8388608,
+          "sport": 10002,
+          "src": 856,
+          "standalone_ns": 176425
+        }
+      ],
+      "unpaired_packets": 0
+    },
+    {
+      "background": 128,
+      "config_log_mib": 13.62,
+      "fct_rows": 16512,
+      "fct_sha256": "bf9c26d28a3adbdb98937e690734271e41d62797856eebd2ee206b45e940db0e",
+      "git_commit": "a985798ef78a95f502cf8eb56982c6e3a3b1168d",
+      "group": "20261103",
+      "hop_packet_sum": 453006,
+      "hop_queue_bytes_max": 167680,
+      "hop_records": 54,
+      "hop_wait_ns_max": 3327,
+      "hop_wait_packet_ns_mean": 140.3,
+      "id": "20260927-160000-ws13-feedback-03-d",
+      "mode": "packet-drill",
+      "qp_event_totals": {
+        "cnp": 580,
+        "irn_ack": 100668
+      },
+      "sack_flow_count": 0,
+      "status": "SUCCEEDED",
+      "trace_sha256": "d4c7c089380d072cf22ca83c52a28609b05d721ae82b4c76c9793c99e03a1d2d",
+      "two_slowest_background_flows": [
+        {
+          "dport": 101,
+          "dst": 856,
+          "fct_ns": 1454724,
+          "fct_us": 1454.724,
+          "hop_queues": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 2156,
+              "queued_bytes_sum": 36984,
+              "switch": 1315,
+              "wait_ns_max": 48,
+              "wait_ns_sum": 1458
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 7,
+              "queued_bytes_max": 166692,
+              "queued_bytes_sum": 256164408,
+              "switch": 1378,
+              "wait_ns_max": 3302,
+              "wait_ns_sum": 5087707
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 14,
+              "queued_bytes_max": 2096,
+              "queued_bytes_sum": 16680,
+              "switch": 1477,
+              "wait_ns_max": 42,
+              "wait_ns_sum": 953
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 123176,
+              "queued_bytes_sum": 7757764,
+              "switch": 1541,
+              "wait_ns_max": 2458,
+              "wait_ns_sum": 160223
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 4,
+              "queued_bytes_max": 10480,
+              "queued_bytes_sum": 276716,
+              "switch": 1645,
+              "wait_ns_max": 218,
+              "wait_ns_sum": 13017
+            }
+          ],
+          "qp_events": {
+            "cnp": 57,
+            "irn_ack": 8389
+          },
+          "sack_sizes_bytes": [],
+          "size_bytes": 8388608,
+          "sport": 10000,
+          "src": 356,
+          "standalone_ns": 176425
+        },
+        {
+          "dport": 104,
+          "dst": 576,
+          "fct_ns": 1359293,
+          "fct_us": 1359.293,
+          "hop_queues": [
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 1,
+              "queued_bytes_max": 163488,
+              "queued_bytes_sum": 222336520,
+              "switch": 1346,
+              "wait_ns_max": 3171,
+              "wait_ns_sum": 4312606
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 11,
+              "queued_bytes_max": 2156,
+              "queued_bytes_sum": 39168,
+              "switch": 1376,
+              "wait_ns_max": 60,
+              "wait_ns_sum": 1503
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 23160,
+              "queued_bytes_sum": 645340,
+              "switch": 1506,
+              "wait_ns_max": 449,
+              "wait_ns_sum": 24786
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 13,
+              "queued_bytes_max": 1168,
+              "queued_bytes_sum": 13656,
+              "switch": 1538,
+              "wait_ns_max": 38,
+              "wait_ns_sum": 828
+            },
+            {
+              "bytes": 8791280,
+              "packets": 8389,
+              "port": 3,
+              "queued_bytes_max": 2096,
+              "queued_bytes_sum": 19196,
+              "switch": 1620,
+              "wait_ns_max": 56,
+              "wait_ns_sum": 828
+            }
+          ],
+          "qp_events": {
+            "cnp": 50,
+            "irn_ack": 8389
+          },
+          "sack_sizes_bytes": [],
+          "size_bytes": 8388608,
+          "sport": 10002,
+          "src": 772,
+          "standalone_ns": 176425
+        }
+      ],
+      "unpaired_packets": 0
+    }
+  ],
+  "interpretation": "One-seed diagnostic correlation only; hop queue summaries are not a causal decomposition.",
+  "purpose": "diagnostic-only-irn-feedback-semantics",
+  "source_commit": "a985798ef78a95f502cf8eb56982c6e3a3b1168d",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
