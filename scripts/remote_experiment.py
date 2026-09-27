@@ -216,6 +216,8 @@ def main():
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     run_cmd.add_argument('--factorial-pilot', action='store_true',
                          help='allow exploratory IRN/PFC 00 and 11 configurations')
+    run_cmd.add_argument('--factorial-drop-diag', action='store_true',
+                         help='log packet drops in a factorial pilot')
     for name in ('status', 'fetch', 'transfer-smoke'):
         item = sub.add_parser(name)
         item.add_argument('id')
@@ -259,6 +261,8 @@ def main():
     elif args.command == 'run':
         if args.pfc + args.irn != 1 and not args.factorial_pilot:
             parser.error('Exactly one of --pfc and --irn must be enabled')
+        if args.factorial_drop_diag and not args.factorial_pilot:
+            parser.error('--factorial-drop-diag requires --factorial-pilot')
         command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
                     '--netload', str(args.netload), '--bw', str(args.bw),
                     '--max-concurrent', str(args.max_concurrent),
@@ -271,6 +275,8 @@ def main():
             command.extend(['--ws13-diag', '1'])
         if args.factorial_pilot:
             command.append('--factorial-pilot')
+        if args.factorial_drop_diag:
+            command.append('--factorial-drop-diag')
         worker_call(cfg, *command)
     elif args.command == 'status':
         worker_call(cfg, 'status', args.id)

@@ -65,6 +65,25 @@ static bool Ws13DiagnosticEnabled() {
     return enabled;
 }
 
+static void FactorialAdmissionDrop(const char *reason, uint32_t switchId,
+                                   const CustomHeader &ch, uint32_t inDev,
+                                   uint32_t outDev, uint32_t size) {
+    static const bool enabled = []() {
+        const char *value = std::getenv("IRN_PFC_DROP_DIAG");
+        return value && value[0] == '1' && value[1] == '\0';
+    }();
+    if (!enabled || ch.l3Prot != 0x11) return;
+    auto source = Settings::hostIp2IdMap.find(ch.sip);
+    auto destination = Settings::hostIp2IdMap.find(ch.dip);
+    std::cout << "FACTORIAL_ADMISSION_DROP reason=" << reason
+              << " time_ns=" << Simulator::Now().GetTimeStep()
+              << " switch=" << switchId
+              << " src=" << (source == Settings::hostIp2IdMap.end() ? -1 : int(source->second))
+              << " dst=" << (destination == Settings::hostIp2IdMap.end() ? -1 : int(destination->second))
+              << " seq=" << ch.udp.seq << " bytes=" << size
+              << " in_dev=" << inDev << " out_dev=" << outDev << std::endl;
+}
+
 static uint32_t GuardTag(Ptr<const Packet> p) {
     WorkloadTag label;
     if (!p->PeekPacketTag(label)) return 0;
@@ -556,6 +575,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 m_mmu->UpdateIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->UpdateEgressAdmission(outDev, qIndex, p->GetSize());
             } else { /** DROP: At Ingress */
+                FactorialAdmissionDrop("ingress", m_id, ch, inDev, outDev, p->GetSize());
 #if (0)
                 // /** NOTE: logging dropped pkts */
                 // std::cout << "LostPkt ingress - Sw(" << m_id << ")," << PARSE_FIVE_TUPLE(ch)
@@ -569,6 +589,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 return;  // drop
             }
         } else { /** DROP: At Egress */
+            FactorialAdmissionDrop("egress", m_id, ch, inDev, outDev, p->GetSize());
 #if (0)
             // /** NOTE: logging dropped pkts */
             // std::cout << "LostPkt egress - Sw(" << m_id << ")," << PARSE_FIVE_TUPLE(ch)

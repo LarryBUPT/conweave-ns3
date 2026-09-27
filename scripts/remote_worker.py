@@ -368,6 +368,8 @@ def execute(experiment_id):
         command.extend(['--ws13-diag', '1'])
     if params.get('factorial_pilot'):
         command.append('--factorial-pilot')
+    if params.get('factorial_drop_diag'):
+        command.append('--factorial-drop-diag')
     log = inside(os.path.join(base, 'logs', 'simulation.log'))
     data['command'] = ' '.join(command)
     save_metadata(base, data)
@@ -544,6 +546,7 @@ def main():
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     run_cmd.add_argument('--factorial-pilot', action='store_true')
+    run_cmd.add_argument('--factorial-drop-diag', action='store_true')
     for name in ('execute', 'status', 'fetch-check', 'transfer-smoke'):
         command = sub.add_parser(name)
         command.add_argument('id')
@@ -559,6 +562,8 @@ def main():
     elif args.command == 'run':
         if args.pfc + args.irn != 1 and not args.factorial_pilot:
             raise RuntimeError('Exactly one of PFC and IRN must be enabled')
+        if args.factorial_drop_diag and not args.factorial_pilot:
+            raise RuntimeError('Factorial drop diagnostics require factorial pilot mode')
         if args.netload < 1 or args.netload > 50 or not 0.005 <= float(args.simul_time) <= 0.1:
             raise RuntimeError('Small-run safety bounds: load 1-50, simulation time 0.005-0.1 s')
         if not re.match(r'^[A-Za-z0-9_-]+$', args.topo) or not re.match(r'^[A-Za-z0-9_-]+$', args.cdf):
@@ -573,7 +578,8 @@ def main():
                         'netload': args.netload, 'bw': args.bw, 'buffer': args.buffer,
                         'topo': args.topo, 'cdf': args.cdf,
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
-                        'factorial_pilot': args.factorial_pilot},
+                        'factorial_pilot': args.factorial_pilot,
+                        'factorial_drop_diag': args.factorial_drop_diag},
               max_concurrent=args.max_concurrent)
     elif args.command == 'execute':
         execute(args.id)

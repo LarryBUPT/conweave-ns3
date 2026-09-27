@@ -149,6 +149,8 @@ def main():
                         type=int, default=0, help="enable IRN (default: 0)")
     parser.add_argument('--factorial-pilot', action='store_true',
                         help='allow exploratory IRN/PFC 00 and 11 configurations')
+    parser.add_argument('--factorial-drop-diag', action='store_true',
+                        help='log switch admission and queue rejects during a factorial pilot')
     parser.add_argument('--simul_time', dest='simul_time', action='store',
                         default='0.1', help="traffic time to simulate (up to 3 seconds) (default: 0.1)")
     parser.add_argument('--buffer', dest="buffer", action='store',
@@ -225,6 +227,8 @@ def main():
     if enabled_irn == 0 and enabled_pfc == 0 and not args.factorial_pilot:
         raise Exception(
             "CONFIG ERROR : Either IRN or PFC should be true (at least one).")
+    if args.factorial_drop_diag and not args.factorial_pilot:
+        raise Exception("CONFIG ERROR : factorial drop diagnostics require --factorial-pilot")
     if float(args.simul_time) < 0.005:
         raise Exception("CONFIG ERROR : Runtime must be larger than 5ms (= warmup interval).")
 
@@ -425,6 +429,8 @@ def main():
     simulation_env = os.environ.copy()
     if args.ws13_diag:
         simulation_env['WS13_DIAG'] = '1'
+    if args.factorial_drop_diag:
+        simulation_env['IRN_PFC_DROP_DIAG'] = '1'
     with open(output_log, 'w') as simulation_log:
         subprocess.check_call(['./waf', '--run', 'scratch/network-load-balance ' + config_name],
                               stdout=simulation_log, stderr=subprocess.STDOUT,
