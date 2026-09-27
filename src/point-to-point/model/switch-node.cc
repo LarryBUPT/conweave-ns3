@@ -5,6 +5,7 @@
 #include "ns3/conweave-routing.h"
 #include "ns3/double.h"
 #include "ns3/flow-id-tag.h"
+#include "ns3/flow-id-num-tag.h"
 #include "ns3/int-header.h"
 #include "ns3/ipv4-header.h"
 #include "ns3/ipv4.h"
@@ -43,6 +44,27 @@ struct GuardQueueStat {
 };
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, GuardQueueStat> guard_queue_stats;
 
+// WS-13 diagnostic is opt-in and observes only background flows terminating
+// at the two destinations implicated by the frozen WS-12 tail cells.
+struct Ws13Packet {
+    uint32_t src, dst, sport, dport, outDev, queuedBytes;
+    uint64_t enqueueNs;
+};
+struct Ws13FlowHop {
+    uint64_t packets = 0, bytes = 0, queuedBytesSum = 0, waitNsSum = 0;
+    uint64_t maxQueuedBytes = 0, maxWaitNs = 0;
+};
+static std::map<std::pair<uint32_t, uint64_t>, Ws13Packet> ws13_inflight;
+static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t>,
+                Ws13FlowHop> ws13_hops;
+static bool Ws13DiagnosticEnabled() {
+    static const bool enabled = []() {
+        const char *value = std::getenv("WS13_DIAG");
+        return value && value[0] == '1' && value[1] == '\0';
+    }();
+    return enabled;
+}
+
 static uint32_t GuardTag(Ptr<const Packet> p) {
     WorkloadTag label;
     if (!p->PeekPacketTag(label)) return 0;
@@ -59,6 +81,24 @@ void SwitchNode::ConfigureGuardHash(uint32_t lambda, uint32_t tau,
 }
 
 void SwitchNode::PrintWorkloadTagCounts() {
+    if (Ws13DiagnosticEnabled()) {
+        for (const auto &entry : ws13_hops) {
+            const auto &key = entry.first;
+            const Ws13FlowHop &s = entry.second;
+            std::cout << "WS13_HOP src=" << std::get<0>(key)
+                      << " dst=" << std::get<1>(key)
+                      << " sport=" << std::get<2>(key)
+                      << " dport=" << std::get<3>(key)
+                      << " switch=" << std::get<4>(key)
+                      << " port=" << std::get<5>(key)
+                      << " packets=" << s.packets << " bytes=" << s.bytes
+                      << " queued_bytes_sum=" << s.queuedBytesSum
+                      << " queued_bytes_max=" << s.maxQueuedBytes
+                      << " wait_ns_sum=" << s.waitNsSum
+                      << " wait_ns_max=" << s.maxWaitNs << std::endl;
+        }
+        std::cout << "WS13_INFLIGHT unpaired=" << ws13_inflight.size() << std::endl;
+    }
     for (const auto &entry : workload_tag_packets)
         std::cout << "WS06_ROUTING_TAG tag=" << entry.first << " packets=" << entry.second << std::endl;
     std::cout << "WS06_ROUTING_TAG missing=" << missing_workload_tag_packets << std::endl;
@@ -544,6 +584,25 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         CheckAndSendPfc(inDev, qIndex);
     }
 
+    if (Ws13DiagnosticEnabled() && ch.l3Prot == 0x11) {
+        WorkloadTag tag;
+        auto destination = Settings::hostIp2IdMap.find(ch.dip);
+        auto source = Settings::hostIp2IdMap.find(ch.sip);
+        if (p->PeekPacketTag(tag) && tag.GetValue() == 1 &&
+            destination != Settings::hostIp2IdMap.end() &&
+            (destination->second == 856 || destination->second == 576) &&
+            source != Settings::hostIp2IdMap.end()) {
+            Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[outDev]);
+            NS_ASSERT_MSG(dev && dev->GetQueue(), "WS-13 diagnostic egress queue absent");
+            Ws13Packet item = {source->second, destination->second,
+                               ch.udp.sport, ch.udp.dport, outDev,
+                               dev->GetQueue()->GetNBytesTotal(),
+                               uint64_t(Simulator::Now().GetNanoSeconds())};
+            auto key = std::make_pair(m_id, p->GetUid());
+            NS_ASSERT_MSG(ws13_inflight.count(key) == 0, "WS-13 duplicate packet UID at switch");
+            ws13_inflight[key] = item;
+        }
+    }
     m_devices[outDev]->SwitchSend(qIndex, p, ch);
 }
 
@@ -593,6 +652,23 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 }
 
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
+    if (Ws13DiagnosticEnabled()) {
+        auto hit = ws13_inflight.find(std::make_pair(m_id, p->GetUid()));
+        if (hit != ws13_inflight.end()) {
+            const Ws13Packet &item = hit->second;
+            NS_ASSERT_MSG(item.outDev == ifIndex, "WS-13 diagnostic port mismatch");
+            uint64_t waited = uint64_t(Simulator::Now().GetNanoSeconds()) - item.enqueueNs;
+            auto key = std::make_tuple(item.src, item.dst, item.sport, item.dport, m_id, ifIndex);
+            Ws13FlowHop &s = ws13_hops[key];
+            ++s.packets;
+            s.bytes += p->GetSize();
+            s.queuedBytesSum += item.queuedBytes;
+            s.waitNsSum += waited;
+            s.maxQueuedBytes = std::max(s.maxQueuedBytes, uint64_t(item.queuedBytes));
+            s.maxWaitNs = std::max(s.maxWaitNs, waited);
+            ws13_inflight.erase(hit);
+        }
+    }
     if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");

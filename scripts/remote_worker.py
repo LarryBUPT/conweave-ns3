@@ -364,6 +364,8 @@ def execute(experiment_id):
                '--topo', params['topo'], '--cdf', params['cdf']]
     if params.get('flow_file'):
         command.extend(['--flow-file', 'config/' + params['flow_file']])
+    if params.get('ws13_diag'):
+        command.extend(['--ws13-diag', '1'])
     log = inside(os.path.join(base, 'logs', 'simulation.log'))
     data['command'] = ' '.join(command)
     save_metadata(base, data)
@@ -528,6 +530,7 @@ def main():
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file')
+    run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     for name in ('execute', 'status', 'fetch-check', 'transfer-smoke'):
@@ -558,7 +561,8 @@ def main():
                         'simul_time': args.simul_time,
                         'netload': args.netload, 'bw': args.bw, 'buffer': args.buffer,
                         'topo': args.topo, 'cdf': args.cdf,
-                        'flow_file': flow_file}, max_concurrent=args.max_concurrent)
+                        'flow_file': flow_file, 'ws13_diag': args.ws13_diag},
+              max_concurrent=args.max_concurrent)
     elif args.command == 'execute':
         execute(args.id)
     elif args.command == 'status':

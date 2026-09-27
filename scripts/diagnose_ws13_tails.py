@@ -89,6 +89,20 @@ def uplink_tor(raw, tor):
             if item[2] > item[0]}
 
 
+def cnp_by_node(raw):
+    totals = collections.defaultdict(lambda: [0, 0, 0])
+    path = next(raw.glob('*_out_cnp.txt'))
+    with path.open(encoding='utf-8') as source:
+        for line in source:
+            t, node, ecn, ooo, total = map(int, line.split())
+            assert t >= 2000000000 and total >= max(ecn, ooo)
+            row = totals[node]
+            row[0] += ecn
+            row[1] += ooo
+            row[2] += total
+    return totals
+
+
 def write_svg(cells):
     lookup = {(str(c['group']), c['background'], c['mode']): c for c in cells}
     # Plot absolute same-level differences from ECMP: x = background P99 cost,
@@ -152,6 +166,7 @@ def main():
         base = lookup[(group, bg, 'fecmp')]
         base_flows = flows(base)
         base_raw = files(base)[2]
+        base_cnp = cnp_by_node(base_raw)
         baseline_p99 = percentile(sorted(x / 1000 for x in base_flows.values()), 99)
         assert abs(baseline_p99 - base['background_flows']['p99_fct_us']) < 1e-6
         for mode in MODES:
@@ -176,6 +191,9 @@ def main():
                                    'cnp_bytes_candidate': current['raw_files']['cnp']['bytes'],
                                    'route_counters': route, 'tail_count': top_n})
             current_raw = files(current)[2]
+            current_cnp = cnp_by_node(current_raw)
+            case_summaries[-1]['cnp_event_totals_ecmp'] = [sum(row[i] for row in base_cnp.values()) for i in range(3)]
+            case_summaries[-1]['cnp_event_totals_candidate'] = [sum(row[i] for row in current_cnp.values()) for i in range(3)]
             uplink_cache = {}
             for key in sorted(observed):
                 src, dst, sport, dport, size = key
@@ -191,6 +209,10 @@ def main():
                              'ecmp_fct_us': base_flows[key] / 1000, 'candidate_fct_us': observed[key] / 1000,
                              'paired_delta_us': (observed[key] - base_flows[key]) / 1000,
                              'candidate_tail_rank': rank[key], 'in_candidate_top1pct': int(rank[key] <= top_n),
+                             'dst_host_cnp_ecmp_ecn': base_cnp[dst][0],
+                             'dst_host_cnp_ecmp_ooo': base_cnp[dst][1],
+                             'dst_host_cnp_candidate_ecn': current_cnp[dst][0],
+                             'dst_host_cnp_candidate_ooo': current_cnp[dst][1],
                              'src_tor_aggregate_uplink_ecmp_bytes': sum(eport.values()),
                              'src_tor_aggregate_uplink_candidate_bytes': sum(cport.values()),
                              'src_tor_common_uplink_ports': len(common),

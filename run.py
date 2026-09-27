@@ -161,6 +161,8 @@ def main():
                         default='AliStorage2019', help="the name of the cdf file (default: AliStorage2019)")
     parser.add_argument('--flow-file', '--flow_file', dest='flow_file',
                         help="existing flow trace inside config/ (five or six columns)")
+    parser.add_argument('--ws13-diag', dest='ws13_diag', type=int, choices=(0, 1), default=0,
+                        help='opt-in flow-hop and QP diagnostic for WS-13 tail probes')
     parser.add_argument('--enforce_win', dest='enforce_win', action='store',
                         type=int, default=0, help="enforce to use window scheme (default: 0)")
     parser.add_argument('--sw_monitoring_interval', dest='sw_monitoring_interval', action='store',
@@ -418,9 +420,13 @@ def main():
         history.write("\n")
 
     print(run_command)
+    simulation_env = os.environ.copy()
+    if args.ws13_diag:
+        simulation_env['WS13_DIAG'] = '1'
     with open(output_log, 'w') as simulation_log:
         subprocess.check_call(['./waf', '--run', 'scratch/network-load-balance ' + config_name],
-                              stdout=simulation_log, stderr=subprocess.STDOUT)
+                              stdout=simulation_log, stderr=subprocess.STDOUT,
+                              env=simulation_env)
 
     ####################################################
     #                 Analyze the output FCT           #

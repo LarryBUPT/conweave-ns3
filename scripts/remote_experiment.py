@@ -211,6 +211,7 @@ def main():
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file', help='existing tracked config/*.txt trace')
+    run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     for name in ('status', 'fetch', 'transfer-smoke'):
@@ -264,6 +265,8 @@ def main():
                     '--pfc', str(args.pfc), '--irn', str(args.irn)]
         if args.flow_file:
             command.extend(['--flow-file', args.flow_file])
+        if args.ws13_diag:
+            command.extend(['--ws13-diag', '1'])
         worker_call(cfg, *command)
     elif args.command == 'status':
         worker_call(cfg, 'status', args.id)

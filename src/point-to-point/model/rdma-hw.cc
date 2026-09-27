@@ -6,6 +6,7 @@
 #include <ns3/udp-header.h>
 
 #include <climits>
+#include <cstdlib>
 
 #include "cn-header.h"
 #include "flow-stat-tag.h"
@@ -23,6 +24,34 @@
 #include "qbb-header.h"
 
 namespace ns3 {
+
+static bool Ws13DiagnosticEnabled() {
+    static const bool enabled = []() {
+        const char *value = std::getenv("WS13_DIAG");
+        return value && value[0] == '1' && value[1] == '\0';
+    }();
+    return enabled;
+}
+
+static bool Ws13BackgroundQp(Ptr<RdmaQueuePair> qp) {
+    if (!Ws13DiagnosticEnabled() || qp->m_workload_tag != 1) return false;
+    auto dst = Settings::hostIp2IdMap.find(qp->dip.Get());
+    return dst != Settings::hostIp2IdMap.end() &&
+           (dst->second == 856 || dst->second == 576);
+}
+
+static void Ws13LogQp(const char *event, Ptr<RdmaQueuePair> qp) {
+    auto src = Settings::hostIp2IdMap.find(qp->sip.Get());
+    auto dst = Settings::hostIp2IdMap.find(qp->dip.Get());
+    NS_ASSERT_MSG(src != Settings::hostIp2IdMap.end() && dst != Settings::hostIp2IdMap.end(),
+                  "WS-13 QP host address absent");
+    std::cout << "WS13_QP event=" << event
+              << " time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " src=" << src->second << " dst=" << dst->second
+              << " sport=" << qp->sport << " dport=" << qp->dport
+              << " flow_id=" << qp->m_flow_id << " snd_una=" << qp->snd_una
+              << " snd_nxt=" << qp->snd_nxt << std::endl;
+}
 
 NS_LOG_COMPONENT_DEFINE("RdmaHw");
 
@@ -556,6 +585,11 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         RecoverQueue(qp);
     }
 
+    if (Ws13BackgroundQp(qp)) {
+        if (ch.l3Prot == 0xFD) Ws13LogQp("nack", qp);
+        if (cnp) Ws13LogQp("cnp", qp);
+    }
+
     // handle cnp
     if (cnp) {
         if (m_cc_mode == 1) {  // mlx version
@@ -880,6 +914,8 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
 
     // IRN: disable timeouts when PFC is enabled to prevent spurious retransmissions
     if (qp->irn.m_enabled && dev->IsQbbEnabled()) return;
+
+    if (Ws13BackgroundQp(qp)) Ws13LogQp("timeout", qp);
 
     std::cout << "WS08_TX_TIMEOUT time_ns=" << Simulator::Now().GetTimeStep()
               << " flow_id=" << qp->m_flow_id << " snd_una=" << qp->snd_una
