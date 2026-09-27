@@ -10,6 +10,8 @@
 
 2026-09-28 后续方向研究：[机制候选说明](../research/post-ws16-mechanism-directions.md)依据 WS-13/14 瓶颈和双侧代价，以及 ConWeave、ParaLet、SGLB、Proteus、FLB、TCCL 等原论文，提出发送准入与路径联合控制、下游反馈、重排预算、拥塞流隔离和多 rail/放置等可证伪问题。均是**提议，未运行新实验**；先审计瓶颈可控性和独立需求输入，旧 no-go 不变。
 
+2026-09-28 新任务流：按[WS-17 起机制计划](WS17_PLUS_PLAN.md)先启动 WS-17 审计；WS-18–20 是准入/路径联合主线的逐级门槛，WS-21–24 是条件分支，WS-25 负责证据收束。当前没有这些新分支的效果数据。每个分支均须执行[静默远程实验、Luna High 半小时监督、Sol High 分析及自然语言交接准则](../REMOTE_EXPERIMENT_WORKFLOW.md#长时矩阵运行准则)。
+
 ## 已完成且可核验
 
 - 研究：完成开题报告梳理、相关工作矩阵、初轮 8 个 idea、混合场景 5 个子 idea 和 MixHash 启发的 4 个算法草案。`ANT项目经验` 已按截图聊天日期及只读仓库演化完成复盘；论文项目 `docs/research/12-screenshot-lessons-and-mechanism-selection.md`、`docs/research/evidence/moe-static-profile.json` 是当前流量画像与条件性机制筛选入口，交接见 [Handoff 07](../handoffs/2026-09-25-07-ant-project-experience.md) 和 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)。它们是静态分析和方案，不是性能证据。

@@ -21,5 +21,14 @@
 | WS-14 | 单一针对性机制小样 | COMPLETE FOR PREREGISTERED EXTREME-CELL PILOT; STOPPED AT TWO-SIDED GATE | [Handoff 15](../handoffs/2026-09-28-15-ws14-guardhash-single-mechanism-pilot.md)、[契约](../research/ws14-single-mechanism-prereg-v1.md)、[报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)：7/7 格完成，0 背景普通双候选/GuardHash FCT 相同；192 档 GuardHash 背景 P99 优于普通双候选，但 MoE 批次不优于 ECMP，且最慢背景 QP 转移，按预注册规则停止 | 单输入描述性 pilot，不代表普遍机制或业务安全；64/128 未运行，不启动 WS-15；WS-10/11/12 no-go 不变 |
 | WS-15 | 独立需求正式验证与门槛复核 | COMPLETE FOR GATE REVIEW; FORMAL MATRIX NO-GO | [门槛复核](../research/ws15-independent-demand-gate-review.md)与 [Handoff 16](../handoffs/2026-09-28-16-ws15-gate-review.md)：WS-14 七格原始复核、WS-13 三条独立需求校准重算通过；筛选 GuardHash 调权、DRILL 异质性、目的出口反馈与 IRN×PFC，尚无合格新单机制，未启动新仿真 | 正式矩阵保持关闭，交接 WS-16；WS-13 校准 trace、WS-14 单输入及旧顺序置换不作正式重复；WS-10/11/12 no-go 不变 |
 | WS-16 | 论文证据与复现收束 | COMPLETE FOR EVIDENCE INDEX AND PAPER-SCOPE REVIEW; ADVISOR DECISION PENDING | [总报告](../research/ws16-paper-evidence-and-reproduction.md)、[216 ID 索引](../research/evidence/ws16-experiment-index.csv)、[Handoff 17](../handoffs/2026-09-28-17-ws16-paper-evidence.md)：逐格 trace/拓扑/FCT SHA 核验，正式 no-go、诊断、pilot 与未运行门槛分开；开题原文与交换机侧原型的范围差异已列明 | 结果正文须按各阶段证据等级写；端侧、INT/Δq、接收协同、硬件和真实业务 SLO 未验证，待导师确认题目/创新点范围；不重判旧门槛 |
+| WS-17 | 瓶颈可控性与独立需求审计 | ACTIVE FOR AUDIT; NO NEW EFFECT CLAIM | 按[WS-17 起计划](WS17_PLUS_PLAN.md)核对最终出口与可绕行上游瓶颈，建立独立 MoE 轮次/热点输入和发送等待口径、强对照与门槛；先本地审计，缺口才考虑最小探针 | 前序 WS-16 证据；输出 go/no-go Handoff 后决定是否启动 WS-18 或条件替代分支 |
+| WS-18 | 发送准入与路径联合最小原型 | CONDITIONAL | 在独立分支实现仅准入/仅路径/联合开关及起点—放行—完成计时；先做正确性 | WS-17 证实资源可控、输入和指标可核验；不得把最小运行作效果 |
+| WS-19 | 双侧小样与因果拆分 | CONDITIONAL | 四臂同输入校准小样，报告 MoE、背景、源端等待、完成率及瓶颈位置 | WS-18 正确性与守恒通过；事前双侧停止条件 |
+| WS-20 | 独立需求确认性验证 | CONDITIONAL | 预注册独立需求重复、强对照、限制指标与资源预算后运行正式矩阵 | WS-19 双侧门槛通过；不能借用旧顺序置换作独立样本 |
+| WS-21 | 下游反馈替代机制 | CONDITIONAL | 本地、理想与有延迟下游信息及等信息消融 | WS-17 证实可绕行热点、可实现反馈；oracle 不作实际收益 |
+| WS-22 | 重排预算与粒度机制 | CONDITIONAL | 流/flowlet/小段与预算退化，分测短 MoE 和长背景的重排代价 | 路径机会及接收成本可测 |
+| WS-23 | 拥塞流隔离 | CONDITIONAL | 类别/长度隔离与等信息对照、保留容量和饥饿观察 | PFC=0 跨类阻塞已证实，或 PFC 压力完成性修复并另立契约 |
+| WS-24 | 多 rail 与放置 | CONDITIONAL | 新多 NIC/跨 rail 输入上的放置和路径联合评价 | 连通性、任务映射和独立需求可核验；旧 rail 0 输入不适用 |
+| WS-25 | 新机制证据与论文收束 | PLANNED | 仅整合实际执行的分支，按源码 SHA/实验 ID/raw 分层陈述并用自然语言交接 | 论文范围待导师确认；历史 no-go 不改判 |
 
 `CHECKPOINTED` 表示研究资料已收口，但研究假设仍开放；各项 `COMPLETE FOR ...` 都只覆盖行内注明的核验范围，不等于论文性能实验完成。对话是否归档不改变工作流状态。
