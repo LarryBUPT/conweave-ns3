@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-10 固定总字节正式现象复核与 WS-11 全量输入正式现象验证均已完成，各自预注册复合判据 no-go；机制效果门槛仍关闭，WS-12 已启动多策略对照前置阶段与解释性负结果路线。**WS-10 的 30/30 格中，主 4 背景档五 seed 仅 1 个正向、归一化中位数 `−1.3947%`。WS-11 的 40/40 格中，192 背景档 MoE 交互 5/5 正向、中位数 `+35.9057%`，但原始输入组背景 P99 恶化 `6.6527%`，超过预定 5% 安全线。两场景输入与总字节契约不同，不能合并或互相重判；详见 [WS-10 报告](../research/ws10-fixed-load-formal-report.md) 与 [WS-11 报告](../research/ws11-full-moe-formal-report.md)。WS-09 GuardHash/HarmGate v0 仅完成工程原型，没有正式效果证据。
+阶段：**WS-10、WS-11 和 WS-12 多策略正式对照均已完成，各自预注册复合判据 no-go；机制效果门槛仍关闭，WS-12 解释性论文整合在推进。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 维持 16,384 条固定 MoE 与 0/64/128/192 条追加背景，120/120 格完成；RR、随机、自适应、DRILL 主档 MoE 批次相对既有逐包哈希均有中位缩短，但各有背景 P99 越线，四策略全部复合 no-go。三者输入/策略问题与判据各自独立，见 [WS-10 报告](../research/ws10-fixed-load-formal-report.md)、[WS-11 报告](../research/ws11-full-moe-formal-report.md)和[WS-12 报告](../research/ws12-packet-strategies-formal-report.md)。WS-09 GuardHash/HarmGate v0 仅有工程原型证据。
 
 ## 已完成且可核验
 
@@ -19,8 +19,11 @@
 - WS-09 工程原型：从已推送 `c45d41d42157dd3589e37ebe1953c75a68d5b6c2` 建 `feature/ws09-guardhash-prototype`；`shortq2/guardhash/guardhashgate` 模式 `13/14/15` 共用双候选哈希，HarmGate 是类别评分激活门槛。固定 `7930168f7bb43afbe6cc87bd134d91d28667e8c1` 完成 32 主机单/双类、导入 1280 跨 ToR 四流、同源码旧 `fecmp/dualtrack` 退化回归和 320 流同 trace 三格单 seed pilot；全部原始队列计数守恒。三格 MoE 合成批次 1.421/1.415/1.49 µs，背景 P99 均 688.41974 µs，门控实际激活 39 次、退出 9 次；仅属技术 pilot。修复提交 `9c34945c79b44476166f2f1f4dc26f6b2f6163a0` 的独立丢包探针 `20260926-025616-ws09-drop-probe` 两类准入丢包合计 3,041,296 B、计数违规 0。十格详证见 [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)、[冻结规格](../research/ws09-guardhash-v0-spec.md)、[机器摘要](../research/ws09-validation-summary.json)；不作效果结论。
 - WS-10 正式现象复核：预注册 v1.1 固定五个 trace seed、0/2/4 背景档、`fecmp/dualtrack`、总提供 35,651,584 B、统一 `aa778ac523bc0319999395dd3cf8085b41e73a98`。资源 pilot 6/6、正式 30/30 完成；4 档交互 1 正 4 负，归一化中位数 −1.3947%，背景安全 10/10 通过，2 档五 seed 均正但非单调，故现象 no-go。一次 SSH 状态解析故障的诊断格被同 SHA/trace 正式重跑替换，两份 FCT SHA 相同；详见 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)、[报告](../research/ws10-fixed-load-formal-report.md)、[机器摘要](../research/ws10-fixed-load-formal-summary.json)。
 - WS-11 全量输入正式现象验证：固定仿真源码 `208fcee4c541da9b24ed26792b32ae681a30977f`、16,384 条同步 MoE 与原始 0/64/128/192 背景输入，加四组确定性行顺序置换；40/40 正式格两类流全完成且原始文件与资源收据核验通过。主 192 档交互 5/5 正向、归一化中位数 +35.9057%，但原始组背景 P99 +6.6527% 超过 5% 安全线，复合门槛 no-go。置换组不是独立需求样本，背景增加也增加总字节。见 [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)、[报告](../research/ws11-full-moe-formal-report.md)、[机器摘要](../research/ws11-full-moe-formal-summary.json)。
+- WS-12 多策略正式对照：固定仿真源码 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`，同一全量 MoE 与追加背景输入下，五顺序组 × 四档 × 全流 ECMP/既有逐包哈希/RR/随机/自适应/DRILL 六模式共 120/120 格两类流全完成。旧 `fecmp/dualtrack` 40/40 FCT 哈希与 WS-11 一致。四个新增策略主 192 档相对哈希的批次中位缩短 16.116%/18.406%/21.056%/22.549%，但背景安全通过数仅 14/15、14/15、13/15、14/15，因此双侧判据均 no-go。见 [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)、[报告](../research/ws12-packet-strategies-formal-report.md)、[120 格摘要](../research/ws12-packet-strategies-formal-summary.json)。
 
 ## 当前版本快照
+
+2026-09-27 WS-12 集成核验：个人 fork `feature/ws12-packet-strategies` 在集成前为 `afee268e3eb0e5c7ab9347366944ca1210d98c72`；120 格仿真源码统一 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`。独立重跑 `scripts/verify_ws12_formal.py` 从原始结果与资源收据重算，返回码 0，`complete=true`、`formal_cell_count=120`、旧模式 FCT 哈希 40/40 匹配，四个新增策略 `two_sided_acceptable=false`。报告/状态提交后须重新查询本地和 origin HEAD；文档 HEAD 不等于仿真 SHA。正式矩阵无待补格，解释性整合仍可继续。
 
 2026-09-27 WS-11 独立交接核验：来源任务 ID `01a0de18-0f20-7201-ab7c-0a6c92c1b727` 已结束；集成前本地、origin、GitHub 的 `feature/ws11-full-moe-mixtax` 同为 `ef9c190fa119be8a8ca9ba4321a44c02d1dbc39f`，工作树干净。重新执行 `scripts/verify_ws11_formal.py` 读取 40 格原始结果与资源收据，返回码 0，输出 `positive_groups=5`、中位数 `35.90568060021436%`、`background_safety_all_pass=false`、`phenomenon_go=false`。正式仿真源码仍固定 `208fcee4c541da9b24ed26792b32ae681a30977f`；新状态提交不会改变实验归属。WS-11 按预注册现象与资源并发范围可闭环归档，条件性机制效果未启动。WS-12 承接既定多逐包策略加 ECMP 对照及解释性负结果路线。
 
@@ -54,7 +57,7 @@
 4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10/11 均未打开正式效果比较门槛，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 5. **全量阶段与资源准则：**WS-11 已按预注册完成资源 pilot、并发隔离审计与 40 格矩阵；20 物理核预算下的 18 共享 CPU 令牌和阶梯并发实测可用。原始输入随背景增加总字节，不能称纯混合比例效应，也不能与 WS-10 固定总字节场景合并。未来远程矩阵仍按[工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)先核对空闲资源和隔离，再按实测占用提高并发并静默监控。
 
-下一个里程碑：**先做 WS-12 实现前的多逐包策略对照阶段，再整理 WS-10/11 的解释性负结果、非单调性、热点与背景代价。**对照阶段计划在统一的背景逐流 ECMP 下比较业务流的现有逐包哈希、参考仓库的随机喷洒、自适应喷洒、DRILL，以及需新增的轮询，并保留全流 ECMP 基准；先冻结同输入、传输、随机性和双侧指标契约，再决定实现与仿真矩阵。它是新的前瞻性任务，不回填或改变 WS-11 的复合 no-go，也不自动打开 GuardHash/HarmGate 效果门槛。依赖与停机条件见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
+下一个里程碑：**整合 WS-10/11/12 的解释性负结果与论文证据。**多策略对照的预注册、实现、pilot 与 120 格正式矩阵已完成；接续整理固定总字节和全量追加背景两种输入契约、策略间的绝对批次与交互差别、热点和背景长尾代价。任何新的机制收益主张都需要另立前瞻性场景与双侧安全门槛，不能回填 WS-10/11/12 的 no-go。依赖见 [WORKSTREAMS.md](WORKSTREAMS.md) 与 [ROADMAP.md](ROADMAP.md)。
 
 后续场景口径（用户 2026-09-27 明确决定）：**保持同一批 MoE 业务流不变，逐档追加背景流，总提供字节随之增加**；不再为这条路线构造“背景增加但总字节不变”的替换式输入。每档各算法仍用相同流量配对，跨档结果解释为新增背景及相应负载的共同影响，不称纯混合比例效应。既有 WS-10 固定总字节结果作为历史独立契约保留，不重判。详见 [ADR-008](../decisions/ADR-008-additive-background-workload.md)。
 
@@ -77,3 +80,5 @@
 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md) 记录 WS-10 预注册五 seed 正式复核、一次控制器恢复和现象 no-go；所有正式格与原始 SHA 索引在 [机器摘要](../research/ws10-fixed-load-formal-summary.json)。
 
 [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md) 记录 WS-11 全量输入 40 格、资源并发验证和复合 no-go；逐格原始 SHA 与资源收据索引在 [机器摘要](../research/ws11-full-moe-formal-summary.json)。
+
+[Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md) 记录 WS-12 六策略 120 格全量配对、资源恢复、四策略复合 no-go；逐格原始 SHA、指标与收据索引在 [机器摘要](../research/ws12-packet-strategies-formal-summary.json)。

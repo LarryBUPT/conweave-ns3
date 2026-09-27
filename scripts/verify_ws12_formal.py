@@ -6,10 +6,11 @@ import statistics
 
 from audit_ws11_inputs import ROOT, TOPO_SHA
 from run_ws12_matrix import MODES, SIMULATION_COMMIT
-from verify_ws11_formal import one
+from verify_ws11_formal import one, sha
 
 PLAN = ROOT / 'results' / 'ws12-formal-plan.json'
 OUTPUT = ROOT / 'docs' / 'research' / 'ws12-packet-strategies-formal-summary.json'
+WS11_SUMMARY = ROOT / 'docs' / 'research' / 'ws11-full-moe-formal-summary.json'
 GROUPS = ('original', 20261101, 20261102, 20261103, 20261104)
 LEVELS = (0, 64, 128, 192)
 
@@ -30,10 +31,12 @@ def route_counters(cell):
         assert background > 0
     ports = re.findall(r'WS12_PORT switch=(\d+) port=(\d+) packets=(\d+)', log)
     assert sum(int(packets) for _, _, packets in ports) == moe
+    counts = [int(packets) for _, _, packets in ports]
     return {'moe_source_packets': moe, 'background_source_packets': background,
             'moe_source_multipath_packets': multipath,
-            'source_port_counts': [{'switch': int(sw), 'port': int(port),
-                                    'packets': int(packets)} for sw, port, packets in ports]}
+            'source_ports_used': len(ports), 'source_port_packets_min': min(counts),
+            'source_port_packets_max': max(counts),
+            'config_log_sha256': sha(raw / 'config.log')}
 
 
 def main():
@@ -50,6 +53,16 @@ def main():
         cell['route_counters'] = route_counters(cell)
         cells.append(cell)
     lookup = {(str(c['group']), c['background'], c['mode']): c for c in cells}
+    with WS11_SUMMARY.open(encoding='utf-8') as source:
+        previous = json.load(source)
+    legacy_matches = 0
+    for old in previous['cells']:
+        assert old['mode'] in ('fecmp', 'dualtrack')
+        new = lookup[(str(old['group']), old['background'], old['mode'])]
+        assert new['trace_sha256'] == old['trace_sha256']
+        assert new['raw_files']['fct']['sha256'] == old['raw_files']['fct']['sha256']
+        legacy_matches += 1
+    assert legacy_matches == 40
     contrasts = []
     for group in GROUPS:
         key = str(group)
@@ -92,7 +105,8 @@ def main():
                        'two_sided_acceptable': wins >= 4 and statistics.median(reductions) >= 5 and safety}
     result = {'prereg': plan['prereg'], 'simulation_git_commit': SIMULATION_COMMIT,
               'topology_sha256': TOPO_SHA, 'formal_cell_count': len(cells),
-              'complete': True, 'cells': cells, 'contrasts': contrasts, 'strategy_gates': gates,
+              'complete': True, 'legacy_fct_hash_matches': legacy_matches,
+              'cells': cells, 'contrasts': contrasts, 'strategy_gates': gates,
               'resource': {'max_tree_rss_mib': max(c['resource']['peak_tree_rss_mib'] for c in cells),
                            'max_sampled_load_1m': max(c['sampled_max_load_1m'] for c in cells),
                            'min_mem_available_gib': min(c['resource']['minimum_mem_available_gib'] for c in cells),
@@ -106,6 +120,7 @@ def main():
             json.dump(result, target, indent=2, sort_keys=True)
             target.write('\n')
     print(json.dumps({'complete': True, 'formal_cell_count': len(cells),
+                      'legacy_fct_hash_matches': legacy_matches,
                       'strategy_gates': gates, 'resource': result['resource']}, sort_keys=True))
 
 
