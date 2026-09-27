@@ -25,6 +25,8 @@
 
 ## 当前版本快照
 
+2026-09-27 WS-13 独立闭环核验：来源任务 `01a0e1ac-fe55-7a91-a2de-205722db854b` 已结束；集成前个人 fork `feature/ws13-tail-diagnosis` 本地与 origin 同为 `62f25d15fd1123586a0edbdeeb48fb0ba96e88a0`，工作树干净。重新从八个原始格及丢包探针运行分析器：常规 IRN×PFC 四格全完成且 PFC 零事件；压力 11 格仅 13/16 完成、三次超时抑制；定向复跑 FCT 逐字节相同，161 次出口准入丢包，三条缺失流的未确认序号此前有丢包。Handoff 14 补入真实任务 ID 与本阶段结果；本次只集成文档，仿真 SHA 与原始结果不改。WS-13 可按诊断和技术 pilot 范围归档；WS-14 只作为事前限定的研究性单机制小样启动，不能据此声称正式效果或业务安全。
+
 2026-09-27 WS-12 独立交接核验：来源任务 ID `01a0def1-82cd-7941-89a2-759e0072d8ef` 已结束；集成前个人 fork `feature/ws12-packet-strategies` 本地、origin 与 GitHub 均为 `2c1fea5eeb4a20c404b9b6d949b1e7d7169e03c1`，工作树干净。重新运行 `scripts/verify_ws12_formal.py` 从 120 格原始结果及资源收据得到 `complete=true`、旧 `fecmp/dualtrack` FCT 哈希 40/40 匹配，RR/随机/自适应/DRILL 均 `two_sided_acceptable=false`。仿真源码固定 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`；本集成提交只移动文档 HEAD。WS-12 正式对照及解释性提纲可闭环归档。WS-13 起遵照[后续计划](WS13_PLUS_PLAN.md)先诊断长尾、核对成熟方案评价口径与基线波动，再论证新限制指标。
 
 

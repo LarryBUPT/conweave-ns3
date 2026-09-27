@@ -111,7 +111,7 @@ ConWeave 的 TxToR 按 flow key 保存 epoch、phase、当前路径、reply/noti
 - `queueAnalysis.py` 的 queue 语义限于 ConWeave VOQ。若下一阶段假设涉及 MMU 物理占用，应先建立单独观测口径，再做最小实验。
 - 若算法专属计数器为 0，须把“模式被选中”与“关键动态分支被触发”分开报告，不推断算法全部行为已验证。
 
-## 5. 后续证据与研究路线同步（2026-09-27，WS-12 闭环）
+## 5. 后续证据与研究路线同步（2026-09-27，WS-13 诊断闭环）
 
 本文件第 1–4 节是 **2026-09-23 四模式 fidelity 的历史审计**。后续 WS-06 至 WS-09 使用新增六列输入、`dualtrack`、GuardHash/HarmGate 原型和不同接收契约，不能把它们的数字并入上表做同条件排名。跨对话的实时状态与任务边界以个人 fork 的 [CURRENT_STATE](../project-state/CURRENT_STATE.md)、[WORKSTREAMS](../project-state/WORKSTREAMS.md) 和 [ROADMAP](../project-state/ROADMAP.md) 为入口，运行时仍以源码、实验 ID 的元数据和原始数据为准。
 
@@ -124,9 +124,10 @@ ConWeave 的 TxToR 按 flow key 保存 epoch、phase、当前路径、reply/noti
 | WS-10 固定总字节正式复核 | 统一 `aa778ac523bc0319999395dd3cf8085b41e73a98`，资源 pilot 6/6、五 seed × 六格正式 30/30；全类 100% 完成，主 4 档交互 1/5 正向、归一化中位数 −1.3947%，背景安全 10/10 通过；2 档均正而 4 档多数负 | [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)、[预注册](../research/ws10-fixed-load-prereg-v1.md)、[报告](../research/ws10-fixed-load-formal-report.md)、[30 格原始索引与摘要](../research/ws10-fixed-load-formal-summary.json)：正式现象 **no-go**；不证明 GuardHash 效果，也不推断其他负载普遍无损害 |
 | WS-11 全量输入正式复核 | 固定仿真源码 `208fcee4c541da9b24ed26792b32ae681a30977f`；完整 16,384 条同步 MoE 加 0/64/128/192 背景，原始输入及四组行顺序置换共 40/40 格两类流全完成；主 192 档交互 5/5 正向、中位数 +35.9057%，但原始组背景 P99 恶化 +6.6527%，越过预注册 5% 安全线 | [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)、[预注册](../research/ws11-full-moe-prereg-v1.md)、[报告](../research/ws11-full-moe-formal-report.md)、[40 格摘要](../research/ws11-full-moe-formal-summary.json)：复合现象 **no-go**；四组置换并非独立需求样本，不能声称机制收益 |
 | WS-12 多策略全量对照 | 固定仿真源码 `adae7956e3fc874d9237e62a6ea8e32b26d5def1`；同一 16,384 条 MoE 加 0/64/128/192 背景，五顺序组 × 六模式共 120/120 格两类流全完成；旧 `fecmp/dualtrack` FCT 哈希 40/40 与 WS-11 相同。RR/随机/自适应/DRILL 主档相对逐包哈希的 MoE 批次中位缩短 16.116%/18.406%/21.056%/22.549%，但各有背景 P99 安全越线 | [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)、[报告](../research/ws12-packet-strategies-formal-report.md)、[120 格摘要](../research/ws12-packet-strategies-formal-summary.json)：四策略预注册复合 **no-go**；不构成 GuardHash/HarmGate 效果证据 |
+| WS-13 长尾诊断与传输技术 pilot | 复用 WS-12 原始格逐流定位背景尾流、与 ECMP 配对绘制连续权衡；三份独立需求 trace 校准显示 ECMP 背景 P99 在 1292.771–2179.572 µs 间波动。修正反馈探针四格 FCT 与 WS-12 字节级一致，目标 QP 无 SACK，目的 ToR 出口有微秒级排队。IRN×PFC 常规四格 PFC 未触发；压力双开格仅 13/16 完成，定向探针发现 161 次出口准入丢包，三条未完成流的关键序号先丢包、随后超时恢复被抑制 | [Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)、[诊断与实验契约](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[四格报告](../research/ws13-irn-pfc-factorial-pilot-report.md)：单输入诊断与技术 pilot；无可核验业务 SLO，不形成新通用安全线或正式机制收益 |
 
 **当前决策：**WS-10 固定总字节主档 no-go、WS-11 全量输入背景安全越线的复合 no-go、WS-12 四个新增策略的双侧 no-go 均保持各自预注册结论。WS-12 的主档 MoE 相对逐包哈希缩短是有利观测，但所有新增策略至少一格背景 P99 越过旧研究 5% 保护线；该线是本项目历史预注册门槛，不是成熟方案通用标准。GuardHash/HarmGate 仍只有 WS-09 工程原型证据。[ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)不允许由原型直接推出机制收益。
 
 **证据边界：**WS-10 的独立 trace seed 与 WS-11/12 共用流记录的四组行顺序置换不能合并为同一种重复；全量场景追加背景会增加总字节，不能称纯混合比例效应。旧四模式 baseline 第 1–4 节的最小 fidelity 数据不参与这些性能排名。WS-12 的绝对 MoE 批次、相对逐包哈希改善、相对 ECMP 差值和背景代价须分列报告。物理 MMU 队列、可靠独立 NACK/超时计数仍不可得，不能以零填补。
 
-**当前状态与后续顺序：**WS-12 多策略 120/120 格和三场[解释性证据提纲](../research/ws12-ws10-ws11-negative-evidence.md)已完成。WS-10 固定总字节、WS-11 全量现象、WS-12 四新增策略各自预注册的 no-go 保留，不合并判据。WS-13 先用已收集的流级原始数据定位背景长尾及共享链路代价，核对成熟方案评价口径、独立校准输入的基线波动和实际业务目标后，才提出新的限制指标；不能沿用未经论证的任意百分比，也不事后改动旧 5% 判据。诊断支持单一可证伪机制时进入小样，只有双侧信号才开展独立需求正式验证。详见[后续任务流](../project-state/WS13_PLUS_PLAN.md)。以上同步不修改第 1–4 节历史 baseline 审计。
+**当前状态与后续顺序：**WS-13 在诊断、校准和 IRN×PFC 技术 pilot 范围内闭环。成熟方案可借鉴评价指标，不提供本项目可照搬的损害百分比；用户暂无可核验业务 SLO，故只报告连续 MoE—背景权衡，任何新阈值必须注明研究性判断与敏感性。WS-10/11/12 的历史预注册 5% 与各自 no-go 不变。WS-14 先冻结单机制可证伪假说、同输入 ECMP/强对照、观测缺口、双侧停止规则，再开展研究小样；当前 IRN+PFC 压力 11 格不完整，不能作正式性能格。只有双侧信号通过，才规划独立需求 trace 的 WS-15 正式验证；否则转入 WS-16 负结果收束。详见[后续任务流](../project-state/WS13_PLUS_PLAN.md)。以上同步不修改第 1–4 节历史 baseline 审计。
