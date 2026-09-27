@@ -1,0 +1,249 @@
+{
+  "first_demand_ns": 2000000000,
+  "generator": "scripts/make_ws17_demand.py",
+  "role": "design-and-static-audit-only; not simulation evidence",
+  "round_count": 8,
+  "round_gap_ns": 50000,
+  "sampling_unit": "one independently redrawn seed; treatments/background levels are paired within seed",
+  "seeds": [
+    {
+      "background_sources_sha256": "e2c97061dc4e52e00f327afc3f6c120f67eb58ff705f09ae710e2a74346985b1",
+      "expert_membership_sha256": "df43ecc187d5d35d7ea27da4a3237a09e073e9013846f316d8314c7e64f64533",
+      "hot_host": 104,
+      "hot_hosts": [
+        96,
+        104,
+        112,
+        116,
+        120,
+        124
+      ],
+      "hot_tor": 1283,
+      "records": [
+        {
+          "background_bytes": 0,
+          "background_flows": 0,
+          "demand": "ws17_seed20261701_host_hotspot_b0.demand.json",
+          "demand_sha256": "e314ca6719017673c789018bb1f6443ca6813fab63299f83247b07d1fed8af25",
+          "flows": 16384,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261701,
+          "trace": "ws17_seed20261701_host_hotspot_b0.txt",
+          "trace_sha256": "ed1b261e058f937975c30e1533a46eb507b37a3518b782a422f5772f6377486d",
+          "treatment": "host_hotspot"
+        },
+        {
+          "background_bytes": 1610612736,
+          "background_flows": 192,
+          "demand": "ws17_seed20261701_host_hotspot_b192.demand.json",
+          "demand_sha256": "0b190219cf5668523bdda95b5890fbb3b8d863ae8ff695c1fd42448cb5630abe",
+          "flows": 16576,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261701,
+          "trace": "ws17_seed20261701_host_hotspot_b192.txt",
+          "trace_sha256": "bc08ca16e044f77b6d70b99649cbb23ad802c012950d659d098c2f2b1faa0efb",
+          "treatment": "host_hotspot"
+        },
+        {
+          "background_bytes": 0,
+          "background_flows": 0,
+          "demand": "ws17_seed20261701_tor_hotspot_b0.demand.json",
+          "demand_sha256": "3fb9deee3ecec295947a88a07190a619b0c3e7559b256cb46927fcfdb87fd286",
+          "flows": 16384,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261701,
+          "trace": "ws17_seed20261701_tor_hotspot_b0.txt",
+          "trace_sha256": "b0f0e8d256450f3dd87732a64dcbb5a89c331b3b5a5eb287c7d714099abbd101",
+          "treatment": "tor_hotspot"
+        },
+        {
+          "background_bytes": 1610612736,
+          "background_flows": 192,
+          "demand": "ws17_seed20261701_tor_hotspot_b192.demand.json",
+          "demand_sha256": "148011b831496af8976b0032fca8ef16e19e182269196f1fb185bd0630946211",
+          "flows": 16576,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261701,
+          "trace": "ws17_seed20261701_tor_hotspot_b192.txt",
+          "trace_sha256": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3",
+          "treatment": "tor_hotspot"
+        }
+      ],
+      "route_audit": {
+        "destination": 104,
+        "destination_host_degree": 1,
+        "destination_tor": 1283,
+        "destination_tor_shortest_next_hops": 1,
+        "sample_source": 0,
+        "source_tor": 1280,
+        "source_tor_shortest_next_hops": 8
+      },
+      "seed": 20261701
+    },
+    {
+      "background_sources_sha256": "4990f4dd01ddb36319a5fbf9ac631ed56e4867feef70e448b009fc115eeee7f0",
+      "expert_membership_sha256": "a0c49d075fdf505f4cf1b004ec089461b34f3343a862c40f5446c6e814e7899f",
+      "hot_host": 1056,
+      "hot_hosts": [
+        1056,
+        1060,
+        1064,
+        1068,
+        1072,
+        1076,
+        1080,
+        1084
+      ],
+      "hot_tor": 1409,
+      "records": [
+        {
+          "background_bytes": 0,
+          "background_flows": 0,
+          "demand": "ws17_seed20261702_host_hotspot_b0.demand.json",
+          "demand_sha256": "4cfb32694b621ae2a056c7d4bb74829b274a2c95ba2a00ebdac9f00fc02e0d76",
+          "flows": 16384,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261702,
+          "trace": "ws17_seed20261702_host_hotspot_b0.txt",
+          "trace_sha256": "851a27267a528b63354efd279eb20d70277bad81658f5239c63e70eb9b3fdd95",
+          "treatment": "host_hotspot"
+        },
+        {
+          "background_bytes": 1610612736,
+          "background_flows": 192,
+          "demand": "ws17_seed20261702_host_hotspot_b192.demand.json",
+          "demand_sha256": "a02024eff6ae2fb4de74e43c3095105e17d5c9b013b6ac75dd7482cf7765098f",
+          "flows": 16576,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261702,
+          "trace": "ws17_seed20261702_host_hotspot_b192.txt",
+          "trace_sha256": "67ca53da24f99e41f6d39286dfb7d2de11255f6a9bee31263db16e8fcf6393ef",
+          "treatment": "host_hotspot"
+        },
+        {
+          "background_bytes": 0,
+          "background_flows": 0,
+          "demand": "ws17_seed20261702_tor_hotspot_b0.demand.json",
+          "demand_sha256": "db565499c083cc58ed383143c056f26268438d3bdfa79c7b570cab6f01e3e93e",
+          "flows": 16384,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261702,
+          "trace": "ws17_seed20261702_tor_hotspot_b0.txt",
+          "trace_sha256": "aee0c8c0cbfa037b714ab82102cdbd51934e45b3bfbe90f0648053155c9bc485",
+          "treatment": "tor_hotspot"
+        },
+        {
+          "background_bytes": 1610612736,
+          "background_flows": 192,
+          "demand": "ws17_seed20261702_tor_hotspot_b192.demand.json",
+          "demand_sha256": "a5600d5f01755c889f74314f17eb9a2d6c60bfff3b589e3223659257f489c542",
+          "flows": 16576,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261702,
+          "trace": "ws17_seed20261702_tor_hotspot_b192.txt",
+          "trace_sha256": "49833e905476ebfef0fb117b493d259d86908d448fb0800b4b9587cea3083f3e",
+          "treatment": "tor_hotspot"
+        }
+      ],
+      "route_audit": {
+        "destination": 1056,
+        "destination_host_degree": 1,
+        "destination_tor": 1409,
+        "destination_tor_shortest_next_hops": 1,
+        "sample_source": 0,
+        "source_tor": 1280,
+        "source_tor_shortest_next_hops": 8
+      },
+      "seed": 20261702
+    },
+    {
+      "background_sources_sha256": "71d3e7302d61ac7c312faedcebb51fc7050f6d2416340f4141fc46e0d07e6539",
+      "expert_membership_sha256": "e83e43e5d8d3e51f600a8c7c282ee9957237c8d81e27c09a148f52ef3a77b9bb",
+      "hot_host": 448,
+      "hot_hosts": [
+        448,
+        452,
+        456,
+        460,
+        464,
+        468,
+        476
+      ],
+      "hot_tor": 1318,
+      "records": [
+        {
+          "background_bytes": 0,
+          "background_flows": 0,
+          "demand": "ws17_seed20261703_host_hotspot_b0.demand.json",
+          "demand_sha256": "686317290e155baec4c422e2787a518d3c34572c26ed418c2369afc3d3249199",
+          "flows": 16384,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261703,
+          "trace": "ws17_seed20261703_host_hotspot_b0.txt",
+          "trace_sha256": "7056a1c6bf3ee24a8fbb776874572e1a736668f233533477c076eee39ff515db",
+          "treatment": "host_hotspot"
+        },
+        {
+          "background_bytes": 1610612736,
+          "background_flows": 192,
+          "demand": "ws17_seed20261703_host_hotspot_b192.demand.json",
+          "demand_sha256": "82d8b17586a499c491d96ef2b9002cc64722d8867a640d53c0ff255c0eac3a03",
+          "flows": 16576,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261703,
+          "trace": "ws17_seed20261703_host_hotspot_b192.txt",
+          "trace_sha256": "e5bb12224b7e5693d7792c554476937beb4e07a639f9b69897718f103c31ccb1",
+          "treatment": "host_hotspot"
+        },
+        {
+          "background_bytes": 0,
+          "background_flows": 0,
+          "demand": "ws17_seed20261703_tor_hotspot_b0.demand.json",
+          "demand_sha256": "f0e905f2b54a3282ce3815cf1241099ddbba661bab394daebcce8d9efd5d71a6",
+          "flows": 16384,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261703,
+          "trace": "ws17_seed20261703_tor_hotspot_b0.txt",
+          "trace_sha256": "a65de63c68e1616a6cabf81e8acb31972d807d95cfc8bef17a56b63f2fd1a687",
+          "treatment": "tor_hotspot"
+        },
+        {
+          "background_bytes": 1610612736,
+          "background_flows": 192,
+          "demand": "ws17_seed20261703_tor_hotspot_b192.demand.json",
+          "demand_sha256": "ea0ba25b492fccb68918ae91220368eceb3fdada0aea269a1826ac22a9236ccc",
+          "flows": 16576,
+          "moe_bytes": 134217728,
+          "moe_flows": 16384,
+          "seed": 20261703,
+          "trace": "ws17_seed20261703_tor_hotspot_b192.txt",
+          "trace_sha256": "2406463cbaa1963c748795064660a6869c1a5f26531def23c3c473936298a868",
+          "treatment": "tor_hotspot"
+        }
+      ],
+      "route_audit": {
+        "destination": 448,
+        "destination_host_degree": 1,
+        "destination_tor": 1318,
+        "destination_tor_shortest_next_hops": 1,
+        "sample_source": 0,
+        "source_tor": 1280,
+        "source_tor_shortest_next_hops": 8
+      },
+      "seed": 20261703
+    }
+  ],
+  "simulator_seed_for_future_pairing": 1,
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}

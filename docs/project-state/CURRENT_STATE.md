@@ -12,6 +12,8 @@
 
 2026-09-28 新任务流：按[WS-17 起机制计划](WS17_PLUS_PLAN.md)先启动 WS-17 审计；WS-18–20 是准入/路径联合主线的逐级门槛，WS-21–24 是条件分支，WS-25 负责证据收束。当前没有这些新分支的效果数据。每个分支均须执行[静默远程实验、Luna High 半小时监督、Sol High 分析及自然语言交接准则](../REMOTE_EXPERIMENT_WORKFLOW.md#长时矩阵运行准则)。
 
+2026-09-28 WS-17 本地审计闭环：个人 fork `feature/ws17-bottleneck-demand` 从已核验个人 `origin/research/post-ws16-mechanism-directions@5cf603abdec4ec3d37f400cae82b30eb6ec8751d` 分出。[审计](../research/ws17-bottleneck-demand-audit.md)、[三独立 seed、12 对静态 trace/sidecar 的哈希清单](../research/evidence/ws17-demand-manifest.json)与[Handoff 18](../handoffs/2026-09-28-18-ws17-bottleneck-demand.md)表明：固定目的主机只有唯一 400 Gbps 最终出口，跨 ToR 上游存在可分流最短路径；应用可控制放行时刻，但现有 FCT 不含放行前需求等待。WS-13 四格探针、六格独立需求校准和 WS-14 七格从旧原始 ID 重算通过；没有新仿真或效果数据。**WS-18 仅最小工程正确性 go；WS-19/20 效果矩阵 no-go，待三时刻计量、四臂和双侧完成率验证。**旧 WS-10/11/12 no-go、WS-14 停止规则均未重判。
+
 ## 已完成且可核验
 
 - 研究：完成开题报告梳理、相关工作矩阵、初轮 8 个 idea、混合场景 5 个子 idea 和 MixHash 启发的 4 个算法草案。`ANT项目经验` 已按截图聊天日期及只读仓库演化完成复盘；论文项目 `docs/research/12-screenshot-lessons-and-mechanism-selection.md`、`docs/research/evidence/moe-static-profile.json` 是当前流量画像与条件性机制筛选入口，交接见 [Handoff 07](../handoffs/2026-09-25-07-ant-project-experience.md) 和 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)。它们是静态分析和方案，不是性能证据。
@@ -79,7 +81,7 @@
 4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10/11 均未打开正式效果比较门槛，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 5. **全量阶段与资源准则：**WS-11 已按预注册完成资源 pilot、并发隔离审计与 40 格矩阵；20 物理核预算下的 18 共享 CPU 令牌和阶梯并发实测可用。原始输入随背景增加总字节，不能称纯混合比例效应，也不能与 WS-10 固定总字节场景合并。未来远程矩阵仍按[工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)先核对空闲资源和隔离，再按实测占用提高并发并静默监控。
 
-下一个里程碑：**WS-16 负结果与复现材料收束。**WS-15 门槛复核没有找到合格新单机制，正式矩阵未启动。WS-14 只完成 0/192 两端小样，没有连续中档曲线或独立需求重复。目的 ToR 排队与每 QP CNP 仍是相关观测；IRN×PFC 压力 11 格仍有未完成流。暂无可核验业务 SLO，不创建通用安全百分比。WS-10/11/12 no-go 保持原样。详见[WS-15 复核](../research/ws15-independent-demand-gate-review.md)、[后续计划](WS13_PLUS_PLAN.md)、[WORKSTREAMS](WORKSTREAMS.md)与[ROADMAP](ROADMAP.md)。
+下一个有条件的里程碑：**WS-18 发送准入与路径联合最小正确性工程。**须另行启动独立分支，先保存原始需求、放行、完成三时刻，核对四臂同输入完成/字节/等待守恒；WS-19/20 效果矩阵仍关闭。WS-14 仅有 0/192 两端小样，目的出口排队/CNP 仍是相关观测，IRN×PFC 压力 11 格仍有未完成流。暂无可核验业务 SLO，不创建通用安全百分比。WS-10/11/12 no-go 保持原样。详见[WS-17 审计](../research/ws17-bottleneck-demand-audit.md)、[WS-17 起计划](WS17_PLUS_PLAN.md)、[WORKSTREAMS](WORKSTREAMS.md)与[ROADMAP](ROADMAP.md)。
 
 后续场景口径（用户 2026-09-27 明确决定）：**保持同一批 MoE 业务流不变，逐档追加背景流，总提供字节随之增加**；不再为这条路线构造“背景增加但总字节不变”的替换式输入。每档各算法仍用相同流量配对，跨档结果解释为新增背景及相应负载的共同影响，不称纯混合比例效应。既有 WS-10 固定总字节结果作为历史独立契约保留，不重判。详见 [ADR-008](../decisions/ADR-008-additive-background-workload.md)。
 
