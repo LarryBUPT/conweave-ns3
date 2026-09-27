@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-10、WS-11 和 WS-12 多策略正式对照各自预注册复合判据 no-go；WS-13 诊断 pilot 完成；WS-14 GuardHash 单机制小样按事前规则停止；WS-15 门槛复核后确认性矩阵 no-go，WS-16 证据索引完成、论文范围待导师确认。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 的 120 格完成，四个新增策略全部复合 no-go。WS-13 目标 QP 未观察到 SACK，最慢背景流目的 ToR 出口出现微秒级排队并伴随 CNP，属于单 seed 相关性诊断。WS-14 七格 0/192 极端小样全完成；GuardHash 背景 P99 优于普通双候选，但 MoE 批次比普通双候选慢 0.552 µs、比 ECMP 慢 0.731 µs，且背景尾流转移，因此按停止规则不运行中档。WS-15 原始复核与候选筛选未找到合格新单机制，未运行新小样或正式格；这是门槛决定，不是性能零效应。暂无可核验业务 SLO，不新增通用安全线。详见 [WS-15 门槛复核](../research/ws15-independent-demand-gate-review.md)、[三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-13 合约与结果](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[WS-14 pilot 报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)。WS-09 GuardHash/HarmGate v0 仍是工程原型。
+阶段：**WS-10、WS-11 和 WS-12 多策略正式对照各自预注册复合判据 no-go；WS-13 诊断 pilot 完成；WS-14 GuardHash 单机制小样按事前规则停止；WS-15 门槛复核后确认性矩阵 no-go；WS-16 证据索引完成、论文范围待导师确认；WS-17 本地审计完成，WS-18 仅最小正确性工程获准启动。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 的 120 格完成，四个新增策略全部复合 no-go。WS-13 目标 QP 未观察到 SACK，最慢背景流目的 ToR 出口出现微秒级排队并伴随 CNP，属于单 seed 相关性诊断。WS-14 七格 0/192 极端小样全完成；GuardHash 背景 P99 优于普通双候选，但 MoE 批次比普通双候选慢 0.552 µs、比 ECMP 慢 0.731 µs，且背景尾流转移，因此按停止规则不运行中档。WS-15 原始复核与候选筛选未找到合格新单机制，未运行新小样或正式格；这是门槛决定，不是性能零效应。暂无可核验业务 SLO，不新增通用安全线。详见 [WS-15 门槛复核](../research/ws15-independent-demand-gate-review.md)、[三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-13 合约与结果](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[WS-14 pilot 报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)。WS-09 GuardHash/HarmGate v0 仍是工程原型。
 
 2026-09-28 WS-16 证据收束：在 `feature/ws16-paper-evidence` 从 WS-15 集成提交 `53b56b3d3f271356c98afdcad8779183a3fff528` 开工；[总报告](../research/ws16-paper-evidence-and-reproduction.md)、[216 ID 逐格索引](../research/evidence/ws16-experiment-index.csv)和[Handoff 17](../handoffs/2026-09-28-17-ws16-paper-evidence.md)已形成。索引直接核对元数据、trace/拓扑/FCT 原始哈希；本地正式 WS-10/11/12 与 WS-14、WS-13 校准核验通过。没有新仿真或新效果数据。开题报告的端侧分类/降级、INT/Δq、接收协同重排和硬件验证尚未完成；论文题目/创新点及业务 SLO 待导师确认。WS-13 压力 11 格实际 13/16，WS-15 确认性矩阵未运行，均不可写为正式效果。
 
@@ -13,6 +13,8 @@
 2026-09-28 新任务流：按[WS-17 起机制计划](WS17_PLUS_PLAN.md)先启动 WS-17 审计；WS-18–20 是准入/路径联合主线的逐级门槛，WS-21–24 是条件分支，WS-25 负责证据收束。当前没有这些新分支的效果数据。每个分支均须执行[静默远程实验、Luna High 半小时监督、Sol High 分析及自然语言交接准则](../REMOTE_EXPERIMENT_WORKFLOW.md#长时矩阵运行准则)。
 
 2026-09-28 WS-17 本地审计闭环：个人 fork `feature/ws17-bottleneck-demand` 从已核验个人 `origin/research/post-ws16-mechanism-directions@5cf603abdec4ec3d37f400cae82b30eb6ec8751d` 分出。[审计](../research/ws17-bottleneck-demand-audit.md)、[三独立 seed、12 对静态 trace/sidecar 的哈希清单](../research/evidence/ws17-demand-manifest.json)与[Handoff 18](../handoffs/2026-09-28-18-ws17-bottleneck-demand.md)表明：固定目的主机只有唯一 400 Gbps 最终出口，跨 ToR 上游存在可分流最短路径；应用可控制放行时刻，但现有 FCT 不含放行前需求等待。WS-13 四格探针、六格独立需求校准和 WS-14 七格从旧原始 ID 重算通过；没有新仿真或效果数据。**WS-18 仅最小工程正确性 go；WS-19/20 效果矩阵 no-go，待三时刻计量、四臂和双侧完成率验证。**旧 WS-10/11/12 no-go、WS-14 停止规则均未重判。
+
+2026-09-28 集成交接核验：WS-17 对话 `01a0e44f-d286-72f3-95ae-b4f93dfe38d0` 已完成且无未结用户请求；`feature/ws17-bottleneck-demand@47944fc117aaa9f202d4cd9b26cccb68feeba0de` 在集成前与个人 `origin` 同 SHA、工作树干净。`make_ws17_demand.py --verify` 再次核验 3 个 seed、12 对静态资产，manifest SHA 为 `0513d4b0f2cadea768220739fe8eadcd71e636f8ca763b9c6cf84fe233fead5a`；WS-13 反馈/校准及 WS-14 七格原始复核再次通过。此次基线与状态集成提交会移动分支 HEAD；其 SHA 不能误作仿真源码 SHA。WS-18 仅开放最小工程，尚未有新机制性能数据。
 
 ## 已完成且可核验
 

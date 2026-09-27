@@ -23,4 +23,6 @@
 
 2026-09-28 后续任务已规划：[WS-17 起机制任务流](WS17_PLUS_PLAN.md)把方向落实为 WS-17 瓶颈可控性/独立需求审计 → 条件性 WS-18 最小发送准入原型 → WS-19 双侧小样 → WS-20 独立需求确认；WS-21 下游反馈、WS-22 重排预算、WS-23 隔离、WS-24 多 rail 为各自有前置条件的替代分支，WS-25 整合实际执行的证据。首次启动 WS-17；后续编号不是自动仿真授权。所有分支受[静默实验与模型切换准则](../REMOTE_EXPERIMENT_WORKFLOW.md#长时矩阵运行准则)约束，Handoff 与最终说明须用自然语言说清流程、数据、结论及限制。
 
-2026-09-28 WS-17 已在独立分支完成[本地审计](../research/ws17-bottleneck-demand-audit.md)及[Handoff 18](../handoffs/2026-09-28-18-ws17-bottleneck-demand.md)：唯一目的主机出口不可由上游换路扩容，跨 ToR 上游可分流，发送应用可控放行但旧 FCT 漏计准入前等待。三个独立 seed 的 12 对静态输入/sidecar 已按[manifest](../research/evidence/ws17-demand-manifest.json)核验；它们尚未仿真。下一步仅开放 WS-18 三时刻计量与四臂最小正确性；WS-19/20 双侧效果须再次过门槛。没有创建后续任务、运行新远程格或改变旧 no-go。
+2026-09-28 WS-17 已在独立分支完成[本地审计](../research/ws17-bottleneck-demand-audit.md)及[Handoff 18](../handoffs/2026-09-28-18-ws17-bottleneck-demand.md)：唯一目的主机出口不可由上游换路扩容，跨 ToR 上游可分流，发送应用可控放行但旧 FCT 漏计准入前等待。三个独立 seed 的 12 对静态输入/sidecar 已按[manifest](../research/evidence/ws17-demand-manifest.json)核验；它们尚未仿真。下一步仅开放 WS-18 三时刻计量与四臂最小正确性；WS-19/20 双侧效果须再次过门槛。WS-17 本轮没有运行新远程格或改变旧 no-go。
+
+2026-09-28 WS-17 集成核验：`feature/ws17-bottleneck-demand@47944fc117aaa9f202d4cd9b26cccb68feeba0de` 与个人 `origin` 同 SHA；独立输入重生与 WS-13/14 原始复核再次通过。基线第 5 节同步 WS-16/17，并补 Handoff 的真实来源任务 ID。用户已要求启动 WS-18，其工作范围只含最小发送准入/路径四臂及三时刻计量的正确性；WS-19/20 效果门槛不因启动 WS-18 自动打开。
