@@ -38,6 +38,9 @@ static uint64_t guard_packets = 0, guard_two_candidates = 0;
 static uint64_t guard_scored = 0, guard_diverted = 0;
 static uint64_t guard_activations = 0, guard_exits = 0;
 static uint64_t guard_queue_violations = 0;
+static bool ws18_path_enabled = false;
+static uint64_t ws18_path_flows = 0, ws18_path_alternate = 0;
+static uint64_t ws18_path_packets = 0, ws18_path_multipath = 0;
 struct GuardQueueStat {
     uint64_t enqueued = 0, dequeued = 0, admissionDropped = 0;
     uint64_t queueRejected = 0, queuedDropped = 0, current = 0;
@@ -99,7 +102,14 @@ void SwitchNode::ConfigureGuardHash(uint32_t lambda, uint32_t tau,
     guard_off_bytes = gateOffBytes;
 }
 
+void SwitchNode::ConfigureWs18Path(bool enabled) { ws18_path_enabled = enabled; }
+
 void SwitchNode::PrintWorkloadTagCounts() {
+    if (Settings::lb_mode == 20)
+        std::cout << "WS18_PATH flows=" << ws18_path_flows
+                  << " alternate=" << ws18_path_alternate
+                  << " packets=" << ws18_path_packets
+                  << " multipath_packets=" << ws18_path_multipath << std::endl;
     if (Ws13DiagnosticEnabled()) {
         for (const auto &entry : ws13_hops) {
             const auto &key = entry.first;
@@ -226,6 +236,36 @@ uint32_t SwitchNode::DoLbFlowECMP(Ptr<const Packet> p, const CustomHeader &ch,
     uint32_t hashVal = EcmpHash(buf.u8, 12, m_ecmpSeed);
     uint32_t idx = hashVal % nexthops.size();
     return nexthops[idx];
+}
+
+// The two candidates are determined by the immutable 4-tuple. Queue load is
+// sampled once at the source ToR; every later packet stays on that flow's port.
+uint32_t SwitchNode::DoLbWs18(Ptr<const Packet> p, const CustomHeader &ch,
+                               const std::vector<int> &nexthops) {
+    WorkloadTag label;
+    if (!ws18_path_enabled || ch.l3Prot != 0x11 || !m_isToR ||
+        !m_isToR_hostIP.count(ch.sip) || !p->PeekPacketTag(label) ||
+        label.GetValue() != 2 || nexthops.size() < 2)
+        return DoLbFlowECMP(p, ch, nexthops);
+    ++ws18_path_packets;
+    ++ws18_path_multipath;
+    const auto key = std::make_tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    auto found = m_ws18FlowPort.find(key);
+    if (found != m_ws18FlowPort.end()) return found->second;
+    uint32_t words[3] = {ch.sip, ch.dip,
+                         uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16)};
+    uint32_t first = EcmpHash(reinterpret_cast<const uint8_t *>(words),
+                              sizeof(words), m_ecmpSeed) % nexthops.size();
+    uint32_t second = EcmpHash(reinterpret_cast<const uint8_t *>(words),
+                               sizeof(words), m_ecmpSeed ^ 0x9e3779b9U) % nexthops.size();
+    if (second == first) second = (first + 1) % nexthops.size();
+    uint32_t selected = CalculateInterfaceLoad(nexthops[second]) <
+                                CalculateInterfaceLoad(nexthops[first])
+                            ? second : first;
+    ++ws18_path_flows;
+    if (selected != first) ++ws18_path_alternate;
+    m_ws18FlowPort[key] = nexthops[selected];
+    return nexthops[selected];
 }
 
 // tag=2 uses a deterministic per-packet ECMP hash. tag=0/1 and all control
@@ -540,6 +580,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         case 18:
         case 19:
             return DoLbPacketStrategy(p, ch, nexthops);
+        case 20:
+            return DoLbWs18(p, ch, nexthops);
         case 13:
         case 14:
         case 15:

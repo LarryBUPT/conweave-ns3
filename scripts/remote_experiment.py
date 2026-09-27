@@ -200,7 +200,7 @@ def main():
     protect_cmd.add_argument('--repo-local', required=True)
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('id')
-    run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill'], default='fecmp')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12), default=1,
@@ -212,6 +212,9 @@ def main():
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file', help='existing tracked config/*.txt trace')
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     run_cmd.add_argument('--factorial-pilot', action='store_true',
@@ -263,12 +266,18 @@ def main():
             parser.error('Exactly one of --pfc and --irn must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
             parser.error('--factorial-drop-diag requires --factorial-pilot')
+        if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
+            parser.error('WS-18 switches require --lb ws18')
         command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
                     '--netload', str(args.netload), '--bw', str(args.bw),
                     '--max-concurrent', str(args.max_concurrent),
                     '--buffer', str(args.buffer),
                     '--topo', args.topo, '--cdf', args.cdf,
                     '--pfc', str(args.pfc), '--irn', str(args.irn)]
+        if args.lb == 'ws18':
+            command.extend(['--ws18-admission', str(args.ws18_admission),
+                            '--ws18-path', str(args.ws18_path),
+                            '--ws18-admission-rate-gbps', str(args.ws18_admission_rate_gbps)])
         if args.flow_file:
             command.extend(['--flow-file', args.flow_file])
         if args.ws13_diag:

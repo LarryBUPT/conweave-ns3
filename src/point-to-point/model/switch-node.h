@@ -5,6 +5,7 @@
 
 #include <unordered_map>
 #include <unordered_set>
+#include <tuple>
 
 #include "qbb-net-device.h"
 #include "switch-mmu.h"
@@ -50,6 +51,9 @@ class SwitchNode : public Node {
     uint32_t DoLbPacketStrategy(Ptr<const Packet> p, const CustomHeader &ch,
                                 const std::vector<int> &nexthops);
     std::map<uint32_t, uint32_t> m_packetRoundRobinNext;  // destination IP -> next index
+    std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t> m_ws18FlowPort;
+    uint32_t DoLbWs18(Ptr<const Packet> p, const CustomHeader &ch,
+                      const std::vector<int> &nexthops);
     uint32_t DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
                            const std::vector<int> &nexthops);
     // DRILL (lb_mode = 2)
@@ -81,6 +85,7 @@ class SwitchNode : public Node {
     static void PrintWorkloadTagCounts();
     static void ConfigureGuardHash(uint32_t lambda, uint32_t tau,
                                    uint32_t gateOnBytes, uint32_t gateOffBytes);
+    static void ConfigureWs18Path(bool enabled);
     void SwitchNotifyEnqueue(uint32_t ifIndex, Ptr<const Packet> p);
     void SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p);
     void SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,

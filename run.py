@@ -25,6 +25,7 @@ FLOW_FILE {flow_file}
 FLOW_INPUT_FILE mix/output/{id}/{id}_in.txt
 CNP_OUTPUT_FILE mix/output/{id}/{id}_out_cnp.txt
 FCT_OUTPUT_FILE mix/output/{id}/{id}_out_fct.txt
+WS18_OUTPUT_FILE mix/output/{id}/{id}_out_ws18.txt
 PFC_OUTPUT_FILE mix/output/{id}/{id}_out_pfc.txt
 QLEN_MON_FILE mix/output/{id}/{id}_out_qlen.txt
 VOQ_MON_FILE mix/output/{id}/{id}_out_voq.txt
@@ -43,6 +44,9 @@ BUFFER_SIZE {buffer_size}
 
 CC_MODE {cc_mode}
 LB_MODE {lb_mode}
+WS18_ADMISSION {ws18_admission}
+WS18_PATH {ws18_path}
+WS18_ADMISSION_RATE_GBPS {ws18_admission_rate_gbps}
 GUARDHASH_LAMBDA 1
 GUARDHASH_TAU_BYTES 0
 HARM_GATE_ON_BYTES 8192
@@ -115,6 +119,7 @@ lb_modes = {
     "shortq2": 13,
     "guardhash": 14,
     "guardhashgate": 15,
+    "ws18": 20,
     "drill": 2,
     "conga": 3,
     "letflow": 6,
@@ -167,6 +172,9 @@ def main():
                         help="existing flow trace inside config/ (five or six columns)")
     parser.add_argument('--ws13-diag', dest='ws13_diag', type=int, choices=(0, 1), default=0,
                         help='opt-in flow-hop and QP diagnostic for WS-13 tail probes')
+    parser.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
+    parser.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
+    parser.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
     parser.add_argument('--enforce_win', dest='enforce_win', action='store',
                         type=int, default=0, help="enforce to use window scheme (default: 0)")
     parser.add_argument('--sw_monitoring_interval', dest='sw_monitoring_interval', action='store',
@@ -229,6 +237,10 @@ def main():
             "CONFIG ERROR : Either IRN or PFC should be true (at least one).")
     if args.factorial_drop_diag and not args.factorial_pilot:
         raise Exception("CONFIG ERROR : factorial drop diagnostics require --factorial-pilot")
+    if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
+        raise Exception("CONFIG ERROR : WS-18 switches require --lb ws18")
+    if args.lb == 'ws18' and args.ws18_admission_rate_gbps <= 0:
+        raise Exception("CONFIG ERROR : WS-18 admission rate must be positive")
     if float(args.simul_time) < 0.005:
         raise Exception("CONFIG ERROR : Runtime must be larger than 5ms (= warmup interval).")
 
@@ -398,6 +410,8 @@ def main():
                                         qlen_mon_start=qlen_mon_start, qlen_mon_end=qlen_mon_end, flowgen_start_time=flowgen_start_time,
                                         flowgen_stop_time=flowgen_stop_time, sw_monitoring_interval=sw_monitoring_interval,
                                         load=netload, buffer_size=buffer, lb_mode=lb_mode, cwh_tx_expiry_time=cwh_tx_expiry_time,
+                                        ws18_admission=args.ws18_admission, ws18_path=args.ws18_path,
+                                        ws18_admission_rate_gbps=args.ws18_admission_rate_gbps,
                                         cwh_extra_reply_deadline=cwh_extra_reply_deadline, cwh_default_voq_waiting_time=cwh_default_voq_waiting_time,
                                         cwh_path_pause_time=cwh_path_pause_time, cwh_extra_voq_flush_time=cwh_extra_voq_flush_time,
                                         enabled_pfc=enabled_pfc, enabled_irn=enabled_irn,

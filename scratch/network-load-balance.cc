@@ -66,6 +66,10 @@ uint32_t guardhash_lambda = 1;
 uint32_t guardhash_tau_bytes = 0;
 uint32_t harm_gate_on_bytes = 8192;
 uint32_t harm_gate_off_bytes = 4096;
+bool ws18_admission = false, ws18_path = false;
+uint32_t ws18_admission_rate_gbps = 400;
+std::string ws18_output_file;
+FILE *ws18_output = NULL;
 
 // Conga params (based on paper recommendation)
 Time conga_flowletTimeout = MicroSeconds(100);  // 100us
@@ -205,6 +209,32 @@ uint32_t flow_num;
 uint32_t flow_line_number = 1;
 double previous_flow_start = -1.0;
 std::map<uint32_t, uint64_t> input_tag_counts;
+struct Ws18Flow {
+    uint32_t src, dst, pg, sport, dport, bytes, tag;
+    uint64_t demand_ns, release_ns;
+    bool released, finished;
+};
+std::vector<Ws18Flow> ws18_flows;
+std::map<uint32_t, uint64_t> ws18_next_release_ns;
+
+void ReleaseWs18Flow(uint32_t id) {
+    Ws18Flow &flow = ws18_flows.at(id);
+    NS_ASSERT_MSG(!flow.released && Simulator::Now().GetNanoSeconds() == flow.release_ns,
+                  "WS-18 release must happen once at its recorded time");
+    flow.released = true;
+    Ptr<Node> source = n.Get(flow.src), destination = n.Get(flow.dst);
+    NS_ASSERT_MSG(pairRtt.count(source) && pairRtt[source].count(destination),
+                  "WS-18 source/destination RTT must exist");
+    RdmaClientHelper clientHelper(
+        flow.pg, serverAddress[flow.src], serverAddress[flow.dst], flow.sport, flow.dport,
+        flow.bytes, has_win ? (global_t == 1 ? maxBdp : pairBdp[source][destination]) : 0,
+        global_t == 1 ? maxRtt : pairRtt[source][destination]);
+    clientHelper.SetAttribute("StatFlowID", IntegerValue(id));
+    clientHelper.SetAttribute("WorkloadTag", UintegerValue(flow.tag));
+    ApplicationContainer app = clientHelper.Install(source);
+    app.Start(Simulator::Now());
+    app.Stop(Seconds(100.0));
+}
 
 /**
  * Read flow input from file "flowf"
@@ -286,6 +316,29 @@ void ScheduleFlowInputs(FILE *infile) {
             target_len = 1;
         }
         assert(n.Get(src)->GetNodeType() == 0 && n.Get(dst)->GetNodeType() == 0);
+
+        if (lb_mode == 20) {
+            const uint64_t demand = Simulator::Now().GetNanoSeconds();
+            uint64_t release = demand;
+            if (ws18_admission && flow_input.workload_tag == 2) {
+                release = std::max(demand, ws18_next_release_ns[dst]);
+                const uint64_t service = std::max<uint64_t>(
+                    1, (uint64_t(target_len) * 8 + ws18_admission_rate_gbps - 1) /
+                           ws18_admission_rate_gbps);
+                ws18_next_release_ns[dst] = release + service;
+            }
+            NS_ASSERT_MSG(ws18_flows.size() == flow_input.idx, "Stable input ID mismatch");
+            ws18_flows.push_back({src, dst, pg, sport, dport, target_len,
+                                  flow_input.workload_tag, demand, release, false, false});
+            if (release == demand)
+                ReleaseWs18Flow(flow_input.idx);
+            else
+                Simulator::Schedule(NanoSeconds(release - demand), &ReleaseWs18Flow,
+                                    flow_input.idx);
+            flow_input.idx++;
+            ReadFlowInput();
+            continue;
+        }
 
         /**
          * Turn on if you want to record all input streams into output file for logging.
@@ -539,6 +592,23 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
             Settings::ip_to_node_id(q->dip), q->sport, q->dport, q->m_size,
             q->startTime.GetTimeStep(), (Simulator::Now() - q->startTime).GetTimeStep(),
             standalone_fct);
+    if (lb_mode == 20) {
+        NS_ASSERT_MSG(q->m_flow_id >= 0 && uint32_t(q->m_flow_id) < ws18_flows.size(),
+                      "WS-18 completion has no input ID");
+        Ws18Flow &flow = ws18_flows.at(q->m_flow_id);
+        const uint64_t finish = Simulator::Now().GetNanoSeconds();
+        NS_ASSERT_MSG(flow.released && !flow.finished && flow.src == sid && flow.dst == did &&
+                          flow.sport == q->sport && flow.dport == q->dport &&
+                          flow.bytes == q->m_size &&
+                          flow.demand_ns <= flow.release_ns && flow.release_ns <= finish,
+                      "WS-18 completion violates identity, bytes, or time ordering");
+        flow.finished = true;
+        fprintf(ws18_output, "%u %u %u %u %u %u %u %lu %lu %lu %lu %lu\n",
+                uint32_t(q->m_flow_id), flow.src, flow.dst, flow.sport, flow.dport,
+                flow.tag, flow.bytes, flow.demand_ns, flow.release_ns, finish,
+                flow.release_ns - flow.demand_ns, finish - flow.demand_ns);
+        fflush(ws18_output);
+    }
 
     // for debugging
     NS_LOG_DEBUG("%u %u %u %u %lu %lu %lu %lu\n" %
@@ -815,6 +885,14 @@ int main(int argc, char *argv[]) {
                 conf >> v;
                 lb_mode = v;
                 std::cerr << "LB_MODE\t\t\t" << lb_mode << "\n";
+            } else if (key.compare("WS18_ADMISSION") == 0) {
+                uint32_t value; conf >> value; ws18_admission = value != 0;
+            } else if (key.compare("WS18_PATH") == 0) {
+                uint32_t value; conf >> value; ws18_path = value != 0;
+            } else if (key.compare("WS18_ADMISSION_RATE_GBPS") == 0) {
+                conf >> ws18_admission_rate_gbps;
+            } else if (key.compare("WS18_OUTPUT_FILE") == 0) {
+                conf >> ws18_output_file;
             } else if (key.compare("GUARDHASH_LAMBDA") == 0) {
                 conf >> guardhash_lambda;
             } else if (key.compare("GUARDHASH_TAU_BYTES") == 0) {
@@ -1231,6 +1309,9 @@ int main(int argc, char *argv[]) {
     Settings::lb_mode = lb_mode;
     SwitchNode::ConfigureGuardHash(guardhash_lambda, guardhash_tau_bytes,
                                    harm_gate_on_bytes, harm_gate_off_bytes);
+    NS_ASSERT_MSG(lb_mode != 20 || (ws18_admission_rate_gbps > 0 && !ws18_output_file.empty()),
+                  "WS-18 requires positive admission rate and an output file");
+    SwitchNode::ConfigureWs18Path(lb_mode == 20 && ws18_path);
     Settings::packet_payload = packet_payload_size;
     // Settings::MTU = packet_payload_size + 48;  // for simplicity
     /*------------------------------------*/
@@ -1412,6 +1493,7 @@ int main(int argc, char *argv[]) {
     }
 
     fct_output = fopen(fct_output_file.c_str(), "w");
+    if (lb_mode == 20) ws18_output = fopen(ws18_output_file.c_str(), "w");
     flow_input_stream = fopen(flow_input_file.c_str(), "w");
     if (cc_mode == 1) {
         cnp_output = fopen(cnp_output_file.c_str(), "w");
@@ -1876,6 +1958,20 @@ int main(int argc, char *argv[]) {
                         &stop_simulation_middle);  // check every 100us
     Simulator::Stop(Seconds(flowgen_stop_time + 10.0));
     Simulator::Run();
+    if (lb_mode == 20) {
+        uint64_t released = 0, finished = 0, input_bytes = 0, finished_bytes = 0;
+        for (const Ws18Flow &flow : ws18_flows) {
+            released += flow.released;
+            finished += flow.finished;
+            input_bytes += flow.bytes;
+            if (flow.finished) finished_bytes += flow.bytes;
+        }
+        std::cout << "WS18_CONSERVATION input=" << ws18_flows.size()
+                  << " released=" << released << " finished=" << finished
+                  << " input_bytes=" << input_bytes << " finished_bytes=" << finished_bytes
+                  << std::endl;
+        fclose(ws18_output);
+    }
     SwitchNode::PrintWorkloadTagCounts();
 
     /*-----------------------------------------------------------------------------*/

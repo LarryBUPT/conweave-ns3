@@ -366,6 +366,10 @@ def execute(experiment_id):
         command.extend(['--flow-file', 'config/' + params['flow_file']])
     if params.get('ws13_diag'):
         command.extend(['--ws13-diag', '1'])
+    if params['lb'] == 'ws18':
+        command.extend(['--ws18-admission', str(params['ws18_admission']),
+                        '--ws18-path', str(params['ws18_path']),
+                        '--ws18-admission-rate-gbps', str(params['ws18_admission_rate_gbps'])])
     if params.get('factorial_pilot'):
         command.append('--factorial-pilot')
     if params.get('factorial_drop_diag'):
@@ -533,7 +537,7 @@ def main():
     build_cmd.add_argument('--branch', required=True)
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('--id', required=True)
-    run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill'], default='fecmp')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12), default=1)
@@ -543,6 +547,9 @@ def main():
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file')
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     run_cmd.add_argument('--factorial-pilot', action='store_true')
@@ -564,6 +571,10 @@ def main():
             raise RuntimeError('Exactly one of PFC and IRN must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
             raise RuntimeError('Factorial drop diagnostics require factorial pilot mode')
+        if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
+            raise RuntimeError('WS-18 switches require ws18 mode')
+        if args.ws18_admission_rate_gbps <= 0:
+            raise RuntimeError('WS-18 admission rate must be positive')
         if args.netload < 1 or args.netload > 50 or not 0.005 <= float(args.simul_time) <= 0.1:
             raise RuntimeError('Small-run safety bounds: load 1-50, simulation time 0.005-0.1 s')
         if not re.match(r'^[A-Za-z0-9_-]+$', args.topo) or not re.match(r'^[A-Za-z0-9_-]+$', args.cdf):
@@ -578,6 +589,9 @@ def main():
                         'netload': args.netload, 'bw': args.bw, 'buffer': args.buffer,
                         'topo': args.topo, 'cdf': args.cdf,
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
+                        'ws18_admission': args.ws18_admission,
+                        'ws18_path': args.ws18_path,
+                        'ws18_admission_rate_gbps': args.ws18_admission_rate_gbps,
                         'factorial_pilot': args.factorial_pilot,
                         'factorial_drop_diag': args.factorial_drop_diag},
               max_concurrent=args.max_concurrent)
