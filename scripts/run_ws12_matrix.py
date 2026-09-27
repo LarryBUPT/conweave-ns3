@@ -260,12 +260,15 @@ def run_cell(cell, commit, cap, simulation_slots, stop_event):
                         raise RuntimeError('Batch stopped before simulation')
                     audit()
                     start_watch(experiment_id)
-                    controller('run', experiment_id, '--lb', cell['mode'], '--pfc', '0',
-                               '--irn', '1', '--simul-time', '0.01', '--netload', '10',
-                               '--bw', '400', '--buffer', '9',
-                               '--topo', 'topo_1280_400G_400G_OS1',
-                               '--cdf', 'AliStorage2019', '--flow-file', cell['flow_file'],
-                               '--max-concurrent', str(cap))
+                    run_args = ['run', experiment_id, '--lb', cell['mode'], '--pfc', '0',
+                                '--irn', '1', '--simul-time', '0.01', '--netload', '10',
+                                '--bw', '400', '--buffer', '9',
+                                '--topo', 'topo_1280_400G_400G_OS1',
+                                '--cdf', 'AliStorage2019', '--flow-file', cell['flow_file'],
+                                '--max-concurrent', str(cap)]
+                    if cell.get('ws13_diag'):
+                        run_args.extend(['--ws13-diag', '1'])
+                    controller(*run_args)
                     receipt('started', cell, concurrency_cap=cap)
                     state = status(experiment_id)
                 if state['status'] == 'RUNNING':
