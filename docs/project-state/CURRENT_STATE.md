@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-10、WS-11 和 WS-12 多策略正式对照均已完成，各自预注册复合判据 no-go；WS-13 诊断 pilot 完成；WS-14 GuardHash 单机制小样按事前规则停止，未通过双侧门槛。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 的 120 格完成，四个新增策略全部复合 no-go。WS-13 目标 QP 未观察到 SACK，最慢背景流目的 ToR 出口出现微秒级排队并伴随 CNP，属于单 seed 相关性诊断。WS-14 七格 0/192 极端小样全完成；GuardHash 背景 P99 优于普通双候选，但 MoE 批次比普通双候选慢 0.552 µs、比 ECMP 慢 0.731 µs，且背景尾流转移，因此按停止规则不运行中档或 WS-15。暂无可核验业务 SLO，不新增通用安全线。详见 [三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-13 合约与结果](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[WS-14 pilot 报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)、[WS-10 报告](../research/ws10-fixed-load-formal-report.md)、[WS-11 报告](../research/ws11-full-moe-formal-report.md)和[WS-12 报告](../research/ws12-packet-strategies-formal-report.md)。WS-09 GuardHash/HarmGate v0 仍是工程原型；本 pilot 未证明普遍机制效果。
+阶段：**WS-10、WS-11 和 WS-12 多策略正式对照各自预注册复合判据 no-go；WS-13 诊断 pilot 完成；WS-14 GuardHash 单机制小样按事前规则停止；WS-15 门槛复核后确认性矩阵 no-go，转入 WS-16 证据收束。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 的 120 格完成，四个新增策略全部复合 no-go。WS-13 目标 QP 未观察到 SACK，最慢背景流目的 ToR 出口出现微秒级排队并伴随 CNP，属于单 seed 相关性诊断。WS-14 七格 0/192 极端小样全完成；GuardHash 背景 P99 优于普通双候选，但 MoE 批次比普通双候选慢 0.552 µs、比 ECMP 慢 0.731 µs，且背景尾流转移，因此按停止规则不运行中档。WS-15 原始复核与候选筛选未找到合格新单机制，未运行新小样或正式格；这是门槛决定，不是性能零效应。暂无可核验业务 SLO，不新增通用安全线。详见 [WS-15 门槛复核](../research/ws15-independent-demand-gate-review.md)、[三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-13 合约与结果](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[WS-14 pilot 报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)。WS-09 GuardHash/HarmGate v0 仍是工程原型。
 
 ## 已完成且可核验
 
@@ -25,6 +25,8 @@
 - WS-13 IRN×PFC 四格扩展 pilot：同一仿真源码 `babd1b90d7c027cd09ac8c7d67380511a92883a6` 的 256 MoE+64 背景四格均 320/320 完成，但 PFC pause/resume 全为 0，00/01 与 10/11 各自 FCT SHA 相同，不能据此估计 PFC 动态效果。另用 16×1 MiB incast/1 MiB buffer 压力输入验证 PFC 触发：00/01/10 均 16/16，11 仅 13/16；11 缺失的流 ID 13/14/15 与三次 IRN+PFC 超时抑制日志逐一对应。定向丢包探针 `20260927-223000-irnpfcdrop-11@7af917a` 的 FCT 与旧 11 格逐字节相同，记录 161 次数据包出口准入拒绝；三条未完成流在各自未确认序号均有先前丢包，证实丢包后超时恢复被跳过的具体链路。旧 worker 曾把非空 FCT 的 11 格记为 `SUCCEEDED`，后续 factorial pilot 已新增完成数门禁；原始元数据不改写。详见[逐格报告](../research/ws13-irn-pfc-factorial-pilot-report.md)与[常规](../research/evidence/ws13-irn-pfc-factorial-pilot.json)/[压力](../research/evidence/ws13-irn-pfc-factorial-stress.json)/[丢包](../research/evidence/ws13-irn-pfc-drop-probe.json)收据。两组均为单输入技术 pilot，不重判旧 no-go。
 
 ## 当前版本快照
+
+2026-09-28 WS-15 门槛复核：从 `feature/ws14-single-mechanism@a12519938c81ce9ee35683975c86f0f39f8f7340` 建 `feature/ws15-gate-review`，本地/个人 origin 起点相同。重跑 WS-14 七格原始核验和分析，JSON SHA-256 `dbce7a845c8e18bd4f4ef95b6164ba2bfa8d54adf7fefd20ae2731ade07dacda` 未变；重跑 WS-13 三条独立需求六格校准成功。筛选结论与重开条件见[报告](../research/ws15-independent-demand-gate-review.md)及[Handoff 16](../handoffs/2026-09-28-16-ws15-gate-review.md)。本次只做本地分析与文档，无新远程仿真，正式矩阵关闭；提交后须再查 Git SHA。
 
 2026-09-28 WS-14 独立闭环核验：来源任务 `01a0e380-6362-71f0-a95b-9b14d8ce8765` 已结束；集成前 `feature/ws14-single-mechanism` 本地与 origin 同为 `735e0b3c3ea7f13d0797f802eef9bbf698e6971a`，工作树干净。`scripts/run_ws14_small.py verify` 从实验 ID 原始目录核验 7/7 格通过；`scripts/analyze_ws14_small.py` 重生的机器摘要 SHA-256 与提交版完全相同（`dbce7a845c8e18bd4f4ef95b6164ba2bfa8d54adf7fefd20ae2731ade07dacda`）。192 档 GuardHash 相对 ECMP 的 MoE 批次慢 0.731 µs，触发事前停止规则；WS-14 在极端小样范围内可归档。用户要求启动 WS-15 对话，先复核新机制理由与门槛；正式确认性矩阵仍关闭。仿真源码 SHA `73401ce3ac0a5c27bf0e3e0636c9337056d9355e` 不随本次文档提交改变。
 
@@ -69,7 +71,7 @@
 4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10/11 均未打开正式效果比较门槛，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 5. **全量阶段与资源准则：**WS-11 已按预注册完成资源 pilot、并发隔离审计与 40 格矩阵；20 物理核预算下的 18 共享 CPU 令牌和阶梯并发实测可用。原始输入随背景增加总字节，不能称纯混合比例效应，也不能与 WS-10 固定总字节场景合并。未来远程矩阵仍按[工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)先核对空闲资源和隔离，再按实测占用提高并发并静默监控。
 
-下一个里程碑：**WS-15 对话先复核正式验证门槛，当前 GuardHash 候选不得直接进入确认性矩阵。**WS-14 只完成 0/192 两端小样，没有连续中档曲线或独立需求重复；若没有新机制理由和双侧小样信号，转入 WS-16 负结果与复现材料收束。目的 ToR 排队与每 QP CNP 仍是相关观测；IRN×PFC 压力 11 格仍有未完成流。暂无可核验业务 SLO，不创建通用安全百分比。WS-10/11/12 no-go 保持原样。详见[WS-14 契约与结果](../research/ws14-guardhash-single-mechanism-pilot-report.md)、[后续计划](WS13_PLUS_PLAN.md)、[WORKSTREAMS](WORKSTREAMS.md)与[ROADMAP](ROADMAP.md)。
+下一个里程碑：**WS-16 负结果与复现材料收束。**WS-15 门槛复核没有找到合格新单机制，正式矩阵未启动。WS-14 只完成 0/192 两端小样，没有连续中档曲线或独立需求重复。目的 ToR 排队与每 QP CNP 仍是相关观测；IRN×PFC 压力 11 格仍有未完成流。暂无可核验业务 SLO，不创建通用安全百分比。WS-10/11/12 no-go 保持原样。详见[WS-15 复核](../research/ws15-independent-demand-gate-review.md)、[后续计划](WS13_PLUS_PLAN.md)、[WORKSTREAMS](WORKSTREAMS.md)与[ROADMAP](ROADMAP.md)。
 
 后续场景口径（用户 2026-09-27 明确决定）：**保持同一批 MoE 业务流不变，逐档追加背景流，总提供字节随之增加**；不再为这条路线构造“背景增加但总字节不变”的替换式输入。每档各算法仍用相同流量配对，跨档结果解释为新增背景及相应负载的共同影响，不称纯混合比例效应。既有 WS-10 固定总字节结果作为历史独立契约保留，不重判。详见 [ADR-008](../decisions/ADR-008-additive-background-workload.md)。
 
