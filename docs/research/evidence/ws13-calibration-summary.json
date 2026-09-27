@@ -1,0 +1,131 @@
+{
+  "role": "calibration-only; not formal validation",
+  "complete": true,
+  "independent_demand_traces": 3,
+  "cells": [
+    {
+      "id": "20260927-153000-ws13-cal-1-p",
+      "trace_seed": 20261301,
+      "mode": "fecmp",
+      "trace_sha256": "d9be7e1af10994bfe5d8700b987f6abcd4366145b05c64fab11ee93daea61013",
+      "fct_sha256": "0c6b74abc89fee01c9525d1948cb4b705383365c1a852ff6920042c070daea4e",
+      "moe_batch_us": 18.701,
+      "moe_p99_fct_us": 15.97251,
+      "background_p99_fct_us": 1292.77108,
+      "background_mean_fct_us": 749.85559375,
+      "peak_tree_rss_mib": 4540.12109375,
+      "minimum_mem_available_gib": 114.21306610107422
+    },
+    {
+      "id": "20260927-153000-ws13-cal-1-l",
+      "trace_seed": 20261301,
+      "mode": "packet-drill",
+      "trace_sha256": "d9be7e1af10994bfe5d8700b987f6abcd4366145b05c64fab11ee93daea61013",
+      "fct_sha256": "b4c01e1b9c073af6de085eb604570ecdfde2e4dcb09d4d7bef94b18a123857ff",
+      "moe_batch_us": 18.428,
+      "moe_p99_fct_us": 16.016360000000002,
+      "background_p99_fct_us": 1261.78492,
+      "background_mean_fct_us": 753.6820260416666,
+      "peak_tree_rss_mib": 4540.09375,
+      "minimum_mem_available_gib": 114.2063102722168
+    },
+    {
+      "id": "20260927-153000-ws13-cal-2-l",
+      "trace_seed": 20261302,
+      "mode": "packet-drill",
+      "trace_sha256": "02feb1e8d5a50d79426c547f7a181766fbe15e9116fc8c3052d0811e681170fd",
+      "fct_sha256": "03a85132ce434f46762c16b1aa536758b71494e9a75184b3a15b61a346b41394",
+      "moe_batch_us": 17.137,
+      "moe_p99_fct_us": 15.85617,
+      "background_p99_fct_us": 2131.43136,
+      "background_mean_fct_us": 951.43571875,
+      "peak_tree_rss_mib": 4540.2734375,
+      "minimum_mem_available_gib": 105.38983917236328
+    },
+    {
+      "id": "20260927-153000-ws13-cal-2-p",
+      "trace_seed": 20261302,
+      "mode": "fecmp",
+      "trace_sha256": "02feb1e8d5a50d79426c547f7a181766fbe15e9116fc8c3052d0811e681170fd",
+      "fct_sha256": "0b7424d8f363dddf366aa3575e0c95f8e4de3a26e018376f6c2fdb7a5a58c55c",
+      "moe_batch_us": 17.614,
+      "moe_p99_fct_us": 15.69551,
+      "background_p99_fct_us": 2179.57166,
+      "background_mean_fct_us": 953.5724375,
+      "peak_tree_rss_mib": 4540.22265625,
+      "minimum_mem_available_gib": 105.39668273925781
+    },
+    {
+      "id": "20260927-153000-ws13-cal-3-p",
+      "trace_seed": 20261303,
+      "mode": "fecmp",
+      "trace_sha256": "4dc0ac150b72f42b9c793670861de8dc2253f0e7fbab8ea1690fcaf1d43f4ff1",
+      "fct_sha256": "40e232dd67887b3c4d018d9611e9b4ac0dd1061a2aef336c9957f70eef1fd34d",
+      "moe_batch_us": 20.662,
+      "moe_p99_fct_us": 15.575,
+      "background_p99_fct_us": 2127.72692,
+      "background_mean_fct_us": 852.533875,
+      "peak_tree_rss_mib": 4540.296875,
+      "minimum_mem_available_gib": 105.39583969116211
+    },
+    {
+      "id": "20260927-153000-ws13-cal-3-l",
+      "trace_seed": 20261303,
+      "mode": "packet-drill",
+      "trace_sha256": "4dc0ac150b72f42b9c793670861de8dc2253f0e7fbab8ea1690fcaf1d43f4ff1",
+      "fct_sha256": "8a149c41425085a0ed2392d08989a60dfbda407e5dc3e9742c7acc7f41b3b86c",
+      "moe_batch_us": 18.589,
+      "moe_p99_fct_us": 15.81334,
+      "background_p99_fct_us": 2122.5148200000003,
+      "background_mean_fct_us": 858.9351197916667,
+      "peak_tree_rss_mib": 4540.5703125,
+      "minimum_mem_available_gib": 105.39393997192383
+    }
+  ],
+  "paired_contrasts": [
+    {
+      "trace_seed": 20261301,
+      "trace_sha256": "d9be7e1af10994bfe5d8700b987f6abcd4366145b05c64fab11ee93daea61013",
+      "moe_batch_drill_minus_ecmp_us": -0.2729999999999997,
+      "background_p99_drill_minus_ecmp_us": -30.986159999999927,
+      "background_p99_drill_vs_ecmp_pct": -2.3968791133539225
+    },
+    {
+      "trace_seed": 20261302,
+      "trace_sha256": "02feb1e8d5a50d79426c547f7a181766fbe15e9116fc8c3052d0811e681170fd",
+      "moe_batch_drill_minus_ecmp_us": -0.4770000000000003,
+      "background_p99_drill_minus_ecmp_us": -48.140300000000025,
+      "background_p99_drill_vs_ecmp_pct": -2.2087046222650932
+    },
+    {
+      "trace_seed": 20261303,
+      "trace_sha256": "4dc0ac150b72f42b9c793670861de8dc2253f0e7fbab8ea1690fcaf1d43f4ff1",
+      "moe_batch_drill_minus_ecmp_us": -2.0730000000000004,
+      "background_p99_drill_minus_ecmp_us": -5.212099999999737,
+      "background_p99_drill_vs_ecmp_pct": -0.24496094639812785
+    }
+  ],
+  "descriptive_spans": {
+    "ecmp_background_p99_us": {
+      "min": 1292.77108,
+      "median": 2127.72692,
+      "max": 2179.57166
+    },
+    "ecmp_moe_batch_us": {
+      "min": 17.614,
+      "median": 18.701,
+      "max": 20.662
+    },
+    "drill_background_p99_minus_ecmp_us": {
+      "min": -48.140300000000025,
+      "median": -30.986159999999927,
+      "max": -5.212099999999737
+    },
+    "drill_moe_batch_minus_ecmp_us": {
+      "min": -2.0730000000000004,
+      "median": -0.4770000000000003,
+      "max": -0.2729999999999997
+    }
+  },
+  "interpretation_limit": "Three independent traces give descriptive dispersion only; no threshold or confidence bound."
+}
