@@ -2,7 +2,7 @@
 
 更新：2026-09-28。本文是下一阶段计划；已完成结果仍以各实验 ID 原始数据、预注册和 Handoff 为准。执行顺序及状态见 [ROADMAP](ROADMAP.md) 和 [WORKSTREAMS](WORKSTREAMS.md)。
 
-WS-13 已按诊断与技术 pilot 范围闭环，见 [Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)。WS-14 GuardHash 极端格研究 pilot 触发双侧停止门槛，见 [Handoff 15](../handoffs/2026-09-28-15-ws14-guardhash-single-mechanism-pilot.md)。WS-15 [门槛复核](../research/ws15-independent-demand-gate-review.md)未找到合格新单机制，确认性矩阵关闭，转入 WS-16 负结果与复现收束。三条独立需求 trace 仅用于校准；当前无可核验业务 SLO。IRN×PFC 常规输入没有 PFC 事件，压力双开格只完成 13/16；该不完整格不得作为机制收益对照。下表 WS-13 一行保留原任务定义，非待完成清单。
+WS-13 已按诊断与技术 pilot 范围闭环，见 [Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)。WS-14 GuardHash 极端格研究 pilot 触发双侧停止门槛，见 [Handoff 15](../handoffs/2026-09-28-15-ws14-guardhash-single-mechanism-pilot.md)。WS-15 [门槛复核](../research/ws15-independent-demand-gate-review.md)未找到合格新单机制，确认性矩阵关闭。WS-16 已形成[论文证据与复现总报告](../research/ws16-paper-evidence-and-reproduction.md)和[Handoff 17](../handoffs/2026-09-28-17-ws16-paper-evidence.md)，下一步待导师确认论文范围。三条独立需求 trace 仅用于校准；当前无可核验业务 SLO。IRN×PFC 常规输入没有 PFC 事件，压力双开格只完成 13/16；该不完整格不得作为机制收益对照。下表 WS-13 一行保留原任务定义，非待完成清单。
 
 ## 已完成的证据链
 
@@ -23,7 +23,7 @@ WS-13 已按诊断与技术 pilot 范围闭环，见 [Handoff 14](../handoffs/20
 | **WS-13：背景长尾定位与新实验契约** | 优先复用 WS-11/12 原始 FCT、CNP 和 uplink，逐流配对找出越线格的背景尾流，检查端点/热点/共享出口、两侧绝对指标与 ECMP 基准，输出连续权衡图及证据缺口。先确认原始数据能否区分路径、队列、拥塞反馈和重传；缺关键计数时只设计最小观测补丁与小样探针，不把相关性写成因果。核对成熟方案的评价指标及场景，从独立校准输入测量基线波动，再结合业务目标提出有据可查的双侧限制和收益门槛。设计真正独立的需求 trace 重复单位、固定 MoE 加背景规则、强对照信息预算与配对运行次序，冻结 WS-14 候选。 | 能给出可证伪的具体尾部机制、可观测指标和有依据的判据，才进入针对性改动；若无法区分，优先补观测或走解释性论文路线，不扩大正式矩阵。 |
 | **WS-14：单一机制小样验证** | 已按[预注册契约](../research/ws14-single-mechanism-prereg-v1.md)比较 ECMP、逐包哈希、普通双候选、DRILL 与 GuardHash；0/192 极端 7 格完整并通过队列守恒。GuardHash 相对普通双候选背景 P99 较低，但 MoE 批次不优于 ECMP、旧尾流处置不一致且背景尾部转移；依停止规则未运行 64/128，结果见[报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)。 | 双侧门槛未过，停止候选扩展；这是单输入研究 pilot，无业务安全或因果结论。 |
 | **WS-15：独立需求正式验证** | [门槛复核](../research/ws15-independent-demand-gate-review.md)已完成：没有同时具备独立理由、可观测链条和双侧小样条件的新单机制；没有运行新小样或确认性矩阵。 | 门槛 no-go，交接 WS-16；不把 WS-13 校准 trace、WS-14 单输入或旧顺序置换补作确认性样本。 |
-| **WS-16：论文与复现收束** | 当前阶段：整理 WS-10/11/12 no-go、WS-13 观测限制、WS-14 单输入 stop-gate 负结果、WS-15 未开矩阵的门槛结论与实验复现索引。 | 所有实测主张均能追到源码 SHA、实验 ID 和原始结果；不以 ns-3 原型冒称硬件验证。 |
+| **WS-16：论文与复现收束** | 已完成 216 ID 原始索引、主张/分析/图表映射、开题原文范围对照及九段交接；详见[总报告](../research/ws16-paper-evidence-and-reproduction.md)。 | 论文正文和题目/创新点表述待导师确认；所有实测主张继续追到固定源码、实验 ID 和原始结果，不以 ns-3 原型冒称硬件验证。 |
 
 资源与沟通沿用[远程工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)：仿真静默运行，低频检查；无人作业且系统健康时按实测吞吐利用空闲的 20C/40 逻辑 CPU，19 令牌在 WS-12 无吞吐提升，不预设“越高越快”。不为解释既有 no-go 而事后调整旧预注册门槛。
 

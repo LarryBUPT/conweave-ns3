@@ -4,7 +4,9 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-10、WS-11 和 WS-12 多策略正式对照各自预注册复合判据 no-go；WS-13 诊断 pilot 完成；WS-14 GuardHash 单机制小样按事前规则停止；WS-15 门槛复核后确认性矩阵 no-go，转入 WS-16 证据收束。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 的 120 格完成，四个新增策略全部复合 no-go。WS-13 目标 QP 未观察到 SACK，最慢背景流目的 ToR 出口出现微秒级排队并伴随 CNP，属于单 seed 相关性诊断。WS-14 七格 0/192 极端小样全完成；GuardHash 背景 P99 优于普通双候选，但 MoE 批次比普通双候选慢 0.552 µs、比 ECMP 慢 0.731 µs，且背景尾流转移，因此按停止规则不运行中档。WS-15 原始复核与候选筛选未找到合格新单机制，未运行新小样或正式格；这是门槛决定，不是性能零效应。暂无可核验业务 SLO，不新增通用安全线。详见 [WS-15 门槛复核](../research/ws15-independent-demand-gate-review.md)、[三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-13 合约与结果](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[WS-14 pilot 报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)。WS-09 GuardHash/HarmGate v0 仍是工程原型。
+阶段：**WS-10、WS-11 和 WS-12 多策略正式对照各自预注册复合判据 no-go；WS-13 诊断 pilot 完成；WS-14 GuardHash 单机制小样按事前规则停止；WS-15 门槛复核后确认性矩阵 no-go，WS-16 证据索引完成、论文范围待导师确认。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 的 120 格完成，四个新增策略全部复合 no-go。WS-13 目标 QP 未观察到 SACK，最慢背景流目的 ToR 出口出现微秒级排队并伴随 CNP，属于单 seed 相关性诊断。WS-14 七格 0/192 极端小样全完成；GuardHash 背景 P99 优于普通双候选，但 MoE 批次比普通双候选慢 0.552 µs、比 ECMP 慢 0.731 µs，且背景尾流转移，因此按停止规则不运行中档。WS-15 原始复核与候选筛选未找到合格新单机制，未运行新小样或正式格；这是门槛决定，不是性能零效应。暂无可核验业务 SLO，不新增通用安全线。详见 [WS-15 门槛复核](../research/ws15-independent-demand-gate-review.md)、[三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-13 合约与结果](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[WS-14 pilot 报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)。WS-09 GuardHash/HarmGate v0 仍是工程原型。
+
+2026-09-28 WS-16 证据收束：在 `feature/ws16-paper-evidence` 从 WS-15 集成提交 `53b56b3d3f271356c98afdcad8779183a3fff528` 开工；[总报告](../research/ws16-paper-evidence-and-reproduction.md)、[216 ID 逐格索引](../research/evidence/ws16-experiment-index.csv)和[Handoff 17](../handoffs/2026-09-28-17-ws16-paper-evidence.md)已形成。索引直接核对元数据、trace/拓扑/FCT 原始哈希；本地正式 WS-10/11/12 与 WS-14、WS-13 校准核验通过。没有新仿真或新效果数据。开题报告的端侧分类/降级、INT/Δq、接收协同重排和硬件验证尚未完成；论文题目/创新点及业务 SLO 待导师确认。WS-13 压力 11 格实际 13/16，WS-15 确认性矩阵未运行，均不可写为正式效果。
 
 ## 已完成且可核验
 
