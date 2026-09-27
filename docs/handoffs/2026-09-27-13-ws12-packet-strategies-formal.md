@@ -23,7 +23,7 @@
 
 ## 5. 当前状态
 
-WS-12 多逐包策略正式对照在预注册矩阵、正确性、资源和双侧判据范围内完成；四个新增策略均 no-go。正式仿真 SHA 不随本次报告、Handoff 或状态提交改变。最近一次独立运行 `python scripts/verify_ws12_formal.py` 返回码 0，输出 `complete=true`、`formal_cell_count=120`、`legacy_fct_hash_matches=40`，四策略 `two_sided_acceptable=false`。远端最后检查无在途仿真；执行新的远端操作前须重新核实。
+WS-12 多逐包策略正式对照在预注册矩阵、正确性、资源和双侧判据范围内完成；四个新增策略均 no-go。[WS-10/11/12 解释性证据提纲](../research/ws12-ws10-ws11-negative-evidence.md)已并列收录三场输入契约、主结果、边界与不可观测项，WS-12 解释性收尾亦完成。正式仿真 SHA 不随本次报告、Handoff 或状态提交改变。最近一次独立运行 `python scripts/verify_ws12_formal.py` 返回码 0，输出 `complete=true`、`formal_cell_count=120`、`legacy_fct_hash_matches=40`，四策略 `two_sided_acceptable=false`。远端最后检查无在途仿真；执行新的远端操作前须重新核实。
 
 ## 6. 未解决问题
 
@@ -31,7 +31,7 @@ WS-12 多逐包策略正式对照在预注册矩阵、正确性、资源和双�
 
 ## 7. 后续推荐动作
 
-把 WS-12 双侧负结果与 WS-10 固定总字节、WS-11 全量追加背景的各自 no-go 并列纳入论文证据；保留各自预注册、输入契约和原始 ID。若另立机制收益实验，须先冻结新的场景、独立需求重复与双侧安全门槛，再做等信息强对照。当前无待补正式格或需要继续运行的仿真。
+已把 WS-12 双侧负结果与 WS-10 固定总字节、WS-11 全量追加背景的各自 no-go 并列纳入[论文证据提纲](../research/ws12-ws10-ws11-negative-evidence.md)，保留各自预注册、输入契约和原始 ID。下一步是确定论文论点或另立机制收益问题；后者须先冻结新的场景、独立需求重复与双侧安全门槛，再做等信息强对照。当前无待补正式格或需要继续运行的仿真。
 
 ## 8. 与其他工作流的关系
 
