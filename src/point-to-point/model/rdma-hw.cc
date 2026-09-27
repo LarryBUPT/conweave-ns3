@@ -918,7 +918,13 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
     Ptr<QbbNetDevice> dev = m_nic[nic_idx].dev;
 
     // IRN: disable timeouts when PFC is enabled to prevent spurious retransmissions
-    if (qp->irn.m_enabled && dev->IsQbbEnabled()) return;
+    if (qp->irn.m_enabled && dev->IsQbbEnabled()) {
+        std::cout << "FACTORIAL_IRN_PFC_TIMEOUT_SUPPRESSED time_ns="
+                  << Simulator::Now().GetTimeStep() << " flow_id=" << qp->m_flow_id
+                  << " snd_una=" << qp->snd_una << " snd_nxt=" << qp->snd_nxt
+                  << std::endl;
+        return;
+    }
 
     if (Ws13BackgroundQp(qp)) Ws13LogQp("timeout", qp);
 

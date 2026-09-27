@@ -147,6 +147,8 @@ def main():
                         type=int, default=1, help="enable PFC (default: 1)")
     parser.add_argument('--irn', dest='irn', action='store',
                         type=int, default=0, help="enable IRN (default: 0)")
+    parser.add_argument('--factorial-pilot', action='store_true',
+                        help='allow exploratory IRN/PFC 00 and 11 configurations')
     parser.add_argument('--simul_time', dest='simul_time', action='store',
                         default='0.1', help="traffic time to simulate (up to 3 seconds) (default: 0.1)")
     parser.add_argument('--buffer', dest="buffer", action='store',
@@ -217,10 +219,10 @@ def main():
     if (args.cc == "timely" or args.cc == "hpcc") and args.lb == "conweave":
         raise Exception(
             "CONFIG ERROR : ConWeave currently does not support RTT-based protocols. Plz modify its logic accordingly.")
-    if enabled_irn == 1 and enabled_pfc == 1:
+    if enabled_irn == 1 and enabled_pfc == 1 and not args.factorial_pilot:
         raise Exception(
             "CONFIG ERROR : If IRN is turn-on, then you should turn off PFC (for better perforamnce).")
-    if enabled_irn == 0 and enabled_pfc == 0:
+    if enabled_irn == 0 and enabled_pfc == 0 and not args.factorial_pilot:
         raise Exception(
             "CONFIG ERROR : Either IRN or PFC should be true (at least one).")
     if float(args.simul_time) < 0.005:
