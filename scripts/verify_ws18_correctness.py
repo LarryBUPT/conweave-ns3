@@ -103,6 +103,14 @@ def main():
     args = parser.parse_args()
     expected = {"trace": args.trace, "topology": args.topology,
                 "rows": trace_rows(args.trace)}
+    topo_lines = args.topology.read_text().splitlines()
+    host_count = int(topo_lines[0].split()[0]) - int(topo_lines[0].split()[1])
+    host_tor = {int(fields[0]): int(fields[1]) for fields in
+                (line.split() for line in topo_lines[2:]) if int(fields[0]) < host_count}
+    assert len(host_tor) == host_count
+    assert all((host_tor[src] - host_count) // 8 ==
+               (host_tor[dst] - host_count) // 8
+               for src, dst, _, _, _ in expected["rows"]), "Cross-rail flow in correctness trace"
     arms = {name: read_arm(args.results, getattr(args, name), expected, a, p)
             for name, a, p in ARMS}
     shas = {value["source_sha"] for value in arms.values()}
