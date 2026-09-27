@@ -389,8 +389,9 @@ def execute(experiment_id):
         run_checked(command, cwd=source, log=log)
         raw_dirs = [p for p in glob.glob(os.path.join(base, 'raw', '*')) if os.path.isdir(p)]
         fct = glob.glob(os.path.join(base, 'raw', '*', '*_out_fct.txt'))
-        if len(raw_dirs) != 1 or not fct or not any(os.path.getsize(p) > 0 for p in fct):
+        if len(raw_dirs) != 1 or len(fct) != 1 or os.path.getsize(fct[0]) == 0:
             raise RuntimeError('run.py ended without a nonempty FCT output; inspect simulation.log')
+        data['raw_directory'] = os.path.basename(raw_dirs[0])
         for config in glob.glob(os.path.join(base, 'raw', '*', 'config.txt')):
             shutil.copy2(config, inside(os.path.join(base, 'config', 'config.txt')))
             config_text = open(config).read()
@@ -413,8 +414,15 @@ def execute(experiment_id):
             shutil.copy2(topology_source, inside(os.path.join(base, 'config', 'topology.txt')))
             with open(topology_source, 'rb') as handle:
                 data['topology_sha256'] = hashlib.sha256(handle.read()).hexdigest()
+        if params.get('factorial_pilot'):
+            with open(os.path.join(base, 'config', 'traffic_trace.txt')) as handle:
+                data['input_flows'] = int(handle.readline().strip())
+            with open(fct[0]) as handle:
+                data['completed_flows'] = sum(1 for line in handle if line.strip())
+            data['unfinished_flows'] = data['input_flows'] - data['completed_flows']
+            if data['unfinished_flows']:
+                raise RuntimeError('Factorial pilot has %d unfinished flows' % data['unfinished_flows'])
         data['status'] = 'SUCCEEDED'
-        data['raw_directory'] = os.path.basename(raw_dirs[0])
     except Exception as error:
         data['status'] = 'FAILED'
         data['error'] = str(error)
