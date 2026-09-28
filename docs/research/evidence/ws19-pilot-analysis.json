@@ -1,0 +1,4897 @@
+{
+  "all_gates_pass": false,
+  "blocks": [
+    {
+      "background": 0,
+      "effects": {
+        "round_mean_delta_us": {
+          "A-E": -287.841625,
+          "J-A": -0.067,
+          "J-E": -287.908625,
+          "J-P": -263.968,
+          "P-E": -23.940625,
+          "interaction": 23.873625
+        }
+      },
+      "hotspot": "host_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-h9-b0-01-a",
+        "ecmp": "20260928-163500-ws19-h9-b0-01-e",
+        "joint": "20260928-163500-ws19-h9-b0-01-j",
+        "path": "20260928-163500-ws19-h9-b0-01-p"
+      },
+      "seed": 20261701
+    },
+    {
+      "background": 192,
+      "effects": {
+        "background": {
+          "fct_max_delta_us": {
+            "A-E": -41.702,
+            "J-A": 253.944,
+            "J-E": 212.242,
+            "J-P": -130.92,
+            "P-E": 343.162,
+            "interaction": -89.218
+          },
+          "fct_p99_delta_us": {
+            "A-E": 632.063,
+            "J-A": 40.6643,
+            "J-E": 672.7273,
+            "J-P": 913.03096,
+            "P-E": -240.30366,
+            "interaction": 280.96796
+          },
+          "paired_flow_delta_vs_ecmp": {
+            "admission": {
+              "better": 78,
+              "equal": 24,
+              "max_us": 6731.698,
+              "min_us": -4500.529,
+              "p50_us": 0.0,
+              "p99_us": 4234.98059,
+              "worse": 90
+            },
+            "joint": {
+              "better": 81,
+              "equal": 24,
+              "max_us": 6294.201,
+              "min_us": -4655.097,
+              "p50_us": 0.0,
+              "p99_us": 5192.70797,
+              "worse": 87
+            },
+            "path": {
+              "better": 91,
+              "equal": 26,
+              "max_us": 6581.522,
+              "min_us": -5034.001,
+              "p50_us": 0.0,
+              "p99_us": 3643.21428,
+              "worse": 75
+            }
+          }
+        },
+        "round_mean_delta_us": {
+          "A-E": -311.00775,
+          "J-A": 0.00325,
+          "J-E": -311.0045,
+          "J-P": -306.000375,
+          "P-E": -5.004125,
+          "interaction": 5.007375
+        }
+      },
+      "hotspot": "host_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-h2-b192-01-a",
+        "ecmp": "20260928-163500-ws19-h2-b192-01-e",
+        "joint": "20260928-163500-ws19-h2-b192-01-j",
+        "path": "20260928-163500-ws19-h2-b192-01-p"
+      },
+      "seed": 20261701
+    },
+    {
+      "background": 0,
+      "effects": {
+        "round_mean_delta_us": {
+          "A-E": 0.7095,
+          "J-A": -0.025,
+          "J-E": 0.6845,
+          "J-P": 0.686875,
+          "P-E": -0.002375,
+          "interaction": -0.022625
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-t8-b0-01-a",
+        "ecmp": "20260928-163500-ws19-t8-b0-01-e",
+        "joint": "20260928-163500-ws19-t8-b0-01-j",
+        "path": "20260928-163500-ws19-t8-b0-01-p"
+      },
+      "seed": 20261701
+    },
+    {
+      "background": 192,
+      "effects": {
+        "background": {
+          "fct_max_delta_us": {
+            "A-E": -83.433,
+            "J-A": -20.928,
+            "J-E": -104.361,
+            "J-P": 562.473,
+            "P-E": -666.834,
+            "interaction": 645.906
+          },
+          "fct_p99_delta_us": {
+            "A-E": 155.95007,
+            "J-A": 41.395,
+            "J-E": 197.34507,
+            "J-P": 664.44191,
+            "P-E": -467.09684,
+            "interaction": 508.49184
+          },
+          "paired_flow_delta_vs_ecmp": {
+            "admission": {
+              "better": 71,
+              "equal": 23,
+              "max_us": 843.264,
+              "min_us": -828.064,
+              "p50_us": 0.0085,
+              "p99_us": 554.9326,
+              "worse": 98
+            },
+            "joint": {
+              "better": 72,
+              "equal": 28,
+              "max_us": 935.186,
+              "min_us": -406.633,
+              "p50_us": 0.0,
+              "p99_us": 655.16452,
+              "worse": 92
+            },
+            "path": {
+              "better": 86,
+              "equal": 27,
+              "max_us": 438.095,
+              "min_us": -1766.058,
+              "p50_us": 0.0,
+              "p99_us": 315.95502,
+              "worse": 79
+            }
+          }
+        },
+        "round_mean_delta_us": {
+          "A-E": 4.788875,
+          "J-A": -0.445125,
+          "J-E": 4.34375,
+          "J-P": 4.529125,
+          "P-E": -0.185375,
+          "interaction": -0.25975
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-t11-b192-01-a",
+        "ecmp": "20260928-163500-ws19-t11-b192-01-e",
+        "joint": "20260928-163500-ws19-t11-b192-01-j",
+        "path": "20260928-163500-ws19-t11-b192-01-p"
+      },
+      "seed": 20261701
+    },
+    {
+      "background": 0,
+      "effects": {
+        "round_mean_delta_us": {
+          "A-E": -251.246375,
+          "J-A": -0.019,
+          "J-E": -251.265375,
+          "J-P": -271.25025,
+          "P-E": 19.984875,
+          "interaction": -20.003875
+        }
+      },
+      "hotspot": "host_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-h7-b0-02-a",
+        "ecmp": "20260928-163500-ws19-h7-b0-02-e",
+        "joint": "20260928-163500-ws19-h7-b0-02-j",
+        "path": "20260928-163500-ws19-h7-b0-02-p"
+      },
+      "seed": 20261702
+    },
+    {
+      "background": 192,
+      "effects": {
+        "background": {
+          "fct_max_delta_us": {
+            "A-E": 514.072,
+            "J-A": -806.252,
+            "J-E": -292.18,
+            "J-P": -354.544,
+            "P-E": 62.364,
+            "interaction": -868.616
+          },
+          "fct_p99_delta_us": {
+            "A-E": 481.03967,
+            "J-A": -420.95239,
+            "J-E": 60.08728,
+            "J-P": -130.02838,
+            "P-E": 190.11566,
+            "interaction": -611.06805
+          },
+          "paired_flow_delta_vs_ecmp": {
+            "admission": {
+              "better": 81,
+              "equal": 13,
+              "max_us": 5482.048,
+              "min_us": -3969.875,
+              "p50_us": 0.0105,
+              "p99_us": 4345.44186,
+              "worse": 98
+            },
+            "joint": {
+              "better": 90,
+              "equal": 12,
+              "max_us": 4316.16,
+              "min_us": -4964.378,
+              "p50_us": 0.0,
+              "p99_us": 3400.88689,
+              "worse": 90
+            },
+            "path": {
+              "better": 108,
+              "equal": 9,
+              "max_us": 3710.57,
+              "min_us": -4042.349,
+              "p50_us": -0.033,
+              "p99_us": 2926.34023,
+              "worse": 75
+            }
+          }
+        },
+        "round_mean_delta_us": {
+          "A-E": -311.53775,
+          "J-A": 0.08575,
+          "J-E": -311.452,
+          "J-P": -297.05275,
+          "P-E": -14.39925,
+          "interaction": 14.485
+        }
+      },
+      "hotspot": "host_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-h4-b192-02-a",
+        "ecmp": "20260928-163500-ws19-h4-b192-02-e",
+        "joint": "20260928-163500-ws19-h4-b192-02-j",
+        "path": "20260928-163500-ws19-h4-b192-02-p"
+      },
+      "seed": 20261702
+    },
+    {
+      "background": 0,
+      "effects": {
+        "round_mean_delta_us": {
+          "A-E": 1.086375,
+          "J-A": -0.0215,
+          "J-E": 1.064875,
+          "J-P": 1.31175,
+          "P-E": -0.246875,
+          "interaction": 0.225375
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-t3-b0-02-a",
+        "ecmp": "20260928-163500-ws19-t3-b0-02-e",
+        "joint": "20260928-163500-ws19-t3-b0-02-j",
+        "path": "20260928-163500-ws19-t3-b0-02-p"
+      },
+      "seed": 20261702
+    },
+    {
+      "background": 192,
+      "effects": {
+        "background": {
+          "fct_max_delta_us": {
+            "A-E": 338.359,
+            "J-A": -209.205,
+            "J-E": 129.154,
+            "J-P": 22.031,
+            "P-E": 107.123,
+            "interaction": -316.328
+          },
+          "fct_p99_delta_us": {
+            "A-E": 273.82159,
+            "J-A": -263.08456,
+            "J-E": 10.73703,
+            "J-P": 89.18844,
+            "P-E": -78.45141,
+            "interaction": -184.63315
+          },
+          "paired_flow_delta_vs_ecmp": {
+            "admission": {
+              "better": 83,
+              "equal": 19,
+              "max_us": 986.762,
+              "min_us": -482.891,
+              "p50_us": 0.0,
+              "p99_us": 761.34083,
+              "worse": 90
+            },
+            "joint": {
+              "better": 92,
+              "equal": 16,
+              "max_us": 960.4,
+              "min_us": -620.967,
+              "p50_us": 0.0,
+              "p99_us": 449.9109,
+              "worse": 84
+            },
+            "path": {
+              "better": 98,
+              "equal": 16,
+              "max_us": 890.091,
+              "min_us": -599.291,
+              "p50_us": -0.01,
+              "p99_us": 541.03632,
+              "worse": 78
+            }
+          }
+        },
+        "round_mean_delta_us": {
+          "A-E": 4.926875,
+          "J-A": -0.188375,
+          "J-E": 4.7385,
+          "J-P": 4.60975,
+          "P-E": 0.12875,
+          "interaction": -0.317125
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-t6-b192-02-a",
+        "ecmp": "20260928-163500-ws19-t6-b192-02-e",
+        "joint": "20260928-163500-ws19-t6-b192-02-j",
+        "path": "20260928-163500-ws19-t6-b192-02-p"
+      },
+      "seed": 20261702
+    },
+    {
+      "background": 0,
+      "effects": {
+        "round_mean_delta_us": {
+          "A-E": -271.0715,
+          "J-A": -0.004,
+          "J-E": -271.0755,
+          "J-P": -262.981125,
+          "P-E": -8.094375,
+          "interaction": 8.090375
+        }
+      },
+      "hotspot": "host_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-h12-b0-03-a",
+        "ecmp": "20260928-163500-ws19-h12-b0-03-e",
+        "joint": "20260928-163500-ws19-h12-b0-03-j",
+        "path": "20260928-163500-ws19-h12-b0-03-p"
+      },
+      "seed": 20261703
+    },
+    {
+      "background": 192,
+      "effects": {
+        "background": {
+          "fct_max_delta_us": {
+            "A-E": -146.366,
+            "J-A": -106.658,
+            "J-E": -253.024,
+            "J-P": 586.362,
+            "P-E": -839.386,
+            "interaction": 732.728
+          },
+          "fct_p99_delta_us": {
+            "A-E": 275.9235,
+            "J-A": -223.78465,
+            "J-E": 52.13885,
+            "J-P": 199.66661,
+            "P-E": -147.52776,
+            "interaction": -76.25689
+          },
+          "paired_flow_delta_vs_ecmp": {
+            "admission": {
+              "better": 84,
+              "equal": 14,
+              "max_us": 4015.285,
+              "min_us": -4714.412,
+              "p50_us": 0.0,
+              "p99_us": 3608.01476,
+              "worse": 94
+            },
+            "joint": {
+              "better": 79,
+              "equal": 18,
+              "max_us": 4061.758,
+              "min_us": -4277.06,
+              "p50_us": 0.0,
+              "p99_us": 3391.6059,
+              "worse": 95
+            },
+            "path": {
+              "better": 102,
+              "equal": 18,
+              "max_us": 4320.407,
+              "min_us": -5644.217,
+              "p50_us": -0.016,
+              "p99_us": 3100.65782,
+              "worse": 72
+            }
+          }
+        },
+        "round_mean_delta_us": {
+          "A-E": -312.46325,
+          "J-A": 0.113,
+          "J-E": -312.35025,
+          "J-P": -332.724625,
+          "P-E": 20.374375,
+          "interaction": -20.261375
+        }
+      },
+      "hotspot": "host_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-h1-b192-03-a",
+        "ecmp": "20260928-163500-ws19-h1-b192-03-e",
+        "joint": "20260928-163500-ws19-h1-b192-03-j",
+        "path": "20260928-163500-ws19-h1-b192-03-p"
+      },
+      "seed": 20261703
+    },
+    {
+      "background": 0,
+      "effects": {
+        "round_mean_delta_us": {
+          "A-E": 1.028625,
+          "J-A": -0.01175,
+          "J-E": 1.016875,
+          "J-P": 1.017125,
+          "P-E": -0.00025,
+          "interaction": -0.0115
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-t10-b0-03-a",
+        "ecmp": "20260928-163500-ws19-t10-b0-03-e",
+        "joint": "20260928-163500-ws19-t10-b0-03-j",
+        "path": "20260928-163500-ws19-t10-b0-03-p"
+      },
+      "seed": 20261703
+    },
+    {
+      "background": 192,
+      "effects": {
+        "background": {
+          "fct_max_delta_us": {
+            "A-E": 130.402,
+            "J-A": 102.147,
+            "J-E": 232.549,
+            "J-P": 128.079,
+            "P-E": 104.47,
+            "interaction": -2.323
+          },
+          "fct_p99_delta_us": {
+            "A-E": 134.6073,
+            "J-A": -96.00593,
+            "J-E": 38.60137,
+            "J-P": 139.6979,
+            "P-E": -101.09653,
+            "interaction": 5.0906
+          },
+          "paired_flow_delta_vs_ecmp": {
+            "admission": {
+              "better": 79,
+              "equal": 14,
+              "max_us": 552.098,
+              "min_us": -318.12,
+              "p50_us": 0.02,
+              "p99_us": 473.61294,
+              "worse": 99
+            },
+            "joint": {
+              "better": 84,
+              "equal": 14,
+              "max_us": 794.756,
+              "min_us": -383.091,
+              "p50_us": 0.0,
+              "p99_us": 521.96054,
+              "worse": 94
+            },
+            "path": {
+              "better": 105,
+              "equal": 17,
+              "max_us": 852.882,
+              "min_us": -566.687,
+              "p50_us": -0.0895,
+              "p99_us": 355.35725,
+              "worse": 70
+            }
+          }
+        },
+        "round_mean_delta_us": {
+          "A-E": 4.36675,
+          "J-A": -0.147875,
+          "J-E": 4.218875,
+          "J-P": 4.173375,
+          "P-E": 0.0455,
+          "interaction": -0.193375
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "ids": {
+        "admission": "20260928-163500-ws19-t5-b192-03-a",
+        "ecmp": "20260928-163500-ws19-t5-b192-03-e",
+        "joint": "20260928-163500-ws19-t5-b192-03-j",
+        "path": "20260928-163500-ws19-t5-b192-03-p"
+      },
+      "seed": 20261703
+    }
+  ],
+  "cells": [
+    {
+      "arm": "path",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 1035.149468,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 131.946161,
+        "fct_max_ns": 12447383,
+        "fct_max_us": 12447.383,
+        "fct_p50_us": 508.61,
+        "fct_p95_us": 11193.2922,
+        "fct_p99_ns": 12344686.6,
+        "fct_p99_us": 12344.6866,
+        "slowest": {
+          "fct_us": 12447.383,
+          "flow_id": 160,
+          "paired_ecmp_delta_us": 3016.328,
+          "qp": [
+            356,
+            448,
+            10003,
+            141
+          ],
+          "qp_event_counts": {
+            "cnp": 867,
+            "sack": 24
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 81544,
+          "ooo": 6673,
+          "total": 82097
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 4652040,
+          "queued_bytes_sum": 65532702076,
+          "rows": 192,
+          "wait_ns_max": 88766,
+          "wait_ns_sum": 1256399339
+        },
+        "path": {
+          "alternate": 4810,
+          "flows": 16010,
+          "multipath_packets": 172239,
+          "packets": 172239
+        },
+        "qp_event_counts": {
+          "cnp": 44893,
+          "sack": 1649,
+          "timeout": 32
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 61832,
+          "queued_bytes_sum": 2418009012,
+          "rows": 188,
+          "wait_ns_max": 1214,
+          "wait_ns_sum": 47974543
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h1-b192-03-p",
+      "index": 0,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 73.392043,
+        "network_p50_us": 2.34,
+        "network_p99_us": 534.08716,
+        "round_completion_us": [
+          629.022,
+          819.149,
+          567.118,
+          732.343,
+          528.122,
+          526.907,
+          518.156,
+          516.005
+        ],
+        "round_max_us": 819.149,
+        "round_mean_us": 604.60275,
+        "round_sum_ns": 4836822,
+        "synthetic_batch_us": 882.343,
+        "total_mean_us": 73.392043,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "471216204",
+      "raw_sha256": {
+        "fct": "f44ecc4cf5525503f4eec5194b9eb9d4bcd2289379338c629a1563bf0b0fdebb",
+        "timing": "9dcccdd02a8a6092094258a3b13bd001fd5b61473a2b3387cdcabdad21280181",
+        "trace": "e5bb12224b7e5693d7792c554476937beb4e07a639f9b69897718f103c31ccb1"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "ecmp",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 969.754339,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 131.104666,
+        "fct_max_ns": 13286769,
+        "fct_max_us": 13286.769,
+        "fct_p50_us": 511.8835,
+        "fct_p95_us": 11052.27475,
+        "fct_p99_ns": 12492214.360000001,
+        "fct_p99_us": 12492.21436,
+        "slowest": {
+          "fct_us": 13286.769,
+          "flow_id": 176,
+          "qp": [
+            328,
+            448,
+            10001,
+            145
+          ],
+          "qp_event_counts": {
+            "cnp": 941,
+            "sack": 11
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 83765,
+          "ooo": 6467,
+          "total": 84224
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 4652024,
+          "queued_bytes_sum": 66903587360,
+          "rows": 192,
+          "wait_ns_max": 88741,
+          "wait_ns_sum": 1282292929
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 46777,
+          "sack": 1645,
+          "timeout": 30
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 127680,
+          "queued_bytes_sum": 3336427660,
+          "rows": 188,
+          "wait_ns_max": 2459,
+          "wait_ns_sum": 65839937
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h1-b192-03-e",
+      "index": 1,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 73.322148,
+        "network_p50_us": 2.429,
+        "network_p99_us": 532.49348,
+        "round_completion_us": [
+          631.25,
+          817.09,
+          573.862,
+          560.606,
+          528.91,
+          527.461,
+          520.418,
+          514.23
+        ],
+        "round_max_us": 817.09,
+        "round_mean_us": 584.228375,
+        "round_sum_ns": 4673827,
+        "synthetic_batch_us": 867.09,
+        "total_mean_us": 73.322148,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "649504216",
+      "raw_sha256": {
+        "fct": "ff87c8fa6f9a6e35318037e4befa8a119248e35aa0b36f6af5f9ba2aa487d75e",
+        "timing": "df2955b808714f28afbb85a5b9ede957a3c2f94e634af232148b69fe2c4402ec",
+        "trace": "e5bb12224b7e5693d7792c554476937beb4e07a639f9b69897718f103c31ccb1"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "joint",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 988.580173,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 132.135149,
+        "fct_max_ns": 13033745,
+        "fct_max_us": 13033.745,
+        "fct_p50_us": 507.881,
+        "fct_p95_us": 11357.87235,
+        "fct_p99_ns": 12544353.21,
+        "fct_p99_us": 12544.35321,
+        "slowest": {
+          "fct_us": 13033.745,
+          "flow_id": 20,
+          "paired_ecmp_delta_us": 2016.397,
+          "qp": [
+            472,
+            448,
+            10000,
+            105
+          ],
+          "qp_event_counts": {
+            "cnp": 989
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 97323,
+          "ooo": 0,
+          "total": 97323
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 3559224,
+          "queued_bytes_sum": 75475819884,
+          "rows": 192,
+          "wait_ns_max": 67689,
+          "wait_ns_sum": 1446161352
+        },
+        "path": {
+          "alternate": 4213,
+          "flows": 16010,
+          "multipath_packets": 144090,
+          "packets": 144090
+        },
+        "qp_event_counts": {
+          "cnp": 60470
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 61832,
+          "queued_bytes_sum": 2109774396,
+          "rows": 188,
+          "wait_ns_max": 1193,
+          "wait_ns_sum": 42061670
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h1-b192-03-j",
+      "index": 2,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 17.056315,
+        "network_p50_us": 1.614,
+        "network_p99_us": 67.6894,
+        "round_completion_us": [
+          147.174,
+          182.707,
+          218.338,
+          254.21,
+          289.65,
+          325.542,
+          360.982,
+          396.422
+        ],
+        "round_max_us": 396.422,
+        "round_mean_us": 271.878125,
+        "round_sum_ns": 2175025,
+        "synthetic_batch_us": 746.422,
+        "total_mean_us": 58.904904,
+        "wait_max_us": 327.976,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 301.10788,
+        "wait_positive": 14346,
+        "wait_sum_us": 685647.28
+      },
+      "raw_id": "804572650",
+      "raw_sha256": {
+        "fct": "f8ba73aea347289712b1c843c9805a46ed19487e04dbd4e49899647cf5341d34",
+        "timing": "64d95471b2d157d0f13f3d78344fdcdc17e566bd53e21f8a72d69828bf684384",
+        "trace": "e5bb12224b7e5693d7792c554476937beb4e07a639f9b69897718f103c31ccb1"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "admission",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 980.556067,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 131.318362,
+        "fct_max_ns": 13140403,
+        "fct_max_us": 13140.403,
+        "fct_p50_us": 511.0395,
+        "fct_p95_us": 11204.16005,
+        "fct_p99_ns": 12768137.860000001,
+        "fct_p99_us": 12768.13786,
+        "slowest": {
+          "fct_us": 13140.403,
+          "flow_id": 148,
+          "paired_ecmp_delta_us": 2910.246,
+          "qp": [
+            396,
+            448,
+            10003,
+            138
+          ],
+          "qp_event_counts": {
+            "cnp": 1295
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 97748,
+          "ooo": 0,
+          "total": 97748
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 3552696,
+          "queued_bytes_sum": 74721410140,
+          "rows": 192,
+          "wait_ns_max": 67569,
+          "wait_ns_sum": 1431665500
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 60894
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 102856,
+          "queued_bytes_sum": 2690255452,
+          "rows": 188,
+          "wait_ns_max": 2010,
+          "wait_ns_sum": 53411789
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h1-b192-03-a",
+      "index": 3,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 17.057746,
+        "network_p50_us": 1.661,
+        "network_p99_us": 67.606,
+        "round_completion_us": [
+          147.039,
+          182.526,
+          218.33,
+          254.13,
+          289.51,
+          325.422,
+          360.862,
+          396.302
+        ],
+        "round_max_us": 396.302,
+        "round_mean_us": 271.765125,
+        "round_sum_ns": 2174121,
+        "synthetic_batch_us": 746.302,
+        "total_mean_us": 58.906335,
+        "wait_max_us": 327.976,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 301.10788,
+        "wait_positive": 14346,
+        "wait_sum_us": 685647.28
+      },
+      "raw_id": "733188240",
+      "raw_sha256": {
+        "fct": "fdfe79c2c2ed43431c86012e15f7f89aa87486f3c99dd925ba3df0fb6d58cf9d",
+        "timing": "7f41b8af5d12953c6063fa9f12ae4a7e42acd1ef1b0b588d8792c7f7602c0c15",
+        "trace": "e5bb12224b7e5693d7792c554476937beb4e07a639f9b69897718f103c31ccb1"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "joint",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 999.447634,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.790729,
+        "fct_max_ns": 12892023,
+        "fct_max_us": 12892.023,
+        "fct_p50_us": 672.496,
+        "fct_p95_us": 11191.7388,
+        "fct_p99_ns": 12665485.83,
+        "fct_p99_us": 12665.48583,
+        "slowest": {
+          "fct_us": 12892.023,
+          "flow_id": 168,
+          "paired_ecmp_delta_us": 4431.666,
+          "qp": [
+            388,
+            104,
+            10002,
+            143
+          ],
+          "qp_event_counts": {
+            "cnp": 1109
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 97943,
+          "ooo": 0,
+          "total": 97943
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 3549552,
+          "queued_bytes_sum": 75441810980,
+          "rows": 192,
+          "wait_ns_max": 67508,
+          "wait_ns_sum": 1445194757
+        },
+        "path": {
+          "alternate": 4279,
+          "flows": 16020,
+          "multipath_packets": 144180,
+          "packets": 144180
+        },
+        "qp_event_counts": {
+          "cnp": 61147
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 32488,
+          "queued_bytes_sum": 643842608,
+          "rows": 185,
+          "wait_ns_max": 644,
+          "wait_ns_sum": 13868870
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h2-b192-01-j",
+      "index": 4,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 16.989589,
+        "network_p50_us": 1.616,
+        "network_p99_us": 67.506,
+        "round_completion_us": [
+          146.065,
+          181.506,
+          218.19,
+          252.41,
+          288.098,
+          323.782,
+          359.565,
+          395.258
+        ],
+        "round_max_us": 395.258,
+        "round_mean_us": 270.60925,
+        "round_sum_ns": 2164874,
+        "synthetic_batch_us": 745.258,
+        "total_mean_us": 58.522679,
+        "wait_max_us": 326.992,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 300.12388,
+        "wait_positive": 14346,
+        "wait_sum_us": 680478.132
+      },
+      "raw_id": "663065687",
+      "raw_sha256": {
+        "fct": "73fb193534dcc577bb79e78f24243bd81f3c0c39b6fb5174681369c3eee93ad1",
+        "timing": "baeab2374fbe0f9ed233b389cafb38e6b64de4e0de4e17c18cb9d76c677c8e98",
+        "trace": "bc08ca16e044f77b6d70b99649cbb23ad802c012950d659d098c2f2b1faa0efb"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "ecmp",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 1016.177006,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.773738,
+        "fct_max_ns": 12679781,
+        "fct_max_us": 12679.781,
+        "fct_p50_us": 672.6105,
+        "fct_p95_us": 10437.0874,
+        "fct_p99_ns": 11992758.530000001,
+        "fct_p99_us": 11992.75853,
+        "slowest": {
+          "fct_us": 12679.781,
+          "flow_id": 0,
+          "qp": [
+            712,
+            104,
+            10000,
+            100
+          ],
+          "qp_event_counts": {
+            "cnp": 968,
+            "sack": 45,
+            "timeout": 1
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 83108,
+          "ooo": 6396,
+          "total": 83748
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 4652032,
+          "queued_bytes_sum": 60418544788,
+          "rows": 192,
+          "wait_ns_max": 88772,
+          "wait_ns_sum": 1158602954
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 46110,
+          "sack": 1654,
+          "timeout": 36
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 122264,
+          "queued_bytes_sum": 1269097664,
+          "rows": 185,
+          "wait_ns_max": 2333,
+          "wait_ns_sum": 26110562
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h2-b192-01-e",
+      "index": 5,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 75.276534,
+        "network_p50_us": 2.442,
+        "network_p99_us": 532.00488,
+        "round_completion_us": [
+          619.222,
+          819.084,
+          559.982,
+          556.69,
+          532.298,
+          529.809,
+          518.407,
+          517.418
+        ],
+        "round_max_us": 819.084,
+        "round_mean_us": 581.61375,
+        "round_sum_ns": 4652910,
+        "synthetic_batch_us": 869.084,
+        "total_mean_us": 75.276534,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "865275096",
+      "raw_sha256": {
+        "fct": "f1a79c77c3dac9631c988dbd43aa08fe5d7b0cbef358884e572983f257c0de41",
+        "timing": "f0fd0fbbdeb416aad71c680bc15014a02bf41e3cdc91c04d2a5f4f91ea8c94c0",
+        "trace": "bc08ca16e044f77b6d70b99649cbb23ad802c012950d659d098c2f2b1faa0efb"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "path",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 989.40016,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.808543,
+        "fct_max_ns": 13022943,
+        "fct_max_us": 13022.943,
+        "fct_p50_us": 672.376,
+        "fct_p95_us": 11236.0664,
+        "fct_p99_ns": 11752454.870000003,
+        "fct_p99_us": 11752.45487,
+        "slowest": {
+          "fct_us": 13022.943,
+          "flow_id": 56,
+          "paired_ecmp_delta_us": 3709.364,
+          "qp": [
+            1172,
+            104,
+            10000,
+            115
+          ],
+          "qp_event_counts": {
+            "cnp": 1000,
+            "sack": 41,
+            "timeout": 1
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 79682,
+          "ooo": 5913,
+          "total": 80260
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 4652032,
+          "queued_bytes_sum": 61481514588,
+          "rows": 192,
+          "wait_ns_max": 88763,
+          "wait_ns_sum": 1178822054
+        },
+        "path": {
+          "alternate": 4751,
+          "flows": 16020,
+          "multipath_packets": 170581,
+          "packets": 170581
+        },
+        "qp_event_counts": {
+          "cnp": 44941,
+          "sack": 1629,
+          "timeout": 31
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 34736,
+          "queued_bytes_sum": 623082684,
+          "rows": 185,
+          "wait_ns_max": 694,
+          "wait_ns_sum": 13472605
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h2-b192-01-p",
+      "index": 6,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 74.116958,
+        "network_p50_us": 2.352,
+        "network_p99_us": 530.75108,
+        "round_completion_us": [
+          616.262,
+          815.378,
+          552.442,
+          548.893,
+          525.754,
+          525.024,
+          514.868,
+          514.256
+        ],
+        "round_max_us": 815.378,
+        "round_mean_us": 576.609625,
+        "round_sum_ns": 4612877,
+        "synthetic_batch_us": 865.378,
+        "total_mean_us": 74.116958,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "450197318",
+      "raw_sha256": {
+        "fct": "48ecaa98ffac9bf9f055390f831f71baefdd5a6c08e28b224ac272a339411c9f",
+        "timing": "198677ce548274675d3214d9a9517ffffd755326df7572f03d85172ef74216d8",
+        "trace": "bc08ca16e044f77b6d70b99649cbb23ad802c012950d659d098c2f2b1faa0efb"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "admission",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 1019.530095,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.775896,
+        "fct_max_ns": 12638079,
+        "fct_max_us": 12638.079,
+        "fct_p50_us": 672.596,
+        "fct_p95_us": 10971.17005,
+        "fct_p99_ns": 12624821.53,
+        "fct_p99_us": 12624.82153,
+        "slowest": {
+          "fct_us": 12638.079,
+          "flow_id": 164,
+          "paired_ecmp_delta_us": 3152.18,
+          "qp": [
+            956,
+            104,
+            10005,
+            142
+          ],
+          "qp_event_counts": {
+            "cnp": 980
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 97897,
+          "ooo": 0,
+          "total": 97897
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 3551888,
+          "queued_bytes_sum": 75337659652,
+          "rows": 192,
+          "wait_ns_max": 67552,
+          "wait_ns_sum": 1443327200
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 61099
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 82048,
+          "queued_bytes_sum": 1123270528,
+          "rows": 185,
+          "wait_ns_max": 1573,
+          "wait_ns_sum": 23192975
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h2-b192-01-a",
+      "index": 7,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 17.034575,
+        "network_p50_us": 1.66,
+        "network_p99_us": 67.55853,
+        "round_completion_us": [
+          146.178,
+          181.334,
+          218.026,
+          252.446,
+          288.154,
+          323.822,
+          359.59,
+          395.298
+        ],
+        "round_max_us": 395.298,
+        "round_mean_us": 270.606,
+        "round_sum_ns": 2164848,
+        "synthetic_batch_us": 745.298,
+        "total_mean_us": 58.567664,
+        "wait_max_us": 326.992,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 300.12388,
+        "wait_positive": 14346,
+        "wait_sum_us": 680478.132
+      },
+      "raw_id": "515496549",
+      "raw_sha256": {
+        "fct": "ef193c22c65b4a8cacf2271cc678e839fe98f8402c7c904e5366ada9cdcd3b65",
+        "timing": "a7c9a4242d665987bd43bf7355cd245bf1ceee5ab92fdcf1e8de57a4edf1fcb3",
+        "trace": "bc08ca16e044f77b6d70b99649cbb23ad802c012950d659d098c2f2b1faa0efb"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "ecmp",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t3-b0-02-e",
+      "index": 8,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.390154,
+        "network_p50_us": 2.171,
+        "network_p99_us": 14.05268,
+        "round_completion_us": [
+          14.5,
+          14.335,
+          13.371,
+          15.315,
+          14.521,
+          14.298,
+          16.142,
+          13.765
+        ],
+        "round_max_us": 16.142,
+        "round_mean_us": 14.530875,
+        "round_sum_ns": 116247,
+        "synthetic_batch_us": 363.765,
+        "total_mean_us": 4.390154,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "723853121",
+      "raw_sha256": {
+        "fct": "31617e8b3add5f0395a42bd4e6d3216dd9bca77719448eedd653c7460ef7ccb1",
+        "timing": "889010902d6c6028e31ac13d7199915e8395b3423b143081c57007a636437013",
+        "trace": "aee0c8c0cbfa037b714ab82102cdbd51934e45b3bfbe90f0648053155c9bc485"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "joint",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3360,
+          "flows": 15960,
+          "multipath_packets": 143640,
+          "packets": 143640
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t3-b0-02-j",
+      "index": 9,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.455145,
+        "network_p50_us": 1.367,
+        "network_p99_us": 3.35651,
+        "round_completion_us": [
+          15.597,
+          15.516,
+          14.575,
+          15.785,
+          15.694,
+          15.406,
+          17.271,
+          14.922
+        ],
+        "round_max_us": 17.271,
+        "round_mean_us": 15.59575,
+        "round_sum_ns": 124766,
+        "synthetic_batch_us": 364.922,
+        "total_mean_us": 3.38781,
+        "wait_max_us": 15.58,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 11.644,
+        "wait_positive": 14340,
+        "wait_sum_us": 31664.792
+      },
+      "raw_id": "345269071",
+      "raw_sha256": {
+        "fct": "c8f943e40daeb9226e9417105257c1277e3c1ea34e6e3ed38afd3a7694f12b7f",
+        "timing": "47fbc21e31912d3f85b4166d98e84ec5ba9978d9692ceb0a884855fcd6588a9b",
+        "trace": "aee0c8c0cbfa037b714ab82102cdbd51934e45b3bfbe90f0648053155c9bc485"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "path",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3842,
+          "flows": 15960,
+          "multipath_packets": 143640,
+          "packets": 143640
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t3-b0-02-p",
+      "index": 10,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.354432,
+        "network_p50_us": 2.075,
+        "network_p99_us": 13.73534,
+        "round_completion_us": [
+          14.5,
+          14.335,
+          13.353,
+          13.347,
+          14.521,
+          14.298,
+          16.142,
+          13.776
+        ],
+        "round_max_us": 16.142,
+        "round_mean_us": 14.284,
+        "round_sum_ns": 114272,
+        "synthetic_batch_us": 363.776,
+        "total_mean_us": 4.354432,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "232084826",
+      "raw_sha256": {
+        "fct": "f10dec123e75ced07bfeb60d5861539447e9227c2b0e8de0d2e07fc4947d340f",
+        "timing": "1e294868c8f916fa215e7d1e51a4c355956717b5ec68ad181817b86014b883c9",
+        "trace": "aee0c8c0cbfa037b714ab82102cdbd51934e45b3bfbe90f0648053155c9bc485"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "admission",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t3-b0-02-a",
+      "index": 11,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.489962,
+        "network_p50_us": 1.401,
+        "network_p99_us": 3.38817,
+        "round_completion_us": [
+          15.673,
+          15.451,
+          14.521,
+          15.775,
+          15.754,
+          15.425,
+          17.486,
+          14.853
+        ],
+        "round_max_us": 17.486,
+        "round_mean_us": 15.61725,
+        "round_sum_ns": 124938,
+        "synthetic_batch_us": 364.853,
+        "total_mean_us": 3.422628,
+        "wait_max_us": 15.58,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 11.644,
+        "wait_positive": 14340,
+        "wait_sum_us": 31664.792
+      },
+      "raw_id": "863709096",
+      "raw_sha256": {
+        "fct": "d59e12b91c45eb362d63ae27a1f27c9e89148619d47b9f980793e82d6bf2f8ae",
+        "timing": "d281554016cbd946d1b6fb742b84f1d07a794d10fb87f030c17e862086df0305",
+        "trace": "aee0c8c0cbfa037b714ab82102cdbd51934e45b3bfbe90f0648053155c9bc485"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "path",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 982.861307,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.931151,
+        "fct_max_ns": 13109583,
+        "fct_max_us": 13109.583,
+        "fct_p50_us": 671.551,
+        "fct_p95_us": 11028.88165,
+        "fct_p99_ns": 12709438.83,
+        "fct_p99_us": 12709.43883,
+        "slowest": {
+          "fct_us": 13109.583,
+          "flow_id": 44,
+          "paired_ecmp_delta_us": 2525.877,
+          "qp": [
+            796,
+            1056,
+            10000,
+            111
+          ],
+          "qp_event_counts": {
+            "cnp": 1051,
+            "sack": 5
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 83411,
+          "ooo": 5901,
+          "total": 83827
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 4652032,
+          "queued_bytes_sum": 64463390944,
+          "rows": 192,
+          "wait_ns_max": 88764,
+          "wait_ns_sum": 1236311756
+        },
+        "path": {
+          "alternate": 4698,
+          "flows": 15960,
+          "multipath_packets": 169777,
+          "packets": 169777
+        },
+        "qp_event_counts": {
+          "cnp": 46092,
+          "sack": 1373,
+          "timeout": 25
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 92224,
+          "queued_bytes_sum": 4824923180,
+          "rows": 189,
+          "wait_ns_max": 1780,
+          "wait_ns_sum": 94020421
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h4-b192-02-p",
+      "index": 12,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 73.43014,
+        "network_p50_us": 2.341,
+        "network_p99_us": 530.67409,
+        "round_completion_us": [
+          619.65,
+          816.371,
+          558.274,
+          558.838,
+          531.166,
+          524.847,
+          517.192,
+          416.958
+        ],
+        "round_max_us": 816.371,
+        "round_mean_us": 567.912,
+        "round_sum_ns": 4543296,
+        "synthetic_batch_us": 866.371,
+        "total_mean_us": 73.43014,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "333797247",
+      "raw_sha256": {
+        "fct": "25f0060a577fcf41fd8efe4cd6565c234bf09f16b3f123c9bb7d87e70317f3b9",
+        "timing": "542bbba528f47ae934cf8a5e2ec52887fd96fe393a976d01693a0d1f0eb1360c",
+        "trace": "67ca53da24f99e41f6d39286dfb7d2de11255f6a9bee31263db16e8fcf6393ef"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "joint",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 1010.181301,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.955196,
+        "fct_max_ns": 12755039,
+        "fct_max_us": 12755.039,
+        "fct_p50_us": 671.3895,
+        "fct_p95_us": 10716.22645,
+        "fct_p99_ns": 12579410.450000001,
+        "fct_p99_us": 12579.41045,
+        "slowest": {
+          "fct_us": 12755.039,
+          "flow_id": 0,
+          "paired_ecmp_delta_us": 2529.817,
+          "qp": [
+            1112,
+            1056,
+            10000,
+            100
+          ],
+          "qp_event_counts": {
+            "cnp": 1042
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 94284,
+          "ooo": 0,
+          "total": 94284
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 3581952,
+          "queued_bytes_sum": 73148875356,
+          "rows": 192,
+          "wait_ns_max": 68121,
+          "wait_ns_sum": 1401957435
+        },
+        "path": {
+          "alternate": 4207,
+          "flows": 15960,
+          "multipath_packets": 143640,
+          "packets": 143640
+        },
+        "qp_event_counts": {
+          "cnp": 57471
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 93272,
+          "queued_bytes_sum": 4584449668,
+          "rows": 189,
+          "wait_ns_max": 1783,
+          "wait_ns_sum": 89501686
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h4-b192-02-j",
+      "index": 13,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 17.112822,
+        "network_p50_us": 1.619,
+        "network_p99_us": 67.90434,
+        "round_completion_us": [
+          146.082,
+          182.088,
+          218.18,
+          253.04,
+          288.48,
+          324.228,
+          359.504,
+          395.272
+        ],
+        "round_max_us": 395.272,
+        "round_mean_us": 270.85925,
+        "round_sum_ns": 2166874,
+        "synthetic_batch_us": 745.272,
+        "total_mean_us": 58.683895,
+        "wait_max_us": 326.828,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 299.95988,
+        "wait_positive": 14347,
+        "wait_sum_us": 681100.464
+      },
+      "raw_id": "912949818",
+      "raw_sha256": {
+        "fct": "a39bc3f484f2a1d66d86189e7e115951065e78a44ea06b9d15ea81abec3e3b39",
+        "timing": "ee85f2384c96abc0fde5fee6e0155bba138742c7f7887c254717a8444faecd8d",
+        "trace": "67ca53da24f99e41f6d39286dfb7d2de11255f6a9bee31263db16e8fcf6393ef"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "admission",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 950.123546,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.929737,
+        "fct_max_ns": 13561291,
+        "fct_max_us": 13561.291,
+        "fct_p50_us": 671.5605,
+        "fct_p95_us": 11411.6454,
+        "fct_p99_ns": 13000362.840000002,
+        "fct_p99_us": 13000.36284,
+        "slowest": {
+          "fct_us": 13561.291,
+          "flow_id": 100,
+          "paired_ecmp_delta_us": 5023.532,
+          "qp": [
+            356,
+            1056,
+            10002,
+            125
+          ],
+          "qp_event_counts": {
+            "cnp": 978
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 98942,
+          "ooo": 0,
+          "total": 98942
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 3566800,
+          "queued_bytes_sum": 78470418604,
+          "rows": 192,
+          "wait_ns_max": 67834,
+          "wait_ns_sum": 1503482702
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 62130
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 128488,
+          "queued_bytes_sum": 4826308240,
+          "rows": 189,
+          "wait_ns_max": 2451,
+          "wait_ns_sum": 94442490
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h4-b192-02-a",
+      "index": 14,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 17.085283,
+        "network_p50_us": 1.662,
+        "network_p99_us": 67.68068,
+        "round_completion_us": [
+          145.842,
+          181.828,
+          217.964,
+          253.104,
+          288.222,
+          324.952,
+          359.304,
+          394.972
+        ],
+        "round_max_us": 394.972,
+        "round_mean_us": 270.7735,
+        "round_sum_ns": 2166188,
+        "synthetic_batch_us": 744.972,
+        "total_mean_us": 58.656357,
+        "wait_max_us": 326.828,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 299.95988,
+        "wait_positive": 14347,
+        "wait_sum_us": 681100.464
+      },
+      "raw_id": "972110246",
+      "raw_sha256": {
+        "fct": "eee5a729b3206e731509e81381b63f4ec884d814050e9928331ca26100e2c751",
+        "timing": "9813d47c0a5eae8d2d48d8e4c2f06082ec4307c98abf29fc2e3c70e748b76e71",
+        "trace": "67ca53da24f99e41f6d39286dfb7d2de11255f6a9bee31263db16e8fcf6393ef"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "ecmp",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 987.559256,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.931448,
+        "fct_max_ns": 13047219,
+        "fct_max_us": 13047.219,
+        "fct_p50_us": 671.549,
+        "fct_p95_us": 11555.922,
+        "fct_p99_ns": 12519323.17,
+        "fct_p99_us": 12519.32317,
+        "slowest": {
+          "fct_us": 13047.219,
+          "flow_id": 16,
+          "qp": [
+            332,
+            1056,
+            10000,
+            104
+          ],
+          "qp_event_counts": {
+            "cnp": 1060,
+            "sack": 12
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 83865,
+          "ooo": 6338,
+          "total": 84318
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 4652000,
+          "queued_bytes_sum": 69805817712,
+          "rows": 192,
+          "wait_ns_max": 88743,
+          "wait_ns_sum": 1338185885
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 46538,
+          "sack": 1471,
+          "timeout": 30
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 128336,
+          "queued_bytes_sum": 5380007516,
+          "rows": 189,
+          "wait_ns_max": 2491,
+          "wait_ns_sum": 105178148
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h4-b192-02-e",
+      "index": 15,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 72.980969,
+        "network_p50_us": 2.439,
+        "network_p99_us": 529.72572,
+        "round_completion_us": [
+          623.282,
+          822.235,
+          563.847,
+          561.162,
+          529.31,
+          524.955,
+          519.544,
+          514.155
+        ],
+        "round_max_us": 822.235,
+        "round_mean_us": 582.31125,
+        "round_sum_ns": 4658490,
+        "synthetic_batch_us": 872.235,
+        "total_mean_us": 72.980969,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "499950964",
+      "raw_sha256": {
+        "fct": "a60754ccc4a5cdf072599e349b3ab7a87baa6785b063f1756436a32d8fd28531",
+        "timing": "5add73f29325447fc74eab4dea4a7699118e98cc2a9276b57161f21026161fa2",
+        "trace": "67ca53da24f99e41f6d39286dfb7d2de11255f6a9bee31263db16e8fcf6393ef"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "admission",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 5248.086231,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 111.898566,
+        "fct_max_ns": 2455162,
+        "fct_max_us": 2455.162,
+        "fct_p50_us": 599.761,
+        "fct_p95_us": 2141.3548,
+        "fct_p99_ns": 2392360.93,
+        "fct_p99_us": 2392.36093,
+        "slowest": {
+          "fct_us": 2455.162,
+          "flow_id": 64,
+          "paired_ecmp_delta_us": 130.402,
+          "qp": [
+            356,
+            468,
+            10001,
+            103
+          ],
+          "qp_event_counts": {
+            "cnp": 219
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 8231,
+          "ooo": 0,
+          "total": 8231
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 472664,
+          "queued_bytes_sum": 21242466916,
+          "rows": 192,
+          "wait_ns_max": 9004,
+          "wait_ns_sum": 410606571
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 5500
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 83572,
+          "queued_bytes_sum": 2112116228,
+          "rows": 188,
+          "wait_ns_max": 1627,
+          "wait_ns_sum": 42490918
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t5-b192-03-a",
+      "index": 16,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 2.195835,
+        "network_p50_us": 1.634,
+        "network_p99_us": 11.99259,
+        "round_completion_us": [
+          33.442,
+          23.546,
+          18.492,
+          21.327,
+          17.96,
+          19.166,
+          18.27,
+          26.442
+        ],
+        "round_max_us": 33.442,
+        "round_mean_us": 22.330625,
+        "round_sum_ns": 178645,
+        "synthetic_batch_us": 376.442,
+        "total_mean_us": 4.310948,
+        "wait_max_us": 16.072,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 13.12,
+        "wait_positive": 14339,
+        "wait_sum_us": 34654.02
+      },
+      "raw_id": "286455088",
+      "raw_sha256": {
+        "fct": "b0d3a60fa4c14ea5257c0a181374a5269022363b3779035b14d1facf0c323e95",
+        "timing": "8a35266e090f58e250eecf1793f4b2e2dcb140f747a532c27ffe9f5ae02cbc32",
+        "trace": "2406463cbaa1963c748795064660a6869c1a5f26531def23c3c473936298a868"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "joint",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 5038.461089,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 112.156865,
+        "fct_max_ns": 2557309,
+        "fct_max_us": 2557.309,
+        "fct_p50_us": 598.361,
+        "fct_p95_us": 2029.4645,
+        "fct_p99_ns": 2296355.0000000005,
+        "fct_p99_us": 2296.355,
+        "slowest": {
+          "fct_us": 2557.309,
+          "flow_id": 64,
+          "paired_ecmp_delta_us": 232.549,
+          "qp": [
+            356,
+            468,
+            10001,
+            103
+          ],
+          "qp_event_counts": {
+            "cnp": 178
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 8160,
+          "ooo": 0,
+          "total": 8160
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 456224,
+          "queued_bytes_sum": 20389008228,
+          "rows": 192,
+          "wait_ns_max": 8700,
+          "wait_ns_sum": 394191300
+        },
+        "path": {
+          "alternate": 4381,
+          "flows": 16010,
+          "multipath_packets": 144090,
+          "packets": 144090
+        },
+        "qp_event_counts": {
+          "cnp": 5500
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 62880,
+          "queued_bytes_sum": 1447854084,
+          "rows": 188,
+          "wait_ns_max": 1217,
+          "wait_ns_sum": 29551434
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t5-b192-03-j",
+      "index": 17,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 2.189174,
+        "network_p50_us": 1.595,
+        "network_p99_us": 12.36465,
+        "round_completion_us": [
+          33.262,
+          21.877,
+          18.635,
+          21.428,
+          18.542,
+          18.672,
+          18.502,
+          26.544
+        ],
+        "round_max_us": 33.262,
+        "round_mean_us": 22.18275,
+        "round_sum_ns": 177462,
+        "synthetic_batch_us": 376.544,
+        "total_mean_us": 4.304288,
+        "wait_max_us": 16.072,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 13.12,
+        "wait_positive": 14339,
+        "wait_sum_us": 34654.02
+      },
+      "raw_id": "519330981",
+      "raw_sha256": {
+        "fct": "bea6f8077b6c92031b9fec3e56615b1962303e0580c3444ba9ca8219f0de3ce5",
+        "timing": "44d738d825f7fae0f0fe2b954c3d691b6aacb55e3d3e0364ee9ef6fa979000f8",
+        "trace": "2406463cbaa1963c748795064660a6869c1a5f26531def23c3c473936298a868"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "path",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 5304.109487,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 120.831193,
+        "fct_max_ns": 2429230,
+        "fct_max_us": 2429.23,
+        "fct_p50_us": 555.3945,
+        "fct_p95_us": 1896.9596,
+        "fct_p99_ns": 2156657.1000000006,
+        "fct_p99_us": 2156.6571,
+        "slowest": {
+          "fct_us": 2429.23,
+          "flow_id": 160,
+          "paired_ecmp_delta_us": 262.386,
+          "qp": [
+            356,
+            468,
+            10003,
+            106
+          ],
+          "qp_event_counts": {
+            "cnp": 76
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 15051,
+          "ooo": 0,
+          "total": 15051
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 366224,
+          "queued_bytes_sum": 27164605908,
+          "rows": 192,
+          "wait_ns_max": 6976,
+          "wait_ns_sum": 524052585
+        },
+        "path": {
+          "alternate": 4833,
+          "flows": 16010,
+          "multipath_packets": 144090,
+          "packets": 144090
+        },
+        "qp_event_counts": {
+          "cnp": 3819
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 43328,
+          "queued_bytes_sum": 1666171872,
+          "rows": 188,
+          "wait_ns_max": 849,
+          "wait_ns_sum": 33801175
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t5-b192-03-p",
+      "index": 18,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.938771,
+        "network_p50_us": 2.3185,
+        "network_p99_us": 17.56419,
+        "round_completion_us": [
+          24.562,
+          19.122,
+          18.164,
+          17.962,
+          16.417,
+          16.665,
+          15.521,
+          15.662
+        ],
+        "round_max_us": 24.562,
+        "round_mean_us": 18.009375,
+        "round_sum_ns": 144075,
+        "synthetic_batch_us": 365.662,
+        "total_mean_us": 4.938771,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "499386393",
+      "raw_sha256": {
+        "fct": "4c0246f1bdda074a75a8c39a56acf998dea76b2ab7154e4a64fdcacd544a9eca",
+        "timing": "ec34d9aa4b905430d1ec590e4c827f2950e6e0ec7f19ae76d2fe70f87d1b9c3d",
+        "trace": "2406463cbaa1963c748795064660a6869c1a5f26531def23c3c473936298a868"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "ecmp",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 5542.465411,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 120.355474,
+        "fct_max_ns": 2324760,
+        "fct_max_us": 2324.76,
+        "fct_p50_us": 557.5965,
+        "fct_p95_us": 1881.82575,
+        "fct_p99_ns": 2257753.63,
+        "fct_p99_us": 2257.75363,
+        "slowest": {
+          "fct_us": 2324.76,
+          "flow_id": 64,
+          "qp": [
+            356,
+            468,
+            10001,
+            103
+          ],
+          "qp_event_counts": {
+            "cnp": 134
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 15305,
+          "ooo": 0,
+          "total": 15305
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 379608,
+          "queued_bytes_sum": 27027556808,
+          "rows": 192,
+          "wait_ns_max": 7225,
+          "wait_ns_sum": 521060298
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 4024
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 102588,
+          "queued_bytes_sum": 2310738764,
+          "rows": 188,
+          "wait_ns_max": 2004,
+          "wait_ns_sum": 46254910
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t5-b192-03-e",
+      "index": 19,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.964037,
+        "network_p50_us": 2.42,
+        "network_p99_us": 17.36217,
+        "round_completion_us": [
+          25.762,
+          18.984,
+          17.701,
+          17.304,
+          15.902,
+          16.408,
+          15.457,
+          16.193
+        ],
+        "round_max_us": 25.762,
+        "round_mean_us": 17.963875,
+        "round_sum_ns": 143711,
+        "synthetic_batch_us": 366.193,
+        "total_mean_us": 4.964037,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "263463301",
+      "raw_sha256": {
+        "fct": "cb019f105be9db0907965a09e58ccf589eac233df32b2d52648a3bd0c555e528",
+        "timing": "58882bf9c0fcc5724bb9c76d1cf25f634599ab647345b7a05e72db331f5da9ea",
+        "trace": "2406463cbaa1963c748795064660a6869c1a5f26531def23c3c473936298a868"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "admission",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 4680.598703,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.920289,
+        "fct_max_ns": 2752832,
+        "fct_max_us": 2752.832,
+        "fct_p50_us": 671.624,
+        "fct_p95_us": 2281.341,
+        "fct_p99_ns": 2623361.0300000003,
+        "fct_p99_us": 2623.36103,
+        "slowest": {
+          "fct_us": 2752.832,
+          "flow_id": 52,
+          "paired_ecmp_delta_us": 400.275,
+          "qp": [
+            792,
+            1060,
+            10001,
+            104
+          ],
+          "qp_event_counts": {
+            "cnp": 216
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 11095,
+          "ooo": 0,
+          "total": 11095
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 348608,
+          "queued_bytes_sum": 25675918196,
+          "rows": 192,
+          "wait_ns_max": 6639,
+          "wait_ns_sum": 495697070
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 7054
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 139536,
+          "queued_bytes_sum": 4773548372,
+          "rows": 189,
+          "wait_ns_max": 2682,
+          "wait_ns_sum": 93552787
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t6-b192-02-a",
+      "index": 20,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 2.230867,
+        "network_p50_us": 1.628,
+        "network_p99_us": 12.1124,
+        "round_completion_us": [
+          31.461,
+          19.614,
+          17.343,
+          17.049,
+          18.593,
+          17.522,
+          19.455,
+          28.307
+        ],
+        "round_max_us": 31.461,
+        "round_mean_us": 21.168,
+        "round_sum_ns": 169344,
+        "synthetic_batch_us": 378.307,
+        "total_mean_us": 4.163533,
+        "wait_max_us": 15.58,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 11.644,
+        "wait_positive": 14340,
+        "wait_sum_us": 31664.792
+      },
+      "raw_id": "352365254",
+      "raw_sha256": {
+        "fct": "898f5355737d9496ddb7c2da93d4203473c7536d4ad196bd837edf9d3c4824b9",
+        "timing": "a6721f2fc32eebd7354328801b3872b3bb7d308934efc9bd6cbfba4633dd9d48",
+        "trace": "49833e905476ebfef0fb117b493d259d86908d448fb0800b4b9587cea3083f3e"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "joint",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 5065.562635,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.919619,
+        "fct_max_ns": 2543627,
+        "fct_max_us": 2543.627,
+        "fct_p50_us": 671.6285,
+        "fct_p95_us": 2139.70975,
+        "fct_p99_ns": 2360276.47,
+        "fct_p99_us": 2360.27647,
+        "slowest": {
+          "fct_us": 2543.627,
+          "flow_id": 52,
+          "paired_ecmp_delta_us": 191.07,
+          "qp": [
+            792,
+            1060,
+            10001,
+            104
+          ],
+          "qp_event_counts": {
+            "cnp": 208
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 9726,
+          "ooo": 0,
+          "total": 9726
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 353240,
+          "queued_bytes_sum": 23163950100,
+          "rows": 192,
+          "wait_ns_max": 6752,
+          "wait_ns_sum": 447614967
+        },
+        "path": {
+          "alternate": 4425,
+          "flows": 15960,
+          "multipath_packets": 143640,
+          "packets": 143640
+        },
+        "qp_event_counts": {
+          "cnp": 6142
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 121568,
+          "queued_bytes_sum": 5718362540,
+          "rows": 189,
+          "wait_ns_max": 2334,
+          "wait_ns_sum": 111669390
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t6-b192-02-j",
+      "index": 21,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 2.187737,
+        "network_p50_us": 1.596,
+        "network_p99_us": 11.5577,
+        "round_completion_us": [
+          32.021,
+          18.544,
+          17.781,
+          16.404,
+          18.077,
+          18.111,
+          19.498,
+          27.401
+        ],
+        "round_max_us": 32.021,
+        "round_mean_us": 20.979625,
+        "round_sum_ns": 167837,
+        "synthetic_batch_us": 377.401,
+        "total_mean_us": 4.120402,
+        "wait_max_us": 15.58,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 11.644,
+        "wait_positive": 14340,
+        "wait_sum_us": 31664.792
+      },
+      "raw_id": "771900219",
+      "raw_sha256": {
+        "fct": "88f339781ec70914f92e96a4aae3a3ba58dda0087aa39cd5d42c074fe232527d",
+        "timing": "e91f98de206e8101072c5ebb4ef4f7b7b2de47aa9f650a01f054c8e32c9e7931",
+        "trace": "49833e905476ebfef0fb117b493d259d86908d448fb0800b4b9587cea3083f3e"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "ecmp",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 5336.527635,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.919247,
+        "fct_max_ns": 2414473,
+        "fct_max_us": 2414.473,
+        "fct_p50_us": 671.631,
+        "fct_p95_us": 2096.1137,
+        "fct_p99_ns": 2349539.44,
+        "fct_p99_us": 2349.53944,
+        "slowest": {
+          "fct_us": 2414.473,
+          "flow_id": 60,
+          "qp": [
+            900,
+            1060,
+            10000,
+            105
+          ],
+          "qp_event_counts": {
+            "cnp": 136
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 16204,
+          "ooo": 0,
+          "total": 16204
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 284008,
+          "queued_bytes_sum": 31289905320,
+          "rows": 192,
+          "wait_ns_max": 5434,
+          "wait_ns_sum": 603137566
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 4515
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 133248,
+          "queued_bytes_sum": 5837033236,
+          "rows": 189,
+          "wait_ns_max": 2560,
+          "wait_ns_sum": 113836913
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t6-b192-02-e",
+      "index": 22,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.686572,
+        "network_p50_us": 2.416,
+        "network_p99_us": 15.82334,
+        "round_completion_us": [
+          21.701,
+          15.901,
+          14.394,
+          14.434,
+          15.081,
+          15.718,
+          16.877,
+          15.823
+        ],
+        "round_max_us": 21.701,
+        "round_mean_us": 16.241125,
+        "round_sum_ns": 129929,
+        "synthetic_batch_us": 365.823,
+        "total_mean_us": 4.686572,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "715445529",
+      "raw_sha256": {
+        "fct": "b54a0e42b4659f4d6dce2c88340502a6b1b41258a1a189ca81576209bf653b84",
+        "timing": "d3cfbaf3a7c681625a6ffffe9f6fe82ed097ce5088f01f05f8b09fcb9357d950",
+        "trace": "49833e905476ebfef0fb117b493d259d86908d448fb0800b4b9587cea3083f3e"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "path",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 5109.820085,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 99.922297,
+        "fct_max_ns": 2521596,
+        "fct_max_us": 2521.596,
+        "fct_p50_us": 671.6105,
+        "fct_p95_us": 2059.3811,
+        "fct_p99_ns": 2271088.0300000003,
+        "fct_p99_us": 2271.08803,
+        "slowest": {
+          "fct_us": 2521.596,
+          "flow_id": 52,
+          "paired_ecmp_delta_us": 169.039,
+          "qp": [
+            792,
+            1060,
+            10001,
+            104
+          ],
+          "qp_event_counts": {
+            "cnp": 137
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 16623,
+          "ooo": 0,
+          "total": 16623
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 255144,
+          "queued_bytes_sum": 32472620012,
+          "rows": 192,
+          "wait_ns_max": 4875,
+          "wait_ns_sum": 625490748
+        },
+        "path": {
+          "alternate": 4774,
+          "flows": 15960,
+          "multipath_packets": 143640,
+          "packets": 143640
+        },
+        "qp_event_counts": {
+          "cnp": 4689
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 126808,
+          "queued_bytes_sum": 5388563772,
+          "rows": 189,
+          "wait_ns_max": 2427,
+          "wait_ns_sum": 105377143
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t6-b192-02-p",
+      "index": 23,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.643438,
+        "network_p50_us": 2.321,
+        "network_p99_us": 15.79619,
+        "round_completion_us": [
+          21.921,
+          16.669,
+          14.859,
+          14.191,
+          15.108,
+          16.258,
+          17.07,
+          14.883
+        ],
+        "round_max_us": 21.921,
+        "round_mean_us": 16.369875,
+        "round_sum_ns": 130959,
+        "synthetic_batch_us": 364.883,
+        "total_mean_us": 4.643438,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "971345622",
+      "raw_sha256": {
+        "fct": "7cfb41997b7163793f1539a1c7f57cfdc3c163c4a0e238d595de6789efe910ad",
+        "timing": "84f1f95d238f74e137b1ed302d71976ca6786089a46c182435f643eac665846f",
+        "trace": "49833e905476ebfef0fb117b493d259d86908d448fb0800b4b9587cea3083f3e"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "ecmp",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h7-b0-02-e",
+      "index": 24,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 66.887699,
+        "network_p50_us": 2.186,
+        "network_p99_us": 520.89702,
+        "round_completion_us": [
+          85.382,
+          525.162,
+          531.188,
+          545.63,
+          525.668,
+          524.264,
+          516.587,
+          417.478
+        ],
+        "round_max_us": 545.63,
+        "round_mean_us": 458.919875,
+        "round_sum_ns": 3671359,
+        "synthetic_batch_us": 816.587,
+        "total_mean_us": 66.887699,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "436181493",
+      "raw_sha256": {
+        "fct": "8d15af3c502637882d0a425ea8a1d3eeddb9f907c44aa149b504eff5475ef598",
+        "timing": "9f9d7ceda28fd75b3888994bed893d49eb03b1302fef93c0ae918a138d1cb0cf",
+        "trace": "851a27267a528b63354efd279eb20d70277bad81658f5239c63e70eb9b3fdd95"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "admission",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h7-b0-02-a",
+      "index": 25,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.471899,
+        "network_p50_us": 1.468,
+        "network_p99_us": 2.271,
+        "round_completion_us": [
+          86.277,
+          121.373,
+          156.141,
+          190.345,
+          224.877,
+          259.665,
+          293.961,
+          328.749
+        ],
+        "round_max_us": 328.749,
+        "round_mean_us": 207.6735,
+        "round_sum_ns": 1661388,
+        "synthetic_batch_us": 678.749,
+        "total_mean_us": 43.042972,
+        "wait_max_us": 326.828,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 299.95988,
+        "wait_positive": 14347,
+        "wait_sum_us": 681100.464
+      },
+      "raw_id": "677113520",
+      "raw_sha256": {
+        "fct": "71ef4eec0ddc300e7cd1748894431f30d72e65d0ee9617e24e637ee53a42afcb",
+        "timing": "180b6c5b8ab661e8f8df1da467579c26793cee6bf0458706522f62632258ca61",
+        "trace": "851a27267a528b63354efd279eb20d70277bad81658f5239c63e70eb9b3fdd95"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "joint",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3309,
+          "flows": 15960,
+          "multipath_packets": 143640,
+          "packets": 143640
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h7-b0-02-j",
+      "index": 26,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.443065,
+        "network_p50_us": 1.432,
+        "network_p99_us": 2.217,
+        "round_completion_us": [
+          86.258,
+          121.354,
+          156.122,
+          190.326,
+          224.858,
+          259.646,
+          293.942,
+          328.73
+        ],
+        "round_max_us": 328.73,
+        "round_mean_us": 207.6545,
+        "round_sum_ns": 1661236,
+        "synthetic_batch_us": 678.73,
+        "total_mean_us": 43.014138,
+        "wait_max_us": 326.828,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 299.95988,
+        "wait_positive": 14347,
+        "wait_sum_us": 681100.464
+      },
+      "raw_id": "760253519",
+      "raw_sha256": {
+        "fct": "17fe69eb809b788094452f15a617ffaf45c650f0832080f280c8b64dd86477be",
+        "timing": "63dd8d11751a5ce87a83e194b172e31f01dde3d23cfb495573fc6084b1c8ccee",
+        "trace": "851a27267a528b63354efd279eb20d70277bad81658f5239c63e70eb9b3fdd95"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "path",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3799,
+          "flows": 15960,
+          "multipath_packets": 165624,
+          "packets": 165624
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h7-b0-02-p",
+      "index": 27,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 66.686416,
+        "network_p50_us": 2.088,
+        "network_p99_us": 517.88651,
+        "round_completion_us": [
+          85.382,
+          592.36,
+          527.173,
+          548.419,
+          525.523,
+          523.156,
+          516.103,
+          513.122
+        ],
+        "round_max_us": 592.36,
+        "round_mean_us": 478.90475,
+        "round_sum_ns": 3831238,
+        "synthetic_batch_us": 863.122,
+        "total_mean_us": 66.686416,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "803956467",
+      "raw_sha256": {
+        "fct": "b5cfe4d3ea72d13de24a37a7241c1249026ccdd7ed079a7efaf0dd01e0867e1a",
+        "timing": "2d7a0e855f57c4325cc773e44f015ce6d140030da4937f7559e9215b5ccd9f56",
+        "trace": "851a27267a528b63354efd279eb20d70277bad81658f5239c63e70eb9b3fdd95"
+      },
+      "seed": 20261702
+    },
+    {
+      "arm": "joint",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3249,
+          "flows": 16020,
+          "multipath_packets": 144180,
+          "packets": 144180
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t8-b0-01-j",
+      "index": 28,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.285998,
+        "network_p50_us": 1.2535,
+        "network_p99_us": 2.238,
+        "round_completion_us": [
+          17.806,
+          18.05,
+          16.903,
+          16.912,
+          16.742,
+          19.282,
+          18.707,
+          18.264
+        ],
+        "round_max_us": 19.282,
+        "round_mean_us": 17.83325,
+        "round_sum_ns": 142666,
+        "synthetic_batch_us": 368.264,
+        "total_mean_us": 3.629844,
+        "wait_max_us": 17.876,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 14.924,
+        "wait_positive": 14339,
+        "wait_sum_us": 38401.584
+      },
+      "raw_id": "105899978",
+      "raw_sha256": {
+        "fct": "6c607543b13fe7eb7239cf5a396046b317e940eae495379c7217b74c2e17cb30",
+        "timing": "ebae4a88fb86635f740a6d1de625cd6d8297cf9103496c565c021565c75391cb",
+        "trace": "b0f0e8d256450f3dd87732a64dcbb5a89c331b3b5a5eb287c7d714099abbd101"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "ecmp",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t8-b0-01-e",
+      "index": 29,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.985387,
+        "network_p50_us": 2.178,
+        "network_p99_us": 16.75453,
+        "round_completion_us": [
+          17.124,
+          17.25,
+          16.266,
+          16.305,
+          16.181,
+          18.416,
+          18.07,
+          17.578
+        ],
+        "round_max_us": 18.416,
+        "round_mean_us": 17.14875,
+        "round_sum_ns": 137190,
+        "synthetic_batch_us": 367.578,
+        "total_mean_us": 4.985387,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "580730197",
+      "raw_sha256": {
+        "fct": "e7df74e6fb40876b2e77db4bc9ed1a6e7e45491ac04801123936e479cdbf740e",
+        "timing": "e12758e4a2521b99fdfe75fbfe141155ad394899f349188d2953829d748b2cba",
+        "trace": "b0f0e8d256450f3dd87732a64dcbb5a89c331b3b5a5eb287c7d714099abbd101"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "admission",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t8-b0-01-a",
+      "index": 30,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.318594,
+        "network_p50_us": 1.287,
+        "network_p99_us": 2.38517,
+        "round_completion_us": [
+          17.806,
+          18.05,
+          16.942,
+          16.942,
+          16.822,
+          19.282,
+          18.79,
+          18.232
+        ],
+        "round_max_us": 19.282,
+        "round_mean_us": 17.85825,
+        "round_sum_ns": 142866,
+        "synthetic_batch_us": 368.232,
+        "total_mean_us": 3.662441,
+        "wait_max_us": 17.876,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 14.924,
+        "wait_positive": 14339,
+        "wait_sum_us": 38401.584
+      },
+      "raw_id": "753071803",
+      "raw_sha256": {
+        "fct": "646769c21f4b784e2360384e1abc5517b77a1795cc6b305275005ec08503ac86",
+        "timing": "61e741251cba072adf491e93d387e0c342f8efd84be01f3b7f3c96b8d6916a7e",
+        "trace": "b0f0e8d256450f3dd87732a64dcbb5a89c331b3b5a5eb287c7d714099abbd101"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "path",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3712,
+          "flows": 16020,
+          "multipath_packets": 144180,
+          "packets": 144180
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t8-b0-01-p",
+      "index": 31,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.977245,
+        "network_p50_us": 2.081,
+        "network_p99_us": 16.82117,
+        "round_completion_us": [
+          17.105,
+          17.25,
+          16.266,
+          16.305,
+          16.181,
+          18.416,
+          18.07,
+          17.578
+        ],
+        "round_max_us": 18.416,
+        "round_mean_us": 17.146375,
+        "round_sum_ns": 137171,
+        "synthetic_batch_us": 367.578,
+        "total_mean_us": 4.977245,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "956694749",
+      "raw_sha256": {
+        "fct": "d5c8ac048fd6cfa6d18e5011c8741570dcdb6b64f2762e3d16447cb9a5ee59fa",
+        "timing": "ff534af707d5e93260fc282ed687cb7c880b9c10d4c5f4d3bdb08a20d603e256",
+        "trace": "b0f0e8d256450f3dd87732a64dcbb5a89c331b3b5a5eb287c7d714099abbd101"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "ecmp",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h9-b0-01-e",
+      "index": 32,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 65.173312,
+        "network_p50_us": 2.186,
+        "network_p99_us": 514.80637,
+        "round_completion_us": [
+          85.382,
+          725.601,
+          528.785,
+          542.88,
+          525.982,
+          523.215,
+          514.036,
+          515.204
+        ],
+        "round_max_us": 725.601,
+        "round_mean_us": 495.135625,
+        "round_sum_ns": 3961085,
+        "synthetic_batch_us": 865.204,
+        "total_mean_us": 65.173312,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "807211032",
+      "raw_sha256": {
+        "fct": "0f596d68f0170dd218b421c2b5eea6372b8cac8a75e4cb9a8ff01172f6f2affc",
+        "timing": "2254c38cb6c1cc208f7ba1100479977863e3d49c583876118e0ad4c7813e051d",
+        "trace": "ed1b261e058f937975c30e1533a46eb507b37a3518b782a422f5772f6377486d"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "path",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3718,
+          "flows": 16020,
+          "multipath_packets": 166039,
+          "packets": 166039
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h9-b0-01-p",
+      "index": 33,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 65.67897,
+        "network_p50_us": 2.091,
+        "network_p99_us": 518.9488,
+        "round_completion_us": [
+          85.382,
+          529.19,
+          527.831,
+          550.854,
+          527.238,
+          523.136,
+          513.604,
+          512.325
+        ],
+        "round_max_us": 550.854,
+        "round_mean_us": 471.195,
+        "round_sum_ns": 3769560,
+        "synthetic_batch_us": 862.325,
+        "total_mean_us": 65.67897,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "355584205",
+      "raw_sha256": {
+        "fct": "49dc996edcda2672bfdd82dc04b08f2501e5ba486141cdd96d6cba6b54220c1a",
+        "timing": "78c2b34183331378bbc6cd469638d9593899fc36bb03c031553820ac9aa69284",
+        "trace": "ed1b261e058f937975c30e1533a46eb507b37a3518b782a422f5772f6377486d"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "joint",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3197,
+          "flows": 16020,
+          "multipath_packets": 144180,
+          "packets": 144180
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h9-b0-01-j",
+      "index": 34,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.331738,
+        "network_p50_us": 1.352,
+        "network_p99_us": 2.13417,
+        "round_completion_us": [
+          86.235,
+          120.511,
+          155.279,
+          189.751,
+          224.343,
+          259.131,
+          293.919,
+          328.647
+        ],
+        "round_max_us": 328.647,
+        "round_mean_us": 207.227,
+        "round_sum_ns": 1657816,
+        "synthetic_batch_us": 678.647,
+        "total_mean_us": 42.864827,
+        "wait_max_us": 326.992,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 300.12388,
+        "wait_positive": 14346,
+        "wait_sum_us": 680478.132
+      },
+      "raw_id": "355878287",
+      "raw_sha256": {
+        "fct": "0744d078608e98c1c70568bdae51d8aaa9bfc284408831c2296b3cc56f0424f5",
+        "timing": "7f34e1d4384a9eea9194a3f8006dc11a4c9f1a71c8093806afa7e0fff64d0fa9",
+        "trace": "ed1b261e058f937975c30e1533a46eb507b37a3518b782a422f5772f6377486d"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "admission",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h9-b0-01-a",
+      "index": 35,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.375384,
+        "network_p50_us": 1.389,
+        "network_p99_us": 2.25634,
+        "round_completion_us": [
+          86.302,
+          120.578,
+          155.346,
+          189.818,
+          224.41,
+          259.198,
+          293.986,
+          328.714
+        ],
+        "round_max_us": 328.714,
+        "round_mean_us": 207.294,
+        "round_sum_ns": 1658352,
+        "synthetic_batch_us": 678.714,
+        "total_mean_us": 42.908473,
+        "wait_max_us": 326.992,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 300.12388,
+        "wait_positive": 14346,
+        "wait_sum_us": 680478.132
+      },
+      "raw_id": "500349008",
+      "raw_sha256": {
+        "fct": "e592e61578f0018fed6aa53a10d25bc28f27229af61ce107da57cf1ea44bcfcb",
+        "timing": "f33306221e886a6c93e5372438bb842bbe8e498913be0bb7328b776ca68cc33c",
+        "trace": "ed1b261e058f937975c30e1533a46eb507b37a3518b782a422f5772f6377486d"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "path",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3651,
+          "flows": 16010,
+          "multipath_packets": 144090,
+          "packets": 144090
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t10-b0-03-p",
+      "index": 36,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.601242,
+        "network_p50_us": 2.066,
+        "network_p99_us": 14.85468,
+        "round_completion_us": [
+          15.485,
+          16.613,
+          15.61,
+          16.266,
+          15.138,
+          14.884,
+          14.337,
+          14.502
+        ],
+        "round_max_us": 16.613,
+        "round_mean_us": 15.354375,
+        "round_sum_ns": 122835,
+        "synthetic_batch_us": 364.502,
+        "total_mean_us": 4.601242,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "333177786",
+      "raw_sha256": {
+        "fct": "099efd03023e522f049b5799c66634bbf62937056c261a6d01537f137cf4e1c3",
+        "timing": "ded91ed7bc76947c91505780a2a9752f6780fe325cb81b99ebbce568cb69c658",
+        "trace": "a65de63c68e1616a6cabf81e8acb31972d807d95cfc8bef17a56b63f2fd1a687"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "ecmp",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t10-b0-03-e",
+      "index": 37,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 4.609108,
+        "network_p50_us": 2.166,
+        "network_p99_us": 14.80651,
+        "round_completion_us": [
+          15.485,
+          16.613,
+          15.61,
+          16.266,
+          15.138,
+          14.886,
+          14.337,
+          14.502
+        ],
+        "round_max_us": 16.613,
+        "round_mean_us": 15.354625,
+        "round_sum_ns": 122837,
+        "synthetic_batch_us": 364.502,
+        "total_mean_us": 4.609108,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "621587684",
+      "raw_sha256": {
+        "fct": "3c7f55fe9a4fe33f8f7d6f1b7cdf03183d302c6ae1b8200b189416f892ac4d49",
+        "timing": "f951566405332b688deed0937466527a1a724a18c10c60bde71956bd1056fb2a",
+        "trace": "a65de63c68e1616a6cabf81e8acb31972d807d95cfc8bef17a56b63f2fd1a687"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "joint",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3170,
+          "flows": 16010,
+          "multipath_packets": 144090,
+          "packets": 144090
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t10-b0-03-j",
+      "index": 38,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.367844,
+        "network_p50_us": 1.342,
+        "network_p99_us": 2.57434,
+        "round_completion_us": [
+          16.41,
+          17.679,
+          16.556,
+          17.397,
+          16.157,
+          15.758,
+          15.616,
+          15.399
+        ],
+        "round_max_us": 17.679,
+        "round_mean_us": 16.3715,
+        "round_sum_ns": 130972,
+        "synthetic_batch_us": 365.399,
+        "total_mean_us": 3.482957,
+        "wait_max_us": 16.072,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 13.12,
+        "wait_positive": 14339,
+        "wait_sum_us": 34654.02
+      },
+      "raw_id": "437815291",
+      "raw_sha256": {
+        "fct": "fa540ed241400b85a2e2c551c8d843ccfc077f4d1ca8dbf48e42ba44bad4fe5c",
+        "timing": "230827f065eba244b4054464bd5593a1a1938509bf517b786c27c06a5e8bcae1",
+        "trace": "a65de63c68e1616a6cabf81e8acb31972d807d95cfc8bef17a56b63f2fd1a687"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "admission",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t10-b0-03-a",
+      "index": 39,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.407863,
+        "network_p50_us": 1.377,
+        "network_p99_us": 2.73734,
+        "round_completion_us": [
+          16.442,
+          17.568,
+          16.603,
+          17.443,
+          16.125,
+          15.954,
+          15.327,
+          15.604
+        ],
+        "round_max_us": 17.568,
+        "round_mean_us": 16.38325,
+        "round_sum_ns": 131066,
+        "synthetic_batch_us": 365.604,
+        "total_mean_us": 3.522976,
+        "wait_max_us": 16.072,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 13.12,
+        "wait_positive": 14339,
+        "wait_sum_us": 34654.02
+      },
+      "raw_id": "96496517",
+      "raw_sha256": {
+        "fct": "6cd761ab53bb1ff295f7d9026d1a2132a09aa920196b4ccd99af710ed124d35d",
+        "timing": "989c440e7b818203479f5cd69d85595cf2f6d18718e6ed41aad53be54f43c2db",
+        "trace": "a65de63c68e1616a6cabf81e8acb31972d807d95cfc8bef17a56b63f2fd1a687"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "joint",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 3637.534985,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 95.477054,
+        "fct_max_ns": 3542207,
+        "fct_max_us": 3542.207,
+        "fct_p50_us": 702.8795,
+        "fct_p95_us": 3032.36965,
+        "fct_p99_ns": 3488900.85,
+        "fct_p99_us": 3488.90085,
+        "slowest": {
+          "fct_us": 3542.207,
+          "flow_id": 116,
+          "paired_ecmp_delta_us": 646.36,
+          "qp": [
+            816,
+            116,
+            10001,
+            109
+          ],
+          "qp_event_counts": {
+            "cnp": 576
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 15773,
+          "ooo": 0,
+          "total": 15773
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 932120,
+          "queued_bytes_sum": 23598030596,
+          "rows": 192,
+          "wait_ns_max": 17752,
+          "wait_ns_sum": 455535069
+        },
+        "path": {
+          "alternate": 4431,
+          "flows": 16020,
+          "multipath_packets": 144180,
+          "packets": 144180
+        },
+        "qp_event_counts": {
+          "cnp": 11585
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 41980,
+          "queued_bytes_sum": 689031232,
+          "rows": 185,
+          "wait_ns_max": 838,
+          "wait_ns_sum": 14865353
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t11-b192-01-j",
+      "index": 40,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 2.164849,
+        "network_p50_us": 1.561,
+        "network_p99_us": 14.60136,
+        "round_completion_us": [
+          36.774,
+          21.119,
+          20.265,
+          18.808,
+          19.044,
+          20.921,
+          21.655,
+          37.654
+        ],
+        "round_max_us": 37.654,
+        "round_mean_us": 24.53,
+        "round_sum_ns": 196240,
+        "synthetic_batch_us": 387.654,
+        "total_mean_us": 4.508696,
+        "wait_max_us": 17.876,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 14.924,
+        "wait_positive": 14339,
+        "wait_sum_us": 38401.584
+      },
+      "raw_id": "268368802",
+      "raw_sha256": {
+        "fct": "f6c741cc51c867cb1810b8170812d8a04ec2bdb5549126fd33389c4053f3db64",
+        "timing": "1d15c1fccd831c8d47ab4e9cf06dff3cdf8b6edd50774ba1dbde17569cb673a3",
+        "trace": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "path",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 4324.178564,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 93.935802,
+        "fct_max_ns": 2979734,
+        "fct_max_us": 2979.734,
+        "fct_p50_us": 714.412,
+        "fct_p95_us": 2473.5736,
+        "fct_p99_ns": 2824458.94,
+        "fct_p99_us": 2824.45894,
+        "slowest": {
+          "fct_us": 2979.734,
+          "flow_id": 40,
+          "paired_ecmp_delta_us": -63.023,
+          "qp": [
+            88,
+            116,
+            10000,
+            103
+          ],
+          "qp_event_counts": {
+            "cnp": 172
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 16554,
+          "ooo": 0,
+          "total": 16554
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 648896,
+          "queued_bytes_sum": 32084071864,
+          "rows": 192,
+          "wait_ns_max": 12356,
+          "wait_ns_sum": 617824786
+        },
+        "path": {
+          "alternate": 4725,
+          "flows": 16020,
+          "multipath_packets": 144180,
+          "packets": 144180
+        },
+        "qp_event_counts": {
+          "cnp": 5068
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 36680,
+          "queued_bytes_sum": 627788596,
+          "rows": 185,
+          "wait_ns_max": 707,
+          "wait_ns_sum": 13637185
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t11-b192-01-p",
+      "index": 41,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 5.356023,
+        "network_p50_us": 2.33,
+        "network_p99_us": 19.59934,
+        "round_completion_us": [
+          28.046,
+          19.827,
+          17.878,
+          17.444,
+          17.662,
+          19.496,
+          18.99,
+          20.664
+        ],
+        "round_max_us": 28.046,
+        "round_mean_us": 20.000875,
+        "round_sum_ns": 160007,
+        "synthetic_batch_us": 370.664,
+        "total_mean_us": 5.356023,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "300154236",
+      "raw_sha256": {
+        "fct": "7d9243d70730c63b09aa9d9948b799af67316240f7979e5b2ea3c5b5f0d2c826",
+        "timing": "f92ae3d4a23e30348ae384fb98b1aa1ce970a71128b191caff6c3cfe32d70239",
+        "trace": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "ecmp",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 3533.432501,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 97.370635,
+        "fct_max_ns": 3646568,
+        "fct_max_us": 3646.568,
+        "fct_p50_us": 689.2105,
+        "fct_p95_us": 2883.44065,
+        "fct_p99_ns": 3291555.7800000003,
+        "fct_p99_us": 3291.55578,
+        "slowest": {
+          "fct_us": 3646.568,
+          "flow_id": 104,
+          "qp": [
+            624,
+            116,
+            10001,
+            107
+          ],
+          "qp_event_counts": {
+            "cnp": 416
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 20300,
+          "ooo": 0,
+          "total": 20300
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 640600,
+          "queued_bytes_sum": 27385475708,
+          "rows": 192,
+          "wait_ns_max": 12189,
+          "wait_ns_sum": 528008293
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 9114
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 97980,
+          "queued_bytes_sum": 1330388376,
+          "rows": 185,
+          "wait_ns_max": 1896,
+          "wait_ns_sum": 27372145
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t11-b192-01-e",
+      "index": 42,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 5.380753,
+        "network_p50_us": 2.4245,
+        "network_p99_us": 19.89468,
+        "round_completion_us": [
+          28.374,
+          20.303,
+          17.861,
+          17.468,
+          17.318,
+          19.026,
+          19.066,
+          22.074
+        ],
+        "round_max_us": 28.374,
+        "round_mean_us": 20.18625,
+        "round_sum_ns": 161490,
+        "synthetic_batch_us": 372.074,
+        "total_mean_us": 5.380753,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "470777123",
+      "raw_sha256": {
+        "fct": "964b7f757f93397d56f2ab1434aa4647dfc4b23d083ecd08ef6486fac7f0e18f",
+        "timing": "e12ab3388a27f2ccec9b85acf1d590680816e7b7d91a9e22b90e2a9e58e5fbab",
+        "trace": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "admission",
+      "background": 192,
+      "background_metrics": {
+        "aggregate_effective_throughput_gbps": 3616.169999,
+        "bytes": 1610612736,
+        "completed": 192,
+        "effective_flow_throughput_p50_gbps": 95.358751,
+        "fct_max_ns": 3563135,
+        "fct_max_us": 3563.135,
+        "fct_p50_us": 703.7515,
+        "fct_p95_us": 3116.96995,
+        "fct_p99_ns": 3447505.85,
+        "fct_p99_us": 3447.50585,
+        "slowest": {
+          "fct_us": 3563.135,
+          "flow_id": 168,
+          "paired_ecmp_delta_us": 196.193,
+          "qp": [
+            388,
+            116,
+            10002,
+            111
+          ],
+          "qp_event_counts": {
+            "cnp": 560
+          }
+        }
+      },
+      "diagnostic": {
+        "cnp_host_aggregate": {
+          "ecn": 16668,
+          "ooo": 0,
+          "total": 16668
+        },
+        "destination_tor_to_host_background_hops": {
+          "queued_bytes_max": 1013208,
+          "queued_bytes_sum": 22079530012,
+          "rows": 192,
+          "wait_ns_max": 19300,
+          "wait_ns_sum": 426469675
+        },
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        },
+        "qp_event_counts": {
+          "cnp": 12201
+        },
+        "source_tor_uplink_background_hops": {
+          "queued_bytes_max": 80192,
+          "queued_bytes_sum": 1079866428,
+          "rows": 185,
+          "wait_ns_max": 1583,
+          "wait_ns_sum": 22509645
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "id": "20260928-163500-ws19-t11-b192-01-a",
+      "index": 43,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 2.230747,
+        "network_p50_us": 1.601,
+        "network_p99_us": 14.35631,
+        "round_completion_us": [
+          37.424,
+          22.023,
+          19.924,
+          19.928,
+          19.86,
+          21.568,
+          21.88,
+          37.194
+        ],
+        "round_max_us": 37.424,
+        "round_mean_us": 24.975125,
+        "round_sum_ns": 199801,
+        "synthetic_batch_us": 387.194,
+        "total_mean_us": 4.574594,
+        "wait_max_us": 17.876,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 14.924,
+        "wait_positive": 14339,
+        "wait_sum_us": 38401.584
+      },
+      "raw_id": "610290325",
+      "raw_sha256": {
+        "fct": "6b3b2303fe87acbcac94dcebd5595e51e8365c1cd3b42c80e2f9a263c921673f",
+        "timing": "efb842111546b000a6822c46038233945a48c8db7bace7c465985bed98307f29",
+        "trace": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3"
+      },
+      "seed": 20261701
+    },
+    {
+      "arm": "path",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3729,
+          "flows": 16010,
+          "multipath_packets": 166477,
+          "packets": 166477
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h12-b0-03-p",
+      "index": 44,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 66.876607,
+        "network_p50_us": 2.08,
+        "network_p99_us": 516.68496,
+        "round_completion_us": [
+          86.53,
+          529.034,
+          531.285,
+          547.803,
+          526.01,
+          523.43,
+          517.985,
+          511.488
+        ],
+        "round_max_us": 547.803,
+        "round_mean_us": 471.695625,
+        "round_sum_ns": 3773565,
+        "synthetic_batch_us": 861.488,
+        "total_mean_us": 66.876607,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "99708259",
+      "raw_sha256": {
+        "fct": "ac4bfc069fec5818737544f67fe00d87457afe12120205f1429a23f4148d9f2c",
+        "timing": "67fd780d5313931404441e8e8989f675ff12e92be99c306bc631c597d81eff94",
+        "trace": "7056a1c6bf3ee24a8fbb776874572e1a736668f233533477c076eee39ff515db"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "admission",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h12-b0-03-a",
+      "index": 45,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.418321,
+        "network_p50_us": 1.433,
+        "network_p99_us": 2.19534,
+        "round_completion_us": [
+          87.404,
+          122.008,
+          156.612,
+          191.472,
+          226.004,
+          260.956,
+          295.416,
+          329.876
+        ],
+        "round_max_us": 329.876,
+        "round_mean_us": 208.7185,
+        "round_sum_ns": 1669748,
+        "synthetic_batch_us": 679.876,
+        "total_mean_us": 43.26691,
+        "wait_max_us": 327.976,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 301.10788,
+        "wait_positive": 14346,
+        "wait_sum_us": 685647.28
+      },
+      "raw_id": "24695921",
+      "raw_sha256": {
+        "fct": "9000df8546734c5be5d97d94fe85b93be11c3b464554a8f545da72ddf8b73b9f",
+        "timing": "3f2061b77325936db6f3d67d95b2d2d5c685fb01e975a0692ea610dac03b1768",
+        "trace": "7056a1c6bf3ee24a8fbb776874572e1a736668f233533477c076eee39ff515db"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "ecmp",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 0,
+          "flows": 0,
+          "multipath_packets": 0,
+          "packets": 0
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h12-b0-03-e",
+      "index": 46,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 65.748786,
+        "network_p50_us": 2.177,
+        "network_p99_us": 517.0284,
+        "round_completion_us": [
+          86.53,
+          593.924,
+          532.515,
+          548.348,
+          523.57,
+          522.933,
+          517.129,
+          513.371
+        ],
+        "round_max_us": 593.924,
+        "round_mean_us": 479.79,
+        "round_sum_ns": 3838320,
+        "synthetic_batch_us": 863.371,
+        "total_mean_us": 65.748786,
+        "wait_max_us": 0.0,
+        "wait_p50_us": 0.0,
+        "wait_p99_us": 0.0,
+        "wait_positive": 0,
+        "wait_sum_us": 0.0
+      },
+      "raw_id": "827910656",
+      "raw_sha256": {
+        "fct": "a09a83f0562e1701a799a82347d43d1f33da4768f20990b3345618374b96c015",
+        "timing": "fb82e36ff67dca503b9445403f805cd8ae7d31d6ad182becd751241797948d7c",
+        "trace": "7056a1c6bf3ee24a8fbb776874572e1a736668f233533477c076eee39ff515db"
+      },
+      "seed": 20261703
+    },
+    {
+      "arm": "joint",
+      "background": 0,
+      "background_metrics": null,
+      "diagnostic": {
+        "path": {
+          "alternate": 3107,
+          "flows": 16010,
+          "multipath_packets": 144090,
+          "packets": 144090
+        }
+      },
+      "hotspot": "host_hotspot",
+      "id": "20260928-163500-ws19-h12-b0-03-j",
+      "index": 47,
+      "moe": {
+        "bytes": 134217728,
+        "completed": 16384,
+        "network_mean_us": 1.388431,
+        "network_p50_us": 1.396,
+        "network_p99_us": 2.10651,
+        "round_completion_us": [
+          87.4,
+          122.004,
+          156.608,
+          191.468,
+          226.0,
+          260.952,
+          295.412,
+          329.872
+        ],
+        "round_max_us": 329.872,
+        "round_mean_us": 208.7145,
+        "round_sum_ns": 1669716,
+        "synthetic_batch_us": 679.872,
+        "total_mean_us": 43.23702,
+        "wait_max_us": 327.976,
+        "wait_p50_us": 0.656,
+        "wait_p99_us": 301.10788,
+        "wait_positive": 14346,
+        "wait_sum_us": 685647.28
+      },
+      "raw_id": "95584534",
+      "raw_sha256": {
+        "fct": "bd661d7f564ab1a8a7902a22330441cc187761f7ad2f2e4ae95ae018ecdb58fa",
+        "timing": "a6162f1f24a039b8b2ba772ca2366f79bd4908c331c1383db012aa1205e3113d",
+        "trace": "7056a1c6bf3ee24a8fbb776874572e1a736668f233533477c076eee39ff515db"
+      },
+      "seed": 20261703
+    }
+  ],
+  "concurrency_caps_used": [
+    2,
+    4
+  ],
+  "gate_fail_count": 19,
+  "gate_pass_count": 11,
+  "gates": [
+    {
+      "criterion": "J_round_mean_not_above_E",
+      "pass": true,
+      "scenario": "host_hotspot_b0",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_round_mean_not_above_A",
+      "pass": false,
+      "scenario": "host_b192",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_fct_p99_ns_not_above_A",
+      "pass": false,
+      "scenario": "host_b192",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_fct_max_ns_not_above_A",
+      "pass": false,
+      "scenario": "host_b192",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_round_mean_not_above_E",
+      "pass": false,
+      "scenario": "tor_hotspot_b0",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_round_mean_strictly_less_than_ecmp",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_round_mean_strictly_less_than_admission",
+      "pass": true,
+      "scenario": "tor_b192",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_round_mean_strictly_less_than_path",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_fct_p99_ns_not_above_E",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_fct_max_ns_not_above_E",
+      "pass": true,
+      "scenario": "tor_b192",
+      "seed": 20261701
+    },
+    {
+      "criterion": "J_round_mean_not_above_E",
+      "pass": true,
+      "scenario": "host_hotspot_b0",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_round_mean_not_above_A",
+      "pass": false,
+      "scenario": "host_b192",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_fct_p99_ns_not_above_A",
+      "pass": true,
+      "scenario": "host_b192",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_fct_max_ns_not_above_A",
+      "pass": true,
+      "scenario": "host_b192",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_round_mean_not_above_E",
+      "pass": false,
+      "scenario": "tor_hotspot_b0",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_round_mean_strictly_less_than_ecmp",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_round_mean_strictly_less_than_admission",
+      "pass": true,
+      "scenario": "tor_b192",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_round_mean_strictly_less_than_path",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_fct_p99_ns_not_above_E",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_fct_max_ns_not_above_E",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261702
+    },
+    {
+      "criterion": "J_round_mean_not_above_E",
+      "pass": true,
+      "scenario": "host_hotspot_b0",
+      "seed": 20261703
+    },
+    {
+      "criterion": "J_round_mean_not_above_A",
+      "pass": false,
+      "scenario": "host_b192",
+      "seed": 20261703
+    },
+    {
+      "criterion": "J_fct_p99_ns_not_above_A",
+      "pass": true,
+      "scenario": "host_b192",
+      "seed": 20261703
+    },
+    {
+      "criterion": "J_fct_max_ns_not_above_A",
+      "pass": true,
+      "scenario": "host_b192",
+      "seed": 20261703
+    },
+    {
+      "criterion": "J_round_mean_not_above_E",
+      "pass": false,
+      "scenario": "tor_hotspot_b0",
+      "seed": 20261703
+    },
+    {
+      "criterion": "J_round_mean_strictly_less_than_ecmp",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261703
+    },
+    {
+      "criterion": "J_round_mean_strictly_less_than_admission",
+      "pass": true,
+      "scenario": "tor_b192",
+      "seed": 20261703
+    },
+    {
+      "criterion": "J_round_mean_strictly_less_than_path",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261703
+    },
+    {
+      "criterion": "J_fct_p99_ns_not_above_E",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261703
+    },
+    {
+      "criterion": "J_fct_max_ns_not_above_E",
+      "pass": false,
+      "scenario": "tor_b192",
+      "seed": 20261703
+    }
+  ],
+  "percentile_method": "linear interpolation at (n-1)*p/100",
+  "protocol_sha256": "ade47b2c7c3f427a4756eb8e48634d329a7818280ca017ba8b28831057386dfc",
+  "raw_verification_repeated": true,
+  "receipt_counts": {
+    "built": 48,
+    "started": 48,
+    "verified": 48
+  },
+  "receipts_sha256": "61263c98bdf279875ff24112c2d40c49aeda97f855e7397a520869a29fc5e7cd",
+  "role": "exploratory paired 2x2 pilot; independent demand n=3",
+  "run_map_sha256": "1459bc831ff8f530da59edcfcacc118d35eb84e0ccbfe261c57bef7898fd7844",
+  "schedule_sha256": "6dda53c30ebaf7b5c537f50452e06376e938fe96de33c3b4f8d57aec769c7769",
+  "source_sha": "b52e66f0fbf786fb57672b12a5633cf45b9311c1",
+  "start_indices_in_frozen_order": true,
+  "strata": [
+    {
+      "background": 0,
+      "hotspot": "host_hotspot",
+      "moe_round_mean_deltas": {
+        "A-E": {
+          "by_seed_us": [
+            -287.841625,
+            -251.246375,
+            -271.0715
+          ],
+          "median_us": -271.0715,
+          "range_us": [
+            -287.841625,
+            -251.246375
+          ]
+        },
+        "J-A": {
+          "by_seed_us": [
+            -0.067,
+            -0.019,
+            -0.004
+          ],
+          "median_us": -0.019,
+          "range_us": [
+            -0.067,
+            -0.004
+          ]
+        },
+        "J-E": {
+          "by_seed_us": [
+            -287.908625,
+            -251.265375,
+            -271.0755
+          ],
+          "median_us": -271.0755,
+          "range_us": [
+            -287.908625,
+            -251.265375
+          ]
+        },
+        "J-P": {
+          "by_seed_us": [
+            -263.968,
+            -271.25025,
+            -262.981125
+          ],
+          "median_us": -263.968,
+          "range_us": [
+            -271.25025,
+            -262.981125
+          ]
+        },
+        "P-E": {
+          "by_seed_us": [
+            -23.940625,
+            19.984875,
+            -8.094375
+          ],
+          "median_us": -8.094375,
+          "range_us": [
+            -23.940625,
+            19.984875
+          ]
+        },
+        "interaction": {
+          "by_seed_us": [
+            23.873625,
+            -20.003875,
+            8.090375
+          ],
+          "median_us": 8.090375,
+          "range_us": [
+            -20.003875,
+            23.873625
+          ]
+        }
+      }
+    },
+    {
+      "background": 192,
+      "background_max_deltas": {
+        "A-E": {
+          "by_seed_us": [
+            -41.702,
+            514.072,
+            -146.366
+          ],
+          "median_us": -41.702,
+          "range_us": [
+            -146.366,
+            514.072
+          ]
+        },
+        "J-A": {
+          "by_seed_us": [
+            253.944,
+            -806.252,
+            -106.658
+          ],
+          "median_us": -106.658,
+          "range_us": [
+            -806.252,
+            253.944
+          ]
+        },
+        "J-E": {
+          "by_seed_us": [
+            212.242,
+            -292.18,
+            -253.024
+          ],
+          "median_us": -253.024,
+          "range_us": [
+            -292.18,
+            212.242
+          ]
+        },
+        "J-P": {
+          "by_seed_us": [
+            -130.92,
+            -354.544,
+            586.362
+          ],
+          "median_us": -130.92,
+          "range_us": [
+            -354.544,
+            586.362
+          ]
+        },
+        "P-E": {
+          "by_seed_us": [
+            343.162,
+            62.364,
+            -839.386
+          ],
+          "median_us": 62.364,
+          "range_us": [
+            -839.386,
+            343.162
+          ]
+        },
+        "interaction": {
+          "by_seed_us": [
+            -89.218,
+            -868.616,
+            732.728
+          ],
+          "median_us": -89.218,
+          "range_us": [
+            -868.616,
+            732.728
+          ]
+        }
+      },
+      "background_p99_deltas": {
+        "A-E": {
+          "by_seed_us": [
+            632.063,
+            481.03967,
+            275.9235
+          ],
+          "median_us": 481.03967,
+          "range_us": [
+            275.9235,
+            632.063
+          ]
+        },
+        "J-A": {
+          "by_seed_us": [
+            40.6643,
+            -420.95239,
+            -223.78465
+          ],
+          "median_us": -223.78465,
+          "range_us": [
+            -420.95239,
+            40.6643
+          ]
+        },
+        "J-E": {
+          "by_seed_us": [
+            672.7273,
+            60.08728,
+            52.13885
+          ],
+          "median_us": 60.08728,
+          "range_us": [
+            52.13885,
+            672.7273
+          ]
+        },
+        "J-P": {
+          "by_seed_us": [
+            913.03096,
+            -130.02838,
+            199.66661
+          ],
+          "median_us": 199.66661,
+          "range_us": [
+            -130.02838,
+            913.03096
+          ]
+        },
+        "P-E": {
+          "by_seed_us": [
+            -240.30366,
+            190.11566,
+            -147.52776
+          ],
+          "median_us": -147.52776,
+          "range_us": [
+            -240.30366,
+            190.11566
+          ]
+        },
+        "interaction": {
+          "by_seed_us": [
+            280.96796,
+            -611.06805,
+            -76.25689
+          ],
+          "median_us": -76.25689,
+          "range_us": [
+            -611.06805,
+            280.96796
+          ]
+        }
+      },
+      "hotspot": "host_hotspot",
+      "moe_round_mean_deltas": {
+        "A-E": {
+          "by_seed_us": [
+            -311.00775,
+            -311.53775,
+            -312.46325
+          ],
+          "median_us": -311.53775,
+          "range_us": [
+            -312.46325,
+            -311.00775
+          ]
+        },
+        "J-A": {
+          "by_seed_us": [
+            0.00325,
+            0.08575,
+            0.113
+          ],
+          "median_us": 0.08575,
+          "range_us": [
+            0.00325,
+            0.113
+          ]
+        },
+        "J-E": {
+          "by_seed_us": [
+            -311.0045,
+            -311.452,
+            -312.35025
+          ],
+          "median_us": -311.452,
+          "range_us": [
+            -312.35025,
+            -311.0045
+          ]
+        },
+        "J-P": {
+          "by_seed_us": [
+            -306.000375,
+            -297.05275,
+            -332.724625
+          ],
+          "median_us": -306.000375,
+          "range_us": [
+            -332.724625,
+            -297.05275
+          ]
+        },
+        "P-E": {
+          "by_seed_us": [
+            -5.004125,
+            -14.39925,
+            20.374375
+          ],
+          "median_us": -5.004125,
+          "range_us": [
+            -14.39925,
+            20.374375
+          ]
+        },
+        "interaction": {
+          "by_seed_us": [
+            5.007375,
+            14.485,
+            -20.261375
+          ],
+          "median_us": 5.007375,
+          "range_us": [
+            -20.261375,
+            14.485
+          ]
+        }
+      }
+    },
+    {
+      "background": 0,
+      "hotspot": "tor_hotspot",
+      "moe_round_mean_deltas": {
+        "A-E": {
+          "by_seed_us": [
+            0.7095,
+            1.086375,
+            1.028625
+          ],
+          "median_us": 1.028625,
+          "range_us": [
+            0.7095,
+            1.086375
+          ]
+        },
+        "J-A": {
+          "by_seed_us": [
+            -0.025,
+            -0.0215,
+            -0.01175
+          ],
+          "median_us": -0.0215,
+          "range_us": [
+            -0.025,
+            -0.01175
+          ]
+        },
+        "J-E": {
+          "by_seed_us": [
+            0.6845,
+            1.064875,
+            1.016875
+          ],
+          "median_us": 1.016875,
+          "range_us": [
+            0.6845,
+            1.064875
+          ]
+        },
+        "J-P": {
+          "by_seed_us": [
+            0.686875,
+            1.31175,
+            1.017125
+          ],
+          "median_us": 1.017125,
+          "range_us": [
+            0.686875,
+            1.31175
+          ]
+        },
+        "P-E": {
+          "by_seed_us": [
+            -0.002375,
+            -0.246875,
+            -0.00025
+          ],
+          "median_us": -0.002375,
+          "range_us": [
+            -0.246875,
+            -0.00025
+          ]
+        },
+        "interaction": {
+          "by_seed_us": [
+            -0.022625,
+            0.225375,
+            -0.0115
+          ],
+          "median_us": -0.0115,
+          "range_us": [
+            -0.022625,
+            0.225375
+          ]
+        }
+      }
+    },
+    {
+      "background": 192,
+      "background_max_deltas": {
+        "A-E": {
+          "by_seed_us": [
+            -83.433,
+            338.359,
+            130.402
+          ],
+          "median_us": 130.402,
+          "range_us": [
+            -83.433,
+            338.359
+          ]
+        },
+        "J-A": {
+          "by_seed_us": [
+            -20.928,
+            -209.205,
+            102.147
+          ],
+          "median_us": -20.928,
+          "range_us": [
+            -209.205,
+            102.147
+          ]
+        },
+        "J-E": {
+          "by_seed_us": [
+            -104.361,
+            129.154,
+            232.549
+          ],
+          "median_us": 129.154,
+          "range_us": [
+            -104.361,
+            232.549
+          ]
+        },
+        "J-P": {
+          "by_seed_us": [
+            562.473,
+            22.031,
+            128.079
+          ],
+          "median_us": 128.079,
+          "range_us": [
+            22.031,
+            562.473
+          ]
+        },
+        "P-E": {
+          "by_seed_us": [
+            -666.834,
+            107.123,
+            104.47
+          ],
+          "median_us": 104.47,
+          "range_us": [
+            -666.834,
+            107.123
+          ]
+        },
+        "interaction": {
+          "by_seed_us": [
+            645.906,
+            -316.328,
+            -2.323
+          ],
+          "median_us": -2.323,
+          "range_us": [
+            -316.328,
+            645.906
+          ]
+        }
+      },
+      "background_p99_deltas": {
+        "A-E": {
+          "by_seed_us": [
+            155.95007,
+            273.82159,
+            134.6073
+          ],
+          "median_us": 155.95007,
+          "range_us": [
+            134.6073,
+            273.82159
+          ]
+        },
+        "J-A": {
+          "by_seed_us": [
+            41.395,
+            -263.08456,
+            -96.00593
+          ],
+          "median_us": -96.00593,
+          "range_us": [
+            -263.08456,
+            41.395
+          ]
+        },
+        "J-E": {
+          "by_seed_us": [
+            197.34507,
+            10.73703,
+            38.60137
+          ],
+          "median_us": 38.60137,
+          "range_us": [
+            10.73703,
+            197.34507
+          ]
+        },
+        "J-P": {
+          "by_seed_us": [
+            664.44191,
+            89.18844,
+            139.6979
+          ],
+          "median_us": 139.6979,
+          "range_us": [
+            89.18844,
+            664.44191
+          ]
+        },
+        "P-E": {
+          "by_seed_us": [
+            -467.09684,
+            -78.45141,
+            -101.09653
+          ],
+          "median_us": -101.09653,
+          "range_us": [
+            -467.09684,
+            -78.45141
+          ]
+        },
+        "interaction": {
+          "by_seed_us": [
+            508.49184,
+            -184.63315,
+            5.0906
+          ],
+          "median_us": 5.0906,
+          "range_us": [
+            -184.63315,
+            508.49184
+          ]
+        }
+      },
+      "hotspot": "tor_hotspot",
+      "moe_round_mean_deltas": {
+        "A-E": {
+          "by_seed_us": [
+            4.788875,
+            4.926875,
+            4.36675
+          ],
+          "median_us": 4.788875,
+          "range_us": [
+            4.36675,
+            4.926875
+          ]
+        },
+        "J-A": {
+          "by_seed_us": [
+            -0.445125,
+            -0.188375,
+            -0.147875
+          ],
+          "median_us": -0.188375,
+          "range_us": [
+            -0.445125,
+            -0.147875
+          ]
+        },
+        "J-E": {
+          "by_seed_us": [
+            4.34375,
+            4.7385,
+            4.218875
+          ],
+          "median_us": 4.34375,
+          "range_us": [
+            4.218875,
+            4.7385
+          ]
+        },
+        "J-P": {
+          "by_seed_us": [
+            4.529125,
+            4.60975,
+            4.173375
+          ],
+          "median_us": 4.529125,
+          "range_us": [
+            4.173375,
+            4.60975
+          ]
+        },
+        "P-E": {
+          "by_seed_us": [
+            -0.185375,
+            0.12875,
+            0.0455
+          ],
+          "median_us": 0.0455,
+          "range_us": [
+            -0.185375,
+            0.12875
+          ]
+        },
+        "interaction": {
+          "by_seed_us": [
+            -0.25975,
+            -0.317125,
+            -0.193375
+          ],
+          "median_us": -0.25975,
+          "range_us": [
+            -0.317125,
+            -0.193375
+          ]
+        }
+      }
+    }
+  ],
+  "unit_of_independence": "seed; rounds, flows, background levels and hotspots are paired repeated observations",
+  "ws20_decision": "no_go"
+}
