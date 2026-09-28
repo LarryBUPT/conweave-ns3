@@ -2,6 +2,8 @@
 
 更新：2026-09-28。依据[WS-16 后机制方向](../research/post-ws16-mechanism-directions.md)与[WS-16 证据边界](../research/ws16-paper-evidence-and-reproduction.md)。本计划授权按门槛推进新的研究问题，**不改变 WS-10/11/12 各自正式 no-go，不复活 WS-14 GuardHash 调权或 WS-15 已关闭的确认性矩阵**。任务编号是阶段顺序；后续条件分支是否执行取决于前置证据。
 
+阶段更新：下表 WS-20“独立需求确认性验证”是 WS-19 **通过**时的原条件计划，实际 WS-19 未通过。WS-20 随后仅按[反例审查 Handoff 21](../handoffs/2026-09-28-21-ws20-counterexample-review.md)完成本地失败分析；原确认性矩阵没有运行且继续 no-go。[条件性探索设计 v0](../research/ws20-next-exploratory-design-v0.md)不是下表所列确认性矩阵的改名或续跑。
+
 ## 主线及分支
 
 | 任务 | 工作、分支与交付 | 进入下一步的门槛 |

@@ -1,0 +1,1421 @@
+{
+  "background_flows": 192,
+  "hotspot": "tor_hotspot",
+  "independent_demand_seeds": [
+    20261701,
+    20261702,
+    20261703
+  ],
+  "role": "read-only post-WS19 descriptive audit; no new simulation",
+  "seeds": [
+    {
+      "background_joint_better_count": 72,
+      "background_joint_equal_count": 28,
+      "background_joint_worse_count": 92,
+      "background_p99_order_ecmp": [
+        104,
+        168,
+        32,
+        24
+      ],
+      "background_p99_order_joint": [
+        116,
+        44,
+        180,
+        168
+      ],
+      "background_p99_recomputed_us": {
+        "ecmp": 3291.55578,
+        "joint": 3488.90085
+      },
+      "background_p99_us": {
+        "admission": 3447.50585,
+        "ecmp": 3291.55578,
+        "joint": 3488.90085,
+        "path": 2824.45894
+      },
+      "background_top_union": [
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 3150.777,
+          "flow_id": 24,
+          "joint_minus_ecmp_us": 286.411,
+          "joint_total_us": 3437.188,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 639552,
+              "final_egress_wait_max_us": 12.165,
+              "source_uplink_wait_max_us": 1.289
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 929544,
+              "final_egress_wait_max_us": 17.719,
+              "source_uplink_wait_max_us": 0.24
+            }
+          },
+          "qp": [
+            68,
+            116,
+            10000,
+            101
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 3284.1,
+          "flow_id": 32,
+          "joint_minus_ecmp_us": -333.881,
+          "joint_total_us": 2950.219,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 638504,
+              "final_egress_wait_max_us": 12.146,
+              "source_uplink_wait_max_us": 0.046
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 920352,
+              "final_egress_wait_max_us": 17.531,
+              "source_uplink_wait_max_us": 0.018
+            }
+          },
+          "qp": [
+            1120,
+            116,
+            10001,
+            102
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2574.431,
+          "flow_id": 44,
+          "joint_minus_ecmp_us": 935.186,
+          "joint_total_us": 3509.617,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 634312,
+              "final_egress_wait_max_us": 12.068,
+              "source_uplink_wait_max_us": 0.251
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 928976,
+              "final_egress_wait_max_us": 17.694,
+              "source_uplink_wait_max_us": 0.258
+            }
+          },
+          "qp": [
+            640,
+            116,
+            10001,
+            104
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 3646.568,
+          "flow_id": 104,
+          "joint_minus_ecmp_us": -255.836,
+          "joint_total_us": 3390.732,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 639552,
+              "final_egress_wait_max_us": 12.168,
+              "source_uplink_wait_max_us": 0.027
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 927928,
+              "final_egress_wait_max_us": 17.676,
+              "source_uplink_wait_max_us": 0.031
+            }
+          },
+          "qp": [
+            624,
+            116,
+            10001,
+            107
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2895.847,
+          "flow_id": 116,
+          "joint_minus_ecmp_us": 646.36,
+          "joint_total_us": 3542.207,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 638504,
+              "final_egress_wait_max_us": 12.148,
+              "source_uplink_wait_max_us": 0.713
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 924544,
+              "final_egress_wait_max_us": 17.624,
+              "source_uplink_wait_max_us": 0.173
+            }
+          },
+          "qp": [
+            816,
+            116,
+            10001,
+            109
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 3366.942,
+          "flow_id": 168,
+          "joint_minus_ecmp_us": 87.754,
+          "joint_total_us": 3454.696,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 622456,
+              "final_egress_wait_max_us": 11.848,
+              "source_uplink_wait_max_us": 0.59
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 919544,
+              "final_egress_wait_max_us": 17.52,
+              "source_uplink_wait_max_us": 0.412
+            }
+          },
+          "qp": [
+            388,
+            116,
+            10002,
+            111
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2742.664,
+          "flow_id": 180,
+          "joint_minus_ecmp_us": 744.188,
+          "joint_total_us": 3486.852,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 636408,
+              "final_egress_wait_max_us": 12.107,
+              "source_uplink_wait_max_us": 0.124
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 929784,
+              "final_egress_wait_max_us": 17.708,
+              "source_uplink_wait_max_us": 0.088
+            }
+          },
+          "qp": [
+            200,
+            116,
+            10000,
+            112
+          ]
+        }
+      ],
+      "experiment_ids": {
+        "admission": "20260928-163500-ws19-t11-b192-01-a",
+        "ecmp": "20260928-163500-ws19-t11-b192-01-e",
+        "joint": "20260928-163500-ws19-t11-b192-01-j",
+        "path": "20260928-163500-ws19-t11-b192-01-p"
+      },
+      "round_tail_identity_same_count": 1,
+      "rounds": [
+        {
+          "ecmp_round_us": 28.374,
+          "ecmp_tail_id": 2008,
+          "joint_round_us": 36.774,
+          "joint_tail": {
+            "demand_ns": 2000000000,
+            "finish_ns": 2000036774,
+            "flow_id": 2128,
+            "network_us": 22.506,
+            "release_ns": 2000014268,
+            "total_us": 36.774,
+            "wait_us": 14.268
+          },
+          "joint_tail_id": 2128,
+          "round": 0,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000000000,
+            "finish_ns": 2000034964,
+            "flow_id": 2008,
+            "network_us": 21.68,
+            "release_ns": 2000013284,
+            "total_us": 34.964,
+            "wait_us": 13.284
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000000000,
+            "finish_ns": 2000027570,
+            "flow_id": 2128,
+            "network_us": 27.57,
+            "release_ns": 2000000000,
+            "total_us": 27.57,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 20.303,
+          "ecmp_tail_id": 3261,
+          "joint_round_us": 21.119,
+          "joint_tail": {
+            "demand_ns": 2000050000,
+            "finish_ns": 2000071119,
+            "flow_id": 4200,
+            "network_us": 5.047,
+            "release_ns": 2000066072,
+            "total_us": 21.119,
+            "wait_us": 16.072
+          },
+          "joint_tail_id": 4200,
+          "round": 1,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000050000,
+            "finish_ns": 2000063269,
+            "flow_id": 3261,
+            "network_us": 4.249,
+            "release_ns": 2000059020,
+            "total_us": 13.269,
+            "wait_us": 9.02
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000050000,
+            "finish_ns": 2000067753,
+            "flow_id": 4200,
+            "network_us": 17.753,
+            "release_ns": 2000050000,
+            "total_us": 17.753,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 17.861,
+          "ecmp_tail_id": 6256,
+          "joint_round_us": 20.265,
+          "joint_tail": {
+            "demand_ns": 2000100000,
+            "finish_ns": 2000120265,
+            "flow_id": 6287,
+            "network_us": 5.013,
+            "release_ns": 2000115252,
+            "total_us": 20.265,
+            "wait_us": 15.252
+          },
+          "joint_tail_id": 6287,
+          "round": 2,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000100000,
+            "finish_ns": 2000118564,
+            "flow_id": 6256,
+            "network_us": 3.804,
+            "release_ns": 2000114760,
+            "total_us": 18.564,
+            "wait_us": 14.76
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000100000,
+            "finish_ns": 2000116558,
+            "flow_id": 6287,
+            "network_us": 16.558,
+            "release_ns": 2000100000,
+            "total_us": 16.558,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 17.468,
+          "ecmp_tail_id": 8248,
+          "joint_round_us": 18.808,
+          "joint_tail": {
+            "demand_ns": 2000150000,
+            "finish_ns": 2000168808,
+            "flow_id": 8248,
+            "network_us": 3.884,
+            "release_ns": 2000164924,
+            "total_us": 18.808,
+            "wait_us": 14.924
+          },
+          "joint_tail_id": 8248,
+          "round": 3,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000150000,
+            "finish_ns": 2000168808,
+            "flow_id": 8248,
+            "network_us": 3.884,
+            "release_ns": 2000164924,
+            "total_us": 18.808,
+            "wait_us": 14.924
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000150000,
+            "finish_ns": 2000167468,
+            "flow_id": 8248,
+            "network_us": 17.468,
+            "release_ns": 2000150000,
+            "total_us": 17.468,
+            "wait_us": 0.0
+          },
+          "same_tail": true
+        },
+        {
+          "ecmp_round_us": 17.318,
+          "ecmp_tail_id": 10345,
+          "joint_round_us": 19.044,
+          "joint_tail": {
+            "demand_ns": 2000200000,
+            "finish_ns": 2000219044,
+            "flow_id": 10208,
+            "network_us": 4.612,
+            "release_ns": 2000214432,
+            "total_us": 19.044,
+            "wait_us": 14.432
+          },
+          "joint_tail_id": 10208,
+          "round": 4,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000200000,
+            "finish_ns": 2000216470,
+            "flow_id": 10345,
+            "network_us": 1.874,
+            "release_ns": 2000214596,
+            "total_us": 16.47,
+            "wait_us": 14.596
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000200000,
+            "finish_ns": 2000214981,
+            "flow_id": 10208,
+            "network_us": 14.981,
+            "release_ns": 2000200000,
+            "total_us": 14.981,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 19.026,
+          "ecmp_tail_id": 11776,
+          "joint_round_us": 20.921,
+          "joint_tail": {
+            "demand_ns": 2000250000,
+            "finish_ns": 2000270921,
+            "flow_id": 12472,
+            "network_us": 3.045,
+            "release_ns": 2000267876,
+            "total_us": 20.921,
+            "wait_us": 17.876
+          },
+          "joint_tail_id": 12472,
+          "round": 5,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000250000,
+            "finish_ns": 2000263741,
+            "flow_id": 11776,
+            "network_us": 2.589,
+            "release_ns": 2000261152,
+            "total_us": 13.741,
+            "wait_us": 11.152
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000250000,
+            "finish_ns": 2000268908,
+            "flow_id": 12472,
+            "network_us": 18.908,
+            "release_ns": 2000250000,
+            "total_us": 18.908,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 19.066,
+          "ecmp_tail_id": 14280,
+          "joint_round_us": 21.655,
+          "joint_tail": {
+            "demand_ns": 2000300000,
+            "finish_ns": 2000321655,
+            "flow_id": 14521,
+            "network_us": 4.107,
+            "release_ns": 2000317548,
+            "total_us": 21.655,
+            "wait_us": 17.548
+          },
+          "joint_tail_id": 14521,
+          "round": 6,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000300000,
+            "finish_ns": 2000319293,
+            "flow_id": 14280,
+            "network_us": 3.877,
+            "release_ns": 2000315416,
+            "total_us": 19.293,
+            "wait_us": 15.416
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000300000,
+            "finish_ns": 2000316165,
+            "flow_id": 14521,
+            "network_us": 16.165,
+            "release_ns": 2000300000,
+            "total_us": 16.165,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 22.074,
+          "ecmp_tail_id": 15176,
+          "joint_round_us": 37.654,
+          "joint_tail": {
+            "demand_ns": 2000350000,
+            "finish_ns": 2000387654,
+            "flow_id": 16512,
+            "network_us": 22.566,
+            "release_ns": 2000365088,
+            "total_us": 37.654,
+            "wait_us": 15.088
+          },
+          "joint_tail_id": 16512,
+          "round": 7,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000350000,
+            "finish_ns": 2000369447,
+            "flow_id": 15176,
+            "network_us": 14.691,
+            "release_ns": 2000354756,
+            "total_us": 19.447,
+            "wait_us": 4.756
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000350000,
+            "finish_ns": 2000367346,
+            "flow_id": 16512,
+            "network_us": 17.346,
+            "release_ns": 2000350000,
+            "total_us": 17.346,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        }
+      ],
+      "seed": 20261701
+    },
+    {
+      "background_joint_better_count": 92,
+      "background_joint_equal_count": 16,
+      "background_joint_worse_count": 84,
+      "background_p99_order_ecmp": [
+        60,
+        52,
+        184,
+        28
+      ],
+      "background_p99_order_joint": [
+        52,
+        60,
+        172,
+        184
+      ],
+      "background_p99_recomputed_us": {
+        "ecmp": 2349.53944,
+        "joint": 2360.2764700000002
+      },
+      "background_p99_us": {
+        "admission": 2623.36103,
+        "ecmp": 2349.53944,
+        "joint": 2360.27647,
+        "path": 2271.08803
+      },
+      "background_top_union": [
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2216.133,
+          "flow_id": 28,
+          "joint_minus_ecmp_us": -563.6,
+          "joint_total_us": 1652.533,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 284008,
+              "final_egress_wait_max_us": 5.434,
+              "source_uplink_wait_max_us": 2.517
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 352192,
+              "final_egress_wait_max_us": 6.727,
+              "source_uplink_wait_max_us": 2.321
+            }
+          },
+          "qp": [
+            792,
+            1060,
+            10000,
+            103
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2352.557,
+          "flow_id": 52,
+          "joint_minus_ecmp_us": 191.07,
+          "joint_total_us": 2543.627,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 284008,
+              "final_egress_wait_max_us": 5.425,
+              "source_uplink_wait_max_us": 0.603
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 353240,
+              "final_egress_wait_max_us": 6.736,
+              "source_uplink_wait_max_us": 0.19
+            }
+          },
+          "qp": [
+            792,
+            1060,
+            10001,
+            104
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2414.473,
+          "flow_id": 60,
+          "joint_minus_ecmp_us": 41.338,
+          "joint_total_us": 2455.811,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 284008,
+              "final_egress_wait_max_us": 5.434,
+              "source_uplink_wait_max_us": 1.069
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 353240,
+              "final_egress_wait_max_us": 6.736,
+              "source_uplink_wait_max_us": 0.414
+            }
+          },
+          "qp": [
+            900,
+            1060,
+            10000,
+            105
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2173.771,
+          "flow_id": 172,
+          "joint_minus_ecmp_us": 177.057,
+          "joint_total_us": 2350.828,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 284008,
+              "final_egress_wait_max_us": 5.434,
+              "source_uplink_wait_max_us": 0.892
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 350096,
+              "final_egress_wait_max_us": 6.685,
+              "source_uplink_wait_max_us": 0.147
+            }
+          },
+          "qp": [
+            380,
+            1060,
+            10002,
+            109
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2349.241,
+          "flow_id": 184,
+          "joint_minus_ecmp_us": -20.425,
+          "joint_total_us": 2328.816,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 190736,
+              "final_egress_wait_max_us": 3.651,
+              "source_uplink_wait_max_us": 0.069
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 304288,
+              "final_egress_wait_max_us": 5.805,
+              "source_uplink_wait_max_us": 0.148
+            }
+          },
+          "qp": [
+            4,
+            1072,
+            10004,
+            109
+          ]
+        }
+      ],
+      "experiment_ids": {
+        "admission": "20260928-163500-ws19-t6-b192-02-a",
+        "ecmp": "20260928-163500-ws19-t6-b192-02-e",
+        "joint": "20260928-163500-ws19-t6-b192-02-j",
+        "path": "20260928-163500-ws19-t6-b192-02-p"
+      },
+      "round_tail_identity_same_count": 0,
+      "rounds": [
+        {
+          "ecmp_round_us": 21.701,
+          "ecmp_tail_id": 544,
+          "joint_round_us": 32.021,
+          "joint_tail": {
+            "demand_ns": 2000000000,
+            "finish_ns": 2000032021,
+            "flow_id": 2096,
+            "network_us": 20.377,
+            "release_ns": 2000011644,
+            "total_us": 32.021,
+            "wait_us": 11.644
+          },
+          "joint_tail_id": 2096,
+          "round": 0,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000000000,
+            "finish_ns": 2000007641,
+            "flow_id": 544,
+            "network_us": 5.509,
+            "release_ns": 2000002132,
+            "total_us": 7.641,
+            "wait_us": 2.132
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000000000,
+            "finish_ns": 2000013863,
+            "flow_id": 2096,
+            "network_us": 13.863,
+            "release_ns": 2000000000,
+            "total_us": 13.863,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 15.901,
+          "ecmp_tail_id": 3305,
+          "joint_round_us": 18.544,
+          "joint_tail": {
+            "demand_ns": 2000050000,
+            "finish_ns": 2000068544,
+            "flow_id": 4233,
+            "network_us": 5.096,
+            "release_ns": 2000063448,
+            "total_us": 18.544,
+            "wait_us": 13.448
+          },
+          "joint_tail_id": 4233,
+          "round": 1,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000050000,
+            "finish_ns": 2000062562,
+            "flow_id": 3305,
+            "network_us": 4.69,
+            "release_ns": 2000057872,
+            "total_us": 12.562,
+            "wait_us": 7.872
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000050000,
+            "finish_ns": 2000064716,
+            "flow_id": 4233,
+            "network_us": 14.716,
+            "release_ns": 2000050000,
+            "total_us": 14.716,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 14.394,
+          "ecmp_tail_id": 5377,
+          "joint_round_us": 17.781,
+          "joint_tail": {
+            "demand_ns": 2000100000,
+            "finish_ns": 2000117781,
+            "flow_id": 6320,
+            "network_us": 5.153,
+            "release_ns": 2000112628,
+            "total_us": 17.781,
+            "wait_us": 12.628
+          },
+          "joint_tail_id": 6320,
+          "round": 2,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000100000,
+            "finish_ns": 2000111270,
+            "flow_id": 5377,
+            "network_us": 3.562,
+            "release_ns": 2000107708,
+            "total_us": 11.27,
+            "wait_us": 7.708
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000100000,
+            "finish_ns": 2000109241,
+            "flow_id": 6320,
+            "network_us": 9.241,
+            "release_ns": 2000100000,
+            "total_us": 9.241,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 14.434,
+          "ecmp_tail_id": 6817,
+          "joint_round_us": 16.404,
+          "joint_tail": {
+            "demand_ns": 2000150000,
+            "finish_ns": 2000166404,
+            "flow_id": 7913,
+            "network_us": 5.58,
+            "release_ns": 2000160824,
+            "total_us": 16.404,
+            "wait_us": 10.824
+          },
+          "joint_tail_id": 7913,
+          "round": 3,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000150000,
+            "finish_ns": 2000157382,
+            "flow_id": 6817,
+            "network_us": 3.282,
+            "release_ns": 2000154100,
+            "total_us": 7.382,
+            "wait_us": 4.1
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000150000,
+            "finish_ns": 2000163182,
+            "flow_id": 7913,
+            "network_us": 13.182,
+            "release_ns": 2000150000,
+            "total_us": 13.182,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 15.081,
+          "ecmp_tail_id": 9600,
+          "joint_round_us": 18.077,
+          "joint_tail": {
+            "demand_ns": 2000200000,
+            "finish_ns": 2000218077,
+            "flow_id": 10360,
+            "network_us": 4.465,
+            "release_ns": 2000213612,
+            "total_us": 18.077,
+            "wait_us": 13.612
+          },
+          "joint_tail_id": 10360,
+          "round": 4,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000200000,
+            "finish_ns": 2000209985,
+            "flow_id": 9600,
+            "network_us": 1.785,
+            "release_ns": 2000208200,
+            "total_us": 9.985,
+            "wait_us": 8.2
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000200000,
+            "finish_ns": 2000210886,
+            "flow_id": 10360,
+            "network_us": 10.886,
+            "release_ns": 2000200000,
+            "total_us": 10.886,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 15.718,
+          "ecmp_tail_id": 10601,
+          "joint_round_us": 18.111,
+          "joint_tail": {
+            "demand_ns": 2000250000,
+            "finish_ns": 2000268111,
+            "flow_id": 12408,
+            "network_us": 4.663,
+            "release_ns": 2000263448,
+            "total_us": 18.111,
+            "wait_us": 13.448
+          },
+          "joint_tail_id": 12408,
+          "round": 5,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000250000,
+            "finish_ns": 2000252561,
+            "flow_id": 10601,
+            "network_us": 1.577,
+            "release_ns": 2000250984,
+            "total_us": 2.561,
+            "wait_us": 0.984
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000250000,
+            "finish_ns": 2000260252,
+            "flow_id": 12408,
+            "network_us": 10.252,
+            "release_ns": 2000250000,
+            "total_us": 10.252,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 16.877,
+          "ecmp_tail_id": 13208,
+          "joint_round_us": 19.498,
+          "joint_tail": {
+            "demand_ns": 2000300000,
+            "finish_ns": 2000319498,
+            "flow_id": 14305,
+            "network_us": 5.394,
+            "release_ns": 2000314104,
+            "total_us": 19.498,
+            "wait_us": 14.104
+          },
+          "joint_tail_id": 14305,
+          "round": 6,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000300000,
+            "finish_ns": 2000308106,
+            "flow_id": 13208,
+            "network_us": 3.186,
+            "release_ns": 2000304920,
+            "total_us": 8.106,
+            "wait_us": 4.92
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000300000,
+            "finish_ns": 2000314084,
+            "flow_id": 14305,
+            "network_us": 14.084,
+            "release_ns": 2000300000,
+            "total_us": 14.084,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 15.823,
+          "ecmp_tail_id": 15793,
+          "joint_round_us": 27.401,
+          "joint_tail": {
+            "demand_ns": 2000350000,
+            "finish_ns": 2000377401,
+            "flow_id": 16513,
+            "network_us": 14.445,
+            "release_ns": 2000362956,
+            "total_us": 27.401,
+            "wait_us": 12.956
+          },
+          "joint_tail_id": 16513,
+          "round": 7,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000350000,
+            "finish_ns": 2000369983,
+            "flow_id": 15793,
+            "network_us": 10.799,
+            "release_ns": 2000359184,
+            "total_us": 19.983,
+            "wait_us": 9.184
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000350000,
+            "finish_ns": 2000360636,
+            "flow_id": 16513,
+            "network_us": 10.636,
+            "release_ns": 2000350000,
+            "total_us": 10.636,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        }
+      ],
+      "seed": 20261702
+    },
+    {
+      "background_joint_better_count": 84,
+      "background_joint_equal_count": 14,
+      "background_joint_worse_count": 94,
+      "background_p99_order_ecmp": [
+        64,
+        188,
+        144,
+        172
+      ],
+      "background_p99_order_joint": [
+        64,
+        132,
+        188,
+        160
+      ],
+      "background_p99_recomputed_us": {
+        "ecmp": 2257.7536299999997,
+        "joint": 2296.3550000000005
+      },
+      "background_p99_us": {
+        "admission": 2392.36093,
+        "ecmp": 2257.75363,
+        "joint": 2296.355,
+        "path": 2156.6571
+      },
+      "background_top_union": [
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2324.76,
+          "flow_id": 64,
+          "joint_minus_ecmp_us": 232.549,
+          "joint_total_us": 2557.309,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 377512,
+              "final_egress_wait_max_us": 7.176,
+              "source_uplink_wait_max_us": 0.586
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 454128,
+              "final_egress_wait_max_us": 8.659,
+              "source_uplink_wait_max_us": 0.12
+            }
+          },
+          "qp": [
+            356,
+            468,
+            10001,
+            103
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 1962.935,
+          "flow_id": 132,
+          "joint_minus_ecmp_us": 496.674,
+          "joint_total_us": 2459.609,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 379608,
+              "final_egress_wait_max_us": 7.225,
+              "source_uplink_wait_max_us": 0.158
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 456224,
+              "final_egress_wait_max_us": 8.696,
+              "source_uplink_wait_max_us": 0.208
+            }
+          },
+          "qp": [
+            492,
+            468,
+            10002,
+            105
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2255.143,
+          "flow_id": 144,
+          "joint_minus_ecmp_us": -251.494,
+          "joint_total_us": 2003.649,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 222608,
+              "final_egress_wait_max_us": 4.237,
+              "source_uplink_wait_max_us": 0.387
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 295248,
+              "final_egress_wait_max_us": 5.627,
+              "source_uplink_wait_max_us": 0.206
+            }
+          },
+          "qp": [
+            876,
+            464,
+            10005,
+            105
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2166.844,
+          "flow_id": 160,
+          "joint_minus_ecmp_us": 111.188,
+          "joint_total_us": 2278.032,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 379608,
+              "final_egress_wait_max_us": 7.224,
+              "source_uplink_wait_max_us": 1.493
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 455984,
+              "final_egress_wait_max_us": 8.694,
+              "source_uplink_wait_max_us": 0.505
+            }
+          },
+          "qp": [
+            356,
+            468,
+            10003,
+            106
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2221.361,
+          "flow_id": 172,
+          "joint_minus_ecmp_us": -141.477,
+          "joint_total_us": 2079.884,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 378560,
+              "final_egress_wait_max_us": 7.205,
+              "source_uplink_wait_max_us": 0.04
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 447120,
+              "final_egress_wait_max_us": 8.528,
+              "source_uplink_wait_max_us": 0.246
+            }
+          },
+          "qp": [
+            944,
+            468,
+            10001,
+            108
+          ]
+        },
+        {
+          "background_wait_us": 0.0,
+          "ecmp_total_us": 2284.15,
+          "flow_id": 188,
+          "joint_minus_ecmp_us": -3.941,
+          "joint_total_us": 2280.209,
+          "position": {
+            "ecmp": {
+              "final_egress_queued_bytes_max": 376464,
+              "final_egress_wait_max_us": 7.172,
+              "source_uplink_wait_max_us": 0.049
+            },
+            "joint": {
+              "final_egress_queued_bytes_max": 450744,
+              "final_egress_wait_max_us": 8.59,
+              "source_uplink_wait_max_us": 0.268
+            }
+          },
+          "qp": [
+            540,
+            468,
+            10004,
+            109
+          ]
+        }
+      ],
+      "experiment_ids": {
+        "admission": "20260928-163500-ws19-t5-b192-03-a",
+        "ecmp": "20260928-163500-ws19-t5-b192-03-e",
+        "joint": "20260928-163500-ws19-t5-b192-03-j",
+        "path": "20260928-163500-ws19-t5-b192-03-p"
+      },
+      "round_tail_identity_same_count": 0,
+      "rounds": [
+        {
+          "ecmp_round_us": 25.762,
+          "ecmp_tail_id": 1513,
+          "joint_round_us": 33.262,
+          "joint_tail": {
+            "demand_ns": 2000000000,
+            "finish_ns": 2000033262,
+            "flow_id": 2008,
+            "network_us": 20.962,
+            "release_ns": 2000012300,
+            "total_us": 33.262,
+            "wait_us": 12.3
+          },
+          "joint_tail_id": 2008,
+          "round": 0,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000000000,
+            "finish_ns": 2000029438,
+            "flow_id": 1513,
+            "network_us": 19.926,
+            "release_ns": 2000009512,
+            "total_us": 29.438,
+            "wait_us": 9.512
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000000000,
+            "finish_ns": 2000025474,
+            "flow_id": 2008,
+            "network_us": 25.474,
+            "release_ns": 2000000000,
+            "total_us": 25.474,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 18.984,
+          "ecmp_tail_id": 2608,
+          "joint_round_us": 21.877,
+          "joint_tail": {
+            "demand_ns": 2000050000,
+            "finish_ns": 2000071877,
+            "flow_id": 4266,
+            "network_us": 8.265,
+            "release_ns": 2000063612,
+            "total_us": 21.877,
+            "wait_us": 13.612
+          },
+          "joint_tail_id": 4266,
+          "round": 1,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000050000,
+            "finish_ns": 2000055163,
+            "flow_id": 2608,
+            "network_us": 3.031,
+            "release_ns": 2000052132,
+            "total_us": 5.163,
+            "wait_us": 2.132
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000050000,
+            "finish_ns": 2000068764,
+            "flow_id": 4266,
+            "network_us": 18.764,
+            "release_ns": 2000050000,
+            "total_us": 18.764,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 17.701,
+          "ecmp_tail_id": 5161,
+          "joint_round_us": 18.635,
+          "joint_tail": {
+            "demand_ns": 2000100000,
+            "finish_ns": 2000118635,
+            "flow_id": 6320,
+            "network_us": 3.547,
+            "release_ns": 2000115088,
+            "total_us": 18.635,
+            "wait_us": 15.088
+          },
+          "joint_tail_id": 6320,
+          "round": 2,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000100000,
+            "finish_ns": 2000108862,
+            "flow_id": 5161,
+            "network_us": 2.63,
+            "release_ns": 2000106232,
+            "total_us": 8.862,
+            "wait_us": 6.232
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000100000,
+            "finish_ns": 2000116165,
+            "flow_id": 6320,
+            "network_us": 16.165,
+            "release_ns": 2000100000,
+            "total_us": 16.165,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 17.304,
+          "ecmp_tail_id": 7105,
+          "joint_round_us": 21.428,
+          "joint_tail": {
+            "demand_ns": 2000150000,
+            "finish_ns": 2000171428,
+            "flow_id": 8289,
+            "network_us": 6.012,
+            "release_ns": 2000165416,
+            "total_us": 21.428,
+            "wait_us": 15.416
+          },
+          "joint_tail_id": 8289,
+          "round": 3,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000150000,
+            "finish_ns": 2000161162,
+            "flow_id": 7105,
+            "network_us": 3.29,
+            "release_ns": 2000157872,
+            "total_us": 11.162,
+            "wait_us": 7.872
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000150000,
+            "finish_ns": 2000165232,
+            "flow_id": 8289,
+            "network_us": 15.232,
+            "release_ns": 2000150000,
+            "total_us": 15.232,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 15.902,
+          "ecmp_tail_id": 8595,
+          "joint_round_us": 18.542,
+          "joint_tail": {
+            "demand_ns": 2000200000,
+            "finish_ns": 2000218542,
+            "flow_id": 10395,
+            "network_us": 3.946,
+            "release_ns": 2000214596,
+            "total_us": 18.542,
+            "wait_us": 14.596
+          },
+          "joint_tail_id": 10395,
+          "round": 4,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000200000,
+            "finish_ns": 2000202781,
+            "flow_id": 8595,
+            "network_us": 1.469,
+            "release_ns": 2000201312,
+            "total_us": 2.781,
+            "wait_us": 1.312
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000200000,
+            "finish_ns": 2000213249,
+            "flow_id": 10395,
+            "network_us": 13.249,
+            "release_ns": 2000200000,
+            "total_us": 13.249,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 16.408,
+          "ecmp_tail_id": 12137,
+          "joint_round_us": 18.672,
+          "joint_tail": {
+            "demand_ns": 2000250000,
+            "finish_ns": 2000268672,
+            "flow_id": 12473,
+            "network_us": 4.404,
+            "release_ns": 2000264268,
+            "total_us": 18.672,
+            "wait_us": 14.268
+          },
+          "joint_tail_id": 12473,
+          "round": 5,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000250000,
+            "finish_ns": 2000267450,
+            "flow_id": 12137,
+            "network_us": 5.806,
+            "release_ns": 2000261644,
+            "total_us": 17.45,
+            "wait_us": 11.644
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000250000,
+            "finish_ns": 2000264652,
+            "flow_id": 12473,
+            "network_us": 14.652,
+            "release_ns": 2000250000,
+            "total_us": 14.652,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 15.457,
+          "ecmp_tail_id": 12865,
+          "joint_round_us": 18.502,
+          "joint_tail": {
+            "demand_ns": 2000300000,
+            "finish_ns": 2000318502,
+            "flow_id": 14433,
+            "network_us": 5.218,
+            "release_ns": 2000313284,
+            "total_us": 18.502,
+            "wait_us": 13.284
+          },
+          "joint_tail_id": 14433,
+          "round": 6,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000300000,
+            "finish_ns": 2000305280,
+            "flow_id": 12865,
+            "network_us": 3.148,
+            "release_ns": 2000302132,
+            "total_us": 5.28,
+            "wait_us": 2.132
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000300000,
+            "finish_ns": 2000315042,
+            "flow_id": 14433,
+            "network_us": 15.042,
+            "release_ns": 2000300000,
+            "total_us": 15.042,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        },
+        {
+          "ecmp_round_us": 16.193,
+          "ecmp_tail_id": 14737,
+          "joint_round_us": 26.544,
+          "joint_tail": {
+            "demand_ns": 2000350000,
+            "finish_ns": 2000376544,
+            "flow_id": 16538,
+            "network_us": 12.604,
+            "release_ns": 2000363940,
+            "total_us": 26.544,
+            "wait_us": 13.94
+          },
+          "joint_tail_id": 16538,
+          "round": 7,
+          "same_ecmp_tail_in_joint": {
+            "demand_ns": 2000350000,
+            "finish_ns": 2000357604,
+            "flow_id": 14737,
+            "network_us": 5.964,
+            "release_ns": 2000351640,
+            "total_us": 7.604,
+            "wait_us": 1.64
+          },
+          "same_joint_tail_in_ecmp": {
+            "demand_ns": 2000350000,
+            "finish_ns": 2000364717,
+            "flow_id": 16538,
+            "network_us": 14.717,
+            "release_ns": 2000350000,
+            "total_us": 14.717,
+            "wait_us": 0.0
+          },
+          "same_tail": false
+        }
+      ],
+      "seed": 20261703
+    }
+  ],
+  "source_sha": "b52e66f0fbf786fb57672b12a5633cf45b9311c1",
+  "source_summary_sha256": "af879af52fd574a2752a9236783bb84cbb39c86b417bcad586f909e4e8a74fdb"
+}
