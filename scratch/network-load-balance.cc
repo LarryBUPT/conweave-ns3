@@ -232,7 +232,9 @@ void ReleaseWs18Flow(uint32_t id) {
     clientHelper.SetAttribute("StatFlowID", IntegerValue(id));
     clientHelper.SetAttribute("WorkloadTag", UintegerValue(flow.tag));
     ApplicationContainer app = clientHelper.Install(source);
-    app.Start(Simulator::Now());
+    // ApplicationContainer::Start takes a delay from its installation event.
+    // Installing at release and starting with zero delay starts the QP now.
+    app.Start(Seconds(Time(0)));
     app.Stop(Seconds(100.0));
 }
 
@@ -600,7 +602,8 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
         NS_ASSERT_MSG(flow.released && !flow.finished && flow.src == sid && flow.dst == did &&
                           flow.sport == q->sport && flow.dport == q->dport &&
                           flow.bytes == q->m_size &&
-                          flow.demand_ns <= flow.release_ns && flow.release_ns <= finish,
+                          flow.demand_ns <= flow.release_ns && flow.release_ns <= finish &&
+                          q->startTime.GetNanoSeconds() == flow.release_ns,
                       "WS-18 completion violates identity, bytes, or time ordering");
         flow.finished = true;
         fprintf(ws18_output, "%u %u %u %u %u %u %u %lu %lu %lu %lu %lu\n",
