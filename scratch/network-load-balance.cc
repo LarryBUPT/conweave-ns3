@@ -72,6 +72,10 @@ std::string ws18_output_file;
 FILE *ws18_output = NULL;
 bool ws21_identity = false;
 std::string ws21_identity_output_file;
+bool ws21_port_events = false;
+std::string ws21_port_output_file;
+uint64_t ws21_port_max_bytes = 268435456;
+FILE *ws21_port_output = NULL;
 
 // Conga params (based on paper recommendation)
 Time conga_flowletTimeout = MicroSeconds(100);  // 100us
@@ -964,6 +968,12 @@ int main(int argc, char *argv[]) {
                 uint32_t value; conf >> value; ws21_identity = value != 0;
             } else if (key.compare("WS21_IDENTITY_OUTPUT_FILE") == 0) {
                 conf >> ws21_identity_output_file;
+            } else if (key.compare("WS21_PORT_EVENTS") == 0) {
+                uint32_t value; conf >> value; ws21_port_events = value != 0;
+            } else if (key.compare("WS21_PORT_OUTPUT_FILE") == 0) {
+                conf >> ws21_port_output_file;
+            } else if (key.compare("WS21_PORT_MAX_BYTES") == 0) {
+                conf >> ws21_port_max_bytes;
             } else if (key.compare("GUARDHASH_LAMBDA") == 0) {
                 conf >> guardhash_lambda;
             } else if (key.compare("GUARDHASH_TAU_BYTES") == 0) {
@@ -1385,6 +1395,10 @@ int main(int argc, char *argv[]) {
     SwitchNode::ConfigureWs18Path(lb_mode == 20 && ws18_path);
     NS_ASSERT_MSG(!ws21_identity || (lb_mode == 20 && !ws21_identity_output_file.empty()),
                   "WS-21 identity diagnostic requires mode 20 and an output file");
+    NS_ASSERT_MSG(!ws21_port_events ||
+                      (lb_mode == 20 && !ws21_port_output_file.empty() &&
+                       ws21_port_max_bytes >= 1024),
+                  "WS-21 port events require mode 20, output file, and byte cap");
     SwitchNode::ConfigureWs21Identity(ws21_identity);
     Settings::packet_payload = packet_payload_size;
     // Settings::MTU = packet_payload_size + 48;  // for simplicity
@@ -1568,6 +1582,11 @@ int main(int argc, char *argv[]) {
 
     fct_output = fopen(fct_output_file.c_str(), "w");
     if (lb_mode == 20) ws18_output = fopen(ws18_output_file.c_str(), "w");
+    if (ws21_port_events) {
+        ws21_port_output = fopen(ws21_port_output_file.c_str(), "w");
+        NS_ASSERT_MSG(ws21_port_output, "WS-21 cannot open port-event output");
+        SwitchNode::ConfigureWs21PortEvents(ws21_port_output, ws21_port_max_bytes);
+    }
     flow_input_stream = fopen(flow_input_file.c_str(), "w");
     if (cc_mode == 1) {
         cnp_output = fopen(cnp_output_file.c_str(), "w");
@@ -1735,6 +1754,8 @@ int main(int argc, char *argv[]) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
                 SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
+            if (ws21_port_events)
+                sw->AddWs21HostPort(nbr2if.at(probably_switch).at(probably_host).idx);
             if (idxNodeToR.find(sw->GetId()) == idxNodeToR.end()) {
                 idxNodeToR[sw->GetId()] = sw;
             };
@@ -2037,7 +2058,13 @@ int main(int argc, char *argv[]) {
     Simulator::Schedule(Seconds(flowgen_start_time),
                         &stop_simulation_middle);  // check every 100us
     Simulator::Stop(Seconds(flowgen_stop_time + 10.0));
+    if (ws21_port_events)
+        for (const auto &entry : idxNodeToR)
+            entry.second->RecordWs21PortBoundary('B');
     Simulator::Run();
+    if (ws21_port_events)
+        for (const auto &entry : idxNodeToR)
+            entry.second->RecordWs21PortBoundary('F');
     if (lb_mode == 20) {
         uint64_t released = 0, finished = 0, input_bytes = 0, finished_bytes = 0;
         for (const Ws18Flow &flow : ws18_flows) {
@@ -2060,6 +2087,10 @@ int main(int argc, char *argv[]) {
             if (n.Get(i)->GetNodeType() == 1)
                 DynamicCast<SwitchNode>(n.Get(i))->WriteWs21Identity(identity);
         fclose(identity);
+    }
+    if (ws21_port_events) {
+        SwitchNode::FinishWs21PortEvents();
+        fclose(ws21_port_output);
     }
     SwitchNode::PrintWorkloadTagCounts();
 

@@ -27,6 +27,7 @@ CNP_OUTPUT_FILE mix/output/{id}/{id}_out_cnp.txt
 FCT_OUTPUT_FILE mix/output/{id}/{id}_out_fct.txt
 WS18_OUTPUT_FILE mix/output/{id}/{id}_out_ws18.txt
 WS21_IDENTITY_OUTPUT_FILE mix/output/{id}/{id}_out_ws21_identity.txt
+WS21_PORT_OUTPUT_FILE mix/output/{id}/{id}_out_ws21_port.txt
 PFC_OUTPUT_FILE mix/output/{id}/{id}_out_pfc.txt
 QLEN_MON_FILE mix/output/{id}/{id}_out_qlen.txt
 VOQ_MON_FILE mix/output/{id}/{id}_out_voq.txt
@@ -49,6 +50,8 @@ WS18_ADMISSION {ws18_admission}
 WS18_PATH {ws18_path}
 WS18_ADMISSION_RATE_GBPS {ws18_admission_rate_gbps}
 WS21_IDENTITY {ws21_identity}
+WS21_PORT_EVENTS {ws21_port_events}
+WS21_PORT_MAX_BYTES {ws21_port_max_bytes}
 GUARDHASH_LAMBDA 1
 GUARDHASH_TAU_BYTES 0
 HARM_GATE_ON_BYTES 8192
@@ -178,6 +181,8 @@ def main():
     parser.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
     parser.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
+    parser.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
+    parser.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
     parser.add_argument('--enforce_win', dest='enforce_win', action='store',
                         type=int, default=0, help="enforce to use window scheme (default: 0)")
     parser.add_argument('--sw_monitoring_interval', dest='sw_monitoring_interval', action='store',
@@ -246,6 +251,8 @@ def main():
         raise Exception("CONFIG ERROR : WS-18 admission rate must be positive")
     if args.ws21_identity and args.lb != 'ws18':
         raise Exception("CONFIG ERROR : WS-21 identity diagnostic requires --lb ws18")
+    if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
+        raise Exception("CONFIG ERROR : WS-21 port events need ws18 and a byte cap >= 1024")
     if float(args.simul_time) < 0.005:
         raise Exception("CONFIG ERROR : Runtime must be larger than 5ms (= warmup interval).")
 
@@ -418,6 +425,8 @@ def main():
                                         ws18_admission=args.ws18_admission, ws18_path=args.ws18_path,
                                         ws18_admission_rate_gbps=args.ws18_admission_rate_gbps,
                                         ws21_identity=args.ws21_identity,
+                                        ws21_port_events=args.ws21_port_events,
+                                        ws21_port_max_bytes=args.ws21_port_max_bytes,
                                         cwh_extra_reply_deadline=cwh_extra_reply_deadline, cwh_default_voq_waiting_time=cwh_default_voq_waiting_time,
                                         cwh_path_pause_time=cwh_path_pause_time, cwh_extra_voq_flush_time=cwh_extra_voq_flush_time,
                                         enabled_pfc=enabled_pfc, enabled_irn=enabled_irn,

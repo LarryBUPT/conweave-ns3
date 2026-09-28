@@ -61,6 +61,7 @@ class SwitchNode : public Node {
     std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, Ws21PathObservation>
         m_ws21Source, m_ws21Destination;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21IngressToFirst;
+    std::unordered_set<uint32_t> m_ws21HostPorts;
     void ObserveWs21Source(const CustomHeader &ch, uint32_t port);
     void ObserveWs21Destination(Ptr<const Packet> p, const CustomHeader &ch);
     uint32_t DoLbWs18(Ptr<const Packet> p, const CustomHeader &ch,
@@ -98,7 +99,12 @@ class SwitchNode : public Node {
                                    uint32_t gateOnBytes, uint32_t gateOffBytes);
     static void ConfigureWs18Path(bool enabled);
     static void ConfigureWs21Identity(bool enabled);
+    static void ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes);
+    static void FinishWs21PortEvents();
     static void SetWs21HostTor(uint32_t hostIp, uint32_t torId);
+    void AddWs21HostPort(uint32_t port);
+    void RecordWs21PortEvent(uint32_t port, char event);
+    void RecordWs21PortBoundary(char event);
     bool AddWs21IngressMapping(uint32_t sourceTor, uint32_t ingressPort,
                                uint32_t firstPort);
     void WriteWs21Identity(FILE *out) const;

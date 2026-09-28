@@ -417,6 +417,9 @@ bool QbbNetDevice::SwitchSend(uint32_t qIndex, Ptr<Packet> packet, CustomHeader 
     } else {
         m_traceEnqueue(packet, qIndex);
         bool accepted = m_queue->Enqueue(packet, qIndex);
+        if (Settings::lb_mode == 20)
+            m_node->GetObject<SwitchNode>()->RecordWs21PortEvent(
+                m_ifIndex, accepted ? 'E' : 'R');
         const char *dropDiag = std::getenv("IRN_PFC_DROP_DIAG");
         if (!accepted && dropDiag && dropDiag[0] == '1' && dropDiag[1] == '\0') {
             std::cout << "FACTORIAL_QUEUE_REJECT time_ns=" << Simulator::Now().GetTimeStep()
@@ -522,6 +525,8 @@ void QbbNetDevice::TakeDown() {
             if (p == 0) break;
             if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
                 m_node->GetObject<SwitchNode>()->SwitchNotifyQueueDrop(m_ifIndex, m_queue->GetLastQueue(), p, true);
+            if (Settings::lb_mode == 20)
+                m_node->GetObject<SwitchNode>()->RecordWs21PortEvent(m_ifIndex, 'X');
             m_traceDrop(p, m_queue->GetLastQueue());
         }
         // TODO: Notify switch that this link is down

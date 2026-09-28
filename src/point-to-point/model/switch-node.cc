@@ -41,6 +41,9 @@ static uint64_t guard_queue_violations = 0;
 static bool ws18_path_enabled = false;
 static bool ws21_identity_enabled = false;
 static std::map<uint32_t, uint32_t> ws21_host_tor;
+static FILE *ws21_port_events = NULL;
+static uint64_t ws21_port_max_bytes = 0, ws21_port_bytes = 0;
+static uint64_t ws21_port_count = 0, ws21_port_overflow = 0;
 static uint64_t ws18_path_flows = 0, ws18_path_alternate = 0;
 static uint64_t ws18_path_packets = 0, ws18_path_multipath = 0;
 struct GuardQueueStat {
@@ -107,6 +110,56 @@ void SwitchNode::ConfigureGuardHash(uint32_t lambda, uint32_t tau,
 void SwitchNode::ConfigureWs18Path(bool enabled) { ws18_path_enabled = enabled; }
 
 void SwitchNode::ConfigureWs21Identity(bool enabled) { ws21_identity_enabled = enabled; }
+
+void SwitchNode::ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes) {
+    NS_ASSERT_MSG(!out || maxBytes >= 1024, "WS-21 port log cap is too small");
+    ws21_port_events = out;
+    ws21_port_max_bytes = maxBytes;
+    ws21_port_bytes = ws21_port_count = ws21_port_overflow = 0;
+    if (out) {
+        const char *header = "time_ns tor port event queue_bytes\n";
+        const int written = fprintf(out, "%s", header);
+        NS_ASSERT_MSG(written > 0, "WS-21 port log header write failed");
+        ws21_port_bytes += written;
+    }
+}
+
+void SwitchNode::FinishWs21PortEvents() {
+    if (!ws21_port_events) return;
+    fprintf(ws21_port_events, "# events=%lu bytes=%lu overflow=%lu\n",
+            ws21_port_count, ws21_port_bytes, ws21_port_overflow);
+    std::cout << "WS21_PORT_EVENTS events=" << ws21_port_count
+              << " bytes=" << ws21_port_bytes
+              << " overflow=" << ws21_port_overflow << std::endl;
+    fflush(ws21_port_events);
+    ws21_port_events = NULL;
+}
+
+void SwitchNode::AddWs21HostPort(uint32_t port) { m_ws21HostPorts.insert(port); }
+
+void SwitchNode::RecordWs21PortEvent(uint32_t port, char event) {
+    if (!ws21_port_events || !m_ws21HostPorts.count(port)) return;
+    if (ws21_port_overflow) { ++ws21_port_overflow; return; }
+    Ptr<QbbNetDevice> device = DynamicCast<QbbNetDevice>(m_devices[port]);
+    NS_ASSERT_MSG(device && device->GetQueue(), "WS-21 host egress queue absent");
+    char line[128];
+    const int length = snprintf(line, sizeof(line), "%lu %u %u %c %u\n",
+                                uint64_t(Simulator::Now().GetNanoSeconds()), m_id, port,
+                                event, device->GetQueue()->GetNBytesTotal());
+    NS_ASSERT_MSG(length > 0 && length < int(sizeof(line)), "WS-21 event row too long");
+    if (ws21_port_bytes + uint64_t(length) > ws21_port_max_bytes) {
+        ++ws21_port_overflow;
+        return;
+    }
+    NS_ASSERT_MSG(fwrite(line, 1, length, ws21_port_events) == size_t(length),
+                  "WS-21 port log write failed");
+    ws21_port_bytes += length;
+    ++ws21_port_count;
+}
+
+void SwitchNode::RecordWs21PortBoundary(char event) {
+    for (uint32_t port : m_ws21HostPorts) RecordWs21PortEvent(port, event);
+}
 
 void SwitchNode::SetWs21HostTor(uint32_t hostIp, uint32_t torId) {
     auto inserted = ws21_host_tor.insert(std::make_pair(hostIp, torId));
@@ -788,6 +841,7 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 }
 
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
+    RecordWs21PortEvent(ifIndex, 'D');
     if (Ws13DiagnosticEnabled()) {
         auto hit = ws13_inflight.find(std::make_pair(m_id, p->GetUid()));
         if (hit != ws13_inflight.end()) {
