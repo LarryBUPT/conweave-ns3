@@ -201,10 +201,18 @@ uint16_t *port_per_host;
 struct FlowInput {
     uint32_t src, dst, pg, maxPacketCount, port;
     double start_time;
+    int64_t start_time_ns;
     uint32_t idx;
     uint32_t workload_tag;
 };
 FlowInput flow_input = {0};  // global variable
+
+Time FlowInputStartTime() {
+    // Preserve the legacy double-to-Time conversion outside WS-18. In WS-18,
+    // the trace's demand is an integer nanosecond, not a truncated double.
+    return lb_mode == 20 ? NanoSeconds(flow_input.start_time_ns)
+                         : Seconds(flow_input.start_time);
+}
 uint32_t flow_num;
 uint32_t flow_line_number = 1;
 double previous_flow_start = -1.0;
@@ -271,11 +279,20 @@ void ReadFlowInput() {
                       << ": invalid host, priority, size, time order, or tag" << std::endl;
             std::exit(1);
         }
+        const long double start_ns = static_cast<long double>(start) * 1000000000.0L;
+        if (lb_mode == 20 && start_ns >
+                                static_cast<long double>(std::numeric_limits<int64_t>::max()) -
+                                    0.5L) {
+            std::cerr << "FLOW_INPUT_ERROR line " << flow_line_number
+                      << ": demand time exceeds integer nanosecond range" << std::endl;
+            std::exit(1);
+        }
         flow_input.src = src;
         flow_input.dst = dst;
         flow_input.pg = pg;
         flow_input.maxPacketCount = bytes;
         flow_input.start_time = start;
+        if (lb_mode == 20) flow_input.start_time_ns = std::llround(start_ns);
         flow_input.workload_tag = tag;
         previous_flow_start = start;
         ++input_tag_counts[flow_input.workload_tag];
@@ -299,7 +316,7 @@ void ReadFlowInput() {
  */
 void ScheduleFlowInputs(FILE *infile) {
     NS_LOG_DEBUG("ScheduleFlowInputs at " << Simulator::Now());
-    while (flow_input.idx < flow_num && Seconds(flow_input.start_time) == Simulator::Now()) {
+    while (flow_input.idx < flow_num && FlowInputStartTime() == Simulator::Now()) {
         uint32_t pg, src, dst, sport, dport, maxPacketCount, target_len;
         pg = flow_input.pg;
         src = flow_input.src;
@@ -320,7 +337,9 @@ void ScheduleFlowInputs(FILE *infile) {
         assert(n.Get(src)->GetNodeType() == 0 && n.Get(dst)->GetNodeType() == 0);
 
         if (lb_mode == 20) {
-            const uint64_t demand = Simulator::Now().GetNanoSeconds();
+            const uint64_t demand = flow_input.start_time_ns;
+            NS_ASSERT_MSG(demand == uint64_t(Simulator::Now().GetNanoSeconds()),
+                          "WS-18 demand event must match the trace nanosecond");
             uint64_t release = demand;
             if (ws18_admission && flow_input.workload_tag == 2) {
                 release = std::max(demand, ws18_next_release_ns[dst]);
@@ -394,8 +413,7 @@ void ScheduleFlowInputs(FILE *infile) {
 
     // schedule the next time to run this function
     if (flow_input.idx < flow_num) {
-        Simulator::Schedule(Seconds(flow_input.start_time) - Simulator::Now(), &ScheduleFlowInputs,
-                            infile);
+        Simulator::Schedule(FlowInputStartTime() - Simulator::Now(), &ScheduleFlowInputs, infile);
     } else {  // no more flows, close the file
         flowf.close();
     }

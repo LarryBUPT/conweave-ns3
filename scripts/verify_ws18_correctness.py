@@ -26,6 +26,23 @@ def trace_rows(path):
     return rows
 
 
+def config_values(path):
+    return dict(line.split(None, 1) for line in path.read_text().splitlines()
+                if len(line.split(None, 1)) == 2)
+
+
+def common_config(base, mode, admission=0, path=0):
+    config = config_values(base / "config" / "config.txt")
+    assert config["CC_MODE"] == "1"
+    assert config["LB_MODE"] == str(mode)
+    assert config["ENABLE_PFC"] == "0" and config["ENABLE_IRN"] == "1"
+    assert config["RANDOM_SEED"] == "1"
+    if mode == 20:
+        assert config["WS18_ADMISSION"] == str(admission)
+        assert config["WS18_PATH"] == str(path)
+        assert config["WS18_ADMISSION_RATE_GBPS"] == "400"
+
+
 def read_arm(root, experiment_id, expected, admission, path):
     base = root / experiment_id
     meta = json.loads((base / "metadata.json").read_text())
@@ -36,6 +53,7 @@ def read_arm(root, experiment_id, expected, admission, path):
     assert int(meta["parameters"]["pfc"]) == 0
     assert int(meta["parameters"]["irn"]) == 1
     assert int(meta["seed"]) == 1
+    common_config(base, 20, admission, path)
     raw_id = str(meta["raw_directory"])
     raw = base / "raw" / raw_id
     timing = raw / (raw_id + "_out_ws18.txt")
@@ -48,7 +66,7 @@ def read_arm(root, experiment_id, expected, admission, path):
         assert len(values) == 12
         fid, src, dst, sport, dport, tag, size, demand, release, finish, wait, total = values
         assert fid not in rows and 0 <= fid < len(expected["rows"])
-        assert (src, dst, size, demand, tag) == expected["rows"][fid]
+        assert (src, dst, size, demand, tag) == expected["rows"][fid], (experiment_id, fid)
         assert demand <= release <= finish
         assert wait == release - demand and total == finish - demand
         if not admission or tag != 2:
@@ -67,7 +85,7 @@ def read_arm(root, experiment_id, expected, admission, path):
         _, src, dst, sport, dport, _, size, _, release, finish, _, _ = values
         old = fct_rows[(src, dst, sport, dport)]
         assert old[4] == size and old[5] == release and old[5] + old[6] == finish
-    log = (base / "logs" / "simulation.log").read_text(errors="replace")
+    log = (raw / "config.log").read_text(errors="replace")
     match = re.search(r"WS18_PATH flows=(\d+) alternate=(\d+) packets=(\d+) multipath_packets=(\d+)", log)
     assert match, experiment_id
     flows, alternate, packets, multipath = map(int, match.groups())
@@ -98,6 +116,8 @@ def main():
     parser.add_argument("--topology", type=Path,
                         default=Path("config/topo_1280_400G_400G_OS1.txt"))
     parser.add_argument("--legacy", required=True)
+    parser.add_argument("--legacy-reference", required=True,
+                        help="earlier same-trace fecmp result for exact old-mode regression")
     for name, _, _ in ARMS:
         parser.add_argument("--" + name, required=True)
     args = parser.parse_args()
@@ -126,17 +146,37 @@ def main():
                 assert row[8] == base[8]
     legacy_base = args.results / args.legacy
     meta = json.loads((legacy_base / "metadata.json").read_text())
+    assert meta["status"] == "SUCCEEDED" and meta["git_commit"] in shas
     legacy_params = meta["parameters"]
     assert legacy_params["lb"] == "fecmp"
     assert int(legacy_params["pfc"]) == 0 and int(legacy_params["irn"]) == 1
     assert legacy_params["topo"] == "topo_1280_400G_400G_OS1"
     assert legacy_params["flow_file"] == args.trace.name
+    common_config(legacy_base, 0)
+    assert digest(legacy_base / "config" / "traffic_trace.txt") == digest(args.trace)
+    assert digest(legacy_base / "config" / "topology.txt") == digest(args.topology)
     legacy_raw_id = str(meta["raw_directory"])
     legacy = legacy_base / "raw" / legacy_raw_id / (legacy_raw_id + "_out_fct.txt")
-    assert digest(legacy) == arms["ecmp"]["fct_sha256"]
+    reference_base = args.results / args.legacy_reference
+    reference_meta = json.loads((reference_base / "metadata.json").read_text())
+    assert reference_meta["status"] == "SUCCEEDED"
+    assert reference_meta["parameters"]["lb"] == "fecmp"
+    assert reference_meta["parameters"]["flow_file"] == args.trace.name
+    common_config(reference_base, 0)
+    assert digest(reference_base / "config" / "traffic_trace.txt") == digest(args.trace)
+    assert digest(reference_base / "config" / "topology.txt") == digest(args.topology)
+    reference_raw_id = str(reference_meta["raw_directory"])
+    reference = (reference_base / "raw" / reference_raw_id /
+                 (reference_raw_id + "_out_fct.txt"))
+    assert digest(legacy) == digest(reference)
     summary = {name: {k: v for k, v in value.items() if k != "rows"}
                for name, value in arms.items()}
-    summary["legacy"] = {"experiment_id": args.legacy, "fct_sha256": digest(legacy)}
+    summary["legacy"] = {"experiment_id": args.legacy,
+                         "source_sha": meta["git_commit"],
+                         "fct_sha256": digest(legacy),
+                         "reference_id": args.legacy_reference,
+                         "reference_source_sha": reference_meta["git_commit"],
+                         "reference_fct_sha256": digest(reference)}
     summary["trace_sha256"] = digest(args.trace)
     summary["topology_sha256"] = digest(args.topology)
     print(json.dumps(summary, indent=2, sort_keys=True))
