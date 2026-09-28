@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-09-28 WS-21 后续路径身份子门槛：[工程契约](../research/ws21-identity-diagnostic-contract.md)、[Handoff 24](../handoffs/2026-09-28-24-ws21-identity-diagnostic-build.md)记录默认关闭的诊断源码 `382b6dfe98ff6da28aea9c737d56a55206ef344e` 已推送个人 fork，隔离构建 `20260928-232758-ws21-identity-build` 成功；源首口与目的实入口/反推首口及上游 CE 可按 QP 输出，映射冲突会使初始化失败。尚无同 SHA 开/关仿真或新 raw，完整尾部事件和真实反馈消息未实现；**只达到编译门槛，完整技术 pilot NOT READY，效果矩阵 NO-GO**。旧结论不变。
+
 2026-09-28 WS-21 补充[设计复审](../research/ws21-feedback-design-review.md)、[六格静态预算](../research/evidence/ws21-static-budget.json)和[Handoff 23](../handoffs/2026-09-28-23-ws21-feedback-design-review.md)：原 64×1 µs 时间桶不足以覆盖 WS-19 旧格最长 13.29 ms 背景尾流；六格每流分别哈希两个候选，反馈 key 的静态下界约 3.1 千、上界约 12.1 千，全窗 10 µs 周期预算上界约 16.13 百万逻辑报告。拓扑最短路显示源首跳可由目的入端口静态反推，但当前源码未实现或逐 QP 校验。**首版技术 pilot 尚未就绪，效果矩阵继续 NO-GO。**仅继续本地路径身份、观测时长与真实反馈消息成本设计；本轮无远程实验或新效果数据。
 
 2026-09-28 WS-21 **完成下游反馈本地可行性审查；效果矩阵 NO-GO**。[设计记录](../research/ws21-downstream-feedback-feasibility.md)及[Handoff 22](../handoffs/2026-09-28-22-ws21-downstream-feedback.md)从 `experiment/ws20-counterexample-review@cdb2d1b` 独立分支，核对 WS-19 固定 `b52e66f…` raw、WS-13/14 诊断和当前源码。源 ToR 可即时读取本地出口设备队列；目的主机唯一出口状态只在目的 ToR，本机制尚无可计延迟/开销的可靠下游反馈路径。提出每 QP 非扰动时序规格和本地/延迟反馈/oracle/ECMP 对照，但新观测与反馈都未实现或运行。下一步仅能先审查技术 pilot 设计；WS-22/23/24 保持各自条件，WS-25 只整合实际证据。WS-19/20 与旧正式 no-go 不变。
