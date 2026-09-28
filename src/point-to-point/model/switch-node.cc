@@ -151,8 +151,8 @@ void SwitchNode::RecordWs21PortEvent(uint32_t port, char event) {
         ++ws21_port_overflow;
         return;
     }
-    NS_ASSERT_MSG(fwrite(line, 1, length, ws21_port_events) == size_t(length),
-                  "WS-21 port log write failed");
+    const size_t written = fwrite(line, 1, length, ws21_port_events);
+    if (written != size_t(length)) NS_FATAL_ERROR("WS-21 port log write failed");
     ws21_port_bytes += length;
     ++ws21_port_count;
 }

@@ -879,9 +879,8 @@ void BuildWs21IngressMapping() {
                                        << hostId);
                     const uint32_t ingress =
                         destinationPorts->second.find(sourceNode)->second.idx;
-                    NS_ASSERT_MSG(destination->AddWs21IngressMapping(source.first, ingress,
-                                                                     firstPort),
-                                  "WS-21 ambiguous ingress to first-port mapping");
+                    if (!destination->AddWs21IngressMapping(source.first, ingress, firstPort))
+                        NS_FATAL_ERROR("WS-21 ambiguous ingress to first-port mapping");
                     ++pathEnds;
                 }
                 while (!pending.empty()) {
@@ -906,9 +905,9 @@ void BuildWs21IngressMapping() {
                                                << hostId << " destination=" << destinationId);
                             const uint32_t ingress =
                                 destinationPorts->second.find(current)->second.idx;
-                            NS_ASSERT_MSG(destination->AddWs21IngressMapping(
-                                              source.first, ingress, firstPort),
-                                          "WS-21 ambiguous ingress to first-port mapping");
+                            if (!destination->AddWs21IngressMapping(source.first, ingress,
+                                                                    firstPort))
+                                NS_FATAL_ERROR("WS-21 ambiguous ingress to first-port mapping");
                             ++pathEnds;
                         } else if (next->GetNodeType() == 1) {
                             pending.push_back(next);
