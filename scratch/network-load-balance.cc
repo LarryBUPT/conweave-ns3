@@ -835,42 +835,48 @@ void BuildWs21IngressMapping() {
         if (host->GetNodeType() != 0) continue;
         const uint32_t hostIp = serverAddress.at(hostId).Get();
         auto dstEntry = Settings::hostIp2SwitchId.find(hostIp);
-        NS_ASSERT_MSG(dstEntry != Settings::hostIp2SwitchId.end(),
-                      "WS-21 host has no ToR mapping: host=" << hostId);
+        if (dstEntry == Settings::hostIp2SwitchId.end())
+            NS_FATAL_ERROR("WS-21 host has no ToR mapping: host=" << hostId);
         const uint32_t destinationId = dstEntry->second;
         auto destinationEntry = idxNodeToR.find(destinationId);
-        NS_ASSERT_MSG(destinationEntry != idxNodeToR.end(),
-                      "WS-21 destination is not a ToR: host=" << hostId
-                      << " tor=" << destinationId);
+        if (destinationEntry == idxNodeToR.end())
+            NS_FATAL_ERROR("WS-21 destination is not a ToR: host=" << hostId
+                           << " tor=" << destinationId);
         Ptr<SwitchNode> destination = destinationEntry->second;
         for (const auto &source : idxNodeToR) {
             if (source.first == destinationId) continue;
             Ptr<SwitchNode> sourceTor = source.second;
             Ptr<Node> sourceNode = sourceTor;
             auto sourceRoutes = nextHop.find(sourceNode);
-            NS_ASSERT_MSG(sourceRoutes != nextHop.end(),
-                          "WS-21 source ToR has no route table: host=" << hostId
-                          << " source=" << source.first);
+            if (sourceRoutes == nextHop.end())
+                NS_FATAL_ERROR("WS-21 source ToR has no route table: host=" << hostId
+                               << " source=" << source.first);
             auto destinationRoute = sourceRoutes->second.find(host);
-            NS_ASSERT_MSG(destinationRoute != sourceRoutes->second.end(),
-                          "WS-21 source ToR has no route to host=" << hostId
-                          << " source=" << source.first);
+            if (destinationRoute == sourceRoutes->second.end())
+                NS_FATAL_ERROR("WS-21 source ToR has no route to host=" << hostId
+                               << " source=" << source.first << " destination="
+                               << destinationId << " route_entries="
+                               << sourceRoutes->second.size());
             const auto &firstHops = destinationRoute->second;
-            NS_ASSERT_MSG(!firstHops.empty(), "WS-21 source has no shortest path");
+            if (firstHops.empty())
+                NS_FATAL_ERROR("WS-21 source has an empty route to host=" << hostId
+                               << " source=" << source.first << " destination="
+                               << destinationId);
             for (Ptr<Node> first : firstHops) {
                 const uint64_t before = pathEnds;
                 auto sourcePorts = nbr2if.find(sourceNode);
-                NS_ASSERT_MSG(sourcePorts != nbr2if.end() && sourcePorts->second.count(first),
-                              "WS-21 source first-hop port missing: host=" << hostId
-                              << " source=" << source.first);
+                if (sourcePorts == nbr2if.end() || !sourcePorts->second.count(first))
+                    NS_FATAL_ERROR("WS-21 source first-hop port missing: host=" << hostId
+                                   << " source=" << source.first);
                 const uint32_t firstPort = sourcePorts->second.find(first)->second.idx;
                 std::vector<Ptr<Node>> pending(1, first);
                 std::set<Ptr<Node>> visited;
                 if (first == destination) {
                     auto destinationPorts = nbr2if.find(destination);
-                    NS_ASSERT_MSG(destinationPorts != nbr2if.end() &&
-                                      destinationPorts->second.count(sourceNode),
-                                  "WS-21 direct destination ingress missing: host=" << hostId);
+                    if (destinationPorts == nbr2if.end() ||
+                        !destinationPorts->second.count(sourceNode))
+                        NS_FATAL_ERROR("WS-21 direct destination ingress missing: host="
+                                       << hostId);
                     const uint32_t ingress =
                         destinationPorts->second.find(sourceNode)->second.idx;
                     NS_ASSERT_MSG(destination->AddWs21IngressMapping(source.first, ingress,
@@ -884,20 +890,20 @@ void BuildWs21IngressMapping() {
                     if (!visited.insert(current).second) continue;
                     if (current == destination) continue;
                     auto currentRoutes = nextHop.find(current);
-                    NS_ASSERT_MSG(currentRoutes != nextHop.end(),
-                                  "WS-21 path switch has no route table: host=" << hostId
-                                  << " switch=" << current->GetId());
+                    if (currentRoutes == nextHop.end())
+                        NS_FATAL_ERROR("WS-21 path switch has no route table: host=" << hostId
+                                       << " switch=" << current->GetId());
                     auto currentRoute = currentRoutes->second.find(host);
-                    NS_ASSERT_MSG(currentRoute != currentRoutes->second.end(),
-                                  "WS-21 path switch has no route to host=" << hostId
-                                  << " switch=" << current->GetId());
+                    if (currentRoute == currentRoutes->second.end())
+                        NS_FATAL_ERROR("WS-21 path switch has no route to host=" << hostId
+                                       << " switch=" << current->GetId());
                     for (Ptr<Node> next : currentRoute->second) {
                         if (next == destination) {
                             auto destinationPorts = nbr2if.find(destination);
-                            NS_ASSERT_MSG(destinationPorts != nbr2if.end() &&
-                                              destinationPorts->second.count(current),
-                                          "WS-21 destination ingress port missing: host=" << hostId
-                                          << " destination=" << destinationId);
+                            if (destinationPorts == nbr2if.end() ||
+                                !destinationPorts->second.count(current))
+                                NS_FATAL_ERROR("WS-21 destination ingress port missing: host="
+                                               << hostId << " destination=" << destinationId);
                             const uint32_t ingress =
                                 destinationPorts->second.find(current)->second.idx;
                             NS_ASSERT_MSG(destination->AddWs21IngressMapping(
@@ -909,7 +915,9 @@ void BuildWs21IngressMapping() {
                         }
                     }
                 }
-                NS_ASSERT_MSG(pathEnds > before, "WS-21 first hop never reached destination ToR");
+                if (pathEnds <= before)
+                    NS_FATAL_ERROR("WS-21 first hop never reached destination ToR: host="
+                                   << hostId << " source=" << source.first);
             }
         }
     }
