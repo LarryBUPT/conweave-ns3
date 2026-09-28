@@ -126,7 +126,11 @@ def main():
                 assert row[8] == base[8]
     legacy_base = args.results / args.legacy
     meta = json.loads((legacy_base / "metadata.json").read_text())
-    assert meta["parameters"]["lb"] == "fecmp" and meta["git_commit"] in shas
+    legacy_params = meta["parameters"]
+    assert legacy_params["lb"] == "fecmp"
+    assert int(legacy_params["pfc"]) == 0 and int(legacy_params["irn"]) == 1
+    assert legacy_params["topo"] == "topo_1280_400G_400G_OS1"
+    assert legacy_params["flow_file"] == args.trace.name
     legacy_raw_id = str(meta["raw_directory"])
     legacy = legacy_base / "raw" / legacy_raw_id / (legacy_raw_id + "_out_fct.txt")
     assert digest(legacy) == arms["ecmp"]["fct_sha256"]
