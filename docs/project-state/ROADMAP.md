@@ -1,6 +1,6 @@
 # 下一阶段路线与停机条件
 
-更新：2026-09-28。集成工作流只维护顺序和证据门槛；具体代码和实验在对应 workstream 执行。参照 [CURRENT_STATE.md](CURRENT_STATE.md) 的实时快照，在执行前再核验 Git 与远程资源。研究筛选见 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)；用户要求的提前工程原型见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
+更新：2026-09-29。集成工作流只维护顺序和证据门槛；具体代码和实验在对应 workstream 执行。参照 [CURRENT_STATE.md](CURRENT_STATE.md) 的实时快照，在执行前再核验 Git 与远程资源。研究筛选见 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)；用户要求的提前工程原型见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 
 已完成的前置核验：**WS-06 输入兼容**见 [Handoff 06](../handoffs/2026-09-24-06-six-column-input-and-tags.md)；**WS-07 最小双轨与单 seed 技术 pilot**见 [Handoff 08](../handoffs/2026-09-25-08-ws07-dual-track-mixtax.md)；**WS-08 接收尾流诊断与共享 IRN 单 seed pilot**见 [Handoff 09](../handoffs/2026-09-25-09-ws08-receiver-gate.md)；**WS-09 可关闭原型与技术核验**见 [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)；**WS-10 固定总字节正式复核**见 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)；**WS-11 完整 MoE 全量输入正式验证**见 [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)；**WS-12 六策略全量配对**见 [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)；**WS-13 长尾反馈语义与目的出口诊断**见 [Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)。三场正式研究各保留自身输入、判据和 no-go。
 
@@ -38,3 +38,5 @@
 2026-09-28 WS-21 设计复审补充：[复审报告](../research/ws21-feedback-design-review.md)、[静态预算](../research/evidence/ws21-static-budget.json)、[Handoff 23](../handoffs/2026-09-28-23-ws21-feedback-design-review.md)用六个 WS-19 旧 ECMP/192 raw 修正了首版 64 µs 时间桶的不足。两候选按流而非按 ToR pair 哈希，反馈 key 的约 3.1 千只是下界、约 12.1 千是静态上界；线上成本仍未知。拓扑最短路中的源首跳与目的入端口映射无重叠，但源码未建立或按 QP 验证该映射；首版**技术 pilot 不就绪**，继续本地设计，不启动新远程格。WS-21 效果矩阵 no-go，WS-22–24 的原前置门槛和 WS-25 仅收束实际证据的边界不变。
 
 2026-09-28 WS-21 路径身份诊断源码 `382b6df…` 已在个人 fork 的独立构建 ID `20260928-232758-ws21-identity-build` 编译通过，详见[工程契约](../research/ws21-identity-diagnostic-contract.md)和[Handoff 24](../handoffs/2026-09-28-24-ws21-identity-diagnostic-build.md)。下一步先用固定 40 流做同 SHA 诊断开/关 pair 核验逐 QP 路径和非扰动；该子门槛通过后仍须补完整尾部事件和真实反馈报文，才能重审完整技术 pilot。此阶段没有新仿真数据或效果结论。
+
+2026-09-29 WS-21 40 流同 SHA pair 通过路径身份与目的出口事件子门槛：源码 `2a5e7e8722814befc259d1ddece814ed17cbfcbc`，ID `20260929-070000-ws21-proof-off` / `20260929-073000-ws21-proof-on`；40/40 完成、总字节 33,849,344、诊断开关 FCT 与 WS18 原始哈希相同，身份核验零错误；端口事件 138,080 条、3,303,220 B、溢出 0。详见[机器收据](../research/evidence/ws21-identity-port-pair.json)、[契约](../research/ws21-identity-diagnostic-contract.md)和[Handoff 25](../handoffs/2026-09-29-25-ws21-identity-port-pair.md)。这仅关闭固定 40 流工程子门槛，不证明 CE 可区分候选、不覆盖旧 WS-19 长尾、不含 QP 传输转折或真实反馈成本；完整技术 pilot 仍未就绪，效果矩阵 no-go。

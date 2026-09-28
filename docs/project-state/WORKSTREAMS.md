@@ -1,6 +1,6 @@
 # 工作流台账
 
-更新：2026-09-28。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。
+更新：2026-09-29。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
@@ -25,7 +25,7 @@
 | WS-18 | 发送准入与路径联合最小原型 | COMPLETE FOR MINIMUM ENGINEERING CORRECTNESS; NO EFFECT CLAIM | [Handoff 19](../handoffs/2026-09-28-19-ws18-minimal-prototype.md)、[五格机器摘要](../research/evidence/ws18-correctness-summary.json)：首轮 1 ns 输入误差保留作诊断；修复源码 `729d268…` 的旧 `fecmp` 加四臂五格均 `SUCCEEDED` 并回传 raw，旧 FCT 哈希回归及逐流身份、需求、三时刻、完成/字节/等待、路径与背景校验通过；四臂各 40/40、33,849,344 B | 仅覆盖 40 流合成正确性；后续 WS-19 使用另立的独立需求事前协议，不把此 40 流计入效果重复 |
 | WS-19 | 双侧小样与因果拆分 | COMPLETE FOR EXPLORATORY PAIRED PILOT; WS-20 GATE NO-GO | [事前协议 v1](../research/ws19-admission-pilot-prereg-v1.md)、[结果报告](../research/ws19-admission-pilot-report.md)、[48 格机器摘要](../research/evidence/ws19-pilot-analysis.json)、[Handoff 20](../handoffs/2026-09-28-20-ws19-admission-pilot.md)：三独立需求 seed × 两热点 × 无/有背景 × 四臂，诊断 pilot 通过；固定源码 `b52e66f…` 的 48/48 格 raw 与逐格完整性复核通过；ToR/192 联合臂的 MoE 轮均和背景 P99 三 seed 均高于 ECMP，30 项预设方向筛中 19 项失败 | 小样 n=3、共同 ns-3 seed=1、人工热点；完成率/计量通过不等于效果通过；WS-20 保持关闭，旧 WS-10/11/12 no-go 不变 |
 | WS-20 | 反例复核与重开门槛设计 | COMPLETE FOR LOCAL COUNTEREXAMPLE AUDIT AND CONDITIONAL DESIGN; CONFIRMATORY MATRIX NO-GO | [反例报告](../research/ws20-counterexample-gate-review.md)、[逐流/逐跳记录](../research/evidence/ws20-counterexample-audit.json)、[条件性设计 v0](../research/ws20-next-exploratory-design-v0.md)、[Handoff 21](../handoffs/2026-09-28-21-ws20-counterexample-review.md)：WS-19 ToR/192 十二格原始计时和背景逐跳日志静态复算；联合 24/24 轮慢于 ECMP、23/24 轮尾换流并有准入等待；背景 P99 三 seed 全受损，出口峰值同现但不足以因果归因；本阶段无新仿真 | 原确认性矩阵仍 no-go；先补非扰动时序、可实现准入信号和业务约束，再考虑新独立需求双侧探索协议；旧 WS-19 与 WS-10/11/12 no-go 不改 |
-| WS-21 | 下游反馈替代机制 | ACTIVE FOR PATH IDENTITY DIAGNOSTIC; FULL TECHNICAL PILOT NOT READY; EFFECT MATRIX NO-GO | [复审](../research/ws21-feedback-design-review.md)、[工程契约](../research/ws21-identity-diagnostic-contract.md)、[Handoff 24](../handoffs/2026-09-28-24-ws21-identity-diagnostic-build.md)：旧 64 µs 桶不足以覆盖最长 13.29 ms 背景尾流，反馈 key 静态上下界约 3.1–12.1 千。路径反推诊断已在 `382b6df…` 编译通过，尚无新仿真/raw 或逐 QP 运行核验；完整尾部观测与真实消息未实现 | 先做同 SHA 40 流开/关技术 pair 验证身份及非扰动，再补完整尾部端口事件与显式反馈成本；新独立需求事前协议通过前不启动效果小样；oracle 单列，旧 no-go 不改 |
+| WS-21 | 下游反馈替代机制 | PATH IDENTITY + 40-FLOW PORT-EVENT SUBGATES COMPLETE; FULL TECHNICAL PILOT NOT READY; EFFECT MATRIX NO-GO | [复审](../research/ws21-feedback-design-review.md)、[工程契约](../research/ws21-identity-diagnostic-contract.md)、[pair 收据](../research/evidence/ws21-identity-port-pair.json)、[Handoff 25](../handoffs/2026-09-29-25-ws21-identity-port-pair.md)：同 SHA `2a5e7e8…` 的开/关 40 流 raw 核验通过，FCT/WS18 哈希一致，40/40 QP 身份一致；1280 个出口记录 138,080 条事件、3.30 MB，溢出 0。修复 optimized 构建断言副作用并跳过拓扑不连通的 host/ToR 组合 | 仍需独立长尾输入同 SHA pair、QP 传输转折时序、运行 CPU/内存峰值及真实反馈消息成本/年龄/丢失/回退；候选 CE 样本此轮为 0，不能说明其可区分路径。上述工程子门槛通过前不考虑效果小样；旧 no-go 不改 |
 | WS-22 | 重排预算与粒度机制 | CONDITIONAL | 流/flowlet/小段与预算退化，分测短 MoE 和长背景的重排代价 | WS-17 上游路径机会已知，但 WS-21 尚无有效反馈/分流增量且 RNIC 乱序、NACK/超时成本未完整按 QP 测得；门槛未满足 |
 | WS-23 | 拥塞流隔离 | CONDITIONAL | 类别/长度隔离与等信息对照、保留容量和饥饿观察 | 须有 PFC=0 跨类阻塞因果证据，或修复旧 13/16 压力完成性并另立 PFC 契约；当前未满足 |
 | WS-24 | 多 rail 与放置 | CONDITIONAL | 新多 NIC/跨 rail 输入上的放置和路径联合评价 | 连通性、任务映射和独立需求须可核验；当前输入只打 rail 0，门槛未满足 |

@@ -12,7 +12,7 @@ from verify_ws21_port_events import verify as verify_port_events
 
 TRACE_SHA = "4e7d0e6a68e3230e8960a174e570a0a788c191fa0b44922408867b02c25782cc"
 TOPOLOGY_SHA = "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
-SOURCE_SHA = "f94a4ab20b905878d2b739bae346b52492ac5f94"
+SOURCE_SHA = "2a5e7e8722814befc259d1ddece814ed17cbfcbc"
 EXPECTED_FLOWS = 40
 EXPECTED_BYTES = 33849344
 
@@ -25,10 +25,10 @@ def digest(path):
     return value.hexdigest()
 
 
-def load_cell(root, experiment_id):
+def load_cell(root, experiment_id, source_sha):
     base = root / experiment_id
     meta = json.loads((base / "metadata.json").read_text(encoding="utf-8"))
-    if meta["status"] != "SUCCEEDED" or meta["git_commit"] != SOURCE_SHA:
+    if meta["status"] != "SUCCEEDED" or meta["git_commit"] != source_sha:
         raise ValueError(f"{experiment_id}: status or source SHA mismatch")
     if (meta["parameters"]["lb"] != "ws18" or meta["parameters"]["pfc"] != 0 or
             meta["parameters"]["irn"] != 1 or meta["parameters"]["ws18_admission"] != 0 or
@@ -39,9 +39,9 @@ def load_cell(root, experiment_id):
     return base, meta, raw, raw_id
 
 
-def verify_pair(root, off_id, on_id):
-    off_base, off, off_raw, off_raw_id = load_cell(root, off_id)
-    on_base, on, on_raw, on_raw_id = load_cell(root, on_id)
+def verify_pair(root, off_id, on_id, source_sha=SOURCE_SHA):
+    off_base, off, off_raw, off_raw_id = load_cell(root, off_id, source_sha)
+    on_base, on, on_raw, on_raw_id = load_cell(root, on_id, source_sha)
     for side, meta, base, flags in (
             ("off", off, off_base, (0, 0)), ("on", on, on_base, (1, 1))):
         params = meta["parameters"]
@@ -75,7 +75,7 @@ def verify_pair(root, off_id, on_id):
     overflow = re.search(r"WS21_PORT_EVENTS events=(\d+) bytes=(\d+) overflow=(\d+)", log)
     if not overflow or int(overflow.group(3)) != 0:
         raise ValueError("missing or nonzero WS-21 port-event overflow receipt")
-    return {"complete": True, "source_sha": SOURCE_SHA,
+    return {"complete": True, "source_sha": source_sha,
             "off_id": off_id, "on_id": on_id, "flow_count": len(rows),
             "bytes": bytes_total, "fct_sha256": fct_hashes[0],
             "ws18_sha256": ws18_hashes[0], "identity": identity,
@@ -87,8 +87,9 @@ def main():
     parser.add_argument("--results", type=Path, default=Path("results"))
     parser.add_argument("--off", required=True)
     parser.add_argument("--on", required=True)
+    parser.add_argument("--source-sha", default=SOURCE_SHA)
     args = parser.parse_args()
-    result = verify_pair(args.results, args.off, args.on)
+    result = verify_pair(args.results, args.off, args.on, args.source_sha)
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

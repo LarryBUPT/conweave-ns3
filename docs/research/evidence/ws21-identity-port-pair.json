@@ -1,0 +1,49 @@
+{
+  "complete": true,
+  "evidence_level": "technical_correctness_pair",
+  "source_sha": "2a5e7e8722814befc259d1ddece814ed17cbfcbc",
+  "off_id": "20260929-070000-ws21-proof-off",
+  "on_id": "20260929-073000-ws21-proof-on",
+  "parameters": {
+    "algorithm": "ws18",
+    "lb_mode": 20,
+    "pfc": 0,
+    "irn": 1,
+    "ns3_seed": 1,
+    "ws18_admission": 0,
+    "ws18_path": 0,
+    "trace_sha256": "4e7d0e6a68e3230e8960a174e570a0a788c191fa0b44922408867b02c25782cc",
+    "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+  },
+  "flows": 40,
+  "completed_flows": 40,
+  "bytes": 33849344,
+  "fct_sha256_both": "0f8fd036bc40602f50d1287369f642351fb4b64af60d052a28b1b744c6a7637e",
+  "ws18_sha256_both": "bc7004a69af353441a72e9808165a3794bc5d3659c73cec546dc0a4d1763d009",
+  "identity": {
+    "complete": true,
+    "qp_count": 40,
+    "cross_tor_qps": 40,
+    "source_qps": 40,
+    "destination_qps": 40,
+    "errors": [],
+    "upstream_ce_packets": 0
+  },
+  "port_events": {
+    "complete": true,
+    "port_count": 1280,
+    "events": 138080,
+    "raw_bytes_before_summary": 3303220,
+    "overflow": 0,
+    "peak_queue_bytes": 308456,
+    "errors": []
+  },
+  "runtime_resource_peak": "not recorded",
+  "limits": [
+    "40-flow technical input only; does not cover the WS-19 13.29 ms background tail input",
+    "no CE-marked upstream packets in this sample, so path discrimination is untested",
+    "no QP CNP/rate/NACK/SACK/retransmission/timeout transition timeline",
+    "no real feedback packet, delivery cost, age, loss, or fallback behavior",
+    "not an efficacy comparison; WS-21 effect matrix remains NO-GO"
+  ]
+}
