@@ -81,22 +81,25 @@ def verify(experiment_id, scheduled):
     for v in timing.values():
         fct = fct_rows[(v[1], v[2], v[3], v[4])]
         assert fct[4] == v[6] and fct[5] == v[8] and fct[5] + fct[6] == v[9]
-    log = (raw / "config.log").read_text(encoding="utf-8", errors="replace")
-    conservation = re.search(r"WS18_CONSERVATION input=(\d+) released=(\d+) finished=(\d+) input_bytes=(\d+) finished_bytes=(\d+)", log)
-    assert conservation and tuple(map(int, conservation.groups())) == (
-        n, n, n, scheduled["offered_bytes"], scheduled["offered_bytes"])
-    route = re.search(r"WS18_PATH flows=(\d+) alternate=(\d+) packets=(\d+) multipath_packets=(\d+)", log)
-    assert route
-    route_values = tuple(map(int, route.groups()))
-    if not path:
-        assert route_values == (0, 0, 0, 0)
-    else:
-        assert route_values[0] > 0 and route_values[3] > 0
-    if scheduled["background"]:
-        assert "WS13_INFLIGHT unpaired=0" in log
-        expected_destinations = {r[1] for r in inputs if r[4] == 1}
-        observed_destinations, observed_qps = set(), set()
-        for line in log.splitlines():
+    conservation = route = inflight = None
+    observed_destinations, observed_qps = set(), set()
+    expected_destinations = {r[1] for r in inputs if r[4] == 1}
+    expected_qps = {(r[0], r[1], timing[i][3], timing[i][4])
+                    for i, r in enumerate(inputs) if r[4] == 1}
+    with (raw / "config.log").open(encoding="utf-8", errors="replace") as log:
+        for line in log:
+            conservation_match = re.search(
+                r"WS18_CONSERVATION input=(\d+) released=(\d+) finished=(\d+) input_bytes=(\d+) finished_bytes=(\d+)",
+                line)
+            if conservation_match:
+                conservation = tuple(map(int, conservation_match.groups()))
+            route_match = re.search(
+                r"WS18_PATH flows=(\d+) alternate=(\d+) packets=(\d+) multipath_packets=(\d+)",
+                line)
+            if route_match:
+                route = tuple(map(int, route_match.groups()))
+            if line.startswith("WS13_INFLIGHT "):
+                inflight = line.strip()
             if line.startswith("WS13_HOP "):
                 fields = dict(x.split("=", 1) for x in line.split()[1:])
                 observed_destinations.add(int(fields["dst"]))
@@ -105,8 +108,15 @@ def verify(experiment_id, scheduled):
                 observed_qps.add((int(fields["src"]), int(fields["dst"]),
                                   int(fields["sport"]), int(fields["dport"])))
                 assert "irn_nack_size" in fields
-        expected_qps = {(r[0], r[1], timing[i][3], timing[i][4])
-                        for i, r in enumerate(inputs) if r[4] == 1}
+    assert conservation == (
+        n, n, n, scheduled["offered_bytes"], scheduled["offered_bytes"])
+    assert route
+    if not path:
+        assert route == (0, 0, 0, 0)
+    else:
+        assert route[0] > 0 and route[3] > 0
+    if scheduled["background"]:
+        assert inflight == "WS13_INFLIGHT unpaired=0"
         assert observed_destinations == expected_destinations
         assert observed_qps == expected_qps
     pfc_path = raw / (str(meta["raw_directory"]) + "_out_pfc.txt")
