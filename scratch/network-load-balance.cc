@@ -70,6 +70,8 @@ bool ws18_admission = false, ws18_path = false;
 uint32_t ws18_admission_rate_gbps = 400;
 std::string ws18_output_file;
 FILE *ws18_output = NULL;
+bool ws21_identity = false;
+std::string ws21_identity_output_file;
 
 // Conga params (based on paper recommendation)
 Time conga_flowletTimeout = MicroSeconds(100);  // 100us
@@ -819,6 +821,50 @@ void SetRoutingEntries() {
         }
     }
 }
+// Enumerate the existing shortest-path DAG only for offline path identity.
+// No switch uses this table when deciding an output port.
+void BuildWs21IngressMapping() {
+    uint64_t pathEnds = 0;
+    for (uint32_t hostId = 0; hostId < n.GetN(); ++hostId) {
+        Ptr<Node> host = n.Get(hostId);
+        if (host->GetNodeType() != 0) continue;
+        const uint32_t hostIp = serverAddress.at(hostId).Get();
+        const uint32_t destinationId = Settings::hostIp2SwitchId.at(hostIp);
+        Ptr<SwitchNode> destination = idxNodeToR.at(destinationId);
+        for (const auto &source : idxNodeToR) {
+            if (source.first == destinationId) continue;
+            Ptr<SwitchNode> sourceTor = source.second;
+            Ptr<Node> sourceNode = sourceTor;
+            const auto &firstHops = nextHop.at(sourceTor).at(host);
+            NS_ASSERT_MSG(!firstHops.empty(), "WS-21 source has no shortest path");
+            for (Ptr<Node> first : firstHops) {
+                const uint64_t before = pathEnds;
+                const uint32_t firstPort = nbr2if.at(sourceTor).at(first).idx;
+                std::vector<std::pair<Ptr<Node>, Ptr<Node>>> pending;
+                pending.push_back(std::make_pair(sourceNode, first));
+                while (!pending.empty()) {
+                    const auto step = pending.back();
+                    pending.pop_back();
+                    if (step.second == destination) {
+                        const uint32_t ingress = nbr2if.at(destination).at(step.first).idx;
+                        NS_ASSERT_MSG(destination->AddWs21IngressMapping(
+                                          source.first, ingress, firstPort),
+                                      "WS-21 ambiguous ingress to first-port mapping");
+                        ++pathEnds;
+                        continue;
+                    }
+                    for (Ptr<Node> next : nextHop.at(step.second).at(host))
+                        if (next->GetNodeType() == 1)
+                            pending.push_back(std::make_pair(step.second, next));
+                }
+                NS_ASSERT_MSG(pathEnds > before, "WS-21 first hop never reached destination ToR");
+            }
+        }
+    }
+    NS_ASSERT_MSG(pathEnds > 0, "WS-21 mapping has no cross-ToR paths");
+    std::cout << "WS21_MAPPING path_ends=" << pathEnds << std::endl;
+}
+
 /**
  * @brief take down the link between a and b, and redo the routing
  */
@@ -914,6 +960,10 @@ int main(int argc, char *argv[]) {
                 conf >> ws18_admission_rate_gbps;
             } else if (key.compare("WS18_OUTPUT_FILE") == 0) {
                 conf >> ws18_output_file;
+            } else if (key.compare("WS21_IDENTITY") == 0) {
+                uint32_t value; conf >> value; ws21_identity = value != 0;
+            } else if (key.compare("WS21_IDENTITY_OUTPUT_FILE") == 0) {
+                conf >> ws21_identity_output_file;
             } else if (key.compare("GUARDHASH_LAMBDA") == 0) {
                 conf >> guardhash_lambda;
             } else if (key.compare("GUARDHASH_TAU_BYTES") == 0) {
@@ -1333,6 +1383,9 @@ int main(int argc, char *argv[]) {
     NS_ASSERT_MSG(lb_mode != 20 || (ws18_admission_rate_gbps > 0 && !ws18_output_file.empty()),
                   "WS-18 requires positive admission rate and an output file");
     SwitchNode::ConfigureWs18Path(lb_mode == 20 && ws18_path);
+    NS_ASSERT_MSG(!ws21_identity || (lb_mode == 20 && !ws21_identity_output_file.empty()),
+                  "WS-21 identity diagnostic requires mode 20 and an output file");
+    SwitchNode::ConfigureWs21Identity(ws21_identity);
     Settings::packet_payload = packet_payload_size;
     // Settings::MTU = packet_payload_size + 48;  // for simplicity
     /*------------------------------------*/
@@ -1678,11 +1731,17 @@ int main(int argc, char *argv[]) {
             sw->m_isToR = true;
             uint32_t hostIP = serverAddress[pair.first].Get();
             sw->m_isToR_hostIP.insert(hostIP);
+            if (ws21_identity) {
+                Settings::hostIp2SwitchId[hostIP] = sw->GetId();
+                SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
+            }
             if (idxNodeToR.find(sw->GetId()) == idxNodeToR.end()) {
                 idxNodeToR[sw->GetId()] = sw;
             };
         }
     }
+
+    if (ws21_identity) BuildWs21IngressMapping();
 
     /* config load balancer's switches using ToR-to-ToR routing */
     if (lb_mode == 3 || lb_mode == 6 || lb_mode == 9) {  // Conga, Letflow, Conweave
@@ -1992,6 +2051,15 @@ int main(int argc, char *argv[]) {
                   << " input_bytes=" << input_bytes << " finished_bytes=" << finished_bytes
                   << std::endl;
         fclose(ws18_output);
+    }
+    if (ws21_identity) {
+        FILE *identity = fopen(ws21_identity_output_file.c_str(), "w");
+        NS_ASSERT_MSG(identity, "WS-21 cannot open identity output");
+        fprintf(identity, "side tor src dst sport dport first_port packets upstream_ce first_ns last_ns inconsistent unmapped\n");
+        for (uint32_t i = 0; i < node_num; ++i)
+            if (n.Get(i)->GetNodeType() == 1)
+                DynamicCast<SwitchNode>(n.Get(i))->WriteWs21Identity(identity);
+        fclose(identity);
     }
     SwitchNode::PrintWorkloadTagCounts();
 

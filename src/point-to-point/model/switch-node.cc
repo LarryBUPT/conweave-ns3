@@ -39,6 +39,8 @@ static uint64_t guard_scored = 0, guard_diverted = 0;
 static uint64_t guard_activations = 0, guard_exits = 0;
 static uint64_t guard_queue_violations = 0;
 static bool ws18_path_enabled = false;
+static bool ws21_identity_enabled = false;
+static std::map<uint32_t, uint32_t> ws21_host_tor;
 static uint64_t ws18_path_flows = 0, ws18_path_alternate = 0;
 static uint64_t ws18_path_packets = 0, ws18_path_multipath = 0;
 struct GuardQueueStat {
@@ -103,6 +105,70 @@ void SwitchNode::ConfigureGuardHash(uint32_t lambda, uint32_t tau,
 }
 
 void SwitchNode::ConfigureWs18Path(bool enabled) { ws18_path_enabled = enabled; }
+
+void SwitchNode::ConfigureWs21Identity(bool enabled) { ws21_identity_enabled = enabled; }
+
+void SwitchNode::SetWs21HostTor(uint32_t hostIp, uint32_t torId) {
+    auto inserted = ws21_host_tor.insert(std::make_pair(hostIp, torId));
+    NS_ASSERT_MSG(inserted.second || inserted.first->second == torId,
+                  "WS-21 host cannot have two ToRs");
+}
+
+bool SwitchNode::AddWs21IngressMapping(uint32_t sourceTor, uint32_t ingressPort,
+                                       uint32_t firstPort) {
+    auto inserted = m_ws21IngressToFirst.insert(
+        std::make_pair(std::make_pair(sourceTor, ingressPort), firstPort));
+    return inserted.second || inserted.first->second == firstPort;
+}
+
+void SwitchNode::ObserveWs21Source(const CustomHeader &ch, uint32_t port) {
+    if (!ws21_identity_enabled || !m_isToR || !m_isToR_hostIP.count(ch.sip)) return;
+    auto destination = ws21_host_tor.find(ch.dip);
+    if (destination == ws21_host_tor.end() || destination->second == m_id) return;
+    const auto key = std::make_tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    Ws21PathObservation &item = m_ws21Source[key];
+    if (item.packets && item.port != port) ++item.inconsistent;
+    if (!item.packets) { item.port = port; item.firstNs = Simulator::Now().GetNanoSeconds(); }
+    ++item.packets;
+    item.lastNs = Simulator::Now().GetNanoSeconds();
+}
+
+void SwitchNode::ObserveWs21Destination(Ptr<const Packet> p, const CustomHeader &ch) {
+    if (!ws21_identity_enabled || !m_isToR || !m_isToR_hostIP.count(ch.dip) ||
+        ch.l3Prot != 0x11) return;
+    auto source = ws21_host_tor.find(ch.sip);
+    if (source == ws21_host_tor.end() || source->second == m_id) return;
+    FlowIdTag tag;
+    NS_ASSERT_MSG(p->PeekPacketTag(tag), "WS-21 destination has no ingress tag");
+    const uint32_t ingress = tag.GetFlowId();
+    auto route = m_ws21IngressToFirst.find(std::make_pair(source->second, ingress));
+    const auto key = std::make_tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    Ws21PathObservation &item = m_ws21Destination[key];
+    if (route == m_ws21IngressToFirst.end()) ++item.unmapped;
+    else if (item.packets && item.port != route->second) ++item.inconsistent;
+    if (!item.packets) {
+        item.port = route == m_ws21IngressToFirst.end() ? 0 : route->second;
+        item.firstNs = Simulator::Now().GetNanoSeconds();
+    }
+    ++item.packets;
+    item.cePackets += ch.GetIpv4EcnBits() == 3;
+    item.lastNs = Simulator::Now().GetNanoSeconds();
+}
+
+void SwitchNode::WriteWs21Identity(FILE *out) const {
+    for (const auto &group : {&m_ws21Source, &m_ws21Destination}) {
+        const char *side = group == &m_ws21Source ? "source" : "destination";
+        for (const auto &entry : *group) {
+            const auto &key = entry.first;
+            const auto &s = entry.second;
+            fprintf(out, "%s %u %u %u %u %u %u %lu %lu %lu %lu %lu %lu\n",
+                    side, m_id, Settings::hostIp2IdMap.at(std::get<0>(key)),
+                    Settings::hostIp2IdMap.at(std::get<1>(key)),
+                    std::get<2>(key), std::get<3>(key), s.port, s.packets,
+                    s.cePackets, s.firstNs, s.lastNs, s.inconsistent, s.unmapped);
+        }
+    }
+}
 
 void SwitchNode::PrintWorkloadTagCounts() {
     if (Settings::lb_mode == 20)
@@ -484,6 +550,7 @@ void SwitchNode::CheckAndSendResume(uint32_t inDev, uint32_t qIndex) {
 // This function can only be called in switch mode
 bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet,
                                          CustomHeader &ch) {
+    ObserveWs21Destination(packet, ch);
     SendToDev(packet, ch);
     return true;
 }
@@ -581,7 +648,12 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         case 19:
             return DoLbPacketStrategy(p, ch, nexthops);
         case 20:
-            return DoLbWs18(p, ch, nexthops);
+        {
+            const uint32_t port = DoLbWs18(p, ch, nexthops);
+            if (ws21_identity_enabled && ch.l3Prot == 0x11)
+                ObserveWs21Source(ch, port);
+            return port;
+        }
         case 13:
         case 14:
         case 15:

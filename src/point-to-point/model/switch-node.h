@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <tuple>
+#include <cstdio>
 
 #include "qbb-net-device.h"
 #include "switch-mmu.h"
@@ -52,6 +53,16 @@ class SwitchNode : public Node {
                                 const std::vector<int> &nexthops);
     std::map<uint32_t, uint32_t> m_packetRoundRobinNext;  // destination IP -> next index
     std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t> m_ws18FlowPort;
+    struct Ws21PathObservation {
+        uint32_t port = 0;
+        uint64_t packets = 0, cePackets = 0, firstNs = 0, lastNs = 0;
+        uint64_t inconsistent = 0, unmapped = 0;
+    };
+    std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, Ws21PathObservation>
+        m_ws21Source, m_ws21Destination;
+    std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21IngressToFirst;
+    void ObserveWs21Source(const CustomHeader &ch, uint32_t port);
+    void ObserveWs21Destination(Ptr<const Packet> p, const CustomHeader &ch);
     uint32_t DoLbWs18(Ptr<const Packet> p, const CustomHeader &ch,
                       const std::vector<int> &nexthops);
     uint32_t DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
@@ -86,6 +97,11 @@ class SwitchNode : public Node {
     static void ConfigureGuardHash(uint32_t lambda, uint32_t tau,
                                    uint32_t gateOnBytes, uint32_t gateOffBytes);
     static void ConfigureWs18Path(bool enabled);
+    static void ConfigureWs21Identity(bool enabled);
+    static void SetWs21HostTor(uint32_t hostIp, uint32_t torId);
+    bool AddWs21IngressMapping(uint32_t sourceTor, uint32_t ingressPort,
+                               uint32_t firstPort);
+    void WriteWs21Identity(FILE *out) const;
     void SwitchNotifyEnqueue(uint32_t ifIndex, Ptr<const Packet> p);
     void SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p);
     void SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,

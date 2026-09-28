@@ -370,6 +370,7 @@ def execute(experiment_id):
         command.extend(['--ws18-admission', str(params['ws18_admission']),
                         '--ws18-path', str(params['ws18_path']),
                         '--ws18-admission-rate-gbps', str(params['ws18_admission_rate_gbps'])])
+        command.extend(['--ws21-identity', str(params.get('ws21_identity', 0))])
     if params.get('factorial_pilot'):
         command.append('--factorial-pilot')
     if params.get('factorial_drop_diag'):
@@ -549,6 +550,7 @@ def main():
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
@@ -573,6 +575,8 @@ def main():
             raise RuntimeError('Factorial drop diagnostics require factorial pilot mode')
         if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
             raise RuntimeError('WS-18 switches require ws18 mode')
+        if args.ws21_identity and args.lb != 'ws18':
+            raise RuntimeError('WS-21 identity diagnostic requires ws18 mode')
         if args.ws18_admission_rate_gbps <= 0:
             raise RuntimeError('WS-18 admission rate must be positive')
         if args.netload < 1 or args.netload > 50 or not 0.005 <= float(args.simul_time) <= 0.1:
@@ -591,6 +595,7 @@ def main():
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
                         'ws18_admission': args.ws18_admission,
                         'ws18_path': args.ws18_path,
+                        'ws21_identity': args.ws21_identity,
                         'ws18_admission_rate_gbps': args.ws18_admission_rate_gbps,
                         'factorial_pilot': args.factorial_pilot,
                         'factorial_drop_diag': args.factorial_drop_diag},

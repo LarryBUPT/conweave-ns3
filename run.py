@@ -26,6 +26,7 @@ FLOW_INPUT_FILE mix/output/{id}/{id}_in.txt
 CNP_OUTPUT_FILE mix/output/{id}/{id}_out_cnp.txt
 FCT_OUTPUT_FILE mix/output/{id}/{id}_out_fct.txt
 WS18_OUTPUT_FILE mix/output/{id}/{id}_out_ws18.txt
+WS21_IDENTITY_OUTPUT_FILE mix/output/{id}/{id}_out_ws21_identity.txt
 PFC_OUTPUT_FILE mix/output/{id}/{id}_out_pfc.txt
 QLEN_MON_FILE mix/output/{id}/{id}_out_qlen.txt
 VOQ_MON_FILE mix/output/{id}/{id}_out_voq.txt
@@ -47,6 +48,7 @@ LB_MODE {lb_mode}
 WS18_ADMISSION {ws18_admission}
 WS18_PATH {ws18_path}
 WS18_ADMISSION_RATE_GBPS {ws18_admission_rate_gbps}
+WS21_IDENTITY {ws21_identity}
 GUARDHASH_LAMBDA 1
 GUARDHASH_TAU_BYTES 0
 HARM_GATE_ON_BYTES 8192
@@ -175,6 +177,7 @@ def main():
     parser.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
+    parser.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
     parser.add_argument('--enforce_win', dest='enforce_win', action='store',
                         type=int, default=0, help="enforce to use window scheme (default: 0)")
     parser.add_argument('--sw_monitoring_interval', dest='sw_monitoring_interval', action='store',
@@ -241,6 +244,8 @@ def main():
         raise Exception("CONFIG ERROR : WS-18 switches require --lb ws18")
     if args.lb == 'ws18' and args.ws18_admission_rate_gbps <= 0:
         raise Exception("CONFIG ERROR : WS-18 admission rate must be positive")
+    if args.ws21_identity and args.lb != 'ws18':
+        raise Exception("CONFIG ERROR : WS-21 identity diagnostic requires --lb ws18")
     if float(args.simul_time) < 0.005:
         raise Exception("CONFIG ERROR : Runtime must be larger than 5ms (= warmup interval).")
 
@@ -412,6 +417,7 @@ def main():
                                         load=netload, buffer_size=buffer, lb_mode=lb_mode, cwh_tx_expiry_time=cwh_tx_expiry_time,
                                         ws18_admission=args.ws18_admission, ws18_path=args.ws18_path,
                                         ws18_admission_rate_gbps=args.ws18_admission_rate_gbps,
+                                        ws21_identity=args.ws21_identity,
                                         cwh_extra_reply_deadline=cwh_extra_reply_deadline, cwh_default_voq_waiting_time=cwh_default_voq_waiting_time,
                                         cwh_path_pause_time=cwh_path_pause_time, cwh_extra_voq_flush_time=cwh_extra_voq_flush_time,
                                         enabled_pfc=enabled_pfc, enabled_irn=enabled_irn,
