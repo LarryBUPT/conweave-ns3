@@ -192,7 +192,8 @@ void SwitchNode::ObserveWs21Destination(Ptr<const Packet> p, const CustomHeader 
     auto source = ws21_host_tor.find(ch.sip);
     if (source == ws21_host_tor.end() || source->second == m_id) return;
     FlowIdTag tag;
-    NS_ASSERT_MSG(p->PeekPacketTag(tag), "WS-21 destination has no ingress tag");
+    const bool hasIngressTag = p->PeekPacketTag(tag);
+    if (!hasIngressTag) NS_FATAL_ERROR("WS-21 destination has no ingress tag");
     const uint32_t ingress = tag.GetFlowId();
     auto route = m_ws21IngressToFirst.find(std::make_pair(source->second, ingress));
     const auto key = std::make_tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
