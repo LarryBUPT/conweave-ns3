@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-09-28 WS-21 补充[设计复审](../research/ws21-feedback-design-review.md)、[六格静态预算](../research/evidence/ws21-static-budget.json)和[Handoff 23](../handoffs/2026-09-28-23-ws21-feedback-design-review.md)：原 64×1 µs 时间桶不足以覆盖 WS-19 旧格最长 13.29 ms 背景尾流；六格每流分别哈希两个候选，反馈 key 的静态下界约 3.1 千、上界约 12.1 千，全窗 10 µs 周期预算上界约 16.13 百万逻辑报告。拓扑最短路显示源首跳可由目的入端口静态反推，但当前源码未实现或逐 QP 校验。**首版技术 pilot 尚未就绪，效果矩阵继续 NO-GO。**仅继续本地路径身份、观测时长与真实反馈消息成本设计；本轮无远程实验或新效果数据。
+
 2026-09-28 WS-21 **完成下游反馈本地可行性审查；效果矩阵 NO-GO**。[设计记录](../research/ws21-downstream-feedback-feasibility.md)及[Handoff 22](../handoffs/2026-09-28-22-ws21-downstream-feedback.md)从 `experiment/ws20-counterexample-review@cdb2d1b` 独立分支，核对 WS-19 固定 `b52e66f…` raw、WS-13/14 诊断和当前源码。源 ToR 可即时读取本地出口设备队列；目的主机唯一出口状态只在目的 ToR，本机制尚无可计延迟/开销的可靠下游反馈路径。提出每 QP 非扰动时序规格和本地/延迟反馈/oracle/ECMP 对照，但新观测与反馈都未实现或运行。下一步仅能先审查技术 pilot 设计；WS-22/23/24 保持各自条件，WS-25 只整合实际证据。WS-19/20 与旧正式 no-go 不变。
 
 2026-09-28 WS-20 **完成本地反例审查，原确认性矩阵仍 NO-GO**。[反例报告](../research/ws20-counterexample-gate-review.md)、[逐流/逐跳机器记录](../research/evidence/ws20-counterexample-audit.json)、[条件性设计草案](../research/ws20-next-exploratory-design-v0.md)和[Handoff 21](../handoffs/2026-09-28-21-ws20-counterexample-review.md)从 WS-19 固定 `b52e66f…` 的 ToR/192 十二格原始计时与背景逐跳日志重新对齐。联合臂 24/24 轮慢于 ECMP，23/24 轮尾换流且尾流有准入等待；三 seed 背景 P99 全高于 ECMP，损害流与目的出口排队峰值同现但有反例，无法断言单一因果瓶颈。只做本地静态分析，未运行新仿真；新观测与可实现准入信号通过前不冻结探索效果小样。WS-19 的 19/30 方向筛失败、旧 WS-10/11/12 no-go 和缺失业务 SLO 均不变。

@@ -6,6 +6,8 @@
 
 WS-21 阶段更新：已从 `cdb2d1b` 完成[下游反馈本地可行性审查](../research/ws21-downstream-feedback-feasibility.md)和[Handoff 22](../handoffs/2026-09-28-22-ws21-downstream-feedback.md)；仅技术设计闭环，效果矩阵 no-go。下表 WS-21 的对照尚未运行。WS-22、WS-23、WS-24 保持各自条件，WS-25 只整合真正执行的证据；编号不构成自动开跑顺序。
 
+WS-21 设计复审更新：[静态预算和审查](../research/ws21-feedback-design-review.md)发现首版 64 µs 时间桶覆盖不足；拓扑最短路虽能静态反推候选端口，源码尚未实现/逐 QP 校验，首版技术 pilot 暂不就绪。先修订本地观测/反馈工程契约，再按新固定 SHA 的同输入开/关技术门槛判断是否开跑；不得把旧 WS-19 raw 重新命名为 WS-21 效果。
+
 ## 主线及分支
 
 | 任务 | 工作、分支与交付 | 进入下一步的门槛 |
