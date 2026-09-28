@@ -33,6 +33,7 @@
 #include <cstdlib>
 #include <limits>
 #include <map>
+#include <set>
 #include <sstream>
 #include <unordered_map>
 
@@ -863,36 +864,50 @@ void BuildWs21IngressMapping() {
                               "WS-21 source first-hop port missing: host=" << hostId
                               << " source=" << source.first);
                 const uint32_t firstPort = sourcePorts->second.find(first)->second.idx;
-                std::vector<std::pair<Ptr<Node>, Ptr<Node>>> pending;
-                pending.push_back(std::make_pair(sourceNode, first));
+                std::vector<Ptr<Node>> pending(1, first);
+                std::set<Ptr<Node>> visited;
+                if (first == destination) {
+                    auto destinationPorts = nbr2if.find(destination);
+                    NS_ASSERT_MSG(destinationPorts != nbr2if.end() &&
+                                      destinationPorts->second.count(sourceNode),
+                                  "WS-21 direct destination ingress missing: host=" << hostId);
+                    const uint32_t ingress =
+                        destinationPorts->second.find(sourceNode)->second.idx;
+                    NS_ASSERT_MSG(destination->AddWs21IngressMapping(source.first, ingress,
+                                                                     firstPort),
+                                  "WS-21 ambiguous ingress to first-port mapping");
+                    ++pathEnds;
+                }
                 while (!pending.empty()) {
-                    const auto step = pending.back();
+                    Ptr<Node> current = pending.back();
                     pending.pop_back();
-                    if (step.second == destination) {
-                        auto destinationPorts = nbr2if.find(destination);
-                        NS_ASSERT_MSG(destinationPorts != nbr2if.end() &&
-                                          destinationPorts->second.count(step.first),
-                                      "WS-21 destination ingress port missing: host=" << hostId
-                                      << " destination=" << destinationId);
-                        const uint32_t ingress =
-                            destinationPorts->second.find(step.first)->second.idx;
-                        NS_ASSERT_MSG(destination->AddWs21IngressMapping(
-                                          source.first, ingress, firstPort),
-                                      "WS-21 ambiguous ingress to first-port mapping");
-                        ++pathEnds;
-                        continue;
-                    }
-                    auto currentRoutes = nextHop.find(step.second);
+                    if (!visited.insert(current).second) continue;
+                    if (current == destination) continue;
+                    auto currentRoutes = nextHop.find(current);
                     NS_ASSERT_MSG(currentRoutes != nextHop.end(),
                                   "WS-21 path switch has no route table: host=" << hostId
-                                  << " switch=" << step.second->GetId());
+                                  << " switch=" << current->GetId());
                     auto currentRoute = currentRoutes->second.find(host);
                     NS_ASSERT_MSG(currentRoute != currentRoutes->second.end(),
                                   "WS-21 path switch has no route to host=" << hostId
-                                  << " switch=" << step.second->GetId());
-                    for (Ptr<Node> next : currentRoute->second)
-                        if (next->GetNodeType() == 1)
-                            pending.push_back(std::make_pair(step.second, next));
+                                  << " switch=" << current->GetId());
+                    for (Ptr<Node> next : currentRoute->second) {
+                        if (next == destination) {
+                            auto destinationPorts = nbr2if.find(destination);
+                            NS_ASSERT_MSG(destinationPorts != nbr2if.end() &&
+                                              destinationPorts->second.count(current),
+                                          "WS-21 destination ingress port missing: host=" << hostId
+                                          << " destination=" << destinationId);
+                            const uint32_t ingress =
+                                destinationPorts->second.find(current)->second.idx;
+                            NS_ASSERT_MSG(destination->AddWs21IngressMapping(
+                                              source.first, ingress, firstPort),
+                                          "WS-21 ambiguous ingress to first-port mapping");
+                            ++pathEnds;
+                        } else if (next->GetNodeType() == 1) {
+                            pending.push_back(next);
+                        }
+                    }
                 }
                 NS_ASSERT_MSG(pathEnds > before, "WS-21 first hop never reached destination ToR");
             }
