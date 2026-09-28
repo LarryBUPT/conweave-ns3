@@ -26,3 +26,5 @@
 2026-09-28 WS-17 已在独立分支完成[本地审计](../research/ws17-bottleneck-demand-audit.md)及[Handoff 18](../handoffs/2026-09-28-18-ws17-bottleneck-demand.md)：唯一目的主机出口不可由上游换路扩容，跨 ToR 上游可分流，发送应用可控放行但旧 FCT 漏计准入前等待。三个独立 seed 的 12 对静态输入/sidecar 已按[manifest](../research/evidence/ws17-demand-manifest.json)核验；它们尚未仿真。下一步仅开放 WS-18 三时刻计量与四臂最小正确性；WS-19/20 双侧效果须再次过门槛。WS-17 本轮没有运行新远程格或改变旧 no-go。
 
 2026-09-28 WS-17 集成核验：`feature/ws17-bottleneck-demand@47944fc117aaa9f202d4cd9b26cccb68feeba0de` 与个人 `origin` 同 SHA；独立输入重生与 WS-13/14 原始复核再次通过。基线第 5 节同步 WS-16/17，并补 Handoff 的真实来源任务 ID。用户已要求启动 WS-18，其工作范围只含最小发送准入/路径四臂及三时刻计量的正确性；WS-19/20 效果门槛不因启动 WS-18 自动打开。
+
+2026-09-28 WS-18 进展：首轮四臂虽全部完成 40 条流，但末四条输入需求在三时刻 raw 中各早 1 ns，故正确性未通过。修复版仿真源码 `729d2682077fedc232c10b6eabccddc5168f8191` 已编译为旧 `fecmp` 与四臂共五个隔离 `BUILT` ID；仍须按[Handoff 19](../handoffs/2026-09-28-19-ws18-minimal-prototype.md)与[正确性契约](../research/ws18-correctness-contract.md)完成实际模型切换、重跑、回传和逐流验收。WS-19/20 仍关闭，不得把技术格作效果比较。
