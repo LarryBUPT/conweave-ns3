@@ -833,31 +833,64 @@ void BuildWs21IngressMapping() {
         Ptr<Node> host = n.Get(hostId);
         if (host->GetNodeType() != 0) continue;
         const uint32_t hostIp = serverAddress.at(hostId).Get();
-        const uint32_t destinationId = Settings::hostIp2SwitchId.at(hostIp);
-        Ptr<SwitchNode> destination = idxNodeToR.at(destinationId);
+        auto dstEntry = Settings::hostIp2SwitchId.find(hostIp);
+        NS_ASSERT_MSG(dstEntry != Settings::hostIp2SwitchId.end(),
+                      "WS-21 host has no ToR mapping: host=" << hostId);
+        const uint32_t destinationId = dstEntry->second;
+        auto destinationEntry = idxNodeToR.find(destinationId);
+        NS_ASSERT_MSG(destinationEntry != idxNodeToR.end(),
+                      "WS-21 destination is not a ToR: host=" << hostId
+                      << " tor=" << destinationId);
+        Ptr<SwitchNode> destination = destinationEntry->second;
         for (const auto &source : idxNodeToR) {
             if (source.first == destinationId) continue;
             Ptr<SwitchNode> sourceTor = source.second;
             Ptr<Node> sourceNode = sourceTor;
-            const auto &firstHops = nextHop.at(sourceTor).at(host);
+            auto sourceRoutes = nextHop.find(sourceNode);
+            NS_ASSERT_MSG(sourceRoutes != nextHop.end(),
+                          "WS-21 source ToR has no route table: host=" << hostId
+                          << " source=" << source.first);
+            auto destinationRoute = sourceRoutes->second.find(host);
+            NS_ASSERT_MSG(destinationRoute != sourceRoutes->second.end(),
+                          "WS-21 source ToR has no route to host=" << hostId
+                          << " source=" << source.first);
+            const auto &firstHops = destinationRoute->second;
             NS_ASSERT_MSG(!firstHops.empty(), "WS-21 source has no shortest path");
             for (Ptr<Node> first : firstHops) {
                 const uint64_t before = pathEnds;
-                const uint32_t firstPort = nbr2if.at(sourceTor).at(first).idx;
+                auto sourcePorts = nbr2if.find(sourceNode);
+                NS_ASSERT_MSG(sourcePorts != nbr2if.end() && sourcePorts->second.count(first),
+                              "WS-21 source first-hop port missing: host=" << hostId
+                              << " source=" << source.first);
+                const uint32_t firstPort = sourcePorts->second.find(first)->second.idx;
                 std::vector<std::pair<Ptr<Node>, Ptr<Node>>> pending;
                 pending.push_back(std::make_pair(sourceNode, first));
                 while (!pending.empty()) {
                     const auto step = pending.back();
                     pending.pop_back();
                     if (step.second == destination) {
-                        const uint32_t ingress = nbr2if.at(destination).at(step.first).idx;
+                        auto destinationPorts = nbr2if.find(destination);
+                        NS_ASSERT_MSG(destinationPorts != nbr2if.end() &&
+                                          destinationPorts->second.count(step.first),
+                                      "WS-21 destination ingress port missing: host=" << hostId
+                                      << " destination=" << destinationId);
+                        const uint32_t ingress =
+                            destinationPorts->second.find(step.first)->second.idx;
                         NS_ASSERT_MSG(destination->AddWs21IngressMapping(
                                           source.first, ingress, firstPort),
                                       "WS-21 ambiguous ingress to first-port mapping");
                         ++pathEnds;
                         continue;
                     }
-                    for (Ptr<Node> next : nextHop.at(step.second).at(host))
+                    auto currentRoutes = nextHop.find(step.second);
+                    NS_ASSERT_MSG(currentRoutes != nextHop.end(),
+                                  "WS-21 path switch has no route table: host=" << hostId
+                                  << " switch=" << step.second->GetId());
+                    auto currentRoute = currentRoutes->second.find(host);
+                    NS_ASSERT_MSG(currentRoute != currentRoutes->second.end(),
+                                  "WS-21 path switch has no route to host=" << hostId
+                                  << " switch=" << step.second->GetId());
+                    for (Ptr<Node> next : currentRoute->second)
                         if (next->GetNodeType() == 1)
                             pending.push_back(std::make_pair(step.second, next));
                 }
