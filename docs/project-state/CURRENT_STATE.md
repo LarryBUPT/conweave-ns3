@@ -4,7 +4,7 @@
 
 ## 当前阶段与目标
 
-阶段：**WS-10、WS-11 和 WS-12 多策略正式对照各自预注册复合判据 no-go；WS-13 诊断 pilot 完成；WS-14 GuardHash 单机制小样按事前规则停止；WS-15 门槛复核后确认性矩阵 no-go；WS-16 证据索引完成、论文范围待导师确认；WS-17 本地审计完成；WS-18 最小正确性工程进行中、尚未通过。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 的 120 格完成，四个新增策略全部复合 no-go。WS-13 目标 QP 未观察到 SACK，最慢背景流目的 ToR 出口出现微秒级排队并伴随 CNP，属于单 seed 相关性诊断。WS-14 七格 0/192 极端小样全完成；GuardHash 背景 P99 优于普通双候选，但 MoE 批次比普通双候选慢 0.552 µs、比 ECMP 慢 0.731 µs，且背景尾流转移，因此按停止规则不运行中档。WS-15 原始复核与候选筛选未找到合格新单机制，未运行新小样或正式格；这是门槛决定，不是性能零效应。暂无可核验业务 SLO，不新增通用安全线。详见 [WS-15 门槛复核](../research/ws15-independent-demand-gate-review.md)、[三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-13 合约与结果](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[WS-14 pilot 报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)。WS-09 GuardHash/HarmGate v0 仍是工程原型。
+阶段：**WS-10、WS-11 和 WS-12 多策略正式对照各自预注册复合判据 no-go；WS-13 诊断 pilot 完成；WS-14 GuardHash 单机制小样按事前规则停止；WS-15 门槛复核后确认性矩阵 no-go；WS-16 证据索引完成、论文范围待导师确认；WS-17 本地审计完成；WS-18 最小工程正确性通过，效果未验证。**WS-10 固定总字节主 4 档仅 1/5 正向；WS-11 全量追加背景主 192 档虽 5/5 正交互，但原始背景 P99 +6.6527% 越过 5% 线。WS-12 的 120 格完成，四个新增策略全部复合 no-go。WS-13 目标 QP 未观察到 SACK，最慢背景流目的 ToR 出口出现微秒级排队并伴随 CNP，属于单 seed 相关性诊断。WS-14 七格 0/192 极端小样全完成；GuardHash 背景 P99 优于普通双候选，但 MoE 批次比普通双候选慢 0.552 µs、比 ECMP 慢 0.731 µs，且背景尾流转移，因此按停止规则不运行中档。WS-15 原始复核与候选筛选未找到合格新单机制，未运行新小样或正式格；这是门槛决定，不是性能零效应。暂无可核验业务 SLO，不新增通用安全线。详见 [WS-15 门槛复核](../research/ws15-independent-demand-gate-review.md)、[三场解释性证据](../research/ws12-ws10-ws11-negative-evidence.md)、[WS-13 合约与结果](../research/ws13-tail-diagnosis-and-experiment-contract.md)、[WS-14 pilot 报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)。WS-09 GuardHash/HarmGate v0 仍是工程原型。
 
 2026-09-28 WS-16 证据收束：在 `feature/ws16-paper-evidence` 从 WS-15 集成提交 `53b56b3d3f271356c98afdcad8779183a3fff528` 开工；[总报告](../research/ws16-paper-evidence-and-reproduction.md)、[216 ID 逐格索引](../research/evidence/ws16-experiment-index.csv)和[Handoff 17](../handoffs/2026-09-28-17-ws16-paper-evidence.md)已形成。索引直接核对元数据、trace/拓扑/FCT 原始哈希；本地正式 WS-10/11/12 与 WS-14、WS-13 校准核验通过。没有新仿真或新效果数据。开题报告的端侧分类/降级、INT/Δq、接收协同重排和硬件验证尚未完成；论文题目/创新点及业务 SLO 待导师确认。WS-13 压力 11 格实际 13/16，WS-15 确认性矩阵未运行，均不可写为正式效果。
 
@@ -16,7 +16,7 @@
 
 2026-09-28 集成交接核验：WS-17 对话 `01a0e44f-d286-72f3-95ae-b4f93dfe38d0` 已完成且无未结用户请求；`feature/ws17-bottleneck-demand@47944fc117aaa9f202d4cd9b26cccb68feeba0de` 在集成前与个人 `origin` 同 SHA、工作树干净。`make_ws17_demand.py --verify` 再次核验 3 个 seed、12 对静态资产，manifest SHA 为 `0513d4b0f2cadea768220739fe8eadcd71e636f8ca763b9c6cf84fe233fead5a`；WS-13 反馈/校准及 WS-14 七格原始复核再次通过。此次基线与状态集成提交会移动分支 HEAD；其 SHA 不能误作仿真源码 SHA。WS-18 仅开放最小工程，尚未有新机制性能数据。
 
-2026-09-28 WS-18 进行中：四臂首轮 `d5555637…` 各完成 40/40、33,849,344 B，但逐流原始需求核对发现每格输入 ID 36–39 各早 1 ns，故完整正确性失败；见[契约](../research/ws18-correctness-contract.md)及[Handoff 19](../handoffs/2026-09-28-19-ws18-minimal-prototype.md)。修复仿真源码 `729d2682077fedc232c10b6eabccddc5168f8191` 已推送，旧 `fecmp` 加四臂共五个独立实验 ID 均只到 `BUILT`，**尚未运行修复版仿真**。需要实际切换 Luna High 后启动、终态 raw 回传并切回 Sol High 逐流核验。WS-19/20 效果矩阵保持关闭，不能由首轮完成率推导机制收益。
+2026-09-28 WS-18 最小工程正确性闭环：首轮四臂 `d5555637…` 虽各完成 40/40、33,849,344 B，但输入 ID 36–39 各早 1 ns，作为失败诊断保留。修复仿真源码 `729d2682077fedc232c10b6eabccddc5168f8191` 在同一 trace/拓扑下顺序运行旧 `fecmp` 与四臂五格，均 `SUCCEEDED` 且 raw 回传；旧 FCT 与参考整文件哈希相同，四臂逐流需求、身份、三时刻、QP 起点、完成/字节/等待、路径与背景全部通过[完整校验](../research/evidence/ws18-correctness-summary.json)。每臂 40/40、33,849,344 B；准入/联合各 32 条正等待，路径/联合各 36 条路径流。详见[Handoff 19](../handoffs/2026-09-28-19-ws18-minimal-prototype.md)与[正确性契约](../research/ws18-correctness-contract.md)。这只是 40 流人为热点的技术验收；WS-19/20 效果矩阵仍需独立需求与双侧停止规则，当前关闭。
 
 ## 已完成且可核验
 
@@ -85,7 +85,7 @@
 4. **算法工程与效果分离：**WS-09 的 GuardHash 和 HarmGate 门控研究原型已实现，正确性、队列守恒与技术 pilot 按范围完成；目前没有机制收益或类别信号增量证据。`queue_reject/queued_drop` 未动态覆盖，压力格只证明 MMU 准入丢包可守恒。WS-10/11 均未打开正式效果比较门槛，见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 5. **全量阶段与资源准则：**WS-11 已按预注册完成资源 pilot、并发隔离审计与 40 格矩阵；20 物理核预算下的 18 共享 CPU 令牌和阶梯并发实测可用。原始输入随背景增加总字节，不能称纯混合比例效应，也不能与 WS-10 固定总字节场景合并。未来远程矩阵仍按[工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)先核对空闲资源和隔离，再按实测占用提高并发并静默监控。
 
-下一个有条件的里程碑：**WS-18 发送准入与路径联合最小正确性工程。**须另行启动独立分支，先保存原始需求、放行、完成三时刻，核对四臂同输入完成/字节/等待守恒；WS-19/20 效果矩阵仍关闭。WS-14 仅有 0/192 两端小样，目的出口排队/CNP 仍是相关观测，IRN×PFC 压力 11 格仍有未完成流。暂无可核验业务 SLO，不创建通用安全百分比。WS-10/11/12 no-go 保持原样。详见[WS-17 审计](../research/ws17-bottleneck-demand-audit.md)、[WS-17 起计划](WS17_PLUS_PLAN.md)、[WORKSTREAMS](WORKSTREAMS.md)与[ROADMAP](ROADMAP.md)。
+下一个有条件的里程碑：**WS-19 独立需求双侧小样。**WS-18 已完成最小四臂同输入正确性，尚须另立事前输入、MoE 与背景双侧指标、源等待、完成率及停止规则，才能启动 WS-19；WS-20 正式矩阵仍以 WS-19 通过为前提。WS-14 仅有 0/192 两端小样，目的出口排队/CNP 仍是相关观测，IRN×PFC 压力 11 格仍有未完成流。暂无可核验业务 SLO，不创建通用安全百分比。WS-10/11/12 no-go 保持原样。详见[Handoff 19](../handoffs/2026-09-28-19-ws18-minimal-prototype.md)、[WS-17 起计划](WS17_PLUS_PLAN.md)、[WORKSTREAMS](WORKSTREAMS.md)与[ROADMAP](ROADMAP.md)。
 
 后续场景口径（用户 2026-09-27 明确决定）：**保持同一批 MoE 业务流不变，逐档追加背景流，总提供字节随之增加**；不再为这条路线构造“背景增加但总字节不变”的替换式输入。每档各算法仍用相同流量配对，跨档结果解释为新增背景及相应负载的共同影响，不称纯混合比例效应。既有 WS-10 固定总字节结果作为历史独立契约保留，不重判。详见 [ADR-008](../decisions/ADR-008-additive-background-workload.md)。
 

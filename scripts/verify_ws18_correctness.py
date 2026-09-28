@@ -141,7 +141,7 @@ def main():
     for name in ("admission", "path", "joint"):
         for fid, row in arms[name]["rows"].items():
             base = arms["ecmp"]["rows"][fid]
-            assert (row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]) == base[:8]
+            assert row[:8] == base[:8]
             if name == "path":
                 assert row[8] == base[8]
     legacy_base = args.results / args.legacy

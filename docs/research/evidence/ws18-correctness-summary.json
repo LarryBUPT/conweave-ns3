@@ -1,0 +1,148 @@
+{
+  "admission": {
+    "background": [
+      {
+        "finish_ns": 2000624038,
+        "id": 32,
+        "total_ns": 624038
+      },
+      {
+        "finish_ns": 2000632902,
+        "id": 33,
+        "total_ns": 632902
+      },
+      {
+        "finish_ns": 2000758812,
+        "id": 34,
+        "total_ns": 758812
+      },
+      {
+        "finish_ns": 2000586485,
+        "id": 35,
+        "total_ns": 586485
+      }
+    ],
+    "bytes": 33849344,
+    "experiment_id": "20260928-145800-ws18-r2-admission",
+    "fct_sha256": "ee404e4dd3816c7bfd237f4a003beda8b4d5083e64de25537a062438a5045c5f",
+    "flows": 40,
+    "path_alternate": 0,
+    "path_flows": 0,
+    "path_multipath_packets": 0,
+    "source_sha": "729d2682077fedc232c10b6eabccddc5168f8191",
+    "timing_sha256": "4f80551803ec67ea4193ad18d740c574961724a9c1576213746d6927533b55c7",
+    "wait_positive": 32
+  },
+  "ecmp": {
+    "background": [
+      {
+        "finish_ns": 2000500545,
+        "id": 32,
+        "total_ns": 500545
+      },
+      {
+        "finish_ns": 2000655392,
+        "id": 33,
+        "total_ns": 655392
+      },
+      {
+        "finish_ns": 2000867082,
+        "id": 34,
+        "total_ns": 867082
+      },
+      {
+        "finish_ns": 2000637958,
+        "id": 35,
+        "total_ns": 637958
+      }
+    ],
+    "bytes": 33849344,
+    "experiment_id": "20260928-145800-ws18-r2-ecmp",
+    "fct_sha256": "0f8fd036bc40602f50d1287369f642351fb4b64af60d052a28b1b744c6a7637e",
+    "flows": 40,
+    "path_alternate": 0,
+    "path_flows": 0,
+    "path_multipath_packets": 0,
+    "source_sha": "729d2682077fedc232c10b6eabccddc5168f8191",
+    "timing_sha256": "bc7004a69af353441a72e9808165a3794bc5d3659c73cec546dc0a4d1763d009",
+    "wait_positive": 0
+  },
+  "joint": {
+    "background": [
+      {
+        "finish_ns": 2000653513,
+        "id": 32,
+        "total_ns": 653513
+      },
+      {
+        "finish_ns": 2000725697,
+        "id": 33,
+        "total_ns": 725697
+      },
+      {
+        "finish_ns": 2000706832,
+        "id": 34,
+        "total_ns": 706832
+      },
+      {
+        "finish_ns": 2000677706,
+        "id": 35,
+        "total_ns": 677706
+      }
+    ],
+    "bytes": 33849344,
+    "experiment_id": "20260928-145800-ws18-r2-joint",
+    "fct_sha256": "88b217fabaf8ed8dd0f2c6a5c716aeffb2e43546825134d1f5f9da1ab23a3262",
+    "flows": 40,
+    "path_alternate": 3,
+    "path_flows": 36,
+    "path_multipath_packets": 324,
+    "source_sha": "729d2682077fedc232c10b6eabccddc5168f8191",
+    "timing_sha256": "1b257127f20a11dca9847cd394fd12c507e6576a0c2a81c59315c5258f72a0e3",
+    "wait_positive": 32
+  },
+  "legacy": {
+    "experiment_id": "20260928-145114-ws18-r2-legacy",
+    "fct_sha256": "446999e4ee482866127964ded0e7a2c1c1e729d4c19d4cf5e22c267e5794ce67",
+    "reference_fct_sha256": "446999e4ee482866127964ded0e7a2c1c1e729d4c19d4cf5e22c267e5794ce67",
+    "reference_id": "20260928-043000-ws18-legacy",
+    "reference_source_sha": "0969ed89f47d4ccb15f79c172fef126be22f6a20",
+    "source_sha": "729d2682077fedc232c10b6eabccddc5168f8191"
+  },
+  "path": {
+    "background": [
+      {
+        "finish_ns": 2000495485,
+        "id": 32,
+        "total_ns": 495485
+      },
+      {
+        "finish_ns": 2000680065,
+        "id": 33,
+        "total_ns": 680065
+      },
+      {
+        "finish_ns": 2000648337,
+        "id": 34,
+        "total_ns": 648337
+      },
+      {
+        "finish_ns": 2000833451,
+        "id": 35,
+        "total_ns": 833451
+      }
+    ],
+    "bytes": 33849344,
+    "experiment_id": "20260928-145800-ws18-r2-path",
+    "fct_sha256": "eaf7aed9fd792251d9a8d4114d121c435cae302360777fe3c3ee5b6fba7c9040",
+    "flows": 40,
+    "path_alternate": 10,
+    "path_flows": 36,
+    "path_multipath_packets": 324,
+    "source_sha": "729d2682077fedc232c10b6eabccddc5168f8191",
+    "timing_sha256": "b36d65e20ca46ccba5b6f27ecda3f5f694df7ce09bcf4eeacaa12efcb8690213",
+    "wait_positive": 0
+  },
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "trace_sha256": "4e7d0e6a68e3230e8960a174e570a0a788c191fa0b44922408867b02c25782cc"
+}
