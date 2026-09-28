@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-09-28 WS-19 已进入**事前协议和前置核验**，尚无 WS-19 仿真结果：[v1 协议](../research/ws19-admission-pilot-prereg-v1.md)冻结三独立需求 seed、12 个配对区组、四臂 48 格随机顺序、双侧指标与研究性停止条件；[顺序清单](../research/evidence/ws19-pilot-schedule-v1.json)可重生。WS-17 的 12 对 trace/sidecar 已重新逐字节核对，WS-18 五格正确性校验重算通过。新增 opt-in 诊断只为 WS-18 模式扩展到新背景目的，须经远程编译及开/关同输入 FCT 哈希回归、资源 pilot 后才启动效果格。WS-20 正式矩阵保持关闭；没有业务 SLO，零损害方向筛不代表生产阈值。
+
 更新：2026-09-28（中国时间）。本文件是跨对话的**状态入口**，不是实验原始证据。状态会过期；执行代码、实验或对外陈述前，应核对当前 Git、源码、实验 ID 与原始数据。工作规则以 `docs/REMOTE_EXPERIMENT_WORKFLOW.md` 为准，baseline 和指标口径以 `docs/research/10-baseline-fidelity-and-dataflow-audit.md` 为准。
 
 ## 当前阶段与目标

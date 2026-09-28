@@ -37,7 +37,7 @@ static bool Ws13BackgroundQp(Ptr<RdmaQueuePair> qp) {
     if (!Ws13DiagnosticEnabled() || qp->m_workload_tag != 1) return false;
     auto dst = Settings::hostIp2IdMap.find(qp->dip.Get());
     return dst != Settings::hostIp2IdMap.end() &&
-           (dst->second == 856 || dst->second == 576);
+           (Settings::lb_mode == 20 || dst->second == 856 || dst->second == 576);
 }
 
 static void Ws13LogQp(const char *event, Ptr<RdmaQueuePair> qp,

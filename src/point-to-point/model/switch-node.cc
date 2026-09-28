@@ -47,8 +47,8 @@ struct GuardQueueStat {
 };
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, GuardQueueStat> guard_queue_stats;
 
-// WS-13 diagnostic is opt-in and observes only background flows terminating
-// at the two destinations implicated by the frozen WS-12 tail cells.
+// WS-13 legacy cells retain their two frozen destinations. WS-19 opt-in cells
+// observe all background destinations because each independent demand redraws them.
 struct Ws13Packet {
     uint32_t src, dst, sport, dport, outDev, queuedBytes;
     uint64_t enqueueNs;
@@ -653,7 +653,8 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         auto source = Settings::hostIp2IdMap.find(ch.sip);
         if (p->PeekPacketTag(tag) && tag.GetValue() == 1 &&
             destination != Settings::hostIp2IdMap.end() &&
-            (destination->second == 856 || destination->second == 576) &&
+            (Settings::lb_mode == 20 || destination->second == 856 ||
+             destination->second == 576) &&
             source != Settings::hostIp2IdMap.end()) {
             Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[outDev]);
             NS_ASSERT_MSG(dev && dev->GetQueue(), "WS-13 diagnostic egress queue absent");
