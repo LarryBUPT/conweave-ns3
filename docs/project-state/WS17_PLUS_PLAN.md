@@ -4,6 +4,8 @@
 
 阶段更新：下表 WS-20“独立需求确认性验证”是 WS-19 **通过**时的原条件计划，实际 WS-19 未通过。WS-20 随后仅按[反例审查 Handoff 21](../handoffs/2026-09-28-21-ws20-counterexample-review.md)完成本地失败分析；原确认性矩阵没有运行且继续 no-go。[条件性探索设计 v0](../research/ws20-next-exploratory-design-v0.md)不是下表所列确认性矩阵的改名或续跑。
 
+WS-21 阶段更新：已从 `cdb2d1b` 完成[下游反馈本地可行性审查](../research/ws21-downstream-feedback-feasibility.md)和[Handoff 22](../handoffs/2026-09-28-22-ws21-downstream-feedback.md)；仅技术设计闭环，效果矩阵 no-go。下表 WS-21 的对照尚未运行。WS-22、WS-23、WS-24 保持各自条件，WS-25 只整合真正执行的证据；编号不构成自动开跑顺序。
+
 ## 主线及分支
 
 | 任务 | 工作、分支与交付 | 进入下一步的门槛 |
