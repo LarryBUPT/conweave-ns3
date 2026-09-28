@@ -830,6 +830,7 @@ void SetRoutingEntries() {
 // No switch uses this table when deciding an output port.
 void BuildWs21IngressMapping() {
     uint64_t pathEnds = 0;
+    uint64_t unreachablePairs = 0;
     for (uint32_t hostId = 0; hostId < n.GetN(); ++hostId) {
         Ptr<Node> host = n.Get(hostId);
         if (host->GetNodeType() != 0) continue;
@@ -852,11 +853,10 @@ void BuildWs21IngressMapping() {
                 NS_FATAL_ERROR("WS-21 source ToR has no route table: host=" << hostId
                                << " source=" << source.first);
             auto destinationRoute = sourceRoutes->second.find(host);
-            if (destinationRoute == sourceRoutes->second.end())
-                NS_FATAL_ERROR("WS-21 source ToR has no route to host=" << hostId
-                               << " source=" << source.first << " destination="
-                               << destinationId << " route_entries="
-                               << sourceRoutes->second.size());
+            if (destinationRoute == sourceRoutes->second.end()) {
+                ++unreachablePairs;
+                continue;
+            }
             const auto &firstHops = destinationRoute->second;
             if (firstHops.empty())
                 NS_FATAL_ERROR("WS-21 source has an empty route to host=" << hostId
@@ -922,7 +922,8 @@ void BuildWs21IngressMapping() {
         }
     }
     NS_ASSERT_MSG(pathEnds > 0, "WS-21 mapping has no cross-ToR paths");
-    std::cout << "WS21_MAPPING path_ends=" << pathEnds << std::endl;
+    std::cout << "WS21_MAPPING path_ends=" << pathEnds
+              << " unreachable_pairs=" << unreachablePairs << std::endl;
 }
 
 /**
