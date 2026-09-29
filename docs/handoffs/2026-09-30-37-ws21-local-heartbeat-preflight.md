@@ -1,6 +1,6 @@
 # Handoff 37：WS-21 局部心跳本地预飞行
 
-1. **本对话目标：** 回应用户对 SGLB 原论文“五种状态”的疑问，并在 WS-21 已完成的 STATE 成本矩阵之后，准备适合本项目的小拓扑 HELLO/ACK 故障技术试验。本阶段限于 Sol 本地实现、轻量校验与冻结输入；不启动远端构建或仿真。用户要求分析用 Sol、实验用 Luna，模型切换须实际生效。
+1. **本对话目标：** 回应用户对 SGLB 原论文“五种状态”的疑问，并在 WS-21 已完成的 STATE 成本矩阵之后，准备适合本项目的小拓扑 HELLO/ACK 故障技术试验。本阶段限于本地实现、轻量校验与冻结输入；不启动远端构建或仿真。用户要求分析用 Sol、实验用 Luna，模型切换须实际生效；本任务未取得当前模型的切换凭据。
 
 2. **已确认的项目事实：** SGLB 的 Open、Keepalive、Area Descriptor、Request、Update 是 SyncMesh 五类控制消息，不是五种心跳状态；本项目只借鉴局部探测。旧 WS-21 off/5/10/20/40 µs STATE 矩阵固定 SHA `2c14d3b4c952a9cece89a9de14216709b604706f`，结论见[长尾报告](../research/ws21-compact-longtail-interval-report.md)；缓存未参与选路，效果矩阵 NO-GO。新心跳技术原型固定源码 SHA `770b6b5617657832393bd721e0d634c6639405fb`，输入哈希、参数和预留实验 ID 见[预飞行](../research/ws21-local-heartbeat-preflight.md)。新代码无实验原始数据。
 

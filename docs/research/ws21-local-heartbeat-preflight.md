@@ -1,6 +1,6 @@
 # WS-21 局部心跳小拓扑故障技术预飞行
 
-日期：2026-09-30。状态：**Sol High 本地准备完成；尚未在远端构建、运行或生成实验结果**。本表只验证局部 HELLO/ACK 的报文传输、失联判断和通信成本，不是选路收益试验。执行遵循 [远程工作流](../REMOTE_EXPERIMENT_WORKFLOW.md) 和 [故障契约](ws21-local-heartbeat-fault-contract.md)。
+日期：2026-09-30。状态：**本地准备完成；当前任务未取得模型切换生效凭据，也尚未在远端构建、运行或生成实验结果**。本表只验证局部 HELLO/ACK 的报文传输、失联判断和通信成本，不是选路收益试验。执行遵循 [远程工作流](../REMOTE_EXPERIMENT_WORKFLOW.md) 和 [故障契约](ws21-local-heartbeat-fault-contract.md)。
 
 ## 固定证据与范围
 
