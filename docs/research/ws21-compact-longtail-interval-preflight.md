@@ -34,7 +34,9 @@ Luna High 实际生效后，先只读核对服务器健康、他人作业和三�
 
 `20260929-222000-ws21c-v2-guard-unit`：固定 SHA `2c14d3b4c952a9cece89a9de14216709b604706f` 的 optimized build 为 `BUILT`。第一次独立测试输出目录漏加 `--enable-tests`，runner 没有注册 suite、测试日志为空；此格保留，不作为测试通过证据，也不重用。`20260929-222500-ws21c-v2-guard-unitretry`：显式 `--enable-tests` 重建后，runner 列表包含 `devices-point-to-point`，verbose 运行返回码 0，输出 `PASS devices-point-to-point`、`PASS PointToPoint` 和 `PASS WS-21 feedback header serialization and validation`。临时 `CommandLine` const 兼容改动已恢复，源文件 SHA-256 与原值一致，隔离源码树干净。资源采样 259 点，进程树峰值 730.8 MiB、最低可用内存 122.32 GiB、最低磁盘 5,685.46 GiB、最大 load1m 2.1；收据在远端 `results/20260929-222500-ws21c-v2-guard-unitretry/logs/`。
 
-`20260929-223000-ws21c-v2-guard-off40`：固定 SHA、trace SHA `4e7d0e6a…` 和拓扑 SHA `74a6f715…` 的 off 仿真为 `SUCCEEDED`，结果已 fetch 至本机。资源观察器启动时误用了代码缓存目录中的脚本路径，日志明确记录脚本不存在；因此没有 `resource-samples.jsonl`/`resource-summary.json`，该格违反资源收据门槛并保留，不能据此放行 on。新 off retry `20260929-223200-ws21c-v2-guard-off40-r1` 已在本表登记且远端空闲；运行时 watcher 改用每格隔离源码目录下的脚本。完成并核实 off retry 的 40/40、字节守恒、身份和资源收据后，才执行已预留的 on `20260929-223100-ws21c-v2-guard-on40`。
+`20260929-223000-ws21c-v2-guard-off40`：固定 SHA、trace SHA `4e7d0e6a…` 和拓扑 SHA `74a6f715…` 的 off 仿真为 `SUCCEEDED`，结果已 fetch 至本机。资源观察器启动时误用了代码缓存目录中的脚本路径，日志明确记录脚本不存在；因此没有 `resource-samples.jsonl`/`resource-summary.json`，该格违反资源收据门槛并保留。
+
+`20260929-223200-ws21c-v2-guard-off40-r1`：正确启动隔离源码内的 watcher 后 `SUCCEEDED` 并已 fetch。独立核验得到 40/40 FCT 与 WS18 记录、33,849,344 B 守恒、40/40 跨 ToR 身份正确，资源收据 86 点、峰值进程树 RSS 4,544.34 MiB、最低可用内存 118.59 GiB、最低磁盘 5,684.40 GiB。与旧 SHA 40 流 off 的 FCT/WS18 SHA-256 完全相同（`0f8fd036…` / `bc7004a6…`），确认边界保护修复未改动本次 off 行为。达到前置门槛后，可执行已预留的 on `20260929-223100-ws21c-v2-guard-on40`。
 
 ## 逐格核验与停止规则
 
