@@ -371,6 +371,7 @@ def execute(experiment_id):
                         '--ws18-path', str(params['ws18_path']),
                         '--ws18-admission-rate-gbps', str(params['ws18_admission_rate_gbps'])])
         command.extend(['--ws21-identity', str(params.get('ws21_identity', 0))])
+        command.extend(['--ws21-feedback', str(params.get('ws21_feedback', 0))])
         command.extend(['--ws21-port-events', str(params.get('ws21_port_events', 0)),
                         '--ws21-port-max-bytes', str(params.get('ws21_port_max_bytes', 268435456))])
     if params.get('factorial_pilot'):
@@ -553,6 +554,7 @@ def main():
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws21-feedback', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -581,6 +583,8 @@ def main():
             raise RuntimeError('WS-18 switches require ws18 mode')
         if args.ws21_identity and args.lb != 'ws18':
             raise RuntimeError('WS-21 identity diagnostic requires ws18 mode')
+        if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
+            raise RuntimeError('WS-21 feedback requires ws18 mode and identity diagnostics')
         if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
             raise RuntimeError('WS-21 port events require ws18 and a byte cap >= 1024')
         if args.ws18_admission_rate_gbps <= 0:
@@ -602,6 +606,7 @@ def main():
                         'ws18_admission': args.ws18_admission,
                         'ws18_path': args.ws18_path,
                         'ws21_identity': args.ws21_identity,
+                        'ws21_feedback': args.ws21_feedback,
                         'ws21_port_events': args.ws21_port_events,
                         'ws21_port_max_bytes': args.ws21_port_max_bytes,
                         'ws18_admission_rate_gbps': args.ws18_admission_rate_gbps,
