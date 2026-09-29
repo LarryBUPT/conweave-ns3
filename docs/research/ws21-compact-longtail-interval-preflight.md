@@ -36,7 +36,9 @@ Luna High 实际生效后，先只读核对服务器健康、他人作业和三�
 
 `20260929-223000-ws21c-v2-guard-off40`：固定 SHA、trace SHA `4e7d0e6a…` 和拓扑 SHA `74a6f715…` 的 off 仿真为 `SUCCEEDED`，结果已 fetch 至本机。资源观察器启动时误用了代码缓存目录中的脚本路径，日志明确记录脚本不存在；因此没有 `resource-samples.jsonl`/`resource-summary.json`，该格违反资源收据门槛并保留。
 
-`20260929-223200-ws21c-v2-guard-off40-r1`：正确启动隔离源码内的 watcher 后 `SUCCEEDED` 并已 fetch。独立核验得到 40/40 FCT 与 WS18 记录、33,849,344 B 守恒、40/40 跨 ToR 身份正确，资源收据 86 点、峰值进程树 RSS 4,544.34 MiB、最低可用内存 118.59 GiB、最低磁盘 5,684.40 GiB。与旧 SHA 40 流 off 的 FCT/WS18 SHA-256 完全相同（`0f8fd036…` / `bc7004a6…`），确认边界保护修复未改动本次 off 行为。达到前置门槛后，可执行已预留的 on `20260929-223100-ws21c-v2-guard-on40`。
+`20260929-223200-ws21c-v2-guard-off40-r1`：正确启动隔离源码内的 watcher 后 `SUCCEEDED` 并已 fetch。独立核验得到 40/40 FCT 与 WS18 记录、33,849,344 B 守恒、40/40 跨 ToR 身份正确，资源收据 86 点、峰值进程树 RSS 4,544.34 MiB、最低可用内存 118.59 GiB、最低磁盘 5,684.40 GiB。与旧 SHA 40 流 off 的 FCT/WS18 SHA-256 完全相同（`0f8fd036…` / `bc7004a6…`），确认边界保护修复未改动本次 off 行为。
+
+`20260929-223100-ws21c-v2-guard-on40`：同一 SHA、trace、拓扑、seed 和公共参数，仅开反馈；`SUCCEEDED` 并已 fetch。off/on 均 40/40 流、33,849,344 B 守恒、40/40 跨 ToR 身份正确，FCT 与 WS18 SHA 分别相同。开启格 223/223 报告送达，拒收/过期/逐跳拒绝/序号缺口为 0，逐跳入队/出队各 446、逐跳字节 26,760 B、最大样本年龄 9.838 µs、缓存峰值 8；资源 82 点、峰值进程树 RSS 4,544.10 MiB、最低可用内存 118.57 GiB、最低磁盘 5,683.40 GiB。双格机器核验摘要见[40 流 guard pair](evidence/ws21-compact-guard-40pair-verification.json)。新 SHA 40 流门槛通过，可进入长尾 off 与 10 µs pilot；效果矩阵仍不开放。
 
 ## 逐格核验与停止规则
 
