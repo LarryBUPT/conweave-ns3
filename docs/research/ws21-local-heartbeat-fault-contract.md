@@ -1,6 +1,6 @@
 # WS-21 局部 HELLO/ACK 最小协议与故障注入契约
 
-日期：2026-09-30。状态：**协议设计已冻结；本地代码待独立优化构建和故障仿真验证**。固定源码、输入及停止条件见[小拓扑预飞行](ws21-local-heartbeat-preflight.md)。本契约只处理业务活跃源 ToR 上联到直连邻居的存活检测，不能代替 STATE 的拥塞样本，也不复刻 SGLB 的 BGP、SyncMesh 或硬件 GLB。执行仍依[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)，远程技术 pilot 必须在 Luna High 实际生效后启动，原始数据回传后由 Sol High 分析。
+日期：2026-09-30。状态：**协议设计已冻结；独立优化构建、单测及连续丢 HELLO/ACK 小拓扑技术格已完成**，原始数据与未覆盖条件见[结果报告](ws21-local-heartbeat-pilot-report.md)。固定源码、输入及停止条件见[小拓扑预飞行](ws21-local-heartbeat-preflight.md)。本契约只处理业务活跃源 ToR 上联到直连邻居的存活检测，不能代替 STATE 的拥塞样本，也不复刻 SGLB 的 BGP、SyncMesh 或硬件 GLB。执行仍依[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)；单份丢失与 ACK 身份等后续定向试验仍须另立固定输入和 ID。
 
 ## 最小报文与状态
 

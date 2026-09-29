@@ -1,17 +1,17 @@
 # WS-21 局部心跳小拓扑故障技术预飞行
 
-日期：2026-09-30。状态：**本地准备完成；当前任务未取得模型切换生效凭据，也尚未在远端构建、运行或生成实验结果**。本表只验证局部 HELLO/ACK 的报文传输、失联判断和通信成本，不是选路收益试验。执行遵循 [远程工作流](../REMOTE_EXPERIMENT_WORKFLOW.md) 和 [故障契约](ws21-local-heartbeat-fault-contract.md)。
+日期：2026-09-30。状态：**本表是冻结时的预飞行记录；七个编号现均已执行并回传**，实测与限制见[结果报告](ws21-local-heartbeat-pilot-report.md)及[机器摘要](evidence/ws21-local-heartbeat-pilot.json)。以下启动门槛与将来时表述保留事前协议原貌。本表只验证局部 HELLO/ACK 的报文传输、失联判断和通信成本，不是选路收益试验。执行遵循 [远程工作流](../REMOTE_EXPERIMENT_WORKFLOW.md) 和 [故障契约](ws21-local-heartbeat-fault-contract.md)。
 
 ## 固定证据与范围
 
-- 个人分支 `feature/ws21-downstream-feedback`，固定仿真源码提交 `770b6b5617657832393bd721e0d634c6639405fb`（包含前一提交中的固定输入）。后续文档提交不能替代此 SHA；每个远端 `build` 均显式传 `--source-sha` 指向该提交。代码目前仅通过本地 Python 语法与差异格式检查，**C++ 尚未编译，单测尚未运行**。
-- 拓扑 `config/fat_k4_100G_OS2.txt`：52 节点、20 交换机、64 链路，SHA-256 `445cf1e29b91813a5fcfec2e56966fb08e4436138d1f8f0771015ccfe6e24466`。固定 trace `config/ws21_heartbeat_fat_k4_long_flow.txt`：一条从主机 0 到主机 8、67,108,864 B、2.006 s 开始、tag 2 的跨 ToR 流，SHA-256 `032b6baaf3b1a6b4507a7699ef3a148eeadd1f343a13c61a12b79c65f1d49ff5`。主机 0、8 分别接 ToR 32、34；实际选中上联以源端事件为准，不预设端口号。
+- 个人分支 `feature/ws21-downstream-feedback`，固定仿真源码提交 `770b6b5617657832393bd721e0d634c6639405fb`（包含前一提交中的固定输入）。后续文档提交不能替代此 SHA；每个远端 `build` 均显式传 `--source-sha` 指向该提交。冻结时仅通过本地 Python 语法与差异格式检查；执行后独立 C++ 构建及 `devices-point-to-point` 单测均通过，见[结果报告](ws21-local-heartbeat-pilot-report.md)。
+- 拓扑 `config/fat_k4_100G_OS2.txt`：52 节点、20 交换机、64 链路。固定 Git 提交中的 LF 内容和六格远端拓扑快照 SHA-256 是 `dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad`；原先记录的 `445cf1e29b91813a5fcfec2e56966fb08e4436138d1f8f0771015ccfe6e24466` 是 Windows 工作副本 CRLF 文件的哈希，换行规范化后内容相同。固定 trace `config/ws21_heartbeat_fat_k4_long_flow.txt`：一条从主机 0 到主机 8、67,108,864 B、2.006 s 开始、tag 2 的跨 ToR 流，SHA-256 `032b6baaf3b1a6b4507a7699ef3a148eeadd1f343a13c61a12b79c65f1d49ff5`。主机 0、8 分别接 ToR 32、34；实际选中上联以源端事件为准，不预设端口号。
 - 所有格固定 ns-3 seed 1、该拓扑与 trace、`--lb ws18 --ws18-path 1 --ws18-admission 0 --ws21-feedback 0 --ws21-identity 0 --ws21-port-events 0 --pfc 0 --irn 1 --bw 100 --buffer 9 --simul-time 0.01 --netload 10 --cdf AliStorage2019 --max-concurrent 1`。关闭格心跳参数 0；其余格仅按下表修改心跳周期与故障参数。`simul-time` 是流量生成配置时长，显式 trace 的 2.006 s 起点不由它重新生成。长流能否覆盖整个故障窗口须由实际收发与完成日志核验。
 - HELLO/ACK 各 10 B 协议负载，真实网络成本取逐跳实际包长与计数；STATE 关闭且单独分账。业务数据不依据 `UNKNOWN` 改路。
 
 ## 预留实验顺序
 
-以下 ID **仅预留，尚未查询远端是否空闲**。Luna High 实际生效后，逐项检查本地与远端 `runs/<ID>`、`results/<ID>` 不存在；若有占用，先修订本表，不覆盖。
+以下 ID 在冻结时**仅预留、尚未查询远端是否空闲**；随后已逐项核验空闲并按原编号执行，未覆盖旧结果。事前要求是在 Luna High 实际生效后，逐项检查本地与远端 `runs/<ID>`、`results/<ID>` 不存在；若有占用，先修订本表，不覆盖。
 
 | 顺序 | 预留 ID | 心跳周期 | 故障 | 判断目的 |
 | ---: | --- | ---: | --- | --- |

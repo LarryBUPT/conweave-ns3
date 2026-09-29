@@ -1,6 +1,6 @@
 # 下一阶段路线与停机条件
 
-2026-09-30 WS-21 下一门槛：[长尾间隔技术矩阵](../research/ws21-compact-longtail-interval-report.md)及[Handoff 36](../handoffs/2026-09-30-36-ws21-compact-interval-matrix.md)已完成 Sol 原始数据复核。固定源码 off/5/10/20/40 µs 五格均回传，四个开启格全流守恒；5 µs 有 15 份按 10 µs 有效期过期，10/20/40 µs 零过期。若严格要求零过期且最大窗口末样本年龄 ≤20.000 µs，本次最低逐跳成本档为 10 µs；20.5 µs 示例上限下才是 20 µs。[活跃 ToR 上联 HELLO/ACK 契约](../research/ws21-local-heartbeat-fault-contract.md)的本地原型和[小拓扑预飞行](../research/ws21-local-heartbeat-preflight.md)已准备，固定源码 `770b6b5617657832393bd721e0d634c6639405fb`；C++ 构建和实验尚未运行。下一步须在 Luna High 实际生效后先做隔离构建/单测，再做技术格，终态 raw 回传后由 Sol High 分析。STATE 缓存尚未进入选路，效果矩阵仍 NO-GO；历史 no-go 保留。
+2026-09-30 WS-21 下一门槛：[STATE 长尾间隔技术矩阵](../research/ws21-compact-longtail-interval-report.md)和[心跳小拓扑技术 pilot](../research/ws21-local-heartbeat-pilot-report.md)均已完成 Sol 原始数据复核。前者 off/5/10/20/40 µs 五格给出报告年龄与逐跳成本的条件性取舍；后者固定源码 `770b6b5617657832393bd721e0d634c6639405fb` 的单测和六格均终态、同输入与资源核验通过。心跳 50/200/1000 µs 分别发送 9,856/2,464/528 B 逐跳控制通信，200 µs 连续丢 HELLO/ACK 均约 0.701 ms 标未知并随后恢复。下一步先补单份丢失不误报、ACK 身份/会话和真实链路状态的定向验证，再论证是否值得在长尾输入测活跃上联比例与 `STATE+HELLO/ACK` 联合成本。STATE 缓存尚未进入选路，`UNKNOWN` 当前不改路；没有业务 SLO 和候选选路证据，效果矩阵仍 NO-GO、不选唯一最优周期，历史 no-go 保留。见[Handoff 38](../handoffs/2026-09-30-38-ws21-local-heartbeat-pilot.md)。
 
 更新：2026-09-29。集成工作流只维护顺序和证据门槛；具体代码和实验在对应 workstream 执行。参照 [CURRENT_STATE.md](CURRENT_STATE.md) 的实时快照，在执行前再核验 Git 与远程资源。研究筛选见 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)；用户要求的提前工程原型见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 
