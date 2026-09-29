@@ -6,7 +6,7 @@
 
 ## 2. 已确认的项目事实
 
-个人 fork 分支为 `feature/ws21-downstream-feedback`，任务开始时 HEAD 与 `origin` 同为 `fdedcd770f22491a612e76372973538b16ca31b6`，工作树干净。trace 为 `config/ws17_seed20261701_tor_hotspot_b192.txt`，SHA-256 `9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3`，共 16,576 条流、1,744,830,464 B；其中 16,384 条 8 KiB MoE 流与 192 条 8 MiB 背景流。拓扑 `config/topo_1280_400G_400G_OS1.txt` 的 SHA-256 为 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`。
+个人 fork 分支为 `feature/ws21-downstream-feedback`，任务开始时 HEAD 与 `origin` 同为 `fdedcd770f22491a612e76372973538b16ca31b6`，工作树干净。trace 为 `config/ws19_ws17_seed20261701_tor_hotspot_b192.txt`，SHA-256 `9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3`，共 16,576 条流、1,744,830,464 B；其中 16,384 条 8 KiB MoE 流与 192 条 8 MiB 背景流。拓扑 `config/topo_1280_400G_400G_OS1.txt` 的 SHA-256 为 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`。
 
 规定的共同参数是 mode 20 / `ws18`、DCQCN、PFC=0、IRN=1、seed=1、WS18 admission/path=0、`WS13_DIAG=1`；关闭格的 WS-21 开关为 0/0，开启格为 1/1。完整冻结契约见[WS-21 长尾技术 pair 契约](../research/ws21-long-tail-technical-pair-contract.md)。
 

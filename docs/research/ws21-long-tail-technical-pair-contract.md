@@ -5,7 +5,7 @@
 ## 固定输入与共同参数
 
 - 分支：`feature/ws21-downstream-feedback`；执行前冻结并记录个人 fork 已推送的完整源码 SHA，两格必须相同。
-- trace：`config/ws17_seed20261701_tor_hotspot_b192.txt`，SHA-256 `9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3`；16,576 流、1,744,830,464 B，其中 16,384 条 8 KiB MoE 流和 192 条 8 MiB 背景流。
+- trace：`config/ws19_ws17_seed20261701_tor_hotspot_b192.txt`，SHA-256 `9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3`；16,576 流、1,744,830,464 B，其中 16,384 条 8 KiB MoE 流和 192 条 8 MiB 背景流。该前缀是仓库中实际追踪的文件名，哈希与需求 manifest/预选输入一致。
 - topology：`config/topo_1280_400G_400G_OS1.txt`，SHA-256 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`。
 - 两格均用 mode 20 / `ws18`、DCQCN、PFC=0、IRN=1、ns-3 seed=1、WS18 admission/path=0、`WS13_DIAG=1`。诊断关闭格将 `WS21_IDENTITY=0, WS21_PORT_EVENTS=0`；诊断开启格设为 `1,1`。运行器须分别记录参数与实际源 SHA，不覆盖已有实验 ID。
 - 先检查远程用户作业、负载、可用内存、磁盘和 ns-3 进程。运行时静默采集资源峰值与每格状态；如有他人作业、资源压力、日志逼近上限或仿真失败，停止后续格并保留原收据。
