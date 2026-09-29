@@ -1,6 +1,8 @@
 # ConWeave 毕业论文项目状态
 
-2026-09-29 WS-21 真实反馈报文 40 流开关 pair 已按 `scripts/verify_ws21_feedback_pair.py` 复核通过，源码固定 `23e002e13aed71a05d6b098feb5fdab4ce7ac9f4`。关闭/开启格均 40/40 完成、33,849,344 B 守恒，FCT 与 WS18 raw SHA 相同；开启格 223/223 报告送达、拒收/过期/序号缺口为 0、逐跳入队出队各 446，缓存峰值 8。上游 CE 样本为 0，故只证明 40 流输入下的开关非扰动与反馈报文基本送达，不证明候选区分或性能收益。机器收据见[40 流反馈 pair](../research/evidence/ws21-feedback-40-pair.json)。下一步按[长尾反馈技术 pair 契约](../research/ws21-feedback-longtail-pair-contract.md)，在相同长尾 trace 与诊断条件下只切换反馈开关；启动前须再次确认远端资源和隔离构建。完整技术 pilot 尚未完成，效果矩阵与旧 no-go 保持不变。
+2026-09-29 WS-21 长尾真实反馈技术 pair 已运行，按[机器收据](../research/evidence/ws21-feedback-longtail-pair.json)与[Handoff 31](../handoffs/2026-09-29-31-ws21-longtail-feedback-pair.md)判为 **工程门槛未通过**。固定源码 `9964203cf6d3de4bc1061d61b6f959bcb537c120`，关闭/开启格 `20260929-170600-ws21-feedback-longtail` / `20260929-171900-ws21-feedback-longtail-on` 均 16,576/16,576 完成、1,744,830,464 B 守恒、身份无错；但 FCT 和 WS18 时序哈希不同，13,916 条流的逐流 FCT 有变化。开启格 29,388/29,388 报告送达，拒收/过期/逐跳拒绝/序号缺口为 0，最大年龄 8.357 µs，缓存峰值 227。运行中的峰值 RSS 未采集，故资源收据子项也不完整。此结果证明当前反馈报文能在长尾输入下通过共享队列抵达，同时会扰动应用时序；不代表候选路由或机制收益。遵守停止规则，不扩展仿真，效果矩阵与历史 no-go 不变。
+
+2026-09-29 WS-21 真实反馈报文 40 流开关 pair 已按 `scripts/verify_ws21_feedback_pair.py` 复核通过，源码固定 `23e002e13aed71a05d6b098feb5fdab4ce7ac9f4`。关闭/开启格均 40/40 完成、33,849,344 B 守恒，FCT 与 WS18 raw SHA 相同；开启格 223/223 报告送达、拒收/过期/序号缺口为 0、逐跳入队出队各 446，缓存峰值 8。上游 CE 样本为 0，故只证明 40 流输入下的开关非扰动与反馈报文基本送达，不证明候选区分或性能收益。机器收据见[40 流反馈 pair](../research/evidence/ws21-feedback-40-pair.json)。完整技术 pilot 尚未完成，效果矩阵与旧 no-go 保持不变。
 
 前序 WS-21 原型构建与序列化测试记录见[工程契约](../research/ws21-real-feedback-path-contract.md)、[Handoff 29](../handoffs/2026-09-29-29-ws21-feedback-wire-prototype.md)和[Handoff 30](../handoffs/2026-09-29-30-ws21-feedback-build-test.md)：源码 `3f1a28a6583567744b6a177d8c11da7cc8a761dc`、构建 ID `20260929-153553-ws21-feedback-wire`。该记录早于 40 流 pair；其“尚无仿真送达数据”是当时状态，后续以本文件顶部更新及原始收据为准。测试构建临时修正的一处无关 core 测试 const 错误已恢复。
 

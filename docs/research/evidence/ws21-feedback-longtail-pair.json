@@ -1,0 +1,122 @@
+{
+  "analysis_complete": true,
+  "gate_pass": false,
+  "failures": [
+    "FCT raw differs between feedback-off and feedback-on",
+    "WS18 timing raw differs between feedback-off and feedback-on",
+    "per-experiment peak RSS receipt missing"
+  ],
+  "off": {
+    "experiment_id": "20260929-170600-ws21-feedback-longtail",
+    "status": "SUCCEEDED",
+    "git_commit": "9964203cf6d3de4bc1061d61b6f959bcb537c120",
+    "input_flow_sha256": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3",
+    "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+    "raw_directory": "823132511",
+    "feedback_enabled": 0,
+    "fct_rows": 16576,
+    "provided_bytes": 1744830464,
+    "fct_sha256": "964b7f757f93397d56f2ab1434aa4647dfc4b23d083ecd08ef6486fac7f0e18f",
+    "ws18_sha256": "e12ab3388a27f2ccec9b85acf1d590680816e7b7d91a9e22b90e2a9e58e5fbab",
+    "identity": {
+      "complete": true,
+      "qp_count": 16576,
+      "cross_tor_qps": 16205,
+      "source_qps": 16205,
+      "destination_qps": 16205,
+      "upstream_ce_packets": 10123,
+      "errors": []
+    },
+    "log_bytes": {
+      "config.log": 2141484,
+      "simulation.log": 845,
+      "worker.log": 0
+    }
+  },
+  "on": {
+    "experiment_id": "20260929-171900-ws21-feedback-longtail-on",
+    "status": "SUCCEEDED",
+    "git_commit": "9964203cf6d3de4bc1061d61b6f959bcb537c120",
+    "input_flow_sha256": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3",
+    "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+    "raw_directory": "532955660",
+    "feedback_enabled": 1,
+    "fct_rows": 16576,
+    "provided_bytes": 1744830464,
+    "fct_sha256": "42b5d95242c2dfc1f4572b26707ccbe4032292ba8fd142fba84c40b7f8fa1b8f",
+    "ws18_sha256": "e38db485c2531427a41af9dea70d6bfdf3e0700541d84797edbbc1e0f49d09fb",
+    "identity": {
+      "complete": true,
+      "qp_count": 16576,
+      "cross_tor_qps": 16205,
+      "source_qps": 16205,
+      "destination_qps": 16205,
+      "upstream_ce_packets": 9912,
+      "errors": []
+    },
+    "log_bytes": {
+      "config.log": 1656630,
+      "simulation.log": 860,
+      "worker.log": 0
+    },
+    "feedback": {
+      "generated": 29388,
+      "delivered": 29388,
+      "rejected": 0,
+      "expired": 0,
+      "delivered_bytes": 2497980,
+      "age_sum_ns": 6841388,
+      "age_max_ns": 8357,
+      "age_lt_1us": 28768,
+      "age_1_2us": 479,
+      "age_2_5us": 110,
+      "age_5_10us": 31,
+      "age_gt_10us": 0,
+      "sequence_gaps": 0,
+      "hop_enqueues": 105924,
+      "hop_rejects": 0,
+      "hop_dequeues": 105924,
+      "hop_bytes": 9003540,
+      "cache_peak": 227
+    }
+  },
+  "run_times": {
+    "off": {
+      "started_utc": "2026-09-29T09:12:43Z",
+      "finished_utc": "2026-09-29T09:17:30Z"
+    },
+    "on": {
+      "started_utc": "2026-09-29T09:27:27Z",
+      "finished_utc": "2026-09-29T09:32:15Z"
+    }
+  },
+  "paired_fct_delta": {
+    "same_flow_keys": true,
+    "flow_count": 16576,
+    "changed_flows": 13916,
+    "fct_decreased_flows": 6643,
+    "fct_increased_flows": 7273,
+    "delta_ns_sum": -4051275,
+    "delta_ns_mean": -244.40606901544402,
+    "delta_ns_median": 0.0,
+    "delta_ns_min": -1270200,
+    "delta_ns_max": 526268,
+    "off_fct_ns_p50_p90_p99": [
+      2437,
+      15135,
+      345457
+    ],
+    "on_fct_ns_p50_p90_p99": [
+      2439,
+      15089,
+      345499
+    ]
+  },
+  "resource_receipt": {
+    "available": false,
+    "off_peak_rss_mib": null,
+    "on_peak_rss_mib": null,
+    "reason": "no per-experiment peak RSS sample was recorded while either simulation was active"
+  },
+  "interpretation": "feedback transport may be assessed from aggregate counters; any application timing change fails the non-perturbation gate and is not a routing benefit claim"
+}

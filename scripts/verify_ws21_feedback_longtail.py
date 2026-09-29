@@ -4,7 +4,9 @@
 import argparse
 import hashlib
 import json
+import math
 import re
+import statistics
 from pathlib import Path
 
 from verify_ws21_identity import verify as verify_identity
@@ -41,6 +43,41 @@ def feedback_summary(path):
         key, value = item.split("=", 1)
         values[key] = int(value)
     return values
+
+
+def fct_deltas(off_path, on_path):
+    def read(path):
+        result = {}
+        for line in path.read_text(encoding="utf-8").splitlines():
+            columns = line.split()
+            if columns:
+                result[tuple(columns[:6])] = int(columns[6])
+        return result
+
+    off, on = read(off_path), read(on_path)
+    if set(off) != set(on):
+        return {"same_flow_keys": False, "changed_flows": None}
+    deltas = [on[key] - off[key] for key in off]
+    ordered_off = sorted(off.values())
+    ordered_on = sorted(on.values())
+
+    def nearest_rank(values, percentile):
+        return values[min(len(values) - 1, int(math.ceil(len(values) * percentile)) - 1)]
+
+    return {
+        "same_flow_keys": True,
+        "flow_count": len(deltas),
+        "changed_flows": sum(delta != 0 for delta in deltas),
+        "fct_decreased_flows": sum(delta < 0 for delta in deltas),
+        "fct_increased_flows": sum(delta > 0 for delta in deltas),
+        "delta_ns_sum": sum(deltas),
+        "delta_ns_mean": sum(deltas) / float(len(deltas)),
+        "delta_ns_median": statistics.median(deltas),
+        "delta_ns_min": min(deltas),
+        "delta_ns_max": max(deltas),
+        "off_fct_ns_p50_p90_p99": [nearest_rank(ordered_off, p) for p in (0.5, 0.9, 0.99)],
+        "on_fct_ns_p50_p90_p99": [nearest_rank(ordered_on, p) for p in (0.5, 0.9, 0.99)],
+    }
 
 
 def inspect_cell(results, experiment_id, feedback_enabled, source_sha):
@@ -108,34 +145,67 @@ def inspect_cell(results, experiment_id, feedback_enabled, source_sha):
     }
 
 
-def verify(results, off_id, on_id, source_sha):
+def verify(results, off_id, on_id, source_sha, off_peak_rss_mib=None,
+           on_peak_rss_mib=None):
     off = inspect_cell(results, off_id, 0, source_sha)
     on = inspect_cell(results, on_id, 1, source_sha)
     off_params, on_params = off["metadata"]["parameters"], on["metadata"]["parameters"]
     if any(off_params.get(key) != on_params.get(key) for key in COMMON_PARAMETERS):
         raise ValueError("off/on common parameters differ")
-    for key in ("input_flow_sha256", "topology_sha256", "fct_sha256", "ws18_sha256"):
-        if off[key] != on[key]:
-            raise ValueError("pair {} differs".format(key))
+    failures = []
+    shared_input = all(off[key] == on[key] for key in ("input_flow_sha256", "topology_sha256"))
+    same_fct = off["fct_sha256"] == on["fct_sha256"]
+    same_ws18 = off["ws18_sha256"] == on["ws18_sha256"]
+    if not shared_input:
+        failures.append("paired trace/topology hashes differ")
+    if not same_fct:
+        failures.append("FCT raw differs between feedback-off and feedback-on")
+    if not same_ws18:
+        failures.append("WS18 timing raw differs between feedback-off and feedback-on")
+    if not off["identity"].get("complete") or not on["identity"].get("complete"):
+        failures.append("path identity check failed")
 
     summary = feedback_summary(on["raw"] / "config.log")
     if summary.get("generated") != summary.get("delivered"):
-        raise ValueError("feedback generated/delivered counts differ")
+        failures.append("feedback generated/delivered counts differ")
     for key in ("rejected", "expired", "hop_rejects", "sequence_gaps"):
         if summary.get(key) != 0:
-            raise ValueError("feedback {} must be zero, got {}".format(key, summary.get(key)))
+            failures.append("feedback {} must be zero, got {}".format(key, summary.get(key)))
     if summary.get("hop_enqueues") != summary.get("hop_dequeues"):
-        raise ValueError("feedback per-hop enqueue/dequeue counts differ")
+        failures.append("feedback per-hop enqueue/dequeue counts differ")
     if summary.get("hop_bytes", 0) < summary.get("delivered_bytes", 0):
-        raise ValueError("feedback hop bytes are less than delivered packet bytes")
+        failures.append("feedback hop bytes are less than delivered packet bytes")
     if summary.get("age_max_ns", 0) > 10000:
-        raise ValueError("feedback maximum age exceeds 10 us")
+        failures.append("feedback maximum age exceeds 10 us")
     if summary.get("cache_peak", 0) > 16384:
-        raise ValueError("feedback cache exceeded its key bound")
+        failures.append("feedback cache exceeded its key bound")
     on["feedback"] = summary
+    deltas = fct_deltas(off["raw"] / (off["metadata"]["raw_directory"] + "_out_fct.txt"),
+                        on["raw"] / (on["metadata"]["raw_directory"] + "_out_fct.txt"))
+    resource_receipt = {
+        "available": off_peak_rss_mib is not None and on_peak_rss_mib is not None,
+        "off_peak_rss_mib": off_peak_rss_mib,
+        "on_peak_rss_mib": on_peak_rss_mib,
+    }
+    if not resource_receipt["available"]:
+        resource_receipt["reason"] = (
+            "no per-experiment peak RSS sample was recorded while either simulation was active"
+        )
+        failures.append("per-experiment peak RSS receipt missing")
+    off_timing = {key: off["metadata"].get(key) for key in ("started_utc", "finished_utc")}
+    on_timing = {key: on["metadata"].get(key) for key in ("started_utc", "finished_utc")}
     del off["metadata"], on["metadata"], off["raw"], on["raw"]
-    return {"complete": True, "off": off, "on": on,
-            "interpretation": "long-tail feedback engineering gate only; no routing benefit claim"}
+    return {
+        "analysis_complete": True,
+        "gate_pass": not failures,
+        "failures": failures,
+        "off": off,
+        "on": on,
+        "run_times": {"off": off_timing, "on": on_timing},
+        "paired_fct_delta": deltas,
+        "resource_receipt": resource_receipt,
+        "interpretation": "feedback transport may be assessed from aggregate counters; any application timing change fails the non-perturbation gate and is not a routing benefit claim",
+    }
 
 
 def main():
@@ -144,14 +214,19 @@ def main():
     parser.add_argument("--off", required=True)
     parser.add_argument("--on", required=True)
     parser.add_argument("--source-sha", required=True)
+    parser.add_argument("--off-peak-rss-mib", type=float)
+    parser.add_argument("--on-peak-rss-mib", type=float)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    result = verify(args.results, args.off, args.on, args.source_sha)
+    result = verify(args.results, args.off, args.on, args.source_sha,
+                    args.off_peak_rss_mib, args.on_peak_rss_mib)
     text = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(text, encoding="utf-8")
     print(text, end="")
+    if not result["gate_pass"]:
+        return 1
 
 
 if __name__ == "__main__":
