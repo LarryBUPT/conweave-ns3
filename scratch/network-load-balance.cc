@@ -922,7 +922,8 @@ void BuildWs21IngressMapping() {
             }
         }
     }
-    NS_ASSERT_MSG(pathEnds > 0, "WS-21 mapping has no cross-ToR paths");
+    if (pathEnds == 0)
+        NS_FATAL_ERROR("WS-21 mapping has no cross-ToR paths");
     std::cout << "WS21_MAPPING path_ends=" << pathEnds
               << " unreachable_pairs=" << unreachablePairs << std::endl;
 }
@@ -1455,10 +1456,10 @@ int main(int argc, char *argv[]) {
     NS_ASSERT_MSG(lb_mode != 20 || (ws18_admission_rate_gbps > 0 && !ws18_output_file.empty()),
                   "WS-18 requires positive admission rate and an output file");
     SwitchNode::ConfigureWs18Path(lb_mode == 20 && ws18_path);
-    NS_ASSERT_MSG(!ws21_feedback || (lb_mode == 20 && ws21_identity),
-                  "WS-21 feedback requires mode 20 and path identity mapping");
-    NS_ASSERT_MSG(!ws21_identity || (lb_mode == 20 && !ws21_identity_output_file.empty()),
-                  "WS-21 identity diagnostic requires mode 20 and an output file");
+    if (ws21_feedback && (lb_mode != 20 || !ws21_identity))
+        NS_FATAL_ERROR("WS-21 feedback requires mode 20 and path identity mapping");
+    if (ws21_identity && (lb_mode != 20 || ws21_identity_output_file.empty()))
+        NS_FATAL_ERROR("WS-21 identity diagnostic requires mode 20 and an output file");
     NS_ASSERT_MSG(!ws21_port_events ||
                       (lb_mode == 20 && !ws21_port_output_file.empty() &&
                        ws21_port_max_bytes >= 1024),
@@ -2146,7 +2147,8 @@ int main(int argc, char *argv[]) {
     }
     if (ws21_identity) {
         FILE *identity = fopen(ws21_identity_output_file.c_str(), "w");
-        NS_ASSERT_MSG(identity, "WS-21 cannot open identity output");
+        if (!identity)
+            NS_FATAL_ERROR("WS-21 cannot open identity output");
         fprintf(identity, "side tor src dst sport dport first_port packets upstream_ce first_ns last_ns inconsistent unmapped\n");
         for (uint32_t i = 0; i < node_num; ++i)
             if (n.Get(i)->GetNodeType() == 1)

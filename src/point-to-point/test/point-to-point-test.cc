@@ -6,6 +6,8 @@
 #include "ns3/packet.h"
 #include "ns3/ws21-feedback-header.h"
 
+#include <limits>
+
 namespace ns3 {
 
 class PointToPointTest : public TestCase
@@ -68,6 +70,13 @@ public:
     received.samplePackets = sent.samplePackets;
     received.sequence = 0;
     NS_TEST_ASSERT_MSG_EQ (received.IsValid (), false, "zero sequence accepted");
+    received.sequence = sent.sequence;
+    received.candidatePort = 0;
+    NS_TEST_ASSERT_MSG_EQ (received.IsValid (), false, "zero candidate port accepted");
+    received.candidatePort = sent.candidatePort;
+    received.windowEndNs = std::numeric_limits<uint64_t>::max ();
+    received.generationDelayNs = 1;
+    NS_TEST_ASSERT_MSG_EQ (received.IsValid (), false, "generation-time overflow accepted");
   }
 };
 

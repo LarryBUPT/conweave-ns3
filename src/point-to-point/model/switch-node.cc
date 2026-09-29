@@ -129,8 +129,8 @@ void SwitchNode::ConfigureGuardHash(uint32_t lambda, uint32_t tau,
 
 void SwitchNode::ConfigureWs18Path(bool enabled) { ws18_path_enabled = enabled; }
 void SwitchNode::ConfigureWs21Feedback(bool enabled, uint32_t intervalNs) {
-    NS_ASSERT_MSG(intervalNs >= 1000 && intervalNs <= 60000,
-                  "WS-21 feedback interval must fit the compact generation delay");
+    if (intervalNs < 1000 || intervalNs > 60000)
+        NS_FATAL_ERROR("WS-21 feedback interval must fit the compact generation delay");
     ws21_feedback_enabled = enabled;
     ws21_feedback_interval_ns = intervalNs;
 }
@@ -276,15 +276,17 @@ void SwitchNode::FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort) {
     report.windowEndNs = window.endNs;
     report.cePackets = window.cePackets;
     report.samplePackets = window.samplePackets;
-    NS_ASSERT_MSG(m_ws21FeedbackSequence[key] < std::numeric_limits<uint32_t>::max(),
-                  "WS-21 compact feedback sequence exhausted");
-    report.sequence = ++m_ws21FeedbackSequence[key];
+    uint32_t &sequence = m_ws21FeedbackSequence[key];
+    if (sequence == std::numeric_limits<uint32_t>::max())
+        NS_FATAL_ERROR("WS-21 compact feedback sequence exhausted");
+    report.sequence = ++sequence;
     const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
-    NS_ASSERT_MSG(nowNs >= window.endNs &&
-                  nowNs - window.endNs <= std::numeric_limits<uint16_t>::max(),
-                  "WS-21 compact generation delay overflow");
+    if (nowNs < window.endNs ||
+        nowNs - window.endNs > std::numeric_limits<uint16_t>::max())
+        NS_FATAL_ERROR("WS-21 compact generation delay overflow");
     report.generationDelayNs = static_cast<uint16_t>(nowNs - window.endNs);
-    NS_ASSERT_MSG(report.IsValid(), "WS-21 generated an invalid feedback report");
+    if (!report.IsValid())
+        NS_FATAL_ERROR("WS-21 generated an invalid feedback report");
 
     Ptr<Packet> packet = Create<Packet>();
     packet->AddHeader(report);
