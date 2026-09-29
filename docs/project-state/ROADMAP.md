@@ -1,6 +1,6 @@
 # 下一阶段路线与停机条件
 
-2026-09-29 WS-21 v2 下一门槛：Sol High 已按原始 pair 完成[40 流配对分析](../research/ws21-compact-40pair-sol-report.md)并形成[Handoff 35](../handoffs/2026-09-29-35-ws21-v2-sol-analysis.md)。40 流反馈传输与资源门槛通过，旧版 85 B/份到新版 60 B/份的同输入跨 SHA 技术对照显示报文体积下降 29.4%；40 流没有候选 CE 区分和选路采用。只在实际切至 Luna High，先以修正后的新固定 SHA 通过 optimized 构建、单测和同 SHA 40 流回归，再通过远端预检后，依[长尾间隔预飞行表](../research/ws21-compact-longtail-interval-preflight.md)运行 off、10、20、40、5 µs 技术矩阵；完成并回传后再切 Sol High 分析。局部心跳先独立小拓扑实现/故障测试，最后才可能与 STATE 合并。效果矩阵仍 NO-GO，历史 no-go 不追溯改判。
+2026-09-30 WS-21 下一门槛：[长尾间隔技术矩阵](../research/ws21-compact-longtail-interval-report.md)及[Handoff 36](../handoffs/2026-09-30-36-ws21-compact-interval-matrix.md)已完成 Sol 原始数据复核。固定源码 off/5/10/20/40 µs 五格均回传，四个开启格全流守恒；5 µs 有 15 份按 10 µs 有效期过期，10/20/40 µs 零过期。若严格要求零过期且最大窗口末样本年龄 ≤20.000 µs，本次最低逐跳成本档为 10 µs；20.5 µs 示例上限下才是 20 µs。[活跃 ToR 上联 HELLO/ACK 最小协议与小拓扑故障注入契约](../research/ws21-local-heartbeat-fault-contract.md)已冻结为设计；完成本地实现和正确性后，于 Luna High 实际生效时做技术 pilot；全部原始结果回传后用 Sol High 分析。STATE 缓存尚未进入选路，效果矩阵仍 NO-GO；历史 no-go 保留。
 
 更新：2026-09-29。集成工作流只维护顺序和证据门槛；具体代码和实验在对应 workstream 执行。参照 [CURRENT_STATE.md](CURRENT_STATE.md) 的实时快照，在执行前再核验 Git 与远程资源。研究筛选见 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)；用户要求的提前工程原型见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 
