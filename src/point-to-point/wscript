@@ -28,6 +28,7 @@ def build(bld):
         'model/letflow-routing.cc',
         'model/conweave-routing.cc',
         'model/conweave-voq.cc',
+		'model/ws21-feedback-header.cc',
 		'helper/selective-packet-queue.cc',
         ]
 
@@ -65,6 +66,7 @@ def build(bld):
         'model/letflow-routing.h',
         'model/conweave-routing.h',
         'model/conweave-voq.h',
+		'model/ws21-feedback-header.h',
 		'helper/selective-packet-queue.h',
         ]
 

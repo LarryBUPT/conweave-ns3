@@ -72,6 +72,7 @@ uint32_t ws18_admission_rate_gbps = 400;
 std::string ws18_output_file;
 FILE *ws18_output = NULL;
 bool ws21_identity = false;
+bool ws21_feedback = false;
 std::string ws21_identity_output_file;
 bool ws21_port_events = false;
 std::string ws21_port_output_file;
@@ -1022,6 +1023,8 @@ int main(int argc, char *argv[]) {
                 conf >> ws18_output_file;
             } else if (key.compare("WS21_IDENTITY") == 0) {
                 uint32_t value; conf >> value; ws21_identity = value != 0;
+            } else if (key.compare("WS21_FEEDBACK") == 0) {
+                uint32_t value; conf >> value; ws21_feedback = value != 0;
             } else if (key.compare("WS21_IDENTITY_OUTPUT_FILE") == 0) {
                 conf >> ws21_identity_output_file;
             } else if (key.compare("WS21_PORT_EVENTS") == 0) {
@@ -1449,6 +1452,8 @@ int main(int argc, char *argv[]) {
     NS_ASSERT_MSG(lb_mode != 20 || (ws18_admission_rate_gbps > 0 && !ws18_output_file.empty()),
                   "WS-18 requires positive admission rate and an output file");
     SwitchNode::ConfigureWs18Path(lb_mode == 20 && ws18_path);
+    NS_ASSERT_MSG(!ws21_feedback || (lb_mode == 20 && ws21_identity),
+                  "WS-21 feedback requires mode 20 and path identity mapping");
     NS_ASSERT_MSG(!ws21_identity || (lb_mode == 20 && !ws21_identity_output_file.empty()),
                   "WS-21 identity diagnostic requires mode 20 and an output file");
     NS_ASSERT_MSG(!ws21_port_events ||
@@ -1456,6 +1461,7 @@ int main(int argc, char *argv[]) {
                        ws21_port_max_bytes >= 1024),
                   "WS-21 port events require mode 20, output file, and byte cap");
     SwitchNode::ConfigureWs21Identity(ws21_identity);
+    SwitchNode::ConfigureWs21Feedback(ws21_feedback);
     Settings::packet_payload = packet_payload_size;
     // Settings::MTU = packet_payload_size + 48;  // for simplicity
     /*------------------------------------*/

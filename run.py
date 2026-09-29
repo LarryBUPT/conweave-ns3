@@ -50,6 +50,7 @@ WS18_ADMISSION {ws18_admission}
 WS18_PATH {ws18_path}
 WS18_ADMISSION_RATE_GBPS {ws18_admission_rate_gbps}
 WS21_IDENTITY {ws21_identity}
+WS21_FEEDBACK {ws21_feedback}
 WS21_PORT_EVENTS {ws21_port_events}
 WS21_PORT_MAX_BYTES {ws21_port_max_bytes}
 GUARDHASH_LAMBDA 1
@@ -181,6 +182,8 @@ def main():
     parser.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
     parser.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
+    parser.add_argument('--ws21-feedback', type=int, choices=(0, 1), default=0,
+                        help='send measured WS-21 reports over the simulated Qbb network')
     parser.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
     parser.add_argument('--enforce_win', dest='enforce_win', action='store',
@@ -251,6 +254,8 @@ def main():
         raise Exception("CONFIG ERROR : WS-18 admission rate must be positive")
     if args.ws21_identity and args.lb != 'ws18':
         raise Exception("CONFIG ERROR : WS-21 identity diagnostic requires --lb ws18")
+    if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
+        raise Exception("CONFIG ERROR : WS-21 feedback requires --lb ws18 and --ws21-identity 1")
     if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
         raise Exception("CONFIG ERROR : WS-21 port events need ws18 and a byte cap >= 1024")
     if float(args.simul_time) < 0.005:
@@ -425,6 +430,7 @@ def main():
                                         ws18_admission=args.ws18_admission, ws18_path=args.ws18_path,
                                         ws18_admission_rate_gbps=args.ws18_admission_rate_gbps,
                                         ws21_identity=args.ws21_identity,
+                                        ws21_feedback=args.ws21_feedback,
                                         ws21_port_events=args.ws21_port_events,
                                         ws21_port_max_bytes=args.ws21_port_max_bytes,
                                         cwh_extra_reply_deadline=cwh_extra_reply_deadline, cwh_default_voq_waiting_time=cwh_default_voq_waiting_time,

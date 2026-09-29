@@ -61,9 +61,26 @@ class SwitchNode : public Node {
     std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, Ws21PathObservation>
         m_ws21Source, m_ws21Destination;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21IngressToFirst;
+    struct Ws21FeedbackState {
+        uint64_t sequence = 0, windowEndNs = 0, generatedNs = 0;
+        uint32_t cePackets = 0, samplePackets = 0;
+    };
+    struct Ws21FeedbackWindow {
+        uint32_t sourceHostIp = 0, destinationHostIp = 0;
+        uint64_t startNs = 0, endNs = 0;
+        uint32_t cePackets = 0, samplePackets = 0;
+        bool scheduled = false;
+    };
+    std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackState> m_ws21Feedback;
+    std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackWindow> m_ws21FeedbackWindows;
+    std::map<std::pair<uint32_t, uint32_t>, uint64_t> m_ws21FeedbackSequence;
     std::unordered_set<uint32_t> m_ws21HostPorts;
     void ObserveWs21Source(const CustomHeader &ch, uint32_t port);
     void ObserveWs21Destination(Ptr<const Packet> p, const CustomHeader &ch);
+    bool ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch);
+    void AccumulateWs21Feedback(uint32_t sourceTor, uint32_t candidatePort,
+                                const CustomHeader &ch, bool ce);
+    void FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort);
     uint32_t DoLbWs18(Ptr<const Packet> p, const CustomHeader &ch,
                       const std::vector<int> &nexthops);
     uint32_t DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
@@ -98,6 +115,7 @@ class SwitchNode : public Node {
     static void ConfigureGuardHash(uint32_t lambda, uint32_t tau,
                                    uint32_t gateOnBytes, uint32_t gateOffBytes);
     static void ConfigureWs18Path(bool enabled);
+    static void ConfigureWs21Feedback(bool enabled);
     static void ConfigureWs21Identity(bool enabled);
     static void ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes);
     static void FinishWs21PortEvents();

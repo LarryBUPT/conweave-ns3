@@ -15,8 +15,10 @@
 #include "ns3/settings.h"
 #include "ns3/uinteger.h"
 #include "ns3/workload-tag.h"
+#include "ws21-feedback-header.h"
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 #include <map>
 #include <tuple>
 #include "ppp-header.h"
@@ -40,6 +42,17 @@ static uint64_t guard_activations = 0, guard_exits = 0;
 static uint64_t guard_queue_violations = 0;
 static bool ws18_path_enabled = false;
 static bool ws21_identity_enabled = false;
+static bool ws21_feedback_enabled = false;
+static uint64_t ws21_feedback_delivered = 0, ws21_feedback_rejected = 0;
+static uint64_t ws21_feedback_expired = 0, ws21_feedback_bytes = 0;
+static uint64_t ws21_feedback_cache_peak = 0;
+static uint64_t ws21_feedback_age_sum_ns = 0, ws21_feedback_age_max_ns = 0;
+static uint64_t ws21_feedback_age_bins[5] = {0, 0, 0, 0, 0};
+static uint64_t ws21_feedback_sequence_gaps = 0;
+static uint64_t ws21_feedback_generated = 0, ws21_feedback_hop_bytes = 0;
+static uint64_t ws21_feedback_hop_enqueues = 0, ws21_feedback_hop_rejects = 0;
+static uint64_t ws21_feedback_hop_dequeues = 0;
+static const size_t WS21_FEEDBACK_MAX_KEYS_PER_TOR = 16384;
 static std::map<uint32_t, uint32_t> ws21_host_tor;
 static FILE *ws21_port_events = NULL;
 static uint64_t ws21_port_max_bytes = 0, ws21_port_bytes = 0;
@@ -71,6 +84,10 @@ static bool Ws13DiagnosticEnabled() {
         return value && value[0] == '1' && value[1] == '\0';
     }();
     return enabled;
+}
+
+static bool Ws21FeedbackEnabled() {
+    return ws21_feedback_enabled;
 }
 
 static void FactorialAdmissionDrop(const char *reason, uint32_t switchId,
@@ -108,6 +125,7 @@ void SwitchNode::ConfigureGuardHash(uint32_t lambda, uint32_t tau,
 }
 
 void SwitchNode::ConfigureWs18Path(bool enabled) { ws18_path_enabled = enabled; }
+void SwitchNode::ConfigureWs21Feedback(bool enabled) { ws21_feedback_enabled = enabled; }
 
 void SwitchNode::ConfigureWs21Identity(bool enabled) { ws21_identity_enabled = enabled; }
 
@@ -207,6 +225,152 @@ void SwitchNode::ObserveWs21Destination(Ptr<const Packet> p, const CustomHeader 
     ++item.packets;
     item.cePackets += ch.GetIpv4EcnBits() == 3;
     item.lastNs = Simulator::Now().GetNanoSeconds();
+    if (route != m_ws21IngressToFirst.end())
+        AccumulateWs21Feedback(source->second, route->second, ch,
+                               ch.GetIpv4EcnBits() == 3);
+}
+
+void SwitchNode::AccumulateWs21Feedback(uint32_t sourceTor, uint32_t candidatePort,
+                                        const CustomHeader &ch, bool ce) {
+    if (!Ws21FeedbackEnabled() || !m_isToR || sourceTor == m_id) return;
+    const auto key = std::make_pair(sourceTor, candidatePort);
+    if (!m_ws21FeedbackWindows.count(key) &&
+        m_ws21FeedbackWindows.size() >= WS21_FEEDBACK_MAX_KEYS_PER_TOR) {
+        ++ws21_feedback_rejected;
+        return;
+    }
+    Ws21FeedbackWindow &window = m_ws21FeedbackWindows[key];
+    const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
+    if (!window.samplePackets) {
+        window.sourceHostIp = ch.sip;
+        window.destinationHostIp = ch.dip;
+        window.startNs = nowNs;
+    }
+    ++window.samplePackets;
+    if (ce) ++window.cePackets;
+    window.endNs = nowNs;
+    if (!window.scheduled) {
+        window.scheduled = true;
+        Simulator::Schedule(NanoSeconds(10000), &SwitchNode::FlushWs21Feedback,
+                            this, sourceTor, candidatePort);
+    }
+}
+
+void SwitchNode::FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort) {
+    const auto key = std::make_pair(sourceTor, candidatePort);
+    auto found = m_ws21FeedbackWindows.find(key);
+    if (found == m_ws21FeedbackWindows.end()) return;
+    const Ws21FeedbackWindow window = found->second;
+    m_ws21FeedbackWindows.erase(found);
+    if (!window.samplePackets) return;
+
+    Ws21FeedbackHeader report;
+    report.sourceTor = sourceTor;
+    report.destinationTor = m_id;
+    report.candidatePort = candidatePort;
+    report.windowStartNs = window.startNs;
+    report.windowEndNs = window.endNs;
+    report.cePackets = window.cePackets;
+    report.samplePackets = window.samplePackets;
+    report.sequence = ++m_ws21FeedbackSequence[key];
+    report.generatedNs = Simulator::Now().GetNanoSeconds();
+    NS_ASSERT_MSG(report.IsValid(), "WS-21 generated an invalid feedback report");
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(report);
+    Ipv4Header ipv4;
+    ipv4.SetSource(Ipv4Address(window.destinationHostIp));
+    ipv4.SetDestination(Ipv4Address(window.sourceHostIp));
+    ipv4.SetProtocol(Ws21FeedbackHeader::IP_PROTOCOL);
+    ipv4.SetTtl(64);
+    ipv4.SetPayloadSize(packet->GetSize());
+    ipv4.SetIdentification(uint16_t(report.sequence));
+    packet->AddHeader(ipv4);
+    PppHeader ppp;
+    ppp.SetProtocol(0x0021);
+    packet->AddHeader(ppp);
+    packet->AddPacketTag(FlowIdTag(Settings::CONWEAVE_CTRL_DUMMY_INDEV));
+
+    CustomHeader ch(CustomHeader::L2_Header | CustomHeader::L3_Header |
+                    CustomHeader::L4_Header);
+    packet->PeekHeader(ch);
+    ++ws21_feedback_generated;
+    SendToDevContinue(packet, ch);
+}
+
+bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
+    if (!Ws21FeedbackEnabled() || ch.l3Prot != Ws21FeedbackHeader::IP_PROTOCOL || !m_isToR)
+        return false;
+    auto localSource = ws21_host_tor.find(ch.dip);
+    auto remoteDestination = ws21_host_tor.find(ch.sip);
+    if (localSource == ws21_host_tor.end() || localSource->second != m_id ||
+        remoteDestination == ws21_host_tor.end()) {
+        ++ws21_feedback_rejected;
+        return true;
+    }
+
+    const uint32_t packetBytes = p->GetSize();
+    PppHeader ppp;
+    Ipv4Header ipv4;
+    Ws21FeedbackHeader report;
+    if (p->RemoveHeader(ppp) != ppp.GetSerializedSize() ||
+        p->RemoveHeader(ipv4) != ipv4.GetSerializedSize() ||
+        p->RemoveHeader(report) != report.GetSerializedSize()) {
+        ++ws21_feedback_rejected;
+        return true;
+    }
+
+    const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
+    if (!report.IsValid() || ipv4.GetProtocol() != Ws21FeedbackHeader::IP_PROTOCOL ||
+        ipv4.GetSource().Get() != ch.sip || ipv4.GetDestination().Get() != ch.dip ||
+        report.sourceTor != m_id || report.destinationTor != remoteDestination->second ||
+        report.generatedNs > nowNs) {
+        ++ws21_feedback_rejected;
+        return true;
+    }
+    const uint64_t ageNs = nowNs - report.generatedNs;
+    ws21_feedback_age_sum_ns += ageNs;
+    ws21_feedback_age_max_ns = std::max(ws21_feedback_age_max_ns, ageNs);
+    if (ageNs < 1000) ++ws21_feedback_age_bins[0];
+    else if (ageNs < 2000) ++ws21_feedback_age_bins[1];
+    else if (ageNs < 5000) ++ws21_feedback_age_bins[2];
+    else if (ageNs <= 10000) ++ws21_feedback_age_bins[3];
+    else ++ws21_feedback_age_bins[4];
+    if (ageNs > 10000) {
+        ++ws21_feedback_expired;
+        return true;
+    }
+
+    auto routes = m_rtTable.find(ch.sip);
+    if (routes == m_rtTable.end() ||
+        std::find(routes->second.begin(), routes->second.end(), report.candidatePort) ==
+            routes->second.end()) {
+        ++ws21_feedback_rejected;
+        return true;
+    }
+
+    const auto key = std::make_pair(report.destinationTor, report.candidatePort);
+    if (!m_ws21Feedback.count(key) && m_ws21Feedback.size() >= WS21_FEEDBACK_MAX_KEYS_PER_TOR) {
+        ++ws21_feedback_rejected;
+        return true;
+    }
+    Ws21FeedbackState &state = m_ws21Feedback[key];
+    if (report.sequence <= state.sequence) {
+        ++ws21_feedback_rejected;
+        return true;
+    }
+    if (state.sequence && report.sequence > state.sequence + 1)
+        ws21_feedback_sequence_gaps += report.sequence - state.sequence - 1;
+    state.sequence = report.sequence;
+    state.windowEndNs = report.windowEndNs;
+    state.generatedNs = report.generatedNs;
+    state.cePackets = report.cePackets;
+    state.samplePackets = report.samplePackets;
+    ++ws21_feedback_delivered;
+    ws21_feedback_bytes += packetBytes;
+    ws21_feedback_cache_peak = std::max<uint64_t>(ws21_feedback_cache_peak,
+                                                   m_ws21Feedback.size());
+    return true;
 }
 
 void SwitchNode::WriteWs21Identity(FILE *out) const {
@@ -225,6 +389,25 @@ void SwitchNode::WriteWs21Identity(FILE *out) const {
 }
 
 void SwitchNode::PrintWorkloadTagCounts() {
+    if (Ws21FeedbackEnabled())
+        std::cout << "WS21_FEEDBACK generated=" << ws21_feedback_generated
+                  << " delivered=" << ws21_feedback_delivered
+                  << " rejected=" << ws21_feedback_rejected
+                  << " expired=" << ws21_feedback_expired
+                  << " delivered_bytes=" << ws21_feedback_bytes
+                  << " age_sum_ns=" << ws21_feedback_age_sum_ns
+                  << " age_max_ns=" << ws21_feedback_age_max_ns
+                  << " age_lt_1us=" << ws21_feedback_age_bins[0]
+                  << " age_1_2us=" << ws21_feedback_age_bins[1]
+                  << " age_2_5us=" << ws21_feedback_age_bins[2]
+                  << " age_5_10us=" << ws21_feedback_age_bins[3]
+                  << " age_gt_10us=" << ws21_feedback_age_bins[4]
+                  << " sequence_gaps=" << ws21_feedback_sequence_gaps
+                  << " hop_enqueues=" << ws21_feedback_hop_enqueues
+                  << " hop_rejects=" << ws21_feedback_hop_rejects
+                  << " hop_dequeues=" << ws21_feedback_hop_dequeues
+                  << " hop_bytes=" << ws21_feedback_hop_bytes
+                  << " cache_peak=" << ws21_feedback_cache_peak << std::endl;
     if (Settings::lb_mode == 20)
         std::cout << "WS18_PATH flows=" << ws18_path_flows
                   << " alternate=" << ws18_path_alternate
@@ -346,6 +529,8 @@ uint32_t SwitchNode::DoLbFlowECMP(Ptr<const Packet> p, const CustomHeader &ch,
         buf.u32[2] = ch.udp.sport | ((uint32_t)ch.udp.dport << 16);
     else if (ch.l3Prot == 0xFC || ch.l3Prot == 0xFD)  // ACK or NACK
         buf.u32[2] = ch.ack.sport | ((uint32_t)ch.ack.dport << 16);
+    else if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL)
+        buf.u32[2] = Ws21FeedbackHeader::IP_PROTOCOL;
     else {
         std::cout << "[ERROR] Sw(" << m_id << ")," << PARSE_FIVE_TUPLE(ch)
                   << "Cannot support other protoocls than TCP/UDP (l3Prot:" << ch.l3Prot << ")"
@@ -604,6 +789,8 @@ void SwitchNode::CheckAndSendResume(uint32_t inDev, uint32_t qIndex) {
 // This function can only be called in switch mode
 bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet,
                                          CustomHeader &ch) {
+    if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL && ReceiveWs21Feedback(packet, ch))
+        return true;
     ObserveWs21Destination(packet, ch);
     SendToDev(packet, ch);
     return true;
@@ -652,6 +839,8 @@ void SwitchNode::SendToDevContinue(Ptr<Packet> p, CustomHeader &ch) {
              (ch.l3Prot == 0xFD ||
               ch.l3Prot == 0xFC))) {  // QCN or PFC or ACK/NACK, go highest priority
             qIndex = 0;               // high priority
+        } else if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
+            qIndex = 3;  // normal data priority; feedback competes for queue service
         } else {
             qIndex = (ch.l3Prot == 0x06 ? 1 : ch.udp.pg);  // if TCP, put to queue 1. Otherwise, it
                                                            // would be 3 (refer to trafficgen)
@@ -679,7 +868,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
     // entry found
     const auto &nexthops = entry->second;
     bool control_pkt =
-        (ch.l3Prot == 0xFF || ch.l3Prot == 0xFE || ch.l3Prot == 0xFD || ch.l3Prot == 0xFC);
+        (ch.l3Prot == 0xFF || ch.l3Prot == 0xFE || ch.l3Prot == 0xFD || ch.l3Prot == 0xFC ||
+         ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL);
 
     if (Settings::lb_mode == 0 || control_pkt) {  // control packet (ACK, NACK, PFC, QCN)
         return DoLbFlowECMP(p, ch, nexthops);     // ECMP routing path decision (4-tuple)
@@ -730,17 +920,20 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
     /** NOTE:
      * ConWeave control packets have the high priority as ACK/NACK/PFC/etc with qIndex = 0.
      */
-    if (inDev == Settings::CONWEAVE_CTRL_DUMMY_INDEV) { // sanity check
+    const bool locallyGenerated = inDev == Settings::CONWEAVE_CTRL_DUMMY_INDEV;
+    if (locallyGenerated) { // sanity check
         // ConWeave reply is on ACK protocol with high priority, so qIndex should be 0
-        assert(qIndex == 0 && m_ackHighPrio == 1 && "ConWeave's reply packet follows ACK, so its qIndex should be 0");
+        assert((qIndex == 0 && m_ackHighPrio == 1) ||
+               (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL && qIndex == 3));
     }
 
     if (qIndex != 0) {  // not highest priority
         if (m_mmu->CheckEgressAdmission(outDev, qIndex,
                                         p->GetSize())) {  // Egress Admission control
-            if (m_mmu->CheckIngressAdmission(inDev, qIndex,
-                                             p->GetSize())) {  // Ingress Admission control
-                m_mmu->UpdateIngressAdmission(inDev, qIndex, p->GetSize());
+            if (locallyGenerated || m_mmu->CheckIngressAdmission(inDev, qIndex,
+                                                                  p->GetSize())) {
+                if (!locallyGenerated)
+                    m_mmu->UpdateIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->UpdateEgressAdmission(outDev, qIndex, p->GetSize());
             } else { /** DROP: At Ingress */
                 FactorialAdmissionDrop("ingress", m_id, ch, inDev, outDev, p->GetSize());
@@ -752,6 +945,8 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 //           << ",At " << Simulator::Now() << std::endl;
 #endif
                 Settings::dropped_pkt_sw_ingress++;
+                if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL)
+                    ++ws21_feedback_hop_rejects;
                 if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
                     SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
@@ -765,12 +960,14 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
             //           << Simulator::Now() << std::endl;
 #endif
             Settings::dropped_pkt_sw_egress++;
+            if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL)
+                ++ws21_feedback_hop_rejects;
             if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
                 SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
         }
 
-        CheckAndSendPfc(inDev, qIndex);
+        if (!locallyGenerated) CheckAndSendPfc(inDev, qIndex);
     }
 
     if (Ws13DiagnosticEnabled() && ch.l3Prot == 0x11) {
@@ -793,7 +990,15 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
             ws13_inflight[key] = item;
         }
     }
-    m_devices[outDev]->SwitchSend(qIndex, p, ch);
+    const bool accepted = m_devices[outDev]->SwitchSend(qIndex, p, ch);
+    if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
+        if (accepted) {
+            ++ws21_feedback_hop_enqueues;
+            ws21_feedback_hop_bytes += p->GetSize();
+        } else {
+            ++ws21_feedback_hop_rejects;
+        }
+    }
 }
 
 void SwitchNode::CheckGuardQueue(uint32_t ifIndex) {
@@ -842,6 +1047,15 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 }
 
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
+    bool feedbackPacket = false;
+    if (Ws21FeedbackEnabled()) {
+        CustomHeader feedback(CustomHeader::L2_Header | CustomHeader::L3_Header |
+                              CustomHeader::L4_Header);
+        if (p->PeekHeader(feedback) && feedback.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
+            feedbackPacket = true;
+            ++ws21_feedback_hop_dequeues;
+        }
+    }
     RecordWs21PortEvent(ifIndex, 'D');
     if (Ws13DiagnosticEnabled()) {
         auto hit = ws13_inflight.find(std::make_pair(m_id, p->GetUid()));
@@ -893,6 +1107,12 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         if (inDev != Settings::CONWEAVE_CTRL_DUMMY_INDEV) {
             CheckAndSendResume(inDev, qIndex);
         }
+    }
+    if (feedbackPacket) {
+        FlowIdTag ingress;
+        if (p->PeekPacketTag(ingress) &&
+            ingress.GetFlowId() == Settings::CONWEAVE_CTRL_DUMMY_INDEV)
+            p->RemovePacketTag(ingress);
     }
 
     // HPCC's INT
