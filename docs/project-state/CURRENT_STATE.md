@@ -1,6 +1,6 @@
 # ConWeave 毕业论文项目状态
 
-2026-09-29 WS-21 精简报文的最小实验预飞行表已冻结在[40 流预飞行表](../research/ws21-compact-40flow-preflight.md)：仿真/runner SHA `91f43c70bbb515ae35b3161d4d1e40d30ff90992`，三个预留 ID 分别用于隔离构建单测、反馈关闭 40 流和反馈开启 40 流；固定 trace/拓扑哈希、参数、资源预检/运行收据、停止条件及开始后 10 分钟首次检查均在表内。远程 runner 已能转发/记录更新间隔，本地 Python 语法检查通过。**尚未远端部署、构建、运行或生成新 raw**；必须先由编排工具实际切换到 Luna High，再从预检开始。实验完毕须切回 Sol High 分析。
+2026-09-29 WS-21 v2 实验阶段由 GPT-6 Luna High 启动。固定 SHA `91f43c70bbb515ae35b3161d4d1e40d30ff90992` 已同步；服务器预检显示无登录用户、无仿真、load1m 0、可用内存约 123 GiB、空闲磁盘约 5,694 GiB。隔离 optimized build ID `20260929-185100-ws21c-v2-unit` 为 `BUILT`；其独立测试构建因仓库已有的 `CommandLineTestCaseBase::Parse` 声明/定义 const 不一致，在 1,522/1,633 步失败，反馈头单测未执行。临时源码已恢复、tracked 文件干净，失败日志和 248 点资源摘要保留，见[执行预飞行记录](../research/ws21-compact-40flow-preflight.md)与[Handoff 33](../handoffs/2026-09-29-33-ws21-v2-unit-build-diagnostic.md)。40 流 off/on 尚未启动。新预留修复 ID `20260929-192700-ws21c-v2-unitfix` 将在隔离副本里临时修正声明与定义并完成单测；通过后才进入两格。完成所有终态 raw 后实际切回 Sol High 分析。
 
 2026-09-29 WS-21 新增[精简协议与代价—收益契约](../research/ws21-compact-control-protocol-and-tradeoff-contract.md)：SGLB 的硬件质量更新、BGP 与 SyncMesh 不整体复刻；本项目只研究固定路由之上的候选状态报文及业务活跃 ToR 上联局部心跳。源码已把 51 B 反馈头改为 26 B 版本化报文，并让非空聚合窗口可配置为 1–60 µs；本地 `run.py` 语法检查与 `git diff --check` 通过。**新源码尚未远程编译、运行或产生新实验 ID；局部心跳、缓存选路接入与效果比较尚未实现。**旧长尾 pair 的 29,388 条报告、9,003,540 逐跳字节和 13,916 条流时序变化仍只归属旧 SHA，不能写成压缩收益。下一步先实际切换 Luna High，再按契约做隔离构建/单测和小规模正确性格；终态 raw 回传后切回 Sol High 分析。旧工程失败与效果 no-go 不追溯重判。
 

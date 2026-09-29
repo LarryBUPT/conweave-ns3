@@ -6,11 +6,12 @@
 
 | 顺序 | 预留实验 ID（`build --id` 显式指定；ID 中时间是标签，不代替实际启动时间） | 动作与唯一变量 | 通过后才能继续 |
 | --- | --- | --- | --- |
-| 1 | `20260929-185100-ws21c-v2-unit` | 同 SHA 隔离 optimized `-j2` 构建；在该副本的独立测试构建运行 `devices-point-to-point`，包括 v2 头部往返及非法字段检查；无仿真 | `BUILT`、单测 PASS、测试临时改动全部恢复、源码工作树仍为固定 SHA |
-| 2 | `20260929-185200-ws21c-v2-off40` | 新副本构建并运行 40 流；`--ws21-feedback 0` | 完成/字节/身份正确、raw 和资源收据齐全 |
-| 3 | `20260929-185300-ws21c-v2-on40` | 新副本构建并运行同一 40 流；只改 `--ws21-feedback 1` | 在第 2 格成功后启动；核对报告与业务双侧指标 |
+| 1（已失败，保留） | `20260929-185100-ws21c-v2-unit` | 同 SHA optimized `-j2` build 为 `BUILT`；测试构建在 1,522/1,633 步遇到既有 core 测试 const helper 声明/定义不一致，v2 测试未执行 | 失败证据保留；不复用该 ID |
+| 2（恢复尝试） | `20260929-192700-ws21c-v2-unitfix` | 新隔离副本重新构建并运行 `devices-point-to-point`；仅在该副本临时将同一 helper 的声明和定义参数都去掉 const，测试后逐字节恢复 | PASS 且资源/恢复收据齐全后才进入 off40 |
+| 3 | `20260929-185200-ws21c-v2-off40` | 新副本构建并运行 40 流；`--ws21-feedback 0` | 完成/字节/身份正确、raw 和资源收据齐全 |
+| 4 | `20260929-185300-ws21c-v2-on40` | 新副本构建并运行同一 40 流；只改 `--ws21-feedback 1` | 在第 3 格成功后启动；核对报告与业务双侧指标 |
 
-三个 ID 均须在远端 `runs/`、`results/` 和本地 `results/` 检查不存在后使用；任一已存在则停止并在运行前修订预飞行表，绝不复用或覆盖。`scripts/remote_experiment.py build --id` 支持显式 ID；`run` 使用同 ID。`unit` ID 不启动 `run`；测试只写自己的隔离目录/日志。第二、三格必须各有独立源码副本和原始输出，不能拿 unit 构建目录当仿真目录。
+每个尚未开始的 ID 均须在远端 `runs/`、`results/` 和本地 `results/` 检查不存在后使用；任一已存在则停止并在运行前修订预飞行表，绝不复用或覆盖。`scripts/remote_experiment.py build --id` 支持显式 ID；`run` 使用同 ID。两个 `unit` ID 都不启动 `run`；测试只写自己的隔离目录/日志。40 流两格必须各有独立源码副本和原始输出，不能拿 unit 构建目录当仿真目录。初次单测失败后，off/on 暂停，待新的 unitfix ID 通过才可继续。
 
 Luna 阶段的命令形态（分别把 `<ID>`/`<0或1>` 换成上表对应行；先完成 unit 格再执行两次仿真格）：
 
@@ -36,3 +37,9 @@ python scripts/remote_experiment.py run <ID> --lb ws18 --simul-time 0.01 --netlo
 两个仿真格必须 `SUCCEEDED`、40/40 完成、33,849,344 B 守恒，40 条跨 ToR QP 身份映射无错，旧本地模式的路径/需求约束正确。开启格需 `generated=delivered>0`、`rejected=expired=hop_rejects=sequence_gaps=0`、逐跳入/出队计数相等、`hop_bytes>=delivered_bytes`、缓存峰值 ≤16,384；检查 `sample_age_max_ns >= age_max_ns` 和所有时间字段可解析。两格 FCT/WS18 raw 不强制哈希相同：真实队列反馈允许扰动；必须列逐流变好/变坏/不变数及 P50/P90/P99、反馈传输年龄/样本年龄与额外逐跳字节，不能把差异写成选路收益，因为缓存尚未参与选路。40 流上游 CE 样本在旧数据中为 0，此格不验证候选质量区分。
 
 任一报告解码/身份/守恒错误、测试失败、参数/哈希错配或资源收据缺项，停止后续格并保留故障 ID。若仅是延迟、反馈丢失或业务 FCT 变化，记录为技术结果和退回风险，不按旧“FCT 必须逐字节相同”机械否定；但未证明安全前不进入长尾或效果阶段。完成后 `fetch` 两格和 unit 日志，按原始 raw 与 metadata 独立核验，再由 Sol High 决定是否追加长尾间隔格。旧 WS-21 技术失败、WS-19/20 等效果 no-go 均不因此追溯改判。
+
+## Luna 阶段执行记录
+
+2026-09-29 首次预检：服务器 `ns3host`，40 逻辑 CPU，`who` 无登录用户，活动仿真 PID 为空，load 1m=0.00、可用内存 122.99 GiB、工作区空闲 5,694.3 GiB；三项预留 ID 均不存在。个人 fork 经 SSH Git bundle 同步；直接 GitHub fetch 超时前已按流程静默尝试一次 `login.sh`。冻结 SHA `91f43c70bbb515ae35b3161d4d1e40d30ff90992` 的隔离 optimized `-j2` 构建 `20260929-185100-ws21c-v2-unit` 于 2026-09-29 11:13:54 UTC 为 `BUILT`。
+
+该 ID 的独立测试构建在 1,522/1,633 步因仓库既有 `CommandLineTestCaseBase::Parse` 的声明已去 const、定义仍带 const 而失败；WS-21 报文单测未执行。单测 wrapper 已在恢复原文件后将测试构建目录误判为源码污染并退出，但远端 Git 状态显示 tracked 源码干净、只有该 ID 的 `build-ws21-tests/` 未跟踪构建目录。失败日志为 `results/20260929-185100-ws21c-v2-unit/logs/ws21-v2-unit-test.log`，248 个资源采样汇总另存 `unit-attempt-summary.json`：进程树峰值 RSS 809.7 MiB，最小可用内存 122.25 GiB，最小空闲磁盘 5,692.74 GiB，最大 load 1m=2.14。此失败 ID 完整保留，不能复用；40 流 off/on 两格暂不启动。修订流程改为新隔离 ID `20260929-192700-ws21c-v2-unitfix`，临时同时修正该无关 helper 的声明和定义并验证测试后恢复；通过前不得扩展。
