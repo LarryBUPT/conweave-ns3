@@ -45,3 +45,13 @@ python scripts/remote_experiment.py run <ID> --lb ws18 --simul-time 0.01 --netlo
 该 ID 的独立测试构建在 1,522/1,633 步因仓库既有 `CommandLineTestCaseBase::Parse` 声明已去 const、定义仍带 const 而失败；WS-21 报文单测未执行。失败日志为 `results/20260929-185100-ws21c-v2-unit/logs/ws21-v2-unit-test.log`，248 个资源采样汇总 `unit-attempt-summary.json`：进程树峰值 RSS 809.7 MiB，最低可用内存 122.25 GiB，最低空闲磁盘 5,692.74 GiB，最大 load1m 2.14。tracked 源码干净、失败 ID 保留。新 ID `20260929-192700-ws21c-v2-unitfix` 中优化 build `BUILT`；临时同时修正声明和定义后测试构建完成。首个 wrapper 错误地只查找名为 `test-runner` 的文件并报未找到，实际文件为 `ns3.19-test-runner-optimized`。之后使用独立库路径直接执行 `--suite=devices-point-to-point`，结果 `PASS devices-point-to-point 0.000 s`；源码 SHA-256 `b7285686202442d47d339fd5817e9001c47bfc23377c8a8f5f596ba694373881` 恢复一致，tracked Git 状态干净，成功记录在 `logs/unit-runner-retry-summary.json`。两个早期 wrapper 失败日志保留，不覆盖。单测门槛现通过，可以在再次核对服务器资源和 off/on ID 未占用后进入 40 流格。
 
 随后资源与 ID 检查通过，反馈关闭格 `20260929-185200-ws21c-v2-off40` 已在固定 SHA 和独立目录启动：PID 40088，开始时间 `2026-09-29T11:59:21Z`，资源 watcher PID 40135、间隔 2 秒。共同输入 SHA、参数见本表；参数 `ws21_feedback=0`。首次精简监督检查时间 `2026-09-29T12:09:21Z`；若仍运行，后续约每 30 分钟检查一次。反馈开启格不在关闭格完成、raw 和资源收据核验前启动。
+
+### Luna 执行与原始收据核验（2026-09-29）
+
+关闭格 `20260929-185200-ws21c-v2-off40`：固定 SHA `91f43c70bbb515ae35b3161d4d1e40d30ff90992`，PID 40088，`2026-09-29T11:59:21Z` 至 `12:02:18Z`，状态 `SUCCEEDED`，40/40 流、33,849,344 B；80 个资源点，进程树峰值 4,543.86 MiB，可用内存最低 118.59 GiB，磁盘最低 5,689.87 GiB。Raw ID `432264462`。本机 `results/20260929-185200-ws21c-v2-off40/`。
+
+开启格 `20260929-185300-ws21c-v2-on40`：同一源码、trace、拓扑、seed 和其他参数，仅 `ws21_feedback=1`。独立优化构建于 `12:21:10Z` 建立，`12:26:59Z` 成为 `BUILT`；仿真 PID 43688 于 `12:28:31Z` 启动，`12:31:26Z` 完成，状态 `SUCCEEDED`，共运行 2 分 55 秒。资源 watcher PID 43734，间隔 2 秒；80 个采样点，进程树峰值 4,544.21 MiB，可用内存最低 118.59 GiB，磁盘最低 5,688.90 GiB。Raw ID `213794292`，结果已回传至本机 `results/20260929-185300-ws21c-v2-on40/`。
+
+独立复核两格 metadata、固定参数、输入 SHA `4e7d0e6a68e3230e8960a174e570a0a788c191fa0b44922408867b02c25782cc`、拓扑 SHA `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`、40 行 FCT、40 条 WS18 记录和 33,849,344 B 总字节。两格 40/40 跨 ToR QP 身份映射均通过，错误为 0。两格 FCT SHA 均为 `0f8fd036bc40602f50d1287369f642351fb4b64af60d052a28b1b744c6a7637e`，WS18 SHA 均为 `bc7004a69af353441a72e9808165a3794bc5d3659c73cec546dc0a4d1763d009`，本次逐流时序无变化。
+
+开启格摘要：`generated=delivered=223`，`rejected=expired=hop_rejects=sequence_gaps=0`；`delivered_bytes=13,380`（60 B/份的实际交付报文字节），逐跳入队/出队各 446，`hop_bytes=26,760`，缓存峰值 8，最大报告传输年龄 23 ns，最大样本年龄 9,838 ns。跨 ToR 40 流的上游 CE 汇总样本为 0，所以这组报文只证明传输和退回门槛，没有证明候选可区分或选路收益。机器化核验收据见 `docs/research/evidence/ws21-compact-40pair-verification.json`。按阶段约定，长尾更新间隔实验须等 Sol High 完成配对代价复核后再决定；本记录不把一个 10 µs 窗口宣布为最优，也不改变历史 no-go。
