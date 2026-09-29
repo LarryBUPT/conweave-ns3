@@ -52,6 +52,7 @@ static void Ws13LogQp(const char *event, Ptr<RdmaQueuePair> qp,
               << " sport=" << qp->sport << " dport=" << qp->dport
               << " flow_id=" << qp->m_flow_id << " snd_una=" << qp->snd_una
               << " snd_nxt=" << qp->snd_nxt
+              << " rate_bps=" << qp->m_rate.GetBitRate()
               << " irn_nack_size=" << irn_nack_size << std::endl;
 }
 
@@ -759,7 +760,10 @@ uint16_t RdmaHw::EtherToPpp(uint16_t proto) {
     return 0;
 }
 
-void RdmaHw::RecoverQueue(Ptr<RdmaQueuePair> qp) { qp->snd_nxt = qp->snd_una; }
+void RdmaHw::RecoverQueue(Ptr<RdmaQueuePair> qp) {
+    if (Ws13BackgroundQp(qp)) Ws13LogQp("recover_queue", qp);
+    qp->snd_nxt = qp->snd_una;
+}
 
 void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
     NS_ASSERT(!m_qpCompleteCallback.IsNull());
@@ -897,6 +901,11 @@ void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap)
 #endif
         RdmaHw::nAllPkts += 1;
         if (ch.l3Prot == 0x11) {  // UDP
+            const uint32_t payload_size = pkt->GetSize() - ch.GetSerializedSize();
+            if (Ws13BackgroundQp(qp) && ch.udp.seq < qp->m_ws13_maxSentSeq)
+                Ws13LogQp("retransmit", qp);
+            qp->m_ws13_maxSentSeq =
+                std::max(qp->m_ws13_maxSentSeq, ch.udp.seq + payload_size);
             // Update Timer
             if (qp->m_retransmit.IsRunning()) qp->m_retransmit.Cancel();
             qp->m_retransmit = Simulator::Schedule(qp->GetRto(m_mtu), &RdmaHw::HandleTimeout, this,
@@ -964,6 +973,7 @@ void RdmaHw::ChangeRate(Ptr<RdmaQueuePair> qp, DataRate new_rate) {
 
     // change to new rate
     qp->m_rate = new_rate;
+    if (Ws13BackgroundQp(qp)) Ws13LogQp("rate_change", qp);
 }
 
 #define PRINT_LOG 0
@@ -1007,6 +1017,7 @@ void RdmaHw::cnp_received_mlx(Ptr<RdmaQueuePair> q) {
         // set rate on first CNP
         q->mlx.m_targetRate = q->m_rate = m_rateOnFirstCNP * q->m_rate;
         q->mlx.m_first_cnp = false;
+        if (Ws13BackgroundQp(q)) Ws13LogQp("rate_first_cnp", q);
     }
 }
 
@@ -1026,6 +1037,7 @@ void RdmaHw::CheckRateDecreaseMlx(Ptr<RdmaQueuePair> q) {
             q->mlx.m_targetRate = q->m_rate;
         }
         q->m_rate = std::max(m_minRate, q->m_rate * (1 - q->mlx.m_alpha / 2));
+        if (Ws13BackgroundQp(q)) Ws13LogQp("rate_decrease", q);
         // reset rate increase related things
         q->mlx.m_rpTimeStage = 0;
         q->mlx.m_decrease_cnp_arrived = false;
@@ -1068,6 +1080,7 @@ void RdmaHw::FastRecoveryMlx(Ptr<RdmaQueuePair> q) {
            q->m_rate.GetBitRate() * 1e-9);
 #endif
     q->m_rate = (q->m_rate / 2) + (q->mlx.m_targetRate / 2);
+    if (Ws13BackgroundQp(q)) Ws13LogQp("rate_fast_recovery", q);
 #if PRINT_LOG
     printf("(%.3lf %.3lf)\n", q->mlx.m_targetRate.GetBitRate() * 1e-9,
            q->m_rate.GetBitRate() * 1e-9);
@@ -1086,6 +1099,7 @@ void RdmaHw::ActiveIncreaseMlx(Ptr<RdmaQueuePair> q) {
     q->mlx.m_targetRate += m_rai;
     if (q->mlx.m_targetRate > dev->GetDataRate()) q->mlx.m_targetRate = dev->GetDataRate();
     q->m_rate = (q->m_rate / 2) + (q->mlx.m_targetRate / 2);
+    if (Ws13BackgroundQp(q)) Ws13LogQp("rate_active_increase", q);
 #if PRINT_LOG
     printf("(%.3lf %.3lf)\n", q->mlx.m_targetRate.GetBitRate() * 1e-9,
            q->m_rate.GetBitRate() * 1e-9);
@@ -1104,6 +1118,7 @@ void RdmaHw::HyperIncreaseMlx(Ptr<RdmaQueuePair> q) {
     q->mlx.m_targetRate += m_rhai;
     if (q->mlx.m_targetRate > dev->GetDataRate()) q->mlx.m_targetRate = dev->GetDataRate();
     q->m_rate = (q->m_rate / 2) + (q->mlx.m_targetRate / 2);
+    if (Ws13BackgroundQp(q)) Ws13LogQp("rate_hyper_increase", q);
 #if PRINT_LOG
     printf("(%.3lf %.3lf)\n", q->mlx.m_targetRate.GetBitRate() * 1e-9,
            q->m_rate.GetBitRate() * 1e-9);

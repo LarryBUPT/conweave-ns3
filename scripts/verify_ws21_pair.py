@@ -39,17 +39,28 @@ def load_cell(root, experiment_id, source_sha):
     return base, meta, raw, raw_id
 
 
-def verify_pair(root, off_id, on_id, source_sha=SOURCE_SHA):
+def verify_pair(root, off_id, on_id, source_sha=SOURCE_SHA, trace_sha=TRACE_SHA,
+                topology_sha=TOPOLOGY_SHA, expected_flows=EXPECTED_FLOWS,
+                expected_bytes=EXPECTED_BYTES, ws13_diag=0):
     off_base, off, off_raw, off_raw_id = load_cell(root, off_id, source_sha)
     on_base, on, on_raw, on_raw_id = load_cell(root, on_id, source_sha)
+    shared_parameters = ("lb", "pfc", "irn", "bw", "buffer", "topo", "cdf",
+                         "simul_time", "netload", "flow_file", "ws18_admission",
+                         "ws18_path", "ws18_admission_rate_gbps", "ws21_port_max_bytes",
+                         "ws13_diag")
+    if any(off["parameters"].get(key) != on["parameters"].get(key)
+           for key in shared_parameters):
+        raise ValueError("paired cells do not share common simulation parameters")
+    if int(off["parameters"].get("ws13_diag", 0)) != ws13_diag:
+        raise ValueError("WS-13 diagnostic flag mismatch")
     for side, meta, base, flags in (
             ("off", off, off_base, (0, 0)), ("on", on, on_base, (1, 1))):
         params = meta["parameters"]
         if (int(params.get("ws21_identity", 0)), int(params.get("ws21_port_events", 0))) != flags:
             raise ValueError(f"{side}: diagnostic flags mismatch")
-        if digest(base / "config" / "traffic_trace.txt") != TRACE_SHA:
+        if digest(base / "config" / "traffic_trace.txt") != trace_sha:
             raise ValueError(f"{side}: trace SHA mismatch")
-        if digest(base / "config" / "topology.txt") != TOPOLOGY_SHA:
+        if digest(base / "config" / "topology.txt") != topology_sha:
             raise ValueError(f"{side}: topology SHA mismatch")
     if off["git_commit"] != on["git_commit"]:
         raise ValueError("paired cells use different source commits")
@@ -63,7 +74,7 @@ def verify_pair(root, off_id, on_id, source_sha=SOURCE_SHA):
         raise ValueError("diagnostic changed FCT or WS18 timing raw")
     rows = on_ws18.read_text(encoding="utf-8").splitlines()
     bytes_total = sum(int(line.split()[6]) for line in rows)
-    if len(rows) != EXPECTED_FLOWS or bytes_total != EXPECTED_BYTES:
+    if len(rows) != expected_flows or bytes_total != expected_bytes:
         raise ValueError(f"completion/byte mismatch: {len(rows)} flows, {bytes_total} bytes")
     identity = verify_identity(
         on_ws18, on_raw / f"{on_raw_id}_out_ws21_identity.txt",
@@ -77,7 +88,8 @@ def verify_pair(root, off_id, on_id, source_sha=SOURCE_SHA):
         raise ValueError("missing or nonzero WS-21 port-event overflow receipt")
     return {"complete": True, "source_sha": source_sha,
             "off_id": off_id, "on_id": on_id, "flow_count": len(rows),
-            "bytes": bytes_total, "fct_sha256": fct_hashes[0],
+            "bytes": bytes_total, "trace_sha256": trace_sha,
+            "topology_sha256": topology_sha, "fct_sha256": fct_hashes[0],
             "ws18_sha256": ws18_hashes[0], "identity": identity,
             "port_events": ports}
 
@@ -88,8 +100,15 @@ def main():
     parser.add_argument("--off", required=True)
     parser.add_argument("--on", required=True)
     parser.add_argument("--source-sha", default=SOURCE_SHA)
+    parser.add_argument("--trace-sha", default=TRACE_SHA)
+    parser.add_argument("--topology-sha", default=TOPOLOGY_SHA)
+    parser.add_argument("--expected-flows", type=int, default=EXPECTED_FLOWS)
+    parser.add_argument("--expected-bytes", type=int, default=EXPECTED_BYTES)
+    parser.add_argument("--ws13-diag", type=int, choices=(0, 1), default=0)
     args = parser.parse_args()
-    result = verify_pair(args.results, args.off, args.on, args.source_sha)
+    result = verify_pair(args.results, args.off, args.on, args.source_sha,
+                         args.trace_sha, args.topology_sha, args.expected_flows,
+                         args.expected_bytes, args.ws13_diag)
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

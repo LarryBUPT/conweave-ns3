@@ -69,6 +69,7 @@ class RdmaQueuePair : public Object {
     uint32_t lastPktSize;
     int32_t m_flow_id;
     uint32_t m_workload_tag;
+    uint32_t m_ws13_maxSentSeq{0};  // diagnostic high-water mark for retransmission events
     Time m_timeout;
 
     /******************************
