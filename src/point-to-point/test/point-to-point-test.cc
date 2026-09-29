@@ -26,15 +26,12 @@ public:
   virtual void DoRun (void)
   {
     Ws21FeedbackHeader sent;
-    sent.sourceTor = 17;
-    sent.destinationTor = 93;
     sent.candidatePort = 4;
-    sent.windowStartNs = 120000;
     sent.windowEndNs = 129000;
     sent.cePackets = 7;
     sent.samplePackets = 19;
-    sent.sequence = 0x1020304050607080ULL;
-    sent.generatedNs = 130000;
+    sent.sequence = 0x10203040;
+    sent.generationDelayNs = 1000;
     NS_TEST_ASSERT_MSG_EQ (sent.GetSerializedSize (), Ws21FeedbackHeader::SERIALIZED_SIZE,
                            "unexpected fixed feedback header size");
     NS_TEST_ASSERT_MSG_EQ (sent.IsValid (), true, "valid report rejected");
@@ -45,22 +42,32 @@ public:
     NS_TEST_ASSERT_MSG_EQ (packet->RemoveHeader (received), Ws21FeedbackHeader::SERIALIZED_SIZE,
                            "wrong number of feedback header bytes");
     NS_TEST_ASSERT_MSG_EQ (received.IsValid (), true, "round-tripped report rejected");
-    NS_TEST_ASSERT_MSG_EQ (received.sourceTor, sent.sourceTor, "source ToR changed");
-    NS_TEST_ASSERT_MSG_EQ (received.destinationTor, sent.destinationTor,
-                           "destination ToR changed");
+    NS_TEST_ASSERT_MSG_EQ (received.version, sent.version, "version changed");
+    NS_TEST_ASSERT_MSG_EQ (received.type, sent.type, "message type changed");
     NS_TEST_ASSERT_MSG_EQ (received.candidatePort, sent.candidatePort,
                            "candidate port changed");
-    NS_TEST_ASSERT_MSG_EQ (received.windowStartNs, sent.windowStartNs,
-                           "window start changed");
     NS_TEST_ASSERT_MSG_EQ (received.windowEndNs, sent.windowEndNs, "window end changed");
     NS_TEST_ASSERT_MSG_EQ (received.cePackets, sent.cePackets, "CE count changed");
     NS_TEST_ASSERT_MSG_EQ (received.samplePackets, sent.samplePackets,
                            "sample count changed");
     NS_TEST_ASSERT_MSG_EQ (received.sequence, sent.sequence, "sequence changed");
-    NS_TEST_ASSERT_MSG_EQ (received.generatedNs, sent.generatedNs, "generation time changed");
+    NS_TEST_ASSERT_MSG_EQ (received.GetGeneratedNs (), 130000ULL,
+                           "generation time changed");
 
     received.cePackets = received.samplePackets + 1;
     NS_TEST_ASSERT_MSG_EQ (received.IsValid (), false, "invalid CE/sample ratio accepted");
+    received.cePackets = sent.cePackets;
+    received.version = 1;
+    NS_TEST_ASSERT_MSG_EQ (received.IsValid (), false, "legacy version accepted");
+    received.version = 2;
+    received.type = 2;
+    NS_TEST_ASSERT_MSG_EQ (received.IsValid (), false, "unknown message type accepted");
+    received.type = 1;
+    received.samplePackets = 0;
+    NS_TEST_ASSERT_MSG_EQ (received.IsValid (), false, "empty sample accepted as zero congestion");
+    received.samplePackets = sent.samplePackets;
+    received.sequence = 0;
+    NS_TEST_ASSERT_MSG_EQ (received.IsValid (), false, "zero sequence accepted");
   }
 };
 

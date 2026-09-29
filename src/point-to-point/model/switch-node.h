@@ -62,18 +62,19 @@ class SwitchNode : public Node {
         m_ws21Source, m_ws21Destination;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21IngressToFirst;
     struct Ws21FeedbackState {
-        uint64_t sequence = 0, windowEndNs = 0, generatedNs = 0;
+        uint64_t windowEndNs = 0, generatedNs = 0;
+        uint32_t sequence = 0;
         uint32_t cePackets = 0, samplePackets = 0;
     };
     struct Ws21FeedbackWindow {
         uint32_t sourceHostIp = 0, destinationHostIp = 0;
-        uint64_t startNs = 0, endNs = 0;
+        uint64_t endNs = 0;
         uint32_t cePackets = 0, samplePackets = 0;
         bool scheduled = false;
     };
     std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackState> m_ws21Feedback;
     std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackWindow> m_ws21FeedbackWindows;
-    std::map<std::pair<uint32_t, uint32_t>, uint64_t> m_ws21FeedbackSequence;
+    std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21FeedbackSequence;
     std::unordered_set<uint32_t> m_ws21HostPorts;
     void ObserveWs21Source(const CustomHeader &ch, uint32_t port);
     void ObserveWs21Destination(Ptr<const Packet> p, const CustomHeader &ch);
@@ -115,7 +116,7 @@ class SwitchNode : public Node {
     static void ConfigureGuardHash(uint32_t lambda, uint32_t tau,
                                    uint32_t gateOnBytes, uint32_t gateOffBytes);
     static void ConfigureWs18Path(bool enabled);
-    static void ConfigureWs21Feedback(bool enabled);
+    static void ConfigureWs21Feedback(bool enabled, uint32_t intervalNs);
     static void ConfigureWs21Identity(bool enabled);
     static void ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes);
     static void FinishWs21PortEvents();

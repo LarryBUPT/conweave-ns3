@@ -7,7 +7,9 @@
 
 namespace ns3 {
 
-/** Fixed-width payload carried by the WS-21 feedback IPv4 protocol. */
+/** Compact, versioned payload carried by the WS-21 feedback IPv4 protocol.
+ *  The source/destination ToRs are derived from the IPv4 host addresses.
+ */
 class Ws21FeedbackHeader : public Header {
  public:
   Ws21FeedbackHeader();
@@ -20,20 +22,19 @@ class Ws21FeedbackHeader : public Header {
   virtual uint32_t Deserialize(Buffer::Iterator start);
 
   bool IsValid(void) const;
+  uint64_t GetGeneratedNs(void) const;
 
   uint8_t version;
-  uint32_t sourceTor;
-  uint32_t destinationTor;
+  uint8_t type;
   uint16_t candidatePort;
-  uint64_t windowStartNs;
   uint64_t windowEndNs;
   uint32_t cePackets;
   uint32_t samplePackets;
-  uint64_t sequence;
-  uint64_t generatedNs;
+  uint32_t sequence;
+  uint16_t generationDelayNs;
 
   static const uint8_t IP_PROTOCOL = 0xFA;
-  static const uint32_t SERIALIZED_SIZE = 51;
+  static const uint32_t SERIALIZED_SIZE = 26;
 };
 
 }  // namespace ns3

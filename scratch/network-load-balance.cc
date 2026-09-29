@@ -73,6 +73,7 @@ std::string ws18_output_file;
 FILE *ws18_output = NULL;
 bool ws21_identity = false;
 bool ws21_feedback = false;
+uint32_t ws21_feedback_interval_ns = 10000;
 std::string ws21_identity_output_file;
 bool ws21_port_events = false;
 std::string ws21_port_output_file;
@@ -1025,6 +1026,8 @@ int main(int argc, char *argv[]) {
                 uint32_t value; conf >> value; ws21_identity = value != 0;
             } else if (key.compare("WS21_FEEDBACK") == 0) {
                 uint32_t value; conf >> value; ws21_feedback = value != 0;
+            } else if (key.compare("WS21_FEEDBACK_INTERVAL_NS") == 0) {
+                conf >> ws21_feedback_interval_ns;
             } else if (key.compare("WS21_IDENTITY_OUTPUT_FILE") == 0) {
                 conf >> ws21_identity_output_file;
             } else if (key.compare("WS21_PORT_EVENTS") == 0) {
@@ -1461,7 +1464,7 @@ int main(int argc, char *argv[]) {
                        ws21_port_max_bytes >= 1024),
                   "WS-21 port events require mode 20, output file, and byte cap");
     SwitchNode::ConfigureWs21Identity(ws21_identity);
-    SwitchNode::ConfigureWs21Feedback(ws21_feedback);
+    SwitchNode::ConfigureWs21Feedback(ws21_feedback, ws21_feedback_interval_ns);
     Settings::packet_payload = packet_payload_size;
     // Settings::MTU = packet_payload_size + 48;  // for simplicity
     /*------------------------------------*/

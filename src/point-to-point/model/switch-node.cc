@@ -20,6 +20,7 @@
 #include <cstdlib>
 #include <algorithm>
 #include <map>
+#include <limits>
 #include <tuple>
 #include "ppp-header.h"
 #include "qbb-net-device.h"
@@ -43,10 +44,12 @@ static uint64_t guard_queue_violations = 0;
 static bool ws18_path_enabled = false;
 static bool ws21_identity_enabled = false;
 static bool ws21_feedback_enabled = false;
+static uint32_t ws21_feedback_interval_ns = 10000;
 static uint64_t ws21_feedback_delivered = 0, ws21_feedback_rejected = 0;
 static uint64_t ws21_feedback_expired = 0, ws21_feedback_bytes = 0;
 static uint64_t ws21_feedback_cache_peak = 0;
 static uint64_t ws21_feedback_age_sum_ns = 0, ws21_feedback_age_max_ns = 0;
+static uint64_t ws21_feedback_sample_age_sum_ns = 0, ws21_feedback_sample_age_max_ns = 0;
 static uint64_t ws21_feedback_age_bins[5] = {0, 0, 0, 0, 0};
 static uint64_t ws21_feedback_sequence_gaps = 0;
 static uint64_t ws21_feedback_generated = 0, ws21_feedback_hop_bytes = 0;
@@ -125,7 +128,12 @@ void SwitchNode::ConfigureGuardHash(uint32_t lambda, uint32_t tau,
 }
 
 void SwitchNode::ConfigureWs18Path(bool enabled) { ws18_path_enabled = enabled; }
-void SwitchNode::ConfigureWs21Feedback(bool enabled) { ws21_feedback_enabled = enabled; }
+void SwitchNode::ConfigureWs21Feedback(bool enabled, uint32_t intervalNs) {
+    NS_ASSERT_MSG(intervalNs >= 1000 && intervalNs <= 60000,
+                  "WS-21 feedback interval must fit the compact generation delay");
+    ws21_feedback_enabled = enabled;
+    ws21_feedback_interval_ns = intervalNs;
+}
 
 void SwitchNode::ConfigureWs21Identity(bool enabled) { ws21_identity_enabled = enabled; }
 
@@ -244,14 +252,13 @@ void SwitchNode::AccumulateWs21Feedback(uint32_t sourceTor, uint32_t candidatePo
     if (!window.samplePackets) {
         window.sourceHostIp = ch.sip;
         window.destinationHostIp = ch.dip;
-        window.startNs = nowNs;
     }
     ++window.samplePackets;
     if (ce) ++window.cePackets;
     window.endNs = nowNs;
     if (!window.scheduled) {
         window.scheduled = true;
-        Simulator::Schedule(NanoSeconds(10000), &SwitchNode::FlushWs21Feedback,
+        Simulator::Schedule(NanoSeconds(ws21_feedback_interval_ns), &SwitchNode::FlushWs21Feedback,
                             this, sourceTor, candidatePort);
     }
 }
@@ -265,15 +272,18 @@ void SwitchNode::FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort) {
     if (!window.samplePackets) return;
 
     Ws21FeedbackHeader report;
-    report.sourceTor = sourceTor;
-    report.destinationTor = m_id;
     report.candidatePort = candidatePort;
-    report.windowStartNs = window.startNs;
     report.windowEndNs = window.endNs;
     report.cePackets = window.cePackets;
     report.samplePackets = window.samplePackets;
+    NS_ASSERT_MSG(m_ws21FeedbackSequence[key] < std::numeric_limits<uint32_t>::max(),
+                  "WS-21 compact feedback sequence exhausted");
     report.sequence = ++m_ws21FeedbackSequence[key];
-    report.generatedNs = Simulator::Now().GetNanoSeconds();
+    const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
+    NS_ASSERT_MSG(nowNs >= window.endNs &&
+                  nowNs - window.endNs <= std::numeric_limits<uint16_t>::max(),
+                  "WS-21 compact generation delay overflow");
+    report.generationDelayNs = static_cast<uint16_t>(nowNs - window.endNs);
     NS_ASSERT_MSG(report.IsValid(), "WS-21 generated an invalid feedback report");
 
     Ptr<Packet> packet = Create<Packet>();
@@ -313,6 +323,11 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
     PppHeader ppp;
     Ipv4Header ipv4;
     Ws21FeedbackHeader report;
+    if (p->GetSize() < ppp.GetSerializedSize() + ipv4.GetSerializedSize() +
+                           report.GetSerializedSize()) {
+        ++ws21_feedback_rejected;
+        return true;
+    }
     if (p->RemoveHeader(ppp) != ppp.GetSerializedSize() ||
         p->RemoveHeader(ipv4) != ipv4.GetSerializedSize() ||
         p->RemoveHeader(report) != report.GetSerializedSize()) {
@@ -322,15 +337,19 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
 
     const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
     if (!report.IsValid() || ipv4.GetProtocol() != Ws21FeedbackHeader::IP_PROTOCOL ||
+        ipv4.GetPayloadSize() != report.GetSerializedSize() ||
         ipv4.GetSource().Get() != ch.sip || ipv4.GetDestination().Get() != ch.dip ||
-        report.sourceTor != m_id || report.destinationTor != remoteDestination->second ||
-        report.generatedNs > nowNs) {
+        report.GetGeneratedNs() > nowNs) {
         ++ws21_feedback_rejected;
         return true;
     }
-    const uint64_t ageNs = nowNs - report.generatedNs;
+    const uint64_t ageNs = nowNs - report.GetGeneratedNs();
+    const uint64_t sampleAgeNs = nowNs - report.windowEndNs;
     ws21_feedback_age_sum_ns += ageNs;
     ws21_feedback_age_max_ns = std::max(ws21_feedback_age_max_ns, ageNs);
+    ws21_feedback_sample_age_sum_ns += sampleAgeNs;
+    ws21_feedback_sample_age_max_ns = std::max(ws21_feedback_sample_age_max_ns,
+                                               sampleAgeNs);
     if (ageNs < 1000) ++ws21_feedback_age_bins[0];
     else if (ageNs < 2000) ++ws21_feedback_age_bins[1];
     else if (ageNs < 5000) ++ws21_feedback_age_bins[2];
@@ -349,7 +368,7 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
         return true;
     }
 
-    const auto key = std::make_pair(report.destinationTor, report.candidatePort);
+    const auto key = std::make_pair(remoteDestination->second, report.candidatePort);
     if (!m_ws21Feedback.count(key) && m_ws21Feedback.size() >= WS21_FEEDBACK_MAX_KEYS_PER_TOR) {
         ++ws21_feedback_rejected;
         return true;
@@ -363,7 +382,7 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
         ws21_feedback_sequence_gaps += report.sequence - state.sequence - 1;
     state.sequence = report.sequence;
     state.windowEndNs = report.windowEndNs;
-    state.generatedNs = report.generatedNs;
+    state.generatedNs = report.GetGeneratedNs();
     state.cePackets = report.cePackets;
     state.samplePackets = report.samplePackets;
     ++ws21_feedback_delivered;
@@ -397,6 +416,8 @@ void SwitchNode::PrintWorkloadTagCounts() {
                   << " delivered_bytes=" << ws21_feedback_bytes
                   << " age_sum_ns=" << ws21_feedback_age_sum_ns
                   << " age_max_ns=" << ws21_feedback_age_max_ns
+                  << " sample_age_sum_ns=" << ws21_feedback_sample_age_sum_ns
+                  << " sample_age_max_ns=" << ws21_feedback_sample_age_max_ns
                   << " age_lt_1us=" << ws21_feedback_age_bins[0]
                   << " age_1_2us=" << ws21_feedback_age_bins[1]
                   << " age_2_5us=" << ws21_feedback_age_bins[2]
