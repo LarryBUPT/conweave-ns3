@@ -52,6 +52,13 @@ WS18_ADMISSION_RATE_GBPS {ws18_admission_rate_gbps}
 WS21_IDENTITY {ws21_identity}
 WS21_FEEDBACK {ws21_feedback}
 WS21_FEEDBACK_INTERVAL_NS {ws21_feedback_interval_ns}
+WS21_HEARTBEAT {ws21_heartbeat}
+WS21_HEARTBEAT_INTERVAL_NS {ws21_heartbeat_interval_ns}
+WS21_HEARTBEAT_FAULT_MODE {ws21_heartbeat_fault_mode}
+WS21_HEARTBEAT_FAULT_TOR {ws21_heartbeat_fault_tor}
+WS21_HEARTBEAT_FAULT_PORT {ws21_heartbeat_fault_port}
+WS21_HEARTBEAT_FAULT_START_NS {ws21_heartbeat_fault_start_ns}
+WS21_HEARTBEAT_FAULT_END_NS {ws21_heartbeat_fault_end_ns}
 WS21_PORT_EVENTS {ws21_port_events}
 WS21_PORT_MAX_BYTES {ws21_port_max_bytes}
 GUARDHASH_LAMBDA 1
@@ -187,6 +194,16 @@ def main():
                         help='send measured WS-21 reports over the simulated Qbb network')
     parser.add_argument('--ws21-feedback-interval-ns', type=int, default=10000,
                         help='nonempty WS-21 feedback aggregation window in nanoseconds (1000..60000)')
+    parser.add_argument('--ws21-heartbeat', type=int, choices=(0, 1), default=0,
+                        help='monitor active source-ToR uplinks with direct-neighbor HELLO/ACK')
+    parser.add_argument('--ws21-heartbeat-interval-ns', type=int, default=200000,
+                        help='heartbeat period in nanoseconds (50000..1000000)')
+    parser.add_argument('--ws21-heartbeat-fault-mode', type=int, choices=(0, 1, 2), default=0,
+                        help='0 none, 1 discard HELLO at neighbor, 2 discard ACK at source ToR')
+    parser.add_argument('--ws21-heartbeat-fault-tor', type=int, default=0)
+    parser.add_argument('--ws21-heartbeat-fault-port', type=int, default=0)
+    parser.add_argument('--ws21-heartbeat-fault-start-ns', type=int, default=0)
+    parser.add_argument('--ws21-heartbeat-fault-end-ns', type=int, default=0)
     parser.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
     parser.add_argument('--enforce_win', dest='enforce_win', action='store',
@@ -261,6 +278,14 @@ def main():
         raise Exception("CONFIG ERROR : WS-21 feedback requires --lb ws18 and --ws21-identity 1")
     if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
         raise Exception("CONFIG ERROR : WS-21 feedback interval must be 1000..60000 ns")
+    if args.ws21_heartbeat and args.lb != 'ws18':
+        raise Exception("CONFIG ERROR : WS-21 heartbeat requires --lb ws18")
+    if not 50000 <= args.ws21_heartbeat_interval_ns <= 1000000:
+        raise Exception("CONFIG ERROR : WS-21 heartbeat interval must be 50000..1000000 ns")
+    if args.ws21_heartbeat_fault_mode and (
+            not args.ws21_heartbeat or args.ws21_heartbeat_fault_port < 0 or
+            args.ws21_heartbeat_fault_end_ns <= args.ws21_heartbeat_fault_start_ns):
+        raise Exception("CONFIG ERROR : WS-21 heartbeat fault requires enabled heartbeat and time window")
     if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
         raise Exception("CONFIG ERROR : WS-21 port events need ws18 and a byte cap >= 1024")
     if float(args.simul_time) < 0.005:
@@ -437,6 +462,13 @@ def main():
                                         ws21_identity=args.ws21_identity,
                                         ws21_feedback=args.ws21_feedback,
                                         ws21_feedback_interval_ns=args.ws21_feedback_interval_ns,
+                                        ws21_heartbeat=args.ws21_heartbeat,
+                                        ws21_heartbeat_interval_ns=args.ws21_heartbeat_interval_ns,
+                                        ws21_heartbeat_fault_mode=args.ws21_heartbeat_fault_mode,
+                                        ws21_heartbeat_fault_tor=args.ws21_heartbeat_fault_tor,
+                                        ws21_heartbeat_fault_port=args.ws21_heartbeat_fault_port,
+                                        ws21_heartbeat_fault_start_ns=args.ws21_heartbeat_fault_start_ns,
+                                        ws21_heartbeat_fault_end_ns=args.ws21_heartbeat_fault_end_ns,
                                         ws21_port_events=args.ws21_port_events,
                                         ws21_port_max_bytes=args.ws21_port_max_bytes,
                                         cwh_extra_reply_deadline=cwh_extra_reply_deadline, cwh_default_voq_waiting_time=cwh_default_voq_waiting_time,

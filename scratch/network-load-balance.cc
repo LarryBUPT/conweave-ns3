@@ -74,6 +74,11 @@ FILE *ws18_output = NULL;
 bool ws21_identity = false;
 bool ws21_feedback = false;
 uint32_t ws21_feedback_interval_ns = 10000;
+bool ws21_heartbeat = false;
+uint32_t ws21_heartbeat_interval_ns = 200000;
+uint32_t ws21_heartbeat_fault_mode = 0, ws21_heartbeat_fault_tor = 0;
+uint32_t ws21_heartbeat_fault_port = 0;
+uint64_t ws21_heartbeat_fault_start_ns = 0, ws21_heartbeat_fault_end_ns = 0;
 std::string ws21_identity_output_file;
 bool ws21_port_events = false;
 std::string ws21_port_output_file;
@@ -1029,6 +1034,20 @@ int main(int argc, char *argv[]) {
                 uint32_t value; conf >> value; ws21_feedback = value != 0;
             } else if (key.compare("WS21_FEEDBACK_INTERVAL_NS") == 0) {
                 conf >> ws21_feedback_interval_ns;
+            } else if (key.compare("WS21_HEARTBEAT") == 0) {
+                uint32_t value; conf >> value; ws21_heartbeat = value != 0;
+            } else if (key.compare("WS21_HEARTBEAT_INTERVAL_NS") == 0) {
+                conf >> ws21_heartbeat_interval_ns;
+            } else if (key.compare("WS21_HEARTBEAT_FAULT_MODE") == 0) {
+                conf >> ws21_heartbeat_fault_mode;
+            } else if (key.compare("WS21_HEARTBEAT_FAULT_TOR") == 0) {
+                conf >> ws21_heartbeat_fault_tor;
+            } else if (key.compare("WS21_HEARTBEAT_FAULT_PORT") == 0) {
+                conf >> ws21_heartbeat_fault_port;
+            } else if (key.compare("WS21_HEARTBEAT_FAULT_START_NS") == 0) {
+                conf >> ws21_heartbeat_fault_start_ns;
+            } else if (key.compare("WS21_HEARTBEAT_FAULT_END_NS") == 0) {
+                conf >> ws21_heartbeat_fault_end_ns;
             } else if (key.compare("WS21_IDENTITY_OUTPUT_FILE") == 0) {
                 conf >> ws21_identity_output_file;
             } else if (key.compare("WS21_PORT_EVENTS") == 0) {
@@ -1466,6 +1485,13 @@ int main(int argc, char *argv[]) {
                   "WS-21 port events require mode 20, output file, and byte cap");
     SwitchNode::ConfigureWs21Identity(ws21_identity);
     SwitchNode::ConfigureWs21Feedback(ws21_feedback, ws21_feedback_interval_ns);
+    if (ws21_heartbeat && lb_mode != 20)
+        NS_FATAL_ERROR("WS-21 heartbeat requires mode 20");
+    SwitchNode::ConfigureWs21Heartbeat(ws21_heartbeat, ws21_heartbeat_interval_ns,
+                                       ws21_heartbeat_fault_mode, ws21_heartbeat_fault_tor,
+                                       ws21_heartbeat_fault_port,
+                                       ws21_heartbeat_fault_start_ns,
+                                       ws21_heartbeat_fault_end_ns);
     Settings::packet_payload = packet_payload_size;
     // Settings::MTU = packet_payload_size + 48;  // for simplicity
     /*------------------------------------*/
@@ -1820,7 +1846,7 @@ int main(int argc, char *argv[]) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
                 SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
-            if (ws21_port_events)
+            if (ws21_port_events || ws21_heartbeat)
                 sw->AddWs21HostPort(nbr2if.at(probably_switch).at(probably_host).idx);
             if (idxNodeToR.find(sw->GetId()) == idxNodeToR.end()) {
                 idxNodeToR[sw->GetId()] = sw;

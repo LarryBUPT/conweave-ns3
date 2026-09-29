@@ -29,6 +29,7 @@ def build(bld):
         'model/conweave-routing.cc',
         'model/conweave-voq.cc',
 		'model/ws21-feedback-header.cc',
+		'model/ws21-heartbeat-header.cc',
 		'helper/selective-packet-queue.cc',
         ]
 
@@ -67,6 +68,7 @@ def build(bld):
         'model/conweave-routing.h',
         'model/conweave-voq.h',
 		'model/ws21-feedback-header.h',
+		'model/ws21-heartbeat-header.h',
 		'helper/selective-packet-queue.h',
         ]
 

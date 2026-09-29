@@ -2,6 +2,7 @@
 
 #include "assert.h"
 #include "ns3/boolean.h"
+#include "ns3/channel.h"
 #include "ns3/conweave-routing.h"
 #include "ns3/double.h"
 #include "ns3/flow-id-tag.h"
@@ -16,6 +17,7 @@
 #include "ns3/uinteger.h"
 #include "ns3/workload-tag.h"
 #include "ws21-feedback-header.h"
+#include "ws21-heartbeat-header.h"
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
@@ -55,6 +57,23 @@ static uint64_t ws21_feedback_sequence_gaps = 0;
 static uint64_t ws21_feedback_generated = 0, ws21_feedback_hop_bytes = 0;
 static uint64_t ws21_feedback_hop_enqueues = 0, ws21_feedback_hop_rejects = 0;
 static uint64_t ws21_feedback_hop_dequeues = 0;
+static bool ws21_heartbeat_enabled = false;
+static uint32_t ws21_heartbeat_interval_ns = 200000;
+static uint32_t ws21_heartbeat_fault_mode = 0, ws21_heartbeat_fault_tor = 0;
+static uint32_t ws21_heartbeat_fault_port = 0;
+static uint64_t ws21_heartbeat_fault_start_ns = 0, ws21_heartbeat_fault_end_ns = 0;
+static uint64_t ws21_heartbeat_hello_generated = 0, ws21_heartbeat_ack_generated = 0;
+static uint64_t ws21_heartbeat_hello_received = 0, ws21_heartbeat_ack_received = 0;
+static uint64_t ws21_heartbeat_rejected = 0, ws21_heartbeat_injected_drops = 0;
+static uint64_t ws21_heartbeat_timeouts = 0, ws21_heartbeat_unknown = 0;
+static uint64_t ws21_heartbeat_recovered = 0, ws21_heartbeat_activations = 0;
+static uint64_t ws21_heartbeat_deactivations = 0, ws21_heartbeat_active = 0;
+static uint64_t ws21_heartbeat_active_peak = 0;
+static uint64_t ws21_heartbeat_hop_enqueues = 0, ws21_heartbeat_hop_dequeues = 0;
+static uint64_t ws21_heartbeat_hop_rejects = 0, ws21_heartbeat_hop_bytes = 0;
+static uint64_t ws21_heartbeat_hello_hop_bytes = 0, ws21_heartbeat_ack_hop_bytes = 0;
+static uint64_t ws21_heartbeat_event_rows = 0, ws21_heartbeat_event_overflow = 0;
+static const uint64_t WS21_HEARTBEAT_MAX_EVENT_ROWS = 20000;
 static const size_t WS21_FEEDBACK_MAX_KEYS_PER_TOR = 16384;
 static std::map<uint32_t, uint32_t> ws21_host_tor;
 static FILE *ws21_port_events = NULL;
@@ -91,6 +110,54 @@ static bool Ws13DiagnosticEnabled() {
 
 static bool Ws21FeedbackEnabled() {
     return ws21_feedback_enabled;
+}
+
+static uint8_t Ws21HeartbeatPacketType(Ptr<const Packet> p) {
+    Ptr<Packet> copy = p->Copy();
+    PppHeader ppp;
+    Ipv4Header ipv4;
+    if (copy->GetSize() < ppp.GetSerializedSize() + ipv4.GetSerializedSize() +
+                              Ws21HeartbeatHeader::SERIALIZED_SIZE)
+        return 0;
+    copy->RemoveHeader(ppp);
+    copy->RemoveHeader(ipv4);
+    if (ipv4.GetProtocol() != Ws21FeedbackHeader::IP_PROTOCOL ||
+        ipv4.GetPayloadSize() != Ws21HeartbeatHeader::SERIALIZED_SIZE ||
+        copy->GetSize() != Ws21HeartbeatHeader::SERIALIZED_SIZE)
+        return 0;
+    Ws21HeartbeatHeader heartbeat;
+    copy->RemoveHeader(heartbeat);
+    return heartbeat.IsValid() ? heartbeat.type : 0;
+}
+
+struct Ws21PeerInfo {
+    uint32_t nodeId, port, nodeType;
+};
+
+static Ws21PeerInfo Ws21Peer(Ptr<NetDevice> device) {
+    Ptr<Channel> channel = device->GetChannel();
+    if (!channel || channel->GetNDevices() != 2)
+        NS_FATAL_ERROR("WS-21 heartbeat requires a point-to-point channel");
+    for (uint32_t i = 0; i < 2; ++i) {
+        Ptr<NetDevice> peer = channel->GetDevice(i);
+        if (peer != device)
+            return {peer->GetNode()->GetId(), peer->GetIfIndex(),
+                    peer->GetNode()->GetNodeType()};
+    }
+    NS_FATAL_ERROR("WS-21 heartbeat cannot find the neighboring device");
+    return {0U, 0U, 0U};
+}
+
+static void RecordWs21HeartbeatEvent(uint32_t tor, uint32_t port, const char *event,
+                                     uint32_t epoch, uint32_t sequence) {
+    if (ws21_heartbeat_event_rows >= WS21_HEARTBEAT_MAX_EVENT_ROWS) {
+        ++ws21_heartbeat_event_overflow;
+        return;
+    }
+    ++ws21_heartbeat_event_rows;
+    std::cout << "WS21_HEARTBEAT_EVENT time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " tor=" << tor << " port=" << port << " event=" << event
+              << " epoch=" << epoch << " sequence=" << sequence << std::endl;
 }
 
 static void FactorialAdmissionDrop(const char *reason, uint32_t switchId,
@@ -133,6 +200,22 @@ void SwitchNode::ConfigureWs21Feedback(bool enabled, uint32_t intervalNs) {
         NS_FATAL_ERROR("WS-21 feedback interval must fit the compact generation delay");
     ws21_feedback_enabled = enabled;
     ws21_feedback_interval_ns = intervalNs;
+}
+
+void SwitchNode::ConfigureWs21Heartbeat(bool enabled, uint32_t intervalNs,
+                                        uint32_t faultMode, uint32_t faultTor,
+                                        uint32_t faultPort, uint64_t faultStartNs,
+                                        uint64_t faultEndNs) {
+    if (intervalNs < 50000 || intervalNs > 1000000 || faultMode > 2 ||
+        (faultMode && faultEndNs <= faultStartNs))
+        NS_FATAL_ERROR("WS-21 heartbeat configuration is outside the technical pilot contract");
+    ws21_heartbeat_enabled = enabled;
+    ws21_heartbeat_interval_ns = intervalNs;
+    ws21_heartbeat_fault_mode = faultMode;
+    ws21_heartbeat_fault_tor = faultTor;
+    ws21_heartbeat_fault_port = faultPort;
+    ws21_heartbeat_fault_start_ns = faultStartNs;
+    ws21_heartbeat_fault_end_ns = faultEndNs;
 }
 
 void SwitchNode::ConfigureWs21Identity(bool enabled) { ws21_identity_enabled = enabled; }
@@ -394,6 +477,189 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
     return true;
 }
 
+bool SwitchNode::SendWs21Heartbeat(uint32_t port, uint8_t type, uint32_t epoch,
+                                   uint32_t sequence) {
+    if (port == 0 || port >= m_devices.size() || !m_devices[port]->IsLinkUp())
+        return false;
+    const auto peer = Ws21Peer(m_devices[port]);
+    if (peer.nodeType != 1)
+        NS_FATAL_ERROR("WS-21 heartbeat attempted on a host-facing port");
+    Ws21HeartbeatHeader header;
+    header.type = type;
+    header.epoch = epoch;
+    header.sequence = sequence;
+    if (!header.IsValid()) NS_FATAL_ERROR("WS-21 generated an invalid heartbeat");
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(header);
+    Ipv4Header ipv4;
+    // These IDs are validated against the actual directly connected device.
+    // No IP route lookup is used for local HELLO/ACK delivery.
+    ipv4.SetSource(Ipv4Address(m_id + 1));
+    ipv4.SetDestination(Ipv4Address(peer.nodeId + 1));
+    ipv4.SetProtocol(Ws21FeedbackHeader::IP_PROTOCOL);
+    ipv4.SetTtl(1);
+    ipv4.SetPayloadSize(packet->GetSize());
+    packet->AddHeader(ipv4);
+    PppHeader ppp;
+    ppp.SetProtocol(0x0021);
+    packet->AddHeader(ppp);
+    packet->AddPacketTag(FlowIdTag(Settings::CONWEAVE_CTRL_DUMMY_INDEV));
+    CustomHeader ch(CustomHeader::L2_Header | CustomHeader::L3_Header |
+                    CustomHeader::L4_Header);
+    packet->PeekHeader(ch);
+    if (type == Ws21HeartbeatHeader::HELLO) ++ws21_heartbeat_hello_generated;
+    else ++ws21_heartbeat_ack_generated;
+    DoSwitchSend(packet, ch, port, 3);
+    return true;
+}
+
+void SwitchNode::TouchWs21Heartbeat(uint32_t port) {
+    if (!ws21_heartbeat_enabled || !m_isToR || port == 0 ||
+        m_ws21HostPorts.count(port) || port >= m_devices.size()) return;
+    Ws21HeartbeatPort &state = m_ws21HeartbeatPorts[port];
+    state.lastActivityNs = Simulator::Now().GetNanoSeconds();
+    if (state.active) return;
+    if (state.epoch == std::numeric_limits<uint32_t>::max())
+        NS_FATAL_ERROR("WS-21 heartbeat epoch exhausted");
+    ++state.epoch;
+    state.nextSequence = state.outstanding = state.missed = 0;
+    state.unknown = false;
+    state.active = true;
+    ++ws21_heartbeat_activations;
+    ++ws21_heartbeat_active;
+    ws21_heartbeat_active_peak = std::max(ws21_heartbeat_active_peak,
+                                           ws21_heartbeat_active);
+    RecordWs21HeartbeatEvent(m_id, port, "activate", state.epoch, 0);
+    TickWs21Heartbeat(port, state.epoch);
+}
+
+void SwitchNode::TickWs21Heartbeat(uint32_t port, uint32_t epoch) {
+    auto found = m_ws21HeartbeatPorts.find(port);
+    if (found == m_ws21HeartbeatPorts.end() || !found->second.active ||
+        found->second.epoch != epoch) return;
+    Ws21HeartbeatPort &state = found->second;
+    const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
+    const uint64_t idleNs = 4ULL * ws21_heartbeat_interval_ns;
+    if (nowNs - state.lastActivityNs >= idleNs) {
+        state.active = false;
+        state.outstanding = 0;
+        --ws21_heartbeat_active;
+        ++ws21_heartbeat_deactivations;
+        RecordWs21HeartbeatEvent(m_id, port, "deactivate", epoch, 0);
+        return;
+    }
+    if (state.outstanding) {
+        ++ws21_heartbeat_timeouts;
+        ++state.missed;
+        state.outstanding = 0;
+        if (state.missed >= 3 && !state.unknown) {
+            state.unknown = true;
+            ++ws21_heartbeat_unknown;
+            RecordWs21HeartbeatEvent(m_id, port, "unknown_timeout", epoch,
+                                     state.nextSequence);
+        }
+    }
+    if (!m_devices[port]->IsLinkUp() && !state.unknown) {
+        state.unknown = true;
+        ++ws21_heartbeat_unknown;
+        RecordWs21HeartbeatEvent(m_id, port, "unknown_link_down", epoch,
+                                 state.nextSequence);
+    }
+    if (m_devices[port]->IsLinkUp()) {
+        if (state.nextSequence == std::numeric_limits<uint32_t>::max())
+            NS_FATAL_ERROR("WS-21 heartbeat sequence exhausted");
+        const uint32_t sequence = ++state.nextSequence;
+        if (SendWs21Heartbeat(port, Ws21HeartbeatHeader::HELLO, epoch, sequence)) {
+            state.outstanding = sequence;
+            state.sentNs = nowNs;
+        }
+    }
+    Simulator::Schedule(NanoSeconds(ws21_heartbeat_interval_ns),
+                        &SwitchNode::TickWs21Heartbeat, this, port, epoch);
+}
+
+bool SwitchNode::ReceiveWs21Heartbeat(Ptr<NetDevice> device, Ptr<Packet> p,
+                                      const CustomHeader &ch) {
+    if (!ws21_heartbeat_enabled || ch.l3Prot != Ws21FeedbackHeader::IP_PROTOCOL)
+        return false;
+    PppHeader ppp;
+    Ipv4Header ipv4;
+    if (p->GetSize() < ppp.GetSerializedSize() + ipv4.GetSerializedSize()) {
+        ++ws21_heartbeat_rejected;
+        return true;
+    }
+    Ptr<Packet> copy = p->Copy();
+    copy->RemoveHeader(ppp);
+    copy->RemoveHeader(ipv4);
+    if (ipv4.GetPayloadSize() == Ws21FeedbackHeader::SERIALIZED_SIZE &&
+        ws21_feedback_enabled)
+        return false;  // Existing multi-hop STATE report.
+    if (ipv4.GetPayloadSize() != Ws21HeartbeatHeader::SERIALIZED_SIZE ||
+        copy->GetSize() != Ws21HeartbeatHeader::SERIALIZED_SIZE) {
+        ++ws21_heartbeat_rejected;
+        return true;
+    }
+    Ws21HeartbeatHeader heartbeat;
+    copy->RemoveHeader(heartbeat);
+    const uint32_t port = device->GetIfIndex();
+    const auto peer = Ws21Peer(device);
+    if (!heartbeat.IsValid() || peer.nodeType != 1 ||
+        ipv4.GetSource().Get() != peer.nodeId + 1 ||
+        ipv4.GetDestination().Get() != m_id + 1 ||
+        ch.sip != ipv4.GetSource().Get() || ch.dip != ipv4.GetDestination().Get()) {
+        ++ws21_heartbeat_rejected;
+        return true;
+    }
+    const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
+    const bool inFaultWindow = ws21_heartbeat_fault_mode &&
+        nowNs >= ws21_heartbeat_fault_start_ns &&
+        nowNs < ws21_heartbeat_fault_end_ns;
+    if (heartbeat.type == Ws21HeartbeatHeader::HELLO) {
+        if (inFaultWindow && ws21_heartbeat_fault_mode == 1 &&
+            peer.nodeId == ws21_heartbeat_fault_tor &&
+            (ws21_heartbeat_fault_port == 0 ||
+             peer.port == ws21_heartbeat_fault_port)) {
+            ++ws21_heartbeat_injected_drops;
+            RecordWs21HeartbeatEvent(peer.nodeId, peer.port, "drop_hello", heartbeat.epoch,
+                                     heartbeat.sequence);
+            return true;
+        }
+        ++ws21_heartbeat_hello_received;
+        if (!SendWs21Heartbeat(port, Ws21HeartbeatHeader::ACK,
+                               heartbeat.epoch, heartbeat.sequence))
+            ++ws21_heartbeat_hop_rejects;
+        return true;
+    }
+    if (inFaultWindow && ws21_heartbeat_fault_mode == 2 &&
+        m_id == ws21_heartbeat_fault_tor &&
+        (ws21_heartbeat_fault_port == 0 || port == ws21_heartbeat_fault_port)) {
+        ++ws21_heartbeat_injected_drops;
+        RecordWs21HeartbeatEvent(m_id, port, "drop_ack", heartbeat.epoch,
+                                 heartbeat.sequence);
+        return true;
+    }
+    auto found = m_ws21HeartbeatPorts.find(port);
+    if (!m_isToR || found == m_ws21HeartbeatPorts.end() || !found->second.active ||
+        found->second.epoch != heartbeat.epoch ||
+        found->second.outstanding != heartbeat.sequence ||
+        !m_devices[port]->IsLinkUp()) {
+        ++ws21_heartbeat_rejected;
+        return true;
+    }
+    Ws21HeartbeatPort &state = found->second;
+    state.outstanding = 0;
+    state.missed = 0;
+    if (state.unknown) {
+        state.unknown = false;
+        ++ws21_heartbeat_recovered;
+        RecordWs21HeartbeatEvent(m_id, port, "recovered", heartbeat.epoch,
+                                 heartbeat.sequence);
+    }
+    ++ws21_heartbeat_ack_received;
+    return true;
+}
+
 void SwitchNode::WriteWs21Identity(FILE *out) const {
     for (const auto &group : {&m_ws21Source, &m_ws21Destination}) {
         const char *side = group == &m_ws21Source ? "source" : "destination";
@@ -410,6 +676,28 @@ void SwitchNode::WriteWs21Identity(FILE *out) const {
 }
 
 void SwitchNode::PrintWorkloadTagCounts() {
+    if (ws21_heartbeat_enabled)
+        std::cout << "WS21_HEARTBEAT hello_generated=" << ws21_heartbeat_hello_generated
+                  << " ack_generated=" << ws21_heartbeat_ack_generated
+                  << " hello_received=" << ws21_heartbeat_hello_received
+                  << " ack_received=" << ws21_heartbeat_ack_received
+                  << " rejected=" << ws21_heartbeat_rejected
+                  << " injected_drops=" << ws21_heartbeat_injected_drops
+                  << " timeouts=" << ws21_heartbeat_timeouts
+                  << " unknown=" << ws21_heartbeat_unknown
+                  << " recovered=" << ws21_heartbeat_recovered
+                  << " activations=" << ws21_heartbeat_activations
+                  << " deactivations=" << ws21_heartbeat_deactivations
+                  << " active=" << ws21_heartbeat_active
+                  << " active_peak=" << ws21_heartbeat_active_peak
+                  << " event_rows=" << ws21_heartbeat_event_rows
+                  << " event_overflow=" << ws21_heartbeat_event_overflow
+                  << " hop_enqueues=" << ws21_heartbeat_hop_enqueues
+                  << " hop_dequeues=" << ws21_heartbeat_hop_dequeues
+                  << " hop_rejects=" << ws21_heartbeat_hop_rejects
+                  << " hop_bytes=" << ws21_heartbeat_hop_bytes
+                  << " hello_hop_bytes=" << ws21_heartbeat_hello_hop_bytes
+                  << " ack_hop_bytes=" << ws21_heartbeat_ack_hop_bytes << std::endl;
     if (Ws21FeedbackEnabled())
         std::cout << "WS21_FEEDBACK generated=" << ws21_feedback_generated
                   << " delivered=" << ws21_feedback_delivered
@@ -812,6 +1100,8 @@ void SwitchNode::CheckAndSendResume(uint32_t inDev, uint32_t qIndex) {
 // This function can only be called in switch mode
 bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet,
                                          CustomHeader &ch) {
+    if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL &&
+        ReceiveWs21Heartbeat(device, packet, ch)) return true;
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL && ReceiveWs21Feedback(packet, ch))
         return true;
     ObserveWs21Destination(packet, ch);
@@ -917,8 +1207,10 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         case 20:
         {
             const uint32_t port = DoLbWs18(p, ch, nexthops);
-            if (ws21_identity_enabled && ch.l3Prot == 0x11)
-                ObserveWs21Source(ch, port);
+            if (ch.l3Prot == 0x11 && m_isToR && m_isToR_hostIP.count(ch.sip)) {
+                if (ws21_identity_enabled) ObserveWs21Source(ch, port);
+                TouchWs21Heartbeat(port);
+            }
             return port;
         }
         case 13:
@@ -935,6 +1227,10 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
  * The (possible) callback point when conweave dequeues packets from buffer
  */
 void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, uint32_t qIndex) {
+    const uint8_t heartbeatType = ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL &&
+                                          ws21_heartbeat_enabled ?
+                                      Ws21HeartbeatPacketType(p) : 0;
+    const bool heartbeatPacket = heartbeatType != 0;
     // admission control
     FlowIdTag t;
     p->PeekPacketTag(t);
@@ -968,8 +1264,10 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 //           << ",At " << Simulator::Now() << std::endl;
 #endif
                 Settings::dropped_pkt_sw_ingress++;
-                if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL)
-                    ++ws21_feedback_hop_rejects;
+                if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
+                    if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
+                    else ++ws21_feedback_hop_rejects;
+                }
                 if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
                     SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
@@ -983,8 +1281,10 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
             //           << Simulator::Now() << std::endl;
 #endif
             Settings::dropped_pkt_sw_egress++;
-            if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL)
-                ++ws21_feedback_hop_rejects;
+            if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
+                if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
+                else ++ws21_feedback_hop_rejects;
+            }
             if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
                 SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
@@ -1016,10 +1316,27 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
     const bool accepted = m_devices[outDev]->SwitchSend(qIndex, p, ch);
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
         if (accepted) {
-            ++ws21_feedback_hop_enqueues;
-            ws21_feedback_hop_bytes += p->GetSize();
+            if (heartbeatPacket) {
+                ++ws21_heartbeat_hop_enqueues;
+                ws21_heartbeat_hop_bytes += p->GetSize();
+                if (heartbeatType == Ws21HeartbeatHeader::HELLO)
+                    ws21_heartbeat_hello_hop_bytes += p->GetSize();
+                else if (heartbeatType == Ws21HeartbeatHeader::ACK)
+                    ws21_heartbeat_ack_hop_bytes += p->GetSize();
+            } else {
+                ++ws21_feedback_hop_enqueues;
+                ws21_feedback_hop_bytes += p->GetSize();
+            }
         } else {
-            ++ws21_feedback_hop_rejects;
+            // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
+            // Release the admission reservation made above for this packet.
+            if (qIndex != 0 && !(Settings::lb_mode >= 13 && Settings::lb_mode <= 15)) {
+                if (!locallyGenerated)
+                    m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
+                m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
+            }
+            if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
+            else ++ws21_feedback_hop_rejects;
         }
     }
 }
@@ -1070,13 +1387,16 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 }
 
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
-    bool feedbackPacket = false;
-    if (Ws21FeedbackEnabled()) {
+    bool controlPacket = false;
+    if (Ws21FeedbackEnabled() || ws21_heartbeat_enabled) {
         CustomHeader feedback(CustomHeader::L2_Header | CustomHeader::L3_Header |
                               CustomHeader::L4_Header);
         if (p->PeekHeader(feedback) && feedback.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
-            feedbackPacket = true;
-            ++ws21_feedback_hop_dequeues;
+            controlPacket = true;
+            if (ws21_heartbeat_enabled && Ws21HeartbeatPacketType(p))
+                ++ws21_heartbeat_hop_dequeues;
+            else
+                ++ws21_feedback_hop_dequeues;
         }
     }
     RecordWs21PortEvent(ifIndex, 'D');
@@ -1131,7 +1451,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             CheckAndSendResume(inDev, qIndex);
         }
     }
-    if (feedbackPacket) {
+    if (controlPacket) {
         FlowIdTag ingress;
         if (p->PeekPacketTag(ingress) &&
             ingress.GetFlowId() == Settings::CONWEAVE_CTRL_DUMMY_INDEV)

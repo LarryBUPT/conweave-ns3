@@ -218,6 +218,13 @@ def main():
     run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-feedback', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-feedback-interval-ns', type=int, default=10000)
+    run_cmd.add_argument('--ws21-heartbeat', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws21-heartbeat-interval-ns', type=int, default=200000)
+    run_cmd.add_argument('--ws21-heartbeat-fault-mode', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-tor', type=int, default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-port', type=int, default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-start-ns', type=int, default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-end-ns', type=int, default=0)
     run_cmd.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
@@ -279,6 +286,14 @@ def main():
             parser.error('WS-21 feedback requires --lb ws18 and --ws21-identity 1')
         if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
             parser.error('WS-21 feedback interval must be 1000..60000 ns')
+        if args.ws21_heartbeat and args.lb != 'ws18':
+            parser.error('WS-21 heartbeat requires --lb ws18')
+        if not 50000 <= args.ws21_heartbeat_interval_ns <= 1000000:
+            parser.error('WS-21 heartbeat interval must be 50000..1000000 ns')
+        if args.ws21_heartbeat_fault_mode and (
+                not args.ws21_heartbeat or args.ws21_heartbeat_fault_port < 0 or
+                args.ws21_heartbeat_fault_end_ns <= args.ws21_heartbeat_fault_start_ns):
+            parser.error('WS-21 heartbeat fault needs enabled heartbeat and a time window')
         if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
             parser.error('WS-21 port events require ws18 and a byte cap >= 1024')
         command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
@@ -295,6 +310,13 @@ def main():
             command.extend(['--ws21-feedback', str(args.ws21_feedback)])
             command.extend(['--ws21-feedback-interval-ns',
                             str(args.ws21_feedback_interval_ns)])
+            command.extend(['--ws21-heartbeat', str(args.ws21_heartbeat),
+                            '--ws21-heartbeat-interval-ns', str(args.ws21_heartbeat_interval_ns),
+                            '--ws21-heartbeat-fault-mode', str(args.ws21_heartbeat_fault_mode),
+                            '--ws21-heartbeat-fault-tor', str(args.ws21_heartbeat_fault_tor),
+                            '--ws21-heartbeat-fault-port', str(args.ws21_heartbeat_fault_port),
+                            '--ws21-heartbeat-fault-start-ns', str(args.ws21_heartbeat_fault_start_ns),
+                            '--ws21-heartbeat-fault-end-ns', str(args.ws21_heartbeat_fault_end_ns)])
             command.extend(['--ws21-port-events', str(args.ws21_port_events),
                             '--ws21-port-max-bytes', str(args.ws21_port_max_bytes)])
         if args.flow_file:

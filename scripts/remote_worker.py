@@ -374,6 +374,19 @@ def execute(experiment_id):
         command.extend(['--ws21-feedback', str(params.get('ws21_feedback', 0))])
         command.extend(['--ws21-feedback-interval-ns',
                         str(params.get('ws21_feedback_interval_ns', 10000))])
+        command.extend(['--ws21-heartbeat', str(params.get('ws21_heartbeat', 0)),
+                        '--ws21-heartbeat-interval-ns',
+                        str(params.get('ws21_heartbeat_interval_ns', 200000)),
+                        '--ws21-heartbeat-fault-mode',
+                        str(params.get('ws21_heartbeat_fault_mode', 0)),
+                        '--ws21-heartbeat-fault-tor',
+                        str(params.get('ws21_heartbeat_fault_tor', 0)),
+                        '--ws21-heartbeat-fault-port',
+                        str(params.get('ws21_heartbeat_fault_port', 0)),
+                        '--ws21-heartbeat-fault-start-ns',
+                        str(params.get('ws21_heartbeat_fault_start_ns', 0)),
+                        '--ws21-heartbeat-fault-end-ns',
+                        str(params.get('ws21_heartbeat_fault_end_ns', 0))])
         command.extend(['--ws21-port-events', str(params.get('ws21_port_events', 0)),
                         '--ws21-port-max-bytes', str(params.get('ws21_port_max_bytes', 268435456))])
     if params.get('factorial_pilot'):
@@ -558,6 +571,13 @@ def main():
     run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-feedback', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-feedback-interval-ns', type=int, default=10000)
+    run_cmd.add_argument('--ws21-heartbeat', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws21-heartbeat-interval-ns', type=int, default=200000)
+    run_cmd.add_argument('--ws21-heartbeat-fault-mode', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-tor', type=int, default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-port', type=int, default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-start-ns', type=int, default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-end-ns', type=int, default=0)
     run_cmd.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -590,6 +610,14 @@ def main():
             raise RuntimeError('WS-21 feedback requires ws18 mode and identity diagnostics')
         if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
             raise RuntimeError('WS-21 feedback interval must be 1000..60000 ns')
+        if args.ws21_heartbeat and args.lb != 'ws18':
+            raise RuntimeError('WS-21 heartbeat requires ws18 mode')
+        if not 50000 <= args.ws21_heartbeat_interval_ns <= 1000000:
+            raise RuntimeError('WS-21 heartbeat interval must be 50000..1000000 ns')
+        if args.ws21_heartbeat_fault_mode and (
+                not args.ws21_heartbeat or args.ws21_heartbeat_fault_port < 0 or
+                args.ws21_heartbeat_fault_end_ns <= args.ws21_heartbeat_fault_start_ns):
+            raise RuntimeError('WS-21 heartbeat fault needs enabled heartbeat and a time window')
         if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
             raise RuntimeError('WS-21 port events require ws18 and a byte cap >= 1024')
         if args.ws18_admission_rate_gbps <= 0:
@@ -613,6 +641,13 @@ def main():
                         'ws21_identity': args.ws21_identity,
                         'ws21_feedback': args.ws21_feedback,
                         'ws21_feedback_interval_ns': args.ws21_feedback_interval_ns,
+                        'ws21_heartbeat': args.ws21_heartbeat,
+                        'ws21_heartbeat_interval_ns': args.ws21_heartbeat_interval_ns,
+                        'ws21_heartbeat_fault_mode': args.ws21_heartbeat_fault_mode,
+                        'ws21_heartbeat_fault_tor': args.ws21_heartbeat_fault_tor,
+                        'ws21_heartbeat_fault_port': args.ws21_heartbeat_fault_port,
+                        'ws21_heartbeat_fault_start_ns': args.ws21_heartbeat_fault_start_ns,
+                        'ws21_heartbeat_fault_end_ns': args.ws21_heartbeat_fault_end_ns,
                         'ws21_port_events': args.ws21_port_events,
                         'ws21_port_max_bytes': args.ws21_port_max_bytes,
                         'ws18_admission_rate_gbps': args.ws18_admission_rate_gbps,

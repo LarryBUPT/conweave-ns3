@@ -76,6 +76,18 @@ class SwitchNode : public Node {
     std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackWindow> m_ws21FeedbackWindows;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21FeedbackSequence;
     std::unordered_set<uint32_t> m_ws21HostPorts;
+    struct Ws21HeartbeatPort {
+        uint32_t epoch = 0, nextSequence = 0, outstanding = 0, missed = 0;
+        uint64_t lastActivityNs = 0, sentNs = 0;
+        bool active = false, unknown = false;
+    };
+    std::map<uint32_t, Ws21HeartbeatPort> m_ws21HeartbeatPorts;
+    void TouchWs21Heartbeat(uint32_t port);
+    void TickWs21Heartbeat(uint32_t port, uint32_t epoch);
+    bool SendWs21Heartbeat(uint32_t port, uint8_t type, uint32_t epoch,
+                           uint32_t sequence);
+    bool ReceiveWs21Heartbeat(Ptr<NetDevice> device, Ptr<Packet> p,
+                              const CustomHeader &ch);
     void ObserveWs21Source(const CustomHeader &ch, uint32_t port);
     void ObserveWs21Destination(Ptr<const Packet> p, const CustomHeader &ch);
     bool ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch);
@@ -117,6 +129,10 @@ class SwitchNode : public Node {
                                    uint32_t gateOnBytes, uint32_t gateOffBytes);
     static void ConfigureWs18Path(bool enabled);
     static void ConfigureWs21Feedback(bool enabled, uint32_t intervalNs);
+    static void ConfigureWs21Heartbeat(bool enabled, uint32_t intervalNs,
+                                       uint32_t faultMode, uint32_t faultTor,
+                                       uint32_t faultPort, uint64_t faultStartNs,
+                                       uint64_t faultEndNs);
     static void ConfigureWs21Identity(bool enabled);
     static void ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes);
     static void FinishWs21PortEvents();
