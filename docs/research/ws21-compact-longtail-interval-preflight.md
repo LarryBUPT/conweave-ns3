@@ -20,13 +20,21 @@
 
 ## 启动前与运行中的安全门槛
 
-新 SHA 的独立 optimized 构建与单测 ID `20260929-222000-ws21c-v2-guard-unit` 已保留，但第一次测试构建漏传 `--enable-tests`，生成的 runner 没有测试可执行；其测试日志为空，因此**不算测试通过，也不复用此 ID**。修正后的完整构建/单测使用新 ID `20260929-222500-ws21c-v2-guard-unitretry`，只用于构建、`devices-point-to-point` 单测和日志/资源收据，不启动仿真；随后最小回归 off/on ID 为 `20260929-223000-ws21c-v2-guard-off40` / `20260929-223100-ws21c-v2-guard-on40`。retry ID 在本地与远端结果目录、已版本化记录中均未发现占用；远端其他预留 ID 仍须在 Luna High 启动前逐一确认。`build --id` 对 retry 与两个回归格均显式传 `--source-sha 2c14d3b4c952a9cece89a9de14216709b604706f`。单测使用独立测试输出目录，并执行 `./waf configure --enable-tests --build-profile=optimized --out=build-ws21-tests` 与 `./waf --out=build-ws21-tests -j2`，随后直接运行测试 runner 的 `devices-point-to-point` suite 并保存 verbose 日志；若遇既有 core 测试 const 问题，只在该隔离副本临时同时修正声明和定义，测试后恢复并校验固定源码。off/on 两格沿用[旧 40 流预飞行表](ws21-compact-40flow-preflight.md)的同一 trace、拓扑、seed、命令参数和资源采样，仅更换固定源码 SHA；不得复用旧格结果。
+新 SHA 的独立 optimized 构建与单测 ID `20260929-222000-ws21c-v2-guard-unit` 已保留，但第一次测试构建漏传 `--enable-tests`，生成的 runner 没有测试可执行；其测试日志为空，因此**不算测试通过，也不复用此 ID**。修正后的完整构建/单测使用新 ID `20260929-222500-ws21c-v2-guard-unitretry`，只用于构建、`devices-point-to-point` 单测和日志/资源收据，不启动仿真；随后单测通过才运行 40 流回归：首次 off ID `20260929-223000-ws21c-v2-guard-off40` 保留为无资源收据的 SUCCEEDED 结果，不复用；新的 off retry ID 为 `20260929-223200-ws21c-v2-guard-off40-r1`，on ID 为 `20260929-223100-ws21c-v2-guard-on40`。retry ID 的本地和远端 runs/results 均检查为空闲。启动 watcher 时使用该格隔离源码内的 `runs/<ID>/source/scripts/ws11_resource_watch.py`，并确认生成 resource-samples 与 resource-summary 后才继续。retry ID 在本地与远端结果目录、已版本化记录中均未发现占用；远端其他预留 ID 仍须在 Luna High 启动前逐一确认。`build --id` 对 retry 与两个回归格均显式传 `--source-sha 2c14d3b4c952a9cece89a9de14216709b604706f`。单测使用独立测试输出目录，并执行 `./waf configure --enable-tests --build-profile=optimized --out=build-ws21-tests` 与 `./waf --out=build-ws21-tests -j2`，随后直接运行测试 runner 的 `devices-point-to-point` suite 并保存 verbose 日志；若遇既有 core 测试 const 问题，只在该隔离副本临时同时修正声明和定义，测试后恢复并校验固定源码。off/on 两格沿用[旧 40 流预飞行表](ws21-compact-40flow-preflight.md)的同一 trace、拓扑、seed、命令参数和资源采样，仅更换固定源码 SHA；不得复用旧格结果。
 
-若测试构建、运行器或单测失败，保留该 ID、源码副本和日志，不启动 off/on；诊断后先在本表登记新的未占用 unit ID，再以新隔离副本重试，绝不覆盖或复用失败 ID。本次 `222000` 因测试模块未启用而保留，retry 使用 `222500`。若修复需要修改受版本控制的仿真源码，则先提交并固定新 SHA，同时重新登记 unit、off/on 与后续长尾格 ID，旧 SHA 的所有预留格不得继续使用。远端任一预留 ID 已占用时同样先修订本表，再启动对应格。
+若测试构建、运行器或单测失败，保留该 ID、源码副本和日志，不启动 off/on；诊断后先在本表登记新的未占用 unit ID，再以新隔离副本重试，绝不覆盖或复用失败 ID。本次 `222000` 因测试模块未启用而保留，retry `222500` 通过；首次 `223000` 因资源观察器未启动而保留，使用新的 `223200` off retry。若修复需要修改受版本控制的仿真源码，则先提交并固定新 SHA，同时重新登记 unit、off/on 与后续长尾格 ID，旧 SHA 的所有预留格不得继续使用。远端任一预留 ID 已占用时同样先修订本表，再启动对应格。
 
 Luna High 实际生效后，先只读核对服务器健康、他人作业和三个前置 ID 的远端空闲性；通过后对新固定源码做隔离 optimized 构建与 `devices-point-to-point` 单测，再以**同一 SHA**重跑 40 流 off/on 最小回归：两格均 40/40 完成、字节守恒、跨 ToR 身份正确；开启格报告全送达、逐跳守恒且无非法生成/解码，关闭格无报告。逐流 FCT 和 WS18 与旧 40 流 pair 配对列出变化；若变化，先解释并暂停长尾，不把旧 SHA 的结果直接当新 SHA 门槛。必要时加短包拒收定向验证；未覆盖时在最终报告标明。上述收据填入本表后，再次只读核对服务器登录/他人作业、现有 ns-3 和 `run.py`、CPU、load 1/5/15 分钟、可用内存及磁盘，逐个确认远端 ID 不存在。预检要求无他人作业、1 分钟负载 ≤10、可用内存 ≥32 GiB、工作区磁盘 ≥100 GiB。固定源码须已同步、个人 origin 与本地文档 HEAD 一致、工作树干净且服务器健康。编译和仿真串行，`max-concurrent=1`；第一、二格作为长尾资源 pilot，后续不自动提并发。
 
 每格启动立即保存 PID、UTC 开始时间、固定 SHA/输入哈希和预期首次检查时间（+10 分钟），启动 `scripts/ws11_resource_watch.py <ID> --interval 2` 静默采集 `resource-samples.jsonl` 与 `resource-summary.json`，两文件不得预先存在。正常长时运行约每 30 分钟精简监督一次；若先完成或失败，及时处理。运行中出现他人作业、load1m >20、可用内存 <16 GiB、空闲磁盘 <100 GiB、进程树 RSS >8 GiB、任一文本日志 >50 MiB、资源收据缺失或构建/仿真失败，停止启动后续格并保留原始数据；先诊断，不复用失败 ID。
+
+## Luna 阶段执行记录（2026-09-29）
+
+服务器预检通过：`ns3host` 上无登录用户、无 active simulation PID；可用内存约 123 GiB、工作区可用磁盘约 5.7 TiB；预留 ID 逐项核对为空闲。遗留 VS Code 调试辅助进程及 `hg outgoing` 均为数月龄、0.0% CPU，不是运行中的仿真或构建。
+
+`20260929-222000-ws21c-v2-guard-unit`：固定 SHA `2c14d3b4c952a9cece89a9de14216709b604706f` 的 optimized build 为 `BUILT`。第一次独立测试输出目录漏加 `--enable-tests`，runner 没有注册 suite、测试日志为空；此格保留，不作为测试通过证据，也不重用。`20260929-222500-ws21c-v2-guard-unitretry`：显式 `--enable-tests` 重建后，runner 列表包含 `devices-point-to-point`，verbose 运行返回码 0，输出 `PASS devices-point-to-point`、`PASS PointToPoint` 和 `PASS WS-21 feedback header serialization and validation`。临时 `CommandLine` const 兼容改动已恢复，源文件 SHA-256 与原值一致，隔离源码树干净。资源采样 259 点，进程树峰值 730.8 MiB、最低可用内存 122.32 GiB、最低磁盘 5,685.46 GiB、最大 load1m 2.1；收据在远端 `results/20260929-222500-ws21c-v2-guard-unitretry/logs/`。
+
+`20260929-223000-ws21c-v2-guard-off40`：固定 SHA、trace SHA `4e7d0e6a…` 和拓扑 SHA `74a6f715…` 的 off 仿真为 `SUCCEEDED`，结果已 fetch 至本机。资源观察器启动时误用了代码缓存目录中的脚本路径，日志明确记录脚本不存在；因此没有 `resource-samples.jsonl`/`resource-summary.json`，该格违反资源收据门槛并保留，不能据此放行 on。新 off retry `20260929-223200-ws21c-v2-guard-off40-r1` 已在本表登记且远端空闲；运行时 watcher 改用每格隔离源码目录下的脚本。完成并核实 off retry 的 40/40、字节守恒、身份和资源收据后，才执行已预留的 on `20260929-223100-ws21c-v2-guard-on40`。
 
 ## 逐格核验与停止规则
 
