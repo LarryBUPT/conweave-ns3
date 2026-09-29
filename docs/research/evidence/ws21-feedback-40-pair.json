@@ -1,0 +1,68 @@
+{
+  "complete": true,
+  "off": {
+    "experiment_id": "20260929-170000-ws21-feedback-pair",
+    "status": "SUCCEEDED",
+    "git_commit": "23e002e13aed71a05d6b098feb5fdab4ce7ac9f4",
+    "input_flow_sha256": "4e7d0e6a68e3230e8960a174e570a0a788c191fa0b44922408867b02c25782cc",
+    "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+    "raw_directory": "328314110",
+    "feedback_enabled": 0,
+    "fct_rows": 40,
+    "provided_bytes": 33849344,
+    "fct_sha256": "0f8fd036bc40602f50d1287369f642351fb4b64af60d052a28b1b744c6a7637e",
+    "ws18_sha256": "bc7004a69af353441a72e9808165a3794bc5d3659c73cec546dc0a4d1763d009",
+    "identity": {
+      "complete": true,
+      "qp_count": 40,
+      "cross_tor_qps": 40,
+      "source_qps": 40,
+      "destination_qps": 40,
+      "upstream_ce_packets": 0,
+      "errors": []
+    }
+  },
+  "on": {
+    "experiment_id": "20260929-173000-ws21-feedback-40-on",
+    "status": "SUCCEEDED",
+    "git_commit": "23e002e13aed71a05d6b098feb5fdab4ce7ac9f4",
+    "input_flow_sha256": "4e7d0e6a68e3230e8960a174e570a0a788c191fa0b44922408867b02c25782cc",
+    "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+    "raw_directory": "959098506",
+    "feedback_enabled": 1,
+    "fct_rows": 40,
+    "provided_bytes": 33849344,
+    "fct_sha256": "0f8fd036bc40602f50d1287369f642351fb4b64af60d052a28b1b744c6a7637e",
+    "ws18_sha256": "bc7004a69af353441a72e9808165a3794bc5d3659c73cec546dc0a4d1763d009",
+    "identity": {
+      "complete": true,
+      "qp_count": 40,
+      "cross_tor_qps": 40,
+      "source_qps": 40,
+      "destination_qps": 40,
+      "upstream_ce_packets": 0,
+      "errors": []
+    },
+    "feedback": {
+      "generated": 223,
+      "delivered": 223,
+      "rejected": 0,
+      "expired": 0,
+      "delivered_bytes": 18955,
+      "age_sum_ns": 4907,
+      "age_max_ns": 23,
+      "age_lt_1us": 223,
+      "age_1_2us": 0,
+      "age_2_5us": 0,
+      "age_5_10us": 0,
+      "age_gt_10us": 0,
+      "sequence_gaps": 0,
+      "hop_enqueues": 446,
+      "hop_rejects": 0,
+      "hop_dequeues": 446,
+      "hop_bytes": 37910,
+      "cache_peak": 8
+    }
+  },
+  "interpretation": "40-flow engineering gate only; no CE differentiation or performance claim"
+}
