@@ -1,13 +1,13 @@
 # WS-21 精简反馈：构建、单测与 40 流 pair 预飞行表
 
-冻结日期：2026-09-29；**尚未在远端执行**。本表只覆盖 v2 报文第一道工程门槛，不含长尾间隔矩阵、心跳或效果比较。执行前必须由任务/编排工具确认监督模型实际为 GPT-6 Luna High；终态 raw 回传后再实际切回 GPT-6 Sol High。源代码固定分支 `feature/ws21-downstream-feedback`，固定 SHA 见下方；若修复源码，旧 ID 保留并另立 SHA/ID，不能在原格继续。
+冻结日期：2026-09-29；当前已在 GPT-6 Luna High 下执行首道工程门槛。本表只覆盖 v2 报文构建、单测和 40 流 pair，不含长尾间隔矩阵、心跳或效果比较。终态 raw 回传后再实际切回 GPT-6 Sol High。源代码固定分支 `feature/ws21-downstream-feedback` 与 SHA `91f43c70bbb515ae35b3161d4d1e40d30ff90992`；若修复仿真源码，旧 ID 保留并另立 SHA/ID，不能在原格继续。
 
 ## 固定输入和顺序
 
 | 顺序 | 预留实验 ID（`build --id` 显式指定；ID 中时间是标签，不代替实际启动时间） | 动作与唯一变量 | 通过后才能继续 |
 | --- | --- | --- | --- |
 | 1（已失败，保留） | `20260929-185100-ws21c-v2-unit` | 同 SHA optimized `-j2` build 为 `BUILT`；测试构建在 1,522/1,633 步遇到既有 core 测试 const helper 声明/定义不一致，v2 测试未执行 | 失败证据保留；不复用该 ID |
-| 2（恢复尝试） | `20260929-192700-ws21c-v2-unitfix` | 新隔离副本重新构建并运行 `devices-point-to-point`；仅在该副本临时将同一 helper 的声明和定义参数都去掉 const，测试后逐字节恢复 | PASS 且资源/恢复收据齐全后才进入 off40 |
+| 2（通过，含执行器修正） | `20260929-192700-ws21c-v2-unitfix` | 新隔离副本重新构建；仅在该副本临时同时修正同一 helper 的声明和定义参数 const，测试后逐字节恢复。测试模块编译后，首个 wrapper 未识别带版本/优化后缀的运行器；随后设定隔离库路径直接运行 | `devices-point-to-point` PASS；恢复/资源收据齐全，可进入 off40 |
 | 3 | `20260929-185200-ws21c-v2-off40` | 新副本构建并运行 40 流；`--ws21-feedback 0` | 完成/字节/身份正确、raw 和资源收据齐全 |
 | 4 | `20260929-185300-ws21c-v2-on40` | 新副本构建并运行同一 40 流；只改 `--ws21-feedback 1` | 在第 3 格成功后启动；核对报告与业务双侧指标 |
 
@@ -22,7 +22,7 @@ python scripts/remote_experiment.py build --repo-local . --id <ID> --source-sha 
 python scripts/remote_experiment.py run <ID> --lb ws18 --simul-time 0.01 --netload 10 --bw 400 --buffer 9 --topo topo_1280_400G_400G_OS1 --cdf AliStorage2019 --flow-file ws18_1280_correctness.txt --pfc 0 --irn 1 --ws18-admission 0 --ws18-path 0 --ws18-admission-rate-gbps 400 --ws21-identity 1 --ws21-port-events 0 --ws21-feedback-interval-ns 10000 --max-concurrent 1 --ws21-feedback <0或1>
 ```
 
-最后一行只用于 off/on 两格；unit 格在独立测试构建中执行 `devices-point-to-point`，保留测试日志。若遇到 Handoff 30 记载的无关 core 测试 const 编译问题，只在 unit 隔离副本中临时修复、测试后恢复并检查源码文件与固定提交一致；不得把此临时改动带入仿真格。
+最后一行只用于 off/on 两格；unit 格在独立测试构建后执行 `LD_LIBRARY_PATH=build-ws21-tests ./build-ws21-tests/utils/ns3.19-test-runner-optimized --suite=devices-point-to-point`，保留测试日志。若遇到 Handoff 30 记载的无关 core 测试 const 编译问题，只在 unit 隔离副本中临时修正声明和定义、测试后恢复并检查源码文件与固定提交一致；不得把此临时改动带入仿真格。
 
 共同仿真与 runner 源码 SHA：`91f43c70bbb515ae35b3161d4d1e40d30ff90992`；本表的后续文档提交会移动分支 HEAD，所以三个 `build` 均须显式传 `--source-sha 91f43c70bbb515ae35b3161d4d1e40d30ff90992`，不能默认构建文档 HEAD。个人 `origin/feature/ws21-downstream-feedback` 必须与本地文档 HEAD 同 SHA、工作树干净，且该源码 SHA 是其祖先。Luna 阶段先 `deploy` 更新后的 worker，再 `sync` 个人 fork。40 流 trace `config/ws18_1280_correctness.txt` SHA-256 `4e7d0e6a68e3230e8960a174e570a0a788c191fa0b44922408867b02c25782cc`，拓扑 `config/topo_1280_400G_400G_OS1.txt` SHA-256 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`。输入预期 40 流、33,849,344 B；seed=1。固定参数：`--lb ws18 --simul-time 0.01 --netload 10 --bw 400 --buffer 9 --topo topo_1280_400G_400G_OS1 --cdf AliStorage2019 --flow-file ws18_1280_correctness.txt --pfc 0 --irn 1 --ws18-admission 0 --ws18-path 0 --ws18-admission-rate-gbps 400 --ws21-identity 1 --ws21-port-events 0 --ws21-feedback-interval-ns 10000 --max-concurrent 1`；只变反馈开关。两个格的 `metadata.json`、`config/config.txt`、trace/拓扑快照须逐项相同（开关除外）。
 
@@ -42,4 +42,4 @@ python scripts/remote_experiment.py run <ID> --lb ws18 --simul-time 0.01 --netlo
 
 2026-09-29 首次预检：服务器 `ns3host`，40 逻辑 CPU，`who` 无登录用户，活动仿真 PID 为空，load 1m=0.00、可用内存 122.99 GiB、工作区空闲 5,694.3 GiB；三项预留 ID 均不存在。个人 fork 经 SSH Git bundle 同步；直接 GitHub fetch 超时前已按流程静默尝试一次 `login.sh`。冻结 SHA `91f43c70bbb515ae35b3161d4d1e40d30ff90992` 的隔离 optimized `-j2` 构建 `20260929-185100-ws21c-v2-unit` 于 2026-09-29 11:13:54 UTC 为 `BUILT`。
 
-该 ID 的独立测试构建在 1,522/1,633 步因仓库既有 `CommandLineTestCaseBase::Parse` 的声明已去 const、定义仍带 const 而失败；WS-21 报文单测未执行。单测 wrapper 已在恢复原文件后将测试构建目录误判为源码污染并退出，但远端 Git 状态显示 tracked 源码干净、只有该 ID 的 `build-ws21-tests/` 未跟踪构建目录。失败日志为 `results/20260929-185100-ws21c-v2-unit/logs/ws21-v2-unit-test.log`，248 个资源采样汇总另存 `unit-attempt-summary.json`：进程树峰值 RSS 809.7 MiB，最小可用内存 122.25 GiB，最小空闲磁盘 5,692.74 GiB，最大 load 1m=2.14。此失败 ID 完整保留，不能复用；40 流 off/on 两格暂不启动。修订流程改为新隔离 ID `20260929-192700-ws21c-v2-unitfix`，临时同时修正该无关 helper 的声明和定义并验证测试后恢复；通过前不得扩展。
+该 ID 的独立测试构建在 1,522/1,633 步因仓库既有 `CommandLineTestCaseBase::Parse` 声明已去 const、定义仍带 const 而失败；WS-21 报文单测未执行。失败日志为 `results/20260929-185100-ws21c-v2-unit/logs/ws21-v2-unit-test.log`，248 个资源采样汇总 `unit-attempt-summary.json`：进程树峰值 RSS 809.7 MiB，最低可用内存 122.25 GiB，最低空闲磁盘 5,692.74 GiB，最大 load1m 2.14。tracked 源码干净、失败 ID 保留。新 ID `20260929-192700-ws21c-v2-unitfix` 中优化 build `BUILT`；临时同时修正声明和定义后测试构建完成。首个 wrapper 错误地只查找名为 `test-runner` 的文件并报未找到，实际文件为 `ns3.19-test-runner-optimized`。之后使用独立库路径直接执行 `--suite=devices-point-to-point`，结果 `PASS devices-point-to-point 0.000 s`；源码 SHA-256 `b7285686202442d47d339fd5817e9001c47bfc23377c8a8f5f596ba694373881` 恢复一致，tracked Git 状态干净，成功记录在 `logs/unit-runner-retry-summary.json`。两个早期 wrapper 失败日志保留，不覆盖。单测门槛现通过，可以在再次核对服务器资源和 off/on ID 未占用后进入 40 流格。
