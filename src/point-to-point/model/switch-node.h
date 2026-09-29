@@ -78,7 +78,7 @@ class SwitchNode : public Node {
     std::unordered_set<uint32_t> m_ws21HostPorts;
     struct Ws21HeartbeatPort {
         uint32_t epoch = 0, nextSequence = 0, outstanding = 0, missed = 0;
-        uint64_t lastActivityNs = 0, sentNs = 0;
+        uint64_t lastActivityNs = 0, sentNs = 0, lastAckNs = 0;
         bool active = false, unknown = false;
     };
     std::map<uint32_t, Ws21HeartbeatPort> m_ws21HeartbeatPorts;

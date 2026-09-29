@@ -67,6 +67,7 @@ static uint64_t ws21_heartbeat_hello_received = 0, ws21_heartbeat_ack_received =
 static uint64_t ws21_heartbeat_rejected = 0, ws21_heartbeat_injected_drops = 0;
 static uint64_t ws21_heartbeat_timeouts = 0, ws21_heartbeat_unknown = 0;
 static uint64_t ws21_heartbeat_recovered = 0, ws21_heartbeat_activations = 0;
+static uint64_t ws21_heartbeat_ack_rtt_sum_ns = 0, ws21_heartbeat_ack_rtt_max_ns = 0;
 static uint64_t ws21_heartbeat_deactivations = 0, ws21_heartbeat_active = 0;
 static uint64_t ws21_heartbeat_active_peak = 0;
 static uint64_t ws21_heartbeat_hop_enqueues = 0, ws21_heartbeat_hop_dequeues = 0;
@@ -524,6 +525,7 @@ void SwitchNode::TouchWs21Heartbeat(uint32_t port) {
         NS_FATAL_ERROR("WS-21 heartbeat epoch exhausted");
     ++state.epoch;
     state.nextSequence = state.outstanding = state.missed = 0;
+    state.sentNs = state.lastAckNs = 0;
     state.unknown = false;
     state.active = true;
     ++ws21_heartbeat_activations;
@@ -648,6 +650,10 @@ bool SwitchNode::ReceiveWs21Heartbeat(Ptr<NetDevice> device, Ptr<Packet> p,
         return true;
     }
     Ws21HeartbeatPort &state = found->second;
+    const uint64_t rttNs = nowNs - state.sentNs;
+    state.lastAckNs = nowNs;
+    ws21_heartbeat_ack_rtt_sum_ns += rttNs;
+    ws21_heartbeat_ack_rtt_max_ns = std::max(ws21_heartbeat_ack_rtt_max_ns, rttNs);
     state.outstanding = 0;
     state.missed = 0;
     if (state.unknown) {
@@ -681,6 +687,8 @@ void SwitchNode::PrintWorkloadTagCounts() {
                   << " ack_generated=" << ws21_heartbeat_ack_generated
                   << " hello_received=" << ws21_heartbeat_hello_received
                   << " ack_received=" << ws21_heartbeat_ack_received
+                  << " ack_rtt_sum_ns=" << ws21_heartbeat_ack_rtt_sum_ns
+                  << " ack_rtt_max_ns=" << ws21_heartbeat_ack_rtt_max_ns
                   << " rejected=" << ws21_heartbeat_rejected
                   << " injected_drops=" << ws21_heartbeat_injected_drops
                   << " timeouts=" << ws21_heartbeat_timeouts
