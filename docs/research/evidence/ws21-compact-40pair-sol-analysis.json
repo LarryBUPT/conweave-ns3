@@ -1,0 +1,213 @@
+{
+  "cross_version_packet_size": {
+    "experiment_id": "20260929-173000-ws21-feedback-40-on",
+    "limit": "Different source SHAs; this is a protocol-size pilot, not a same-SHA effect comparison.",
+    "new_hop_bytes": 26760,
+    "new_report_bytes": 60.0,
+    "observed_hop_byte_reduction_percent": 29.41176470588235,
+    "old_hop_bytes": 37910,
+    "old_report_bytes": 85.0,
+    "same_trace_topology_seed_flow_completion_report_count_and_hops": true,
+    "source_sha": "23e002e13aed71a05d6b098feb5fdab4ce7ac9f4"
+  },
+  "evidence_level": "same-SHA 40-flow technical transport pair, one trace/seed",
+  "limits": [
+    "Ratios divide summed per-hop control bytes by application input bytes; they are not link-utilization percentages.",
+    "No upstream CE differentiation or feedback-based routing decision occurred in this input.",
+    "One fixed trace/seed and one 10-us interval cannot establish an optimal interval, a safety SLO, or efficacy.",
+    "The stock FCT analyzer time window would exclude early QPs; all 40 completed QPs are used here."
+  ],
+  "off": {
+    "completed_business_bytes": 33849344,
+    "completed_flows": 40,
+    "experiment_id": "20260929-185200-ws21c-v2-off40",
+    "fct": {
+      "by_flow_size_bytes": {
+        "8192": {
+          "flows": 36,
+          "max_us": 11.212,
+          "p50_us": 11.122,
+          "p90_us": 11.198,
+          "p99_us": 11.210600000000001
+        },
+        "8388608": {
+          "flows": 4,
+          "max_us": 867.082,
+          "p50_us": 646.675,
+          "p90_us": 803.575,
+          "p99_us": 860.7313
+        }
+      },
+      "flows": 40,
+      "max_us": 867.082,
+      "mean_us": 75.475625,
+      "p50_us": 11.13,
+      "p90_us": 60.145300000000695,
+      "p99_us": 784.5228999999999,
+      "percentile_method": "linear interpolation on all completed QPs"
+    },
+    "fct_sha256": "0f8fd036bc40602f50d1287369f642351fb4b64af60d052a28b1b744c6a7637e",
+    "largest_text_log_bytes": 206562,
+    "max_observed_load_1m": 1.33,
+    "parameters": {
+      "buffer": 9,
+      "bw": 400,
+      "cdf": "AliStorage2019",
+      "factorial_drop_diag": false,
+      "factorial_pilot": false,
+      "flow_file": "ws18_1280_correctness.txt",
+      "irn": 1,
+      "lb": "ws18",
+      "netload": 10,
+      "pfc": 0,
+      "simul_time": "0.01",
+      "topo": "topo_1280_400G_400G_OS1",
+      "ws13_diag": 0,
+      "ws18_admission": 0,
+      "ws18_admission_rate_gbps": 400,
+      "ws18_path": 0,
+      "ws21_feedback": 0,
+      "ws21_feedback_interval_ns": 10000,
+      "ws21_identity": 1,
+      "ws21_port_events": 0,
+      "ws21_port_max_bytes": 268435456
+    },
+    "path_identity": {
+      "complete": true,
+      "cross_tor_qps": 40,
+      "destination_qps": 40,
+      "errors": [],
+      "qp_count": 40,
+      "source_qps": 40,
+      "upstream_ce_packets": 0
+    },
+    "raw_directory": "432264462",
+    "resources": {
+      "final_status": "SUCCEEDED",
+      "id": "20260929-185200-ws21c-v2-off40",
+      "minimum_free_gib": 5689.872386932373,
+      "minimum_mem_available_gib": 118.59224319458008,
+      "peak_tree_rss_mib": 4543.85546875,
+      "samples": 80
+    },
+    "status": "SUCCEEDED",
+    "wall_seconds": 177,
+    "ws18_sha256": "bc7004a69af353441a72e9808165a3794bc5d3659c73cec546dc0a4d1763d009"
+  },
+  "on": {
+    "completed_business_bytes": 33849344,
+    "completed_flows": 40,
+    "experiment_id": "20260929-185300-ws21c-v2-on40",
+    "fct": {
+      "by_flow_size_bytes": {
+        "8192": {
+          "flows": 36,
+          "max_us": 11.212,
+          "p50_us": 11.122,
+          "p90_us": 11.198,
+          "p99_us": 11.210600000000001
+        },
+        "8388608": {
+          "flows": 4,
+          "max_us": 867.082,
+          "p50_us": 646.675,
+          "p90_us": 803.575,
+          "p99_us": 860.7313
+        }
+      },
+      "flows": 40,
+      "max_us": 867.082,
+      "mean_us": 75.475625,
+      "p50_us": 11.13,
+      "p90_us": 60.145300000000695,
+      "p99_us": 784.5228999999999,
+      "percentile_method": "linear interpolation on all completed QPs"
+    },
+    "fct_sha256": "0f8fd036bc40602f50d1287369f642351fb4b64af60d052a28b1b744c6a7637e",
+    "feedback": {
+      "age_1_2us": 0,
+      "age_2_5us": 0,
+      "age_5_10us": 0,
+      "age_gt_10us": 0,
+      "age_lt_1us": 223,
+      "age_max_ns": 23,
+      "age_sum_ns": 4907,
+      "cache_peak": 8,
+      "delivered": 223,
+      "delivered_bytes": 13380,
+      "expired": 0,
+      "generated": 223,
+      "hop_bytes": 26760,
+      "hop_dequeues": 446,
+      "hop_enqueues": 446,
+      "hop_rejects": 0,
+      "rejected": 0,
+      "sample_age_max_ns": 9838,
+      "sample_age_sum_ns": 72316,
+      "sequence_gaps": 0
+    },
+    "largest_text_log_bytes": 206557,
+    "max_observed_load_1m": 1.04,
+    "parameters": {
+      "buffer": 9,
+      "bw": 400,
+      "cdf": "AliStorage2019",
+      "factorial_drop_diag": false,
+      "factorial_pilot": false,
+      "flow_file": "ws18_1280_correctness.txt",
+      "irn": 1,
+      "lb": "ws18",
+      "netload": 10,
+      "pfc": 0,
+      "simul_time": "0.01",
+      "topo": "topo_1280_400G_400G_OS1",
+      "ws13_diag": 0,
+      "ws18_admission": 0,
+      "ws18_admission_rate_gbps": 400,
+      "ws18_path": 0,
+      "ws21_feedback": 1,
+      "ws21_feedback_interval_ns": 10000,
+      "ws21_identity": 1,
+      "ws21_port_events": 0,
+      "ws21_port_max_bytes": 268435456
+    },
+    "path_identity": {
+      "complete": true,
+      "cross_tor_qps": 40,
+      "destination_qps": 40,
+      "errors": [],
+      "qp_count": 40,
+      "source_qps": 40,
+      "upstream_ce_packets": 0
+    },
+    "raw_directory": "213794292",
+    "resources": {
+      "final_status": "SUCCEEDED",
+      "id": "20260929-185300-ws21c-v2-on40",
+      "minimum_free_gib": 5688.899513244629,
+      "minimum_mem_available_gib": 118.59093475341797,
+      "peak_tree_rss_mib": 4544.21484375,
+      "samples": 80
+    },
+    "status": "SUCCEEDED",
+    "wall_seconds": 175,
+    "ws18_sha256": "bc7004a69af353441a72e9808165a3794bc5d3659c73cec546dc0a4d1763d009"
+  },
+  "pair": {
+    "control_delivered_bytes_over_business_input_percent": 0.039528092479428845,
+    "control_hop_bytes_over_business_input_percent": 0.07905618495885769,
+    "fct_delta_ns_max": 0,
+    "fct_delta_ns_min": 0,
+    "fct_improved_flows": 0,
+    "fct_raw_identical": true,
+    "fct_unchanged_flows": 40,
+    "fct_worsened_flows": 0,
+    "mean_sample_age_ns": 324.2869955156951,
+    "mean_transport_age_ns": 22.004484304932735,
+    "report_bytes": 60.0,
+    "ws18_raw_identical": true
+  },
+  "source_sha": "91f43c70bbb515ae35b3161d4d1e40d30ff90992",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "trace_sha256": "4e7d0e6a68e3230e8960a174e570a0a788c191fa0b44922408867b02c25782cc"
+}

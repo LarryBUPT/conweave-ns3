@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-09-29 WS-21 v2 下一门槛：Sol High 已按原始 pair 完成[40 流配对分析](../research/ws21-compact-40pair-sol-report.md)并形成[Handoff 35](../handoffs/2026-09-29-35-ws21-v2-sol-analysis.md)。40 流反馈传输与资源门槛通过，旧版 85 B/份到新版 60 B/份的同输入跨 SHA 技术对照显示报文体积下降 29.4%；40 流没有候选 CE 区分和选路采用。只在实际切至 Luna High，先以修正后的新固定 SHA 通过 optimized 构建、单测和同 SHA 40 流回归，再通过远端预检后，依[长尾间隔预飞行表](../research/ws21-compact-longtail-interval-preflight.md)运行 off、10、20、40、5 µs 技术矩阵；完成并回传后再切 Sol High 分析。局部心跳先独立小拓扑实现/故障测试，最后才可能与 STATE 合并。效果矩阵仍 NO-GO，历史 no-go 不追溯改判。
+
 更新：2026-09-29。集成工作流只维护顺序和证据门槛；具体代码和实验在对应 workstream 执行。参照 [CURRENT_STATE.md](CURRENT_STATE.md) 的实时快照，在执行前再核验 Git 与远程资源。研究筛选见 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)；用户要求的提前工程原型见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 
 2026-09-29 WS-21 构建门槛进展：反馈报文提交 `3f1a28a6583567744b6a177d8c11da7cc8a761dc` 的远端 optimized build 成功，point-to-point 单测 `PASS`，过程与限制见 [Handoff 30](../handoffs/2026-09-29-30-ws21-feedback-build-test.md)。这只验证可编译及头部序列化；未验证拓扑送达、延迟/成本、缓存选路，也没有新仿真原始数据。下一步同步 runner 开关后固定新 SHA，并运行 40 流开关正确性 pair；完整技术 pilot 和效果矩阵仍未解锁。
