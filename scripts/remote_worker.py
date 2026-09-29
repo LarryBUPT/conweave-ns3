@@ -317,7 +317,8 @@ def build(experiment_id, sha, branch):
     data = {'experiment_id': experiment_id, 'created_utc': stamp(), 'status': 'BUILDING',
             'git_repository': output(['git', 'config', '--get', 'remote.origin.url'], cwd=code),
             'git_commit': sha, 'git_branch': branch, 'server': socket.gethostname(),
-            'cpu_jobs': 2, 'build_mode': 'optimized', 'seed': 1}
+            'cpu_jobs': 2, 'build_mode': 'optimized', 'seed': 1,
+            'pid': os.getpid()}
     save_metadata(base, data)
     log = inside(os.path.join(base, 'logs', 'build.log'))
     try:
