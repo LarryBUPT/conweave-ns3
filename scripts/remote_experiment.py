@@ -216,6 +216,7 @@ def main():
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
     run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws21-feedback', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
@@ -273,6 +274,8 @@ def main():
             parser.error('WS-18 switches require --lb ws18')
         if args.ws21_identity and args.lb != 'ws18':
             parser.error('WS-21 identity diagnostic requires --lb ws18')
+        if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
+            parser.error('WS-21 feedback requires --lb ws18 and --ws21-identity 1')
         if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
             parser.error('WS-21 port events require ws18 and a byte cap >= 1024')
         command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
@@ -286,6 +289,7 @@ def main():
                             '--ws18-path', str(args.ws18_path),
                             '--ws18-admission-rate-gbps', str(args.ws18_admission_rate_gbps)])
             command.extend(['--ws21-identity', str(args.ws21_identity)])
+            command.extend(['--ws21-feedback', str(args.ws21_feedback)])
             command.extend(['--ws21-port-events', str(args.ws21_port_events),
                             '--ws21-port-max-bytes', str(args.ws21_port_max_bytes)])
         if args.flow_file:

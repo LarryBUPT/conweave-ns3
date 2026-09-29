@@ -2,6 +2,8 @@
 
 更新：2026-09-29。集成工作流只维护顺序和证据门槛；具体代码和实验在对应 workstream 执行。参照 [CURRENT_STATE.md](CURRENT_STATE.md) 的实时快照，在执行前再核验 Git 与远程资源。研究筛选见 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)；用户要求的提前工程原型见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。
 
+2026-09-29 WS-21 构建门槛进展：反馈报文提交 `3f1a28a6583567744b6a177d8c11da7cc8a761dc` 的远端 optimized build 成功，point-to-point 单测 `PASS`，过程与限制见 [Handoff 30](../handoffs/2026-09-29-30-ws21-feedback-build-test.md)。这只验证可编译及头部序列化；未验证拓扑送达、延迟/成本、缓存选路，也没有新仿真原始数据。下一步同步 runner 开关后固定新 SHA，并运行 40 流开关正确性 pair；完整技术 pilot 和效果矩阵仍未解锁。
+
 已完成的前置核验：**WS-06 输入兼容**见 [Handoff 06](../handoffs/2026-09-24-06-six-column-input-and-tags.md)；**WS-07 最小双轨与单 seed 技术 pilot**见 [Handoff 08](../handoffs/2026-09-25-08-ws07-dual-track-mixtax.md)；**WS-08 接收尾流诊断与共享 IRN 单 seed pilot**见 [Handoff 09](../handoffs/2026-09-25-09-ws08-receiver-gate.md)；**WS-09 可关闭原型与技术核验**见 [Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)；**WS-10 固定总字节正式复核**见 [Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)；**WS-11 完整 MoE 全量输入正式验证**见 [Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)；**WS-12 六策略全量配对**见 [Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)；**WS-13 长尾反馈语义与目的出口诊断**见 [Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)。三场正式研究各保留自身输入、判据和 no-go。
 
 1. **接收语义门槛，技术诊断已完成：**`20260925-210024-ws08-nack-diagnostic@c8ca6a6` 逐流记录原四条 4 ms 尾流均触发最后 192 B 未确认的 4 ms RTO。共享 PFC=0、IRN=1、DCQCN 契约在 `445593f` 的 32 主机单/双类与 1280 跨 ToR 小样本完成，四格无超时；旧 PFC 四格与 IRN 四格分开解释。若将 ConWeave 放在导入混合延迟拓扑对照，仍先审计其统一 `one_hop_delay` 时序估计。
