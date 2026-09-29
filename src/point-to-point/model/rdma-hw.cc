@@ -590,9 +590,14 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
 
     if (Ws13BackgroundQp(qp)) {
         // IRN ACKs and SACK feedback both use 0xFD; only a nonzero size is SACK.
-        if (ch.l3Prot == 0xFD)
-            Ws13LogQp(ch.ack.irnNackSize ? "sack" : "irn_ack", qp,
-                      ch.ack.irnNackSize);
+        // Retain one ordinary ACK per QP as a progress marker. Logging every
+        // packet ACK scales with payload packet count and overwhelms long-tail runs.
+        if (ch.l3Prot == 0xFD && ch.ack.irnNackSize) {
+            Ws13LogQp("sack", qp, ch.ack.irnNackSize);
+        } else if (ch.l3Prot == 0xFD && !qp->m_ws13FirstIrnAckLogged) {
+            qp->m_ws13FirstIrnAckLogged = true;
+            Ws13LogQp("irn_ack", qp);
+        }
         if (cnp) Ws13LogQp("cnp", qp, ch.ack.irnNackSize);
     }
 

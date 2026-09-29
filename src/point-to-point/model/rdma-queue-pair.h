@@ -70,6 +70,7 @@ class RdmaQueuePair : public Object {
     int32_t m_flow_id;
     uint32_t m_workload_tag;
     uint32_t m_ws13_maxSentSeq{0};  // diagnostic high-water mark for retransmission events
+    bool m_ws13FirstIrnAckLogged{false};  // keep one ordinary ACK per QP, not every packet ACK
     Time m_timeout;
 
     /******************************
