@@ -23,7 +23,10 @@ COMPLETE = re.compile(
     r'snd_nxt=(\d+) tx_payload_bytes=(\d+) tx_packets=(\d+)$')
 RECOVERY = re.compile(r'^WS23_IRN_PFC_TIMEOUT_RECOVERY time_ns=(\d+) flow_id=(\d+) '
                       r'snd_una=(\d+) snd_nxt=(\d+) local_paused=(\d+)$')
-DEFERRED = re.compile(r'^WS23_IRN_PFC_TIMEOUT_DEFERRED .* paused=(\d+) delay_ns=(\d+)$')
+DEFERRED = re.compile(r'^WS23_IRN_PFC_TIMEOUT_DEFERRED time_ns=(\d+) flow_id=(\d+) '
+                      r'paused=(\d+) delay_ns=(\d+)$')
+TIMEOUT = re.compile(r'^WS08_TX_TIMEOUT time_ns=(\d+) flow_id=(\d+) '
+                     r'snd_una=(\d+) snd_nxt=(\d+) rto_ns=(\d+)$')
 LOCAL_PFC = re.compile(r'^WS23_PFC_LOCAL_(PAUSE|RESUME) time_ns=(\d+) host=(\d+) pg=(\d+)$')
 PFC_INJECT = re.compile(r'^WS23_PFC_INJECT time_ns=(\d+) host=(\d+) pg=(\d+) type=(\d+) pause_us=(\d+)$')
 PFC_RX = re.compile(r'^WS23_PFC_RX time_ns=(\d+) node=(\d+) pg=(\d+) type=(\d+)$')
@@ -86,7 +89,7 @@ def parse_log(log_path):
     records = {'completions': {}, 'recoveries': [], 'deferrals': [],
                'local_pfc': [], 'injections': [], 'pfc_rx': [],
                'admission_drops': 0, 'queue_rejects': 0, 'link_drops': 0,
-               'timeouts': 0, 'other_drops': 0}
+               'timeouts': 0, 'timeout_rows': [], 'other_drops': 0}
     with open(log_path, encoding='utf-8', errors='replace') as source:
         for line in source:
             line = line.rstrip('\r\n')
@@ -105,12 +108,17 @@ def parse_log(log_path):
                 raise ValueError('Malformed timeout recovery receipt')
             match = DEFERRED.fullmatch(line)
             if match:
-                paused, delay = map(int, match.groups())
-                if delay <= 0:
+                time_ns, flow_id, paused, delay = map(int, match.groups())
+                if paused not in (0, 1) or delay <= 0:
                     raise ValueError('Timeout deferral did not schedule a future timer')
-                records['deferrals'].append((paused, delay))
+                records['deferrals'].append((time_ns, flow_id, paused, delay))
             elif line.startswith('WS23_IRN_PFC_TIMEOUT_DEFERRED '):
                 raise ValueError('Malformed timeout deferral receipt')
+            match = TIMEOUT.fullmatch(line)
+            if match:
+                records['timeout_rows'].append(tuple(map(int, match.groups())))
+            elif line.startswith('WS08_TX_TIMEOUT '):
+                raise ValueError('Malformed timeout receipt')
             for prefix, pattern, key in (
                     ('WS23_PFC_LOCAL_', LOCAL_PFC, 'local_pfc'),
                     ('WS23_PFC_INJECT ', PFC_INJECT, 'injections'),
@@ -241,15 +249,111 @@ def verify_pause(experiment_id, expected_source_sha):
             'drop_events': 0}
 
 
+def verify_deferral(experiment_id, expected_source_sha):
+    current, params, summary, base, raw, log_path = verify_common(
+        experiment_id, PRESSURE_TRACE_SHA256, expected_source_sha)
+    expected = {'buffer': 1, 'flow_file': 'ws09_drop_probe_16x1MiB.txt',
+                'cdf': 'AliStorage2019', 'netload': 10,
+                'ws23_pfc_probe_host': 14, 'ws23_pfc_probe_pg': 3,
+                'ws23_pfc_probe_start_ns': 7200000,
+                'ws23_pfc_probe_end_ns': 8800000,
+                'ws23_pause_time_us': 2500}
+    for key, value in expected.items():
+        if params.get(key) != value:
+            raise ValueError('Deferral parameter differs from frozen contract: ' + key)
+    for tag in ('1', '2'):
+        if summary['tags'][tag]['input_flows'] != 8 or summary['tags'][tag]['completed_flows'] != 8:
+            raise ValueError('Deferral cell did not complete all flows in tag ' + tag)
+    records = parse_log(log_path)
+    if set(records['completions']) != set(range(16)):
+        raise ValueError('Deferral cell lacks 16 unique QP completion receipts')
+    for flow_id, (size, una, nxt, tx_bytes, packets) in records['completions'].items():
+        if size != 1048576 or una != size or nxt != size or tx_bytes < size or packets == 0:
+            raise ValueError('Deferral QP byte/sequence conservation failed for flow ' + str(flow_id))
+    if records['queue_rejects'] or records['link_drops'] or records['other_drops']:
+        raise ValueError('Unexpected queue/link loss changed the deferral failure model')
+    expected_injections = [(2007200000, 14, 3, 0, 2500),
+                           (2008800000, 14, 3, 1, 0)]
+    if records['injections'] != expected_injections:
+        raise ValueError('Deferral pause/resume injection differs from frozen schedule')
+    local = [(event, time_ns) for event, time_ns, host, pg in records['local_pfc']
+             if (host, pg) == (14, 3)]
+    received = [(time_ns, kind) for time_ns, host, pg, kind in records['pfc_rx']
+                if (host, pg) == (14, 3)]
+    pause_times = [time_ns for event, time_ns in local
+                   if event == 'PAUSE' and expected_injections[0][0] <= time_ns < expected_injections[1][0]]
+    resume_times = [time_ns for event, time_ns in local
+                    if event == 'RESUME' and time_ns >= expected_injections[1][0]]
+    if not pause_times or not resume_times:
+        raise ValueError('Injected pause/resume did not reach source host 14 PG 3')
+    if (pause_times[0], 0) not in received or (resume_times[0], 1) not in received:
+        raise ValueError('Source PFC receive and local state receipts disagree')
+    pause_ns, resume_ns = pause_times[0], resume_times[0]
+    if pause_ns - expected_injections[0][0] > 100000 or resume_ns - expected_injections[1][0] > 100000:
+        raise ValueError('Injected PFC reached source outside the frozen timing window')
+    with open(os.path.join(base, 'config', 'traffic_trace.txt'), encoding='utf-8') as source:
+        source.readline()
+        flow_hosts = {number: (int(fields[0]), int(fields[2]))
+                      for number, fields in enumerate(line.split() for line in source)}
+    if flow_hosts.get(14) != (14, 3) or set(flow_hosts) != set(range(16)):
+        raise ValueError('Deferral flow-to-source identity changed')
+    drop_times = []
+    with open(log_path, encoding='utf-8', errors='replace') as source:
+        for line in source:
+            if line.startswith('FACTORIAL_ADMISSION_DROP ') and ' src=14 ' in line:
+                match = re.search(r'\btime_ns=(\d+)\b', line)
+                if match:
+                    drop_times.append(int(match.group(1)))
+    if not any(time_ns < pause_ns for time_ns in drop_times):
+        raise ValueError('Flow 14 had no actual admission loss before the injected pause')
+    paused_deferrals = [row for row in records['deferrals']
+                        if row[1] == 14 and row[2] == 1 and pause_ns <= row[0] < resume_ns]
+    recoveries = [row for row in records['recoveries'] if row[1] == 14]
+    if not recoveries:
+        raise ValueError('Flow 14 did not recover after the injected pause')
+    recovery_ns = min(row[0] for row in recoveries)
+    resume_deferrals = [row for row in records['deferrals']
+                        if row[1] == 14 and row[2] == 0 and resume_ns <= row[0] < recovery_ns]
+    if not paused_deferrals or not resume_deferrals:
+        raise ValueError('Flow 14 did not exercise both paused and resume-grace deferral')
+    timeout_rows = [row for row in records['timeout_rows'] if row[0] == recovery_ns and row[1] == 14]
+    if len(timeout_rows) != 1 or timeout_rows[0][4] <= 0:
+        raise ValueError('Flow 14 recovery has no valid RTO receipt')
+    last_resume = max((time_ns for event, time_ns in local
+                       if event == 'RESUME' and time_ns <= recovery_ns), default=None)
+    if last_resume is None or recovery_ns < last_resume + timeout_rows[0][4]:
+        raise ValueError('Flow 14 recovered before one full RTO after resume')
+    for time_ns, flow_id, unused_una, unused_nxt, paused in records['recoveries']:
+        if flow_id not in flow_hosts or paused != 0:
+            raise ValueError('Recovery occurred on a paused or unknown flow')
+        host, pg = flow_hosts[flow_id]
+        active = False
+        for event, event_time, event_host, event_pg in records['local_pfc']:
+            if (event_host, event_pg) == (host, pg) and event_time <= time_ns:
+                active = event == 'PAUSE'
+        if active:
+            raise ValueError('Recovery occurred during the source PG pause')
+    return {'experiment_id': experiment_id, 'git_commit': current['git_commit'],
+            'trace_sha256': summary['trace_sha256'], 'fct_sha256': summary['fct_sha256'],
+            'completed_flows': 16, 'qp_byte_receipts': 16,
+            'flow14_pause_ns': pause_ns, 'flow14_resume_ns': resume_ns,
+            'flow14_recovery_ns': recovery_ns,
+            'flow14_paused_deferrals': len(paused_deferrals),
+            'flow14_resume_grace_deferrals': len(resume_deferrals),
+            'flow14_pre_pause_admission_drops': sum(t < pause_ns for t in drop_times),
+            'total_timeout_recoveries': len(records['recoveries'])}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scenario', choices=('pressure', 'pause'), required=True)
+    parser.add_argument('--scenario', choices=('pressure', 'pause', 'deferral'), required=True)
     parser.add_argument('--source-sha', required=True, help='frozen 40-hex simulation source commit')
     parser.add_argument('experiment_id')
     args = parser.parse_args()
     if not re.fullmatch(r'[0-9a-f]{40}', args.source_sha):
         parser.error('--source-sha must be a full lowercase Git commit SHA')
-    verify = verify_pressure if args.scenario == 'pressure' else verify_pause
+    verify = {'pressure': verify_pressure, 'pause': verify_pause,
+              'deferral': verify_deferral}[args.scenario]
     print(json.dumps(verify(args.experiment_id, args.source_sha), indent=2, sort_keys=True))
 
 

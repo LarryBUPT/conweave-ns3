@@ -101,12 +101,31 @@ struct Ws13FlowHop {
 static std::map<std::pair<uint32_t, uint64_t>, Ws13Packet> ws13_inflight;
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t>,
                 Ws13FlowHop> ws13_hops;
+struct Ws23CrossClassPacket {
+    uint32_t tag, src, dst, sport, dport, outDev;
+    uint32_t deviceQueueBytes, mmuEgressBytes;
+    uint64_t enqueueNs;
+};
+struct Ws23CrossClassHop {
+    uint64_t packets = 0, bytes = 0, waitNsSum = 0, waitNsMax = 0;
+    uint64_t deviceQueueBytesMax = 0, mmuEgressBytesMax = 0;
+    uint64_t firstEnqueueNs = 0, lastDequeueNs = 0;
+};
+static std::map<std::pair<uint32_t, uint64_t>, Ws23CrossClassPacket> ws23_crossclass_inflight;
+static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
+                           uint32_t, uint32_t>, Ws23CrossClassHop> ws23_crossclass_hops;
 static bool Ws13DiagnosticEnabled() {
     static const bool enabled = []() {
         const char *value = std::getenv("WS13_DIAG");
         return value && value[0] == '1' && value[1] == '\0';
     }();
     return enabled;
+}
+
+static bool Ws23CrossClassDiagnosticEnabled() {
+    // Reuse the existing explicit --ws13-diag switch only for the small
+    // ECMP topology; legacy WS-13 and WS-19 observations stay unchanged.
+    return Ws13DiagnosticEnabled() && Settings::lb_mode == 0 && Settings::host_num == 32;
 }
 
 static bool Ws21FeedbackEnabled() {
@@ -750,6 +769,29 @@ void SwitchNode::PrintWorkloadTagCounts() {
         }
         std::cout << "WS13_INFLIGHT unpaired=" << ws13_inflight.size() << std::endl;
     }
+    if (Ws23CrossClassDiagnosticEnabled()) {
+        for (const auto &entry : ws23_crossclass_hops) {
+            const auto &key = entry.first;
+            const auto &s = entry.second;
+            std::cout << "WS23_CROSSCLASS_HOP tag=" << std::get<0>(key)
+                      << " src=" << std::get<1>(key)
+                      << " dst=" << std::get<2>(key)
+                      << " sport=" << std::get<3>(key)
+                      << " dport=" << std::get<4>(key)
+                      << " switch=" << std::get<5>(key)
+                      << " port=" << std::get<6>(key)
+                      << " packets=" << s.packets
+                      << " bytes=" << s.bytes
+                      << " wait_ns_sum=" << s.waitNsSum
+                      << " wait_ns_max=" << s.waitNsMax
+                      << " device_queue_bytes_max=" << s.deviceQueueBytesMax
+                      << " mmu_egress_bytes_max=" << s.mmuEgressBytesMax
+                      << " first_enqueue_ns=" << s.firstEnqueueNs
+                      << " last_dequeue_ns=" << s.lastDequeueNs << std::endl;
+        }
+        std::cout << "WS23_CROSSCLASS_INFLIGHT unpaired="
+                  << ws23_crossclass_inflight.size() << std::endl;
+    }
     for (const auto &entry : workload_tag_packets)
         std::cout << "WS06_ROUTING_TAG tag=" << entry.first << " packets=" << entry.second << std::endl;
     std::cout << "WS06_ROUTING_TAG missing=" << missing_workload_tag_packets << std::endl;
@@ -1321,7 +1363,29 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
             ws13_inflight[key] = item;
         }
     }
+    if (Ws23CrossClassDiagnosticEnabled() && ch.l3Prot == 0x11) {
+        WorkloadTag tag;
+        auto source = Settings::hostIp2IdMap.find(ch.sip);
+        auto destination = Settings::hostIp2IdMap.find(ch.dip);
+        if (p->PeekPacketTag(tag) && (tag.GetValue() == 1 || tag.GetValue() == 2) &&
+            source != Settings::hostIp2IdMap.end() &&
+            destination != Settings::hostIp2IdMap.end()) {
+            Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[outDev]);
+            NS_ASSERT_MSG(dev && dev->GetQueue(), "WS-23 diagnostic egress queue absent");
+            Ws23CrossClassPacket item = {tag.GetValue(), source->second, destination->second,
+                                         ch.udp.sport, ch.udp.dport, outDev,
+                                         dev->GetQueue()->GetNBytesTotal(),
+                                         m_mmu->GetUsedEgressPortBytes(outDev),
+                                         uint64_t(Simulator::Now().GetNanoSeconds())};
+            auto key = std::make_pair(m_id, p->GetUid());
+            NS_ASSERT_MSG(ws23_crossclass_inflight.count(key) == 0,
+                          "WS-23 duplicate packet UID at switch");
+            ws23_crossclass_inflight[key] = item;
+        }
+    }
     const bool accepted = m_devices[outDev]->SwitchSend(qIndex, p, ch);
+    if (!accepted && Ws23CrossClassDiagnosticEnabled())
+        ws23_crossclass_inflight.erase(std::make_pair(m_id, p->GetUid()));
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
         if (accepted) {
             if (heartbeatPacket) {
@@ -1423,6 +1487,30 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             s.maxQueuedBytes = std::max(s.maxQueuedBytes, uint64_t(item.queuedBytes));
             s.maxWaitNs = std::max(s.maxWaitNs, waited);
             ws13_inflight.erase(hit);
+        }
+    }
+    if (Ws23CrossClassDiagnosticEnabled()) {
+        auto hit = ws23_crossclass_inflight.find(std::make_pair(m_id, p->GetUid()));
+        if (hit != ws23_crossclass_inflight.end()) {
+            const Ws23CrossClassPacket &item = hit->second;
+            NS_ASSERT_MSG(item.outDev == ifIndex, "WS-23 diagnostic port mismatch");
+            uint64_t waited = uint64_t(Simulator::Now().GetNanoSeconds()) - item.enqueueNs;
+            auto key = std::make_tuple(item.tag, item.src, item.dst, item.sport,
+                                       item.dport, m_id, ifIndex);
+            Ws23CrossClassHop &s = ws23_crossclass_hops[key];
+            ++s.packets;
+            s.bytes += p->GetSize();
+            s.waitNsSum += waited;
+            s.waitNsMax = std::max(s.waitNsMax, waited);
+            s.deviceQueueBytesMax = std::max(s.deviceQueueBytesMax,
+                                              uint64_t(item.deviceQueueBytes));
+            s.mmuEgressBytesMax = std::max(s.mmuEgressBytesMax,
+                                            uint64_t(item.mmuEgressBytes));
+            if (s.firstEnqueueNs == 0 || item.enqueueNs < s.firstEnqueueNs)
+                s.firstEnqueueNs = item.enqueueNs;
+            s.lastDequeueNs = std::max(s.lastDequeueNs,
+                                       uint64_t(Simulator::Now().GetNanoSeconds()));
+            ws23_crossclass_inflight.erase(hit);
         }
     }
     if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) {

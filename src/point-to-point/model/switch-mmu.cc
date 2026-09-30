@@ -443,6 +443,11 @@ void SwitchMmu::SetBroadcomParams(
 
 uint32_t SwitchMmu::GetUsedBufferTotal() { return m_usedTotalBytes; }
 
+uint32_t SwitchMmu::GetUsedEgressPortBytes(uint32_t port) const {
+    NS_ASSERT(port < pCnt);
+    return m_usedEgressPortBytes[port];
+}
+
 void SwitchMmu::SetDynamicThreshold(bool v) {
     m_dynamicth = v;
     InitSwitch();
