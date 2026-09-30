@@ -29,3 +29,11 @@ flow_id job_id src_rank dst_rank src_host dst_host src_rail dst_rail pg bytes de
 截至本记录，本地 `python scripts/make_ws24_inputs.py` 与 `python scripts/verify_ws24_inputs.py` 通过：最小 8 NIC/4 流、目标 1,280 NIC、四臂各 10 流/2,408,448 B。Python 文件 `py_compile` 与 `git diff --check` 通过。`run.py --help` 用 bundled Python 可启动；原系统 Python 缺 NumPy，原 `random.seed(datetime.now())` 在新版 Python 不接受 datetime，现改为时间戳，仅用于随机原始输出目录 ID，trace 仍须固定哈希。
 
 后续不能跳过的步骤：先静态审查并提交源码，在独立固定 SHA 下远程 optimized build；失败则定位修复、改 SHA 重建。再运行两主机四 rail 的端到端正确性和同源/异 NIC 反例，核对数据、ACK/NACK/CNP 标志及逐 QP 守恒；旧五/六列四 baseline 回归；再运行目标拓扑四臂小样和必要效果对照。每次仿真前冻结具体 SHA、文件哈希、seed、实验 ID、资源和停止条件。按项目工作流，进入后台远程实验监督前须**实际切换到 GPT-6 Luna High**，终态 raw 回传后实际切回 GPT-6 Sol High；未切换不得以文档文字代替。
+
+## 2026-10-01 构建失败与修复检查点
+
+首次远程构建 `20260930-224500-ws24-minimal-v0` 固定源码 `71982b18e508739748dc8e0198e4d520bec9450b`，元数据终态 `BUILD_FAILED`。Waf 编译 `scratch/network-load-balance.cc` 到 1198/1453 时，在 `InstallWs24Routes()` 的路由 BFS 循环遇到误置的活跃 QP 计数代码，引用未声明的 `rdmaHw`、`nActiveQP`。失败来源由 `git blame` 定位为 `5e78ea2`。没有启动该 ID 的仿真，也没有启动预留的 v0 跨 rail 拒错格。
+
+失败目录及证据已从远端回传：`results/20260930-224500-ws24-minimal-v0/logs/build.log` SHA-256 `1aa7aaf1f69e11c25cc2ca7f7388c9f6c3e3c0f2094e9b4686bc68d0f8875a3f`；36 条资源采样 SHA-256 `a656744cc8f9b9081a136377f595db64dd19c5f28c6a2e8c3ed37ac45e29d8c7`；资源摘要 SHA-256 `ae6b04133e68318c270742da2a33377a9f5be02a934517122856778b88da91fd`。最大进程树 RSS 517.48 MiB，可用内存最低 122.527 GiB，空闲盘最低 5663.47 GiB；失败由代码编译错误造成，未触及资源停止阈值。
+
+修复提交 `1d52cbe765d1077ccd8c3afe994b2fb491e4735a` 将活跃 QP 计数放回 `periodic_monitoring()`，WS-24 统计 `m_ws24QpMap`、旧格式统计 `m_qpMap`，并从路由 BFS 移除该代码。修复已推送，`git diff --check`、Python 脚本语法检查及离线输入验收通过。新冻结协议见 [最小多 NIC 预飞行](ws24-minimal-multinic-preflight.md)：正例新 ID `20261001-011500-ws24-minimal-v1`，跨 rail 负例新 ID `20261001-011600-ws24-crossrail-reject-v1`，二者固定新 SHA。**修复候选尚未远程构建或仿真**；下一步须在实际切至 Luna High 后重新检查资源/ID，并只运行新正例，正例全部通过后才执行负例。旧格式回归、目标拓扑、动态 CNP 触发与四臂对照仍待完成。
