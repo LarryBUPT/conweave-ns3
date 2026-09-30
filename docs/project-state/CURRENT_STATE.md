@@ -1,6 +1,6 @@
 # ConWeave 毕业论文项目状态
 
-2026-09-30 WS-23 进入 **IRN×PFC 超时恢复契约与正确性修复**，覆盖先前门槛审查之后的新阶段。分支 `feature/ws23-irn-pfc-recovery` 的修复源码固定 `12dea54d421243ddb98c83437b929944ab6d128c`：按源 NIC 的真实 PG 暂停与最近 resume 时刻延期 RTO，未暂停且观察期结束后恢复未确认字节；增加策略单测和固定 16×1 MiB 原始输入的完成/序号/发送字节校验器，见[恢复契约](../research/ws23-irn-pfc-recovery-contract.md)及[Handoff 42](../handoffs/2026-09-30-42-ws23-irn-pfc-recovery-contract.md)。旧 11 压力格从原始 ID 复核仍为 13/16、3 次抑制，丢包探针仍为 161 次准入拒绝。**本分支尚无 C++ 构建、单测执行或新仿真结果；修复正确性未验证**。先做隔离构建和单测，再另行冻结最小正确性格；隔离性能矩阵继续 NO-GO，PFC=0 跨类阻塞因果前提仍未证。
+2026-09-30 WS-23 本地修复阶段已完成 optimized build 与 `devices-point-to-point` 单测：[Handoff 43](../handoffs/2026-09-30-43-ws23-build-unit-ws24-topology-gate.md)。固定修复 SHA `12dea54d421243ddb98c83437b929944ab6d128c` 的隔离 build 成功；单测通过，但测试构建需在隔离副本临时修正仓库既有 `CommandLineTestCaseBase::Parse` const 问题，随后源码文件 SHA 恢复为原值。没有修复版仿真，故端到端传输正确性仍未验证；拥塞流隔离性能实验继续 NO-GO。WS-24 已进入本地多 rail 表示能力审计：OS1 拓扑静态图有四个互不连通组件，每个组件 320 个 rail 单归属端点；尚无同一物理服务器多 NIC/placement 的表示证据，暂不仿真。
 
 2026-09-30 前序 WS-23/24 门槛审查均未开放效果实验，当时建议下一步进入 WS-25 本地证据与论文范围收束，见[Handoff 41](../handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md)。该记录早于上方新启动的 WS-23 传输修复。WS-23 的 PFC=0 常规流量格没有触发 PFC，现有证据不能因果证明跨类阻塞；旧 IRN×PFC 双开压力格 13/16 完成且当时源码仍有超时恢复抑制。WS-24 当前流量生成器只选 rail 0，缺可核验的跨 rail 作业/流映射。WS-21 的心跳异常正确性、联合长尾通信代价和反馈选路采用证据列入 WS-25 必要性清单；先依据论文范围判断是否值得补充，未授权仿真。
 

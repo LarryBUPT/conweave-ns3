@@ -1,6 +1,8 @@
 # 下一阶段路线与停机条件
 
-2026-09-30 WS-23 由前置门槛审查转为本地 IRN×PFC 传输正确性修复：[恢复契约](../research/ws23-irn-pfc-recovery-contract.md)记录旧 13/16 压力反例的原始复核、源码里的配置位/真实暂停混淆、局部暂停延期与 resume 后完整 RTO 的可证伪规则。新分支已写补丁、策略单测和压力格校验器，但本机没有 ns-3 C++ 构建环境，尚无编译或新仿真验证。下一门槛是固定 SHA 的隔离 build 与单测；通过后才另行冻结最小正确性格及资源协议。PFC=0 跨类阻塞证据未建立，WS-23 隔离性能实验 NO-GO；此前 WS-23/24 gate 与 WS-25 范围记录是历史状态，不代表本修复已通过。
+2026-09-30 WS-23 本地修复门槛已完成：[恢复契约](../research/ws23-irn-pfc-recovery-contract.md)固定修复 SHA `12dea54d421243ddb98c83437b929944ab6d128c`；隔离 optimized build 成功，`devices-point-to-point` 单测 PASS。完整测试构建遇到既有 core 测试 helper const 缺陷，只在隔离副本临时修正并在测试后恢复、校验源文件 SHA；见[Handoff 43](../handoffs/2026-09-30-43-ws23-build-unit-ws24-topology-gate.md)。尚无修复版端到端仿真，故 IRN×PFC 恢复正确性仍待固定最小正确性格验证；PFC=0 跨类阻塞未证，隔离性能实验继续 NO-GO。
+
+2026-09-30 WS-24 开始本地多 rail 输入/放置可表示性审计。固定 OS1 拓扑 `config/topo_1280_400G_400G_OS1.txt`（SHA-256 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`）静态遍历得到四个互不连通组件，每个 464 个节点、320 个主机端点；端点度为 1，四组分别对应 `host_id mod 4`。这确认四个 rail 分区，但不能证明各端点是同一物理服务器的四个 NIC，也没有跨 rail 端到端路径。下一步核验 host/NIC/作业映射能否由当前 simulator 表示并设计可审计输入契约；满足前置前不仿真。
 
 2026-09-30 WS-21 下一门槛：[STATE 长尾间隔技术矩阵](../research/ws21-compact-longtail-interval-report.md)和[心跳小拓扑技术 pilot](../research/ws21-local-heartbeat-pilot-report.md)均已完成 Sol 原始数据复核。前者 off/5/10/20/40 µs 五格给出报告年龄与逐跳成本的条件性取舍；后者固定源码 `770b6b5617657832393bd721e0d634c6639405fb` 的单测和六格均终态、同输入与资源核验通过。心跳 50/200/1000 µs 分别发送 9,856/2,464/528 B 逐跳控制通信，200 µs 连续丢 HELLO/ACK 均约 0.701 ms 标未知并随后恢复。下一步先补单份丢失不误报、ACK 身份/会话和真实链路状态的定向验证，再论证是否值得在长尾输入测活跃上联比例与 `STATE+HELLO/ACK` 联合成本。STATE 缓存尚未进入选路，`UNKNOWN` 当前不改路；没有业务 SLO 和候选选路证据，效果矩阵仍 NO-GO、不选唯一最优周期，历史 no-go 保留。见[Handoff 38](../handoffs/2026-09-30-38-ws21-local-heartbeat-pilot.md)。
 
