@@ -1,0 +1,73 @@
+{
+  "pause": {
+    "completed_flows": 1,
+    "drop_events": 0,
+    "experiment_id": "20260930-201500-ws23-lossless-pause",
+    "fct_sha256": "d85a58131da62943078d7e6d896a631d3809ad588decf3b4f0d5592a7b59a08c",
+    "git_commit": "70bf890d1ceba58c5ebd26b17e492295b34c99ca",
+    "qp_byte_receipts": 1,
+    "source_pause_ns": 2006001203,
+    "source_resume_ns": 2007801203,
+    "timeout_deferrals": 0,
+    "timeout_recoveries": 0,
+    "trace_sha256": "4f10f678000f7b380cc272e121db7926ca320a581c72b47909545f31f2a312f8"
+  },
+  "pause_resources": {
+    "final_status": "SUCCEEDED",
+    "id": "20260930-201500-ws23-lossless-pause",
+    "minimum_free_gib": 5666.260448455811,
+    "minimum_mem_available_gib": 122.23910140991211,
+    "peak_tree_rss_mib": 811.58984375,
+    "samples": 175
+  },
+  "pending": [
+    "timeout deferral dynamic coverage",
+    "cross-class shared-bottleneck causal validation",
+    "isolation candidate comparison after causal gate"
+  ],
+  "pressure_fct_equal": true,
+  "pressure_first": {
+    "completed_flows": 16,
+    "data_admission_drops": 161,
+    "experiment_id": "20260930-201600-ws23-loss-recovery",
+    "fct_sha256": "97feb0e118544f07e006da9e9bc2ead2566a10b91ad2201e0e83ced89279b18a",
+    "git_commit": "70bf890d1ceba58c5ebd26b17e492295b34c99ca",
+    "qp_byte_receipts": 16,
+    "timeout_deferrals": 0,
+    "timeout_recoveries": 3,
+    "total_tx_payload_bytes": 17648216,
+    "trace_sha256": "bc2db1513cbde20f12eea6efa4e2265cf74954be4fa45f2a147ff0ce84b33985"
+  },
+  "pressure_first_resources": {
+    "final_status": "SUCCEEDED",
+    "id": "20260930-201600-ws23-loss-recovery",
+    "minimum_free_gib": 5665.231117248535,
+    "minimum_mem_available_gib": 122.98416519165039,
+    "peak_tree_rss_mib": 0.0,
+    "samples": 1
+  },
+  "pressure_repeat_resources": {
+    "final_status": "SUCCEEDED",
+    "id": "20260930-213100-ws23-loss-recovery-r2",
+    "minimum_free_gib": 5664.20178604126,
+    "minimum_mem_available_gib": 122.82408905029297,
+    "peak_tree_rss_mib": 204.01171875,
+    "root_pid": 138011,
+    "running_seen": true,
+    "samples": 10
+  },
+  "pressure_resource_repeat": {
+    "completed_flows": 16,
+    "data_admission_drops": 161,
+    "experiment_id": "20260930-213100-ws23-loss-recovery-r2",
+    "fct_sha256": "97feb0e118544f07e006da9e9bc2ead2566a10b91ad2201e0e83ced89279b18a",
+    "git_commit": "70bf890d1ceba58c5ebd26b17e492295b34c99ca",
+    "qp_byte_receipts": 16,
+    "timeout_deferrals": 0,
+    "timeout_recoveries": 3,
+    "total_tx_payload_bytes": 17648216,
+    "trace_sha256": "bc2db1513cbde20f12eea6efa4e2265cf74954be4fa45f2a147ff0ce84b33985"
+  },
+  "source_sha": "70bf890d1ceba58c5ebd26b17e492295b34c99ca",
+  "status": "WS-23 ACTIVE; technical correctness only"
+}
