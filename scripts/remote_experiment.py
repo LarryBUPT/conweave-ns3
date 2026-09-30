@@ -233,6 +233,11 @@ def main():
                          help='allow exploratory IRN/PFC 00 and 11 configurations')
     run_cmd.add_argument('--factorial-drop-diag', action='store_true',
                          help='log packet drops in a factorial pilot')
+    run_cmd.add_argument('--ws23-pfc-probe-host', type=int, default=-1)
+    run_cmd.add_argument('--ws23-pfc-probe-pg', type=int, default=3)
+    run_cmd.add_argument('--ws23-pfc-probe-start-ns', type=int, default=0)
+    run_cmd.add_argument('--ws23-pfc-probe-end-ns', type=int, default=0)
+    run_cmd.add_argument('--ws23-pause-time-us', type=int, default=5)
     for name in ('status', 'fetch', 'transfer-smoke'):
         item = sub.add_parser(name)
         item.add_argument('id')
@@ -278,6 +283,17 @@ def main():
             parser.error('Exactly one of --pfc and --irn must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
             parser.error('--factorial-drop-diag requires --factorial-pilot')
+        if args.ws23_pfc_probe_host >= 0 and (
+                not args.factorial_pilot or (args.irn, args.pfc) != (1, 1) or
+                args.lb != 'fecmp' or not 0 <= args.ws23_pfc_probe_pg < 8 or
+                not 0 < args.ws23_pfc_probe_start_ns < args.ws23_pfc_probe_end_ns or
+                args.ws23_pfc_probe_end_ns >= int(float(args.simul_time) * 1e9) or
+                not 1 <= args.ws23_pause_time_us <= 65535):
+            parser.error('Invalid WS-23 PFC probe contract')
+        if args.ws23_pfc_probe_host < 0 and (
+                args.ws23_pfc_probe_pg != 3 or args.ws23_pfc_probe_start_ns or
+                args.ws23_pfc_probe_end_ns or args.ws23_pause_time_us != 5):
+            parser.error('WS-23 PFC probe options need a host')
         if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
             parser.error('WS-18 switches require --lb ws18')
         if args.ws21_identity and args.lb != 'ws18':
@@ -327,6 +343,12 @@ def main():
             command.append('--factorial-pilot')
         if args.factorial_drop_diag:
             command.append('--factorial-drop-diag')
+        if args.ws23_pfc_probe_host >= 0:
+            command.extend(['--ws23-pfc-probe-host', str(args.ws23_pfc_probe_host),
+                            '--ws23-pfc-probe-pg', str(args.ws23_pfc_probe_pg),
+                            '--ws23-pfc-probe-start-ns', str(args.ws23_pfc_probe_start_ns),
+                            '--ws23-pfc-probe-end-ns', str(args.ws23_pfc_probe_end_ns),
+                            '--ws23-pause-time-us', str(args.ws23_pause_time_us)])
         worker_call(cfg, *command)
     elif args.command == 'status':
         worker_call(cfg, 'status', args.id)

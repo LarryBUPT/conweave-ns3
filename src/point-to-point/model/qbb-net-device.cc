@@ -63,6 +63,14 @@ NS_LOG_COMPONENT_DEFINE("QbbNetDevice");
 
 namespace ns3 {
 
+static bool Ws23RecoveryDiagnosticEnabled() {
+    static const bool enabled = []() {
+        const char *value = std::getenv("WS23_RECOVERY_DIAG");
+        return value && value[0] == '1' && value[1] == '\0';
+    }();
+    return enabled;
+}
+
 extern std::unordered_map<unsigned, Time> acc_pause_time;
 
 // uint32_t RdmaEgressQueue::ack_q_idx = 3; // 3: Middle priority
@@ -174,7 +182,9 @@ void RdmaEgressQueue::RecoverQueue(uint32_t i) {
 
 void RdmaEgressQueue::EnqueueHighPrioQ(Ptr<Packet> p) {
     m_traceRdmaEnqueue(p, 0);
-    m_ackQ->Enqueue(p);
+    if (!m_ackQ->Enqueue(p) && Ws23RecoveryDiagnosticEnabled())
+        std::cout << "WS23_HOST_ACK_QUEUE_REJECT time_ns="
+                  << Simulator::Now().GetNanoSeconds() << std::endl;
 }
 
 void RdmaEgressQueue::CleanHighPrio(TracedCallback<Ptr<const Packet>, uint32_t> dropCb) {
@@ -347,6 +357,9 @@ void QbbNetDevice::Resume(unsigned qIndex) {
     m_paused[qIndex] = false;
     m_hasResumed[qIndex] = true;
     m_lastResume[qIndex] = Simulator::Now();
+    if (Ws23RecoveryDiagnosticEnabled() && m_node->GetNodeType() == 0)
+        std::cout << "WS23_PFC_LOCAL_RESUME time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " host=" << m_node->GetId() << " pg=" << qIndex << std::endl;
     NS_LOG_INFO("Node " << m_node->GetId() << " dev " << m_ifIndex << " queue " << qIndex
                         << " resumed at " << Simulator::Now().GetSeconds());
     DequeueAndTransmit();
@@ -355,11 +368,17 @@ void QbbNetDevice::Resume(unsigned qIndex) {
 void QbbNetDevice::Receive(Ptr<Packet> packet) {
     NS_LOG_FUNCTION(this << packet);
     if (!m_linkUp) {
+        if (Ws23RecoveryDiagnosticEnabled())
+            std::cout << "WS23_LINK_RX_DROP time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " node=" << m_node->GetId() << std::endl;
         m_traceDrop(packet, 0);
         return;
     }
 
     if (m_receiveErrorModel && m_receiveErrorModel->IsCorrupt(packet)) {
+        if (Ws23RecoveryDiagnosticEnabled())
+            std::cout << "WS23_PHY_RX_DROP time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " node=" << m_node->GetId() << std::endl;
         //
         // If we have an error model and it indicates that it is time to lose a
         // corrupted packet, don't forward this packet up, let it go.
@@ -375,6 +394,15 @@ void QbbNetDevice::Receive(Ptr<Packet> packet) {
     if (ch.l3Prot == 0xFE) {  // PFC
         if (!m_qbbEnabled) return;
         unsigned qIndex = ch.pfc.qIndex;
+        if (Ws23RecoveryDiagnosticEnabled()) {
+            std::cout << "WS23_PFC_RX time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " node=" << m_node->GetId() << " pg=" << qIndex
+                      << " type=" << (ch.pfc.time > 0 ? 0 : 1) << std::endl;
+            if (m_node->GetNodeType() == 0 && ch.pfc.time > 0)
+                std::cout << "WS23_PFC_LOCAL_PAUSE time_ns="
+                          << Simulator::Now().GetNanoSeconds() << " host=" << m_node->GetId()
+                          << " pg=" << qIndex << std::endl;
+        }
         // std::cerr << "PFC!!" << std::endl;
         if (ch.pfc.time > 0) {
             m_tracePfc(1);
@@ -485,6 +513,9 @@ bool QbbNetDevice::TransmitStart(Ptr<Packet> p) {
 
     bool result = m_channel->TransmitStart(p, this, txTime);
     if (result == false) {
+        if (Ws23RecoveryDiagnosticEnabled())
+            std::cout << "WS23_PHY_TX_DROP time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " node=" << m_node->GetId() << std::endl;
         m_phyTxDropTrace(p);
     }
     return result;

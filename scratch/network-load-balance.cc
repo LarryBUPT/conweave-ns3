@@ -110,6 +110,9 @@ uint32_t cc_mode = 1;           // mode for congestion control, 1: DCQCN
 bool enable_qcn = true, enable_pfc = true, use_dynamic_pfc_threshold = true;
 uint32_t packet_payload_size = 1000, l2_chunk_size = 0, l2_ack_interval = 0;
 double pause_time = 5;  // PFC pause, microseconds
+int32_t ws23_pfc_probe_host = -1;
+uint32_t ws23_pfc_probe_pg = 3;
+uint64_t ws23_pfc_probe_start_ns = 0, ws23_pfc_probe_end_ns = 0;
 double flowgen_start_time = 2.0, flowgen_stop_time = 2.5, simulator_extra_time = 0.1;
 // queue length monitoring time is not used in this simulator
 // uint32_t qlen_dump_interval = 100000000, qlen_mon_interval = 1000;  // ns
@@ -933,6 +936,14 @@ void BuildWs21IngressMapping() {
               << " unreachable_pairs=" << unreachablePairs << std::endl;
 }
 
+void Ws23InjectPfc(Ptr<QbbNetDevice> switchPort, uint32_t hostId,
+                   uint32_t pg, uint32_t type) {
+    uint32_t pauseUs = switchPort->SendPfc(pg, type);
+    std::cout << "WS23_PFC_INJECT time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " host=" << hostId << " pg=" << pg << " type=" << type
+              << " pause_us=" << pauseUs << std::endl;
+}
+
 /**
  * @brief take down the link between a and b, and redo the routing
  */
@@ -1056,6 +1067,9 @@ int main(int argc, char *argv[]) {
                 conf >> ws21_port_output_file;
             } else if (key.compare("WS21_PORT_MAX_BYTES") == 0) {
                 conf >> ws21_port_max_bytes;
+            } else if (key.compare("WS23_PFC_PROBE") == 0) {
+                conf >> ws23_pfc_probe_host >> ws23_pfc_probe_pg
+                     >> ws23_pfc_probe_start_ns >> ws23_pfc_probe_end_ns;
             } else if (key.compare("GUARDHASH_LAMBDA") == 0) {
                 conf >> guardhash_lambda;
             } else if (key.compare("GUARDHASH_TAU_BYTES") == 0) {
@@ -2104,6 +2118,32 @@ int main(int argc, char *argv[]) {
                             &TakeDownLink, n, n.Get(link_down_A), n.Get(link_down_B));
     }
 
+    if (ws23_pfc_probe_host >= 0) {
+        if (!enable_pfc || !enable_irn || lb_mode != 0 ||
+            uint32_t(ws23_pfc_probe_host) >= Settings::host_num ||
+            ws23_pfc_probe_pg >= QbbNetDevice::qCnt ||
+            ws23_pfc_probe_start_ns == 0 ||
+            ws23_pfc_probe_start_ns >= ws23_pfc_probe_end_ns ||
+            ws23_pfc_probe_end_ns >= uint64_t((flowgen_stop_time - flowgen_start_time) * 1e9)) {
+            NS_FATAL_ERROR("Invalid WS-23 PFC probe configuration");
+        }
+        Ptr<Node> host = n.Get(uint32_t(ws23_pfc_probe_host));
+        Ptr<QbbNetDevice> switchPort;
+        for (const auto &neighbor : nbr2if[host]) {
+            if (neighbor.first->GetNodeType() != 1) continue;
+            if (switchPort) NS_FATAL_ERROR("WS-23 probe host has multiple switch links");
+            uint32_t port = nbr2if[neighbor.first][host].idx;
+            switchPort = DynamicCast<QbbNetDevice>(neighbor.first->GetDevice(port));
+        }
+        if (!switchPort) NS_FATAL_ERROR("WS-23 probe host has no switch link");
+        Simulator::Schedule(Seconds(flowgen_start_time) + NanoSeconds(ws23_pfc_probe_start_ns),
+                            &Ws23InjectPfc, switchPort, uint32_t(ws23_pfc_probe_host),
+                            ws23_pfc_probe_pg, 0U);
+        Simulator::Schedule(Seconds(flowgen_start_time) + NanoSeconds(ws23_pfc_probe_end_ns),
+                            &Ws23InjectPfc, switchPort, uint32_t(ws23_pfc_probe_host),
+                            ws23_pfc_probe_pg, 1U);
+    }
+
     if (lb_mode == 9) {
         voq_output = fopen(voq_mon_file.c_str(), "w");                // specific to ConWeave
         voq_detail_output = fopen(voq_mon_detail_file.c_str(), "w");  // specific to ConWeave
@@ -2171,6 +2211,7 @@ int main(int argc, char *argv[]) {
                   << std::endl;
         fclose(ws18_output);
     }
+
     if (ws21_identity) {
         FILE *identity = fopen(ws21_identity_output_file.c_str(), "w");
         if (!identity)

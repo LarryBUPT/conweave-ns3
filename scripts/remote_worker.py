@@ -394,6 +394,12 @@ def execute(experiment_id):
         command.append('--factorial-pilot')
     if params.get('factorial_drop_diag'):
         command.append('--factorial-drop-diag')
+    if params.get('ws23_pfc_probe_host', -1) >= 0:
+        command.extend(['--ws23-pfc-probe-host', str(params['ws23_pfc_probe_host']),
+                        '--ws23-pfc-probe-pg', str(params['ws23_pfc_probe_pg']),
+                        '--ws23-pfc-probe-start-ns', str(params['ws23_pfc_probe_start_ns']),
+                        '--ws23-pfc-probe-end-ns', str(params['ws23_pfc_probe_end_ns']),
+                        '--ws23-pause-time-us', str(params['ws23_pause_time_us'])])
     log = inside(os.path.join(base, 'logs', 'simulation.log'))
     data['command'] = ' '.join(command)
     save_metadata(base, data)
@@ -586,6 +592,11 @@ def main():
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     run_cmd.add_argument('--factorial-pilot', action='store_true')
     run_cmd.add_argument('--factorial-drop-diag', action='store_true')
+    run_cmd.add_argument('--ws23-pfc-probe-host', type=int, default=-1)
+    run_cmd.add_argument('--ws23-pfc-probe-pg', type=int, default=3)
+    run_cmd.add_argument('--ws23-pfc-probe-start-ns', type=int, default=0)
+    run_cmd.add_argument('--ws23-pfc-probe-end-ns', type=int, default=0)
+    run_cmd.add_argument('--ws23-pause-time-us', type=int, default=5)
     for name in ('execute', 'status', 'fetch-check', 'transfer-smoke'):
         command = sub.add_parser(name)
         command.add_argument('id')
@@ -603,6 +614,17 @@ def main():
             raise RuntimeError('Exactly one of PFC and IRN must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
             raise RuntimeError('Factorial drop diagnostics require factorial pilot mode')
+        if args.ws23_pfc_probe_host >= 0 and (
+                not args.factorial_pilot or (args.irn, args.pfc) != (1, 1) or
+                args.lb != 'fecmp' or not 0 <= args.ws23_pfc_probe_pg < 8 or
+                not 0 < args.ws23_pfc_probe_start_ns < args.ws23_pfc_probe_end_ns or
+                args.ws23_pfc_probe_end_ns >= int(float(args.simul_time) * 1e9) or
+                not 1 <= args.ws23_pause_time_us <= 65535):
+            raise RuntimeError('Invalid WS-23 PFC probe contract')
+        if args.ws23_pfc_probe_host < 0 and (
+                args.ws23_pfc_probe_pg != 3 or args.ws23_pfc_probe_start_ns or
+                args.ws23_pfc_probe_end_ns or args.ws23_pause_time_us != 5):
+            raise RuntimeError('WS-23 PFC probe options need a host')
         if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
             raise RuntimeError('WS-18 switches require ws18 mode')
         if args.ws21_identity and args.lb != 'ws18':
@@ -653,7 +675,12 @@ def main():
                         'ws21_port_max_bytes': args.ws21_port_max_bytes,
                         'ws18_admission_rate_gbps': args.ws18_admission_rate_gbps,
                         'factorial_pilot': args.factorial_pilot,
-                        'factorial_drop_diag': args.factorial_drop_diag},
+                        'factorial_drop_diag': args.factorial_drop_diag,
+                        'ws23_pfc_probe_host': args.ws23_pfc_probe_host,
+                        'ws23_pfc_probe_pg': args.ws23_pfc_probe_pg,
+                        'ws23_pfc_probe_start_ns': args.ws23_pfc_probe_start_ns,
+                        'ws23_pfc_probe_end_ns': args.ws23_pfc_probe_end_ns,
+                        'ws23_pause_time_us': args.ws23_pause_time_us},
               max_concurrent=args.max_concurrent)
     elif args.command == 'execute':
         execute(args.id)
