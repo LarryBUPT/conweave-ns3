@@ -1,5 +1,7 @@
 # WS-17 起：包流混合机制研究任务流
 
+2026-09-30 WS-23/WS-24 阶段闭环并交接 WS-25，见 [Handoff 45](../handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md)。WS-23 只完成修复、optimized build 与单测，端到端恢复仍待验证；WS-24 完成本地表示能力审计，多 rail 仿真 NO-GO。用户要求归档两个对话。WS-25 可据此开展本地证据与论文范围收束：先判断传输修复的端到端验证、多 NIC 模型及真实映射是否为论文主张必需，再决定另立补充任务；不默认追加仿真。
+
 更新：2026-09-28。依据[WS-16 后机制方向](../research/post-ws16-mechanism-directions.md)与[WS-16 证据边界](../research/ws16-paper-evidence-and-reproduction.md)。本计划授权按门槛推进新的研究问题，**不改变 WS-10/11/12 各自正式 no-go，不复活 WS-14 GuardHash 调权或 WS-15 已关闭的确认性矩阵**。任务编号是阶段顺序；后续条件分支是否执行取决于前置证据。
 
 2026-09-30 WS-24 阶段更新：[本地审计](../research/ws24-multirail-representability-audit.md)与[Handoff 44](../handoffs/2026-09-30-44-ws24-multirail-representability.md)核实 OS1 四个断开组件、底层 NIC vector 与 scratch 单端点 Node/RDMA Hw 的差别；合成 host/NIC/job/rail sidecar 只通过静态结构测试。缺可信物理映射、placement/独立需求及模拟器多 NIC 端到端正确性，**WS-24 remote simulation NO-GO**。WS-23 仍只通过修复 SHA `12dea54d…` 的 optimized build 与 point-to-point 单测；没有修复版端到端仿真，性能实验 NO-GO。任何后续远程阶段都须先按本文件末尾及远程工作流实际切换 Luna High/终态 Sol High。

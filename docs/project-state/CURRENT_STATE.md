@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-09-30 WS-23/WS-24 阶段闭环并交接 WS-25，见 [Handoff 45](../handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md)。WS-23 只完成修复、optimized build 与单测，端到端恢复仍待验证；WS-24 完成本地表示能力审计，多 rail 仿真 NO-GO。用户要求归档两个对话。WS-25 可据此开展本地证据与论文范围收束：先判断传输修复的端到端验证、多 NIC 模型及真实映射是否为论文主张必需，再决定另立补充任务；不默认追加仿真。
+
 2026-09-30 WS-24 本地 host/NIC/placement 可表示性审计已完成：[审计报告](../research/ws24-multirail-representability-audit.md)、[静态机器收据](../research/evidence/ws24-multirail-static-audit.json)、[Handoff 44](../handoffs/2026-09-30-44-ws24-multirail-representability.md)。固定 OS1 拓扑四个互不连通组件、每组件 320 个单归属 host 端点；底层 `RdmaHw` 虽有多 NIC 容器，当前 scratch 却为各端点创建独立 Node/RDMA Hw 并使用单主机地址，trace 没有 job/rank/rail/physical host 字段。合成 sidecar 的四 rail 映射通过静态拒错测试，但不证明物理主机身份、模拟器多 NIC 正确性或真实 placement。**WS-24 remote simulation NO-GO**，未运行新实验。WS-23 仍仅固定修复 SHA `12dea54d421243ddb98c83437b929944ab6d128c` optimized build 与 `devices-point-to-point` 单测通过；无修复版端到端仿真，恢复正确性待验证，隔离性能实验 NO-GO。
 
 2026-09-30 WS-23 本地修复阶段已完成 optimized build 与 `devices-point-to-point` 单测：[Handoff 43](../handoffs/2026-09-30-43-ws23-build-unit-ws24-topology-gate.md)。固定修复 SHA `12dea54d421243ddb98c83437b929944ab6d128c` 的隔离 build 成功；单测通过，但测试构建需在隔离副本临时修正仓库既有 `CommandLineTestCaseBase::Parse` const 问题，随后源码文件 SHA 恢复为原值。没有修复版仿真，故端到端传输正确性仍未验证；拥塞流隔离性能实验继续 NO-GO。WS-24 已进入本地多 rail 表示能力审计：OS1 拓扑静态图有四个互不连通组件，每个组件 320 个 rail 单归属端点；尚无同一物理服务器多 NIC/placement 的表示证据，暂不仿真。

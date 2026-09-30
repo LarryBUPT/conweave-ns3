@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-09-30 WS-23/WS-24 阶段闭环并交接 WS-25，见 [Handoff 45](../handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md)。WS-23 只完成修复、optimized build 与单测，端到端恢复仍待验证；WS-24 完成本地表示能力审计，多 rail 仿真 NO-GO。用户要求归档两个对话。WS-25 可据此开展本地证据与论文范围收束：先判断传输修复的端到端验证、多 NIC 模型及真实映射是否为论文主张必需，再决定另立补充任务；不默认追加仿真。
+
 2026-09-30 WS-24 本地可表示性审计收束：[报告](../research/ws24-multirail-representability-audit.md)、[静态收据](../research/evidence/ws24-multirail-static-audit.json)、[Handoff 44](../handoffs/2026-09-30-44-ws24-multirail-representability.md)。四个 rail 组件可静态识别；合成 `physical_host → 四端点`、job/rank→host、流→rail 契约的正反结构检查通过，但实际源码仍把四端点建成四个独立 Node/RDMA Hw，且现有 trace 无物理/作业身份。**保持远程仿真 NO-GO**；须先取得可信主机/NIC 与独立需求来源，再实现并端到端验证多 NIC/IP/双向 QP 与放置。WS-23 仍只有修复 SHA `12dea54d…` 的 build/单测，没有修复版端到端仿真；性能实验也 NO-GO。
 
 2026-09-30 WS-23 本地修复门槛已完成：[恢复契约](../research/ws23-irn-pfc-recovery-contract.md)固定修复 SHA `12dea54d421243ddb98c83437b929944ab6d128c`；隔离 optimized build 成功，`devices-point-to-point` 单测 PASS。完整测试构建遇到既有 core 测试 helper const 缺陷，只在隔离副本临时修正并在测试后恢复、校验源文件 SHA；见[Handoff 43](../handoffs/2026-09-30-43-ws23-build-unit-ws24-topology-gate.md)。尚无修复版端到端仿真，故 IRN×PFC 恢复正确性仍待固定最小正确性格验证；PFC=0 跨类阻塞未证，隔离性能实验继续 NO-GO。
