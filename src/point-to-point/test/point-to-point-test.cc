@@ -6,6 +6,7 @@
 #include "ns3/packet.h"
 #include "ns3/ws21-feedback-header.h"
 #include "ns3/ws21-heartbeat-header.h"
+#include "ns3/irn-pfc-timeout.h"
 
 #include <limits>
 
@@ -20,6 +21,29 @@ public:
 
 private:
   void SendOnePacket (Ptr<PointToPointNetDevice> device);
+};
+
+class IrnPfcTimeoutTestCase : public TestCase
+{
+public:
+  IrnPfcTimeoutTestCase () : TestCase ("IRN timeout is deferred only for an actual PFC pause and its resume grace") {}
+  virtual void DoRun (void)
+  {
+    const Time rto = MicroSeconds (454);
+    const Time resume = MicroSeconds (200);
+    NS_TEST_ASSERT_MSG_EQ (IrnPfcTimeoutDeferral (MicroSeconds (500), rto, false,
+                                                  false, Time (0)), Time (0),
+                           "PFC enabled without a pause must not suppress recovery");
+    NS_TEST_ASSERT_MSG_EQ (IrnPfcTimeoutDeferral (MicroSeconds (500), rto, true,
+                                                  false, Time (0)), rto,
+                           "timeout during a pause must be rescheduled");
+    NS_TEST_ASSERT_MSG_EQ (IrnPfcTimeoutDeferral (MicroSeconds (500), rto, false,
+                                                  true, resume), MicroSeconds (154),
+                           "resume must leave one full RTO before recovery");
+    NS_TEST_ASSERT_MSG_EQ (IrnPfcTimeoutDeferral (MicroSeconds (654), rto, false,
+                                                  true, resume), Time (0),
+                           "persistent silence after resume must allow recovery");
+  }
 };
 
 class Ws21FeedbackHeaderTestCase : public TestCase
@@ -168,6 +192,7 @@ PointToPointTestSuite::PointToPointTestSuite ()
   : TestSuite ("devices-point-to-point", UNIT)
 {
   AddTestCase (new PointToPointTest);
+  AddTestCase (new IrnPfcTimeoutTestCase);
   AddTestCase (new Ws21FeedbackHeaderTestCase);
   AddTestCase (new Ws21HeartbeatHeaderTestCase);
 }

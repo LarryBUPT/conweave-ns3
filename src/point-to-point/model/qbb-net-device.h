@@ -133,6 +133,11 @@ public:
    void TriggerTransmit(void);
 
    bool IsQbbEnabled(void) { return m_qbbEnabled; }
+   bool IsPaused(unsigned qIndex) const { return qIndex < qCnt && m_paused[qIndex]; }
+   bool HasResumed(unsigned qIndex) const { return qIndex < qCnt && m_hasResumed[qIndex]; }
+   Time GetLastResumeTime(unsigned qIndex) const {
+     return qIndex < qCnt ? m_lastResume[qIndex] : Time(0);
+   }
 
    uint32_t SendPfc(uint32_t qIndex, uint32_t type); // type: 0 = pause, 1 = resume
 
@@ -172,6 +177,8 @@ public:
    bool m_dynamicth;
    uint32_t m_pausetime;	//< Time for each Pause
    bool m_paused[qCnt];	//< Whether a queue paused
+   bool m_hasResumed[qCnt];	//< Whether this priority has observed a PFC resume
+   Time m_lastResume[qCnt];	//< Last PFC resume time for each priority
    EventId m_resumeEvt[qCnt];
 
    //qcn

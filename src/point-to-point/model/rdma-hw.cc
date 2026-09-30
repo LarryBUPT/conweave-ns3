@@ -10,6 +10,7 @@
 
 #include "cn-header.h"
 #include "flow-stat-tag.h"
+#include "irn-pfc-timeout.h"
 #include "ns3/boolean.h"
 #include "ns3/data-rate.h"
 #include "ns3/double.h"
@@ -772,6 +773,13 @@ void RdmaHw::RecoverQueue(Ptr<RdmaQueuePair> qp) {
 
 void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
     NS_ASSERT(!m_qpCompleteCallback.IsNull());
+    if (qp->irn.m_enabled && m_nic[GetNicIdxOfQp(qp)].dev->IsQbbEnabled()) {
+        std::cout << "WS23_IRN_PFC_QP_COMPLETE flow_id=" << qp->m_flow_id
+                  << " size=" << qp->m_size << " snd_una=" << qp->snd_una
+                  << " snd_nxt=" << qp->snd_nxt
+                  << " tx_payload_bytes=" << qp->stat.txTotalBytes
+                  << " tx_packets=" << qp->stat.txTotalPkts << std::endl;
+    }
     if (m_cc_mode == 1) {
         Simulator::Cancel(qp->mlx.m_eventUpdateAlpha);
         Simulator::Cancel(qp->mlx.m_eventDecreaseRate);
@@ -927,17 +935,31 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
     if (qp->IsFinished()) {
         return;
     }
+    // An ACK may have drained all outstanding data after this timer was set.
+    if (qp->GetOnTheFly() == 0) return;
 
     uint32_t nic_idx = GetNicIdxOfQp(qp);
     Ptr<QbbNetDevice> dev = m_nic[nic_idx].dev;
 
-    // IRN: disable timeouts when PFC is enabled to prevent spurious retransmissions
+    // A locally paused priority cannot transmit a recovery packet. PFC being
+    // enabled is not evidence of a pause, and must not disable recovery forever.
     if (qp->irn.m_enabled && dev->IsQbbEnabled()) {
-        std::cout << "FACTORIAL_IRN_PFC_TIMEOUT_SUPPRESSED time_ns="
+        Time delay = IrnPfcTimeoutDeferral(Simulator::Now(), rto,
+                                           dev->IsPaused(qp->m_pg),
+                                           dev->HasResumed(qp->m_pg),
+                                           dev->GetLastResumeTime(qp->m_pg));
+        if (delay > Time(0)) {
+            std::cout << "WS23_IRN_PFC_TIMEOUT_DEFERRED time_ns="
+                      << Simulator::Now().GetTimeStep() << " flow_id=" << qp->m_flow_id
+                      << " paused=" << dev->IsPaused(qp->m_pg)
+                      << " delay_ns=" << delay.GetTimeStep() << std::endl;
+            qp->m_retransmit = Simulator::Schedule(delay, &RdmaHw::HandleTimeout, this, qp, rto);
+            return;
+        }
+        std::cout << "WS23_IRN_PFC_TIMEOUT_RECOVERY time_ns="
                   << Simulator::Now().GetTimeStep() << " flow_id=" << qp->m_flow_id
                   << " snd_una=" << qp->snd_una << " snd_nxt=" << qp->snd_nxt
-                  << std::endl;
-        return;
+                  << " local_paused=" << dev->IsPaused(qp->m_pg) << std::endl;
     }
 
     if (Ws13BackgroundQp(qp)) Ws13LogQp("timeout", qp);
@@ -951,7 +973,10 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
         acc_timeout_count[qp->m_flow_id] = 0;
     acc_timeout_count[qp->m_flow_id]++;
 
-    if (qp->irn.m_enabled) qp->irn.m_recovery = true;
+    if (qp->irn.m_enabled) {
+        qp->irn.m_recovery_seq = qp->snd_nxt;
+        qp->irn.m_recovery = true;
+    }
 
     RecoverQueue(qp);
     dev->TriggerTransmit();

@@ -73,6 +73,7 @@ RdmaQueuePair::RdmaQueuePair(uint16_t pg, Ipv4Address _sip, Ipv4Address _dip, ui
     irn.m_highest_ack = 0;
     irn.m_max_seq = 0;
     irn.m_recovery = false;
+    irn.m_recovery_seq = 0;
 
     m_timeout = MilliSeconds(4);
 }

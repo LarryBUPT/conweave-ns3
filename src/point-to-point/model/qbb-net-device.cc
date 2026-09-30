@@ -231,6 +231,8 @@ QbbNetDevice::QbbNetDevice() {
     m_ecn_source = new std::vector<ECNAccount>;
     for (uint32_t i = 0; i < qCnt; i++) {
         m_paused[i] = false;
+        m_hasResumed[i] = false;
+        m_lastResume[i] = Time(0);
     }
 
     m_rdmaEQ = CreateObject<RdmaEgressQueue>();
@@ -343,6 +345,8 @@ void QbbNetDevice::Resume(unsigned qIndex) {
     NS_LOG_FUNCTION(this << qIndex);
     NS_ASSERT_MSG(m_paused[qIndex], "Must be PAUSEd");
     m_paused[qIndex] = false;
+    m_hasResumed[qIndex] = true;
+    m_lastResume[qIndex] = Simulator::Now();
     NS_LOG_INFO("Node " << m_node->GetId() << " dev " << m_ifIndex << " queue " << qIndex
                         << " resumed at " << Simulator::Now().GetSeconds());
     DequeueAndTransmit();
