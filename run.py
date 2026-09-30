@@ -148,7 +148,7 @@ topo2bdp = {
     "fat_k4_100G_OS2": 156000,  # small 3-tier correctness topology
     "topo_1280_400G_400G_OS1": 30000,  # measured maxRtt=600ns at 400Gbps
     "ws24_synthetic_320host_4nic_topology": 30000,
-    "ws24_synthetic_2host_4nic_topology": 30000,
+    "ws24_synthetic_2host_4nic_topology": 22000,  # derived maxRtt=440ns at 400Gbps
 }
 
 FLOWGEN_DEFAULT_TIME = 2.0  # see /traffic_gen/traffic_gen.py::base_t

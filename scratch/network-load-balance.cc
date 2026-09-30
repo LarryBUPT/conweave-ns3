@@ -1790,9 +1790,14 @@ int main(int argc, char *argv[]) {
     std::vector<uint32_t> node_type(node_num, 0);
     for (uint32_t i = 0; i < switch_num; i++) {
         uint32_t sid;
-        topof >> sid;
+        if (!(topof >> sid) || sid >= node_num || node_type[sid])
+            NS_FATAL_ERROR("TOPOLOGY_INPUT_ERROR invalid or duplicate switch ID");
         node_type[sid] = 1;
     }
+    if (ws24_multi_nic &&
+        !((node_num == 6 && switch_num == 4 && link_num == 8) ||
+          (node_num == 896 && switch_num == 576 && link_num == 3840)))
+        NS_FATAL_ERROR("WS24_TOPOLOGY_ERROR unexpected synthetic topology dimensions");
     for (uint32_t i = 0; i < node_num; i++) {
         if (node_type[i] == 0)
             n.Add(CreateObject<Node>());
@@ -1838,15 +1843,39 @@ int main(int argc, char *argv[]) {
     QbbHelper qbb;
     Ipv4AddressHelper ipv4;
     std::vector<std::pair<uint32_t, uint32_t>> link_pairs;  // src, dst link pairs
+    std::set<std::pair<uint32_t, uint32_t>> ws24_link_pairs;
     for (uint32_t i = 0; i < link_num; i++) {
         uint32_t src, dst;
         std::string data_rate, link_delay;
         double error_rate;
-        topof >> src >> dst >> data_rate >> link_delay >> error_rate;
+        if (!(topof >> src >> dst >> data_rate >> link_delay >> error_rate) ||
+            src >= node_num || dst >= node_num || src == dst)
+            NS_FATAL_ERROR("TOPOLOGY_INPUT_ERROR invalid link row " << i);
 
-        // The imported MoE topology has 10ns host links and 100ns fabric links.
-        // pairRtt/pairBdp below use each link's actual QbbChannel delay.
-        if (topology_file != "config/topo_1280_400G_400G_OS1.txt")
+        // Legacy mixed-delay OS1 is unchanged. WS-24 validates each synthetic
+        // tier explicitly; route RTT/BDP below use actual QbbChannel delays.
+        if (ws24_multi_nic) {
+            const bool minimal = node_num == 6;
+            const std::pair<uint32_t, uint32_t> edge(std::min(src, dst),
+                                                      std::max(src, dst));
+            // Minimal: host--switch, 100ns. Target OS1 generator: host--ToR
+            // and ToR--aggregation 10ns; aggregation--core 100ns.
+            const bool minimal_host_edge = minimal && edge.first < 2 && edge.second >= 2;
+            const bool target_fast_edge = !minimal &&
+                ((edge.first < 320 && edge.second >= 320 && edge.second < 480) ||
+                 (edge.first >= 320 && edge.first < 480 &&
+                  edge.second >= 480 && edge.second < 640));
+            const bool target_slow_edge = !minimal && edge.first >= 480 &&
+                edge.first < 640 && edge.second >= 640;
+            const std::string expected_delay = minimal_host_edge || target_slow_edge
+                                                   ? "100ns" : "10ns";
+            if (!(minimal_host_edge || target_fast_edge || target_slow_edge) ||
+                data_rate != "400Gbps" || link_delay != expected_delay ||
+                error_rate != 0.0 || !ws24_link_pairs.insert(edge).second)
+                NS_FATAL_ERROR("WS24_TOPOLOGY_ERROR invalid link row " << i << ": "
+                               << src << " " << dst << " " << data_rate << " "
+                               << link_delay << " " << error_rate);
+        } else if (topology_file != "config/topo_1280_400G_400G_OS1.txt")
             assert(std::to_string(one_hop_delay) + "ns" == link_delay);
 
         link_pairs.push_back(std::make_pair(src, dst));
@@ -2055,8 +2084,6 @@ int main(int argc, char *argv[]) {
     topo2bdpMap[std::string("fat_k8_100G_OS2")] = 156000;      // RTT=12480 --> all 100G links
     topo2bdpMap[std::string("fat_k4_100G_OS2")] = 156000;      // same three-tier link rates
     topo2bdpMap[std::string("topo_1280_400G_400G_OS1")] = 30000;  // 600ns * 400Gbps / 8
-    topo2bdpMap[std::string("ws24_synthetic_320host_4nic")] = 30000;
-    topo2bdpMap[std::string("ws24_synthetic_2host_4nic")] = 30000;
 
     // topology_file
     bool found_topo2bdpMap = false;
@@ -2069,7 +2096,7 @@ int main(int argc, char *argv[]) {
             break;
         }
     }
-    if (found_topo2bdpMap == false) {
+    if (!ws24_multi_nic && found_topo2bdpMap == false) {
         std::cout << __FILE__ << "(" << __LINE__ << ")"
                   << " ERROR - topo2bdpMap has no matched item with " << topology_file << std::endl;
         assert(false);
@@ -2145,6 +2172,16 @@ int main(int argc, char *argv[]) {
     else {
         CalculateRoutes(n);
         SetRoutingEntries();
+    }
+    if (ws24_multi_nic) {
+        if (maxBdp == 0 || maxBdp > std::numeric_limits<uint32_t>::max())
+            NS_FATAL_ERROR("WS24 invalid derived IRN BDP");
+        for (uint32_t i = 0; i < node_num; ++i) {
+            if (n.Get(i)->GetNodeType() != 0) continue;
+            Ptr<RdmaHw> rdmaHw = n.Get(i)->GetObject<RdmaDriver>()->m_rdma;
+            rdmaHw->SetAttribute("IrnBdp", UintegerValue(uint32_t(maxBdp)));
+        }
+        std::cout << "WS24_IRN_BDP bytes=" << maxBdp << std::endl;
     }
 
     /**
