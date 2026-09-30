@@ -238,6 +238,8 @@ def main():
     run_cmd.add_argument('--ws23-pfc-probe-start-ns', type=int, default=0)
     run_cmd.add_argument('--ws23-pfc-probe-end-ns', type=int, default=0)
     run_cmd.add_argument('--ws23-pause-time-us', type=int, default=5)
+    run_cmd.add_argument('--ws23-pfc-probe-drop-gated', action='store_true')
+    run_cmd.add_argument('--ws23-pfc-probe-refresh-ns', type=int, default=1000)
     for name in ('status', 'fetch', 'transfer-smoke'):
         item = sub.add_parser(name)
         item.add_argument('id')
@@ -288,11 +290,14 @@ def main():
                 args.lb != 'fecmp' or not 0 <= args.ws23_pfc_probe_pg < 8 or
                 not 0 < args.ws23_pfc_probe_start_ns < args.ws23_pfc_probe_end_ns or
                 args.ws23_pfc_probe_end_ns >= int(float(args.simul_time) * 1e9) or
-                not 1 <= args.ws23_pause_time_us <= 65535):
+                not 1 <= args.ws23_pause_time_us <= 65535 or
+                not 100 <= args.ws23_pfc_probe_refresh_ns <= 1000000 or
+                (args.ws23_pfc_probe_drop_gated and not args.factorial_drop_diag)):
             parser.error('Invalid WS-23 PFC probe contract')
         if args.ws23_pfc_probe_host < 0 and (
                 args.ws23_pfc_probe_pg != 3 or args.ws23_pfc_probe_start_ns or
-                args.ws23_pfc_probe_end_ns or args.ws23_pause_time_us != 5):
+                args.ws23_pfc_probe_end_ns or args.ws23_pause_time_us != 5 or
+                args.ws23_pfc_probe_drop_gated or args.ws23_pfc_probe_refresh_ns != 1000):
             parser.error('WS-23 PFC probe options need a host')
         if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
             parser.error('WS-18 switches require --lb ws18')
@@ -348,7 +353,10 @@ def main():
                             '--ws23-pfc-probe-pg', str(args.ws23_pfc_probe_pg),
                             '--ws23-pfc-probe-start-ns', str(args.ws23_pfc_probe_start_ns),
                             '--ws23-pfc-probe-end-ns', str(args.ws23_pfc_probe_end_ns),
-                            '--ws23-pause-time-us', str(args.ws23_pause_time_us)])
+                            '--ws23-pause-time-us', str(args.ws23_pause_time_us),
+                            '--ws23-pfc-probe-refresh-ns', str(args.ws23_pfc_probe_refresh_ns)])
+            if args.ws23_pfc_probe_drop_gated:
+                command.append('--ws23-pfc-probe-drop-gated')
         worker_call(cfg, *command)
     elif args.command == 'status':
         worker_call(cfg, 'status', args.id)

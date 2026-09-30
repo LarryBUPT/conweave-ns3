@@ -112,6 +112,7 @@ struct Ws23CrossClassHop {
     uint64_t firstEnqueueNs = 0, lastDequeueNs = 0;
 };
 static std::map<std::pair<uint32_t, uint64_t>, Ws23CrossClassPacket> ws23_crossclass_inflight;
+static std::map<uint32_t, uint64_t> ws23_admission_drops_by_source;
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint32_t, uint32_t,
                            uint32_t, uint32_t>, Ws23CrossClassHop> ws23_crossclass_hops;
 static bool Ws13DiagnosticEnabled() {
@@ -190,6 +191,8 @@ static void FactorialAdmissionDrop(const char *reason, uint32_t switchId,
     if (!enabled || ch.l3Prot != 0x11) return;
     auto source = Settings::hostIp2IdMap.find(ch.sip);
     auto destination = Settings::hostIp2IdMap.find(ch.dip);
+    if (source != Settings::hostIp2IdMap.end())
+        ++ws23_admission_drops_by_source[source->second];
     std::cout << "FACTORIAL_ADMISSION_DROP reason=" << reason
               << " time_ns=" << Simulator::Now().GetTimeStep()
               << " switch=" << switchId
@@ -215,6 +218,10 @@ void SwitchNode::ConfigureGuardHash(uint32_t lambda, uint32_t tau,
 }
 
 void SwitchNode::ConfigureWs18Path(bool enabled) { ws18_path_enabled = enabled; }
+uint64_t SwitchNode::Ws23AdmissionDropsFromHost(uint32_t hostId) {
+    auto it = ws23_admission_drops_by_source.find(hostId);
+    return it == ws23_admission_drops_by_source.end() ? 0 : it->second;
+}
 void SwitchNode::ConfigureWs21Feedback(bool enabled, uint32_t intervalNs) {
     if (intervalNs < 1000 || intervalNs > 60000)
         NS_FATAL_ERROR("WS-21 feedback interval must fit the compact generation delay");

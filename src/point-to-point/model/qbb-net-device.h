@@ -140,6 +140,8 @@ public:
    }
 
    uint32_t SendPfc(uint32_t qIndex, uint32_t type); // type: 0 = pause, 1 = resume
+   // Test probe only: choose this frame's duration without changing normal PFC.
+   uint32_t SendPfcWithDuration(uint32_t qIndex, uint32_t pauseTimeUs);
 
    TracedCallback<Ptr<const Packet>, uint32_t> m_traceEnqueue;
    TracedCallback<Ptr<const Packet>, uint32_t> m_traceDequeue;

@@ -467,9 +467,13 @@ bool QbbNetDevice::SwitchSend(uint32_t qIndex, Ptr<Packet> packet, CustomHeader 
 }
 
 uint32_t QbbNetDevice::SendPfc(uint32_t qIndex, uint32_t type) {
+    return SendPfcWithDuration(qIndex, type == 0 ? m_pausetime : 0);
+}
+
+uint32_t QbbNetDevice::SendPfcWithDuration(uint32_t qIndex, uint32_t pauseTimeUs) {
     if (!m_qbbEnabled) return 0;
     Ptr<Packet> p = Create<Packet>(0);
-    PauseHeader pauseh((type == 0 ? m_pausetime : 0), m_queue->GetNBytes(qIndex), qIndex);
+    PauseHeader pauseh(pauseTimeUs, m_queue->GetNBytes(qIndex), qIndex);
     p->AddHeader(pauseh);
     Ipv4Header ipv4h;  // Prepare IPv4 header
     ipv4h.SetProtocol(0xFE);
@@ -483,7 +487,7 @@ uint32_t QbbNetDevice::SendPfc(uint32_t qIndex, uint32_t type) {
     CustomHeader ch(CustomHeader::L2_Header | CustomHeader::L3_Header | CustomHeader::L4_Header);
     p->PeekHeader(ch);
     SwitchSend(0, p, ch);
-    return (type == 0 ? m_pausetime : 0);
+    return pauseTimeUs;
 }
 
 bool QbbNetDevice::Attach(Ptr<QbbChannel> ch) {

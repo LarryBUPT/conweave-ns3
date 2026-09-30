@@ -113,6 +113,11 @@ double pause_time = 5;  // PFC pause, microseconds
 int32_t ws23_pfc_probe_host = -1;
 uint32_t ws23_pfc_probe_pg = 3;
 uint64_t ws23_pfc_probe_start_ns = 0, ws23_pfc_probe_end_ns = 0;
+uint32_t ws23_pfc_probe_pause_us = 5, ws23_pfc_probe_drop_gated = 0;
+uint32_t ws23_pfc_probe_refresh_ns = 1000;
+bool ws23_pfc_probe_active = false;
+uint64_t ws23_pfc_probe_refresh_count = 0;
+Ptr<QbbNetDevice> ws23_pfc_probe_switch_port;
 double flowgen_start_time = 2.0, flowgen_stop_time = 2.5, simulator_extra_time = 0.1;
 // queue length monitoring time is not used in this simulator
 // uint32_t qlen_dump_interval = 100000000, qlen_mon_interval = 1000;  // ns
@@ -722,6 +727,14 @@ void monitor_buffer(FILE *qlen_output, NodeContainer *n) {
  * This function allows to finish simulation quickly when all messages are sent.
  */
 void stop_simulation_middle() {
+    // An opt-in recovery probe must reach its explicit resume and leave room
+    // for a complete post-resume timeout, even if traffic finishes early.
+    if (ws23_pfc_probe_drop_gated && ws23_pfc_probe_host >= 0 &&
+        Simulator::Now() < Seconds(flowgen_start_time) +
+                               NanoSeconds(ws23_pfc_probe_end_ns + 1350000)) {
+        Simulator::Schedule(MicroSeconds(100), &stop_simulation_middle);
+        return;
+    }
     uint32_t target_flow_num = flow_num - 0;  // can be lower than flownum
     if (Settings::cnt_finished_flows >= target_flow_num) {
         std::cout << "\n*** Simulator is enforced to be finished, finished so far: "
@@ -937,11 +950,59 @@ void BuildWs21IngressMapping() {
 }
 
 void Ws23InjectPfc(Ptr<QbbNetDevice> switchPort, uint32_t hostId,
-                   uint32_t pg, uint32_t type) {
-    uint32_t pauseUs = switchPort->SendPfc(pg, type);
+                   uint32_t pg, uint32_t type, uint32_t probePauseUs) {
+    uint32_t pauseUs = switchPort->SendPfcWithDuration(pg, type == 0 ? probePauseUs : 0);
     std::cout << "WS23_PFC_INJECT time_ns=" << Simulator::Now().GetNanoSeconds()
               << " host=" << hostId << " pg=" << pg << " type=" << type
               << " pause_us=" << pauseUs << std::endl;
+}
+
+void Ws23RefreshPfc(uint64_t endTimeNs) {
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    if (!ws23_pfc_probe_active || now >= endTimeNs) return;
+    ws23_pfc_probe_switch_port->SendPfcWithDuration(ws23_pfc_probe_pg,
+                                                     ws23_pfc_probe_pause_us);
+    ++ws23_pfc_probe_refresh_count;
+    if (now + ws23_pfc_probe_refresh_ns < endTimeNs)
+        Simulator::Schedule(NanoSeconds(ws23_pfc_probe_refresh_ns),
+                            &Ws23RefreshPfc, endTimeNs);
+}
+
+void Ws23StartDropGatedPfc(Ptr<QbbNetDevice> switchPort, uint32_t hostId,
+                           uint32_t pg, uint64_t endTimeNs) {
+    const uint64_t drops = SwitchNode::Ws23AdmissionDropsFromHost(hostId);
+    Ptr<RdmaDriver> driver = n.Get(hostId)->GetObject<RdmaDriver>();
+    if (!driver || !driver->m_rdma) NS_FATAL_ERROR("WS-23 probe source has no RDMA device");
+    Ptr<RdmaQueuePair> target;
+    for (const auto &entry : driver->m_rdma->m_qpMap) {
+        Ptr<RdmaQueuePair> qp = entry.second;
+        if (qp->m_flow_id != int32_t(hostId) || qp->m_pg != pg) continue;
+        if (target) NS_FATAL_ERROR("WS-23 probe target has multiple QPs");
+        target = qp;
+    }
+    if (drops == 0 || !target || target->IsFinishedConst() || target->GetOnTheFly() == 0)
+        NS_FATAL_ERROR("WS-23 probe needs a real target drop and outstanding data");
+    std::cout << "WS23_PFC_TRIGGER time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " host=" << hostId << " pg=" << pg
+              << " flow_id=" << target->m_flow_id << " prior_drops=" << drops
+              << " snd_una=" << target->snd_una << " snd_nxt=" << target->snd_nxt
+              << " on_the_fly=" << target->GetOnTheFly() << std::endl;
+    ws23_pfc_probe_active = true;
+    ws23_pfc_probe_refresh_count = 0;
+    ws23_pfc_probe_switch_port = switchPort;
+    Ws23InjectPfc(switchPort, hostId, pg, 0U, ws23_pfc_probe_pause_us);
+    Simulator::Schedule(NanoSeconds(ws23_pfc_probe_refresh_ns),
+                        &Ws23RefreshPfc, endTimeNs);
+}
+
+void Ws23FinishDropGatedPfc(Ptr<QbbNetDevice> switchPort, uint32_t hostId,
+                            uint32_t pg) {
+    if (!ws23_pfc_probe_active) NS_FATAL_ERROR("WS-23 probe ended before starting");
+    ws23_pfc_probe_active = false;
+    std::cout << "WS23_PFC_REFRESH_SUMMARY time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " host=" << hostId << " pg=" << pg
+              << " count=" << ws23_pfc_probe_refresh_count << std::endl;
+    Ws23InjectPfc(switchPort, hostId, pg, 1U, ws23_pfc_probe_pause_us);
 }
 
 /**
@@ -1069,7 +1130,9 @@ int main(int argc, char *argv[]) {
                 conf >> ws21_port_max_bytes;
             } else if (key.compare("WS23_PFC_PROBE") == 0) {
                 conf >> ws23_pfc_probe_host >> ws23_pfc_probe_pg
-                     >> ws23_pfc_probe_start_ns >> ws23_pfc_probe_end_ns;
+                     >> ws23_pfc_probe_start_ns >> ws23_pfc_probe_end_ns
+                     >> ws23_pfc_probe_pause_us >> ws23_pfc_probe_drop_gated
+                     >> ws23_pfc_probe_refresh_ns;
             } else if (key.compare("GUARDHASH_LAMBDA") == 0) {
                 conf >> guardhash_lambda;
             } else if (key.compare("GUARDHASH_TAU_BYTES") == 0) {
@@ -2124,7 +2187,10 @@ int main(int argc, char *argv[]) {
             ws23_pfc_probe_pg >= QbbNetDevice::qCnt ||
             ws23_pfc_probe_start_ns == 0 ||
             ws23_pfc_probe_start_ns >= ws23_pfc_probe_end_ns ||
-            ws23_pfc_probe_end_ns >= uint64_t((flowgen_stop_time - flowgen_start_time) * 1e9)) {
+            ws23_pfc_probe_end_ns >= uint64_t((flowgen_stop_time - flowgen_start_time) * 1e9) ||
+            ws23_pfc_probe_pause_us == 0 || ws23_pfc_probe_pause_us > 65535 ||
+            ws23_pfc_probe_drop_gated > 1 || ws23_pfc_probe_refresh_ns == 0 ||
+            (ws23_pfc_probe_drop_gated && pause_time != 5)) {
             NS_FATAL_ERROR("Invalid WS-23 PFC probe configuration");
         }
         Ptr<Node> host = n.Get(uint32_t(ws23_pfc_probe_host));
@@ -2136,12 +2202,22 @@ int main(int argc, char *argv[]) {
             switchPort = DynamicCast<QbbNetDevice>(neighbor.first->GetDevice(port));
         }
         if (!switchPort) NS_FATAL_ERROR("WS-23 probe host has no switch link");
-        Simulator::Schedule(Seconds(flowgen_start_time) + NanoSeconds(ws23_pfc_probe_start_ns),
-                            &Ws23InjectPfc, switchPort, uint32_t(ws23_pfc_probe_host),
-                            ws23_pfc_probe_pg, 0U);
-        Simulator::Schedule(Seconds(flowgen_start_time) + NanoSeconds(ws23_pfc_probe_end_ns),
-                            &Ws23InjectPfc, switchPort, uint32_t(ws23_pfc_probe_host),
-                            ws23_pfc_probe_pg, 1U);
+        Time start = Seconds(flowgen_start_time) + NanoSeconds(ws23_pfc_probe_start_ns);
+        Time end = Seconds(flowgen_start_time) + NanoSeconds(ws23_pfc_probe_end_ns);
+        if (ws23_pfc_probe_drop_gated) {
+            Simulator::Schedule(start, &Ws23StartDropGatedPfc, switchPort,
+                                uint32_t(ws23_pfc_probe_host), ws23_pfc_probe_pg,
+                                uint64_t(end.GetNanoSeconds()));
+            Simulator::Schedule(end, &Ws23FinishDropGatedPfc, switchPort,
+                                uint32_t(ws23_pfc_probe_host), ws23_pfc_probe_pg);
+        } else {
+            Simulator::Schedule(start, &Ws23InjectPfc, switchPort,
+                                uint32_t(ws23_pfc_probe_host), ws23_pfc_probe_pg,
+                                0U, ws23_pfc_probe_pause_us);
+            Simulator::Schedule(end, &Ws23InjectPfc, switchPort,
+                                uint32_t(ws23_pfc_probe_host), ws23_pfc_probe_pg,
+                                1U, ws23_pfc_probe_pause_us);
+        }
     }
 
     if (lb_mode == 9) {

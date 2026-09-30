@@ -12,6 +12,7 @@ from analyze_result import PROJECT
 
 REFERENCE = '20260927-215700-irnpfcstress-11'
 PRESSURE_TRACE_SHA256 = 'bc2db1513cbde20f12eea6efa4e2265cf74954be4fa45f2a147ff0ce84b33985'
+PRESSURE_FCT_SHA256 = '97feb0e118544f07e006da9e9bc2ead2566a10b91ad2201e0e83ced89279b18a'
 PAUSE_TRACE_SHA256 = '4f10f678000f7b380cc272e121db7926ca320a581c72b47909545f31f2a312f8'
 TOPOLOGY_SHA256 = 'dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad'
 PROBE_START_NS = 6000200
@@ -30,6 +31,11 @@ TIMEOUT = re.compile(r'^WS08_TX_TIMEOUT time_ns=(\d+) flow_id=(\d+) '
 LOCAL_PFC = re.compile(r'^WS23_PFC_LOCAL_(PAUSE|RESUME) time_ns=(\d+) host=(\d+) pg=(\d+)$')
 PFC_INJECT = re.compile(r'^WS23_PFC_INJECT time_ns=(\d+) host=(\d+) pg=(\d+) type=(\d+) pause_us=(\d+)$')
 PFC_RX = re.compile(r'^WS23_PFC_RX time_ns=(\d+) node=(\d+) pg=(\d+) type=(\d+)$')
+PFC_TRIGGER = re.compile(r'^WS23_PFC_TRIGGER time_ns=(\d+) host=(\d+) pg=(\d+) '
+                         r'flow_id=(\d+) prior_drops=(\d+) snd_una=(\d+) '
+                         r'snd_nxt=(\d+) on_the_fly=(\d+)$')
+PFC_REFRESH = re.compile(r'^WS23_PFC_REFRESH_SUMMARY time_ns=(\d+) host=(\d+) '
+                         r'pg=(\d+) count=(\d+)$')
 
 
 def sha256(path):
@@ -88,6 +94,7 @@ def verify_common(experiment_id, expected_trace, expected_source_sha):
 def parse_log(log_path):
     records = {'completions': {}, 'recoveries': [], 'deferrals': [],
                'local_pfc': [], 'injections': [], 'pfc_rx': [],
+               'triggers': [], 'refresh_summaries': [],
                'admission_drops': 0, 'queue_rejects': 0, 'link_drops': 0,
                'timeouts': 0, 'timeout_rows': [], 'other_drops': 0}
     with open(log_path, encoding='utf-8', errors='replace') as source:
@@ -122,7 +129,9 @@ def parse_log(log_path):
             for prefix, pattern, key in (
                     ('WS23_PFC_LOCAL_', LOCAL_PFC, 'local_pfc'),
                     ('WS23_PFC_INJECT ', PFC_INJECT, 'injections'),
-                    ('WS23_PFC_RX ', PFC_RX, 'pfc_rx')):
+                    ('WS23_PFC_RX ', PFC_RX, 'pfc_rx'),
+                    ('WS23_PFC_TRIGGER ', PFC_TRIGGER, 'triggers'),
+                    ('WS23_PFC_REFRESH_SUMMARY ', PFC_REFRESH, 'refresh_summaries')):
                 if line.startswith(prefix):
                     match = pattern.fullmatch(line)
                     if not match:
@@ -344,17 +353,176 @@ def verify_deferral(experiment_id, expected_source_sha):
             'total_timeout_recoveries': len(records['recoveries'])}
 
 
+def _pause_time(raw):
+    with open(os.path.join(raw, 'config.txt'), encoding='utf-8') as source:
+        values = [line.split()[1] for line in source
+                  if line.startswith('PAUSE_TIME ')]
+    if len(values) != 1:
+        raise ValueError('Expected exactly one global PAUSE_TIME setting')
+    return values[0]
+
+
+def _admission_drops_before(log_path, cutoff_ns):
+    rows = []
+    with open(log_path, encoding='utf-8', errors='replace') as source:
+        for line in source:
+            if not line.startswith('FACTORIAL_ADMISSION_DROP '):
+                continue
+            match = re.search(r'\btime_ns=(\d+)\b', line)
+            if not match:
+                raise ValueError('Malformed admission drop receipt')
+            if int(match.group(1)) < cutoff_ns:
+                rows.append(line.rstrip('\r\n'))
+    return rows
+
+
+def verify_deferral_v2(control_id, experiment_id, expected_source_sha):
+    control = verify_pressure(control_id, expected_source_sha)
+    if control['fct_sha256'] != PRESSURE_FCT_SHA256 or control['data_admission_drops'] != 161:
+        raise ValueError('Unmodified pressure control does not reproduce the frozen result')
+    control_meta = load_metadata(control_id)
+    control_base, control_raw, control_log = result_paths(control_id, control_meta)
+    current, params, summary, base, raw, log_path = verify_common(
+        experiment_id, PRESSURE_TRACE_SHA256, expected_source_sha)
+    if control_id == experiment_id or _pause_time(control_raw) != '5' or _pause_time(raw) != '5':
+        raise ValueError('Control/probe identity or global PFC pause setting changed')
+    control_params = control_meta['parameters']
+    for key in ('buffer', 'bw', 'flow_file', 'cdf', 'netload', 'pfc', 'irn', 'lb',
+                'topo', 'simul_time', 'factorial_pilot', 'factorial_drop_diag'):
+        if params.get(key) != control_params.get(key):
+            raise ValueError('Control and probe common parameter differs: ' + key)
+    expected_control = {'ws23_pfc_probe_host': -1, 'ws23_pause_time_us': 5,
+                        'ws23_pfc_probe_drop_gated': False,
+                        'ws23_pfc_probe_refresh_ns': 1000}
+    expected_probe = {'buffer': 1, 'flow_file': 'ws09_drop_probe_16x1MiB.txt',
+                      'ws23_pfc_probe_host': 14, 'ws23_pfc_probe_pg': 3,
+                      'ws23_pfc_probe_start_ns': 7200000,
+                      'ws23_pfc_probe_end_ns': 8800000,
+                      'ws23_pause_time_us': 2500,
+                      'ws23_pfc_probe_drop_gated': True,
+                      'ws23_pfc_probe_refresh_ns': 1000}
+    for key, value in expected_control.items():
+        if control_params.get(key) != value:
+            raise ValueError('Control probe parameter differs: ' + key)
+    for key, value in expected_probe.items():
+        if params.get(key) != value:
+            raise ValueError('Drop-gated probe parameter differs: ' + key)
+    for tag in ('1', '2'):
+        if summary['tags'][tag]['input_flows'] != 8 or summary['tags'][tag]['completed_flows'] != 8:
+            raise ValueError('Drop-gated probe did not complete both traffic classes')
+    records = parse_log(log_path)
+    if set(records['completions']) != set(range(16)):
+        raise ValueError('Drop-gated probe lacks 16 unique QP completion receipts')
+    for flow_id, (size, una, nxt, tx_bytes, packets) in records['completions'].items():
+        if size != 1048576 or una != size or nxt != size or tx_bytes < size or packets == 0:
+            raise ValueError('Drop-gated QP byte/sequence conservation failed: ' + str(flow_id))
+    if records['queue_rejects'] or records['link_drops'] or records['other_drops']:
+        raise ValueError('Unexpected queue/link loss changed the drop-gated failure model')
+    start_ns, end_ns = 2007200000, 2008800000
+    control_drops = _admission_drops_before(control_log, start_ns)
+    probe_drops = _admission_drops_before(log_path, start_ns)
+    if not control_drops or probe_drops != control_drops:
+        raise ValueError('Probe changed the real pressure losses before its start')
+    target_drops = sum(' src=14 ' in line for line in probe_drops)
+    if target_drops != 36:
+        raise ValueError('Target flow did not retain its 36 pre-probe real drops')
+    if len(records['triggers']) != 1:
+        raise ValueError('Expected one drop-gated trigger receipt')
+    trigger = records['triggers'][0]
+    if trigger[:5] != (start_ns, 14, 3, 14, target_drops):
+        raise ValueError('Drop-gated trigger identity or loss count differs')
+    if trigger[5] >= trigger[6] or trigger[7] <= 0:
+        raise ValueError('Probe began without outstanding target data')
+    if records['injections'] != [(start_ns, 14, 3, 0, 2500),
+                                 (end_ns, 14, 3, 1, 0)]:
+        raise ValueError('Drop-gated pause/resume was not issued at frozen times')
+    if records['refresh_summaries'] != [(end_ns, 14, 3, 1599)]:
+        raise ValueError('Drop-gated pause refreshes did not span the frozen interval')
+    local = [(event, time_ns) for event, time_ns, host, pg in records['local_pfc']
+             if (host, pg) == (14, 3)]
+    received = [(time_ns, kind) for time_ns, host, pg, kind in records['pfc_rx']
+                if (host, pg) == (14, 3)]
+    pauses = [time_ns for event, time_ns in local if event == 'PAUSE' and start_ns <= time_ns < end_ns]
+    resumes = [time_ns for event, time_ns in local if event == 'RESUME' and time_ns >= end_ns]
+    if not pauses or not resumes:
+        raise ValueError('Drop-gated pause/resume did not reach source host 14')
+    pause_ns, resume_ns = pauses[0], resumes[0]
+    if ((pause_ns, 0) not in received or (resume_ns, 1) not in received or
+            pause_ns - start_ns > 100000 or resume_ns - end_ns > 100000):
+        raise ValueError('PFC source receipts disagree with the injection timing')
+    paused_deferrals = [row for row in records['deferrals']
+                        if row[1] == 14 and row[2] == 1 and pause_ns <= row[0] < end_ns]
+    recoveries = [row for row in records['recoveries'] if row[1] == 14]
+    if not paused_deferrals or not recoveries:
+        raise ValueError('Target flow did not defer during pause and eventually recover')
+    recovery_ns = min(row[0] for row in recoveries)
+    grace_deferrals = [row for row in records['deferrals']
+                       if row[1] == 14 and row[2] == 0 and resume_ns <= row[0] < recovery_ns]
+    timeout_rows = [row for row in records['timeout_rows'] if row[0] == recovery_ns and row[1] == 14]
+    last_resume = max((time_ns for event, time_ns in local
+                       if event == 'RESUME' and time_ns <= recovery_ns), default=None)
+    if (not grace_deferrals or len(timeout_rows) != 1 or timeout_rows[0][4] <= 0 or
+            last_resume is None or recovery_ns < last_resume + timeout_rows[0][4]):
+        raise ValueError('Target recovery skipped the full post-resume RTO')
+    with open(os.path.join(raw, str(current['raw_directory']) + '_out_fct.txt'), encoding='utf-8') as source:
+        target = [line.split() for line in source if line.startswith('14 ')]
+    if len(target) != 1 or int(target[0][5]) + int(target[0][6]) <= recovery_ns:
+        raise ValueError('Target flow finished before the observed recovery')
+    with open(log_path, encoding='utf-8', errors='replace') as source:
+        stop_times = [int(match.group(1)) for line in source
+                      for match in [re.search(r'Simulator is enforced to be finished, .*Time:\+(\d+)\.0ns', line)]
+                      if match]
+    if len(stop_times) != 1 or stop_times[0] < end_ns + MAX_RTO_NS:
+        raise ValueError('Simulation stopped before the explicit resume observation period')
+    with open(os.path.join(base, 'config', 'traffic_trace.txt'), encoding='utf-8') as source:
+        source.readline()
+        flow_hosts = {number: (int(parts[0]), int(parts[2]))
+                      for number, parts in enumerate(line.split() for line in source)}
+    if flow_hosts.get(14) != (14, 3) or set(flow_hosts) != set(range(16)):
+        raise ValueError('Target input identity changed')
+    for time_ns, flow_id, unused_una, unused_nxt, paused in records['recoveries']:
+        if flow_id not in flow_hosts or paused != 0:
+            raise ValueError('Recovery occurred on a paused or unknown flow')
+        host, pg = flow_hosts[flow_id]
+        active = False
+        for event, event_time, event_host, event_pg in records['local_pfc']:
+            if (event_host, event_pg) == (host, pg) and event_time <= time_ns:
+                active = event == 'PAUSE'
+        if active:
+            raise ValueError('Recovery occurred during source PG pause')
+    return {'control_id': control_id, 'experiment_id': experiment_id,
+            'git_commit': current['git_commit'], 'trace_sha256': summary['trace_sha256'],
+            'control_fct_sha256': control['fct_sha256'],
+            'probe_fct_sha256': summary['fct_sha256'],
+            'control_admission_drops': control['data_admission_drops'],
+            'target_pre_pause_drops': target_drops,
+            'refresh_count': records['refresh_summaries'][0][3],
+            'paused_deferrals': len(paused_deferrals),
+            'resume_grace_deferrals': len(grace_deferrals),
+            'target_recovery_ns': recovery_ns, 'simulator_stop_ns': stop_times[0],
+            'completed_flows': 16}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--scenario', choices=('pressure', 'pause', 'deferral'), required=True)
+    parser.add_argument('--scenario', choices=('pressure', 'pause', 'deferral', 'deferral-v2'), required=True)
     parser.add_argument('--source-sha', required=True, help='frozen 40-hex simulation source commit')
+    parser.add_argument('--control-id', help='same-SHA pressure control for deferral-v2')
     parser.add_argument('experiment_id')
     args = parser.parse_args()
     if not re.fullmatch(r'[0-9a-f]{40}', args.source_sha):
         parser.error('--source-sha must be a full lowercase Git commit SHA')
-    verify = {'pressure': verify_pressure, 'pause': verify_pause,
-              'deferral': verify_deferral}[args.scenario]
-    print(json.dumps(verify(args.experiment_id, args.source_sha), indent=2, sort_keys=True))
+    if args.scenario == 'deferral-v2':
+        if not args.control_id:
+            parser.error('deferral-v2 requires --control-id')
+        result = verify_deferral_v2(args.control_id, args.experiment_id, args.source_sha)
+    else:
+        if args.control_id:
+            parser.error('--control-id is only valid for deferral-v2')
+        verify = {'pressure': verify_pressure, 'pause': verify_pause,
+                  'deferral': verify_deferral}[args.scenario]
+        result = verify(args.experiment_id, args.source_sha)
+    print(json.dumps(result, indent=2, sort_keys=True))
 
 
 if __name__ == '__main__':

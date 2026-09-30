@@ -135,6 +135,7 @@ class SwitchNode : public Node {
                                        uint64_t faultEndNs);
     static void ConfigureWs21Identity(bool enabled);
     static void ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes);
+    static uint64_t Ws23AdmissionDropsFromHost(uint32_t hostId);
     static void FinishWs21PortEvents();
     static void SetWs21HostTor(uint32_t hostIp, uint32_t torId);
     void AddWs21HostPort(uint32_t port);

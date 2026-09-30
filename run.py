@@ -18,6 +18,8 @@ from datetime import date
 random.seed(datetime.now())
 MAX_RAND_RANGE = 1000000000
 
+# The WS-23 probe carries its own pause duration; PAUSE_TIME remains the
+# ordinary network-wide PFC setting for control/probe comparability.
 # config template
 config_template = """TOPOLOGY_FILE config/{topo}.txt
 FLOW_FILE {flow_file}
@@ -61,14 +63,14 @@ WS21_HEARTBEAT_FAULT_START_NS {ws21_heartbeat_fault_start_ns}
 WS21_HEARTBEAT_FAULT_END_NS {ws21_heartbeat_fault_end_ns}
 WS21_PORT_EVENTS {ws21_port_events}
 WS21_PORT_MAX_BYTES {ws21_port_max_bytes}
-WS23_PFC_PROBE {ws23_pfc_probe_host} {ws23_pfc_probe_pg} {ws23_pfc_probe_start_ns} {ws23_pfc_probe_end_ns}
+WS23_PFC_PROBE {ws23_pfc_probe_host} {ws23_pfc_probe_pg} {ws23_pfc_probe_start_ns} {ws23_pfc_probe_end_ns} {ws23_pause_time_us} {ws23_pfc_probe_drop_gated} {ws23_pfc_probe_refresh_ns}
 GUARDHASH_LAMBDA 1
 GUARDHASH_TAU_BYTES 0
 HARM_GATE_ON_BYTES 8192
 HARM_GATE_OFF_BYTES 4096
 ENABLE_PFC {enabled_pfc}
 ENABLE_IRN {enabled_irn}
-PAUSE_TIME {pause_time_us}
+PAUSE_TIME 5
 
 CONWEAVE_TX_EXPIRY_TIME {cwh_tx_expiry_time}
 CONWEAVE_REPLY_TIMEOUT_EXTRA {cwh_extra_reply_deadline}
@@ -177,6 +179,8 @@ def main():
     parser.add_argument('--ws23-pfc-probe-start-ns', type=int, default=0)
     parser.add_argument('--ws23-pfc-probe-end-ns', type=int, default=0)
     parser.add_argument('--ws23-pause-time-us', type=int, default=5)
+    parser.add_argument('--ws23-pfc-probe-drop-gated', action='store_true')
+    parser.add_argument('--ws23-pfc-probe-refresh-ns', type=int, default=1000)
     parser.add_argument('--simul_time', dest='simul_time', action='store',
                         default='0.1', help="traffic time to simulate (up to 3 seconds) (default: 0.1)")
     parser.add_argument('--buffer', dest="buffer", action='store',
@@ -280,12 +284,15 @@ def main():
             args.lb != 'fecmp' or not 0 <= args.ws23_pfc_probe_pg < 8 or
             not 0 < args.ws23_pfc_probe_start_ns < args.ws23_pfc_probe_end_ns or
             args.ws23_pfc_probe_end_ns >= int(float(args.simul_time) * 1e9) or
-            not 1 <= args.ws23_pause_time_us <= 65535):
+            not 1 <= args.ws23_pause_time_us <= 65535 or
+            not 100 <= args.ws23_pfc_probe_refresh_ns <= 1000000 or
+            (args.ws23_pfc_probe_drop_gated and not args.factorial_drop_diag)):
         raise Exception('CONFIG ERROR : invalid WS-23 PFC probe contract')
     if args.ws23_pfc_probe_host < 0 and (
             args.ws23_pfc_probe_pg != 3 or args.ws23_pfc_probe_start_ns or
             args.ws23_pfc_probe_end_ns or
-            args.ws23_pause_time_us != 5):
+            args.ws23_pause_time_us != 5 or args.ws23_pfc_probe_drop_gated or
+            args.ws23_pfc_probe_refresh_ns != 1000):
         raise Exception('CONFIG ERROR : WS-23 PFC probe options need a host')
     if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
         raise Exception("CONFIG ERROR : WS-18 switches require --lb ws18")
@@ -494,7 +501,9 @@ def main():
                                         ws23_pfc_probe_pg=args.ws23_pfc_probe_pg,
                                         ws23_pfc_probe_start_ns=args.ws23_pfc_probe_start_ns,
                                         ws23_pfc_probe_end_ns=args.ws23_pfc_probe_end_ns,
-                                        pause_time_us=args.ws23_pause_time_us,
+                                        ws23_pause_time_us=args.ws23_pause_time_us,
+                                        ws23_pfc_probe_drop_gated=int(args.ws23_pfc_probe_drop_gated),
+                                        ws23_pfc_probe_refresh_ns=args.ws23_pfc_probe_refresh_ns,
                                         cwh_extra_reply_deadline=cwh_extra_reply_deadline, cwh_default_voq_waiting_time=cwh_default_voq_waiting_time,
                                         cwh_path_pause_time=cwh_path_pause_time, cwh_extra_voq_flush_time=cwh_extra_voq_flush_time,
                                         enabled_pfc=enabled_pfc, enabled_irn=enabled_irn,
