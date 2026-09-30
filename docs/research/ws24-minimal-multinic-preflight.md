@@ -15,7 +15,28 @@
 | 传输/模式 | `fecmp`；DCQCN，PFC=0、IRN=1、400 Gbps、9 MiB switch buffer、固定 seed=1；显式 `--ws24-multi-nic 1` |
 | 时间/资源 | demand=2.0 s，`--simul-time 0.01`，`--netload 10` 仅满足运行器参数，显式 trace 决定实际负载；optimized build `-j2`，最小格并发上限 1 |
 
-运行前必须核对服务器无其它用户作业、WS-23 在途实验及当前资源；WS-23 已在独立固定源码工作树中进行压力格构建。WS-24 不得为部署更新版共享 `remote_worker.py` 而改变 WS-23 正在使用的运行入口；待其完成且协调确认后再部署并核验 worker 版本。固定旧 worker 若支持安全隔离 build，也仍不得在模型切换之前启动远程构建或仿真。
+2026-09-30 14:05 UTC 的只读预检：远端 `ns3host` 的 `load1m=0.0`，无活动 ns-3 仿真，可用内存 122.98 GiB，工作区空闲 5664.2 GiB；进程清单没有在途 Waf/GCC/ns-3 作业。两个预留 ID 在 `runs/` 与 `results/` 均为空，本地和 `origin/feature/ws24-multinic-validation` 均为 `03f0924f392fea3585e2e50d99f2f89a3b288386`，候选 `71982b18e508739748dc8e0198e4d520bec9450b` 是其祖先。10 个输入文件逐一与 manifest 哈希相符，manifest SHA-256 为 `816da98d6cefa5e90ab3476cab0c924717cc1f732fc1a6ea67b9c0b0797d84c1`。这些是瞬时收据，不能代替启动前复查。
+
+WS-23 已释放共享运行入口；远端现有 worker SHA-256 为 `b2454dda0b2f8a1e49f70a956b39a75fcd8bda9a661198cc6bd04f31615ce6c1`，不含 `ws24_multi_nic`，本地新版为 `0be12e21ce37655f52a19803824f2b8d24a9a2c84ba0cd58124eb6fb96de62eb`。实际切至 Luna High 后、构建之前才部署新版，共享路径仅 `/home/fnl/lzy/.research-workflow/remote_worker.py`；部署后复核 SHA、`audit`、无在途作业，固定源码的隔离副本不触碰 WS-23 结果。当前不部署、不 `sync`、不远程构建或仿真。
+
+## 启动门槛、顺序和停止条件
+
+1. 每次启动前记录 UTC 时间、登录用户与其他用户作业、活动 ns-3/Waf/GCC 进程、CPU/load、`MemAvailable`、工作区空闲盘、worker SHA 和两个 ID 的占用状态。没有他人作业、`load1m ≤10`、可用内存 ≥32 GiB、空闲盘 ≥100 GiB，且无 WS-23 或未知实验进程时才启动。若任何条件失效，暂停新格并重新取收据。
+2. Luna High 实际生效后，先部署并验证 worker，再 `sync` 固定源码；用正例 ID 建隔离 optimized `-j2` 构建。构建完成核对 `metadata.json` 的 SHA、`BUILT`、`build.log` 和源码副本，才运行正例，`--max-concurrent 1`。正例终态先回传并用 raw 验收；全部通过后，才用另一独立 ID 构建并运行跨 rail 拒错格。负例必须在输入解析阶段报 `WS24 invalid flow row`、状态失败、无成功 FCT；其失败日志和 raw 均保留。禁止把预留 ID 复用为修复格。
+3. 为每个运行 ID 保存资源逐点收据与终态摘要（可用 `scripts/ws11_resource_watch.py`，间隔 5 秒），核对后台 PID 与独立 `source`、`mix/output`、日志、raw 路径。构建超过 20 分钟或任一仿真超过 10 分钟，就停止启动后续格并诊断现有格，不覆盖其结果。出现他人作业、`load1m >20`、进程树 RSS >8 GiB、可用内存 <16 GiB、空闲盘 <100 GiB、单份文本日志 >50 MiB、资源收据缺失、隔离失效或运行失败时，停止新格并保留原始文件；对仍运行的异常进程先记录 PID 和状态，再安全终止该独立格。正常后台格静默运行，约半小时读一次精简状态；短格终态及时处理。
+4. 正例与拒错格均核对固定 SHA、输入快照和哈希、seed=1、参数、退出状态及原始日志。正例需独立检查 `WS24_ROUTE_SUMMARY targets=8 host_pairs=8`、四条 `WS24_FLOW_START`、真实入接口运行时断言没有触发，再运行逐流验收器。当前验收器只统计 CNP flag 生成，不能以零事件证明动态 CNP 接收路径；另建可触发的独立正确性格并验证发送端收到随 ACK/NACK 的 flag。修复或补充动态观测需新源码 SHA 和独立 ID。
+
+冻结的远程命令参数如下；它们尚未执行。先执行正例的 build/run/status/fetch/验收，再执行负例的 build/run/status/fetch 和拒错日志验收；`run` 的预期非零退出或 `FAILED` 不能误判为基础设施失败。
+
+```powershell
+python scripts/remote_experiment.py deploy
+python scripts/remote_experiment.py check
+python scripts/remote_experiment.py sync --repo-local .
+python scripts/remote_experiment.py build --repo-local . --source-sha 71982b18e508739748dc8e0198e4d520bec9450b --id 20260930-224500-ws24-minimal-v0
+python scripts/remote_experiment.py run 20260930-224500-ws24-minimal-v0 --lb fecmp --pfc 0 --irn 1 --simul-time 0.01 --netload 10 --bw 400 --buffer 9 --topo ws24_synthetic_2host_4nic_topology --flow-file config/ws24_synthetic_2host_4nic_flows.txt --ws24-multi-nic 1 --ws24-nic-file config/ws24_synthetic_2host_4nic_nics.txt --max-concurrent 1
+python scripts/remote_experiment.py build --repo-local . --source-sha 71982b18e508739748dc8e0198e4d520bec9450b --id 20260930-224600-ws24-crossrail-reject-v0
+python scripts/remote_experiment.py run 20260930-224600-ws24-crossrail-reject-v0 --lb fecmp --pfc 0 --irn 1 --simul-time 0.01 --netload 10 --bw 400 --buffer 9 --topo ws24_synthetic_2host_4nic_topology --flow-file config/ws24_synthetic_2host_crossrail_reject.txt --ws24-multi-nic 1 --ws24-nic-file config/ws24_synthetic_2host_4nic_nics.txt --max-concurrent 1
+```
 
 ## 必须同时满足的验收
 
