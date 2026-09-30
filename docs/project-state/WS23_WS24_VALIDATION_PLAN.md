@@ -6,7 +6,7 @@
 
 执行对话：`01a0f15f-58c7-7532-84bd-9acaaaa14525`。依据 [恢复契约](../research/ws23-irn-pfc-recovery-contract.md)。已过门槛：修复 SHA `12dea54d…` 的 optimized build 与 point-to-point 单测。
 
-- [ ] 冻结两个正确性格的协议、源码 SHA、输入内容哈希、seed、ID、资源与停止条件；完善真实无损 pause/resume 输入或注入方法及验收器，不能只测试 helper。
+- [x] 本地冻结两个正确性格的协议、源码 SHA、输入内容哈希、seed、预留 ID、资源与停止条件；已完善真实无损 pause/resume 输入/注入和验收器。见 [两格预飞行协议](../research/ws23-two-cell-preflight.md)。**该项仅代表本地准备，新的源码尚未远程构建或仿真。**
 - [ ] 固定旧 16×1 MiB 反例，验证 16/16、两类 8/8、唯一 QP、序号/字节守恒、实际超时恢复、源 PG 暂停期无恢复及延期事件有效。
 - [ ] 真实无损 pause/resume 格，验证暂停/恢复动态覆盖、全流完成、无数据/ACK 丢失、每 QP 发送 payload=size、无误重传和暂停期恢复。
 - [ ] 任一失败时保留 raw，定位和修复，重新固定源码并运行独立 ID；全部终态 raw 回传后实际切回 Sol High，核验两格与预设验收项。
