@@ -1790,7 +1790,8 @@ int main(int argc, char *argv[]) {
     std::vector<uint32_t> node_type(node_num, 0);
     for (uint32_t i = 0; i < switch_num; i++) {
         uint32_t sid;
-        if (!(topof >> sid) || sid >= node_num || node_type[sid])
+        if (!(topof >> sid) || sid >= node_num || node_type[sid] ||
+            (ws24_multi_nic && sid < Settings::host_num))
             NS_FATAL_ERROR("TOPOLOGY_INPUT_ERROR invalid or duplicate switch ID");
         node_type[sid] = 1;
     }
