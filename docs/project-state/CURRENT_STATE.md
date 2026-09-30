@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-09-30 WS-23/24 前置审查均未开放效果实验，下一步进入 WS-25 本地证据与论文范围收束，见[Handoff 41](../handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md)。WS-23 的 PFC=0 常规流量格没有触发 PFC，现有证据不能因果证明跨类阻塞；IRN×PFC 双开压力格 13/16 完成且源码仍有超时恢复抑制。WS-24 当前流量生成器只选 rail 0，缺可核验的跨 rail 作业/流映射。WS-21 的心跳异常正确性、联合长尾通信代价和反馈选路采用证据列入 WS-25 必要性清单；先依据论文范围判断是否值得补充，未授权仿真。
+
 2026-09-30 WS-22 本地重排机制审查 **NO-GO for remote simulation**：[Handoff 40](../handoffs/2026-09-30-40-ws22-reorder-budget-gate.md)。拓扑存在跨 ToR 上游多路径，但目的主机仅有一条最终出口；当前 ConWeaveVOQ 只处理受控相邻 phase 换路且没有字节预算，现有数据也不能逐 QP 还原乱序、NACK/超时/重传和接收占用。不能据此冻结重排预算实验。下一步 WS-23 只审查拥塞流隔离的既有前置证据；PFC=0 跨类阻塞尚未证明，旧 IRN×PFC 双开压力格 13/16 完成也不能当性能依据。WS-21 残余验证（单次丢失/异常 ACK/重启/真实断链、长尾 STATE+心跳联合成本、反馈实际采用/退回）列入 WS-25 逐项决定是否需要，不自动创建实验或与 WS-23 合并。
 
 2026-09-30 WS-20/WS-21 交接闭环，并启动 WS-22 条件审查。WS-20 只完成 WS-19 反例复核，原确认性矩阵仍 NO-GO；WS-21 已完成 STATE 更新间隔技术矩阵和局部 HELLO/ACK 技术 pilot，但缓存尚未参与选路，效果矩阵仍 NO-GO。WS-22 当前仅开展重排预算与粒度的本地机制、可观测性和代价审查；需先证明可用路径机会，并能逐 QP 核验乱序、NACK/超时、接收占用及双侧完成率，才可冻结任何仿真协议。详情见[WS-20 反例报告](../research/ws20-counterexample-gate-review.md)、[WS-21 Handoff 36](../handoffs/2026-09-30-36-ws21-compact-interval-matrix.md)、[WS-21 Handoff 38](../handoffs/2026-09-30-38-ws21-local-heartbeat-pilot.md)和[WS-22 启动交接 Handoff 39](../handoffs/2026-09-30-39-ws22-reorder-budget-kickoff.md)。
