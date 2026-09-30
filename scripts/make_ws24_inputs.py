@@ -86,10 +86,12 @@ def write_minimal():
     write_lf(topo, "\n".join(lines) + "\n")
     write_lf(nics, "8\n" + "".join("%d %d %s %d %d %d\n" % row for row in rows))
     minimal_flows = CONFIG / "ws24_synthetic_2host_4nic_flows.txt"
-    records = [(rail, 0, 0, 1, 0, 1, rail, 3, 8192, 2000000000, 2)
+    records = [(rail, 0, 0, 1, 0, 1, rail, rail, 3, 8192, 2000000000, 2)
                for rail in range(4)]
     write_lf(minimal_flows, "4\n" + "".join(" ".join(map(str, row)) + "\n" for row in records))
-    return topo, nics, minimal_flows
+    invalid = CONFIG / "ws24_synthetic_2host_crossrail_reject.txt"
+    write_lf(invalid, "1\n0 0 0 1 0 1 0 1 3 8192 2000000000 2\n")
+    return topo, nics, minimal_flows, invalid
 
 
 def logical_demands():
@@ -116,8 +118,8 @@ def write_arms():
             for flow_id, job, source, destination, size, demand_ns, tag in demands:
                 rail = 0 if rail_policy == "single" else flow_id % 4
                 records.append((flow_id, job, source, destination, hosts[source],
-                                hosts[destination], rail, 3, size, demand_ns, tag))
-            records.sort(key=lambda row: (row[9], row[0]))
+                                hosts[destination], rail, rail, 3, size, demand_ns, tag))
+            records.sort(key=lambda row: (row[10], row[0]))
             write_lf(path, "10\n" + "".join(" ".join(map(str, row)) + "\n" for row in records))
             files[placement_name + "_" + rail_policy] = path
     return files
@@ -125,7 +127,7 @@ def write_arms():
 
 def main():
     topology, nics = write_topology()
-    min_topo, min_nics, min_flows = write_minimal()
+    min_topo, min_nics, min_flows, invalid_flows = write_minimal()
     arms = write_arms()
     manifest = {
         "schema_version": 1,
@@ -133,7 +135,8 @@ def main():
         "reference_generator_commit": "470c58026ec3933eabb6667bf3124b6b9bd401be",
         "source_topology_sha256": SOURCE_SHA,
         "files_sha256": {path.name: sha(path) for path in
-                         (topology, nics, min_topo, min_nics, min_flows, *arms.values())},
+                         (topology, nics, min_topo, min_nics, min_flows,
+                          invalid_flows, *arms.values())},
         "logical_flows_per_arm": 10,
         "logical_bytes_per_arm": 2408448,
         "physical_deployment_verified": False,

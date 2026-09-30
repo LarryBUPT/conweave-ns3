@@ -6,13 +6,13 @@
 
 `maplerime/conweave-ns3@470c58026ec3933eabb6667bf3124b6b9bd401be` 的 `config/gen_moe_topology.py` 与导入 OS1 拓扑 3,840 链路逐边吻合。生成器把每 server 的四个 port node 接到四个 rail。这是合成生成规则，不是实际物理部署或 job placement 记录。`scripts/make_ws24_inputs.py` 将 1,280 个原端点按 `host=endpoint//4`、`rail=endpoint%4` 折叠为 320 个多 NIC Node；交换机 ID 减 960，四个 fabric 组件继续禁止经主机转发。两个主机的四 rail 极小拓扑单独生成。两套 NIC 文件逐行给出 `(host, rail, IP, peer switch, interface, legacy endpoint)`，不是依赖隐含邻接猜测。
 
-新模式通过 `--ws24-multi-nic 1 --ws24-nic-file config/<文件>` 显式启用，当前仅使用 `fecmp`。新流文件每行恰好 11 列：
+新模式通过 `--ws24-multi-nic 1 --ws24-nic-file config/<文件>` 显式启用，当前仅使用 `fecmp`。新流文件每行恰好 12 列：
 
 ```text
-flow_id job_id src_rank dst_rank src_host dst_host rail pg bytes demand_ns workload_tag
+flow_id job_id src_rank dst_rank src_host dst_host src_rail dst_rail pg bytes demand_ns workload_tag
 ```
 
-第一行是流数。输入按 `(demand_ns,flow_id)` 排序，同一 job/rank 的 host 放置在一次运行内固定。缺 NIC、跨 rail、重复 flow ID、无效 host/PG、非单调时刻均拒绝。旧五/六列输入继续进入旧解析分支；其真实回归尚待运行。
+第一行是流数。输入按 `(demand_ns,flow_id)` 排序，同一 job/rank 的 host 放置在一次运行内固定。缺 NIC、源/目的跨 rail、重复 flow ID、无效 host/PG、非单调时刻均拒绝。`config/ws24_synthetic_2host_crossrail_reject.txt` 明示不同源/目标 rail 以供动态拒错验证。旧五/六列输入继续进入旧解析分支；其真实回归尚待运行。
 
 四臂固定逻辑需求都是 10 条、2,408,448 B，固定/可变放置交换 rank 1 与 2，单 rail 使用 rail 0，多 rail 使用 flow ID 对四取模。热对 0→1 的最短 fabric 跳数随放置从 4 变 6。这个小输入只用于工程正确性和机制 pilot；没有真实 job 需求、GPU/CPU/PCIe 争用或 collective 语义，不支持实际训练性能主张。目标拓扑、NIC、流文件的内容哈希在 `config/ws24_synthetic_manifest.json`。
 

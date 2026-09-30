@@ -51,7 +51,7 @@ def verify(experiment_id, source_sha):
     demands = {}
     for line in trace_rows[1:]:
         row = tuple(map(int, line.split()))
-        assert len(row) == 11 and row[0] not in demands
+        assert len(row) == 12 and row[0] not in demands
         demands[row[0]] = row
     raw = base / 'raw' / str(meta['raw_directory'])
     receipts = list(raw.glob('*_out_ws24.txt'))
@@ -71,7 +71,7 @@ def verify(experiment_id, source_sha):
          sport, dport, tag, size, demand, release, finish,
          rx_unique, tx_payload, snd_una, snd_nxt) = row
         assert demands[flow_id] == (flow_id, job, srank, drank, src, dst,
-                                    rail, 3, size, demand, tag)
+                                    rail, rail, 3, size, demand, tag)
         assert nics[src, rail][0] == src_ip and nics[dst, rail][0] == dst_ip
         assert demand <= release <= finish
         assert rx_unique == snd_una == size and tx_payload >= size and snd_nxt >= size
@@ -104,7 +104,7 @@ def verify(experiment_id, source_sha):
             conservation = parse_event(line)
     assert conservation is not None
     assert int(conservation['input']) == int(conservation['finished']) == len(demands)
-    expected_bytes = sum(row[8] for row in demands.values())
+    expected_bytes = sum(row[9] for row in demands.values())
     assert int(conservation['input_bytes']) == int(conservation['finished_bytes']) == expected_bytes
     for name in event_names:
         assert set(events[name]) == set(demands), name

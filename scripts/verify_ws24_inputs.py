@@ -84,9 +84,11 @@ def flow_rows(name, nic_map):
     ranks = {}
     for row in rows[1:]:
         values = tuple(map(int, row.split()))
-        assert len(values) == 11
-        flow_id, job, srank, drank, src, dst, rail, pg, size, demand_ns, tag = values
-        assert flow_id not in seen_ids and (src, rail) in nic_map and (dst, rail) in nic_map
+        assert len(values) == 12
+        (flow_id, job, srank, drank, src, dst, src_rail, dst_rail,
+         pg, size, demand_ns, tag) = values
+        assert src_rail == dst_rail
+        assert flow_id not in seen_ids and (src, src_rail) in nic_map and (dst, dst_rail) in nic_map
         assert src != dst and srank != drank and 0 <= pg < 8 and size > 0
         assert demand_ns >= previous_ns
         for rank, host in ((srank, src), (drank, dst)):
@@ -114,6 +116,11 @@ def main():
                     min_adj, min_links, min_components)
     minimal = flow_rows('ws24_synthetic_2host_4nic_flows.txt', min_nics)
     assert len(minimal) == 4 and {row[6] for row in minimal} == {0, 1, 2, 3}
+    invalid = (CONFIG / 'ws24_synthetic_2host_crossrail_reject.txt').read_text(
+        encoding='ascii').splitlines()
+    assert invalid[0] == '1' and len(invalid) == 2
+    rejected = tuple(map(int, invalid[1].split()))
+    assert len(rejected) == 12 and rejected[6] != rejected[7]
     demands = None
     totals = {}
     for placement in ('fixed', 'variable'):
@@ -121,14 +128,14 @@ def main():
             name = placement + '_' + policy
             flows = flow_rows('ws24_synthetic_' + name + '_flows.txt', target_nics)
             assert len(flows) == 10
-            logical = {row[0]: (row[1], row[2], row[3], row[7], row[8], row[9], row[10])
+            logical = {row[0]: (row[1], row[2], row[3], row[8], row[9], row[10], row[11])
                        for row in flows}
             assert len(logical) == 10
             if demands is None:
                 demands = logical
             assert logical == demands
             assert {row[6] for row in flows} == ({0} if policy == 'single' else {0, 1, 2, 3})
-            totals[name] = sum(row[8] for row in flows)
+            totals[name] = sum(row[9] for row in flows)
     assert set(totals.values()) == {manifest['logical_bytes_per_arm']} == {2408448}
     print(json.dumps({'status': 'offline_input_verified', 'manifest_sha256': sha(manifest_path),
                       'target_nics': len(target_nics), 'minimal_nics': len(min_nics),

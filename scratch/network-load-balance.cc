@@ -332,13 +332,16 @@ void ReadFlowInput() {
         ++flow_line_number;
         std::istringstream fields(line);
         if (ws24_multi_nic) {
-            int64_t id, job, src_rank, dst_rank, src, dst, rail, pg, bytes, tag;
+            int64_t id, job, src_rank, dst_rank, src, dst, src_rail, dst_rail, pg, bytes, tag;
             uint64_t demand_ns;
             std::string extra;
-            if (!(fields >> id >> job >> src_rank >> dst_rank >> src >> dst >> rail >> pg >>
+            if (!(fields >> id >> job >> src_rank >> dst_rank >> src >> dst >>
+                  src_rail >> dst_rail >> pg >>
                   bytes >> demand_ns >> tag) || (fields >> extra) ||
                 id < 0 || job < 0 || src_rank < 0 || dst_rank < 0 ||
-                src < 0 || dst < 0 || rail < 0 || rail >= 4 || pg < 0 || pg > 7 ||
+                src < 0 || dst < 0 || src_rail < 0 || src_rail >= 4 ||
+                dst_rail < 0 || dst_rail >= 4 || src_rail != dst_rail ||
+                pg < 0 || pg > 7 ||
                 bytes <= 0 || bytes > std::numeric_limits<uint32_t>::max() || tag < 0 ||
                 id > std::numeric_limits<uint32_t>::max() ||
                 job > std::numeric_limits<uint32_t>::max() ||
@@ -350,8 +353,8 @@ void ReadFlowInput() {
                 demand_ns > uint64_t(std::numeric_limits<int64_t>::max()) ||
                 (flow_input.idx > 0 && demand_ns < ws24_previous_demand_ns) ||
                 !ws24_seen_flow_ids.insert(uint32_t(id)).second ||
-                !ws24_nics.count(std::make_pair(uint32_t(src), uint32_t(rail))) ||
-                !ws24_nics.count(std::make_pair(uint32_t(dst), uint32_t(rail))) ||
+                !ws24_nics.count(std::make_pair(uint32_t(src), uint32_t(src_rail))) ||
+                !ws24_nics.count(std::make_pair(uint32_t(dst), uint32_t(dst_rail))) ||
                 ws24_input_bytes > std::numeric_limits<uint64_t>::max() - uint64_t(bytes))
                 NS_FATAL_ERROR("WS24 invalid flow row " << flow_line_number);
             auto source_rank = std::make_pair(uint32_t(job), uint32_t(src_rank));
@@ -374,7 +377,7 @@ void ReadFlowInput() {
             flow_input.ws24_job = job;
             flow_input.ws24_src_rank = src_rank;
             flow_input.ws24_dst_rank = dst_rank;
-            flow_input.ws24_rail = rail;
+            flow_input.ws24_rail = src_rail;
             ws24_input_bytes += bytes;
             ws24_previous_demand_ns = demand_ns;
             ++input_tag_counts[uint32_t(tag)];
