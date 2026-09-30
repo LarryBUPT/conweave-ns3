@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-09-30 WS-24 本地 host/NIC/placement 可表示性审计已完成：[审计报告](../research/ws24-multirail-representability-audit.md)、[静态机器收据](../research/evidence/ws24-multirail-static-audit.json)、[Handoff 44](../handoffs/2026-09-30-44-ws24-multirail-representability.md)。固定 OS1 拓扑四个互不连通组件、每组件 320 个单归属 host 端点；底层 `RdmaHw` 虽有多 NIC 容器，当前 scratch 却为各端点创建独立 Node/RDMA Hw 并使用单主机地址，trace 没有 job/rank/rail/physical host 字段。合成 sidecar 的四 rail 映射通过静态拒错测试，但不证明物理主机身份、模拟器多 NIC 正确性或真实 placement。**WS-24 remote simulation NO-GO**，未运行新实验。WS-23 仍仅固定修复 SHA `12dea54d421243ddb98c83437b929944ab6d128c` optimized build 与 `devices-point-to-point` 单测通过；无修复版端到端仿真，恢复正确性待验证，隔离性能实验 NO-GO。
+
 2026-09-30 WS-23 本地修复阶段已完成 optimized build 与 `devices-point-to-point` 单测：[Handoff 43](../handoffs/2026-09-30-43-ws23-build-unit-ws24-topology-gate.md)。固定修复 SHA `12dea54d421243ddb98c83437b929944ab6d128c` 的隔离 build 成功；单测通过，但测试构建需在隔离副本临时修正仓库既有 `CommandLineTestCaseBase::Parse` const 问题，随后源码文件 SHA 恢复为原值。没有修复版仿真，故端到端传输正确性仍未验证；拥塞流隔离性能实验继续 NO-GO。WS-24 已进入本地多 rail 表示能力审计：OS1 拓扑静态图有四个互不连通组件，每个组件 320 个 rail 单归属端点；尚无同一物理服务器多 NIC/placement 的表示证据，暂不仿真。
 
 2026-09-30 前序 WS-23/24 门槛审查均未开放效果实验，当时建议下一步进入 WS-25 本地证据与论文范围收束，见[Handoff 41](../handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md)。该记录早于上方新启动的 WS-23 传输修复。WS-23 的 PFC=0 常规流量格没有触发 PFC，现有证据不能因果证明跨类阻塞；旧 IRN×PFC 双开压力格 13/16 完成且当时源码仍有超时恢复抑制。WS-24 当前流量生成器只选 rail 0，缺可核验的跨 rail 作业/流映射。WS-21 的心跳异常正确性、联合长尾通信代价和反馈选路采用证据列入 WS-25 必要性清单；先依据论文范围判断是否值得补充，未授权仿真。

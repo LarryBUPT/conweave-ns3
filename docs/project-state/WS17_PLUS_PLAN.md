@@ -2,6 +2,8 @@
 
 更新：2026-09-28。依据[WS-16 后机制方向](../research/post-ws16-mechanism-directions.md)与[WS-16 证据边界](../research/ws16-paper-evidence-and-reproduction.md)。本计划授权按门槛推进新的研究问题，**不改变 WS-10/11/12 各自正式 no-go，不复活 WS-14 GuardHash 调权或 WS-15 已关闭的确认性矩阵**。任务编号是阶段顺序；后续条件分支是否执行取决于前置证据。
 
+2026-09-30 WS-24 阶段更新：[本地审计](../research/ws24-multirail-representability-audit.md)与[Handoff 44](../handoffs/2026-09-30-44-ws24-multirail-representability.md)核实 OS1 四个断开组件、底层 NIC vector 与 scratch 单端点 Node/RDMA Hw 的差别；合成 host/NIC/job/rail sidecar 只通过静态结构测试。缺可信物理映射、placement/独立需求及模拟器多 NIC 端到端正确性，**WS-24 remote simulation NO-GO**。WS-23 仍只通过修复 SHA `12dea54d…` 的 optimized build 与 point-to-point 单测；没有修复版端到端仿真，性能实验 NO-GO。任何后续远程阶段都须先按本文件末尾及远程工作流实际切换 Luna High/终态 Sol High。
+
 阶段更新：下表 WS-20“独立需求确认性验证”是 WS-19 **通过**时的原条件计划，实际 WS-19 未通过。WS-20 随后仅按[反例审查 Handoff 21](../handoffs/2026-09-28-21-ws20-counterexample-review.md)完成本地失败分析；原确认性矩阵没有运行且继续 no-go。[条件性探索设计 v0](../research/ws20-next-exploratory-design-v0.md)不是下表所列确认性矩阵的改名或续跑。
 
 WS-21 阶段更新：已从 `cdb2d1b` 完成[下游反馈本地可行性审查](../research/ws21-downstream-feedback-feasibility.md)和[Handoff 22](../handoffs/2026-09-28-22-ws21-downstream-feedback.md)；仅技术设计闭环，效果矩阵 no-go。下表 WS-21 的对照尚未运行。WS-22、WS-23、WS-24 保持各自条件，WS-25 只整合真正执行的证据；编号不构成自动开跑顺序。
@@ -12,7 +14,7 @@ WS-21 设计复审更新：[静态预算和审查](../research/ws21-feedback-des
 
 2026-09-30 WS-22 复审：本地审查已 NO-GO 远程重排预算实验，见[Handoff 40](../handoffs/2026-09-30-40-ws22-reorder-budget-gate.md)。原因是接收端预算/逐 QP 代价不可观测，且已有方案的传输假设不能直接移植到本 RDMA/ConWeave 场景。下一步只启动 WS-23 前置门槛审计，不做流隔离效果仿真。WS-21 的未覆盖项不塞入 WS-23 实验：将单次丢失、ACK 身份/迟到/重复/跨端口、会话重启/真实 link down-up、长尾 STATE+HELLO 联合成本、反馈 adopted/fallback 与独立需求双侧收益条件写入 WS-25 的证据收束检查清单；WS-25 应逐项判断其是否为论文结论所必需，再决定要不要另开 WS-21 补充子任务。
 
-2026-09-30 WS-23/24 本地 gate audit：WS-13 的 PFC=0 常规格 320/320 完成且无 PFC pause，不能证明类别隔离所需的跨类阻塞因果链。IRN×PFC 压力双开格只有 13/16 完成；同 FCT SHA 的只观测探针记录出口准入丢包，当前 `HandleTimeout` 仍有抑制恢复的返回，故不运行 WS-23 效果格。WS-17 生成器的 HOSTS 池只取 rail 0，缺少跨 rail 输入/任务映射，WS-24 也关闭。下一步为 WS-25 本地证据与论文范围收束；WS-21 的已证成本/心跳边界保留，并把未覆盖故障、联合成本和真实选路采用证据列成“是否为论文主张必需”的审查项。见[Handoff 41](../handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md)。
+2026-09-30 WS-23/24 前序本地 gate audit（修复前状态）：WS-13 的 PFC=0 常规格 320/320 完成且无 PFC pause，不能证明类别隔离所需的跨类阻塞因果链。IRN×PFC 压力双开格只有 13/16 完成；同 FCT SHA 的只观测探针记录出口准入丢包，当时 `HandleTimeout` 仍有抑制恢复的返回，故不运行 WS-23 效果格。后续修复的 build/单测状态见本文件顶部，仍无修复版端到端仿真。WS-17 生成器的 HOSTS 池只取 rail 0，缺少跨 rail 输入/任务映射，WS-24 当时也关闭。下一步建议 WS-25 本地证据与论文范围收束；WS-21 的已证成本/心跳边界保留，并把未覆盖故障、联合成本和真实选路采用证据列成“是否为论文主张必需”的审查项。见[Handoff 41](../handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md)。
 
 
 
@@ -27,7 +29,7 @@ WS-21 设计复审更新：[静态预算和审查](../research/ws21-feedback-des
 | **WS-21 下游反馈替代机制** | 仅 WS-17 证实**可绕行上游热点**且反馈信号可实现时在 `feature/ws21-downstream-feedback` 比较本地队列、理想下游信息、真实延迟/成本和等信息消融。 | 零延迟 oracle 的收益不能直接算作可部署机制收益；反馈过期、状态成本或背景尾部转移可触发停止。 |
 | **WS-22 重排预算与粒度机制** | 已启动本地审查任务，目标是判断包流混合负载下接收重排预算/粒度能否形成可检验机制。先查成熟负载均衡/接收重排方案和本仓库 `ConWeaveVOQ`、RNIC 行为，再复核 WS-13/19/21 raw，明确按 QP 的乱序、NACK、超时/重传、接收占用与双侧完成率是否可观测；建立流、flowlet、小段及预算耗尽时退化的可证伪比较。8 KiB 短流和 8 MiB 背景流仅作为候选分层，需依据现有负载或文献核验，不预设其具有代表性。 | 本阶段仅做本地审查和协议草案。远程实验仍关闭，直到实际路径分流机会、接收端代价信号可测、候选机制不违反传输语义、双侧判据/独立输入及停止条件冻结。进入实验边界前须切至 Luna High；全部终态 raw 回传后切回 Sol High 分析。若路径收益缺乏证据或代价高于机会，给出 no-go，不以降低/放宽指标挽救方案。 |
 | **WS-23 拥塞流隔离** | 恢复契约与本地修复已完成；固定 SHA `12dea54d…` optimized build 和 `devices-point-to-point` suite 通过（单测构建隔离副本临时修正并恢复了无关 helper const 问题）。端到端修复正确性仍待仿真验证。 | 性能实验仍 no-go：PFC=0 跨类阻塞因果证据不足。若继续 WS-23，只运行新冻结的最小正确性格；旧 13/16 压力格不能作性能对照。 |
-| **WS-24 多 rail 与放置** | 转入本地 host/NIC/placement 可表示性审计。OS1 拓扑有四个互不连通 rail 组件，每组件 320 个单归属主机端点；目前没有同一物理服务器多 NIC 或作业映射证据。 | 仿真保持 NO-GO。先审计 simulator 主机模型、流输入和 placement 数据契约；如果不能表示共享 host 的 NIC 与作业，记录条件性 no-go，不把跨 rail 节点号当成 multi-rail 收益。 |
+| **WS-24 多 rail 与放置** | 本地审计与合成 sidecar 结构拒错测试完成：四个互不连通组件，当前 scratch 每端点一个 Node/RDMA Hw；已有 trace 无 job/rank/rail/physical host。见[审计报告](../research/ws24-multirail-representability-audit.md)。 | 远程仿真 NO-GO。先取得可信物理 host/NIC 映射、真实或明确来源的独立 job placement/需求，再实现并本地/端到端验证多 NIC、IP、QP 双向绑定与守恒；合成四端点分组不能作效果依据。 |
 | **WS-25 证据与论文收束** | 整合实际启动的分支 Handoff，复核 ID、SHA、raw 与论文表述；区分正式效果、pilot、诊断和未运行。必须单列 WS-21：反馈缓存未参与选路，STATE/心跳仅有代价与有限监测证据；逐项审查故障正确性、长尾联合控制开销、候选区分及 adopted/fallback 是否为论文主张所需。 | 新机制结论须与导师确认的论文范围一致；各历史 no-go 不改判。若 WS-21 补充证据是必要项，应另开有前置契约的子任务，不在收束中暗中追加实验。 |
 
 ## 每个分支必须执行的准则

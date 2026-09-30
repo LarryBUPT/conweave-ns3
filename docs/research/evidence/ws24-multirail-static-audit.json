@@ -1,0 +1,48 @@
+{
+  "component_sizes": [
+    464,
+    464,
+    464,
+    464
+  ],
+  "components": 4,
+  "cross_rail_network_path": false,
+  "evidence_level": "local static structure and synthetic contract fixture only",
+  "hosts_per_component": [
+    320,
+    320,
+    320,
+    320
+  ],
+  "links": 3840,
+  "nodes": 1856,
+  "physical_identity_verified": false,
+  "placement_source_verified": false,
+  "remote_simulation_go": false,
+  "simulator_multinic_verified": false,
+  "switches": 576,
+  "synthetic_physical_hosts": 320,
+  "synthetic_resolved_flows": [
+    [
+      0,
+      16,
+      0
+    ],
+    [
+      1,
+      17,
+      1
+    ],
+    [
+      2,
+      18,
+      2
+    ],
+    [
+      3,
+      19,
+      3
+    ]
+  ],
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}

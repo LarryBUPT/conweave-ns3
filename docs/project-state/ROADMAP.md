@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-09-30 WS-24 本地可表示性审计收束：[报告](../research/ws24-multirail-representability-audit.md)、[静态收据](../research/evidence/ws24-multirail-static-audit.json)、[Handoff 44](../handoffs/2026-09-30-44-ws24-multirail-representability.md)。四个 rail 组件可静态识别；合成 `physical_host → 四端点`、job/rank→host、流→rail 契约的正反结构检查通过，但实际源码仍把四端点建成四个独立 Node/RDMA Hw，且现有 trace 无物理/作业身份。**保持远程仿真 NO-GO**；须先取得可信主机/NIC 与独立需求来源，再实现并端到端验证多 NIC/IP/双向 QP 与放置。WS-23 仍只有修复 SHA `12dea54d…` 的 build/单测，没有修复版端到端仿真；性能实验也 NO-GO。
+
 2026-09-30 WS-23 本地修复门槛已完成：[恢复契约](../research/ws23-irn-pfc-recovery-contract.md)固定修复 SHA `12dea54d421243ddb98c83437b929944ab6d128c`；隔离 optimized build 成功，`devices-point-to-point` 单测 PASS。完整测试构建遇到既有 core 测试 helper const 缺陷，只在隔离副本临时修正并在测试后恢复、校验源文件 SHA；见[Handoff 43](../handoffs/2026-09-30-43-ws23-build-unit-ws24-topology-gate.md)。尚无修复版端到端仿真，故 IRN×PFC 恢复正确性仍待固定最小正确性格验证；PFC=0 跨类阻塞未证，隔离性能实验继续 NO-GO。
 
 2026-09-30 WS-24 开始本地多 rail 输入/放置可表示性审计。固定 OS1 拓扑 `config/topo_1280_400G_400G_OS1.txt`（SHA-256 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`）静态遍历得到四个互不连通组件，每个 464 个节点、320 个主机端点；端点度为 1，四组分别对应 `host_id mod 4`。这确认四个 rail 分区，但不能证明各端点是同一物理服务器的四个 NIC，也没有跨 rail 端到端路径。下一步核验 host/NIC/作业映射能否由当前 simulator 表示并设计可审计输入契约；满足前置前不仿真。
@@ -61,4 +63,4 @@
 
 2026-09-30 WS-22 本地审查结论及后续安排：[Handoff 40](../handoffs/2026-09-30-40-ws22-reorder-budget-gate.md)记录 WS-22 因逐 QP 接收重排成本不可观测且现有机制假设不适配，NO-GO 远程实验。当前推进 WS-23 的本地 gate audit：核对 PFC=0 跨类阻塞证据和旧 IRN×PFC 不完整格，不运行效果矩阵。WS-21 剩余计划正式列入 WS-25：复核单次丢失及异常心跳回复、重启/真实链路 down-up、长尾 STATE+心跳联合成本，以及反馈候选是否可区分并实际 adopted/fallback；WS-25 先判断这些问题是否为论文结论必要条件，再决定是否建立独立补充任务。WS-21 的效果 no-go 和已有 WS-10/11/12/19/20 no-go 保持不变。
 
-2026-09-30 WS-23/24 门槛复核后转 WS-25：WS-23 当前无 PFC=0 跨类阻塞因果证据；旧 IRN×PFC 压力双开格为 13/16，出口准入丢包与超时抑制已定位，源码未修复，故不做隔离效果仿真。WS-24 现有输入仅 rail 0，无可核验跨 rail 放置；保持 conditional。当前后续工作为 WS-25 本地证据与论文范围收束，逐项判断 WS-21 尚未覆盖的单次丢失/异常 ACK/重启/真实断链、长尾 STATE+心跳联合成本、反馈候选 adopted/fallback 是否为论文主张必要；必要时再立独立任务，不在收束里默认启动仿真。细节见[Handoff 41](../handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md)。
+2026-09-30 WS-23/24 前序门槛复核（修复前状态）：WS-23 当时无 PFC=0 跨类阻塞因果证据；旧 IRN×PFC 压力双开格为 13/16，出口准入丢包与超时抑制已定位，当时源码未修复，故不做隔离效果仿真。后续固定修复 SHA 的 build/单测状态见本文件顶部，仍无修复版端到端仿真。WS-24 当时现有输入仅 rail 0，无可核验跨 rail 放置；保持 conditional。后续工作建议 WS-25 本地证据与论文范围收束，逐项判断 WS-21 尚未覆盖的单次丢失/异常 ACK/重启/真实断链、长尾 STATE+心跳联合成本、反馈候选 adopted/fallback 是否为论文主张必要；必要时再立独立任务，不在收束里默认启动仿真。细节见[Handoff 41](../handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md)。
