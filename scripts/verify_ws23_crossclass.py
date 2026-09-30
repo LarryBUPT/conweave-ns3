@@ -83,6 +83,7 @@ def load_cell(experiment_id, source_sha, trace_sha, flow_file, diagnostic, flows
     inflight = []
     background_drops = 0
     background_timeouts = 0
+    other_rejects = 0
     with open(log_path, encoding='utf-8', errors='replace') as source:
         for line in source:
             line = line.rstrip('\r\n')
@@ -101,14 +102,32 @@ def load_cell(experiment_id, source_sha, trace_sha, flow_file, diagnostic, flows
                 inflight.append(int(match.group(1)))
             background_drops += line.startswith('FACTORIAL_ADMISSION_DROP ') and ' src=0 ' in line
             background_timeouts += line.startswith('WS08_TX_TIMEOUT ') and ' flow_id=0 ' in line
+            other_rejects += line.startswith(('FACTORIAL_QUEUE_REJECT ',
+                                              'WARNING - Drop occurs in SendToDevContinue()'))
     if diagnostic and (inflight != [0] or not hops):
         raise ValueError('Diagnostic did not produce complete paired hop receipts')
     if not diagnostic and (hops or inflight):
         raise ValueError('Disabled diagnostic produced cross-class hop receipts')
-    if background_drops or background_timeouts:
-        raise ValueError('Background delay is confounded by an admission drop or timeout')
+    if background_drops or background_timeouts or other_rejects:
+        raise ValueError('Background delay is confounded by a drop, queue reject or timeout')
     return {'id': experiment_id, 'summary': summary, 'hops': hops,
-            'background_drops': background_drops, 'background_timeouts': background_timeouts}
+            'background_drops': background_drops, 'background_timeouts': background_timeouts,
+            'other_rejects': other_rejects}
+
+
+def verify_pair(source_sha, ids, scenario):
+    if scenario == 'background':
+        trace_sha, trace_file, flows = BACKGROUND_SHA256, 'ws23_crossclass_bg_1x8MiB.txt', 1
+    elif scenario == 'mixed':
+        trace_sha, trace_file, flows = MIXED_SHA256, 'ws23_crossclass_bg_plus_3x4MiB.txt', 4
+    else:
+        raise ValueError('Unknown pair scenario')
+    off = load_cell(ids[0], source_sha, trace_sha, trace_file, False, flows)
+    on = load_cell(ids[1], source_sha, trace_sha, trace_file, True, flows)
+    if off['summary']['fct_sha256'] != on['summary']['fct_sha256']:
+        raise ValueError('Diagnostic changed FCT bytes on an identical input')
+    return {'scenario': scenario, 'ids': ids, 'source_sha': source_sha,
+            'trace_sha256': trace_sha, 'fct_sha256': on['summary']['fct_sha256']}
 
 
 def background_source_hop(cell):
@@ -167,14 +186,19 @@ def verify(source_sha, ids):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-sha', required=True)
-    parser.add_argument('base_off')
-    parser.add_argument('base_on')
-    parser.add_argument('mixed_off')
-    parser.add_argument('mixed_on')
+    parser.add_argument('--pair', choices=('background', 'mixed'),
+                        help='check one diagnostic off/on pair before continuing')
+    parser.add_argument('ids', nargs='+')
     args = parser.parse_args()
-    print(json.dumps(verify(args.source_sha,
-                            [args.base_off, args.base_on, args.mixed_off, args.mixed_on]),
-                     indent=2, sort_keys=True))
+    if args.pair:
+        if len(args.ids) != 2:
+            parser.error('--pair requires two IDs: diagnostic off, then on')
+        result = verify_pair(args.source_sha, args.ids, args.pair)
+    else:
+        if len(args.ids) != 4:
+            parser.error('full causal verification requires four IDs in protocol order')
+        result = verify(args.source_sha, args.ids)
+    print(json.dumps(result, indent=2, sort_keys=True))
 
 
 if __name__ == '__main__':
