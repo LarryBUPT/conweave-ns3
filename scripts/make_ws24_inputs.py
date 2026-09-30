@@ -125,10 +125,24 @@ def write_arms():
     return files
 
 
+def write_cnp_incast():
+    # Deliberately synthetic same-rail incast. Four independent source hosts
+    # send to one destination NIC so the switch egress can cross ECN thresholds.
+    path = CONFIG / "ws24_synthetic_cnp_incast_flows.txt"
+    sources = (0, 8, 64, 72)
+    destination = 1
+    records = [(flow_id, 0, flow_id, 4, source, destination, 0, 0, 3,
+                1 << 20, 2000000000, 2)
+               for flow_id, source in enumerate(sources)]
+    write_lf(path, "4\n" + "".join(" ".join(map(str, row)) + "\n" for row in records))
+    return path
+
+
 def main():
     topology, nics = write_topology()
     min_topo, min_nics, min_flows, invalid_flows = write_minimal()
     arms = write_arms()
+    cnp_incast = write_cnp_incast()
     manifest = {
         "schema_version": 1,
         "provenance": "synthetic fixture, not observed deployment or job trace",
@@ -136,7 +150,7 @@ def main():
         "source_topology_sha256": SOURCE_SHA,
         "files_sha256": {path.name: sha(path) for path in
                          (topology, nics, min_topo, min_nics, min_flows,
-                          invalid_flows, *arms.values())},
+                          invalid_flows, *arms.values(), cnp_incast)},
         "logical_flows_per_arm": 10,
         "logical_bytes_per_arm": 2408448,
         "physical_deployment_verified": False,

@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-10-01 WS-24 v2 最小多 NIC 验收及后续协议冻结：仿真源码固定 SHA `824e3fa0c4c06dd9894474a81e729931d59a3108`。正例 `20261001-100000-ws24-minimal-v2` 为 `SUCCEEDED`，4/4 flow、32,768 B 守恒，运行时 max RTT/IRN BDP 为 440 ns/22,000 B；异 rail 负例 `20261001-100100-ws24-crossrail-reject-v2` 在 flow parser 按预期拒绝，无 FLOW_START/FCT。两份终态 raw 与资源收据已回传，逐流验收器更正提交为 `bd05747b52451923726939797f5ad24c245bf4df`。只读复核于 `2026-09-30T19:16:43Z` 显示远端 0 个登录用户、无 waf/GCC/ns-3/run.py 实验进程，load 0.02、可用内存约 122 GiB、工作区空闲盘约 5.6 TiB；共享运行入口当前释放，此后停止远程操作。WS-24 仍 ACTIVE，最小合成 pilot 不代表真实映射、动态 CNP 或性能收益。旧格式 8 格、320-host correctness、动态 CNP 和 4 臂协议及本地 incast fixture 已冻结于[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)，manifest SHA `55997be83ecf7e43accc2f6bc546b97185943657cdc64da0d5c89ef91a52b127`。禁止自动部署 worker、同步代码或启动仿真；WS-23 优先完成五格批次，释放入口后再协调。
+
 2026-09-30 WS-23 接续预飞行：`feature/ws23-validation` 的新增探针与双场景验收源码固定在 `70bf890d1ceba58c5ebd26b17e492295b34c99ca`；[两格协议](../research/ws23-two-cell-preflight.md)冻结了真实源端 pause/resume、旧 16×1 MiB 压力反例、输入/拓扑哈希、seed、预留 ID 与资源停止条件。Python 静态检查、解析器构造记录及旧结果拒收已通过。**此 SHA 尚未远端构建、单测或仿真，两格无新 raw；WS-23 继续 ACTIVE**。下一步在实际 Luna High 监督阶段做隔离构建/单测与两格正确性仿真，终态 raw 回传后实际切 Sol High 核验；跨类阻塞的机制与因果前提另见协议，隔离效果矩阵仍关闭。
 
 2026-09-30 闭环纠错：此前 Handoff 45 将阶段交接当作任务闭环并归档，用户指出必做验证未完成。WS-23/24 恢复 ACTIVE，详见 [验证执行清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 优先补齐丢包恢复及无损 pause/resume 端到端验证；WS-24 继续映射来源审查、明示合成模型的多 NIC 实现与验证，再按原任务目标完成必要效果对照。WS-25 必须保留并跟踪这些执行项，不能以论文范围判断替代验证。性能 NO-GO 不取消正确性工作。

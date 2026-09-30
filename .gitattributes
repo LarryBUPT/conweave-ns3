@@ -5,6 +5,7 @@ config/gen_moe_flow_1280.py -text whitespace=-blank-at-eol
 config/ws07_pilot_*.txt -text whitespace=-blank-at-eol
 config/ws07_fixed_*.txt -text whitespace=-blank-at-eol
 config/ws11_s*_bg*.txt -text whitespace=-blank-at-eol
+config/ws24_synthetic_* -text whitespace=-blank-at-eol
 # WS-17 manifest is itself SHA-256 checked; keep the generated LF bytes.
 docs/research/evidence/ws17-demand-manifest.json -text
 scripts/make_ws17_demand.py text eol=lf

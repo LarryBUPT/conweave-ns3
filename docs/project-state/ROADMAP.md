@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-01 WS-24 v2 最小多 NIC 正例/拒错负例已按固定仿真 SHA `824e3fa0c4c06dd9894474a81e729931d59a3108` 完成，终态 raw 逐流核验通过；后续本地冻结协议与 incast fixture 见[预飞行收据](../research/ws24-minimal-multinic-preflight.md)、[后续协议](../research/ws24-followup-validation-protocols.md)、[Handoff 48](../handoffs/2026-10-01-48-ws24-minimal-v2-validation.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)。远端于 `2026-09-30T19:16:43Z` 只读核验为 0 登录用户、无 build/sim 进程、资源充足；共享入口当前释放，此后停止远程操作。WS-24 不闭环。协议已冻结 8 个旧格式四 baseline 格、1 个 320-host correctness、1 个动态 CNP correctness 和 4 个 rail×placement 格；不部署 worker、不同步代码、不启动仿真。待 WS-23 五格批次完成并释放入口后再协调执行。
+
 2026-09-30 闭环纠错：此前 Handoff 45 将阶段交接当作任务闭环并归档，用户指出必做验证未完成。WS-23/24 恢复 ACTIVE，详见 [验证执行清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 优先补齐丢包恢复及无损 pause/resume 端到端验证；WS-24 继续映射来源审查、明示合成模型的多 NIC 实现与验证，再按原任务目标完成必要效果对照。WS-25 必须保留并跟踪这些执行项，不能以论文范围判断替代验证。性能 NO-GO 不取消正确性工作。
 
 2026-09-30 WS-23/WS-24 阶段闭环并交接 WS-25，见 [Handoff 45](../handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md)。WS-23 只完成修复、optimized build 与单测，端到端恢复仍待验证；WS-24 完成本地表示能力审计，多 rail 仿真 NO-GO。用户要求归档两个对话。WS-25 可据此开展本地证据与论文范围收束：先判断传输修复的端到端验证、多 NIC 模型及真实映射是否为论文主张必需，再决定另立补充任务；不默认追加仿真。

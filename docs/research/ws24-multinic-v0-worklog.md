@@ -43,3 +43,18 @@ flow_id job_id src_rank dst_rank src_host dst_host src_rail dst_rail pg bytes de
 上段是 v1 启动前的历史检查点。`20261001-011500-ws24-minimal-v1` 在 `1d52cbe765d1077ccd8c3afe994b2fb491e4735a` 的 optimized 构建成功，仿真状态为 `FAILED`；raw ID `260095259`。原始 `config.log` SHA-256 `46d95ed956fe924e5f87084043bcca319c1bf90f500c22a7a7910e1cde50c3ea` 显示链路安装阶段 `1000ns` 断言遇到合成最小拓扑的 `100ns` 并 SIGIOT。`build.log` SHA-256 `04ac2734d532832d242e8d1d0bdf43e98135333302acaaec21ba327f3fc4ccda`；资源样本/摘要 SHA-256 分别为 `a2a5acf49f0c67e25fa9100d60e312bb55430dd5bfbf00fbcfdffa13df7e5c5f`、`a54b317fc65fb02ba32b77e54dd0183eaaf27ff63fe2b3c1cc90cafa44913a25`，RSS 峰值 795.33 MiB。没有 FCT 与 WS-24 完成收据。v1 异 rail 格未启动，v1 正例 ID 不复用。
 
 v2 源码提交 `824e3fa0c4c06dd9894474a81e729931d59a3108` 把 WS-24 时延契约按拓扑层级写入链路安装：最小 host–switch `100ns`；目标 host–ToR 与 ToR–aggregation `10ns`，aggregation–core `100ns`；均限定 `400Gbps`、零链路错误率，并拒绝坏端点、重复边和非法层级。旧四 baseline 的 `1000ns` 检查保持；导入 OS1 旧混合时延路径保持。IRN 的 BDP 从已安装路径最大值设置，避免最小格误用目标格常数。离线逐图推导最小格 `440ns/22000B`、目标格 `600ns/30000B`，输入 manifest SHA-256 仍为 `816da98d6cefa5e90ab3476cab0c924717cc1f732fc1a6ea67b9c0b0797d84c1`；三个时延突变负例在离线验收中被拒绝。Python 语法和 `git diff --check` 通过；本机没有 C++ 编译器，v2 尚未远程构建或运行。v2 正例与异 rail 负例的新 ID、参数、资源门槛和完整未完成项见[预飞行协议](ws24-minimal-multinic-preflight.md)。下一次远程入口由 Integration 协调，须实际切 Luna High 后才启动；当前不启动远程构建或仿真。
+
+## 2026-10-01 v2 最小多 NIC 终态
+
+按 Integration 明确授权与入口协调，固定仿真源码 SHA `824e3fa0c4c06dd9894474a81e729931d59a3108` 执行两格。正例 `20261001-100000-ws24-minimal-v2` / raw `559237678` 的 optimized build 用时 5m58s，状态 `SUCCEEDED`；运行日志报告 targets=8、host_pairs=8、max RTT 440 ns、max BDP 和 IRN BDP 均为 22,000 B。四个 rail 各完成一条 8,192 B 流，WS24 identity 与 FCT 各 4 行，unique RX、snd_una、TX payload 每流均为 8,192 B；输入/完成总量各 32,768 B。资源 99 点，进程树 RSS 峰值 661.840 MiB，可用内存最低 122.387 GiB，空闲盘最低 5661.411 GiB。
+
+负例 `20261001-100100-ws24-crossrail-reject-v2` / raw `208672100` 的 optimized build 用时 5m50s；运行状态 `FAILED` 是预期，raw 在输入阶段报 `WS24 invalid flow row 2`，无 `WS24_FLOW_START`、FCT 为 0 B。资源 75 点，进程树 RSS 峰值 703.465 MiB，可用内存最低 122.350 GiB，空闲盘最低 5660.381 GiB。两格都用 5 秒观察器保存了完整终态摘要，并已 fetch。本地验收器最初因读取 launcher 日志失败；`bd05747b52451923726939797f5ad24c245bf4df` 改为读取 raw ns-3 日志，匹配本仓库截短的 IPv4 event 打印并检查运行时 RTT/BDP。之后正例逐流验证输出 `feedback_identity_verified=true`、`unique_bytes=32768`。CNP flag 为 0，动态接收路径仍待专门可触发格。共享远程入口确认释放；WS-24 保持 ACTIVE，下一批仅本地冻结旧 baseline、320-host、动态 CNP 和四臂对照，待 WS-23 五格批次完成后再协调，禁止自动部署/启动。见[预飞行结果](ws24-minimal-multinic-preflight.md)、[必做验证清单](../project-state/WS23_WS24_VALIDATION_PLAN.md)与[Handoff 48](../handoffs/2026-10-01-48-ws24-minimal-v2-validation.md)。
+
+
+## 2026-10-01 后续验证协议冻结
+
+独立 checkout 内新增 [WS-24 后续本地冻结协议](ws24-followup-validation-protocols.md)：冻结旧五列/六列 × 四 baseline 的 8 格输入契约和 OS2 1000 ns 断言；冻结 320-host/1280 NIC 目标拓扑 correctness；设计四源同 rail、同一目标 NIC 的 4 MiB 合成 incast 用于可触发 CNP 验证；冻结固定需求/总字节下 rail × placement 的 4 臂 pilot。所有新实验 ID 仅本地预留，必须等 WS-23 五格批次完成并释放共享入口后重新检查，不是仿真授权。
+
+CNP 输入由 make_ws24_inputs.py 生成，SHA-256 fd621d8ea2db69549874193fc79c1ae9d7159aef3c45105401fdd128b5a00ce7。更新 manifest 含 11 个输入资产，SHA-256 55997be83ecf7e43accc2f6bc546b97185943657cdc64da0d5c89ef91a52b127。make_ws24_inputs.py 与 verify_ws24_inputs.py 本地运行通过：四个对照臂各 10 流/2,408,448 B；目标图离线 RTT/BDP 为 600 ns/30,000 B；incast 输入 4 流/4,194,304 B 且源/目标 rail 连通。目标运行、CNP 触发、所有回归与四臂均未执行。
+
+最终远端只读核验 2026-09-30T19:16:43Z：0 个用户登录、无匹配的 Waf/GCC/ns-3/run.py 进程，load 约 0.02，MemAvailable 约 122 GiB，工作区可用盘约 5.6 TiB。旧 v2 两个 ID 均为终态，入口释放；本次查询后未再触碰远端。详见 [Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)。

@@ -190,11 +190,26 @@ def main():
             assert {row[6] for row in flows} == ({0} if policy == 'single' else {0, 1, 2, 3})
             totals[name] = sum(row[9] for row in flows)
     assert set(totals.values()) == {manifest['logical_bytes_per_arm']} == {2408448}
+    cnp_incast = flow_rows('ws24_synthetic_cnp_incast_flows.txt', target_nics)
+    assert len(cnp_incast) == 4
+    assert {row[4] for row in cnp_incast} == {0, 8, 64, 72}
+    assert {row[5] for row in cnp_incast} == {1}
+    assert {row[6:8] for row in cnp_incast} == {(0, 0)}
+    assert {row[8] for row in cnp_incast} == {3}
+    assert {row[9] for row in cnp_incast} == {1 << 20}
+    assert {row[10] for row in cnp_incast} == {2000000000}
+    assert {row[11] for row in cnp_incast} == {2}
+    assert len({row[2] for row in cnp_incast}) == 4 and {row[3] for row in cnp_incast} == {4}
+    assert all(target_components[target_nics[(row[4], 0)][1]] ==
+               target_components[target_nics[(row[5], 0)][1]] for row in cnp_incast)
+    assert sum(row[9] for row in cnp_incast) == 4194304
     print(json.dumps({'status': 'offline_input_verified', 'manifest_sha256': sha(manifest_path),
                       'target_nics': len(target_nics), 'minimal_nics': len(min_nics),
                       'minimal_flows': len(minimal), 'arm_bytes': totals,
                       'minimal_max_rtt_ns': minimal_rtt, 'minimal_max_bdp_bytes': minimal_bdp,
-                      'target_max_rtt_ns': target_rtt, 'target_max_bdp_bytes': target_bdp},
+                      'target_max_rtt_ns': target_rtt, 'target_max_bdp_bytes': target_bdp,
+                      'cnp_incast_flows': len(cnp_incast),
+                      'cnp_incast_bytes': sum(row[9] for row in cnp_incast)},
                      sort_keys=True))
 
 

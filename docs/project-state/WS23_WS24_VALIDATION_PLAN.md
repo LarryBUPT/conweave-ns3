@@ -15,18 +15,25 @@
 
 ## WS-24：补齐模型、输入与多网卡验证
 
-执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据 [表示能力审计](../research/ws24-multirail-representability-audit.md)。已过门槛：四分量拓扑与输入结构正反例审计；未实现 simulator 多 NIC。
+执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据 [表示能力审计](../research/ws24-multirail-representability-audit.md) 与 [v2 最小格预飞行/结果](../research/ws24-minimal-multinic-preflight.md)。**状态仍 ACTIVE。**仿真源码固定 `824e3fa0c4c06dd9894474a81e729931d59a3108`：正例 `20261001-100000-ws24-minimal-v2` 成功，跨 rail 负例 `20261001-100100-ws24-crossrail-reject-v2` 在解析阶段按预期失败。证据只覆盖两主机四 rail 合成最小正确性，不构成目标拓扑、旧 baseline 回归、动态 CNP 或效果对照的完成证据。
 
-- [ ] 追查导入拓扑/生成器来源，明确真实 host/NIC/job 映射可获得程度；不能从相邻节点号推断物理共享。
-- [ ] 建立明确标注为合成的、可复现的受控 host/NIC/rail/job/rank/流映射，用于工程正确性与受控机制研究；真实部署主张另需真实来源。合成建模必须说明假设、资源共享和适用范围，参考已有成熟模型，不伪称真实资产。
-- [ ] 实现并验证一个物理主机模型对应多 NIC、每 NIC 独立 IP、显式双向 QP/ACK/CNP 绑定及组件内可达；保留旧格式和 baseline 回归。先最小拓扑，后目标拓扑。
-- [ ] 本地结构及构建/单测通过后，冻结最小多 NIC 端到端正确性格，核对 host/NIC/job/flow 身份、数目/字节/完成守恒和返回路径；失败则修复并独立 ID 重验。
-- [ ] 按原多 rail/placement 目标制定并执行必要受控对照：固定逻辑需求与总字节，对照单/多 rail 与固定/可变放置；先小样再决定正式验证。性能门槛未满足时继续处理前置缺口，禁止以静态审计代替机制验证。任何放弃或范围缩减须用户明确决定。
-- [ ] 终态 raw、最终源码及效果结论一致，完成全部预设验收项后再交接闭环。
+- [x] 追查导入拓扑/生成器来源，明确真实 host/NIC/job 映射可获得程度；不能从相邻节点号推断物理共享。[审计报告](../research/ws24-multirail-representability-audit.md)与[工作记录](../research/ws24-multinic-v0-worklog.md)确认导入图可追至合成生成器，但无真实服务器多 NIC 或 job placement 证据。
+- [x] 建立明确标注为合成、可复现的受控 host/NIC/rail/job/rank/流映射，用于工程正确性与受控机制研究；记录资源共享假设与适用边界。真实部署主张仍须真实来源。
+- [x] 实现一台合成 host Node 对应四 NIC/独立 IP，并完成两主机四 rail 的同 rail 双向 QP/ACK、输入身份及连续字节守恒；最小拓扑 raw 核验通过。具体结果为 4/4 流、32,768 B、max RTT 440 ns、derived IRN BDP 22,000 B。**仍未覆盖：动态 CNP flag 接收分支、320-host 目标拓扑运行、旧格式四 baseline 回归。**
+- [x] 冻结并执行最小正例和跨 rail 拒错负例，核对 host/NIC/rank/flow、唯一接收/确认、FCT 对应与资源收据；正例逐流验收通过，负例在 `WS24 invalid flow row 2` 拒绝且无 FLOW_START/FCT。见两实验 ID 与 SHA 固定的[预飞行结果](../research/ws24-minimal-multinic-preflight.md)。
+- [x] 本地冻结旧五列/六列四 baseline 回归契约：固定 OS2 输入哈希、四 LB_MODE、旧 1000 ns 时延及逐格输出验收。见[后续冻结协议 A](../research/ws24-followup-validation-protocols.md)。
+- [ ] 在固定 SHA 上执行上述 8 格；取回历史 raw 完整 FCT 哈希作为逐字节回归锚点，旧格式输入与动态输出均按契约逐格验收。
+- [x] 本地审查并冻结 320-host 目标拓扑正确性格：1280 NIC、四 rail、运行时 RTT/BDP 600 ns/30,000 B 和逐流身份守恒。见[后续冻结协议 B](../research/ws24-followup-validation-protocols.md)。
+- [ ] 待 WS-23 五格批次完成并释放共享入口后协调执行目标拓扑 correctness；真实运行日志须实证 600/30,000，不能以离线值代替。
+- [x] 本地设计并冻结可触发的动态 CNP 正确性格和最小接收/发送端状态观测要求。新增四源同 rail incast 合成输入；见[后续冻结协议 C](../research/ws24-followup-validation-protocols.md)。
+- [ ] 加入受限 CNP 生成/接收/DCQCN rate-decrease 观测后，以新固定 SHA/独立 ID 执行；验证 ACK/NACK flag 返回指定源 NIC、接收端处理和发送端状态变化。无事件不得宣称 CNP 已验证。
+- [x] 本地冻结原多 rail/placement 目标的四臂协议：相同逻辑流与总字节，对照单/多 rail 与固定/可变放置；manifest 逐文件哈希及逐臂验收见[后续冻结协议 D](../research/ws24-followup-validation-protocols.md)。
+- [ ] 先通过目标拓扑 correctness，再由 WS-23 释放入口后协调执行四臂 synthetic pilot。禁止以静态审计替代机制验证；任何范围缩减仍需用户明确决定。
+- [ ] 终态 raw、最终仿真源码及效果结论一致，完成全部预设验收项后再交接闭环。最小格通过不关闭本项。
 
 ## 执行协调与 WS-25
 
-WS-23 先占用共享个人 fork 进行实现/冻结；WS-24 同期只做只读来源调查与准备，避免两个对话切换同一工作树或修改同一文件。WS-23 释放共享工作树后，由监督对话恢复 WS-24 的实现执行；需要并行修改时先配置独立 checkout 并明确各自路径。
+WS-24 本批已使用独立 checkout `workspace/ws24-multinic-validation` 完成两格 v2 实验，并在本地冻结后续契约、CNP incast 输入与预留 ID，见[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)。最终共同仿真 SHA 仍待 CNP 观测器实现并本地核验后固定。下一批不得自动部署 worker、sync 或启动 WS-24 实验；待 WS-23 五格批次完成并释放入口后，再由 Integration 协调，不同时切换共享 worker。
 
 每次仿真前先冻结协议与收据并停在模型切换边界，监督对话实际切至 Luna High，再执行后台静默实验，约半小时精简监督；终态 raw 回传后实际切回 Sol High 分析和必要修正。不得用文字宣称模型切换。
 
