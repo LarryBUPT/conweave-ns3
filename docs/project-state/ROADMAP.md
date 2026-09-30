@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-09-30 WS-23 由前置门槛审查转为本地 IRN×PFC 传输正确性修复：[恢复契约](../research/ws23-irn-pfc-recovery-contract.md)记录旧 13/16 压力反例的原始复核、源码里的配置位/真实暂停混淆、局部暂停延期与 resume 后完整 RTO 的可证伪规则。新分支已写补丁、策略单测和压力格校验器，但本机没有 ns-3 C++ 构建环境，尚无编译或新仿真验证。下一门槛是固定 SHA 的隔离 build 与单测；通过后才另行冻结最小正确性格及资源协议。PFC=0 跨类阻塞证据未建立，WS-23 隔离性能实验 NO-GO；此前 WS-23/24 gate 与 WS-25 范围记录是历史状态，不代表本修复已通过。
+
 2026-09-30 WS-21 下一门槛：[STATE 长尾间隔技术矩阵](../research/ws21-compact-longtail-interval-report.md)和[心跳小拓扑技术 pilot](../research/ws21-local-heartbeat-pilot-report.md)均已完成 Sol 原始数据复核。前者 off/5/10/20/40 µs 五格给出报告年龄与逐跳成本的条件性取舍；后者固定源码 `770b6b5617657832393bd721e0d634c6639405fb` 的单测和六格均终态、同输入与资源核验通过。心跳 50/200/1000 µs 分别发送 9,856/2,464/528 B 逐跳控制通信，200 µs 连续丢 HELLO/ACK 均约 0.701 ms 标未知并随后恢复。下一步先补单份丢失不误报、ACK 身份/会话和真实链路状态的定向验证，再论证是否值得在长尾输入测活跃上联比例与 `STATE+HELLO/ACK` 联合成本。STATE 缓存尚未进入选路，`UNKNOWN` 当前不改路；没有业务 SLO 和候选选路证据，效果矩阵仍 NO-GO、不选唯一最优周期，历史 no-go 保留。见[Handoff 38](../handoffs/2026-09-30-38-ws21-local-heartbeat-pilot.md)。
 
 更新：2026-09-29。集成工作流只维护顺序和证据门槛；具体代码和实验在对应 workstream 执行。参照 [CURRENT_STATE.md](CURRENT_STATE.md) 的实时快照，在执行前再核验 Git 与远程资源。研究筛选见 [ADR-006](../decisions/ADR-006-conditional-guardhash-selection.md)；用户要求的提前工程原型见 [ADR-007](../decisions/ADR-007-guardhash-prototype-before-efficacy.md)。

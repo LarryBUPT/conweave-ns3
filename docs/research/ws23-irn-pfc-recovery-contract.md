@@ -1,6 +1,6 @@
 # WS-23：IRN×PFC 超时恢复契约与正确性门槛
 
-日期：2026-09-30。分支 `feature/ws23-irn-pfc-recovery`。本阶段只修复和审查传输正确性；隔离机制性能实验仍 NO-GO。当前代码从 `feature/ws22-reorder-budget@59c1c8e53742b4d534d00c7016ff6c3f09105d6c` 分出，修复提交 SHA 见 Handoff。本阶段未启动远程编译或仿真。
+日期：2026-09-30。分支 `feature/ws23-irn-pfc-recovery`。本阶段只修复和审查传输正确性；隔离机制性能实验仍 NO-GO。当前代码从 `feature/ws22-reorder-budget@59c1c8e53742b4d534d00c7016ff6c3f09105d6c` 分出，修复源码固定提交为 `12dea54d421243ddb98c83437b929944ab6d128c`；后续状态提交不改变该源码 SHA。本阶段未启动远程编译或仿真。
 
 ## 故障模型与原始证据
 
