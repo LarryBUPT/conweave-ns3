@@ -25,6 +25,12 @@ def parse_event(line):
     return fields
 
 
+def event_ipv4(ip_u32):
+    """Match this repository's Ipv4Address::Print, which emits octets 2 and 3."""
+    octets = str(ipaddress.IPv4Address(ip_u32)).split('.')
+    return '.'.join(octets[1:3])
+
+
 def verify(experiment_id, source_sha):
     base = ROOT / 'results' / experiment_id
     meta = json.loads((base / 'metadata.json').read_text(encoding='utf-8'))
@@ -84,8 +90,13 @@ def verify(experiment_id, source_sha):
     receipt_keys = Counter((row[4], row[5], row[9], row[10], row[12])
                            for row in completions.values())
     assert fct_keys == receipt_keys
-    simulation_log = (base / 'logs' / 'simulation.log').read_text(
+    # run.py's simulation.log contains launcher output; ns-3 stdout is the raw
+    # config.log copied by the remote worker.
+    simulation_log = (raw / 'config.log').read_text(
         encoding='utf-8', errors='replace')
+    assert ('WS24_ROUTE_SUMMARY targets=8 host_pairs=8 max_rtt_ns=440 '
+            'max_bdp_bytes=22000') in simulation_log
+    assert 'WS24_IRN_BDP bytes=22000' in simulation_log
     event_names = ('WS24_TX_QP', 'WS24_RX_DATA', 'WS24_RX_ACK')
     events = {name: {} for name in event_names}
     cnp_flags = []
@@ -113,13 +124,14 @@ def verify(experiment_id, source_sha):
         tx, rx, ack = (events[name][fid] for name in event_names)
         assert (int(tx['host']), int(tx['rail']), int(tx['nic_if'])) == (
             src, rail, nics[src, rail][1])
-        assert (tx['sip'], tx['dip']) == (str(ipaddress.IPv4Address(src_ip)),
-                                          str(ipaddress.IPv4Address(dst_ip)))
+        assert (tx['sip'], tx['dip']) == (event_ipv4(src_ip), event_ipv4(dst_ip))
         assert (int(rx['host']), int(rx['rail'])) == (dst, rail)
+        assert (rx['local_ip'], rx['remote_ip']) == (
+            event_ipv4(dst_ip), event_ipv4(src_ip))
         assert (int(ack['host']), int(ack['rail']), int(ack['nic_if'])) == (
             src, rail, nics[src, rail][1])
         assert (ack['local_ip'], ack['remote_ip']) == (
-            str(ipaddress.IPv4Address(src_ip)), str(ipaddress.IPv4Address(dst_ip)))
+            event_ipv4(src_ip), event_ipv4(dst_ip))
     for event in cnp_flags:
         fid = int(event['flow_id'])
         assert fid in completions and int(event['rail']) == completions[fid][6]
