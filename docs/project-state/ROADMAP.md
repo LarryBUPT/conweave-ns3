@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-01 WS-23 下一批本地入口补全：按[Handoff 49](../handoffs/2026-10-01-49-ws23-next-batch-local-readiness.md)，每格构建后可用独立观察器命令确认 `READY`，终态核验资源收据；背景诊断关/开两格 FCT 字节配对不过即停，不启动混合格。固定仿真 SHA、输入哈希及五格未运行状态保持不变。WS-24 共享入口释放后仍须现场核对 worker、资源、ID 并实际切 Luna High，终态 raw 后切回 Sol High；技术小样不能代替隔离候选的双侧效果验证。
+
 2026-10-01 WS-23 依[Handoff 48](../handoffs/2026-10-01-48-ws23-correctness-stage-and-next-gates.md)完成固定输入的无损暂停和丢包恢复两格，压力格资源重跑的 FCT 与首格相同，证据见[机器摘要](../research/evidence/ws23-two-cell-correctness-20261001.json)。两格均无 RTO 延期事件，原跨类阻塞因果也未实测，故 WS-23 仍 ACTIVE、隔离效果矩阵仍关闭。下一顺序是[冻结的技术预飞行](../research/ws23-next-correctness-and-causal-preflight.md)：先实际暂停期间的超时延期一格，再在新候选源码构建/单测、观测开关等价后做固定背景与新增竞争流的四格共享出口因果小样；任一失败保留 raw，修复并用新 SHA/ID 复验。WS-24 当前占用共享远端 worker，WS-23 本地准备限独立副本，远程前须重新协调。
 
 2026-09-30 闭环纠错：此前 Handoff 45 将阶段交接当作任务闭环并归档，用户指出必做验证未完成。WS-23/24 恢复 ACTIVE，详见 [验证执行清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 优先补齐丢包恢复及无损 pause/resume 端到端验证；WS-24 继续映射来源审查、明示合成模型的多 NIC 实现与验证，再按原任务目标完成必要效果对照。WS-25 必须保留并跟踪这些执行项，不能以论文范围判断替代验证。性能 NO-GO 不取消正确性工作。

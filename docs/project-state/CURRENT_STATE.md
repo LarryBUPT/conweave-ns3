@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-10-01 WS-23 下一批本地可执行性复核：一格延期与四格共享出口小样仍无远端 raw；独立副本新增每格资源观察器 `READY`/终态收据命令、跨类背景与混合诊断开关的提前配对拒收，已推送个人 fork。固定仿真 SHA 仍为 `70bf890…` 和 `154f537…`，不把本地辅助脚本提交当作新仿真结果。具体执行顺序、失败保留与未完成项见[预飞行](../research/ws23-next-correctness-and-causal-preflight.md)、[Handoff 49](../handoffs/2026-10-01-49-ws23-next-batch-local-readiness.md)和[必做清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 **ACTIVE**；WS-24 共享 worker 入口释放、实际模型切换与现场资源复核仍是远端执行前置。
+
 2026-10-01 WS-23 阶段核验：固定仿真源码 `70bf890d1ceba58c5ebd26b17e492295b34c99ca` 的无损暂停 1/1、压力及资源补验各 16/16 完成，压力两格同 FCT 哈希、161 次真实准入丢包与 3 次源 PG 非暂停期恢复；补验观察器在运行前就绪，10 个正 RSS 采样峰值 204.012 MiB。证据见[机器摘要](../research/evidence/ws23-two-cell-correctness-20261001.json)和[Handoff 48](../handoffs/2026-10-01-48-ws23-correctness-stage-and-next-gates.md)。**两格延期事件均为 0；动态延期、跨类可改道出口因果与隔离候选双侧比较仍必做，WS-23 ACTIVE。**独立执行分支的下一批候选源码 `154f537ec345df75fbb404a1674436535f92735b` 仅本地静态/语法检查，C++ 未构建、新五格未运行；固定输入和停止条件见[下一批预飞行](../research/ws23-next-correctness-and-causal-preflight.md)。WS-24 当前使用共享远端 worker，WS-23 在其释放并重新协调前不部署或启动远程实验。
 
 2026-09-30 WS-23 接续预飞行：`feature/ws23-validation` 的新增探针与双场景验收源码固定在 `f8f6afdb2d93c693e32c60bb80cc5e5cf46a5c6b`；[两格协议](../research/ws23-two-cell-preflight.md)冻结了真实源端 pause/resume、旧 16×1 MiB 压力反例、输入/拓扑哈希、seed、预留 ID 与资源停止条件。Python 静态检查、解析器构造记录及旧结果拒收已通过。**此 SHA 尚未远端构建、单测或仿真，两格无新 raw；WS-23 继续 ACTIVE**。下一步在实际 Luna High 监督阶段做隔离构建/单测与两格正确性仿真，终态 raw 回传后实际切 Sol High 核验；跨类阻塞的机制与因果前提另见协议，隔离效果矩阵仍关闭。
