@@ -15,7 +15,7 @@ import argparse
 from datetime import date
 
 # randomID
-random.seed(datetime.now())
+random.seed(datetime.now().timestamp())  # output directory ID only; trace is frozen separately
 MAX_RAND_RANGE = 1000000000
 
 # config template
@@ -147,6 +147,8 @@ topo2bdp = {
     "fat_k8_100G_OS2": 156000,  # 3-tier -> all 100Gbps
     "fat_k4_100G_OS2": 156000,  # small 3-tier correctness topology
     "topo_1280_400G_400G_OS1": 30000,  # measured maxRtt=600ns at 400Gbps
+    "ws24_synthetic_320host_4nic_topology": 30000,
+    "ws24_synthetic_2host_4nic_topology": 30000,
 }
 
 FLOWGEN_DEFAULT_TIME = 2.0  # see /traffic_gen/traffic_gen.py::base_t
@@ -191,6 +193,9 @@ def main():
                         default='AliStorage2019', help="the name of the cdf file (default: AliStorage2019)")
     parser.add_argument('--flow-file', '--flow_file', dest='flow_file',
                         help="existing flow trace inside config/ (five or six columns)")
+    parser.add_argument('--ws24-multi-nic', type=int, choices=(0, 1), default=0)
+    parser.add_argument('--ws24-nic-file', default=None,
+                        help='explicit synthetic NIC inventory inside config/')
     parser.add_argument('--ws13-diag', dest='ws13_diag', type=int, choices=(0, 1), default=0,
                         help='opt-in flow-hop and QP diagnostic for WS-13 tail probes')
     parser.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
@@ -258,7 +263,7 @@ def main():
     # get over-subscription ratio from topoogy name
 
     netload = args.netload
-    oversub = int(topo.replace("\n", "").split("OS")[-1].replace(".txt", ""))
+    oversub = 1 if args.ws24_multi_nic else int(topo.replace("\n", "").split("OS")[-1].replace(".txt", ""))
     assert (int(args.netload) % oversub == 0)
     hostload = int(args.netload) / oversub
     assert (hostload > 0)
@@ -275,6 +280,22 @@ def main():
             "CONFIG ERROR : Either IRN or PFC should be true (at least one).")
     if args.factorial_drop_diag and not args.factorial_pilot:
         raise Exception("CONFIG ERROR : factorial drop diagnostics require --factorial-pilot")
+    if args.ws24_multi_nic:
+        allowed_topologies = ('ws24_synthetic_320host_4nic_topology',
+                              'ws24_synthetic_2host_4nic_topology')
+        if args.lb != 'fecmp' or topo not in allowed_topologies or not args.flow_file:
+            raise Exception('CONFIG ERROR : WS24 requires fecmp, synthetic topology and explicit flow file')
+        if not args.ws24_nic_file:
+            raise Exception('CONFIG ERROR : WS24 requires explicit NIC inventory')
+        nic_path = os.path.realpath(args.ws24_nic_file)
+        config_dir = os.path.realpath('config')
+        if os.path.commonpath((config_dir, nic_path)) != config_dir or not os.path.isfile(nic_path):
+            raise Exception('CONFIG ERROR : WS24 NIC inventory must exist inside config/')
+        ws24_nic_file = os.path.relpath(nic_path, os.getcwd()).replace(os.sep, '/')
+    else:
+        if args.ws24_nic_file:
+            raise Exception('CONFIG ERROR : NIC inventory requires --ws24-multi-nic 1')
+        ws24_nic_file = ''
     if args.ws23_pfc_probe_host >= 0 and (
             not args.factorial_pilot or enabled_irn != 1 or enabled_pfc != 1 or
             args.lb != 'fecmp' or not 0 <= args.ws23_pfc_probe_pg < 8 or
@@ -507,6 +528,10 @@ def main():
         print("unknown cc:{}".format(args.cc))
 
     with open(config_name, "w") as file:
+        if args.ws24_multi_nic:
+            config += ('\nWS24_MULTI_NIC 1\nWS24_NIC_FILE ' + ws24_nic_file +
+                       '\nWS24_OUTPUT_FILE mix/output/' + config_ID + '/' +
+                       config_ID + '_out_ws24.txt\n')
         file.write(config)
 
     # run program

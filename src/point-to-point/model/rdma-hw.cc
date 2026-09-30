@@ -14,6 +14,7 @@
 #include "ns3/boolean.h"
 #include "ns3/data-rate.h"
 #include "ns3/double.h"
+#include "ns3/fatal-error.h"
 #include "ns3/flow-id-num-tag.h"
 #include "ns3/pointer.h"
 #include "ns3/ppp-header.h"
@@ -193,7 +194,17 @@ void RdmaHw::Setup(QpCompleteCallback cb) {
 uint32_t RdmaHw::GetNicIdxOfQp(Ptr<RdmaQueuePair> qp) {
     auto &v = m_rtTable[qp->dip.Get()];
     if (v.size() > 0) {
-        return v[qp->GetHash() % v.size()];
+        uint32_t index = v[qp->GetHash() % v.size()];
+        if (Settings::ws24_multi_nic &&
+            (v.size() != 1 || !Settings::ws24_ip_interface.count(qp->sip.Get()) ||
+             !Settings::ws24_ip_rail.count(qp->dip.Get()) ||
+             Settings::ws24_ip_rail.at(qp->sip.Get()) !=
+                 Settings::ws24_ip_rail.at(qp->dip.Get()) ||
+             index != Settings::ws24_ip_interface.at(qp->sip.Get()) ||
+             index >= m_nic.size() || !m_nic[index].dev ||
+             m_nic[index].dev->GetIfIndex() != index))
+            NS_FATAL_ERROR("WS24 TX QP source NIC does not match destination rail");
+        return index;
     }
     NS_ASSERT_MSG(false, "We assume at least one NIC is alive");
     std::cout << "We assume at least one NIC is alive" << std::endl;
@@ -237,8 +248,19 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
     // add qp
     uint32_t nic_idx = GetNicIdxOfQp(qp);
     m_nic[nic_idx].qpGrp->AddQp(qp);
-    uint64_t key = GetQpKey(dip.Get(), sport, dport, pg);
-    m_qpMap[key] = qp;
+    if (Settings::ws24_multi_nic) {
+        Ws24Key key = std::make_tuple(sip.Get(), dip.Get(), sport, dport, pg);
+        if (!m_ws24QpMap.insert(std::make_pair(key, qp)).second)
+            NS_FATAL_ERROR("WS24 duplicate TX QP identity");
+        std::cout << "WS24_TX_QP flow_id=" << flow_id << " host=" << m_node->GetId()
+                  << " rail=" << Settings::ws24_ip_rail.at(sip.Get())
+                  << " nic_if=" << nic_idx << " sip=" << sip << " dip=" << dip
+                  << " sport=" << sport << " dport=" << dport << " bytes=" << size
+                  << std::endl;
+    } else {
+        uint64_t key = GetQpKey(dip.Get(), sport, dport, pg);
+        m_qpMap[key] = qp;
+    }
 
     // set init variables
     DataRate m_bps = m_nic[nic_idx].dev->GetDataRate();
@@ -260,6 +282,13 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
 }
 
 void RdmaHw::DeleteQueuePair(Ptr<RdmaQueuePair> qp) {
+    if (Settings::ws24_multi_nic) {
+        Ws24Key key = std::make_tuple(qp->sip.Get(), qp->dip.Get(), qp->sport,
+                                      qp->dport, qp->m_pg);
+        if (m_ws24QpMap.erase(key) != 1 || !m_ws24FinishedQp.insert(key).second)
+            NS_FATAL_ERROR("WS24 TX QP deletion identity mismatch");
+        return;
+    }
     // remove qp from the m_qpMap
     uint64_t key = GetQpKey(qp->dip.Get(), qp->sport, qp->dport, qp->m_pg);
 
@@ -281,6 +310,21 @@ uint64_t RdmaHw::GetRxQpKey(uint32_t dip, uint16_t dport, uint16_t sport,
 // src/dst are already flipped (this is calleld by UDP Data packet)
 Ptr<RdmaRxQueuePair> RdmaHw::GetRxQp(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport,
                                      uint16_t pg, bool create) {
+    if (Settings::ws24_multi_nic) {
+        Ws24Key key = std::make_tuple(sip, dip, sport, dport, pg);
+        auto found = m_ws24RxQpMap.find(key);
+        if (found != m_ws24RxQpMap.end()) return found->second;
+        if (!create || m_ws24FinishedRxQp.count(key)) return NULL;
+        Ptr<RdmaRxQueuePair> q = CreateObject<RdmaRxQueuePair>();
+        q->sip = sip;
+        q->dip = dip;
+        q->sport = sport;
+        q->dport = dport;
+        q->m_ecn_source.qIndex = pg;
+        q->m_flow_id = -1;
+        m_ws24RxQpMap[key] = q;
+        return q;
+    }
     uint64_t rxKey = GetRxQpKey(dip, dport, sport, pg);
     auto it = m_rxQpMap.find(rxKey);
 
@@ -305,7 +349,16 @@ Ptr<RdmaRxQueuePair> RdmaHw::GetRxQp(uint32_t sip, uint32_t dip, uint16_t sport,
 uint32_t RdmaHw::GetNicIdxOfRxQp(Ptr<RdmaRxQueuePair> q) {
     auto &v = m_rtTable[q->dip];
     if (v.size() > 0) {
-        return v[q->GetHash() % v.size()];
+        uint32_t index = v[q->GetHash() % v.size()];
+        if (Settings::ws24_multi_nic &&
+            (v.size() != 1 || !Settings::ws24_ip_interface.count(q->sip) ||
+             !Settings::ws24_ip_rail.count(q->dip) ||
+             Settings::ws24_ip_rail.at(q->sip) != Settings::ws24_ip_rail.at(q->dip) ||
+             index != Settings::ws24_ip_interface.at(q->sip) ||
+             index >= m_nic.size() || !m_nic[index].dev ||
+             m_nic[index].dev->GetIfIndex() != index))
+            NS_FATAL_ERROR("WS24 ACK/NACK return NIC does not match data rail");
+        return index;
     }
     NS_ASSERT_MSG(false, "We assume at least one NIC is alive");
     std::cout << "We assume at least one NIC is alive" << std::endl;
@@ -324,6 +377,15 @@ void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t p
     m_rxQpMap.erase(key);
 }
 
+void RdmaHw::DeleteRxQp(uint32_t remote_ip, uint32_t local_ip, uint16_t remote_port,
+                         uint16_t local_port, uint16_t pg) {
+    if (!Settings::ws24_multi_nic)
+        NS_FATAL_ERROR("WS24 RX QP deletion called outside multi-NIC mode");
+    Ws24Key key = std::make_tuple(local_ip, remote_ip, local_port, remote_port, pg);
+    if (m_ws24RxQpMap.erase(key) != 1 || !m_ws24FinishedRxQp.insert(key).second)
+        NS_FATAL_ERROR("WS24 RX QP deletion identity mismatch");
+}
+
 int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
     uint8_t ecnbits = ch.GetIpv4EcnBits();
 
@@ -333,6 +395,12 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
     Ptr<RdmaRxQueuePair> rxQp =
         GetRxQp(ch.dip, ch.sip, ch.udp.dport, ch.udp.sport, ch.udp.pg, true);
     if (rxQp == NULL) {
+        if (Settings::ws24_multi_nic) {
+            Ws24Key completed = std::make_tuple(ch.dip, ch.sip, ch.udp.dport,
+                                                ch.udp.sport, ch.udp.pg);
+            if (m_ws24FinishedRxQp.count(completed)) return 1;
+            NS_FATAL_ERROR("WS24 RX QP missing for live data");
+        }
         uint64_t rxKey = GetRxQpKey(ch.sip, ch.udp.sport, ch.udp.dport, ch.udp.pg);
         if (akashic_RxQp.find(rxKey) != akashic_RxQp.end()) {
             // printf("[GetRxQPUDP] Akashic access: %u(%d) -> %u(%d)\n", this->m_node->GetId(),
@@ -357,6 +425,16 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
         if (p->PeekPacketTag(fit)) {
             rxQp->m_flow_id = fit.GetId();
         }
+    }
+    if (Settings::ws24_multi_nic) {
+        Ws24Key key = std::make_tuple(ch.dip, ch.sip, ch.udp.dport,
+                                      ch.udp.sport, ch.udp.pg);
+        if (m_ws24FirstRxLogged.insert(key).second)
+            std::cout << "WS24_RX_DATA flow_id=" << rxQp->m_flow_id
+                      << " host=" << m_node->GetId() << " local_ip=" << Ipv4Address(ch.dip)
+                      << " remote_ip=" << Ipv4Address(ch.sip)
+                      << " rail=" << Settings::ws24_ip_rail.at(ch.dip)
+                      << " bytes_first=" << payload_size << std::endl;
     }
 
     bool cnp_check = false;
@@ -418,6 +496,11 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
         // send
         uint32_t nic_idx = GetNicIdxOfRxQp(rxQp);
+        if (Settings::ws24_multi_nic && (ecnbits || cnp_check))
+            std::cout << "WS24_CNP_FLAG flow_id=" << rxQp->m_flow_id
+                      << " host=" << m_node->GetId() << " rail="
+                      << Settings::ws24_ip_rail.at(ch.dip) << " nic_if=" << nic_idx
+                      << std::endl;
         m_nic[nic_idx].dev->RdmaEnqueueHighPrioQ(newp);
         m_nic[nic_idx].dev->TriggerTransmit();
     }
@@ -488,8 +571,16 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
     uint8_t cnp = (ch.ack.flags >> qbbHeader::FLAG_CNP) & 1;
     int i;
     uint64_t key = GetQpKey(ch.sip, port, sport, qIndex);
-    Ptr<RdmaQueuePair> qp = GetQp(key);
+    Ws24Key ws24_key = std::make_tuple(ch.dip, ch.sip, port, sport, qIndex);
+    Ptr<RdmaQueuePair> qp = Settings::ws24_multi_nic
+                               ? (m_ws24QpMap.count(ws24_key) ? m_ws24QpMap.at(ws24_key)
+                                                            : Ptr<RdmaQueuePair>())
+                               : GetQp(key);
     if (qp == NULL) {
+        if (Settings::ws24_multi_nic) {
+            if (m_ws24FinishedQp.count(ws24_key)) return 1;
+            NS_FATAL_ERROR("WS24 ACK/NACK has no matching two-IP QP");
+        }
         // lookup akashic memory
         if (akashic_Qp.find(key) != akashic_Qp.end()) {
             // printf("[GetQPACK] Akashic access: %u(%d) -> %u(%d)\n", this->m_node->GetId(), port,
@@ -504,6 +595,12 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
 
     uint32_t nic_idx = GetNicIdxOfQp(qp);
     Ptr<QbbNetDevice> dev = m_nic[nic_idx].dev;
+    if (Settings::ws24_multi_nic && m_ws24FirstAckLogged.insert(ws24_key).second)
+        std::cout << "WS24_RX_ACK flow_id=" << qp->m_flow_id << " host="
+                  << m_node->GetId() << " local_ip=" << Ipv4Address(ch.dip)
+                  << " remote_ip=" << Ipv4Address(ch.sip)
+                  << " rail=" << Settings::ws24_ip_rail.at(ch.dip)
+                  << " nic_if=" << nic_idx << " cnp=" << uint32_t(cnp) << std::endl;
 
     if (m_ack_interval == 0)
         std::cout << "ERROR: shouldn't receive ack\n";
@@ -626,6 +723,9 @@ size_t RdmaHw::getIrnBufferOverhead() {
     for (auto it = m_rxQpMap.begin(); it != m_rxQpMap.end(); it++) {
         overhead += it->second->m_irn_sack_.getSackBufferOverhead();
     }
+    if (Settings::ws24_multi_nic)
+        for (const auto &entry : m_ws24RxQpMap)
+            overhead += entry.second->m_irn_sack_.getSackBufferOverhead();
     return overhead;
 }
 

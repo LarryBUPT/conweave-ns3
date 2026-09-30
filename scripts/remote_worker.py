@@ -365,6 +365,9 @@ def execute(experiment_id):
                '--topo', params['topo'], '--cdf', params['cdf']]
     if params.get('flow_file'):
         command.extend(['--flow-file', 'config/' + params['flow_file']])
+    if params.get('ws24_multi_nic'):
+        command.extend(['--ws24-multi-nic', '1', '--ws24-nic-file',
+                        'config/' + params['ws24_nic_file']])
     if params.get('ws13_diag'):
         command.extend(['--ws13-diag', '1'])
     if params['lb'] == 'ws18':
@@ -413,6 +416,14 @@ def execute(experiment_id):
                 before_hash = hashlib.sha256(handle.read()).hexdigest()
             data['input_flow_sha256'] = before_hash
             save_metadata(base, data)
+        if params.get('ws24_multi_nic'):
+            nic_source = inside(os.path.join(source, 'config', params['ws24_nic_file']))
+            if not os.path.isfile(nic_source) or os.path.islink(nic_source):
+                raise RuntimeError('WS24 NIC inventory is missing or a symlink')
+            import hashlib
+            with open(nic_source, 'rb') as handle:
+                data['ws24_nic_sha256'] = hashlib.sha256(handle.read()).hexdigest()
+            save_metadata(base, data)
         # Source writes through this link into this experiment's unique raw directory.
         output_dir = inside(os.path.join(source, 'mix', 'output'))
         if os.path.lexists(output_dir):
@@ -446,6 +457,25 @@ def execute(experiment_id):
             shutil.copy2(topology_source, inside(os.path.join(base, 'config', 'topology.txt')))
             with open(topology_source, 'rb') as handle:
                 data['topology_sha256'] = hashlib.sha256(handle.read()).hexdigest()
+            if params.get('ws24_multi_nic'):
+                nic_source = inside(os.path.join(source, 'config', params['ws24_nic_file']))
+                with open(nic_source, 'rb') as handle:
+                    nic_hash = hashlib.sha256(handle.read()).hexdigest()
+                if nic_hash != data['ws24_nic_sha256']:
+                    raise RuntimeError('WS24 NIC inventory changed during simulation')
+                shutil.copy2(nic_source, inside(os.path.join(base, 'config', 'nics.txt')))
+                with open(flow_source) as handle:
+                    expected_flows = int(handle.readline().strip())
+                ws24_receipts = glob.glob(os.path.join(base, 'raw', '*', '*_out_ws24.txt'))
+                if len(ws24_receipts) != 1:
+                    raise RuntimeError('WS24 identity receipt missing')
+                with open(ws24_receipts[0]) as handle:
+                    completed = sum(1 for line in handle if line.strip()) - 1
+                if completed != expected_flows:
+                    raise RuntimeError('WS24 identity receipt incomplete: %d/%d' %
+                                       (completed, expected_flows))
+                data['input_flows'] = expected_flows
+                data['completed_flows'] = completed
         if params.get('factorial_pilot'):
             with open(os.path.join(base, 'config', 'traffic_trace.txt')) as handle:
                 data['input_flows'] = int(handle.readline().strip())
@@ -572,6 +602,8 @@ def main():
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file')
+    run_cmd.add_argument('--ws24-multi-nic', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws24-nic-file')
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
@@ -643,6 +675,14 @@ def main():
             raise RuntimeError('WS-21 heartbeat fault needs enabled heartbeat and a time window')
         if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
             raise RuntimeError('WS-21 port events require ws18 and a byte cap >= 1024')
+        if args.ws24_multi_nic and (
+                args.lb != 'fecmp' or
+                args.topo not in ('ws24_synthetic_2host_4nic_topology',
+                                  'ws24_synthetic_320host_4nic_topology') or
+                not args.flow_file or not args.ws24_nic_file):
+            raise RuntimeError('WS24 requires fecmp, synthetic topology, flow and NIC files')
+        if not args.ws24_multi_nic and args.ws24_nic_file:
+            raise RuntimeError('WS24 NIC inventory needs --ws24-multi-nic 1')
         if args.ws18_admission_rate_gbps <= 0:
             raise RuntimeError('WS-18 admission rate must be positive')
         if args.netload < 1 or args.netload > 50 or not 0.005 <= float(args.simul_time) <= 0.1:
@@ -654,11 +694,18 @@ def main():
             flow_file = flow_file[len('config/'):]
         if flow_file and not re.match(r'^[A-Za-z0-9_.-]+[.]txt$', flow_file):
             raise RuntimeError('Flow file must be a config/*.txt basename')
+        nic_file = args.ws24_nic_file
+        if nic_file and nic_file.startswith('config/'):
+            nic_file = nic_file[len('config/'):]
+        if nic_file and not re.match(r'^[A-Za-z0-9_.-]+[.]txt$', nic_file):
+            raise RuntimeError('WS24 NIC inventory must be a config/*.txt basename')
         start(args.id, {'lb': args.lb, 'pfc': args.pfc, 'irn': args.irn,
                         'simul_time': args.simul_time,
                         'netload': args.netload, 'bw': args.bw, 'buffer': args.buffer,
                         'topo': args.topo, 'cdf': args.cdf,
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
+                        'ws24_multi_nic': args.ws24_multi_nic,
+                        'ws24_nic_file': nic_file,
                         'ws18_admission': args.ws18_admission,
                         'ws18_path': args.ws18_path,
                         'ws21_identity': args.ws21_identity,

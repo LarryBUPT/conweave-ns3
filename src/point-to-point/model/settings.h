@@ -134,6 +134,9 @@ class Settings {
     static std::map<uint32_t, uint32_t> hostIp2IdMap;
     static std::map<uint32_t, uint32_t> hostId2IpMap;
     static std::map<uint32_t, uint32_t> hostIp2SwitchId;  // host's IP -> connected Switch's Id
+    static bool ws24_multi_nic;
+    static std::map<uint32_t, uint32_t> ws24_ip_rail;
+    static std::map<uint32_t, uint32_t> ws24_ip_interface;
 
     static uint32_t dropped_pkt_sw_ingress;
     static uint32_t dropped_pkt_sw_egress;

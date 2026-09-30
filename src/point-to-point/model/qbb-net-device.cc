@@ -36,6 +36,7 @@
 #include "ns3/double.h"
 #include "ns3/drop-tail-queue.h"
 #include "ns3/error-model.h"
+#include "ns3/fatal-error.h"
 #include "ns3/flow-id-num-tag.h"
 #include "ns3/flow-id-tag.h"
 #include "ns3/ipv4-header.h"
@@ -420,6 +421,16 @@ void QbbNetDevice::Receive(Ptr<Packet> packet) {
             packet->AddPacketTag(FlowIdTag(m_ifIndex));
             m_node->SwitchReceiveFromDevice(this, packet, ch);
         } else {  // NIC
+            if (Settings::ws24_multi_nic &&
+                (ch.l3Prot == 0x11 || ch.l3Prot == 0xFC || ch.l3Prot == 0xFD)) {
+                auto local = Settings::ws24_ip_interface.find(ch.dip);
+                auto remote = Settings::ws24_ip_rail.find(ch.sip);
+                if (local == Settings::ws24_ip_interface.end() ||
+                    remote == Settings::ws24_ip_rail.end() ||
+                    local->second != m_ifIndex ||
+                    Settings::ws24_ip_rail.at(ch.dip) != remote->second)
+                    NS_FATAL_ERROR("WS24 packet reached wrong host NIC or crossed rails");
+            }
             // send to RdmaHw
             int ret = m_rdmaReceiveCb(packet, ch);
             // TODO we may based on the ret do something

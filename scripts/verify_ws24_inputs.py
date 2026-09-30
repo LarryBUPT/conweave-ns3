@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+"""Verify generated WS-24 graph, NIC, placement and flow input contracts."""
+
+import hashlib
+import json
+from collections import Counter, deque
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+CONFIG = ROOT / 'config'
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def graph(name):
+    rows = (CONFIG / name).read_text(encoding='ascii').splitlines()
+    nodes, switches, links = map(int, rows[0].split())
+    switch_ids = set(map(int, rows[1].split()))
+    assert len(switch_ids) == switches
+    assert len(rows) - 2 == links
+    adjacent = [set() for _ in range(nodes)]
+    link_rows = []
+    for row in rows[2:]:
+        a, b, *_ = row.split()
+        a, b = int(a), int(b)
+        assert a != b and 0 <= a < nodes and 0 <= b < nodes
+        assert b not in adjacent[a]
+        adjacent[a].add(b)
+        adjacent[b].add(a)
+        link_rows.append((a, b))
+    components = {}
+    for start in sorted(switch_ids):
+        if start in components:
+            continue
+        component = len(set(components.values()))
+        pending = deque([start])
+        components[start] = component
+        while pending:
+            now = pending.popleft()
+            for peer in adjacent[now] & switch_ids:
+                if peer not in components:
+                    components[peer] = component
+                    pending.append(peer)
+    assert len(set(components.values())) == 4
+    return nodes, switch_ids, adjacent, link_rows, components
+
+
+def nics(name, host_count, adjacent, links, components):
+    rows = (CONFIG / name).read_text(encoding='ascii').splitlines()
+    assert int(rows[0]) == host_count * 4 and len(rows) - 1 == host_count * 4
+    expected_order = Counter()
+    for a, b in links:
+        if a < host_count:
+            expected_order[a] += 1
+        elif b < host_count:
+            expected_order[b] += 1
+    assert all(expected_order[h] == 4 for h in range(host_count))
+    result = {}
+    ips = set()
+    for row in rows[1:]:
+        host, rail, ip, peer, interface, legacy = row.split()
+        host, rail, peer, interface, legacy = map(int, (host, rail, peer, interface, legacy))
+        assert host < host_count and rail in range(4)
+        assert interface == rail + 1 and legacy == 4 * host + rail
+        assert peer in adjacent[host] and peer in components
+        assert (host, rail) not in result and ip not in ips
+        result[host, rail] = (ip, peer, interface, legacy)
+        ips.add(ip)
+    assert len(result) == host_count * 4
+    for host in range(host_count):
+        assert len({components[result[host, rail][1]] for rail in range(4)}) == 4
+    return result
+
+
+def flow_rows(name, nic_map):
+    rows = (CONFIG / name).read_text(encoding='ascii').splitlines()
+    assert int(rows[0]) == len(rows) - 1
+    flows = []
+    previous_ns = -1
+    seen_ids = set()
+    ranks = {}
+    for row in rows[1:]:
+        values = tuple(map(int, row.split()))
+        assert len(values) == 11
+        flow_id, job, srank, drank, src, dst, rail, pg, size, demand_ns, tag = values
+        assert flow_id not in seen_ids and (src, rail) in nic_map and (dst, rail) in nic_map
+        assert src != dst and srank != drank and 0 <= pg < 8 and size > 0
+        assert demand_ns >= previous_ns
+        for rank, host in ((srank, src), (drank, dst)):
+            key = (job, rank)
+            assert key not in ranks or ranks[key] == host
+            ranks[key] = host
+        previous_ns = demand_ns
+        seen_ids.add(flow_id)
+        flows.append(values)
+    return flows
+
+
+def main():
+    manifest_path = CONFIG / 'ws24_synthetic_manifest.json'
+    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+    for filename, digest in manifest['files_sha256'].items():
+        assert sha(CONFIG / filename) == digest, filename
+    assert sha(CONFIG / 'topo_1280_400G_400G_OS1.txt') == manifest['source_topology_sha256']
+    _, _, target_adj, target_links, target_components = graph(
+        'ws24_synthetic_320host_4nic_topology.txt')
+    target_nics = nics('ws24_synthetic_320host_4nic_nics.txt', 320,
+                       target_adj, target_links, target_components)
+    _, _, min_adj, min_links, min_components = graph('ws24_synthetic_2host_4nic_topology.txt')
+    min_nics = nics('ws24_synthetic_2host_4nic_nics.txt', 2,
+                    min_adj, min_links, min_components)
+    minimal = flow_rows('ws24_synthetic_2host_4nic_flows.txt', min_nics)
+    assert len(minimal) == 4 and {row[6] for row in minimal} == {0, 1, 2, 3}
+    demands = None
+    totals = {}
+    for placement in ('fixed', 'variable'):
+        for policy in ('single', 'multi'):
+            name = placement + '_' + policy
+            flows = flow_rows('ws24_synthetic_' + name + '_flows.txt', target_nics)
+            assert len(flows) == 10
+            logical = {row[0]: (row[1], row[2], row[3], row[7], row[8], row[9], row[10])
+                       for row in flows}
+            assert len(logical) == 10
+            if demands is None:
+                demands = logical
+            assert logical == demands
+            assert {row[6] for row in flows} == ({0} if policy == 'single' else {0, 1, 2, 3})
+            totals[name] = sum(row[8] for row in flows)
+    assert set(totals.values()) == {manifest['logical_bytes_per_arm']} == {2408448}
+    print(json.dumps({'status': 'offline_input_verified', 'manifest_sha256': sha(manifest_path),
+                      'target_nics': len(target_nics), 'minimal_nics': len(min_nics),
+                      'minimal_flows': len(minimal), 'arm_bytes': totals}, sort_keys=True))
+
+
+if __name__ == '__main__':
+    main()

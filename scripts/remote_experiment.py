@@ -211,6 +211,8 @@ def main():
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file', help='existing tracked config/*.txt trace')
+    run_cmd.add_argument('--ws24-multi-nic', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws24-nic-file', help='tracked synthetic config/*.txt NIC inventory')
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
@@ -312,6 +314,12 @@ def main():
             parser.error('WS-21 heartbeat fault needs enabled heartbeat and a time window')
         if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
             parser.error('WS-21 port events require ws18 and a byte cap >= 1024')
+        if args.ws24_multi_nic:
+            if args.lb != 'fecmp' or not args.topo.startswith('ws24_synthetic_') or \
+                    not args.flow_file or not args.ws24_nic_file:
+                parser.error('WS-24 requires fecmp, synthetic topology, flow and NIC files')
+        elif args.ws24_nic_file:
+            parser.error('WS-24 NIC inventory requires --ws24-multi-nic 1')
         command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
                     '--netload', str(args.netload), '--bw', str(args.bw),
                     '--max-concurrent', str(args.max_concurrent),
@@ -337,6 +345,8 @@ def main():
                             '--ws21-port-max-bytes', str(args.ws21_port_max_bytes)])
         if args.flow_file:
             command.extend(['--flow-file', args.flow_file])
+        if args.ws24_multi_nic:
+            command.extend(['--ws24-multi-nic', '1', '--ws24-nic-file', args.ws24_nic_file])
         if args.ws13_diag:
             command.extend(['--ws13-diag', '1'])
         if args.factorial_pilot:

@@ -8,6 +8,9 @@
 
 #include <unordered_map>
 #include <unordered_set>
+#include <map>
+#include <set>
+#include <tuple>
 
 #include "qbb-net-device.h"
 #include "rdma-queue-pair.h"
@@ -40,6 +43,12 @@ class RdmaHw : public Object {
     std::vector<RdmaInterfaceMgr> m_nic;  // list of running nic controlled by this RdmaHw
     std::unordered_map<uint64_t, Ptr<RdmaQueuePair>> m_qpMap;      // mapping from uint64_t to qp
     std::unordered_map<uint64_t, Ptr<RdmaRxQueuePair>> m_rxQpMap;  // mapping from uint64_t to rx qp
+    // Multi-NIC QPs require both endpoint IPs; the legacy packed key omits one.
+    typedef std::tuple<uint32_t, uint32_t, uint16_t, uint16_t, uint16_t> Ws24Key;
+    std::map<Ws24Key, Ptr<RdmaQueuePair>> m_ws24QpMap;
+    std::map<Ws24Key, Ptr<RdmaRxQueuePair>> m_ws24RxQpMap;
+    std::set<Ws24Key> m_ws24FinishedQp, m_ws24FinishedRxQp;
+    std::set<Ws24Key> m_ws24FirstAckLogged, m_ws24FirstRxLogged;
     std::unordered_map<uint32_t, std::vector<int>>
         m_rtTable;  // map from ip address (u32) to possible ECMP port (index of dev)
 
@@ -76,6 +85,8 @@ class RdmaHw : public Object {
                                  uint16_t pg, bool create);  // get a rxQp
     uint32_t GetNicIdxOfRxQp(Ptr<RdmaRxQueuePair> q);        // get the NIC index of the rxQp
     void DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t pg);  // delete RxQP
+    void DeleteRxQp(uint32_t remote_ip, uint32_t local_ip, uint16_t remote_port,
+                    uint16_t local_port, uint16_t pg);
 
     int ReceiveUdp(Ptr<Packet> p, CustomHeader &ch);
     int ReceiveCnp(Ptr<Packet> p, CustomHeader &ch);

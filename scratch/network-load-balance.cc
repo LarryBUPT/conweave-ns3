@@ -35,6 +35,7 @@
 #include <map>
 #include <set>
 #include <sstream>
+#include <tuple>
 #include <unordered_map>
 
 #include "ns3/applications-module.h"
@@ -84,6 +85,9 @@ bool ws21_port_events = false;
 std::string ws21_port_output_file;
 uint64_t ws21_port_max_bytes = 268435456;
 FILE *ws21_port_output = NULL;
+bool ws24_multi_nic = false;
+std::string ws24_nic_file, ws24_output_file;
+FILE *ws24_output = NULL;
 
 // Conga params (based on paper recommendation)
 Time conga_flowletTimeout = MicroSeconds(100);  // 100us
@@ -206,6 +210,45 @@ std::map<uint32_t, std::vector<uint32_t>> torId2DownlinkIf;
 std::ifstream topof, flowf;
 NodeContainer n;                         // node container
 std::vector<Ipv4Address> serverAddress;  // server address
+struct Ws24Nic {
+    uint32_t host, rail, peer_switch, interface_index, legacy_endpoint;
+    Ipv4Address ip;
+};
+std::map<std::pair<uint32_t, uint32_t>, Ws24Nic> ws24_nics;
+std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t> ws24_pair_rtt;
+std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t> ws24_pair_bw;
+std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t> ws24_pair_bdp;
+
+void ReadWs24Nics(uint32_t host_num, uint32_t node_num) {
+    std::ifstream input(ws24_nic_file.c_str());
+    uint32_t count;
+    if (!input || !(input >> count) || count != host_num * 4)
+        NS_FATAL_ERROR("WS24 NIC inventory must contain exactly four NICs per host");
+    std::set<uint32_t> ips;
+    std::set<std::pair<uint32_t, uint32_t>> peers;
+    for (uint32_t i = 0; i < count; ++i) {
+        Ws24Nic nic;
+        std::string ip;
+        if (!(input >> nic.host >> nic.rail >> ip >> nic.peer_switch >>
+              nic.interface_index >> nic.legacy_endpoint) ||
+            nic.host >= host_num || nic.rail >= 4 || nic.peer_switch < host_num ||
+            nic.peer_switch >= node_num || nic.interface_index != nic.rail + 1 ||
+            nic.legacy_endpoint != nic.host * 4 + nic.rail)
+            NS_FATAL_ERROR("WS24 invalid NIC inventory row " << i);
+        nic.ip = Ipv4Address(ip.c_str());
+        if (nic.ip != Settings::node_id_to_ip(nic.legacy_endpoint) ||
+            !ips.insert(nic.ip.Get()).second ||
+            !peers.insert(std::make_pair(nic.host, nic.peer_switch)).second ||
+            !ws24_nics.insert(std::make_pair(std::make_pair(nic.host, nic.rail), nic)).second)
+            NS_FATAL_ERROR("WS24 duplicate or inconsistent NIC inventory row " << i);
+    }
+    std::string extra;
+    if (input >> extra) NS_FATAL_ERROR("WS24 extra NIC inventory records");
+    for (uint32_t host = 0; host < host_num; ++host)
+        for (uint32_t rail = 0; rail < 4; ++rail)
+            if (!ws24_nics.count(std::make_pair(host, rail)))
+                NS_FATAL_ERROR("WS24 missing host/rail NIC");
+}
 
 // flow generator
 std::unordered_map<uint32_t, uint32_t> flows_per_host;
@@ -221,19 +264,31 @@ struct FlowInput {
     int64_t start_time_ns;
     uint32_t idx;
     uint32_t workload_tag;
+    uint32_t ws24_flow_id, ws24_job, ws24_src_rank, ws24_dst_rank, ws24_rail;
 };
 FlowInput flow_input = {0};  // global variable
 
 Time FlowInputStartTime() {
     // Preserve the legacy double-to-Time conversion outside WS-18. In WS-18,
     // the trace's demand is an integer nanosecond, not a truncated double.
-    return lb_mode == 20 ? NanoSeconds(flow_input.start_time_ns)
+    return (lb_mode == 20 || ws24_multi_nic) ? NanoSeconds(flow_input.start_time_ns)
                          : Seconds(flow_input.start_time);
 }
 uint32_t flow_num;
 uint32_t flow_line_number = 1;
 double previous_flow_start = -1.0;
 std::map<uint32_t, uint64_t> input_tag_counts;
+struct Ws24Flow {
+    uint32_t flow_id, job, src_rank, dst_rank, src, dst, rail, pg, bytes, tag;
+    uint16_t sport, dport;
+    uint64_t demand_ns;
+    bool finished;
+};
+std::map<uint32_t, Ws24Flow> ws24_flows;
+uint64_t ws24_input_bytes = 0;
+uint64_t ws24_previous_demand_ns = 0;
+std::set<uint32_t> ws24_seen_flow_ids;
+std::map<std::pair<uint32_t, uint32_t>, uint32_t> ws24_rank_placement;
 struct Ws18Flow {
     uint32_t src, dst, pg, sport, dport, bytes, tag;
     uint64_t demand_ns, release_ns;
@@ -276,6 +331,55 @@ void ReadFlowInput() {
         }
         ++flow_line_number;
         std::istringstream fields(line);
+        if (ws24_multi_nic) {
+            int64_t id, job, src_rank, dst_rank, src, dst, rail, pg, bytes, tag;
+            uint64_t demand_ns;
+            std::string extra;
+            if (!(fields >> id >> job >> src_rank >> dst_rank >> src >> dst >> rail >> pg >>
+                  bytes >> demand_ns >> tag) || (fields >> extra) ||
+                id < 0 || job < 0 || src_rank < 0 || dst_rank < 0 ||
+                src < 0 || dst < 0 || rail < 0 || rail >= 4 || pg < 0 || pg > 7 ||
+                bytes <= 0 || bytes > std::numeric_limits<uint32_t>::max() || tag < 0 ||
+                id > std::numeric_limits<uint32_t>::max() ||
+                job > std::numeric_limits<uint32_t>::max() ||
+                src_rank > std::numeric_limits<uint32_t>::max() ||
+                dst_rank > std::numeric_limits<uint32_t>::max() ||
+                tag > std::numeric_limits<uint32_t>::max() ||
+                src >= Settings::host_num || dst >= Settings::host_num || src == dst ||
+                src_rank == dst_rank ||
+                demand_ns > uint64_t(std::numeric_limits<int64_t>::max()) ||
+                (flow_input.idx > 0 && demand_ns < ws24_previous_demand_ns) ||
+                !ws24_seen_flow_ids.insert(uint32_t(id)).second ||
+                !ws24_nics.count(std::make_pair(uint32_t(src), uint32_t(rail))) ||
+                !ws24_nics.count(std::make_pair(uint32_t(dst), uint32_t(rail))) ||
+                ws24_input_bytes > std::numeric_limits<uint64_t>::max() - uint64_t(bytes))
+                NS_FATAL_ERROR("WS24 invalid flow row " << flow_line_number);
+            auto source_rank = std::make_pair(uint32_t(job), uint32_t(src_rank));
+            auto target_rank = std::make_pair(uint32_t(job), uint32_t(dst_rank));
+            if ((ws24_rank_placement.count(source_rank) &&
+                 ws24_rank_placement[source_rank] != uint32_t(src)) ||
+                (ws24_rank_placement.count(target_rank) &&
+                 ws24_rank_placement[target_rank] != uint32_t(dst)))
+                NS_FATAL_ERROR("WS24 rank placement changed within a run");
+            ws24_rank_placement[source_rank] = uint32_t(src);
+            ws24_rank_placement[target_rank] = uint32_t(dst);
+            flow_input.src = src;
+            flow_input.dst = dst;
+            flow_input.pg = pg;
+            flow_input.maxPacketCount = bytes;
+            flow_input.start_time_ns = demand_ns;
+            flow_input.start_time = double(demand_ns) / 1e9;
+            flow_input.workload_tag = tag;
+            flow_input.ws24_flow_id = id;
+            flow_input.ws24_job = job;
+            flow_input.ws24_src_rank = src_rank;
+            flow_input.ws24_dst_rank = dst_rank;
+            flow_input.ws24_rail = rail;
+            ws24_input_bytes += bytes;
+            ws24_previous_demand_ns = demand_ns;
+            ++input_tag_counts[uint32_t(tag)];
+            return;
+        }
         int64_t src, dst, pg, bytes, tag = 0;
         double start;
         std::string extra;
@@ -352,6 +456,39 @@ void ScheduleFlowInputs(FILE *infile) {
             target_len = 1;
         }
         assert(n.Get(src)->GetNodeType() == 0 && n.Get(dst)->GetNodeType() == 0);
+
+        if (ws24_multi_nic) {
+            const uint32_t rail = flow_input.ws24_rail;
+            const Ws24Nic &source_nic = ws24_nics.at(std::make_pair(src, rail));
+            const Ws24Nic &target_nic = ws24_nics.at(std::make_pair(dst, rail));
+            auto metric = std::make_tuple(src, dst, rail);
+            if (!ws24_pair_rtt.count(metric) || !ws24_pair_bw.count(metric))
+                NS_FATAL_ERROR("WS24 flow has no same-rail route metric");
+            const uint32_t id = flow_input.ws24_flow_id;
+            if (ws24_flows.count(id)) NS_FATAL_ERROR("WS24 duplicate scheduled flow ID");
+            ws24_flows[id] = {id, flow_input.ws24_job, flow_input.ws24_src_rank,
+                              flow_input.ws24_dst_rank, src, dst, rail, pg, target_len,
+                              flow_input.workload_tag, uint16_t(sport), uint16_t(dport),
+                              uint64_t(flow_input.start_time_ns), false};
+            RdmaClientHelper clientHelper(
+                pg, source_nic.ip, target_nic.ip, sport, dport, target_len,
+                has_win ? (global_t == 1 ? maxBdp : ws24_pair_bdp.at(metric)) : 0,
+                global_t == 1 ? maxRtt : ws24_pair_rtt.at(metric));
+            clientHelper.SetAttribute("StatFlowID", IntegerValue(id));
+            clientHelper.SetAttribute("WorkloadTag", UintegerValue(flow_input.workload_tag));
+            ApplicationContainer app = clientHelper.Install(n.Get(src));
+            app.Start(Seconds(Time(0)));
+            app.Stop(Seconds(100.0));
+            std::cout << "WS24_FLOW_START id=" << id << " job=" << flow_input.ws24_job
+                      << " src_rank=" << flow_input.ws24_src_rank
+                      << " dst_rank=" << flow_input.ws24_dst_rank << " src_host=" << src
+                      << " dst_host=" << dst << " rail=" << rail
+                      << " src_ip=" << source_nic.ip << " dst_ip=" << target_nic.ip
+                      << " bytes=" << target_len << std::endl;
+            flow_input.idx++;
+            ReadFlowInput();
+            continue;
+        }
 
         if (lb_mode == 20) {
             const uint64_t demand = flow_input.start_time_ns;
@@ -504,7 +641,8 @@ void periodic_monitoring(FILE *fout_voq, FILE *fout_voq_detail, FILE *fout_uplin
             Ptr<RdmaDriver> rdmaDriver = server->GetObject<RdmaDriver>();
             Ptr<RdmaHw> rdmaHw = rdmaDriver->m_rdma;
             // monitor total/active QP number <time, serverId, #ExistingQP, #ActiveQP>
-            uint64_t nQP = rdmaHw->m_qpMap.size();
+            uint64_t nQP = ws24_multi_nic ? rdmaHw->m_ws24QpMap.size()
+                                          : rdmaHw->m_qpMap.size();
             uint64_t nActiveQP = 0;
             for (auto qp : rdmaHw->m_qpMap) {
                 if (qp.second->GetBytesLeft() > 0) {  // conns with bytes left
@@ -610,8 +748,18 @@ void conweave_history_print() {
  */
 void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
     uint32_t sid = Settings::ip_to_node_id(q->sip), did = Settings::ip_to_node_id(q->dip);
-    uint64_t base_rtt = pairRtt[n.Get(sid)][n.Get(did)];
-    uint64_t b = pairBw[n.Get(sid)][n.Get(did)];
+    uint64_t base_rtt, b;
+    if (ws24_multi_nic) {
+        if (q->m_flow_id < 0 || !ws24_flows.count(uint32_t(q->m_flow_id)))
+            NS_FATAL_ERROR("WS24 completion has unknown flow ID");
+        const Ws24Flow &flow = ws24_flows.at(uint32_t(q->m_flow_id));
+        auto metric = std::make_tuple(sid, did, flow.rail);
+        base_rtt = ws24_pair_rtt.at(metric);
+        b = ws24_pair_bw.at(metric);
+    } else {
+        base_rtt = pairRtt[n.Get(sid)][n.Get(did)];
+        b = pairBw[n.Get(sid)][n.Get(did)];
+    }
     uint32_t total_bytes =
         q->m_size + ((q->m_size - 1) / packet_payload_size + 1) *
                         (CustomHeader::GetStaticWholeHeaderSize() -
@@ -622,13 +770,44 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
     // XXX: remove rxQP from the receiver
     Ptr<Node> dstNode = n.Get(did);
     Ptr<RdmaDriver> rdma = dstNode->GetObject<RdmaDriver>();
-    rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->sport, q->dport, q->m_pg);
+    uint64_t ws24_rx_unique_bytes = 0;
+    if (ws24_multi_nic) {
+        Ptr<RdmaRxQueuePair> receiver = rdma->m_rdma->GetRxQp(
+            q->dip.Get(), q->sip.Get(), q->dport, q->sport, q->m_pg, false);
+        if (!receiver) NS_FATAL_ERROR("WS24 completed TX QP lacks receiver state");
+        ws24_rx_unique_bytes = receiver->ReceiverNextExpectedSeq;
+        if (ws24_rx_unique_bytes != q->m_size || q->snd_una != q->m_size ||
+            q->stat.txTotalBytes < q->m_size)
+            NS_FATAL_ERROR("WS24 QP byte/sequence conservation failed");
+        rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->dip.Get(), q->sport, q->dport, q->m_pg);
+    } else
+        rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->sport, q->dport, q->m_pg);
 
     // fprintf(fout, "%lu QP complete\n", Simulator::Now().GetTimeStep());
     fprintf(fout, "%u %u %u %u %lu %lu %lu %lu\n", Settings::ip_to_node_id(q->sip),
             Settings::ip_to_node_id(q->dip), q->sport, q->dport, q->m_size,
             q->startTime.GetTimeStep(), (Simulator::Now() - q->startTime).GetTimeStep(),
             standalone_fct);
+    if (ws24_multi_nic) {
+        Ws24Flow &flow = ws24_flows.at(uint32_t(q->m_flow_id));
+        const uint64_t finish_ns = Simulator::Now().GetNanoSeconds();
+        if (flow.finished || flow.src != sid || flow.dst != did ||
+            flow.bytes != q->m_size || flow.pg != q->m_pg ||
+            flow.sport != q->sport || flow.dport != q->dport ||
+            q->sip != ws24_nics.at(std::make_pair(sid, flow.rail)).ip ||
+            q->dip != ws24_nics.at(std::make_pair(did, flow.rail)).ip ||
+            q->startTime.GetNanoSeconds() < flow.demand_ns)
+            NS_FATAL_ERROR("WS24 completion identity or timing mismatch");
+        flow.finished = true;
+        fprintf(ws24_output,
+                "%u %u %u %u %u %u %u %u %u %u %u %u %lu %lu %lu %lu %lu %lu %lu %lu\n",
+                flow.flow_id, flow.job, flow.src_rank, flow.dst_rank, sid, did,
+                flow.rail, q->sip.Get(), q->dip.Get(), q->sport, q->dport,
+                flow.tag, q->m_size, flow.demand_ns,
+                q->startTime.GetNanoSeconds(), finish_ns,
+                ws24_rx_unique_bytes, q->stat.txTotalBytes, q->snd_una, q->snd_nxt);
+        fflush(ws24_output);
+    }
     if (lb_mode == 20) {
         NS_ASSERT_MSG(q->m_flow_id >= 0 && uint32_t(q->m_flow_id) < ws18_flows.size(),
                       "WS-18 completion has no input ID");
@@ -807,6 +986,85 @@ void CalculateRoutes(NodeContainer &n) {
             CalculateRoute(node);
         }
     }
+}
+
+// Each destination IP names one NIC in one rail. A multi-NIC host is never a
+// fabric transit vertex, so a host-level BFS would incorrectly merge rails.
+void InstallWs24Routes() {
+    maxRtt = maxBdp = 0;
+    for (const auto &entry : ws24_nics) {
+        const Ws24Nic &target = entry.second;
+        Ptr<Node> dst = n.Get(target.host);
+        Ptr<Node> first = n.Get(target.peer_switch);
+        std::map<Ptr<Node>, uint32_t> distance;
+        std::map<Ptr<Node>, uint64_t> delay, tx_delay, bandwidth;
+        std::vector<Ptr<Node>> queue;
+        distance[first] = 1;
+        delay[first] = nbr2if[first][dst].delay;
+        tx_delay[first] = packet_payload_size * 8000000000lu / nbr2if[first][dst].bw;
+        bandwidth[first] = nbr2if[first][dst].bw;
+        queue.push_back(first);
+        for (size_t head = 0; head < queue.size(); ++head) {
+            Ptr<Node> current = queue[head];
+            for (const auto &edge : nbr2if[current]) {
+                Ptr<Node> next = edge.first;
+                if (!edge.second.up || next->GetNodeType() != 1 || distance.count(next)) continue;
+                distance[next] = distance[current] + 1;
+                delay[next] = delay[current] + edge.second.delay;
+                tx_delay[next] = tx_delay[current] +
+                                 packet_payload_size * 8000000000lu / edge.second.bw;
+                bandwidth[next] = std::min(bandwidth[current], edge.second.bw);
+                queue.push_back(next);
+            }
+            if (ws24_multi_nic)
+                for (const auto &qp : rdmaHw->m_ws24QpMap)
+                    if (qp.second->GetBytesLeft() > 0) ++nActiveQP;
+        }
+        if (queue.size() != Settings::switch_num / 4)
+            NS_FATAL_ERROR("WS24 target rail has unexpected switch component size");
+        Ipv4Address destination = target.ip;
+        for (Ptr<Node> current : queue) {
+            uint32_t next_count = 0;
+            for (const auto &edge : nbr2if[current]) {
+                Ptr<Node> neighbor = edge.first;
+                if (!edge.second.up) continue;
+                bool toward_target = (distance[current] == 1 && neighbor == dst &&
+                                      current == first) ||
+                                     (neighbor->GetNodeType() == 1 && distance.count(neighbor) &&
+                                      distance[neighbor] + 1 == distance[current]);
+                if (toward_target) {
+                    DynamicCast<SwitchNode>(current)->AddTableEntry(destination, edge.second.idx);
+                    ++next_count;
+                }
+            }
+            if (next_count == 0) NS_FATAL_ERROR("WS24 missing switch next hop");
+        }
+        for (uint32_t source_host = 0; source_host < Settings::host_num; ++source_host) {
+            if (source_host == target.host) continue;
+            const Ws24Nic &source = ws24_nics.at(std::make_pair(source_host, target.rail));
+            Ptr<Node> src = n.Get(source_host);
+            Ptr<Node> peer = n.Get(source.peer_switch);
+            if (!distance.count(peer)) NS_FATAL_ERROR("WS24 same-rail host pair disconnected");
+            uint32_t out = nbr2if[src][peer].idx;
+            if (out != source.interface_index) NS_FATAL_ERROR("WS24 source NIC interface mismatch");
+            src->GetObject<RdmaDriver>()->m_rdma->AddTableEntry(destination, out);
+            const uint64_t path_delay = delay[peer] + nbr2if[src][peer].delay;
+            const uint64_t path_tx = tx_delay[peer] +
+                                     packet_payload_size * 8000000000lu / nbr2if[src][peer].bw;
+            const uint64_t path_bw = std::min(bandwidth[peer], nbr2if[src][peer].bw);
+            const uint64_t rtt = path_delay * 2 + path_tx;
+            const uint64_t bdp = rtt * path_bw / 8000000000lu;
+            auto key = std::make_tuple(source_host, target.host, target.rail);
+            ws24_pair_rtt[key] = rtt;
+            ws24_pair_bw[key] = path_bw;
+            ws24_pair_bdp[key] = bdp;
+            maxRtt = std::max(maxRtt, rtt);
+            maxBdp = std::max(maxBdp, bdp);
+        }
+    }
+    std::cout << "WS24_ROUTE_SUMMARY targets=" << ws24_nics.size()
+              << " host_pairs=" << ws24_pair_rtt.size() << " max_rtt_ns=" << maxRtt
+              << " max_bdp_bytes=" << maxBdp << std::endl;
 }
 
 /**
@@ -1206,6 +1464,14 @@ int main(int argc, char *argv[]) {
                 conf >> v;
                 topology_file = v;
                 std::cerr << "TOPOLOGY_FILE\t\t\t" << topology_file << "\n";
+            } else if (key.compare("WS24_MULTI_NIC") == 0) {
+                uint32_t v;
+                conf >> v;
+                ws24_multi_nic = v != 0;
+            } else if (key.compare("WS24_NIC_FILE") == 0) {
+                conf >> ws24_nic_file;
+            } else if (key.compare("WS24_OUTPUT_FILE") == 0) {
+                conf >> ws24_output_file;
             } else if (key.compare("FLOW_FILE") == 0) {
                 std::string v;
                 conf >> v;
@@ -1484,6 +1750,13 @@ int main(int argc, char *argv[]) {
     Settings::host_num = node_num - switch_num;
     Settings::switch_num = switch_num;
     Settings::lb_mode = lb_mode;
+    Settings::ws24_multi_nic = ws24_multi_nic;
+    if (ws24_multi_nic) {
+        if (lb_mode != 0 || ws24_nic_file.empty() || ws24_output_file.empty() ||
+            link_down_time != 0)
+            NS_FATAL_ERROR("WS24 requires ECMP, explicit NIC/output files, no link fault");
+        ReadWs24Nics(Settings::host_num, node_num);
+    }
     SwitchNode::ConfigureGuardHash(guardhash_lambda, guardhash_tau_bytes,
                                    harm_gate_on_bytes, harm_gate_off_bytes);
     NS_ASSERT_MSG(lb_mode != 20 || (ws18_admission_rate_gbps > 0 && !ws18_output_file.empty()),
@@ -1538,7 +1811,9 @@ int main(int argc, char *argv[]) {
     for (uint32_t i = 0; i < node_num; i++) {
         if (n.Get(i)->GetNodeType() == 0) {  // is server
             serverAddress.resize(i + 1);
-            serverAddress[i] = Settings::node_id_to_ip(i);
+            serverAddress[i] = ws24_multi_nic
+                                   ? ws24_nics.at(std::make_pair(i, 0)).ip
+                                   : Settings::node_id_to_ip(i);
         }
     }
 
@@ -1597,13 +1872,49 @@ int main(int argc, char *argv[]) {
         NetDeviceContainer d = qbb.Install(snode, dnode);
         if (snode->GetNodeType() == 0) {
             Ptr<Ipv4> ipv4 = snode->GetObject<Ipv4>();
-            ipv4->AddInterface(d.Get(0));
-            ipv4->AddAddress(1, Ipv4InterfaceAddress(serverAddress[src], Ipv4Mask(0xff000000)));
+            uint32_t intf = ipv4->AddInterface(d.Get(0));
+            Ipv4Address address = serverAddress[src];
+            if (ws24_multi_nic) {
+                bool found = false;
+                for (uint32_t rail = 0; rail < 4; ++rail) {
+                    const Ws24Nic &nic = ws24_nics.at(std::make_pair(src, rail));
+                    if (nic.peer_switch == dst) {
+                        if (intf != nic.interface_index) NS_FATAL_ERROR("WS24 source interface order mismatch");
+                        address = nic.ip;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) NS_FATAL_ERROR("WS24 unexpected source host link");
+                Settings::hostIp2IdMap[address.Get()] = src;
+                Settings::hostIp2SwitchId[address.Get()] = dst;
+                Settings::ws24_ip_rail[address.Get()] = intf - 1;
+                Settings::ws24_ip_interface[address.Get()] = intf;
+            }
+            ipv4->AddAddress(intf, Ipv4InterfaceAddress(address, Ipv4Mask(0xff000000)));
         }
         if (dnode->GetNodeType() == 0) {
             Ptr<Ipv4> ipv4 = dnode->GetObject<Ipv4>();
-            ipv4->AddInterface(d.Get(1));
-            ipv4->AddAddress(1, Ipv4InterfaceAddress(serverAddress[dst], Ipv4Mask(0xff000000)));
+            uint32_t intf = ipv4->AddInterface(d.Get(1));
+            Ipv4Address address = serverAddress[dst];
+            if (ws24_multi_nic) {
+                bool found = false;
+                for (uint32_t rail = 0; rail < 4; ++rail) {
+                    const Ws24Nic &nic = ws24_nics.at(std::make_pair(dst, rail));
+                    if (nic.peer_switch == src) {
+                        if (intf != nic.interface_index) NS_FATAL_ERROR("WS24 destination interface order mismatch");
+                        address = nic.ip;
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) NS_FATAL_ERROR("WS24 unexpected destination host link");
+                Settings::hostIp2IdMap[address.Get()] = dst;
+                Settings::hostIp2SwitchId[address.Get()] = src;
+                Settings::ws24_ip_rail[address.Get()] = intf - 1;
+                Settings::ws24_ip_interface[address.Get()] = intf;
+            }
+            ipv4->AddAddress(intf, Ipv4InterfaceAddress(address, Ipv4Mask(0xff000000)));
         }
 
         // used to create a graph of the topology
@@ -1640,6 +1951,8 @@ int main(int argc, char *argv[]) {
 
     /* Get IP address <-> NodeID pairs */
     Ipv4Address empty_ip;
+    if (ws24_multi_nic && Settings::ws24_ip_interface.size() != Settings::host_num * 4)
+        NS_FATAL_ERROR("WS24 not all NICs were installed");
     for (uint32_t i = 0; i < node_num; ++i) {
         if (n.Get(i)->GetNodeType() == 0) {  // is server
             if (serverAddress[i].IsEqual(empty_ip)) {
@@ -1648,6 +1961,7 @@ int main(int argc, char *argv[]) {
                 NS_FATAL_ERROR("An end-host belongs to no link");
             }
         }
+        if (ws24_multi_nic && n.Get(i)->GetNodeType() != 0) continue;
         Settings::hostId2IpMap[i] = serverAddress[i].Get();
         Settings::hostIp2IdMap[serverAddress[i].Get()] = i;
     }
@@ -1687,6 +2001,11 @@ int main(int argc, char *argv[]) {
     }
 
     fct_output = fopen(fct_output_file.c_str(), "w");
+    if (ws24_multi_nic) {
+        ws24_output = fopen(ws24_output_file.c_str(), "w");
+        if (!ws24_output) NS_FATAL_ERROR("WS24 cannot open flow identity output");
+        fprintf(ws24_output, "flow_id job src_rank dst_rank src_host dst_host rail src_ip_u32 dst_ip_u32 sport dport tag bytes demand_ns release_ns finish_ns rx_unique_bytes tx_payload_bytes snd_una snd_nxt\n");
+    }
     if (lb_mode == 20) ws18_output = fopen(ws18_output_file.c_str(), "w");
     if (ws21_port_events) {
         ws21_port_output = fopen(ws21_port_output_file.c_str(), "w");
@@ -1732,6 +2051,8 @@ int main(int argc, char *argv[]) {
     topo2bdpMap[std::string("fat_k8_100G_OS2")] = 156000;      // RTT=12480 --> all 100G links
     topo2bdpMap[std::string("fat_k4_100G_OS2")] = 156000;      // same three-tier link rates
     topo2bdpMap[std::string("topo_1280_400G_400G_OS1")] = 30000;  // 600ns * 400Gbps / 8
+    topo2bdpMap[std::string("ws24_synthetic_320host_4nic")] = 30000;
+    topo2bdpMap[std::string("ws24_synthetic_2host_4nic")] = 30000;
 
     // topology_file
     bool found_topo2bdpMap = false;
@@ -1815,34 +2136,40 @@ int main(int argc, char *argv[]) {
     /**
      * @brief setup routing
      */
-    CalculateRoutes(n);
-    SetRoutingEntries();
+    if (ws24_multi_nic)
+        InstallWs24Routes();
+    else {
+        CalculateRoutes(n);
+        SetRoutingEntries();
+    }
 
     /**
      * @brief get BDP and delay
      */
-    maxRtt = maxBdp = 0;
-    fprintf(stderr, "node_num=%d\n", node_num);
-    for (uint32_t i = 0; i < node_num; i++) {
-        if (n.Get(i)->GetNodeType() != 0) continue;
-        for (uint32_t j = i + 1; j < node_num; j++) {
-            if (n.Get(j)->GetNodeType() != 0) continue;
-            uint64_t delay = pairDelay[n.Get(i)][n.Get(j)];
-            uint64_t txDelay = pairTxDelay[n.Get(i)][n.Get(j)];
-            uint64_t rtt = delay * 2 + txDelay;
-            uint64_t bw = pairBw[n.Get(i)][n.Get(j)];
-            uint64_t bdp = rtt * bw / 1000000000 / 8;
-            pairBdp[n.Get(i)][n.Get(j)] = bdp;
-            pairBdp[n.Get(j)][n.Get(i)] = bdp;
-            pairRtt[n.Get(i)][n.Get(j)] = rtt;
-            pairRtt[n.Get(j)][n.Get(i)] = rtt;
+    if (!ws24_multi_nic) {
+        maxRtt = maxBdp = 0;
+        fprintf(stderr, "node_num=%d\n", node_num);
+        for (uint32_t i = 0; i < node_num; i++) {
+            if (n.Get(i)->GetNodeType() != 0) continue;
+            for (uint32_t j = i + 1; j < node_num; j++) {
+                if (n.Get(j)->GetNodeType() != 0) continue;
+                uint64_t delay = pairDelay[n.Get(i)][n.Get(j)];
+                uint64_t txDelay = pairTxDelay[n.Get(i)][n.Get(j)];
+                uint64_t rtt = delay * 2 + txDelay;
+                uint64_t bw = pairBw[n.Get(i)][n.Get(j)];
+                uint64_t bdp = rtt * bw / 1000000000 / 8;
+                pairBdp[n.Get(i)][n.Get(j)] = bdp;
+                pairBdp[n.Get(j)][n.Get(i)] = bdp;
+                pairRtt[n.Get(i)][n.Get(j)] = rtt;
+                pairRtt[n.Get(j)][n.Get(i)] = rtt;
 
-            if (bdp > maxBdp) maxBdp = bdp;
-            if (rtt > maxRtt) maxRtt = rtt;
+                if (bdp > maxBdp) maxBdp = bdp;
+                if (rtt > maxRtt) maxRtt = rtt;
+            }
         }
     }
     fprintf(stderr, "maxRtt: %lu, maxBdp: %lu\n", maxRtt, maxBdp);
-    assert(maxBdp == irn_bdp_lookup);
+    if (!ws24_multi_nic) assert(maxBdp == irn_bdp_lookup);
 
     std::cout << "Configuring switches" << std::endl;
     /* config ToR Switch */
@@ -1855,6 +2182,12 @@ int main(int argc, char *argv[]) {
             Ptr<SwitchNode> sw = DynamicCast<SwitchNode>(probably_switch);
             sw->m_isToR = true;
             uint32_t hostIP = serverAddress[pair.first].Get();
+            if (ws24_multi_nic) {
+                for (uint32_t rail = 0; rail < 4; ++rail) {
+                    const Ws24Nic &nic = ws24_nics.at(std::make_pair(pair.first, rail));
+                    if (nic.peer_switch == pair.second) hostIP = nic.ip.Get();
+                }
+            }
             sw->m_isToR_hostIP.insert(hostIP);
             if (ws21_identity) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
@@ -2210,6 +2543,21 @@ int main(int argc, char *argv[]) {
                   << " input_bytes=" << input_bytes << " finished_bytes=" << finished_bytes
                   << std::endl;
         fclose(ws18_output);
+    }
+    if (ws24_multi_nic) {
+        uint64_t finished_bytes = 0;
+        uint32_t finished = 0;
+        for (const auto &entry : ws24_flows) {
+            finished += entry.second.finished;
+            if (entry.second.finished) finished_bytes += entry.second.bytes;
+        }
+        std::cout << "WS24_CONSERVATION input=" << ws24_flows.size()
+                  << " finished=" << finished << " input_bytes=" << ws24_input_bytes
+                  << " finished_bytes=" << finished_bytes << std::endl;
+        fclose(ws24_output);
+        if (ws24_flows.size() != flow_num || finished != flow_num ||
+            finished_bytes != ws24_input_bytes)
+            NS_FATAL_ERROR("WS24 flow count or byte conservation failed");
     }
 
     if (ws21_identity) {

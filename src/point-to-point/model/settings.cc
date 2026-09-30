@@ -6,6 +6,8 @@ Ipv4Address Settings::node_id_to_ip(uint32_t id) {
     return Ipv4Address(0x0b000001 + ((id / 256) * 0x00010000) + ((id % 256) * 0x00000100));
 }
 uint32_t Settings::ip_to_node_id(Ipv4Address ip) {
+    auto host = hostIp2IdMap.find(ip.Get());
+    if (host != hostIp2IdMap.end()) return host->second;
     return (ip.Get() >> 8) & 0xffff;
 }
 
@@ -14,6 +16,9 @@ uint32_t Settings::lb_mode = 0;
 
 std::map<uint32_t, uint32_t> Settings::hostIp2IdMap;
 std::map<uint32_t, uint32_t> Settings::hostId2IpMap;
+bool Settings::ws24_multi_nic = false;
+std::map<uint32_t, uint32_t> Settings::ws24_ip_rail;
+std::map<uint32_t, uint32_t> Settings::ws24_ip_interface;
 
 /* statistics */
 uint32_t Settings::node_num = 0;
