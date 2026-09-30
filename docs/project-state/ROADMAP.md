@@ -1,6 +1,10 @@
 # 下一阶段路线与停机条件
 
-2026-10-01 WS-23 下一批本地入口补全：按[Handoff 49](../handoffs/2026-10-01-49-ws23-next-batch-local-readiness.md)，每格构建后可用独立观察器命令确认 `READY`，终态核验资源收据；背景诊断关/开两格 FCT 字节配对不过即停，不启动混合格。固定仿真 SHA、输入哈希及五格未运行状态保持不变。WS-24 共享入口释放后仍须现场核对 worker、资源、ID 并实际切 Luna High，终态 raw 后切回 Sol High；技术小样不能代替隔离候选的双侧效果验证。
+2026-10-01 WS-23 本地已冻结延期探针 v2 源码 `94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1` 与[双格预飞行](../research/ws23-deferral-v2-preflight.md)：同 SHA 无探针对照先重现 16/16、161 次准入丢包、源 14 的 36 次丢包与固定 FCT；通过后才运行真实丢包门控、定期刷新和显式恢复的探针格。两个 ID 已预留，远端仍须查空闲。**C++ 未构建、远程未运行**。跨类四格 PFC=0 技术小样按自身构建、观测等价和资源门槛独立推进，不以延期探针成功为前置；两条线均未完成，隔离效果双侧验证仍必做，WS-23 ACTIVE。共享远端入口执行前须与 WS-24 协调并实际切换监督模型；见[Handoff 51](../handoffs/2026-10-01-51-ws23-deferral-v2-local-freeze.md)。
+
+2026-10-01 WS-23 首个延期探针已执行并诊断：`20261001-090000-ws23-rto-pause` 完成 16/16，但 raw 没有准入丢包；配置将所有网卡自然 PFC 暂停时长改为 2500 µs；自然恢复约 6.8 µs 后清除注入暂停；流 14 与仿真均在显式恢复前结束。验收器正确判为未覆盖。下一版需保持常规全局 PFC 参数，由目标真实丢包触发定向暂停并定期刷新，让目标流跨过恢复后的完整 RTO，最后恢复并守恒；当前还没有冻结新源码 SHA/输入/ID。见[Handoff 50](../handoffs/2026-10-01-50-ws23-deferral-probe-diagnosis.md)。WS-23 保持 ACTIVE，旧 raw 保留；远程入口空闲与否尚未在本轮核验，实验前须重新协调。
+
+2026-10-01 WS-23 下一批本地入口补全：按[Handoff 49](../handoffs/2026-10-01-49-ws23-next-batch-local-readiness.md)，每格构建后可用独立观察器命令确认 `READY`，终态核验资源收据；背景诊断关/开两格 FCT 字节配对不过即停，不启动混合格。延期首格后来已运行但未覆盖目标，见[Handoff 50](../handoffs/2026-10-01-50-ws23-deferral-probe-diagnosis.md)；四格跨类小样仍未运行。远程执行前须现场核对 worker、资源、ID 并实际切 Luna High，终态 raw 后切回 Sol High；技术小样不能代替隔离候选的双侧效果验证。
 
 2026-10-01 WS-23 依[Handoff 48](../handoffs/2026-10-01-48-ws23-correctness-stage-and-next-gates.md)完成固定输入的无损暂停和丢包恢复两格，压力格资源重跑的 FCT 与首格相同，证据见[机器摘要](../research/evidence/ws23-two-cell-correctness-20261001.json)。两格均无 RTO 延期事件，原跨类阻塞因果也未实测，故 WS-23 仍 ACTIVE、隔离效果矩阵仍关闭。下一顺序是[冻结的技术预飞行](../research/ws23-next-correctness-and-causal-preflight.md)：先实际暂停期间的超时延期一格，再在新候选源码构建/单测、观测开关等价后做固定背景与新增竞争流的四格共享出口因果小样；任一失败保留 raw，修复并用新 SHA/ID 复验。WS-24 当前占用共享远端 worker，WS-23 本地准备限独立副本，远程前须重新协调。
 

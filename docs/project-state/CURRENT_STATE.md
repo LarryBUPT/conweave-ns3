@@ -1,6 +1,10 @@
 # ConWeave 毕业论文项目状态
 
-2026-10-01 WS-23 下一批本地可执行性复核：一格延期与四格共享出口小样仍无远端 raw；独立副本新增每格资源观察器 `READY`/终态收据命令、跨类背景与混合诊断开关的提前配对拒收，已推送个人 fork。固定仿真 SHA 仍为 `70bf890…` 和 `154f537…`，不把本地辅助脚本提交当作新仿真结果。具体执行顺序、失败保留与未完成项见[预飞行](../research/ws23-next-correctness-and-causal-preflight.md)、[Handoff 49](../handoffs/2026-10-01-49-ws23-next-batch-local-readiness.md)和[必做清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 **ACTIVE**；WS-24 共享 worker 入口释放、实际模型切换与现场资源复核仍是远端执行前置。
+2026-10-01 WS-23 延期探针 v2 的**本地准备**：保持常规全网 PFC=5 µs，定向探针由源 14 真实准入丢包与未确认数据门控，定期刷新直至显式恢复，并保留完整恢复观察窗；源码和验收器固定为 `94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1`。输入/拓扑 Git 内容哈希及两个全新预留 ID、同 SHA 对照先行与逐格停止条件见[双格预飞行](../research/ws23-deferral-v2-preflight.md)和[Handoff 51](../handoffs/2026-10-01-51-ws23-deferral-v2-local-freeze.md)。本地 Python 与差异检查通过，**C++ 未构建、新双格未运行**，不能宣称动态延期已验证。PFC=0 跨类四格具独立前置门槛，不因本延期探针未过而自动阻塞；其 C++ 未构建、四格未运行。WS-23 仍 ACTIVE，远程入口与 WS-24 需执行前协调。
+
+2026-10-01 WS-23 延期技术探针结果：`20261001-090000-ws23-rto-pause` 已成功运行并完成 16/16 流，但 raw 没有准入丢包；配置还把全网 PFC 暂停时长改为 2500 µs。自然恢复在注入 pause 后约 6.8 µs 清除暂停；流 14 及仿真又在预定显式 resume 前结束。验收器正确拒收动态覆盖。原始证据与新探针约束见[Handoff 50](../handoffs/2026-10-01-50-ws23-deferral-probe-diagnosis.md)。WS-23 仍 **ACTIVE**；下一版方案尚未冻结，跨类四格未运行，远程入口须在实验前重新核验和协调。
+
+2026-10-01 WS-23 下一批本地可执行性复核：每格资源观察器 `READY`/终态收据命令、跨类背景与混合诊断开关的提前配对拒收已补齐并推送个人 fork。延期首格已执行，未通过覆盖验收，详情见更晚的[Handoff 50](../handoffs/2026-10-01-50-ws23-deferral-probe-diagnosis.md)；四格共享出口小样仍无 raw。固定仿真 SHA 为 `70bf890…` 和 `154f537…`；不把本地辅助脚本提交当作新仿真结果。执行顺序、失败保留和未完成项见[预飞行](../research/ws23-next-correctness-and-causal-preflight.md)、[Handoff 49](../handoffs/2026-10-01-49-ws23-next-batch-local-readiness.md)和[必做清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 **ACTIVE**；远端入口、模型和资源须在执行前重新核验。
 
 2026-10-01 WS-23 阶段核验：固定仿真源码 `70bf890d1ceba58c5ebd26b17e492295b34c99ca` 的无损暂停 1/1、压力及资源补验各 16/16 完成，压力两格同 FCT 哈希、161 次真实准入丢包与 3 次源 PG 非暂停期恢复；补验观察器在运行前就绪，10 个正 RSS 采样峰值 204.012 MiB。证据见[机器摘要](../research/evidence/ws23-two-cell-correctness-20261001.json)和[Handoff 48](../handoffs/2026-10-01-48-ws23-correctness-stage-and-next-gates.md)。**两格延期事件均为 0；动态延期、跨类可改道出口因果与隔离候选双侧比较仍必做，WS-23 ACTIVE。**独立执行分支的下一批候选源码 `154f537ec345df75fbb404a1674436535f92735b` 仅本地静态/语法检查，C++ 未构建、新五格未运行；固定输入和停止条件见[下一批预飞行](../research/ws23-next-correctness-and-causal-preflight.md)。WS-24 当前使用共享远端 worker，WS-23 在其释放并重新协调前不部署或启动远程实验。
 
