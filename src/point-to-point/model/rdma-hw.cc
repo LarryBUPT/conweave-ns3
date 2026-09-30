@@ -496,11 +496,21 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
         // send
         uint32_t nic_idx = GetNicIdxOfRxQp(rxQp);
-        if (Settings::ws24_multi_nic && (ecnbits || cnp_check))
-            std::cout << "WS24_CNP_FLAG flow_id=" << rxQp->m_flow_id
-                      << " host=" << m_node->GetId() << " rail="
-                      << Settings::ws24_ip_rail.at(ch.dip) << " nic_if=" << nic_idx
-                      << std::endl;
+        if (Settings::ws24_multi_nic && (ecnbits || cnp_check)) {
+            Ws24Key key = std::make_tuple(ch.dip, ch.sip, ch.udp.dport,
+                                          ch.udp.sport, ch.udp.pg);
+            if (m_ws24CnpGeneratedLogged[key]++ < 32)
+                std::cout << "WS24_CNP_FLAG time_ns=" << Simulator::Now().GetNanoSeconds()
+                          << " flow_id=" << rxQp->m_flow_id << " host=" << m_node->GetId()
+                          << " local_ip_u32=" << ch.dip << " remote_ip_u32=" << ch.sip
+                          << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
+                          << " pg=" << ch.udp.pg << " rail="
+                          << Settings::ws24_ip_rail.at(ch.dip) << " nic_if=" << nic_idx
+                          << " kind=" << (x == 1 ? "ack" : "nack")
+                          << " seq=" << rxQp->ReceiverNextExpectedSeq
+                          << " cnp=1 ecn=" << uint32_t(ecnbits != 0)
+                          << " ooo=" << uint32_t(cnp_check) << std::endl;
+        }
         m_nic[nic_idx].dev->RdmaEnqueueHighPrioQ(newp);
         m_nic[nic_idx].dev->TriggerTransmit();
     }
@@ -601,6 +611,18 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
                   << " remote_ip=" << Ipv4Address(ch.sip)
                   << " rail=" << Settings::ws24_ip_rail.at(ch.dip)
                   << " nic_if=" << nic_idx << " cnp=" << uint32_t(cnp) << std::endl;
+    if (Settings::ws24_multi_nic && cnp && m_ws24CnpReceivedLogged[ws24_key]++ < 32)
+        std::cout << "WS24_CNP_RX time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " flow_id=" << qp->m_flow_id << " host=" << m_node->GetId()
+                  << " local_ip_u32=" << ch.dip << " remote_ip_u32=" << ch.sip
+                  << " sport=" << port << " dport=" << sport << " pg=" << qIndex
+                  << " rail=" << Settings::ws24_ip_rail.at(ch.dip)
+                  << " nic_if=" << nic_idx << " kind="
+                  << (ch.l3Prot == 0xFC ? "ack" : "nack") << " seq=" << seq
+                  << " cnp=" << uint32_t(cnp) << " cc_mode=" << m_cc_mode
+                  << " pending_before=" << uint32_t(qp->mlx.m_decrease_cnp_arrived)
+                  << " rate_before_bps=" << qp->m_rate.GetBitRate()
+                  << " alpha_before=" << qp->mlx.m_alpha << std::endl;
 
     if (m_ack_interval == 0)
         std::cout << "ERROR: shouldn't receive ack\n";
@@ -703,6 +725,17 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
     if (cnp) {
         if (m_cc_mode == 1) {  // mlx version
             cnp_received_mlx(qp);
+            if (Settings::ws24_multi_nic && m_ws24CnpReceivedLogged[ws24_key] <= 32)
+                std::cout << "WS24_CNP_STATE time_ns=" << Simulator::Now().GetNanoSeconds()
+                          << " flow_id=" << qp->m_flow_id << " host=" << m_node->GetId()
+                          << " local_ip_u32=" << ch.dip << " remote_ip_u32=" << ch.sip
+                          << " sport=" << port << " dport=" << sport << " pg=" << qIndex
+                          << " rail=" << Settings::ws24_ip_rail.at(ch.dip)
+                          << " nic_if=" << nic_idx << " seq=" << seq
+                          << " kind=" << (ch.l3Prot == 0xFC ? "ack" : "nack")
+                          << " pending_after=" << uint32_t(qp->mlx.m_decrease_cnp_arrived)
+                          << " rate_after_bps=" << qp->m_rate.GetBitRate()
+                          << " alpha_after=" << qp->mlx.m_alpha << std::endl;
         }
     }
 
@@ -1154,6 +1187,9 @@ void RdmaHw::cnp_received_mlx(Ptr<RdmaQueuePair> q) {
 void RdmaHw::CheckRateDecreaseMlx(Ptr<RdmaQueuePair> q) {
     ScheduleDecreaseRateMlx(q, 0);
     if (q->mlx.m_decrease_cnp_arrived) {
+        uint64_t ws24_rate_before = q->m_rate.GetBitRate();
+        uint64_t ws24_target_before = q->mlx.m_targetRate.GetBitRate();
+        double ws24_alpha_before = q->mlx.m_alpha;
 #if PRINT_LOG
         printf("%lu rate dec: %08x %08x %u %u (%0.3lf %.3lf)->", Simulator::Now().GetTimeStep(),
                q->sip.Get(), q->dip.Get(), q->sport, q->dport,
@@ -1167,6 +1203,24 @@ void RdmaHw::CheckRateDecreaseMlx(Ptr<RdmaQueuePair> q) {
             q->mlx.m_targetRate = q->m_rate;
         }
         q->m_rate = std::max(m_minRate, q->m_rate * (1 - q->mlx.m_alpha / 2));
+        if (Settings::ws24_multi_nic) {
+            Ws24Key key = std::make_tuple(q->sip.Get(), q->dip.Get(), q->sport,
+                                          q->dport, q->m_pg);
+            if (m_ws24RateDecreaseLogged[key]++ < 32)
+                std::cout << "WS24_CNP_RATE time_ns=" << Simulator::Now().GetNanoSeconds()
+                          << " flow_id=" << q->m_flow_id << " host=" << m_node->GetId()
+                          << " local_ip_u32=" << q->sip.Get()
+                          << " remote_ip_u32=" << q->dip.Get()
+                          << " sport=" << q->sport << " dport=" << q->dport
+                          << " pg=" << q->m_pg << " rail="
+                          << Settings::ws24_ip_rail.at(q->sip.Get())
+                          << " nic_if=" << GetNicIdxOfQp(q)
+                          << " pending_before=1 rate_before_bps=" << ws24_rate_before
+                          << " rate_after_bps=" << q->m_rate.GetBitRate()
+                          << " target_before_bps=" << ws24_target_before
+                          << " target_after_bps=" << q->mlx.m_targetRate.GetBitRate()
+                          << " alpha=" << ws24_alpha_before << std::endl;
+        }
         if (Ws13BackgroundQp(q)) Ws13LogQp("rate_decrease", q);
         // reset rate increase related things
         q->mlx.m_rpTimeStage = 0;

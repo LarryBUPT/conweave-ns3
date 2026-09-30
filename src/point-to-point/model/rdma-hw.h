@@ -49,6 +49,9 @@ class RdmaHw : public Object {
     std::map<Ws24Key, Ptr<RdmaRxQueuePair>> m_ws24RxQpMap;
     std::set<Ws24Key> m_ws24FinishedQp, m_ws24FinishedRxQp;
     std::set<Ws24Key> m_ws24FirstAckLogged, m_ws24FirstRxLogged;
+    // Bound diagnostic output per QP; these counters do not affect transport state.
+    std::map<Ws24Key, uint32_t> m_ws24CnpGeneratedLogged, m_ws24CnpReceivedLogged;
+    std::map<Ws24Key, uint32_t> m_ws24RateDecreaseLogged;
     std::unordered_map<uint32_t, std::vector<int>>
         m_rtTable;  // map from ip address (u32) to possible ECMP port (index of dev)
 

@@ -26,10 +26,13 @@
 - [x] 本地审查并冻结 320-host 目标拓扑正确性格：1280 NIC、四 rail、运行时 RTT/BDP 600 ns/30,000 B 和逐流身份守恒。见[后续冻结协议 B](../research/ws24-followup-validation-protocols.md)。
 - [ ] 待 WS-23 五格批次完成并释放共享入口后协调执行目标拓扑 correctness；真实运行日志须实证 600/30,000，不能以离线值代替。
 - [x] 本地设计并冻结可触发的动态 CNP 正确性格和最小接收/发送端状态观测要求。新增四源同 rail incast 合成输入；见[后续冻结协议 C](../research/ws24-followup-validation-protocols.md)。
-- [ ] 加入受限 CNP 生成/接收/DCQCN rate-decrease 观测后，以新固定 SHA/独立 ID 执行；验证 ACK/NACK flag 返回指定源 NIC、接收端处理和发送端状态变化。无事件不得宣称 CNP 已验证。
+- [x] 本地加入仅 WS-24 启用、每 QP 受限的 CNP 生成/源 NIC 接收/DCQCN rate-decrease 观测及事件关联验收器；尚未编译或远端运行，动态正确性不算通过。
+- [ ] 以新固定 SHA/独立 ID 执行 CNP 格；验证 ACK/NACK flag 返回指定源 NIC、pending 生效和流完成前实际降速。无事件不得宣称 CNP 已验证。
 - [x] 本地冻结原多 rail/placement 目标的四臂协议：相同逻辑流与总字节，对照单/多 rail 与固定/可变放置；manifest 逐文件哈希及逐臂验收见[后续冻结协议 D](../research/ws24-followup-validation-protocols.md)。
 - [ ] 先通过目标拓扑 correctness，再由 WS-23 释放入口后协调执行四臂 synthetic pilot。禁止以静态审计替代机制验证；任何范围缩减仍需用户明确决定。
 - [ ] 终态 raw、最终仿真源码及效果结论一致，完成全部预设验收项后再交接闭环。最小格通过不关闭本项。
+
+本地 14 格执行后验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口还要求四模式历史完整 FCT 哈希，不接受只有前缀的摘要。当前只有既有最小 v2 raw 可重验，14 格均未运行。
 
 ## 执行协调与 WS-25
 

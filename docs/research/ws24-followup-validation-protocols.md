@@ -32,7 +32,7 @@
 
 **逐格验收：**metadata/source SHA 和输入快照匹配；OS2 的老链路 1000 ns 断言通过；FCT 行数恰为输入数（五列 19,388，六列 4）；五列日志显示 19,388 个 tag=0，六列输入与路由计数能分别核对 tag=1/2 为 2/2 且缺失计数为 0；FCT 与 uplink 可解析非空，ConWeave 的 VOQ 输出可解析；四种 LB_MODE 确认对应。六列小格若 flowlet、reroute 等动态计数为 0，只报告未触发，不能作为该动态机制已覆盖证据。
 
-历史锚点：WS-06 Handoff 06 的 887f55ef91b0b02455bad1cce5be864d1f4fd02c 已完成四次五列回归，FCT SHA 前缀分别为 fecmp d712e769…54eb976、CONGA 0c041fd0…c7667d3、LetFlow abb659fe…eee0f、ConWeave b2334230…701255；当时四格均 19,388/19,388，拓扑及输入哈希与上表一致。完整原始 FCT 哈希和 raw 现不在该 checkout 的 results/，故未来运行前先从既有结果只读取得 reference raw/完整哈希；如 reference 暂不可得，记录缺口，不把摘要前缀当成字节级复现通过。历史成功只作输入兼容锚点，不代替 v2 SHA 上的回归，也不作性能比较。
+历史锚点：WS-06 Handoff 06 的 `887f55ef91b0b02455bad1cce5be864d1f4fd02c` 已完成四次五列回归。2026-10-01 从个人 fork 的 `results/20260924-211000-ws06-legacy-fecmp`、`20260924-211500-ws06-legacy-conga`、`20260924-212200-ws06-legacy-letflow`、`20260924-212900-ws06-legacy-conweave` 四份历史 raw **只读重算**：metadata 均 `SUCCEEDED` 且同 SHA、trace/拓扑快照哈希与 metadata/上表一致、各 FCT 恰 19,388 行；完整 FCT SHA-256 分别存于[参考哈希 JSON](evidence/ws24-legacy-reference-fct-sha.json)。历史 raw 位于个人 fork checkout 而非本 WS-24 checkout，后续矩阵入口用 JSON 强制逐字节比较。历史成功只作输入兼容锚点，不代替新共同 SHA 上的回归，也不作性能比较。
 
 ## B. 320-host × 4 NIC 目标拓扑正确性
 
@@ -56,11 +56,11 @@
 
 ### 运行观测要求与验收
 
-当前 WS24_CNP_FLAG 只记接收端生成 flag；WS24_RX_ACK 只记每 QP 首个 ACK，既不能证明后续带 CNP 的 ACK/NACK 到达源 NIC，也不能证明 DCQCN 实际改变了 QP 状态。动态格前应以新 SHA 增加有限、只在 WS-24 开启的收发观测，避免每包日志：
+原有 WS24_CNP_FLAG 只记接收端生成 flag；WS24_RX_ACK 只记每 QP 首个 ACK，不能证明后续带 CNP 的 ACK/NACK 到达源 NIC 或 DCQCN 实际改变 QP 状态。本地续作已在 `RdmaHw` 添加仅 WS-24 开启的收发观测：生成、接收与实际降速各 QP 最多 32 条；**尚未远端编译或以新 SHA 运行**。事件字段和执行后验收要求为：
 
-1. 接收 host 记录带时间、flow/QP、源/目的 IP、rail、真实 NIC interface、ACK/NACK 类型与 CNP bit 的 flag 生成事件。
-2. 源 host 在 ReceiveAck 仅对 cnp=1 记录匹配的双 IP QP、真实源 NIC/interface、rail、ACK/NACK 类型、序号、事件前的 QP rate 与 alpha/CNP pending 状态。
-3. DCQCN CheckRateDecreaseMlx 仅在因 CNP 执行时记录同一 QP 的 rate 前后值、目标速率、alpha 与事件时间；默认 RateOnFirstCnp=1 时，首个 CNP 到达可先设置状态而不立即降速，须覆盖其后安排的实际降速回调。
+1. `WS24_CNP_FLAG` 在接收 host 记录时间、flow/QP 五元身份、两端数值 IP、rail、真实 NIC interface、ACK/NACK 类型、序号和 CNP bit。
+2. `WS24_CNP_RX` 在源 host 命中双 IP QP 后记录相同身份、真实源 NIC/interface、ACK/NACK 类型、序号、QP rate 与 alpha/pending 前态；`WS24_CNP_STATE` 记录 DCQCN 处理后的 pending/rate/alpha。生成和接收分别逐 QP 最多记 32 条，因此若日志截断导致无法事件配对，应保留 raw 并核验/调整观测上限，不能硬判通过。
+3. `WS24_CNP_RATE` 在 `CheckRateDecreaseMlx` 的 CNP pending 分支、实际写入 `q->m_rate` 后记录同一 QP 的 rate/目标速率前后值、alpha 与时间；默认 RateOnFirstCnp=1 时首个 CNP 到达只安排后续 4 µs 回调，必须看到活动 QP 在完成前真正降速。
 
 **通过条件：**至少一条接收端生成的 CNP flag 按反向 rail 返回预期源 NIC；源端以同 flow、两端 IP、端口/PG 命中唯一 WS-24 QP；日志明确 ACK/NACK 中的 CNP bit；该 QP 的 DCQCN CNP pending 状态生效，并观察到按源码逻辑安排的 rate-decrease 状态转变（不能只数 flag 或输出 cnp=1）。四条输入流仍需完成与字节守恒；若有丢包、未完成或只发生接收标志而源端无状态变化，格不通过，保留 raw 并定位。独立 ReceiveCnp 包仍不支持，本格只测随 ACK/NACK 携带的标志路径。若默认 ECN 触发没有事件，不得修改门槛后重复同 ID；先据 raw 调整受控输入或观测、固定新输入 SHA/新 ID。
 
@@ -90,3 +90,11 @@
 2. 允许的未来顺序：A 旧输入回归；B 320-host correctness；C CNP 输入/观测的本地触发门槛后执行；D 四臂 pilot。每项失败先保留 raw 并诊断，修复后新 SHA/new ID；不得越过 correctness 直接解释 D 的效果。
 3. 适用已冻结的服务器门槛：load1m ≤10、MemAvailable ≥32 GiB、空闲盘 ≥100 GiB、无他人/WS-23/未知 build 或仿真作业；build 单格 20 分钟、仿真单格 10 分钟上限；资源收据每 5 秒记录，远程后台监督静默、约半小时一次精简状态。出现工作流定义的任一异常就停止后续格并按原始数据恢复流程处理。
 4. 所有终态 raw 回传并核验后，再实际切回 Sol High 分析。上述 8+1+1+4 格构成 WS-24 仍未完成的必做执行任务，不因本文冻结而视作运行、效果结论或工作流闭环。
+
+## 本地验收入口与当前阶段边界
+
+- `python scripts/verify_ws24_inputs.py` 核对 11 文件 manifest、目标图与四臂逻辑输入；已在本地重跑通过。
+- `python scripts/verify_ws24_legacy.py <实验ID> --source-sha <共同SHA> --flow-kind legacy5|legacy6 --lb fecmp|conga|letflow|conweave` 核对 A 单格的状态、输入快照、旧 1000 ns 拓扑、LB_MODE、输入 tag 计数、FCT 身份/数量与 uplink；旧五列的历史 FCT 完整哈希还须在矩阵入口与参考 raw 核对。
+- `python scripts/verify_ws24_result.py <实验ID> --source-sha <共同SHA> --profile target|cnp|arm [--fixture fixed_single|fixed_multi|variable_single|variable_multi]` 核对 B/C/D 单格的精确 fixture、1280 目标路由、600 ns/30,000 B、20 列逐流收据、FCT、字节守恒；C 进一步关联同一 QP/序号的 flag、源端接收、pending 和完成前实际降速。旧最小格可用默认 `minimal` profile 复核。
+- `python scripts/verify_ws24_matrix.py --source-sha <共同SHA> --reference-fct-sha-json docs/research/evidence/ws24-legacy-reference-fct-sha.json [--id-map <替换ID映射JSON>]` 汇总 14 格并要求旧五列 FCT 与历史原始哈希逐字节相同；四臂再按同一 flow_id 比较逻辑需求、placement/rail 和完成跨度。失败或重跑使用新的实验 ID，经 `--id-map` 明确替换，绝不覆盖旧 raw。
+- 本轮仅有 Python 语法、静态输入与既有最小格的本地回归。Windows checkout 无可用 C++ 构建环境，新增 CNP 日志的编译和动态验收仍待共享远程入口释放；当前不能报告 14 格通过。
