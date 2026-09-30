@@ -647,9 +647,13 @@ void periodic_monitoring(FILE *fout_voq, FILE *fout_voq_detail, FILE *fout_uplin
             uint64_t nQP = ws24_multi_nic ? rdmaHw->m_ws24QpMap.size()
                                           : rdmaHw->m_qpMap.size();
             uint64_t nActiveQP = 0;
-            for (auto qp : rdmaHw->m_qpMap) {
-                if (qp.second->GetBytesLeft() > 0) {  // conns with bytes left
-                    nActiveQP++;
+            if (ws24_multi_nic) {
+                for (const auto &qp : rdmaHw->m_ws24QpMap) {
+                    if (qp.second->GetBytesLeft() > 0) nActiveQP++;
+                }
+            } else {
+                for (const auto &qp : rdmaHw->m_qpMap) {
+                    if (qp.second->GetBytesLeft() > 0) nActiveQP++;
                 }
             }
             fprintf(fout_conn, "%lu,%u,%lu,%lu\n", now, i, nQP, nActiveQP);
@@ -1019,9 +1023,6 @@ void InstallWs24Routes() {
                 bandwidth[next] = std::min(bandwidth[current], edge.second.bw);
                 queue.push_back(next);
             }
-            if (ws24_multi_nic)
-                for (const auto &qp : rdmaHw->m_ws24QpMap)
-                    if (qp.second->GetBytesLeft() > 0) ++nActiveQP;
         }
         if (queue.size() != Settings::switch_num / 4)
             NS_FATAL_ERROR("WS24 target rail has unexpected switch component size");
