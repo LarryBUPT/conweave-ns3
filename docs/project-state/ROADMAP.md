@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-09-30 闭环纠错：此前 Handoff 45 将阶段交接当作任务闭环并归档，用户指出必做验证未完成。WS-23/24 恢复 ACTIVE，详见 [验证执行清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 优先补齐丢包恢复及无损 pause/resume 端到端验证；WS-24 继续映射来源审查、明示合成模型的多 NIC 实现与验证，再按原任务目标完成必要效果对照。WS-25 必须保留并跟踪这些执行项，不能以论文范围判断替代验证。性能 NO-GO 不取消正确性工作。
+
 2026-09-30 WS-23/WS-24 阶段闭环并交接 WS-25，见 [Handoff 45](../handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md)。WS-23 只完成修复、optimized build 与单测，端到端恢复仍待验证；WS-24 完成本地表示能力审计，多 rail 仿真 NO-GO。用户要求归档两个对话。WS-25 可据此开展本地证据与论文范围收束：先判断传输修复的端到端验证、多 NIC 模型及真实映射是否为论文主张必需，再决定另立补充任务；不默认追加仿真。
 
 2026-09-30 WS-24 本地可表示性审计收束：[报告](../research/ws24-multirail-representability-audit.md)、[静态收据](../research/evidence/ws24-multirail-static-audit.json)、[Handoff 44](../handoffs/2026-09-30-44-ws24-multirail-representability.md)。四个 rail 组件可静态识别；合成 `physical_host → 四端点`、job/rank→host、流→rail 契约的正反结构检查通过，但实际源码仍把四端点建成四个独立 Node/RDMA Hw，且现有 trace 无物理/作业身份。**保持远程仿真 NO-GO**；须先取得可信主机/NIC 与独立需求来源，再实现并端到端验证多 NIC/IP/双向 QP 与放置。WS-23 仍只有修复 SHA `12dea54d…` 的 build/单测，没有修复版端到端仿真；性能实验也 NO-GO。

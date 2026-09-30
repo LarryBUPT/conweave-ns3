@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-09-30 闭环纠错：此前 Handoff 45 将阶段交接当作任务闭环并归档，用户指出必做验证未完成。WS-23/24 恢复 ACTIVE，详见 [验证执行清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 优先补齐丢包恢复及无损 pause/resume 端到端验证；WS-24 继续映射来源审查、明示合成模型的多 NIC 实现与验证，再按原任务目标完成必要效果对照。WS-25 必须保留并跟踪这些执行项，不能以论文范围判断替代验证。性能 NO-GO 不取消正确性工作。
+
 2026-09-30 WS-23/WS-24 阶段闭环并交接 WS-25，见 [Handoff 45](../handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md)。WS-23 只完成修复、optimized build 与单测，端到端恢复仍待验证；WS-24 完成本地表示能力审计，多 rail 仿真 NO-GO。用户要求归档两个对话。WS-25 可据此开展本地证据与论文范围收束：先判断传输修复的端到端验证、多 NIC 模型及真实映射是否为论文主张必需，再决定另立补充任务；不默认追加仿真。
 
 2026-09-30 WS-24 本地 host/NIC/placement 可表示性审计已完成：[审计报告](../research/ws24-multirail-representability-audit.md)、[静态机器收据](../research/evidence/ws24-multirail-static-audit.json)、[Handoff 44](../handoffs/2026-09-30-44-ws24-multirail-representability.md)。固定 OS1 拓扑四个互不连通组件、每组件 320 个单归属 host 端点；底层 `RdmaHw` 虽有多 NIC 容器，当前 scratch 却为各端点创建独立 Node/RDMA Hw 并使用单主机地址，trace 没有 job/rank/rail/physical host 字段。合成 sidecar 的四 rail 映射通过静态拒错测试，但不证明物理主机身份、模拟器多 NIC 正确性或真实 placement。**WS-24 remote simulation NO-GO**，未运行新实验。WS-23 仍仅固定修复 SHA `12dea54d421243ddb98c83437b929944ab6d128c` optimized build 与 `devices-point-to-point` 单测通过；无修复版端到端仿真，恢复正确性待验证，隔离性能实验 NO-GO。
