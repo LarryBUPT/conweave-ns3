@@ -1,14 +1,16 @@
 # WS-24 后续本地冻结协议
 
-日期：2026-10-01。范围：旧输入四 baseline 回归、320-host 目标拓扑正确性、动态 CNP 正确性、固定逻辑需求的 rail × placement 四臂验证。本文完成协议冻结与输入来源复核；**未启动构建或仿真**。WS-24 仍为 ACTIVE。
+日期：2026-10-01；本地冻结一致性复核：2026-10-01。范围：旧输入四 baseline 回归、320-host 目标拓扑正确性、动态 CNP 正确性、固定逻辑需求的 rail × placement 四臂验证。协议、输入与观测源码已冻结；**此共同 SHA 尚未远端构建或运行 14 格仿真**。WS-24 仍为 ACTIVE。
 
 ## 公共边界与证据等级
 
 - 导入 OS1 拓扑来源可追至只读参考仓库 maplerime/conweave-ns3@470c58026ec3933eabb6667bf3124b6b9bd401be 的合成生成器，逐边结构相符；它不是物理服务器/NIC 或真实 job placement 证据。320-host、NIC、流与 placement 都明确是合成 fixture。
-- 四类后续仿真均须在 WS-23 五格执行结束、共享远程入口释放后，由 Integration 重新协调。未来启动前须重查服务器用户/作业、活动 build/sim、worker、资源与全部 ID。监督时实际切 Luna High；终态 raw 回传后实际切回 Sol High。本轮远端只读 check/status 已完成，之后不再远程操作；不得自动 deploy、sync、build 或 run。
-- v2 最小格的仿真源码锚点是 824e3fa0c4c06dd9894474a81e729931d59a3108；它不含本轮新增 CNP fixture，也不含尚未实现的 CNP 收发观测。A/B/C/D 的最终共同仿真 SHA 目前尚未固定：须先把 fixture/manifest 和有限 CNP 观测纳入一个提交，完成本地审查后再固定同一 SHA 供所有格使用。824e3fa 只作为当前源码行为参考，不能作为下列全部 ID 的共同执行 SHA。这不是未来运行授权。新 SHA 必须包含本协议引用的所有输入。新的实验 ID 启动前必须检查 /home/fnl/lzy/runs/、results/ 未占用，以下 ID 只是本地预留。
+- 四类后续仿真由 Integration 在共享入口空闲、WS-23 无在途远程 build/sim 或 worker 切换时协调。WS-23 正确性验证优先级仍保留；五格全部成功不是独立 WS-24 回归的机械前置条件。启动前须重新核对服务器用户/作业、活动 build/sim、worker、资源与全部 ID。监督阶段须实际切 Luna High；终态 raw 回传后实际切回 Sol High。本轮停在远程执行前，不授权自动 deploy、sync、build 或 run。
+- **A/B/C/D 共同仿真源码 SHA 固定为 `b1184d6a7bd38577b235b7f119f920973308774f`**，分支 `feature/ws24-multinic-validation` 已推送至 LarryBUPT 个人 origin 且远端同名分支曾核对为该 SHA。2026-10-01 从此提交的 Git blob 逐一核对 11 份合成输入、manifest、旧五/六列输入与 OS2 拓扑、CNP 四类观测事件及验收器；11/11 文件哈希等于 manifest，manifest SHA-256 为 `55997be83ecf7e43accc2f6bc546b97185943657cdc64da0d5c89ef91a52b127`。此前 v2 最小格仍归属 `824e3fa0c4c06dd9894474a81e729931d59a3108`，不能并入新批次。后续文档提交只移动分支 HEAD；若无源码或输入改动，14 格仍显式指定 `b1184d6…` 构建。新实验 ID 启动前必须检查 `/home/fnl/lzy/runs/`、`results/` 未占用；下列 ID 仍只是本地预留。
 - 默认 seed=1。simul-time=0.01、netload=10 是现有 runner 的兼容参数；显式 trace 决定实际流量。每个 raw 都须保留 metadata、配置快照、trace/NIC/topology 和资源收据。失败 ID/raw 不覆盖、不复用。
 - 本文的 SUCCEEDED 只是 runner 状态；每项还需逐流身份、输入/完成/字节守恒和原始日志证据。空日志/计数不等于零事件或分支通过。任何错误先定位，修复后固定新 SHA 并使用新 ID。
+
+固定提交中的输入对应关系：A 的 8 个 ID 使用 `ws06_legacy_baseline.txt` 或 `ws06_small_six_column.txt`（各四模式）及 OS2 拓扑，其完整 Git 字节哈希见 A 表；B 使用 manifest 中目标拓扑、目标 NIC 与 `ws24_synthetic_fixed_multi_flows.txt`；C 使用相同目标拓扑/NIC 与 `ws24_synthetic_cnp_incast_flows.txt`；D 四个 ID 分别使用相同目标拓扑/NIC 与四份 `fixed/variable × single/multi` flow 文件，其完整哈希见 D 表。manifest 的其余四份 `2host` 文件属于已完成的 v2 最小格/拒错输入，仍随固定提交保留，不冒充 14 格的新运行。协议列出的 14 个预留 ID 与 `scripts/verify_ws24_matrix.py::DEFAULT_IDS` 已逐一核对一致。
 
 ## A. 旧五列、六列输入的四 baseline 回归
 
@@ -56,7 +58,7 @@
 
 ### 运行观测要求与验收
 
-原有 WS24_CNP_FLAG 只记接收端生成 flag；WS24_RX_ACK 只记每 QP 首个 ACK，不能证明后续带 CNP 的 ACK/NACK 到达源 NIC 或 DCQCN 实际改变 QP 状态。本地续作已在 `RdmaHw` 添加仅 WS-24 开启的收发观测：生成、接收与实际降速各 QP 最多 32 条；**尚未远端编译或以新 SHA 运行**。事件字段和执行后验收要求为：
+原有 WS24_CNP_FLAG 只记接收端生成 flag；WS24_RX_ACK 只记每 QP 首个 ACK，不能证明后续带 CNP 的 ACK/NACK 到达源 NIC 或 DCQCN 实际改变 QP 状态。固定源码 `b1184d6…` 已在 `RdmaHw` 添加仅 WS-24 开启的收发观测：生成、接收与实际降速各 QP 最多 32 条；**尚未远端编译或以该 SHA 运行**。事件字段和执行后验收要求为：
 
 1. `WS24_CNP_FLAG` 在接收 host 记录时间、flow/QP 五元身份、两端数值 IP、rail、真实 NIC interface、ACK/NACK 类型、序号和 CNP bit。
 2. `WS24_CNP_RX` 在源 host 命中双 IP QP 后记录相同身份、真实源 NIC/interface、ACK/NACK 类型、序号、QP rate 与 alpha/pending 前态；`WS24_CNP_STATE` 记录 DCQCN 处理后的 pending/rate/alpha。生成和接收分别逐 QP 最多记 32 条，因此若日志截断导致无法事件配对，应保留 raw 并核验/调整观测上限，不能硬判通过。
@@ -64,7 +66,7 @@
 
 **通过条件：**至少一条接收端生成的 CNP flag 按反向 rail 返回预期源 NIC；源端以同 flow、两端 IP、端口/PG 命中唯一 WS-24 QP；日志明确 ACK/NACK 中的 CNP bit；该 QP 的 DCQCN CNP pending 状态生效，并观察到按源码逻辑安排的 rate-decrease 状态转变（不能只数 flag 或输出 cnp=1）。四条输入流仍需完成与字节守恒；若有丢包、未完成或只发生接收标志而源端无状态变化，格不通过，保留 raw 并定位。独立 ReceiveCnp 包仍不支持，本格只测随 ACK/NACK 携带的标志路径。若默认 ECN 触发没有事件，不得修改门槛后重复同 ID；先据 raw 调整受控输入或观测、固定新输入 SHA/新 ID。
 
-由于观测改动和新增 fixture 都改变最终提交，A、B、C、D 全部格须使用之后冻结的共同 SHA；此 SHA 当前未产生。不能让 A/B/D 先跑在 824e3fa，再把 CNP 单独跑在另一 SHA 而仍称同一冻结批次。
+A、B、C、D 全部格须使用 `b1184d6…` 的同一源码与固定输入；若编译/正确性失败而修改源码或输入，须重新冻结共同 SHA、修订协议与独立 ID，再判定哪些格需要重跑。不能让 A/B/D 跑在旧 `824e3fa…`，把 CNP 单独跑在另一 SHA 却称同一冻结批次。
 
 ## D. 相同逻辑需求与总字节的 rail × placement 四臂
 
@@ -86,7 +88,7 @@
 
 ## 顺序、资源与停止规则
 
-1. 当前阶段只完成输入/来源与协议冻结。WS-23 五格尚未完成前，不启动这些 ID，不部署 worker、不同步源码。启动时由 Integration 重新做共享服务器审计、ID 检查与 Luna High 模型切换，保留每格独立隔离目录和资源收据。
+1. 当前阶段完成输入/来源、观测源码与共同 SHA 的本地冻结，14 格尚未运行。Integration 确认 WS-23 无在途远程作业、共享 worker 无切换冲突、服务器健康且入口空闲后，才能协调下一阶段；不以 WS-23 五格全部成功作为独立 WS-24 回归的静态条件。本轮不部署 worker、不同步源码、不构建或仿真。下一阶段启动前重做共享服务器审计与 ID 检查，并实际切 Luna High 监督，保留每格独立隔离目录和资源收据。
 2. 允许的未来顺序：A 旧输入回归；B 320-host correctness；C CNP 输入/观测的本地触发门槛后执行；D 四臂 pilot。每项失败先保留 raw 并诊断，修复后新 SHA/new ID；不得越过 correctness 直接解释 D 的效果。
 3. 适用已冻结的服务器门槛：load1m ≤10、MemAvailable ≥32 GiB、空闲盘 ≥100 GiB、无他人/WS-23/未知 build 或仿真作业；build 单格 20 分钟、仿真单格 10 分钟上限；资源收据每 5 秒记录，远程后台监督静默、约半小时一次精简状态。出现工作流定义的任一异常就停止后续格并按原始数据恢复流程处理。
 4. 所有终态 raw 回传并核验后，再实际切回 Sol High 分析。上述 8+1+1+4 格构成 WS-24 仍未完成的必做执行任务，不因本文冻结而视作运行、效果结论或工作流闭环。
@@ -97,4 +99,4 @@
 - `python scripts/verify_ws24_legacy.py <实验ID> --source-sha <共同SHA> --flow-kind legacy5|legacy6 --lb fecmp|conga|letflow|conweave` 核对 A 单格的状态、输入快照、旧 1000 ns 拓扑、LB_MODE、输入 tag 计数、FCT 身份/数量与 uplink；旧五列的历史 FCT 完整哈希还须在矩阵入口与参考 raw 核对。
 - `python scripts/verify_ws24_result.py <实验ID> --source-sha <共同SHA> --profile target|cnp|arm [--fixture fixed_single|fixed_multi|variable_single|variable_multi]` 核对 B/C/D 单格的精确 fixture、1280 目标路由、600 ns/30,000 B、20 列逐流收据、FCT、字节守恒；C 进一步关联同一 QP/序号的 flag、源端接收、pending 和完成前实际降速。旧最小格可用默认 `minimal` profile 复核。
 - `python scripts/verify_ws24_matrix.py --source-sha <共同SHA> --reference-fct-sha-json docs/research/evidence/ws24-legacy-reference-fct-sha.json [--id-map <替换ID映射JSON>]` 汇总 14 格并要求旧五列 FCT 与历史原始哈希逐字节相同；四臂再按同一 flow_id 比较逻辑需求、placement/rail 和完成跨度。失败或重跑使用新的实验 ID，经 `--id-map` 明确替换，绝不覆盖旧 raw。
-- 本轮仅有 Python 语法、静态输入与既有最小格的本地回归。Windows checkout 无可用 C++ 构建环境，新增 CNP 日志的编译和动态验收仍待共享远程入口释放；当前不能报告 14 格通过。
+- 本轮仅有 Python 语法、静态输入与既有最小格的本地回归。Windows checkout 无可用 C++ 构建环境，`b1184d6…` 新增 CNP 日志的编译和动态验收仍待共享远程入口协调；当前不能报告 14 格通过。

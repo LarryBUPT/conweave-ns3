@@ -22,21 +22,22 @@
 - [x] 实现一台合成 host Node 对应四 NIC/独立 IP，并完成两主机四 rail 的同 rail 双向 QP/ACK、输入身份及连续字节守恒；最小拓扑 raw 核验通过。具体结果为 4/4 流、32,768 B、max RTT 440 ns、derived IRN BDP 22,000 B。**仍未覆盖：动态 CNP flag 接收分支、320-host 目标拓扑运行、旧格式四 baseline 回归。**
 - [x] 冻结并执行最小正例和跨 rail 拒错负例，核对 host/NIC/rank/flow、唯一接收/确认、FCT 对应与资源收据；正例逐流验收通过，负例在 `WS24 invalid flow row 2` 拒绝且无 FLOW_START/FCT。见两实验 ID 与 SHA 固定的[预飞行结果](../research/ws24-minimal-multinic-preflight.md)。
 - [x] 本地冻结旧五列/六列四 baseline 回归契约：固定 OS2 输入哈希、四 LB_MODE、旧 1000 ns 时延及逐格输出验收。见[后续冻结协议 A](../research/ws24-followup-validation-protocols.md)。
-- [ ] 在固定 SHA 上执行上述 8 格；取回历史 raw 完整 FCT 哈希作为逐字节回归锚点，旧格式输入与动态输出均按契约逐格验收。
+- [x] 从个人 fork 的四份 WS-06 历史 raw 只读重算完整 FCT 哈希，保存逐字节回归锚点于 `docs/research/evidence/ws24-legacy-reference-fct-sha.json`。
+- [ ] 在共同固定 SHA `b1184d6a7bd38577b235b7f119f920973308774f` 上执行上述 8 格，旧格式输入与动态输出均按契约逐格验收。
 - [x] 本地审查并冻结 320-host 目标拓扑正确性格：1280 NIC、四 rail、运行时 RTT/BDP 600 ns/30,000 B 和逐流身份守恒。见[后续冻结协议 B](../research/ws24-followup-validation-protocols.md)。
-- [ ] 待 WS-23 五格批次完成并释放共享入口后协调执行目标拓扑 correctness；真实运行日志须实证 600/30,000，不能以离线值代替。
+- [ ] Integration 确认 WS-23 无在途远程作业、共享 worker 无切换冲突且资源门槛通过后，协调执行目标拓扑 correctness；真实运行日志须实证 600/30,000，不能以离线值代替。WS-23 五格全部成功不是这项独立回归的机械前置条件。
 - [x] 本地设计并冻结可触发的动态 CNP 正确性格和最小接收/发送端状态观测要求。新增四源同 rail incast 合成输入；见[后续冻结协议 C](../research/ws24-followup-validation-protocols.md)。
 - [x] 本地加入仅 WS-24 启用、每 QP 受限的 CNP 生成/源 NIC 接收/DCQCN rate-decrease 观测及事件关联验收器；尚未编译或远端运行，动态正确性不算通过。
-- [ ] 以新固定 SHA/独立 ID 执行 CNP 格；验证 ACK/NACK flag 返回指定源 NIC、pending 生效和流完成前实际降速。无事件不得宣称 CNP 已验证。
+- [ ] 以共同固定 SHA `b1184d6…` /独立 ID 执行 CNP 格；验证 ACK/NACK flag 返回指定源 NIC、pending 生效和流完成前实际降速。无事件不得宣称 CNP 已验证。
 - [x] 本地冻结原多 rail/placement 目标的四臂协议：相同逻辑流与总字节，对照单/多 rail 与固定/可变放置；manifest 逐文件哈希及逐臂验收见[后续冻结协议 D](../research/ws24-followup-validation-protocols.md)。
-- [ ] 先通过目标拓扑 correctness，再由 WS-23 释放入口后协调执行四臂 synthetic pilot。禁止以静态审计替代机制验证；任何范围缩减仍需用户明确决定。
+- [ ] 先通过目标拓扑 correctness，再由 Integration 按共享入口实际空闲情况协调执行四臂 synthetic pilot。禁止以静态审计替代机制验证；任何范围缩减仍需用户明确决定。
 - [ ] 终态 raw、最终仿真源码及效果结论一致，完成全部预设验收项后再交接闭环。最小格通过不关闭本项。
 
 本地 14 格执行后验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口还要求四模式历史完整 FCT 哈希，不接受只有前缀的摘要。当前只有既有最小 v2 raw 可重验，14 格均未运行。
 
 ## 执行协调与 WS-25
 
-WS-24 本批已使用独立 checkout `workspace/ws24-multinic-validation` 完成两格 v2 实验，并在本地冻结后续契约、CNP incast 输入与预留 ID，见[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)。最终共同仿真 SHA 仍待 CNP 观测器实现并本地核验后固定。下一批不得自动部署 worker、sync 或启动 WS-24 实验；待 WS-23 五格批次完成并释放入口后，再由 Integration 协调，不同时切换共享 worker。
+WS-24 本批已使用独立 checkout `workspace/ws24-multinic-validation` 完成两格 v2 实验，并在本地冻结后续契约、CNP incast 输入与预留 ID，见[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)。14 格共同仿真源码固定为 `b1184d6a7bd38577b235b7f119f920973308774f`：Git blob 中 11/11 合成文件哈希匹配 manifest，旧输入和 CNP 四类观测均存在；本地与个人 origin 曾核对为同一 SHA。14 格尚未编译或运行。下一批不得自动部署 worker、sync 或启动 WS-24 实验；Integration 在 WS-23 无在途远程作业、共享 worker 无切换冲突且资源门槛通过后协调，不必机械等待 WS-23 五格全部成功。
 
 每次仿真前先冻结协议与收据并停在模型切换边界，监督对话实际切至 Luna High，再执行后台静默实验，约半小时精简监督；终态 raw 回传后实际切回 Sol High 分析和必要修正。不得用文字宣称模型切换。
 
