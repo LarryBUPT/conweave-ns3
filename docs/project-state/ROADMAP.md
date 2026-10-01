@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-01 WS-23 全量探索已按事前协议完成：[18 格报告](../research/ws23-isolation-matrix-r3-report.md)、[机器摘要](../research/evidence/ws23-isolation-matrix-r3-summary.json)、[Handoff 62](../handoffs/2026-10-01-62-ws23-isolation-matrix-sol-review.md)。三个合成需求的双侧正向条件未过；前两组无类别增量，第三组背景改善伴随最慢竞争流损害。WS-23 仅按预设合成正确性与探索性验证范围收束，不启动同协议追加调参或宣称真实业务收益。WS-25 纳入负结果与适用范围；若将来提出真实业务主张，先取得可信输入与 SLO、独立需求规模和新事前协议。下方 4/18 是执行期间的历史路线记录。
+
 2026-10-01 WS-23 revision 3 六格技术预飞行通过，旧隔离矩阵在第四格因混合 trace 时间倒序失败并停新格；三格旧 SHA 背景结果与失败 raw 均保留。新固定 SHA `3db2685a3540895bf49e25302bd00465bc0921e2` 的混合 ECMP 解析门槛与 seed 2301 三个背景模式共 4/18 格有效。随后一格混合 shortq2 因启动瞬间一条 0 RSS 观测被预设门槛拒收，raw 保留；observer 修复后由 revision 3 新 ID `20261001-201000-ws23-s2301-mix-shortq2-r` 接替该逻辑格。详见[协议修订](../research/ws23-isolation-paired-pilot-prereg-v1.md#revision-3资源观察器启动瞬间的零-rss-样本恢复)和[Handoff 61](../handoffs/2026-10-01-61-ws23-resource-observer-restart.md)。其余矩阵格按同一仿真 SHA 完成；全量 raw 回传后实际切 Sol High 做双侧独立分析。WS-23 ACTIVE，没有隔离效果结论。
 
 2026-10-01 WS-24 合成多网卡冻结批次 14/14 已完成，原始数据在 WS-24 独立工作区重跑矩阵验收，结果与[机器摘要](../research/evidence/ws24-followup-validation-summary.json)一致。旧五列兼容、目标图正确性、动态 CNP 收发/降速和固定逻辑需求四臂守恒通过；四臂只有单一合成 seed，完成跨度差 −173/−164 ns 不能写成普遍收益。详见[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)与[冻结协议](../research/ws24-followup-validation-protocols.md)。原清单所需单测收据尚未找到，WS-24 任务保持 ACTIVE；真实主机/NIC/作业映射尚无可信来源，独立需求确认性效果未做。WS-23 隔离双侧验证仍按其已冻结协议 ACTIVE。

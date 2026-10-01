@@ -4,7 +4,7 @@
 
 ## WS-23：先完成传输恢复正确性
 
-执行对话：`01a0f15f-58c7-7532-84bd-9acaaaa14525`。依据[恢复契约](../research/ws23-irn-pfc-recovery-contract.md)及[下一批预飞行](../research/ws23-next-correctness-and-causal-preflight.md)。2026-10-01 状态：**ACTIVE**。最终两格仿真源码 `70bf890d1ceba58c5ebd26b17e492295b34c99ca` 的 optimized build、`devices-point-to-point` 单测和端到端两格已通过；其证据等级为固定输入技术正确性。
+执行对话：`01a0f15f-58c7-7532-84bd-9acaaaa14525`。依据[恢复契约](../research/ws23-irn-pfc-recovery-contract.md)及[下一批预飞行](../research/ws23-next-correctness-and-causal-preflight.md)。2026-10-01 状态：**COMPLETE FOR PRESET SYNTHETIC CORRECTNESS AND ISOLATION EXPLORATION; ISOLATION EFFICACY NO-GO**。最终两格仿真源码 `70bf890d1ceba58c5ebd26b17e492295b34c99ca` 的 optimized build、`devices-point-to-point` 单测和端到端两格已通过；其证据等级为固定输入技术正确性。18 格探索矩阵的负结论见[全量报告](../research/ws23-isolation-matrix-r3-report.md)。
 
 - [x] 冻结两格源码 SHA、输入/拓扑哈希、seed、独立 ID、资源停止条件、真实源端 pause/resume 与逐格验收器；见[运行前 Handoff 47](../handoffs/2026-09-30-47-ws23-two-cell-preflight.md)。
 - [x] 旧 16×1 MiB 反例在 `20260930-201600-ws23-loss-recovery` 及资源补验 `20260930-213100-ws23-loss-recovery-r2` 均 16/16、两类各 8/8、16 个唯一 QP、序号/字节守恒；161 次真实准入丢包后有 3 次超时恢复，均不在源 PG 暂停期。两次 FCT SHA 相同。该两格均**未发生延期事件**，故只满足“若发生则为正时长”的条件检查，不代表延期分支端到端覆盖。
@@ -19,9 +19,9 @@
 - [x] 修复生成器输出顺序并逐条核对：三份背景输入字节不变，三份混合输入只改变行序，流身份、tag、字节和到达时间完全相同；新输入单调、无重复。旧/新哈希及可重算证据见[排序审计](../research/evidence/ws23-isolation-reorder-audit.json)。新矩阵全部 18 格使用新固定 SHA 和全新 ID，旧验收编号保留。
 - [x] 新排序混合输入 ECMP 解析门槛在 `3db2685a3540895bf49e25302bd00465bc0921e2` 的 `20261001-200003-ws23-s2301-mix-fecmp` 通过：4/4，输入/拓扑快照哈希匹配，解析错误为零，FCT 行与 payload 完整，资源收据正且在阈值内；见[机器收据](../research/evidence/ws23-isolation-parse-gate.json)。该格是完整 18 格中的一格，不是隔离效果比较。
 - [x] 新 SHA 下解析门槛与 seed 2301 的三个背景格共 4/18 有效：背景三模式 FCT SHA 均为 `458b8f12f8460a6b21f49ee4db3157148124b6700f9f07353afdacbacd31f65c`，资源收据通过。混合 `shortq2` 格 4/4 但有一条 0 RSS 启动样本，被冻结的逐样本资源验收拒收，raw 保留且不计有效格。观察器修订与替换 ID 见[revision 3](../research/ws23-isolation-paired-pilot-prereg-v1.md#revision-3资源观察器启动瞬间的零-rss-样本恢复)。
-- [ ] 用新编号 `20261001-201000-ws23-s2301-mix-shortq2-r` 重跑并验收被拒收逻辑格，随后完成其余未运行格；对所有三组需求计算背景干扰、竞争流逐流/最大 FCT 与类别决策触发。结论须回答隔离效果是否降低背景影响、竞争流自身代价如何。旧四格和旧 SHA 背景三格不代表隔离候选效果，也不代表真实业务 SLO。
-- [ ] 按原隔离目标验证独立需求与实际适用范围；结果为负或前提不满足时保留 raw 并定位，不从结果后改门槛。未完成候选双侧及对应验证前，WS-23 保持 ACTIVE。
-- [ ] 全部预设项完成后再核对最终源码、实验、结果报告与自然语言结论逐项一致；原始目标若需变更，先取得用户明确决定。阶段 Handoff 和上述两格通过不构成 WS-23 闭环。
+- [x] 新编号 `20261001-201000-ws23-s2301-mix-shortq2-r` 通过，其他 17 个有效逻辑格同 SHA 完成；revision 3 全矩阵原始验收 18/18。逐 seed 背景干扰、三条竞争流 FCT、最大值和类别决策触发均已计算，见[报告](../research/ws23-isolation-matrix-r3-report.md)与[机器摘要](../research/evidence/ws23-isolation-matrix-r3-summary.json)。旧 `200004` 和旧 SHA/倒序输入不计入。
+- [x] 三组事前独立合成需求已全部报告；双侧正向条件未过：2301/2302 类别未改变选路，2303 背景改善但最慢竞争流受损。适用范围限定为同一小拓扑/负载家族的合成探索，缺真实业务输入与 SLO，不能声称生产隔离收益。负结果和 raw 保留，原门槛未改。
+- [x] 最终源码 SHA、18 个有效 ID、原始数据、资源收据、报告与结论已逐项核对。WS-23 按原预设的合成正确性与隔离探索范围收束；真实业务和统计确认主张均未成立，也不由本次任务代做。
 
 ## WS-24：补齐模型、输入与多网卡验证
 

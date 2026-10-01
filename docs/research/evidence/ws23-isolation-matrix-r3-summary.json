@@ -1,0 +1,399 @@
+{
+  "source_sha": "3db2685a3540895bf49e25302bd00465bc0921e2",
+  "matrix_revision": 3,
+  "cells": 18,
+  "outcomes": [
+    {
+      "seed": 2301,
+      "interference_ns": {
+        "fecmp": 1954606,
+        "shortq2": 43103,
+        "guardhash": 43103
+      },
+      "contender_fct_ns_by_source": {
+        "fecmp": {
+          "0": 360569,
+          "2": 1455332,
+          "1": 1776698
+        },
+        "shortq2": {
+          "2": 1566364,
+          "1": 1582449,
+          "0": 1599576
+        },
+        "guardhash": {
+          "2": 1566364,
+          "1": 1582449,
+          "0": 1599576
+        }
+      },
+      "contender_max_fct_ns": {
+        "fecmp": 1776698,
+        "shortq2": 1599576,
+        "guardhash": 1599576
+      },
+      "class_mechanism_triggered": false,
+      "background_better_than_both": false,
+      "contender_max_no_worse_than_both": true
+    },
+    {
+      "seed": 2302,
+      "interference_ns": {
+        "fecmp": 1954904,
+        "shortq2": 51045,
+        "guardhash": 51045
+      },
+      "contender_fct_ns_by_source": {
+        "fecmp": {
+          "3": 360569,
+          "0": 1703276,
+          "2": 1759546
+        },
+        "shortq2": {
+          "3": 1644340,
+          "0": 1659646,
+          "2": 1643348
+        },
+        "guardhash": {
+          "3": 1644340,
+          "0": 1659646,
+          "2": 1643348
+        }
+      },
+      "contender_max_fct_ns": {
+        "fecmp": 1759546,
+        "shortq2": 1659646,
+        "guardhash": 1659646
+      },
+      "class_mechanism_triggered": false,
+      "background_better_than_both": false,
+      "contender_max_no_worse_than_both": true
+    },
+    {
+      "seed": 2303,
+      "interference_ns": {
+        "fecmp": 966648,
+        "shortq2": 550754,
+        "guardhash": 283398
+      },
+      "contender_fct_ns_by_source": {
+        "fecmp": {
+          "1": 928803,
+          "0": 997240,
+          "3": 1042071
+        },
+        "shortq2": {
+          "1": 2069750,
+          "3": 2256266,
+          "0": 2294624
+        },
+        "guardhash": {
+          "1": 1979201,
+          "0": 2252883,
+          "3": 2317761
+        }
+      },
+      "contender_max_fct_ns": {
+        "fecmp": 1042071,
+        "shortq2": 2294624,
+        "guardhash": 2317761
+      },
+      "class_mechanism_triggered": true,
+      "background_better_than_both": true,
+      "contender_max_no_worse_than_both": false
+    }
+  ],
+  "exploratory_positive": false,
+  "verified_cells": [
+    {
+      "id": "20261001-200000-ws23-s2301-bg-fecmp",
+      "fct_sha256": "458b8f12f8460a6b21f49ee4db3157148124b6700f9f07353afdacbacd31f65c",
+      "background_fct_ns": 708695,
+      "contender_fct_ns": {},
+      "route": null,
+      "resource_peak_rss_mib": 204.37109375
+    },
+    {
+      "id": "20261001-200001-ws23-s2301-bg-shortq2",
+      "fct_sha256": "458b8f12f8460a6b21f49ee4db3157148124b6700f9f07353afdacbacd31f65c",
+      "background_fct_ns": 708695,
+      "contender_fct_ns": {},
+      "route": {
+        "packets": 0,
+        "two_candidates": 0,
+        "scored": 0,
+        "diverted": 0,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 0,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 203.89453125
+    },
+    {
+      "id": "20261001-200002-ws23-s2301-bg-guardhash",
+      "fct_sha256": "458b8f12f8460a6b21f49ee4db3157148124b6700f9f07353afdacbacd31f65c",
+      "background_fct_ns": 708695,
+      "contender_fct_ns": {},
+      "route": {
+        "packets": 0,
+        "two_candidates": 0,
+        "scored": 0,
+        "diverted": 0,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 0,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 203.8125
+    },
+    {
+      "id": "20261001-200003-ws23-s2301-mix-fecmp",
+      "fct_sha256": "d4ac5917d3d8bbd10f7ac4a1d963fc1a60e60aa036ad7e953acc7471861be301",
+      "background_fct_ns": 2663301,
+      "contender_fct_ns": {
+        "0": 360569,
+        "2": 1455332,
+        "1": 1776698
+      },
+      "route": null,
+      "resource_peak_rss_mib": 203.84375
+    },
+    {
+      "id": "20261001-201000-ws23-s2301-mix-shortq2-r",
+      "fct_sha256": "de367be797ea1d2a1a1e6af892e197b91779fe208aa2f54cfca2817fe679b38c",
+      "background_fct_ns": 751798,
+      "contender_fct_ns": {
+        "2": 1566364,
+        "1": 1582449,
+        "0": 1599576
+      },
+      "route": {
+        "packets": 66305,
+        "two_candidates": 13114,
+        "scored": 13114,
+        "diverted": 732,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 0,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 204.2421875
+    },
+    {
+      "id": "20261001-200005-ws23-s2301-mix-guardhash",
+      "fct_sha256": "de367be797ea1d2a1a1e6af892e197b91779fe208aa2f54cfca2817fe679b38c",
+      "background_fct_ns": 751798,
+      "contender_fct_ns": {
+        "2": 1566364,
+        "1": 1582449,
+        "0": 1599576
+      },
+      "route": {
+        "packets": 66305,
+        "two_candidates": 13114,
+        "scored": 13114,
+        "diverted": 732,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 813,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 204.15234375
+    },
+    {
+      "id": "20261001-200006-ws23-s2302-bg-fecmp",
+      "fct_sha256": "15b5ab5d8c10d32f16da70582e397fb6550245a8c721ac9290979d53fab8d7fc",
+      "background_fct_ns": 708695,
+      "contender_fct_ns": {},
+      "route": null,
+      "resource_peak_rss_mib": 204.00390625
+    },
+    {
+      "id": "20261001-200007-ws23-s2302-bg-shortq2",
+      "fct_sha256": "15b5ab5d8c10d32f16da70582e397fb6550245a8c721ac9290979d53fab8d7fc",
+      "background_fct_ns": 708695,
+      "contender_fct_ns": {},
+      "route": {
+        "packets": 0,
+        "two_candidates": 0,
+        "scored": 0,
+        "diverted": 0,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 0,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 204.09375
+    },
+    {
+      "id": "20261001-200008-ws23-s2302-bg-guardhash",
+      "fct_sha256": "15b5ab5d8c10d32f16da70582e397fb6550245a8c721ac9290979d53fab8d7fc",
+      "background_fct_ns": 708695,
+      "contender_fct_ns": {},
+      "route": {
+        "packets": 0,
+        "two_candidates": 0,
+        "scored": 0,
+        "diverted": 0,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 0,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 204.1796875
+    },
+    {
+      "id": "20261001-200009-ws23-s2302-mix-fecmp",
+      "fct_sha256": "e1253c90e9e54d25ec833e7e06e00d42aa78561fb893f365912fbf8f81bc289f",
+      "background_fct_ns": 2663599,
+      "contender_fct_ns": {
+        "3": 360569,
+        "0": 1703276,
+        "2": 1759546
+      },
+      "route": null,
+      "resource_peak_rss_mib": 204.08203125
+    },
+    {
+      "id": "20261001-200010-ws23-s2302-mix-shortq2",
+      "fct_sha256": "5396843e7872d1630d1eca5b7a96cab666ef0392caaafd427f015527e24c3d64",
+      "background_fct_ns": 759740,
+      "contender_fct_ns": {
+        "3": 1644340,
+        "0": 1659646,
+        "2": 1643348
+      },
+      "route": {
+        "packets": 66430,
+        "two_candidates": 13239,
+        "scored": 13239,
+        "diverted": 705,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 0,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 204.16796875
+    },
+    {
+      "id": "20261001-200011-ws23-s2302-mix-guardhash",
+      "fct_sha256": "5396843e7872d1630d1eca5b7a96cab666ef0392caaafd427f015527e24c3d64",
+      "background_fct_ns": 759740,
+      "contender_fct_ns": {
+        "3": 1644340,
+        "0": 1659646,
+        "2": 1643348
+      },
+      "route": {
+        "packets": 66430,
+        "two_candidates": 13239,
+        "scored": 13239,
+        "diverted": 705,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 1023,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 204.0234375
+    },
+    {
+      "id": "20261001-200012-ws23-s2303-bg-fecmp",
+      "fct_sha256": "842771deae1d83edd706ad8566afbfe9af69854e966dcd92b1e87d8f526fa93b",
+      "background_fct_ns": 708695,
+      "contender_fct_ns": {},
+      "route": null,
+      "resource_peak_rss_mib": 203.671875
+    },
+    {
+      "id": "20261001-200013-ws23-s2303-bg-shortq2",
+      "fct_sha256": "842771deae1d83edd706ad8566afbfe9af69854e966dcd92b1e87d8f526fa93b",
+      "background_fct_ns": 708695,
+      "contender_fct_ns": {},
+      "route": {
+        "packets": 0,
+        "two_candidates": 0,
+        "scored": 0,
+        "diverted": 0,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 0,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 204.23046875
+    },
+    {
+      "id": "20261001-200014-ws23-s2303-bg-guardhash",
+      "fct_sha256": "842771deae1d83edd706ad8566afbfe9af69854e966dcd92b1e87d8f526fa93b",
+      "background_fct_ns": 708695,
+      "contender_fct_ns": {},
+      "route": {
+        "packets": 0,
+        "two_candidates": 0,
+        "scored": 0,
+        "diverted": 0,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 0,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 203.92578125
+    },
+    {
+      "id": "20261001-200015-ws23-s2303-mix-fecmp",
+      "fct_sha256": "d6bcfbee6beec8b4866c535b7c1f27b7347d22190d8dca8a6597f779b9afc787",
+      "background_fct_ns": 1675343,
+      "contender_fct_ns": {
+        "1": 928803,
+        "0": 997240,
+        "3": 1042071
+      },
+      "route": null,
+      "resource_peak_rss_mib": 203.875
+    },
+    {
+      "id": "20261001-200016-ws23-s2303-mix-shortq2",
+      "fct_sha256": "93065f20a7a0ba420cf7b3b3cd76eac5e1c994c50e4a4c214750f018618f1d8f",
+      "background_fct_ns": 1259449,
+      "contender_fct_ns": {
+        "1": 2069750,
+        "3": 2256266,
+        "0": 2294624
+      },
+      "route": {
+        "packets": 70020,
+        "two_candidates": 13936,
+        "scored": 13936,
+        "diverted": 1211,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 0,
+        "class_changed_choice": 0
+      },
+      "resource_peak_rss_mib": 203.8671875
+    },
+    {
+      "id": "20261001-200017-ws23-s2303-mix-guardhash",
+      "fct_sha256": "57528ce9d3f61433014685811e17dee6571b0e4a6d117a9a48aa7a376f8a39e6",
+      "background_fct_ns": 992093,
+      "contender_fct_ns": {
+        "1": 1979201,
+        "0": 2252883,
+        "3": 2317761
+      },
+      "route": {
+        "packets": 67890,
+        "two_candidates": 13555,
+        "scored": 13555,
+        "diverted": 752,
+        "activations": 0,
+        "exits": 0,
+        "class_nonzero": 1389,
+        "class_changed_choice": 317
+      },
+      "resource_peak_rss_mib": 204.3125
+    }
+  ],
+  "excluded_id": "20261001-200004-ws23-s2301-mix-shortq2",
+  "progress_receipt": "results/ws23-isolation-matrix-r2-progress.jsonl"
+}
