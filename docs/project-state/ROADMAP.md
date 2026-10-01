@@ -1,6 +1,6 @@
 # 下一阶段路线与停机条件
 
-2026-10-01 WS-23 revision 3 六格技术预飞行通过，旧隔离矩阵在第四格因混合 trace 时间倒序失败并停新格；三格旧 SHA 背景结果与失败 raw 均保留。生成器只调整混合 trace 行序并完成逐条等价审计，新完整 18 格 ID 与验收入口见[矩阵第二版修订](../research/ws23-isolation-paired-pilot-prereg-v1.md#矩阵第二版修正输入行序并重新冻结完整-18-格)和[Handoff 60](../handoffs/2026-10-01-60-ws23-matrix-input-order-recovery.md)。下一步在实际 Luna High 监督阶段先以新 SHA 的混合 ECMP 格验证解析、快照和资源，成功后才扩展其余 17 格；全部 raw 回传后实际切 Sol High 做双侧独立分析。新矩阵 0/18，WS-23 ACTIVE，没有隔离效果结论。
+2026-10-01 WS-23 revision 3 六格技术预飞行通过，旧隔离矩阵在第四格因混合 trace 时间倒序失败并停新格；三格旧 SHA 背景结果与失败 raw 均保留。生成器只调整混合 trace 行序并完成逐条等价审计；新固定 SHA `3db2685a3540895bf49e25302bd00465bc0921e2` 的混合 ECMP 输入解析门槛 `20261001-200003-ws23-s2301-mix-fecmp` 已以 4/4 和有效资源收据通过，矩阵 1/18。新完整 18 格 ID 与验收入口见[矩阵第二版修订](../research/ws23-isolation-paired-pilot-prereg-v1.md#矩阵第二版修正输入行序并重新冻结完整-18-格)、[门槛收据](../research/evidence/ws23-isolation-parse-gate.json)和[Handoff 60](../handoffs/2026-10-01-60-ws23-matrix-input-order-recovery.md)。下一步按固定 SHA 与新 ID 完成其余 17 格；全部 raw 回传后实际切 Sol High 做双侧独立分析。WS-23 ACTIVE，没有隔离效果结论。
 
 2026-10-01 WS-24 合成多网卡冻结批次 14/14 已完成，原始数据在 WS-24 独立工作区重跑矩阵验收，结果与[机器摘要](../research/evidence/ws24-followup-validation-summary.json)一致。旧五列兼容、目标图正确性、动态 CNP 收发/降速和固定逻辑需求四臂守恒通过；四臂只有单一合成 seed，完成跨度差 −173/−164 ns 不能写成普遍收益。详见[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)与[冻结协议](../research/ws24-followup-validation-protocols.md)。原清单所需单测收据尚未找到，WS-24 任务保持 ACTIVE；真实主机/NIC/作业映射尚无可信来源，独立需求确认性效果未做。WS-23 隔离双侧验证仍按其已冻结协议 ACTIVE。
 

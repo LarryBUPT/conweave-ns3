@@ -133,12 +133,28 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-sha", required=True)
     parser.add_argument("--revision", type=int, choices=(1, 2), default=1)
+    parser.add_argument("--cell", help="verify one completed cell rather than the whole matrix")
     args = parser.parse_args()
     require(re.fullmatch(r"[0-9a-f]{40}", args.source_sha), "full source SHA required")
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     entries = {(e["seed"], e["scenario"]): e for e in manifest["entries"]}
     require(set(entries) == {(s, c) for s in (2301, 2302, 2303) for c in ("bg", "mix")},
             "demand manifest coverage")
+    if args.cell:
+        require(args.revision == 2, "single-cell verification is for matrix revision 2")
+        selected = None
+        for (seed, scenario), entry in entries.items():
+            for mode in MODES:
+                if experiment_id(seed, scenario, mode, 2) == args.cell:
+                    selected = (entry, mode)
+        require(selected is not None, "unknown revision-2 cell")
+        entry, mode = selected
+        require(digest(ROOT / entry["path"]) == entry["sha256"], "Git demand byte hash")
+        verify_trace_order(entry)
+        result = inspect(entry, mode, args.source_sha, revision=2)
+        print(json.dumps({"source_sha": args.source_sha, "matrix_revision": 2,
+                          "cells": 1, "verified_cell": result}, indent=2))
+        return
     rows = {}
     for seed in (2301, 2302, 2303):
         require(entries[seed, "bg"]["flows"] == entries[seed, "mix"]["flows"][:1],

@@ -1,6 +1,6 @@
 # Handoff 60：WS-23 矩阵输入排序修复与全新 18 格冻结
 
-日期：2026-10-01。执行工作区 `E:\研\毕业论文\workspace\ws23-execution-70bf890`，分支 `feature/ws23-validation-execution`。证据等级：revision 3 为技术预飞行；旧矩阵仅三个背景格成功，混合格失败；新 18 格尚无效果数据。
+日期：2026-10-01。执行工作区 `E:\研\毕业论文\workspace\ws23-execution-70bf890`，分支 `feature/ws23-validation-execution`。证据等级：revision 3 为技术预飞行；旧矩阵仅三个背景格成功，混合格失败；新矩阵已通过一格输入解析门槛，双侧效果数据尚未完成。
 
 ## 1. 本对话目标
 
@@ -25,7 +25,7 @@
 
 ## 5. 当前状态
 
-WS-23 **ACTIVE**。旧矩阵 3 格成功、1 格失败并停止，新矩阵 0/18。新完整源码 SHA 以本 Handoff 所在提交及推送后的 Git 核验为准；新 18 格从 `20261001-200000-ws23-s2301-bg-fecmp` 至 `20261001-200017-ws23-s2303-mix-guardhash`。本阶段没有新远程构建或仿真，不能报告隔离收益。
+WS-23 **ACTIVE**。排序修复固定源码 SHA `3db2685a3540895bf49e25302bd00465bc0921e2`。解析门槛格 `20261001-200003-ws23-s2301-mix-fecmp` 已独立构建、运行并通过：`SUCCEEDED`，4/4 流完成，FCT SHA-256 `d4ac5917d3d8bbd10f7ac4a1d963fc1a60e60aa036ad7e953acc7471861be301`，输入 SHA `44c511ec97322bbb6ff0755ea20cc5782ce213f16f8e52099dff90852c23d7af`，拓扑 SHA `dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad`，峰值进程树 RSS 203.844 MiB，最大采样 load1m 1.17；[解析门槛收据](../research/evidence/ws23-isolation-parse-gate.json)逐项核验通过。矩阵 1/18，其余 17 格尚未运行，没有隔离收益结论。
 
 ## 6. 未解决问题
 
@@ -33,7 +33,7 @@ WS-23 **ACTIVE**。旧矩阵 3 格成功、1 格失败并停止，新矩阵 0/18
 
 ## 7. 后续推荐动作
 
-先核对个人 fork 同名分支完整 SHA、生成器及排序审计，现场复查远端 worker/他人作业/资源和全部 18 个 ID 空闲。实际切换 GPT-6 Luna High 后，在新 SHA 上先构建并运行 `200003` 混合 ECMP 格，核对 4/4、解析无误、快照哈希和正 RSS；失败立即停新格并保留 raw。通过才运行其余 17 格，后台静默且约半小时精简监督。全部终态回传后实际切 GPT-6 Sol High，以 `--revision 2 --source-sha <完整 SHA>` 重算原始双侧结果并作独立复核；再逐项核对必做清单决定闭环。
+解析门槛已经通过。继续现场复查 worker、作业、资源和剩余 17 个 ID 空闲；每格独立构建并在观察器 READY 后运行，仿真并发 1。构建采用每格 `-j2`、最多四格一批（8 个编译任务），起始 load1m ≤10、可用内存 ≥32 GiB、磁盘 ≥100 GiB，运行中越过停止线则停止新增格。所有格按 revision 2 验收并保留 raw；全部终态回传后实际切 GPT-6 Sol High，以 `--revision 2 --source-sha 3db2685a3540895bf49e25302bd00465bc0921e2` 重算原始双侧结果并作独立复核，再逐项核对必做清单决定闭环。
 
 ## 8. 与其他工作流的关系
 
@@ -41,4 +41,4 @@ WS-23 **ACTIVE**。旧矩阵 3 格成功、1 格失败并停止，新矩阵 0/18
 
 ## 9. CONTEXT SNAPSHOT
 
-WS-23 revision 3 六格预飞行通过，原 18 格在第四格因混合 trace 时间倒序失败并停止。已保留旧 ID/raw，修复只排序三份混合 trace，六列流记录与 manifest 语义内容不变；排序审计收据可从旧 Git 提交重算。新矩阵 `--revision 2` 有 18 个全新 ID，当前 0/18；先在新固定 SHA 上运行新混合 ECMP 解析格，再按不变双侧判据完成其余格。WS-23 ACTIVE，不得以技术预飞行或本 Handoff 代替效果验证。
+WS-23 revision 3 六格预飞行通过，旧 18 格在第四格因混合 trace 时间倒序失败并停止。已保留旧 ID/raw，修复只排序三份混合 trace，六列流记录与 manifest 语义内容不变；排序审计收据可从旧 Git 提交重算。新完整 SHA `3db2685a3540895bf49e25302bd00465bc0921e2` 的新混合 ECMP 解析门槛格通过，矩阵 1/18；剩余 17 格按 `--revision 2` 编号运行。WS-23 ACTIVE，解析门槛与 Handoff 均不能代替双侧效果验证。
