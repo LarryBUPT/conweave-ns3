@@ -57,9 +57,14 @@ def main():
                     assert sr == dr == (0 if policy == 'single' else fid % 4)
                     assert components[nic_map[src, sr][1]] == components[nic_map[dst, dr][1]]
                 key = '{}_{}'.format(job, arm)
-                assert manifest['experiment_ids'][key].endswith('-ws24-ind-{}-{}'.format(
-                    job, {'fixed_single': 'fs', 'fixed_multi': 'fm',
-                          'variable_single': 'vs', 'variable_multi': 'vm'}[arm]))
+                if key == 'j01_fixed_single':
+                    superseded = manifest['superseded_attempts'][
+                        '20261002-180000-ws24-ind-j01-fs']
+                    assert manifest['experiment_ids'][key] == superseded['replacement']
+                else:
+                    assert manifest['experiment_ids'][key].endswith('-ws24-ind-{}-{}'.format(
+                        job, {'fixed_single': 'fs', 'fixed_multi': 'fm',
+                              'variable_single': 'vs', 'variable_multi': 'vm'}[arm]))
         payload = ('\n'.join(' '.join(map(str, row)) for row in logical_ref) + '\n').encode('ascii')
         digest = hashlib.sha256(payload).hexdigest()
         assert digest == info['logical_sha256'] and digest not in all_logical

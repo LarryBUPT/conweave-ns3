@@ -7,7 +7,7 @@
   ],
   "experiment_ids": {
     "j01_fixed_multi": "20261002-180000-ws24-ind-j01-fm",
-    "j01_fixed_single": "20261002-180000-ws24-ind-j01-fs",
+    "j01_fixed_single": "20261002-180000-ws24-ind-j01-fs-r2",
     "j01_variable_multi": "20261002-180000-ws24-ind-j01-vm",
     "j01_variable_single": "20261002-180000-ws24-ind-j01-vs",
     "j02_fixed_multi": "20261002-180000-ws24-ind-j02-fm",
@@ -380,6 +380,12 @@
     "j08_fixed_multi"
   ],
   "schema_version": 1,
+  "superseded_attempts": {
+    "20261002-180000-ws24-ind-j01-fs": {
+      "reason": "resource watcher was not started before run; raw retained as correctness-only preflight",
+      "replacement": "20261002-180000-ws24-ind-j01-fs-r2"
+    }
+  },
   "topology_file": "ws24_synthetic_320host_4nic_topology.txt",
   "topology_sha256": "e82f742a1f07749de63706c94c29b3275ec908c61a967f6336988526213bf6fa"
 }

@@ -60,6 +60,9 @@ def flow_name(job, arm):
 
 
 def experiment_id(job, arm):
+    if job == 1 and arm == 'fixed_single':
+        # First attempt met the flow contract but lacked the required resource watcher.
+        return '20261002-180000-ws24-ind-j01-fs-r2'
     short = {'fixed_single': 'fs', 'fixed_multi': 'fm',
              'variable_single': 'vs', 'variable_multi': 'vm'}[arm]
     return '20261002-180000-ws24-ind-j{:02d}-{}'.format(job, short)
@@ -112,6 +115,12 @@ def build():
         'nic_file': NICS, 'nic_sha256': nic_sha,
         'flow_files_sha256': {name: sha(data) for name, data in sorted(files.items())},
         'jobs': jobs, 'experiment_ids': ids, 'run_order': order,
+        'superseded_attempts': {
+            '20261002-180000-ws24-ind-j01-fs': {
+                'replacement': ids['j01_fixed_single'],
+                'reason': 'resource watcher was not started before run; raw retained as correctness-only preflight',
+            }
+        },
     }
     manifest_data = (json.dumps(manifest, indent=2, sort_keys=True) + '\n').encode('utf-8')
     return files, manifest_data

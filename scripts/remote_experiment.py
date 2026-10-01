@@ -8,10 +8,12 @@ import shlex
 import shutil
 import subprocess
 import sys
+import time
 
 PROJECT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 ENV_FILE = os.path.join(PROJECT, '.project', 'remote.env')
 WORKER = os.path.join(PROJECT, 'scripts', 'remote_worker.py')
+WS24_RESOURCE_WATCHER = os.path.join(PROJECT, 'scripts', 'ws24_resource_watch.py')
 REMOTE_WORKER_NAME = 'remote_worker.py'
 ID_RE = re.compile(r'^[0-9]{8}-[0-9]{6}-[a-z0-9][a-z0-9-]{0,40}$')
 FORK_RE = re.compile(r'^https://github[.]com/LarryBUPT/[A-Za-z0-9_.-]+(?:[.]git)?$')
@@ -112,33 +114,67 @@ def protect_fork(repo):
 
 
 def deploy(cfg):
-    # stdin contains only this repository's worker source, never credentials.
-    bootstrap = (
-        'import os,stat,sys,tempfile; '
-        'root="/home/fnl/lzy"; '
-        'assert os.path.realpath(root)==root and os.path.isdir(root); '
-        'folder=root+"/.research-workflow"; '
-        'assert not os.path.islink(folder); '
-        'os.makedirs(folder,exist_ok=True); '
-        'assert os.path.realpath(folder)==folder; '
-        'target=folder+"/' + REMOTE_WORKER_NAME + '"; '
-        'assert not os.path.islink(target); '
-        'assert not os.path.exists(target) or stat.S_ISREG(os.stat(target).st_mode); '
-        'fd,tmp=tempfile.mkstemp(prefix="worker-",dir=folder); '
-        'stream=os.fdopen(fd,"wb"); '
-        'stream.write(sys.stdin.buffer.read()); stream.close(); '
-        'os.chmod(tmp,0o600); os.replace(tmp,target); '
-        'print("worker deployed inside workspace")')
-    with open(WORKER, 'rb') as source:
-        body = source.read()
-    command = 'python3 -c ' + shlex.quote(bootstrap)
-    subprocess.run(ssh_base(cfg) + [command], input=body, check=True)
+    payloads = [(REMOTE_WORKER_NAME, WORKER)]
+    if REMOTE_WORKER_NAME == 'ws24_worker.py':
+        payloads.append(('ws24_resource_watch.py', WS24_RESOURCE_WATCHER))
+    for remote_name, local_path in payloads:
+        # stdin contains repository code only, never credentials.
+        bootstrap = (
+            'import os,stat,sys,tempfile; '
+            'root="/home/fnl/lzy"; '
+            'assert os.path.realpath(root)==root and os.path.isdir(root); '
+            'folder=root+"/.research-workflow"; '
+            'assert not os.path.islink(folder); '
+            'os.makedirs(folder,exist_ok=True); '
+            'assert os.path.realpath(folder)==folder; '
+            'target=folder+"/' + remote_name + '"; '
+            'assert not os.path.islink(target); '
+            'assert not os.path.exists(target) or stat.S_ISREG(os.stat(target).st_mode); '
+            'fd,tmp=tempfile.mkstemp(prefix="ws24-tool-",dir=folder); '
+            'stream=os.fdopen(fd,"wb"); '
+            'stream.write(sys.stdin.buffer.read()); stream.close(); '
+            'os.chmod(tmp,0o600); os.replace(tmp,target); '
+            'print("deployed inside workspace: ' + remote_name + '")')
+        with open(local_path, 'rb') as source:
+            body = source.read()
+        command = 'python3 -c ' + shlex.quote(bootstrap)
+        subprocess.run(ssh_base(cfg) + [command], input=body, check=True)
+
+
+def start_ws24_resource_watch(cfg, experiment_id):
+    if not ID_RE.match(experiment_id):
+        raise RuntimeError('Invalid experiment ID')
+    base = '/home/fnl/lzy/results/' + experiment_id
+    logs = base + '/logs'
+    samples = logs + '/resource-samples.jsonl'
+    watcher = '/home/fnl/lzy/.research-workflow/ws24_resource_watch.py'
+    command = ('test -d ' + shlex.quote(logs) +
+               ' && test ! -e ' + shlex.quote(samples) +
+               ' && (nohup python3 ' + shlex.quote(watcher) + ' ' +
+               shlex.quote(experiment_id) + ' --interval 5 > ' +
+               shlex.quote(logs + '/resource-watch.log') +
+               ' 2>&1 < /dev/null &) && sleep 1 && test -e ' + shlex.quote(samples))
+    subprocess.check_call(ssh_base(cfg) + [command])
+
+
+def wait_ws24_resource_watch(cfg, experiment_id):
+    summary = '/home/fnl/lzy/results/' + experiment_id + '/logs/resource-summary.json'
+    command = 'test -s ' + shlex.quote(summary)
+    for unused in range(24):
+        check = subprocess.run(ssh_base(cfg) + [command], stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE)
+        if check.returncode == 0:
+            return
+        time.sleep(5)
+    raise RuntimeError('WS-24 resource watcher did not finish: ' + experiment_id)
 
 
 def fetch(cfg, experiment_id):
     if not ID_RE.match(experiment_id):
         raise RuntimeError('Invalid experiment ID')
     worker_call(cfg, 'fetch-check', experiment_id)
+    if REMOTE_WORKER_NAME == 'ws24_worker.py' and '-ws24-ind-' in experiment_id:
+        wait_ws24_resource_watch(cfg, experiment_id)
     root = os.path.realpath(os.path.join(PROJECT, 'results'))
     os.makedirs(root, exist_ok=True)
     if not root.startswith(os.path.realpath(PROJECT) + os.sep):
@@ -365,6 +401,8 @@ def main():
                             '--ws23-pfc-probe-start-ns', str(args.ws23_pfc_probe_start_ns),
                             '--ws23-pfc-probe-end-ns', str(args.ws23_pfc_probe_end_ns),
                             '--ws23-pause-time-us', str(args.ws23_pause_time_us)])
+        if args.ws24_multi_nic:
+            start_ws24_resource_watch(cfg, args.id)
         worker_call(cfg, *command)
     elif args.command == 'status':
         worker_call(cfg, 'status', args.id)
