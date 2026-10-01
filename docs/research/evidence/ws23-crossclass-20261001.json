@@ -1,0 +1,23 @@
+{
+  "background_fct_us_base": 708.695,
+  "background_fct_us_mixed": 1650.085,
+  "background_mean_wait_ns_base": 0.0036953152938371675,
+  "background_mean_wait_ns_mixed": 1337.5193706043628,
+  "background_mmu_egress_bytes_max_base": 1048,
+  "background_mmu_egress_bytes_max_mixed": 169776,
+  "background_trace_sha256": "8b11ba4bbc5fac248b1983e4070e818cb3ad3658ebaae6d9eb878b3999b76b83",
+  "base_fct_sha256": "0dc922a9aa9100159b4204141d631d1f7629980b77ce235745d1f4904478ccfd",
+  "ids": [
+    "20261001-091000-ws23-bg-off",
+    "20261001-091100-ws23-bg-on",
+    "20261001-091200-ws23-mix-off",
+    "20261001-091300-ws23-mix-on"
+  ],
+  "mixed_fct_sha256": "4c415e30d3a25529f12b7c9af54a2c29f000ee7b0412c12cce494cb4ceb4dfdd",
+  "mixed_trace_sha256": "379e0c87cb0c26690d438287468dbc9159054f82445e6be46d0324165d639863",
+  "overlapping_contender_flows": 1,
+  "shared_port": 5,
+  "shared_source_tor": 32,
+  "source_sha": "154f537ec345df75fbb404a1674436535f92735b",
+  "topology_sha256": "dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad"
+}
