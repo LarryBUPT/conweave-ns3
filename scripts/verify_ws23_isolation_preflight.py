@@ -18,18 +18,27 @@ ENTRY = {
 }
 
 
-def pilot_id(mode, diagnostic):
-    return "20261001-1740%02d-ws23-pilot-%s-%s" % (
-        MODES.index(mode) * 2 + diagnostic, mode, "on" if diagnostic else "off")
+def pilot_id(mode, diagnostic, revision=1):
+    if revision == 1:
+        stamp, label = "20261001-1740%02d", "ws23-pilot"
+    elif revision == 2:
+        stamp, label = "20261001-1515%02d", "ws23-pilot2"
+    else:
+        raise ValueError("unknown preflight revision")
+    return (stamp + "-%s-%s-%s") % (
+        MODES.index(mode) * 2 + diagnostic, label, mode,
+        "on" if diagnostic else "off")
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-sha", required=True)
+    parser.add_argument("--revision", type=int, choices=(1, 2), default=1)
     args = parser.parse_args()
     results = {}
     for mode in MODES:
-        pair = [inspect(ENTRY, mode, args.source_sha, pilot_id(mode, d), d)
+        pair = [inspect(ENTRY, mode, args.source_sha,
+                        pilot_id(mode, d, args.revision), d)
                 for d in (0, 1)]
         require(pair[0]["fct_sha256"] == pair[1]["fct_sha256"],
                 mode + " diagnostic changed FCT")
@@ -43,7 +52,8 @@ def main():
         results[mode] = {"ids": [item["id"] for item in pair],
                          "fct_sha256": pair[0]["fct_sha256"],
                          "route": pair[0]["route"]}
-    print(json.dumps({"source_sha": args.source_sha, "pilot_cells": 6,
+    print(json.dumps({"source_sha": args.source_sha, "pilot_revision": args.revision,
+                      "pilot_cells": 6,
                       "modes": results}, indent=2))
 
 

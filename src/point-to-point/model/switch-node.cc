@@ -125,9 +125,13 @@ static bool Ws13DiagnosticEnabled() {
 }
 
 static bool Ws23CrossClassDiagnosticEnabled() {
-    // Reuse the existing explicit --ws13-diag switch only for the small
-    // ECMP topology; legacy WS-13 and WS-19 observations stay unchanged.
-    return Ws13DiagnosticEnabled() && Settings::lb_mode == 0 && Settings::host_num == 32;
+    // Reuse the existing explicit --ws13-diag switch for the small topology
+    // under ECMP and the WS-23 GuardHash candidate modes. Legacy WS-13 and
+    // WS-19 observations stay unchanged.
+    return Ws13DiagnosticEnabled() &&
+           (Settings::lb_mode == 0 ||
+            (Settings::lb_mode >= 13 && Settings::lb_mode <= 14)) &&
+           Settings::host_num == 32;
 }
 
 static bool Ws21FeedbackEnabled() {
