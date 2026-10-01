@@ -35,8 +35,8 @@ def parse_counter(log, name):
     return {k: int(v) for k, v in re.findall(r"([a-z_]+)=(\d+)", matches[0])}
 
 
-def inspect(entry, mode, source_sha):
-    exp = experiment_id(entry["seed"], entry["scenario"], mode)
+def inspect(entry, mode, source_sha, experiment_override=None, diagnostic=0):
+    exp = experiment_override or experiment_id(entry["seed"], entry["scenario"], mode)
     folder = ROOT / "results" / exp
     meta = json.loads((folder / "metadata.json").read_text(encoding="utf-8"))
     require(meta["experiment_id"] == exp and meta["status"] == "SUCCEEDED", exp + " identity/status")
@@ -54,7 +54,7 @@ def inspect(entry, mode, source_sha):
     expected = {"lb": mode, "pfc": 0, "irn": 1, "buffer": 9, "bw": 100,
                 "simul_time": "0.01", "netload": 10, "topo": "fat_k4_100G_OS2",
                 "cdf": "AliStorage2019", "factorial_pilot": True,
-                "factorial_drop_diag": True, "ws13_diag": 0,
+                "factorial_drop_diag": True, "ws13_diag": diagnostic,
                 "flow_file": Path(entry["path"]).name}
     require(all(p.get(k) == v for k, v in expected.items()), exp + " parameters")
     raw_id = str(meta["raw_directory"])
@@ -74,6 +74,13 @@ def inspect(entry, mode, source_sha):
     forbidden = ("FACTORIAL_ADMISSION_DROP ", "FACTORIAL_QUEUE_REJECT ",
                  "WARNING - Drop occurs in SendToDevContinue()", "WS08_TX_TIMEOUT ")
     require(not any(line.startswith(forbidden) for line in log.splitlines()), exp + " loss/timeout")
+    hop_lines = [line for line in log.splitlines() if line.startswith("WS23_CROSSCLASS_HOP ")]
+    inflight = [line for line in log.splitlines() if line.startswith("WS23_CROSSCLASS_INFLIGHT ")]
+    if diagnostic:
+        require(hop_lines and len(inflight) == 1 and "unpaired=0" in inflight[0],
+                exp + " diagnostic pairing")
+    else:
+        require(not hop_lines and not inflight, exp + " unexpected diagnostics")
     route = check = None
     if mode != "fecmp":
         route = parse_counter(log, "WS09_ROUTE")
