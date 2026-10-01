@@ -157,10 +157,12 @@ def run_one(handle, experiment_id_value, mode, flow_file):
                            " " + str(state.get("status")))
     invoke(WATCHER, experiment_id_value, "--source-sha", SOURCE_SHA, "--wait")
     if state.get("status") != "SUCCEEDED":
-        invoke(CONTROLLER, "fetch", experiment_id_value)
+        if not (ROOT / "results" / experiment_id_value / "metadata.json").is_file():
+            invoke(CONTROLLER, "fetch", experiment_id_value)
         record(handle, "failed", id=experiment_id_value, state=state)
         raise RuntimeError("simulation did not succeed: " + experiment_id_value)
-    invoke(CONTROLLER, "fetch", experiment_id_value)
+    if not (ROOT / "results" / experiment_id_value / "metadata.json").is_file():
+        invoke(CONTROLLER, "fetch", experiment_id_value)
     verification = json.loads(invoke(VERIFIER, "--source-sha", SOURCE_SHA,
                                      "--revision", "2", "--cell", experiment_id_value))
     result = verification["verified_cell"]
