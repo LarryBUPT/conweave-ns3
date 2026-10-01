@@ -15,6 +15,10 @@
 
 ## WS-24：补齐模型、输入与多网卡验证
 
+**2026-10-01 补充审计：WS-24 仍 ACTIVE。**14 格 optimized 仿真构建与 raw 验收已完成，但未找到共同 SHA `b1184d6a7bd38577b235b7f119f920973308774f` 的 `devices-point-to-point` 实际通过收据。独立 ID、资源/恢复/验收规则见[同 SHA 单测补验协议](../research/ws24-point-to-point-unit-protocol.md)；尚未远程执行。
+
+- [ ] 在共同仿真 SHA 的独立隔离副本显式启用测试、编译并运行 `devices-point-to-point`；回传 runner、资源和临时 helper 恢复收据，核对通过后才关闭本项。14 格 optimized build 不计单测。
+
 执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据 [表示能力审计](../research/ws24-multirail-representability-audit.md) 与 [v2 最小格预飞行/结果](../research/ws24-minimal-multinic-preflight.md)。**状态仍 ACTIVE。**仿真源码固定 `824e3fa0c4c06dd9894474a81e729931d59a3108`：正例 `20261001-100000-ws24-minimal-v2` 成功，跨 rail 负例 `20261001-100100-ws24-crossrail-reject-v2` 在解析阶段按预期失败。证据只覆盖两主机四 rail 合成最小正确性，不构成目标拓扑、旧 baseline 回归、动态 CNP 或效果对照的完成证据。
 
 - [x] 追查导入拓扑/生成器来源，明确真实 host/NIC/job 映射可获得程度；不能从相邻节点号推断物理共享。[审计报告](../research/ws24-multirail-representability-audit.md)与[工作记录](../research/ws24-multinic-v0-worklog.md)确认导入图可追至合成生成器，但无真实服务器多 NIC 或 job placement 证据。
@@ -31,7 +35,7 @@
 - [x] 以共同固定 SHA `b1184d6…` /独立 ID 执行 CNP 格；验证 ACK/NACK flag 返回指定源 NIC、pending 生效和流完成前实际降速。无事件不得宣称 CNP 已验证。2026-10-01 `20261002-120000-ws24-cnp-incast-correctness` 4/4、4,194,304 B，验收器关联 7 组 flag/receive/rate-decrease 事件。
 - [x] 本地冻结原多 rail/placement 目标的四臂协议：相同逻辑流与总字节，对照单/多 rail 与固定/可变放置；manifest 逐文件哈希及逐臂验收见[后续冻结协议 D](../research/ws24-followup-validation-protocols.md)。
 - [x] 先通过目标拓扑 correctness，再由 Integration 按共享入口实际空闲情况协调执行四臂 synthetic pilot。禁止以静态审计替代机制验证；任何范围缩减仍需用户明确决定。2026-10-01 四臂均 10/10、2,408,448 B、身份与逻辑需求配对通过；结果仅为单 seed 描述性 pilot。
-- [x] 终态 raw、最终仿真源码及效果结论一致，完成全部预设验收项后再交接闭环。最小格通过不关闭本项。2026-10-01 14/14 raw/resources fetched，`verify_ws24_matrix.py` 全矩阵通过；机器摘要 `../research/evidence/ws24-followup-validation-summary.json`，Handoff 50 记录结论和证据边界。真实部署映射和确认性性能结论没有被宣称。
+- [x] 14 格终态 raw、固定仿真源码及该批效果结论一致。2026-10-01 14/14 raw/resources fetched，`verify_ws24_matrix.py` 全矩阵通过；机器摘要 `../research/evidence/ws24-followup-validation-summary.json`，Handoff 50 记录该批结论与证据边界。真实部署映射和确认性性能结论没有被宣称。**同 SHA 单测仍按本节未勾选项补验，14 格阶段交接不等于 WS-24 任务闭环。**
 
 14 格验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口要求四模式历史完整 FCT 哈希。2026-10-01 冻结批次 14/14 全部运行、raw/resources 已 fetch 并通过验收，摘要见 `docs/research/evidence/ws24-followup-validation-summary.json`。真实物理映射仍无来源；四臂仅单 seed 合成描述性 pilot，不支持一般性能收益。
 
