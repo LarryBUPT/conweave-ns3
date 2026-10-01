@@ -1,12 +1,12 @@
 # WS-24 独立合成 job 需求四臂效果协议
 
-日期：2026-10-02。状态：**本地输入与分析契约已冻结；远程 pilot 和矩阵尚未运行；WS-24 ACTIVE**。用户已明确决定“不要真实主机数据，仅NS3模拟”，见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)。本文只支持 ns-3 合成模型内的结论，不表示真实服务器多 NIC 或真实 job 性能。
+日期：2026-10-02。状态：**本地输入与分析契约已冻结；初次 j01 fixed_single 仅通过流正确性，缺少资源收据，因此不计入矩阵；隔离观察器修复版尚未重新部署，正式 pilot 和矩阵未完成；WS-24 ACTIVE**。用户已明确决定“不要真实主机数据，仅NS3模拟”，见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)。本文只支持 ns-3 合成模型内的结论，不表示真实服务器多 NIC 或真实 job 性能。
 
 ## 目标与实验单位
 
 目标是在已通过正确性验收的 320-host × 4-NIC 合成拓扑中，检验相同逻辑 job 需求下多 rail 相对单 rail 的完成跨度差，以及固定/可变 rank 放置的条件差异。**独立单位为一份由独立生成 key 产生的 job 需求块，共 12 块**；每块的四臂属于同一配对块，30 条流不是 30 个独立样本，四臂也不是四个独立 job。它们都是合成模型，不来自物理集群或采集到的业务 trace。先前 `b1184d6…` 的 14 格 raw 已从原始数据验收；其中 D 的一组 10 流 seed pilot 只作前置正确性与资源依据，不并入本矩阵样本。
 
-固定源码提交：`166ca6709e2b6ea8b60978bf80778fee636937e5`，分支 `feature/ws24-multinic-validation`，个人 origin `LarryBUPT/conweave-ns3`。源码、48 个输入和验收脚本都在该提交；后续文档 HEAD 不改变本批实验身份。`config/ws24_independent_manifest.json` 的 Git/工作树 SHA-256 为 `e94251d3717f368b8f7c1bd1de5788d524559f8dc65c5b788aeb874ccbc2977d`。manifest 含 12 个生成 key、48 个 flow 文件 SHA-256、每 job 逻辑需求哈希/host 放置/总字节、48 个唯一实验 ID 和随机化执行顺序。目标 topology SHA-256 `e82f742a1f07749de63706c94c29b3275ec908c61a967f6336988526213bf6fa`；NIC 清单 SHA-256 `4a4bc61466efd15983bf6a6e7a3e69e153cb00760f909a98311d1f9c17481202`。输入文件均由 Git 字节哈希核对；旧 14 格输入/raw 不改。
+当前固定源码提交：`3b992eed218f65b4f8026eddb5170a7694e17b10`；分支 `feature/ws24-multinic-validation`，个人 origin `LarryBUPT/conweave-ns3`。源码、48 个输入和验收脚本都在该提交；后续纯文档 HEAD 不改变本批实验身份。`config/ws24_independent_manifest.json` 的 SHA-256 为 `e2d19ce3d7424f556bebcd74f011310538cf89c55bc2937c985e922af2b1c536`。manifest 含 12 个生成 key、48 个 flow 文件 SHA-256、每 job 逻辑需求哈希/host 放置/总字节、48 个唯一实验 ID、随机化执行顺序及被替代尝试记录。第一版源码 `166ca6709e2b6ea8b60978bf80778fee636937e5` 的 j01 fixed_single ID `20261002-180000-ws24-ind-j01-fs` 已成功完成 30 流，但启动时未启动资源观察器；该 ID 的 raw 保留为正确性前置结果，不计入本协议 48 格。修复版 manifest 将它替换为 `20261002-180000-ws24-ind-j01-fs-r2`，同输入哈希、后续 47 个 ID 和全部需求内容不变。目标 topology SHA-256 `e82f742a1f07749de63706c94c29b3275ec908c61a967f6336988526213bf6fa`；NIC 清单 SHA-256 `4a4bc61466efd15983bf6a6e7a3e69e153cb00760f909a98311d1f9c17481202`。输入文件均由 Git 字节哈希核对；旧 14 格输入/raw 不改。
 
 ## 需求生成与四臂配对
 
@@ -16,11 +16,11 @@
 
 ## 运行身份、顺序与资源 pilot
 
-每格使用 manifest 中唯一 `20261002-180000-ws24-ind-jNN-{fs,fm,vs,vm}` ID，`--source-sha` 指定上述共同提交。参数：`fecmp`、`ws24_multi_nic=1`、目标 topology/NIC、`--bw 400 --buffer 9 --pfc 0 --irn 1 --simul-time 0.01 --netload 10`，显式 flow 文件按 manifest；`run.py`/ns-3 seed=1。每格独立源码、raw、日志、metadata 和资源收据；失败 ID 不复用，修复后新 SHA/ID，并复核需要重跑的同条件对照。
+每格使用 manifest 中唯一 ID，通常为 `20261002-180000-ws24-ind-jNN-{fs,fm,vs,vm}`；j01 fixed_single 使用替代 ID `20261002-180000-ws24-ind-j01-fs-r2`。`--source-sha` 指定上述共同提交。参数：`fecmp`、`ws24_multi_nic=1`、目标 topology/NIC、`--bw 400 --buffer 9 --pfc 0 --irn 1 --simul-time 0.01 --netload 10`，显式 flow 文件按 manifest；`run.py`/ns-3 seed=1。每格独立源码、raw、日志、metadata 和资源收据；失败 ID 不复用，修复后新 SHA/ID，并复核需要重跑的同条件对照。
 
-远端现有共享 worker SHA-256 为 `9e1b4e…`，只读检查未找到 WS-24 参数入口；不得覆盖它。控制器新增显式 `--worker-name ws24_worker.py`，仅把本分支 worker 部署到 `/home/fnl/lzy/.research-workflow/ws24_worker.py`，该路径预飞行时不存在；默认 worker 路径仍不变。部署后须核对其 SHA-256 等于本分支 `scripts/remote_worker.py` 的 `0be12e21ce37655f52a19803824f2b8d24a9a2c84ba0cd58124eb6fb96de62eb`。所有 `deploy/check/sync/build/run/status/fetch` 命令须在子命令前带 `--worker-name ws24_worker.py`；不得触碰 WS-23 checkout 或共享 worker。
+远端共享 worker SHA-256 为 `9e1b4e144d5584e8999d2c560bf4577b249ca73421d9aac6c53e5a96a798766e`，只读检查未找到 WS-24 参数入口；不得覆盖它。控制器以显式 `--worker-name ws24_worker.py` 将本分支 worker 部署到 `/home/fnl/lzy/.research-workflow/ws24_worker.py`，隔离 worker SHA-256 为 `0be12e21ce37655f52a19803824f2b8d24a9a2c84ba0cd58124eb6fb96de62eb`。修复版 `deploy` 还部署隔离资源观察器 `ws24_resource_watch.py`（SHA-256 `d02e14e20566b6193d7e525ac8c2563650ae6ce7d43f5af323a0b5752e7f3385`）；每次 `run --ws24-multi-nic 1` 前自动启动 5 秒采样，`fetch` 在资源摘要终态收据落盘后才下载。首个旧尝试缺少该收据的事实已保留，不补造历史采样。所有 `deploy/check/sync/build/run/status/fetch` 命令须在子命令前带 `--worker-name ws24_worker.py`；不得触碰 WS-23 checkout 或共享 worker。
 
-入口只读采样（2026-10-02 本地时间约 01:49）：0 登录用户、load1m 0.00、MemAvailable 约 122 GiB、工作区空闲约 5,597 GiB、无 waf/cc1plus/ns-3/run.py 作业；48 个预留 ID 的 runs/results 路径均未发现。该采样不是未来启动许可。**远程运行前必须由监督方实际切换本任务至 GPT-6 Luna High**，重新核对无人/未知或 WS-23 作业、worker 隔离、ID 空闲、load1m ≤10、MemAvailable ≥32 GiB、空闲盘 ≥100 GiB，再部署独立 worker、同步固定 SHA 并启动。
+入口启动前实际切换至 Luna High 后重新只读核验：无登录用户，无 waf/cc1plus/ns-3/run.py 作业，load1m 0.00、MemAvailable 122.98 GiB、空闲盘 5,596.8 GiB；48 个固定前缀 ID 未占用。共享 worker SHA 与预期相同，独立 worker 路径初始不存在，随后只部署隔离副本并核对 SHA。该采样不代表未来矩阵的持续资源状态。每个新 ID 仍须经 worker admission 检查；运行资源由 `ws24_resource_watch.py` 记录。**下一次启动前仍须重新核对用户/未知或 WS-23 作业、worker、ID、load1m ≤10、MemAvailable ≥32 GiB、空闲盘 ≥100 GiB。**
 
 先按 `j01` 四臂做动态正确性和资源 pilot，按 manifest 的四个 ID 各自 build/run/fetch/逐流验收。旧 D 四格历史每格 46 个资源样本、峰值进程树 RSS 约 7,258 MiB、最低 MemAvailable 约 115.9 GiB；它们只支持新 pilot 的初始单格并发上限 1，不代表新 30 流成本已验证。pilot 中确认 30/30 输入流完成、逐流 NIC/IP/rail/job/rank 和收发字节守恒、目标图运行时 600 ns/30,000 B、资源采样完整；四臂同一逻辑需求及总字节一致。若任一失败，保留该 ID/raw，停止扩格并诊断；不得依据效果方向调整输入。pilot 通过后按 manifest `run_order` 去掉 j01 四臂的顺序完成余下 44 格，先用 2 个 CPU 令牌的单格编译/仿真，再在同一批实测资源允许时逐级提高并发，记录令牌、峰值和降载依据。
 

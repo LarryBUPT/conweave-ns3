@@ -15,6 +15,8 @@
 
 ## WS-24：补齐模型、输入与多网卡验证
 
+**资源收据纠正（2026-10-02）：**首版 SHA `166ca670…` 的 j01 fixed_single ID `20261002-180000-ws24-ind-j01-fs` 已有动态逐流正确性 raw，但未启动观察器，缺少资源收据，故不计新 pilot 或 48 格矩阵。保留其结果；修复版 SHA `3b992ee` 自动启动 5 秒观察器并将该臂映射到新 ID `20261002-180000-ws24-ind-j01-fs-r2`。余下 47 个 ID 未运行。详见[纠正交接](../handoffs/2026-10-02-54-ws24-resource-watch-correction.md)。
+
 **2026-10-02 范围决定：**用户明确决定“不要真实主机数据，仅NS3模拟”，见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)。真实 physical-host/NIC/job/rank 数据不再是 WS-24 验收条件；所有新旧 WS-24 输入与结果只作为 ns-3 合成模拟解释。独立 job 需求下的多 rail × placement 效果验收仍为必做，按[冻结协议](../research/ws24-independent-synthetic-effects-protocol.md)执行，未完成前状态保持 ACTIVE。
 
 **2026-10-02 Sol High 复核：WS-24 仍 ACTIVE。**结果 ID `20261002-142000-ws24-point-to-point-unit-r2` 的隔离源码与 metadata 均为固定实验 SHA `b1184d6a7bd38577b235b7f119f920973308774f`；个人 origin 同名分支当时 HEAD 为文档提交 `3f04f32…`，包含该实验提交。显式启用测试构建及 `devices-point-to-point` suite 均退出 0，5 条 PASS、0 条 FAIL。193 点资源收据未越界，临时 helper 已恢复并核对 blob/SHA-256；16 个远端/本地回传文件哈希相同。runner 列表退出码字段在 summary 中为 null；驱动在非零时会终止，suite 随后成功执行，故仅凭控制流确认列表步骤成功。14 格 raw 重算与机器摘要逐项相同。完整证据见[补验协议](../research/ws24-point-to-point-unit-protocol.md)和 [Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)。

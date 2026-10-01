@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-02 WS-24 资源观察器纠正：`20261002-180000-ws24-ind-j01-fs` 在源码 `166ca670…` 下完成 30/30、3,981,312 B 并通过逐流正确性验收，但运行前未启动资源观察器；该 raw 保留为 correctness-only，不计矩阵。修复提交 `3b992ee` 已把 5 秒 WS-24 资源采样接入控制器，manifest SHA 更新为 `e2d19ce3d7424f556bebcd74f011310538cf89c55bc2937c985e922af2b1c536`，j01 fixed_single 换用新 ID `20261002-180000-ws24-ind-j01-fs-r2`。新版本尚未部署/同步或运行；实际 Luna High 下重新部署观察器、复核资源并重做 j01 四臂后再推进正式 48 格。用户决定的合成模型范围见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)，详见[纠正交接](../handoffs/2026-10-02-54-ws24-resource-watch-correction.md)。
+
 2026-10-02 WS-24 新范围与执行入口：用户决定“不要真实主机数据，仅NS3模拟”，[ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)据此取消真实部署映射作为闭环条件；独立合成 job 需求的四臂效果验收仍是必做。固定源码 `166ca6709e2b6ea8b60978bf80778fee636937e5` 与 12×4 输入、manifest 哈希、双侧分析及资源停止条件见[事前协议](../research/ws24-independent-synthetic-effects-protocol.md)。本地输入检查通过，新 48 格尚未远程启动；先在实际 Luna High 下完成隔离 worker 与 j01 正确性/资源 pilot，再做余下 44 格、raw 回传和实际 Sol High 分析。WS-24 保持 ACTIVE；旧 14 格、单测与 WS-23 状态不变。下列较早条目记录当时真实数据未获来源的历史判断，当前任务以本条范围决定为准。
 
 2026-10-02 WS-24 Sol High 独立复核完成：[Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)记录固定 SHA 的 `devices-point-to-point` 显式测试构建与 suite 通过（5 PASS/0 FAIL）、helper 恢复、16 份远端/本地结果文件哈希一致和 193 点资源收据。14 格原始结果重算与[机器摘要](../research/evidence/ws24-followup-validation-summary.json)逐项相同。WS-24 仍 ACTIVE：可信真实 physical-host/NIC/job 映射及独立需求支持的效果结论没有证据。先向数据所有方取得字段定义、来源和版本哈希，再冻结可证伪的映射/需求和双侧比较；若决定将原目标缩至合成工程验证，须由用户明确变更。14 格 raw、历史 no-go 与 WS-23 状态不变。
