@@ -1,5 +1,7 @@
 # WS-17 起：包流混合机制研究任务流
 
+2026-10-02 WS-24 Sol High 复核入口：[Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)确认 14 格合成 raw 重算、同 SHA point-to-point 单测及恢复收据。原目标的真实 host/NIC/job 映射和独立 job 需求尚无来源，效果仍只是一组 seed 的合成描述性 pilot；WS-24 保持 ACTIVE，具体剩余项见[必做清单](WS23_WS24_VALIDATION_PLAN.md)。
+
 2026-09-30 闭环纠错：此前 Handoff 45 将阶段交接当作任务闭环并归档，用户指出必做验证未完成。WS-23/24 恢复 ACTIVE，详见 [验证执行清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 优先补齐丢包恢复及无损 pause/resume 端到端验证；WS-24 继续映射来源审查、明示合成模型的多 NIC 实现与验证，再按原任务目标完成必要效果对照。WS-25 必须保留并跟踪这些执行项，不能以论文范围判断替代验证。性能 NO-GO 不取消正确性工作。
 
 2026-09-30 WS-23/WS-24 阶段闭环并交接 WS-25，见 [Handoff 45](../handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md)。WS-23 只完成修复、optimized build 与单测，端到端恢复仍待验证；WS-24 完成本地表示能力审计，多 rail 仿真 NO-GO。用户要求归档两个对话。WS-25 可据此开展本地证据与论文范围收束：先判断传输修复的端到端验证、多 NIC 模型及真实映射是否为论文主张必需，再决定另立补充任务；不默认追加仿真。

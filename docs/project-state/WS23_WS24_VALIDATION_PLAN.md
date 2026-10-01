@@ -15,11 +15,11 @@
 
 ## WS-24：补齐模型、输入与多网卡验证
 
-**2026-10-01 补充审计：WS-24 仍 ACTIVE。**14 格 optimized 仿真构建与 raw 验收已完成，但未找到共同 SHA `b1184d6a7bd38577b235b7f119f920973308774f` 的 `devices-point-to-point` 实际通过收据。独立 ID、资源/恢复/验收规则见[同 SHA 单测补验协议](../research/ws24-point-to-point-unit-protocol.md)；尚未远程执行。
+**2026-10-02 Sol High 复核：WS-24 仍 ACTIVE。**结果 ID `20261002-142000-ws24-point-to-point-unit-r2` 的隔离源码与 metadata 均为固定实验 SHA `b1184d6a7bd38577b235b7f119f920973308774f`；个人 origin 同名分支当时 HEAD 为文档提交 `3f04f32…`，包含该实验提交。显式启用测试构建及 `devices-point-to-point` suite 均退出 0，5 条 PASS、0 条 FAIL。193 点资源收据未越界，临时 helper 已恢复并核对 blob/SHA-256；16 个远端/本地回传文件哈希相同。runner 列表退出码字段在 summary 中为 null；驱动在非零时会终止，suite 随后成功执行，故仅凭控制流确认列表步骤成功。14 格 raw 重算与机器摘要逐项相同。完整证据见[补验协议](../research/ws24-point-to-point-unit-protocol.md)和 [Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)。
 
-- [ ] 在共同仿真 SHA 的独立隔离副本显式启用测试、编译并运行 `devices-point-to-point`；回传 runner、资源和临时 helper 恢复收据，核对通过后才关闭本项。14 格 optimized build 不计单测。
+- [x] 在共同固定 SHA 的独立隔离副本显式启用测试、编译并运行 `devices-point-to-point`；回传 runner、资源和临时 helper 恢复收据，核对通过后关闭此单测项。2026-10-02 ID `20261002-142000-ws24-point-to-point-unit-r2`：构建/测试退出码 0，5 条 PASS、0 条 FAIL，固定 SHA `b1184d6…`，恢复哈希与资源收据通过。14 格 optimized build 不计单测。**仅完成本项；WS-24 其他合成验证范围与真实部署/确认性性能限制见下方，不据此归档整个 WS。**
 
-执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据 [表示能力审计](../research/ws24-multirail-representability-audit.md) 与 [v2 最小格预飞行/结果](../research/ws24-minimal-multinic-preflight.md)。**状态仍 ACTIVE。**仿真源码固定 `824e3fa0c4c06dd9894474a81e729931d59a3108`：正例 `20261001-100000-ws24-minimal-v2` 成功，跨 rail 负例 `20261001-100100-ws24-crossrail-reject-v2` 在解析阶段按预期失败。证据只覆盖两主机四 rail 合成最小正确性，不构成目标拓扑、旧 baseline 回归、动态 CNP 或效果对照的完成证据。
+执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据 [表示能力审计](../research/ws24-multirail-representability-audit.md) 与 [v2 最小格预飞行/结果](../research/ws24-minimal-multinic-preflight.md)。**状态仍 ACTIVE。**较早的 v2 最小格源码为 `824e3fa0c4c06dd9894474a81e729931d59a3108`：正例 `20261001-100000-ws24-minimal-v2` 成功，跨 rail 负例 `20261001-100100-ws24-crossrail-reject-v2` 在解析阶段按预期失败。后续 A/B/C/D 共同源码为 `b1184d6a7bd38577b235b7f119f920973308774f`；其 14 格验收见下列条目。
 
 - [x] 追查导入拓扑/生成器来源，明确真实 host/NIC/job 映射可获得程度；不能从相邻节点号推断物理共享。[审计报告](../research/ws24-multirail-representability-audit.md)与[工作记录](../research/ws24-multinic-v0-worklog.md)确认导入图可追至合成生成器，但无真实服务器多 NIC 或 job placement 证据。
 - [x] 建立明确标注为合成、可复现的受控 host/NIC/rail/job/rank/流映射，用于工程正确性与受控机制研究；记录资源共享假设与适用边界。真实部署主张仍须真实来源。
@@ -35,13 +35,16 @@
 - [x] 以共同固定 SHA `b1184d6…` /独立 ID 执行 CNP 格；验证 ACK/NACK flag 返回指定源 NIC、pending 生效和流完成前实际降速。无事件不得宣称 CNP 已验证。2026-10-01 `20261002-120000-ws24-cnp-incast-correctness` 4/4、4,194,304 B，验收器关联 7 组 flag/receive/rate-decrease 事件。
 - [x] 本地冻结原多 rail/placement 目标的四臂协议：相同逻辑流与总字节，对照单/多 rail 与固定/可变放置；manifest 逐文件哈希及逐臂验收见[后续冻结协议 D](../research/ws24-followup-validation-protocols.md)。
 - [x] 先通过目标拓扑 correctness，再由 Integration 按共享入口实际空闲情况协调执行四臂 synthetic pilot。禁止以静态审计替代机制验证；任何范围缩减仍需用户明确决定。2026-10-01 四臂均 10/10、2,408,448 B、身份与逻辑需求配对通过；结果仅为单 seed 描述性 pilot。
-- [x] 14 格终态 raw、固定仿真源码及该批效果结论一致。2026-10-01 14/14 raw/resources fetched，`verify_ws24_matrix.py` 全矩阵通过；机器摘要 `../research/evidence/ws24-followup-validation-summary.json`，Handoff 50 记录该批结论与证据边界。真实部署映射和确认性性能结论没有被宣称。**同 SHA 单测仍按本节未勾选项补验，14 格阶段交接不等于 WS-24 任务闭环。**
+- [x] 14 格终态 raw、固定仿真源码及该批效果结论一致。2026-10-01 14/14 raw/resources fetched，`verify_ws24_matrix.py` 全矩阵通过；2026-10-02 Sol High 独立重算 JSON 与机器摘要逐项相同。Handoff 50 记录该批结论与证据边界。真实部署映射和确认性性能结论没有被宣称；同 SHA 单测补验见本节首项。
+
+- [ ] 原目标所需的可信真实 physical-host/NIC/job/rank 映射及独立 job 需求来源尚未取得；现有 OS1 图只可追至合成生成器，不能把节点邻接推断为物理共享。下一动作：从部署/作业数据所有方取得带字段定义、采集范围与版本哈希的映射及需求，核对四 rail 归属和 rank→host 唯一性，再冻结输入并复验多 NIC 正确性。来源及约束见[表示能力审计](../research/ws24-multirail-representability-audit.md)；若用户决定只保留合成范围，须明确变更原目标。
+- [ ] 基于独立 job 需求的双侧效果结论仍未验证。现有四臂每臂仅同一 seed 的合成 10 流、2,408,448 B，跨度差 −173/−164 ns 只能作描述。取得可核验需求后，预先冻结独立样本、输入哈希、强对照、双侧指标/限制和停止规则，再运行可恢复矩阵并从 raw 重算；未取得来源前不声称普遍收益。若原目标不再要求该结论，须由用户明确决定范围。
 
 14 格验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口要求四模式历史完整 FCT 哈希。2026-10-01 冻结批次 14/14 全部运行、raw/resources 已 fetch 并通过验收，摘要见 `docs/research/evidence/ws24-followup-validation-summary.json`。真实物理映射仍无来源；四臂仅单 seed 合成描述性 pilot，不支持一般性能收益。
 
 ## 执行协调与 WS-25
 
-WS-24 本批已使用独立 checkout `workspace/ws24-multinic-validation` 完成两格 v2 实验，并在本地冻结后续契约、CNP incast 输入与预留 ID，见[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)。14 格共同仿真源码固定为 `b1184d6a7bd38577b235b7f119f920973308774f`：Git blob 中 11/11 合成文件哈希匹配 manifest，旧输入和 CNP 四类观测均存在；本地与个人 origin 曾核对为同一 SHA。2026-10-01 续作预飞行已确认 14 个 ID 为空闲、资源达标，部署并核验固定 worker SHA `0be12e21ce37655f52a19803824f2b8d24a9a2c84ba0cd58124eb6fb96de62eb`，并把源码缓存同步到 `dc6477e5f469434f42c2b888ac0e18c50341b422`；14 格仍尚未编译或运行。实际模型切到 Luna High 后再重核入口并开始 A 八格。本线程当前工具无法切换模型，因此尚未越过监督边界。不必机械等待 WS-23 五格全部成功。
+WS-24 使用独立 checkout `workspace/ws24-multinic-validation`。2026-10-01 的[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)固定 14 格共同源码 `b1184d6a7bd38577b235b7f119f920973308774f`、输入及当时的远程入口；这些预飞行记录只描述启动前状态。14 格随后完成并由[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)收据化，本次又由 [Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)从 raw 重算和补齐同 SHA 单测。WS-23 的远程作业仍须在未来 WS-24 实验入口单独协调，不机械等待其全部成功。
 
 每次仿真前先冻结协议与收据并停在模型切换边界，监督对话实际切至 Luna High，再执行后台静默实验，约半小时精简监督；终态 raw 回传后实际切回 Sol High 分析和必要修正。不得用文字宣称模型切换。
 
