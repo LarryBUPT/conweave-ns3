@@ -41,6 +41,7 @@ static uint32_t guard_lambda = 1, guard_tau = 0;
 static uint32_t guard_on_bytes = 8192, guard_off_bytes = 4096;
 static uint64_t guard_packets = 0, guard_two_candidates = 0;
 static uint64_t guard_scored = 0, guard_diverted = 0;
+static uint64_t guard_class_nonzero = 0, guard_class_changed_choice = 0;
 static uint64_t guard_activations = 0, guard_exits = 0;
 static uint64_t guard_queue_violations = 0;
 static bool ws18_path_enabled = false;
@@ -823,7 +824,9 @@ void SwitchNode::PrintWorkloadTagCounts() {
         std::cout << "WS09_ROUTE packets=" << guard_packets << " two_candidates="
                   << guard_two_candidates << " scored=" << guard_scored
                   << " diverted=" << guard_diverted << " activations="
-                  << guard_activations << " exits=" << guard_exits << std::endl;
+                  << guard_activations << " exits=" << guard_exits
+                  << " class_nonzero=" << guard_class_nonzero
+                  << " class_changed_choice=" << guard_class_changed_choice << std::endl;
         for (const auto &entry : guard_queue_stats) {
             const GuardQueueStat &s = entry.second;
             if (s.enqueued != s.dequeued + s.queuedDropped + s.current)
@@ -1044,8 +1047,14 @@ uint32_t SwitchNode::DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
     if (Settings::lb_mode != 13) {
         auto a = guard_queue_stats.find(std::make_tuple(m_id, first, 1));
         auto b = guard_queue_stats.find(std::make_tuple(m_id, second, 1));
-        if (a != guard_queue_stats.end()) scoreFirst += uint64_t(guard_lambda) * a->second.current;
-        if (b != guard_queue_stats.end()) scoreSecond += uint64_t(guard_lambda) * b->second.current;
+        const uint64_t classFirst = a == guard_queue_stats.end() ? 0 : a->second.current;
+        const uint64_t classSecond = b == guard_queue_stats.end() ? 0 : b->second.current;
+        if (classFirst || classSecond) ++guard_class_nonzero;
+        scoreFirst += uint64_t(guard_lambda) * classFirst;
+        scoreSecond += uint64_t(guard_lambda) * classSecond;
+        const bool ordinarySecond = uint64_t(qSecond) + guard_tau < qFirst;
+        const bool guardedSecond = scoreSecond + guard_tau < scoreFirst;
+        if (ordinarySecond != guardedSecond) ++guard_class_changed_choice;
     }
     if (scoreSecond + guard_tau < scoreFirst) { ++guard_diverted; return second; }
     return first;

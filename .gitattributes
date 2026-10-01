@@ -8,3 +8,7 @@ config/ws11_s*_bg*.txt -text whitespace=-blank-at-eol
 # WS-17 manifest is itself SHA-256 checked; keep the generated LF bytes.
 docs/research/evidence/ws17-demand-manifest.json -text
 scripts/make_ws17_demand.py text eol=lf
+# Generated WS-23 demand snapshots and manifest must keep exact LF bytes.
+config/ws23_isolation_s*.txt -text
+docs/research/evidence/ws23-isolation-demand-manifest.json -text
+scripts/make_ws23_isolation_demands.py text eol=lf

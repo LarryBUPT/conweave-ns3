@@ -1,0 +1,194 @@
+{
+  "kind": "synthetic independent demand; not deployment traffic",
+  "generator": "scripts/make_ws23_isolation_demands.py",
+  "python_random_seeds": [
+    2301,
+    2302,
+    2303
+  ],
+  "arrival_origin_seconds": 2.006,
+  "topology": "fat_k4_100G_OS2",
+  "total_payload_bytes_per_mixed_trace": 20971520,
+  "entries": [
+    {
+      "seed": 2301,
+      "scenario": "bg",
+      "path": "config/ws23_isolation_s2301_bg.txt",
+      "sha256": "c3ea8ff13033199209c99488773e1b77b5127d12bfd7578b9f0d59d72c618f19",
+      "flow_count": 1,
+      "payload_bytes": 8388608,
+      "flows": [
+        {
+          "source": 3,
+          "destination": 26,
+          "pg": 3,
+          "bytes": 8388608,
+          "arrival_offset_ns": 91550,
+          "tag": 1
+        }
+      ]
+    },
+    {
+      "seed": 2301,
+      "scenario": "mix",
+      "path": "config/ws23_isolation_s2301_mix.txt",
+      "sha256": "f0566d10d33ab63bf5ba8b123bc09136d86fb8bf2f3331104d03f1459575283d",
+      "flow_count": 4,
+      "payload_bytes": 20971520,
+      "flows": [
+        {
+          "source": 3,
+          "destination": 26,
+          "pg": 3,
+          "bytes": 8388608,
+          "arrival_offset_ns": 91550,
+          "tag": 1
+        },
+        {
+          "source": 1,
+          "destination": 27,
+          "pg": 3,
+          "bytes": 4194304,
+          "arrival_offset_ns": 83307,
+          "tag": 2
+        },
+        {
+          "source": 0,
+          "destination": 24,
+          "pg": 3,
+          "bytes": 4194304,
+          "arrival_offset_ns": 67662,
+          "tag": 2
+        },
+        {
+          "source": 2,
+          "destination": 25,
+          "pg": 3,
+          "bytes": 4194304,
+          "arrival_offset_ns": 14837,
+          "tag": 2
+        }
+      ]
+    },
+    {
+      "seed": 2302,
+      "scenario": "bg",
+      "path": "config/ws23_isolation_s2302_bg.txt",
+      "sha256": "9fff3997a56953ada287ee5ff43504e1d5a14f50e65e7c5abee914657dc5fe0b",
+      "flow_count": 1,
+      "payload_bytes": 8388608,
+      "flows": [
+        {
+          "source": 1,
+          "destination": 24,
+          "pg": 3,
+          "bytes": 8388608,
+          "arrival_offset_ns": 32319,
+          "tag": 1
+        }
+      ]
+    },
+    {
+      "seed": 2302,
+      "scenario": "mix",
+      "path": "config/ws23_isolation_s2302_mix.txt",
+      "sha256": "c7e21c5043922b2a513b3d9392b40d9c20385974888eedb19b8f3961c31de6f7",
+      "flow_count": 4,
+      "payload_bytes": 20971520,
+      "flows": [
+        {
+          "source": 1,
+          "destination": 24,
+          "pg": 3,
+          "bytes": 8388608,
+          "arrival_offset_ns": 32319,
+          "tag": 1
+        },
+        {
+          "source": 3,
+          "destination": 27,
+          "pg": 3,
+          "bytes": 4194304,
+          "arrival_offset_ns": 13888,
+          "tag": 2
+        },
+        {
+          "source": 2,
+          "destination": 25,
+          "pg": 3,
+          "bytes": 4194304,
+          "arrival_offset_ns": 63532,
+          "tag": 2
+        },
+        {
+          "source": 0,
+          "destination": 26,
+          "pg": 3,
+          "bytes": 4194304,
+          "arrival_offset_ns": 44770,
+          "tag": 2
+        }
+      ]
+    },
+    {
+      "seed": 2303,
+      "scenario": "bg",
+      "path": "config/ws23_isolation_s2303_bg.txt",
+      "sha256": "0f88e1e66edc8e34c2c11e8b796f012da827e28cd6f2e8607908fc46b45231fe",
+      "flow_count": 1,
+      "payload_bytes": 8388608,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 27,
+          "pg": 3,
+          "bytes": 8388608,
+          "arrival_offset_ns": 75564,
+          "tag": 1
+        }
+      ]
+    },
+    {
+      "seed": 2303,
+      "scenario": "mix",
+      "path": "config/ws23_isolation_s2303_mix.txt",
+      "sha256": "a4e7a887929610ed26edc891eecd778056668a5555ed34c157f51401485b0c02",
+      "flow_count": 4,
+      "payload_bytes": 20971520,
+      "flows": [
+        {
+          "source": 2,
+          "destination": 27,
+          "pg": 3,
+          "bytes": 8388608,
+          "arrival_offset_ns": 75564,
+          "tag": 1
+        },
+        {
+          "source": 1,
+          "destination": 26,
+          "pg": 3,
+          "bytes": 4194304,
+          "arrival_offset_ns": 17762,
+          "tag": 2
+        },
+        {
+          "source": 3,
+          "destination": 25,
+          "pg": 3,
+          "bytes": 4194304,
+          "arrival_offset_ns": 88775,
+          "tag": 2
+        },
+        {
+          "source": 0,
+          "destination": 24,
+          "pg": 3,
+          "bytes": 4194304,
+          "arrival_offset_ns": 78353,
+          "tag": 2
+        }
+      ]
+    }
+  ]
+}

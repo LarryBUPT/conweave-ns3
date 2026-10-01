@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-01 WS-23 后续入口：跨类四格的独立 raw 复核已完成，见[报告](../research/ws23-crossclass-sol-raw-review.md)。本地已固定三组合成独立需求与 `guardhash` / `shortq2` / ECMP 同输入双侧[探索协议](../research/ws23-isolation-paired-pilot-prereg-v1.md)，新增类别决策动态计数。新源码尚未构建、远程 18 格尚未启动；先完成 SHA/ID/worker/资源、optimized 构建、单测及诊断等价门槛，再按静默监督准则执行。旧四格只证明合成场景的共享出口影响，WS-23 继续 ACTIVE。
+
 2026-10-01 WS-23 跨类共享出口四格机器验收通过：[Handoff 56](../handoffs/2026-10-01-56-ws23-crossclass-causal-pilot.md)、[机器结果](../research/evidence/ws23-crossclass-20261001.json)。固定源码 `154f537ec345df75fbb404a1674436535f92735b`，四格分别 1/1、1/1、4/4、4/4 完成；诊断开关两组 FCT 哈希一致。混合场景的背景流与一条竞争流在 ToR 32 出口 5 上同时活动，背景完成时间、排队等待与 MMU 出口占用均高于纯背景格，预设因果条件成立，但仅限该合成输入。四格 raw 尚待实际 Sol High 独立复核；下一步先完成该复核，再冻结隔离候选与同输入 ECMP 的双侧验证、独立需求和业务范围。WS-23 ACTIVE，不能据此宣称隔离方案有效。
 
 2026-10-01 WS-23 v2 双格终态 Sol High 独立 raw 复核已通过，[Handoff 55](../handoffs/2026-10-01-55-ws23-v2-sol-review-and-release.md)记录资源收据、事件时序、机器索引哈希修正与共享入口释放。下一执行项仍是独立 PFC=0 跨类因果四格：固定源码 `154f537ec345df75fbb404a1674436535f92735b`、输入和验收脚本已静态核对，四 ID 此刻未占用，但 optimized C++ 构建/单测及四格仿真均未进行。由 Integration 协调 WS-24 与 WS-23 的远端顺序；下一次现场复查 worker/资源/ID 并实际切 Luna High 后，先背景诊断关/开等价，再混合关/开，任一失败停止并保留 raw。四格即使成立，隔离候选双侧验证仍必做；WS-23 ACTIVE。

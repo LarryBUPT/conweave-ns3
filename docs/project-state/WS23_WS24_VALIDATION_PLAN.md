@@ -13,7 +13,9 @@
 - [x] 下一批本地执行入口已补齐：一条命令在每格构建后启动独立资源观察器并等待 `READY`，终态核验正 RSS/资源阈值；跨类诊断关/开可在背景两格后先配对拒收，再决定是否进入混合格。延期探针首格已用旧方案执行并按失败保留；四格跨类观测格仍未运行，见[Handoff 49](../handoffs/2026-10-01-49-ws23-next-batch-local-readiness.md)和[Handoff 50](../handoffs/2026-10-01-50-ws23-deferral-probe-diagnosis.md)。
 - [x] v2 端到端动态延期在固定 SHA `94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1` 上完成 control/probe 两格：control `20261001-151000-ws23-rto-v2-control-r2` 与 probe `20261001-151100-ws23-rto-v2-probe-r2` 均 16/16。control 重现 161 次准入丢包、源 14 的 36 次丢包和固定 FCT SHA；probe 的丢包前缀与 control 逐行一致、门控触发时有未确认数据、pause/resume 抵达源端，1599 次刷新、4 次暂停期延期、1 次恢复宽限延期，完整 320 µs RTO 后恢复，所有 16 QP 序号/字节守恒。两验收脚本均通过，资源收据正且在阈值内；实际 GPT-6 Sol High 已独立复核两份 raw，并修正机器证据中一处主日志哈希抄写错误。数据见[结果报告](../research/ws23-deferral-v2-correctness-report.md)、[机器证据](../research/evidence/ws23-deferral-v2-20261001.json)和[Handoff 55](../handoffs/2026-10-01-55-ws23-v2-sol-review-and-release.md)。此项仅为固定合成输入正确性验证。
 - [x] 原拥塞隔离目标的因果前置：固定背景与新增竞争流的 PFC=0 同输入四格已实测共同可改道出口、等待、物理出口占用与背景完成影响；诊断开/关两组 FCT 字节一致。固定源码 `154f537ec345df75fbb404a1674436535f92735b`，四格 `20261001-091000-ws23-bg-off`、`20261001-091100-ws23-bg-on`、`20261001-091200-ws23-mix-off`、`20261001-091300-ws23-mix-on` 均通过总验收，见[机器结果](../research/evidence/ws23-crossclass-20261001.json)。该结论仅适用于本次合成输入。
-- [ ] 完成四格 raw 的 Sol High 独立复核，再冻结隔离候选与同输入 ECMP 的双侧验证。对比须回答隔离效果是否降低背景影响、竞争流自身代价如何；候选机制、独立需求数、接受边界和停止规则事前固定。四格不代表隔离候选效果，也不代表真实业务 SLO。
+- [x] 四格 raw 已在本轮独立复核：直接读取四个 ID 的原始快照、FCT、出口和资源样本，复算背景 FCT `708.695→1650.085 µs`、ToR 32 出口 5 活动区间重叠、等待和 MMU 占用；与原机器验收一致。见[独立复核](../research/ws23-crossclass-sol-raw-review.md)及[收据](../research/evidence/ws23-crossclass-sol-raw-audit-20261001.json)。
+- [x] 隔离候选与同输入 ECMP/shortq2 的双侧探索协议、三组事前合成需求、输入哈希和停止条件已在本地写定，见[协议](../research/ws23-isolation-paired-pilot-prereg-v1.md)与[需求清单](../research/evidence/ws23-isolation-demand-manifest.json)。这只是输入与分析准备，尚无候选实验结果；源码完整 SHA、ID 现场空闲、构建/单测和观测等价仍是远程执行前门槛。
+- [ ] 按协议完成隔离候选与同输入 ECMP/shortq2 的双侧验证。对比须回答隔离效果是否降低背景影响、竞争流自身代价如何；所有预设需求都要报告。四格不代表隔离候选效果，也不代表真实业务 SLO。
 - [ ] 按原隔离目标验证独立需求与实际适用范围；结果为负或前提不满足时保留 raw 并定位，不从结果后改门槛。未完成候选双侧及对应验证前，WS-23 保持 ACTIVE。
 - [ ] 全部预设项完成后再核对最终源码、实验、结果报告与自然语言结论逐项一致；原始目标若需变更，先取得用户明确决定。阶段 Handoff 和上述两格通过不构成 WS-23 闭环。
 
