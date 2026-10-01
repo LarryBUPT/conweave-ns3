@@ -80,15 +80,23 @@ def inspect(entry, mode, source_sha):
         check = parse_counter(log, "WS09_QUEUE_CHECK")
         require(check == {"violations": 0}, exp + " queue conservation")
     receipt = json.loads((folder / "logs/resource-fast-summary.json").read_text())
+    samples = [json.loads(line) for line in
+               (folder / "logs/resource-fast-samples.jsonl").read_text().splitlines()]
+    running = [sample for sample in samples if sample["status"] == "RUNNING"]
     require(receipt["final_status"] == "SUCCEEDED" and receipt["running_seen"] and
-            receipt["root_pid"] == meta["pid"] and receipt["samples"] > 0 and
+            receipt["root_pid"] == meta["pid"] and receipt["samples"] == len(running) and
+            samples[0]["status"] == "READY" and running and
+            all(sample["root_pid"] == meta["pid"] and
+                sample["process_tree_rss_mib"] > 0 and sample["load_1m"] <= 20
+                for sample in running) and
             0 < receipt["peak_tree_rss_mib"] < 8192 and
             receipt["minimum_mem_available_gib"] >= 16 and
             receipt["minimum_free_gib"] >= 100, exp + " resource receipt")
     return {"id": exp, "fct_sha256": digest(fct_file),
             "background_fct_ns": by_identity[(flows[0]["source"], flows[0]["destination"],
                                                flows[0]["bytes"])][6],
-            "contender_fct_ns": sorted(row[6] for row in fct if row[0] != flows[0]["source"]),
+            "contender_fct_ns": {str(row[0]): row[6] for row in fct
+                                 if row[0] != flows[0]["source"]},
             "route": route, "resource_peak_rss_mib": receipt["peak_tree_rss_mib"]}
 
 
@@ -103,6 +111,8 @@ def main():
             "demand manifest coverage")
     rows = {}
     for seed in (2301, 2302, 2303):
+        require(entries[seed, "bg"]["flows"] == entries[seed, "mix"]["flows"][:1],
+                "background identity changed at seed %d" % seed)
         for scenario in ("bg", "mix"):
             entry = entries[seed, scenario]
             require(digest(ROOT / entry["path"]) == entry["sha256"], "Git demand byte hash")
@@ -120,11 +130,13 @@ def main():
                      dynamic["class_nonzero"] > 0 and dynamic["class_changed_choice"] > 0)
         background_better = all(interference["guardhash"] < interference[m]
                                 for m in ("fecmp", "shortq2"))
-        contender_safe = all(max(row["guardhash"]["contender_fct_ns"]) <=
-                             max(row[m]["contender_fct_ns"])
+        contender_safe = all(max(row["guardhash"]["contender_fct_ns"].values()) <=
+                             max(row[m]["contender_fct_ns"].values())
                              for m in ("fecmp", "shortq2"))
         outcomes.append({"seed": seed, "interference_ns": interference,
-                         "contender_max_fct_ns": {m: max(row[m]["contender_fct_ns"])
+                         "contender_fct_ns_by_source": {m: row[m]["contender_fct_ns"]
+                                                        for m in MODES},
+                         "contender_max_fct_ns": {m: max(row[m]["contender_fct_ns"].values())
                                                   for m in MODES},
                          "class_mechanism_triggered": mechanism,
                          "background_better_than_both": background_better,
