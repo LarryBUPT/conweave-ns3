@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-10-01 WS-24 冻结的合成多网卡验证已完成，并已从独立工作区核对 14 份原始结果重生[机器摘要](../research/evidence/ws24-followup-validation-summary.json)：固定仿真源码 `b1184d6a7bd38577b235b7f119f920973308774f`，14/14 格完成且资源收据通过。五列四算法的 FCT 与历史锚点逐字节相同；六列各 4/4；320-host 目标图 10/10、2,408,448 B；受控 CNP 格 4/4、4,194,304 B，并关联到 7 次标记、7 次源端接收和 7 次真实降速。四臂各 10/10、2,408,448 B，multi−single 完成跨度仅在这一组输入中为固定放置 −173 ns、可变放置 −164 ns。见[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)。WS-24 的 14 格冻结合成实验范围完成；原必做清单要求的单测收据尚未找到，任务继续 ACTIVE。真实 host/NIC/job 映射与跨独立需求的确认性效果仍无证据。WS-23 的隔离候选双侧验证也继续 ACTIVE。
+
 本阶段交接入口：[Handoff 57：四格原始复核与隔离双侧输入冻结](../handoffs/2026-10-01-57-ws23-raw-review-and-isolation-freeze.md)。
 
 2026-10-01 WS-23 四格原始数据独立复核完成：[复核报告](../research/ws23-crossclass-sol-raw-review.md)及[原始复算收据](../research/evidence/ws23-crossclass-sol-raw-audit-20261001.json)与原机器验收一致。固定合成输入中 ToR 32 出口 5 上两类流活动区间重叠，背景 FCT `708.695→1650.085 µs`，等待和 MMU 出口预留增加；该证据只建立共享出口影响。隔离候选采用已有 `guardhash`，以 `shortq2` 和 ECMP 为同输入对照；[双侧探索协议](../research/ws23-isolation-paired-pilot-prereg-v1.md)与[三组独立合成需求](../research/evidence/ws23-isolation-demand-manifest.json)已在本地准备，候选源码新增类别决策计数，**尚未构建或运行新格**。候选源码已冻结为 `e263579aeaf970bb64a27d3c41c0ab0ba850022b`，远端 ID/资源仍需执行前复查；WS-23 双侧效果、独立需求运行和真实业务适用范围未完成，继续 ACTIVE。历史 Handoff 56 保留其当时“待复核”的记录。

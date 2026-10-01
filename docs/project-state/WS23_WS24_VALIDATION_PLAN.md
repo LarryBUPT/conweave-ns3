@@ -21,18 +21,19 @@
 
 ## WS-24：补齐模型、输入与多网卡验证
 
-执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据 [表示能力审计](../research/ws24-multirail-representability-audit.md)。已过门槛：四分量拓扑与输入结构正反例审计；未实现 simulator 多 NIC。
+执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据[表示能力审计](../research/ws24-multirail-representability-audit.md)、[冻结协议](../research/ws24-followup-validation-protocols.md)、[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)及[14 格原始验收摘要](../research/evidence/ws24-followup-validation-summary.json)。固定仿真源码 `b1184d6a7bd38577b235b7f119f920973308774f`。2026-10-01 状态：**14 格冻结合成验证完成，WS-24 任务仍 ACTIVE**；原清单要求的单测没有找到可核验收据，真实物理映射和跨独立需求确认性效果也没有验证。
 
-- [ ] 追查导入拓扑/生成器来源，明确真实 host/NIC/job 映射可获得程度；不能从相邻节点号推断物理共享。
-- [ ] 建立明确标注为合成的、可复现的受控 host/NIC/rail/job/rank/流映射，用于工程正确性与受控机制研究；真实部署主张另需真实来源。合成建模必须说明假设、资源共享和适用范围，参考已有成熟模型，不伪称真实资产。
-- [ ] 实现并验证一个物理主机模型对应多 NIC、每 NIC 独立 IP、显式双向 QP/ACK/CNP 绑定及组件内可达；保留旧格式和 baseline 回归。先最小拓扑，后目标拓扑。
-- [ ] 本地结构及构建/单测通过后，冻结最小多 NIC 端到端正确性格，核对 host/NIC/job/flow 身份、数目/字节/完成守恒和返回路径；失败则修复并独立 ID 重验。
-- [ ] 按原多 rail/placement 目标制定并执行必要受控对照：固定逻辑需求与总字节，对照单/多 rail 与固定/可变放置；先小样再决定正式验证。性能门槛未满足时继续处理前置缺口，禁止以静态审计代替机制验证。任何放弃或范围缩减须用户明确决定。
-- [ ] 终态 raw、最终源码及效果结论一致，完成全部预设验收项后再交接闭环。
+- [x] 已追查导入图/生成器来源；它可追至合成生成器，但无可信真实 host/NIC/job 放置资料，不能从相邻节点号推断物理共享。[审计](../research/ws24-multirail-representability-audit.md)
+- [x] 已建立标明合成身份、资源共享假设与适用范围的 host/NIC/rail/job/rank/流映射；真实部署主张仍需真实来源。[协议](../research/ws24-followup-validation-protocols.md)
+- [x] 已实现一台合成 host 对应四 NIC/独立 IP；最小正例与跨 rail 拒错负例核验身份、双向 QP/ACK、字节和返回路径。新固定 SHA 的旧五列/六列四 baseline 八格、320-host 目标图格与动态 CNP 格均通过：旧五列四算法 FCT 与历史锚点逐字节一致；目标图 10/10、2,408,448 B；CNP 格 4/4、4,194,304 B，flag/源端接收/真实降速各 7。[最小格](../research/ws24-minimal-multinic-preflight.md)、[14 格摘要](../research/evidence/ws24-followup-validation-summary.json)
+- [ ] 本地结构检查、隔离构建和最小端到端正确性已有证据；后续固定 SHA 的每格独立 optimized 构建、输入/拓扑快照、完成/字节/身份与资源收据均通过逐格和矩阵验收。但原清单明确要求的**单测通过收据尚未找到**；须由 WS-24 在隔离源码副本运行对应单测或提供已有原始收据，再完成此项。[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)
+- [x] 已按原多 rail/placement 目标执行固定逻辑需求与总字节的单/多 rail × 固定/可变放置四臂合成 pilot，各 10/10、2,408,448 B。multi−single 完成跨度差在固定/可变放置为 −173/−164 ns，只有一个合成 seed，仅作描述，不称普遍性能收益。[机器摘要](../research/evidence/ws24-followup-validation-summary.json)
+- [x] 冻结 A/B/C/D 14/14 终态 raw 与资源收据已回传，独立重跑 `verify_ws24_matrix.py` 得到与提交摘要相同的结果；最终仿真 SHA、输入和本范围结论对应。真实物理映射和独立需求的确认性性能结论仍缺证据；提出此类主张前须另取得来源并预先固定验证协议，不把本次合成 pilot 代替它们。
+- [ ] WS-24 任务闭环前补齐上一项单测收据，并再次核对全部预设项与原始证据。Handoff 50 的“冻结 14 格范围完成”只覆盖实验批次，不代替任务闭环。
 
 ## 执行协调与 WS-25
 
-WS-23 的本地分析和修改在独立副本 `workspace/ws23-execution-70bf890`；WS-24 使用自己的工作树，当前独占共享远端 `remote_worker.py` 部署与运行入口。WS-23 新批次必须等协调边界，先核对远端 worker 版本及在途作业，再按固定 SHA/输入和资源门槛运行；不能部署或启动影响 WS-24 的远端实验。
+WS-23 的本地分析和修改在独立副本 `workspace/ws23-execution-70bf890`；WS-24 的冻结 14 格已在 `workspace/ws24-multinic-validation` 完成，没有本批在途作业。WS-23 新批次仍须由 Integration 协调共享入口，现场核对远端 worker 版本、在途作业、ID 与资源后按固定 SHA/输入运行；不以过去的空闲收据代替现场检查。
 
 每次仿真前先冻结协议与收据并停在模型切换边界，监督对话实际切至 Luna High，再执行后台静默实验，约半小时精简监督；终态 raw 回传后实际切回 Sol High 分析和必要修正。不得用文字宣称模型切换。
 

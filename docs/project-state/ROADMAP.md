@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-01 WS-24 合成多网卡冻结批次 14/14 已完成，原始数据在 WS-24 独立工作区重跑矩阵验收，结果与[机器摘要](../research/evidence/ws24-followup-validation-summary.json)一致。旧五列兼容、目标图正确性、动态 CNP 收发/降速和固定逻辑需求四臂守恒通过；四臂只有单一合成 seed，完成跨度差 −173/−164 ns 不能写成普遍收益。详见[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)与[冻结协议](../research/ws24-followup-validation-protocols.md)。原清单所需单测收据尚未找到，WS-24 任务保持 ACTIVE；真实主机/NIC/作业映射尚无可信来源，独立需求确认性效果未做。WS-23 隔离双侧验证仍按其已冻结协议 ACTIVE。
+
 2026-10-01 WS-23 后续入口：跨类四格的独立 raw 复核已完成，见[报告](../research/ws23-crossclass-sol-raw-review.md)。本地已固定三组合成独立需求与 `guardhash` / `shortq2` / ECMP 同输入双侧[探索协议](../research/ws23-isolation-paired-pilot-prereg-v1.md)，新增类别决策动态计数。新源码尚未构建、远程 18 格尚未启动；候选源码 SHA 已冻结为 `e263579…`；先现场核对 ID/worker/资源，再完成 optimized 构建、单测及诊断等价门槛，再按静默监督准则执行。旧四格只证明合成场景的共享出口影响，WS-23 继续 ACTIVE。
 
 2026-10-01 WS-23 跨类共享出口四格机器验收通过：[Handoff 56](../handoffs/2026-10-01-56-ws23-crossclass-causal-pilot.md)、[机器结果](../research/evidence/ws23-crossclass-20261001.json)。固定源码 `154f537ec345df75fbb404a1674436535f92735b`，四格分别 1/1、1/1、4/4、4/4 完成；诊断开关两组 FCT 哈希一致。混合场景的背景流与一条竞争流在 ToR 32 出口 5 上同时活动，背景完成时间、排队等待与 MMU 出口占用均高于纯背景格，预设因果条件成立，但仅限该合成输入。四格 raw 尚待实际 Sol High 独立复核；下一步先完成该复核，再冻结隔离候选与同输入 ECMP 的双侧验证、独立需求和业务范围。WS-23 ACTIVE，不能据此宣称隔离方案有效。
