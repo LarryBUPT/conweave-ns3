@@ -84,7 +84,7 @@
     "simulator_stop_ns": 2017100000,
     "fct_sha256": "86ea6fc3275f08169c6b539ae2c2a534d29bb95ed31866832c9eee5322550ef0",
     "raw_fct_sha256": "86ea6fc3275f08169c6b539ae2c2a534d29bb95ed31866832c9eee5322550ef0",
-    "raw_config_log_sha256": "9f88ec5179db849fda11fcbd3e7c39b2550a1b86f7697a3fc5b95df3e450d6e",
+    "raw_config_log_sha256": "9f88ec5179db849fdae11fcbd3e7c39b2550a1b86f7697a3fc5b95df3e450d6e",
     "deferral_v2_validator": "PASS",
     "resource_receipt": {
       "samples": 11,
@@ -102,8 +102,25 @@
     "validator": "scripts/verify_ws23_recovery.py"
   },
   "conclusion": "The fixed synthetic pressure input verifies the v2 PFC/IRN timeout deferral and recovery contract. This evidence is not a performance comparison, proof of general losslessness, cross-class isolation, or real-deployment validation.",
+  "sol_high_raw_review": {
+    "status": "PASS",
+    "model": "gpt-6-sol",
+    "reasoning_effort": "high",
+    "review_date": "2026-10-01",
+    "independent_checks": [
+      "Recomputed both source, trace, topology, FCT, and raw config-log identities from metadata and downloaded files.",
+      "Counted 161 control admission drops and confirmed the probe's 161 pre-injection drop lines match exactly, including 36 from source host 14.",
+      "Parsed the unique real-loss-gated trigger, outstanding QP data, pause/resume injection and source receipt, and 1599 refreshes.",
+      "Confirmed four deferrals during pause, one after resume, and recovery exactly 320000 ns after the source received resume.",
+      "Independently checked 16 unique QP completion receipts, eight flows per class, target completion after recovery, no recovery during local pause, and positive resource samples below stop thresholds."
+    ],
+    "first_target_pause_received_ns": 2007201003,
+    "target_resume_received_ns": 2008801003,
+    "target_flow_finish_ns": 2009250592,
+    "all_timeout_recoveries_outside_local_pause": true,
+    "evidence_correction": "The probe raw config-log SHA-256 transcription was corrected to match the unchanged downloaded file."
+  },
   "remaining": [
-    "Independent GPT-6 Sol High review of returned raw data is pending because this task has no actual model-switch tool.",
     "The separate PFC=0 cross-class causal four-cell validation remains unbuilt and unrun.",
     "The isolation candidate still requires its paired two-sided validation and end-to-end source/effect/conclusion closure."
   ]

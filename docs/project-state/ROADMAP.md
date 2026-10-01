@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-01 WS-23 v2 双格终态 Sol High 独立 raw 复核已通过，[Handoff 55](../handoffs/2026-10-01-55-ws23-v2-sol-review-and-release.md)记录资源收据、事件时序、机器索引哈希修正与共享入口释放。下一执行项仍是独立 PFC=0 跨类因果四格：固定源码 `154f537ec345df75fbb404a1674436535f92735b`、输入和验收脚本已静态核对，四 ID 此刻未占用，但 optimized C++ 构建/单测及四格仿真均未进行。由 Integration 协调 WS-24 与 WS-23 的远端顺序；下一次现场复查 worker/资源/ID 并实际切 Luna High 后，先背景诊断关/开等价，再混合关/开，任一失败停止并保留 raw。四格即使成立，隔离候选双侧验证仍必做；WS-23 ACTIVE。
+
 2026-10-01 WS-23 延期 v2 control/probe 已按固定 SHA 通过端到端机器验收：[结果报告](../research/ws23-deferral-v2-correctness-report.md)、[机器证据](../research/evidence/ws23-deferral-v2-20261001.json)、[Handoff 54](../handoffs/2026-10-01-54-ws23-rto-v2-correctness-results.md)。数据只支持该合成压力输入上的暂停延期与恢复契约，不支持性能收益或通用无损主张。按远程工作流，终态需在 GPT-6 Sol High 实际复核；当前执行工具无法切换，故该项仍待处理。随后继续独立 PFC=0 跨类因果四格和隔离候选双侧验证；WS-23 保持 ACTIVE。
 
 2026-10-01 WS-23 延期 v2 control 首次启动失败并已保留：源码 optimized 构建完成，但单测过程中更改了 Waf 测试配置；复原 lock 后仿真触发对已知 const 缺陷测试 helper 的编译并在仿真前退出。失败 raw 和资源收据已回传。单测 `devices-point-to-point` 在隔离测试 runner 中通过，helper SHA 恢复为固定值。新一组 ID `20261001-151000-ws23-rto-v2-control-r2` / `20261001-151100-ws23-rto-v2-probe-r2` 从干净固定 SHA 重建，沿用已有单测收据；后续不得在 simulation 的默认 Waf 输出目录开测试。control 通过压力门槛才启动 probe。细节见[预飞行](../research/ws23-deferral-v2-preflight.md)和[Handoff 53](../handoffs/2026-10-01-53-ws23-rto-v2-control-build-failure.md)。
