@@ -1,6 +1,8 @@
 # ConWeave 毕业论文项目状态
 
-2026-10-01 WS-23 四格原始数据独立复核完成：[复核报告](../research/ws23-crossclass-sol-raw-review.md)及[原始复算收据](../research/evidence/ws23-crossclass-sol-raw-audit-20261001.json)与原机器验收一致。固定合成输入中 ToR 32 出口 5 上两类流活动区间重叠，背景 FCT `708.695→1650.085 µs`，等待和 MMU 出口预留增加；该证据只建立共享出口影响。隔离候选采用已有 `guardhash`，以 `shortq2` 和 ECMP 为同输入对照；[双侧探索协议](../research/ws23-isolation-paired-pilot-prereg-v1.md)与[三组独立合成需求](../research/evidence/ws23-isolation-demand-manifest.json)已在本地准备，候选源码新增类别决策计数，**尚未构建或运行新格**。完整源码 SHA 与远端 ID/资源仍需在执行前冻结复查；WS-23 双侧效果、独立需求运行和真实业务适用范围未完成，继续 ACTIVE。历史 Handoff 56 保留其当时“待复核”的记录。
+本阶段交接入口：[Handoff 57：四格原始复核与隔离双侧输入冻结](../handoffs/2026-10-01-57-ws23-raw-review-and-isolation-freeze.md)。
+
+2026-10-01 WS-23 四格原始数据独立复核完成：[复核报告](../research/ws23-crossclass-sol-raw-review.md)及[原始复算收据](../research/evidence/ws23-crossclass-sol-raw-audit-20261001.json)与原机器验收一致。固定合成输入中 ToR 32 出口 5 上两类流活动区间重叠，背景 FCT `708.695→1650.085 µs`，等待和 MMU 出口预留增加；该证据只建立共享出口影响。隔离候选采用已有 `guardhash`，以 `shortq2` 和 ECMP 为同输入对照；[双侧探索协议](../research/ws23-isolation-paired-pilot-prereg-v1.md)与[三组独立合成需求](../research/evidence/ws23-isolation-demand-manifest.json)已在本地准备，候选源码新增类别决策计数，**尚未构建或运行新格**。候选源码已冻结为 `e263579aeaf970bb64a27d3c41c0ab0ba850022b`，远端 ID/资源仍需执行前复查；WS-23 双侧效果、独立需求运行和真实业务适用范围未完成，继续 ACTIVE。历史 Handoff 56 保留其当时“待复核”的记录。
 
 2026-10-01 WS-23 PFC=0 跨类共享出口四格已完成机器验收：[Handoff 56](../handoffs/2026-10-01-56-ws23-crossclass-causal-pilot.md)、[机器结果](../research/evidence/ws23-crossclass-20261001.json)。固定源码 `154f537ec345df75fbb404a1674436535f92735b` 下，背景与混合场景均各 1/1、4/4 完成；两组诊断开/关 FCT 文件分别逐字节一致。混合场景中 ToR 32 的出口 5 上背景流与一条竞争流实际重叠；背景 FCT 从 708.695 µs 增至 1650.085 µs，平均排队等待与 MMU 出口占用也上升，四格验收全部通过。该结果仅证明此固定合成输入中的共享出口影响；隔离候选对比 ECMP 的双侧验证、独立需求及实际业务范围仍未完成。按工作流的模型切换要求，四格原始数据的 Sol High 独立复核仍待实际切换后进行；WS-23 保持 ACTIVE。
 

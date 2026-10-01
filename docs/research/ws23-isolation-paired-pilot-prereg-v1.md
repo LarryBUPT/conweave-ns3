@@ -1,6 +1,6 @@
 # WS-23 隔离候选同输入双侧探索协议 v1
 
-冻结日期：2026-10-01。**本文件先冻结合成需求、候选机制、对照和判据；尚无新实验结果。**相关源码提交的完整 SHA、个人 fork 同分支同步、远端 ID 空闲及 worker/资源现场收据要在启动前补入执行 Handoff。未完成这些前置项不启动远程构建或仿真。
+冻结日期：2026-10-01。候选源码、生成器和验收脚本的本地固定提交为 `e263579aeaf970bb64a27d3c41c0ab0ba850022b`。**本文件先冻结合成需求、候选机制、对照和判据；尚无新实验结果。**个人 fork 同分支同步、远端 ID 空闲及 worker/资源现场收据要在启动前补入执行 Handoff。未完成这些前置项不启动远程构建或仿真。
 
 ## 要检验的主张
 
@@ -15,6 +15,10 @@
 每个 seed 分别运行背景单独/混合 × `fecmp`/`shortq2`/`guardhash`，共 18 个独立 ID；ID 由 `scripts/verify_ws23_isolation_pilot.py` 中 `experiment_id` 固定。共同配置：`fat_k4_100G_OS2` 拓扑、DCQCN、100G、9 MiB buffer、PFC=0、IRN=1、ns-3 seed=1、`simul_time=0.01`、`netload=10`、`--factorial-pilot --factorial-drop-diag`、诊断关闭、每格 optimized `-j2`、仿真并发 1。先用已复核的旧四格输入做新 SHA 的诊断开/关与三模式正确性最小门槛；通过后才启动 18 格，不复用旧 SHA 的 FCT 当作新 SHA 回归。
 
 ## 逐格验收、双侧判据与停止
+
+新 SHA 的最小预飞行为旧混合输入上三模式各跑诊断关/开一对，共六格。预留 ID 为 `20261001-174000-ws23-pilot-fecmp-off`、`174001-...-fecmp-on`、`174002/174003-...-shortq2-off/on`、`174004/174005-...-guardhash-off/on`；完整字符串由 `scripts/verify_ws23_isolation_preflight.py` 的 `pilot_id` 固定。六格同输入、同配置（仅模式与诊断开关不同），要求 4/4 全完成、每对 FCT 原始字节哈希相同、ECMP 与旧同输入 FCT 哈希相同、新模式双候选和评分计数为正、诊断开启时 `unpaired=0`、队列守恒及资源门槛通过。运行 `scripts/verify_ws23_isolation_preflight.py --source-sha <冻结完整 SHA>` 验收；失败停在六格，不进入 18 格。
+
+24 个预留 ID（六格预飞行和 18 格需求对照） 在本地冻结检查时均未占用；远端仍须在运行前现场查重。ID 从 `20261001-180000-ws23-s2301-bg-fecmp` 到 `20261001-180017-ws23-s2303-mix-guardhash`，完整映射以固定提交中的验收脚本为准。
 
 逐格先核对源码/输入/拓扑哈希、参数、完整流身份及 payload、1/1 或 4/4 完成、无 PFC/准入丢包/队列拒绝/超时，两个新模式 `WS09_QUEUE_CHECK violations=0`，运行中正 RSS 资源收据与停止线。背景单独三模式 FCT 字节哈希必须相同，因为此时没有 tag=2 竞争流；不相同先定位回归。任何错误保留该 ID 和 raw，停止新增格；修复后另用新 SHA/ID，不能覆盖旧记录。
 
