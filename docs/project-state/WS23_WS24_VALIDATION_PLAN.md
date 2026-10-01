@@ -23,17 +23,17 @@
 - [x] 冻结并执行最小正例和跨 rail 拒错负例，核对 host/NIC/rank/flow、唯一接收/确认、FCT 对应与资源收据；正例逐流验收通过，负例在 `WS24 invalid flow row 2` 拒绝且无 FLOW_START/FCT。见两实验 ID 与 SHA 固定的[预飞行结果](../research/ws24-minimal-multinic-preflight.md)。
 - [x] 本地冻结旧五列/六列四 baseline 回归契约：固定 OS2 输入哈希、四 LB_MODE、旧 1000 ns 时延及逐格输出验收。见[后续冻结协议 A](../research/ws24-followup-validation-protocols.md)。
 - [x] 从个人 fork 的四份 WS-06 历史 raw 只读重算完整 FCT 哈希，保存逐字节回归锚点于 `docs/research/evidence/ws24-legacy-reference-fct-sha.json`。
-- [ ] 在共同固定 SHA `b1184d6a7bd38577b235b7f119f920973308774f` 上执行上述 8 格，旧格式输入与动态输出均按契约逐格验收。
+- [x] 在共同固定 SHA `b1184d6a7bd38577b235b7f119f920973308774f` 上执行上述 8 格，旧格式输入与动态输出均按契约逐格验收。2026-10-01 八格均 `SUCCEEDED` 并通过 `verify_ws24_legacy.py`；五列四算法 FCT SHA 与历史参考一致，六列每格 4/4、tag 1/2 各 2。
 - [x] 本地审查并冻结 320-host 目标拓扑正确性格：1280 NIC、四 rail、运行时 RTT/BDP 600 ns/30,000 B 和逐流身份守恒。见[后续冻结协议 B](../research/ws24-followup-validation-protocols.md)。
-- [ ] Integration 确认 WS-23 无在途远程作业、共享 worker 无切换冲突且资源门槛通过后，协调执行目标拓扑 correctness；真实运行日志须实证 600/30,000，不能以离线值代替。WS-23 五格全部成功不是这项独立回归的机械前置条件。
+- [x] Integration 确认 WS-23 无在途远程作业、共享 worker 无切换冲突且资源门槛通过后，协调执行目标拓扑 correctness；真实运行日志须实证 600/30,000，不能以离线值代替。WS-23 五格全部成功不是这项独立回归的机械前置条件。2026-10-01 `20261002-110000-ws24-target-320host-correctness` 10/10、2,408,448 B，运行时 600 ns/30,000 B 与 NIC/route 身份通过。
 - [x] 本地设计并冻结可触发的动态 CNP 正确性格和最小接收/发送端状态观测要求。新增四源同 rail incast 合成输入；见[后续冻结协议 C](../research/ws24-followup-validation-protocols.md)。
-- [x] 本地加入仅 WS-24 启用、每 QP 受限的 CNP 生成/源 NIC 接收/DCQCN rate-decrease 观测及事件关联验收器；尚未编译或远端运行，动态正确性不算通过。
-- [ ] 以共同固定 SHA `b1184d6…` /独立 ID 执行 CNP 格；验证 ACK/NACK flag 返回指定源 NIC、pending 生效和流完成前实际降速。无事件不得宣称 CNP 已验证。
+- [x] 本地加入仅 WS-24 启用、每 QP 受限的 CNP 生成/源 NIC 接收/DCQCN rate-decrease 观测及事件关联验收器；固定 SHA 已远端编译，C 格 raw 关联 flag、源端接收、pending 与真实降速事件，动态正确性通过。
+- [x] 以共同固定 SHA `b1184d6…` /独立 ID 执行 CNP 格；验证 ACK/NACK flag 返回指定源 NIC、pending 生效和流完成前实际降速。无事件不得宣称 CNP 已验证。2026-10-01 `20261002-120000-ws24-cnp-incast-correctness` 4/4、4,194,304 B，验收器关联 7 组 flag/receive/rate-decrease 事件。
 - [x] 本地冻结原多 rail/placement 目标的四臂协议：相同逻辑流与总字节，对照单/多 rail 与固定/可变放置；manifest 逐文件哈希及逐臂验收见[后续冻结协议 D](../research/ws24-followup-validation-protocols.md)。
-- [ ] 先通过目标拓扑 correctness，再由 Integration 按共享入口实际空闲情况协调执行四臂 synthetic pilot。禁止以静态审计替代机制验证；任何范围缩减仍需用户明确决定。
-- [ ] 终态 raw、最终仿真源码及效果结论一致，完成全部预设验收项后再交接闭环。最小格通过不关闭本项。
+- [x] 先通过目标拓扑 correctness，再由 Integration 按共享入口实际空闲情况协调执行四臂 synthetic pilot。禁止以静态审计替代机制验证；任何范围缩减仍需用户明确决定。2026-10-01 四臂均 10/10、2,408,448 B、身份与逻辑需求配对通过；结果仅为单 seed 描述性 pilot。
+- [x] 终态 raw、最终仿真源码及效果结论一致，完成全部预设验收项后再交接闭环。最小格通过不关闭本项。2026-10-01 14/14 raw/resources fetched，`verify_ws24_matrix.py` 全矩阵通过；机器摘要 `../research/evidence/ws24-followup-validation-summary.json`，Handoff 50 记录结论和证据边界。真实部署映射和确认性性能结论没有被宣称。
 
-本地 14 格执行后验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口还要求四模式历史完整 FCT 哈希，不接受只有前缀的摘要。当前只有既有最小 v2 raw 可重验，14 格均未运行。
+14 格验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口要求四模式历史完整 FCT 哈希。2026-10-01 冻结批次 14/14 全部运行、raw/resources 已 fetch 并通过验收，摘要见 `docs/research/evidence/ws24-followup-validation-summary.json`。真实物理映射仍无来源；四臂仅单 seed 合成描述性 pilot，不支持一般性能收益。
 
 ## 执行协调与 WS-25
 
