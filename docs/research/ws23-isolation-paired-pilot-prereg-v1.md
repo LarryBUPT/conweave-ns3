@@ -1,6 +1,6 @@
 # WS-23 隔离候选同输入双侧探索协议 v1
 
-冻结日期：2026-10-01。候选源码、生成器和验收脚本的本地固定提交为 `e263579aeaf970bb64a27d3c41c0ab0ba850022b`。**本文件先冻结合成需求、候选机制、对照和判据；尚无新实验结果。**个人 fork 同分支同步、远端 ID 空闲及 worker/资源现场收据要在启动前补入执行 Handoff。未完成这些前置项不启动远程构建或仿真。
+冻结日期：2026-10-01。v1 候选源码、生成器和验收脚本的固定提交为 `e263579aeaf970bb64a27d3c41c0ab0ba850022b`。本节保留事前冻结的合成需求、候选机制、对照和判据。v1 六格预飞行已在第四格因观测覆盖缺口停止；修复后的源码、全新 ID 与当前执行状态见文末“v2 执行修订”。个人 fork 同分支同步、远端 ID 空闲及 worker/资源现场收据仍须在启动前核对。
 
 ## 要检验的主张
 
@@ -31,3 +31,17 @@
 ## 验证出口
 
 `scripts/verify_ws23_isolation_pilot.py --source-sha <冻结完整 SHA>` 从 18 份原始结果产生逐 seed 机器摘要；运行前还需在执行 Handoff 固定 SHA、核对全部 ID 空闲、确认脚本与生成器的版本，并完成新 SHA 的 optimized 构建、单测和旧输入诊断等价最小门槛。若结果为负，保留完整双侧数据并据此作负结论；WS-23 的“验证隔离候选”项在完成这轮预设验证与独立复核后才能判断是否闭环。真实业务适用范围始终另列证据缺口。
+
+## v2 执行修订：观测覆盖修复后重新预飞行
+
+2026-10-01，v1 前四格在固定源码 `e263579aeaf970bb64a27d3c41c0ab0ba850022b` 下完成并回传 raw。ECMP 诊断关/开配对的 FCT 哈希相同，且与旧输入锚点一致；`shortq2` 的关/开配对 FCT 也相同，但开启格 `20261001-174003-ws23-pilot-shortq2-on` 没有预设的 `WS23_CROSSCLASS_HOP` 与 `WS23_CROSSCLASS_INFLIGHT` 记录。v1 验收器按原判据报 `diagnostic pairing` 失败。源码原因是跨类观测开关仅允许 ECMP 模式。四份已运行 raw 保留，v1 后两格和 18 格均未启动；详见[Handoff 58](../handoffs/2026-10-01-58-ws23-isolation-diagnostic-coverage.md)。
+
+修复候选固定源码与 v2 验收入口为 `eff40eaac291a86c1d42afa6042ab1d583c8a373`，已推送个人 fork 同名分支。修复只让显式诊断开关在 32 主机小拓扑的 ECMP、`shortq2`、`guardhash` 三模式记录同一组跨类观测；不改路由评分、候选路径、输入或双侧通过门槛。`scripts/verify_ws23_isolation_preflight.py --revision 2 --source-sha eff40eaac291a86c1d42afa6042ab1d583c8a373` 使用以下六个全新 ID；不覆盖 v1。原脚本默认 `--revision 1`，仍可复现 v1 失败。
+
+| 模式 | 诊断关闭 | 诊断开启 |
+| --- | --- | --- |
+| `fecmp` | `20261001-151500-ws23-pilot2-fecmp-off` | `20261001-151501-ws23-pilot2-fecmp-on` |
+| `shortq2` | `20261001-151502-ws23-pilot2-shortq2-off` | `20261001-151503-ws23-pilot2-shortq2-on` |
+| `guardhash` | `20261001-151504-ws23-pilot2-guardhash-off` | `20261001-151505-ws23-pilot2-guardhash-on` |
+
+六格仍使用同一旧混合输入 `config/ws23_crossclass_bg_plus_3x4MiB.txt`，Git 字节 SHA-256 `379e0c87cb0c26690d438287468dbc9159054f82445e6be46d0324165d639863`；拓扑 `config/fat_k4_100G_OS2.txt` 的 SHA-256 为 `dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad`。ns-3 seed=1，其余配置、逐格验收、配对哈希、路由与队列守恒、资源停止线和六格通过后才开放 18 格的规则，均沿用上文。v2 六个 ID 在本地与远端结果/运行目录的初次检查中未占用；执行前还要现场复查。新源码尚未远端构建、单测或运行，不能据此声称修复已通过或候选有收益。
