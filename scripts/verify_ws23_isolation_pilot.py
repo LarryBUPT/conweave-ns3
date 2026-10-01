@@ -2,6 +2,7 @@
 """Verify the frozen WS-23 18-cell synthetic, paired isolation pilot."""
 
 import argparse
+from decimal import Decimal
 import hashlib
 import json
 import re
@@ -23,10 +24,31 @@ def require(ok, reason):
         raise ValueError(reason)
 
 
-def experiment_id(seed, scenario, mode):
-    return "20261001-18%04d-ws23-s%d-%s-%s" % (
+def experiment_id(seed, scenario, mode, revision=1):
+    require(revision in (1, 2), "unknown matrix revision")
+    return "20261001-%02d%04d-ws23-s%d-%s-%s" % (
+        18 if revision == 1 else 20,
         (seed - 2301) * 6 + (0 if scenario == "bg" else 3) + MODES.index(mode),
         seed, scenario, mode)
+
+
+def verify_trace_order(entry):
+    lines = (ROOT / entry["path"]).read_text(encoding="ascii").splitlines()
+    require(int(lines[0]) == entry["flow_count"] == len(lines) - 1,
+            entry["path"] + " flow count")
+    rows = [line.split() for line in lines[1:]]
+    require(all(len(row) == 6 for row in rows), entry["path"] + " six columns")
+    starts = [Decimal(row[4]) for row in rows]
+    require(starts == sorted(starts) and len(set(starts)) == len(starts),
+            entry["path"] + " arrival ordering")
+    expected = {(str(flow["source"]), str(flow["destination"]), str(flow["pg"]),
+                 str(flow["bytes"]),
+                 str((Decimal(2) + (Decimal(6_000_000 + flow["arrival_offset_ns"]) /
+                                    Decimal(1_000_000_000))).quantize(Decimal("0.000000001"))),
+                 str(flow["tag"]))
+                for flow in entry["flows"]}
+    actual = {tuple(row) for row in rows}
+    require(actual == expected, entry["path"] + " manifest/trace mismatch")
 
 
 def parse_counter(log, name):
@@ -35,8 +57,8 @@ def parse_counter(log, name):
     return {k: int(v) for k, v in re.findall(r"([a-z_]+)=(\d+)", matches[0])}
 
 
-def inspect(entry, mode, source_sha, experiment_override=None, diagnostic=0):
-    exp = experiment_override or experiment_id(entry["seed"], entry["scenario"], mode)
+def inspect(entry, mode, source_sha, experiment_override=None, diagnostic=0, revision=1):
+    exp = experiment_override or experiment_id(entry["seed"], entry["scenario"], mode, revision)
     folder = ROOT / "results" / exp
     meta = json.loads((folder / "metadata.json").read_text(encoding="utf-8"))
     require(meta["experiment_id"] == exp and meta["status"] == "SUCCEEDED", exp + " identity/status")
@@ -110,6 +132,7 @@ def inspect(entry, mode, source_sha, experiment_override=None, diagnostic=0):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-sha", required=True)
+    parser.add_argument("--revision", type=int, choices=(1, 2), default=1)
     args = parser.parse_args()
     require(re.fullmatch(r"[0-9a-f]{40}", args.source_sha), "full source SHA required")
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
@@ -123,8 +146,10 @@ def main():
         for scenario in ("bg", "mix"):
             entry = entries[seed, scenario]
             require(digest(ROOT / entry["path"]) == entry["sha256"], "Git demand byte hash")
+            verify_trace_order(entry)
             for mode in MODES:
-                rows[seed, scenario, mode] = inspect(entry, mode, args.source_sha)
+                rows[seed, scenario, mode] = inspect(entry, mode, args.source_sha,
+                                                    revision=args.revision)
         require(len({rows[seed, "bg", mode]["fct_sha256"] for mode in MODES}) == 1,
                 "Background-only mode equivalence seed %d" % seed)
     outcomes = []
@@ -148,7 +173,8 @@ def main():
                          "class_mechanism_triggered": mechanism,
                          "background_better_than_both": background_better,
                          "contender_max_no_worse_than_both": contender_safe})
-    print(json.dumps({"source_sha": args.source_sha, "cells": len(rows),
+    print(json.dumps({"source_sha": args.source_sha, "matrix_revision": args.revision,
+                      "cells": len(rows),
                       "outcomes": outcomes,
                       "exploratory_positive": all(o["class_mechanism_triggered"] and
                                                   o["background_better_than_both"] and

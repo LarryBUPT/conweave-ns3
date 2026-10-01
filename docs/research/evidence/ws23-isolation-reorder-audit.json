@@ -1,0 +1,75 @@
+{
+  "original_git_commit": "b3d8d30826dd4550f5667d4cab2a3b4004c3cf22",
+  "original_manifest_sha256": "203bff877316dd568d1a1374cc5e75ebcb0e1c549adcd0193db8d3d6395e3368",
+  "revised_manifest_sha256": "5d7cb60ab271bc60c940c316b0323ab3d98a109dafb0ca9c239639cbe247a464",
+  "background_byte_identical": true,
+  "mixed_only_reordered": true,
+  "entries": [
+    {
+      "seed": 2301,
+      "scenario": "bg",
+      "path": "config/ws23_isolation_s2301_bg.txt",
+      "old_sha256": "c3ea8ff13033199209c99488773e1b77b5127d12bfd7578b9f0d59d72c618f19",
+      "new_sha256": "c3ea8ff13033199209c99488773e1b77b5127d12bfd7578b9f0d59d72c618f19",
+      "flow_count": 1,
+      "flow_multiset_equal": true,
+      "arrival_non_decreasing": true,
+      "arrival_values_unique": true
+    },
+    {
+      "seed": 2301,
+      "scenario": "mix",
+      "path": "config/ws23_isolation_s2301_mix.txt",
+      "old_sha256": "f0566d10d33ab63bf5ba8b123bc09136d86fb8bf2f3331104d03f1459575283d",
+      "new_sha256": "44c511ec97322bbb6ff0755ea20cc5782ce213f16f8e52099dff90852c23d7af",
+      "flow_count": 4,
+      "flow_multiset_equal": true,
+      "arrival_non_decreasing": true,
+      "arrival_values_unique": true
+    },
+    {
+      "seed": 2302,
+      "scenario": "bg",
+      "path": "config/ws23_isolation_s2302_bg.txt",
+      "old_sha256": "9fff3997a56953ada287ee5ff43504e1d5a14f50e65e7c5abee914657dc5fe0b",
+      "new_sha256": "9fff3997a56953ada287ee5ff43504e1d5a14f50e65e7c5abee914657dc5fe0b",
+      "flow_count": 1,
+      "flow_multiset_equal": true,
+      "arrival_non_decreasing": true,
+      "arrival_values_unique": true
+    },
+    {
+      "seed": 2302,
+      "scenario": "mix",
+      "path": "config/ws23_isolation_s2302_mix.txt",
+      "old_sha256": "c7e21c5043922b2a513b3d9392b40d9c20385974888eedb19b8f3961c31de6f7",
+      "new_sha256": "3940065ae39880cf418b46de8b3155d7329a3b7d52d85eeca88a007d0bf29fbd",
+      "flow_count": 4,
+      "flow_multiset_equal": true,
+      "arrival_non_decreasing": true,
+      "arrival_values_unique": true
+    },
+    {
+      "seed": 2303,
+      "scenario": "bg",
+      "path": "config/ws23_isolation_s2303_bg.txt",
+      "old_sha256": "0f88e1e66edc8e34c2c11e8b796f012da827e28cd6f2e8607908fc46b45231fe",
+      "new_sha256": "0f88e1e66edc8e34c2c11e8b796f012da827e28cd6f2e8607908fc46b45231fe",
+      "flow_count": 1,
+      "flow_multiset_equal": true,
+      "arrival_non_decreasing": true,
+      "arrival_values_unique": true
+    },
+    {
+      "seed": 2303,
+      "scenario": "mix",
+      "path": "config/ws23_isolation_s2303_mix.txt",
+      "old_sha256": "a4e7a887929610ed26edc891eecd778056668a5555ed34c157f51401485b0c02",
+      "new_sha256": "123dadf0a18165cf0e023c4095b8bedee55ebb9e76ac8bb5615e3c9baa080750",
+      "flow_count": 4,
+      "flow_multiset_equal": true,
+      "arrival_non_decreasing": true,
+      "arrival_values_unique": true
+    }
+  ]
+}

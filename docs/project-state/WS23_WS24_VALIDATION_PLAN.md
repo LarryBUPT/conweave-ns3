@@ -15,7 +15,9 @@
 - [x] 原拥塞隔离目标的因果前置：固定背景与新增竞争流的 PFC=0 同输入四格已实测共同可改道出口、等待、物理出口占用与背景完成影响；诊断开/关两组 FCT 字节一致。固定源码 `154f537ec345df75fbb404a1674436535f92735b`，四格 `20261001-091000-ws23-bg-off`、`20261001-091100-ws23-bg-on`、`20261001-091200-ws23-mix-off`、`20261001-091300-ws23-mix-on` 均通过总验收，见[机器结果](../research/evidence/ws23-crossclass-20261001.json)。该结论仅适用于本次合成输入。
 - [x] 四格 raw 已在本轮独立复核：直接读取四个 ID 的原始快照、FCT、出口和资源样本，复算背景 FCT `708.695→1650.085 µs`、ToR 32 出口 5 活动区间重叠、等待和 MMU 占用；与原机器验收一致。见[独立复核](../research/ws23-crossclass-sol-raw-review.md)及[收据](../research/evidence/ws23-crossclass-sol-raw-audit-20261001.json)。
 - [x] 隔离候选与同输入 ECMP/shortq2 的双侧探索协议、三组事前合成需求、输入哈希和停止条件已写定，见[协议及 v2/v3 执行修订](../research/ws23-isolation-paired-pilot-prereg-v1.md)与[需求清单](../research/evidence/ws23-isolation-demand-manifest.json)。v1 源码 `e263579…` 的四格已运行并保留 raw：ECMP pair 通过，`shortq2` 开诊断格缺跨类观测，六格门槛失败，后两格与 18 格均未启动。修复源码 `eff40ea…` 的 v2 ECMP 两格有效；v2 `shortq2` 两格因漏传冻结的 factorial 诊断参数而缺完成数元数据，保留为失败并停止扩格。revision 3 将以新固定提交和六个新 ID 使用正确参数重新运行完整预飞行；`guardhash` v2 两格未启动。修复观测覆盖的 C++ 源码已远端构建并通过首格单测，后续预飞行仍待验收，见[Handoff 58](../handoffs/2026-10-01-58-ws23-isolation-diagnostic-coverage.md)及本次后续交接。
-- [ ] 按协议完成隔离候选与同输入 ECMP/shortq2 的双侧验证。对比须回答隔离效果是否降低背景影响、竞争流自身代价如何；所有预设需求都要报告。四格不代表隔离候选效果，也不代表真实业务 SLO。
+- [x] revision 3 六格预飞行在 `b3d8d30826dd4550f5667d4cab2a3b4004c3cf22` 下通过：六格各 4/4，诊断配对 FCT 相同且资源收据有效。原 18 格矩阵前三个 seed 2301 背景格 1/1；第四个混合 ECMP 格因输入时间倒序报 `FLOW_INPUT_ERROR line 3`，立即停止。失败 ID/raw 和已构建未运行 ID 保留，旧背景格不并入新 SHA。详见[矩阵第二版修订](../research/ws23-isolation-paired-pilot-prereg-v1.md#矩阵第二版修正输入行序并重新冻结完整-18-格)。
+- [x] 修复生成器输出顺序并逐条核对：三份背景输入字节不变，三份混合输入只改变行序，流身份、tag、字节和到达时间完全相同；新输入单调、无重复。旧/新哈希及可重算证据见[排序审计](../research/evidence/ws23-isolation-reorder-audit.json)。新矩阵全部 18 格使用新固定 SHA 和全新 ID，旧验收编号保留。
+- [ ] 在新固定 SHA 上通过混合 ECMP 解析预飞行，然后按协议完成完整 18 格隔离候选与同输入 ECMP/shortq2 双侧验证。对比须回答隔离效果是否降低背景影响、竞争流自身代价如何；所有预设需求都要报告。旧四格和旧 SHA 背景三格不代表隔离候选效果，也不代表真实业务 SLO。
 - [ ] 按原隔离目标验证独立需求与实际适用范围；结果为负或前提不满足时保留 raw 并定位，不从结果后改门槛。未完成候选双侧及对应验证前，WS-23 保持 ACTIVE。
 - [ ] 全部预设项完成后再核对最终源码、实验、结果报告与自然语言结论逐项一致；原始目标若需变更，先取得用户明确决定。阶段 Handoff 和上述两格通过不构成 WS-23 闭环。
 

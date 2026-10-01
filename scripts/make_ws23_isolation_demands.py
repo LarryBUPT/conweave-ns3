@@ -19,7 +19,10 @@ def sha(data):
 
 def render(rows):
     lines = [str(len(rows))]
-    for src, dst, size, offset, tag in rows:
+    # ReadFlowInput requires nondecreasing start times. Keep ``rows`` in
+    # background-first semantic order for the manifest, but serialize the
+    # trace in arrival order.
+    for src, dst, size, offset, tag in sorted(rows, key=lambda row: row[3]):
         seconds = 2 + (6_000_000 + offset) / 1_000_000_000
         lines.append("%d %d 3 %d %.9f %d" % (src, dst, size, seconds, tag))
     return ("\n".join(lines) + "\n").encode("ascii")
