@@ -44,4 +44,12 @@
 | `shortq2` | `20261001-151502-ws23-pilot2-shortq2-off` | `20261001-151503-ws23-pilot2-shortq2-on` |
 | `guardhash` | `20261001-151504-ws23-pilot2-guardhash-off` | `20261001-151505-ws23-pilot2-guardhash-on` |
 
-六格仍使用同一旧混合输入 `config/ws23_crossclass_bg_plus_3x4MiB.txt`，Git 字节 SHA-256 `379e0c87cb0c26690d438287468dbc9159054f82445e6be46d0324165d639863`；拓扑 `config/fat_k4_100G_OS2.txt` 的 SHA-256 为 `dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad`。ns-3 seed=1，其余配置、逐格验收、配对哈希、路由与队列守恒、资源停止线和六格通过后才开放 18 格的规则，均沿用上文。v2 六个 ID 在本地与远端结果/运行目录的初次检查中未占用；执行前还要现场复查。新源码尚未远端构建、单测或运行，不能据此声称修复已通过或候选有收益。
+六格仍使用同一旧混合输入 `config/ws23_crossclass_bg_plus_3x4MiB.txt`，Git 字节 SHA-256 `379e0c87cb0c26690d438287468dbc9159054f82445e6be46d0324165d639863`；拓扑 `config/fat_k4_100G_OS2.txt` 的 SHA-256 为 `dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad`。ns-3 seed=1，其余配置、逐格验收、配对哈希、路由与队列守恒、资源停止线和六格通过后才开放 18 格的规则，均沿用上文。v2 六个 ID 在本地与远端结果/运行目录的初次检查中未占用；执行前还要现场复查。仿真源码的远程优化构建、单测和预飞行仍以实际收据为准。
+
+## v3 执行修订：纠正预飞行启动参数并重新冻结编号
+
+2026-10-01，v2 已运行并回传 ECMP 两格及 `shortq2` 两格。ECMP 两格启用了 `--factorial-pilot --factorial-drop-diag`，验收元数据记录 4/4；`shortq2` 两格启动时漏传这两个冻结参数，虽然仿真状态均为 `SUCCEEDED` 且 FCT 输出非空，但没有 `input_flows/completed_flows/unfinished_flows` 元数据，不能满足预飞行验收。`shortq2` 两格及 raw 保留并按失败编号处理；`guardhash` 两格未启动。revision 2 验收在 `shortq2` 检查处因完成数证据缺失而失败。未改变 C++ 选路、输入、拓扑或通过判据。
+
+为遵守失败 ID 不复用与固定 SHA 规则，执行入口加入 revision 3，新固定提交包含验收编号映射与本次流程记录，不修改仿真行为或既有验收条件。revision 3 使用六个全新编号：`20261001-190100-ws23-pilot3-fecmp-off`、`190101-...-fecmp-on`、`190102/190103-...-shortq2-off/on`、`190104/190105-...-guardhash-off/on`。运行前须再次确认本地、远端 `results/` 与 `runs/` 均无这些编号。
+
+revision 3 六格继续使用 v2 所列同一输入、拓扑、seed、源码树（C++ 行为未变）和全部验收判据。每一格必须显式带 `--factorial-pilot --factorial-drop-diag`；仅 `--ws13-diag` 随配对为 0/1，模式按冻结表映射。全部六格均以各自独立源码目录 `optimized -j2` 构建，启动前资源观察器须 `READY`。验证命令为 `python scripts/verify_ws23_isolation_preflight.py --revision 3 --source-sha <revision-3 完整 SHA>`。任一格失败仍停止扩展；六格全部通过后才开放原预注册的 18 格。

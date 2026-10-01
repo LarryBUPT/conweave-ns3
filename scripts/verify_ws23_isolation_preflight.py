@@ -23,6 +23,8 @@ def pilot_id(mode, diagnostic, revision=1):
         stamp, label = "20261001-1740%02d", "ws23-pilot"
     elif revision == 2:
         stamp, label = "20261001-1515%02d", "ws23-pilot2"
+    elif revision == 3:
+        stamp, label = "20261001-1901%02d", "ws23-pilot3"
     else:
         raise ValueError("unknown preflight revision")
     return (stamp + "-%s-%s-%s") % (
@@ -33,7 +35,7 @@ def pilot_id(mode, diagnostic, revision=1):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-sha", required=True)
-    parser.add_argument("--revision", type=int, choices=(1, 2), default=1)
+    parser.add_argument("--revision", type=int, choices=(1, 2, 3), default=1)
     args = parser.parse_args()
     results = {}
     for mode in MODES:
