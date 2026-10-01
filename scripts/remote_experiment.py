@@ -116,7 +116,7 @@ def protect_fork(repo):
 def deploy(cfg):
     payloads = [(REMOTE_WORKER_NAME, WORKER)]
     if REMOTE_WORKER_NAME == 'ws24_worker.py':
-        payloads.append(('ws24_resource_watch.py', WS24_RESOURCE_WATCHER))
+        payloads.append(('ws24_independent_resource_watch.py', WS24_RESOURCE_WATCHER))
     for remote_name, local_path in payloads:
         # stdin contains repository code only, never credentials.
         bootstrap = (
@@ -147,7 +147,7 @@ def start_ws24_resource_watch(cfg, experiment_id):
     base = '/home/fnl/lzy/results/' + experiment_id
     logs = base + '/logs'
     samples = logs + '/resource-samples.jsonl'
-    watcher = '/home/fnl/lzy/.research-workflow/ws24_resource_watch.py'
+    watcher = '/home/fnl/lzy/.research-workflow/ws24_independent_resource_watch.py'
     command = ('test -d ' + shlex.quote(logs) +
                ' && test ! -e ' + shlex.quote(samples) +
                ' && (nohup python3 ' + shlex.quote(watcher) + ' ' +
