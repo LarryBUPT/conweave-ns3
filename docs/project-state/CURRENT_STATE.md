@@ -1,5 +1,7 @@
 # ConWeave 毕业论文项目状态
 
+2026-10-01 WS-23 延期 v2 双格机器验收通过：固定源码 `94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1` 的 control `20261001-151000-ws23-rto-v2-control-r2` 与探针 `20261001-151100-ws23-rto-v2-probe-r2` 均 16/16 完成；对照复现 161 次准入丢包、源 14 的 36 次丢包和固定 FCT SHA，探针确认 1599 次刷新、4 次暂停期延期、1 次恢复宽限延期、完整 320 µs RTO 后恢复以及 16 QP 守恒。raw、资源和验收数据见[结果报告](../research/ws23-deferral-v2-correctness-report.md)、[机器证据](../research/evidence/ws23-deferral-v2-20261001.json)及[Handoff 54](../handoffs/2026-10-01-54-ws23-rto-v2-correctness-results.md)。当前任务没有实际切换 Sol High 的接口，故独立原始数据复核待具备切换能力的任务完成；WS-23 仍 ACTIVE，跨类四格及隔离候选双侧验证未完成。
+
 2026-10-01 WS-23 v2 首次 control 失败，原因是单测准备污染了该 ID 的默认 Waf 测试配置；固定源码 optimized build 本身成功，随后仿真在开始前因已知的测试 helper const 缺陷退出。失败 ID `20261001-150000-ws23-rto-v2-control` 的日志/raw/正 RSS 收据已回传并保留，control 与 probe 均不复用。相同固定源码 SHA `94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1` 下 point-to-point 单测 1/1 通过，源码与默认配置哈希已恢复。新 ID 改为 `20261001-151000-ws23-rto-v2-control-r2`、`20261001-151100-ws23-rto-v2-probe-r2`，重新从干净 SHA 构建，单测证据沿用，不再改 simulation build 配置；详见[预飞行](../research/ws23-deferral-v2-preflight.md)及[Handoff 53](../handoffs/2026-10-01-53-ws23-rto-v2-control-build-failure.md)。WS-23 ACTIVE，未得到对照压力结果，probe 不得先运行。
 
 2026-10-01 WS-23 v2 远端只读预检：服务器负载 0.0、可用内存 122.99 GiB、工作区可用磁盘 5659.3 GiB；未发现仿真/构建进程，两个合规新 ID 当前远端空闲。已部署 worker SHA `b2454dda…` 缺少 v2 的两个 probe 参数，须协调后更新。完整进程列表另有长期 `hg outgoing -q` PID `377959`，工作目录已删除、CPU 为 0、归属未知；已请用户确认。当前工具没有本任务模型切换接口，Luna High 需在 Codex 中实际切换后再进入构建。未部署、未构建、未运行；详见[远端预检 Handoff 52](../handoffs/2026-10-01-52-ws23-rto-v2-remote-preflight.md)。

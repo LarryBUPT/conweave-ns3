@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-01 WS-23 延期 v2 control/probe 已按固定 SHA 通过端到端机器验收：[结果报告](../research/ws23-deferral-v2-correctness-report.md)、[机器证据](../research/evidence/ws23-deferral-v2-20261001.json)、[Handoff 54](../handoffs/2026-10-01-54-ws23-rto-v2-correctness-results.md)。数据只支持该合成压力输入上的暂停延期与恢复契约，不支持性能收益或通用无损主张。按远程工作流，终态需在 GPT-6 Sol High 实际复核；当前执行工具无法切换，故该项仍待处理。随后继续独立 PFC=0 跨类因果四格和隔离候选双侧验证；WS-23 保持 ACTIVE。
+
 2026-10-01 WS-23 延期 v2 control 首次启动失败并已保留：源码 optimized 构建完成，但单测过程中更改了 Waf 测试配置；复原 lock 后仿真触发对已知 const 缺陷测试 helper 的编译并在仿真前退出。失败 raw 和资源收据已回传。单测 `devices-point-to-point` 在隔离测试 runner 中通过，helper SHA 恢复为固定值。新一组 ID `20261001-151000-ws23-rto-v2-control-r2` / `20261001-151100-ws23-rto-v2-probe-r2` 从干净固定 SHA 重建，沿用已有单测收据；后续不得在 simulation 的默认 Waf 输出目录开测试。control 通过压力门槛才启动 probe。细节见[预飞行](../research/ws23-deferral-v2-preflight.md)和[Handoff 53](../handoffs/2026-10-01-53-ws23-rto-v2-control-build-failure.md)。
 
 2026-10-01 WS-23 v2 启动前只读核验：主机资源空闲、没有仿真/构建或交互登录、两个实验 ID 远端空闲；共享 worker `b2454dda…` 尚不支持探针新参数。还发现一个在已删除目录中运行的孤立 `hg outgoing -q`（PID 377959，0 CPU，任务归属待确认），未终止。监督模型尚未实际切换到 Luna High，因此本轮没有部署 worker 或启动构建。确认孤立进程可保留且切换模型后，按[双格预飞行](../research/ws23-deferral-v2-preflight.md)先跑对照；详见[Handoff 52](../handoffs/2026-10-01-52-ws23-rto-v2-remote-preflight.md)。

@@ -1,0 +1,110 @@
+{
+  "evidence_class": "fixed-input end-to-end correctness verification",
+  "result_date": "2026-10-01",
+  "source": {
+    "repository": "https://github.com/LarryBUPT/conweave-ns3.git",
+    "branch": "feature/ws23-validation-execution",
+    "commit": "94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1"
+  },
+  "input": {
+    "trace": "config/ws09_drop_probe_16x1MiB.txt",
+    "trace_sha256": "bc2db1513cbde20f12eea6efa4e2265cf74954be4fa45f2a147ff0ce84b33985",
+    "topology": "config/fat_k4_100G_OS2.txt",
+    "topology_sha256": "dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad",
+    "seed": 1,
+    "common_parameters": {
+      "lb": "fecmp",
+      "pfc": 1,
+      "irn": 1,
+      "bw_gbps": 100,
+      "buffer_mib": 1,
+      "simul_time": 0.01,
+      "netload": 10,
+      "factorial_pilot": true,
+      "factorial_drop_diag": true,
+      "global_pause_time_us": 5,
+      "concurrency_cap": 1
+    }
+  },
+  "control": {
+    "experiment_id": "20261001-151000-ws23-rto-v2-control-r2",
+    "status": "SUCCEEDED",
+    "raw_directory": "310307742",
+    "completed_flows": 16,
+    "unfinished_flows": 0,
+    "admission_drops": 161,
+    "target_host_14_pre_probe_drops": 36,
+    "qp_byte_receipts": 16,
+    "total_tx_payload_bytes": 17648216,
+    "fct_sha256": "97feb0e118544f07e006da9e9bc2ead2566a10b91ad2201e0e83ced89279b18a",
+    "raw_fct_sha256": "97feb0e118544f07e006da9e9bc2ead2566a10b91ad2201e0e83ced89279b18a",
+    "raw_config_log_sha256": "6d07cfb970c62a1cf031bce67bd34d56bd43fa95a03ca689f53d63821c1349b0",
+    "pressure_validator": "PASS",
+    "resource_receipt": {
+      "samples": 10,
+      "peak_process_tree_rss_mib": 204.2578125,
+      "minimum_mem_available_gib": 122.82173538208008,
+      "minimum_free_gib": 5656.927947998047,
+      "maximum_sampled_load_1m": 1.44
+    }
+  },
+  "probe": {
+    "experiment_id": "20261001-151100-ws23-rto-v2-probe-r2",
+    "status": "SUCCEEDED",
+    "raw_directory": "366014434",
+    "parameters": {
+      "host": 14,
+      "priority_group": 3,
+      "pause_start_ns": 7200000,
+      "explicit_resume_ns": 8800000,
+      "pause_time_us": 2500,
+      "drop_gated": true,
+      "refresh_interval_ns": 1000
+    },
+    "completed_flows": 16,
+    "unfinished_flows": 0,
+    "flows_per_tag": {
+      "1": 8,
+      "2": 8
+    },
+    "qp_sequence_and_byte_conservation": "PASS for all 16 QPs",
+    "unexpected_queue_link_or_other_drops": 0,
+    "control_admission_drops": 161,
+    "probe_pre_pause_drops_match_control_line_by_line": true,
+    "target_pre_pause_drops": 36,
+    "drop_gated_triggers": 1,
+    "trigger_had_outstanding_target_data": true,
+    "pause_and_resume_reached_source_host": true,
+    "refresh_count": 1599,
+    "paused_timeout_deferrals": 4,
+    "resume_grace_deferrals": 1,
+    "target_recovery_ns": 2009121003,
+    "full_rto_after_last_resume_ns": 320000,
+    "recovered_only_after_full_rto": true,
+    "simulator_stop_ns": 2017100000,
+    "fct_sha256": "86ea6fc3275f08169c6b539ae2c2a534d29bb95ed31866832c9eee5322550ef0",
+    "raw_fct_sha256": "86ea6fc3275f08169c6b539ae2c2a534d29bb95ed31866832c9eee5322550ef0",
+    "raw_config_log_sha256": "9f88ec5179db849fda11fcbd3e7c39b2550a1b86f7697a3fc5b95df3e450d6e",
+    "deferral_v2_validator": "PASS",
+    "resource_receipt": {
+      "samples": 11,
+      "peak_process_tree_rss_mib": 204.38671875,
+      "minimum_mem_available_gib": 122.82233428955078,
+      "minimum_free_gib": 5655.877578735352,
+      "maximum_sampled_load_1m": 1.6
+    }
+  },
+  "artifact_paths": {
+    "control_result_directory": "results/20261001-151000-ws23-rto-v2-control-r2/",
+    "probe_result_directory": "results/20261001-151100-ws23-rto-v2-probe-r2/",
+    "control_config_log": "results/20261001-151000-ws23-rto-v2-control-r2/raw/310307742/config.log",
+    "probe_config_log": "results/20261001-151100-ws23-rto-v2-probe-r2/raw/366014434/config.log",
+    "validator": "scripts/verify_ws23_recovery.py"
+  },
+  "conclusion": "The fixed synthetic pressure input verifies the v2 PFC/IRN timeout deferral and recovery contract. This evidence is not a performance comparison, proof of general losslessness, cross-class isolation, or real-deployment validation.",
+  "remaining": [
+    "Independent GPT-6 Sol High review of returned raw data is pending because this task has no actual model-switch tool.",
+    "The separate PFC=0 cross-class causal four-cell validation remains unbuilt and unrun.",
+    "The isolation candidate still requires its paired two-sided validation and end-to-end source/effect/conclusion closure."
+  ]
+}
