@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import ipaddress
 import json
+import re
 from collections import Counter
 from pathlib import Path
 
@@ -47,13 +48,19 @@ def verify(experiment_id, source_sha, profile='minimal', fixture=None):
     expected = {'minimal': (8, 8, 440, 22000),
                 'target': (1280, 408320, 600, 30000),
                 'cnp': (1280, 408320, 600, 30000),
-                'arm': (1280, 408320, 600, 30000)}[profile]
+                'arm': (1280, 408320, 600, 30000),
+                'independent': (1280, 408320, 600, 30000)}[profile]
     flow_name = {'minimal': 'ws24_synthetic_2host_4nic_flows.txt',
                  'target': 'ws24_synthetic_fixed_multi_flows.txt',
                  'cnp': 'ws24_synthetic_cnp_incast_flows.txt',
-                 'arm': 'ws24_synthetic_{}_flows.txt'.format(fixture)}[profile]
-    assert fixture in ('fixed_single', 'fixed_multi', 'variable_single',
-                       'variable_multi') if profile == 'arm' else fixture is None
+                 'arm': 'ws24_synthetic_{}_flows.txt'.format(fixture),
+                 'independent': 'ws24_synthetic_independent_{}_flows.txt'.format(fixture)}[profile]
+    if profile == 'arm':
+        assert fixture in ('fixed_single', 'fixed_multi', 'variable_single', 'variable_multi')
+    elif profile == 'independent':
+        assert fixture and re.match(r'^j(0[1-9]|1[0-2])_(fixed|variable)_(single|multi)$', fixture)
+    else:
+        assert fixture is None
     prefix = 'ws24_synthetic_2host_4nic_' if profile == 'minimal' else 'ws24_synthetic_320host_4nic_'
     assert digest(trace) == digest(ROOT / 'config' / flow_name)
     assert digest(topology) == digest(ROOT / 'config' / (prefix + 'topology.txt'))
@@ -234,10 +241,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('experiment_id')
     parser.add_argument('--source-sha', required=True)
-    parser.add_argument('--profile', choices=('minimal', 'target', 'cnp', 'arm'),
+    parser.add_argument('--profile', choices=('minimal', 'target', 'cnp', 'arm', 'independent'),
                         default='minimal')
-    parser.add_argument('--fixture', choices=('fixed_single', 'fixed_multi',
-                                              'variable_single', 'variable_multi'))
+    parser.add_argument('--fixture')
     args = parser.parse_args()
     result = verify(args.experiment_id, args.source_sha, args.profile, args.fixture)
     print(json.dumps(result, indent=2, sort_keys=True))

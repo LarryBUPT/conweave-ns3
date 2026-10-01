@@ -1,0 +1,385 @@
+{
+  "arms_per_job": [
+    "fixed_single",
+    "fixed_multi",
+    "variable_single",
+    "variable_multi"
+  ],
+  "experiment_ids": {
+    "j01_fixed_multi": "20261002-180000-ws24-ind-j01-fm",
+    "j01_fixed_single": "20261002-180000-ws24-ind-j01-fs",
+    "j01_variable_multi": "20261002-180000-ws24-ind-j01-vm",
+    "j01_variable_single": "20261002-180000-ws24-ind-j01-vs",
+    "j02_fixed_multi": "20261002-180000-ws24-ind-j02-fm",
+    "j02_fixed_single": "20261002-180000-ws24-ind-j02-fs",
+    "j02_variable_multi": "20261002-180000-ws24-ind-j02-vm",
+    "j02_variable_single": "20261002-180000-ws24-ind-j02-vs",
+    "j03_fixed_multi": "20261002-180000-ws24-ind-j03-fm",
+    "j03_fixed_single": "20261002-180000-ws24-ind-j03-fs",
+    "j03_variable_multi": "20261002-180000-ws24-ind-j03-vm",
+    "j03_variable_single": "20261002-180000-ws24-ind-j03-vs",
+    "j04_fixed_multi": "20261002-180000-ws24-ind-j04-fm",
+    "j04_fixed_single": "20261002-180000-ws24-ind-j04-fs",
+    "j04_variable_multi": "20261002-180000-ws24-ind-j04-vm",
+    "j04_variable_single": "20261002-180000-ws24-ind-j04-vs",
+    "j05_fixed_multi": "20261002-180000-ws24-ind-j05-fm",
+    "j05_fixed_single": "20261002-180000-ws24-ind-j05-fs",
+    "j05_variable_multi": "20261002-180000-ws24-ind-j05-vm",
+    "j05_variable_single": "20261002-180000-ws24-ind-j05-vs",
+    "j06_fixed_multi": "20261002-180000-ws24-ind-j06-fm",
+    "j06_fixed_single": "20261002-180000-ws24-ind-j06-fs",
+    "j06_variable_multi": "20261002-180000-ws24-ind-j06-vm",
+    "j06_variable_single": "20261002-180000-ws24-ind-j06-vs",
+    "j07_fixed_multi": "20261002-180000-ws24-ind-j07-fm",
+    "j07_fixed_single": "20261002-180000-ws24-ind-j07-fs",
+    "j07_variable_multi": "20261002-180000-ws24-ind-j07-vm",
+    "j07_variable_single": "20261002-180000-ws24-ind-j07-vs",
+    "j08_fixed_multi": "20261002-180000-ws24-ind-j08-fm",
+    "j08_fixed_single": "20261002-180000-ws24-ind-j08-fs",
+    "j08_variable_multi": "20261002-180000-ws24-ind-j08-vm",
+    "j08_variable_single": "20261002-180000-ws24-ind-j08-vs",
+    "j09_fixed_multi": "20261002-180000-ws24-ind-j09-fm",
+    "j09_fixed_single": "20261002-180000-ws24-ind-j09-fs",
+    "j09_variable_multi": "20261002-180000-ws24-ind-j09-vm",
+    "j09_variable_single": "20261002-180000-ws24-ind-j09-vs",
+    "j10_fixed_multi": "20261002-180000-ws24-ind-j10-fm",
+    "j10_fixed_single": "20261002-180000-ws24-ind-j10-fs",
+    "j10_variable_multi": "20261002-180000-ws24-ind-j10-vm",
+    "j10_variable_single": "20261002-180000-ws24-ind-j10-vs",
+    "j11_fixed_multi": "20261002-180000-ws24-ind-j11-fm",
+    "j11_fixed_single": "20261002-180000-ws24-ind-j11-fs",
+    "j11_variable_multi": "20261002-180000-ws24-ind-j11-vm",
+    "j11_variable_single": "20261002-180000-ws24-ind-j11-vs",
+    "j12_fixed_multi": "20261002-180000-ws24-ind-j12-fm",
+    "j12_fixed_single": "20261002-180000-ws24-ind-j12-fs",
+    "j12_variable_multi": "20261002-180000-ws24-ind-j12-vm",
+    "j12_variable_single": "20261002-180000-ws24-ind-j12-vs"
+  },
+  "flow_files_sha256": {
+    "ws24_synthetic_independent_j01_fixed_multi_flows.txt": "948f876b07692e8c5eb79976623580050b8e15e6ffeaaf6ef42b6da20099fd9c",
+    "ws24_synthetic_independent_j01_fixed_single_flows.txt": "afb4ae8ddb679305577ec40a91f988ec50bd2702fb42b1534a5806ad301b403b",
+    "ws24_synthetic_independent_j01_variable_multi_flows.txt": "23916deaacfc2de6a4c965f6d6eda2379efa1b65c5fe49911ff60299af80160a",
+    "ws24_synthetic_independent_j01_variable_single_flows.txt": "6c9da51bef97254286fa19ba9782b8ffc3226e98098bdba67057fcc0e9731be3",
+    "ws24_synthetic_independent_j02_fixed_multi_flows.txt": "b06ca7b5b0faa9770d9434ea17341579f14290ee270168d523143dbabadd4f15",
+    "ws24_synthetic_independent_j02_fixed_single_flows.txt": "168672800fbbdaec340e5c986b518b12ed2cd23df43353ad374bb20e2042d38f",
+    "ws24_synthetic_independent_j02_variable_multi_flows.txt": "ea5cc18ac1ccaaeb4dfb60c1f89568e4df510867126b966e990b736fbd6ba0d1",
+    "ws24_synthetic_independent_j02_variable_single_flows.txt": "652c2bc7cb456acc5b2b5e303931a02577a98c7e0d692fef543fe9e22e2569d6",
+    "ws24_synthetic_independent_j03_fixed_multi_flows.txt": "28239da14ef8ab16b74d2e0df0b1080c497ed2b54ac23ebd1c152496eaf03f63",
+    "ws24_synthetic_independent_j03_fixed_single_flows.txt": "50d1b5de56a8eef91ee08a7783bf962b76c8e7a6cb97b4c522a7e21170665424",
+    "ws24_synthetic_independent_j03_variable_multi_flows.txt": "b86be70f765384ae3ce2fd27d2aa2f4113fd00f2a3e63ff15af035ccba1400e6",
+    "ws24_synthetic_independent_j03_variable_single_flows.txt": "3352f7b0c86f40400115f332ccca22be9fd1f2c58000c565ad7ed9bec1e9ba22",
+    "ws24_synthetic_independent_j04_fixed_multi_flows.txt": "3f4c2f061ee75a389a3f6b81da9076cdf5514f7126a6b828094e8d8f4446ab2a",
+    "ws24_synthetic_independent_j04_fixed_single_flows.txt": "a5c5749f14f9841099393c315d02018409ab865e86ec986b9f8f382a89befce1",
+    "ws24_synthetic_independent_j04_variable_multi_flows.txt": "7226717012292c40c19f429c1fa723aeceb6b8e78c6f4c9a9c8d8097ce7da2a8",
+    "ws24_synthetic_independent_j04_variable_single_flows.txt": "88cb3a2592c534e67dc7aa456aff6e0dbe29147612b10a7940a55a689b995767",
+    "ws24_synthetic_independent_j05_fixed_multi_flows.txt": "291a84d1dd941794a0089cb1bbfd54e276042c80eb07dfc626baf7a2373f2f2e",
+    "ws24_synthetic_independent_j05_fixed_single_flows.txt": "c03d0373d4d40a4a84fb483a8e19f266ce395a4a19cf4f21c793101f4dcd7ff4",
+    "ws24_synthetic_independent_j05_variable_multi_flows.txt": "96d65a19fe4583990fc5663be65cde7b360bfc6c79d4e93024bc6c2ff8ecabd9",
+    "ws24_synthetic_independent_j05_variable_single_flows.txt": "b28ab02e85e4e521a07015a6458c8c63954544d3a7c81d15dbbad3960c45af62",
+    "ws24_synthetic_independent_j06_fixed_multi_flows.txt": "2466b8bff2460aa93d9a87202216ca446f0b2627ea4b4456f5ec3230ce2647ce",
+    "ws24_synthetic_independent_j06_fixed_single_flows.txt": "6db05c6e939bb48eae310bab7e09fd0096d39ce9fee79f764ea8888651d29b75",
+    "ws24_synthetic_independent_j06_variable_multi_flows.txt": "abc350403e715c0afcea3bc39fa9d0e1955f3006ae3a3f7051519870bd7388b1",
+    "ws24_synthetic_independent_j06_variable_single_flows.txt": "9af45c1ee010befa120ad75124f826f327c4ffbf46e7178615ba437460ae96fe",
+    "ws24_synthetic_independent_j07_fixed_multi_flows.txt": "9548e7f611c97665bb5f6b18db67190f4c0d71fb6fce08bedda47068ce620bf3",
+    "ws24_synthetic_independent_j07_fixed_single_flows.txt": "64a77539c0d7e892808326a0ad523ec6c52bf4ce25b160bfa36f764488c53384",
+    "ws24_synthetic_independent_j07_variable_multi_flows.txt": "7982e24217a5e504acb2a1581fad45144707749486c8c56a59e1eef635f4e8f2",
+    "ws24_synthetic_independent_j07_variable_single_flows.txt": "40657b6d9c116b6f5d35f446132f06be542dacdf96e6abae15390716dea26020",
+    "ws24_synthetic_independent_j08_fixed_multi_flows.txt": "284f89d0a761c7904b6ce2485eec357338980f50047d03774b6570c3515674bd",
+    "ws24_synthetic_independent_j08_fixed_single_flows.txt": "eafb4c656b637c94e500a05ca56558c348000bd32932062d098a00a31cbef63f",
+    "ws24_synthetic_independent_j08_variable_multi_flows.txt": "544b65ea9cc91957c974d757b63ee8762c71e25f21055a5f0b03f62b253d09e0",
+    "ws24_synthetic_independent_j08_variable_single_flows.txt": "224d0c6d58ac2ca2f55d42fa4af3ac6eb24f18f39a86a7082c1fec56ee4bffbc",
+    "ws24_synthetic_independent_j09_fixed_multi_flows.txt": "5ee910ae0f8b7d12b1f3fcbdb35bf26170ac7105443a1c387f430d7bd17dd878",
+    "ws24_synthetic_independent_j09_fixed_single_flows.txt": "f8fffd3db4ed26e6f146e843c9b02305c76d2d3c821638339bf885cf8ad6875b",
+    "ws24_synthetic_independent_j09_variable_multi_flows.txt": "268b43dc68cc1330b92dd4a155c39b8974c6cd8d06258ae5f258aafbd240ca7d",
+    "ws24_synthetic_independent_j09_variable_single_flows.txt": "7111b8d6718f711a76515f15164f8adee683e169ef6a47d0bfd9ce2a8a63999a",
+    "ws24_synthetic_independent_j10_fixed_multi_flows.txt": "f9d159e958ee7e6f859bee68ebea62d832e1f622c6c371e37962cc55077d78af",
+    "ws24_synthetic_independent_j10_fixed_single_flows.txt": "6a933a9e6148bcb6d41c8d7bd5222f64832a94c82d276aecc59b0f51066f7b66",
+    "ws24_synthetic_independent_j10_variable_multi_flows.txt": "500faf02d47e3703ddfabe83f92f3d90d7496e92b4ecec2aafe153b63b331773",
+    "ws24_synthetic_independent_j10_variable_single_flows.txt": "052513af30c56704938b1e6df7f2a7daf58909aae5d17020c870994fb586fe03",
+    "ws24_synthetic_independent_j11_fixed_multi_flows.txt": "ad55e88d316e0731171c8f811785da192ce06f4b3697a51ac6344fbebaf4ee57",
+    "ws24_synthetic_independent_j11_fixed_single_flows.txt": "db4d85a33acebd40be5d107d86f4dcb5bc4e1ded8042d47024f6ff9d7a0d66fa",
+    "ws24_synthetic_independent_j11_variable_multi_flows.txt": "22cba8fdb574618932bda99a6698119cf0801ee4a475b73e35f158507cec6ebf",
+    "ws24_synthetic_independent_j11_variable_single_flows.txt": "d56cb7a849309e75e09c748f0f5bdad51224229c2af661e18c8622c9a00db761",
+    "ws24_synthetic_independent_j12_fixed_multi_flows.txt": "0244d6e5ab2552ac750d888c55e34a160f1fe707df29a150f9a1f7cfc5ac0bc7",
+    "ws24_synthetic_independent_j12_fixed_single_flows.txt": "2f4669dded8b6d3b235162617db571e482e7c1f734b18f7046c3ea9b0270ade1",
+    "ws24_synthetic_independent_j12_variable_multi_flows.txt": "ba3d70c597edeaef2a69688a0b5a7ef565c0c64646d14452ee76d9cfa96d517a",
+    "ws24_synthetic_independent_j12_variable_single_flows.txt": "e51752de725a7d20dbbd519ca66f7f6d23e9db84c4ad9c390efbfc0b39e5f311"
+  },
+  "job_count": 12,
+  "jobs": {
+    "j01": {
+      "bytes": 3981312,
+      "fixed_hosts_by_rank": [
+        144,
+        152,
+        8,
+        192
+      ],
+      "flows": 30,
+      "generation_seed": 20261003,
+      "logical_sha256": "5644065fa1dba248a8a3b0e4528979b24bc378642735a18ae2614e6f1058426e",
+      "variable_hosts_by_rank": [
+        144,
+        8,
+        152,
+        192
+      ]
+    },
+    "j02": {
+      "bytes": 8142848,
+      "fixed_hosts_by_rank": [
+        216,
+        24,
+        8,
+        88
+      ],
+      "flows": 30,
+      "generation_seed": 20261004,
+      "logical_sha256": "c56c6563df37b3956185e78c2e69b2494866bff9365aa2d1c57f79dd9ffb6551",
+      "variable_hosts_by_rank": [
+        216,
+        8,
+        24,
+        88
+      ]
+    },
+    "j03": {
+      "bytes": 7913472,
+      "fixed_hosts_by_rank": [
+        16,
+        80,
+        64,
+        8
+      ],
+      "flows": 30,
+      "generation_seed": 20261005,
+      "logical_sha256": "851bc32c80ce0ec2bd9144b143e3df77780272285c62ef247ca70385149725f9",
+      "variable_hosts_by_rank": [
+        16,
+        64,
+        80,
+        8
+      ]
+    },
+    "j04": {
+      "bytes": 4595712,
+      "fixed_hosts_by_rank": [
+        16,
+        208,
+        88,
+        8
+      ],
+      "flows": 30,
+      "generation_seed": 20261006,
+      "logical_sha256": "3b6306bba2fd615f2d7879c03d0352e86ee7092109da1def8b89e9657946973b",
+      "variable_hosts_by_rank": [
+        16,
+        88,
+        208,
+        8
+      ]
+    },
+    "j05": {
+      "bytes": 10567680,
+      "fixed_hosts_by_rank": [
+        88,
+        24,
+        0,
+        144
+      ],
+      "flows": 30,
+      "generation_seed": 20261007,
+      "logical_sha256": "ea078507eb17306688316662a69b28b7922fba4ebd11db3b7a54e1a2b5eb42e8",
+      "variable_hosts_by_rank": [
+        88,
+        0,
+        24,
+        144
+      ]
+    },
+    "j06": {
+      "bytes": 10928128,
+      "fixed_hosts_by_rank": [
+        136,
+        64,
+        8,
+        208
+      ],
+      "flows": 30,
+      "generation_seed": 20261008,
+      "logical_sha256": "c03544656d24d1645da27d8524b1fbb0c46d2ea63cddb9983787f70ccdf2f8e4",
+      "variable_hosts_by_rank": [
+        136,
+        8,
+        64,
+        208
+      ]
+    },
+    "j07": {
+      "bytes": 6725632,
+      "fixed_hosts_by_rank": [
+        16,
+        0,
+        8,
+        64
+      ],
+      "flows": 30,
+      "generation_seed": 20261009,
+      "logical_sha256": "ad51c18202fd117f0bcd40daa14f9b8b52c4494091291df327dba1e812952535",
+      "variable_hosts_by_rank": [
+        16,
+        8,
+        0,
+        64
+      ]
+    },
+    "j08": {
+      "bytes": 7053312,
+      "fixed_hosts_by_rank": [
+        136,
+        192,
+        144,
+        72
+      ],
+      "flows": 30,
+      "generation_seed": 20261010,
+      "logical_sha256": "671170d1d26a2f68871649346083c69e85d93ce2e3fe85031ffd13b0f226b9d7",
+      "variable_hosts_by_rank": [
+        136,
+        144,
+        192,
+        72
+      ]
+    },
+    "j09": {
+      "bytes": 8200192,
+      "fixed_hosts_by_rank": [
+        128,
+        216,
+        80,
+        8
+      ],
+      "flows": 30,
+      "generation_seed": 20261011,
+      "logical_sha256": "4a69686781dce8a984bf886ccabdaa05b1d41c752d4e2f1ba92d70265196e8d8",
+      "variable_hosts_by_rank": [
+        128,
+        80,
+        216,
+        8
+      ]
+    },
+    "j10": {
+      "bytes": 6594560,
+      "fixed_hosts_by_rank": [
+        64,
+        24,
+        16,
+        128
+      ],
+      "flows": 30,
+      "generation_seed": 20261012,
+      "logical_sha256": "d080279c63f95909789c270f9774d03e43093ac002a25181a11e6a16a19d35ec",
+      "variable_hosts_by_rank": [
+        64,
+        16,
+        24,
+        128
+      ]
+    },
+    "j11": {
+      "bytes": 2695168,
+      "fixed_hosts_by_rank": [
+        208,
+        128,
+        24,
+        88
+      ],
+      "flows": 30,
+      "generation_seed": 20261013,
+      "logical_sha256": "65e742152e9639bc01276c57abacd12a18a132b41050df3ab72c3d9c66b1d06d",
+      "variable_hosts_by_rank": [
+        208,
+        24,
+        128,
+        88
+      ]
+    },
+    "j12": {
+      "bytes": 7430144,
+      "fixed_hosts_by_rank": [
+        64,
+        208,
+        16,
+        24
+      ],
+      "flows": 30,
+      "generation_seed": 20261014,
+      "logical_sha256": "416fe7cbe97c3700a60845b63d9714d989d7ec19d8c05d031b8041998ef6a2d5",
+      "variable_hosts_by_rank": [
+        64,
+        16,
+        208,
+        24
+      ]
+    }
+  },
+  "master_seed": 20261002,
+  "nic_file": "ws24_synthetic_320host_4nic_nics.txt",
+  "nic_sha256": "4a4bc61466efd15983bf6a6e7a3e69e153cb00760f909a98311d1f9c17481202",
+  "ns3_seed": 1,
+  "provenance": "independent seeded ns-3 synthetic job demands; no deployment observations",
+  "run_order": [
+    "j02_fixed_single",
+    "j12_variable_single",
+    "j12_fixed_multi",
+    "j06_fixed_multi",
+    "j12_fixed_single",
+    "j04_variable_multi",
+    "j01_variable_single",
+    "j11_fixed_multi",
+    "j09_variable_multi",
+    "j06_fixed_single",
+    "j10_variable_single",
+    "j04_variable_single",
+    "j02_variable_single",
+    "j10_fixed_multi",
+    "j05_fixed_single",
+    "j02_fixed_multi",
+    "j05_fixed_multi",
+    "j07_variable_single",
+    "j04_fixed_single",
+    "j03_variable_single",
+    "j08_fixed_single",
+    "j07_fixed_multi",
+    "j09_fixed_single",
+    "j12_variable_multi",
+    "j10_fixed_single",
+    "j02_variable_multi",
+    "j09_fixed_multi",
+    "j01_fixed_multi",
+    "j06_variable_single",
+    "j05_variable_multi",
+    "j01_variable_multi",
+    "j11_variable_multi",
+    "j07_fixed_single",
+    "j05_variable_single",
+    "j01_fixed_single",
+    "j08_variable_multi",
+    "j07_variable_multi",
+    "j03_variable_multi",
+    "j08_variable_single",
+    "j09_variable_single",
+    "j11_variable_single",
+    "j03_fixed_multi",
+    "j10_variable_multi",
+    "j04_fixed_multi",
+    "j06_variable_multi",
+    "j11_fixed_single",
+    "j03_fixed_single",
+    "j08_fixed_multi"
+  ],
+  "schema_version": 1,
+  "topology_file": "ws24_synthetic_320host_4nic_topology.txt",
+  "topology_sha256": "e82f742a1f07749de63706c94c29b3275ec908c61a967f6336988526213bf6fa"
+}
