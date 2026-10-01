@@ -1,5 +1,7 @@
 # WS-24 后续本地冻结协议
 
+**2026-10-02 当前范围更新：**用户决定“不要真实主机数据，仅NS3模拟”，见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)。本文记录此前 14 格冻结与执行过程；其中真实映射待补及“尚未运行”的语句均为当时状态。旧四臂仅一组合成需求；独立合成 job 的 48 格效果验收另按[新协议](ws24-independent-synthetic-effects-protocol.md)执行，尚未启动。不得把旧 pilot 解释为独立需求效果。
+
 日期：2026-10-01；本地冻结一致性复核：2026-10-01。范围：旧输入四 baseline 回归、320-host 目标拓扑正确性、动态 CNP 正确性、固定逻辑需求的 rail × placement 四臂验证。以下“尚未构建/运行”均指当时的冻结状态。**2026-10-02 更新：共同 SHA 的 14 格已完成并从 raw 复核，详见 [Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)与 [Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)；WS-24 仍 ACTIVE，原目标的真实映射与独立需求证据待补。**
 
 ## 公共边界与证据等级

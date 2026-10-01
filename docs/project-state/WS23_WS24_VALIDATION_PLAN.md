@@ -15,6 +15,8 @@
 
 ## WS-24：补齐模型、输入与多网卡验证
 
+**2026-10-02 范围决定：**用户明确决定“不要真实主机数据，仅NS3模拟”，见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)。真实 physical-host/NIC/job/rank 数据不再是 WS-24 验收条件；所有新旧 WS-24 输入与结果只作为 ns-3 合成模拟解释。独立 job 需求下的多 rail × placement 效果验收仍为必做，按[冻结协议](../research/ws24-independent-synthetic-effects-protocol.md)执行，未完成前状态保持 ACTIVE。
+
 **2026-10-02 Sol High 复核：WS-24 仍 ACTIVE。**结果 ID `20261002-142000-ws24-point-to-point-unit-r2` 的隔离源码与 metadata 均为固定实验 SHA `b1184d6a7bd38577b235b7f119f920973308774f`；个人 origin 同名分支当时 HEAD 为文档提交 `3f04f32…`，包含该实验提交。显式启用测试构建及 `devices-point-to-point` suite 均退出 0，5 条 PASS、0 条 FAIL。193 点资源收据未越界，临时 helper 已恢复并核对 blob/SHA-256；16 个远端/本地回传文件哈希相同。runner 列表退出码字段在 summary 中为 null；驱动在非零时会终止，suite 随后成功执行，故仅凭控制流确认列表步骤成功。14 格 raw 重算与机器摘要逐项相同。完整证据见[补验协议](../research/ws24-point-to-point-unit-protocol.md)和 [Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)。
 
 - [x] 在共同固定 SHA 的独立隔离副本显式启用测试、编译并运行 `devices-point-to-point`；回传 runner、资源和临时 helper 恢复收据，核对通过后关闭此单测项。2026-10-02 ID `20261002-142000-ws24-point-to-point-unit-r2`：构建/测试退出码 0，5 条 PASS、0 条 FAIL，固定 SHA `b1184d6…`，恢复哈希与资源收据通过。14 格 optimized build 不计单测。**仅完成本项；WS-24 其他合成验证范围与真实部署/确认性性能限制见下方，不据此归档整个 WS。**
@@ -37,10 +39,12 @@
 - [x] 先通过目标拓扑 correctness，再由 Integration 按共享入口实际空闲情况协调执行四臂 synthetic pilot。禁止以静态审计替代机制验证；任何范围缩减仍需用户明确决定。2026-10-01 四臂均 10/10、2,408,448 B、身份与逻辑需求配对通过；结果仅为单 seed 描述性 pilot。
 - [x] 14 格终态 raw、固定仿真源码及该批效果结论一致。2026-10-01 14/14 raw/resources fetched，`verify_ws24_matrix.py` 全矩阵通过；2026-10-02 Sol High 独立重算 JSON 与机器摘要逐项相同。Handoff 50 记录该批结论与证据边界。真实部署映射和确认性性能结论没有被宣称；同 SHA 单测补验见本节首项。
 
-- [ ] 原目标所需的可信真实 physical-host/NIC/job/rank 映射及独立 job 需求来源尚未取得；现有 OS1 图只可追至合成生成器，不能把节点邻接推断为物理共享。下一动作：从部署/作业数据所有方取得带字段定义、采集范围与版本哈希的映射及需求，核对四 rail 归属和 rank→host 唯一性，再冻结输入并复验多 NIC 正确性。来源及约束见[表示能力审计](../research/ws24-multirail-representability-audit.md)；若用户决定只保留合成范围，须明确变更原目标。
-- [ ] 基于独立 job 需求的双侧效果结论仍未验证。现有四臂每臂仅同一 seed 的合成 10 流、2,408,448 B，跨度差 −173/−164 ns 只能作描述。取得可核验需求后，预先冻结独立样本、输入哈希、强对照、双侧指标/限制和停止规则，再运行可恢复矩阵并从 raw 重算；未取得来源前不声称普遍收益。若原目标不再要求该结论，须由用户明确决定范围。
+- [x] 按用户明确决定将 WS-24 限定为 ns-3 合成模拟；真实映射来源不再是闭环条件。现有 OS1 图只能追至合成生成器，任何结果均不得推断真实物理共享或生产性能。见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)。
+- [x] 冻结 12 个独立生成 key 的合成 job 需求块、每块四臂共 48 个输入、共同源码 `166ca6709e2b6ea8b60978bf80778fee636937e5`、manifest/输入哈希、双侧指标和停止条件。本地逐字节再生成及静态验收通过；见[独立需求协议](../research/ws24-independent-synthetic-effects-protocol.md)。此项不代表新矩阵已运行。
+- [ ] `j01` 四臂动态正确性与资源 pilot：先实际切至 Luna High，重查远端无人/作业/资源/ID，部署隔离的 `ws24_worker.py`；四格独立 build/run/fetch/raw 验收，30/30、身份和字节守恒及运行时 RTT/BDP 均须通过。失败格保留原始数据并修复重验。
+- [ ] 完成其余 11 个独立合成 job 的 44 格四臂矩阵，保存每格固定 SHA、输入哈希、seed、metadata、raw 与资源收据；全部终态格从 raw 重算，按 job 为单位做事前双侧分析并记录反例。旧单 seed 四臂 pilot 的 −173/−164 ns 仅作描述，不并入 12 个重复。终态回传后实际切回 Sol High，核对代码、效果与结论，再决定 WS-24 是否闭环。
 
-14 格验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口要求四模式历史完整 FCT 哈希。2026-10-01 冻结批次 14/14 全部运行、raw/resources 已 fetch 并通过验收，摘要见 `docs/research/evidence/ws24-followup-validation-summary.json`。真实物理映射仍无来源；四臂仅单 seed 合成描述性 pilot，不支持一般性能收益。
+14 格验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口要求四模式历史完整 FCT 哈希。2026-10-01 冻结批次 14/14 全部运行、raw/resources 已 fetch 并通过验收，摘要见 `docs/research/evidence/ws24-followup-validation-summary.json`。四臂仅单 seed 合成描述性 pilot，不支持一般性能收益。新 48 格使用独立协议与验收脚本，不覆盖旧 raw。
 
 ## 执行协调与 WS-25
 

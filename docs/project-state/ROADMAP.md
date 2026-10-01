@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-02 WS-24 新范围与执行入口：用户决定“不要真实主机数据，仅NS3模拟”，[ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)据此取消真实部署映射作为闭环条件；独立合成 job 需求的四臂效果验收仍是必做。固定源码 `166ca6709e2b6ea8b60978bf80778fee636937e5` 与 12×4 输入、manifest 哈希、双侧分析及资源停止条件见[事前协议](../research/ws24-independent-synthetic-effects-protocol.md)。本地输入检查通过，新 48 格尚未远程启动；先在实际 Luna High 下完成隔离 worker 与 j01 正确性/资源 pilot，再做余下 44 格、raw 回传和实际 Sol High 分析。WS-24 保持 ACTIVE；旧 14 格、单测与 WS-23 状态不变。下列较早条目记录当时真实数据未获来源的历史判断，当前任务以本条范围决定为准。
+
 2026-10-02 WS-24 Sol High 独立复核完成：[Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)记录固定 SHA 的 `devices-point-to-point` 显式测试构建与 suite 通过（5 PASS/0 FAIL）、helper 恢复、16 份远端/本地结果文件哈希一致和 193 点资源收据。14 格原始结果重算与[机器摘要](../research/evidence/ws24-followup-validation-summary.json)逐项相同。WS-24 仍 ACTIVE：可信真实 physical-host/NIC/job 映射及独立需求支持的效果结论没有证据。先向数据所有方取得字段定义、来源和版本哈希，再冻结可证伪的映射/需求和双侧比较；若决定将原目标缩至合成工程验证，须由用户明确变更。14 格 raw、历史 no-go 与 WS-23 状态不变。
 
 2026-10-01 WS-24 冻结合成验证完成：[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)与[14 格机器摘要](../research/evidence/ws24-followup-validation-summary.json)记录固定 SHA `b1184d6a7bd38577b235b7f119f920973308774f` 的 A/B/C/D 14/14 运行、raw/resources 回传、逐格及矩阵验收。旧五列历史 FCT 指纹一致；320-host 正确性、CNP 收发/真实降速和四臂逻辑需求/字节守恒通过。D 仅单 seed 合成 pilot，不能推出一般性能收益；没有真实物理 host/NIC/job 映射来源。若论文主张要求真实映射或统计确认，应另行取得来源并冻结独立需求的事前协议，不把这些缺口伪装为本次已测证据。WS-23 恢复正确性仍独立 ACTIVE。
