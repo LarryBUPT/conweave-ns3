@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-01 WS-23 延期 v2 control 首次启动失败并已保留：源码 optimized 构建完成，但单测过程中更改了 Waf 测试配置；复原 lock 后仿真触发对已知 const 缺陷测试 helper 的编译并在仿真前退出。失败 raw 和资源收据已回传。单测 `devices-point-to-point` 在隔离测试 runner 中通过，helper SHA 恢复为固定值。新一组 ID `20261001-151000-ws23-rto-v2-control-r2` / `20261001-151100-ws23-rto-v2-probe-r2` 从干净固定 SHA 重建，沿用已有单测收据；后续不得在 simulation 的默认 Waf 输出目录开测试。control 通过压力门槛才启动 probe。细节见[预飞行](../research/ws23-deferral-v2-preflight.md)和[Handoff 53](../handoffs/2026-10-01-53-ws23-rto-v2-control-build-failure.md)。
+
 2026-10-01 WS-23 v2 启动前只读核验：主机资源空闲、没有仿真/构建或交互登录、两个实验 ID 远端空闲；共享 worker `b2454dda…` 尚不支持探针新参数。还发现一个在已删除目录中运行的孤立 `hg outgoing -q`（PID 377959，0 CPU，任务归属待确认），未终止。监督模型尚未实际切换到 Luna High，因此本轮没有部署 worker 或启动构建。确认孤立进程可保留且切换模型后，按[双格预飞行](../research/ws23-deferral-v2-preflight.md)先跑对照；详见[Handoff 52](../handoffs/2026-10-01-52-ws23-rto-v2-remote-preflight.md)。
 
 2026-10-01 WS-23 本地已冻结延期探针 v2 源码 `94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1` 与[双格预飞行](../research/ws23-deferral-v2-preflight.md)：同 SHA 无探针对照先重现 16/16、161 次准入丢包、源 14 的 36 次丢包与固定 FCT；通过后才运行真实丢包门控、定期刷新和显式恢复的探针格。两个 ID 已修正为含六位时间段的合规格式，本地未占用，远端仍须查空闲。**C++ 未构建、远程未运行**。跨类四格 PFC=0 技术小样按自身构建、观测等价和资源门槛独立推进，不以延期探针成功为前置；两条线均未完成，隔离效果双侧验证仍必做，WS-23 ACTIVE。共享远端入口执行前须与 WS-24 协调并实际切换监督模型；见[Handoff 51](../handoffs/2026-10-01-51-ws23-deferral-v2-local-freeze.md)。

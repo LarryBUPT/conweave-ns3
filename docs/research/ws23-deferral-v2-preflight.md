@@ -6,7 +6,9 @@
 
 仿真源码及验收器提交：`94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1`；分支 `feature/ws23-validation-execution`。输入 `config/ws09_drop_probe_16x1MiB.txt` 的 Git 内容 SHA-256 为 `bc2db1513cbde20f12eea6efa4e2265cf74954be4fa45f2a147ff0ce84b33985`，拓扑 `config/fat_k4_100G_OS2.txt` 为 `dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad`。两格固定 seed=1、ECMP、100G、1 MiB buffer、PFC=1、IRN=1、`simul_time=0.01`、`netload=10`、`--factorial-pilot --factorial-drop-diag`、并发 1；常规全网 `PAUSE_TIME=5 µs`。
 
-预留两个**全新** ID：无探针对照 `20261001-150000-ws23-rto-v2-control`，定向探针 `20261001-150100-ws23-rto-v2-probe`。首版文档的预留 ID 缺少运行器要求的六位时间段，本次在任何构建或运行之前修正；本地 `remote_experiment.py`、`remote_worker.py` 和资源观察器的 ID 校验均接受新值。本地现时未见同名结果；远程执行时还须重新确认本地和远端均空闲。旧失败 ID `20261001-090000-ws23-rto-pause` 永不复用。
+预留两个**全新** ID：无探针对照 `20261001-151000-ws23-rto-v2-control-r2`，定向探针 `20261001-151100-ws23-rto-v2-probe-r2`。ID 时间字段只作身份，不要求等待到该时刻。前一组格式合法的 `20261001-150000-ws23-rto-v2-control` 在 2026-10-01 第一次远程启动后失败并保留：optimized 构建成功，但单测准备误把测试开关写入默认构建目录；恢复默认 lock 后，Waf 又尝试编译已知有 const 缺陷的测试 helper，导致仿真前失败。其 raw、错误日志和正 RSS 收据已回传；不得复用该 ID。对应未运行的 `20261001-150100-ws23-rto-v2-probe` 也不复用，避免旧协议 ID 混淆。新 ID 本地和远端当前未见同名结果；执行时仍须复查空闲。
+
+同固定源码 SHA `94f08c6e…` 的 `devices-point-to-point` 套件已在隔离测试配置中通过 1/1；临时测试 helper 与默认配置均已从固定 Git 源码/备份恢复并校验。下一次 simulation build 必须从固定 SHA 新建干净独立副本，不能沿用首次失败 ID 下的测试构建目录。
 
 探针只给源主机 14 的 PG 3 注入 2500 µs 暂停帧：相对流量起点 2 s 的 `7200000 ns` 触发，`8800000 ns` 显式恢复，每 `1000 ns` 刷新暂停帧。注入时必须已记录源 14 的真实准入丢包且目标 QP 有未确认数据，否则仿真明确失败。正常 PFC 帧继续使用 5 µs。延后提前结束检查直至显式恢复后再经过 1.35 ms，供完整 RTO 观察。该设计有本地源码审查，**能否形成预期动态事件仍须 raw 验证**。
 
@@ -18,21 +20,21 @@
 2. 同 SHA 隔离构建 `probe`，同样观察器先 `READY`、后运行。终态收资源收据并回传 raw，用 `deferral-v2` 双格验收器逐项核对。验收器要求探针前丢包日志与对照逐条相同，目标真实丢包并携未确认数据进入暂停；暂停中正时长延期、显式恢复后宽限期延期、最近一次恢复后完整 RTO 才超时恢复；源 PG 暂停期无恢复，两类各 8/8、16 个 QP 序号与字节守恒。刷新收据必须为 1599 次，暂停/恢复需抵达源主机，仿真必须持续到显式恢复后的观察窗口。
 
 ```powershell
-python scripts/remote_experiment.py build --repo-local . --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --id 20261001-150000-ws23-rto-v2-control
-python scripts/ws23_start_resource_watch.py 20261001-150000-ws23-rto-v2-control --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1
-python scripts/remote_experiment.py run 20261001-150000-ws23-rto-v2-control --lb fecmp --pfc 1 --irn 1 --simul-time 0.01 --netload 10 --bw 100 --buffer 1 --topo fat_k4_100G_OS2 --cdf AliStorage2019 --flow-file config/ws09_drop_probe_16x1MiB.txt --factorial-pilot --factorial-drop-diag --max-concurrent 1
-python scripts/remote_experiment.py status 20261001-150000-ws23-rto-v2-control
-python scripts/ws23_start_resource_watch.py 20261001-150000-ws23-rto-v2-control --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --wait
-python scripts/remote_experiment.py fetch 20261001-150000-ws23-rto-v2-control
-python scripts/verify_ws23_recovery.py --scenario pressure --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 20261001-150000-ws23-rto-v2-control
+python scripts/remote_experiment.py build --repo-local . --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --id 20261001-151000-ws23-rto-v2-control-r2
+python scripts/ws23_start_resource_watch.py 20261001-151000-ws23-rto-v2-control-r2 --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1
+python scripts/remote_experiment.py run 20261001-151000-ws23-rto-v2-control-r2 --lb fecmp --pfc 1 --irn 1 --simul-time 0.01 --netload 10 --bw 100 --buffer 1 --topo fat_k4_100G_OS2 --cdf AliStorage2019 --flow-file config/ws09_drop_probe_16x1MiB.txt --factorial-pilot --factorial-drop-diag --max-concurrent 1
+python scripts/remote_experiment.py status 20261001-151000-ws23-rto-v2-control-r2
+python scripts/ws23_start_resource_watch.py 20261001-151000-ws23-rto-v2-control-r2 --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --wait
+python scripts/remote_experiment.py fetch 20261001-151000-ws23-rto-v2-control-r2
+python scripts/verify_ws23_recovery.py --scenario pressure --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 20261001-151000-ws23-rto-v2-control-r2
 
-python scripts/remote_experiment.py build --repo-local . --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --id 20261001-150100-ws23-rto-v2-probe
-python scripts/ws23_start_resource_watch.py 20261001-150100-ws23-rto-v2-probe --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1
-python scripts/remote_experiment.py run 20261001-150100-ws23-rto-v2-probe --lb fecmp --pfc 1 --irn 1 --simul-time 0.01 --netload 10 --bw 100 --buffer 1 --topo fat_k4_100G_OS2 --cdf AliStorage2019 --flow-file config/ws09_drop_probe_16x1MiB.txt --factorial-pilot --factorial-drop-diag --ws23-pfc-probe-host 14 --ws23-pfc-probe-pg 3 --ws23-pfc-probe-start-ns 7200000 --ws23-pfc-probe-end-ns 8800000 --ws23-pause-time-us 2500 --ws23-pfc-probe-drop-gated --ws23-pfc-probe-refresh-ns 1000 --max-concurrent 1
-python scripts/remote_experiment.py status 20261001-150100-ws23-rto-v2-probe
-python scripts/ws23_start_resource_watch.py 20261001-150100-ws23-rto-v2-probe --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --wait
-python scripts/remote_experiment.py fetch 20261001-150100-ws23-rto-v2-probe
-python scripts/verify_ws23_recovery.py --scenario deferral-v2 --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --control-id 20261001-150000-ws23-rto-v2-control 20261001-150100-ws23-rto-v2-probe
+python scripts/remote_experiment.py build --repo-local . --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --id 20261001-151100-ws23-rto-v2-probe-r2
+python scripts/ws23_start_resource_watch.py 20261001-151100-ws23-rto-v2-probe-r2 --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1
+python scripts/remote_experiment.py run 20261001-151100-ws23-rto-v2-probe-r2 --lb fecmp --pfc 1 --irn 1 --simul-time 0.01 --netload 10 --bw 100 --buffer 1 --topo fat_k4_100G_OS2 --cdf AliStorage2019 --flow-file config/ws09_drop_probe_16x1MiB.txt --factorial-pilot --factorial-drop-diag --ws23-pfc-probe-host 14 --ws23-pfc-probe-pg 3 --ws23-pfc-probe-start-ns 7200000 --ws23-pfc-probe-end-ns 8800000 --ws23-pause-time-us 2500 --ws23-pfc-probe-drop-gated --ws23-pfc-probe-refresh-ns 1000 --max-concurrent 1
+python scripts/remote_experiment.py status 20261001-151100-ws23-rto-v2-probe-r2
+python scripts/ws23_start_resource_watch.py 20261001-151100-ws23-rto-v2-probe-r2 --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --wait
+python scripts/remote_experiment.py fetch 20261001-151100-ws23-rto-v2-probe-r2
+python scripts/verify_ws23_recovery.py --scenario deferral-v2 --source-sha 94f08c6e83fcef7f5374c6e0e5e4286f0cdbc6a1 --control-id 20261001-151000-ws23-rto-v2-control-r2 20261001-151100-ws23-rto-v2-probe-r2
 ```
 
 上列命令**逐步执行**：每次 `build` 后核对构建与必要单测，每次观察器见 `READY` 才 `run`，每次 `status` 到终态后才收收据和 `fetch`。失败格的 ID、远端记录和 raw 保留；若旧设计假设失效，定位后另冻 SHA/ID，不改弱断言来接收结果。资源准入及停止阈值沿用[上一预飞行](ws23-next-correctness-and-causal-preflight.md#资源隔离与停止)：无人作业、load1m ≤10、可用内存 ≥32 GiB、磁盘 ≥100 GiB；构建 >20 分钟、单格 >10 分钟、他人作业、load1m >20、RSS >8 GiB、内存 <16 GiB、磁盘 <100 GiB、日志 >50 MiB、收据缺失或隔离失败均停止新格。
