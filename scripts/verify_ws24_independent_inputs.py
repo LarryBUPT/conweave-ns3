@@ -33,7 +33,7 @@ def main():
         info = manifest['jobs'][job]
         fixed = tuple(info['fixed_hosts_by_rank'])
         variable = tuple(info['variable_hosts_by_rank'])
-        assert info['generation_seed'] == manifest['master_seed'] + number
+        assert info['generation_seed'] == '{}|{}'.format(manifest['master_seed'], number)
         assert len(set(fixed)) == 4 and variable == (fixed[0], fixed[2], fixed[1], fixed[3])
         assert fixed not in all_placements
         all_placements.add(fixed)

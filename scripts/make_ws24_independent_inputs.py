@@ -79,7 +79,7 @@ def build():
         logical = '\n'.join(' '.join(map(str, row)) for row in demands) + '\n'
         totals = sum(row[4] for row in demands)
         jobs['j{:02d}'.format(job)] = {
-            'generation_seed': MASTER_SEED + job,
+            'generation_seed': '{}|{}'.format(MASTER_SEED, job),
             'fixed_hosts_by_rank': list(fixed),
             'variable_hosts_by_rank': list(variable),
             'logical_sha256': sha(logical.encode('ascii')),
