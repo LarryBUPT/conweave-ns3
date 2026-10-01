@@ -25,7 +25,9 @@ def require(ok, reason):
 
 
 def experiment_id(seed, scenario, mode, revision=1):
-    require(revision in (1, 2), "unknown matrix revision")
+    require(revision in (1, 2, 3), "unknown matrix revision")
+    if revision == 3 and (seed, scenario, mode) == (2301, "mix", "shortq2"):
+        return "20261001-201000-ws23-s2301-mix-shortq2-r"
     return "20261001-%02d%04d-ws23-s%d-%s-%s" % (
         18 if revision == 1 else 20,
         (seed - 2301) * 6 + (0 if scenario == "bg" else 3) + MODES.index(mode),
@@ -132,7 +134,7 @@ def inspect(entry, mode, source_sha, experiment_override=None, diagnostic=0, rev
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source-sha", required=True)
-    parser.add_argument("--revision", type=int, choices=(1, 2), default=1)
+    parser.add_argument("--revision", type=int, choices=(1, 2, 3), default=1)
     parser.add_argument("--cell", help="verify one completed cell rather than the whole matrix")
     args = parser.parse_args()
     require(re.fullmatch(r"[0-9a-f]{40}", args.source_sha), "full source SHA required")
@@ -141,18 +143,18 @@ def main():
     require(set(entries) == {(s, c) for s in (2301, 2302, 2303) for c in ("bg", "mix")},
             "demand manifest coverage")
     if args.cell:
-        require(args.revision == 2, "single-cell verification is for matrix revision 2")
+        require(args.revision in (2, 3), "single-cell verification is for matrix revision 2 or 3")
         selected = None
         for (seed, scenario), entry in entries.items():
             for mode in MODES:
-                if experiment_id(seed, scenario, mode, 2) == args.cell:
+                if experiment_id(seed, scenario, mode, args.revision) == args.cell:
                     selected = (entry, mode)
         require(selected is not None, "unknown revision-2 cell")
         entry, mode = selected
         require(digest(ROOT / entry["path"]) == entry["sha256"], "Git demand byte hash")
         verify_trace_order(entry)
-        result = inspect(entry, mode, args.source_sha, revision=2)
-        print(json.dumps({"source_sha": args.source_sha, "matrix_revision": 2,
+        result = inspect(entry, mode, args.source_sha, revision=args.revision)
+        print(json.dumps({"source_sha": args.source_sha, "matrix_revision": args.revision,
                           "cells": 1, "verified_cell": result}, indent=2))
         return
     rows = {}

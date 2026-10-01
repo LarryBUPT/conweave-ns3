@@ -62,14 +62,19 @@ with open(samples_path, 'x') as receipt:
         pid = metadata.get('pid')
         if status == 'RUNNING' and pid:
             point = sample(int(pid))
-            point['status'] = status
+            # The worker marks the experiment RUNNING just before execute.py
+            # and ns-3 are visible in /proc. Preserve system samples during
+            # that handoff, but count only positive process-tree RSS samples
+            # as RUNNING resource observations.
+            point['status'] = status if point['process_tree_rss_mib'] > 0 else 'STARTING'
             receipt.write(json.dumps(point, sort_keys=True) + '\n')
             receipt.flush()
-            running_seen = True
-            count += 1
-            peak = max(peak, point['process_tree_rss_mib'])
-            min_mem = min(min_mem, point['mem_available_gib'])
-            min_disk = min(min_disk, point['free_gib'])
+            if point['status'] == 'RUNNING':
+                running_seen = True
+                count += 1
+                peak = max(peak, point['process_tree_rss_mib'])
+                min_mem = min(min_mem, point['mem_available_gib'])
+                min_disk = min(min_disk, point['free_gib'])
         elif status in terminal:
             break
         if time.time() - started_at > 900:

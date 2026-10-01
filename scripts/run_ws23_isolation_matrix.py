@@ -14,6 +14,7 @@ from verify_ws23_isolation_pilot import MODES, ROOT, experiment_id
 
 
 SOURCE_SHA = "3db2685a3540895bf49e25302bd00465bc0921e2"
+MATRIX_REVISION = 3
 CONTROLLER = ROOT / "scripts/remote_experiment.py"
 WATCHER = ROOT / "scripts/ws23_start_resource_watch.py"
 VERIFIER = ROOT / "scripts/verify_ws23_isolation_pilot.py"
@@ -164,7 +165,8 @@ def run_one(handle, experiment_id_value, mode, flow_file):
     if not (ROOT / "results" / experiment_id_value / "metadata.json").is_file():
         invoke(CONTROLLER, "fetch", experiment_id_value)
     verification = json.loads(invoke(VERIFIER, "--source-sha", SOURCE_SHA,
-                                     "--revision", "2", "--cell", experiment_id_value))
+                                     "--revision", str(MATRIX_REVISION),
+                                     "--cell", experiment_id_value))
     result = verification["verified_cell"]
     record(handle, "verified", id=experiment_id_value, duration_seconds=round(
         time.monotonic() - started, 2), result=result)
@@ -176,16 +178,16 @@ def main():
     args = parser.parse_args()
     if not (ROOT / "results" / GATE_ID / "metadata.json").is_file():
         raise RuntimeError("new-input parser gate has not been fetched")
-    gate = json.loads(invoke(VERIFIER, "--source-sha", SOURCE_SHA, "--revision", "2",
-                             "--cell", GATE_ID))["verified_cell"]
+    gate = json.loads(invoke(VERIFIER, "--source-sha", SOURCE_SHA, "--revision",
+                             str(MATRIX_REVISION), "--cell", GATE_ID))["verified_cell"]
     pending = [(seed, scenario, mode,
-                experiment_id(seed, scenario, mode, 2),
+                experiment_id(seed, scenario, mode, MATRIX_REVISION),
                 "ws23_isolation_s%d_%s.txt" % (seed, scenario))
                for seed in (2301, 2302, 2303) for scenario in ("bg", "mix")
                for mode in MODES]
     pending = [cell for cell in pending if cell[3] != GATE_ID]
     if len(pending) != 17 or len({cell[3] for cell in pending}) != 17:
-        raise RuntimeError("revision-2 matrix mapping is not 17 remaining unique cells")
+        raise RuntimeError("revision-3 matrix mapping is not 17 remaining unique cells")
     RECEIPTS.parent.mkdir(parents=True, exist_ok=True)
     existing_events = []
     if RECEIPTS.exists():
@@ -198,6 +200,7 @@ def main():
     with RECEIPTS.open(mode, encoding="utf-8") as handle:
         record(handle, "resume" if existing_events else "start",
                source_sha=SOURCE_SHA, build_jobs=args.build_jobs,
+               matrix_revision=MATRIX_REVISION,
                total_cells=18, already_verified=GATE_ID, gate=gate)
         for cell in pending:
             cell_id = cell[3]
@@ -206,7 +209,8 @@ def main():
                 local_meta = json.loads(local_meta_path.read_text(encoding="utf-8"))
                 if local_meta.get("status") == "SUCCEEDED":
                     result = json.loads(invoke(VERIFIER, "--source-sha", SOURCE_SHA,
-                                               "--revision", "2", "--cell", cell_id))[
+                                               "--revision", str(MATRIX_REVISION),
+                                               "--cell", cell_id))[
                         "verified_cell"]
                     record(handle, "verified", id=cell_id, result=result,
                            recovered_from_local_result=True)
