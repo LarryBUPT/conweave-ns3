@@ -16,7 +16,7 @@
 
 该首版 controller 没有在 run 前启动资源观察器，回传的 logs 中无 `resource-samples.jsonl` 或 `resource-summary.json`。资源观察器源 `scripts/ws11_resource_watch.py` 存在，但远端旧副本 SHA 不同；不能用结束后的 0 RSS 补造收据。因此该 ID/raw 保留为 correctness-only 前置结果，不能计入 j01 pilot 或正式矩阵。
 
-修复提交 `3b992ee` 已推送个人 origin。它加入隔离观察器 `scripts/ws24_resource_watch.py`，WS-24 `deploy` 会单独部署该文件；`run --ws24-multi-nic 1` 自动在启动前开启 5 秒采样，`fetch` 等待观察器 summary 再下载。manifest SHA-256 更新为 `e2d19ce3d7424f556bebcd74f011310538cf89c55bc2937c985e922af2b1c536`，新的 j01 fixed_single ID 为 `20261002-180000-ws24-ind-j01-fs-r2`，其他 47 个 ID 与 48 份流输入不变。离线检查、生成器逐字节检查和输入验收均通过；py_compile 与 git diff --check 通过。仿真固定 SHA 由此变更，正式 48 格均按 `3b992ee` 执行；首版 raw 不并入。
+修复提交 `3b992ee` 已推送个人 origin。后续控制器修复 `0af1a93` 已推送，并将隔离观察器 `scripts/ws24_resource_watch.py` 部署到唯一远端路径 `ws24_independent_resource_watch.py`；已存在的旧通用 `ws24_resource_watch.py`（SHA `cbe3e331…`）保持不动。WS-24 `deploy` 会单独部署新路径；`run --ws24-multi-nic 1` 自动在启动前开启 5 秒采样，`fetch` 等待观察器 summary 再下载。manifest SHA-256 更新为 `e2d19ce3d7424f556bebcd74f011310538cf89c55bc2937c985e922af2b1c536`，新的 j01 fixed_single ID 为 `20261002-180000-ws24-ind-j01-fs-r2`，其他 47 个 ID 与 48 份流输入不变。离线检查、生成器逐字节检查和输入验收均通过；py_compile 与 git diff --check 通过。仿真固定 SHA 由此变更，正式 48 格均按 `3b992ee` 执行；首版 raw 不并入。
 
 ## 4. 已形成的设计决策
 
@@ -24,7 +24,7 @@
 
 ## 5. 当前状态
 
-修复版 commit 已推送，但远端源码尚未同步，隔离资源观察器尚未部署，`j01-fs-r2` 未构建。第一格旧 raw 已下载并留在本地 Git 忽略的 `results/` 中，未改写。WS-24 ACTIVE。
+固定实验源码 commit `3b992ee` 与控制器 commit `0af1a93` 已推送；隔离 worker 和专用观察器均已部署并核验 SHA，固定实验源码尚未同步，`j01-fs-r2` 未构建。第一格旧 raw 已下载并留在本地 Git 忽略的 `results/` 中，未改写。WS-24 ACTIVE。
 
 ## 6. 未解决问题
 
@@ -32,7 +32,7 @@
 
 ## 7. 后续动作与门槛
 
-先按实际 Luna High 阶段部署/核验 `ws24_resource_watch.py` SHA，再用隔离 worker 同步当前 pushed HEAD。重新核对远端用户/未知任务、load/内存/磁盘及所有 manifest ID；以 `3b992ee` 构建 `j01-fs-r2`。控制器必须在仿真 start 前生成资源样本，终态 `resource-summary.json` 通过门槛并在 fetch 后本地复算；若资源证据仍缺失或任何正确性项失败，保留该 ID/raw、修复后使用新 ID。随后按同 SHA 完成 j01 其他三臂，再运行其余 44 格。全部 raw 回传后实际切回 Sol High，进行矩阵复核及预注册双侧分析。
+在实际 Luna High 下用隔离 worker 同步当前 pushed HEAD；新 controller 与 watcher SHA 已核验。构建前重新核对远端用户/未知任务、load/内存/磁盘及 manifest ID，再以固定实验 SHA `3b992ee` 构建 `j01-fs-r2`。控制器必须在仿真 start 前生成资源样本，终态 `resource-summary.json` 通过门槛并在 fetch 后本地复算；若资源证据仍缺失或任何正确性项失败，保留该 ID/raw、修复后使用新 ID。随后按同 SHA 完成 j01 其他三臂，再运行其余 44 格。全部 raw 回传后实际切回 Sol High，进行矩阵复核及预注册双侧分析。
 
 ## 8. 与其他工作流的关系
 
