@@ -12,6 +12,7 @@ import sys
 PROJECT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 ENV_FILE = os.path.join(PROJECT, '.project', 'remote.env')
 WORKER = os.path.join(PROJECT, 'scripts', 'remote_worker.py')
+REMOTE_WORKER_NAME = 'remote_worker.py'
 ID_RE = re.compile(r'^[0-9]{8}-[0-9]{6}-[a-z0-9][a-z0-9-]{0,40}$')
 FORK_RE = re.compile(r'^https://github[.]com/LarryBUPT/[A-Za-z0-9_.-]+(?:[.]git)?$')
 
@@ -48,7 +49,7 @@ def ssh_base(cfg):
 
 
 def worker_call(cfg, *args):
-    remote = '/home/fnl/lzy/.research-workflow/remote_worker.py'
+    remote = '/home/fnl/lzy/.research-workflow/' + REMOTE_WORKER_NAME
     command = ' '.join(shlex.quote(part) for part in ['python3', remote] + list(args))
     subprocess.check_call(ssh_base(cfg) + [command])
 
@@ -120,7 +121,7 @@ def deploy(cfg):
         'assert not os.path.islink(folder); '
         'os.makedirs(folder,exist_ok=True); '
         'assert os.path.realpath(folder)==folder; '
-        'target=folder+"/remote_worker.py"; '
+        'target=folder+"/' + REMOTE_WORKER_NAME + '"; '
         'assert not os.path.islink(target); '
         'assert not os.path.exists(target) or stat.S_ISREG(os.stat(target).st_mode); '
         'fd,tmp=tempfile.mkstemp(prefix="worker-",dir=folder); '
@@ -185,7 +186,11 @@ def sync_by_bundle(cfg, repo, origin, branch, sha):
 
 
 def main():
+    global REMOTE_WORKER_NAME
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--worker-name', choices=('remote_worker.py', 'ws24_worker.py'),
+                        default='remote_worker.py',
+                        help='workspace worker filename; ws24_worker.py is an isolated WS-24 copy')
     sub = parser.add_subparsers(dest='command')
     for name in ('deploy', 'check'):
         sub.add_parser(name)
@@ -244,6 +249,7 @@ def main():
         item = sub.add_parser(name)
         item.add_argument('id')
     args = parser.parse_args()
+    REMOTE_WORKER_NAME = args.worker_name
     cfg = config()
     if args.command == 'deploy':
         deploy(cfg)
