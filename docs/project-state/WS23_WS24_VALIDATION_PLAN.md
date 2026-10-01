@@ -37,7 +37,7 @@
 
 ## 执行协调与 WS-25
 
-WS-24 本批已使用独立 checkout `workspace/ws24-multinic-validation` 完成两格 v2 实验，并在本地冻结后续契约、CNP incast 输入与预留 ID，见[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)。14 格共同仿真源码固定为 `b1184d6a7bd38577b235b7f119f920973308774f`：Git blob 中 11/11 合成文件哈希匹配 manifest，旧输入和 CNP 四类观测均存在；本地与个人 origin 曾核对为同一 SHA。14 格尚未编译或运行。下一批不得自动部署 worker、sync 或启动 WS-24 实验；Integration 在 WS-23 无在途远程作业、共享 worker 无切换冲突且资源门槛通过后协调，不必机械等待 WS-23 五格全部成功。
+WS-24 本批已使用独立 checkout `workspace/ws24-multinic-validation` 完成两格 v2 实验，并在本地冻结后续契约、CNP incast 输入与预留 ID，见[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)。14 格共同仿真源码固定为 `b1184d6a7bd38577b235b7f119f920973308774f`：Git blob 中 11/11 合成文件哈希匹配 manifest，旧输入和 CNP 四类观测均存在；本地与个人 origin 曾核对为同一 SHA。2026-10-01 续作预飞行已确认 14 个 ID 为空闲、资源达标，部署并核验固定 worker SHA `0be12e21ce37655f52a19803824f2b8d24a9a2c84ba0cd58124eb6fb96de62eb`，并把源码缓存同步到 `dc6477e5f469434f42c2b888ac0e18c50341b422`；14 格仍尚未编译或运行。实际模型切到 Luna High 后再重核入口并开始 A 八格。本线程当前工具无法切换模型，因此尚未越过监督边界。不必机械等待 WS-23 五格全部成功。
 
 每次仿真前先冻结协议与收据并停在模型切换边界，监督对话实际切至 Luna High，再执行后台静默实验，约半小时精简监督；终态 raw 回传后实际切回 Sol High 分析和必要修正。不得用文字宣称模型切换。
 

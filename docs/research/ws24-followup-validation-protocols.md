@@ -5,7 +5,7 @@
 ## 公共边界与证据等级
 
 - 导入 OS1 拓扑来源可追至只读参考仓库 maplerime/conweave-ns3@470c58026ec3933eabb6667bf3124b6b9bd401be 的合成生成器，逐边结构相符；它不是物理服务器/NIC 或真实 job placement 证据。320-host、NIC、流与 placement 都明确是合成 fixture。
-- 四类后续仿真由 Integration 在共享入口空闲、WS-23 无在途远程 build/sim 或 worker 切换时协调。WS-23 正确性验证优先级仍保留；五格全部成功不是独立 WS-24 回归的机械前置条件。启动前须重新核对服务器用户/作业、活动 build/sim、worker、资源与全部 ID。监督阶段须实际切 Luna High；终态 raw 回传后实际切回 Sol High。本轮停在远程执行前，不授权自动 deploy、sync、build 或 run。
+- 四类后续仿真由 Integration 在共享入口空闲、WS-23 无在途远程 build/sim 或 worker 切换时协调。WS-23 正确性验证优先级仍保留；五格全部成功不是独立 WS-24 回归的机械前置条件。启动前须重新核对服务器用户/作业、活动 build/sim、worker、资源与全部 ID。监督阶段须实际切 Luna High；终态 raw 回传后实际切回 Sol High。2026-10-01 续作只读审计确认当时无登录用户/运行中结果、资源达标、14 个 ID 均未占用；检测到 worker SHA 与固定提交版本不同后，已部署并核对 worker SHA `0be12e21ce37655f52a19803824f2b8d24a9a2c84ba0cd58124eb6fb96de62eb`。源码缓存已通过 workspace Git bundle 同步到分支提交 `dc6477e5f469434f42c2b888ac0e18c50341b422`，其中包含共同实验 SHA `b1184d6a7bd38577b235b7f119f920973308774f`。此后尚未 build/run；本轮监督模型未实际切到 Luna High 前不启动实验。
 - **A/B/C/D 共同仿真源码 SHA 固定为 `b1184d6a7bd38577b235b7f119f920973308774f`**，分支 `feature/ws24-multinic-validation` 已推送至 LarryBUPT 个人 origin 且远端同名分支曾核对为该 SHA。2026-10-01 从此提交的 Git blob 逐一核对 11 份合成输入、manifest、旧五/六列输入与 OS2 拓扑、CNP 四类观测事件及验收器；11/11 文件哈希等于 manifest，manifest SHA-256 为 `55997be83ecf7e43accc2f6bc546b97185943657cdc64da0d5c89ef91a52b127`。此前 v2 最小格仍归属 `824e3fa0c4c06dd9894474a81e729931d59a3108`，不能并入新批次。后续文档提交只移动分支 HEAD；若无源码或输入改动，14 格仍显式指定 `b1184d6…` 构建。新实验 ID 启动前必须检查 `/home/fnl/lzy/runs/`、`results/` 未占用；下列 ID 仍只是本地预留。
 - 默认 seed=1。simul-time=0.01、netload=10 是现有 runner 的兼容参数；显式 trace 决定实际流量。每个 raw 都须保留 metadata、配置快照、trace/NIC/topology 和资源收据。失败 ID/raw 不覆盖、不复用。
 - 本文的 SUCCEEDED 只是 runner 状态；每项还需逐流身份、输入/完成/字节守恒和原始日志证据。空日志/计数不等于零事件或分支通过。任何错误先定位，修复后固定新 SHA 并使用新 ID。
@@ -88,7 +88,7 @@ A、B、C、D 全部格须使用 `b1184d6…` 的同一源码与固定输入；�
 
 ## 顺序、资源与停止规则
 
-1. 当前阶段完成输入/来源、观测源码与共同 SHA 的本地冻结，14 格尚未运行。Integration 确认 WS-23 无在途远程作业、共享 worker 无切换冲突、服务器健康且入口空闲后，才能协调下一阶段；不以 WS-23 五格全部成功作为独立 WS-24 回归的静态条件。本轮不部署 worker、不同步源码、不构建或仿真。下一阶段启动前重做共享服务器审计与 ID 检查，并实际切 Luna High 监督，保留每格独立隔离目录和资源收据。
+1. 当前阶段完成输入/来源、观测源码与共同 SHA 的本地冻结，14 格尚未运行。续作已核实 WS-23 无在途远程作业、共享 worker 无冲突、服务器资源健康、14 个 ID 未占用；已部署并核验固定 worker，且把源码缓存同步到 `dc6477e5f469434f42c2b888ac0e18c50341b422`（实验仍须构建 `b1184d6…`）。不以 WS-23 五格全部成功作为独立 WS-24 回归的静态条件。后续 build/run 前仍须由实际 Luna High 线程监督，并复核入口/ID 状态；每格使用独立目录和资源收据。
 2. 允许的未来顺序：A 旧输入回归；B 320-host correctness；C CNP 输入/观测的本地触发门槛后执行；D 四臂 pilot。每项失败先保留 raw 并诊断，修复后新 SHA/new ID；不得越过 correctness 直接解释 D 的效果。
 3. 适用已冻结的服务器门槛：load1m ≤10、MemAvailable ≥32 GiB、空闲盘 ≥100 GiB、无他人/WS-23/未知 build 或仿真作业；build 单格 20 分钟、仿真单格 10 分钟上限；资源收据每 5 秒记录，远程后台监督静默、约半小时一次精简状态。出现工作流定义的任一异常就停止后续格并按原始数据恢复流程处理。
 4. 所有终态 raw 回传并核验后，再实际切回 Sol High 分析。上述 8+1+1+4 格构成 WS-24 仍未完成的必做执行任务，不因本文冻结而视作运行、效果结论或工作流闭环。
