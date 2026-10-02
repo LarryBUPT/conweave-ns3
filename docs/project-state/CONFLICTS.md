@@ -1,6 +1,6 @@
 # 冲突、过期内容与待核验点
 
-更新：2026-09-30。记录“哪里说法不一致、当前采用什么口径、怎样消除”，不把旧文档直接删除。
+更新：2026-10-02。记录“哪里说法不一致、当前采用什么口径、怎样消除”，不把旧文档直接删除。
 
 | ID | 不一致或风险 | 当前采用的口径 | 后续处理 |
 | --- | --- | --- | --- |
@@ -24,5 +24,5 @@
 | C-18 | WS-21 原计划要求“反馈信号可实现”，但仓库里已有 CONGA tag/反馈表可能被误读为 WS-18 模式现成、无代价的下游反馈。 | CONGA 是独立模式，反馈随反向 UDP 数据捎带，`CongaTag` 是仿真 PacketTag；模式 20 只有源 ToR 本地队列和离线目的出口诊断，尚无显式有成本/有界年龄的下游控制路径。见 [WS-21 可行性审查](../research/ws21-downstream-feedback-feasibility.md)。 | 技术观测、反馈送达/失效与成本校验通过前，WS-21 效果矩阵 no-go；零延迟 oracle 单列，不能当可部署收益。 |
 | C-19 | WS-21 首版观测预算以 192 条背景 QP × 64 个 1 µs 桶估约 0.38 MiB，可能被误当完整尾流覆盖；候选反馈 key 也默认下游能认出源端首端口。 | 六个旧 ECMP/192 raw 的背景最长 2.32–13.29 ms，64 µs 不足。拓扑最短路能从目的入端口静态反推源首跳，但模式 20 未实现或逐 QP 校验该映射。见 [WS-21 复审](../research/ws21-feedback-design-review.md)和[静态预算](../research/evidence/ws21-static-budget.json)。 | 已修订首版设计正文；先明确全尾部端口级观测、动态路径身份和真实控制消息成本，首版技术 pilot 暂不启动。 |
 | C-20 | WS-21 心跳预飞行原将 Windows 工作副本拓扑 SHA `445cf1e2…` 写成远端实验输入哈希，而六格 `metadata.json` 均为 `dcca23ca…`，容易误判拓扑版本不同。 | 本机 CRLF 文件 2,045 B；固定 Git blob 和六格远端 LF 快照 1,979 B，后者 SHA-256 为 `dcca23ca6992b9b81e5b71127a3698264441390455f3dd29b459e33db29915ad`。本机文件换行规范化后逐字节与 Git blob 相同，见[心跳结果报告](../research/ws21-local-heartbeat-pilot-report.md)。 | 预飞行和 Handoff 37 已加勘误；后续比较固定 Git 内容哈希与远端快照，并另标工作副本哈希，避免仅凭平台换行判输入漂移。 |
-
-| C-21 | Handoff 43–45 将 WS-23 build/单测与 WS-24 本地审计收束称为任务闭环；必做端到端验证被推给 WS-25 判断必要性，随后提前归档。 | 用户明确要求全部预设任务执行“实验—修改—验证”循环直到效果与结论对应。WS-23/24 恢复 ACTIVE；阶段记录保留，但不能据此宣称任务已闭环。 | 按 [验证清单](WS23_WS24_VALIDATION_PLAN.md) 恢复两个对话，持续执行与核验；任何范围取消须用户明确决定。 |
+| C-21 | Handoff 43–45 将 WS-23 build/单测与 WS-24 本地审计收束称为任务闭环；必做端到端验证被推给 WS-25 判断必要性，随后提前归档。 | 用户明确要求全部预设任务执行“实验—修改—验证”循环直到效果与结论对应。纠错时两个任务均恢复 ACTIVE；目前 WS-23 仍 ACTIVE，WS-24 经用户 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md) 明确限定合成范围后，已按 [Handoff 55](../handoffs/2026-10-02-55-ws24-independent-synthetic-closure.md) 完成全部该范围验收。 | 保留历史纠错记录；WS-23 继续按[验证清单](WS23_WS24_VALIDATION_PLAN.md)执行，不用 WS-24 新结论替代传输恢复验证。 |
+| C-22 | WS-24 的 Handoff 53/54 与旧状态快照称 48 格尚未运行；旧 `...j01-fs@166ca670…` 又有 30/30 流，容易被误并入正式矩阵。 | 旧 ID 仅为无资源收据的 correctness-only 结果。正式固定 SHA `3b992eed218f65b4f8026eddb5170a7694e17b10` 使用替代 ID `...j01-fs-r2`，48/48 格 raw、资源、远端/本地文件哈希和 job 级双侧分析均已验收；见[结果报告](../research/ws24-independent-synthetic-effects-report.md)。 | 旧 Handoff 保留当时状态；当前入口以 CURRENT_STATE 顶部与 Handoff 55 为准，论文引用注明仅 ns-3 合成模型。 |

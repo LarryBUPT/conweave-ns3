@@ -42,11 +42,11 @@
 - [x] 14 格终态 raw、固定仿真源码及该批效果结论一致。2026-10-01 14/14 raw/resources fetched，`verify_ws24_matrix.py` 全矩阵通过；2026-10-02 Sol High 独立重算 JSON 与机器摘要逐项相同。Handoff 50 记录该批结论与证据边界。真实部署映射和确认性性能结论没有被宣称；同 SHA 单测补验见本节首项。
 
 - [x] 按用户明确决定将 WS-24 限定为 ns-3 合成模拟；真实映射来源不再是闭环条件。现有 OS1 图只能追至合成生成器，任何结果均不得推断真实物理共享或生产性能。见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)。
-- [x] 冻结 12 个独立生成 key 的合成 job 需求块、每块四臂共 48 个输入、共同源码 `166ca6709e2b6ea8b60978bf80778fee636937e5`、manifest/输入哈希、双侧指标和停止条件。本地逐字节再生成及静态验收通过；见[独立需求协议](../research/ws24-independent-synthetic-effects-protocol.md)。此项不代表新矩阵已运行。
-- [ ] `j01` 四臂动态正确性与资源 pilot：先实际切至 Luna High，重查远端无人/作业/资源/ID，部署隔离的 `ws24_worker.py`；四格独立 build/run/fetch/raw 验收，30/30、身份和字节守恒及运行时 RTT/BDP 均须通过。失败格保留原始数据并修复重验。
-- [ ] 完成其余 11 个独立合成 job 的 44 格四臂矩阵，保存每格固定 SHA、输入哈希、seed、metadata、raw 与资源收据；全部终态格从 raw 重算，按 job 为单位做事前双侧分析并记录反例。旧单 seed 四臂 pilot 的 −173/−164 ns 仅作描述，不并入 12 个重复。终态回传后实际切回 Sol High，核对代码、效果与结论，再决定 WS-24 是否闭环。
+- [x] 冻结 12 个独立生成 key 的合成 job 需求块、每块四臂共 48 个输入、manifest/输入哈希、双侧指标和停止条件。本地逐字节再生成及静态验收通过；初版 `166ca6709e2b6ea8b60978bf80778fee636937e5` 的无资源收据尝试被排除，正式固定源码为 `3b992eed218f65b4f8026eddb5170a7694e17b10`，manifest SHA-256 为 `e2d19ce3d7424f556bebcd74f011310538cf89c55bc2937c985e922af2b1c536`。见[独立需求协议](../research/ws24-independent-synthetic-effects-protocol.md)。
+- [x] `j01` 四臂动态正确性与资源 pilot：在实际 Luna High 监督下完成隔离构建、运行、回传及验收；正式四格均 30/30、3,981,312 B，逐流身份、字节守恒、运行时 RTT/BDP 与运行期资源收据通过。首版 `...j01-fs` 缺资源收据，保留 raw 并由 `...j01-fs-r2` 替换，不计入矩阵。
+- [x] 其余 11 个独立合成 job 的 44 格四臂矩阵及全 48 格分析：同一固定 SHA、manifest、seed 1、独立 ID/raw/资源收据验收通过；远端/本地 1,056 个文件 SHA-256 全同。实际切回 Sol High 后从 raw 重算，12/12 job 主效应为负、中位 −19.667%、精确双侧符号检验 `p=0.00048828125`；`j02` 极端值、`j11` 微小值和 `j09` 放置差异均已记录。旧单 seed 四臂 pilot 不并入 12 个重复。见[结果报告](../research/ws24-independent-synthetic-effects-report.md)及[机器摘要](../research/evidence/ws24-independent-synthetic-effects-summary.json)。WS-24 在用户确定的 ns-3 合成范围内验收闭环；真实部署主张不属于本次结论。
 
-14 格验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口要求四模式历史完整 FCT 哈希。2026-10-01 冻结批次 14/14 全部运行、raw/resources 已 fetch 并通过验收，摘要见 `docs/research/evidence/ws24-followup-validation-summary.json`。四臂仅单 seed 合成描述性 pilot，不支持一般性能收益。新 48 格使用独立协议与验收脚本，不覆盖旧 raw。
+14 格验收入口为 `scripts/verify_ws24_legacy.py`、`scripts/verify_ws24_result.py` 和 `scripts/verify_ws24_matrix.py`；矩阵入口要求四模式历史完整 FCT 哈希。2026-10-01 冻结批次 14/14 全部运行、raw/resources 已 fetch 并通过验收，摘要见 `docs/research/evidence/ws24-followup-validation-summary.json`。旧四臂仅单 seed 合成描述性 pilot；后续新 48 格按独立协议验收并形成另列结论，未覆盖旧 raw。
 
 ## 执行协调与 WS-25
 
