@@ -194,6 +194,8 @@ def main():
                         help="existing flow trace inside config/ (five or six columns)")
     parser.add_argument('--ws13-diag', dest='ws13_diag', type=int, choices=(0, 1), default=0,
                         help='opt-in flow-hop and QP diagnostic for WS-13 tail probes')
+    parser.add_argument('--ws25-diag', dest='ws25_diag', type=int, choices=(0, 1), default=0,
+                        help='opt-in per-QP and background egress diagnostic for WS-25')
     parser.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -528,6 +530,8 @@ def main():
     simulation_env = os.environ.copy()
     if args.ws13_diag:
         simulation_env['WS13_DIAG'] = '1'
+    if args.ws25_diag:
+        simulation_env['WS25_DIAG'] = '1'
     if args.factorial_drop_diag:
         simulation_env['IRN_PFC_DROP_DIAG'] = '1'
     if args.factorial_pilot and enabled_irn and enabled_pfc:

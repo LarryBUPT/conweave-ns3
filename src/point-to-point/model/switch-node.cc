@@ -49,6 +49,11 @@ static uint64_t classreserve_background_new_flows = 0, classreserve_background_r
 static uint64_t classreserve_background_queue_avoids = 0;
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t>
     classreserve_source_port_packets;
+static uint64_t ws25_choice_events[3] = {0, 0, 0};
+static uint64_t ws25_empty_choices[3] = {0, 0, 0};
+static uint64_t ws25_first_queue_sum[3] = {0, 0, 0};
+static uint64_t ws25_second_queue_sum[3] = {0, 0, 0};
+static uint64_t ws25_background_queue_nonzero = 0;
 static bool ws18_path_enabled = false;
 static bool ws21_identity_enabled = false;
 static bool ws21_feedback_enabled = false;
@@ -738,7 +743,7 @@ void SwitchNode::PrintWorkloadTagCounts() {
                   << " alternate=" << ws18_path_alternate
                   << " packets=" << ws18_path_packets
                   << " multipath_packets=" << ws18_path_multipath << std::endl;
-    if (Ws13DiagnosticEnabled()) {
+    if (Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled()) {
         for (const auto &entry : ws13_hops) {
             const auto &key = entry.first;
             const Ws13FlowHop &s = entry.second;
@@ -818,6 +823,16 @@ void SwitchNode::PrintWorkloadTagCounts() {
                   << " queue_violations=" << guard_queue_violations << std::endl;
         std::cout << "WS25_QUEUE enqueued=" << enqueued << " dequeued=" << dequeued
                   << " queued_drop=" << queuedDropped << " current=" << current << std::endl;
+        if (Ws25DiagnosticEnabled()) {
+            for (uint32_t tag = 1; tag <= 2; ++tag)
+                std::cout << "WS25_CHOICE tag=" << tag
+                          << " events=" << ws25_choice_events[tag]
+                          << " both_queues_empty=" << ws25_empty_choices[tag]
+                          << " first_queue_sum=" << ws25_first_queue_sum[tag]
+                          << " second_queue_sum=" << ws25_second_queue_sum[tag]
+                          << " background_queue_nonzero="
+                          << (tag == 2 ? ws25_background_queue_nonzero : 0) << std::endl;
+        }
         for (const auto &entry : classreserve_source_port_packets)
             std::cout << "WS25_PORT switch=" << std::get<0>(entry.first)
                       << " port=" << std::get<1>(entry.first)
@@ -996,6 +1011,14 @@ uint32_t SwitchNode::DoLbPacketStrategy(Ptr<const Packet> p, const CustomHeader 
     return chosen;
 }
 
+static bool Ws25DiagnosticEnabled() {
+    static const bool enabled = []() {
+        const char *value = std::getenv("WS25_DIAG");
+        return value && value[0] == '1' && value[1] == '\0';
+    }();
+    return enabled;
+}
+
 // WS-25 v1: long background flows keep one path at each switch.  Short MoE
 // packets can use two deterministic candidates, counting queued background
 // bytes twice.  This sees only the local egress queue; it cannot avoid the
@@ -1034,6 +1057,13 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
         if (second != first) {
             const uint64_t firstQueue = CalculateInterfaceLoad(first);
             const uint64_t secondQueue = CalculateInterfaceLoad(second);
+            if (Ws25DiagnosticEnabled()) {
+                const uint32_t tag = background ? 1 : 2;
+                ++ws25_choice_events[tag];
+                if (firstQueue == 0 && secondQueue == 0) ++ws25_empty_choices[tag];
+                ws25_first_queue_sum[tag] += firstQueue;
+                ws25_second_queue_sum[tag] += secondQueue;
+            }
             if (background) {
                 if (secondQueue < firstQueue) {
                     chosen = second;
@@ -1045,6 +1075,8 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
                 const auto b = guard_queue_stats.find(std::make_tuple(m_id, second, 1));
                 const uint64_t firstBackground = a == guard_queue_stats.end() ? 0 : a->second.current;
                 const uint64_t secondBackground = b == guard_queue_stats.end() ? 0 : b->second.current;
+                if (Ws25DiagnosticEnabled() && (firstBackground || secondBackground))
+                    ++ws25_background_queue_nonzero;
                 if (secondQueue + secondBackground < firstQueue + firstBackground) {
                     chosen = second;
                     ++classreserve_moe_diverted;
@@ -1403,13 +1435,13 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         if (!locallyGenerated) CheckAndSendPfc(inDev, qIndex);
     }
 
-    if (Ws13DiagnosticEnabled() && ch.l3Prot == 0x11) {
+    if ((Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled()) && ch.l3Prot == 0x11) {
         WorkloadTag tag;
         auto destination = Settings::hostIp2IdMap.find(ch.dip);
         auto source = Settings::hostIp2IdMap.find(ch.sip);
         if (p->PeekPacketTag(tag) && tag.GetValue() == 1 &&
             destination != Settings::hostIp2IdMap.end() &&
-            (Settings::lb_mode == 20 || destination->second == 856 ||
+            (Ws25DiagnosticEnabled() || Settings::lb_mode == 20 || destination->second == 856 ||
              destination->second == 576) &&
             source != Settings::hostIp2IdMap.end()) {
             Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[outDev]);
@@ -1510,7 +1542,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         }
     }
     RecordWs21PortEvent(ifIndex, 'D');
-    if (Ws13DiagnosticEnabled()) {
+    if (Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled()) {
         auto hit = ws13_inflight.find(std::make_pair(m_id, p->GetUid()));
         if (hit != ws13_inflight.end()) {
             const Ws13Packet &item = hit->second;

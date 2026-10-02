@@ -7,6 +7,7 @@
 
 #include <climits>
 #include <cstdlib>
+#include <map>
 
 #include "cn-header.h"
 #include "flow-stat-tag.h"
@@ -25,6 +26,19 @@
 #include "qbb-header.h"
 
 namespace ns3 {
+
+struct Ws25QpDiagnostic {
+    uint64_t rx_ooo_packets = 0, sack_feedback = 0, cnp_feedback = 0;
+    uint64_t repeated_sends = 0, timeout_recovery = 0;
+};
+static std::map<int32_t, Ws25QpDiagnostic> ws25_qp_diagnostics;
+static bool Ws25DiagnosticEnabled() {
+    static const bool enabled = []() {
+        const char *value = std::getenv("WS25_DIAG");
+        return value && value[0] == '1' && value[1] == '\0';
+    }();
+    return enabled;
+}
 
 static bool Ws13DiagnosticEnabled() {
     static const bool enabled = []() {
@@ -362,6 +376,8 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
     bool cnp_check = false;
     uint32_t expected_before = rxQp->ReceiverNextExpectedSeq;
     int x = ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
+    if (Ws25DiagnosticEnabled() && rxQp->m_flow_id >= 0 && ch.udp.seq > expected_before)
+        ++ws25_qp_diagnostics[rxQp->m_flow_id].rx_ooo_packets;
     if (x == 2 && !m_irn) {
         std::cout << "WS08_RX_NACK time_ns=" << Simulator::Now().GetTimeStep()
                   << " flow_id=" << rxQp->m_flow_id << " seq=" << ch.udp.seq
@@ -500,6 +516,12 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
                    (ch.l3Prot == 0xFC ? "ACK" : "NACK"));
             exit(1);
         }
+    }
+
+    if (Ws25DiagnosticEnabled()) {
+        Ws25QpDiagnostic &s = ws25_qp_diagnostics[qp->m_flow_id];
+        if (ch.l3Prot == 0xFD && ch.ack.irnNackSize) ++s.sack_feedback;
+        if (cnp) ++s.cnp_feedback;
     }
 
     uint32_t nic_idx = GetNicIdxOfQp(qp);
@@ -773,6 +795,17 @@ void RdmaHw::RecoverQueue(Ptr<RdmaQueuePair> qp) {
 
 void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
     NS_ASSERT(!m_qpCompleteCallback.IsNull());
+    if (Ws25DiagnosticEnabled()) {
+        const Ws25QpDiagnostic &s = ws25_qp_diagnostics[qp->m_flow_id];
+        std::cout << "WS25_QP flow_id=" << qp->m_flow_id
+                  << " tag=" << uint32_t(qp->m_workload_tag)
+                  << " rx_ooo_packets=" << s.rx_ooo_packets
+                  << " sack_feedback=" << s.sack_feedback
+                  << " cnp_feedback=" << s.cnp_feedback
+                  << " repeated_sends=" << s.repeated_sends
+                  << " timeout_recovery=" << s.timeout_recovery << std::endl;
+        ws25_qp_diagnostics.erase(qp->m_flow_id);
+    }
     if (qp->irn.m_enabled && m_nic[GetNicIdxOfQp(qp)].dev->IsQbbEnabled()) {
         std::cout << "WS23_IRN_PFC_QP_COMPLETE flow_id=" << qp->m_flow_id
                   << " size=" << qp->m_size << " snd_una=" << qp->snd_una
@@ -915,6 +948,8 @@ void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap)
         RdmaHw::nAllPkts += 1;
         if (ch.l3Prot == 0x11) {  // UDP
             const uint32_t payload_size = pkt->GetSize() - ch.GetSerializedSize();
+            if (Ws25DiagnosticEnabled() && ch.udp.seq < qp->m_ws13_maxSentSeq)
+                ++ws25_qp_diagnostics[qp->m_flow_id].repeated_sends;
             if (Ws13BackgroundQp(qp) && ch.udp.seq < qp->m_ws13_maxSentSeq)
                 Ws13LogQp("retransmit", qp);
             qp->m_ws13_maxSentSeq =
@@ -963,6 +998,7 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
     }
 
     if (Ws13BackgroundQp(qp)) Ws13LogQp("timeout", qp);
+    if (Ws25DiagnosticEnabled()) ++ws25_qp_diagnostics[qp->m_flow_id].timeout_recovery;
 
     std::cout << "WS08_TX_TIMEOUT time_ns=" << Simulator::Now().GetTimeStep()
               << " flow_id=" << qp->m_flow_id << " snd_una=" << qp->snd_una

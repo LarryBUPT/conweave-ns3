@@ -367,6 +367,8 @@ def execute(experiment_id):
         command.extend(['--flow-file', 'config/' + params['flow_file']])
     if params.get('ws13_diag'):
         command.extend(['--ws13-diag', '1'])
+    if params.get('ws25_diag'):
+        command.extend(['--ws25-diag', '1'])
     if params['lb'] == 'ws18':
         command.extend(['--ws18-admission', str(params['ws18_admission']),
                         '--ws18-path', str(params['ws18_path']),
@@ -573,6 +575,7 @@ def main():
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file')
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
@@ -659,6 +662,7 @@ def main():
                         'netload': args.netload, 'bw': args.bw, 'buffer': args.buffer,
                         'topo': args.topo, 'cdf': args.cdf,
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
+                        'ws25_diag': args.ws25_diag,
                         'ws18_admission': args.ws18_admission,
                         'ws18_path': args.ws18_path,
                         'ws21_identity': args.ws21_identity,

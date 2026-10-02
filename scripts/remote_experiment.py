@@ -212,6 +212,7 @@ def main():
     run_cmd.add_argument('--cdf', default='AliStorage2019')
     run_cmd.add_argument('--flow-file', help='existing tracked config/*.txt trace')
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -339,6 +340,8 @@ def main():
             command.extend(['--flow-file', args.flow_file])
         if args.ws13_diag:
             command.extend(['--ws13-diag', '1'])
+        if args.ws25_diag:
+            command.extend(['--ws25-diag', '1'])
         if args.factorial_pilot:
             command.append('--factorial-pilot')
         if args.factorial_drop_diag:
