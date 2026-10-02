@@ -46,4 +46,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-03 最新用户指令已解除上述暂停：WS-25 实验—分析按自动化流程继续，人工仅参与问询与方向纠偏；只在主对话实际切换 Luna High / Sol High 的边界等待模型生效，切换后自动继续。C2 十二格重新核验 12/12；seed01 六臂校准分析见[报告](../research/ws25-calibration-seed01-analysis.md)与[机器摘要](../research/evidence/ws25-calibration-seed01.json)。单需求的 ClassReserve MoE 批次 19.442 µs，五基线为 15.026–19.313 µs，不能当正式结论。新增校准 seed02–04 的 192 档六臂共 18 格已按[协议](../research/ws25-independent-calibration-v3-protocol.md)冻结，固定仿真源码 `04a5277e8ed464229ef88d28a5d810271ae378fb`、独立 ID/输入哈希和资源停止线；尚未远程执行。当前在远程执行前模型边界，主对话实际切 Luna High 后即运行，不需额外人工确认。详见 [Handoff 59](../handoffs/2026-10-03-59-ws25-calibration-analysis-and-v3-handoff.md)。
 
+2026-10-03 v3 校准运行终态：固定仿真 SHA `04a5277e8ed464229ef88d28a5d810271ae378fb` 的 seed02–04 × 六模式 **18/18** 终态格回传并由逐格 verifier 与整批 verifier 复核通过；18 个 ID 全部 SUCCEEDED、每格 16,576/16,576 完成、无失败。树 RSS 峰值最大 `4562.0625 MiB`，最低可用内存 `105.2149 GiB`、最低空闲盘 `5538.1300 GiB`；终态现场 load 0.07、active ns-3 PIDs/workers 均为空。逐格 FCT/raw/资源收据在本地忽略目录 `results/<ID>/`，批次收据 `results/ws25-calibration-v3-receipts.jsonl`。尚未做性能分析；当前停在终态数据分析模型边界，等待主对话实际切回 Sol High 后自动分析。详见 [Handoff 60](../handoffs/2026-10-03-60-ws25-calibration-v3-complete.md)。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建或最小 pilot 成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
