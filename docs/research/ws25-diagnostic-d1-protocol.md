@@ -32,3 +32,5 @@
 ## 2026-10-03 D1 终态核验
 
 固定源码 `b13369d3f086189b693a1c8d875cfe7e3171181e` 的四格均为 `SUCCEEDED`，逐格 16,576/16,576 完成，整批 `scripts/verify_ws25_d1.py` 返回 `verified=4`。ClassReserve 开/关 FCT SHA 均为 `367a14e9b5c98add96e5b111a50a2a8d2dc5224f8b02b28ca5692dcd47f780b4`；DRILL 开/关 FCT SHA 均为 `a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e`。观测关闭时没有 `WS25_QP`、`WS25_CHOICE` 或 `WS13_HOP` 行；打开时各模式均输出 16,576 条唯一逐 QP 记录，背景逐跳记录及 ClassReserve 选路汇总也齐全。全部资源收据通过停止线，四格最大树 RSS `4544.5391 MiB`、最低可用内存 `118.5589 GiB`、最低空闲盘 `5534.9279 GiB`；终态远端无在途仿真。原始结果位于本地忽略目录 `results/<ID>/`，远端各 ID 对应 `/home/fnl/lzy/results/<ID>/`。机器逐格摘要在 `scripts/verify_ws25_d1.py` 的运行输出与上述目录；机制解释仍待 Sol High 分析，不把 D1 当作效果样本。
+
+Sol High 分析见[诊断报告](ws25-d1-diagnostic-analysis.md)及[机器摘要](evidence/ws25-d1-diagnostic.json)。诊断显示 v1 的 MoE 逐包换路带来较多乱序反馈，背景流的乱序计数较低；报告建议使用 v1 唯一一次修正额度，改为有依据的 MoE flowlet 路径保持。D1 不作为正式效果证据。

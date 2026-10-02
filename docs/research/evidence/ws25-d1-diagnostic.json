@@ -1,0 +1,248 @@
+{
+  "cells": [
+    {
+      "background_hop_diagnostics": {
+        "bytes_across_hops": 0,
+        "flow_hop_rows": 0,
+        "mean_enqueue_queue_bytes_per_packet": 0,
+        "mean_enqueue_to_dequeue_wait_ns": 0,
+        "packets_across_hops": 0,
+        "queued_bytes_max": 0,
+        "queued_bytes_sum_across_packets": 0,
+        "unpaired_inflight_packets": null,
+        "wait_ns_max": 0,
+        "wait_ns_sum_across_packets": 0
+      },
+      "background_p99_us": 2118.3051,
+      "choice_rows": 0,
+      "classreserve_diagnostics": {
+        "choice_diagnostics_by_tag": {},
+        "route_counters": {
+          "background_new_flows": 884,
+          "background_packets": 7415876,
+          "background_queue_avoids": 41,
+          "background_reused": 7414992,
+          "moe_diverted": 93502,
+          "moe_packets": 711777,
+          "moe_two_choices": 243222,
+          "queue_violations": 0
+        }
+      },
+      "classreserve_queue_check": {
+        "current": 0,
+        "dequeued": 8940327244,
+        "enqueued": 8940327244,
+        "queued_drop": 0
+      },
+      "diag": 0,
+      "fct_sha256": "367a14e9b5c98add96e5b111a50a2a8d2dc5224f8b02b28ca5692dcd47f780b4",
+      "hop_rows": 0,
+      "id": "20261003-160000-ws25-d1-classreserve-off",
+      "mode": "classreserve",
+      "moe_batch_us": 19.442,
+      "qp_diagnostics_by_tag": {},
+      "qp_rows": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261003-160000-ws25-d1-classreserve-off",
+        "minimum_free_gib": 5537.070087432861,
+        "minimum_mem_available_gib": 118.56095123291016,
+        "peak_tree_rss_mib": 4544.5390625,
+        "samples": 51
+      }
+    },
+    {
+      "background_hop_diagnostics": {
+        "bytes_across_hops": 7771491520,
+        "flow_hop_rows": 884,
+        "mean_enqueue_queue_bytes_per_packet": 9148.290112725725,
+        "mean_enqueue_to_dequeue_wait_ns": 182.23068764903837,
+        "packets_across_hops": 7415876,
+        "queued_bytes_max": 344720,
+        "queued_bytes_sum_across_packets": 67842585088,
+        "unpaired_inflight_packets": 0,
+        "wait_ns_max": 6662,
+        "wait_ns_sum_across_packets": 1351400183
+      },
+      "background_p99_us": 2118.3051,
+      "choice_rows": 2,
+      "classreserve_diagnostics": {
+        "choice_diagnostics_by_tag": {
+          "1": {
+            "background_queue_nonzero": 0,
+            "both_queues_empty": 178,
+            "events": 300,
+            "first_queue_sum": 93272,
+            "second_queue_sum": 111088,
+            "tag": 1
+          },
+          "2": {
+            "background_queue_nonzero": 59728,
+            "both_queues_empty": 37472,
+            "events": 243222,
+            "first_queue_sum": 282730396,
+            "second_queue_sum": 283202164,
+            "tag": 2
+          }
+        },
+        "route_counters": {
+          "background_new_flows": 884,
+          "background_packets": 7415876,
+          "background_queue_avoids": 41,
+          "background_reused": 7414992,
+          "moe_diverted": 93502,
+          "moe_packets": 711777,
+          "moe_two_choices": 243222,
+          "queue_violations": 0
+        }
+      },
+      "classreserve_queue_check": {
+        "current": 0,
+        "dequeued": 8940327244,
+        "enqueued": 8940327244,
+        "queued_drop": 0
+      },
+      "diag": 1,
+      "fct_sha256": "367a14e9b5c98add96e5b111a50a2a8d2dc5224f8b02b28ca5692dcd47f780b4",
+      "hop_rows": 884,
+      "id": "20261003-160001-ws25-d1-classreserve-on",
+      "mode": "classreserve",
+      "moe_batch_us": 19.442,
+      "qp_diagnostics_by_tag": {
+        "1": {
+          "cnp_feedback": 2777,
+          "qp_count": 192,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0,
+          "unique_flow_ids": 192
+        },
+        "2": {
+          "cnp_feedback": 8370,
+          "qp_count": 16384,
+          "repeated_sends": 8023,
+          "rx_ooo_packets": 8324,
+          "sack_feedback": 8503,
+          "timeout_recovery": 0,
+          "unique_flow_ids": 16384
+        }
+      },
+      "qp_rows": 16576,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261003-160001-ws25-d1-classreserve-on",
+        "minimum_free_gib": 5536.356517791748,
+        "minimum_mem_available_gib": 118.575439453125,
+        "peak_tree_rss_mib": 4544.1484375,
+        "samples": 66
+      }
+    },
+    {
+      "background_hop_diagnostics": {
+        "bytes_across_hops": 0,
+        "flow_hop_rows": 0,
+        "mean_enqueue_queue_bytes_per_packet": 0,
+        "mean_enqueue_to_dequeue_wait_ns": 0,
+        "packets_across_hops": 0,
+        "queued_bytes_max": 0,
+        "queued_bytes_sum_across_packets": 0,
+        "unpaired_inflight_packets": null,
+        "wait_ns_max": 0,
+        "wait_ns_sum_across_packets": 0
+      },
+      "background_p99_us": 2239.15049,
+      "choice_rows": 0,
+      "classreserve_diagnostics": null,
+      "classreserve_queue_check": null,
+      "diag": 0,
+      "fct_sha256": "a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e",
+      "hop_rows": 0,
+      "id": "20261003-160002-ws25-d1-drill-off",
+      "mode": "drill",
+      "moe_batch_us": 15.026,
+      "qp_diagnostics_by_tag": {},
+      "qp_rows": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261003-160002-ws25-d1-drill-off",
+        "minimum_free_gib": 5535.644359588623,
+        "minimum_mem_available_gib": 118.55888366699219,
+        "peak_tree_rss_mib": 4544.5234375,
+        "samples": 57
+      }
+    },
+    {
+      "background_hop_diagnostics": {
+        "bytes_across_hops": 7855071616,
+        "flow_hop_rows": 16726,
+        "mean_enqueue_queue_bytes_per_packet": 7399.164581806888,
+        "mean_enqueue_to_dequeue_wait_ns": 147.41327744653285,
+        "packets_across_hops": 7495628,
+        "queued_bytes_max": 868852,
+        "queued_bytes_sum_across_packets": 55461385216,
+        "unpaired_inflight_packets": 0,
+        "wait_ns_max": 17498,
+        "wait_ns_sum_across_packets": 1104955090
+      },
+      "background_p99_us": 2239.15049,
+      "choice_rows": 0,
+      "classreserve_diagnostics": null,
+      "classreserve_queue_check": null,
+      "diag": 1,
+      "fct_sha256": "a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e",
+      "hop_rows": 16726,
+      "id": "20261003-160003-ws25-d1-drill-on",
+      "mode": "drill",
+      "moe_batch_us": 15.026,
+      "qp_diagnostics_by_tag": {
+        "1": {
+          "cnp_feedback": 11620,
+          "qp_count": 192,
+          "repeated_sends": 16782,
+          "rx_ooo_packets": 7667,
+          "sack_feedback": 14095,
+          "timeout_recovery": 0,
+          "unique_flow_ids": 192
+        },
+        "2": {
+          "cnp_feedback": 1679,
+          "qp_count": 16384,
+          "repeated_sends": 1761,
+          "rx_ooo_packets": 1675,
+          "sack_feedback": 1692,
+          "timeout_recovery": 0,
+          "unique_flow_ids": 16384
+        }
+      },
+      "qp_rows": 16576,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261003-160003-ws25-d1-drill-on",
+        "minimum_free_gib": 5534.927947998047,
+        "minimum_mem_available_gib": 118.56499481201172,
+        "peak_tree_rss_mib": 4544.39453125,
+        "samples": 59
+      }
+    }
+  ],
+  "counter_semantics": {
+    "background_hops": "background packet records aggregated by flow-hop; the same input bytes appear on multiple switches",
+    "cnp_feedback": "sender-side ACK/NACK messages carrying CNP flag; may overlap SACK feedback",
+    "repeated_sends": "transmitted UDP packets whose sequence starts below the highest previously sent end sequence; not a direct loss counter",
+    "rx_ooo_packets": "received UDP packets whose sequence starts above ReceiverNextExpectedSeq",
+    "sack_feedback": "sender-side ACK/NACK messages carrying nonzero IRN NACK size; not unique loss events",
+    "timeout_recovery": "HandleTimeout invocations that proceeded into recovery"
+  },
+  "demand_seed": 20262501,
+  "evidence_level": "single-demand diagnostic and non-perturbation check; not efficacy",
+  "interpretation_limits": [
+    "One diagnostic demand seed cannot establish a general performance effect.",
+    "Packet OoO, feedback messages, repeated sends, and timeout recovery are distinct counters.",
+    "Background hop totals count the same packet at multiple switches and are explanatory only.",
+    "D1 does not exercise or validate CONGA/LetFlow flowlet transitions or ConWeave reroute/VOQ branches."
+  ],
+  "source_sha": "b13369d3f086189b693a1c8d875cfe7e3171181e",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+}
