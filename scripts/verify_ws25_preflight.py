@@ -8,7 +8,7 @@ import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-COMMIT = "1d876a03629dcc0834e001d02e891957608a9f6c"
+COMMIT = "bb10309261b7c5be350fcaab75b4fdb8db95ddca"
 TOPO_SHA = "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
 PRE_TRACE_SHA = "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
 CAL192_SHA = "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
@@ -133,9 +133,9 @@ def main():
     parser.add_argument("--ids", nargs="+")
     args = parser.parse_args()
     if args.phase == "pre":
-        ids = ["20261002-22000%d-ws25-pre-%s" % (i, mode) for i, mode in enumerate(MODES)]
+        ids = ["20261002-22300%d-ws25-v2-pre-%s" % (i, mode) for i, mode in enumerate(MODES)]
     else:
-        ids = ["20261002-22100%d-ws25-cal01-%s" % (i, mode) for i, mode in enumerate(MODES)]
+        ids = ["20261002-22400%d-ws25-v2-cal01-%s" % (i, mode) for i, mode in enumerate(MODES)]
     selected = args.ids if args.ids else ids
     mode_by_id = dict(zip(ids, MODES))
     unknown = [experiment_id for experiment_id in selected if experiment_id not in mode_by_id]

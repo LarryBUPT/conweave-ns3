@@ -19,8 +19,8 @@ CONTROLLER = ROOT / "scripts" / "remote_experiment.py"
 COMMIT = verifier.COMMIT
 MODES = verifier.MODES
 MODE_CODES = verifier.MODE_CODE
-PLAN_PATH = ROOT / "results" / "ws25-preflight-plan.json"
-RECEIPTS = ROOT / "results" / "ws25-preflight-receipts.jsonl"
+PLAN_PATH = ROOT / "results" / "ws25-preflight-plan-v2.json"
+RECEIPTS = ROOT / "results" / "ws25-preflight-receipts-v2.jsonl"
 LOCK = threading.Lock()
 
 
@@ -64,12 +64,12 @@ def append_receipt(event, cell, **details):
 def plan():
     cells = []
     for i, mode in enumerate(MODES):
-        cells.append({"id": "20261002-22000%d-ws25-pre-%s" % (i, mode),
+        cells.append({"id": "20261002-22300%d-ws25-v2-pre-%s" % (i, mode),
                       "phase": "pre", "mode": mode,
                       "trace": "ws25_preflight_seed20262501.txt",
                       "trace_sha256": verifier.PRE_TRACE_SHA})
     for i, mode in enumerate(MODES):
-        cells.append({"id": "20261002-22100%d-ws25-cal01-%s" % (i, mode),
+        cells.append({"id": "20261002-22400%d-ws25-v2-cal01-%s" % (i, mode),
                       "phase": "pilot", "mode": mode,
                       "trace": "ws25_seed20262501_b192.txt",
                       "trace_sha256": verifier.CAL192_SHA})

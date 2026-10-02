@@ -50,3 +50,20 @@
 首次运行前现场核查无他人作业/未知 ns-3、系统与 SSH 健康、1 分钟负载 ≤20、可用内存 ≥32 GiB、可用盘 ≥100 GiB、worker 无在途格及锁/独立结果目录。先串行 build/运行 ECMP，再按实测采样逐级 1→2→4→8→12，编译 `-j2` 算 2 CPU 令牌、仿真按实测 1 令牌，先不超 18 个共享令牌；每升阶至少两格完成并核对吞吐/资源，19–20 令牌只在另外记录 pilot 后考虑。单格编译 >30 分钟、仿真 >4 小时、RSS >32 GiB、单格新增盘 >10 GiB、pilot 总 CPU >60 core-hour，或未知作业、负载 >20、内存/磁盘低于线、失败/不完整/哈希不一致时停止**新格**、保留失败 raw 与采样并安全降载。失败的正确性仍须定位修复、新 SHA/ID 重验，不因停止扩格而取消验收项。
 
 远程仿真后台静默，约半小时读取完成数/失败数/资源峰值简表；终态 raw 回传后使用实际 Sol High 逐 ID 审核。本对话在全部预飞行身份冻结后停在远程执行前，主对话实际切 Luna High 并授权启动；单靠文档写入模型名不算切换。
+
+## 5. 2026-10-02 预飞行失败与兼容修订
+
+初始预飞行固定在源码 `1d876a03629dcc0834e001d02e891957608a9f6c`（C1）。ECMP、DRILL、CONGA、LetFlow 的八流格均通过逐流完成和类别字节守恒核验；ConWeave 格 `20261002-220004-ws25-pre-conweave` 构建成功，但 `run.py` 在生成配置时以 `Unsupported ConWeave Parameter Setup` 退出。原因是 ConWeave 参数分支只识别拓扑名含 `leaf_spine` 或 `fat` 的旧拓扑，没有覆盖此次已冻结的 `topo_1280_400G_400G_OS1`；仿真未进入，远端 raw 目录没有流记录。该 ID 的失败 metadata、worker/simulation/build 日志及资源终态已取回并保留。ClassReserve 的 C1 correctness 格未启动；C1 下不启动任何 calibration 格。
+
+兼容修订仅把该导入的三阶段 Clos 拓扑在 `PFC=0, IRN=1` 时映射到已有 fat-tree IRN 参数（VOQ flush=16、default waiting=300、Tx expiry=1000）；不改变五个其他模式、队列逻辑或已冻结输入。代码提交 `bb10309261b7c5be350fcaab75b4fdb8db95ddca` 为 C2。因所有模式必须在同一源码下比较且原协议要求任何代码变化使用新 ID，C2 将重跑全部六个 correctness 格；C1 的四份结果作为旧版证据保留，不与 C2 合并。C1 IDs 不复用；下列新 ID 是 C2 唯一预飞行 ID：
+
+| 模式 | C2 八流 correctness ID | C2 seed-20262501 192 档 calibration ID |
+| --- | --- | --- |
+| ECMP `fecmp` | `20261002-223000-ws25-v2-pre-fecmp` | `20261002-224000-ws25-v2-cal01-fecmp` |
+| 原 DRILL `drill` | `20261002-223001-ws25-v2-pre-drill` | `20261002-224001-ws25-v2-cal01-drill` |
+| CONGA `conga` | `20261002-223002-ws25-v2-pre-conga` | `20261002-224002-ws25-v2-cal01-conga` |
+| LetFlow `letflow` | `20261002-223003-ws25-v2-pre-letflow` | `20261002-224003-ws25-v2-cal01-letflow` |
+| ConWeave `conweave` | `20261002-223004-ws25-v2-pre-conweave` | `20261002-224004-ws25-v2-cal01-conweave` |
+| ClassReserve `classreserve` | `20261002-223005-ws25-v2-pre-classreserve` | `20261002-224005-ws25-v2-cal01-classreserve` |
+
+Trace/topology、参数、完成率及资源停止线保持第 4 节不变。C2 correctness 六格全部核验通过后才可开始 C2 calibration；pilot 仍只作校准与资源证据，不是性能结论。若 C2 再遇正确性失败，保留新 ID 原始证据、停止后续格并按 WS-25 执行清单诊断修复。
