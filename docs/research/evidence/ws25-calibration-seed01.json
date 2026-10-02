@@ -1,0 +1,266 @@
+{
+  "cells": [
+    {
+      "background_batch_us": 2200.02,
+      "background_p99_fct_us": 2129.41845,
+      "classreserve_vs_baseline_bg_p99_change_pct": -0.5218960134397266,
+      "classreserve_vs_baseline_moe_change_pct": 7.4856258292790745,
+      "cnp": {
+        "ecn": 2981,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 2981
+      },
+      "diagnostics": {},
+      "fct_sha256": "f00b25083bd9ed8ce4938d0a6eb3e9afd1043a74399f25b2e12de41dccedeb41",
+      "id": "20261002-224000-ws25-v2-cal01-fecmp",
+      "mode": "fecmp",
+      "moe_batch_us": 18.088,
+      "moe_p99_fct_us": 15.754380000000001,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261002-224000-ws25-v2-cal01-fecmp",
+        "minimum_free_gib": 5554.4401931762695,
+        "minimum_mem_available_gib": 118.57073211669922,
+        "peak_tree_rss_mib": 4544.15625,
+        "samples": 57
+      },
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.1436646933499155,
+        "mean_active_tor_port_imbalance": 2.2876609398996055,
+        "peak_single_port_bucket_bytes": 529952,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1903508788
+      }
+    },
+    {
+      "background_batch_us": 2263.334,
+      "background_p99_fct_us": 2239.15049,
+      "classreserve_vs_baseline_bg_p99_change_pct": -5.396930243844389,
+      "classreserve_vs_baseline_moe_change_pct": 29.3890589644616,
+      "cnp": {
+        "ecn": 4320,
+        "ecn_ooo_overlap": 267,
+        "ooo": 10512,
+        "total": 14565
+      },
+      "diagnostics": {},
+      "fct_sha256": "a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e",
+      "id": "20261002-224001-ws25-v2-cal01-drill",
+      "mode": "drill",
+      "moe_batch_us": 15.026,
+      "moe_p99_fct_us": 14.56834,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261002-224001-ws25-v2-cal01-drill",
+        "minimum_free_gib": 5553.735076904297,
+        "minimum_mem_available_gib": 118.57426071166992,
+        "peak_tree_rss_mib": 4544.25390625,
+        "samples": 57
+      },
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.205731878335171,
+        "mean_active_tor_port_imbalance": 1.764565236818024,
+        "peak_single_port_bucket_bytes": 523284,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1923912060
+      }
+    },
+    {
+      "background_batch_us": 2260.088,
+      "background_p99_fct_us": 2078.9715300000003,
+      "classreserve_vs_baseline_bg_p99_change_pct": 1.8919725177765967,
+      "classreserve_vs_baseline_moe_change_pct": 0.6679438720033293,
+      "cnp": {
+        "ecn": 3276,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 3276
+      },
+      "diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "fct_sha256": "6ffa66da2213bb9529df2db1cedc6d88e6a75f89c54f47485ac9eed54e6435ee",
+      "id": "20261002-224002-ws25-v2-cal01-conga",
+      "mode": "conga",
+      "moe_batch_us": 19.313,
+      "moe_p99_fct_us": 16.434510000000003,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261002-224002-ws25-v2-cal01-conga",
+        "minimum_free_gib": 5552.325344085693,
+        "minimum_mem_available_gib": 114.13039016723633,
+        "peak_tree_rss_mib": 4562.078125,
+        "samples": 62
+      },
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.466175276287862,
+        "mean_active_tor_port_imbalance": 2.5898453571341085,
+        "peak_single_port_bucket_bytes": 528084,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1903508788
+      }
+    },
+    {
+      "background_batch_us": 2158.431,
+      "background_p99_fct_us": 2102.46058,
+      "classreserve_vs_baseline_bg_p99_change_pct": 0.7536179346582683,
+      "classreserve_vs_baseline_moe_change_pct": 9.916327453640905,
+      "cnp": {
+        "ecn": 2964,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 2964
+      },
+      "diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "fct_sha256": "5f4aa46e8b115476fc50b3484196db600f977ee34481b62297c1112a14ab7270",
+      "id": "20261002-224003-ws25-v2-cal01-letflow",
+      "mode": "letflow",
+      "moe_batch_us": 17.688,
+      "moe_p99_fct_us": 15.67417,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261002-224003-ws25-v2-cal01-letflow",
+        "minimum_free_gib": 5552.332347869873,
+        "minimum_mem_available_gib": 114.13056182861328,
+        "peak_tree_rss_mib": 4560.8828125,
+        "samples": 60
+      },
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.5327751312148745,
+        "mean_active_tor_port_imbalance": 2.2238396761748747,
+        "peak_single_port_bucket_bytes": 528160,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1903508788
+      }
+    },
+    {
+      "background_batch_us": 2165.271,
+      "background_p99_fct_us": 2006.1367300000002,
+      "classreserve_vs_baseline_bg_p99_change_pct": 5.5912624659436805,
+      "classreserve_vs_baseline_moe_change_pct": 1.7799183331588253,
+      "cnp": {
+        "ecn": 3203,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 3203
+      },
+      "diagnostics": {
+        "init_replies": 457559,
+        "notifies": 518,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "fct_sha256": "7f2b8066bac21beb6b5260061420fa8ef5efac21456221df0285f5a931b275a9",
+      "id": "20261002-224004-ws25-v2-cal01-conweave",
+      "mode": "conweave",
+      "moe_batch_us": 19.102,
+      "moe_p99_fct_us": 16.19817,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261002-224004-ws25-v2-cal01-conweave",
+        "minimum_free_gib": 5550.915382385254,
+        "minimum_mem_available_gib": 114.10924911499023,
+        "peak_tree_rss_mib": 4561.0703125,
+        "samples": 65
+      },
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.444252807010235,
+        "mean_active_tor_port_imbalance": 2.4717824632355176,
+        "peak_single_port_bucket_bytes": 531560,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1932825716
+      }
+    },
+    {
+      "background_batch_us": 2190.712,
+      "background_p99_fct_us": 2118.3051,
+      "cnp": {
+        "ecn": 3141,
+        "ecn_ooo_overlap": 53,
+        "ooo": 12809,
+        "total": 15897
+      },
+      "diagnostics": {
+        "classreserve": {
+          "background_new_flows": 884,
+          "background_packets": 7415876,
+          "background_queue_avoids": 41,
+          "background_reused": 7414992,
+          "moe_diverted": 93502,
+          "moe_packets": 711777,
+          "moe_two_choices": 243222,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 8940327244,
+          "enqueued": 8940327244,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "1": 1610688,
+          "2": 155479
+        }
+      },
+      "fct_sha256": "367a14e9b5c98add96e5b111a50a2a8d2dc5224f8b02b28ca5692dcd47f780b4",
+      "id": "20261002-224005-ws25-v2-cal01-classreserve",
+      "mode": "classreserve",
+      "moe_batch_us": 19.442,
+      "moe_p99_fct_us": 16.24334,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261002-224005-ws25-v2-cal01-classreserve",
+        "minimum_free_gib": 5550.923145294189,
+        "minimum_mem_available_gib": 114.11072158813477,
+        "peak_tree_rss_mib": 4544.2578125,
+        "samples": 61
+      },
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.381879659667878,
+        "mean_active_tor_port_imbalance": 2.2128879776039376,
+        "peak_single_port_bucket_bytes": 528320,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1911513792
+      }
+    }
+  ],
+  "demand_seed": 20262501,
+  "evidence_level": "single independent demand seed calibration; not formal efficacy",
+  "source_sha": "bb10309261b7c5be350fcaab75b4fdb8db95ddca",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+}
