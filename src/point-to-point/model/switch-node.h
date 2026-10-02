@@ -7,6 +7,7 @@
 #include <unordered_set>
 #include <tuple>
 #include <cstdio>
+#include <map>
 
 #include "qbb-net-device.h"
 #include "switch-mmu.h"
@@ -55,6 +56,8 @@ class SwitchNode : public Node {
                               const std::vector<int> &nexthops);
     std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t>
         m_classReserveBackgroundPort;
+    std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t>
+        m_classReserveMoePort;
     std::map<uint32_t, uint32_t> m_packetRoundRobinNext;  // destination IP -> next index
     std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t> m_ws18FlowPort;
     struct Ws21PathObservation {

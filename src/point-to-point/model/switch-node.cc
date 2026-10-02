@@ -45,6 +45,8 @@ static uint64_t guard_activations = 0, guard_exits = 0;
 static uint64_t guard_queue_violations = 0;
 static uint64_t classreserve_moe_packets = 0, classreserve_background_packets = 0;
 static uint64_t classreserve_moe_two_choices = 0, classreserve_moe_diverted = 0;
+static uint64_t classreserve_moe_flow_new = 0, classreserve_moe_flow_reused = 0;
+static uint64_t classreserve_fallback_packets = 0;
 static uint64_t classreserve_background_new_flows = 0, classreserve_background_reused = 0;
 static uint64_t classreserve_background_queue_avoids = 0;
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t>
@@ -818,6 +820,9 @@ void SwitchNode::PrintWorkloadTagCounts() {
                   << " background_packets=" << classreserve_background_packets
                   << " moe_two_choices=" << classreserve_moe_two_choices
                   << " moe_diverted=" << classreserve_moe_diverted
+                  << " moe_flow_new=" << classreserve_moe_flow_new
+                  << " moe_flow_reused=" << classreserve_moe_flow_reused
+                  << " fallback_packets=" << classreserve_fallback_packets
                   << " background_new_flows=" << classreserve_background_new_flows
                   << " background_reused=" << classreserve_background_reused
                   << " background_queue_avoids=" << classreserve_background_queue_avoids
@@ -1020,16 +1025,19 @@ static bool Ws25DiagnosticEnabled() {
     return enabled;
 }
 
-// WS-25 v1: long background flows keep one path at each switch.  Short MoE
-// packets can use two deterministic candidates, counting queued background
-// bytes twice.  This sees only the local egress queue; it cannot avoid the
-// unique destination-host port or infer downstream congestion.
+// WS-25 v1 corrected candidate: long background flows and short MoE flows each
+// keep one path at each switch.  A new MoE flow uses two deterministic
+// candidates, counting queued background bytes twice.  This sees only the
+// local egress queue; it cannot avoid the unique destination-host port or infer
+// downstream congestion.
 uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &ch,
                                       const std::vector<int> &nexthops) {
     WorkloadTag label;
     if (ch.l3Prot != 0x11 || !p->PeekPacketTag(label) ||
-        (label.GetValue() != 1 && label.GetValue() != 2))
+        (label.GetValue() != 1 && label.GetValue() != 2)) {
+        ++classreserve_fallback_packets;
         return DoLbFlowECMP(p, ch, nexthops);
+    }
 
     const uint32_t flowKey[3] = {ch.sip, ch.dip,
         uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16)};
@@ -1050,6 +1058,14 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
         }
     } else {
         ++classreserve_moe_packets;
+        auto it = m_classReserveMoePort.find(flow);
+        if (it != m_classReserveMoePort.end()) {
+            ++classreserve_moe_flow_reused;
+            if (m_isToR && m_isToR_hostIP.count(ch.sip))
+                ++classreserve_source_port_packets[std::make_tuple(m_id, it->second, 2U)];
+            return it->second;
+        }
+        ++classreserve_moe_flow_new;
     }
     uint32_t chosen = first;
     if (nexthops.size() > 1) {
@@ -1088,6 +1104,8 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
     if (background) {
         m_classReserveBackgroundPort[flow] = chosen;
         ++classreserve_background_new_flows;
+    } else {
+        m_classReserveMoePort[flow] = chosen;
     }
     if (m_isToR && m_isToR_hostIP.count(ch.sip))
         ++classreserve_source_port_packets[std::make_tuple(m_id, chosen,
