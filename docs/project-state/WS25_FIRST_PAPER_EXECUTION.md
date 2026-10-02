@@ -44,4 +44,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-03 calibration 完成并按用户要求暂停：C2 六格 correctness 与六格 192 档 calibration 全部通过；correctness 为 8/8，pilot 为 16,576/16,576，类别字节守恒、ClassReserve `queue_violations=0`、metadata/raw/config.log/resource 收据齐全。pilot 资源峰值 RSS `4562.08 MiB`、最低可用内存 `114.109 GiB`、最低可用盘 `5550.915 GiB`；服务器无在途仿真。已进入分析阶段，暂不运行分析器、冻结正式判据或启动最终矩阵。详见 [Handoff 58](../handoffs/2026-10-03-58-ws25-first-paper-analysis-pause.md)。
 
+2026-10-03 最新用户指令已解除上述暂停：WS-25 实验—分析按自动化流程继续，人工仅参与问询与方向纠偏；只在主对话实际切换 Luna High / Sol High 的边界等待模型生效，切换后自动继续。C2 十二格重新核验 12/12；seed01 六臂校准分析见[报告](../research/ws25-calibration-seed01-analysis.md)与[机器摘要](../research/evidence/ws25-calibration-seed01.json)。单需求的 ClassReserve MoE 批次 19.442 µs，五基线为 15.026–19.313 µs，不能当正式结论。新增校准 seed02–04 的 192 档六臂共 18 格已按[协议](../research/ws25-independent-calibration-v3-protocol.md)冻结，固定仿真源码 `04a5277e8ed464229ef88d28a5d810271ae378fb`、独立 ID/输入哈希和资源停止线；尚未远程执行。当前在远程执行前模型边界，主对话实际切 Luna High 后即运行，不需额外人工确认。详见 [Handoff 59](../handoffs/2026-10-03-59-ws25-calibration-analysis-and-v3-handoff.md)。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建或最小 pilot 成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
