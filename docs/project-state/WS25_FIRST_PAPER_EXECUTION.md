@@ -48,4 +48,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-03 v3 校准运行终态：固定仿真 SHA `04a5277e8ed464229ef88d28a5d810271ae378fb` 的 seed02–04 × 六模式 **18/18** 终态格回传并由逐格 verifier 与整批 verifier 复核通过；18 个 ID 全部 SUCCEEDED、每格 16,576/16,576 完成、无失败。树 RSS 峰值最大 `4562.0625 MiB`，最低可用内存 `105.2149 GiB`、最低空闲盘 `5538.1300 GiB`；终态现场 load 0.07、active ns-3 PIDs/workers 均为空。逐格 FCT/raw/资源收据在本地忽略目录 `results/<ID>/`，批次收据 `results/ws25-calibration-v3-receipts.jsonl`。尚未做性能分析；当前停在终态数据分析模型边界，等待主对话实际切回 Sol High 后自动分析。详见 [Handoff 60](../handoffs/2026-10-03-60-ws25-calibration-v3-complete.md)。
 
+2026-10-03 四独立需求分析：C2 seed01 六格和 C3 seed02–04 十八格共 24/24 从 raw 重新核验通过，每格 16,576/16,576 完成。ClassReserve v1 的 MoE 批次相对 ECMP、DRILL、LetFlow、ConWeave 均为 0/4 更快，相对 CONGA 为 1/4；五基线的配对变化中位数分别为 +6.289%、+28.501%、+10.549%、+7.016%、+2.547%（正值表示更慢）。背景 P99 相对 DRILL 4/4 更好，其他基线不稳定。详见[分析报告](../research/ws25-four-seed-calibration-analysis.md)及[机器证据](../research/evidence/ws25-four-seed-calibration.json)。v1 当前选路规则不进入正式效果矩阵；这只是 pilot 筛选，不是正式 NO-GO，也不取消 WS-25 的单类/混合/回退及动态分支正确性、观测、其他档位约束、最终验证和成稿验收。下一步先补默认关闭的非扰动诊断并做同输入开/关指纹核对，再按候选版本台账决定 v1 一次修正或 v2。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建或最小 pilot 成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。

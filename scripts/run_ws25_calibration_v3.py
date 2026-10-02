@@ -81,6 +81,10 @@ def verify(cell):
             meta["input_flow_sha256"] == cell["trace_sha256"] and
             meta["topology_sha256"] == TOPO_SHA and
             meta["parameters"]["flow_file"] == cell["trace"] and
+            meta["parameters"]["lb"] == cell["mode"] and
+            meta["parameters"]["topo"] == "topo_1280_400G_400G_OS1" and
+            meta["parameters"]["bw"] == 400 and meta["parameters"]["buffer"] == 9 and
+            meta["parameters"]["simul_time"] == "0.01" and
             meta["parameters"]["pfc"] == 0 and meta["parameters"]["irn"] == 1):
         raise RuntimeError("Metadata mismatch: " + experiment_id)
     if sha(folder / "config" / "traffic_trace.txt") != cell["trace_sha256"]:
