@@ -1,33 +1,29 @@
-# WS-23/24 必做验证执行清单
+# WS-23/24 最终验证清单
 
-2026-09-30 用户纠正提前闭环。两个对话恢复执行，必须持续实验、修改、验证，完成全部预设任务后才能闭环。负结果必须经相应预设验证支持；不能通过跳过验证获得 no-go 结论。
+更新：2026-10-02。本文件汇总两个独立实验分支的最终验收。2026-09-30 的 build/单测与静态审计阶段曾被提前视为任务闭环；该阶段性判断已被后续端到端和完整矩阵数据取代，详见 [Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)。
 
-## WS-23：先完成传输恢复正确性
+## WS-23：传输恢复与隔离探索
 
-执行对话：`01a0f15f-58c7-7532-84bd-9acaaaa14525`。依据 [恢复契约](../research/ws23-irn-pfc-recovery-contract.md)。已过门槛：修复 SHA `12dea54d…` 的 optimized build 与 point-to-point 单测。
+来源任务 `01a0f15f-58c7-7532-84bd-9acaaaa14525`，分支 `feature/ws23-validation-execution@e3919171e5d00711f13c9f5465209accac201766`。原始数据在该 checkout 的 `results/<实验ID>/` 与远端对应 ID 下；逐格 ID、源码 SHA 和判据以该分支[结果报告](https://github.com/LarryBUPT/conweave-ns3/blob/e3919171e5d00711f13c9f5465209accac201766/docs/research/ws23-isolation-matrix-r3-report.md)、[完整执行清单](https://github.com/LarryBUPT/conweave-ns3/blob/e3919171e5d00711f13c9f5465209accac201766/docs/project-state/WS23_WS24_VALIDATION_PLAN.md)为准。
 
-- [x] 本地冻结两个正确性格的协议、源码 SHA、输入内容哈希、seed、预留 ID、资源与停止条件；已完善真实无损 pause/resume 输入/注入和验收器。见 [两格预飞行协议](../research/ws23-two-cell-preflight.md)。**该项仅代表本地准备，新的源码尚未远程构建或仿真。**
-- [ ] 固定旧 16×1 MiB 反例，验证 16/16、两类 8/8、唯一 QP、序号/字节守恒、实际超时恢复、源 PG 暂停期无恢复及延期事件有效。
-- [ ] 真实无损 pause/resume 格，验证暂停/恢复动态覆盖、全流完成、无数据/ACK 丢失、每 QP 发送 payload=size、无误重传和暂停期恢复。
-- [ ] 任一失败时保留 raw，定位和修复，重新固定源码并运行独立 ID；全部终态 raw 回传后实际切回 Sol High，核验两格与预设验收项。
-- [ ] 原拥塞隔离目标仍留在清单：审计并形成可证伪的跨类阻塞验证条件，确定适配的最小正确性/因果实验；性能比较必须有机制和因果前提。对无法建立的前提记录具体证据与缺口，不能用性能门槛取消上面的修复验证或自行宣布原目标完成。
-- [ ] 源码、实验、结果报告和自然语言结论逐项一致；原始目标如需变更，提交用户明确决定。
+- [x] 旧 16×1 MiB 丢包压力反例、无损 pause/resume 与动态延期 control/probe 均有端到端正确性 raw；失败尝试保留，新 SHA/ID 重验，最终 16/16 及字节/序号守恒通过。
+- [x] 跨类共出口干扰及观测不扰动前提以独立格验证；正式比较前冻结相同输入、拓扑、算法臂、资源和停止条件。
+- [x] 固定矩阵 SHA `3db2685a3540895bf49e25302bd00465bc0921e2` 的 18/18 有效格、流级 FCT 与资源收据已从 raw 重算。集成阶段再次运行 `verify_ws23_isolation_pilot.py --revision 3` 返回 18 格及 `exploratory_positive=false`。
+- [x] 事前正向条件未通过：seed 2301/2302 的类别项没有改变选路；2303 的背景改善伴随最慢竞争流受损。结论为**隔离效果 NO-GO**，限于小拓扑、三组同家族合成需求；不宣称生产隔离收益或统计确认。
 
-## WS-24：补齐模型、输入与多网卡验证
+**状态：COMPLETE FOR PRESET NS-3 SYNTHETIC CORRECTNESS AND ISOLATION EXPLORATION; EFFICACY NO-GO。**
 
-执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据 [表示能力审计](../research/ws24-multirail-representability-audit.md)。已过门槛：四分量拓扑与输入结构正反例审计；未实现 simulator 多 NIC。
+## WS-24：多 NIC、multi-rail 与放置
 
-- [ ] 追查导入拓扑/生成器来源，明确真实 host/NIC/job 映射可获得程度；不能从相邻节点号推断物理共享。
-- [ ] 建立明确标注为合成的、可复现的受控 host/NIC/rail/job/rank/流映射，用于工程正确性与受控机制研究；真实部署主张另需真实来源。合成建模必须说明假设、资源共享和适用范围，参考已有成熟模型，不伪称真实资产。
-- [ ] 实现并验证一个物理主机模型对应多 NIC、每 NIC 独立 IP、显式双向 QP/ACK/CNP 绑定及组件内可达；保留旧格式和 baseline 回归。先最小拓扑，后目标拓扑。
-- [ ] 本地结构及构建/单测通过后，冻结最小多 NIC 端到端正确性格，核对 host/NIC/job/flow 身份、数目/字节/完成守恒和返回路径；失败则修复并独立 ID 重验。
-- [ ] 按原多 rail/placement 目标制定并执行必要受控对照：固定逻辑需求与总字节，对照单/多 rail 与固定/可变放置；先小样再决定正式验证。性能门槛未满足时继续处理前置缺口，禁止以静态审计代替机制验证。任何放弃或范围缩减须用户明确决定。
-- [ ] 终态 raw、最终源码及效果结论一致，完成全部预设验收项后再交接闭环。
+来源任务 `01a0f1da-f1e2-7870-9361-24b4d626fd76`，分支 `feature/ws24-multinic-validation@11a40fd5f9ba5c2811ecc8172f7d30dddda223ba`。用户明确限定仅 ns-3 合成模拟；无真实主机/NIC/job 数据的验收要求。逐格协议、ID、SHA、raw 与限制以该分支[结果报告](https://github.com/LarryBUPT/conweave-ns3/blob/11a40fd5f9ba5c2811ecc8172f7d30dddda223ba/docs/research/ws24-independent-synthetic-effects-report.md)和[机器摘要](https://github.com/LarryBUPT/conweave-ns3/blob/11a40fd5f9ba5c2811ecc8172f7d30dddda223ba/docs/research/evidence/ws24-independent-synthetic-effects-summary.json)为准。
 
-## 执行协调与 WS-25
+- [x] 合成 host/NIC/rail/job/rank 身份模型、最小正例与跨 rail 拒错、旧五/六列四 baseline 回归、320-host 目标拓扑及 CNP 动态正确性完成；原 A/B/C/D 14 格全数回传验收，同 SHA point-to-point 单测 5 PASS。
+- [x] 原单 seed 四臂只作正确性与描述性 pilot，不并入独立 job 效果检验。首版 `j01-fs` 虽有 30/30 正确性 raw，却缺资源收据，保留并排除；修复 ID `j01-fs-r2` 通过。
+- [x] 正式源码 SHA `3b992eed218f65b4f8026eddb5170a7694e17b10`、manifest SHA-256 `e2d19ce3d7424f556bebcd74f011310538cf89c55bc2937c985e922af2b1c536`。12 个独立生成 key × 四臂 48/48 格从 raw 验收：每格 30/30，合计 1,440 格内流记录；1,056 个远端/本地文件 SHA-256 相同，资源收据有效。
+- [x] 集成阶段再次运行 `verify_ws24_independent_matrix.verify_matrix`，48 格/12 job 的结果与保存的机器摘要完全相同。12/12 job 的主效应为负，中位配对差 −19.667%，精确双侧符号检验 `p=0.00048828125`；`j02` 极端、`j11` 微小、`j09` 放置差异均保留。结果只针对固定合成需求生成机制、拓扑和 ns-3 seed，不能推断真实网卡或生产作业收益。
 
-WS-23 先占用共享个人 fork 进行实现/冻结；WS-24 同期只做只读来源调查与准备，避免两个对话切换同一工作树或修改同一文件。WS-23 释放共享工作树后，由监督对话恢复 WS-24 的实现执行；需要并行修改时先配置独立 checkout 并明确各自路径。
+**状态：COMPLETE FOR PRESET NS-3 SYNTHETIC MULTI-RAIL × PLACEMENT VALIDATION。**
 
-每次仿真前先冻结协议与收据并停在模型切换边界，监督对话实际切至 Luna High，再执行后台静默实验，约半小时精简监督；终态 raw 回传后实际切回 Sol High 分析和必要修正。不得用文字宣称模型切换。
+## 项目边界
 
-WS-25 负责证据总账、必要主张和论文说明，必须跟踪本表完成状态及具体执行对话；它不能替代实验验收，也不能默默把必做验证变成可选事项。先前 Handoff 45 的闭环与归档决定已撤销；历史工程证据仍保留。
+WS-23 的隔离探索 NO-GO 与 WS-24 的合成多 rail 统计结果都不能直接充当开题报告所需的两项包流混合新机制论文正向结论。WS-10/11/12 历史双侧 NO-GO 维持。下一阶段以开题报告的包流混合问题为背景、WS-11/12 既有流量分布与档位为主，仅远程 ns-3；用户允许同分布新独立 seed，不新增流量类型或档位。两课题主要关注负载均衡，乱序代价为次，暂拟类别感知选路与有成本、有时效的下游状态反馈选路。下一版机制最多三个候选版本且每版至多一次诊断修正，均失败即停并如实复盘。双侧效果门槛仍按 Grill-me 问答确认；未确认前不启动新研究矩阵。
