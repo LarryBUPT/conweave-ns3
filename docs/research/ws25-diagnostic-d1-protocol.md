@@ -1,6 +1,6 @@
 # WS-25 D1：默认关闭观测的同输入指纹核验
 
-状态：2026-10-03，远程运行前冻结。D1 是正确性与非扰动诊断，不是新候选或正式效果样本。仿真源码固定为 `feature/ws25-first-paper@52d5d0be409a6a4601f782f97a40f3c3f5014ccc`；相对 C3 只加默认关闭的 `WS25_DIAG` 观测、CLI/worker 参数通路，不调整选路、传输、输入或指标定义。D1 先核实观测开关的 FCT 指纹一致，再以新 raw 解释四 seed pilot 的线索。D1 结果不得进入最终验证池。
+状态：2026-10-03，编译修复后重新冻结，尚未启动仿真。D1 是正确性与非扰动诊断，不是新候选或正式效果样本。仿真源码固定为 `feature/ws25-first-paper@b13369d3f086189b693a1c8d875cfe7e3171181e`；相对 C3 只加默认关闭的 `WS25_DIAG` 观测、CLI/worker 参数通路，不调整选路、传输、输入或指标定义。D1 先核实观测开关的 FCT 指纹一致，再以新 raw 解释四 seed pilot 的线索。D1 结果不得进入最终验证池。
 
 ## 固定输入、臂和 ID
 
@@ -8,10 +8,10 @@
 
 | 模式 | 观测 | 实验 ID |
 | --- | --- | --- |
-| ClassReserve | 关 | `20261003-150000-ws25-d1-classreserve-off` |
-| ClassReserve | 开 | `20261003-150001-ws25-d1-classreserve-on` |
-| DRILL | 关 | `20261003-150002-ws25-d1-drill-off` |
-| DRILL | 开 | `20261003-150003-ws25-d1-drill-on` |
+| ClassReserve | 关 | `20261003-160000-ws25-d1-classreserve-off` |
+| ClassReserve | 开 | `20261003-160001-ws25-d1-classreserve-on` |
+| DRILL | 关 | `20261003-160002-ws25-d1-drill-off` |
+| DRILL | 开 | `20261003-160003-ws25-d1-drill-on` |
 
 每格使用固定 SHA 的独立 optimized 构建、源码和结果目录；开格前检查 ID 不存在。先串行跑 ClassReserve 开关，确认指纹和资源，再串行跑 DRILL 开关。开格时 `--ws25-diag 0/1` 显式记录在 metadata；其余参数必须逐字段相等。不得覆盖旧 C2/C3 的 raw。
 
@@ -26,3 +26,5 @@
 远端预检：无未知作业或 ns-3、worker 无在途、1 分钟 load ≤20、可用内存 ≥32 GiB、可用盘 ≥100 GiB。D1 初始并发 cap=1；若日志/资源不稳，停止新格。单格编译 >30 分钟、仿真 >4 小时、树 RSS >32 GiB、单格新增磁盘 >10 GiB、资源门槛下降、哈希或完成率错误时停止启动新格，保留现场和 raw。远程仿真后台静默，约半小时汇总完成数、失败数和资源峰值；终态回传后逐 ID 分析。
 
 本协议冻结后停在远程仿真模型边界：由主对话实际切至 GPT-6 Luna High 后自动运行，无需额外人工确认；终态回传再实际切回 GPT-6 Sol High 分析。D1 仅提供一次修订 v1 或登记 v2 的依据，不能替代单类/混合/回退、动态分支、0/64/128 约束、独立最终验证及成稿。
+
+首次冻结的 `52d5d0be409a6a4601f782f97a40f3c3f5014ccc` 在 `20261003-150000-ws25-d1-classreserve-off` 编译失败，原因是 `Ws25DiagnosticEnabled` 定义位于报告函数之后却未前置声明。该 ID 为 `BUILD_FAILED`，无仿真 raw；metadata、构建日志和失败收据保存在 `results/20261003-150000-ws25-d1-classreserve-off/`。旧表其余三个 ID 未构建/未启动。修复提交仅加入前置声明，所有旧 ID 作废且不复用，新四格以本文件表格为准。
