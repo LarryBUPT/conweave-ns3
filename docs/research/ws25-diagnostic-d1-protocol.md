@@ -1,6 +1,6 @@
 # WS-25 D1：默认关闭观测的同输入指纹核验
 
-状态：2026-10-03，编译修复后重新冻结，尚未启动仿真。D1 是正确性与非扰动诊断，不是新候选或正式效果样本。仿真源码固定为 `feature/ws25-first-paper@b13369d3f086189b693a1c8d875cfe7e3171181e`；相对 C3 只加默认关闭的 `WS25_DIAG` 观测、CLI/worker 参数通路，不调整选路、传输、输入或指标定义。D1 先核实观测开关的 FCT 指纹一致，再以新 raw 解释四 seed pilot 的线索。D1 结果不得进入最终验证池。
+状态：2026-10-03，四格仿真终态且 raw/资源验收通过，等待 Sol High 结果分析。D1 是正确性与非扰动诊断，不是新候选或正式效果样本。仿真源码固定为 `feature/ws25-first-paper@b13369d3f086189b693a1c8d875cfe7e3171181e`；相对 C3 只加默认关闭的 `WS25_DIAG` 观测、CLI/worker 参数通路，不调整选路、传输、输入或指标定义。D1 先核实观测开关的 FCT 指纹一致，再以新 raw 解释四 seed pilot 的线索。D1 结果不得进入最终验证池。
 
 ## 固定输入、臂和 ID
 
@@ -28,3 +28,7 @@
 本协议冻结后停在远程仿真模型边界：由主对话实际切至 GPT-6 Luna High 后自动运行，无需额外人工确认；终态回传再实际切回 GPT-6 Sol High 分析。D1 仅提供一次修订 v1 或登记 v2 的依据，不能替代单类/混合/回退、动态分支、0/64/128 约束、独立最终验证及成稿。
 
 首次冻结的 `52d5d0be409a6a4601f782f97a40f3c3f5014ccc` 在 `20261003-150000-ws25-d1-classreserve-off` 编译失败，原因是 `Ws25DiagnosticEnabled` 定义位于报告函数之后却未前置声明。该 ID 为 `BUILD_FAILED`，无仿真 raw；metadata、构建日志和失败收据保存在 `results/20261003-150000-ws25-d1-classreserve-off/`。旧表其余三个 ID 未构建/未启动。修复提交仅加入前置声明，所有旧 ID 作废且不复用，新四格以本文件表格为准。
+
+## 2026-10-03 D1 终态核验
+
+固定源码 `b13369d3f086189b693a1c8d875cfe7e3171181e` 的四格均为 `SUCCEEDED`，逐格 16,576/16,576 完成，整批 `scripts/verify_ws25_d1.py` 返回 `verified=4`。ClassReserve 开/关 FCT SHA 均为 `367a14e9b5c98add96e5b111a50a2a8d2dc5224f8b02b28ca5692dcd47f780b4`；DRILL 开/关 FCT SHA 均为 `a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e`。观测关闭时没有 `WS25_QP`、`WS25_CHOICE` 或 `WS13_HOP` 行；打开时各模式均输出 16,576 条唯一逐 QP 记录，背景逐跳记录及 ClassReserve 选路汇总也齐全。全部资源收据通过停止线，四格最大树 RSS `4544.5391 MiB`、最低可用内存 `118.5589 GiB`、最低空闲盘 `5534.9279 GiB`；终态远端无在途仿真。原始结果位于本地忽略目录 `results/<ID>/`，远端各 ID 对应 `/home/fnl/lzy/results/<ID>/`。机器逐格摘要在 `scripts/verify_ws25_d1.py` 的运行输出与上述目录；机制解释仍待 Sol High 分析，不把 D1 当作效果样本。
