@@ -437,7 +437,7 @@ bool QbbNetDevice::Send(Ptr<Packet> packet, const Address &dest, uint16_t protoc
 bool QbbNetDevice::SwitchSend(uint32_t qIndex, Ptr<Packet> packet, CustomHeader &ch) {
     m_macTxTrace(packet);
     bool accepted = false;
-    if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) {
+    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21) {
         accepted = m_queue->Enqueue(packet, qIndex);
         if (accepted)
             m_node->GetObject<SwitchNode>()->SwitchNotifyEnqueue(m_ifIndex, packet);
@@ -559,7 +559,7 @@ void QbbNetDevice::TakeDown() {
         while (1) {
             Ptr<Packet> p = m_queue->DequeueRR(m_paused);
             if (p == 0) break;
-            if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
+            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21)
                 m_node->GetObject<SwitchNode>()->SwitchNotifyQueueDrop(m_ifIndex, m_queue->GetLastQueue(), p, true);
             if (Settings::lb_mode == 20)
                 m_node->GetObject<SwitchNode>()->RecordWs21PortEvent(m_ifIndex, 'X');

@@ -43,6 +43,12 @@ static uint64_t guard_packets = 0, guard_two_candidates = 0;
 static uint64_t guard_scored = 0, guard_diverted = 0;
 static uint64_t guard_activations = 0, guard_exits = 0;
 static uint64_t guard_queue_violations = 0;
+static uint64_t classreserve_moe_packets = 0, classreserve_background_packets = 0;
+static uint64_t classreserve_moe_two_choices = 0, classreserve_moe_diverted = 0;
+static uint64_t classreserve_background_new_flows = 0, classreserve_background_reused = 0;
+static uint64_t classreserve_background_queue_avoids = 0;
+static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t>
+    classreserve_source_port_packets;
 static bool ws18_path_enabled = false;
 static bool ws21_identity_enabled = false;
 static bool ws21_feedback_enabled = false;
@@ -791,6 +797,34 @@ void SwitchNode::PrintWorkloadTagCounts() {
         std::cout << "WS09_QUEUE_CHECK violations=" << guard_queue_violations << std::endl;
         NS_ASSERT_MSG(guard_queue_violations == 0, "GuardHash queue counters do not conserve bytes");
     }
+    if (Settings::lb_mode == 21) {
+        uint64_t enqueued = 0, dequeued = 0, queuedDropped = 0, current = 0;
+        for (const auto &entry : guard_queue_stats) {
+            const GuardQueueStat &s = entry.second;
+            enqueued += s.enqueued;
+            dequeued += s.dequeued;
+            queuedDropped += s.queuedDropped;
+            current += s.current;
+            if (s.enqueued != s.dequeued + s.queuedDropped + s.current)
+                ++guard_queue_violations;
+        }
+        std::cout << "WS25_CLASSRESERVE moe_packets=" << classreserve_moe_packets
+                  << " background_packets=" << classreserve_background_packets
+                  << " moe_two_choices=" << classreserve_moe_two_choices
+                  << " moe_diverted=" << classreserve_moe_diverted
+                  << " background_new_flows=" << classreserve_background_new_flows
+                  << " background_reused=" << classreserve_background_reused
+                  << " background_queue_avoids=" << classreserve_background_queue_avoids
+                  << " queue_violations=" << guard_queue_violations << std::endl;
+        std::cout << "WS25_QUEUE enqueued=" << enqueued << " dequeued=" << dequeued
+                  << " queued_drop=" << queuedDropped << " current=" << current << std::endl;
+        for (const auto &entry : classreserve_source_port_packets)
+            std::cout << "WS25_PORT switch=" << std::get<0>(entry.first)
+                      << " port=" << std::get<1>(entry.first)
+                      << " tag=" << std::get<2>(entry.first)
+                      << " packets=" << entry.second << std::endl;
+        NS_ASSERT_MSG(guard_queue_violations == 0, "ClassReserve queue counters do not conserve bytes");
+    }
 }
 
 TypeId SwitchNode::GetTypeId(void) {
@@ -959,6 +993,72 @@ uint32_t SwitchNode::DoLbPacketStrategy(Ptr<const Packet> p, const CustomHeader 
         if (nexthops.size() > 1) ++ws12_multipath_packets;
         ++ws12_source_port_choices[std::make_pair(m_id, chosen)];
     }
+    return chosen;
+}
+
+// WS-25 v1: long background flows keep one path at each switch.  Short MoE
+// packets can use two deterministic candidates, counting queued background
+// bytes twice.  This sees only the local egress queue; it cannot avoid the
+// unique destination-host port or infer downstream congestion.
+uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &ch,
+                                      const std::vector<int> &nexthops) {
+    WorkloadTag label;
+    if (ch.l3Prot != 0x11 || !p->PeekPacketTag(label) ||
+        (label.GetValue() != 1 && label.GetValue() != 2))
+        return DoLbFlowECMP(p, ch, nexthops);
+
+    const uint32_t flowKey[3] = {ch.sip, ch.dip,
+        uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16)};
+    const uint32_t packetKey[4] = {flowKey[0], flowKey[1], flowKey[2], ch.udp.seq};
+    const bool background = label.GetValue() == 1;
+    const uint8_t *key = reinterpret_cast<const uint8_t *>(background ? flowKey : packetKey);
+    const size_t keyBytes = background ? sizeof(flowKey) : sizeof(packetKey);
+    const uint32_t first = nexthops[EcmpHash(key, keyBytes, m_ecmpSeed) % nexthops.size()];
+    const auto flow = std::make_tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    if (background) {
+        ++classreserve_background_packets;
+        auto it = m_classReserveBackgroundPort.find(flow);
+        if (it != m_classReserveBackgroundPort.end()) {
+            ++classreserve_background_reused;
+            if (m_isToR && m_isToR_hostIP.count(ch.sip))
+                ++classreserve_source_port_packets[std::make_tuple(m_id, it->second, 1U)];
+            return it->second;
+        }
+    } else {
+        ++classreserve_moe_packets;
+    }
+    uint32_t chosen = first;
+    if (nexthops.size() > 1) {
+        const uint32_t second = nexthops[EcmpHash(key, keyBytes,
+            m_ecmpSeed ^ 0x9e3779b9U) % nexthops.size()];
+        if (second != first) {
+            const uint64_t firstQueue = CalculateInterfaceLoad(first);
+            const uint64_t secondQueue = CalculateInterfaceLoad(second);
+            if (background) {
+                if (secondQueue < firstQueue) {
+                    chosen = second;
+                    ++classreserve_background_queue_avoids;
+                }
+            } else {
+                ++classreserve_moe_two_choices;
+                const auto a = guard_queue_stats.find(std::make_tuple(m_id, first, 1));
+                const auto b = guard_queue_stats.find(std::make_tuple(m_id, second, 1));
+                const uint64_t firstBackground = a == guard_queue_stats.end() ? 0 : a->second.current;
+                const uint64_t secondBackground = b == guard_queue_stats.end() ? 0 : b->second.current;
+                if (secondQueue + secondBackground < firstQueue + firstBackground) {
+                    chosen = second;
+                    ++classreserve_moe_diverted;
+                }
+            }
+        }
+    }
+    if (background) {
+        m_classReserveBackgroundPort[flow] = chosen;
+        ++classreserve_background_new_flows;
+    }
+    if (m_isToR && m_isToR_hostIP.count(ch.sip))
+        ++classreserve_source_port_packets[std::make_tuple(m_id, chosen,
+                                                            background ? 1U : 2U)];
     return chosen;
 }
 
@@ -1221,6 +1321,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             }
             return port;
         }
+        case 21:
+            return DoLbClassReserve(p, ch, nexthops);
         case 13:
         case 14:
         case 15:
@@ -1276,7 +1378,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                     if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                     else ++ws21_feedback_hop_rejects;
                 }
-                if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
+                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21)
                     SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
             }
@@ -1293,7 +1395,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                 else ++ws21_feedback_hop_rejects;
             }
-            if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15)
+            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21)
                 SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
         }
@@ -1338,7 +1440,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         } else {
             // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
             // Release the admission reservation made above for this packet.
-            if (qIndex != 0 && !(Settings::lb_mode >= 13 && Settings::lb_mode <= 15)) {
+            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21)) {
                 if (!locallyGenerated)
                     m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
@@ -1425,7 +1527,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             ws13_inflight.erase(hit);
         }
     }
-    if (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) {
+    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
         s.current -= p->GetSize();

@@ -136,6 +136,7 @@ lb_modes = {
     "guardhash": 14,
     "guardhashgate": 15,
     "ws18": 20,
+    "classreserve": 21,
     "drill": 2,
     "conga": 3,
     "letflow": 6,

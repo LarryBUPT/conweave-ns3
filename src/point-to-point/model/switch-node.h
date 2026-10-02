@@ -51,6 +51,10 @@ class SwitchNode : public Node {
                            const std::vector<int> &nexthops);
     uint32_t DoLbPacketStrategy(Ptr<const Packet> p, const CustomHeader &ch,
                                 const std::vector<int> &nexthops);
+    uint32_t DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &ch,
+                              const std::vector<int> &nexthops);
+    std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t>
+        m_classReserveBackgroundPort;
     std::map<uint32_t, uint32_t> m_packetRoundRobinNext;  // destination IP -> next index
     std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t> m_ws18FlowPort;
     struct Ws21PathObservation {
