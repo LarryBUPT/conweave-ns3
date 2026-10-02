@@ -56,4 +56,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-03 预飞行门槛：修正版首格 optimized build `20261003-180005-ws25-v1fix-pre-classreserve` 已 `BUILT`；固定输入生成器复跑五个哈希全部一致。现场 load `0.12`、active simulation PIDs 为空、可用内存 `122.98 GiB`、空闲盘 `5534.2 GiB`。首格正确性仿真仍未启动；主对话实际切 Luna High 后由[执行器](../../scripts/run_ws25_v1fix_correctness.py)自动先 cap=1 运行首格，验收通过后 cap=2 分批执行其余十格，任一格失败即停止扩格。
 
+2026-10-03 ClassReserve v1 修正版 correctness 终态：固定仿真 SHA `c84108b24c94a5068861e5bb090c5aa387245ee1` 的 11 格全部完成；六模式 mixed8、候选背景/MoE 单类、显式 tag0、旧五列 fallback 与 seed01 b192 均由逐格及整批 verifier 检查通过（11/11）。b192 最初因 verifier 将 trace SHA 误写为 `979100…be647f` 而被拒绝；协议和实际 raw 均为 `979100…b02f48`。仅修复 verifier 常量后，原实验 ID/raw 单格及整批复验成功，未重跑或覆盖数据。最大树 RSS `4562.13 MiB`，最低可用内存 `114.098 GiB`、最低空闲盘 `5527.07 GiB`；远端空闲审计通过。此批只验正确性，不作效果判断。详见 [Handoff 61](../handoffs/2026-10-03-61-ws25-v1fix-correctness-complete.md)。下一步转终态 raw 分析，等主对话实际切 Sol High 后自动继续。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建或最小 pilot 成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。

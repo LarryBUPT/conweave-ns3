@@ -17,7 +17,7 @@ TRACE_HASHES = {
     "ws25_v1fix_moe4.txt": "8acfe14d19d7ef7822bfd9a78334b830ce581456003e132d6557a44d1e41ea60",
     "ws25_v1fix_unclassified8.txt": "73704cadbdb95708c5ba26126af43b2758af688e332a80fdad46e7bc42c66dd3",
     "ws25_v1fix_legacy5.txt": "cc80f3a1eb23dcf936a8b371bf5b63763acac283923361efe9bcd3ebb1ae6c94",
-    "ws25_seed20262501_b192.txt": "9791006f71843ea74b044396f6f1fb7d475803ac9e04cb2d6aa8c83415be647f",
+    "ws25_seed20262501_b192.txt": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48",
 }
 MODES = ("fecmp", "drill", "conga", "letflow", "conweave", "classreserve")
 CELLS = []

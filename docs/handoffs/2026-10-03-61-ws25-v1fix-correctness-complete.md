@@ -1,0 +1,11 @@
+# Handoff 61：WS-25 ClassReserve 修正版 correctness 完成，待分析模型切换
+
+1. **本对话目标：** 按用户授权继续 WS-25 实验—分析自动化；用户要求仅在主对话实际切换模型时等待，切换后自动续行。完成 ClassReserve v1 唯一修正版的 11 格正确性预飞行，为后续分析/校准准备可核验 raw。
+2. **已确认的项目事实：** 独立 checkout `E:\研\毕业论文\workspace\ws25-first-paper`，分支 `feature/ws25-first-paper`。实验源码固定 SHA `c84108b24c94a5068861e5bb090c5aa387245ee1`，输入及验收契约见[修正协议](../research/ws25-classreserve-v1-correction-protocol.md)。11 个独立 ID 均为 `SUCCEEDED`；各自 metadata、FCT/CNP/PFC/uplink raw、config.log、输入/拓扑快照与资源收据在本地忽略目录 `results/<ID>/`。批次收据在 `results/ws25-v1fix-correctness-receipts.jsonl`。
+3. **已完成工作：** 先按 cap=1 通过 ClassReserve mixed8；再按 cap=2 执行 ECMP、DRILL、CONGA、LetFlow、ConWeave mixed8 回归，背景单类、MoE 单类、显式 tag0 和旧五列回退，以及 seed01 b192。b192 初次被本地 verifier 拒绝后保留 ID/raw；定位为 verifier 中 b192 trace SHA 常量抄错（协议与实际值为 `9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48`），修正后单格 verifier 通过，整批 verifier 返回 **11/11**。Python 编译与 `git diff --check` 通过。远端空闲审计通过，无在途 ns-3 PID/worker。最大树 RSS `4562.13 MiB`，最低可用内存 `114.098 GiB`、最低空闲盘 `5527.07 GiB`。
+4. **已形成的设计决策：** 初始验收器退出仅为 metadata/hash 校验缺陷，不触及源码、trace 或 raw；因此保留全部实验 ID，用修正后的验收器重读原始证据，不重跑或覆盖已成功仿真。Correctness trace 不用于性能排序或正式效果结论。ClassReserve v1 的既有四 seed pilot 筛选判断不变；本次只证明修正版 correctness，不证明性能通过。
+5. **当前状态：** 11/11 correctness 通过，WS-25 仍 ACTIVE。远程运行阶段结束，下一步是对修正版 correctness/raw 与机制覆盖做分析，再决定独立校准/完整档位门槛。Git 文档和 verifier 修补待提交推送；实验源码 SHA 固定不变。当前实际模型为 GPT-6 Luna High；根据用户要求，需主对话将本任务实际切到 GPT-6 Sol High 后自动进入分析，不请求额外人工确认。
+6. **未解决问题：** 正式双侧数值门槛、未见最终样本量及 ID 尚未冻结；0/64/128 档约束、候选机制在修正版独立需求上的校准、机制解释观测、最终正式矩阵和小论文均未完成。不能用这 11 格 correctness 得出收益或 NO-GO。
+7. **后续推荐动作：** 主对话实际以 GPT-6 Sol High 恢复本任务后，复核 `scripts/verify_ws25_v1fix_correctness.py` 与 11 格 raw，完成单类/混合/fallback/路径缓存计数及旧模式回归分析；评估已有观测对修正版主张是否充分。按 WS-25 清单先完成校准与 0/64/128 约束，再冻结正式双侧判据、样本量、最终 seed/ID 和资源线。仅所有前置门槛齐全后才运行正式矩阵。
+8. **与其他工作流的关系：** 只涉及个人 fork 与本独立 checkout；没有改只读 reference remotes 或共享远程工作树。WS-21 状态反馈/心跳余项仍属投稿后第二课题，不与 WS-25 第一课题并行。历史 NO-GO 不变。
+9. **CONTEXT SNAPSHOT：** WS-25 ClassReserve v1 唯一修正版源码 `c84108b24c94a5068861e5bb090c5aa387245ee1` 的 correctness 11/11 从独立 raw 重验通过；构建/仿真无失败，最初 b192 拒绝仅由 verifier trace SHA 常量错误导致，已修复并保留原 ID。远端已核实空闲。Correctness 不是效果证据；WS-25 仍 ACTIVE。分析阶段等待主对话实际切 Sol High 后自动继续，执行清单在 [WS25_FIRST_PAPER_EXECUTION](../project-state/WS25_FIRST_PAPER_EXECUTION.md)。
