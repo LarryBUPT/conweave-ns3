@@ -2,9 +2,11 @@
 
 2026-09-30 用户纠正提前闭环。两个对话恢复执行，必须持续实验、修改、验证，完成全部预设任务后才能闭环。负结果必须经相应预设验证支持；不能通过跳过验证获得 no-go 结论。
 
+2026-10-02 当前核验：WS-23 独立分支 `feature/ws23-validation-execution@e3919171e5d00711f13c9f5465209accac201766` 的[最终清单](https://github.com/LarryBUPT/conweave-ns3/blob/e3919171e5d00711f13c9f5465209accac201766/docs/project-state/WS23_WS24_VALIDATION_PLAN.md)和[18 格报告](https://github.com/LarryBUPT/conweave-ns3/blob/e3919171e5d00711f13c9f5465209accac201766/docs/research/ws23-isolation-matrix-r3-report.md)确认：预设合成正确性与隔离探索已收束，隔离效果 NO-GO。WS-24 的[48 格报告](../research/ws24-independent-synthetic-effects-report.md)和[Handoff 55](../handoffs/2026-10-02-55-ws24-independent-synthetic-closure.md)确认：用户限定的 ns-3 合成多 rail × placement 范围已验收闭环。下文未勾选项、ACTIVE 和未来执行语句均保留为相应阶段的历史快照，不代表当前待办。
+
 ## WS-23：先完成传输恢复正确性
 
-执行对话：`01a0f15f-58c7-7532-84bd-9acaaaa14525`。依据 [恢复契约](../research/ws23-irn-pfc-recovery-contract.md)。已过门槛：修复 SHA `12dea54d…` 的 optimized build 与 point-to-point 单测。
+**2026-09-30 预飞行历史快照；以下勾选状态不代表 WS-23 当前任务状态。**执行对话：`01a0f15f-58c7-7532-84bd-9acaaaa14525`。依据 [恢复契约](../research/ws23-irn-pfc-recovery-contract.md)。当时已过门槛：修复 SHA `12dea54d…` 的 optimized build 与 point-to-point 单测。最终完成项、实验 ID 与限制以本页顶部所引独立分支 `e3919171…` 的清单和报告为准。
 
 - [x] 本地冻结两个正确性格的协议、源码 SHA、输入内容哈希、seed、预留 ID、资源与停止条件；已完善真实无损 pause/resume 输入/注入和验收器。见 [两格预飞行协议](../research/ws23-two-cell-preflight.md)。**该项仅代表本地准备，新的源码尚未远程构建或仿真。**
 - [ ] 固定旧 16×1 MiB 反例，验证 16/16、两类 8/8、唯一 QP、序号/字节守恒、实际超时恢复、源 PG 暂停期无恢复及延期事件有效。
@@ -15,15 +17,15 @@
 
 ## WS-24：补齐模型、输入与多网卡验证
 
-**资源收据纠正（2026-10-02）：**首版 SHA `166ca670…` 的 j01 fixed_single ID `20261002-180000-ws24-ind-j01-fs` 已有动态逐流正确性 raw，但未启动观察器，缺少资源收据，故不计新 pilot 或 48 格矩阵。保留其结果；修复版 SHA `3b992ee` 自动启动 5 秒观察器并将该臂映射到新 ID `20261002-180000-ws24-ind-j01-fs-r2`。余下 47 个 ID 未运行。详见[纠正交接](../handoffs/2026-10-02-54-ws24-resource-watch-correction.md)。
+**资源收据纠正时的历史快照（2026-10-02）：**首版 SHA `166ca670…` 的 j01 fixed_single ID `20261002-180000-ws24-ind-j01-fs` 已有动态逐流正确性 raw，但未启动观察器，缺少资源收据，故不计新 pilot 或 48 格矩阵。保留其结果；修复版 SHA `3b992ee` 自动启动 5 秒观察器并将该臂映射到新 ID `20261002-180000-ws24-ind-j01-fs-r2`。当时余下 47 个 ID 未运行，后来均完成。详见[纠正交接](../handoffs/2026-10-02-54-ws24-resource-watch-correction.md)。
 
-**2026-10-02 范围决定：**用户明确决定“不要真实主机数据，仅NS3模拟”，见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)。真实 physical-host/NIC/job/rank 数据不再是 WS-24 验收条件；所有新旧 WS-24 输入与结果只作为 ns-3 合成模拟解释。独立 job 需求下的多 rail × placement 效果验收仍为必做，按[冻结协议](../research/ws24-independent-synthetic-effects-protocol.md)执行，未完成前状态保持 ACTIVE。
+**2026-10-02 范围决定时的历史记录：**用户明确决定“不要真实主机数据，仅NS3模拟”，见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)。真实 physical-host/NIC/job/rank 数据不再是 WS-24 验收条件；所有新旧 WS-24 输入与结果只作为 ns-3 合成模拟解释。独立 job 需求下的多 rail × placement 效果验收当时仍为必做，按[冻结协议](../research/ws24-independent-synthetic-effects-protocol.md)执行；当时未完成，状态为 ACTIVE。
 
-**2026-10-02 Sol High 复核：WS-24 仍 ACTIVE。**结果 ID `20261002-142000-ws24-point-to-point-unit-r2` 的隔离源码与 metadata 均为固定实验 SHA `b1184d6a7bd38577b235b7f119f920973308774f`；个人 origin 同名分支当时 HEAD 为文档提交 `3f04f32…`，包含该实验提交。显式启用测试构建及 `devices-point-to-point` suite 均退出 0，5 条 PASS、0 条 FAIL。193 点资源收据未越界，临时 helper 已恢复并核对 blob/SHA-256；16 个远端/本地回传文件哈希相同。runner 列表退出码字段在 summary 中为 null；驱动在非零时会终止，suite 随后成功执行，故仅凭控制流确认列表步骤成功。14 格 raw 重算与机器摘要逐项相同。完整证据见[补验协议](../research/ws24-point-to-point-unit-protocol.md)和 [Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)。
+**2026-10-02 Sol High 复核历史快照：WS-24 当时仍 ACTIVE。**结果 ID `20261002-142000-ws24-point-to-point-unit-r2` 的隔离源码与 metadata 均为固定实验 SHA `b1184d6a7bd38577b235b7f119f920973308774f`；个人 origin 同名分支当时 HEAD 为文档提交 `3f04f32…`，包含该实验提交。显式启用测试构建及 `devices-point-to-point` suite 均退出 0，5 条 PASS、0 条 FAIL。193 点资源收据未越界，临时 helper 已恢复并核对 blob/SHA-256；16 个远端/本地回传文件哈希相同。runner 列表退出码字段在 summary 中为 null；驱动在非零时会终止，suite 随后成功执行，故仅凭控制流确认列表步骤成功。14 格 raw 重算与机器摘要逐项相同。完整证据见[补验协议](../research/ws24-point-to-point-unit-protocol.md)和 [Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)。
 
 - [x] 在共同固定 SHA 的独立隔离副本显式启用测试、编译并运行 `devices-point-to-point`；回传 runner、资源和临时 helper 恢复收据，核对通过后关闭此单测项。2026-10-02 ID `20261002-142000-ws24-point-to-point-unit-r2`：构建/测试退出码 0，5 条 PASS、0 条 FAIL，固定 SHA `b1184d6…`，恢复哈希与资源收据通过。14 格 optimized build 不计单测。**仅完成本项；WS-24 其他合成验证范围与真实部署/确认性性能限制见下方，不据此归档整个 WS。**
 
-执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据 [表示能力审计](../research/ws24-multirail-representability-audit.md) 与 [v2 最小格预飞行/结果](../research/ws24-minimal-multinic-preflight.md)。**状态仍 ACTIVE。**较早的 v2 最小格源码为 `824e3fa0c4c06dd9894474a81e729931d59a3108`：正例 `20261001-100000-ws24-minimal-v2` 成功，跨 rail 负例 `20261001-100100-ws24-crossrail-reject-v2` 在解析阶段按预期失败。后续 A/B/C/D 共同源码为 `b1184d6a7bd38577b235b7f119f920973308774f`；其 14 格验收见下列条目。
+执行对话：`01a0f1da-f1e2-7870-9361-24b4d626fd76`。依据 [表示能力审计](../research/ws24-multirail-representability-audit.md) 与 [v2 最小格预飞行/结果](../research/ws24-minimal-multinic-preflight.md)。**本段记录 v2 最小格时的 ACTIVE 历史状态。**较早的 v2 最小格源码为 `824e3fa0c4c06dd9894474a81e729931d59a3108`：正例 `20261001-100000-ws24-minimal-v2` 成功，跨 rail 负例 `20261001-100100-ws24-crossrail-reject-v2` 在解析阶段按预期失败。后续 A/B/C/D 共同源码为 `b1184d6a7bd38577b235b7f119f920973308774f`；其 14 格验收见下列条目。
 
 - [x] 追查导入拓扑/生成器来源，明确真实 host/NIC/job 映射可获得程度；不能从相邻节点号推断物理共享。[审计报告](../research/ws24-multirail-representability-audit.md)与[工作记录](../research/ws24-multinic-v0-worklog.md)确认导入图可追至合成生成器，但无真实服务器多 NIC 或 job placement 证据。
 - [x] 建立明确标注为合成、可复现的受控 host/NIC/rail/job/rank/流映射，用于工程正确性与受控机制研究；记录资源共享假设与适用边界。真实部署主张仍须真实来源。
@@ -50,7 +52,7 @@
 
 ## 执行协调与 WS-25
 
-WS-24 使用独立 checkout `workspace/ws24-multinic-validation`。2026-10-01 的[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)固定 14 格共同源码 `b1184d6a7bd38577b235b7f119f920973308774f`、输入及当时的远程入口；这些预飞行记录只描述启动前状态。14 格随后完成并由[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)收据化，本次又由 [Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)从 raw 重算和补齐同 SHA 单测。WS-23 的远程作业仍须在未来 WS-24 实验入口单独协调，不机械等待其全部成功。
+WS-24 使用独立 checkout `workspace/ws24-multinic-validation`。2026-10-01 的[后续协议](../research/ws24-followup-validation-protocols.md)和[Handoff 49](../handoffs/2026-10-01-49-ws24-followup-protocol-freeze.md)固定 14 格共同源码 `b1184d6a7bd38577b235b7f119f920973308774f`、输入及当时的远程入口；这些预飞行记录只描述启动前状态。14 格随后完成并由[Handoff 50](../handoffs/2026-10-01-50-ws24-frozen-validation.md)收据化，又由 [Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)从 raw 重算和补齐同 SHA 单测；正式 48 格另由 [Handoff 55](../handoffs/2026-10-02-55-ws24-independent-synthetic-closure.md)收束。当时对 WS-23 远程作业的协调要求属于启动前记录；两条工作流最终状态见本页顶部。
 
 每次仿真前先冻结协议与收据并停在模型切换边界，监督对话实际切至 Luna High，再执行后台静默实验，约半小时精简监督；终态 raw 回传后实际切回 Sol High 分析和必要修正。不得用文字宣称模型切换。
 

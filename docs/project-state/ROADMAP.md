@@ -1,6 +1,6 @@
 # 下一阶段路线与停机条件
 
-2026-10-02 WS-24 当前状态：用户决定的仅 ns-3 合成范围已按[事前协议](../research/ws24-independent-synthetic-effects-protocol.md)完成 48/48 格独立 job 四臂 raw/资源验收和 job 级双侧分析；主效应 12/12 为负、中位 −19.667%、`p=0.00048828125`。见[结果报告](../research/ws24-independent-synthetic-effects-report.md)与[Handoff 55](../handoffs/2026-10-02-55-ws24-independent-synthetic-closure.md)。WS-24 可按该范围闭环；不向真实主机或任意放置外推，也不将旧单 seed pilot 合并为重复。WS-23 的端到端恢复验证仍独立 ACTIVE，WS-25 只整合已核验的证据。以下 WS-24 入口段落是当时的预飞行历史记录。
+2026-10-02 WS-24 当前状态：用户决定的仅 ns-3 合成范围已按[事前协议](../research/ws24-independent-synthetic-effects-protocol.md)完成 48/48 格独立 job 四臂 raw/资源验收和 job 级双侧分析；主效应 12/12 为负、中位 −19.667%、`p=0.00048828125`。见[结果报告](../research/ws24-independent-synthetic-effects-report.md)与[Handoff 55](../handoffs/2026-10-02-55-ws24-independent-synthetic-closure.md)。WS-24 可按该范围闭环；不向真实主机或任意放置外推，也不将旧单 seed pilot 合并为重复。WS-23 已按其预设合成正确性与隔离探索范围收束，隔离效果 NO-GO；WS-25 只整合已核验的证据。以下 WS-24 入口段落是当时的预飞行历史记录。
 
 2026-10-02 WS-24 资源观察器纠正：`20261002-180000-ws24-ind-j01-fs` 在源码 `166ca670…` 下完成 30/30、3,981,312 B 并通过逐流正确性验收，但运行前未启动资源观察器；该 raw 保留为 correctness-only，不计矩阵。修复提交 `3b992ee` 已把 5 秒 WS-24 资源采样接入控制器，manifest SHA 更新为 `e2d19ce3d7424f556bebcd74f011310538cf89c55bc2937c985e922af2b1c536`，j01 fixed_single 换用新 ID `20261002-180000-ws24-ind-j01-fs-r2`。worker 与专用观察器已隔离部署并核验 SHA；修复版源码尚未同步或运行。启动前再核验资源和 ID 后，同步固定 SHA、重做 j01 四臂，再推进正式 48 格。用户决定的合成模型范围见 [ADR-009](../decisions/ADR-009-ws24-ns3-only-scope.md)，详见[纠正交接](../handoffs/2026-10-02-54-ws24-resource-watch-correction.md)。
 

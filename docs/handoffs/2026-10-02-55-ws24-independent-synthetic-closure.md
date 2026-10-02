@@ -36,8 +36,8 @@ WS-25 引用时应标为“独立合成 job 的 ns-3 内部双侧方向证据”
 
 ## 8. 与其他工作流的关系
 
-旧 A/B/C/D 14 格、point-to-point 单测及 v2 最小正负例保持原 SHA/原始证据，未被本矩阵覆盖；旧的单 seed −173/−164 ns 不计入 12 个独立重复。WS-23 端到端传输恢复仍独立 ACTIVE，其 checkout、共享 worker 和原始数据未被本工作流修改。WS-10/11/12/19/20/21 的既有结论未被重判。
+旧 A/B/C/D 14 格、point-to-point 单测及 v2 最小正负例保持原 SHA/原始证据，未被本矩阵覆盖；旧的单 seed −173/−164 ns 不计入 12 个独立重复。WS-23 独立 checkout 的最终清单与 18/18 格报告已将预设合成正确性和隔离探索收束，隔离效果 NO-GO；其共享 worker 和原始数据未被本工作流修改。WS-10/11/12/19/20/21 的既有结论未被重判。
 
 ## 9. CONTEXT SNAPSHOT
 
-WS-24 只做用户同意的 ns-3 合成模拟。正式 SHA `3b992eed218f65b4f8026eddb5170a7694e17b10`、manifest `e2d19c…` 的 12 job × 四臂 48/48 raw 与资源已验收；远端/本地 1,056 文件哈希全同。12 个 job 主效应都为负，中位 −19.667%、精确双侧 `p=0.00048828125`、中位区间 `[−25.796%, −6.868%]`。详细原始 ID 在 manifest，机器重算在 `docs/research/evidence/ws24-independent-synthetic-effects-summary.json`，解释在 `docs/research/ws24-independent-synthetic-effects-report.md`。WS-24 可按合成范围闭环，不宣称真实部署收益；WS-23 仍 ACTIVE。
+WS-24 只做用户同意的 ns-3 合成模拟。正式 SHA `3b992eed218f65b4f8026eddb5170a7694e17b10`、manifest `e2d19c…` 的 12 job × 四臂 48/48 raw 与资源已验收；远端/本地 1,056 文件哈希全同。12 个 job 主效应都为负，中位 −19.667%、精确双侧 `p=0.00048828125`、中位区间 `[−25.796%, −6.868%]`。详细原始 ID 在 manifest，机器重算在 `docs/research/evidence/ws24-independent-synthetic-effects-summary.json`，解释在 `docs/research/ws24-independent-synthetic-effects-report.md`。WS-24 可按合成范围闭环，不宣称真实部署收益；WS-23 已按其预设合成范围闭环，隔离效果 NO-GO。

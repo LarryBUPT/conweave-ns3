@@ -1,6 +1,8 @@
 # WS-17 起：包流混合机制研究任务流
 
-2026-10-02 WS-24 Sol High 复核入口：[Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)确认 14 格合成 raw 重算、同 SHA point-to-point 单测及恢复收据。原目标的真实 host/NIC/job 映射和独立 job 需求尚无来源，效果仍只是一组 seed 的合成描述性 pilot；WS-24 保持 ACTIVE，具体剩余项见[必做清单](WS23_WS24_VALIDATION_PLAN.md)。
+2026-10-02 当前核验：WS-23 独立分支已按预设合成正确性与隔离探索范围收束，18/18 格通过、隔离效果 NO-GO；WS-24 在用户限定的 ns-3 合成范围内完成 48/48 格独立 job 四臂验收，中位完成跨度差 −19.667%，不外推真实部署。状态与证据入口见[当前状态](CURRENT_STATE.md)及[必做验证清单](WS23_WS24_VALIDATION_PLAN.md)。下列段落保留当时的历史判断。
+
+2026-10-02 WS-24 Sol High 复核历史快照：[Handoff 52](../handoffs/2026-10-02-52-ws24-sol-review.md)确认 14 格合成 raw 重算、同 SHA point-to-point 单测及恢复收据。当时原目标的真实 host/NIC/job 映射和独立 job 需求尚无来源，效果仍只是一组 seed 的合成描述性 pilot；WS-24 当时保持 ACTIVE，具体后续项见[必做清单](WS23_WS24_VALIDATION_PLAN.md)。
 
 2026-09-30 闭环纠错：此前 Handoff 45 将阶段交接当作任务闭环并归档，用户指出必做验证未完成。WS-23/24 恢复 ACTIVE，详见 [验证执行清单](WS23_WS24_VALIDATION_PLAN.md)。WS-23 优先补齐丢包恢复及无损 pause/resume 端到端验证；WS-24 继续映射来源审查、明示合成模型的多 NIC 实现与验证，再按原任务目标完成必要效果对照。WS-25 必须保留并跟踪这些执行项，不能以论文范围判断替代验证。性能 NO-GO 不取消正确性工作。
 
