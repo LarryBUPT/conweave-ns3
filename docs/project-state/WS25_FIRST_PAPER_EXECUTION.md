@@ -54,4 +54,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-03 ClassReserve v1 唯一诊断修正已在源码 `c84108b24c94a5068861e5bb090c5aa387245ee1` 实现：每个 MoE flow 在每台交换机按原分数双选一次并缓存，后续同流包固定复用；背景逻辑不变，新增流选择/缓存复用和未分类回退计数。五类正确性 trace 已固定哈希，并冻结 11 格同 SHA correctness 预飞行，见[修正协议](../research/ws25-classreserve-v1-correction-protocol.md)。当前待远程编译并实际切 Luna High 后运行；之前候选及所有既有 raw 保持不变，不把新版本小样计入正式效果，WS-25 仍 ACTIVE。
 
+2026-10-03 预飞行门槛：修正版首格 optimized build `20261003-180005-ws25-v1fix-pre-classreserve` 已 `BUILT`；固定输入生成器复跑五个哈希全部一致。现场 load `0.12`、active simulation PIDs 为空、可用内存 `122.98 GiB`、空闲盘 `5534.2 GiB`。首格正确性仿真仍未启动；主对话实际切 Luna High 后由[执行器](../../scripts/run_ws25_v1fix_correctness.py)自动先 cap=1 运行首格，验收通过后 cap=2 分批执行其余十格，任一格失败即停止扩格。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建或最小 pilot 成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。

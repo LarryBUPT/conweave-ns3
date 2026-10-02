@@ -44,3 +44,5 @@
 - 一个 correctness 格失败即停止后续格；修复后旧 ID 不复用。全部正确性通过仍需独立校准，不足以进入正式矩阵。
 
 Correctness 终态回传后，在 Sol High 分析逐格证据和旧模式回归。若正确性通过，另行冻结 corrected-candidate 校准契约：使用未见筛选池及预留校准需求，六臂相同 SHA/逐 seed 配对；不得将 D1/seed01 当独立验证。只有独立需求上的候选信号和完整 0/64/128 输入后，才冻结正式双侧门槛、最终样本量和全部正式 ID。仿真前由主对话实际切 Luna High，终态 raw 后实际切回 Sol High；人工无需重复授权。
+
+2026-10-03 远程预检记录：个人 fork 当前分支已含源码与协议；首格 `20261003-180005-ws25-v1fix-pre-classreserve` 固定于上述 SHA，optimized build `BUILT`。现场 load `0.12`、active simulation PIDs 为空、可用内存 `122.98 GiB`、空闲盘 `5534.2 GiB`。正确性仿真尚未启动；从本处停在 Luna High 模型边界。
