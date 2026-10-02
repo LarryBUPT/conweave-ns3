@@ -50,4 +50,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-03 四独立需求分析：C2 seed01 六格和 C3 seed02–04 十八格共 24/24 从 raw 重新核验通过，每格 16,576/16,576 完成。ClassReserve v1 的 MoE 批次相对 ECMP、DRILL、LetFlow、ConWeave 均为 0/4 更快，相对 CONGA 为 1/4；五基线的配对变化中位数分别为 +6.289%、+28.501%、+10.549%、+7.016%、+2.547%（正值表示更慢）。背景 P99 相对 DRILL 4/4 更好，其他基线不稳定。详见[分析报告](../research/ws25-four-seed-calibration-analysis.md)及[机器证据](../research/evidence/ws25-four-seed-calibration.json)。v1 当前选路规则不进入正式效果矩阵；这只是 pilot 筛选，不是正式 NO-GO，也不取消 WS-25 的单类/混合/回退及动态分支正确性、观测、其他档位约束、最终验证和成稿验收。下一步先补默认关闭的非扰动诊断并做同输入开/关指纹核对，再按候选版本台账决定 v1 一次修正或 v2。
 
+2026-10-03 D1 诊断边界：默认关闭的逐 QP/背景出口排队观测已在独立提交实现，四格同输入开关技术 pilot 按[协议](../research/ws25-diagnostic-d1-protocol.md)冻结。首次源码 `52d5d0b` 的构建 ID `20261003-150000-ws25-d1-classreserve-off` 因诊断函数前置声明缺失为 `BUILD_FAILED`，失败日志已取回保留；修复源码 `b13369d3f086189b693a1c8d875cfe7e3171181e` 的新 ID `20261003-160000-ws25-d1-classreserve-off` 已完成 optimized 构建。D1 四格均尚未仿真；当前停在远程仿真模型边界，待主对话实际切 Luna High 后按协议自动运行，完成后实际切回 Sol High 分析。失败 ID 不复用，正式矩阵仍关闭。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建或最小 pilot 成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
