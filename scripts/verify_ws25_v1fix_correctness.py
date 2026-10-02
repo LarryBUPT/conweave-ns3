@@ -31,6 +31,14 @@ for offset, trace in enumerate(("ws25_v1fix_background4.txt", "ws25_v1fix_moe4.t
                   "classreserve", trace, 0))
 CELLS.append(("20261003-180014-ws25-v1fix-pre-b192", "classreserve",
               "ws25_seed20262501_b192.txt", 0))
+EXPECTED_TAGS = {
+    "ws25_v1fix_mixed8.txt": {"1": 4, "2": 4},
+    "ws25_v1fix_background4.txt": {"1": 4},
+    "ws25_v1fix_moe4.txt": {"2": 4},
+    "ws25_v1fix_unclassified8.txt": {"0": 8},
+    "ws25_v1fix_legacy5.txt": {"0": 8},
+    "ws25_seed20262501_b192.txt": {"1": 192, "2": 16384},
+}
 
 
 def sha(path):
@@ -60,13 +68,16 @@ def verify_cell(experiment_id, mode, trace, diag=0):
             params["topo"] == "topo_1280_400G_400G_OS1" and
             params["bw"] == 400 and params["buffer"] == 9 and
             params["simul_time"] == "0.01" and params["netload"] == 10 and
-            params["pfc"] == 0 and params["irn"] == 1):
+            params["pfc"] == 0 and params["irn"] == 1 and params["ws25_diag"] == diag):
         raise RuntimeError("V1 correction metadata mismatch: " + experiment_id)
     if sha(folder / "config" / "traffic_trace.txt") != expected_trace:
         raise RuntimeError("V1 correction trace snapshot mismatch: " + experiment_id)
     if sha(folder / "config" / "topology.txt") != TOPO_SHA:
         raise RuntimeError("V1 correction topology snapshot mismatch: " + experiment_id)
     stats = analyze_moe_tags.summarize(experiment_id)["tags"]
+    tag_counts = {tag: row["input_flows"] for tag, row in stats.items()}
+    if tag_counts != EXPECTED_TAGS[trace]:
+        raise RuntimeError("Workload tag counts mismatch: " + experiment_id)
     if any(row["input_flows"] != row["completed_flows"] for row in stats.values()):
         raise RuntimeError("Unfinished input flow: " + experiment_id)
     log = (folder / "logs" / "config.log").read_text(encoding="utf-8", errors="replace")
@@ -107,7 +118,7 @@ def verify_cell(experiment_id, mode, trace, diag=0):
         raise RuntimeError("V1 correction resource gate failed: " + experiment_id)
     return {"id": experiment_id, "mode": mode, "trace": trace,
             "trace_sha256": expected_trace, "fct_sha256": sha(one_file(raw, "_out_fct.txt")),
-            "tag_counts": {tag: values["input_flows"] for tag, values in stats.items()},
+            "tag_counts": tag_counts,
             "moe_batch_us": stats.get("2", {}).get("synthetic_batch_completion_us"),
             "background_p99_us": stats.get("1", {}).get("p99_fct_us"),
             "resource": resources}
