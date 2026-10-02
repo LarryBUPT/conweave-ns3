@@ -42,4 +42,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-02 C2 兼容修订与暂停：C1 ConWeave 配置阶段失败原因已定位为 OS1 拓扑未进入 `run.py` 的 ConWeave IRN 参数分支；失败 ID、日志和资源摘要保留。C2 源码固定为 `bb10309261b7c5be350fcaab75b4fdb8db95ddca`，只增加该拓扑条件，重新冻结 v2 12 ID。C2 ECMP、DRILL 两个 correctness 格已 8/8 完成、类别字节守恒、资源收据和逐格验证通过；主对话要求在 DRILL 终态后暂停，服务器无在途仿真。详见 [Handoff 57](../handoffs/2026-10-02-57-ws25-first-paper-c2-preflight-stop.md)。
 
+2026-10-03 calibration 完成并按用户要求暂停：C2 六格 correctness 与六格 192 档 calibration 全部通过；correctness 为 8/8，pilot 为 16,576/16,576，类别字节守恒、ClassReserve `queue_violations=0`、metadata/raw/config.log/resource 收据齐全。pilot 资源峰值 RSS `4562.08 MiB`、最低可用内存 `114.109 GiB`、最低可用盘 `5550.915 GiB`；服务器无在途仿真。已进入分析阶段，暂不运行分析器、冻结正式判据或启动最终矩阵。详见 [Handoff 58](../handoffs/2026-10-03-58-ws25-first-paper-analysis-pause.md)。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建或最小 pilot 成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
