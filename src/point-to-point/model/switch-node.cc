@@ -54,6 +54,7 @@ static uint64_t ws25_empty_choices[3] = {0, 0, 0};
 static uint64_t ws25_first_queue_sum[3] = {0, 0, 0};
 static uint64_t ws25_second_queue_sum[3] = {0, 0, 0};
 static uint64_t ws25_background_queue_nonzero = 0;
+static bool Ws25DiagnosticEnabled();
 static bool ws18_path_enabled = false;
 static bool ws21_identity_enabled = false;
 static bool ws21_feedback_enabled = false;
