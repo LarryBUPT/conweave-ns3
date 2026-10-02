@@ -40,4 +40,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 | 6 正式验证 | 未启动 | 先通过所有前置门槛，再执行独立最终 seed 矩阵、保留失败 raw 与资源收据 |
 | 7 分析及成稿 | 未启动 | 逐格 raw/双侧/反例分析、图表、可复现清单和小论文初稿 |
 
+2026-10-02 C2 兼容修订与暂停：C1 ConWeave 配置阶段失败原因已定位为 OS1 拓扑未进入 `run.py` 的 ConWeave IRN 参数分支；失败 ID、日志和资源摘要保留。C2 源码固定为 `bb10309261b7c5be350fcaab75b4fdb8db95ddca`，只增加该拓扑条件，重新冻结 v2 12 ID。C2 ECMP、DRILL 两个 correctness 格已 8/8 完成、类别字节守恒、资源收据和逐格验证通过；主对话要求在 DRILL 终态后暂停，服务器无在途仿真。详见 [Handoff 57](../handoffs/2026-10-02-57-ws25-first-paper-c2-preflight-stop.md)。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建或最小 pilot 成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
