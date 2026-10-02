@@ -380,7 +380,8 @@ def main():
             cwh_extra_voq_flush_time = 16
             cwh_default_voq_waiting_time = 200
             cwh_tx_expiry_time = 300  # 300us
-        elif "fat" in topo and enabled_pfc == 0 and enabled_irn == 1:  # 3-tier, IRN
+        elif ("fat" in topo or topo == "topo_1280_400G_400G_OS1") and \
+                enabled_pfc == 0 and enabled_irn == 1:  # 3-tier Clos, IRN
             cwh_extra_voq_flush_time = 16
             cwh_default_voq_waiting_time = 300
             cwh_tx_expiry_time = 1000  # 1ms
