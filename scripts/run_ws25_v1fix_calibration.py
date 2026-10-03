@@ -228,9 +228,8 @@ def run_cell(cell):
     elif state["status"] not in ("RUNNING", "SUCCEEDED"):
         raise RuntimeError("Unexpected calibration state %s: %s" % (state["status"], cell["id"]))
     while state["status"] == "RUNNING":
-        time.sleep(300)
+        time.sleep(1800)
         state = base.status(cell["id"])
-        base.audit()
     if state["status"] != "SUCCEEDED":
         raise RuntimeError("Calibration simulation failed; preserve ID: " + cell["id"])
     base.wait_watch(cell["id"])
