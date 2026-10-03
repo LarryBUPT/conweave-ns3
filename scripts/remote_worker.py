@@ -4,6 +4,7 @@ import argparse
 import contextlib
 import datetime
 import glob
+import hashlib
 import json
 import os
 import re
