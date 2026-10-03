@@ -2,7 +2,7 @@
 
 2026-10-02 当前执行入口：用户将旧 WS-25 本地证据收束调整为第一课题的机制实现、独立 ns-3 验证和小论文成稿，见 [WS-25 执行清单](WS25_FIRST_PAPER_EXECUTION.md)。先做类别感知选路，五原始模式同条件对照；独立 pilot 后冻结双侧数值与最终样本。WS-21 状态反馈余项不并行推进，待小论文投稿后作为第二课题门槛审查。下文旧 WS-25“仅收束”的记录属于历史规划，不是当前执行范围。
 
-2026-10-04 WS-25 状态更新：修正版四需求 192 档校准、资源容量试跑和 0/64/128 档四需求 72 格校准均已完成 raw/资源验收。18 路容量相对 16 路吞吐只增 4.23%，矩阵继续 cap=16。低档校准尚未做性能对比或统计分析；主对话实际切 Sol High 后先分析两项共同主要结果，再冻结正式双侧门槛、最终样本量和保留 seed 的全部输入/ID。详情见[执行清单](WS25_FIRST_PAPER_EXECUTION.md)、[Handoff 71](../handoffs/2026-10-04-71-ws25-lower-load-calibration-complete.md)及[机器摘要](../research/evidence/ws25-v1fix-lower-load-calibration.json)。
+2026-10-04 WS-25 状态更新：修正版四需求 192 档及 0/64/128 档 72 格校准均已完成 raw/资源验收，并完成逐 seed [低档双侧分析](../research/ws25-v1fix-lower-load-calibration-analysis.md)。它显示与 DRILL、CONGA 等存在 MoE/后台权衡，不产生正式收益结论。18 路容量相对 16 路吞吐只增 4.23%，矩阵继续 cap=16。事前 [正式协议](../research/ws25-v1fix-formal-protocol.md)已固定两项共同主判据、五基线层级比较、低档约束及 24 个独立最终需求；96 份输入 SHA 和 576 格 ID/顺序见[机器计划](../research/evidence/ws25-v1fix-formal-plan.json)。下一步核实远端 source/worker/空闲资源后，实际切 Luna High 静默运行，终态切 Sol High 逐格分析及写论文。WS-25 尚未闭环。
 
 ## 2026-10-02 当前路线
 

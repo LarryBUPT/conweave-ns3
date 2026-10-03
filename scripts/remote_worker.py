@@ -117,6 +117,8 @@ def resources_ok():
 
 WS25_CAPACITY_SHA = 'a656104d05c681f9b3a998b5ef4ce3e644558d02'
 WS25_CAPACITY_TOPO_SHA = '74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba'
+WS25_FORMAL_SHA = 'ce699dffe2845dc83e2171a1c309c6d96b96d2b3'
+WS25_FORMAL_MANIFEST_SHA = '7dd35746c33b48245910b90cc606aa3bed59a207794fd1528dad2b8faf9b7731'
 WS25_CAPACITY_TRACES = {
     'ws25_seed20262505_b0.txt': '32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be',
     'ws25_seed20262505_b64.txt': '774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2',
@@ -145,10 +147,38 @@ def file_sha256(path):
     return digest.hexdigest()
 
 
+def ws25_frozen_traces(source_sha, source):
+    if source_sha == WS25_CAPACITY_SHA:
+        return WS25_CAPACITY_TRACES
+    if source_sha != WS25_FORMAL_SHA:
+        raise RuntimeError('High capacity requires a frozen WS-25 source SHA')
+    path = os.path.join(source, 'docs/research/evidence/ws25-v1fix-formal-inputs.json')
+    if file_sha256(path) != WS25_FORMAL_MANIFEST_SHA:
+        raise RuntimeError('Formal demand manifest hash changed')
+    with open(inside(path), 'r') as handle:
+        manifest = json.load(handle)
+    seeds = manifest.get('seeds', {})
+    if set(seeds) != set(str(seed) for seed in range(20262521, 20262545)):
+        raise RuntimeError('Formal demand seed pool changed')
+    traces = {}
+    for seed, details in seeds.items():
+        levels = details.get('levels', {})
+        if set(levels) != set(('0', '64', '128', '192')):
+            raise RuntimeError('Formal demand levels changed')
+        for level, item in levels.items():
+            name = 'ws25_seed%s_b%s.txt' % (seed, level)
+            if (item.get('file') != name or item.get('flows') != 16384 + int(level) or
+                    not re.match(r'^[0-9a-f]{64}$', item.get('sha256', ''))):
+                raise RuntimeError('Formal demand entry changed')
+            traces[name] = item['sha256']
+    if len(traces) != 96:
+        raise RuntimeError('Formal demand trace count changed')
+    return traces
+
+
 def high_capacity_admission(params, data, source, workers):
-    """Conservative admission for frozen WS-25 calibration and capacity inputs."""
-    if data.get('git_commit') != WS25_CAPACITY_SHA:
-        raise RuntimeError('High capacity requires the frozen WS-25 source SHA')
+    """Conservative admission for frozen WS-25 calibration and formal inputs."""
+    traces = ws25_frozen_traces(data.get('git_commit'), source)
     expected = {'pfc': 0, 'irn': 1, 'bw': 400, 'buffer': 9,
                 'topo': 'topo_1280_400G_400G_OS1', 'cdf': 'AliStorage2019',
                 'netload': 10, 'simul_time': '0.01', 'ws25_diag': 0}
@@ -157,9 +187,9 @@ def high_capacity_admission(params, data, source, workers):
     if params.get('lb') not in ('fecmp', 'drill', 'conga', 'letflow', 'conweave', 'classreserve'):
         raise RuntimeError('High capacity mode is outside the frozen six-arm matrix')
     trace = params.get('flow_file')
-    if trace not in WS25_CAPACITY_TRACES:
+    if trace not in traces:
         raise RuntimeError('High capacity trace is not frozen')
-    if file_sha256(os.path.join(source, 'config', trace)) != WS25_CAPACITY_TRACES[trace]:
+    if file_sha256(os.path.join(source, 'config', trace)) != traces[trace]:
         raise RuntimeError('High capacity trace hash changed')
     if file_sha256(os.path.join(source, 'config', expected['topo'] + '.txt')) != WS25_CAPACITY_TOPO_SHA:
         raise RuntimeError('High capacity topology hash changed')
@@ -571,10 +601,11 @@ def start(experiment_id, params, max_concurrent=1):
             raise RuntimeError('Source changed after build')
         if max_concurrent > 12:
             for other_id, unused_pid in workers:
-                other_base, unused_source = paths(other_id)
+                other_base, other_source = paths(other_id)
                 other = load_metadata(other_base)
-                if (other.get('git_commit') != WS25_CAPACITY_SHA or
-                        other.get('parameters', {}).get('flow_file') not in WS25_CAPACITY_TRACES):
+                if (other.get('git_commit') != data.get('git_commit') or
+                        other.get('parameters', {}).get('flow_file') not in
+                        ws25_frozen_traces(other.get('git_commit'), other_source)):
                     raise RuntimeError('High capacity cannot mix with other workloads')
             high_capacity_admission(params, data, source, workers)
         data['parameters'] = params
