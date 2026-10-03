@@ -1,0 +1,1092 @@
+{
+  "background_levels": [
+    0,
+    64,
+    128
+  ],
+  "buffer_mib": 9,
+  "bw_gbps": 400,
+  "cells": [
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 1,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b0.txt",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b128-drill",
+      "input_flows": 16512,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 2,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b128.txt",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b128-drill",
+      "input_flows": 16512,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 3,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b128.txt",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b000-conga",
+      "input_flows": 16384,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 4,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b0.txt",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b064-drill",
+      "input_flows": 16448,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 5,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b64.txt",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 6,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b64.txt",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 7,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b128.txt",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b064-conweave",
+      "input_flows": 16448,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 8,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b64.txt",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b000-letflow",
+      "input_flows": 16384,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 9,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b0.txt",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 10,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b64.txt",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b128-letflow",
+      "input_flows": 16512,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 11,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b128.txt",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b128-conga",
+      "input_flows": 16512,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 12,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b128.txt",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b064-conga",
+      "input_flows": 16448,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 13,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b64.txt",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b128-conweave",
+      "input_flows": 16512,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 14,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b128.txt",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b064-drill",
+      "input_flows": 16448,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 15,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b64.txt",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b128-drill",
+      "input_flows": 16512,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 16,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b128.txt",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 17,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b128.txt",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 18,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b0.txt",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b000-drill",
+      "input_flows": 16384,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 19,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b0.txt",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b000-letflow",
+      "input_flows": 16384,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 20,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b0.txt",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b000-conga",
+      "input_flows": 16384,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 21,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b0.txt",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 22,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b128.txt",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b128-letflow",
+      "input_flows": 16512,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 23,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b128.txt",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b064-conga",
+      "input_flows": 16448,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 24,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b64.txt",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b064-letflow",
+      "input_flows": 16448,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 25,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b64.txt",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 26,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b0.txt",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 27,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b0.txt",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b064-conweave",
+      "input_flows": 16448,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 28,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b64.txt",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b000-drill",
+      "input_flows": 16384,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 29,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b0.txt",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 30,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b0.txt",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b064-conweave",
+      "input_flows": 16448,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 31,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b64.txt",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b000-drill",
+      "input_flows": 16384,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 32,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b0.txt",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b000-conga",
+      "input_flows": 16384,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 33,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b0.txt",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b000-drill",
+      "input_flows": 16384,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 34,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b0.txt",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b128-conga",
+      "input_flows": 16512,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 35,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b128.txt",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b000-conweave",
+      "input_flows": 16384,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 36,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b0.txt",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 37,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b64.txt",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b128-conweave",
+      "input_flows": 16512,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 38,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b128.txt",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 39,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b64.txt",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b000-letflow",
+      "input_flows": 16384,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 40,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b0.txt",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b000-conweave",
+      "input_flows": 16384,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 41,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b0.txt",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b128-conga",
+      "input_flows": 16512,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 42,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b128.txt",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b064-letflow",
+      "input_flows": 16448,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 43,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b64.txt",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b064-conga",
+      "input_flows": 16448,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 44,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b64.txt",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 45,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b128.txt",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b000-conweave",
+      "input_flows": 16384,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 46,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b0.txt",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 47,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b0.txt",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 48,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b0.txt",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b064-conga",
+      "input_flows": 16448,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 49,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b64.txt",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 50,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b128.txt",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b064-conweave",
+      "input_flows": 16448,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 51,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b64.txt",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b064-drill",
+      "input_flows": 16448,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 52,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b64.txt",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 53,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b128.txt",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 54,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b64.txt",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b128-letflow",
+      "input_flows": 16512,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 55,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b128.txt",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b128-conweave",
+      "input_flows": 16512,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 56,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b128.txt",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b000-letflow",
+      "input_flows": 16384,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 57,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b0.txt",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b128-drill",
+      "input_flows": 16512,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 58,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b128.txt",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 59,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b0.txt",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b128-letflow",
+      "input_flows": 16512,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 60,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b128.txt",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b064-drill",
+      "input_flows": 16448,
+      "mode": "drill",
+      "role": "constraint_calibration",
+      "run_order": 61,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b64.txt",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b064-letflow",
+      "input_flows": 16448,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 62,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b64.txt",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b064-letflow",
+      "input_flows": 16448,
+      "mode": "letflow",
+      "role": "constraint_calibration",
+      "run_order": 63,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b64.txt",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 64,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b64.txt",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b128-conweave",
+      "input_flows": 16512,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 65,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b128.txt",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 66,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b64.txt",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s06-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 67,
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b128.txt",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "constraint_calibration",
+      "run_order": 68,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b128.txt",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 128,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b128-conga",
+      "input_flows": 16512,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 69,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b128.txt",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s05-b000-conga",
+      "input_flows": 16384,
+      "mode": "conga",
+      "role": "constraint_calibration",
+      "run_order": 70,
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b0.txt",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 64,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s07-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "constraint_calibration",
+      "run_order": 71,
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b64.txt",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 0,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261004-030000-ws25-lower-s08-b000-conweave",
+      "input_flows": 16384,
+      "mode": "conweave",
+      "role": "constraint_calibration",
+      "run_order": 72,
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b0.txt",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    }
+  ],
+  "demand_seed_order": [
+    20262507,
+    20262508,
+    20262505,
+    20262506
+  ],
+  "independent_unit": "demand seed, paired by mode within seed and background level",
+  "irn": 1,
+  "kind": "WS-25 lower-load constraint calibration; exploratory, not efficacy",
+  "max_concurrent": 16,
+  "modes": [
+    "fecmp",
+    "drill",
+    "conga",
+    "letflow",
+    "conweave",
+    "classreserve"
+  ],
+  "netload": 10,
+  "ns3_seed": 1,
+  "pfc": 0,
+  "randomization_seed": 20261004,
+  "simul_time": "0.01",
+  "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}

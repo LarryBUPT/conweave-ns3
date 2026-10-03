@@ -1,6 +1,6 @@
 # WS-25：第一课题类别感知包流混合负载均衡执行清单
 
-状态：ACTIVE，2026-10-03。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。用户本轮明确将旧 WS-25 的“本地证据与论文范围收束”改为**第一课题实现、验证与小论文成稿**；旧 WS-21 状态反馈余项保留在第二课题门槛，不与本课题并行。当前修正版校准遇到一次输入快照身份错误：r1 两个 ID 因 SHA 未含新 trace 在 ns-3 启动前失败，已保留且不解释为机制失败；r2 新 ID 与修正后 SHA 已冻结，详见[校准协议](../research/ws25-v1fix-independent-calibration-protocol.md)和[Handoff 63](../handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md)。
+状态：ACTIVE，2026-10-04。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。用户本轮明确将旧 WS-25 的“本地证据与论文范围收束”改为**第一课题实现、验证与小论文成稿**；旧 WS-21 状态反馈余项保留在第二课题门槛，不与本课题并行。当前修正版校准遇到一次输入快照身份错误：r1 两个 ID 因 SHA 未含新 trace 在 ns-3 启动前失败，已保留且不解释为机制失败；r2 新 ID 与修正后 SHA 已冻结，详见[校准协议](../research/ws25-v1fix-independent-calibration-protocol.md)和[Handoff 63](../handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md)。
 
 ## 研究问题与边界
 
@@ -68,4 +68,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-03 修正版 raw 分析与下一校准冻结：六模式 mixed8 均 8/8 完成；候选单类各 4/4，tag0 与旧五列格式各 8/8 并触发 100,740 次包级 fallback；seed01 b192 为 16,576/16,576，`queue_violations=0`、队列入出相等且无 drop/current。候选 b192 日志有 25,598 次 MoE 双选、9,551 次改选，背景固定路径缓存新建/复用 884/7,414,992。与旧 v1 同 seed raw 相比，修正版的 OoO CNP 为 0（旧 12,809）；MoE batch 和背景 P99 分别 16.286/2083.638 µs（旧 19.442/2118.305 µs）。这是单需求修正诊断，不是独立效果证据。mixed8 的 CONGA/LetFlow timeout 及 ConWeave reroute/VOQ flush 均为 0，动态分支覆盖仍不足。报告见[correctness 分析](../research/ws25-v1fix-correctness-analysis.md)。已生成新独立需求 seed05–08 的 0/64/128/192 trace 并冻结哈希；第一阶段 192 档 24 个六臂配对主格 + 每 seed 一格 diag=1 控制，共 28 个固定 ID，均用 SHA `c84108b…`、cap=2。协议、机器计划、manifest 与执行器分别见[协议](../research/ws25-v1fix-independent-calibration-protocol.md)、[计划 JSON](../research/evidence/ws25-v1fix-calibration-plan.json)、[输入 manifest](../research/evidence/ws25-v1fix-calibration-inputs.json)、[`run_ws25_v1fix_calibration.py`](../../scripts/run_ws25_v1fix_calibration.py)。校准未远程运行；最终需求池 20262521–44 未读取。下一步等待主对话实际切 Luna High 后启动校准，终态再回 Sol 分析。
 
-此处是阶段账本，WS-25 保持 ACTIVE；构建或最小 pilot 成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
+2026-10-04 并发容量闭环：固定 SHA `a656104d05c681f9b3a998b5ef4ce3e644558d02` 的 18 档共 18/18 成功，逐格原始数据、资源收据及与校准 FCT 指纹均核验通过。metadata 同口径吞吐：12 档 102.37、16 档 130.61、18 档 136.13 格/小时；18 相对 16 仅 +4.23%，`stage_start` 口径 +3.76%，未过预设 5% 升档线，正式矩阵容量采用 16。18 档资源线通过（峰值 load 18.02、最低可用内存 43.271 GiB、最低空闲盘 5461.491 GiB）；原控制器的轮询等待污染记录保留。报告、复算器和机器证据见[容量计时审计](../research/ws25-resource-capacity-timing-audit.md)、[`analyze_ws25_resource_capacity.py`](../../scripts/analyze_ws25_resource_capacity.py)与[evidence JSON](../research/evidence/ws25-resource-capacity-analysis.json)。该试跑不增加算法效果样本。下一步为 0/64/128 档配对约束校准与动态分支缺口核验；再冻结正式双侧门槛、独立需求样本量和最终 seed/ID，然后才可启动正式矩阵。最终池 `20262521–44` 仍未读取。阶段交接及后续门槛见 [Handoff 69](../handoffs/2026-10-04-69-ws25-capacity-and-lower-load-calibration.md)。
+
+此处是阶段账本，WS-25 保持 ACTIVE；构建、资源 pilot 或校准成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。

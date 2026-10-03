@@ -1,8 +1,8 @@
 # ConWeave 毕业论文项目状态
 
-## 当前快照（2026-10-03）
+## 当前快照（2026-10-04）
 
-WS-25 继续执行**第一课题类别感知包流混合负载均衡实现、独立验证与小论文成稿**，逐项门槛见 [WS-25 清单](WS25_FIRST_PAPER_EXECUTION.md)。ClassReserve v1 一次诊断修正固定在源码 `c84108b24c94a5068861e5bb090c5aa387245ee1`；11 格正确性与 fallback 验收从 raw 重验 11/11，通过收据见 [Handoff 61](../handoffs/2026-10-03-61-ws25-v1fix-correctness-complete.md) 和 [分析报告](../research/ws25-v1fix-correctness-analysis.md)。seed01 同需求修正前后出现 OoO CNP 下降的诊断信号，但这不是独立性能证据。r1 首两格因 SHA `c84108b…` 未携带 seed07 trace，在 ns-3 启动前失败；r2 首两格又因远端源码缓存尚未同步包含 `a656104…` 的提交而未能建立实验目录。两个批次的 ID 均保留，均非算法效果结果。r3 的 seed07 六个主臂已通过逐格 verifier（6/28）；其 diag 格只构建成功，runner 漏传 `--ws25-diag` 数值，CLI 拒绝启动，ID 保留且无仿真。该调度问题与修复见 [Handoff 68](../handoffs/2026-10-03-68-ws25-calibration-diag-cli-arg-fix.md)。r4 将用修正后的 `--ws25-diag 1`，保留六个已通过 ID 及所有未尝试 ID，只为该失败 diag 分配新 ID；版本化计划见[校准 r4 清单](../research/evidence/ws25-v1fix-calibration-plan-r4.json)。远端当前 load 1m `0.0`、活动仿真为空；修复后的 runner 尚未重启。当前监督模型 Luna High。正式双侧数值门槛、最终样本量和效果矩阵仍未冻结，不能宣称收益或正式 NO-GO。
+WS-25 继续执行**第一课题类别感知包流混合负载均衡实现、独立验证与小论文成稿**，逐项门槛见 [WS-25 清单](WS25_FIRST_PAPER_EXECUTION.md)。修正版固定仿真/输入快照 SHA `a656104d05c681f9b3a998b5ef4ce3e644558d02`；四独立需求 192 档校准的 24 主格及 4 诊断格均完成并验收，结果见[双侧校准分析](../research/ws25-v1fix-four-seed-calibration-analysis.md)。当前仍无正式效果结论。资源容量试跑的 12/16/18 档均完成；18 档 18/18 原始格通过且资源安全，但 metadata 吞吐相对 16 档只增 4.23%（stage_start 口径 3.76%），未达事前 5% 升档线，因此正式矩阵采用 cap=16，见[容量审计](../research/ws25-resource-capacity-timing-audit.md)。下一步已冻结 0/64/128 档四 seed × 六模式共 72 格探索性校准协议与 r3 均衡运行计划；尚未远程预构建或启动。正式双侧门槛、最终样本量和效果矩阵仍未冻结；最终 seed 池 `20262521–44` 尚未读取。容量结果不作为算法收益证据。
 
 WS-23 与 WS-24 的预设 **ns-3 合成范围均已闭环**，见 [最终验证清单](WS23_WS24_VALIDATION_PLAN.md)与 [Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)。WS-23 固定仿真 SHA `3db2685a3540895bf49e25302bd00465bc0921e2` 的 18/18 隔离格、传输恢复正确性和资源收据均验收；预设隔离效果 `exploratory_positive=false`，即 **NO-GO**。WS-24 固定仿真 SHA `3b992eed218f65b4f8026eddb5170a7694e17b10` 的 12 个独立合成 job × 四臂 48/48 格与资源收据验收；12/12 job 多 rail 完成跨度较短，中位配对差 −19.667%，精确双侧符号检验 `p=0.00048828125`。两者均不代表真实网卡或生产收益，也不能直接充当后续两个包流混合机制课题的正向结论。下方 2026-09-30 记录保留为历史阶段快照，其 ACTIVE/NO-GO-for-simulation 口径已被本次完成的实验取代。
 

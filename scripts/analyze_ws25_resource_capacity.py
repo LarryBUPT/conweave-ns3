@@ -132,8 +132,15 @@ def main():
     capacity_summary = load(capacity.SUMMARY)
     sixteen = cohort(expected16, 16, CAPACITY_RECEIPTS,
                      capacity_summary["stages"][0], original_cache)
+    expected18 = [item for item in capacity_plan["cells"] if item["stage_cap"] == 18]
+    if len(capacity_summary["stages"]) != 2 or capacity_summary["stages"][1]["cap"] != 18:
+        raise RuntimeError("Expected completed 18-cell stage after verified 16-cell stage")
+    eighteen = cohort(expected18, 18, CAPACITY_RECEIPTS,
+                      capacity_summary["stages"][1], original_cache)
     if not sixteen["minimum_full_overlap_seconds"] > 0:
         raise RuntimeError("16-cell cohort never ran concurrently")
+    if not eighteen["minimum_full_overlap_seconds"] > 0:
+        raise RuntimeError("18-cell cohort never ran concurrently")
     ratio = (sixteen["metadata_throughput_cells_per_hour"] /
              twelve["metadata_throughput_cells_per_hour"])
     if not ratio > 1.05:
@@ -142,21 +149,29 @@ def main():
     events = receipts(CAPACITY_RECEIPTS)
     started18 = sorted({item.get("id") for item in events
                         if item.get("event") == "started" and item.get("id") in cap18_ids})
+    throughput_ratio_18_over_16 = (eighteen["metadata_throughput_cells_per_hour"] /
+                                    sixteen["metadata_throughput_cells_per_hour"])
+    selected_cap = 18 if throughput_ratio_18_over_16 > 1.05 else 16
     output = {"purpose": capacity_plan["purpose"], "source_sha": capacity_plan["source_sha"],
               "topology_sha256": capacity_plan["topology_sha256"],
               "standalone_original_first_id": first["id"],
               "standalone_original_first_fct_sha256": first_result["fct_sha256"],
-              "stages": {"12": twelve, "16": sixteen},
+              "stages": {"12": twelve, "16": sixteen, "18": eighteen},
               "metadata_throughput_ratio_16_over_12": ratio,
               "stage_receipt_throughput_ratio_16_over_12":
                   sixteen["stage_receipt_throughput_cells_per_hour"] /
                   twelve["stage_receipt_throughput_cells_per_hour"],
               "go_18_threshold_ratio": 1.05, "go_18": True,
+              "metadata_throughput_ratio_18_over_16": throughput_ratio_18_over_16,
+              "selected_cap": selected_cap,
               "cap18_planned_ids": cap18_ids, "cap18_started_receipt_ids": started18,
               "recovery_plan": "docs/research/evidence/ws25-resource-capacity-recovery-plan.json"}
     OUTPUT.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps({"12_metadata_throughput": twelve["metadata_throughput_cells_per_hour"],
                       "16_metadata_throughput": sixteen["metadata_throughput_cells_per_hour"],
+                      "18_metadata_throughput": eighteen["metadata_throughput_cells_per_hour"],
+                      "18_over_16_ratio": throughput_ratio_18_over_16,
+                      "selected_cap": selected_cap,
                       "ratio": ratio, "go_18": True,
                       "cap18_started_receipts": len(started18)}, sort_keys=True))
 
