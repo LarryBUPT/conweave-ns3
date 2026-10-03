@@ -114,6 +114,74 @@ def resources_ok():
         raise RuntimeError('Server load is high; retry later')
 
 
+WS25_CAPACITY_SHA = 'a656104d05c681f9b3a998b5ef4ce3e644558d02'
+WS25_CAPACITY_TOPO_SHA = '74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba'
+WS25_CAPACITY_TRACES = {
+    'ws25_seed20262505_b192.txt': '038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272',
+    'ws25_seed20262506_b192.txt': 'fe94e381938538ab7c2376614f6d8c27600b2e351c2d5e10a2b62fd14d2a8ed5',
+    'ws25_seed20262507_b192.txt': '01b24bc1bd76d4932dd6c6e4e7ce159ff9d73824de2540ba4b09cd62e6ff83b7',
+    'ws25_seed20262508_b192.txt': 'e68616fd2de70e466f6193d7584ae77a1eb1a437efbf90c8619930dd814ded4a',
+}
+
+
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with open(inside(path), 'rb') as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b''):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def high_capacity_admission(params, data, source, workers):
+    """Conservative admission for the frozen WS-25 b192 capacity replay only."""
+    if data.get('git_commit') != WS25_CAPACITY_SHA:
+        raise RuntimeError('High capacity requires the frozen WS-25 source SHA')
+    expected = {'pfc': 0, 'irn': 1, 'bw': 400, 'buffer': 9,
+                'topo': 'topo_1280_400G_400G_OS1', 'cdf': 'AliStorage2019',
+                'netload': 10, 'simul_time': '0.01', 'ws25_diag': 0}
+    if any(params.get(key) != value for key, value in expected.items()):
+        raise RuntimeError('High capacity requires frozen WS-25 run parameters')
+    if params.get('lb') not in ('fecmp', 'drill', 'conga', 'letflow', 'conweave', 'classreserve'):
+        raise RuntimeError('High capacity mode is outside the frozen six-arm matrix')
+    trace = params.get('flow_file')
+    if trace not in WS25_CAPACITY_TRACES:
+        raise RuntimeError('High capacity trace is not frozen')
+    if file_sha256(os.path.join(source, 'config', trace)) != WS25_CAPACITY_TRACES[trace]:
+        raise RuntimeError('High capacity trace hash changed')
+    if file_sha256(os.path.join(source, 'config', expected['topo'] + '.txt')) != WS25_CAPACITY_TOPO_SHA:
+        raise RuntimeError('High capacity topology hash changed')
+    stat = os.statvfs(ROOT)
+    if stat.f_bavail * stat.f_frsize < 100 * 1024 ** 3:
+        raise RuntimeError('High capacity needs at least 100 GiB free disk')
+    # Refuse admission when another ordinary account has an active process.
+    for line in output(['ps', '-eo', 'uid,pid,stat,comm', '--no-headers']).splitlines():
+        columns = line.split(None, 3)
+        if len(columns) == 4 and int(columns[0]) >= 1000 and int(columns[0]) != os.getuid() and not columns[2].startswith('Z'):
+            raise RuntimeError('Another ordinary user has an active process')
+    with open('/proc/meminfo') as handle:
+        match = re.search(r'^MemAvailable:\s+(\d+) kB', handle.read(), re.M)
+    if not match:
+        raise RuntimeError('Cannot read MemAvailable for high capacity')
+    available_kib = int(match.group(1))
+    # A cold worker may not yet have reached its 4.6 GiB observed peak.
+    # Account for every worker's remaining growth plus a full new 5 GiB cell.
+    reserve_kib = 5 * 1024 * 1024
+    for _, worker_pid in workers:
+        current_kib = 0
+        for name in os.listdir('/proc'):
+            if not name.isdigit() or not descendant_of(int(name), worker_pid):
+                continue
+            try:
+                with open('/proc/%s/status' % name) as handle:
+                    resident = re.search(r'^VmRSS:\s+(\d+) kB', handle.read(), re.M)
+                current_kib += int(resident.group(1)) if resident else 0
+            except (IOError, OSError):
+                pass
+        reserve_kib += max(0, 5 * 1024 * 1024 - current_kib)
+    if available_kib - reserve_kib < 32 * 1024 * 1024:
+        raise RuntimeError('Projected available memory below 32 GiB at high capacity')
+
+
 def active_simulations():
     found = []
     # procps on the Ubuntu 16.04 host does not parse comma-separated fields
@@ -468,8 +536,8 @@ def execute(experiment_id):
 
 def start(experiment_id, params, max_concurrent=1):
     resources_ok()
-    if max_concurrent not in (1, 2, 4, 8, 12):
-        raise RuntimeError('Concurrency must be 1, 2, 4, 8, or 12 after resource pilot')
+    if max_concurrent not in (1, 2, 4, 8, 12, 16, 18):
+        raise RuntimeError('Unsupported concurrency cap')
     with simulation_start_lock():
         resources_ok()
         workers = running_workers()
@@ -488,6 +556,14 @@ def start(experiment_id, params, max_concurrent=1):
             raise RuntimeError('Source commit changed after build')
         if output(['git', 'status', '--porcelain'], cwd=source):
             raise RuntimeError('Source changed after build')
+        if max_concurrent > 12:
+            for other_id, unused_pid in workers:
+                other_base, unused_source = paths(other_id)
+                other = load_metadata(other_base)
+                if (other.get('git_commit') != WS25_CAPACITY_SHA or
+                        other.get('parameters', {}).get('flow_file') not in WS25_CAPACITY_TRACES):
+                    raise RuntimeError('High capacity cannot mix with other workloads')
+            high_capacity_admission(params, data, source, workers)
         data['parameters'] = params
         data['topology'] = params['topo']
         data['load'] = params['netload']
@@ -568,7 +644,7 @@ def main():
     run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
-    run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12), default=1)
+    run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12, 16, 18), default=1)
     run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)
     run_cmd.add_argument('--buffer', type=int, choices=range(1, 10), default=9)
     run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')

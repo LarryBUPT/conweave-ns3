@@ -10,6 +10,6 @@
 | 8 | 8 | 374.8 秒 | 76.85 | 4562.2 MiB | 87.46 GiB | 8.29 |
 | 12 | 12 | 439.0 秒 | 98.41 | 4562.1 MiB | 69.76 GiB | 12.52 |
 
-吞吐由 4 到 8 格提升 1.89 倍，由 8 到 12 格再提升 1.28 倍。内存余量随并发近似下降，但 12 格仍比 32 GiB 资源线多 37.76 GiB；磁盘变化不足 18 MiB。CPU load 随并发上升，未触及 20 线。该测量支持继续阶梯试到 16/18；尚未证明更高档更高效，也不支持把 12 视为最终上限。下一档前须将 worker 白名单上限扩至 16/18，并加入按当前可用内存预测启动后保留至少 32 GiB 的 admission 检查；先运行 16，再根据吞吐和资源决定是否跑 18。不开 20，给 OS、SSH 和后台服务留下物理核与内存余量。
+吞吐由 4 到 8 格提升 1.89 倍，由 8 到 12 格再提升 1.28 倍。内存余量随并发近似下降，但 12 格仍比 32 GiB 资源线多 37.76 GiB。预构建 24 份独立源码使远端空闲盘从约 5504.5 降至 5487.3 GiB；仿真三档期间又降约 0.3 GiB，最终约 5487.0 GiB。1 分钟 load 随并发上升，未触及 20 线；它是可运行任务的平滑计数，不等于 CPU 使用率百分比。该测量支持继续阶梯试到 16/18；尚未证明更高档更高效，也不支持把 12 视为最终上限。下一档前须将 worker 白名单上限扩至 16/18，并加入按当前可用内存预测启动后保留至少 32 GiB 的 admission 检查；先运行 16，再根据吞吐和资源决定是否跑 18。不开 20，给 OS、SSH 和后台服务留下物理核与内存余量。
 
-机器明细：忽略目录 `results/ws25-resource-pilot-summary.json` 和 `results/ws25-resource-pilot-receipts.jsonl`。逐格 ID 在[冻结计划](evidence/ws25-resource-pilot-plan.json)，控制器为 `scripts/run_ws25_resource_pilot.py`。本轮不是正式 WS-25 矩阵；正式实验仍需完成校准分析、0/64/128 档约束、双侧判据、样本量和最终 IDs/SHA/trace 冻结。
+机器明细：从 24 个实验 ID 的原始文件独立重算的[机器分析](evidence/ws25-resource-pilot-analysis.json)；忽略目录 `results/ws25-resource-pilot-summary.json` 和 `results/ws25-resource-pilot-receipts.jsonl` 保留原始运行器收据。逐格 ID 在[冻结计划](evidence/ws25-resource-pilot-plan.json)，复算入口 `scripts/analyze_ws25_resource_pilot.py`。本轮不是正式 WS-25 矩阵；正式实验仍需完成校准分析、0/64/128 档约束、双侧判据、样本量和最终 IDs/SHA/trace 冻结。
