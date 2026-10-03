@@ -1,6 +1,6 @@
 # WS-25 ClassReserve v1 修正版独立校准协议
 
-状态：2026-10-03，r3 身份已冻结，**只含独立校准，不是正式效果矩阵**。r1 前两格因构建 SHA 不含新 trace 而在 ns-3 启动前失败，见[Handoff 63](../handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md)；r2 前两格的 build 请求因远端尚未同步包含 SHA 的提交而无法解析 Git object，没有生成远端实验目录。该提交已通过工作流 `sync` 同步；为严格遵守失败 ID 不复用规则，r3 的 28 格全部使用全新 ID，详见[Handoff 64](../handoffs/2026-10-03-64-ws25-calibration-r2-sync-and-r3-freeze.md)。r3 使用包含全部 trace 的 Git SHA `a656104d05c681f9b3a998b5ef4ce3e644558d02`。前置正确性与同 seed 修正诊断见[11 格分析](ws25-v1fix-correctness-analysis.md)。修正参考过 seed01–04 的结果，因此本轮不复用这些需求；新校准需求为 20262505–20262508。最终验证需求池 20262521–20262544 保持未读取、未运行。
+状态：2026-10-03，r4 恢复计划已冻结，**只含独立校准，不是正式效果矩阵**。r1 前两格因构建 SHA 不含新 trace 而在 ns-3 启动前失败，见[Handoff 63](../handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md)；r2 前两格的 build 请求因远端尚未同步包含 SHA 的提交而无法解析 Git object，见[Handoff 64](../handoffs/2026-10-03-64-ws25-calibration-r2-sync-and-r3-freeze.md)。r3 首六主臂已通过，但 seed07 diag 格仅完成 build；runner 把需带数值的 `--ws25-diag 1` 错写成不带值的参数，CLI 拒绝启动，ID 留存且未仿真，详见[Handoff 68](../handoffs/2026-10-03-68-ws25-calibration-diag-cli-arg-fix.md)。参数已修正；r4 保留已成功的六格和所有未尝试格 ID，只给失败 diag 分配新 ID，版本化计划见[evidence r4](evidence/ws25-v1fix-calibration-plan-r4.json)。仿真固定使用已同步且包含全部 trace 的 Git SHA `a656104d05c681f9b3a998b5ef4ce3e644558d02`。前置正确性与同 seed 修正诊断见[11 格分析](ws25-v1fix-correctness-analysis.md)。修正参考过 seed01–04 的结果，因此校准需求为 20262505–20262508；最终池 20262521–20262544 保持未读取、未运行。
 
 ## 问题与估计单位
 
@@ -11,7 +11,7 @@
 - 仿真源码/输入快照 `feature/ws25-first-paper@a656104d05c681f9b3a998b5ef4ce3e644558d02`；该提交相对算法修正版 SHA `c84108b24c94a5068861e5bb090c5aa387245ee1` 只增加已冻结输入/工作流材料，`src/`、`scratch/` 与 `run.py` 无差异。拓扑 `topo_1280_400G_400G_OS1`，SHA-256 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`。
 - 六臂使用同一源码、拓扑及参数：NS-3 seed 1、PFC=0、IRN=1、DCQCN、400 Gbps、buffer=9 MiB、`--simul-time 0.01 --netload 10`。主性能格 `ws25_diag=0`。
 - 新 trace 由 `scripts/make_ws25_demand.py` 生成；每 seed 的 192 背景主档含 16,384 个 8 KiB/tag2 MoE 流及 192 个 8 MiB/tag1 背景流，同步从 2.000 s 开始，共 16,576 流、1,744,830,464 offered bytes。全部四档输入及哈希见[manifest](evidence/ws25-v1fix-calibration-inputs.json)。
-- 主档六臂 ID 每 seed 配对如下。完整确定性运行顺序见版本化[校准计划](evidence/ws25-v1fix-calibration-plan-r3.json)；执行器也会在忽略目录生成 `results/ws25-v1fix-calibration-plan-r3.json` 并逐字节检查计划未变。
+- 主档六臂 ID 每 seed 配对如下。完整确定性运行顺序见版本化[校准计划](evidence/ws25-v1fix-calibration-plan-r4.json)；执行器也会在忽略目录生成 `results/ws25-v1fix-calibration-plan-r4.json` 并逐字节检查计划未变。r4 保留 r3 中已通过的六个主臂以及未尝试 ID，不包含 build 后 CLI 拒绝的 diag 失败 ID。
 
 | 需求 seed | flow-file | SHA-256 | ECMP | DRILL | CONGA | LetFlow | ConWeave | ClassReserve |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -26,7 +26,7 @@
 | --- | --- |
 | 20262505 | `20261003-102000-ws25-v1fix-cal05-classreserve-diag` |
 | 20262506 | `20261003-103000-ws25-v1fix-cal06-classreserve-diag` |
-| 20262507 | `20261003-100000-ws25-v1fix-cal07-classreserve-diag` |
+| 20262507 | `20261003-110000-ws25-v1fix-cal07-classreserve-diag` |
 | 20262508 | `20261003-101000-ws25-v1fix-cal08-classreserve-diag` |
 
 共 28 个实验 ID：24 个主校准格 + 4 个诊断控制格。各 seed 是 blocking unit；seed block 顺序为 20262507、08、05、06；同 block 的七种执行条件由固定随机化种子 20262509 与 seed 派生的随机顺序排列，每两个 cell 同时运行，最多并发 2。诊断控制与同 seed ClassReserve 主格为重复测量/指纹对照，不增加 n。
@@ -42,4 +42,4 @@
 
 服务器开格前检查无其他用户实验/未知 ns-3/worker、worker 锁空闲、SSH/磁盘/内存健康。cap=2 已由相同 SHA 的 seed01 b192 correctness 实测，树 RSS 峰值约 4.56 GiB；本轮固定 cap=2，不再升档。每格 build 超过 30 分钟、仿真超过 4 小时、树 RSS 超过 32 GiB、1 分钟 load>20、可用内存<32 GiB、磁盘<100 GiB、哈希/完成率/守恒不符、远端未知作业或 SSH/系统异常时，停止启动新格，保留已运行与失败 ID/raw，用修复后的新 ID 重验。全部格保留独立源码、raw、metadata、日志、资源收据及 FCT 指纹。
 
-本轮不预注册性能通过阈值，不把四个 seed 当最终样本。全部终态后由 Sol High 逐 seed 配对分析；再按工作清单处理 0/64/128 档约束与机制观测，随后依据 pilot 变异使用 statistical-power 方法确定正式最终样本量，冻结双侧数值门槛、比较方法和最终 seed/ID。正式矩阵在这些门槛冻结前关闭。远程执行前主对话须实际将本任务切到 Luna High；r3 协议、计划和 16 个新 trace 已冻结，切换生效后执行器入口为 `python scripts/run_ws25_v1fix_calibration.py run`。长时运行按约 30 分钟间隔进行精简状态检查。验收入口为 `python scripts/run_ws25_v1fix_calibration.py verify`。
+本轮不预注册性能通过阈值，不把四个 seed 当最终样本。全部终态后由 Sol High 逐 seed 配对分析；再按工作清单处理 0/64/128 档约束与机制观测，随后依据 pilot 变异使用 statistical-power 方法确定正式最终样本量，冻结双侧数值门槛、比较方法和最终 seed/ID。正式矩阵在这些门槛冻结前关闭。远程执行前主对话须实际将本任务切到 Luna High；r4 协议、计划和 16 个新 trace 已冻结，切换生效后执行器入口为 `python scripts/run_ws25_v1fix_calibration.py run`。长时运行按约 30 分钟间隔进行精简状态检查。验收入口为 `python scripts/run_ws25_v1fix_calibration.py verify`。

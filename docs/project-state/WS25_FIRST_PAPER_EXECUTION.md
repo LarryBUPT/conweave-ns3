@@ -24,6 +24,7 @@
 - 独立校准 r1 的两格因构建 SHA `c84108b24c94a5068861e5bb090c5aa387245ee1` 不含 seed07 trace，在 ns-3 启动前失败。r2 首两格的 build 请求又因远端 Git 缓存尚未同步 SHA `a656104…` 而终止，没有建立远端实验目录。两组尝试 ID 均保留，详见 [Handoff 63](../handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md) 与 [Handoff 64](../handoffs/2026-10-03-64-ws25-calibration-r2-sync-and-r3-freeze.md)；均不计作机制效果或正确性失败，也不复用。
 - 工作流 `sync` 已将包含输入的提交同步到远端源码缓存。r3 冻结相同输入快照 SHA `a656104d05c681f9b3a998b5ef4ce3e644558d02`、四个 trace SHA、拓扑 SHA、28 个全新唯一 ID、cap=2 和逐格远端 trace SHA 预检。版本化清单为 [r3 计划](../research/evidence/ws25-v1fix-calibration-plan-r3.json)，校准定义见[协议](../research/ws25-v1fix-independent-calibration-protocol.md)。r3 仍是校准，不作正式收益或 NO-GO 判断。
 - r3 已进入后台执行。首个 seed 20262507 的六个主臂 ECMP、ConWeave、LetFlow、DRILL、CONGA、ClassReserve 已完成并各自通过 verifier（6/28）；均 16,576/16,576 完成。最初两格描述性数字与资源见 [Handoff 65](../handoffs/2026-10-03-65-ws25-calibration-r3-first-block.md)，后续进度见 [Handoff 66](../handoffs/2026-10-03-66-ws25-calibration-r3-progress-4-of-28.md) 与 [Handoff 67](../handoffs/2026-10-03-67-ws25-calibration-r3-progress-6-of-28.md)。ClassReserve diag 控制及其他 seed 尚未完成；全矩阵终态前不做性能排序或效果结论。
+- seed07 的 diag ID 在 `BUILT` 后未运行：runner 将 `--ws25-diag` 参数漏掉必需值，远端 CLI 拒绝启动；失败 ID 保留，非仿真 raw。修正为 `--ws25-diag 1`，r4 保留 27 个成功/未尝试身份，仅给该格分配新 ID；见 [Handoff 68](../handoffs/2026-10-03-68-ws25-calibration-diag-cli-arg-fix.md)。当前检查器/计划已修复，尚待推送并重启执行。
 
 ## 迭代和闭环
 

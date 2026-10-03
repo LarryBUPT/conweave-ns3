@@ -1,0 +1,302 @@
+{
+  "buffer_mib": 9,
+  "bw_gbps": 400,
+  "calibration_seed_unit": "independent demand seed; six modes paired within seed",
+  "cells": [
+    {
+      "block_order": 0,
+      "diag": 0,
+      "id": "20261003-100000-ws25-v1fix-cal07-fecmp",
+      "mode": "fecmp",
+      "role": "primary",
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b192.txt",
+      "trace_sha256": "01b24bc1bd76d4932dd6c6e4e7ce159ff9d73824de2540ba4b09cd62e6ff83b7"
+    },
+    {
+      "block_order": 1,
+      "diag": 0,
+      "id": "20261003-100000-ws25-v1fix-cal07-conweave",
+      "mode": "conweave",
+      "role": "primary",
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b192.txt",
+      "trace_sha256": "01b24bc1bd76d4932dd6c6e4e7ce159ff9d73824de2540ba4b09cd62e6ff83b7"
+    },
+    {
+      "block_order": 2,
+      "diag": 0,
+      "id": "20261003-100000-ws25-v1fix-cal07-letflow",
+      "mode": "letflow",
+      "role": "primary",
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b192.txt",
+      "trace_sha256": "01b24bc1bd76d4932dd6c6e4e7ce159ff9d73824de2540ba4b09cd62e6ff83b7"
+    },
+    {
+      "block_order": 3,
+      "diag": 0,
+      "id": "20261003-100000-ws25-v1fix-cal07-drill",
+      "mode": "drill",
+      "role": "primary",
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b192.txt",
+      "trace_sha256": "01b24bc1bd76d4932dd6c6e4e7ce159ff9d73824de2540ba4b09cd62e6ff83b7"
+    },
+    {
+      "block_order": 4,
+      "diag": 0,
+      "id": "20261003-100000-ws25-v1fix-cal07-conga",
+      "mode": "conga",
+      "role": "primary",
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b192.txt",
+      "trace_sha256": "01b24bc1bd76d4932dd6c6e4e7ce159ff9d73824de2540ba4b09cd62e6ff83b7"
+    },
+    {
+      "block_order": 5,
+      "diag": 0,
+      "id": "20261003-100000-ws25-v1fix-cal07-classreserve",
+      "mode": "classreserve",
+      "role": "primary",
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b192.txt",
+      "trace_sha256": "01b24bc1bd76d4932dd6c6e4e7ce159ff9d73824de2540ba4b09cd62e6ff83b7"
+    },
+    {
+      "block_order": 6,
+      "diag": 1,
+      "id": "20261003-110000-ws25-v1fix-cal07-classreserve-diag",
+      "mode": "classreserve",
+      "role": "diagnostic_control",
+      "seed": 20262507,
+      "trace": "ws25_seed20262507_b192.txt",
+      "trace_sha256": "01b24bc1bd76d4932dd6c6e4e7ce159ff9d73824de2540ba4b09cd62e6ff83b7"
+    },
+    {
+      "block_order": 0,
+      "diag": 0,
+      "id": "20261003-101000-ws25-v1fix-cal08-conga",
+      "mode": "conga",
+      "role": "primary",
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b192.txt",
+      "trace_sha256": "e68616fd2de70e466f6193d7584ae77a1eb1a437efbf90c8619930dd814ded4a"
+    },
+    {
+      "block_order": 1,
+      "diag": 0,
+      "id": "20261003-101000-ws25-v1fix-cal08-conweave",
+      "mode": "conweave",
+      "role": "primary",
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b192.txt",
+      "trace_sha256": "e68616fd2de70e466f6193d7584ae77a1eb1a437efbf90c8619930dd814ded4a"
+    },
+    {
+      "block_order": 2,
+      "diag": 0,
+      "id": "20261003-101000-ws25-v1fix-cal08-letflow",
+      "mode": "letflow",
+      "role": "primary",
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b192.txt",
+      "trace_sha256": "e68616fd2de70e466f6193d7584ae77a1eb1a437efbf90c8619930dd814ded4a"
+    },
+    {
+      "block_order": 3,
+      "diag": 0,
+      "id": "20261003-101000-ws25-v1fix-cal08-fecmp",
+      "mode": "fecmp",
+      "role": "primary",
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b192.txt",
+      "trace_sha256": "e68616fd2de70e466f6193d7584ae77a1eb1a437efbf90c8619930dd814ded4a"
+    },
+    {
+      "block_order": 4,
+      "diag": 0,
+      "id": "20261003-101000-ws25-v1fix-cal08-classreserve",
+      "mode": "classreserve",
+      "role": "primary",
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b192.txt",
+      "trace_sha256": "e68616fd2de70e466f6193d7584ae77a1eb1a437efbf90c8619930dd814ded4a"
+    },
+    {
+      "block_order": 5,
+      "diag": 0,
+      "id": "20261003-101000-ws25-v1fix-cal08-drill",
+      "mode": "drill",
+      "role": "primary",
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b192.txt",
+      "trace_sha256": "e68616fd2de70e466f6193d7584ae77a1eb1a437efbf90c8619930dd814ded4a"
+    },
+    {
+      "block_order": 6,
+      "diag": 1,
+      "id": "20261003-101000-ws25-v1fix-cal08-classreserve-diag",
+      "mode": "classreserve",
+      "role": "diagnostic_control",
+      "seed": 20262508,
+      "trace": "ws25_seed20262508_b192.txt",
+      "trace_sha256": "e68616fd2de70e466f6193d7584ae77a1eb1a437efbf90c8619930dd814ded4a"
+    },
+    {
+      "block_order": 0,
+      "diag": 0,
+      "id": "20261003-102000-ws25-v1fix-cal05-letflow",
+      "mode": "letflow",
+      "role": "primary",
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b192.txt",
+      "trace_sha256": "038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272"
+    },
+    {
+      "block_order": 1,
+      "diag": 0,
+      "id": "20261003-102000-ws25-v1fix-cal05-conweave",
+      "mode": "conweave",
+      "role": "primary",
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b192.txt",
+      "trace_sha256": "038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272"
+    },
+    {
+      "block_order": 2,
+      "diag": 0,
+      "id": "20261003-102000-ws25-v1fix-cal05-classreserve",
+      "mode": "classreserve",
+      "role": "primary",
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b192.txt",
+      "trace_sha256": "038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272"
+    },
+    {
+      "block_order": 3,
+      "diag": 1,
+      "id": "20261003-102000-ws25-v1fix-cal05-classreserve-diag",
+      "mode": "classreserve",
+      "role": "diagnostic_control",
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b192.txt",
+      "trace_sha256": "038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272"
+    },
+    {
+      "block_order": 4,
+      "diag": 0,
+      "id": "20261003-102000-ws25-v1fix-cal05-conga",
+      "mode": "conga",
+      "role": "primary",
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b192.txt",
+      "trace_sha256": "038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272"
+    },
+    {
+      "block_order": 5,
+      "diag": 0,
+      "id": "20261003-102000-ws25-v1fix-cal05-drill",
+      "mode": "drill",
+      "role": "primary",
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b192.txt",
+      "trace_sha256": "038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272"
+    },
+    {
+      "block_order": 6,
+      "diag": 0,
+      "id": "20261003-102000-ws25-v1fix-cal05-fecmp",
+      "mode": "fecmp",
+      "role": "primary",
+      "seed": 20262505,
+      "trace": "ws25_seed20262505_b192.txt",
+      "trace_sha256": "038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272"
+    },
+    {
+      "block_order": 0,
+      "diag": 0,
+      "id": "20261003-103000-ws25-v1fix-cal06-conga",
+      "mode": "conga",
+      "role": "primary",
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b192.txt",
+      "trace_sha256": "fe94e381938538ab7c2376614f6d8c27600b2e351c2d5e10a2b62fd14d2a8ed5"
+    },
+    {
+      "block_order": 1,
+      "diag": 0,
+      "id": "20261003-103000-ws25-v1fix-cal06-fecmp",
+      "mode": "fecmp",
+      "role": "primary",
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b192.txt",
+      "trace_sha256": "fe94e381938538ab7c2376614f6d8c27600b2e351c2d5e10a2b62fd14d2a8ed5"
+    },
+    {
+      "block_order": 2,
+      "diag": 0,
+      "id": "20261003-103000-ws25-v1fix-cal06-letflow",
+      "mode": "letflow",
+      "role": "primary",
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b192.txt",
+      "trace_sha256": "fe94e381938538ab7c2376614f6d8c27600b2e351c2d5e10a2b62fd14d2a8ed5"
+    },
+    {
+      "block_order": 3,
+      "diag": 0,
+      "id": "20261003-103000-ws25-v1fix-cal06-drill",
+      "mode": "drill",
+      "role": "primary",
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b192.txt",
+      "trace_sha256": "fe94e381938538ab7c2376614f6d8c27600b2e351c2d5e10a2b62fd14d2a8ed5"
+    },
+    {
+      "block_order": 4,
+      "diag": 0,
+      "id": "20261003-103000-ws25-v1fix-cal06-classreserve",
+      "mode": "classreserve",
+      "role": "primary",
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b192.txt",
+      "trace_sha256": "fe94e381938538ab7c2376614f6d8c27600b2e351c2d5e10a2b62fd14d2a8ed5"
+    },
+    {
+      "block_order": 5,
+      "diag": 0,
+      "id": "20261003-103000-ws25-v1fix-cal06-conweave",
+      "mode": "conweave",
+      "role": "primary",
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b192.txt",
+      "trace_sha256": "fe94e381938538ab7c2376614f6d8c27600b2e351c2d5e10a2b62fd14d2a8ed5"
+    },
+    {
+      "block_order": 6,
+      "diag": 1,
+      "id": "20261003-103000-ws25-v1fix-cal06-classreserve-diag",
+      "mode": "classreserve",
+      "role": "diagnostic_control",
+      "seed": 20262506,
+      "trace": "ws25_seed20262506_b192.txt",
+      "trace_sha256": "fe94e381938538ab7c2376614f6d8c27600b2e351c2d5e10a2b62fd14d2a8ed5"
+    }
+  ],
+  "irn": 1,
+  "kind": "independent corrected-candidate calibration; not efficacy",
+  "max_concurrent": 2,
+  "netload": 10,
+  "ns3_seed": 1,
+  "pfc": 0,
+  "seed_order": [
+    20262507,
+    20262508,
+    20262505,
+    20262506
+  ],
+  "simul_time": "0.01",
+  "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}

@@ -36,10 +36,11 @@ ID_PREFIX = {
     20262507: "20261003-100000",
     20262508: "20261003-101000",
 }
+DIAG_ID = {20262507: "20261003-110000-ws25-v1fix-cal07-classreserve-diag"}
 MODES = ("fecmp", "drill", "conga", "letflow", "conweave", "classreserve")
 EXPECTED_TAGS = {"1": 192, "2": 16384}
-PLAN_PATH = ROOT / "results" / "ws25-v1fix-calibration-plan-r3.json"
-RECEIPTS = ROOT / "results" / "ws25-v1fix-calibration-receipts-r3.jsonl"
+PLAN_PATH = ROOT / "results" / "ws25-v1fix-calibration-plan-r4.json"
+RECEIPTS = ROOT / "results" / "ws25-v1fix-calibration-receipts-r4.jsonl"
 LOCK = threading.Lock()
 
 
@@ -62,9 +63,11 @@ def cells():
             diagnostic = item == "classreserve_diag"
             mode = "classreserve" if diagnostic else item
             suffix = "classreserve-diag" if diagnostic else mode
+            experiment_id = (DIAG_ID.get(seed) if diagnostic else None) or (
+                "%s-ws25-v1fix-cal%02d-%s" %
+                (ID_PREFIX[seed], seed - 20262500, suffix))
             output.append({
-                "id": "%s-ws25-v1fix-cal%02d-%s" %
-                      (ID_PREFIX[seed], seed - 20262500, suffix),
+                "id": experiment_id,
                 "seed": seed, "mode": mode, "trace": trace,
                 "trace_sha256": SEEDS[seed], "diag": int(diagnostic),
                 "role": "diagnostic_control" if diagnostic else "primary",
@@ -221,7 +224,7 @@ def run_cell(cell):
                 "--flow-file", cell["trace"], "--simul-time", "0.01", "--netload", "10",
                 "--max-concurrent", "2"]
         if cell["diag"]:
-            args.append("--ws25-diag")
+            args.extend(["--ws25-diag", "1"])
         base.command(*args)
         receipt("started", cell, cap=2)
         state = base.status(cell["id"])
@@ -281,7 +284,7 @@ def execute(selected):
             base.audit(reject_active=True)
     result = verify_matrix(selected)
     RECEIPTS.parent.mkdir(parents=True, exist_ok=True)
-    with (RECEIPTS.parent / "ws25-v1fix-calibration-verification-r3.json").open("x", encoding="utf-8") as target:
+    with (RECEIPTS.parent / "ws25-v1fix-calibration-verification-r4.json").open("x", encoding="utf-8") as target:
         json.dump(result, target, indent=2, sort_keys=True)
         target.write("\n")
     print(json.dumps({"calibration_matrix_complete": True,
