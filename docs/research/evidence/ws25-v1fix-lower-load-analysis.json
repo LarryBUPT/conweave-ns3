@@ -1,0 +1,3927 @@
+{
+  "background_levels": [
+    0,
+    64,
+    128
+  ],
+  "cells": [
+    {
+      "background": 64,
+      "background_p99_us": 686.31965,
+      "cnp": {
+        "ecn": 171,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 171
+      },
+      "config_log_sha256": "b0bd2686cea1917ac5a30001b81ea731e7273ba5cf15b34542ee3b05ca28e02f",
+      "fct_sha256": "fc61b246c4016d0d105aa75d330e3fd5b9677b6fadf256b2e463be83b23355ca",
+      "id": "20261004-030000-ws25-lower-s06-b064-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 16.356,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-fecmp",
+        "minimum_free_gib": 5409.75142288208,
+        "minimum_mem_available_gib": 52.26686477661133,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.33984375,
+        "samples": 49
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.979606251810398,
+        "mean_active_tor_port_imbalance": 2.5462396236484417,
+        "peak_single_port_bucket_bytes": 528396,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 713650804
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 902.27189,
+      "cnp": {
+        "ecn": 273,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 273
+      },
+      "config_log_sha256": "cea0f3fa0f94c1df9acffeda01687058a346b9ead9398010723deef0d4f164cd",
+      "fct_sha256": "065ade211f6cdf4004d05835a011dd65da03b6c5d13d8c8edd2d4cd3215ccca7",
+      "id": "20261004-030000-ws25-lower-s06-b128-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 291370,
+        "notifies": 273,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 17.35,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-conweave",
+        "minimum_free_gib": 5409.690032958984,
+        "minimum_mem_available_gib": 52.29106521606445,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4561.1875,
+        "samples": 67
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.6268119443940225,
+        "mean_active_tor_port_imbalance": 2.4753547943291108,
+        "peak_single_port_bucket_bytes": 532888,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1289993156
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 690.24861,
+      "cnp": {
+        "ecn": 122,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 122
+      },
+      "config_log_sha256": "d1ee19e3bcf9cc1e7e1faa140e4d7b4235044e4753ee095f879347cee53b03cf",
+      "fct_sha256": "313d4c32fcc1cdd8382d3dbb3a2c98b3ca098375d8b6e99a0f01132008c90383",
+      "id": "20261004-030000-ws25-lower-s07-b064-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 184715,
+        "notifies": 118,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 15.8,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-conweave",
+        "minimum_free_gib": 5409.717864990234,
+        "minimum_mem_available_gib": 52.24626159667969,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4561.046875,
+        "samples": 58
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.474202271219791,
+        "mean_active_tor_port_imbalance": 3.047621934420177,
+        "peak_single_port_bucket_bytes": 531556,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 753611404
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "53decfa54f195018aa46d0ceada0cea69d99e4268783fa7f79f2c5727378d918",
+      "fct_sha256": "80fff2e83d015f21f61b1a524e5894f11f79694b98985f9634d669bb3cff12b2",
+      "id": "20261004-030000-ws25-lower-s05-b000-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.204,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-drill",
+        "minimum_free_gib": 5409.756847381592,
+        "minimum_mem_available_gib": 52.26123046875,
+        "peak_load_1m": 15.44,
+        "peak_tree_rss_mib": 4544.3203125,
+        "samples": 43
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.3393415739936886,
+        "mean_active_tor_port_imbalance": 0.09435842112073795,
+        "peak_single_port_bucket_bytes": 522188,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 147232728
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "19585685b38d42e15709fd98790631ae1bca32d211dec0a4647965746eae3fa8",
+      "fct_sha256": "789cb009122e044187d00dda59128633fce96c03f7ac7a8942782e6a73103fb0",
+      "id": "20261004-030000-ws25-lower-s05-b000-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 17.531,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-conga",
+        "minimum_free_gib": 5409.743667602539,
+        "minimum_mem_available_gib": 52.277557373046875,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4562.015625,
+        "samples": 48
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.9060524385793021,
+        "mean_active_tor_port_imbalance": 0.5353134357669977,
+        "peak_single_port_bucket_bytes": 526324,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146642328
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 997.6215000000003,
+      "cnp": {
+        "ecn": 580,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 580
+      },
+      "config_log_sha256": "2951e6ab7d5fca413030630fdd6010417344137223bee86bd8abe35110f3b296",
+      "fct_sha256": "5634dd9f6749b4085781f0426ba95ba042f37378fe3b0f56027e87126c0dfb04",
+      "id": "20261004-030000-ws25-lower-s07-b128-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 19.071,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-conga",
+        "minimum_free_gib": 5409.693866729736,
+        "minimum_mem_available_gib": 52.293697357177734,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4562.25390625,
+        "samples": 63
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.393488644145585,
+        "mean_active_tor_port_imbalance": 2.925414439594606,
+        "peak_single_port_bucket_bytes": 527708,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1290164672
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "8ccf4a9bfc3cf94a9fb67f68730186ff653ad1850cd7dfea984b529f4157aa60",
+      "fct_sha256": "089ccc0e6a44c33608ec1ea7497761400453dc6d37cfc60a8e687b9b2214b99b",
+      "id": "20261004-030000-ws25-lower-s06-b000-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 16.91,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-letflow",
+        "minimum_free_gib": 5409.745429992676,
+        "minimum_mem_available_gib": 52.24436950683594,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4560.98046875,
+        "samples": 46
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.7125199451261599,
+        "mean_active_tor_port_imbalance": 0.3909955222435249,
+        "peak_single_port_bucket_bytes": 526456,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146678984
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 692.37621,
+      "cnp": {
+        "ecn": 211,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 211
+      },
+      "config_log_sha256": "cbbf2b32b89155b7b979ddc2b1cd1976f4b5ba6bf83c98375240ab46e6c6939b",
+      "fct_sha256": "512608882a0030ad0ca4d03e2a766239f3585fba25ecde8e5c311664b1399b5a",
+      "id": "20261004-030000-ws25-lower-s07-b064-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 300,
+          "background_packets": 2516700,
+          "background_queue_avoids": 5,
+          "background_reused": 2516400,
+          "fallback_packets": 0,
+          "moe_diverted": 8923,
+          "moe_flow_new": 74670,
+          "moe_flow_reused": 597360,
+          "moe_packets": 672030,
+          "moe_two_choices": 25485,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 3472661880,
+          "enqueued": 3472661880,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "1": 536896,
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 16.756,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-classreserve",
+        "minimum_free_gib": 5409.720310211182,
+        "minimum_mem_available_gib": 52.25670623779297,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.64453125,
+        "samples": 53
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.376020951169283,
+        "mean_active_tor_port_imbalance": 2.7590481414431687,
+        "peak_single_port_bucket_bytes": 526324,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 741782092
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "b017e6e3f0018683e20a9755b93a0652d9821cc8402b21d52bc87d1f0d400e8a",
+      "fct_sha256": "e38722891698e58f4a47286b08c5fecd1c7dc6fe5b12afd12eea6c647bfdade8",
+      "id": "20261004-030000-ws25-lower-s08-b000-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 16.328,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-conga",
+        "minimum_free_gib": 5409.7376136779785,
+        "minimum_mem_available_gib": 52.26640319824219,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4561.9609375,
+        "samples": 47
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.8088690519041106,
+        "mean_active_tor_port_imbalance": 0.5140055608487573,
+        "peak_single_port_bucket_bytes": 527296,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 147256316
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1351.08749,
+      "cnp": {
+        "ecn": 390,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 390
+      },
+      "config_log_sha256": "14a63b830df090b2a9501506f875d6ce75fe86e5d56a89af079954a7098b0659",
+      "fct_sha256": "00e33eaf60f4555c72320ff506a7a38345d3988e7f11b632be829bc103ce3f23",
+      "id": "20261004-030000-ws25-lower-s08-b128-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 594,
+          "background_packets": 4983066,
+          "background_queue_avoids": 37,
+          "background_reused": 4982472,
+          "fallback_packets": 0,
+          "moe_diverted": 9497,
+          "moe_flow_new": 74882,
+          "moe_flow_reused": 599056,
+          "moe_packets": 673938,
+          "moe_two_choices": 25664,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 6207222928,
+          "enqueued": 6207222928,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "1": 1073792,
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 17.011,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-classreserve",
+        "minimum_free_gib": 5409.689407348633,
+        "minimum_mem_available_gib": 52.277557373046875,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.8046875,
+        "samples": 61
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.262021010040265,
+        "mean_active_tor_port_imbalance": 2.6816203297167807,
+        "peak_single_port_bucket_bytes": 526472,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1318378436
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "4e62b15cb6555798bf9b38352f62c4c07d15db35dacab82cdab12dd89a16a4b5",
+      "fct_sha256": "f0272a5d2312ca84bcc65cae967b502625b3161b4776ed61d5ce2fcaa15f2971",
+      "id": "20261004-030000-ws25-lower-s05-b000-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.198,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-fecmp",
+        "minimum_free_gib": 5409.741676330566,
+        "minimum_mem_available_gib": 52.29057693481445,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.5234375,
+        "samples": 44
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.6749576568543132,
+        "mean_active_tor_port_imbalance": 0.4022332290125042,
+        "peak_single_port_bucket_bytes": 527140,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146642328
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 696.54108,
+      "cnp": {
+        "ecn": 113,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 113
+      },
+      "config_log_sha256": "373881ec6456dd2ff2ac73c667992a366c10261b094d7fb5530532797f5ff5a3",
+      "fct_sha256": "3984cca891f6d290c2bd698968ee3b23e260b70a87205c46dc6234392dea699e",
+      "id": "20261004-030000-ws25-lower-s07-b064-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 19.302,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-fecmp",
+        "minimum_free_gib": 5409.719699859619,
+        "minimum_mem_available_gib": 52.23924255371094,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.28125,
+        "samples": 50
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.562607609510097,
+        "mean_active_tor_port_imbalance": 2.947328751269744,
+        "peak_single_port_bucket_bytes": 526988,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 741782092
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1326.4522700000002,
+      "cnp": {
+        "ecn": 913,
+        "ecn_ooo_overlap": 60,
+        "ooo": 7431,
+        "total": 8284
+      },
+      "config_log_sha256": "1aaeec67302a8f608bb3b2951820c765de894ac5c67514e6b81699e3f0704d4a",
+      "fct_sha256": "0ae571afec80db007f04c9fa2ee738206dcc2599a6ccdda9db015b8b0295aa99",
+      "id": "20261004-030000-ws25-lower-s05-b128-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.211,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-drill",
+        "minimum_free_gib": 5409.6901512146,
+        "minimum_mem_available_gib": 52.24628448486328,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4543.84375,
+        "samples": 58
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.346996989586932,
+        "mean_active_tor_port_imbalance": 2.3437728346090614,
+        "peak_single_port_bucket_bytes": 522636,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1323109820
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1350.94984,
+      "cnp": {
+        "ecn": 413,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 413
+      },
+      "config_log_sha256": "2c4fc8977c1bcd3a377a43a767541cbcf8f5028fcac1a174c9292df7c4ca7277",
+      "fct_sha256": "b12d190b92ba2dcf3de821a70498c977c50a12a8490bef202f09953a7b3ad209",
+      "id": "20261004-030000-ws25-lower-s08-b128-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 297547,
+        "notifies": 259,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 17.584,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-conweave",
+        "minimum_free_gib": 5409.683589935303,
+        "minimum_mem_available_gib": 52.25104904174805,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4560.81640625,
+        "samples": 63
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.494591431512071,
+        "mean_active_tor_port_imbalance": 2.6033942799024916,
+        "peak_single_port_bucket_bytes": 531884,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1337438020
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 683.38532,
+      "cnp": {
+        "ecn": 50,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 50
+      },
+      "config_log_sha256": "1cbcd10c661ec1d006acc55e6974c976dc22367e27e9312c592db7e6230768ca",
+      "fct_sha256": "a51656d3c77a3ed59b8be9e53c7c582b3eabd4cb327abbf6ed5991120bc89e18",
+      "id": "20261004-030000-ws25-lower-s06-b064-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 15.701,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-letflow",
+        "minimum_free_gib": 5409.705635070801,
+        "minimum_mem_available_gib": 52.26169204711914,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4560.6328125,
+        "samples": 53
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.975180209038586,
+        "mean_active_tor_port_imbalance": 2.4364749254870914,
+        "peak_single_port_bucket_bytes": 527972,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 713650804
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 680.02101,
+      "cnp": {
+        "ecn": 148,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 148
+      },
+      "config_log_sha256": "103fdbbc3efcb0f35c31bf6dbce90ebdffe0f6728f1c46b01d19fe566322ebcb",
+      "fct_sha256": "6b4996a470871ba9c388b3834aa3f5f0d4a8328dbe19de3e0ebd2e8c78c83891",
+      "id": "20261004-030000-ws25-lower-s08-b064-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 304,
+          "background_packets": 2550256,
+          "background_queue_avoids": 14,
+          "background_reused": 2549952,
+          "fallback_packets": 0,
+          "moe_diverted": 8766,
+          "moe_flow_new": 74882,
+          "moe_flow_reused": 599056,
+          "moe_packets": 673938,
+          "moe_two_choices": 25670,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 3511783128,
+          "enqueued": 3511783128,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "1": 536896,
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 16.52,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-classreserve",
+        "minimum_free_gib": 5409.705741882324,
+        "minimum_mem_available_gib": 52.265079498291016,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.0546875,
+        "samples": 52
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.932740456108087,
+        "mean_active_tor_port_imbalance": 2.703363657365694,
+        "peak_single_port_bucket_bytes": 526096,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 742111996
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 989.3352000000001,
+      "cnp": {
+        "ecn": 521,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 521
+      },
+      "config_log_sha256": "74161a08005f5b3fc508ca9cabf2c112e6293968d6792ef5bd4ef24213043673",
+      "fct_sha256": "89e2879a1ae7d2c32a7c11d98293ece70d269501f8c0c75c9e32ab27b8396531",
+      "id": "20261004-030000-ws25-lower-s07-b128-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 19.433,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-fecmp",
+        "minimum_free_gib": 5409.659336090088,
+        "minimum_mem_available_gib": 52.43827438354492,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.375,
+        "samples": 55
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.373942804679987,
+        "mean_active_tor_port_imbalance": 2.81919508932909,
+        "peak_single_port_bucket_bytes": 527912,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1290164672
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.52941,
+      "cnp": {
+        "ecn": 259,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 259
+      },
+      "config_log_sha256": "a6a73827bab0b15c8123f9457d3dee002793766beade1eea4f49096f1f4a45f2",
+      "fct_sha256": "8b0cf4ce057c76bcbce3fde18e816d204108b5b0f244ea4c96981d6762512338",
+      "id": "20261004-030000-ws25-lower-s05-b064-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 17.64,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-conga",
+        "minimum_free_gib": 5409.653102874756,
+        "minimum_mem_available_gib": 52.41440963745117,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4561.5234375,
+        "samples": 55
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.496548761535865,
+        "mean_active_tor_port_imbalance": 3.3370773005927545,
+        "peak_single_port_bucket_bytes": 528640,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 722908768
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 864.60855,
+      "cnp": {
+        "ecn": 215,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 215
+      },
+      "config_log_sha256": "e0153e7a56f8265079837e456ce4b5970456d1bfaff43e6571153f83a570f5d1",
+      "fct_sha256": "65ee92628ef56b897a9c190b40f00c4b1bcee7ad90b36c574128e2a33ee0f544",
+      "id": "20261004-030000-ws25-lower-s06-b128-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 574,
+          "background_packets": 4815286,
+          "background_queue_avoids": 33,
+          "background_reused": 4814712,
+          "fallback_packets": 0,
+          "moe_diverted": 9257,
+          "moe_flow_new": 74704,
+          "moe_flow_reused": 597632,
+          "moe_packets": 672336,
+          "moe_two_choices": 25564,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 6019699336,
+          "enqueued": 6019699336,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "1": 1073792,
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 15.884,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-classreserve",
+        "minimum_free_gib": 5409.61678314209,
+        "minimum_mem_available_gib": 52.41938781738281,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.12890625,
+        "samples": 63
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.206654404526622,
+        "mean_active_tor_port_imbalance": 2.4224666047832013,
+        "peak_single_port_bucket_bytes": 527636,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1271328004
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "97fda24688c0dd00b285cd58682870d50af9652aea60568044cd05d1c41d59de",
+      "fct_sha256": "9286d0da4ababbe518b095601fdff767db93a115f31537b466ae6ef0a4c6f3c3",
+      "id": "20261004-030000-ws25-lower-s06-b000-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 0,
+          "background_packets": 0,
+          "background_queue_avoids": 0,
+          "background_reused": 0,
+          "fallback_packets": 0,
+          "moe_diverted": 7324,
+          "moe_flow_new": 74704,
+          "moe_flow_reused": 597632,
+          "moe_packets": 672336,
+          "moe_two_choices": 25557,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 684587456,
+          "enqueued": 684587456,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 14.856,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-classreserve",
+        "minimum_free_gib": 5409.678016662598,
+        "minimum_mem_available_gib": 52.41938781738281,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.5546875,
+        "samples": 44
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433",
+      "uplink": {
+        "max_active_tor_port_imbalance": 1.1159838312566193,
+        "mean_active_tor_port_imbalance": 0.22249521407370487,
+        "peak_single_port_bucket_bytes": 526384,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146678984
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1351.10749,
+      "cnp": {
+        "ecn": 459,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 459
+      },
+      "config_log_sha256": "413d2e28d7190e4e338f2a5c125fcdbe2ca3f62ae4c0ec354b3d15250d635951",
+      "fct_sha256": "71600c285071a79bb255ecea586eba3442edb7bad9452957e1ee7134b8219558",
+      "id": "20261004-030000-ws25-lower-s08-b128-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 17.666,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-fecmp",
+        "minimum_free_gib": 5409.626758575439,
+        "minimum_mem_available_gib": 52.42578125,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.09765625,
+        "samples": 59
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.559601383784297,
+        "mean_active_tor_port_imbalance": 2.857600858901603,
+        "peak_single_port_bucket_bytes": 528428,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1318378436
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "838ce3f3573b74fa0d76af9b889fba45df541c242f568c36f8530c83ce06bd3b",
+      "fct_sha256": "c2b13ed7b387dbae78dbfb42a6a6b8ff9bda6c76d46016ec46f91f9ba49f68cf",
+      "id": "20261004-030000-ws25-lower-s07-b000-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 14.899,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-fecmp",
+        "minimum_free_gib": 5409.674667358398,
+        "minimum_mem_available_gib": 52.41938781738281,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.46875,
+        "samples": 43
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.7689296338482975,
+        "mean_active_tor_port_imbalance": 0.3711256838250017,
+        "peak_single_port_bucket_bytes": 526484,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146926412
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1339.2958600000002,
+      "cnp": {
+        "ecn": 485,
+        "ecn_ooo_overlap": 30,
+        "ooo": 7587,
+        "total": 8042
+      },
+      "config_log_sha256": "23bf8f833d25dbc6af6194afd668eb7b0509f7dc06cd212c5d15b1591e64a119",
+      "fct_sha256": "8b8ea6c4854dbecff50a4529616dc7b35d4d9ca438c19fb9e31286d3e1631605",
+      "id": "20261004-030000-ws25-lower-s08-b128-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.916,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-drill",
+        "minimum_free_gib": 5409.618595123291,
+        "minimum_mem_available_gib": 52.41433334350586,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.41796875,
+        "samples": 58
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.327851479864396,
+        "mean_active_tor_port_imbalance": 2.351794563516333,
+        "peak_single_port_bucket_bytes": 525496,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1332545696
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "8a0214be73353a7a19e19e5f90eb14dbff4ee1009e779414153c80a0824081fa",
+      "fct_sha256": "16a37bf6771a966620e6610e91d93db758083c30222029f2311c320f8968e818",
+      "id": "20261004-030000-ws25-lower-s06-b000-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.33,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-drill",
+        "minimum_free_gib": 5409.66996383667,
+        "minimum_mem_available_gib": 52.410064697265625,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.16796875,
+        "samples": 43
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.47536377969916876,
+        "mean_active_tor_port_imbalance": 0.09035124694712582,
+        "peak_single_port_bucket_bytes": 521080,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 147577320
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 679.6934100000001,
+      "cnp": {
+        "ecn": 134,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 134
+      },
+      "config_log_sha256": "3c2ac1791af20e9882c4e551f1896106d6efd62a3b5c87a6efc3bd93682b32b1",
+      "fct_sha256": "440336973f72ef48b04c486c07e1e821189eb629da106570a1921200bc8f8a16",
+      "id": "20261004-030000-ws25-lower-s08-b064-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 16.249,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-letflow",
+        "minimum_free_gib": 5409.63325881958,
+        "minimum_mem_available_gib": 52.40555953979492,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4560.79296875,
+        "samples": 53
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.120417662116187,
+        "mean_active_tor_port_imbalance": 2.9116685105082647,
+        "peak_single_port_bucket_bytes": 527832,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 742111996
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "fac1b21a528862d38e61b3a6f1188663ef34543dd0656a3bbb4176aaf1ac4516",
+      "fct_sha256": "7ccbfce2621be32b45162e595f8633dd90b75142b37d586aae261574f6504438",
+      "id": "20261004-030000-ws25-lower-s07-b000-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 123298,
+        "notifies": 8,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 15.354,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-conweave",
+        "minimum_free_gib": 5409.650691986084,
+        "minimum_mem_available_gib": 52.410064697265625,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4561.18359375,
+        "samples": 48
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.7411089808198,
+        "mean_active_tor_port_imbalance": 0.3743688072834316,
+        "peak_single_port_bucket_bytes": 531324,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 154817996
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 970.999,
+      "cnp": {
+        "ecn": 585,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 585
+      },
+      "config_log_sha256": "a8c4c2d29fc0545fbb10755c4ded646b94e73aef790a359c530d9f1205d37989",
+      "fct_sha256": "d48238af9ed02cb917e39f5275d86cac017af2bdeadb0978065c689b44400170",
+      "id": "20261004-030000-ws25-lower-s07-b128-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 18.213,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-letflow",
+        "minimum_free_gib": 5409.608787536621,
+        "minimum_mem_available_gib": 52.41433334350586,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4560.71484375,
+        "samples": 60
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.431214435083874,
+        "mean_active_tor_port_imbalance": 2.774701967651023,
+        "peak_single_port_bucket_bytes": 527684,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1290164672
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.79681,
+      "cnp": {
+        "ecn": 111,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 111
+      },
+      "config_log_sha256": "d6257b8e7ad13c3b3841114efeef1035f1fe03b8a190d8261e1af373ad9407d2",
+      "fct_sha256": "3249ad7281509d52fa78dadd39abe9c8912005f807941b217ba2abf4b0962d91",
+      "id": "20261004-030000-ws25-lower-s05-b064-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 15.939,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-letflow",
+        "minimum_free_gib": 5409.61678314209,
+        "minimum_mem_available_gib": 52.41938781738281,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4560.84375,
+        "samples": 54
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.595357911201627,
+        "mean_active_tor_port_imbalance": 3.261882009648436,
+        "peak_single_port_bucket_bytes": 526972,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 722908768
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.72822,
+      "cnp": {
+        "ecn": 131,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 131
+      },
+      "config_log_sha256": "c33ff2dcf8777aaf921d6595e9e6b30605e34102a6790f62f1538a41080ca21b",
+      "fct_sha256": "1112227fc14aebb61809ba0c54498b017818f8b72526b9ccd23e79c8156aac1a",
+      "id": "20261004-030000-ws25-lower-s05-b064-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 286,
+          "background_packets": 2399254,
+          "background_queue_avoids": 6,
+          "background_reused": 2398968,
+          "fallback_packets": 0,
+          "moe_diverted": 8707,
+          "moe_flow_new": 74604,
+          "moe_flow_reused": 596832,
+          "moe_packets": 671436,
+          "moe_two_choices": 25363,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 3341932376,
+          "enqueued": 3341932376,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "1": 536896,
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 15.823,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-classreserve",
+        "minimum_free_gib": 5409.619987487793,
+        "minimum_mem_available_gib": 52.422752380371094,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4543.875,
+        "samples": 52
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.216363285219472,
+        "mean_active_tor_port_imbalance": 2.972801983805753,
+        "peak_single_port_bucket_bytes": 526812,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 722908768
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1283.1587100000002,
+      "cnp": {
+        "ecn": 791,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 791
+      },
+      "config_log_sha256": "f33c381a23f178c2680377b3c38059f22ca561f37f1756076575aa49248ea38b",
+      "fct_sha256": "5794563d65a3e74d49a74b66e149ff38f278b70a43a3359c089dad30dce2e781",
+      "id": "20261004-030000-ws25-lower-s05-b128-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 322275,
+        "notifies": 243,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 16.938,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-conweave",
+        "minimum_free_gib": 5409.60338973999,
+        "minimum_mem_available_gib": 52.422752380371094,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4560.8515625,
+        "samples": 63
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.454914406912708,
+        "mean_active_tor_port_imbalance": 2.725694618568503,
+        "peak_single_port_bucket_bytes": 532696,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1329110980
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 679.47947,
+      "cnp": {
+        "ecn": 166,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 166
+      },
+      "config_log_sha256": "42d23362f4d0b15787ca0612dc04787c7e97ebb1265906d34b0b51a3e3b1eb11",
+      "fct_sha256": "8ac0ad559f5a3e088372a14f5dc2deeed52368f2017453c72a69f5c3551f6053",
+      "id": "20261004-030000-ws25-lower-s08-b064-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 16.711,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-conga",
+        "minimum_free_gib": 5409.612506866455,
+        "minimum_mem_available_gib": 52.424407958984375,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4561.5078125,
+        "samples": 54
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.096772944290355,
+        "mean_active_tor_port_imbalance": 2.9347451510004,
+        "peak_single_port_bucket_bytes": 529288,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 742111996
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "859007533d9bb21bba08211257659cb13d6ef27d6a93bd5d6356b9896bc2e500",
+      "fct_sha256": "ddbe791488ad0c2441d6d24f829fea3e12a926d58fcc73dcdfa795fcfd8045b3",
+      "id": "20261004-030000-ws25-lower-s06-b000-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 17.437,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-conga",
+        "minimum_free_gib": 5409.63171005249,
+        "minimum_mem_available_gib": 52.422752380371094,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4561.90625,
+        "samples": 47
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.9309343303598806,
+        "mean_active_tor_port_imbalance": 0.5182834149901853,
+        "peak_single_port_bucket_bytes": 526168,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146678984
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "23be1e92da62eda2002ed029e74129609f5cc69f6967997b03f7f15ab7713a86",
+      "fct_sha256": "4d6586459b90bfbb2c3e2f83349ad22a63f8a88ff6dd11befa110ac4546cbb8d",
+      "id": "20261004-030000-ws25-lower-s06-b000-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.707,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-fecmp",
+        "minimum_free_gib": 5409.601085662842,
+        "minimum_mem_available_gib": 52.7095947265625,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.1953125,
+        "samples": 43
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.6460959023064637,
+        "mean_active_tor_port_imbalance": 0.3846024417624264,
+        "peak_single_port_bucket_bytes": 527384,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146678984
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 679.80681,
+      "cnp": {
+        "ecn": 200,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 200
+      },
+      "config_log_sha256": "ef92edd18f5a19605d37e90fe23fb99c8a2d4155499f8802bbb29ddef1c4b84f",
+      "fct_sha256": "35b88a405c7e45ce445e2b3bd19a1f02f70860a983a337964156cc0aad5db853",
+      "id": "20261004-030000-ws25-lower-s08-b064-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 182723,
+        "notifies": 195,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 16.885,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-conweave",
+        "minimum_free_gib": 5409.577312469482,
+        "minimum_mem_available_gib": 52.76825714111328,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.0546875,
+        "samples": 55
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.300661553067406,
+        "mean_active_tor_port_imbalance": 2.955783664835562,
+        "peak_single_port_bucket_bytes": 531860,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 753818748
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1350.96749,
+      "cnp": {
+        "ecn": 499,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 499
+      },
+      "config_log_sha256": "3c3665078ba1d552cf1ad06b0a91c98cc98dde6ef82f0b98123a9618462d2458",
+      "fct_sha256": "c1e9690ad11fac4b387350bbc0fed75f5153e23f39bdeae435a9b35e2dad4c35",
+      "id": "20261004-030000-ws25-lower-s08-b128-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 18.221,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-conga",
+        "minimum_free_gib": 5409.542469024658,
+        "minimum_mem_available_gib": 52.77158737182617,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.7734375,
+        "samples": 64
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.087488063514081,
+        "mean_active_tor_port_imbalance": 2.947642059626816,
+        "peak_single_port_bucket_bytes": 527284,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1318378436
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 887.6832300000001,
+      "cnp": {
+        "ecn": 360,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 360
+      },
+      "config_log_sha256": "607aa07d8649a04e4b6e04724952069283cc8e30c8405b7c0ffaa10fd64230ca",
+      "fct_sha256": "39216f647b6dac8317f444098101d4692c6a92530bd4695ffd4b0e108545ab8c",
+      "id": "20261004-030000-ws25-lower-s06-b128-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 17.989,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-letflow",
+        "minimum_free_gib": 5409.54838180542,
+        "minimum_mem_available_gib": 52.78081130981445,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4560.75390625,
+        "samples": 61
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.342031897813339,
+        "mean_active_tor_port_imbalance": 2.540464434421171,
+        "peak_single_port_bucket_bytes": 529352,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1271328004
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 686.53541,
+      "cnp": {
+        "ecn": 238,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 238
+      },
+      "config_log_sha256": "2c29e13b92d656ef94ebabc31894fecce165fb8e8649af11e61117ee9a26f36d",
+      "fct_sha256": "be581c30aae10c5fdfb05cc1a4db37586529667abcacb44d41510c6fe3b84f4f",
+      "id": "20261004-030000-ws25-lower-s07-b064-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 16.816,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-conga",
+        "minimum_free_gib": 5409.567283630371,
+        "minimum_mem_available_gib": 52.78356170654297,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.76953125,
+        "samples": 55
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.982105108651964,
+        "mean_active_tor_port_imbalance": 3.0897387494960986,
+        "peak_single_port_bucket_bytes": 527232,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 741782092
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 682.53301,
+      "cnp": {
+        "ecn": 159,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 159
+      },
+      "config_log_sha256": "159c049a4122bd3c3e3d3f4f8bae74e5e3c022f51d37678c2832bcf5506b5b44",
+      "fct_sha256": "cc7c96ec00b173f80595424861cc0bd3ad9edb09de8e80ad4961fa095f6f335b",
+      "id": "20261004-030000-ws25-lower-s06-b064-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 172258,
+        "notifies": 159,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 17.372,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-conweave",
+        "minimum_free_gib": 5409.560043334961,
+        "minimum_mem_available_gib": 52.78356170654297,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.1328125,
+        "samples": 55
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.649982064992346,
+        "mean_active_tor_port_imbalance": 2.142865741114567,
+        "peak_single_port_bucket_bytes": 533868,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 724685492
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1272.4460700000006,
+      "cnp": {
+        "ecn": 754,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 754
+      },
+      "config_log_sha256": "d942afb3f1a4b8b6bf1fd05a4e46b92c15ebb02c75a2948e68083f4318250ccc",
+      "fct_sha256": "b569699d162b1424c26dcfcdfa4db2c0ff2ff45090ee1ce3b02e3779ad350e36",
+      "id": "20261004-030000-ws25-lower-s05-b128-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 18.0,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-letflow",
+        "minimum_free_gib": 5409.536548614502,
+        "minimum_mem_available_gib": 52.77878952026367,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4560.76171875,
+        "samples": 62
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.564476208755038,
+        "mean_active_tor_port_imbalance": 2.920697853002129,
+        "peak_single_port_bucket_bytes": 528556,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1308469828
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "5a86cf842f725866172358dc6ae98556420d20791be32912715dcf5d3d479254",
+      "fct_sha256": "4341b89415274e55c46afcffd50c61464cd23d057fc2460c8018156b6e22b29d",
+      "id": "20261004-030000-ws25-lower-s05-b000-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 0,
+          "background_packets": 0,
+          "background_queue_avoids": 0,
+          "background_reused": 0,
+          "fallback_packets": 0,
+          "moe_diverted": 7269,
+          "moe_flow_new": 74604,
+          "moe_flow_reused": 596832,
+          "moe_packets": 671436,
+          "moe_two_choices": 25372,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 683671056,
+          "enqueued": 683671056,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 15.178,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-classreserve",
+        "minimum_free_gib": 5409.588401794434,
+        "minimum_mem_available_gib": 52.77501678466797,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.46875,
+        "samples": 46
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.4772914375056209,
+        "mean_active_tor_port_imbalance": 0.20679860130650946,
+        "peak_single_port_bucket_bytes": 525844,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146642328
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "0603b64811d6908f490621df40589ae03a013aa371c9eb358ba28ea684f8dbd7",
+      "fct_sha256": "f076470ec01c1399ff1aaa5263db9fa45fe652b91d43e286a34852abb6f8f794",
+      "id": "20261004-030000-ws25-lower-s08-b000-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 0,
+          "background_packets": 0,
+          "background_queue_avoids": 0,
+          "background_reused": 0,
+          "fallback_packets": 0,
+          "moe_diverted": 7103,
+          "moe_flow_new": 74882,
+          "moe_flow_reused": 599056,
+          "moe_packets": 673938,
+          "moe_two_choices": 25644,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 686218648,
+          "enqueued": 686218648,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 15.896,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-classreserve",
+        "minimum_free_gib": 5409.590721130371,
+        "minimum_mem_available_gib": 52.767784118652344,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.37109375,
+        "samples": 44
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.5060378506223951,
+        "mean_active_tor_port_imbalance": 0.2120729861483195,
+        "peak_single_port_bucket_bytes": 525824,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 147256316
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 913.69213,
+      "cnp": {
+        "ecn": 87,
+        "ecn_ooo_overlap": 11,
+        "ooo": 4460,
+        "total": 4536
+      },
+      "config_log_sha256": "5f5eae85778d1ecd3350c3e3ca8ab03baf6118d93d640b891b548d05ebe13059",
+      "fct_sha256": "4495be8e8f68c642a9a7116d717313f55a47b3a808779d24d636df58ef5001f3",
+      "id": "20261004-030000-ws25-lower-s06-b064-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 14.824,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-drill",
+        "minimum_free_gib": 5409.557865142822,
+        "minimum_mem_available_gib": 52.77501678466797,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.67578125,
+        "samples": 52
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.614105130824029,
+        "mean_active_tor_port_imbalance": 1.986563753428794,
+        "peak_single_port_bucket_bytes": 524120,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 722406732
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 686.55387,
+      "cnp": {
+        "ecn": 126,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 126
+      },
+      "config_log_sha256": "d4dd38253f5ad1a1e5a47a09f51abca1c7816e59dd6848ebf18e2564bf65359e",
+      "fct_sha256": "c318628daf8aa081352b824d677ee68beda01e99a1a6e3153790fbbadc29acc6",
+      "id": "20261004-030000-ws25-lower-s07-b064-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 15.914,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-letflow",
+        "minimum_free_gib": 5409.548278808594,
+        "minimum_mem_available_gib": 52.778564453125,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4560.390625,
+        "samples": 54
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.556533059383636,
+        "mean_active_tor_port_imbalance": 3.1198502358540408,
+        "peak_single_port_bucket_bytes": 529952,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 741782092
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1224.55336,
+      "cnp": {
+        "ecn": 758,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 758
+      },
+      "config_log_sha256": "bf3d5084b2170d7f21acf554ac6011311b39bd299476857ea7dffb1e892e6b05",
+      "fct_sha256": "21bf470ed56849a959efabd7686e1869778b806dd1cc5cc1daa2a9373dafc569",
+      "id": "20261004-030000-ws25-lower-s05-b128-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 576,
+          "background_packets": 4832064,
+          "background_queue_avoids": 27,
+          "background_reused": 4831488,
+          "fallback_packets": 0,
+          "moe_diverted": 9390,
+          "moe_flow_new": 74604,
+          "moe_flow_reused": 596832,
+          "moe_packets": 671436,
+          "moe_two_choices": 25392,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 6037372176,
+          "enqueued": 6037372176,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "1": 1073792,
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 17.425,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-classreserve",
+        "minimum_free_gib": 5409.5277099609375,
+        "minimum_mem_available_gib": 52.78307342529297,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.734375,
+        "samples": 62
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.056212058256885,
+        "mean_active_tor_port_imbalance": 2.7113279619359547,
+        "peak_single_port_bucket_bytes": 526424,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1308469828
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "f46a128496a036746b6b306d55e9b6b6347117b5939325db9ad07d059039c5c5",
+      "fct_sha256": "c297bfd041580b82c3a29ec4a855c90772af6408b63b89e130f54bf8cd297ddd",
+      "id": "20261004-030000-ws25-lower-s08-b000-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.897,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-drill",
+        "minimum_free_gib": 5409.578338623047,
+        "minimum_mem_available_gib": 52.78453063964844,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4543.97265625,
+        "samples": 44
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.17521631536144472,
+        "mean_active_tor_port_imbalance": 0.07763715541789927,
+        "peak_single_port_bucket_bytes": 518168,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 147729108
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "8cef00ab2edc85603a3754429732b9df7105eb640d13e365c05c4ffa60d6ad22",
+      "fct_sha256": "1857cdd73f100e93b3849feb08c3037c168b5d65f5f31a79f1a10d48c8704a63",
+      "id": "20261004-030000-ws25-lower-s07-b000-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 16.507,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-conga",
+        "minimum_free_gib": 5409.557918548584,
+        "minimum_mem_available_gib": 52.782470703125,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.8046875,
+        "samples": 48
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.8065602868633082,
+        "mean_active_tor_port_imbalance": 0.519461416722661,
+        "peak_single_port_bucket_bytes": 526988,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146926412
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1261.9859200000003,
+      "cnp": {
+        "ecn": 908,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 908
+      },
+      "config_log_sha256": "99ed9cf431dc6f8f1a4fec9fa1d627fc9082c11eb0db5946a8d2ced285dae28f",
+      "fct_sha256": "5d4fc4486187388b7d081bf5bda03513637cd3fccb9d4aac04f1ab5a04195020",
+      "id": "20261004-030000-ws25-lower-s05-b128-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 18.332,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-fecmp",
+        "minimum_free_gib": 5409.531631469727,
+        "minimum_mem_available_gib": 52.78307342529297,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.4453125,
+        "samples": 56
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.447500733363257,
+        "mean_active_tor_port_imbalance": 3.0350369602175578,
+        "peak_single_port_bucket_bytes": 527256,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1308469828
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "fe8d95217fedc6dfbfe08a955b312bf61b20a5d386c45ddf7cc23c76d0bf0f57",
+      "fct_sha256": "e95ea238383d9f7909c6e69258b9937c36f45775c9f987073fb1a616a4ab6c52",
+      "id": "20261004-030000-ws25-lower-s07-b000-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 14.894,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-drill",
+        "minimum_free_gib": 5409.560600280762,
+        "minimum_mem_available_gib": 52.782470703125,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.01171875,
+        "samples": 45
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.3449612669521525,
+        "mean_active_tor_port_imbalance": 0.09091311980954277,
+        "peak_single_port_bucket_bytes": 519052,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 147475448
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "08f413ed89113d85c213e90f563dd128303f32b53bbeb6fb93c95a9dd8e7da92",
+      "fct_sha256": "031b39e103431b97ddb7c56970da5cd4a3a133436501235d8d3bb4a47b783d8d",
+      "id": "20261004-030000-ws25-lower-s08-b000-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.899,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-fecmp",
+        "minimum_free_gib": 5409.525249481201,
+        "minimum_mem_available_gib": 52.55793762207031,
+        "peak_load_1m": 15.41,
+        "peak_tree_rss_mib": 4544.15234375,
+        "samples": 44
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.6292920383649245,
+        "mean_active_tor_port_imbalance": 0.3488104655006996,
+        "peak_single_port_bucket_bytes": 525544,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 147256316
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.79681,
+      "cnp": {
+        "ecn": 158,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 158
+      },
+      "config_log_sha256": "22bab4a36909c28964f82655a2937ab6438c85f9ba3d1d288c328906089855a3",
+      "fct_sha256": "a13a05a6566029aa55d3b794b3a388e8f509d9932d3f059f274606cefef18693",
+      "id": "20261004-030000-ws25-lower-s05-b064-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 205306,
+        "notifies": 136,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 15.658,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-conweave",
+        "minimum_free_gib": 5409.4951171875,
+        "minimum_mem_available_gib": 52.5704345703125,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.0625,
+        "samples": 55
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.346640251137973,
+        "mean_active_tor_port_imbalance": 3.0848829918643075,
+        "peak_single_port_bucket_bytes": 530896,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 736057056
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "817b943019ba87cba5aa0e45df03966c822e0aa72972bf8b06234cfa093dcb43",
+      "fct_sha256": "6857c9a6d5cbefda9971321616bd421f35edcbf56ed117a97302a135f47854f9",
+      "id": "20261004-030000-ws25-lower-s05-b000-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 123144,
+        "notifies": 26,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 15.702,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-conweave",
+        "minimum_free_gib": 5409.517070770264,
+        "minimum_mem_available_gib": 52.57326126098633,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.26171875,
+        "samples": 48
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.695655816791015,
+        "mean_active_tor_port_imbalance": 0.3944321101782521,
+        "peak_single_port_bucket_bytes": 530644,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 154525208
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "aa71e495d24e678c8541a74c9fb1b21ecb070634be496995dec69ec30315c1a3",
+      "fct_sha256": "2f7509b97cb24b53319a6f11c71a5773a9e95e1be745feac34643b3f7669a7b5",
+      "id": "20261004-030000-ws25-lower-s07-b000-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 0,
+          "background_packets": 0,
+          "background_queue_avoids": 0,
+          "background_reused": 0,
+          "fallback_packets": 0,
+          "moe_diverted": 7107,
+          "moe_flow_new": 74670,
+          "moe_flow_reused": 597360,
+          "moe_packets": 672030,
+          "moe_two_choices": 25454,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 684275880,
+          "enqueued": 684275880,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 14.89,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-classreserve",
+        "minimum_free_gib": 5409.52184677124,
+        "minimum_mem_available_gib": 52.57945251464844,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.51171875,
+        "samples": 44
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.50495546268358,
+        "mean_active_tor_port_imbalance": 0.21868954680578484,
+        "peak_single_port_bucket_bytes": 526380,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146926412
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 946.28395,
+      "cnp": {
+        "ecn": 465,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 465
+      },
+      "config_log_sha256": "9c72db660602e659bdd3e6519b93119df596adadeaed377efd03dfc332b79124",
+      "fct_sha256": "824ae84217167e78aa59a8fa43874f9b89aebe567348d0e83fc0b21f224b258c",
+      "id": "20261004-030000-ws25-lower-s07-b128-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 576,
+          "background_packets": 4832064,
+          "background_queue_avoids": 24,
+          "background_reused": 4831488,
+          "fallback_packets": 0,
+          "moe_diverted": 9432,
+          "moe_flow_new": 74670,
+          "moe_flow_reused": 597360,
+          "moe_packets": 672030,
+          "moe_two_choices": 25472,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 6037977000,
+          "enqueued": 6037977000,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "1": 1073792,
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 16.749,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-classreserve",
+        "minimum_free_gib": 5409.470050811768,
+        "minimum_mem_available_gib": 52.58340835571289,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.17578125,
+        "samples": 61
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.193539595977791,
+        "mean_active_tor_port_imbalance": 2.55442123209191,
+        "peak_single_port_bucket_bytes": 526516,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1290164672
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 681.20281,
+      "cnp": {
+        "ecn": 78,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 78
+      },
+      "config_log_sha256": "7a60c591084ee2d6d31690f0a8cbaeddeca7b732c8eb3672ea1d9c590cd30cc7",
+      "fct_sha256": "cc0104b7771b82b9d95dbcf006f1e7d3790514875e7c226d9a54acad565b031f",
+      "id": "20261004-030000-ws25-lower-s08-b064-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.918,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-fecmp",
+        "minimum_free_gib": 5409.5001792907715,
+        "minimum_mem_available_gib": 52.59405517578125,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.31640625,
+        "samples": 50
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.042091792583677,
+        "mean_active_tor_port_imbalance": 2.8850817496723464,
+        "peak_single_port_bucket_bytes": 528152,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 742111996
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "630a51ed58dfdba57972ad136c4e7f0e531cd14597a79e487d3be752b7ae4f54",
+      "fct_sha256": "0ccddbbe300fee9933d317f76176f2056359bbe5e7f542b082644335dc7de503",
+      "id": "20261004-030000-ws25-lower-s06-b000-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 121932,
+        "notifies": 39,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 15.756,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-conweave",
+        "minimum_free_gib": 5409.503749847412,
+        "minimum_mem_available_gib": 52.60272979736328,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.28515625,
+        "samples": 48
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.9011166273035459,
+        "mean_active_tor_port_imbalance": 0.379447685751385,
+        "peak_single_port_bucket_bytes": 530640,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 154485128
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 864.60855,
+      "cnp": {
+        "ecn": 591,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 591
+      },
+      "config_log_sha256": "e3bc1d191571493bd13f4e691c443a383d01e13d819e8af48d42323e09cda71a",
+      "fct_sha256": "173f93d7cca8f8a3e1032b750f6aaf194a201f5cc4e5d2f2597c01000346dfe5",
+      "id": "20261004-030000-ws25-lower-s06-b128-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 18.038,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-conga",
+        "minimum_free_gib": 5409.462787628174,
+        "minimum_mem_available_gib": 52.6113166809082,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.890625,
+        "samples": 61
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.588634317593058,
+        "mean_active_tor_port_imbalance": 2.7223828739640394,
+        "peak_single_port_bucket_bytes": 529532,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1271328004
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 926.93763,
+      "cnp": {
+        "ecn": 174,
+        "ecn_ooo_overlap": 10,
+        "ooo": 4495,
+        "total": 4659
+      },
+      "config_log_sha256": "078ee0852b96ad245f1385571136ee4d45fcca38712ee9a05d016087b2ef9dbb",
+      "fct_sha256": "646e52784b7559cec5b15bc62282098f2a2257e87640b5d68c6eb6ddcfa2f47d",
+      "id": "20261004-030000-ws25-lower-s05-b064-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.309,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-drill",
+        "minimum_free_gib": 5409.484703063965,
+        "minimum_mem_available_gib": 52.59831237792969,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.37890625,
+        "samples": 51
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.2057292730701,
+        "mean_active_tor_port_imbalance": 2.7580824914768263,
+        "peak_single_port_bucket_bytes": 522276,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 731434936
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.79681,
+      "cnp": {
+        "ecn": 230,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 230
+      },
+      "config_log_sha256": "6b5c86b6f371e373ec538fd0fc41b04e670bb1ed998d4f551db756ed360e5ba0",
+      "fct_sha256": "ee1311550a767d73f3dcbf61e8aea24a2e455fa627a786519366144eb95b1d6c",
+      "id": "20261004-030000-ws25-lower-s05-b064-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 16.832,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-fecmp",
+        "minimum_free_gib": 5409.484703063965,
+        "minimum_mem_available_gib": 52.58400344848633,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.08203125,
+        "samples": 50
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.373569805408703,
+        "mean_active_tor_port_imbalance": 3.2125578802263606,
+        "peak_single_port_bucket_bytes": 527952,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 722908768
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 835.7844,
+      "cnp": {
+        "ecn": 27,
+        "ecn_ooo_overlap": 1,
+        "ooo": 4572,
+        "total": 4598
+      },
+      "config_log_sha256": "9eb85c1747ec9fc47af0b38b540513a5e03f28a8e356855ea546973887bd7fa2",
+      "fct_sha256": "6260830ef4750a8db3f1d08de517669b35c4a0e24ab63f89cffd03035668abfb",
+      "id": "20261004-030000-ws25-lower-s08-b064-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 15.898,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-drill",
+        "minimum_free_gib": 5409.482860565186,
+        "minimum_mem_available_gib": 52.571380615234375,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.3203125,
+        "samples": 49
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.843569034779289,
+        "mean_active_tor_port_imbalance": 2.4732513303683694,
+        "peak_single_port_bucket_bytes": 519852,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 750750960
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1351.0872,
+      "cnp": {
+        "ecn": 477,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 477
+      },
+      "config_log_sha256": "1d6c2837ffd834f411ae8ed0d2ae85a0cc11778110cf8dc8c6afcf7d02bf48cb",
+      "fct_sha256": "6e8da793371cd4cd7d98f1f0025d2ff14e4ef2b6997f3da7297bdada397f5e00",
+      "id": "20261004-030000-ws25-lower-s08-b128-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 18.334,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-letflow",
+        "minimum_free_gib": 5409.454219818115,
+        "minimum_mem_available_gib": 52.5704231262207,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4560.60546875,
+        "samples": 60
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.409095477577352,
+        "mean_active_tor_port_imbalance": 2.9987349174449878,
+        "peak_single_port_bucket_bytes": 528316,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1318378436
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1078.6106400000003,
+      "cnp": {
+        "ecn": 74,
+        "ecn_ooo_overlap": 11,
+        "ooo": 7664,
+        "total": 7727
+      },
+      "config_log_sha256": "1455f9f7e011ed3b68f054a89ac80ead9d9936fd294457b9426716ffe3209209",
+      "fct_sha256": "98c0696558ab660ff8d95e339e65f713e448631f06d0470eba9b84bcfd6a96a2",
+      "id": "20261004-030000-ws25-lower-s06-b128-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 14.871,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-drill",
+        "minimum_free_gib": 5409.457572937012,
+        "minimum_mem_available_gib": 52.5704345703125,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.2421875,
+        "samples": 58
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.35867667463122,
+        "mean_active_tor_port_imbalance": 2.169239785933032,
+        "peak_single_port_bucket_bytes": 523028,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1286703288
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 680.6590699999999,
+      "cnp": {
+        "ecn": 89,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 89
+      },
+      "config_log_sha256": "f9640afebab07904c0ccdab9de2cd7f9ca8d54480b96124bd5042ddc0e367261",
+      "fct_sha256": "2f3c9e360b3238a9ffd313c6e5bde2015072db58aa6e9a75b201eb3515060153",
+      "id": "20261004-030000-ws25-lower-s06-b064-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 16.8,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-conga",
+        "minimum_free_gib": 5409.46203994751,
+        "minimum_mem_available_gib": 52.57326126098633,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.6328125,
+        "samples": 55
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.711138213347147,
+        "mean_active_tor_port_imbalance": 2.470332338279269,
+        "peak_single_port_bucket_bytes": 526780,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 713650804
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 955.07541,
+      "cnp": {
+        "ecn": 565,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 565
+      },
+      "config_log_sha256": "1017ee79a5e6ac4fb95919d5e1d1f1c510a60bb9650905791bbcbe2c7531c4eb",
+      "fct_sha256": "0509a59873238d2b5a355441e6a50a90b230f5d255fe3e5593a8e56bd93561ea",
+      "id": "20261004-030000-ws25-lower-s07-b128-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 299354,
+        "notifies": 348,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 17.32,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-conweave",
+        "minimum_free_gib": 5409.449813842773,
+        "minimum_mem_available_gib": 52.56550598144531,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.32421875,
+        "samples": 63
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.353450626522199,
+        "mean_active_tor_port_imbalance": 2.782570133934766,
+        "peak_single_port_bucket_bytes": 531268,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1309345600
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "970bef77c4816120fbe46e12180a813af783b6c74400807a1a5d75bdbecebb08",
+      "fct_sha256": "e020316205fa011ec5f483a7057bdeb159302505c753c1a13599b64b33ee2c06",
+      "id": "20261004-030000-ws25-lower-s07-b000-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 15.304,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-letflow",
+        "minimum_free_gib": 5409.472671508789,
+        "minimum_mem_available_gib": 52.5599479675293,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4560.22265625,
+        "samples": 48
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.6180845683246382,
+        "mean_active_tor_port_imbalance": 0.39618231165098633,
+        "peak_single_port_bucket_bytes": 525784,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146926412
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1221.31624,
+      "cnp": {
+        "ecn": 648,
+        "ecn_ooo_overlap": 46,
+        "ooo": 7311,
+        "total": 7913
+      },
+      "config_log_sha256": "d20fc51e5d5452346e0badbde8ced90cfb6ea471db6402c4433d403be9bb57f3",
+      "fct_sha256": "becaef4d418963a1d900bb4365d40fde1e7d64838a7432272c99e61c14629610",
+      "id": "20261004-030000-ws25-lower-s07-b128-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 14.925,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-drill",
+        "minimum_free_gib": 5409.420379638672,
+        "minimum_mem_available_gib": 87.59203338623047,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4544.546875,
+        "samples": 54
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.177448127405166,
+        "mean_active_tor_port_imbalance": 2.432834338102559,
+        "peak_single_port_bucket_bytes": 521116,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1304808484
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 680.78572,
+      "cnp": {
+        "ecn": 47,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 47
+      },
+      "config_log_sha256": "5bc07ddfc50255fc65bbcbd3bcf65bd00720b9d4b5e4d601cba4b24657d93055",
+      "fct_sha256": "343894a8dd033f046e889e228c387e54d0e449f665b1f5c485299a9147132a29",
+      "id": "20261004-030000-ws25-lower-s06-b064-classreserve",
+      "mode": "classreserve",
+      "mode_diagnostics": {
+        "classreserve": {
+          "background_new_flows": 292,
+          "background_packets": 2449588,
+          "background_queue_avoids": 11,
+          "background_reused": 2449296,
+          "fallback_packets": 0,
+          "moe_diverted": 8612,
+          "moe_flow_new": 74704,
+          "moe_flow_reused": 597632,
+          "moe_packets": 672336,
+          "moe_two_choices": 25555,
+          "queue_violations": 0
+        },
+        "queue": {
+          "current": 0,
+          "dequeued": 3398616496,
+          "enqueued": 3398616496,
+          "queued_drop": 0
+        },
+        "source_tor_packets_by_tag": {
+          "1": 536896,
+          "2": 147456
+        }
+      },
+      "moe_batch_us": 15.411,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-classreserve",
+        "minimum_free_gib": 5409.429141998291,
+        "minimum_mem_available_gib": 87.59562301635742,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4544.0390625,
+        "samples": 50
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.601631534286325,
+        "mean_active_tor_port_imbalance": 2.3574988992658996,
+        "peak_single_port_bucket_bytes": 527704,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 713650804
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "9111427e1a28f445df6518a424800807e77fa8361c6809bc4ef0fecce72ea707",
+      "fct_sha256": "11b47c88644405c13465f39f512636f92cd23e68ff6ccb4f8885d687d18f9860",
+      "id": "20261004-030000-ws25-lower-s08-b000-conweave",
+      "mode": "conweave",
+      "mode_diagnostics": {
+        "init_replies": 124972,
+        "notifies": 6,
+        "ooo_voq_packets": 0,
+        "reroutings": 0,
+        "voq_flushes": 0
+      },
+      "moe_batch_us": 15.895,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-conweave",
+        "minimum_free_gib": 5409.438037872314,
+        "minimum_mem_available_gib": 87.59438705444336,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4561.02734375,
+        "samples": 46
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.6289532904341043,
+        "mean_active_tor_port_imbalance": 0.3784865080867649,
+        "peak_single_port_bucket_bytes": 529556,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 155254908
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 865.02533,
+      "cnp": {
+        "ecn": 279,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 279
+      },
+      "config_log_sha256": "0239c4f08d82cec24a09e902b0d4a6a4e740648fbdaf23ace1daa587929bd549",
+      "fct_sha256": "9f09b3bf0d6cd85a3659c9ac149a7feb06150974e9598b47be67b7b5068d2bbe",
+      "id": "20261004-030000-ws25-lower-s06-b128-fecmp",
+      "mode": "fecmp",
+      "mode_diagnostics": {},
+      "moe_batch_us": 17.121,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-fecmp",
+        "minimum_free_gib": 5409.41775894165,
+        "minimum_mem_available_gib": 87.59438705444336,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4544.19140625,
+        "samples": 53
+      },
+      "seed": 20262506,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6",
+      "uplink": {
+        "max_active_tor_port_imbalance": 6.799841492535207,
+        "mean_active_tor_port_imbalance": 2.7497111641107597,
+        "peak_single_port_bucket_bytes": 528204,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1271328004
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "ea1ff0be19e34f28021eea30ae08437fd61469fe065d46880be767910bf653d3",
+      "fct_sha256": "21bf0c014a9ef52a83e8905929086232b4d9c63382b00beb3e59747da553c3a1",
+      "id": "20261004-030000-ws25-lower-s05-b000-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 15.186,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-letflow",
+        "minimum_free_gib": 5409.435436248779,
+        "minimum_mem_available_gib": 87.59514999389648,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4560.8125,
+        "samples": 45
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.6926989451800754,
+        "mean_active_tor_port_imbalance": 0.42747487894374697,
+        "peak_single_port_bucket_bytes": 526780,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 146642328
+      }
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1176.9955200000002,
+      "cnp": {
+        "ecn": 800,
+        "ecn_ooo_overlap": 0,
+        "ooo": 0,
+        "total": 800
+      },
+      "config_log_sha256": "b495de9bfc67049466b8def9f4fabff280e9fa82eeda4906f3c55f671a028e89",
+      "fct_sha256": "6a59ae781d7bb98525fc6fc3866fce492cd9a5d7752c7a57b277b74b21629c6d",
+      "id": "20261004-030000-ws25-lower-s05-b128-conga",
+      "mode": "conga",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 17.941,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-conga",
+        "minimum_free_gib": 5409.411399841309,
+        "minimum_mem_available_gib": 87.59508514404297,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4562.0078125,
+        "samples": 59
+      },
+      "seed": 20262505,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.7691133104228305,
+        "mean_active_tor_port_imbalance": 2.793404461099823,
+        "peak_single_port_bucket_bytes": 527396,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 1308469828
+      }
+    },
+    {
+      "background": 64,
+      "background_p99_us": 925.37896,
+      "cnp": {
+        "ecn": 152,
+        "ecn_ooo_overlap": 21,
+        "ooo": 4519,
+        "total": 4650
+      },
+      "config_log_sha256": "d9701ac2b78f6344461bd8c89106d09d7f9e5a09f86d6e47eda7c5febe0629b9",
+      "fct_sha256": "4f052f05ccc0ec1b421391aff58551c3a937b82db35e86ff655c723b1f684d8c",
+      "id": "20261004-030000-ws25-lower-s07-b064-drill",
+      "mode": "drill",
+      "mode_diagnostics": {},
+      "moe_batch_us": 14.9,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-drill",
+        "minimum_free_gib": 5409.420379638672,
+        "minimum_mem_available_gib": 87.59203338623047,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4544.25390625,
+        "samples": 48
+      },
+      "seed": 20262507,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5",
+      "uplink": {
+        "max_active_tor_port_imbalance": 5.424109490710576,
+        "mean_active_tor_port_imbalance": 2.7222605229698518,
+        "peak_single_port_bucket_bytes": 522808,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 751535460
+      }
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "cnp": {
+        "ecn_ooo_overlap": 0
+      },
+      "config_log_sha256": "b97017a71be9536ce6b45e62f5e17f14e809c159cf9fac506519681b1a928ccc",
+      "fct_sha256": "02d0c86e21e38e0e7c79a21fac541616a93c3da204efffb430d3f19a38c6df81",
+      "id": "20261004-030000-ws25-lower-s08-b000-letflow",
+      "mode": "letflow",
+      "mode_diagnostics": {
+        "flowlet_timeouts": 0
+      },
+      "moe_batch_us": 15.987,
+      "pfc_events": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-letflow",
+        "minimum_free_gib": 5409.429580688477,
+        "minimum_mem_available_gib": 87.59199905395508,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4560.92578125,
+        "samples": 44
+      },
+      "seed": 20262508,
+      "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7",
+      "uplink": {
+        "max_active_tor_port_imbalance": 0.5734006813500898,
+        "mean_active_tor_port_imbalance": 0.4226354737563657,
+        "peak_single_port_bucket_bytes": 526232,
+        "ports": 1280,
+        "sample_intervals_ns": [
+          10000
+        ],
+        "tors": 160,
+        "transmitted_uplink_bytes": 147256316
+      }
+    }
+  ],
+  "evidence_level": "four demand seeds, exploratory lower-load calibration; no formal efficacy",
+  "execution_summary_sha256": "0ed3e93946496a605d05f542d87f496fee59439781c72927d29973499309378b",
+  "limits": {
+    "cnp": "ECN and OoO reasons may overlap; CNP is not a retransmission count",
+    "dynamic_branches": "A zero diagnostic counter means that branch was not covered in this input",
+    "replication": "Demand seed is the independent unit; levels and flows within seed are repeated observations",
+    "uplink": "Cumulative uplink bytes show distribution, not end-to-end throughput or MMU occupancy",
+    "zero_background": "Background P99 and joint improvement are undefined at background=0"
+  },
+  "modes": [
+    "fecmp",
+    "drill",
+    "conga",
+    "letflow",
+    "conweave",
+    "classreserve"
+  ],
+  "paired": {
+    "0": {
+      "conga": {
+        "background_better_count": null,
+        "background_median_change_pct": null,
+        "background_range_change_pct": null,
+        "both_improved_count": null,
+        "moe_faster_count": 4,
+        "moe_median_change_pct": -11.608891234037127,
+        "moe_range_change_pct": [
+          -14.801858117795497,
+          -2.645761881430664
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -13.421938280759782,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -14.801858117795497,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -9.795844187314472,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -2.645761881430664,
+            "seed": 20262508
+          }
+        ]
+      },
+      "conweave": {
+        "background_better_count": null,
+        "background_median_change_pct": null,
+        "background_range_change_pct": null,
+        "both_improved_count": null,
+        "moe_faster_count": 3,
+        "moe_median_change_pct": -3.179584155044002,
+        "moe_range_change_pct": [
+          -5.712109672505717,
+          0.006291286568105292
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -3.3371545026111282,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -5.712109672505717,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -3.0220138074768754,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": 0.006291286568105292,
+            "seed": 20262508
+          }
+        ]
+      },
+      "drill": {
+        "background_better_count": null,
+        "background_median_change_pct": null,
+        "background_range_change_pct": null,
+        "both_improved_count": null,
+        "moe_faster_count": 4,
+        "moe_median_change_pct": -0.09893204091691032,
+        "moe_range_change_pct": [
+          -3.091976516634054,
+          -0.006290495061955781
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -0.17100762957116267,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -3.091976516634054,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -0.02685645226265798,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -0.006290495061955781,
+            "seed": 20262508
+          }
+        ]
+      },
+      "fecmp": {
+        "background_better_count": null,
+        "background_median_change_pct": null,
+        "background_range_change_pct": null,
+        "both_improved_count": null,
+        "moe_faster_count": 4,
+        "moe_median_change_pct": -0.09600150068670987,
+        "moe_range_change_pct": [
+          -5.417966511746364,
+          -0.018869111264852023
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -0.13159626266613378,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -5.417966511746364,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -0.06040673870728597,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -0.018869111264852023,
+            "seed": 20262508
+          }
+        ]
+      },
+      "letflow": {
+        "background_better_count": null,
+        "background_median_change_pct": null,
+        "background_range_change_pct": null,
+        "both_improved_count": null,
+        "moe_faster_count": 4,
+        "moe_median_change_pct": -1.6371938013802434,
+        "moe_range_change_pct": [
+          -12.146658781785924,
+          -0.052680100092183935
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -0.052680100092183935,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -12.146658781785924,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -2.7051751176163097,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": null,
+            "both_improved": null,
+            "moe_change_pct": -0.5692124851441771,
+            "seed": 20262508
+          }
+        ]
+      }
+    },
+    "128": {
+      "conga": {
+        "background_better_count": 1,
+        "background_median_change_pct": 0.0044412615732070115,
+        "background_range_change_pct": [
+          -5.145994748509364,
+          4.040613510576474
+        ],
+        "both_improved_count": 1,
+        "moe_faster_count": 4,
+        "moe_median_change_pct": -9.291073119399096,
+        "moe_range_change_pct": [
+          -12.175554506842868,
+          -2.876093863218321
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": 4.040613510576474,
+            "both_improved": false,
+            "moe_change_pct": -2.876093863218321,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": 0.0,
+            "both_improved": false,
+            "moe_change_pct": -11.941456924270987,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": -5.145994748509364,
+            "both_improved": true,
+            "moe_change_pct": -12.175554506842868,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": 0.008882523146414023,
+            "both_improved": false,
+            "moe_change_pct": -6.640689314527204,
+            "seed": 20262508
+          }
+        ]
+      },
+      "conweave": {
+        "background_better_count": 3,
+        "background_median_change_pct": -2.5473886870301383,
+        "background_range_change_pct": [
+          -4.567272118660992,
+          0.010189127377224771
+        ],
+        "both_improved_count": 2,
+        "moe_faster_count": 3,
+        "moe_median_change_pct": -3.277705482834498,
+        "moe_range_change_pct": [
+          -8.449567723342943,
+          2.875191876254579
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": -4.567272118660992,
+            "both_improved": false,
+            "moe_change_pct": 2.875191876254579,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": -4.174278332000336,
+            "both_improved": true,
+            "moe_change_pct": -8.449567723342943,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": -0.9204990420599413,
+            "both_improved": true,
+            "moe_change_pct": -3.296766743648971,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": 0.010189127377224771,
+            "both_improved": false,
+            "moe_change_pct": -3.258644222020024,
+            "seed": 20262508
+          }
+        ]
+      },
+      "drill": {
+        "background_better_count": 3,
+        "background_median_change_pct": -13.761297950691898,
+        "background_range_change_pct": [
+          -22.519334550075264,
+          0.8804350369603808
+        ],
+        "both_improved_count": 0,
+        "moe_faster_count": 0,
+        "moe_median_change_pct": 9.55048742076806,
+        "moe_range_change_pct": [
+          6.811915809293256,
+          14.555256064690036
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": -7.682063825786967,
+            "both_improved": false,
+            "moe_change_pct": 14.555256064690036,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": -19.84053207559683,
+            "both_improved": false,
+            "moe_change_pct": 6.811915809293256,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": -22.519334550075264,
+            "both_improved": false,
+            "moe_change_pct": 12.221105527638176,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": 0.8804350369603808,
+            "both_improved": false,
+            "moe_change_pct": 6.879869313897946,
+            "seed": 20262508
+          }
+        ]
+      },
+      "fecmp": {
+        "background_better_count": 4,
+        "background_median_change_pct": -1.5071721468396082,
+        "background_range_change_pct": [
+          -4.351533231608462,
+          -0.0014802671251756827
+        ],
+        "both_improved_count": 4,
+        "moe_faster_count": 4,
+        "moe_median_change_pct": -6.086338910571226,
+        "moe_range_change_pct": [
+          -13.811557659651118,
+          -3.707687082531419
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": -2.966163045622583,
+            "both_improved": true,
+            "moe_change_pct": -4.947632555094916,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": -0.048181248056633486,
+            "both_improved": true,
+            "moe_change_pct": -7.225045266047536,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": -4.351533231608462,
+            "both_improved": true,
+            "moe_change_pct": -13.811557659651118,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": -0.0014802671251756827,
+            "both_improved": true,
+            "moe_change_pct": -3.707687082531419,
+            "seed": 20262508
+          }
+        ]
+      },
+      "letflow": {
+        "background_better_count": 3,
+        "background_median_change_pct": -2.572374577631442,
+        "background_range_change_pct": [
+          -3.7638302423300796,
+          2.1464195643083883e-05
+        ],
+        "both_improved_count": 3,
+        "moe_faster_count": 4,
+        "moe_median_change_pct": -7.627157847439896,
+        "moe_range_change_pct": [
+          -11.701595419422983,
+          -3.194444444444444
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": -3.7638302423300796,
+            "both_improved": true,
+            "moe_change_pct": -3.194444444444444,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": -2.5994272754257253,
+            "both_improved": true,
+            "moe_change_pct": -11.701595419422983,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": -2.545321879837159,
+            "both_improved": true,
+            "moe_change_pct": -8.038214462197345,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": 2.1464195643083883e-05,
+            "both_improved": false,
+            "moe_change_pct": -7.216101232682448,
+            "seed": 20262508
+          }
+        ]
+      }
+    },
+    "64": {
+      "conga": {
+        "background_better_count": 0,
+        "background_median_change_pct": 0.05157841847300837,
+        "background_range_change_pct": [
+          0.01860696574571552,
+          0.8507645658073271
+        ],
+        "both_improved_count": 0,
+        "moe_faster_count": 4,
+        "moe_median_change_pct": -4.705408434991493,
+        "moe_range_change_pct": [
+          -10.300453514739228,
+          -0.35680304471931157
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": 0.02345759305273365,
+            "both_improved": false,
+            "moe_change_pct": -10.300453514739228,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": 0.01860696574571552,
+            "both_improved": false,
+            "moe_change_pct": -8.26785714285715,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": 0.8507645658073271,
+            "both_improved": false,
+            "moe_change_pct": -0.35680304471931157,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": 0.07969924389328309,
+            "both_improved": false,
+            "moe_change_pct": -1.1429597271258363,
+            "seed": 20262508
+          }
+        ]
+      },
+      "conweave": {
+        "background_better_count": 2,
+        "background_median_change_pct": 0.011709284923178132,
+        "background_range_change_pct": [
+          -0.25600080500136624,
+          0.308236767039638
+        ],
+        "both_improved_count": 1,
+        "moe_faster_count": 2,
+        "moe_median_change_pct": -0.5539537689175089,
+        "moe_range_change_pct": [
+          -11.288279990789773,
+          6.050632911392406
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": -0.008090381939518387,
+            "both_improved": false,
+            "moe_change_pct": 1.053774428407217,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": -0.25600080500136624,
+            "both_improved": true,
+            "moe_change_pct": -11.288279990789773,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": 0.308236767039638,
+            "both_improved": false,
+            "moe_change_pct": 6.050632911392406,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": 0.03150895178587465,
+            "both_improved": false,
+            "moe_change_pct": -2.161681966242235,
+            "seed": 20262508
+          }
+        ]
+      },
+      "drill": {
+        "background_better_count": 4,
+        "background_median_change_pct": -21.907980850217008,
+        "background_range_change_pct": [
+          -25.49068798480294,
+          -8.545279362539205
+        ],
+        "both_improved_count": 0,
+        "moe_faster_count": 0,
+        "moe_median_change_pct": 3.93611837186294,
+        "moe_range_change_pct": [
+          3.3575021229342195,
+          12.456375838926181
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": -8.545279362539205,
+            "both_improved": false,
+            "moe_change_pct": 3.3575021229342195,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": -25.49068798480294,
+            "both_improved": false,
+            "moe_change_pct": 3.959794927145177,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": -25.17917092041946,
+            "both_improved": false,
+            "moe_change_pct": 12.456375838926181,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": -18.636790780014557,
+            "both_improved": false,
+            "moe_change_pct": 3.912441816580703,
+            "seed": 20262508
+          }
+        ]
+      },
+      "fecmp": {
+        "background_better_count": 4,
+        "background_median_change_pct": -0.3857116325662602,
+        "background_range_change_pct": [
+          -0.8063196208938583,
+          -0.008090381939518387
+        ],
+        "both_improved_count": 3,
+        "moe_faster_count": 3,
+        "moe_median_change_pct": -5.886115239393091,
+        "moe_range_change_pct": [
+          -13.190342969640446,
+          3.781882145998239
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": -0.008090381939518387,
+            "both_improved": true,
+            "moe_change_pct": -5.994534220532321,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": -0.8063196208938583,
+            "both_improved": true,
+            "moe_change_pct": -5.777696258253862,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": -0.5979360183608895,
+            "both_improved": true,
+            "moe_change_pct": -13.190342969640446,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": -0.17348724677163085,
+            "both_improved": false,
+            "moe_change_pct": 3.781882145998239,
+            "seed": 20262508
+          }
+        ]
+      },
+      "letflow": {
+        "background_better_count": 2,
+        "background_median_change_pct": 0.02005390982923183,
+        "background_range_change_pct": [
+          -0.38040032817796554,
+          0.8480528993304093
+        ],
+        "both_improved_count": 2,
+        "moe_faster_count": 2,
+        "moe_median_change_pct": 0.47001015020451953,
+        "moe_range_change_pct": [
+          -1.8470161136233454,
+          5.290938796028666
+        ],
+        "pairs": [
+          {
+            "background_p99_change_pct": -0.008090381939518387,
+            "both_improved": true,
+            "moe_change_pct": -0.7277746408181129,
+            "seed": 20262505
+          },
+          {
+            "background_p99_change_pct": -0.38040032817796554,
+            "both_improved": true,
+            "moe_change_pct": -1.8470161136233454,
+            "seed": 20262506
+          },
+          {
+            "background_p99_change_pct": 0.8480528993304093,
+            "both_improved": false,
+            "moe_change_pct": 5.290938796028666,
+            "seed": 20262507
+          },
+          {
+            "background_p99_change_pct": 0.04819820159798205,
+            "both_improved": false,
+            "moe_change_pct": 1.667794941227152,
+            "seed": 20262508
+          }
+        ]
+      }
+    }
+  },
+  "seeds": [
+    20262505,
+    20262506,
+    20262507,
+    20262508
+  ],
+  "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "verified_cells": 72
+}
