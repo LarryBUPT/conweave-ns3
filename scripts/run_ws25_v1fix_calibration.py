@@ -31,15 +31,15 @@ MODE_ORDER = {
     20262506: ("conga", "fecmp", "letflow", "drill", "classreserve", "conweave", "classreserve_diag"),
 }
 ID_PREFIX = {
-    20262505: "20261003-085000",
-    20262506: "20261003-090000",
-    20262507: "20261003-083000",
-    20262508: "20261003-084000",
+    20262505: "20261003-102000",
+    20262506: "20261003-103000",
+    20262507: "20261003-100000",
+    20262508: "20261003-101000",
 }
 MODES = ("fecmp", "drill", "conga", "letflow", "conweave", "classreserve")
 EXPECTED_TAGS = {"1": 192, "2": 16384}
-PLAN_PATH = ROOT / "results" / "ws25-v1fix-calibration-plan-r2.json"
-RECEIPTS = ROOT / "results" / "ws25-v1fix-calibration-receipts-r2.jsonl"
+PLAN_PATH = ROOT / "results" / "ws25-v1fix-calibration-plan-r3.json"
+RECEIPTS = ROOT / "results" / "ws25-v1fix-calibration-receipts-r3.jsonl"
 LOCK = threading.Lock()
 
 
@@ -281,7 +281,7 @@ def execute(selected):
             base.audit(reject_active=True)
     result = verify_matrix(selected)
     RECEIPTS.parent.mkdir(parents=True, exist_ok=True)
-    with (RECEIPTS.parent / "ws25-v1fix-calibration-verification-r2.json").open("x", encoding="utf-8") as target:
+    with (RECEIPTS.parent / "ws25-v1fix-calibration-verification-r3.json").open("x", encoding="utf-8") as target:
         json.dump(result, target, indent=2, sort_keys=True)
         target.write("\n")
     print(json.dumps({"calibration_matrix_complete": True,
