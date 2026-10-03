@@ -118,9 +118,21 @@ def resources_ok():
 WS25_CAPACITY_SHA = 'a656104d05c681f9b3a998b5ef4ce3e644558d02'
 WS25_CAPACITY_TOPO_SHA = '74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba'
 WS25_CAPACITY_TRACES = {
+    'ws25_seed20262505_b0.txt': '32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be',
+    'ws25_seed20262505_b64.txt': '774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2',
+    'ws25_seed20262505_b128.txt': 'ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317',
     'ws25_seed20262505_b192.txt': '038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272',
+    'ws25_seed20262506_b0.txt': 'f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433',
+    'ws25_seed20262506_b64.txt': 'afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93',
+    'ws25_seed20262506_b128.txt': 'b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6',
     'ws25_seed20262506_b192.txt': 'fe94e381938538ab7c2376614f6d8c27600b2e351c2d5e10a2b62fd14d2a8ed5',
+    'ws25_seed20262507_b0.txt': 'cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9',
+    'ws25_seed20262507_b64.txt': 'dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5',
+    'ws25_seed20262507_b128.txt': 'da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223',
     'ws25_seed20262507_b192.txt': '01b24bc1bd76d4932dd6c6e4e7ce159ff9d73824de2540ba4b09cd62e6ff83b7',
+    'ws25_seed20262508_b0.txt': 'dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7',
+    'ws25_seed20262508_b64.txt': 'e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8',
+    'ws25_seed20262508_b128.txt': 'b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42',
     'ws25_seed20262508_b192.txt': 'e68616fd2de70e466f6193d7584ae77a1eb1a437efbf90c8619930dd814ded4a',
 }
 
@@ -134,7 +146,7 @@ def file_sha256(path):
 
 
 def high_capacity_admission(params, data, source, workers):
-    """Conservative admission for the frozen WS-25 b192 capacity replay only."""
+    """Conservative admission for frozen WS-25 calibration and capacity inputs."""
     if data.get('git_commit') != WS25_CAPACITY_SHA:
         raise RuntimeError('High capacity requires the frozen WS-25 source SHA')
     expected = {'pfc': 0, 'irn': 1, 'bw': 400, 'buffer': 9,
