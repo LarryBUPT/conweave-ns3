@@ -2,7 +2,7 @@
 
 2026-10-02 当前执行入口：用户将旧 WS-25 本地证据收束调整为第一课题的机制实现、独立 ns-3 验证和小论文成稿，见 [WS-25 执行清单](WS25_FIRST_PAPER_EXECUTION.md)。先做类别感知选路，五原始模式同条件对照；独立 pilot 后冻结双侧数值与最终样本。WS-21 状态反馈余项不并行推进，待小论文投稿后作为第二课题门槛审查。下文旧 WS-25“仅收束”的记录属于历史规划，不是当前执行范围。
 
-2026-10-04 WS-25 状态更新：修正版四需求 192 档校准及资源容量试跑已完成，算法收益仍未获正式结论。18 路容量试跑全格正确且过安全线，但同口径吞吐相对 16 路仅增 4.23%，故正式矩阵并发上限采用 16。0/64/128 档四需求 72 格已全部预构建，尚未启动仿真；首格因执行器白名单缺口被拒于启动前，已修复、部署并直接验证准入，原 ID/raw 保持安全。主对话实际切 Luna High 后按 r3 计划运行；终态切 Sol High 分析，再冻结正式双侧门槛、最终样本量和保留 seed 的全部输入/ID。详见[执行清单](WS25_FIRST_PAPER_EXECUTION.md)、[容量报告](../research/ws25-resource-capacity-timing-audit.md)及[Handoff 70](../handoffs/2026-10-04-70-ws25-lower-load-admission-repair.md)。
+2026-10-04 WS-25 状态更新：修正版四需求 192 档校准、资源容量试跑和 0/64/128 档四需求 72 格校准均已完成 raw/资源验收。18 路容量相对 16 路吞吐只增 4.23%，矩阵继续 cap=16。低档校准尚未做性能对比或统计分析；主对话实际切 Sol High 后先分析两项共同主要结果，再冻结正式双侧门槛、最终样本量和保留 seed 的全部输入/ID。详情见[执行清单](WS25_FIRST_PAPER_EXECUTION.md)、[Handoff 71](../handoffs/2026-10-04-71-ws25-lower-load-calibration-complete.md)及[机器摘要](../research/evidence/ws25-v1fix-lower-load-calibration.json)。
 
 ## 2026-10-02 当前路线
 

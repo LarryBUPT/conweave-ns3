@@ -1,0 +1,3543 @@
+{
+  "batches": [
+    {
+      "batch": 1,
+      "cells": 16,
+      "maximum_tree_rss_mib": 4562.25390625,
+      "minimum_free_gib": 5409.683589935303,
+      "minimum_mem_available_gib": 52.23924255371094,
+      "peak_load_1m": 15.53
+    },
+    {
+      "batch": 2,
+      "cells": 16,
+      "maximum_tree_rss_mib": 4561.90625,
+      "minimum_free_gib": 5409.60338973999,
+      "minimum_mem_available_gib": 52.40555953979492,
+      "peak_load_1m": 15.42
+    },
+    {
+      "batch": 3,
+      "cells": 16,
+      "maximum_tree_rss_mib": 4561.8046875,
+      "minimum_free_gib": 5409.5277099609375,
+      "minimum_mem_available_gib": 52.7095947265625,
+      "peak_load_1m": 15.18
+    },
+    {
+      "batch": 4,
+      "cells": 16,
+      "maximum_tree_rss_mib": 4561.890625,
+      "minimum_free_gib": 5409.449813842773,
+      "minimum_mem_available_gib": 52.55793762207031,
+      "peak_load_1m": 15.48
+    },
+    {
+      "batch": 5,
+      "cells": 8,
+      "maximum_tree_rss_mib": 4562.0078125,
+      "minimum_free_gib": 5409.411399841309,
+      "minimum_mem_available_gib": 87.59199905395508,
+      "peak_load_1m": 8.08
+    }
+  ],
+  "kind": "exploratory 0/64/128 constraints; not efficacy",
+  "max_concurrent": 16,
+  "randomization_seed": 20261004,
+  "source_sha": "a656104d05c681f9b3a998b5ef4ce3e644558d02",
+  "verified": true,
+  "verified_cells": [
+    {
+      "background": 64,
+      "background_p99_us": 686.31965,
+      "fct_sha256": "fc61b246c4016d0d105aa75d330e3fd5b9677b6fadf256b2e463be83b23355ca",
+      "id": "20261004-030000-ws25-lower-s06-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "moe_batch_us": 16.356,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-fecmp",
+        "minimum_free_gib": 5409.75142288208,
+        "minimum_mem_available_gib": 52.26686477661133,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.33984375,
+        "samples": 49
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 39,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 39,
+          "mean_fct_us": 420.999046875,
+          "p50_fct_us": 414.267,
+          "p95_fct_us": 665.60935,
+          "p99_complete_source_batch_us": 686.3809,
+          "p99_fct_us": 686.31965,
+          "synthetic_batch_completion_us": 686.474,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.305573913574218,
+          "p50_fct_us": 12.1445,
+          "p95_fct_us": 13.855,
+          "p99_complete_source_batch_us": 16.2787,
+          "p99_fct_us": 15.42168,
+          "synthetic_batch_completion_us": 16.356,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 902.27189,
+      "fct_sha256": "065ade211f6cdf4004d05835a011dd65da03b6c5d13d8c8edd2d4cd3215ccca7",
+      "id": "20261004-030000-ws25-lower-s06-b128-conweave",
+      "input_flows": 16512,
+      "mode": "conweave",
+      "moe_batch_us": 17.35,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-conweave",
+        "minimum_free_gib": 5409.690032958984,
+        "minimum_mem_available_gib": 52.29106521606445,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4561.1875,
+        "samples": 67
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 55,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 55,
+          "mean_fct_us": 583.34209375,
+          "p50_fct_us": 531.566,
+          "p95_fct_us": 864.5739,
+          "p99_complete_source_batch_us": 914.87142,
+          "p99_fct_us": 902.27189,
+          "synthetic_batch_completion_us": 929.601,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.474487548828124,
+          "p50_fct_us": 12.247,
+          "p95_fct_us": 14.51,
+          "p99_complete_source_batch_us": 17.1388,
+          "p99_fct_us": 15.84885,
+          "synthetic_batch_completion_us": 17.35,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 690.24861,
+      "fct_sha256": "313d4c32fcc1cdd8382d3dbb3a2c98b3ca098375d8b6e99a0f01132008c90383",
+      "id": "20261004-030000-ws25-lower-s07-b064-conweave",
+      "input_flows": 16448,
+      "mode": "conweave",
+      "moe_batch_us": 15.8,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-conweave",
+        "minimum_free_gib": 5409.717864990234,
+        "minimum_mem_available_gib": 52.24626159667969,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4561.046875,
+        "samples": 58
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 42,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 42,
+          "mean_fct_us": 419.068296875,
+          "p50_fct_us": 360.866,
+          "p95_fct_us": 679.67465,
+          "p99_complete_source_batch_us": 690.28227,
+          "p99_fct_us": 690.24861,
+          "synthetic_batch_completion_us": 690.345,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.438640930175781,
+          "p50_fct_us": 12.265,
+          "p95_fct_us": 14.16085,
+          "p99_complete_source_batch_us": 15.7698,
+          "p99_fct_us": 15.160680000000001,
+          "synthetic_batch_completion_us": 15.8,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "80fff2e83d015f21f61b1a524e5894f11f79694b98985f9634d669bb3cff12b2",
+      "id": "20261004-030000-ws25-lower-s05-b000-drill",
+      "input_flows": 16384,
+      "mode": "drill",
+      "moe_batch_us": 15.204,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-drill",
+        "minimum_free_gib": 5409.756847381592,
+        "minimum_mem_available_gib": 52.26123046875,
+        "peak_load_1m": 15.44,
+        "peak_tree_rss_mib": 4544.3203125,
+        "samples": 43
+      },
+      "seed": 20262505,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.257787719726563,
+          "p50_fct_us": 12.121,
+          "p95_fct_us": 13.7977,
+          "p99_complete_source_batch_us": 15.1916,
+          "p99_fct_us": 14.81734,
+          "synthetic_batch_completion_us": 15.204,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "789cb009122e044187d00dda59128633fce96c03f7ac7a8942782e6a73103fb0",
+      "id": "20261004-030000-ws25-lower-s05-b000-conga",
+      "input_flows": 16384,
+      "mode": "conga",
+      "moe_batch_us": 17.531,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-conga",
+        "minimum_free_gib": 5409.743667602539,
+        "minimum_mem_available_gib": 52.277557373046875,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4562.015625,
+        "samples": 48
+      },
+      "seed": 20262505,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.326901611328125,
+          "p50_fct_us": 12.114,
+          "p95_fct_us": 14.21185,
+          "p99_complete_source_batch_us": 17.5128,
+          "p99_fct_us": 15.10417,
+          "synthetic_batch_completion_us": 17.531,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 997.6215000000003,
+      "fct_sha256": "5634dd9f6749b4085781f0426ba95ba042f37378fe3b0f56027e87126c0dfb04",
+      "id": "20261004-030000-ws25-lower-s07-b128-conga",
+      "input_flows": 16512,
+      "mode": "conga",
+      "moe_batch_us": 19.071,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-conga",
+        "minimum_free_gib": 5409.693866729736,
+        "minimum_mem_available_gib": 52.293697357177734,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4562.25390625,
+        "samples": 63
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 58,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 58,
+          "mean_fct_us": 567.506640625,
+          "p50_fct_us": 537.675,
+          "p95_fct_us": 857.68345,
+          "p99_complete_source_batch_us": 1048.2223099999999,
+          "p99_fct_us": 997.6215000000003,
+          "synthetic_batch_completion_us": 1094.915,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.582180908203124,
+          "p50_fct_us": 12.3125,
+          "p95_fct_us": 14.69285,
+          "p99_complete_source_batch_us": 18.54825,
+          "p99_fct_us": 16.16204,
+          "synthetic_batch_completion_us": 19.071,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "089ccc0e6a44c33608ec1ea7497761400453dc6d37cfc60a8e687b9b2214b99b",
+      "id": "20261004-030000-ws25-lower-s06-b000-letflow",
+      "input_flows": 16384,
+      "mode": "letflow",
+      "moe_batch_us": 16.91,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-letflow",
+        "minimum_free_gib": 5409.745429992676,
+        "minimum_mem_available_gib": 52.24436950683594,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4560.98046875,
+        "samples": 46
+      },
+      "seed": 20262506,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.260597412109375,
+          "p50_fct_us": 12.1265,
+          "p95_fct_us": 13.791400000000001,
+          "p99_complete_source_batch_us": 16.847799999999996,
+          "p99_fct_us": 14.83351,
+          "synthetic_batch_completion_us": 16.91,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 692.37621,
+      "classreserve": {
+        "background_new_flows": 300,
+        "background_packets": 2516700,
+        "background_queue_avoids": 5,
+        "background_reused": 2516400,
+        "fallback_packets": 0,
+        "moe_diverted": 8923,
+        "moe_flow_new": 74670,
+        "moe_flow_reused": 597360,
+        "moe_packets": 672030,
+        "moe_two_choices": 25485,
+        "queue_violations": 0
+      },
+      "fct_sha256": "512608882a0030ad0ca4d03e2a766239f3585fba25ecde8e5c311664b1399b5a",
+      "id": "20261004-030000-ws25-lower-s07-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "moe_batch_us": 16.756,
+      "queue": {
+        "current": 0,
+        "dequeued": 3472661880,
+        "enqueued": 3472661880,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-classreserve",
+        "minimum_free_gib": 5409.720310211182,
+        "minimum_mem_available_gib": 52.25670623779297,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.64453125,
+        "samples": 53
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 42,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 42,
+          "mean_fct_us": 435.001375,
+          "p50_fct_us": 392.374,
+          "p95_fct_us": 687.67705,
+          "p99_complete_source_batch_us": 692.47147,
+          "p99_fct_us": 692.37621,
+          "synthetic_batch_completion_us": 692.649,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.390318054199218,
+          "p50_fct_us": 12.126,
+          "p95_fct_us": 14.31385,
+          "p99_complete_source_batch_us": 16.7067,
+          "p99_fct_us": 15.387680000000001,
+          "synthetic_batch_completion_us": 16.756,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "e38722891698e58f4a47286b08c5fecd1c7dc6fe5b12afd12eea6c647bfdade8",
+      "id": "20261004-030000-ws25-lower-s08-b000-conga",
+      "input_flows": 16384,
+      "mode": "conga",
+      "moe_batch_us": 16.328,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-conga",
+        "minimum_free_gib": 5409.7376136779785,
+        "minimum_mem_available_gib": 52.26640319824219,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4561.9609375,
+        "samples": 47
+      },
+      "seed": 20262508,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.325280578613281,
+          "p50_fct_us": 12.113,
+          "p95_fct_us": 14.134,
+          "p99_complete_source_batch_us": 16.293,
+          "p99_fct_us": 15.57734,
+          "synthetic_batch_completion_us": 16.328,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1351.08749,
+      "classreserve": {
+        "background_new_flows": 594,
+        "background_packets": 4983066,
+        "background_queue_avoids": 37,
+        "background_reused": 4982472,
+        "fallback_packets": 0,
+        "moe_diverted": 9497,
+        "moe_flow_new": 74882,
+        "moe_flow_reused": 599056,
+        "moe_packets": 673938,
+        "moe_two_choices": 25664,
+        "queue_violations": 0
+      },
+      "fct_sha256": "00e33eaf60f4555c72320ff506a7a38345d3988e7f11b632be829bc103ce3f23",
+      "id": "20261004-030000-ws25-lower-s08-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "moe_batch_us": 17.011,
+      "queue": {
+        "current": 0,
+        "dequeued": 6207222928,
+        "enqueued": 6207222928,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-classreserve",
+        "minimum_free_gib": 5409.689407348633,
+        "minimum_mem_available_gib": 52.277557373046875,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.8046875,
+        "samples": 61
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 655.4663515625,
+          "p50_fct_us": 660.29,
+          "p95_fct_us": 1350.8523,
+          "p99_complete_source_batch_us": 1185.088700000001,
+          "p99_fct_us": 1351.08749,
+          "synthetic_batch_completion_us": 1351.159,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.409402099609375,
+          "p50_fct_us": 12.181,
+          "p95_fct_us": 14.33985,
+          "p99_complete_source_batch_us": 16.9632,
+          "p99_fct_us": 16.42768,
+          "synthetic_batch_completion_us": 17.011,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "f0272a5d2312ca84bcc65cae967b502625b3161b4776ed61d5ce2fcaa15f2971",
+      "id": "20261004-030000-ws25-lower-s05-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "moe_batch_us": 15.198,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-fecmp",
+        "minimum_free_gib": 5409.741676330566,
+        "minimum_mem_available_gib": 52.29057693481445,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.5234375,
+        "samples": 44
+      },
+      "seed": 20262505,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.262863403320312,
+          "p50_fct_us": 12.132,
+          "p95_fct_us": 13.91655,
+          "p99_complete_source_batch_us": 15.1878,
+          "p99_fct_us": 14.59634,
+          "synthetic_batch_completion_us": 15.198,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 696.54108,
+      "fct_sha256": "3984cca891f6d290c2bd698968ee3b23e260b70a87205c46dc6234392dea699e",
+      "id": "20261004-030000-ws25-lower-s07-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "moe_batch_us": 19.302,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-fecmp",
+        "minimum_free_gib": 5409.719699859619,
+        "minimum_mem_available_gib": 52.23924255371094,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.28125,
+        "samples": 50
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 42,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 42,
+          "mean_fct_us": 432.455015625,
+          "p50_fct_us": 415.927,
+          "p95_fct_us": 687.74805,
+          "p99_complete_source_batch_us": 698.60556,
+          "p99_fct_us": 696.54108,
+          "synthetic_batch_completion_us": 702.453,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.355513061523437,
+          "p50_fct_us": 12.132,
+          "p95_fct_us": 14.047,
+          "p99_complete_source_batch_us": 19.133799999999997,
+          "p99_fct_us": 14.682720000000002,
+          "synthetic_batch_completion_us": 19.302,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1326.4522700000002,
+      "fct_sha256": "0ae571afec80db007f04c9fa2ee738206dcc2599a6ccdda9db015b8b0295aa99",
+      "id": "20261004-030000-ws25-lower-s05-b128-drill",
+      "input_flows": 16512,
+      "mode": "drill",
+      "moe_batch_us": 15.211,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-drill",
+        "minimum_free_gib": 5409.6901512146,
+        "minimum_mem_available_gib": 52.24628448486328,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4543.84375,
+        "samples": 58
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 783.7579921875,
+          "p50_fct_us": 771.95,
+          "p95_fct_us": 1166.5879500000003,
+          "p99_complete_source_batch_us": 1348.4507,
+          "p99_fct_us": 1326.4522700000002,
+          "synthetic_batch_completion_us": 1364.976,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.330760009765624,
+          "p50_fct_us": 12.223,
+          "p95_fct_us": 13.835700000000001,
+          "p99_complete_source_batch_us": 15.2018,
+          "p99_fct_us": 14.757040000000002,
+          "synthetic_batch_completion_us": 15.211,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1350.94984,
+      "fct_sha256": "b12d190b92ba2dcf3de821a70498c977c50a12a8490bef202f09953a7b3ad209",
+      "id": "20261004-030000-ws25-lower-s08-b128-conweave",
+      "input_flows": 16512,
+      "mode": "conweave",
+      "moe_batch_us": 17.584,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-conweave",
+        "minimum_free_gib": 5409.683589935303,
+        "minimum_mem_available_gib": 52.25104904174805,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4560.81640625,
+        "samples": 63
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 645.1969765625,
+          "p50_fct_us": 615.91,
+          "p95_fct_us": 1350.24775,
+          "p99_complete_source_batch_us": 1185.1216500000007,
+          "p99_fct_us": 1350.94984,
+          "synthetic_batch_completion_us": 1351.242,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.51824365234375,
+          "p50_fct_us": 12.247,
+          "p95_fct_us": 14.581,
+          "p99_complete_source_batch_us": 17.5548,
+          "p99_fct_us": 15.698,
+          "synthetic_batch_completion_us": 17.584,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 683.38532,
+      "fct_sha256": "a51656d3c77a3ed59b8be9e53c7c582b3eabd4cb327abbf6ed5991120bc89e18",
+      "id": "20261004-030000-ws25-lower-s06-b064-letflow",
+      "input_flows": 16448,
+      "mode": "letflow",
+      "moe_batch_us": 15.701,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-letflow",
+        "minimum_free_gib": 5409.705635070801,
+        "minimum_mem_available_gib": 52.26169204711914,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4560.6328125,
+        "samples": 53
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 39,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 39,
+          "mean_fct_us": 409.67721875,
+          "p50_fct_us": 389.4515,
+          "p95_fct_us": 676.4422500000001,
+          "p99_complete_source_batch_us": 684.91932,
+          "p99_fct_us": 683.38532,
+          "synthetic_batch_completion_us": 687.251,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.304234558105469,
+          "p50_fct_us": 12.173,
+          "p95_fct_us": 13.9047,
+          "p99_complete_source_batch_us": 15.65925,
+          "p99_fct_us": 14.530339999999999,
+          "synthetic_batch_completion_us": 15.701,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 680.02101,
+      "classreserve": {
+        "background_new_flows": 304,
+        "background_packets": 2550256,
+        "background_queue_avoids": 14,
+        "background_reused": 2549952,
+        "fallback_packets": 0,
+        "moe_diverted": 8766,
+        "moe_flow_new": 74882,
+        "moe_flow_reused": 599056,
+        "moe_packets": 673938,
+        "moe_two_choices": 25670,
+        "queue_violations": 0
+      },
+      "fct_sha256": "6b4996a470871ba9c388b3834aa3f5f0d4a8328dbe19de3e0ebd2e8c78c83891",
+      "id": "20261004-030000-ws25-lower-s08-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "moe_batch_us": 16.52,
+      "queue": {
+        "current": 0,
+        "dequeued": 3511783128,
+        "enqueued": 3511783128,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-classreserve",
+        "minimum_free_gib": 5409.705741882324,
+        "minimum_mem_available_gib": 52.265079498291016,
+        "peak_load_1m": 15.53,
+        "peak_tree_rss_mib": 4544.0546875,
+        "samples": 52
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 38,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 38,
+          "mean_fct_us": 421.792390625,
+          "p50_fct_us": 465.498,
+          "p95_fct_us": 662.8715000000002,
+          "p99_complete_source_batch_us": 639.0121700000003,
+          "p99_fct_us": 680.02101,
+          "synthetic_batch_completion_us": 680.067,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.344840637207032,
+          "p50_fct_us": 12.1265,
+          "p95_fct_us": 14.3977,
+          "p99_complete_source_batch_us": 16.4641,
+          "p99_fct_us": 15.65717,
+          "synthetic_batch_completion_us": 16.52,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 989.3352000000001,
+      "fct_sha256": "89e2879a1ae7d2c32a7c11d98293ece70d269501f8c0c75c9e32ab27b8396531",
+      "id": "20261004-030000-ws25-lower-s07-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "moe_batch_us": 19.433,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-fecmp",
+        "minimum_free_gib": 5409.659336090088,
+        "minimum_mem_available_gib": 52.43827438354492,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.375,
+        "samples": 55
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 58,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 58,
+          "mean_fct_us": 573.7127890625,
+          "p50_fct_us": 556.7745,
+          "p95_fct_us": 856.28265,
+          "p99_complete_source_batch_us": 1000.36204,
+          "p99_fct_us": 989.3352000000001,
+          "synthetic_batch_completion_us": 1006.876,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.449065551757812,
+          "p50_fct_us": 12.202,
+          "p95_fct_us": 14.334700000000002,
+          "p99_complete_source_batch_us": 19.376749999999998,
+          "p99_fct_us": 16.03068,
+          "synthetic_batch_completion_us": 19.433,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.52941,
+      "fct_sha256": "8b0cf4ce057c76bcbce3fde18e816d204108b5b0f244ea4c96981d6762512338",
+      "id": "20261004-030000-ws25-lower-s05-b064-conga",
+      "input_flows": 16448,
+      "mode": "conga",
+      "moe_batch_us": 17.64,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-conga",
+        "minimum_free_gib": 5409.653102874756,
+        "minimum_mem_available_gib": 52.41440963745117,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4561.5234375,
+        "samples": 55
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 41,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 41,
+          "mean_fct_us": 457.03675,
+          "p50_fct_us": 462.451,
+          "p95_fct_us": 846.9749,
+          "p99_complete_source_batch_us": 819.7824000000002,
+          "p99_fct_us": 847.52941,
+          "synthetic_batch_completion_us": 847.84,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.457077697753906,
+          "p50_fct_us": 12.205,
+          "p95_fct_us": 14.64785,
+          "p99_complete_source_batch_us": 17.1718,
+          "p99_fct_us": 15.560170000000001,
+          "synthetic_batch_completion_us": 17.64,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 864.60855,
+      "classreserve": {
+        "background_new_flows": 574,
+        "background_packets": 4815286,
+        "background_queue_avoids": 33,
+        "background_reused": 4814712,
+        "fallback_packets": 0,
+        "moe_diverted": 9257,
+        "moe_flow_new": 74704,
+        "moe_flow_reused": 597632,
+        "moe_packets": 672336,
+        "moe_two_choices": 25564,
+        "queue_violations": 0
+      },
+      "fct_sha256": "65ee92628ef56b897a9c190b40f00c4b1bcee7ad90b36c574128e2a33ee0f544",
+      "id": "20261004-030000-ws25-lower-s06-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "moe_batch_us": 15.884,
+      "queue": {
+        "current": 0,
+        "dequeued": 6019699336,
+        "enqueued": 6019699336,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-classreserve",
+        "minimum_free_gib": 5409.61678314209,
+        "minimum_mem_available_gib": 52.41938781738281,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.12890625,
+        "samples": 63
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 55,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 55,
+          "mean_fct_us": 588.1835546875,
+          "p50_fct_us": 534.9085,
+          "p95_fct_us": 864.47875,
+          "p99_complete_source_batch_us": 864.618,
+          "p99_fct_us": 864.60855,
+          "synthetic_batch_completion_us": 864.618,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.360901489257813,
+          "p50_fct_us": 12.158,
+          "p95_fct_us": 14.215,
+          "p99_complete_source_batch_us": 15.8273,
+          "p99_fct_us": 15.143,
+          "synthetic_batch_completion_us": 15.884,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "classreserve": {
+        "background_new_flows": 0,
+        "background_packets": 0,
+        "background_queue_avoids": 0,
+        "background_reused": 0,
+        "fallback_packets": 0,
+        "moe_diverted": 7324,
+        "moe_flow_new": 74704,
+        "moe_flow_reused": 597632,
+        "moe_packets": 672336,
+        "moe_two_choices": 25557,
+        "queue_violations": 0
+      },
+      "fct_sha256": "9286d0da4ababbe518b095601fdff767db93a115f31537b466ae6ef0a4c6f3c3",
+      "id": "20261004-030000-ws25-lower-s06-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "moe_batch_us": 14.856,
+      "queue": {
+        "current": 0,
+        "dequeued": 684587456,
+        "enqueued": 684587456,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-classreserve",
+        "minimum_free_gib": 5409.678016662598,
+        "minimum_mem_available_gib": 52.41938781738281,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.5546875,
+        "samples": 44
+      },
+      "seed": 20262506,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.229044677734375,
+          "p50_fct_us": 12.099,
+          "p95_fct_us": 13.623,
+          "p99_complete_source_batch_us": 14.8348,
+          "p99_fct_us": 14.14551,
+          "synthetic_batch_completion_us": 14.856,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1351.10749,
+      "fct_sha256": "71600c285071a79bb255ecea586eba3442edb7bad9452957e1ee7134b8219558",
+      "id": "20261004-030000-ws25-lower-s08-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "moe_batch_us": 17.666,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-fecmp",
+        "minimum_free_gib": 5409.626758575439,
+        "minimum_mem_available_gib": 52.42578125,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.09765625,
+        "samples": 59
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 658.7618828125,
+          "p50_fct_us": 627.519,
+          "p95_fct_us": 1350.8923,
+          "p99_complete_source_batch_us": 1185.435950000001,
+          "p99_fct_us": 1351.10749,
+          "synthetic_batch_completion_us": 1351.124,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.431248046875,
+          "p50_fct_us": 12.219,
+          "p95_fct_us": 14.46185,
+          "p99_complete_source_batch_us": 17.47415,
+          "p99_fct_us": 15.55436,
+          "synthetic_batch_completion_us": 17.666,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "c2b13ed7b387dbae78dbfb42a6a6b8ff9bda6c76d46016ec46f91f9ba49f68cf",
+      "id": "20261004-030000-ws25-lower-s07-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "moe_batch_us": 14.899,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-fecmp",
+        "minimum_free_gib": 5409.674667358398,
+        "minimum_mem_available_gib": 52.41938781738281,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.46875,
+        "samples": 43
+      },
+      "seed": 20262507,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.291114868164062,
+          "p50_fct_us": 12.076,
+          "p95_fct_us": 14.048,
+          "p99_complete_source_batch_us": 14.8888,
+          "p99_fct_us": 14.458,
+          "synthetic_batch_completion_us": 14.899,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1339.2958600000002,
+      "fct_sha256": "8b8ea6c4854dbecff50a4529616dc7b35d4d9ca438c19fb9e31286d3e1631605",
+      "id": "20261004-030000-ws25-lower-s08-b128-drill",
+      "input_flows": 16512,
+      "mode": "drill",
+      "moe_batch_us": 15.916,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-drill",
+        "minimum_free_gib": 5409.618595123291,
+        "minimum_mem_available_gib": 52.41433334350586,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.41796875,
+        "samples": 58
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 820.88325,
+          "p50_fct_us": 823.7185,
+          "p95_fct_us": 1234.3762,
+          "p99_complete_source_batch_us": 1241.5217000000007,
+          "p99_fct_us": 1339.2958600000002,
+          "synthetic_batch_completion_us": 1358.521,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.346123596191406,
+          "p50_fct_us": 12.182500000000001,
+          "p95_fct_us": 14.036850000000001,
+          "p99_complete_source_batch_us": 15.9068,
+          "p99_fct_us": 14.84368,
+          "synthetic_batch_completion_us": 15.916,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "16a37bf6771a966620e6610e91d93db758083c30222029f2311c320f8968e818",
+      "id": "20261004-030000-ws25-lower-s06-b000-drill",
+      "input_flows": 16384,
+      "mode": "drill",
+      "moe_batch_us": 15.33,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-drill",
+        "minimum_free_gib": 5409.66996383667,
+        "minimum_mem_available_gib": 52.410064697265625,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4544.16796875,
+        "samples": 43
+      },
+      "seed": 20262506,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.237113708496095,
+          "p50_fct_us": 12.113,
+          "p95_fct_us": 13.67385,
+          "p99_complete_source_batch_us": 15.2838,
+          "p99_fct_us": 14.26834,
+          "synthetic_batch_completion_us": 15.33,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 679.6934100000001,
+      "fct_sha256": "440336973f72ef48b04c486c07e1e821189eb629da106570a1921200bc8f8a16",
+      "id": "20261004-030000-ws25-lower-s08-b064-letflow",
+      "input_flows": 16448,
+      "mode": "letflow",
+      "moe_batch_us": 16.249,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-letflow",
+        "minimum_free_gib": 5409.63325881958,
+        "minimum_mem_available_gib": 52.40555953979492,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4560.79296875,
+        "samples": 53
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 38,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 38,
+          "mean_fct_us": 416.087515625,
+          "p50_fct_us": 444.213,
+          "p95_fct_us": 663.8786500000001,
+          "p99_complete_source_batch_us": 642.7125400000002,
+          "p99_fct_us": 679.6934100000001,
+          "synthetic_batch_completion_us": 680.067,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.349933349609374,
+          "p50_fct_us": 12.109,
+          "p95_fct_us": 14.3587,
+          "p99_complete_source_batch_us": 16.171249999999997,
+          "p99_fct_us": 15.36217,
+          "synthetic_batch_completion_us": 16.249,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "7ccbfce2621be32b45162e595f8633dd90b75142b37d586aae261574f6504438",
+      "id": "20261004-030000-ws25-lower-s07-b000-conweave",
+      "input_flows": 16384,
+      "mode": "conweave",
+      "moe_batch_us": 15.354,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-conweave",
+        "minimum_free_gib": 5409.650691986084,
+        "minimum_mem_available_gib": 52.410064697265625,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4561.18359375,
+        "samples": 48
+      },
+      "seed": 20262507,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.346103942871094,
+          "p50_fct_us": 12.146,
+          "p95_fct_us": 14.036,
+          "p99_complete_source_batch_us": 15.3478,
+          "p99_fct_us": 14.55034,
+          "synthetic_batch_completion_us": 15.354,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 970.999,
+      "fct_sha256": "d48238af9ed02cb917e39f5275d86cac017af2bdeadb0978065c689b44400170",
+      "id": "20261004-030000-ws25-lower-s07-b128-letflow",
+      "input_flows": 16512,
+      "mode": "letflow",
+      "moe_batch_us": 18.213,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-letflow",
+        "minimum_free_gib": 5409.608787536621,
+        "minimum_mem_available_gib": 52.41433334350586,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4560.71484375,
+        "samples": 60
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 58,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 58,
+          "mean_fct_us": 565.3821796875,
+          "p50_fct_us": 531.848,
+          "p95_fct_us": 838.927,
+          "p99_complete_source_batch_us": 995.15625,
+          "p99_fct_us": 970.999,
+          "synthetic_batch_completion_us": 1018.911,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.475201416015626,
+          "p50_fct_us": 12.219,
+          "p95_fct_us": 14.66385,
+          "p99_complete_source_batch_us": 18.07345,
+          "p99_fct_us": 16.10785,
+          "synthetic_batch_completion_us": 18.213,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.79681,
+      "fct_sha256": "3249ad7281509d52fa78dadd39abe9c8912005f807941b217ba2abf4b0962d91",
+      "id": "20261004-030000-ws25-lower-s05-b064-letflow",
+      "input_flows": 16448,
+      "mode": "letflow",
+      "moe_batch_us": 15.939,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-letflow",
+        "minimum_free_gib": 5409.61678314209,
+        "minimum_mem_available_gib": 52.41938781738281,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4560.84375,
+        "samples": 54
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 41,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 41,
+          "mean_fct_us": 458.954875,
+          "p50_fct_us": 450.65999999999997,
+          "p95_fct_us": 847.69985,
+          "p99_complete_source_batch_us": 814.0134,
+          "p99_fct_us": 847.79681,
+          "synthetic_batch_completion_us": 847.805,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.353014892578125,
+          "p50_fct_us": 12.180499999999999,
+          "p95_fct_us": 14.1217,
+          "p99_complete_source_batch_us": 15.865749999999998,
+          "p99_fct_us": 14.973510000000001,
+          "synthetic_batch_completion_us": 15.939,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.72822,
+      "classreserve": {
+        "background_new_flows": 286,
+        "background_packets": 2399254,
+        "background_queue_avoids": 6,
+        "background_reused": 2398968,
+        "fallback_packets": 0,
+        "moe_diverted": 8707,
+        "moe_flow_new": 74604,
+        "moe_flow_reused": 596832,
+        "moe_packets": 671436,
+        "moe_two_choices": 25363,
+        "queue_violations": 0
+      },
+      "fct_sha256": "1112227fc14aebb61809ba0c54498b017818f8b72526b9ccd23e79c8156aac1a",
+      "id": "20261004-030000-ws25-lower-s05-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "moe_batch_us": 15.823,
+      "queue": {
+        "current": 0,
+        "dequeued": 3341932376,
+        "enqueued": 3341932376,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-classreserve",
+        "minimum_free_gib": 5409.619987487793,
+        "minimum_mem_available_gib": 52.422752380371094,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4543.875,
+        "samples": 52
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 41,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 41,
+          "mean_fct_us": 467.346234375,
+          "p50_fct_us": 503.2855,
+          "p95_fct_us": 847.5568499999999,
+          "p99_complete_source_batch_us": 828.246,
+          "p99_fct_us": 847.72822,
+          "synthetic_batch_completion_us": 847.858,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.319224670410156,
+          "p50_fct_us": 12.174,
+          "p95_fct_us": 14.078,
+          "p99_complete_source_batch_us": 15.793899999999999,
+          "p99_fct_us": 14.96317,
+          "synthetic_batch_completion_us": 15.823,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1283.1587100000002,
+      "fct_sha256": "5794563d65a3e74d49a74b66e149ff38f278b70a43a3359c089dad30dce2e781",
+      "id": "20261004-030000-ws25-lower-s05-b128-conweave",
+      "input_flows": 16512,
+      "mode": "conweave",
+      "moe_batch_us": 16.938,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-conweave",
+        "minimum_free_gib": 5409.60338973999,
+        "minimum_mem_available_gib": 52.422752380371094,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4560.8515625,
+        "samples": 63
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 603.091640625,
+          "p50_fct_us": 597.6825,
+          "p95_fct_us": 1034.1499000000001,
+          "p99_complete_source_batch_us": 1294.74855,
+          "p99_fct_us": 1283.1587100000002,
+          "synthetic_batch_completion_us": 1298.312,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.516568542480469,
+          "p50_fct_us": 12.313,
+          "p95_fct_us": 14.437,
+          "p99_complete_source_batch_us": 16.79035,
+          "p99_fct_us": 15.362530000000001,
+          "synthetic_batch_completion_us": 16.938,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 679.47947,
+      "fct_sha256": "8ac0ad559f5a3e088372a14f5dc2deeed52368f2017453c72a69f5c3551f6053",
+      "id": "20261004-030000-ws25-lower-s08-b064-conga",
+      "input_flows": 16448,
+      "mode": "conga",
+      "moe_batch_us": 16.711,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-conga",
+        "minimum_free_gib": 5409.612506866455,
+        "minimum_mem_available_gib": 52.424407958984375,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4561.5078125,
+        "samples": 54
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 38,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 38,
+          "mean_fct_us": 432.1744375,
+          "p50_fct_us": 502.149,
+          "p95_fct_us": 664.7686000000001,
+          "p99_complete_source_batch_us": 644.9752400000002,
+          "p99_fct_us": 679.47947,
+          "synthetic_batch_completion_us": 679.625,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.405985778808594,
+          "p50_fct_us": 12.1365,
+          "p95_fct_us": 14.43185,
+          "p99_complete_source_batch_us": 16.7007,
+          "p99_fct_us": 15.851170000000002,
+          "synthetic_batch_completion_us": 16.711,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "ddbe791488ad0c2441d6d24f829fea3e12a926d58fcc73dcdfa795fcfd8045b3",
+      "id": "20261004-030000-ws25-lower-s06-b000-conga",
+      "input_flows": 16384,
+      "mode": "conga",
+      "moe_batch_us": 17.437,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-conga",
+        "minimum_free_gib": 5409.63171005249,
+        "minimum_mem_available_gib": 52.422752380371094,
+        "peak_load_1m": 15.42,
+        "peak_tree_rss_mib": 4561.90625,
+        "samples": 47
+      },
+      "seed": 20262506,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.35157275390625,
+          "p50_fct_us": 12.162,
+          "p95_fct_us": 14.2797,
+          "p99_complete_source_batch_us": 17.409599999999998,
+          "p99_fct_us": 15.27068,
+          "synthetic_batch_completion_us": 17.437,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "4d6586459b90bfbb2c3e2f83349ad22a63f8a88ff6dd11befa110ac4546cbb8d",
+      "id": "20261004-030000-ws25-lower-s06-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "moe_batch_us": 15.707,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-fecmp",
+        "minimum_free_gib": 5409.601085662842,
+        "minimum_mem_available_gib": 52.7095947265625,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.1953125,
+        "samples": 43
+      },
+      "seed": 20262506,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.240108459472657,
+          "p50_fct_us": 12.137,
+          "p95_fct_us": 13.639,
+          "p99_complete_source_batch_us": 15.69735,
+          "p99_fct_us": 14.195,
+          "synthetic_batch_completion_us": 15.707,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 679.80681,
+      "fct_sha256": "35b88a405c7e45ce445e2b3bd19a1f02f70860a983a337964156cc0aad5db853",
+      "id": "20261004-030000-ws25-lower-s08-b064-conweave",
+      "input_flows": 16448,
+      "mode": "conweave",
+      "moe_batch_us": 16.885,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-conweave",
+        "minimum_free_gib": 5409.577312469482,
+        "minimum_mem_available_gib": 52.76825714111328,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.0546875,
+        "samples": 55
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 38,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 38,
+          "mean_fct_us": 423.28684375,
+          "p50_fct_us": 453.61850000000004,
+          "p95_fct_us": 661.1517000000002,
+          "p99_complete_source_batch_us": 636.5165200000004,
+          "p99_fct_us": 679.80681,
+          "synthetic_batch_completion_us": 680.067,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.383609985351562,
+          "p50_fct_us": 12.134,
+          "p95_fct_us": 14.43885,
+          "p99_complete_source_batch_us": 16.7272,
+          "p99_fct_us": 15.37617,
+          "synthetic_batch_completion_us": 16.885,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1350.96749,
+      "fct_sha256": "c1e9690ad11fac4b387350bbc0fed75f5153e23f39bdeae435a9b35e2dad4c35",
+      "id": "20261004-030000-ws25-lower-s08-b128-conga",
+      "input_flows": 16512,
+      "mode": "conga",
+      "moe_batch_us": 18.221,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-conga",
+        "minimum_free_gib": 5409.542469024658,
+        "minimum_mem_available_gib": 52.77158737182617,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.7734375,
+        "samples": 64
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 656.043015625,
+          "p50_fct_us": 660.1745000000001,
+          "p95_fct_us": 1350.7323000000001,
+          "p99_complete_source_batch_us": 1185.1153000000008,
+          "p99_fct_us": 1350.96749,
+          "synthetic_batch_completion_us": 1351.267,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.532789672851562,
+          "p50_fct_us": 12.199,
+          "p95_fct_us": 14.858,
+          "p99_complete_source_batch_us": 17.979049999999997,
+          "p99_fct_us": 16.13268,
+          "synthetic_batch_completion_us": 18.221,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 887.6832300000001,
+      "fct_sha256": "39216f647b6dac8317f444098101d4692c6a92530bd4695ffd4b0e108545ab8c",
+      "id": "20261004-030000-ws25-lower-s06-b128-letflow",
+      "input_flows": 16512,
+      "mode": "letflow",
+      "moe_batch_us": 17.989,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-letflow",
+        "minimum_free_gib": 5409.54838180542,
+        "minimum_mem_available_gib": 52.78081130981445,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4560.75390625,
+        "samples": 61
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 55,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 55,
+          "mean_fct_us": 593.4920859375,
+          "p50_fct_us": 587.7735,
+          "p95_fct_us": 864.25,
+          "p99_complete_source_batch_us": 910.54434,
+          "p99_fct_us": 887.6832300000001,
+          "synthetic_batch_completion_us": 927.381,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.457127014160156,
+          "p50_fct_us": 12.184,
+          "p95_fct_us": 14.75885,
+          "p99_complete_source_batch_us": 17.9224,
+          "p99_fct_us": 15.76334,
+          "synthetic_batch_completion_us": 17.989,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 686.53541,
+      "fct_sha256": "be581c30aae10c5fdfb05cc1a4db37586529667abcacb44d41510c6fe3b84f4f",
+      "id": "20261004-030000-ws25-lower-s07-b064-conga",
+      "input_flows": 16448,
+      "mode": "conga",
+      "moe_batch_us": 16.816,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-conga",
+        "minimum_free_gib": 5409.567283630371,
+        "minimum_mem_available_gib": 52.78356170654297,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.76953125,
+        "samples": 55
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 42,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 42,
+          "mean_fct_us": 426.67975,
+          "p50_fct_us": 389.3825,
+          "p95_fct_us": 678.14805,
+          "p99_complete_source_batch_us": 687.94187,
+          "p99_fct_us": 686.53541,
+          "synthetic_batch_completion_us": 690.563,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.51770330810547,
+          "p50_fct_us": 12.248,
+          "p95_fct_us": 14.60885,
+          "p99_complete_source_batch_us": 16.797349999999998,
+          "p99_fct_us": 15.77685,
+          "synthetic_batch_completion_us": 16.816,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 682.53301,
+      "fct_sha256": "cc7c96ec00b173f80595424861cc0bd3ad9edb09de8e80ad4961fa095f6f335b",
+      "id": "20261004-030000-ws25-lower-s06-b064-conweave",
+      "input_flows": 16448,
+      "mode": "conweave",
+      "moe_batch_us": 17.372,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-conweave",
+        "minimum_free_gib": 5409.560043334961,
+        "minimum_mem_available_gib": 52.78356170654297,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.1328125,
+        "samples": 55
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 39,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 39,
+          "mean_fct_us": 407.4584375,
+          "p50_fct_us": 353.517,
+          "p95_fct_us": 678.8469,
+          "p99_complete_source_batch_us": 682.65126,
+          "p99_fct_us": 682.53301,
+          "synthetic_batch_completion_us": 682.831,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.388379821777344,
+          "p50_fct_us": 12.202,
+          "p95_fct_us": 14.243,
+          "p99_complete_source_batch_us": 16.9866,
+          "p99_fct_us": 15.493530000000002,
+          "synthetic_batch_completion_us": 17.372,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1272.4460700000006,
+      "fct_sha256": "b569699d162b1424c26dcfcdfa4db2c0ff2ff45090ee1ce3b02e3779ad350e36",
+      "id": "20261004-030000-ws25-lower-s05-b128-letflow",
+      "input_flows": 16512,
+      "mode": "letflow",
+      "moe_batch_us": 18.0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-letflow",
+        "minimum_free_gib": 5409.536548614502,
+        "minimum_mem_available_gib": 52.77878952026367,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4560.76171875,
+        "samples": 62
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 596.0026875,
+          "p50_fct_us": 591.8679999999999,
+          "p95_fct_us": 1028.5902500000002,
+          "p99_complete_source_batch_us": 1308.813,
+          "p99_fct_us": 1272.4460700000006,
+          "synthetic_batch_completion_us": 1314.83,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.454301025390626,
+          "p50_fct_us": 12.248,
+          "p95_fct_us": 14.34185,
+          "p99_complete_source_batch_us": 17.8021,
+          "p99_fct_us": 15.49351,
+          "synthetic_batch_completion_us": 18.0,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "classreserve": {
+        "background_new_flows": 0,
+        "background_packets": 0,
+        "background_queue_avoids": 0,
+        "background_reused": 0,
+        "fallback_packets": 0,
+        "moe_diverted": 7269,
+        "moe_flow_new": 74604,
+        "moe_flow_reused": 596832,
+        "moe_packets": 671436,
+        "moe_two_choices": 25372,
+        "queue_violations": 0
+      },
+      "fct_sha256": "4341b89415274e55c46afcffd50c61464cd23d057fc2460c8018156b6e22b29d",
+      "id": "20261004-030000-ws25-lower-s05-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "moe_batch_us": 15.178,
+      "queue": {
+        "current": 0,
+        "dequeued": 683671056,
+        "enqueued": 683671056,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-classreserve",
+        "minimum_free_gib": 5409.588401794434,
+        "minimum_mem_available_gib": 52.77501678466797,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.46875,
+        "samples": 46
+      },
+      "seed": 20262505,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.260644592285157,
+          "p50_fct_us": 12.116,
+          "p95_fct_us": 13.83885,
+          "p99_complete_source_batch_us": 15.1678,
+          "p99_fct_us": 14.82334,
+          "synthetic_batch_completion_us": 15.178,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "classreserve": {
+        "background_new_flows": 0,
+        "background_packets": 0,
+        "background_queue_avoids": 0,
+        "background_reused": 0,
+        "fallback_packets": 0,
+        "moe_diverted": 7103,
+        "moe_flow_new": 74882,
+        "moe_flow_reused": 599056,
+        "moe_packets": 673938,
+        "moe_two_choices": 25644,
+        "queue_violations": 0
+      },
+      "fct_sha256": "f076470ec01c1399ff1aaa5263db9fa45fe652b91d43e286a34852abb6f8f794",
+      "id": "20261004-030000-ws25-lower-s08-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "moe_batch_us": 15.896,
+      "queue": {
+        "current": 0,
+        "dequeued": 686218648,
+        "enqueued": 686218648,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-classreserve",
+        "minimum_free_gib": 5409.590721130371,
+        "minimum_mem_available_gib": 52.767784118652344,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.37109375,
+        "samples": 44
+      },
+      "seed": 20262508,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.271057739257813,
+          "p50_fct_us": 12.076,
+          "p95_fct_us": 14.034,
+          "p99_complete_source_batch_us": 15.8858,
+          "p99_fct_us": 14.988,
+          "synthetic_batch_completion_us": 15.896,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 913.69213,
+      "fct_sha256": "4495be8e8f68c642a9a7116d717313f55a47b3a808779d24d636df58ef5001f3",
+      "id": "20261004-030000-ws25-lower-s06-b064-drill",
+      "input_flows": 16448,
+      "mode": "drill",
+      "moe_batch_us": 14.824,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-drill",
+        "minimum_free_gib": 5409.557865142822,
+        "minimum_mem_available_gib": 52.77501678466797,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.67578125,
+        "samples": 52
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 39,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 39,
+          "mean_fct_us": 626.666984375,
+          "p50_fct_us": 577.9300000000001,
+          "p95_fct_us": 912.21505,
+          "p99_complete_source_batch_us": 913.82938,
+          "p99_fct_us": 913.69213,
+          "synthetic_batch_completion_us": 914.038,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.25049072265625,
+          "p50_fct_us": 12.176,
+          "p95_fct_us": 13.627,
+          "p99_complete_source_batch_us": 14.8138,
+          "p99_fct_us": 14.153,
+          "synthetic_batch_completion_us": 14.824,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 686.55387,
+      "fct_sha256": "c318628daf8aa081352b824d677ee68beda01e99a1a6e3153790fbbadc29acc6",
+      "id": "20261004-030000-ws25-lower-s07-b064-letflow",
+      "input_flows": 16448,
+      "mode": "letflow",
+      "moe_batch_us": 15.914,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-letflow",
+        "minimum_free_gib": 5409.548278808594,
+        "minimum_mem_available_gib": 52.778564453125,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4560.390625,
+        "samples": 54
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 42,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 42,
+          "mean_fct_us": 431.198328125,
+          "p50_fct_us": 370.461,
+          "p95_fct_us": 679.11205,
+          "p99_complete_source_batch_us": 688.30309,
+          "p99_fct_us": 686.55387,
+          "synthetic_batch_completion_us": 691.563,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.394077697753906,
+          "p50_fct_us": 12.186,
+          "p95_fct_us": 14.26085,
+          "p99_complete_source_batch_us": 15.85365,
+          "p99_fct_us": 15.189680000000001,
+          "synthetic_batch_completion_us": 15.914,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1224.55336,
+      "classreserve": {
+        "background_new_flows": 576,
+        "background_packets": 4832064,
+        "background_queue_avoids": 27,
+        "background_reused": 4831488,
+        "fallback_packets": 0,
+        "moe_diverted": 9390,
+        "moe_flow_new": 74604,
+        "moe_flow_reused": 596832,
+        "moe_packets": 671436,
+        "moe_two_choices": 25392,
+        "queue_violations": 0
+      },
+      "fct_sha256": "21bf470ed56849a959efabd7686e1869778b806dd1cc5cc1daa2a9373dafc569",
+      "id": "20261004-030000-ws25-lower-s05-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "moe_batch_us": 17.425,
+      "queue": {
+        "current": 0,
+        "dequeued": 6037372176,
+        "enqueued": 6037372176,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-classreserve",
+        "minimum_free_gib": 5409.5277099609375,
+        "minimum_mem_available_gib": 52.78307342529297,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.734375,
+        "samples": 62
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 601.7643203125,
+          "p50_fct_us": 627.498,
+          "p95_fct_us": 1040.59965,
+          "p99_complete_source_batch_us": 1248.6986500000003,
+          "p99_fct_us": 1224.55336,
+          "synthetic_batch_completion_us": 1271.005,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.391739379882813,
+          "p50_fct_us": 12.192,
+          "p95_fct_us": 14.196,
+          "p99_complete_source_batch_us": 17.39245,
+          "p99_fct_us": 15.249080000000001,
+          "synthetic_batch_completion_us": 17.425,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "c297bfd041580b82c3a29ec4a855c90772af6408b63b89e130f54bf8cd297ddd",
+      "id": "20261004-030000-ws25-lower-s08-b000-drill",
+      "input_flows": 16384,
+      "mode": "drill",
+      "moe_batch_us": 15.897,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-drill",
+        "minimum_free_gib": 5409.578338623047,
+        "minimum_mem_available_gib": 52.78453063964844,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4543.97265625,
+        "samples": 44
+      },
+      "seed": 20262508,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.270619506835937,
+          "p50_fct_us": 12.095500000000001,
+          "p95_fct_us": 13.98085,
+          "p99_complete_source_batch_us": 15.8868,
+          "p99_fct_us": 14.819,
+          "synthetic_batch_completion_us": 15.897,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "1857cdd73f100e93b3849feb08c3037c168b5d65f5f31a79f1a10d48c8704a63",
+      "id": "20261004-030000-ws25-lower-s07-b000-conga",
+      "input_flows": 16384,
+      "mode": "conga",
+      "moe_batch_us": 16.507,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-conga",
+        "minimum_free_gib": 5409.557918548584,
+        "minimum_mem_available_gib": 52.782470703125,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4561.8046875,
+        "samples": 48
+      },
+      "seed": 20262507,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.37943115234375,
+          "p50_fct_us": 12.101,
+          "p95_fct_us": 14.30185,
+          "p99_complete_source_batch_us": 16.468,
+          "p99_fct_us": 15.58051,
+          "synthetic_batch_completion_us": 16.507,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1261.9859200000003,
+      "fct_sha256": "5d4fc4486187388b7d081bf5bda03513637cd3fccb9d4aac04f1ab5a04195020",
+      "id": "20261004-030000-ws25-lower-s05-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "moe_batch_us": 18.332,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-fecmp",
+        "minimum_free_gib": 5409.531631469727,
+        "minimum_mem_available_gib": 52.78307342529297,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.4453125,
+        "samples": 56
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 608.725390625,
+          "p50_fct_us": 616.7094999999999,
+          "p95_fct_us": 1040.6894,
+          "p99_complete_source_batch_us": 1319.0587000000003,
+          "p99_fct_us": 1261.9859200000003,
+          "synthetic_batch_completion_us": 1368.188,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.456203796386719,
+          "p50_fct_us": 12.193,
+          "p95_fct_us": 14.61985,
+          "p99_complete_source_batch_us": 18.279799999999998,
+          "p99_fct_us": 15.813170000000001,
+          "synthetic_batch_completion_us": 18.332,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "e95ea238383d9f7909c6e69258b9937c36f45775c9f987073fb1a616a4ab6c52",
+      "id": "20261004-030000-ws25-lower-s07-b000-drill",
+      "input_flows": 16384,
+      "mode": "drill",
+      "moe_batch_us": 14.894,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-drill",
+        "minimum_free_gib": 5409.560600280762,
+        "minimum_mem_available_gib": 52.782470703125,
+        "peak_load_1m": 15.18,
+        "peak_tree_rss_mib": 4544.01171875,
+        "samples": 45
+      },
+      "seed": 20262507,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.31035693359375,
+          "p50_fct_us": 12.093,
+          "p95_fct_us": 14.137,
+          "p99_complete_source_batch_us": 14.883799999999999,
+          "p99_fct_us": 14.511339999999999,
+          "synthetic_batch_completion_us": 14.894,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "031b39e103431b97ddb7c56970da5cd4a3a133436501235d8d3bb4a47b783d8d",
+      "id": "20261004-030000-ws25-lower-s08-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "moe_batch_us": 15.899,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-fecmp",
+        "minimum_free_gib": 5409.525249481201,
+        "minimum_mem_available_gib": 52.55793762207031,
+        "peak_load_1m": 15.41,
+        "peak_tree_rss_mib": 4544.15234375,
+        "samples": 44
+      },
+      "seed": 20262508,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.273116943359375,
+          "p50_fct_us": 12.094,
+          "p95_fct_us": 14.00355,
+          "p99_complete_source_batch_us": 15.8488,
+          "p99_fct_us": 14.81117,
+          "synthetic_batch_completion_us": 15.899,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.79681,
+      "fct_sha256": "a13a05a6566029aa55d3b794b3a388e8f509d9932d3f059f274606cefef18693",
+      "id": "20261004-030000-ws25-lower-s05-b064-conweave",
+      "input_flows": 16448,
+      "mode": "conweave",
+      "moe_batch_us": 15.658,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-conweave",
+        "minimum_free_gib": 5409.4951171875,
+        "minimum_mem_available_gib": 52.5704345703125,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.0625,
+        "samples": 55
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 41,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 41,
+          "mean_fct_us": 464.747296875,
+          "p50_fct_us": 498.6205,
+          "p95_fct_us": 847.69985,
+          "p99_complete_source_batch_us": 803.4986000000001,
+          "p99_fct_us": 847.79681,
+          "synthetic_batch_completion_us": 847.805,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.410025512695313,
+          "p50_fct_us": 12.199,
+          "p95_fct_us": 14.305,
+          "p99_complete_source_batch_us": 15.590399999999999,
+          "p99_fct_us": 15.16,
+          "synthetic_batch_completion_us": 15.658,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "6857c9a6d5cbefda9971321616bd421f35edcbf56ed117a97302a135f47854f9",
+      "id": "20261004-030000-ws25-lower-s05-b000-conweave",
+      "input_flows": 16384,
+      "mode": "conweave",
+      "moe_batch_us": 15.702,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-conweave",
+        "minimum_free_gib": 5409.517070770264,
+        "minimum_mem_available_gib": 52.57326126098633,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.26171875,
+        "samples": 48
+      },
+      "seed": 20262505,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.313923400878906,
+          "p50_fct_us": 12.158,
+          "p95_fct_us": 14.02285,
+          "p99_complete_source_batch_us": 15.6878,
+          "p99_fct_us": 14.944170000000002,
+          "synthetic_batch_completion_us": 15.702,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "classreserve": {
+        "background_new_flows": 0,
+        "background_packets": 0,
+        "background_queue_avoids": 0,
+        "background_reused": 0,
+        "fallback_packets": 0,
+        "moe_diverted": 7107,
+        "moe_flow_new": 74670,
+        "moe_flow_reused": 597360,
+        "moe_packets": 672030,
+        "moe_two_choices": 25454,
+        "queue_violations": 0
+      },
+      "fct_sha256": "2f7509b97cb24b53319a6f11c71a5773a9e95e1be745feac34643b3f7669a7b5",
+      "id": "20261004-030000-ws25-lower-s07-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "moe_batch_us": 14.89,
+      "queue": {
+        "current": 0,
+        "dequeued": 684275880,
+        "enqueued": 684275880,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-classreserve",
+        "minimum_free_gib": 5409.52184677124,
+        "minimum_mem_available_gib": 52.57945251464844,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.51171875,
+        "samples": 44
+      },
+      "seed": 20262507,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.310956298828126,
+          "p50_fct_us": 12.097,
+          "p95_fct_us": 14.097850000000001,
+          "p99_complete_source_batch_us": 14.8798,
+          "p99_fct_us": 14.486170000000001,
+          "synthetic_batch_completion_us": 14.89,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 946.28395,
+      "classreserve": {
+        "background_new_flows": 576,
+        "background_packets": 4832064,
+        "background_queue_avoids": 24,
+        "background_reused": 4831488,
+        "fallback_packets": 0,
+        "moe_diverted": 9432,
+        "moe_flow_new": 74670,
+        "moe_flow_reused": 597360,
+        "moe_packets": 672030,
+        "moe_two_choices": 25472,
+        "queue_violations": 0
+      },
+      "fct_sha256": "824ae84217167e78aa59a8fa43874f9b89aebe567348d0e83fc0b21f224b258c",
+      "id": "20261004-030000-ws25-lower-s07-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "moe_batch_us": 16.749,
+      "queue": {
+        "current": 0,
+        "dequeued": 6037977000,
+        "enqueued": 6037977000,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-classreserve",
+        "minimum_free_gib": 5409.470050811768,
+        "minimum_mem_available_gib": 52.58340835571289,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.17578125,
+        "samples": 61
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 58,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 58,
+          "mean_fct_us": 566.4150625,
+          "p50_fct_us": 543.4749999999999,
+          "p95_fct_us": 840.4028500000002,
+          "p99_complete_source_batch_us": 973.08413,
+          "p99_fct_us": 946.28395,
+          "synthetic_batch_completion_us": 1008.533,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.438761413574218,
+          "p50_fct_us": 12.171,
+          "p95_fct_us": 14.359,
+          "p99_complete_source_batch_us": 16.735400000000002,
+          "p99_fct_us": 15.411,
+          "synthetic_batch_completion_us": 16.749,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 681.20281,
+      "fct_sha256": "cc0104b7771b82b9d95dbcf006f1e7d3790514875e7c226d9a54acad565b031f",
+      "id": "20261004-030000-ws25-lower-s08-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "moe_batch_us": 15.918,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-fecmp",
+        "minimum_free_gib": 5409.5001792907715,
+        "minimum_mem_available_gib": 52.59405517578125,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.31640625,
+        "samples": 50
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 38,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 38,
+          "mean_fct_us": 421.429296875,
+          "p50_fct_us": 469.15549999999996,
+          "p95_fct_us": 661.1335500000001,
+          "p99_complete_source_batch_us": 633.2419100000003,
+          "p99_fct_us": 681.20281,
+          "synthetic_batch_completion_us": 681.4,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.329756774902343,
+          "p50_fct_us": 12.14,
+          "p95_fct_us": 14.09085,
+          "p99_complete_source_batch_us": 15.91545,
+          "p99_fct_us": 14.76617,
+          "synthetic_batch_completion_us": 15.918,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "0ccddbbe300fee9933d317f76176f2056359bbe5e7f542b082644335dc7de503",
+      "id": "20261004-030000-ws25-lower-s06-b000-conweave",
+      "input_flows": 16384,
+      "mode": "conweave",
+      "moe_batch_us": 15.756,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b000-conweave",
+        "minimum_free_gib": 5409.503749847412,
+        "minimum_mem_available_gib": 52.60272979736328,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.28515625,
+        "samples": 48
+      },
+      "seed": 20262506,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.30477081298828,
+          "p50_fct_us": 12.1495,
+          "p95_fct_us": 13.986550000000001,
+          "p99_complete_source_batch_us": 15.6058,
+          "p99_fct_us": 14.909680000000002,
+          "synthetic_batch_completion_us": 15.756,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "f46676b605f96f1bd4f1a574857bcdc9335fdaa86c2639ef36b3607d82865433"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 864.60855,
+      "fct_sha256": "173f93d7cca8f8a3e1032b750f6aaf194a201f5cc4e5d2f2597c01000346dfe5",
+      "id": "20261004-030000-ws25-lower-s06-b128-conga",
+      "input_flows": 16512,
+      "mode": "conga",
+      "moe_batch_us": 18.038,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-conga",
+        "minimum_free_gib": 5409.462787628174,
+        "minimum_mem_available_gib": 52.6113166809082,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.890625,
+        "samples": 61
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 55,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 55,
+          "mean_fct_us": 590.265109375,
+          "p50_fct_us": 565.601,
+          "p95_fct_us": 864.06385,
+          "p99_complete_source_batch_us": 864.66492,
+          "p99_fct_us": 864.60855,
+          "synthetic_batch_completion_us": 864.72,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.566401916503906,
+          "p50_fct_us": 12.201,
+          "p95_fct_us": 15.16285,
+          "p99_complete_source_batch_us": 17.5948,
+          "p99_fct_us": 16.861510000000003,
+          "synthetic_batch_completion_us": 18.038,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 926.93763,
+      "fct_sha256": "646e52784b7559cec5b15bc62282098f2a2257e87640b5d68c6eb6ddcfa2f47d",
+      "id": "20261004-030000-ws25-lower-s05-b064-drill",
+      "input_flows": 16448,
+      "mode": "drill",
+      "moe_batch_us": 15.309,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-drill",
+        "minimum_free_gib": 5409.484703063965,
+        "minimum_mem_available_gib": 52.59831237792969,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.37890625,
+        "samples": 51
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 41,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 41,
+          "mean_fct_us": 671.538375,
+          "p50_fct_us": 659.133,
+          "p95_fct_us": 926.1594,
+          "p99_complete_source_batch_us": 926.6784,
+          "p99_fct_us": 926.93763,
+          "synthetic_batch_completion_us": 927.0,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.302361450195313,
+          "p50_fct_us": 12.194,
+          "p95_fct_us": 13.81085,
+          "p99_complete_source_batch_us": 15.2988,
+          "p99_fct_us": 14.79817,
+          "synthetic_batch_completion_us": 15.309,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 847.79681,
+      "fct_sha256": "ee1311550a767d73f3dcbf61e8aea24a2e455fa627a786519366144eb95b1d6c",
+      "id": "20261004-030000-ws25-lower-s05-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "moe_batch_us": 16.832,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b064-fecmp",
+        "minimum_free_gib": 5409.484703063965,
+        "minimum_mem_available_gib": 52.58400344848633,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.08203125,
+        "samples": 50
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 41,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 41,
+          "mean_fct_us": 473.7605,
+          "p50_fct_us": 478.9495,
+          "p95_fct_us": 847.69985,
+          "p99_complete_source_batch_us": 799.2238000000001,
+          "p99_fct_us": 847.79681,
+          "synthetic_batch_completion_us": 847.805,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.346753540039062,
+          "p50_fct_us": 12.152,
+          "p95_fct_us": 14.229700000000001,
+          "p99_complete_source_batch_us": 16.787499999999998,
+          "p99_fct_us": 15.28217,
+          "synthetic_batch_completion_us": 16.832,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "774440e1d5efe8c54e931cd79a72cad65636265b3f01f873d507397805300fd2"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 835.7844,
+      "fct_sha256": "6260830ef4750a8db3f1d08de517669b35c4a0e24ab63f89cffd03035668abfb",
+      "id": "20261004-030000-ws25-lower-s08-b064-drill",
+      "input_flows": 16448,
+      "mode": "drill",
+      "moe_batch_us": 15.898,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b064-drill",
+        "minimum_free_gib": 5409.482860565186,
+        "minimum_mem_available_gib": 52.571380615234375,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.3203125,
+        "samples": 49
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 38,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 38,
+          "mean_fct_us": 647.261890625,
+          "p50_fct_us": 669.511,
+          "p95_fct_us": 820.5507000000001,
+          "p99_complete_source_batch_us": 801.9823300000003,
+          "p99_fct_us": 835.7844,
+          "synthetic_batch_completion_us": 835.797,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.300195617675781,
+          "p50_fct_us": 12.149,
+          "p95_fct_us": 13.96785,
+          "p99_complete_source_batch_us": 15.8878,
+          "p99_fct_us": 14.83334,
+          "synthetic_batch_completion_us": 15.898,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "e83ed23fa9cf8170b099a6b8b7318da4fe231d06c6a62b2881f6f2d7d015bac8"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1351.0872,
+      "fct_sha256": "6e8da793371cd4cd7d98f1f0025d2ff14e4ef2b6997f3da7297bdada397f5e00",
+      "id": "20261004-030000-ws25-lower-s08-b128-letflow",
+      "input_flows": 16512,
+      "mode": "letflow",
+      "moe_batch_us": 18.334,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b128-letflow",
+        "minimum_free_gib": 5409.454219818115,
+        "minimum_mem_available_gib": 52.5704231262207,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4560.60546875,
+        "samples": 60
+      },
+      "seed": 20262508,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 652.0511953125,
+          "p50_fct_us": 627.8315,
+          "p95_fct_us": 1350.6172,
+          "p99_complete_source_batch_us": 1185.0744000000009,
+          "p99_fct_us": 1351.0872,
+          "synthetic_batch_completion_us": 1351.159,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.450112854003907,
+          "p50_fct_us": 12.173,
+          "p95_fct_us": 14.6887,
+          "p99_complete_source_batch_us": 18.2854,
+          "p99_fct_us": 15.78036,
+          "synthetic_batch_completion_us": 18.334,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b43300ce2ead09461c2ed5c47dfc1710d54315974622876b3fbc84c382489d42"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1078.6106400000003,
+      "fct_sha256": "98c0696558ab660ff8d95e339e65f713e448631f06d0470eba9b84bcfd6a96a2",
+      "id": "20261004-030000-ws25-lower-s06-b128-drill",
+      "input_flows": 16512,
+      "mode": "drill",
+      "moe_batch_us": 14.871,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-drill",
+        "minimum_free_gib": 5409.457572937012,
+        "minimum_mem_available_gib": 52.5704345703125,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4544.2421875,
+        "samples": 58
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 55,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 55,
+          "mean_fct_us": 738.4604609375,
+          "p50_fct_us": 719.8530000000001,
+          "p95_fct_us": 975.9230000000001,
+          "p99_complete_source_batch_us": 1129.40264,
+          "p99_fct_us": 1078.6106400000003,
+          "synthetic_batch_completion_us": 1155.314,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.297161254882813,
+          "p50_fct_us": 12.232,
+          "p95_fct_us": 13.655,
+          "p99_complete_source_batch_us": 14.8608,
+          "p99_fct_us": 14.202,
+          "synthetic_batch_completion_us": 14.871,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 680.6590699999999,
+      "fct_sha256": "2f3c9e360b3238a9ffd313c6e5bde2015072db58aa6e9a75b201eb3515060153",
+      "id": "20261004-030000-ws25-lower-s06-b064-conga",
+      "input_flows": 16448,
+      "mode": "conga",
+      "moe_batch_us": 16.8,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-conga",
+        "minimum_free_gib": 5409.46203994751,
+        "minimum_mem_available_gib": 52.57326126098633,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.6328125,
+        "samples": 55
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 39,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 39,
+          "mean_fct_us": 412.36062499999997,
+          "p50_fct_us": 365.5065,
+          "p95_fct_us": 678.6409,
+          "p99_complete_source_batch_us": 681.08682,
+          "p99_fct_us": 680.6590699999999,
+          "synthetic_batch_completion_us": 681.737,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.370386108398437,
+          "p50_fct_us": 12.184,
+          "p95_fct_us": 14.239,
+          "p99_complete_source_batch_us": 16.768,
+          "p99_fct_us": 15.26117,
+          "synthetic_batch_completion_us": 16.8,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 955.07541,
+      "fct_sha256": "0509a59873238d2b5a355441e6a50a90b230f5d255fe3e5593a8e56bd93561ea",
+      "id": "20261004-030000-ws25-lower-s07-b128-conweave",
+      "input_flows": 16512,
+      "mode": "conweave",
+      "moe_batch_us": 17.32,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-conweave",
+        "minimum_free_gib": 5409.449813842773,
+        "minimum_mem_available_gib": 52.56550598144531,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4561.32421875,
+        "samples": 63
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 58,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 58,
+          "mean_fct_us": 561.014296875,
+          "p50_fct_us": 534.0174999999999,
+          "p95_fct_us": 852.38655,
+          "p99_complete_source_batch_us": 984.2138,
+          "p99_fct_us": 955.07541,
+          "synthetic_batch_completion_us": 1015.997,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.567991088867187,
+          "p50_fct_us": 12.342500000000001,
+          "p95_fct_us": 14.9207,
+          "p99_complete_source_batch_us": 17.2938,
+          "p99_fct_us": 16.03568,
+          "synthetic_batch_completion_us": 17.32,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "e020316205fa011ec5f483a7057bdeb159302505c753c1a13599b64b33ee2c06",
+      "id": "20261004-030000-ws25-lower-s07-b000-letflow",
+      "input_flows": 16384,
+      "mode": "letflow",
+      "moe_batch_us": 15.304,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b000-letflow",
+        "minimum_free_gib": 5409.472671508789,
+        "minimum_mem_available_gib": 52.5599479675293,
+        "peak_load_1m": 15.48,
+        "peak_tree_rss_mib": 4560.22265625,
+        "samples": 48
+      },
+      "seed": 20262507,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.299427307128907,
+          "p50_fct_us": 12.096499999999999,
+          "p95_fct_us": 14.05855,
+          "p99_complete_source_batch_us": 15.2858,
+          "p99_fct_us": 14.53,
+          "synthetic_batch_completion_us": 15.304,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "cde149fc3ad92edd184f1ad804693c197ba1e50c5fc120138d18a2f8b5b497a9"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1221.31624,
+      "fct_sha256": "becaef4d418963a1d900bb4365d40fde1e7d64838a7432272c99e61c14629610",
+      "id": "20261004-030000-ws25-lower-s07-b128-drill",
+      "input_flows": 16512,
+      "mode": "drill",
+      "moe_batch_us": 14.925,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b128-drill",
+        "minimum_free_gib": 5409.420379638672,
+        "minimum_mem_available_gib": 87.59203338623047,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4544.546875,
+        "samples": 54
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 58,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 58,
+          "mean_fct_us": 745.194578125,
+          "p50_fct_us": 717.0550000000001,
+          "p95_fct_us": 1088.2449500000002,
+          "p99_complete_source_batch_us": 1226.69498,
+          "p99_fct_us": 1221.31624,
+          "synthetic_batch_completion_us": 1230.107,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.384990844726563,
+          "p50_fct_us": 12.197,
+          "p95_fct_us": 14.149,
+          "p99_complete_source_batch_us": 14.89035,
+          "p99_fct_us": 14.548,
+          "synthetic_batch_completion_us": 14.925,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "da199c3cab60cb2c3d792a3e6efb35f01b5b4a2d8c6b2626d8ed338b563b5223"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 680.78572,
+      "classreserve": {
+        "background_new_flows": 292,
+        "background_packets": 2449588,
+        "background_queue_avoids": 11,
+        "background_reused": 2449296,
+        "fallback_packets": 0,
+        "moe_diverted": 8612,
+        "moe_flow_new": 74704,
+        "moe_flow_reused": 597632,
+        "moe_packets": 672336,
+        "moe_two_choices": 25555,
+        "queue_violations": 0
+      },
+      "fct_sha256": "343894a8dd033f046e889e228c387e54d0e449f665b1f5c485299a9147132a29",
+      "id": "20261004-030000-ws25-lower-s06-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "moe_batch_us": 15.411,
+      "queue": {
+        "current": 0,
+        "dequeued": 3398616496,
+        "enqueued": 3398616496,
+        "queued_drop": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b064-classreserve",
+        "minimum_free_gib": 5409.429141998291,
+        "minimum_mem_available_gib": 87.59562301635742,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4544.0390625,
+        "samples": 50
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 39,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 39,
+          "mean_fct_us": 408.302109375,
+          "p50_fct_us": 352.548,
+          "p95_fct_us": 675.72645,
+          "p99_complete_source_batch_us": 681.29972,
+          "p99_fct_us": 680.78572,
+          "synthetic_batch_completion_us": 682.081,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.272977172851563,
+          "p50_fct_us": 12.133,
+          "p95_fct_us": 13.93085,
+          "p99_complete_source_batch_us": 15.36925,
+          "p99_fct_us": 14.643,
+          "synthetic_batch_completion_us": 15.411,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "afe3b53ab85196c4e5a186109769e00aaca5e0f3f1550eb58d6adb42baff9a93"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "11b47c88644405c13465f39f512636f92cd23e68ff6ccb4f8885d687d18f9860",
+      "id": "20261004-030000-ws25-lower-s08-b000-conweave",
+      "input_flows": 16384,
+      "mode": "conweave",
+      "moe_batch_us": 15.895,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-conweave",
+        "minimum_free_gib": 5409.438037872314,
+        "minimum_mem_available_gib": 87.59438705444336,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4561.02734375,
+        "samples": 46
+      },
+      "seed": 20262508,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.308363220214844,
+          "p50_fct_us": 12.132,
+          "p95_fct_us": 14.051,
+          "p99_complete_source_batch_us": 15.7968,
+          "p99_fct_us": 14.72734,
+          "synthetic_batch_completion_us": 15.895,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 865.02533,
+      "fct_sha256": "9f09b3bf0d6cd85a3659c9ac149a7feb06150974e9598b47be67b7b5068d2bbe",
+      "id": "20261004-030000-ws25-lower-s06-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "moe_batch_us": 17.121,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s06-b128-fecmp",
+        "minimum_free_gib": 5409.41775894165,
+        "minimum_mem_available_gib": 87.59438705444336,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4544.19140625,
+        "samples": 53
+      },
+      "seed": 20262506,
+      "tags": {
+        "1": {
+          "complete_sources": 55,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 55,
+          "mean_fct_us": 600.4925546875,
+          "p50_fct_us": 567.611,
+          "p95_fct_us": 864.53945,
+          "p99_complete_source_batch_us": 864.9505800000001,
+          "p99_fct_us": 865.02533,
+          "synthetic_batch_completion_us": 865.341,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.403096008300782,
+          "p50_fct_us": 12.209,
+          "p95_fct_us": 14.345,
+          "p99_complete_source_batch_us": 16.9122,
+          "p99_fct_us": 15.74304,
+          "synthetic_batch_completion_us": 17.121,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "b09902ff35d4333b5143a3028ee7536df5c393e211dca671e2937d8aa23f3cc6"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "21bf0c014a9ef52a83e8905929086232b4d9c63382b00beb3e59747da553c3a1",
+      "id": "20261004-030000-ws25-lower-s05-b000-letflow",
+      "input_flows": 16384,
+      "mode": "letflow",
+      "moe_batch_us": 15.186,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b000-letflow",
+        "minimum_free_gib": 5409.435436248779,
+        "minimum_mem_available_gib": 87.59514999389648,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4560.8125,
+        "samples": 45
+      },
+      "seed": 20262505,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.260772827148438,
+          "p50_fct_us": 12.117,
+          "p95_fct_us": 13.935,
+          "p99_complete_source_batch_us": 15.1428,
+          "p99_fct_us": 14.635,
+          "synthetic_batch_completion_us": 15.186,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "32b2194ee2206a5bf44831a7f0071972e364e22ab781cdf4f95efcaf569a35be"
+    },
+    {
+      "background": 128,
+      "background_p99_us": 1176.9955200000002,
+      "fct_sha256": "6a59ae781d7bb98525fc6fc3866fce492cd9a5d7752c7a57b277b74b21629c6d",
+      "id": "20261004-030000-ws25-lower-s05-b128-conga",
+      "input_flows": 16512,
+      "mode": "conga",
+      "moe_batch_us": 17.941,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s05-b128-conga",
+        "minimum_free_gib": 5409.411399841309,
+        "minimum_mem_available_gib": 87.59508514404297,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4562.0078125,
+        "samples": 59
+      },
+      "seed": 20262505,
+      "tags": {
+        "1": {
+          "complete_sources": 56,
+          "completed_flows": 128,
+          "completion_rate": 1.0,
+          "input_flows": 128,
+          "input_sources": 56,
+          "mean_fct_us": 603.5277890625,
+          "p50_fct_us": 607.624,
+          "p95_fct_us": 1084.8344000000004,
+          "p99_complete_source_batch_us": 1282.6732500000005,
+          "p99_fct_us": 1176.9955200000002,
+          "synthetic_batch_completion_us": 1398.231,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.554322143554687,
+          "p50_fct_us": 12.316,
+          "p95_fct_us": 14.778,
+          "p99_complete_source_batch_us": 17.47005,
+          "p99_fct_us": 15.957170000000001,
+          "synthetic_batch_completion_us": 17.941,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "ee826ee32cea821f2e035fb433a6cc31a07fd904cbedbc58255efaf6d9a8e317"
+    },
+    {
+      "background": 64,
+      "background_p99_us": 925.37896,
+      "fct_sha256": "4f052f05ccc0ec1b421391aff58551c3a937b82db35e86ff655c723b1f684d8c",
+      "id": "20261004-030000-ws25-lower-s07-b064-drill",
+      "input_flows": 16448,
+      "mode": "drill",
+      "moe_batch_us": 14.9,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s07-b064-drill",
+        "minimum_free_gib": 5409.420379638672,
+        "minimum_mem_available_gib": 87.59203338623047,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4544.25390625,
+        "samples": 48
+      },
+      "seed": 20262507,
+      "tags": {
+        "1": {
+          "complete_sources": 42,
+          "completed_flows": 64,
+          "completion_rate": 1.0,
+          "input_flows": 64,
+          "input_sources": 42,
+          "mean_fct_us": 659.07809375,
+          "p50_fct_us": 583.923,
+          "p95_fct_us": 909.1966,
+          "p99_complete_source_batch_us": 925.38072,
+          "p99_fct_us": 925.37896,
+          "synthetic_batch_completion_us": 925.384,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.34193505859375,
+          "p50_fct_us": 12.15,
+          "p95_fct_us": 14.126,
+          "p99_complete_source_batch_us": 14.8868,
+          "p99_fct_us": 14.532,
+          "synthetic_batch_completion_us": 14.9,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dadb098ae19c55930520cb0a9df7dcb98394076a814a99599f907b8f06f693b5"
+    },
+    {
+      "background": 0,
+      "background_p99_us": null,
+      "fct_sha256": "02d0c86e21e38e0e7c79a21fac541616a93c3da204efffb430d3f19a38c6df81",
+      "id": "20261004-030000-ws25-lower-s08-b000-letflow",
+      "input_flows": 16384,
+      "mode": "letflow",
+      "moe_batch_us": 15.987,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261004-030000-ws25-lower-s08-b000-letflow",
+        "minimum_free_gib": 5409.429580688477,
+        "minimum_mem_available_gib": 87.59199905395508,
+        "peak_load_1m": 8.08,
+        "peak_tree_rss_mib": 4560.92578125,
+        "samples": 44
+      },
+      "seed": 20262508,
+      "tags": {
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.271928588867187,
+          "p50_fct_us": 12.071,
+          "p95_fct_us": 14.004,
+          "p99_complete_source_batch_us": 15.976799999999999,
+          "p99_fct_us": 15.080100000000002,
+          "synthetic_batch_completion_us": 15.987,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "dee60ba5d2a9f4584dd98cfc1700b9633297e78c7b676f308f8806e19c8aa2b7"
+    }
+  ]
+}
