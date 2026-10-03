@@ -95,11 +95,15 @@ def build_one(cell):
 def prebuild(cells):
     host_gate(reject_active=True)
     # Building uses -j2 per cell; keep at most eight build jobs total.
-    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-        for cell, future in zip(cells, [pool.submit(build_one, c) for c in cells]):
-            future.result()
-            print(json.dumps({"built": cell["id"]}), flush=True)
-    host_gate(reject_active=True)
+    for index in range(0, len(cells), 4):
+        group = cells[index:index + 4]
+        host_gate(reject_active=True)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(group)) as pool:
+            futures = [pool.submit(build_one, cell) for cell in group]
+            for cell, future in zip(group, futures):
+                future.result()
+                print(json.dumps({"built": cell["id"]}), flush=True)
+        host_gate(reject_active=True)
 
 
 def start_one(cell, cap):
@@ -180,7 +184,14 @@ def main():
         prebuild(cells)
     elif args.phase == "run":
         groups = {cap: [c for c in cells if c["stage_cap"] == cap] for cap in STAGES}
-        rows = [run_stage(groups[cap], cap) for cap in STAGES]
+        rows = []
+        for cap in STAGES:
+            if (len(rows) >= 2 and
+                    rows[-1]["throughput_cells_per_hour"] <=
+                    rows[-2]["throughput_cells_per_hour"] * 1.05):
+                receipt("pilot_stopped", reason="throughput_plateau", next_cap=cap)
+                break
+            rows.append(run_stage(groups[cap], cap))
         SUMMARY.write_text(json.dumps({"purpose": plan["purpose"], "stages": rows},
                                       indent=2, sort_keys=True) + "\n", encoding="utf-8")
     else:
