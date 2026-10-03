@@ -420,8 +420,18 @@ def main():
     elif args.phase == "prebuild":
         prebuild(cells)
     elif args.phase == "run":
-        if not all(base.status(cell["id"]).get("status") == "BUILT" for cell in cells):
-            raise RuntimeError("All 72 cells must be prebuilt before starting the matrix")
+        for cell in cells:
+            state = base.status(cell["id"])
+            if state.get("git_commit") != calibration.SOURCE_SHA:
+                raise RuntimeError("Lower-load ID has the wrong frozen SHA: " + cell["id"])
+            if state.get("status") not in ("BUILT", "RUNNING", "SUCCEEDED"):
+                raise RuntimeError("Lower-load ID is not resumable: %s=%s" %
+                                   (cell["id"], state.get("status")))
+            local = ROOT / "results" / cell["id"]
+            if state.get("status") == "SUCCEEDED" and not local.is_dir():
+                raise RuntimeError("Succeeded lower-load ID has not been fetched: " + cell["id"])
+            if state.get("status") in ("BUILT", "RUNNING") and local.exists():
+                raise RuntimeError("Local result conflicts with remote status: " + cell["id"])
         execute(cells)
     else:
         rows = [verify(cell) for cell in cells]
