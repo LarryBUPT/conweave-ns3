@@ -5,6 +5,8 @@ import datetime
 import hashlib
 import json
 import re
+import shlex
+import subprocess
 import threading
 import time
 from pathlib import Path
@@ -13,7 +15,7 @@ import analyze_moe_tags
 import run_ws25_preflight as base
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE_SHA = "c84108b24c94a5068861e5bb090c5aa387245ee1"
+SOURCE_SHA = "a656104d05c681f9b3a998b5ef4ce3e644558d02"
 TOPO_SHA = "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
 SEEDS = {
     20262505: "038d7cf09f21a56ae8e1d13164cc57e816bd14cf62631d7ff9efa59b8c1d9272",
@@ -29,15 +31,15 @@ MODE_ORDER = {
     20262506: ("conga", "fecmp", "letflow", "drill", "classreserve", "conweave", "classreserve_diag"),
 }
 ID_PREFIX = {
-    20262505: "20261003-092500",
-    20262506: "20261003-093500",
-    20262507: "20261003-090500",
-    20262508: "20261003-091500",
+    20262505: "20261003-085000",
+    20262506: "20261003-090000",
+    20262507: "20261003-083000",
+    20262508: "20261003-084000",
 }
 MODES = ("fecmp", "drill", "conga", "letflow", "conweave", "classreserve")
 EXPECTED_TAGS = {"1": 192, "2": 16384}
-PLAN_PATH = ROOT / "results" / "ws25-v1fix-calibration-plan.json"
-RECEIPTS = ROOT / "results" / "ws25-v1fix-calibration-receipts.jsonl"
+PLAN_PATH = ROOT / "results" / "ws25-v1fix-calibration-plan-r2.json"
+RECEIPTS = ROOT / "results" / "ws25-v1fix-calibration-receipts-r2.jsonl"
 LOCK = threading.Lock()
 
 
@@ -182,6 +184,18 @@ def verify(cell):
     return result
 
 
+def verify_remote_trace(cell):
+    cfg = base.remote.config()
+    path = "/home/fnl/lzy/runs/%s/source/config/%s" % (cell["id"], cell["trace"])
+    code = ("import hashlib,os; p=%r; assert os.path.isfile(p) and not os.path.islink(p); "
+            "assert os.path.realpath(p)==p; print(hashlib.sha256(open(p,'rb').read()).hexdigest())") % path
+    output = subprocess.check_output(base.remote.ssh_base(cfg) +
+                                     ["python3 -c " + shlex.quote(code)],
+                                     universal_newlines=True).strip()
+    if output != cell["trace_sha256"]:
+        raise RuntimeError("Remote trace missing or hash mismatch: " + cell["id"])
+
+
 def run_cell(cell):
     local = ROOT / "results" / cell["id"]
     if local.is_dir():
@@ -200,6 +214,7 @@ def run_cell(cell):
     if state.get("git_commit") != SOURCE_SHA:
         raise RuntimeError("Calibration source SHA mismatch: " + cell["id"])
     if state["status"] == "BUILT":
+        verify_remote_trace(cell)
         base.start_watch(cell["id"])
         args = ["run", cell["id"], "--lb", cell["mode"], "--pfc", "0", "--irn", "1",
                 "--bw", "400", "--buffer", "9", "--topo", "topo_1280_400G_400G_OS1",
@@ -267,7 +282,7 @@ def execute(selected):
             base.audit(reject_active=True)
     result = verify_matrix(selected)
     RECEIPTS.parent.mkdir(parents=True, exist_ok=True)
-    with (RECEIPTS.parent / "ws25-v1fix-calibration-verification.json").open("x", encoding="utf-8") as target:
+    with (RECEIPTS.parent / "ws25-v1fix-calibration-verification-r2.json").open("x", encoding="utf-8") as target:
         json.dump(result, target, indent=2, sort_keys=True)
         target.write("\n")
     print(json.dumps({"calibration_matrix_complete": True,

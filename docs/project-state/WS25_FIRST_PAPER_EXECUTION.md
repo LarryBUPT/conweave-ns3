@@ -1,6 +1,6 @@
 # WS-25：第一课题类别感知包流混合负载均衡执行清单
 
-状态：ACTIVE，2026-10-02。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。用户本轮明确将旧 WS-25 的“本地证据与论文范围收束”改为**第一课题实现、验证与小论文成稿**；旧 WS-21 状态反馈余项保留在第二课题门槛，不与本课题并行。
+状态：ACTIVE，2026-10-03。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。用户本轮明确将旧 WS-25 的“本地证据与论文范围收束”改为**第一课题实现、验证与小论文成稿**；旧 WS-21 状态反馈余项保留在第二课题门槛，不与本课题并行。当前修正版校准遇到一次输入快照身份错误：r1 两个 ID 因 SHA 未含新 trace 在 ns-3 启动前失败，已保留且不解释为机制失败；r2 新 ID 与修正后 SHA 已冻结，详见[校准协议](../research/ws25-v1fix-independent-calibration-protocol.md)和[Handoff 63](../handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md)。
 
 ## 研究问题与边界
 
@@ -17,6 +17,12 @@
 | 5. Pilot 与冻结 | 独立 pilot 估计波动、可检测效应和运行资源；在最终矩阵前冻结双侧数值判据、其他档位约束、样本量、比较/统计方法、停止条件、源码 SHA、拓扑/trace 内容哈希、seed、全部实验 ID 与资源预算。未满足此门槛不得运行正式矩阵。 |
 | 6. 正式验证 | 在现场无其他作业、隔离与资源 pilot 通过后，按冻结协议执行五基线与候选的必要配对格，使用实测吞吐安全批量调度；每格保留 raw、metadata、哈希与资源收据。失败保留原 ID，停止扩格，诊断修复后用新 SHA/ID 重验。 |
 | 7. 分析及成稿 | 从 raw 逐格复核，报告全部档位、失败格与双侧主结果，并用解释指标核对机制因果链及局限；可过预设门槛才写正向结论。形成可复现清单、图表和小论文初稿。投稿作为后续里程碑单独记录。 |
+
+## 当前执行检查点（2026-10-03）
+
+- 机制与兼容审计、修正版实现和 11 格正确性/fallback 验收已完成；raw 重验 11/11。mixed8 correctness 没有触发 CONGA/LetFlow flowlet timeout 或 ConWeave reroute/VOQ，不能据此声称这些动态路径已覆盖。
+- 独立校准 r1 的两格因构建 SHA `c84108b24c94a5068861e5bb090c5aa387245ee1` 不含 seed07 trace，在 ns-3 启动前失败。两个失败 ID、metadata 与日志保留，详见 [Handoff 63](../handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md)；该输入打包错误不计作机制版本效果失败，也不复用 r1 ID。
+- r2 已冻结输入快照 SHA `a656104d05c681f9b3a998b5ef4ce3e644558d02`、四个 trace SHA、拓扑 SHA、28 个全新唯一 ID、cap=2 及逐格远端 trace SHA 预检。版本化清单为 [r2 计划](../research/evidence/ws25-v1fix-calibration-plan-r2.json)，校准定义见[协议](../research/ws25-v1fix-independent-calibration-protocol.md)。提交推送后执行 28 格；它们仍是校准，不作正式收益或 NO-GO 判断。
 
 ## 迭代和闭环
 
