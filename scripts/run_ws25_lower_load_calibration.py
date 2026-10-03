@@ -255,6 +255,7 @@ def verify(cell):
             resources["minimum_free_gib"] >= 100 and
             max(row["load_1m"] for row in samples) <= 20):
         raise RuntimeError("Lower-load resource gate failed: " + cell["id"])
+    resources["peak_load_1m"] = max(row["load_1m"] for row in samples)
     result["resource"] = resources
     return result
 
@@ -320,27 +321,49 @@ def finish_one(cell):
 
 
 def run_batch(cells, batch_number, batch_count):
-    pilot.host_gate(reject_active=True)
+    pilot.host_gate()
     receipt("batch_start", cap=MAX_CONCURRENT, batch=batch_number,
-            batches=batch_count, ids=[cell["id"] for cell in cells])
+            batches=batch_count, ids=[cell["id"] for cell in cells],
+            resume=any((ROOT / "results" / cell["id"]).exists() for cell in cells))
+    local_results = {}
     for cell in cells:
-        pilot.host_gate()
-        start_one(cell)
-    while True:
-        time.sleep(pilot.POLL_SECONDS)
-        audit = pilot.host_gate()
-        states = {cell["id"]: base.status(cell["id"])["status"] for cell in cells}
-        if any(state not in ("RUNNING", "SUCCEEDED") for state in states.values()):
-            raise RuntimeError("Stop before next batch; preserve IDs and raw: " + repr(states))
-        done = sum(state == "SUCCEEDED" for state in states.values())
-        if done == len(cells):
-            break
-        print(json.dumps({"batch": batch_number, "completed": done,
-                          "cells": len(cells), "load_1m": audit["load_1m"],
-                          "mem_available_gib": audit["mem_available_gib"]},
-                         sort_keys=True), flush=True)
+        local = ROOT / "results" / cell["id"]
+        if local.exists():
+            local_results[cell["id"]] = verify(cell)
+            receipt("verified_resume", cell,
+                    fct_sha256=local_results[cell["id"]]["fct_sha256"],
+                    peak_tree_rss_mib=local_results[cell["id"]]["resource"]["peak_tree_rss_mib"])
+            continue
+        state = base.status(cell["id"])
+        if state.get("git_commit") != calibration.SOURCE_SHA:
+            raise RuntimeError("Lower-load ID has the wrong frozen SHA: " + cell["id"])
+        if state.get("status") == "BUILT":
+            pilot.host_gate()
+            start_one(cell)
+        elif state.get("status") not in ("RUNNING", "SUCCEEDED"):
+            raise RuntimeError("Stop before next batch; preserve IDs and raw: %s=%s" %
+                               (cell["id"], state.get("status")))
+    if len(local_results) != len(cells):
+        while True:
+            time.sleep(pilot.POLL_SECONDS)
+            audit = pilot.host_gate()
+            states = {cell["id"]: ("SUCCEEDED" if cell["id"] in local_results else
+                                    base.status(cell["id"])["status"])
+                      for cell in cells}
+            if any(state not in ("RUNNING", "SUCCEEDED") for state in states.values()):
+                raise RuntimeError("Stop before next batch; preserve IDs and raw: " + repr(states))
+            done = sum(state == "SUCCEEDED" for state in states.values())
+            if done == len(cells):
+                break
+            print(json.dumps({"batch": batch_number, "completed": done,
+                              "cells": len(cells), "load_1m": audit["load_1m"],
+                              "mem_available_gib": audit["mem_available_gib"]},
+                             sort_keys=True), flush=True)
+    pending = [cell for cell in cells if cell["id"] not in local_results]
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-        results = list(pool.map(finish_one, cells))
+        results = list(pool.map(finish_one, pending))
+    local_results.update({result["id"]: result for result in results})
+    results = [local_results[cell["id"]] for cell in cells]
     pilot.host_gate(reject_active=True)
     row = {"batch": batch_number, "cells": len(results),
            "minimum_mem_available_gib": min(r["resource"]["minimum_mem_available_gib"] for r in results),
