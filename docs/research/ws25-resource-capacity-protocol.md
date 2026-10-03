@@ -9,3 +9,5 @@
 16 档结果必须全部成功、原始结果逐格核对且吞吐比 12 档的 98.41 格/小时提高超过 5%，才准继续 18 档。运行中若出现其他用户作业、未知仿真、load 超 20、可用内存低于 32 GiB、空闲盘低于 100 GiB 或任一格失败，停止开启新格、保留 ID 和原始数据，并安全降载。18 档完成后按吞吐与资源余量选择正式矩阵上限；吞吐提升不足 5% 时采用上一个通过档。18 档也未达 CPU 饱和时，先分析实际 CPU 使用率与整批吞吐，不能仅凭内存余量继续增加进程。
 
 每格完成后运行 WS-25 原始 verifier，并与相应 r4 校准格核对 FCT SHA；最终从原始资源样本独立复算墙钟时间、峰值负载与最低可用内存。远端仿真阶段按工作流以 Luna High 静默监督，终态由 Sol High 做分析。入口为 `python scripts/run_ws25_resource_capacity.py plan|prebuild|run|verify`；收据落在本机忽略目录 `results/ws25-resource-capacity-receipts.jsonl`，摘要落在 `results/ws25-resource-capacity-summary.json`。
+
+2026-10-04 计时复核：16 档恢复脚本使用 300 秒状态轮询，原控制器把末格结束后的等待计入 `wall_seconds`。原阈值及冻结计划保持不变；升档判断以 12/16 档各格 metadata 的首个 `started_utc` 至最后 `finished_utc` 为共同墙钟口径，并用 `stage_start` 收据交叉核对。原收据和错误停止事件全部保留。逐格数据、替补 ID 与修正结果见[计时审计](ws25-resource-capacity-timing-audit.md)。
