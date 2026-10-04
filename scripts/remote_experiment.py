@@ -43,14 +43,16 @@ def config():
 
 def ssh_base(cfg):
     return ['ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
-            '-o', 'ConnectTimeout=10', '-o', 'ClearAllForwardings=yes',
+            '-o', 'ConnectTimeout=10', '-o', 'ServerAliveInterval=30',
+            '-o', 'ServerAliveCountMax=3', '-o', 'ClearAllForwardings=yes',
             cfg['REMOTE_USER'] + '@' + cfg['REMOTE_HOST']]
 
 
 def worker_call(cfg, *args):
     remote = '/home/fnl/lzy/.research-workflow/remote_worker.py'
     command = ' '.join(shlex.quote(part) for part in ['python3', remote] + list(args))
-    subprocess.check_call(ssh_base(cfg) + [command])
+    timeout = 1800 if args and args[0] == 'build' else 600
+    subprocess.check_call(ssh_base(cfg) + [command], timeout=timeout)
 
 
 def git_output(repo, *args):

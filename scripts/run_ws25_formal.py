@@ -226,11 +226,24 @@ def build_one(cell):
     except RuntimeError as error:
         if "metadata.json" not in str(error) and "No such file" not in str(error):
             raise
-        base.command("build", "--repo-local", str(ROOT), "--id", cell["id"],
-                     "--source-sha", SOURCE_SHA,
-                     "--label", "ws25-formal-validation")
-        state = base.status(cell["id"])
-        receipt("built", cell, remote_status=state["status"])
+        try:
+            base.command("build", "--repo-local", str(ROOT), "--id", cell["id"],
+                         "--source-sha", SOURCE_SHA,
+                         "--label", "ws25-formal-validation")
+        except RuntimeError as build_error:
+            # SSH may lose its return path after the remote build commits BUILT.
+            # Read metadata through a new connection; never issue a second build.
+            try:
+                state = base.status(cell["id"])
+            except RuntimeError:
+                raise build_error
+            if state.get("git_commit") != SOURCE_SHA or state.get("status") != "BUILT":
+                raise build_error
+            receipt("built_recovered_transport", cell, remote_status=state["status"],
+                    controller_error=str(build_error)[-600:])
+        else:
+            state = base.status(cell["id"])
+            receipt("built", cell, remote_status=state["status"])
     if state.get("git_commit") != SOURCE_SHA or state.get("status") not in (
             "BUILT", "RUNNING", "SUCCEEDED"):
         raise RuntimeError("Formal ID has unexpected source or state: " + cell["id"])
