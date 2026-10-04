@@ -80,4 +80,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-04 正式矩阵重复 SSH 停滞：唯一 runner 在读取已返回 `BUILT` metadata 的 status SSH 后仍等待连接关闭，最终于旧 600 秒上限退出；主对话精确结束 4 个过期本地 SSH 子进程。一次批量只读核验确认第十批相关 16 原 ID 仍为 `BUILT`，固定源码/输入 SHA、trace/拓扑哈希均匹配，远端 raw 空；无其他用户进程、活动仿真或持有的启动锁，load 0、MemAvailable 约 122 GiB、空盘约 5286 GiB。修复扩展到 `remote_experiment.py`、`run_ws25_preflight.py`、校准 trace 校验及资源审计的全部正式控制路径：读操作与本地子进程有短超时，构建/数据传输保留长上限，SSH keepalive 加快失联识别。未改仿真 SHA、576 格计划、输入、ID、判据或 144 格 raw。`py_compile`、差异检查与正式计划 576 格核对通过。新 [Handoff 73](../handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md) 记录二次故障和恢复。修复提交后重新核对无人作业/资源/锁，再以唯一 Luna High runner 沿原 ID 续跑；WS-25 仍 ACTIVE。
 
+2026-10-04 续跑复试与 status 绕行：缩短到 45 秒后 `remote_worker.py status` 对 `20261004-070000-ws25-formal-s22-b064-conga` 仍输出 metadata 后挂起，第二个唯一 runner 安全退出，started/verified 保持 144/144，无新远程仿真。现已把 CLI status 改成一次 SSH 安全只读读取受限 workspace 中该 ID 的 `metadata.json`，并保留 RUNNING PID 存活诊断；同一挂起 ID 的新读取在 1 秒内返回 `BUILT` 与固定 SHA。该变更待提交推送，再现场防重启动。正式计划仍 576 格，仿真/trace/拓扑哈希与主分析判据不变。状态见 [Handoff 73](../handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md)。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建、资源 pilot 或校准成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
