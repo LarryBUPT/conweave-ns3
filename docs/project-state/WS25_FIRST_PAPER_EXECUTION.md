@@ -82,4 +82,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-04 续跑复试与 status 绕行：缩短到 45 秒后 `remote_worker.py status` 对 `20261004-070000-ws25-formal-s22-b064-conga` 仍输出 metadata 后挂起，第二个唯一 runner 安全退出，started/verified 保持 144/144，无新远程仿真。CLI status 已改为一次 SSH 安全只读读取 metadata，保留 RUNNING PID 检查；同 ID 测试在 1 秒内返回 `BUILT` 与固定 SHA。第三个 runner 在四路并发远程检查时遇到 trace SSH 45 秒超时；旧 `build_one` 因异常文本恰含 `metadata.json` 曾误判为 metadata 缺失并尝试 build，远端按 ID 已存在拒绝，后续 status 仍确认 `BUILT`，未重建或开跑。现将正式批次 status/trace 检查串行化，并使只有明确 `REMOTE_METADATA_MISSING` 标记才能走新 build 恢复，SSH 超时不再触发 build。最新修复待提交推送，再做单 runner 防重续跑。正式计划 576 格、仿真/trace/拓扑哈希与判据不变。状态见 [Handoff 73](../handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md)。
 
+2026-10-04 正式矩阵已恢复：控制修复 `805e5438b4358802d5c9664c47b02ef5ade6caec` 已提交并推送；修复后对第十批 16 格串行 status 与 trace 预检全部通过，远端 host gate load 0.0、MemAvailable 122.89 GiB、空盘 5285.4 GiB、无其他用户/活动仿真。唯一 runner PID `46324` 已启动第十批 16 个原 ID（全矩阵 started 收据 160），当前 verified 仍 144，stderr 空，等待批次结束后做 raw/资源逐格验收。详见 [Handoff 73](../handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md)。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建、资源 pilot 或校准成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
