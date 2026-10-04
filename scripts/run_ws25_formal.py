@@ -303,6 +303,7 @@ def run_batch(cells, batch_number, batch_count):
             batches=batch_count, ids=[cell["id"] for cell in cells],
             resume=any((ROOT / "results" / cell["id"]).exists() for cell in cells))
     local_results = {}
+    remote_inflight = False
     for cell in cells:
         local = ROOT / "results" / cell["id"]
         if local.exists():
@@ -317,10 +318,13 @@ def run_batch(cells, batch_number, batch_count):
         if state.get("status") == "BUILT":
             pilot.host_gate()
             start_one(cell)
-        elif state.get("status") not in ("RUNNING", "SUCCEEDED"):
+            remote_inflight = True
+        elif state.get("status") == "RUNNING":
+            remote_inflight = True
+        elif state.get("status") != "SUCCEEDED":
             raise RuntimeError("Stop before next batch; preserve IDs and raw: %s=%s" %
                                (cell["id"], state.get("status")))
-    if len(local_results) != len(cells):
+    if len(local_results) != len(cells) and remote_inflight:
         while True:
             time.sleep(pilot.POLL_SECONDS)
             audit = pilot.host_gate()
@@ -336,8 +340,13 @@ def run_batch(cells, batch_number, batch_count):
                     cells=len(cells), load_1m=audit["load_1m"],
                     mem_available_gib=audit["mem_available_gib"])
     pending = [cell for cell in cells if cell["id"] not in local_results]
-    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-        results = list(pool.map(finish_one, pending))
+    # Keep fetch-check/status SSH serial. A four-way finish pool timed out on
+    # fetch-check before any local raw was committed; sequential fetch is
+    # slower but prevents concurrent SSH from losing a whole batch receipt.
+    results = []
+    for cell in pending:
+        local = ROOT / "results" / cell["id"]
+        results.append(verify(cell) if local.exists() else finish_one(cell))
     local_results.update({result["id"]: result for result in results})
     results = [local_results[cell["id"]] for cell in cells]
     pilot.host_gate(reject_active=True)
@@ -349,17 +358,50 @@ def run_batch(cells, batch_number, batch_count):
     return row, results
 
 
+def resume_summary(cells, batches):
+    empty = {"kind": "formal independent-demand validation",
+             "source_sha": SOURCE_SHA,
+             "randomization_seed": RANDOMIZATION_SEED,
+             "max_concurrent": MAX_CONCURRENT,
+             "batches": [], "verified_cells": []}
+    if not SUMMARY.exists():
+        return empty, 0
+    try:
+        saved = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as error:
+        raise RuntimeError("Cannot safely resume: formal summary is unreadable") from error
+    for key in ("kind", "source_sha", "randomization_seed", "max_concurrent"):
+        if saved.get(key) != empty[key]:
+            raise RuntimeError("Cannot safely resume: formal summary mismatch in " + key)
+    completed_batches = len(saved.get("batches", []))
+    if completed_batches > len(batches):
+        raise RuntimeError("Cannot safely resume: summary has too many batches")
+    expected_cells = cells[:completed_batches * MAX_CONCURRENT]
+    recorded = saved.get("verified_cells", [])
+    if len(recorded) != len(expected_cells):
+        raise RuntimeError("Cannot safely resume: summary is not a complete batch prefix")
+    if len(saved.get("batches", [])) != completed_batches:
+        raise RuntimeError("Cannot safely resume: malformed batch summary")
+    for index, row in enumerate(saved.get("batches", []), 1):
+        if row.get("batch") != index or row.get("cells") != MAX_CONCURRENT:
+            raise RuntimeError("Cannot safely resume: batches are not contiguous")
+    for planned, summary_row in zip(expected_cells, recorded):
+        if summary_row.get("id") != planned["id"]:
+            raise RuntimeError("Cannot safely resume: verified IDs are not the frozen prefix")
+        current = verify(planned)
+        if current != summary_row:
+            raise RuntimeError("Cannot safely resume: saved raw verification differs for " +
+                               planned["id"])
+    return saved, completed_batches
+
+
 def execute(cells):
     if RESULT.exists():
         raise RuntimeError("Formal final evidence already exists; refusing overwrite")
     pilot.host_gate(reject_active=True)
     batches = [cells[i:i + MAX_CONCURRENT] for i in range(0, len(cells), MAX_CONCURRENT)]
-    summary = {"kind": "formal independent-demand validation",
-               "source_sha": SOURCE_SHA,
-               "randomization_seed": RANDOMIZATION_SEED,
-               "max_concurrent": MAX_CONCURRENT,
-               "batches": [], "verified_cells": []}
-    for index, batch in enumerate(batches, 1):
+    summary, completed_batches = resume_summary(cells, batches)
+    for index, batch in enumerate(batches[completed_batches:], completed_batches + 1):
         batch_summary, rows = run_batch(batch, index, len(batches))
         summary["batches"].append(batch_summary)
         summary["verified_cells"].extend(rows)

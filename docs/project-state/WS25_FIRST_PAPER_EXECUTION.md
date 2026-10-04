@@ -86,4 +86,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-04 例行监督：runner PID `46324` 仍存活，stderr 空；摘要显示前 10 批 160/576 格正式 raw/资源验收，第 11 批 16 个 ID 已启动（started=176）。历史收据含 17 个 `built_recovered_transport` 控制事件：同 ID build 请求被拒或超时后状态回读成功，之后对应格仍逐格验收，未覆盖 raw。主对话已收到该异常摘要；现继续 Luna High 静默监督，约半小时看本地收据与资源摘要，不重复查询远端。
 
+2026-10-04 批14回传恢复：唯一 runner PID `29620` 在 `fetch-check` SSH 60秒超时后退出；summary保留208/576。批量只读核验确认批14的16个原 ID 全部 `SUCCEEDED` 且仿真 SHA匹配，无其他普通用户进程、无持有启动锁、没有运行中worker；load 0.04、MemAvailable 122.89 GiB、可用盘5235.63 GiB。原始输出仍在远端独立目录，本地尚无批14结果，没有重跑或覆盖。控制器已补充summary连续前缀校验续跑、全批SUCCEEDED时跳过300秒空等、串行fetch以避开此前4路SSH超时；见 [Handoff 74](../handoffs/2026-10-04-74-ws25-formal-fetch-resume-recovery.md)。修复后已本地重验208格，接下来唯一runner将从批14沿原ID逐格回传，再按批15–36继续。冻结仿真SHA、输入、计划与门槛均不变；无正式性能结论。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建、资源 pilot 或校准成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
