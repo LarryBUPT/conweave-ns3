@@ -67,7 +67,7 @@ def host_gate(reject_active=False):
                    "and int(x.split()[0])!=uid))")
     other_users = subprocess.check_output(base.remote.ssh_base(base.remote.config()) +
                                           ["python3 -c " + shlex.quote(remote_code)],
-                                          universal_newlines=True).strip()
+                                          universal_newlines=True, timeout=45).strip()
     if other_users:
         raise RuntimeError("Other user processes appeared; stop pilot admission: " + other_users[:500])
     if (float(audit["load_1m"]) > 20 or

@@ -193,8 +193,8 @@ def verify_remote_trace(cell):
     code = ("import hashlib,os; p=%r; assert os.path.isfile(p) and not os.path.islink(p); "
             "assert os.path.realpath(p)==p; print(hashlib.sha256(open(p,'rb').read()).hexdigest())") % path
     output = subprocess.check_output(base.remote.ssh_base(cfg) +
-                                     ["python3 -c " + shlex.quote(code)],
-                                     universal_newlines=True).strip()
+                                       ["python3 -c " + shlex.quote(code)],
+                                       universal_newlines=True, timeout=45).strip()
     if output != cell["trace_sha256"]:
         raise RuntimeError("Remote trace missing or hash mismatch: " + cell["id"])
 

@@ -2,7 +2,7 @@
 
 2026-10-02 当前执行入口：用户将旧 WS-25 本地证据收束调整为第一课题的机制实现、独立 ns-3 验证和小论文成稿，见 [WS-25 执行清单](WS25_FIRST_PAPER_EXECUTION.md)。先做类别感知选路，五原始模式同条件对照；独立 pilot 后冻结双侧数值与最终样本。WS-21 状态反馈余项不并行推进，待小论文投稿后作为第二课题门槛审查。下文旧 WS-25“仅收束”的记录属于历史规划，不是当前执行范围。
 
-2026-10-04 WS-25 状态更新：修正版四需求 192 档及 0/64/128 档 72 格校准均已完成 raw/资源验收，并完成逐 seed [低档双侧分析](../research/ws25-v1fix-lower-load-calibration-analysis.md)。它显示与 DRILL、CONGA 等存在 MoE/后台权衡，不产生正式收益结论。18 路容量相对 16 路吞吐只增 4.23%，矩阵继续 cap=16。事前 [正式协议](../research/ws25-v1fix-formal-protocol.md)已固定两项共同主判据、五基线层级比较、低档约束及 24 个独立最终需求；96 份输入 SHA 和 576 格 ID/顺序见[机器计划](../research/evidence/ws25-v1fix-formal-plan.json)。前 9 批 **144/576 格**已通过正式 raw 与资源验收；第 10 批 16 个原 ID 全部 `BUILT`、输入哈希匹配且 raw 为空。构建完成后的 SSH 返回连接挂起，旧控制器已退出，[Handoff 72](../handoffs/2026-10-04-72-ws25-formal-build-ssh-recovery.md)记录恢复修复。下一步提交修复、复核远端无人作业与资源线，实际切 Luna High 从原 ID 静默续跑；全格终态切 Sol High 双侧分析及写论文。WS-25 尚未闭环。
+2026-10-04 WS-25 状态更新：修正版四需求 192 档及 0/64/128 档 72 格校准均已完成 raw/资源验收，并完成逐 seed [低档双侧分析](../research/ws25-v1fix-lower-load-calibration-analysis.md)。它显示与 DRILL、CONGA 等存在 MoE/后台权衡，不产生正式收益结论。18 路容量相对 16 路吞吐只增 4.23%，矩阵继续 cap=16。事前 [正式协议](../research/ws25-v1fix-formal-protocol.md)已固定两项共同主判据、五基线层级比较、低档约束及 24 个独立最终需求；96 份输入 SHA 和 576 格 ID/顺序见[机器计划](../research/evidence/ws25-v1fix-formal-plan.json)。前 9 批 **144/576 格**已通过正式 raw 与资源验收；本轮唯一恢复 runner 在 status SSH 已返回元数据但连接 600 秒不退出后终止。第 10 批 16 个原 ID 均 `BUILT`，源码/trace/拓扑哈希匹配，raw 为空；远端无其他用户、活动仿真或持有的启动锁，详见 [Handoff 73](../handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md)。已为只读 SSH 与结果传输设置有界等待，修复提交后按冻结 ID 恢复；全格终态切 Sol High 双侧分析及写论文。WS-25 尚未闭环。
 
 ## 2026-10-02 当前路线
 

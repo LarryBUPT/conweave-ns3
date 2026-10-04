@@ -78,4 +78,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-04 正式矩阵第 10 批恢复检查点：固定仿真/输入 SHA `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`、24 独立需求 seed × 4 背景档 × 6 模式共 576 原 ID 不变。前 9 批 **144/576** 格已通过正式 raw、输入哈希、完成率和资源验收；本地[正式摘要](../../results/ws25-v1fix-formal-summary.json)记录 9 批。第 10 批 16 个原 ID 远端均 `BUILT`，源码/trace/拓扑哈希 16/16 与计划一致且 raw 为空。构建完成后旧 SSH 返回连接挂起，精确停止孤立连接后唯一控制器退出；控制脚本已增加 SSH 存活探测、构建时限及同 ID `BUILT` 回读，见 [Handoff 72](../handoffs/2026-10-04-72-ws25-formal-build-ssh-recovery.md)。当前任务仍需提交/推送修复、复核远端无人作业/资源/锁、实际切 Luna High 从原 ID 恢复余下 432 格，并在 576 格全部 raw 验收后实际切 Sol High 做双侧分析、反例解释、可复现清单与小论文初稿。性能不得早停或改动事前门槛；尚无正式效果结论。
 
+2026-10-04 正式矩阵重复 SSH 停滞：唯一 runner 在读取已返回 `BUILT` metadata 的 status SSH 后仍等待连接关闭，最终于旧 600 秒上限退出；主对话精确结束 4 个过期本地 SSH 子进程。一次批量只读核验确认第十批相关 16 原 ID 仍为 `BUILT`，固定源码/输入 SHA、trace/拓扑哈希均匹配，远端 raw 空；无其他用户进程、活动仿真或持有的启动锁，load 0、MemAvailable 约 122 GiB、空盘约 5286 GiB。修复扩展到 `remote_experiment.py`、`run_ws25_preflight.py`、校准 trace 校验及资源审计的全部正式控制路径：读操作与本地子进程有短超时，构建/数据传输保留长上限，SSH keepalive 加快失联识别。未改仿真 SHA、576 格计划、输入、ID、判据或 144 格 raw。`py_compile`、差异检查与正式计划 576 格核对通过。新 [Handoff 73](../handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md) 记录二次故障和恢复。修复提交后重新核对无人作业/资源/锁，再以唯一 Luna High runner 沿原 ID 续跑；WS-25 仍 ACTIVE。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建、资源 pilot 或校准成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。

@@ -43,16 +43,22 @@ def config():
 
 def ssh_base(cfg):
     return ['ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
-            '-o', 'ConnectTimeout=10', '-o', 'ServerAliveInterval=30',
-            '-o', 'ServerAliveCountMax=3', '-o', 'ClearAllForwardings=yes',
+            '-o', 'ConnectTimeout=10', '-o', 'ConnectionAttempts=1',
+            '-o', 'TCPKeepAlive=yes', '-o', 'ServerAliveInterval=15',
+            '-o', 'ServerAliveCountMax=2', '-o', 'ClearAllForwardings=yes',
             cfg['REMOTE_USER'] + '@' + cfg['REMOTE_HOST']]
 
 
 def worker_call(cfg, *args):
     remote = '/home/fnl/lzy/.research-workflow/remote_worker.py'
-    command = ' '.join(shlex.quote(part) for part in ['python3', remote] + list(args))
-    timeout = 1800 if args and args[0] == 'build' else 600
-    subprocess.check_call(ssh_base(cfg) + [command], timeout=timeout)
+    remote_command = ' '.join(shlex.quote(part) for part in ['python3', remote] + list(args))
+    operation = args[0] if args else ''
+    timeout = {
+        'build': 1800, 'sync': 1800, 'sync-bundle': 1800,
+        'status': 45, 'audit': 45, 'fetch-check': 60,
+        'run': 60, 'transfer-smoke': 120,
+    }.get(operation, 60)
+    subprocess.check_call(ssh_base(cfg) + [remote_command], timeout=timeout)
 
 
 def git_output(repo, *args):
@@ -152,7 +158,8 @@ def fetch(cfg, experiment_id):
         raise RuntimeError('Transfer staging path already exists')
     remote = cfg['REMOTE_USER'] + '@' + cfg['REMOTE_HOST'] + ':/home/fnl/lzy/results/' + experiment_id
     subprocess.check_call(['scp', '-r', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
-                           remote, incoming])
+                           '-o', 'ConnectTimeout=10', '-o', 'ServerAliveInterval=15',
+                           '-o', 'ServerAliveCountMax=2', remote, incoming], timeout=1800)
     if not os.path.isfile(os.path.join(incoming, 'metadata.json')):
         raise RuntimeError('Transfer incomplete; staging directory retained: ' + incoming)
     os.rename(incoming, target)

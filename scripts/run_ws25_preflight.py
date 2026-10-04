@@ -25,9 +25,12 @@ LOCK = threading.Lock()
 
 
 def command(*args):
-    result = subprocess.run([sys.executable, str(CONTROLLER)] + list(args), cwd=str(ROOT),
-                            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                            universal_newlines=True)
+    try:
+        result = subprocess.run([sys.executable, str(CONTROLLER)] + list(args), cwd=str(ROOT),
+                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                                universal_newlines=True, timeout=90)
+    except subprocess.TimeoutExpired as error:
+        raise RuntimeError("controller timed out after 90 seconds: " + " ".join(args[:3])) from error
     if result.returncode:
         raise RuntimeError("controller failed (%s): %s" %
                            (" ".join(args[:3]), result.stdout[-1600:]))
@@ -99,7 +102,8 @@ def start_watch(experiment_id):
             "stdin=subprocess.DEVNULL,stdout=out,stderr=subprocess.STDOUT,start_new_session=True); "
             "time.sleep(1); assert os.path.isfile(sample) and not os.path.islink(sample); "
             "print('watcher_pid='+str(p.pid))") % (base, watch, log, path, experiment_id)
-    subprocess.check_call(remote.ssh_base(cfg) + ["python3 -c " + shlex.quote(code)])
+    subprocess.check_call(remote.ssh_base(cfg) + ["python3 -c " + shlex.quote(code)],
+                          timeout=45)
 
 
 def wait_watch(experiment_id):
@@ -108,7 +112,8 @@ def wait_watch(experiment_id):
     code = ("import os,time; p=%r; "
             "[time.sleep(2) for _ in range(30) if not os.path.isfile(p)]; "
             "assert os.path.isfile(p) and not os.path.islink(p)") % path
-    subprocess.check_call(remote.ssh_base(cfg) + ["python3 -c " + shlex.quote(code)])
+    subprocess.check_call(remote.ssh_base(cfg) + ["python3 -c " + shlex.quote(code)],
+                          timeout=120)
 
 
 def fetch_config_log(cell, metadata):
@@ -117,13 +122,15 @@ def fetch_config_log(cell, metadata):
     assert raw_id.isdigit()
     remote_path = "/home/fnl/lzy/runs/%s/source/mix/output/%s/config.log" % (cell["id"], raw_id)
     code = "import os; p=%r; assert os.path.isfile(p) and not os.path.islink(p)" % remote_path
-    subprocess.check_call(remote.ssh_base(cfg) + ["python3 -c " + shlex.quote(code)])
+    subprocess.check_call(remote.ssh_base(cfg) + ["python3 -c " + shlex.quote(code)],
+                          timeout=45)
     destination = ROOT / "results" / cell["id"] / "logs" / "config.log"
     if not destination.exists():
         subprocess.check_call(["scp", "-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=yes",
-                               "-o", "ClearAllForwardings=yes",
+                               "-o", "ConnectTimeout=10", "-o", "ServerAliveInterval=15",
+                               "-o", "ServerAliveCountMax=2", "-o", "ClearAllForwardings=yes",
                                cfg["REMOTE_USER"] + "@" + cfg["REMOTE_HOST"] + ":" + remote_path,
-                               str(destination)])
+                               str(destination)], timeout=600)
 
 
 def run_cell(cell, cap, poll_seconds):
