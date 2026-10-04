@@ -21,5 +21,6 @@
 
 - `py_compile` 与 `git diff --check` 通过。
 - 本地 resume 校验重新验收了现有208格，确认完整前缀为批1–13，下一批恰为批14；source SHA 与冻结计划一致。
-- 下一步以一个唯一 runner 从summary批14续跑：只对批14远端 `SUCCEEDED` 的原 ID 回传/逐格验收，后续按冻结计划继续批15–36。任何已存在本地 ID 先 verifier 核验，不重新运行。
+- 修复提交 `094e198` 已推送至个人 fork。唯一 runner PID `5752` 从批14恢复，批14的16格均仅回传并通过逐格验证，summary从208推进到224；未重跑实验。随后它在批15的ID `20261004-070000-ws25-formal-s21-b192-conga` 缺失metadata后，因 `094e198` 当时还未推送而被本地 fork 安全门拒绝构建；未发出远端build/仿真请求，该ID仍未创建。提交现已推送，下一步从summary前缀批15恢复。
+- 下次恢复先检查个人origin已含当前控制器提交、唯一runner数量为0、remote host gate通过；沿冻结计划检查ID225并继续。任何已存在本地目录先 verifier 核验，不重新运行、不覆盖raw。
 - 576格终态 raw 与资源逐格验收前无正式性能结论；该事件不改变WS-25状态，仍为ACTIVE。
