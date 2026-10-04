@@ -84,4 +84,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-04 正式矩阵已恢复：控制修复 `805e5438b4358802d5c9664c47b02ef5ade6caec` 已提交并推送；修复后对第十批 16 格串行 status 与 trace 预检全部通过，远端 host gate load 0.0、MemAvailable 122.89 GiB、空盘 5285.4 GiB、无其他用户/活动仿真。唯一 runner PID `46324` 已启动第十批 16 个原 ID（全矩阵 started 收据 160），当前 verified 仍 144，stderr 空，等待批次结束后做 raw/资源逐格验收。详见 [Handoff 73](../handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md)。
 
+2026-10-04 例行监督：runner PID `46324` 仍存活，stderr 空；摘要显示前 10 批 160/576 格正式 raw/资源验收，第 11 批 16 个 ID 已启动（started=176）。历史收据含 17 个 `built_recovered_transport` 控制事件：同 ID build 请求被拒或超时后状态回读成功，之后对应格仍逐格验收，未覆盖 raw。主对话已收到该异常摘要；现继续 Luna High 静默监督，约半小时看本地收据与资源摘要，不重复查询远端。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建、资源 pilot 或校准成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。

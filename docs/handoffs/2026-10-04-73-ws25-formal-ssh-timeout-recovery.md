@@ -24,8 +24,9 @@
 4. 将 `remote_experiment.py status` 改为经单次短超时 SSH 只读读取并验证远端该 ID 的 `metadata.json`，避免调用会卡在退出阶段的 `remote_worker.py status` 路径；RUNNING 状态仍在远端检查记录 PID 并输出存活信息。对已知挂起 ID 实测，新 status 命令在 1 秒内返回 `BUILT` 和固定 SHA。
 5. 再修正式 runner 将一批四路并发的状态/trace SSH 检查改为串行，消除控制面并发连接；trace 超时改为带 ID 的可读错误。metadata 缺失改由明确 sentinel 表示，只有确实缺失时才允许 build-one 恢复，超时错误不再可能触发对现有 ID 的 build 请求。
 6. 串行预检同一批 16 个原 ID 全部快速通过：status `BUILT`、源码 SHA 匹配、trace 哈希匹配；资源门通过（load 0.0、可用内存约 122.89 GiB、空盘约 5285.4 GiB）。修复提交并推送为 `805e5438b4358802d5c9664c47b02ef5ade6caec`。
-7. 以唯一 runner PID `46324` 从原计划恢复，第十批 **16/16 ID 已发出启动请求**；截至 2026-10-04 14:24（北京时间），本地收据为 160 started、144 verified，batch 10 尚未终态，stderr 为空。仿真进入后台静默阶段，后续按半小时监督。
-8. `py_compile`、`git diff --check` 和冻结计划 576 格核对通过；改动仅限本地控制/恢复层与状态记录，未改仿真源码、输入、计划、ID、停止线或统计判据。
+7. 以唯一 runner PID `46324` 从原计划恢复，第十批 **16/16 ID 已发出启动请求**。随后本地摘要达到 160 verified/576、batch 10；下一批 16 个 ID 也已发出启动请求（总 started=176）。截至 2026-10-04 16:12（北京时间），runner 仍存活，stderr 为空，等待 batch 11 终态。
+8. 收据中共有 17 个 `built_recovered_transport` 控制事件：一次远端明确拒绝对已有 ID 重复 build（随后同 ID 状态成功回读为 `BUILT`），其他记录为本地控制器 90 秒超时后同 ID 状态恢复。当前 `verified` 与 summary 均已到 160，raw 验收成功；无证据表明已有 ID 被改写或重复仿真。此控制器诊断已报告主对话，按运行流程继续监督，批终态检查异常 ID 的 metadata/raw。
+9. `py_compile`、`git diff --check` 和冻结计划 576 格核对通过；改动仅限本地控制/恢复层与状态记录，未改仿真源码、输入、计划、ID、停止线或统计判据。
 
 ## 4. 已形成的设计决策
 
@@ -33,7 +34,7 @@
 
 ## 5. 当前状态
 
-控制器恢复改动已推送至个人 fork `feature/ws25-first-paper`，最新提交 `805e5438b4358802d5c9664c47b02ef5ade6caec`；工作树干净。唯一 runner PID `46324` 已从原 ID 恢复，第十批 16/16 已启动，formal raw/资源验收进度仍为 144/576；批次运行中。远端启动前无人作业、资源门与锁检查均通过。WS-25 保持 ACTIVE。
+控制器恢复改动已推送至个人 fork `feature/ws25-first-paper`；本 handoff 观察时最新提交为 `ccea41c32fd6c1cb29d6d3a7669d09a038e6546a`。唯一 runner PID `46324` 存活，第十批已完成 16 格 raw/资源验收，正式进度 160/576；第十一批 16 格已启动，runner 错误日志为空。WS-25 保持 ACTIVE。
 
 ## 6. 未解决问题
 
@@ -51,4 +52,4 @@
 
 ## 9. CONTEXT SNAPSHOT
 
-WS-25 正式矩阵固定 `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`，24 seed × 4 背景档 × 6 模式 = 576 ID。前 9 批 144 格 raw/资源验收。status 命令曾在输出 metadata 后不退出；直接 metadata status 解决该入口。四路并发 trace 检查有一次 45 秒超时；旧错误判断又把异常文本误判为缺 metadata，远端拒绝了已有 ID 的重复 build，原 ID 后续状态仍为 `BUILT`，没有覆盖或仿真。现在 status 只在明确远端缺 metadata 时走 build 恢复，正式批次远端 status/trace 检查串行。提交 `805e543…` 已推送；唯一 Luna High runner PID `46324` 已恢复第十批，16/16 已启动，仍待 raw 终态验收。前144格不重跑；后续逐批 raw/哈希/完成率/资源验收后扩批，576格全终态后切 Sol High 分析。无正式效果结论，WS-25 ACTIVE。
+WS-25 正式矩阵固定 `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`，24 seed × 4 背景档 × 6 模式 = 576 ID。唯一 Luna High runner PID `46324` 存活。前 9 批与第十批共 160 格 raw/资源逐格验收，第十一批 16 格已启动（started 总计 176）；截至 2026-10-04 16:12（北京时间）runner 错误日志为空。17 个 `built_recovered_transport` 是控制层超时后状态回读事件，raw summary 已验收至 160；其中一次重复 build 被远端以 ID 已存在拒绝，未覆盖结果。仿真 SHA/计划/输入/ID不变，后续按半小时监督、批次验收后扩格，576 格全验收后切 Sol High 分析。正式主效果尚无结论，WS-25 ACTIVE。
