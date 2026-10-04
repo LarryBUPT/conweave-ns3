@@ -224,7 +224,7 @@ def build_one(cell):
     try:
         state = base.status(cell["id"])
     except RuntimeError as error:
-        if "metadata.json" not in str(error) and "No such file" not in str(error):
+        if "REMOTE_METADATA_MISSING:" not in str(error):
             raise
         try:
             base.command("build", "--repo-local", str(ROOT), "--id", cell["id"],
@@ -294,10 +294,10 @@ def finish_one(cell):
 
 def run_batch(cells, batch_number, batch_count):
     pilot.host_gate(reject_active=True)
-    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
-        for future in concurrent.futures.as_completed(
-                [pool.submit(build_one, cell) for cell in cells]):
-            future.result()
+    # Remote status and trace checks must remain serial: parallel SSH checks
+    # intermittently returned metadata but left one client session hanging.
+    for cell in cells:
+        build_one(cell)
     pilot.host_gate(reject_active=True)
     receipt("batch_start", cap=MAX_CONCURRENT, batch=batch_number,
             batches=batch_count, ids=[cell["id"] for cell in cells],

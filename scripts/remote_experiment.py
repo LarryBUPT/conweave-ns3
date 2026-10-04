@@ -70,8 +70,11 @@ def status_call(cfg, experiment_id):
             "base=root+'/results/'+i\n"
             "meta=base+'/metadata.json'\n"
             "assert os.path.realpath(root)==root and os.path.isdir(root)\n"
+            "if not os.path.exists(base) or not os.path.isfile(meta):\n"
+            "    print('REMOTE_METADATA_MISSING:'+i)\n"
+            "    raise SystemExit(3)\n"
             "assert os.path.isdir(base) and not os.path.islink(base) and os.path.realpath(base)==base\n"
-            "assert os.path.isfile(meta) and not os.path.islink(meta) and os.path.realpath(meta)==meta\n"
+            "assert not os.path.islink(meta) and os.path.realpath(meta)==meta\n"
             "data=json.load(open(meta))\n"
             "print(json.dumps(data,indent=2,sort_keys=True))\n"
             "if data.get('status')=='RUNNING':\n"
@@ -85,9 +88,17 @@ def status_call(cfg, experiment_id):
             "            alive=False\n"
             "    print('process_alive='+str(alive))\n"
             "    if not alive: print('effective_status=INTERRUPTED; inspect worker.log')\n") % experiment_id
-    output = subprocess.check_output(ssh_base(cfg) +
-                                     ['python3 -c ' + shlex.quote(code)],
-                                     stderr=subprocess.STDOUT, timeout=45)
+    try:
+        output = subprocess.check_output(ssh_base(cfg) +
+                                         ['python3 -c ' + shlex.quote(code)],
+                                         stderr=subprocess.STDOUT, timeout=45)
+    except subprocess.CalledProcessError as error:
+        message = error.output.decode('utf-8', errors='replace')
+        if 'REMOTE_METADATA_MISSING:' in message:
+            raise RuntimeError('REMOTE_METADATA_MISSING: ' + experiment_id)
+        raise RuntimeError('Remote status query failed: ' + message[-1200:])
+    except subprocess.TimeoutExpired as error:
+        raise RuntimeError('Remote status query timed out after 45 seconds: ' + experiment_id) from error
     sys.stdout.write(output.decode('utf-8'))
 
 
