@@ -11,6 +11,7 @@ import analyze_ws25_calibration as diagnostic_parser
 
 ROOT = Path(__file__).resolve().parents[1]
 PLAN = ROOT / "docs/research/evidence/ws25-v1-formal-tail-diagnostic-plan.json"
+RECOVERY = ROOT / "docs/research/evidence/ws25-v1-tail-diagnostic-recovery-plan.json"
 EXECUTION = ROOT / "docs/research/evidence/ws25-v1fix-formal-execution.json"
 OUTPUT = ROOT / "docs/research/evidence/ws25-v1-formal-tail-diagnostic-analysis.json"
 
@@ -97,7 +98,11 @@ def check(cell, plan, execution):
             any(x["completed_flows"] != x["input_flows"] for x in tags.values())):
         raise RuntimeError("Diagnostic flows incomplete: " + cell["id"])
 
-    log_path = folder / "logs/config.log"
+    # fetch keeps the simulator's config.log alongside the raw FCT. Earlier
+    # matrix runners copied it to logs/ separately, but this replay did not.
+    log_path = folder / "raw" / str(meta["raw_directory"]) / "config.log"
+    if not log_path.is_file():
+        raise RuntimeError("Diagnostic config.log missing: " + cell["id"])
     log = log_path.read_text(encoding="utf-8", errors="replace")
     mode = diagnostic_parser.diagnostics("classreserve", log)["classreserve"]
     queue = diagnostic_parser.diagnostics("classreserve", log)["queue"]
@@ -128,9 +133,13 @@ def check(cell, plan, execution):
             set(choice) != {1, 2} or inflight != 0 or not hops):
         raise RuntimeError("Diagnostic coverage failed: " + cell["id"])
 
-    resources = json.loads((folder / "logs/resource-summary.json").read_text(encoding="utf-8"))
+    resource_summary = folder / "logs/resource-summary.json"
+    resource_samples = folder / "logs/resource-samples.jsonl"
+    if not resource_summary.is_file() or not resource_samples.is_file():
+        raise RuntimeError("Diagnostic resource receipts missing: " + cell["id"])
+    resources = json.loads(resource_summary.read_text(encoding="utf-8"))
     samples = [json.loads(line) for line in
-               (folder / "logs/resource-samples.jsonl").read_text(encoding="utf-8").splitlines()
+               resource_samples.read_text(encoding="utf-8").splitlines()
                if line]
     if not (resources["final_status"] == "SUCCEEDED" and
             resources["samples"] == len(samples) > 0 and
@@ -187,8 +196,18 @@ def main():
     parser.add_argument("--id", help="verify one diagnostic ID before opening the next")
     args = parser.parse_args()
     plan = json.loads(PLAN.read_text(encoding="utf-8"))
+    recovery = json.loads(RECOVERY.read_text(encoding="utf-8"))
+    if (recovery["original_plan_sha256"] != sha(PLAN) or
+            recovery["source_sha"] != plan["source_sha"] or
+            recovery["replaced_id"] != plan["cells"][0]["id"] or
+            recovery["accepted_ids_in_order"] !=
+            [recovery["replacement_id"], plan["cells"][1]["id"]]):
+        raise RuntimeError("Diagnostic recovery plan does not match frozen original")
     execution = json.loads(EXECUTION.read_text(encoding="utf-8"))
-    cells = [cell for cell in plan["cells"] if not args.id or cell["id"] == args.id]
+    replacement = dict(plan["cells"][0], id=recovery["replacement_id"])
+    all_cells = plan["cells"] + [replacement]
+    accepted = [replacement, plan["cells"][1]]
+    cells = [cell for cell in all_cells if cell["id"] == args.id] if args.id else accepted
     if not cells or (not args.id and len(cells) != 2):
         raise RuntimeError("Diagnostic plan selection is incomplete")
     checked = [check(cell, plan, execution) for cell in cells]
@@ -202,7 +221,8 @@ def main():
                           "resource": checked[0]["resource"]}, sort_keys=True))
     else:
         output = {"role": plan["kind"], "source_sha": plan["source_sha"],
-                  "plan_sha256": sha(PLAN), "cells": checked,
+                  "plan_sha256": sha(PLAN), "recovery_plan_sha256": sha(RECOVERY),
+                  "replaced_id": recovery["replaced_id"], "cells": checked,
                   "formal_efficacy_rejudged": False}
         OUTPUT.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n",
                           encoding="utf-8")

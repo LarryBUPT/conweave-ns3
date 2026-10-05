@@ -1,0 +1,24 @@
+{
+  "kind": "posthoc_v1_tail_diagnostic_resource_receipt_recovery",
+  "original_plan_sha256": "a1f435896f0aa934db26744a7ad6447ad3c23aaa70068816be54d666025fdfb6",
+  "reason": "The first replay succeeded and its FCT matched the formal control, but no per-run resource watcher samples or summary were recorded. Preserve that ID and raw; repeat under a new ID with the watcher started before simulation.",
+  "replaced_id": "20261006-180000-ws25-v1diag-s43-b064-classreserve",
+  "replacement_id": "20261006-180002-ws25-v1diag-s43-b064-classreserve-r1",
+  "accepted_ids_in_order": [
+    "20261006-180002-ws25-v1diag-s43-b064-classreserve-r1",
+    "20261006-180001-ws25-v1diag-s24-b192-classreserve"
+  ],
+  "source_sha": "ce699dffe2845dc83e2171a1c309c6d96b96d2b3",
+  "same_input_and_parameter_requirement": true,
+  "max_concurrent": 1,
+  "resource_gate": {
+    "other_user_jobs": 0,
+    "unknown_ns3_or_worker": 0,
+    "load_1m_max": 20,
+    "mem_available_gib_min": 32,
+    "free_disk_gib_min": 100,
+    "tree_rss_gib_max": 32,
+    "watcher_required_before_run": true
+  },
+  "formal_efficacy_rejudged": false
+}
