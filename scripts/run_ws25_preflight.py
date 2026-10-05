@@ -25,12 +25,18 @@ LOCK = threading.Lock()
 
 
 def command(*args):
+    operation = args[0] if args else ""
+    # Keep this wrapper longer than remote_experiment.worker_call's 1800 s
+    # build/sync timeout. A shorter parent timeout kills only the controller
+    # process on Windows and can leave its SSH child running in the background.
+    timeout = 1900 if operation in ("build", "sync", "sync-bundle", "fetch") else 120
     try:
         result = subprocess.run([sys.executable, str(CONTROLLER)] + list(args), cwd=str(ROOT),
                                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                                universal_newlines=True, timeout=90)
+                                universal_newlines=True, timeout=timeout)
     except subprocess.TimeoutExpired as error:
-        raise RuntimeError("controller timed out after 90 seconds: " + " ".join(args[:3])) from error
+        raise RuntimeError("controller timed out after %s seconds: %s" %
+                           (timeout, " ".join(args[:3]))) from error
     if result.returncode:
         raise RuntimeError("controller failed (%s): %s" %
                            (" ".join(args[:3]), result.stdout[-1600:]))
