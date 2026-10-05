@@ -3,11 +3,14 @@
 import argparse
 import datetime
 import os
+import queue
 import re
 import shlex
 import shutil
 import subprocess
 import sys
+import threading
+import time
 
 PROJECT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 ENV_FILE = os.path.join(PROJECT, '.project', 'remote.env')
@@ -58,7 +61,83 @@ def worker_call(cfg, *args):
         'status': 45, 'audit': 45, 'fetch-check': 60,
         'run': 60, 'transfer-smoke': 120,
     }.get(operation, 60)
-    subprocess.check_call(ssh_base(cfg) + [remote_command], timeout=timeout)
+    argv = ssh_base(cfg) + [remote_command]
+    if operation != 'build':
+        subprocess.check_call(argv, timeout=timeout)
+        return
+
+    # The remote worker can persist BUILT metadata and print its completion
+    # marker while the SSH channel remains open indefinitely. Treat that
+    # marker as the build result, close only the local SSH client, and let the
+    # caller confirm metadata and input hashes through the normal status path.
+    try:
+        build_id_index = args.index('--id') + 1
+        experiment_id = args[build_id_index]
+    except (ValueError, IndexError):
+        raise RuntimeError('Build command is missing a valid experiment ID')
+    if not ID_RE.match(experiment_id):
+        raise RuntimeError('Build command has an invalid experiment ID')
+    expected_marker = 'build complete=' + experiment_id
+    process = subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                               universal_newlines=True, bufsize=1)
+    lines = queue.Queue()
+
+    def read_output():
+        try:
+            for line in process.stdout:
+                lines.put(line)
+        finally:
+            lines.put(None)
+
+    reader = threading.Thread(target=read_output, name='ssh-build-output-reader')
+    reader.daemon = True
+    reader.start()
+    deadline = time.monotonic() + timeout
+    marker_seen = False
+    stream_closed = False
+    while not stream_closed and time.monotonic() < deadline:
+        try:
+            line = lines.get(timeout=min(0.2, max(0.01, deadline - time.monotonic())))
+        except queue.Empty:
+            if process.poll() is not None and lines.empty():
+                break
+            continue
+        if line is None:
+            stream_closed = True
+            break
+        sys.stdout.write(line)
+        sys.stdout.flush()
+        if line.rstrip('\r\n') == expected_marker:
+            marker_seen = True
+            break
+
+    if marker_seen:
+        try:
+            process.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            process.terminate()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait()
+        reader.join(timeout=1)
+        return
+
+    timed_out = time.monotonic() >= deadline and process.poll() is None
+    if process.poll() is None:
+        process.terminate()
+        try:
+            process.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait()
+    reader.join(timeout=1)
+    if timed_out:
+        raise subprocess.TimeoutExpired(argv, timeout)
+    if process.returncode:
+        raise subprocess.CalledProcessError(process.returncode, argv)
+    raise RuntimeError('Remote build exited without completion marker: ' + experiment_id)
 
 
 def status_call(cfg, experiment_id):
