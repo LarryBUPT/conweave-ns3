@@ -1,6 +1,6 @@
 # WS-25：第一课题类别感知包流混合负载均衡执行清单
 
-状态：ACTIVE，2026-10-04。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。用户本轮明确将旧 WS-25 的“本地证据与论文范围收束”改为**第一课题实现、验证与小论文成稿**；旧 WS-21 状态反馈余项保留在第二课题门槛，不与本课题并行。当前修正版校准遇到一次输入快照身份错误：r1 两个 ID 因 SHA 未含新 trace 在 ns-3 启动前失败，已保留且不解释为机制失败；r2 新 ID 与修正后 SHA 已冻结，详见[校准协议](../research/ws25-v1fix-independent-calibration-protocol.md)和[Handoff 63](../handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md)。
+状态：**ACTIVE，2026-10-06**。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。第一课题的 ClassReserve v1 修正版正式矩阵已完成 36 批、576/576 格 raw 逐格验收，确认性共同主结果为 **NO-GO**；详见[正式分析](../research/ws25-v1fix-formal-analysis.md)及[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)。小论文负结果初稿已形成，但候选后续决策、成稿核对与全部预设验收尚未闭环。旧 WS-21 状态反馈余项仍在投稿后第二课题门槛，不与本课题并行。下方较早日期的检查点仅作历史记录，不能代替本段当前状态。
 
 ## 研究问题与边界
 
@@ -18,7 +18,18 @@
 | 6. 正式验证 | 在现场无其他作业、隔离与资源 pilot 通过后，按冻结协议执行五基线与候选的必要配对格，使用实测吞吐安全批量调度；每格保留 raw、metadata、哈希与资源收据。失败保留原 ID，停止扩格，诊断修复后用新 SHA/ID 重验。 |
 | 7. 分析及成稿 | 从 raw 逐格复核，报告全部档位、失败格与双侧主结果，并用解释指标核对机制因果链及局限；可过预设门槛才写正向结论。形成可复现清单、图表和小论文初稿。投稿作为后续里程碑单独记录。 |
 
-## 当前执行检查点（2026-10-03）
+## 当前执行检查点（2026-10-06）
+
+| 预设项 | 当前证据 | 剩余动作 |
+| --- | --- | --- |
+| 1. 证据与机制 | v1 假说、可实现信号、失败预测及 1/3 候选台账见[审计](../research/ws25-classreserve-audit-and-preflight.md)；v1 唯一诊断修正已用（1/1）；正式反例见[报告](../research/ws25-v1fix-formal-analysis.md) | 复核 WS-13/19/20 对本次因果解释的引用范围；登记 v2 候选决策，不在已揭盲最终 seed 上改 v1 |
+| 2. 五模式同条件 | 修正版 11/11 正确性/fallback 格通过；正式五基线和候选 576/576 格同输入、同 SHA、全部流完成，元数据和字节核验通过 | 对动态分支覆盖不足维持限制，必要的定向正确性验证另用新身份 |
+| 3. 候选实现 | ClassReserve 修正版固定仿真 SHA `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`；96/96 正式候选格队列守恒且无 drop/违规 | 明确新候选是否进入独立迭代；v1 不继续调参 |
+| 4–5. 设计、校准和冻结 | 筛选/校准/最终 seed 分离；正式 24 seed、96 输入、576 ID、双主判据、次级 Holm、低档约束和资源线均在运行前冻结，见[协议](../research/ws25-v1fix-formal-protocol.md)与[计划](../research/evidence/ws25-v1fix-formal-plan.json) | 缺失的物理队列和逐跳指标不能填零；机制结论保持有限 |
+| 6. 正式验证 | [执行证据](../research/evidence/ws25-v1fix-formal-execution.json)与本地原始结果证明 36 批、576/576 原 ID 逐格通过，资源门全部通过 | 无 v1 正式格待跑；保留原始目录与失败恢复记录 |
+| 7. 分析及成稿 | [正式分析](../research/ws25-v1fix-formal-analysis.md)、[图](../research/figures/ws25-v1fix-formal-192-effects.svg)、[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)、[小论文初稿](../research/ws25-classreserve-v1-paper-draft.md)已形成；主判据 NO-GO | 核对稿件参考文献、术语和图文一致性；完成 v1 机制诊断及下一候选决策；提交/集成当前产物，不能以 v1 单次 NO-GO 宣布整题闭环 |
+
+## 历史执行检查点（2026-10-03）
 
 - 机制与兼容审计、修正版实现和 11 格正确性/fallback 验收已完成；raw 重验 11/11。mixed8 correctness 没有触发 CONGA/LetFlow flowlet timeout 或 ConWeave reroute/VOQ，不能据此声称这些动态路径已覆盖。
 - 独立校准 r1 的两格因构建 SHA `c84108b24c94a5068861e5bb090c5aa387245ee1` 不含 seed07 trace，在 ns-3 启动前失败。r2 首两格的 build 请求又因远端 Git 缓存尚未同步 SHA `a656104…` 而终止，没有建立远端实验目录。两组尝试 ID 均保留，详见 [Handoff 63](../handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md) 与 [Handoff 64](../handoffs/2026-10-03-64-ws25-calibration-r2-sync-and-r3-freeze.md)；均不计作机制效果或正确性失败，也不复用。

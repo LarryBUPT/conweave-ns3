@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#17212b}.title{font-size:19px;font-weight:700}.panel{font-size:15px;font-weight:700}.axis{font-size:12px}.row{font-size:13px}.note{font-size:12px;fill:#45515c}.main{stroke:#9a3412;stroke-width:3}.other{stroke:#527a9b;stroke-width:2}.main-dot{fill:#c2410c}.other-dot{fill:#527a9b}.zero{stroke:#273746;stroke-width:1.4}.gate{stroke:#a16207;stroke-width:1.4;stroke-dasharray:6 4}.grid{stroke:#d8dee4;stroke-width:1}</style>
+<text class="title" x="24" y="30">ClassReserve v1: paired effects at 192 background flows</text>
+<text class="panel" x="24" y="54">MoE batch completion time</text>
+<line class="grid" x1="230" y1="78" x2="960" y2="78"/>
+<line class="zero" x1="595.00" y1="78" x2="595.00" y2="248"/>
+<line class="gate" x1="522.00" y1="78" x2="522.00" y2="248"/>
+<line class="grid" x1="303.00" y1="78" x2="303.00" y2="248"/>
+<text class="axis" text-anchor="middle" x="303.00" y="267">-20</text>
+<line class="grid" x1="449.00" y1="78" x2="449.00" y2="248"/>
+<text class="axis" text-anchor="middle" x="449.00" y="267">-10</text>
+<line class="grid" x1="522.00" y1="78" x2="522.00" y2="248"/>
+<text class="axis" text-anchor="middle" x="522.00" y="267">-5</text>
+<line class="grid" x1="595.00" y1="78" x2="595.00" y2="248"/>
+<text class="axis" text-anchor="middle" x="595.00" y="267">0</text>
+<line class="grid" x1="741.00" y1="78" x2="741.00" y2="248"/>
+<text class="axis" text-anchor="middle" x="741.00" y="267">10</text>
+<line class="grid" x1="887.00" y1="78" x2="887.00" y2="248"/>
+<text class="axis" text-anchor="middle" x="887.00" y="267">20</text>
+<text class="row" text-anchor="end" x="218" y="102">ECMP</text>
+<line class="main" x1="500.65" y1="98" x2="572.34" y2="98"/>
+<line class="main" x1="500.65" y1="93" x2="500.65" y2="103"/>
+<line class="main" x1="572.34" y1="93" x2="572.34" y2="103"/>
+<circle class="main-dot" cx="543.37" cy="98" r="5"/>
+<text class="row" text-anchor="end" x="218" y="130">DRILL</text>
+<line class="other" x1="725.39" y1="126" x2="796.48" y2="126"/>
+<line class="other" x1="725.39" y1="121" x2="725.39" y2="131"/>
+<line class="other" x1="796.48" y1="121" x2="796.48" y2="131"/>
+<circle class="other-dot" cx="760.06" cy="126" r="5"/>
+<text class="row" text-anchor="end" x="218" y="158">CONGA</text>
+<line class="other" x1="423.30" y1="154" x2="530.50" y2="154"/>
+<line class="other" x1="423.30" y1="149" x2="423.30" y2="159"/>
+<line class="other" x1="530.50" y1="149" x2="530.50" y2="159"/>
+<circle class="other-dot" cx="474.11" cy="154" r="5"/>
+<text class="row" text-anchor="end" x="218" y="186">LetFlow</text>
+<line class="other" x1="502.38" y1="182" x2="582.75" y2="182"/>
+<line class="other" x1="502.38" y1="177" x2="502.38" y2="187"/>
+<line class="other" x1="582.75" y1="177" x2="582.75" y2="187"/>
+<circle class="other-dot" cx="521.84" cy="182" r="5"/>
+<text class="row" text-anchor="end" x="218" y="214">ConWeave</text>
+<line class="other" x1="501.57" y1="210" x2="559.51" y2="210"/>
+<line class="other" x1="501.57" y1="205" x2="501.57" y2="215"/>
+<line class="other" x1="559.51" y1="205" x2="559.51" y2="215"/>
+<circle class="other-dot" cx="530.26" cy="210" r="5"/>
+<text class="axis" text-anchor="middle" x="595.0" y="290">Paired change (%) — lower is better</text>
+<text class="panel" x="24" y="302">Background-flow P99 FCT</text>
+<line class="grid" x1="230" y1="326" x2="960" y2="326"/>
+<line class="zero" x1="595.00" y1="326" x2="595.00" y2="496"/>
+<line class="gate" x1="522.00" y1="326" x2="522.00" y2="496"/>
+<line class="grid" x1="303.00" y1="326" x2="303.00" y2="496"/>
+<text class="axis" text-anchor="middle" x="303.00" y="515">-20</text>
+<line class="grid" x1="449.00" y1="326" x2="449.00" y2="496"/>
+<text class="axis" text-anchor="middle" x="449.00" y="515">-10</text>
+<line class="grid" x1="522.00" y1="326" x2="522.00" y2="496"/>
+<text class="axis" text-anchor="middle" x="522.00" y="515">-5</text>
+<line class="grid" x1="595.00" y1="326" x2="595.00" y2="496"/>
+<text class="axis" text-anchor="middle" x="595.00" y="515">0</text>
+<line class="grid" x1="741.00" y1="326" x2="741.00" y2="496"/>
+<text class="axis" text-anchor="middle" x="741.00" y="515">10</text>
+<line class="grid" x1="887.00" y1="326" x2="887.00" y2="496"/>
+<text class="axis" text-anchor="middle" x="887.00" y="515">20</text>
+<text class="row" text-anchor="end" x="218" y="350">ECMP</text>
+<line class="main" x1="559.27" y1="346" x2="608.82" y2="346"/>
+<line class="main" x1="559.27" y1="341" x2="559.27" y2="351"/>
+<line class="main" x1="608.82" y1="341" x2="608.82" y2="351"/>
+<circle class="main-dot" cx="594.06" cy="346" r="5"/>
+<text class="row" text-anchor="end" x="218" y="378">DRILL</text>
+<line class="other" x1="491.03" y1="374" x2="542.63" y2="374"/>
+<line class="other" x1="491.03" y1="369" x2="491.03" y2="379"/>
+<line class="other" x1="542.63" y1="369" x2="542.63" y2="379"/>
+<circle class="other-dot" cx="513.82" cy="374" r="5"/>
+<text class="row" text-anchor="end" x="218" y="406">CONGA</text>
+<line class="other" x1="574.52" y1="402" x2="652.16" y2="402"/>
+<line class="other" x1="574.52" y1="397" x2="574.52" y2="407"/>
+<line class="other" x1="652.16" y1="397" x2="652.16" y2="407"/>
+<circle class="other-dot" cx="595.96" cy="402" r="5"/>
+<text class="row" text-anchor="end" x="218" y="434">LetFlow</text>
+<line class="other" x1="567.89" y1="430" x2="622.40" y2="430"/>
+<line class="other" x1="567.89" y1="425" x2="567.89" y2="435"/>
+<line class="other" x1="622.40" y1="425" x2="622.40" y2="435"/>
+<circle class="other-dot" cx="599.08" cy="430" r="5"/>
+<text class="row" text-anchor="end" x="218" y="462">ConWeave</text>
+<line class="other" x1="579.32" y1="458" x2="623.77" y2="458"/>
+<line class="other" x1="579.32" y1="453" x2="579.32" y2="463"/>
+<line class="other" x1="623.77" y1="453" x2="623.77" y2="463"/>
+<circle class="other-dot" cx="595.41" cy="458" r="5"/>
+<text class="axis" text-anchor="middle" x="595.0" y="538">Paired change (%) — lower is better</text>
+<line class="gate" x1="24" y1="564" x2="54" y2="564"/><text class="note" x="61" y="568">−5% engineering magnitude threshold</text>
+<line class="zero" x1="360" y1="564" x2="390" y2="564"/><text class="note" x="397" y="568">0% no change</text>
+<text class="note" x="1000" y="589" text-anchor="end">Points: paired median; bars: 95% bootstrap CI, 24 demand seeds. Negative favors ClassReserve.</text>
+<text class="note" x="1000" y="608" text-anchor="end">Formal ID prefix: 20261004-070000-ws25-formal-; source SHA: ce699dffe2845dc83e2171a1c309c6d96b96d2b3</text>
+</svg>

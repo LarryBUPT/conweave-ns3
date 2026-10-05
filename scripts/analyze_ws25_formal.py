@@ -74,6 +74,10 @@ def analyze():
             "config_log_sha256": sha(log_path),
             "moe_batch_us": verified["moe_batch_us"],
             "background_p99_us": verified["background_p99_us"],
+            "background_completion_rate_gbps": (
+                cell["background"] * 8 * 1024 * 1024 * 8 /
+                (verified["tags"]["1"]["synthetic_batch_completion_us"] * 1e-6) /
+                1e9 if cell["background"] else None),
             "cnp": diagnostics.cnp_totals(cnp_path),
             "pfc_events": sum(bool(line.strip()) for line in
                                pfc_path.read_text(encoding="ascii").splitlines()),
@@ -89,20 +93,18 @@ def analyze():
 
 def compare(rows, baseline, level):
     by_seed = {(row["seed"], row["mode"]): row for row in rows}
-    output = {}
     metrics = ("moe_batch_us",) if level == 0 else (
         "moe_batch_us", "background_p99_us")
-    for mode in ("classreserve",) if baseline == "ecmp" else ("classreserve",):
-        pairs = []
-        for seed in sorted({row["seed"] for row in rows}):
-            candidate, control = by_seed[(seed, mode)], by_seed[(seed, baseline)]
-            item = {"seed": seed}
-            for metric in metrics:
-                item[metric + "_change_pct"] = (
-                    100 * (candidate[metric] / control[metric] - 1))
-            pairs.append(item)
-        output[mode] = pairs
-    return output["classreserve"]
+    pairs = []
+    for seed in sorted({row["seed"] for row in rows}):
+        candidate = by_seed[(seed, "classreserve")]
+        control = by_seed[(seed, baseline)]
+        item = {"seed": seed}
+        for metric in metrics:
+            item[metric + "_change_pct"] = (
+                100 * (candidate[metric] / control[metric] - 1))
+        pairs.append(item)
+    return pairs
 
 
 def main():
@@ -136,7 +138,7 @@ def main():
                     pair["moe_batch_us_change_pct"] < 0 and
                     pair["background_p99_us_change_pct"] < 0 for pair in pairs)
             changes[str(level)][baseline] = summary
-            if level == 192 and baseline == "ecmp":
+            if level == 192 and baseline == "fecmp":
                 primary = summary
 
     primary_pass = all(
@@ -175,6 +177,31 @@ def main():
         constraints[str(level)] = {"comparisons_vs_ecmp": comparisons,
                                   "passes": all(x["passes"] for x in comparisons.values())}
 
+    rows_192 = {(row["seed"], row["mode"]): row for row in rows
+                if row["background"] == 192}
+    exploratory = {}
+    for name, getter, improvement_is_increase in (
+            ("background_completion_rate_gbps",
+             lambda row: row["background_completion_rate_gbps"], True),
+            ("mean_active_tor_port_imbalance",
+             lambda row: row["uplink"]["mean_active_tor_port_imbalance"], False),
+            ("ecn_counter", lambda row: row["cnp"]["ecn"], False)):
+        changes_192 = []
+        for seed in seeds:
+            candidate = getter(rows_192[(seed, "classreserve")])
+            control = getter(rows_192[(seed, "fecmp")])
+            changes_192.append(100 * (candidate / control - 1))
+        exploratory[name] = {
+            "paired_median_change_pct": statistics.median(changes_192),
+            "directionally_improved_seed_count": sum(
+                value > 0 if improvement_is_increase else value < 0
+                for value in changes_192),
+            "ecmp_median_absolute": statistics.median(
+                getter(rows_192[(seed, "fecmp")]) for seed in seeds),
+            "classreserve_median_absolute": statistics.median(
+                getter(rows_192[(seed, "classreserve")]) for seed in seeds),
+        }
+
     output = {
         "evidence_level": "formal 24 independent demand seeds; inference applies to the frozen synthetic demand generator and ns-3 model",
         "protocol_sha256": sha(ROOT / "docs/research/ws25-v1fix-formal-protocol.md"),
@@ -186,6 +213,7 @@ def main():
         "secondary_holm_adjusted_p": secondary_adjusted,
         "secondary_pass": secondary_pass,
         "lower_load_constraints": constraints,
+        "exploratory_mechanism_192": exploratory,
         "overall_efficacy_gate": bool(primary_pass and all(constraint["passes"]
                                                           for constraint in constraints.values())),
         "cells": rows,
@@ -194,6 +222,7 @@ def main():
             "background_zero": "background P99 is not applicable at level 0",
             "cnp": "ECN/OoO source counters may overlap and do not count retransmissions",
             "uplink": "cumulative port bytes and imbalance are not business throughput or physical queue occupancy",
+            "background_completion_rate": "aggregate background bytes divided by the synthetic background batch completion span; not instantaneous link throughput",
             "dynamic_baselines": "zero branch counter means the dynamic branch was not exercised",
         },
     }
