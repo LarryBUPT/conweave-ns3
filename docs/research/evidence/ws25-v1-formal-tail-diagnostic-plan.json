@@ -1,0 +1,37 @@
+{
+  "kind": "posthoc_v1_tail_diagnostic_not_formal_efficacy",
+  "source_sha": "ce699dffe2845dc83e2171a1c309c6d96b96d2b3",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "algorithm": "classreserve",
+  "ws25_diag": 1,
+  "ns3_seed": 1,
+  "pfc": 0,
+  "irn": 1,
+  "bw_gbps": 400,
+  "buffer_mib": 9,
+  "simul_time": "0.01",
+  "netload": 10,
+  "max_concurrent": 1,
+  "cells": [
+    {
+      "id": "20261006-180000-ws25-v1diag-s43-b064-classreserve",
+      "seed": 20262543,
+      "background": 64,
+      "trace": "ws25_seed20262543_b64.txt",
+      "trace_sha256": "035228c6e0e5c235e31200d70ab413c1a587f8301437d8e6f180756a264d12aa",
+      "input_flows": 16448,
+      "formal_control_id": "20261004-070000-ws25-formal-s43-b064-classreserve",
+      "formal_control_fct_sha256": "02bbd3324a22a9a1cb128efb0bf4f8a9319bb068f7f21ed2797902ed35a2980c"
+    },
+    {
+      "id": "20261006-180001-ws25-v1diag-s24-b192-classreserve",
+      "seed": 20262524,
+      "background": 192,
+      "trace": "ws25_seed20262524_b192.txt",
+      "trace_sha256": "d72f0f360d89dd3504c4cba730d903e1d939400ff2abd3566cf0428f4e59e2e3",
+      "input_flows": 16576,
+      "formal_control_id": "20261004-070000-ws25-formal-s24-b192-classreserve",
+      "formal_control_fct_sha256": "aadffa71291fbaf6fab0fce7635b54bad0f3729fdb59c5841c817c3ba99acb8e"
+    }
+  ]
+}
