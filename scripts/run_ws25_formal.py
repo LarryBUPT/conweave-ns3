@@ -27,6 +27,9 @@ SEED_ORDER = tuple(range(20262521, 20262545))
 LEVELS = (0, 64, 128, 192)
 MODES = ("fecmp", "drill", "conga", "letflow", "conweave", "classreserve")
 MAX_CONCURRENT = 16
+BUILD_GROUP_SIZE = 4  # Four isolated -j2 builds = eight compiler jobs.
+BUILD_MIN_REMAINDER_GIB = 32
+BUILD_RESERVE_GIB_PER_ID = 5
 RANDOMIZATION_SEED = 20261005
 ID_PREFIX = "20261004-070000-ws25-formal"
 SOURCE_SHA = "ce699dffe2845dc83e2171a1c309c6d96b96d2b3"
@@ -251,6 +254,97 @@ def build_one(cell):
         calibration.verify_remote_trace(cell)
 
 
+def inspect_build_state(cell, wait_building=True):
+    """Serially inspect an ID; return None only when its metadata is absent."""
+    local = ROOT / "results" / cell["id"]
+    if local.exists():
+        verify(cell)
+        return {"status": "LOCAL_VERIFIED", "git_commit": SOURCE_SHA}
+    try:
+        state = base.status(cell["id"])
+    except RuntimeError as error:
+        if "REMOTE_METADATA_MISSING:" in str(error):
+            return None
+        raise
+    if state.get("git_commit") != SOURCE_SHA:
+        raise RuntimeError("Formal ID has unexpected source SHA: " + cell["id"])
+    if state.get("status") == "BUILDING" and wait_building:
+        deadline = time.monotonic() + 1800
+        while state.get("status") == "BUILDING" and time.monotonic() < deadline:
+            time.sleep(15)
+            state = base.status(cell["id"])
+            if state.get("git_commit") != SOURCE_SHA:
+                raise RuntimeError("Formal ID changed source while building: " + cell["id"])
+        if state.get("status") == "BUILDING":
+            raise RuntimeError("Remote build still active after 30 minutes: " + cell["id"])
+    if state.get("status") not in ("BUILT", "RUNNING", "SUCCEEDED"):
+        raise RuntimeError("Formal ID has unexpected status: %s=%s" %
+                           (cell["id"], state.get("status")))
+    if state["status"] == "BUILT":
+        calibration.verify_remote_trace(cell)
+    return state
+
+
+def launch_build(cell):
+    """Issue one build only for an ID serially confirmed missing beforehand."""
+    base.command("build", "--repo-local", str(ROOT), "--id", cell["id"],
+                 "--source-sha", SOURCE_SHA,
+                 "--label", "ws25-formal-validation")
+
+
+def build_missing_group(group, batch_number, group_number):
+    before = pilot.host_gate(reject_active=True)
+    required_mem = (BUILD_MIN_REMAINDER_GIB +
+                    BUILD_RESERVE_GIB_PER_ID * len(group))
+    if float(before["mem_available_gib"]) < required_mem:
+        raise RuntimeError("Build group needs %.1f GiB available before reserving %.1f GiB per worker: %s" %
+                           (required_mem, BUILD_RESERVE_GIB_PER_ID, repr(before)))
+    started = time.monotonic()
+    errors = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(group)) as pool:
+        futures = {pool.submit(launch_build, cell): cell for cell in group}
+        for future in concurrent.futures.as_completed(futures):
+            cell = futures[future]
+            try:
+                future.result()
+            except Exception as error:
+                errors[cell["id"]] = error
+
+    # Never overlap remote status or trace checks. Re-read every ID only after
+    # all submitted builds have returned, so transport recovery cannot launch
+    # a duplicate build while another connection is still compiling it.
+    after = pilot.host_gate(reject_active=True)
+    elapsed = time.monotonic() - started
+    unresolved = []
+    for cell in group:
+        try:
+            state = inspect_build_state(cell)
+        except Exception as error:
+            unresolved.append((cell["id"], str(error)))
+            continue
+        if not state or state.get("status") != "BUILT":
+            error = errors.get(cell["id"])
+            unresolved.append((cell["id"], str(error) if error else repr(state)))
+            continue
+        details = {"remote_status": state["status"],
+                   "build_group": group_number,
+                   "batch": batch_number,
+                   "build_group_size": len(group),
+                   "build_group_elapsed_seconds": round(elapsed, 3),
+                   "pre_load_1m": float(before["load_1m"]),
+                   "pre_mem_available_gib": float(before["mem_available_gib"]),
+                   "post_load_1m": float(after["load_1m"]),
+                   "post_mem_available_gib": float(after["mem_available_gib"])}
+        if cell["id"] in errors:
+            receipt("built_recovered_transport", cell,
+                    controller_error=str(errors[cell["id"]])[-600:], **details)
+        else:
+            receipt("built", cell, **details)
+    if unresolved:
+        raise RuntimeError("Build group stopped; preserve original IDs and inspect states: " +
+                           repr(unresolved))
+
+
 def prebuild(cells):
     pilot.host_gate(reject_active=True)
     for offset in range(0, len(cells), 4):
@@ -294,10 +388,15 @@ def finish_one(cell):
 
 def run_batch(cells, batch_number, batch_count):
     pilot.host_gate(reject_active=True)
-    # Remote status and trace checks must remain serial: parallel SSH checks
-    # intermittently returned metadata but left one client session hanging.
+    # Keep SSH status/trace calls serial. Once missing IDs are confirmed,
+    # compile isolated source trees four at a time under a fresh resource gate.
+    missing = []
     for cell in cells:
-        build_one(cell)
+        if inspect_build_state(cell) is None:
+            missing.append(cell)
+    for group_number, offset in enumerate(range(0, len(missing), BUILD_GROUP_SIZE), 1):
+        build_missing_group(missing[offset:offset + BUILD_GROUP_SIZE],
+                            batch_number, group_number)
     pilot.host_gate(reject_active=True)
     receipt("batch_start", cap=MAX_CONCURRENT, batch=batch_number,
             batches=batch_count, ids=[cell["id"] for cell in cells],

@@ -88,4 +88,6 @@ WS-25 副对话在独立 checkout 执行机制、实验及成稿，主对话负�
 
 2026-10-04 批14 fetch恢复：唯一 runner PID `29620` 曾因 `fetch-check` SSH 60秒超时退出；summary保留208/576。批量只读核验确认批14的16个原 ID 全部 `SUCCEEDED` 且仿真 SHA匹配，无其他普通用户进程、无持有启动锁、没有运行中worker；load 0.04、MemAvailable 122.89 GiB、可用盘5235.63 GiB。未重跑或覆盖。控制器已补充summary连续前缀校验续跑、全批SUCCEEDED时跳过300秒空等、串行fetch；`py_compile`、diff和208格前缀重验通过。修复提交 `094e198` 已推送。唯一 runner PID `5752` 沿原 ID 恢复，批14的16格均完成本地raw与资源逐格验收，summary现在224/576。它随后因提交尚未推送到个人fork被本地安全门阻止启动批15构建；该提交现已推送，ID225未创建/未运行，准备从批15继续。见 [Handoff 74](../handoffs/2026-10-04-74-ws25-formal-fetch-resume-recovery.md)。冻结仿真SHA、输入、计划与门槛均不变；无正式性能结论。
 
+2026-10-05 批28 runner 意外退出与安全恢复：本地正式摘要仍为 27 批、432/576 个 raw 逐格验收，冻结仿真 SHA `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`。runner PID 和 SSH 子进程均已退出。按冻结计划对批28的16个原 ID 做单次远端批量只读审计：run_order 433–444 的12格均为同 SHA `BUILT`；445–448 尚无 metadata；远端无 BUILDING/RUNNING worker、活动 ns-3、其他用户进程或启动锁，load 0.28、MemAvailable 122.82 GiB、空闲盘 5064.95 GiB。raw summary 未变，无格被重跑或覆盖。审计发现该 runner 原先串行构建，每格约 6 分钟；在保留串行 status/trace SSH 的前提下，控制器现将已逐格确认缺失的构建按四格一组并行，启动门槛要求每个 build worker 预留 5 GiB 后仍有至少32 GiB余量，且每组前后复核用户作业、load、内存和磁盘。该调度仅改变编译组织，不变更576个实验ID、顺序、固定仿真SHA、输入或统计判据。控制器已通过 `py_compile`、`git diff --check` 和冻结计划576格校验；修复推送后从432格 summary 连续前缀按原ID恢复，并在首个四格组实测吞吐与资源收据。
+
 此处是阶段账本，WS-25 保持 ACTIVE；构建、资源 pilot 或校准成功不能转为闭环。WS-21 反馈/心跳余项继续在第二课题门槛，不与本课题并行。
