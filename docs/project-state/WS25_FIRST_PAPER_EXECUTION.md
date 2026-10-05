@@ -22,7 +22,7 @@
 
 | 预设项 | 当前证据 | 剩余动作 |
 | --- | --- | --- |
-| 1. 证据与机制 | v1 假说、可实现信号、失败预测及 1/3 候选台账见[审计](../research/ws25-classreserve-audit-and-preflight.md)；v1 唯一诊断修正已用（1/1）；正式反例见[报告](../research/ws25-v1fix-formal-analysis.md) | 复核 WS-13/19/20 对本次因果解释的引用范围；登记 v2 候选决策，不在已揭盲最终 seed 上改 v1 |
+| 1. 证据与机制 | v1 假说、可实现信号、失败预测及 1/3 候选台账见[审计](../research/ws25-classreserve-audit-and-preflight.md)；v1 唯一诊断修正已用（1/1）；正式反例与两格诊断见[报告](../research/ws25-v1fix-formal-analysis.md)和[诊断](../research/ws25-v1-formal-tail-diagnostic-analysis.md)；[v2 DestSpread Hybrid 草案](../research/ws25-v2-destspread-hybrid-hypothesis.md)已有本地模式号 22 实现但尚无远端编译或正确性证据 | 审查 v2 源码可控性、同条件正确性和新独立需求；不得在已揭盲最终 seed 上改 v1 或将草案当 v2 效果证据 |
 | 2. 五模式同条件 | 修正版 11/11 正确性/fallback 格通过；正式五基线和候选 576/576 格同输入、同 SHA、全部流完成，元数据和字节核验通过 | 对动态分支覆盖不足维持限制，必要的定向正确性验证另用新身份 |
 | 3. 候选实现 | ClassReserve 修正版固定仿真 SHA `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`；96/96 正式候选格队列守恒且无 drop/违规 | 明确新候选是否进入独立迭代；v1 不继续调参 |
 | 4–5. 设计、校准和冻结 | 筛选/校准/最终 seed 分离；正式 24 seed、96 输入、576 ID、双主判据、次级 Holm、低档约束和资源线均在运行前冻结，见[协议](../research/ws25-v1fix-formal-protocol.md)与[计划](../research/evidence/ws25-v1fix-formal-plan.json) | 缺失的物理队列和逐跳指标不能填零；机制结论保持有限 |

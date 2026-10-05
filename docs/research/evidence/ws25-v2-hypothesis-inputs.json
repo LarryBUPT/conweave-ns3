@@ -1,0 +1,88 @@
+{
+  "background_empty_queue_first_choices": {
+    "192": {
+      "both_queues_empty": 179,
+      "events": 312,
+      "fraction": 0.5737179487179487,
+      "id": "20261006-180001-ws25-v1diag-s24-b192-classreserve"
+    },
+    "64": {
+      "both_queues_empty": 85,
+      "events": 98,
+      "fraction": 0.8673469387755102,
+      "id": "20261006-180002-ws25-v1diag-s43-b064-classreserve-r1"
+    }
+  },
+  "best_existing_whole_arm_per_seed_background_p99": {
+    "at_least_5pct_faster_seeds": 8,
+    "median_change_pct": -3.091878562191491,
+    "n": 24,
+    "not_a_new_mechanism_upper_bound": true,
+    "strictly_improved_seeds": 22
+  },
+  "formal_192_vs_ecmp": {
+    "classreserve": {
+      "background_p99_fct_us": {
+        "median_change_pct": -0.06464290607374745,
+        "n": 24,
+        "strictly_improved_seeds": 13
+      },
+      "moe_batch_us": {
+        "median_change_pct": -3.5364654600175682,
+        "n": 24,
+        "strictly_improved_seeds": 20
+      }
+    },
+    "conga": {
+      "background_p99_fct_us": {
+        "median_change_pct": -0.3581439546716414,
+        "n": 24,
+        "strictly_improved_seeds": 13
+      },
+      "moe_batch_us": {
+        "median_change_pct": 4.546306406296708,
+        "n": 24,
+        "strictly_improved_seeds": 6
+      }
+    },
+    "conweave": {
+      "background_p99_fct_us": {
+        "median_change_pct": -0.39725959198159133,
+        "n": 24,
+        "strictly_improved_seeds": 12
+      },
+      "moe_batch_us": {
+        "median_change_pct": 0.7991522877707324,
+        "n": 24,
+        "strictly_improved_seeds": 9
+      }
+    },
+    "drill": {
+      "background_p99_fct_us": {
+        "median_change_pct": 4.619526732031131,
+        "n": 24,
+        "strictly_improved_seeds": 3
+      },
+      "moe_batch_us": {
+        "median_change_pct": -13.63668105747593,
+        "n": 24,
+        "strictly_improved_seeds": 24
+      }
+    },
+    "letflow": {
+      "background_p99_fct_us": {
+        "median_change_pct": -0.14685330520057271,
+        "n": 24,
+        "strictly_improved_seeds": 13
+      },
+      "moe_batch_us": {
+        "median_change_pct": 0.5016209519797254,
+        "n": 24,
+        "strictly_improved_seeds": 12
+      }
+    }
+  },
+  "formal_efficacy_rejudged": false,
+  "role": "posthoc_hypothesis_generation_only",
+  "source_sha": "ce699dffe2845dc83e2171a1c309c6d96b96d2b3"
+}

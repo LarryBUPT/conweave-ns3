@@ -49,6 +49,12 @@ static uint64_t classreserve_moe_flow_new = 0, classreserve_moe_flow_reused = 0;
 static uint64_t classreserve_fallback_packets = 0;
 static uint64_t classreserve_background_new_flows = 0, classreserve_background_reused = 0;
 static uint64_t classreserve_background_queue_avoids = 0;
+static uint64_t destspread_moe_packets = 0, destspread_background_packets = 0;
+static uint64_t destspread_background_new = 0, destspread_background_reused = 0;
+static uint64_t destspread_background_ties = 0, destspread_background_all_empty = 0;
+static uint64_t destspread_fallback_packets = 0;
+static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t>
+    destspread_source_port_packets;
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t>
     classreserve_source_port_packets;
 static uint64_t ws25_choice_events[3] = {0, 0, 0};
@@ -805,7 +811,7 @@ void SwitchNode::PrintWorkloadTagCounts() {
         std::cout << "WS09_QUEUE_CHECK violations=" << guard_queue_violations << std::endl;
         NS_ASSERT_MSG(guard_queue_violations == 0, "GuardHash queue counters do not conserve bytes");
     }
-    if (Settings::lb_mode == 21) {
+    if (Settings::lb_mode == 21 || Settings::lb_mode == 22) {
         uint64_t enqueued = 0, dequeued = 0, queuedDropped = 0, current = 0;
         for (const auto &entry : guard_queue_stats) {
             const GuardQueueStat &s = entry.second;
@@ -816,20 +822,31 @@ void SwitchNode::PrintWorkloadTagCounts() {
             if (s.enqueued != s.dequeued + s.queuedDropped + s.current)
                 ++guard_queue_violations;
         }
-        std::cout << "WS25_CLASSRESERVE moe_packets=" << classreserve_moe_packets
-                  << " background_packets=" << classreserve_background_packets
-                  << " moe_two_choices=" << classreserve_moe_two_choices
-                  << " moe_diverted=" << classreserve_moe_diverted
-                  << " moe_flow_new=" << classreserve_moe_flow_new
-                  << " moe_flow_reused=" << classreserve_moe_flow_reused
-                  << " fallback_packets=" << classreserve_fallback_packets
-                  << " background_new_flows=" << classreserve_background_new_flows
-                  << " background_reused=" << classreserve_background_reused
-                  << " background_queue_avoids=" << classreserve_background_queue_avoids
-                  << " queue_violations=" << guard_queue_violations << std::endl;
+        if (Settings::lb_mode == 21) {
+            std::cout << "WS25_CLASSRESERVE moe_packets=" << classreserve_moe_packets
+                      << " background_packets=" << classreserve_background_packets
+                      << " moe_two_choices=" << classreserve_moe_two_choices
+                      << " moe_diverted=" << classreserve_moe_diverted
+                      << " moe_flow_new=" << classreserve_moe_flow_new
+                      << " moe_flow_reused=" << classreserve_moe_flow_reused
+                      << " fallback_packets=" << classreserve_fallback_packets
+                      << " background_new_flows=" << classreserve_background_new_flows
+                      << " background_reused=" << classreserve_background_reused
+                      << " background_queue_avoids=" << classreserve_background_queue_avoids
+                      << " queue_violations=" << guard_queue_violations << std::endl;
+        } else {
+            std::cout << "WS25_DESTSPREAD moe_packets=" << destspread_moe_packets
+                      << " background_packets=" << destspread_background_packets
+                      << " background_new=" << destspread_background_new
+                      << " background_reused=" << destspread_background_reused
+                      << " background_ties=" << destspread_background_ties
+                      << " background_all_empty=" << destspread_background_all_empty
+                      << " fallback_packets=" << destspread_fallback_packets
+                      << " queue_violations=" << guard_queue_violations << std::endl;
+        }
         std::cout << "WS25_QUEUE enqueued=" << enqueued << " dequeued=" << dequeued
                   << " queued_drop=" << queuedDropped << " current=" << current << std::endl;
-        if (Ws25DiagnosticEnabled()) {
+        if (Settings::lb_mode == 21 && Ws25DiagnosticEnabled()) {
             for (uint32_t tag = 1; tag <= 2; ++tag)
                 std::cout << "WS25_CHOICE tag=" << tag
                           << " events=" << ws25_choice_events[tag]
@@ -839,12 +856,20 @@ void SwitchNode::PrintWorkloadTagCounts() {
                           << " background_queue_nonzero="
                           << (tag == 2 ? ws25_background_queue_nonzero : 0) << std::endl;
         }
-        for (const auto &entry : classreserve_source_port_packets)
-            std::cout << "WS25_PORT switch=" << std::get<0>(entry.first)
-                      << " port=" << std::get<1>(entry.first)
-                      << " tag=" << std::get<2>(entry.first)
-                      << " packets=" << entry.second << std::endl;
-        NS_ASSERT_MSG(guard_queue_violations == 0, "ClassReserve queue counters do not conserve bytes");
+        if (Settings::lb_mode == 21) {
+            for (const auto &entry : classreserve_source_port_packets)
+                std::cout << "WS25_PORT switch=" << std::get<0>(entry.first)
+                          << " port=" << std::get<1>(entry.first)
+                          << " tag=" << std::get<2>(entry.first)
+                          << " packets=" << entry.second << std::endl;
+        } else {
+            for (const auto &entry : destspread_source_port_packets)
+                std::cout << "WS25_DESTSPREAD_PORT switch=" << std::get<0>(entry.first)
+                          << " port=" << std::get<1>(entry.first)
+                          << " tag=" << std::get<2>(entry.first)
+                          << " packets=" << entry.second << std::endl;
+        }
+        NS_ASSERT_MSG(guard_queue_violations == 0, "WS-25 queue counters do not conserve bytes");
     }
 }
 
@@ -1113,6 +1138,63 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
     return chosen;
 }
 
+// WS-25 v2 candidate. MoE packets use the existing DRILL decision; a
+// background flow chooses once and keeps the same next hop at this switch.
+// When instantaneous egress queues tie, rotate assignments for this
+// destination instead of letting a fixed hash choose every long flow.
+uint32_t SwitchNode::DoLbDestSpread(Ptr<const Packet> p, const CustomHeader &ch,
+                                    const std::vector<int> &nexthops) {
+    WorkloadTag label;
+    if (ch.l3Prot != 0x11 || !p->PeekPacketTag(label) ||
+        (label.GetValue() != 1 && label.GetValue() != 2)) {
+        ++destspread_fallback_packets;
+        return DoLbFlowECMP(p, ch, nexthops);
+    }
+    if (label.GetValue() == 2) {
+        ++destspread_moe_packets;
+        const uint32_t chosen = DoLbDrill(p, ch, nexthops);
+        if (m_isToR && m_isToR_hostIP.count(ch.sip))
+            ++destspread_source_port_packets[std::make_tuple(m_id, chosen, 2U)];
+        return chosen;
+    }
+
+    ++destspread_background_packets;
+    const auto flow = std::make_tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    auto cached = m_destSpreadBackgroundPort.find(flow);
+    if (cached != m_destSpreadBackgroundPort.end()) {
+        ++destspread_background_reused;
+        if (m_isToR && m_isToR_hostIP.count(ch.sip))
+            ++destspread_source_port_packets[std::make_tuple(m_id, cached->second, 1U)];
+        return cached->second;
+    }
+    NS_ASSERT_MSG(!nexthops.empty(), "DestSpread has no next hop");
+    ++destspread_background_new;
+    uint32_t minimum = std::numeric_limits<uint32_t>::max();
+    std::vector<uint32_t> tied;
+    for (int port : nexthops) {
+        const uint32_t load = CalculateInterfaceLoad(port);
+        if (load < minimum) {
+            minimum = load;
+            tied.clear();
+        }
+        if (load == minimum) tied.push_back(port);
+    }
+    std::sort(tied.begin(), tied.end());
+    uint32_t chosen = tied.front();
+    if (tied.size() > 1) {
+        ++destspread_background_ties;
+        if (minimum == 0 && tied.size() == nexthops.size())
+            ++destspread_background_all_empty;
+        uint32_t &turn = m_destSpreadNextByDestination[ch.dip];
+        chosen = tied[turn % tied.size()];
+        ++turn;
+    }
+    m_destSpreadBackgroundPort[flow] = chosen;
+    if (m_isToR && m_isToR_hostIP.count(ch.sip))
+        ++destspread_source_port_packets[std::make_tuple(m_id, chosen, 1U)];
+    return chosen;
+}
+
 uint32_t SwitchNode::DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
                                    const std::vector<int> &nexthops) {
     WorkloadTag label;
@@ -1374,6 +1456,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         }
         case 21:
             return DoLbClassReserve(p, ch, nexthops);
+        case 22:
+            return DoLbDestSpread(p, ch, nexthops);
         case 13:
         case 14:
         case 15:
@@ -1429,7 +1513,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                     if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                     else ++ws21_feedback_hop_rejects;
                 }
-                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21)
+                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22)
                     SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
             }
@@ -1446,7 +1530,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                 else ++ws21_feedback_hop_rejects;
             }
-            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21)
+            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22)
                 SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
         }
@@ -1491,7 +1575,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         } else {
             // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
             // Release the admission reservation made above for this packet.
-            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21)) {
+            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22)) {
                 if (!locallyGenerated)
                     m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
@@ -1578,7 +1662,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             ws13_inflight.erase(hit);
         }
     }
-    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21) {
+    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
         s.current -= p->GetSize();
