@@ -91,7 +91,7 @@ def render(rows, seed, background, kind):
         x = left + width * (exponent - xlow) / (xhigh - xlow)
         lines.append('<line class="grid" x1="%.2f" y1="%d" x2="%.2f" y2="%d"/>' % (x, top, x, top + height))
         lines.append('<text class="axis" text-anchor="middle" x="%.2f" y="%d">%g</text>' % (x, top + height + 24, value))
-    for pct in (0, 25, 50, 75, 90, 99, 100):
+    for pct in (0, 25, 50, 75, 90, 100):
         y = top + height * (1 - pct / 100)
         lines.append('<line class="grid" x1="%d" y1="%.2f" x2="%d" y2="%.2f"/>' % (left, y, left + width, y))
         lines.append('<text class="axis" text-anchor="end" x="%d" y="%.2f">%d%%</text>' % (left - 9, y + 4, pct))

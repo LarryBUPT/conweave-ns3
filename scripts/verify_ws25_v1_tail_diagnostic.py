@@ -168,27 +168,29 @@ def check(cell, plan, execution):
             raise RuntimeError("Duplicate background src/dst in input trace")
         trace_by_pair[src, dst] = index
     tors = host_tors(folder / "config/topology.txt")
-    tails = []
+    background_flows = []
     if same_fct:
-        for key in sorted(compared, key=lambda key: compared[key] - control[key], reverse=True)[:5]:
+        for key in sorted(compared, key=lambda key: compared[key] - control[key], reverse=True):
             src, dst, sport, dport = key[:4]
             flow_id = trace_by_pair[src, dst]
             matched = hops.get((src, dst, sport, dport), [])
             dest_hops = [row for row in matched if row["switch"] == tors[dst]]
-            tails.append({"src": src, "dst": dst, "flow_id": flow_id,
-                          "destination_tor": tors[dst],
-                          "ecmp_fct_us": control[key],
-                          "classreserve_fct_us": compared[key],
-                          "change_us": compared[key] - control[key],
-                          "qp": qp[flow_id], "destination_hops": dest_hops,
-                          "all_hop_rows": len(matched)})
+            background_flows.append({"src": src, "dst": dst, "flow_id": flow_id,
+                                     "destination_tor": tors[dst],
+                                     "ecmp_fct_us": control[key],
+                                     "classreserve_fct_us": compared[key],
+                                     "change_us": compared[key] - control[key],
+                                     "qp": qp[flow_id], "destination_hops": dest_hops,
+                                     "all_hop_rows": len(matched)})
     return {"id": cell["id"], "seed": cell["seed"], "background": cell["background"],
             "fct_sha256": sha(fct), "matches_formal_fct": same_fct,
             "fct_control_sha256": cell["formal_control_fct_sha256"],
             "qp_rows": len(qp), "background_hop_flows": len(hops),
             "inflight_unpaired": inflight, "choice": choice,
             "classreserve": mode, "queue": queue, "resource": resources,
-            "config_log_sha256": sha(log_path), "tail_flows": tails}
+            "config_log_sha256": sha(log_path),
+            "tail_flows": background_flows[:5],
+            "background_flows": background_flows}
 
 
 def main():

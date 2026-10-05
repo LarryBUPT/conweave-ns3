@@ -1,6 +1,6 @@
 # WS-25：第一课题类别感知包流混合负载均衡执行清单
 
-状态：**ACTIVE，2026-10-06**。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。第一课题的 ClassReserve v1 修正版正式矩阵已完成 36 批、576/576 格 raw 逐格验收，确认性共同主结果为 **NO-GO**；详见[正式分析](../research/ws25-v1fix-formal-analysis.md)及[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)。小论文负结果初稿已形成，但候选后续决策、成稿核对与全部预设验收尚未闭环。旧 WS-21 状态反馈余项仍在投稿后第二课题门槛，不与本课题并行。下方较早日期的检查点仅作历史记录，不能代替本段当前状态。
+状态：**ACTIVE，2026-10-06**。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。第一课题的 ClassReserve v1 修正版正式矩阵已完成 36 批、576/576 格 raw 逐格验收，确认性共同主结果为 **NO-GO**；详见[正式分析](../research/ws25-v1fix-formal-analysis.md)及[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)。两格事后尾流诊断已按资源收据恢复计划验收，见[诊断报告](../research/ws25-v1-formal-tail-diagnostic-analysis.md)；正式逐格指标表、逐 seed 配对表、六臂 FCT/CDF、上联与 ConWeave VOQ 适用图已落盘，见[数据索引](../research/ws25-v1fix-formal-data-index.md)。小论文负结果初稿已形成，但图包终审、候选后续决策、成稿核对与全部预设验收尚未闭环。旧 WS-21 状态反馈余项仍在投稿后第二课题门槛，不与本课题并行。下方较早日期的检查点仅作历史记录，不能代替本段当前状态。
 
 ## 研究问题与边界
 
@@ -27,7 +27,7 @@
 | 3. 候选实现 | ClassReserve 修正版固定仿真 SHA `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`；96/96 正式候选格队列守恒且无 drop/违规 | 明确新候选是否进入独立迭代；v1 不继续调参 |
 | 4–5. 设计、校准和冻结 | 筛选/校准/最终 seed 分离；正式 24 seed、96 输入、576 ID、双主判据、次级 Holm、低档约束和资源线均在运行前冻结，见[协议](../research/ws25-v1fix-formal-protocol.md)与[计划](../research/evidence/ws25-v1fix-formal-plan.json) | 缺失的物理队列和逐跳指标不能填零；机制结论保持有限 |
 | 6. 正式验证 | [执行证据](../research/evidence/ws25-v1fix-formal-execution.json)与本地原始结果证明 36 批、576/576 原 ID 逐格通过，资源门全部通过 | 无 v1 正式格待跑；保留原始目录与失败恢复记录 |
-| 7. 分析及成稿 | [正式分析](../research/ws25-v1fix-formal-analysis.md)、[图](../research/figures/ws25-v1fix-formal-192-effects.svg)、[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)、[小论文初稿](../research/ws25-classreserve-v1-paper-draft.md)已形成；主判据 NO-GO | 核对稿件参考文献、术语和图文一致性；完成 v1 机制诊断及下一候选决策；提交/集成当前产物，不能以 v1 单次 NO-GO 宣布整题闭环 |
+| 7. 分析及成稿 | [正式分析](../research/ws25-v1fix-formal-analysis.md)、[192 档图](../research/figures/ws25-v1fix-formal-192-effects.svg)、[逐格和逐 seed 图表索引](../research/ws25-v1fix-formal-data-index.md)、[两格尾流诊断](../research/ws25-v1-formal-tail-diagnostic-analysis.md)、[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)、[小论文初稿](../research/ws25-classreserve-v1-paper-draft.md)已形成；主判据 NO-GO | 对图包作视觉与数值终审，核对稿件参考文献/术语/图文一致性，决定下一候选；不能以 v1 单次 NO-GO 宣布整题闭环 |
 
 ## 历史执行检查点（2026-10-03）
 

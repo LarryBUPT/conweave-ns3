@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="720" viewBox="0 0 1480 720">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#1f2937}.title{font-size:23px;font-weight:700}.sub{font-size:14px;fill:#4b5563}.axis{font-size:12px}.grid{stroke:#e5e7eb;stroke-width:1}</style>
+<text class="title" x="30" y="38">活跃上联端口平均计数器等效率：24 个需求 seed × 六种机制</text>
+<text class="sub" x="30" y="64">背景流 64 条 · seed 20262521–20262544（横轴标末两位）· 同 seed 六臂配对 · 仅表示原始字节计数/时间窗，不等于物理实时利用率</text>
+<line class="grid" x1="82" y1="574.00" x2="1382" y2="574.00"/>
+<text class="axis" text-anchor="end" x="73" y="578.00">3.1</text>
+<line class="grid" x1="82" y1="480.00" x2="1382" y2="480.00"/>
+<text class="axis" text-anchor="end" x="73" y="484.00">4.1</text>
+<line class="grid" x1="82" y1="386.00" x2="1382" y2="386.00"/>
+<text class="axis" text-anchor="end" x="73" y="390.00">5.1</text>
+<line class="grid" x1="82" y1="292.00" x2="1382" y2="292.00"/>
+<text class="axis" text-anchor="end" x="73" y="296.00">6.2</text>
+<line class="grid" x1="82" y1="198.00" x2="1382" y2="198.00"/>
+<text class="axis" text-anchor="end" x="73" y="202.00">7.2</text>
+<line class="grid" x1="82" y1="104.00" x2="1382" y2="104.00"/>
+<text class="axis" text-anchor="end" x="73" y="108.00">8.3</text>
+<text class="axis" text-anchor="middle" x="109.08" y="594">21</text>
+<circle cx="93.58" cy="252.00" r="3.5" fill="#4b5563"><title>20262521 | ECMP | 6.620763 % of 400 Gbps | 20261004-070000-ws25-formal-s21-b064-fecmp</title></circle>
+<circle cx="99.78" cy="379.14" r="3.5" fill="#2563eb"><title>20262521 | DRILL | 5.218455 % of 400 Gbps | 20261004-070000-ws25-formal-s21-b064-drill</title></circle>
+<circle cx="105.98" cy="252.00" r="3.5" fill="#16a34a"><title>20262521 | CONGA | 6.620763 % of 400 Gbps | 20261004-070000-ws25-formal-s21-b064-conga</title></circle>
+<circle cx="112.18" cy="252.00" r="3.5" fill="#9333ea"><title>20262521 | LetFlow | 6.620763 % of 400 Gbps | 20261004-070000-ws25-formal-s21-b064-letflow</title></circle>
+<circle cx="118.38" cy="243.10" r="3.5" fill="#d97706"><title>20262521 | ConWeave | 6.718993 % of 400 Gbps | 20261004-070000-ws25-formal-s21-b064-conweave</title></circle>
+<circle cx="124.58" cy="252.00" r="3.5" fill="#dc2626"><title>20262521 | ClassReserve | 6.620763 % of 400 Gbps | 20261004-070000-ws25-formal-s21-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="163.25" y="594">22</text>
+<circle cx="147.75" cy="160.58" r="3.5" fill="#4b5563"><title>20262522 | ECMP | 7.629123 % of 400 Gbps | 20261004-070000-ws25-formal-s22-b064-fecmp</title></circle>
+<circle cx="153.95" cy="326.29" r="3.5" fill="#2563eb"><title>20262522 | DRILL | 5.801402 % of 400 Gbps | 20261004-070000-ws25-formal-s22-b064-drill</title></circle>
+<circle cx="160.15" cy="259.40" r="3.5" fill="#16a34a"><title>20262522 | CONGA | 6.539248 % of 400 Gbps | 20261004-070000-ws25-formal-s22-b064-conga</title></circle>
+<circle cx="166.35" cy="160.58" r="3.5" fill="#9333ea"><title>20262522 | LetFlow | 7.629123 % of 400 Gbps | 20261004-070000-ws25-formal-s22-b064-letflow</title></circle>
+<circle cx="172.55" cy="149.48" r="3.5" fill="#d97706"><title>20262522 | ConWeave | 7.751549 % of 400 Gbps | 20261004-070000-ws25-formal-s22-b064-conweave</title></circle>
+<circle cx="178.75" cy="160.58" r="3.5" fill="#dc2626"><title>20262522 | ClassReserve | 7.629123 % of 400 Gbps | 20261004-070000-ws25-formal-s22-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="217.42" y="594">23</text>
+<circle cx="201.92" cy="442.56" r="3.5" fill="#4b5563"><title>20262523 | ECMP | 4.518982 % of 400 Gbps | 20261004-070000-ws25-formal-s23-b064-fecmp</title></circle>
+<circle cx="208.12" cy="506.40" r="3.5" fill="#2563eb"><title>20262523 | DRILL | 3.814798 % of 400 Gbps | 20261004-070000-ws25-formal-s23-b064-drill</title></circle>
+<circle cx="214.32" cy="510.84" r="3.5" fill="#16a34a"><title>20262523 | CONGA | 3.765818 % of 400 Gbps | 20261004-070000-ws25-formal-s23-b064-conga</title></circle>
+<circle cx="220.52" cy="397.04" r="3.5" fill="#9333ea"><title>20262523 | LetFlow | 5.021091 % of 400 Gbps | 20261004-070000-ws25-formal-s23-b064-letflow</title></circle>
+<circle cx="226.72" cy="435.91" r="3.5" fill="#d97706"><title>20262523 | ConWeave | 4.592355 % of 400 Gbps | 20261004-070000-ws25-formal-s23-b064-conweave</title></circle>
+<circle cx="232.92" cy="479.81" r="3.5" fill="#dc2626"><title>20262523 | ClassReserve | 4.108165 % of 400 Gbps | 20261004-070000-ws25-formal-s23-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="271.58" y="594">24</text>
+<circle cx="256.08" cy="326.91" r="3.5" fill="#4b5563"><title>20262524 | ECMP | 5.794600 % of 400 Gbps | 20261004-070000-ws25-formal-s24-b064-fecmp</title></circle>
+<circle cx="262.28" cy="426.90" r="3.5" fill="#2563eb"><title>20262524 | DRILL | 4.691736 % of 400 Gbps | 20261004-070000-ws25-formal-s24-b064-drill</title></circle>
+<circle cx="268.48" cy="326.91" r="3.5" fill="#16a34a"><title>20262524 | CONGA | 5.794600 % of 400 Gbps | 20261004-070000-ws25-formal-s24-b064-conga</title></circle>
+<circle cx="274.68" cy="326.91" r="3.5" fill="#9333ea"><title>20262524 | LetFlow | 5.794600 % of 400 Gbps | 20261004-070000-ws25-formal-s24-b064-letflow</title></circle>
+<circle cx="280.88" cy="318.18" r="3.5" fill="#d97706"><title>20262524 | ConWeave | 5.890837 % of 400 Gbps | 20261004-070000-ws25-formal-s24-b064-conweave</title></circle>
+<circle cx="287.08" cy="326.91" r="3.5" fill="#dc2626"><title>20262524 | ClassReserve | 5.794600 % of 400 Gbps | 20261004-070000-ws25-formal-s24-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="325.75" y="594">25</text>
+<circle cx="310.25" cy="259.36" r="3.5" fill="#4b5563"><title>20262525 | ECMP | 6.539658 % of 400 Gbps | 20261004-070000-ws25-formal-s25-b064-fecmp</title></circle>
+<circle cx="316.45" cy="432.03" r="3.5" fill="#2563eb"><title>20262525 | DRILL | 4.635080 % of 400 Gbps | 20261004-070000-ws25-formal-s25-b064-drill</title></circle>
+<circle cx="322.65" cy="259.36" r="3.5" fill="#16a34a"><title>20262525 | CONGA | 6.539658 % of 400 Gbps | 20261004-070000-ws25-formal-s25-b064-conga</title></circle>
+<circle cx="328.85" cy="259.36" r="3.5" fill="#9333ea"><title>20262525 | LetFlow | 6.539658 % of 400 Gbps | 20261004-070000-ws25-formal-s25-b064-letflow</title></circle>
+<circle cx="335.05" cy="249.62" r="3.5" fill="#d97706"><title>20262525 | ConWeave | 6.647083 % of 400 Gbps | 20261004-070000-ws25-formal-s25-b064-conweave</title></circle>
+<circle cx="341.25" cy="259.36" r="3.5" fill="#dc2626"><title>20262525 | ClassReserve | 6.539658 % of 400 Gbps | 20261004-070000-ws25-formal-s25-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="379.92" y="594">26</text>
+<circle cx="364.42" cy="267.04" r="3.5" fill="#4b5563"><title>20262526 | ECMP | 6.454952 % of 400 Gbps | 20261004-070000-ws25-formal-s26-b064-fecmp</title></circle>
+<circle cx="370.62" cy="437.36" r="3.5" fill="#2563eb"><title>20262526 | DRILL | 4.576321 % of 400 Gbps | 20261004-070000-ws25-formal-s26-b064-drill</title></circle>
+<circle cx="376.82" cy="267.04" r="3.5" fill="#16a34a"><title>20262526 | CONGA | 6.454952 % of 400 Gbps | 20261004-070000-ws25-formal-s26-b064-conga</title></circle>
+<circle cx="383.02" cy="267.04" r="3.5" fill="#9333ea"><title>20262526 | LetFlow | 6.454952 % of 400 Gbps | 20261004-070000-ws25-formal-s26-b064-letflow</title></circle>
+<circle cx="389.22" cy="257.75" r="3.5" fill="#d97706"><title>20262526 | ConWeave | 6.557435 % of 400 Gbps | 20261004-070000-ws25-formal-s26-b064-conweave</title></circle>
+<circle cx="395.42" cy="267.04" r="3.5" fill="#dc2626"><title>20262526 | ClassReserve | 6.454952 % of 400 Gbps | 20261004-070000-ws25-formal-s26-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="434.08" y="594">27</text>
+<circle cx="418.58" cy="353.08" r="3.5" fill="#4b5563"><title>20262527 | ECMP | 5.505933 % of 400 Gbps | 20261004-070000-ws25-formal-s27-b064-fecmp</title></circle>
+<circle cx="424.78" cy="447.99" r="3.5" fill="#2563eb"><title>20262527 | DRILL | 4.459082 % of 400 Gbps | 20261004-070000-ws25-formal-s27-b064-drill</title></circle>
+<circle cx="430.98" cy="353.08" r="3.5" fill="#16a34a"><title>20262527 | CONGA | 5.505933 % of 400 Gbps | 20261004-070000-ws25-formal-s27-b064-conga</title></circle>
+<circle cx="437.18" cy="353.08" r="3.5" fill="#9333ea"><title>20262527 | LetFlow | 5.505933 % of 400 Gbps | 20261004-070000-ws25-formal-s27-b064-letflow</title></circle>
+<circle cx="443.38" cy="344.89" r="3.5" fill="#d97706"><title>20262527 | ConWeave | 5.596246 % of 400 Gbps | 20261004-070000-ws25-formal-s27-b064-conweave</title></circle>
+<circle cx="449.58" cy="353.08" r="3.5" fill="#dc2626"><title>20262527 | ClassReserve | 5.505933 % of 400 Gbps | 20261004-070000-ws25-formal-s27-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="488.25" y="594">28</text>
+<circle cx="472.75" cy="259.17" r="3.5" fill="#4b5563"><title>20262528 | ECMP | 6.541785 % of 400 Gbps | 20261004-070000-ws25-formal-s28-b064-fecmp</title></circle>
+<circle cx="478.95" cy="327.10" r="3.5" fill="#2563eb"><title>20262528 | DRILL | 5.792438 % of 400 Gbps | 20261004-070000-ws25-formal-s28-b064-drill</title></circle>
+<circle cx="485.15" cy="259.17" r="3.5" fill="#16a34a"><title>20262528 | CONGA | 6.541785 % of 400 Gbps | 20261004-070000-ws25-formal-s28-b064-conga</title></circle>
+<circle cx="491.35" cy="259.17" r="3.5" fill="#9333ea"><title>20262528 | LetFlow | 6.541785 % of 400 Gbps | 20261004-070000-ws25-formal-s28-b064-letflow</title></circle>
+<circle cx="497.55" cy="249.97" r="3.5" fill="#d97706"><title>20262528 | ConWeave | 6.643186 % of 400 Gbps | 20261004-070000-ws25-formal-s28-b064-conweave</title></circle>
+<circle cx="503.75" cy="259.17" r="3.5" fill="#dc2626"><title>20262528 | ClassReserve | 6.541785 % of 400 Gbps | 20261004-070000-ws25-formal-s28-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="542.42" y="594">29</text>
+<circle cx="526.92" cy="259.48" r="3.5" fill="#4b5563"><title>20262529 | ECMP | 6.538348 % of 400 Gbps | 20261004-070000-ws25-formal-s29-b064-fecmp</title></circle>
+<circle cx="533.12" cy="385.61" r="3.5" fill="#2563eb"><title>20262529 | DRILL | 5.147107 % of 400 Gbps | 20261004-070000-ws25-formal-s29-b064-drill</title></circle>
+<circle cx="539.32" cy="259.48" r="3.5" fill="#16a34a"><title>20262529 | CONGA | 6.538348 % of 400 Gbps | 20261004-070000-ws25-formal-s29-b064-conga</title></circle>
+<circle cx="545.52" cy="259.48" r="3.5" fill="#9333ea"><title>20262529 | LetFlow | 6.538348 % of 400 Gbps | 20261004-070000-ws25-formal-s29-b064-letflow</title></circle>
+<circle cx="551.72" cy="325.39" r="3.5" fill="#d97706"><title>20262529 | ConWeave | 5.811331 % of 400 Gbps | 20261004-070000-ws25-formal-s29-b064-conweave</title></circle>
+<circle cx="557.92" cy="259.48" r="3.5" fill="#dc2626"><title>20262529 | ClassReserve | 6.538348 % of 400 Gbps | 20261004-070000-ws25-formal-s29-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="596.58" y="594">30</text>
+<circle cx="581.08" cy="259.46" r="3.5" fill="#4b5563"><title>20262530 | ECMP | 6.538512 % of 400 Gbps | 20261004-070000-ws25-formal-s30-b064-fecmp</title></circle>
+<circle cx="587.28" cy="385.46" r="3.5" fill="#2563eb"><title>20262530 | DRILL | 5.148799 % of 400 Gbps | 20261004-070000-ws25-formal-s30-b064-drill</title></circle>
+<circle cx="593.48" cy="259.46" r="3.5" fill="#16a34a"><title>20262530 | CONGA | 6.538512 % of 400 Gbps | 20261004-070000-ws25-formal-s30-b064-conga</title></circle>
+<circle cx="599.68" cy="259.46" r="3.5" fill="#9333ea"><title>20262530 | LetFlow | 6.538512 % of 400 Gbps | 20261004-070000-ws25-formal-s30-b064-letflow</title></circle>
+<circle cx="605.88" cy="324.93" r="3.5" fill="#d97706"><title>20262530 | ConWeave | 5.816383 % of 400 Gbps | 20261004-070000-ws25-formal-s30-b064-conweave</title></circle>
+<circle cx="612.08" cy="259.46" r="3.5" fill="#dc2626"><title>20262530 | ClassReserve | 6.538512 % of 400 Gbps | 20261004-070000-ws25-formal-s30-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="650.75" y="594">31</text>
+<circle cx="635.25" cy="475.08" r="3.5" fill="#4b5563"><title>20262531 | ECMP | 4.160299 % of 400 Gbps | 20261004-070000-ws25-formal-s31-b064-fecmp</title></circle>
+<circle cx="641.45" cy="501.98" r="3.5" fill="#2563eb"><title>20262531 | DRILL | 3.863534 % of 400 Gbps | 20261004-070000-ws25-formal-s31-b064-drill</title></circle>
+<circle cx="647.65" cy="437.36" r="3.5" fill="#16a34a"><title>20262531 | CONGA | 4.576328 % of 400 Gbps | 20261004-070000-ws25-formal-s31-b064-conga</title></circle>
+<circle cx="653.85" cy="437.36" r="3.5" fill="#9333ea"><title>20262531 | LetFlow | 4.576328 % of 400 Gbps | 20261004-070000-ws25-formal-s31-b064-letflow</title></circle>
+<circle cx="660.05" cy="430.48" r="3.5" fill="#d97706"><title>20262531 | ConWeave | 4.652214 % of 400 Gbps | 20261004-070000-ws25-formal-s31-b064-conweave</title></circle>
+<circle cx="666.25" cy="475.08" r="3.5" fill="#dc2626"><title>20262531 | ClassReserve | 4.160299 % of 400 Gbps | 20261004-070000-ws25-formal-s31-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="704.92" y="594">32</text>
+<circle cx="689.42" cy="281.88" r="3.5" fill="#4b5563"><title>20262532 | ECMP | 6.291267 % of 400 Gbps | 20261004-070000-ws25-formal-s32-b064-fecmp</title></circle>
+<circle cx="695.62" cy="347.25" r="3.5" fill="#2563eb"><title>20262532 | DRILL | 5.570260 % of 400 Gbps | 20261004-070000-ws25-formal-s32-b064-drill</title></circle>
+<circle cx="701.82" cy="281.88" r="3.5" fill="#16a34a"><title>20262532 | CONGA | 6.291267 % of 400 Gbps | 20261004-070000-ws25-formal-s32-b064-conga</title></circle>
+<circle cx="708.02" cy="281.88" r="3.5" fill="#9333ea"><title>20262532 | LetFlow | 6.291267 % of 400 Gbps | 20261004-070000-ws25-formal-s32-b064-letflow</title></circle>
+<circle cx="714.22" cy="272.50" r="3.5" fill="#d97706"><title>20262532 | ConWeave | 6.394656 % of 400 Gbps | 20261004-070000-ws25-formal-s32-b064-conweave</title></circle>
+<circle cx="720.42" cy="281.88" r="3.5" fill="#dc2626"><title>20262532 | ClassReserve | 6.291267 % of 400 Gbps | 20261004-070000-ws25-formal-s32-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="759.08" y="594">33</text>
+<circle cx="743.58" cy="391.07" r="3.5" fill="#4b5563"><title>20262533 | ECMP | 5.086909 % of 400 Gbps | 20261004-070000-ws25-formal-s33-b064-fecmp</title></circle>
+<circle cx="749.78" cy="432.07" r="3.5" fill="#2563eb"><title>20262533 | DRILL | 4.634636 % of 400 Gbps | 20261004-070000-ws25-formal-s33-b064-drill</title></circle>
+<circle cx="755.98" cy="391.07" r="3.5" fill="#16a34a"><title>20262533 | CONGA | 5.086909 % of 400 Gbps | 20261004-070000-ws25-formal-s33-b064-conga</title></circle>
+<circle cx="762.18" cy="391.07" r="3.5" fill="#9333ea"><title>20262533 | LetFlow | 5.086909 % of 400 Gbps | 20261004-070000-ws25-formal-s33-b064-letflow</title></circle>
+<circle cx="768.38" cy="382.97" r="3.5" fill="#d97706"><title>20262533 | ConWeave | 5.176197 % of 400 Gbps | 20261004-070000-ws25-formal-s33-b064-conweave</title></circle>
+<circle cx="774.58" cy="391.07" r="3.5" fill="#dc2626"><title>20262533 | ClassReserve | 5.086909 % of 400 Gbps | 20261004-070000-ws25-formal-s33-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="813.25" y="594">34</text>
+<circle cx="797.75" cy="346.56" r="3.5" fill="#4b5563"><title>20262534 | ECMP | 5.577831 % of 400 Gbps | 20261004-070000-ws25-formal-s34-b064-fecmp</title></circle>
+<circle cx="803.95" cy="442.74" r="3.5" fill="#2563eb"><title>20262534 | DRILL | 4.517039 % of 400 Gbps | 20261004-070000-ws25-formal-s34-b064-drill</title></circle>
+<circle cx="810.15" cy="346.56" r="3.5" fill="#16a34a"><title>20262534 | CONGA | 5.577831 % of 400 Gbps | 20261004-070000-ws25-formal-s34-b064-conga</title></circle>
+<circle cx="816.35" cy="274.32" r="3.5" fill="#9333ea"><title>20262534 | LetFlow | 6.374664 % of 400 Gbps | 20261004-070000-ws25-formal-s34-b064-letflow</title></circle>
+<circle cx="822.55" cy="337.76" r="3.5" fill="#d97706"><title>20262534 | ConWeave | 5.674892 % of 400 Gbps | 20261004-070000-ws25-formal-s34-b064-conweave</title></circle>
+<circle cx="828.75" cy="346.56" r="3.5" fill="#dc2626"><title>20262534 | ClassReserve | 5.577831 % of 400 Gbps | 20261004-070000-ws25-formal-s34-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="867.42" y="594">35</text>
+<circle cx="851.92" cy="391.03" r="3.5" fill="#4b5563"><title>20262535 | ECMP | 5.087355 % of 400 Gbps | 20261004-070000-ws25-formal-s35-b064-fecmp</title></circle>
+<circle cx="858.12" cy="432.41" r="3.5" fill="#2563eb"><title>20262535 | DRILL | 4.630920 % of 400 Gbps | 20261004-070000-ws25-formal-s35-b064-drill</title></circle>
+<circle cx="864.32" cy="391.03" r="3.5" fill="#16a34a"><title>20262535 | CONGA | 5.087355 % of 400 Gbps | 20261004-070000-ws25-formal-s35-b064-conga</title></circle>
+<circle cx="870.52" cy="391.03" r="3.5" fill="#9333ea"><title>20262535 | LetFlow | 5.087355 % of 400 Gbps | 20261004-070000-ws25-formal-s35-b064-letflow</title></circle>
+<circle cx="876.72" cy="383.70" r="3.5" fill="#d97706"><title>20262535 | ConWeave | 5.168200 % of 400 Gbps | 20261004-070000-ws25-formal-s35-b064-conweave</title></circle>
+<circle cx="882.92" cy="391.03" r="3.5" fill="#dc2626"><title>20262535 | ClassReserve | 5.087355 % of 400 Gbps | 20261004-070000-ws25-formal-s35-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="921.58" y="594">36</text>
+<circle cx="906.08" cy="475.05" r="3.5" fill="#4b5563"><title>20262536 | ECMP | 4.160611 % of 400 Gbps | 20261004-070000-ws25-formal-s36-b064-fecmp</title></circle>
+<circle cx="912.28" cy="502.06" r="3.5" fill="#2563eb"><title>20262536 | DRILL | 3.862728 % of 400 Gbps | 20261004-070000-ws25-formal-s36-b064-drill</title></circle>
+<circle cx="918.48" cy="437.33" r="3.5" fill="#16a34a"><title>20262536 | CONGA | 4.576672 % of 400 Gbps | 20261004-070000-ws25-formal-s36-b064-conga</title></circle>
+<circle cx="924.68" cy="391.22" r="3.5" fill="#9333ea"><title>20262536 | LetFlow | 5.085191 % of 400 Gbps | 20261004-070000-ws25-formal-s36-b064-letflow</title></circle>
+<circle cx="930.88" cy="468.75" r="3.5" fill="#d97706"><title>20262536 | ConWeave | 4.230126 % of 400 Gbps | 20261004-070000-ws25-formal-s36-b064-conweave</title></circle>
+<circle cx="937.08" cy="391.22" r="3.5" fill="#dc2626"><title>20262536 | ClassReserve | 5.085191 % of 400 Gbps | 20261004-070000-ws25-formal-s36-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="975.75" y="594">37</text>
+<circle cx="960.25" cy="437.24" r="3.5" fill="#4b5563"><title>20262537 | ECMP | 4.577703 % of 400 Gbps | 20261004-070000-ws25-formal-s37-b064-fecmp</title></circle>
+<circle cx="966.45" cy="528.52" r="3.5" fill="#2563eb"><title>20262537 | DRILL | 3.570894 % of 400 Gbps | 20261004-070000-ws25-formal-s37-b064-drill</title></circle>
+<circle cx="972.65" cy="391.12" r="3.5" fill="#16a34a"><title>20262537 | CONGA | 5.086337 % of 400 Gbps | 20261004-070000-ws25-formal-s37-b064-conga</title></circle>
+<circle cx="978.85" cy="437.24" r="3.5" fill="#9333ea"><title>20262537 | LetFlow | 4.577703 % of 400 Gbps | 20261004-070000-ws25-formal-s37-b064-letflow</title></circle>
+<circle cx="985.05" cy="430.89" r="3.5" fill="#d97706"><title>20262537 | ConWeave | 4.647668 % of 400 Gbps | 20261004-070000-ws25-formal-s37-b064-conweave</title></circle>
+<circle cx="991.25" cy="437.24" r="3.5" fill="#dc2626"><title>20262537 | ClassReserve | 4.577703 % of 400 Gbps | 20261004-070000-ws25-formal-s37-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="1029.92" y="594">38</text>
+<circle cx="1014.42" cy="402.87" r="3.5" fill="#4b5563"><title>20262538 | ECMP | 4.956736 % of 400 Gbps | 20261004-070000-ws25-formal-s38-b064-fecmp</title></circle>
+<circle cx="1020.62" cy="442.91" r="3.5" fill="#2563eb"><title>20262538 | DRILL | 4.515130 % of 400 Gbps | 20261004-070000-ws25-formal-s38-b064-drill</title></circle>
+<circle cx="1026.82" cy="402.87" r="3.5" fill="#16a34a"><title>20262538 | CONGA | 4.956736 % of 400 Gbps | 20261004-070000-ws25-formal-s38-b064-conga</title></circle>
+<circle cx="1033.02" cy="402.87" r="3.5" fill="#9333ea"><title>20262538 | LetFlow | 4.956736 % of 400 Gbps | 20261004-070000-ws25-formal-s38-b064-letflow</title></circle>
+<circle cx="1039.22" cy="394.90" r="3.5" fill="#d97706"><title>20262538 | ConWeave | 5.044617 % of 400 Gbps | 20261004-070000-ws25-formal-s38-b064-conweave</title></circle>
+<circle cx="1045.42" cy="402.87" r="3.5" fill="#dc2626"><title>20262538 | ClassReserve | 4.956736 % of 400 Gbps | 20261004-070000-ws25-formal-s38-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="1084.08" y="594">39</text>
+<circle cx="1068.58" cy="274.34" r="3.5" fill="#4b5563"><title>20262539 | ECMP | 6.374419 % of 400 Gbps | 20261004-070000-ws25-formal-s39-b064-fecmp</title></circle>
+<circle cx="1074.78" cy="397.30" r="3.5" fill="#2563eb"><title>20262539 | DRILL | 5.018185 % of 400 Gbps | 20261004-070000-ws25-formal-s39-b064-drill</title></circle>
+<circle cx="1080.98" cy="274.34" r="3.5" fill="#16a34a"><title>20262539 | CONGA | 6.374419 % of 400 Gbps | 20261004-070000-ws25-formal-s39-b064-conga</title></circle>
+<circle cx="1087.18" cy="274.34" r="3.5" fill="#9333ea"><title>20262539 | LetFlow | 6.374419 % of 400 Gbps | 20261004-070000-ws25-formal-s39-b064-letflow</title></circle>
+<circle cx="1093.38" cy="264.39" r="3.5" fill="#d97706"><title>20262539 | ConWeave | 6.484115 % of 400 Gbps | 20261004-070000-ws25-formal-s39-b064-conweave</title></circle>
+<circle cx="1099.58" cy="274.34" r="3.5" fill="#dc2626"><title>20262539 | ClassReserve | 6.374419 % of 400 Gbps | 20261004-070000-ws25-formal-s39-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="1138.25" y="594">40</text>
+<circle cx="1122.75" cy="274.54" r="3.5" fill="#4b5563"><title>20262540 | ECMP | 6.372209 % of 400 Gbps | 20261004-070000-ws25-formal-s40-b064-fecmp</title></circle>
+<circle cx="1128.95" cy="442.71" r="3.5" fill="#2563eb"><title>20262540 | DRILL | 4.517301 % of 400 Gbps | 20261004-070000-ws25-formal-s40-b064-drill</title></circle>
+<circle cx="1135.15" cy="274.54" r="3.5" fill="#16a34a"><title>20262540 | CONGA | 6.372209 % of 400 Gbps | 20261004-070000-ws25-formal-s40-b064-conga</title></circle>
+<circle cx="1141.35" cy="274.54" r="3.5" fill="#9333ea"><title>20262540 | LetFlow | 6.372209 % of 400 Gbps | 20261004-070000-ws25-formal-s40-b064-letflow</title></circle>
+<circle cx="1147.55" cy="265.03" r="3.5" fill="#d97706"><title>20262540 | ConWeave | 6.477059 % of 400 Gbps | 20261004-070000-ws25-formal-s40-b064-conweave</title></circle>
+<circle cx="1153.75" cy="346.76" r="3.5" fill="#dc2626"><title>20262540 | ClassReserve | 5.575683 % of 400 Gbps | 20261004-070000-ws25-formal-s40-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="1192.42" y="594">41</text>
+<circle cx="1176.92" cy="391.22" r="3.5" fill="#4b5563"><title>20262541 | ECMP | 5.085191 % of 400 Gbps | 20261004-070000-ws25-formal-s41-b064-fecmp</title></circle>
+<circle cx="1183.12" cy="502.24" r="3.5" fill="#2563eb"><title>20262541 | DRILL | 3.860674 % of 400 Gbps | 20261004-070000-ws25-formal-s41-b064-drill</title></circle>
+<circle cx="1189.32" cy="437.33" r="3.5" fill="#16a34a"><title>20262541 | CONGA | 4.576672 % of 400 Gbps | 20261004-070000-ws25-formal-s41-b064-conga</title></circle>
+<circle cx="1195.52" cy="437.33" r="3.5" fill="#9333ea"><title>20262541 | LetFlow | 4.576672 % of 400 Gbps | 20261004-070000-ws25-formal-s41-b064-letflow</title></circle>
+<circle cx="1201.72" cy="430.52" r="3.5" fill="#d97706"><title>20262541 | ConWeave | 4.651781 % of 400 Gbps | 20261004-070000-ws25-formal-s41-b064-conweave</title></circle>
+<circle cx="1207.92" cy="475.05" r="3.5" fill="#dc2626"><title>20262541 | ClassReserve | 4.160611 % of 400 Gbps | 20261004-070000-ws25-formal-s41-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="1246.58" y="594">42</text>
+<circle cx="1231.08" cy="333.42" r="3.5" fill="#4b5563"><title>20262542 | ECMP | 5.722773 % of 400 Gbps | 20261004-070000-ws25-formal-s42-b064-fecmp</title></circle>
+<circle cx="1237.28" cy="432.21" r="3.5" fill="#2563eb"><title>20262542 | DRILL | 4.633172 % of 400 Gbps | 20261004-070000-ws25-formal-s42-b064-drill</title></circle>
+<circle cx="1243.48" cy="333.42" r="3.5" fill="#16a34a"><title>20262542 | CONGA | 5.722773 % of 400 Gbps | 20261004-070000-ws25-formal-s42-b064-conga</title></circle>
+<circle cx="1249.68" cy="333.42" r="3.5" fill="#9333ea"><title>20262542 | LetFlow | 5.722773 % of 400 Gbps | 20261004-070000-ws25-formal-s42-b064-letflow</title></circle>
+<circle cx="1255.88" cy="324.50" r="3.5" fill="#d97706"><title>20262542 | ConWeave | 5.821144 % of 400 Gbps | 20261004-070000-ws25-formal-s42-b064-conweave</title></circle>
+<circle cx="1262.08" cy="333.42" r="3.5" fill="#dc2626"><title>20262542 | ClassReserve | 5.722773 % of 400 Gbps | 20261004-070000-ws25-formal-s42-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="1300.75" y="594">43</text>
+<circle cx="1285.25" cy="274.18" r="3.5" fill="#4b5563"><title>20262543 | ECMP | 6.376219 % of 400 Gbps | 20261004-070000-ws25-formal-s43-b064-fecmp</title></circle>
+<circle cx="1291.45" cy="396.92" r="3.5" fill="#2563eb"><title>20262543 | DRILL | 5.022408 % of 400 Gbps | 20261004-070000-ws25-formal-s43-b064-drill</title></circle>
+<circle cx="1297.65" cy="274.18" r="3.5" fill="#16a34a"><title>20262543 | CONGA | 6.376219 % of 400 Gbps | 20261004-070000-ws25-formal-s43-b064-conga</title></circle>
+<circle cx="1303.85" cy="274.18" r="3.5" fill="#9333ea"><title>20262543 | LetFlow | 6.376219 % of 400 Gbps | 20261004-070000-ws25-formal-s43-b064-letflow</title></circle>
+<circle cx="1310.05" cy="264.68" r="3.5" fill="#d97706"><title>20262543 | ConWeave | 6.481001 % of 400 Gbps | 20261004-070000-ws25-formal-s43-b064-conweave</title></circle>
+<circle cx="1316.25" cy="447.60" r="3.5" fill="#dc2626"><title>20262543 | ClassReserve | 4.463353 % of 400 Gbps | 20261004-070000-ws25-formal-s43-b064-classreserve</title></circle>
+<text class="axis" text-anchor="middle" x="1354.92" y="594">44</text>
+<circle cx="1339.42" cy="259.34" r="3.5" fill="#4b5563"><title>20262544 | ECMP | 6.539903 % of 400 Gbps | 20261004-070000-ws25-formal-s44-b064-fecmp</title></circle>
+<circle cx="1345.62" cy="385.11" r="3.5" fill="#2563eb"><title>20262544 | DRILL | 5.152632 % of 400 Gbps | 20261004-070000-ws25-formal-s44-b064-drill</title></circle>
+<circle cx="1351.82" cy="259.34" r="3.5" fill="#16a34a"><title>20262544 | CONGA | 6.539903 % of 400 Gbps | 20261004-070000-ws25-formal-s44-b064-conga</title></circle>
+<circle cx="1358.02" cy="259.34" r="3.5" fill="#9333ea"><title>20262544 | LetFlow | 6.539903 % of 400 Gbps | 20261004-070000-ws25-formal-s44-b064-letflow</title></circle>
+<circle cx="1364.22" cy="250.25" r="3.5" fill="#d97706"><title>20262544 | ConWeave | 6.640150 % of 400 Gbps | 20261004-070000-ws25-formal-s44-b064-conweave</title></circle>
+<circle cx="1370.42" cy="259.34" r="3.5" fill="#dc2626"><title>20262544 | ClassReserve | 6.539903 % of 400 Gbps | 20261004-070000-ws25-formal-s44-b064-classreserve</title></circle>
+<rect x="82" y="104" width="1300" height="470" fill="none" stroke="#374151"/>
+<text class="sub" text-anchor="middle" x="730" y="623">需求 seed（同一 seed 内六机制共享输入）</text>
+<text class="axis" transform="translate(27 340) rotate(-90)" text-anchor="middle">活跃上联端口平均计数器等效率（% of 400 Gbps）</text>
+<circle cx="95" cy="662" r="5" fill="#4b5563"/>
+<text class="sub" x="107" y="667">ECMP</text>
+<circle cx="306" cy="662" r="5" fill="#2563eb"/>
+<text class="sub" x="318" y="667">DRILL</text>
+<circle cx="517" cy="662" r="5" fill="#16a34a"/>
+<text class="sub" x="529" y="667">CONGA</text>
+<circle cx="728" cy="662" r="5" fill="#9333ea"/>
+<text class="sub" x="740" y="667">LetFlow</text>
+<circle cx="939" cy="662" r="5" fill="#d97706"/>
+<text class="sub" x="951" y="667">ConWeave</text>
+<circle cx="1150" cy="662" r="5" fill="#dc2626"/>
+<text class="sub" x="1162" y="667">ClassReserve</text>
+<text class="sub" x="1450" y="702" text-anchor="end">原始 ID、trace/FCT SHA 与准确值见逐格指标 CSV；源码 ce699dffe2845dc8…</text>
+</svg>

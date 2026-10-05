@@ -11,7 +11,7 @@
 | 原始数据 | `results/<实验ID>/metadata.json`、`config/`、`raw/`、日志和资源采样；[逐格执行证据](evidence/ws25-v1fix-formal-execution.json) | 36 批、576/576 `SUCCEEDED` 并通过 verifier |
 | 资源 | 峰值负载 16.10、最低可用内存 51.80 GiB、最低空盘 4,962.54 GiB、最大单格 RSS 4,562.50 MiB | 全部满足冻结停止线 |
 | 统计 | [逐格分析 JSON](evidence/ws25-v1fix-formal-analysis.json)与[人读报告](ws25-v1fix-formal-analysis.md) | 主 GO=false；低档约束通过；四次级双侧门槛均未过 |
-| 图表 | [192 档配对效应图](figures/ws25-v1fix-formal-192-effects.svg) | 由分析 JSON 生成，图内标明正式 ID 前缀与源码 SHA |
+| 图表 | [192 档配对效应图](figures/ws25-v1fix-formal-192-effects.svg)及[全矩阵图表数据索引](ws25-v1fix-formal-data-index.md) | 576 格指标/上联表、840 条逐 seed 配对、168 张六臂 CDF、22 张跨 seed 总览及有效 ConWeave VOQ 热图；原始 ID 与 SHA 可回查 |
 | 成稿 | [小论文初稿](ws25-classreserve-v1-paper-draft.md) | v1 负结果初稿；投稿决定及后续候选仍另行处理 |
 
 ## 本地重算
@@ -21,6 +21,11 @@
 ```powershell
 python scripts/analyze_ws25_formal.py
 python scripts/plot_ws25_formal.py
+python scripts/export_ws25_formal_tables.py
+python scripts/export_ws25_formal_uplink.py
+python scripts/export_ws25_formal_voq.py
+python scripts/plot_ws25_formal_cdfs.py
+python scripts/plot_ws25_formal_seed_overview.py
 ```
 
 第一条命令先核验计划与原始结果，再重建统计 JSON。它检查 576 个计划 ID 的唯一性、源码/trace/拓扑和参数哈希、输入与完成流、FCT 行、ClassReserve 类别队列守恒和资源门；任一缺失或失配会失败。第二条命令只读取分析 JSON 并重建 SVG。两条命令均不得替代远端仿真本身。

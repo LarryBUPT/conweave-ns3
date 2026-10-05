@@ -2,7 +2,7 @@
 <rect width="100%" height="100%" fill="white"/>
 <style>text{font-family:Arial,"Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#1f2937}.title{font-size:23px;font-weight:700}.sub{font-size:14px;fill:#4b5563}.axis{font-size:12px}.grid{stroke:#e5e7eb;stroke-width:1}</style>
 <text class="title" x="30" y="38">MoE 合成批次完成时间：24 个需求 seed × 六种机制</text>
-<text class="sub" x="30" y="64">背景流 192 条 · 每个点是一格独立原始结果 · 横向分组按 seed 配对 · 越低越好</text>
+<text class="sub" x="30" y="64">背景流 192 条 · seed 20262521–20262544（横轴标末两位）· 同 seed 六臂配对 · 越低越好</text>
 <line class="grid" x1="82" y1="574.00" x2="1382" y2="574.00"/>
 <text class="axis" text-anchor="end" x="73" y="578.00">14.0</text>
 <line class="grid" x1="82" y1="480.00" x2="1382" y2="480.00"/>
@@ -15,168 +15,168 @@
 <text class="axis" text-anchor="end" x="73" y="202.00">21.3</text>
 <line class="grid" x1="82" y1="104.00" x2="1382" y2="104.00"/>
 <text class="axis" text-anchor="end" x="73" y="108.00">23.2</text>
-<text class="axis" text-anchor="middle" x="109.08" y="594">20262521</text>
+<text class="axis" text-anchor="middle" x="109.08" y="594">21</text>
 <circle cx="93.58" cy="345.09" r="3.5" fill="#4b5563"><title>20262521 | ECMP | 18.462000 微秒 | 20261004-070000-ws25-formal-s21-b192-fecmp</title></circle>
 <circle cx="99.78" cy="485.82" r="3.5" fill="#2563eb"><title>20262521 | DRILL | 15.710000 微秒 | 20261004-070000-ws25-formal-s21-b192-drill</title></circle>
 <circle cx="105.98" cy="287.10" r="3.5" fill="#16a34a"><title>20262521 | CONGA | 19.596000 微秒 | 20261004-070000-ws25-formal-s21-b192-conga</title></circle>
 <circle cx="112.18" cy="402.72" r="3.5" fill="#9333ea"><title>20262521 | LetFlow | 17.335000 微秒 | 20261004-070000-ws25-formal-s21-b192-letflow</title></circle>
 <circle cx="118.38" cy="368.30" r="3.5" fill="#d97706"><title>20262521 | ConWeave | 18.008000 微秒 | 20261004-070000-ws25-formal-s21-b192-conweave</title></circle>
 <circle cx="124.58" cy="368.76" r="3.5" fill="#dc2626"><title>20262521 | ClassReserve | 17.999000 微秒 | 20261004-070000-ws25-formal-s21-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="163.25" y="594">20262522</text>
+<text class="axis" text-anchor="middle" x="163.25" y="594">22</text>
 <circle cx="147.75" cy="376.33" r="3.5" fill="#4b5563"><title>20262522 | ECMP | 17.851000 微秒 | 20261004-070000-ws25-formal-s22-b192-fecmp</title></circle>
 <circle cx="153.95" cy="485.46" r="3.5" fill="#2563eb"><title>20262522 | DRILL | 15.717000 微秒 | 20261004-070000-ws25-formal-s22-b192-drill</title></circle>
 <circle cx="160.15" cy="183.18" r="3.5" fill="#16a34a"><title>20262522 | CONGA | 21.628000 微秒 | 20261004-070000-ws25-formal-s22-b192-conga</title></circle>
 <circle cx="166.35" cy="383.64" r="3.5" fill="#9333ea"><title>20262522 | LetFlow | 17.708000 微秒 | 20261004-070000-ws25-formal-s22-b192-letflow</title></circle>
 <circle cx="172.55" cy="233.15" r="3.5" fill="#d97706"><title>20262522 | ConWeave | 20.651000 微秒 | 20261004-070000-ws25-formal-s22-b192-conweave</title></circle>
 <circle cx="178.75" cy="390.19" r="3.5" fill="#dc2626"><title>20262522 | ClassReserve | 17.580000 微秒 | 20261004-070000-ws25-formal-s22-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="217.42" y="594">20262523</text>
+<text class="axis" text-anchor="middle" x="217.42" y="594">23</text>
 <circle cx="201.92" cy="375.67" r="3.5" fill="#4b5563"><title>20262523 | ECMP | 17.864000 微秒 | 20261004-070000-ws25-formal-s23-b192-fecmp</title></circle>
 <circle cx="208.12" cy="511.39" r="3.5" fill="#2563eb"><title>20262523 | DRILL | 15.210000 微秒 | 20261004-070000-ws25-formal-s23-b192-drill</title></circle>
 <circle cx="214.32" cy="363.14" r="3.5" fill="#16a34a"><title>20262523 | CONGA | 18.109000 微秒 | 20261004-070000-ws25-formal-s23-b192-conga</title></circle>
 <circle cx="220.52" cy="277.74" r="3.5" fill="#9333ea"><title>20262523 | LetFlow | 19.779000 微秒 | 20261004-070000-ws25-formal-s23-b192-letflow</title></circle>
 <circle cx="226.72" cy="360.53" r="3.5" fill="#d97706"><title>20262523 | ConWeave | 18.160000 微秒 | 20261004-070000-ws25-formal-s23-b192-conweave</title></circle>
 <circle cx="232.92" cy="404.05" r="3.5" fill="#dc2626"><title>20262523 | ClassReserve | 17.309000 微秒 | 20261004-070000-ws25-formal-s23-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="271.58" y="594">20262524</text>
+<text class="axis" text-anchor="middle" x="271.58" y="594">24</text>
 <circle cx="256.08" cy="283.26" r="3.5" fill="#4b5563"><title>20262524 | ECMP | 19.671000 微秒 | 20261004-070000-ws25-formal-s24-b192-fecmp</title></circle>
 <circle cx="262.28" cy="488.99" r="3.5" fill="#2563eb"><title>20262524 | DRILL | 15.648000 微秒 | 20261004-070000-ws25-formal-s24-b192-drill</title></circle>
 <circle cx="268.48" cy="311.28" r="3.5" fill="#16a34a"><title>20262524 | CONGA | 19.123000 微秒 | 20261004-070000-ws25-formal-s24-b192-conga</title></circle>
 <circle cx="274.68" cy="374.69" r="3.5" fill="#9333ea"><title>20262524 | LetFlow | 17.883000 微秒 | 20261004-070000-ws25-formal-s24-b192-letflow</title></circle>
 <circle cx="280.88" cy="327.19" r="3.5" fill="#d97706"><title>20262524 | ConWeave | 18.812000 微秒 | 20261004-070000-ws25-formal-s24-b192-conweave</title></circle>
 <circle cx="287.08" cy="382.36" r="3.5" fill="#dc2626"><title>20262524 | ClassReserve | 17.733000 微秒 | 20261004-070000-ws25-formal-s24-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="325.75" y="594">20262525</text>
+<text class="axis" text-anchor="middle" x="325.75" y="594">25</text>
 <circle cx="310.25" cy="398.68" r="3.5" fill="#4b5563"><title>20262525 | ECMP | 17.414000 微秒 | 20261004-070000-ws25-formal-s25-b192-fecmp</title></circle>
 <circle cx="316.45" cy="409.01" r="3.5" fill="#2563eb"><title>20262525 | DRILL | 17.212000 微秒 | 20261004-070000-ws25-formal-s25-b192-drill</title></circle>
 <circle cx="322.65" cy="335.27" r="3.5" fill="#16a34a"><title>20262525 | CONGA | 18.654000 微秒 | 20261004-070000-ws25-formal-s25-b192-conga</title></circle>
 <circle cx="328.85" cy="346.16" r="3.5" fill="#9333ea"><title>20262525 | LetFlow | 18.441000 微秒 | 20261004-070000-ws25-formal-s25-b192-letflow</title></circle>
 <circle cx="335.05" cy="394.84" r="3.5" fill="#d97706"><title>20262525 | ConWeave | 17.489000 微秒 | 20261004-070000-ws25-formal-s25-b192-conweave</title></circle>
 <circle cx="341.25" cy="418.16" r="3.5" fill="#dc2626"><title>20262525 | ClassReserve | 17.033000 微秒 | 20261004-070000-ws25-formal-s25-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="379.92" y="594">20262526</text>
+<text class="axis" text-anchor="middle" x="379.92" y="594">26</text>
 <circle cx="364.42" cy="382.42" r="3.5" fill="#4b5563"><title>20262526 | ECMP | 17.732000 微秒 | 20261004-070000-ws25-formal-s26-b192-fecmp</title></circle>
 <circle cx="370.62" cy="474.51" r="3.5" fill="#2563eb"><title>20262526 | DRILL | 15.931000 微秒 | 20261004-070000-ws25-formal-s26-b192-drill</title></circle>
 <circle cx="376.82" cy="306.73" r="3.5" fill="#16a34a"><title>20262526 | CONGA | 19.212000 微秒 | 20261004-070000-ws25-formal-s26-b192-conga</title></circle>
 <circle cx="383.02" cy="393.82" r="3.5" fill="#9333ea"><title>20262526 | LetFlow | 17.509000 微秒 | 20261004-070000-ws25-formal-s26-b192-letflow</title></circle>
 <circle cx="389.22" cy="369.17" r="3.5" fill="#d97706"><title>20262526 | ConWeave | 17.991000 微秒 | 20261004-070000-ws25-formal-s26-b192-conweave</title></circle>
 <circle cx="395.42" cy="341.61" r="3.5" fill="#dc2626"><title>20262526 | ClassReserve | 18.530000 微秒 | 20261004-070000-ws25-formal-s26-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="434.08" y="594">20262527</text>
+<text class="axis" text-anchor="middle" x="434.08" y="594">27</text>
 <circle cx="418.58" cy="370.14" r="3.5" fill="#4b5563"><title>20262527 | ECMP | 17.972000 微秒 | 20261004-070000-ws25-formal-s27-b192-fecmp</title></circle>
 <circle cx="424.78" cy="490.16" r="3.5" fill="#2563eb"><title>20262527 | DRILL | 15.625000 微秒 | 20261004-070000-ws25-formal-s27-b192-drill</title></circle>
 <circle cx="430.98" cy="305.45" r="3.5" fill="#16a34a"><title>20262527 | CONGA | 19.237000 微秒 | 20261004-070000-ws25-formal-s27-b192-conga</title></circle>
 <circle cx="437.18" cy="350.61" r="3.5" fill="#9333ea"><title>20262527 | LetFlow | 18.354000 微秒 | 20261004-070000-ws25-formal-s27-b192-letflow</title></circle>
 <circle cx="443.38" cy="339.31" r="3.5" fill="#d97706"><title>20262527 | ConWeave | 18.575000 微秒 | 20261004-070000-ws25-formal-s27-b192-conweave</title></circle>
 <circle cx="449.58" cy="388.19" r="3.5" fill="#dc2626"><title>20262527 | ClassReserve | 17.619000 微秒 | 20261004-070000-ws25-formal-s27-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="488.25" y="594">20262528</text>
+<text class="axis" text-anchor="middle" x="488.25" y="594">28</text>
 <circle cx="472.75" cy="307.50" r="3.5" fill="#4b5563"><title>20262528 | ECMP | 19.197000 微秒 | 20261004-070000-ws25-formal-s28-b192-fecmp</title></circle>
 <circle cx="478.95" cy="500.34" r="3.5" fill="#2563eb"><title>20262528 | DRILL | 15.426000 微秒 | 20261004-070000-ws25-formal-s28-b192-drill</title></circle>
 <circle cx="485.15" cy="269.25" r="3.5" fill="#16a34a"><title>20262528 | CONGA | 19.945000 微秒 | 20261004-070000-ws25-formal-s28-b192-conga</title></circle>
 <circle cx="491.35" cy="404.41" r="3.5" fill="#9333ea"><title>20262528 | LetFlow | 17.302000 微秒 | 20261004-070000-ws25-formal-s28-b192-letflow</title></circle>
 <circle cx="497.55" cy="388.19" r="3.5" fill="#d97706"><title>20262528 | ConWeave | 17.619000 微秒 | 20261004-070000-ws25-formal-s28-b192-conweave</title></circle>
 <circle cx="503.75" cy="409.01" r="3.5" fill="#dc2626"><title>20262528 | ClassReserve | 17.212000 微秒 | 20261004-070000-ws25-formal-s28-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="542.42" y="594">20262529</text>
+<text class="axis" text-anchor="middle" x="542.42" y="594">29</text>
 <circle cx="526.92" cy="337.21" r="3.5" fill="#4b5563"><title>20262529 | ECMP | 18.616000 微秒 | 20261004-070000-ws25-formal-s29-b192-fecmp</title></circle>
 <circle cx="533.12" cy="528.52" r="3.5" fill="#2563eb"><title>20262529 | DRILL | 14.875000 微秒 | 20261004-070000-ws25-formal-s29-b192-drill</title></circle>
 <circle cx="539.32" cy="352.19" r="3.5" fill="#16a34a"><title>20262529 | CONGA | 18.323000 微秒 | 20261004-070000-ws25-formal-s29-b192-conga</title></circle>
 <circle cx="545.52" cy="381.34" r="3.5" fill="#9333ea"><title>20262529 | LetFlow | 17.753000 微秒 | 20261004-070000-ws25-formal-s29-b192-letflow</title></circle>
 <circle cx="551.72" cy="357.21" r="3.5" fill="#d97706"><title>20262529 | ConWeave | 18.225000 微秒 | 20261004-070000-ws25-formal-s29-b192-conweave</title></circle>
 <circle cx="557.92" cy="379.86" r="3.5" fill="#dc2626"><title>20262529 | ClassReserve | 17.782000 微秒 | 20261004-070000-ws25-formal-s29-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="596.58" y="594">20262530</text>
+<text class="axis" text-anchor="middle" x="596.58" y="594">30</text>
 <circle cx="581.08" cy="347.49" r="3.5" fill="#4b5563"><title>20262530 | ECMP | 18.415000 微秒 | 20261004-070000-ws25-formal-s30-b192-fecmp</title></circle>
 <circle cx="587.28" cy="501.26" r="3.5" fill="#2563eb"><title>20262530 | DRILL | 15.408000 微秒 | 20261004-070000-ws25-formal-s30-b192-drill</title></circle>
 <circle cx="593.48" cy="318.08" r="3.5" fill="#16a34a"><title>20262530 | CONGA | 18.990000 微秒 | 20261004-070000-ws25-formal-s30-b192-conga</title></circle>
 <circle cx="599.68" cy="365.03" r="3.5" fill="#9333ea"><title>20262530 | LetFlow | 18.072000 微秒 | 20261004-070000-ws25-formal-s30-b192-letflow</title></circle>
 <circle cx="605.88" cy="396.89" r="3.5" fill="#d97706"><title>20262530 | ConWeave | 17.449000 微秒 | 20261004-070000-ws25-formal-s30-b192-conweave</title></circle>
 <circle cx="612.08" cy="414.33" r="3.5" fill="#dc2626"><title>20262530 | ClassReserve | 17.108000 微秒 | 20261004-070000-ws25-formal-s30-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="650.75" y="594">20262531</text>
+<text class="axis" text-anchor="middle" x="650.75" y="594">31</text>
 <circle cx="635.25" cy="354.85" r="3.5" fill="#4b5563"><title>20262531 | ECMP | 18.271000 微秒 | 20261004-070000-ws25-formal-s31-b192-fecmp</title></circle>
 <circle cx="641.45" cy="477.53" r="3.5" fill="#2563eb"><title>20262531 | DRILL | 15.872000 微秒 | 20261004-070000-ws25-formal-s31-b192-drill</title></circle>
 <circle cx="647.65" cy="401.80" r="3.5" fill="#16a34a"><title>20262531 | CONGA | 17.353000 微秒 | 20261004-070000-ws25-formal-s31-b192-conga</title></circle>
 <circle cx="653.85" cy="326.78" r="3.5" fill="#9333ea"><title>20262531 | LetFlow | 18.820000 微秒 | 20261004-070000-ws25-formal-s31-b192-letflow</title></circle>
 <circle cx="660.05" cy="364.47" r="3.5" fill="#d97706"><title>20262531 | ConWeave | 18.083000 微秒 | 20261004-070000-ws25-formal-s31-b192-conweave</title></circle>
 <circle cx="666.25" cy="401.95" r="3.5" fill="#dc2626"><title>20262531 | ClassReserve | 17.350000 微秒 | 20261004-070000-ws25-formal-s31-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="704.92" y="594">20262532</text>
+<text class="axis" text-anchor="middle" x="704.92" y="594">32</text>
 <circle cx="689.42" cy="197.45" r="3.5" fill="#4b5563"><title>20262532 | ECMP | 21.349000 微秒 | 20261004-070000-ws25-formal-s32-b192-fecmp</title></circle>
 <circle cx="695.62" cy="475.18" r="3.5" fill="#2563eb"><title>20262532 | DRILL | 15.918000 微秒 | 20261004-070000-ws25-formal-s32-b192-drill</title></circle>
 <circle cx="701.82" cy="325.40" r="3.5" fill="#16a34a"><title>20262532 | CONGA | 18.847000 微秒 | 20261004-070000-ws25-formal-s32-b192-conga</title></circle>
 <circle cx="708.02" cy="393.31" r="3.5" fill="#9333ea"><title>20262532 | LetFlow | 17.519000 微秒 | 20261004-070000-ws25-formal-s32-b192-letflow</title></circle>
 <circle cx="714.22" cy="341.45" r="3.5" fill="#d97706"><title>20262532 | ConWeave | 18.533000 微秒 | 20261004-070000-ws25-formal-s32-b192-conweave</title></circle>
 <circle cx="720.42" cy="440.76" r="3.5" fill="#dc2626"><title>20262532 | ClassReserve | 16.591000 微秒 | 20261004-070000-ws25-formal-s32-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="759.08" y="594">20262533</text>
+<text class="axis" text-anchor="middle" x="759.08" y="594">33</text>
 <circle cx="743.58" cy="329.44" r="3.5" fill="#4b5563"><title>20262533 | ECMP | 18.768000 微秒 | 20261004-070000-ws25-formal-s33-b192-fecmp</title></circle>
 <circle cx="749.78" cy="494.77" r="3.5" fill="#2563eb"><title>20262533 | DRILL | 15.535000 微秒 | 20261004-070000-ws25-formal-s33-b192-drill</title></circle>
 <circle cx="755.98" cy="340.18" r="3.5" fill="#16a34a"><title>20262533 | CONGA | 18.558000 微秒 | 20261004-070000-ws25-formal-s33-b192-conga</title></circle>
 <circle cx="762.18" cy="288.99" r="3.5" fill="#9333ea"><title>20262533 | LetFlow | 19.559000 微秒 | 20261004-070000-ws25-formal-s33-b192-letflow</title></circle>
 <circle cx="768.38" cy="367.13" r="3.5" fill="#d97706"><title>20262533 | ConWeave | 18.031000 微秒 | 20261004-070000-ws25-formal-s33-b192-conweave</title></circle>
 <circle cx="774.58" cy="336.24" r="3.5" fill="#dc2626"><title>20262533 | ClassReserve | 18.635000 微秒 | 20261004-070000-ws25-formal-s33-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="813.25" y="594">20262534</text>
+<text class="axis" text-anchor="middle" x="813.25" y="594">34</text>
 <circle cx="797.75" cy="406.25" r="3.5" fill="#4b5563"><title>20262534 | ECMP | 17.266000 微秒 | 20261004-070000-ws25-formal-s34-b192-fecmp</title></circle>
 <circle cx="803.95" cy="463.37" r="3.5" fill="#2563eb"><title>20262534 | DRILL | 16.149000 微秒 | 20261004-070000-ws25-formal-s34-b192-drill</title></circle>
 <circle cx="810.15" cy="301.67" r="3.5" fill="#16a34a"><title>20262534 | CONGA | 19.311000 微秒 | 20261004-070000-ws25-formal-s34-b192-conga</title></circle>
 <circle cx="816.35" cy="339.00" r="3.5" fill="#9333ea"><title>20262534 | LetFlow | 18.581000 微秒 | 20261004-070000-ws25-formal-s34-b192-letflow</title></circle>
 <circle cx="822.55" cy="328.11" r="3.5" fill="#d97706"><title>20262534 | ConWeave | 18.794000 微秒 | 20261004-070000-ws25-formal-s34-b192-conweave</title></circle>
 <circle cx="828.75" cy="419.95" r="3.5" fill="#dc2626"><title>20262534 | ClassReserve | 16.998000 微秒 | 20261004-070000-ws25-formal-s34-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="867.42" y="594">20262535</text>
+<text class="axis" text-anchor="middle" x="867.42" y="594">35</text>
 <circle cx="851.92" cy="362.93" r="3.5" fill="#4b5563"><title>20262535 | ECMP | 18.113000 微秒 | 20261004-070000-ws25-formal-s35-b192-fecmp</title></circle>
 <circle cx="858.12" cy="496.66" r="3.5" fill="#2563eb"><title>20262535 | DRILL | 15.498000 微秒 | 20261004-070000-ws25-formal-s35-b192-drill</title></circle>
 <circle cx="864.32" cy="342.38" r="3.5" fill="#16a34a"><title>20262535 | CONGA | 18.515000 微秒 | 20261004-070000-ws25-formal-s35-b192-conga</title></circle>
 <circle cx="870.52" cy="375.21" r="3.5" fill="#9333ea"><title>20262535 | LetFlow | 17.873000 微秒 | 20261004-070000-ws25-formal-s35-b192-letflow</title></circle>
 <circle cx="876.72" cy="330.20" r="3.5" fill="#d97706"><title>20262535 | ConWeave | 18.753000 微秒 | 20261004-070000-ws25-formal-s35-b192-conweave</title></circle>
 <circle cx="882.92" cy="376.07" r="3.5" fill="#dc2626"><title>20262535 | ClassReserve | 17.856000 微秒 | 20261004-070000-ws25-formal-s35-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="921.58" y="594">20262536</text>
+<text class="axis" text-anchor="middle" x="921.58" y="594">36</text>
 <circle cx="906.08" cy="431.76" r="3.5" fill="#4b5563"><title>20262536 | ECMP | 16.767000 微秒 | 20261004-070000-ws25-formal-s36-b192-fecmp</title></circle>
 <circle cx="912.28" cy="495.43" r="3.5" fill="#2563eb"><title>20262536 | DRILL | 15.522000 微秒 | 20261004-070000-ws25-formal-s36-b192-drill</title></circle>
 <circle cx="918.48" cy="356.03" r="3.5" fill="#16a34a"><title>20262536 | CONGA | 18.248000 微秒 | 20261004-070000-ws25-formal-s36-b192-conga</title></circle>
 <circle cx="924.68" cy="348.97" r="3.5" fill="#9333ea"><title>20262536 | LetFlow | 18.386000 微秒 | 20261004-070000-ws25-formal-s36-b192-letflow</title></circle>
 <circle cx="930.88" cy="284.64" r="3.5" fill="#d97706"><title>20262536 | ConWeave | 19.644000 微秒 | 20261004-070000-ws25-formal-s36-b192-conweave</title></circle>
 <circle cx="937.08" cy="465.77" r="3.5" fill="#dc2626"><title>20262536 | ClassReserve | 16.102000 微秒 | 20261004-070000-ws25-formal-s36-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="975.75" y="594">20262537</text>
+<text class="axis" text-anchor="middle" x="975.75" y="594">37</text>
 <circle cx="960.25" cy="365.08" r="3.5" fill="#4b5563"><title>20262537 | ECMP | 18.071000 微秒 | 20261004-070000-ws25-formal-s37-b192-fecmp</title></circle>
 <circle cx="966.45" cy="483.26" r="3.5" fill="#2563eb"><title>20262537 | DRILL | 15.760000 微秒 | 20261004-070000-ws25-formal-s37-b192-drill</title></circle>
 <circle cx="972.65" cy="317.06" r="3.5" fill="#16a34a"><title>20262537 | CONGA | 19.010000 微秒 | 20261004-070000-ws25-formal-s37-b192-conga</title></circle>
 <circle cx="978.85" cy="381.50" r="3.5" fill="#9333ea"><title>20262537 | LetFlow | 17.750000 微秒 | 20261004-070000-ws25-formal-s37-b192-letflow</title></circle>
 <circle cx="985.05" cy="354.29" r="3.5" fill="#d97706"><title>20262537 | ConWeave | 18.282000 微秒 | 20261004-070000-ws25-formal-s37-b192-conweave</title></circle>
 <circle cx="991.25" cy="439.08" r="3.5" fill="#dc2626"><title>20262537 | ClassReserve | 16.624000 微秒 | 20261004-070000-ws25-formal-s37-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="1029.92" y="594">20262538</text>
+<text class="axis" text-anchor="middle" x="1029.92" y="594">38</text>
 <circle cx="1014.42" cy="385.64" r="3.5" fill="#4b5563"><title>20262538 | ECMP | 17.669000 微秒 | 20261004-070000-ws25-formal-s38-b192-fecmp</title></circle>
 <circle cx="1020.62" cy="520.69" r="3.5" fill="#2563eb"><title>20262538 | DRILL | 15.028000 微秒 | 20261004-070000-ws25-formal-s38-b192-drill</title></circle>
 <circle cx="1026.82" cy="266.64" r="3.5" fill="#16a34a"><title>20262538 | CONGA | 19.996000 微秒 | 20261004-070000-ws25-formal-s38-b192-conga</title></circle>
 <circle cx="1033.02" cy="410.23" r="3.5" fill="#9333ea"><title>20262538 | LetFlow | 17.188000 微秒 | 20261004-070000-ws25-formal-s38-b192-letflow</title></circle>
 <circle cx="1039.22" cy="385.08" r="3.5" fill="#d97706"><title>20262538 | ConWeave | 17.680000 微秒 | 20261004-070000-ws25-formal-s38-b192-conweave</title></circle>
 <circle cx="1045.42" cy="463.98" r="3.5" fill="#dc2626"><title>20262538 | ClassReserve | 16.137000 微秒 | 20261004-070000-ws25-formal-s38-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="1084.08" y="594">20262539</text>
+<text class="axis" text-anchor="middle" x="1084.08" y="594">39</text>
 <circle cx="1068.58" cy="340.43" r="3.5" fill="#4b5563"><title>20262539 | ECMP | 18.553000 微秒 | 20261004-070000-ws25-formal-s39-b192-fecmp</title></circle>
 <circle cx="1074.78" cy="474.62" r="3.5" fill="#2563eb"><title>20262539 | DRILL | 15.929000 微秒 | 20261004-070000-ws25-formal-s39-b192-drill</title></circle>
 <circle cx="1080.98" cy="328.67" r="3.5" fill="#16a34a"><title>20262539 | CONGA | 18.783000 微秒 | 20261004-070000-ws25-formal-s39-b192-conga</title></circle>
 <circle cx="1087.18" cy="359.20" r="3.5" fill="#9333ea"><title>20262539 | LetFlow | 18.186000 微秒 | 20261004-070000-ws25-formal-s39-b192-letflow</title></circle>
 <circle cx="1093.38" cy="363.19" r="3.5" fill="#d97706"><title>20262539 | ConWeave | 18.108000 微秒 | 20261004-070000-ws25-formal-s39-b192-conweave</title></circle>
 <circle cx="1099.58" cy="401.75" r="3.5" fill="#dc2626"><title>20262539 | ClassReserve | 17.354000 微秒 | 20261004-070000-ws25-formal-s39-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="1138.25" y="594">20262540</text>
+<text class="axis" text-anchor="middle" x="1138.25" y="594">40</text>
 <circle cx="1122.75" cy="405.68" r="3.5" fill="#4b5563"><title>20262540 | ECMP | 17.277000 微秒 | 20261004-070000-ws25-formal-s40-b192-fecmp</title></circle>
 <circle cx="1128.95" cy="447.36" r="3.5" fill="#2563eb"><title>20262540 | DRILL | 16.462000 微秒 | 20261004-070000-ws25-formal-s40-b192-drill</title></circle>
 <circle cx="1135.15" cy="149.48" r="3.5" fill="#16a34a"><title>20262540 | CONGA | 22.287000 微秒 | 20261004-070000-ws25-formal-s40-b192-conga</title></circle>
 <circle cx="1141.35" cy="298.75" r="3.5" fill="#9333ea"><title>20262540 | LetFlow | 19.368000 微秒 | 20261004-070000-ws25-formal-s40-b192-letflow</title></circle>
 <circle cx="1147.55" cy="339.41" r="3.5" fill="#d97706"><title>20262540 | ConWeave | 18.573000 微秒 | 20261004-070000-ws25-formal-s40-b192-conweave</title></circle>
 <circle cx="1153.75" cy="360.17" r="3.5" fill="#dc2626"><title>20262540 | ClassReserve | 18.167000 微秒 | 20261004-070000-ws25-formal-s40-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="1192.42" y="594">20262541</text>
+<text class="axis" text-anchor="middle" x="1192.42" y="594">41</text>
 <circle cx="1176.92" cy="336.90" r="3.5" fill="#4b5563"><title>20262541 | ECMP | 18.622000 微秒 | 20261004-070000-ws25-formal-s41-b192-fecmp</title></circle>
 <circle cx="1183.12" cy="513.33" r="3.5" fill="#2563eb"><title>20262541 | DRILL | 15.172000 微秒 | 20261004-070000-ws25-formal-s41-b192-drill</title></circle>
 <circle cx="1189.32" cy="374.23" r="3.5" fill="#16a34a"><title>20262541 | CONGA | 17.892000 微秒 | 20261004-070000-ws25-formal-s41-b192-conga</title></circle>
 <circle cx="1195.52" cy="319.72" r="3.5" fill="#9333ea"><title>20262541 | LetFlow | 18.958000 微秒 | 20261004-070000-ws25-formal-s41-b192-letflow</title></circle>
 <circle cx="1201.72" cy="335.78" r="3.5" fill="#d97706"><title>20262541 | ConWeave | 18.644000 微秒 | 20261004-070000-ws25-formal-s41-b192-conweave</title></circle>
 <circle cx="1207.92" cy="444.04" r="3.5" fill="#dc2626"><title>20262541 | ClassReserve | 16.527000 微秒 | 20261004-070000-ws25-formal-s41-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="1246.58" y="594">20262542</text>
+<text class="axis" text-anchor="middle" x="1246.58" y="594">42</text>
 <circle cx="1231.08" cy="391.93" r="3.5" fill="#4b5563"><title>20262542 | ECMP | 17.546000 微秒 | 20261004-070000-ws25-formal-s42-b192-fecmp</title></circle>
 <circle cx="1237.28" cy="488.53" r="3.5" fill="#2563eb"><title>20262542 | DRILL | 15.657000 微秒 | 20261004-070000-ws25-formal-s42-b192-drill</title></circle>
 <circle cx="1243.48" cy="328.01" r="3.5" fill="#16a34a"><title>20262542 | CONGA | 18.796000 微秒 | 20261004-070000-ws25-formal-s42-b192-conga</title></circle>
 <circle cx="1249.68" cy="336.39" r="3.5" fill="#9333ea"><title>20262542 | LetFlow | 18.632000 微秒 | 20261004-070000-ws25-formal-s42-b192-letflow</title></circle>
 <circle cx="1255.88" cy="341.15" r="3.5" fill="#d97706"><title>20262542 | ConWeave | 18.539000 微秒 | 20261004-070000-ws25-formal-s42-b192-conweave</title></circle>
 <circle cx="1262.08" cy="354.03" r="3.5" fill="#dc2626"><title>20262542 | ClassReserve | 18.287000 微秒 | 20261004-070000-ws25-formal-s42-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="1300.75" y="594">20262543</text>
+<text class="axis" text-anchor="middle" x="1300.75" y="594">43</text>
 <circle cx="1285.25" cy="402.56" r="3.5" fill="#4b5563"><title>20262543 | ECMP | 17.338000 微秒 | 20261004-070000-ws25-formal-s43-b192-fecmp</title></circle>
 <circle cx="1291.45" cy="504.84" r="3.5" fill="#2563eb"><title>20262543 | DRILL | 15.338000 微秒 | 20261004-070000-ws25-formal-s43-b192-drill</title></circle>
 <circle cx="1297.65" cy="391.42" r="3.5" fill="#16a34a"><title>20262543 | CONGA | 17.556000 微秒 | 20261004-070000-ws25-formal-s43-b192-conga</title></circle>
 <circle cx="1303.85" cy="374.95" r="3.5" fill="#9333ea"><title>20262543 | LetFlow | 17.878000 微秒 | 20261004-070000-ws25-formal-s43-b192-letflow</title></circle>
 <circle cx="1310.05" cy="317.27" r="3.5" fill="#d97706"><title>20262543 | ConWeave | 19.006000 微秒 | 20261004-070000-ws25-formal-s43-b192-conweave</title></circle>
 <circle cx="1316.25" cy="357.92" r="3.5" fill="#dc2626"><title>20262543 | ClassReserve | 18.211000 微秒 | 20261004-070000-ws25-formal-s43-b192-classreserve</title></circle>
-<text class="axis" text-anchor="middle" x="1354.92" y="594">20262544</text>
+<text class="axis" text-anchor="middle" x="1354.92" y="594">44</text>
 <circle cx="1339.42" cy="396.73" r="3.5" fill="#4b5563"><title>20262544 | ECMP | 17.452000 微秒 | 20261004-070000-ws25-formal-s44-b192-fecmp</title></circle>
 <circle cx="1345.62" cy="500.34" r="3.5" fill="#2563eb"><title>20262544 | DRILL | 15.426000 微秒 | 20261004-070000-ws25-formal-s44-b192-drill</title></circle>
 <circle cx="1351.82" cy="347.18" r="3.5" fill="#16a34a"><title>20262544 | CONGA | 18.421000 微秒 | 20261004-070000-ws25-formal-s44-b192-conga</title></circle>
