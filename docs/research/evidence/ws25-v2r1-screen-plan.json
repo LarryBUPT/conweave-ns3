@@ -1,0 +1,311 @@
+{
+  "buffer_mib": 9,
+  "bw_gbps": 400,
+  "cap_after_first_block": 4,
+  "cap_first_block": 1,
+  "cells": [
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s79-b192-conga",
+      "level": 192,
+      "mode": "conga",
+      "run_order": 1,
+      "seed": 20262579,
+      "trace": "ws25_seed20262579_b192.txt",
+      "trace_sha256": "bd0f20cda634517bc1e0e710b615997e49d6ac2882150abe0465d282497c0953",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s79-b192-conweave",
+      "level": 192,
+      "mode": "conweave",
+      "run_order": 2,
+      "seed": 20262579,
+      "trace": "ws25_seed20262579_b192.txt",
+      "trace_sha256": "bd0f20cda634517bc1e0e710b615997e49d6ac2882150abe0465d282497c0953",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s79-b192-fecmp",
+      "level": 192,
+      "mode": "fecmp",
+      "run_order": 3,
+      "seed": 20262579,
+      "trace": "ws25_seed20262579_b192.txt",
+      "trace_sha256": "bd0f20cda634517bc1e0e710b615997e49d6ac2882150abe0465d282497c0953",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s79-b192-drill",
+      "level": 192,
+      "mode": "drill",
+      "run_order": 4,
+      "seed": 20262579,
+      "trace": "ws25_seed20262579_b192.txt",
+      "trace_sha256": "bd0f20cda634517bc1e0e710b615997e49d6ac2882150abe0465d282497c0953",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s79-b192-letflow",
+      "level": 192,
+      "mode": "letflow",
+      "run_order": 5,
+      "seed": 20262579,
+      "trace": "ws25_seed20262579_b192.txt",
+      "trace_sha256": "bd0f20cda634517bc1e0e710b615997e49d6ac2882150abe0465d282497c0953",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s79-b192-destspread",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 6,
+      "seed": 20262579,
+      "trace": "ws25_seed20262579_b192.txt",
+      "trace_sha256": "bd0f20cda634517bc1e0e710b615997e49d6ac2882150abe0465d282497c0953",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s79-b192-destspread-diag",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 7,
+      "seed": 20262579,
+      "trace": "ws25_seed20262579_b192.txt",
+      "trace_sha256": "bd0f20cda634517bc1e0e710b615997e49d6ac2882150abe0465d282497c0953",
+      "ws25_diag": 1
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s77-b192-drill",
+      "level": 192,
+      "mode": "drill",
+      "run_order": 8,
+      "seed": 20262577,
+      "trace": "ws25_seed20262577_b192.txt",
+      "trace_sha256": "ebbafb358ca663a1533d83bec652923f98bb5d3d2c431ac468854efaff913dfc",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s77-b192-destspread",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 9,
+      "seed": 20262577,
+      "trace": "ws25_seed20262577_b192.txt",
+      "trace_sha256": "ebbafb358ca663a1533d83bec652923f98bb5d3d2c431ac468854efaff913dfc",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s77-b192-letflow",
+      "level": 192,
+      "mode": "letflow",
+      "run_order": 10,
+      "seed": 20262577,
+      "trace": "ws25_seed20262577_b192.txt",
+      "trace_sha256": "ebbafb358ca663a1533d83bec652923f98bb5d3d2c431ac468854efaff913dfc",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s77-b192-fecmp",
+      "level": 192,
+      "mode": "fecmp",
+      "run_order": 11,
+      "seed": 20262577,
+      "trace": "ws25_seed20262577_b192.txt",
+      "trace_sha256": "ebbafb358ca663a1533d83bec652923f98bb5d3d2c431ac468854efaff913dfc",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s77-b192-conga",
+      "level": 192,
+      "mode": "conga",
+      "run_order": 12,
+      "seed": 20262577,
+      "trace": "ws25_seed20262577_b192.txt",
+      "trace_sha256": "ebbafb358ca663a1533d83bec652923f98bb5d3d2c431ac468854efaff913dfc",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s77-b192-conweave",
+      "level": 192,
+      "mode": "conweave",
+      "run_order": 13,
+      "seed": 20262577,
+      "trace": "ws25_seed20262577_b192.txt",
+      "trace_sha256": "ebbafb358ca663a1533d83bec652923f98bb5d3d2c431ac468854efaff913dfc",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s77-b192-destspread-diag",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 14,
+      "seed": 20262577,
+      "trace": "ws25_seed20262577_b192.txt",
+      "trace_sha256": "ebbafb358ca663a1533d83bec652923f98bb5d3d2c431ac468854efaff913dfc",
+      "ws25_diag": 1
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s78-b192-fecmp",
+      "level": 192,
+      "mode": "fecmp",
+      "run_order": 15,
+      "seed": 20262578,
+      "trace": "ws25_seed20262578_b192.txt",
+      "trace_sha256": "efa1e2e05cc50e41567eea42ced0a182374aa968e5aadb8acccd0692d98a6290",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s78-b192-conga",
+      "level": 192,
+      "mode": "conga",
+      "run_order": 16,
+      "seed": 20262578,
+      "trace": "ws25_seed20262578_b192.txt",
+      "trace_sha256": "efa1e2e05cc50e41567eea42ced0a182374aa968e5aadb8acccd0692d98a6290",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s78-b192-conweave",
+      "level": 192,
+      "mode": "conweave",
+      "run_order": 17,
+      "seed": 20262578,
+      "trace": "ws25_seed20262578_b192.txt",
+      "trace_sha256": "efa1e2e05cc50e41567eea42ced0a182374aa968e5aadb8acccd0692d98a6290",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s78-b192-drill",
+      "level": 192,
+      "mode": "drill",
+      "run_order": 18,
+      "seed": 20262578,
+      "trace": "ws25_seed20262578_b192.txt",
+      "trace_sha256": "efa1e2e05cc50e41567eea42ced0a182374aa968e5aadb8acccd0692d98a6290",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s78-b192-letflow",
+      "level": 192,
+      "mode": "letflow",
+      "run_order": 19,
+      "seed": 20262578,
+      "trace": "ws25_seed20262578_b192.txt",
+      "trace_sha256": "efa1e2e05cc50e41567eea42ced0a182374aa968e5aadb8acccd0692d98a6290",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s78-b192-destspread",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 20,
+      "seed": 20262578,
+      "trace": "ws25_seed20262578_b192.txt",
+      "trace_sha256": "efa1e2e05cc50e41567eea42ced0a182374aa968e5aadb8acccd0692d98a6290",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s78-b192-destspread-diag",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 21,
+      "seed": 20262578,
+      "trace": "ws25_seed20262578_b192.txt",
+      "trace_sha256": "efa1e2e05cc50e41567eea42ced0a182374aa968e5aadb8acccd0692d98a6290",
+      "ws25_diag": 1
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s80-b192-drill",
+      "level": 192,
+      "mode": "drill",
+      "run_order": 22,
+      "seed": 20262580,
+      "trace": "ws25_seed20262580_b192.txt",
+      "trace_sha256": "5136210cee72dcea2878b53ea245e165e801f4243c7449561f2a0f079838fbc4",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s80-b192-conweave",
+      "level": 192,
+      "mode": "conweave",
+      "run_order": 23,
+      "seed": 20262580,
+      "trace": "ws25_seed20262580_b192.txt",
+      "trace_sha256": "5136210cee72dcea2878b53ea245e165e801f4243c7449561f2a0f079838fbc4",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s80-b192-conga",
+      "level": 192,
+      "mode": "conga",
+      "run_order": 24,
+      "seed": 20262580,
+      "trace": "ws25_seed20262580_b192.txt",
+      "trace_sha256": "5136210cee72dcea2878b53ea245e165e801f4243c7449561f2a0f079838fbc4",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s80-b192-fecmp",
+      "level": 192,
+      "mode": "fecmp",
+      "run_order": 25,
+      "seed": 20262580,
+      "trace": "ws25_seed20262580_b192.txt",
+      "trace_sha256": "5136210cee72dcea2878b53ea245e165e801f4243c7449561f2a0f079838fbc4",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s80-b192-letflow",
+      "level": 192,
+      "mode": "letflow",
+      "run_order": 26,
+      "seed": 20262580,
+      "trace": "ws25_seed20262580_b192.txt",
+      "trace_sha256": "5136210cee72dcea2878b53ea245e165e801f4243c7449561f2a0f079838fbc4",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s80-b192-destspread",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 27,
+      "seed": 20262580,
+      "trace": "ws25_seed20262580_b192.txt",
+      "trace_sha256": "5136210cee72dcea2878b53ea245e165e801f4243c7449561f2a0f079838fbc4",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-180000-ws25-v2r1-screen-s80-b192-destspread-diag",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 28,
+      "seed": 20262580,
+      "trace": "ws25_seed20262580_b192.txt",
+      "trace_sha256": "5136210cee72dcea2878b53ea245e165e801f4243c7449561f2a0f079838fbc4",
+      "ws25_diag": 1
+    }
+  ],
+  "irn": 1,
+  "level": 192,
+  "modes": [
+    "fecmp",
+    "drill",
+    "conga",
+    "letflow",
+    "conweave",
+    "destspread"
+  ],
+  "ns3_seed": 1,
+  "order_seed": 2026100617,
+  "pfc": 0,
+  "role": "v2 sole correction exploratory screen; no efficacy claim",
+  "seeds": [
+    20262577,
+    20262578,
+    20262579,
+    20262580
+  ],
+  "simulator_sha": "206888df97e2fd5fd37656d51deda5fb6a4e96c1",
+  "source_sha": "5a4334116bdb38466533204af51f6f12d77d07b4",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
