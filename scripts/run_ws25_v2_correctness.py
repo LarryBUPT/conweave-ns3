@@ -55,8 +55,39 @@ def host_gate(reject_active=False):
 
 
 def status(experiment_id):
+    # The older status SSH has occasionally printed metadata and then waited
+    # for channel closure. A short stdin script gives one bounded, read-only
+    # metadata/PID observation and never converts an observation timeout into
+    # permission to build or rerun the same ID.
+    script = ("import json,os\n"
+              "i=%r\n"
+              "base='/home/fnl/lzy/results/'+i\n"
+              "path=base+'/metadata.json'\n"
+              "if not os.path.isfile(path):\n"
+              " print('REMOTE_METADATA_MISSING:'+i)\n"
+              " raise SystemExit(3)\n"
+              "assert not os.path.islink(base) and not os.path.islink(path)\n"
+              "data=json.load(open(path))\n"
+              "if data.get('status')=='RUNNING':\n"
+              " pid=data.get('pid')\n"
+              " try: os.kill(pid,0)\n"
+              " except OSError: raise RuntimeError('RUNNING worker PID missing')\n"
+              "print('STATUS_JSON:'+json.dumps(data,sort_keys=True))\n") % experiment_id
     with TRANSPORT_LOCK:
-        return base.status(experiment_id)
+        cfg = remote.config()
+        observed = subprocess.run(remote.ssh_base(cfg) + ["python3", "-"],
+                                  input=script, capture_output=True, text=True, timeout=45)
+    lines = observed.stdout.splitlines()
+    if observed.returncode == 3 and any("REMOTE_METADATA_MISSING:" + experiment_id in line
+                                        for line in lines):
+        raise RuntimeError("REMOTE_METADATA_MISSING: " + experiment_id)
+    if observed.returncode:
+        raise RuntimeError("Read-only status failed for %s: %s" %
+                           (experiment_id, (observed.stdout + observed.stderr)[-1200:]))
+    records = [line[len("STATUS_JSON:"):] for line in lines if line.startswith("STATUS_JSON:")]
+    if len(records) != 1:
+        raise RuntimeError("Read-only status marker absent: " + experiment_id)
+    return json.loads(records[0])
 
 
 def run_cell(cell, cap):
