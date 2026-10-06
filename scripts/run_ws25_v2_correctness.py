@@ -16,6 +16,8 @@ import verify_ws25_v2_correctness as verifier
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPTS = ROOT / "results" / "ws25-v2-correctness-receipts.jsonl"
 LOCK = threading.Lock()
+ADMISSION_LOCK = threading.Lock()
+TRANSPORT_LOCK = threading.Lock()
 
 
 def receipt(event, cell, **details):
@@ -30,12 +32,13 @@ def receipt(event, cell, **details):
 
 
 def host_gate(reject_active=False):
-    values = base.audit(reject_active=reject_active)
-    if float(values["mem_available_gib"]) - 4 * 5 < 32:
-        raise RuntimeError("Projected memory below 32 GiB for cap=4")
-    cfg = remote.config()
-    process = subprocess.run(remote.ssh_base(cfg) + ["ps -eo user=,stat=,comm="],
-                             capture_output=True, text=True, timeout=45, check=True)
+    with TRANSPORT_LOCK:
+        values = base.audit(reject_active=reject_active)
+        if float(values["mem_available_gib"]) - 4 * 5 < 32:
+            raise RuntimeError("Projected memory below 32 GiB for cap=4")
+        cfg = remote.config()
+        process = subprocess.run(remote.ssh_base(cfg) + ["ps -eo user=,stat=,comm="],
+                                 capture_output=True, text=True, timeout=45, check=True)
     others = []
     for line in process.stdout.splitlines():
         fields = line.split()
@@ -52,7 +55,8 @@ def host_gate(reject_active=False):
 
 
 def status(experiment_id):
-    return base.status(experiment_id)
+    with TRANSPORT_LOCK:
+        return base.status(experiment_id)
 
 
 def run_cell(cell, cap):
@@ -74,28 +78,36 @@ def run_cell(cell, cap):
     if state["git_commit"] != verifier.SHA:
         raise RuntimeError("Wrong fixed source SHA: " + experiment_id)
     if state["status"] == "BUILT":
-        host_gate()
-        base.start_watch(experiment_id)
-        base.command("run", experiment_id, "--lb", mode, "--pfc", "0", "--irn", "1",
-                     "--bw", "400", "--buffer", "9", "--topo",
-                     "topo_1280_400G_400G_OS1", "--flow-file", trace,
-                     "--simul-time", "0.01", "--netload", "10", "--max-concurrent",
-                     str(cap), "--ws25-diag", "0")
-        receipt("started", cell, cap=cap)
-        state = status(experiment_id)
+        # Build requests may run in parallel, but admission uses serial SSH
+        # checks. Concurrent read probes have previously left SSH clients
+        # waiting after the server had already returned its response.
+        with ADMISSION_LOCK:
+            host_gate()
+            with TRANSPORT_LOCK:
+                base.start_watch(experiment_id)
+                base.command("run", experiment_id, "--lb", mode, "--pfc", "0", "--irn", "1",
+                             "--bw", "400", "--buffer", "9", "--topo",
+                             "topo_1280_400G_400G_OS1", "--flow-file", trace,
+                             "--simul-time", "0.01", "--netload", "10", "--max-concurrent",
+                             str(cap), "--ws25-diag", "0")
+            receipt("started", cell, cap=cap)
+            state = status(experiment_id)
     elif state["status"] not in ("RUNNING", "SUCCEEDED"):
         raise RuntimeError("Unexpected state for %s: %s" % (experiment_id, state["status"]))
     while state["status"] == "RUNNING":
         time.sleep(90)
         state = status(experiment_id)
-        base.audit()
+        with TRANSPORT_LOCK:
+            base.audit()
     if state["status"] != "SUCCEEDED":
         raise RuntimeError("Terminal failure; preserve ID %s: %s" %
                            (experiment_id, state["status"]))
-    base.wait_watch(experiment_id)
-    base.command("fetch", experiment_id)
+    with TRANSPORT_LOCK:
+        base.wait_watch(experiment_id)
+        base.command("fetch", experiment_id)
     meta = json.loads((local / "metadata.json").read_text(encoding="utf-8"))
-    base.fetch_config_log({"id": experiment_id}, meta)
+    with TRANSPORT_LOCK:
+        base.fetch_config_log({"id": experiment_id}, meta)
     result = verifier.verify(*cell)
     receipt("verified", cell, cap=cap, fct_sha256=result["fct_sha256"],
             resource=result["resource"])
