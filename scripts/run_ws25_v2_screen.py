@@ -143,10 +143,23 @@ def group(cells, cap):
         wait_group(recovering)
         safe.host_gate(reject_active=True)
     if cap == 1:
-        for cell in cells:
-            build_one(cell)
-            start_one(cell, cap)
-            wait_group([cell])
+        # The first full-demand cell is the resource pilot. Only after its
+        # raw/resource receipt passes may later independent builds overlap.
+        first, rest = cells[0], cells[1:]
+        build_one(first)
+        start_one(first, cap)
+        wait_group([first])
+        for start in range(0, len(rest), 4):
+            batch = rest[start:start + 4]
+            safe.host_gate(reject_active=True)
+            with concurrent.futures.ThreadPoolExecutor(max_workers=len(batch)) as pool:
+                futures = [pool.submit(build_one, cell) for cell in batch]
+                for future in futures:
+                    future.result()
+            safe.host_gate(reject_active=True)
+            for cell in batch:
+                start_one(cell, cap)
+                wait_group([cell])
     else:
         with concurrent.futures.ThreadPoolExecutor(max_workers=len(cells)) as pool:
             futures = [pool.submit(build_one, cell) for cell in cells]
