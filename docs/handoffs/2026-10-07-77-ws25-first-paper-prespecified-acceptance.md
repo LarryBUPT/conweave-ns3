@@ -17,7 +17,7 @@
 
 1. 完成历史 WS-11/12/13/19/20 与开题报告边界审计、五基线同输入正确性、v1 修正版 11/11 前置格与 96/96 正式候选格验收；旧模式动态分支触发不足明确记录。
 2. 在未见最终需求池前冻结[正式协议](../research/ws25-v1fix-formal-protocol.md)、[96 输入 manifest](../research/evidence/ws25-v1fix-formal-inputs.json)、[576 ID 计划](../research/evidence/ws25-v1fix-formal-plan.json)及资源门，执行所有 36 批。SSH/fetch 控制面异常按原 metadata/PID/raw 防重恢复，没有覆盖已验收 raw。
-3. 从 raw 形成[正式双侧分析](../research/ws25-v1fix-formal-analysis.md)、[两格尾流诊断](../research/ws25-v1-formal-tail-diagnostic-analysis.md)、[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)、576 行逐格表、840 行配对表、1008 条 CDF 索引及 192 张 SVG。两格诊断重新逐流解析了已记录的上游出口等待，仍缺同粒度 ECMP 对照与按包时序，不能确认因果。[负结果初稿](../research/ws25-classreserve-v1-paper-draft.md)与[图文终审](../research/ws25-v1fix-paper-package-audit.md)已完成。
+3. 从 raw 形成[正式双侧分析](../research/ws25-v1fix-formal-analysis.md)、[两格尾流诊断](../research/ws25-v1-formal-tail-diagnostic-analysis.md)、[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)、576 行逐格表、840 行配对表、1008 条 CDF 索引及 192 张 SVG。两格诊断重新逐流解析了已记录的上游出口等待；正式 192 档 144 格的[公共窗口上联利用率](../research/ws25-v1fix-uplink-utilization-supplement.md)也由累计原始计数补算。仍缺同粒度 ECMP 逐 QP 探针与按包时序，不能确认因果。[负结果初稿](../research/ws25-classreserve-v1-paper-draft.md)与[图文终审](../research/ws25-v1fix-paper-package-audit.md)已完成。
 4. 对额外 v2/v2r1 原始数据做独立探索报告；v2r1 的 28 格重新逐 raw 验证并形成[机器分析](../research/evidence/ws25-v2r1-screen-analysis.json)。2026-10-07 对第一课题全部七项预设验收作[逐项审计](../research/ws25-first-paper-acceptance-audit.md)，列明证据和适用边界。
 
 ## 4. 已形成的设计决策
