@@ -1,6 +1,6 @@
 # WS-25：第一课题类别感知包流混合负载均衡执行清单
 
-状态：**ACTIVE，2026-10-06**。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。第一课题的 ClassReserve v1 修正版正式矩阵已完成 36 批、576/576 格 raw 逐格验收，确认性共同主结果为 **NO-GO**；详见[正式分析](../research/ws25-v1fix-formal-analysis.md)及[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)。两格事后尾流诊断已按资源收据恢复计划验收，见[诊断报告](../research/ws25-v1-formal-tail-diagnostic-analysis.md)；正式逐格指标表、逐 seed 配对表、六臂 FCT/CDF、上联与 ConWeave VOQ 适用图已落盘，见[数据索引](../research/ws25-v1fix-formal-data-index.md)。小论文负结果初稿已形成，但图包终审、候选后续决策、成稿核对与全部预设验收尚未闭环。旧 WS-21 状态反馈余项仍在投稿后第二课题门槛，不与本课题并行。下方较早日期的检查点仅作历史记录，不能代替本段当前状态。
+状态：**ACTIVE，2026-10-06**。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。第一课题的 ClassReserve v1 修正版正式矩阵已完成 36 批、576/576 格 raw 逐格验收，确认性共同主结果为 **NO-GO**；详见[正式分析](../research/ws25-v1fix-formal-analysis.md)及[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)。两格事后尾流诊断已按资源收据恢复计划验收，见[诊断报告](../research/ws25-v1-formal-tail-diagnostic-analysis.md)；正式逐格指标表、逐 seed 配对表、六臂 FCT/CDF、上联与 ConWeave VOQ 适用图已落盘，见[数据索引](../research/ws25-v1fix-formal-data-index.md)。v2 DestSpread 已在新 SHA 下完成 12/12 个已见小输入正确性格；非扰动诊断与独立需求实验未做，不能宣称 v2 收益。小论文负结果初稿已形成，但图包终审、候选后续决策、成稿核对与全部预设验收尚未闭环。旧 WS-21 状态反馈余项仍在投稿后第二课题门槛，不与本课题并行。下方较早日期的检查点仅作历史记录，不能代替本段当前状态。
 
 ## 研究问题与边界
 
@@ -24,7 +24,7 @@
 | --- | --- | --- |
 | 1. 证据与机制 | v1 假说、可实现信号、失败预测及 1/3 候选台账见[审计](../research/ws25-classreserve-audit-and-preflight.md)；v1 唯一诊断修正已用（1/1）；正式反例与两格诊断见[报告](../research/ws25-v1fix-formal-analysis.md)和[诊断](../research/ws25-v1-formal-tail-diagnostic-analysis.md)；[v2 DestSpread Hybrid 草案](../research/ws25-v2-destspread-hybrid-hypothesis.md)已有本地模式号 22 实现但尚无远端编译或正确性证据 | 审查 v2 源码可控性、同条件正确性和新独立需求；不得在已揭盲最终 seed 上改 v1 或将草案当 v2 效果证据 |
 | 2. 五模式同条件 | 修正版 11/11 正确性/fallback 格通过；正式五基线和候选 576/576 格同输入、同 SHA、全部流完成，元数据和字节核验通过 | 对动态分支覆盖不足维持限制，必要的定向正确性验证另用新身份 |
-| 3. 候选实现 | ClassReserve 修正版固定仿真 SHA `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`；96/96 正式候选格队列守恒且无 drop/违规 | 明确新候选是否进入独立迭代；v1 不继续调参 |
+| 3. 候选实现 | ClassReserve 修正版固定仿真 SHA `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`；96/96 正式候选格队列守恒且无 drop/违规。v2 源码 `87bb136ba85126c8c6c883814c7fa10cdcd74fda` 的 12/12 个新 ID 经 raw、输入、资源、旧模式指纹和候选队列守恒验收 | v2 仍需同输入诊断开关指纹、逐 QP 乱序/反馈审计，随后才可进入新独立需求筛选；v1 不继续调参 |
 | 4–5. 设计、校准和冻结 | 筛选/校准/最终 seed 分离；正式 24 seed、96 输入、576 ID、双主判据、次级 Holm、低档约束和资源线均在运行前冻结，见[协议](../research/ws25-v1fix-formal-protocol.md)与[计划](../research/evidence/ws25-v1fix-formal-plan.json) | 缺失的物理队列和逐跳指标不能填零；机制结论保持有限 |
 | 6. 正式验证 | [执行证据](../research/evidence/ws25-v1fix-formal-execution.json)与本地原始结果证明 36 批、576/576 原 ID 逐格通过，资源门全部通过 | 无 v1 正式格待跑；保留原始目录与失败恢复记录 |
 | 7. 分析及成稿 | [正式分析](../research/ws25-v1fix-formal-analysis.md)、[192 档图](../research/figures/ws25-v1fix-formal-192-effects.svg)、[逐格和逐 seed 图表索引](../research/ws25-v1fix-formal-data-index.md)、[两格尾流诊断](../research/ws25-v1-formal-tail-diagnostic-analysis.md)、[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)、[小论文初稿](../research/ws25-classreserve-v1-paper-draft.md)已形成；主判据 NO-GO | 对图包作视觉与数值终审，核对稿件参考文献/术语/图文一致性，决定下一候选；不能以 v1 单次 NO-GO 宣布整题闭环 |

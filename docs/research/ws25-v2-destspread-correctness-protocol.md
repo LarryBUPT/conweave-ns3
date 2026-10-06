@@ -33,3 +33,9 @@
 ## 运行安全
 
 首格 cap=1；每次启动前确认无其他用户作业、未知 ns-3 或 worker，锁可用，1 分钟 load≤20、每 worker 预留 5 GiB 后 MemAvailable≥32 GiB、空盘≥100 GiB、树 RSS≤32 GiB。资源 watcher 先于仿真启动并留下逐格收据。编译/仿真或 SSH 观察失败时先核原 ID、metadata、PID 和 raw，不因超时重启。任一身份、完成率、守恒或资源检查失败，停止扩格，保留原 ID；代码修正必须用新 SHA 和新 ID。全部正确性通过后另用从未参与 v1 的需求 seed 做独立筛选与资源 pilot，正式门槛和计划在最终 seed 揭盲前另冻。
+
+## 终态验收记录（2026-10-06）
+
+12 个冻结 ID 均 `SUCCEEDED`，由 `scripts/verify_ws25_v2_correctness.py` 独立重验 12/12：输入流全部完成、trace/拓扑/SHA/参数匹配、候选类别队列守恒、tag0/五列回退 FCT 与同 SHA ECMP 一致、旧五模式 mixed8 FCT 与 v1 正确性同输入指纹一致。最大单格进程树 RSS 4,562.16 MiB，最低可用内存 109.57 GiB，最低空闲盘 4,950.76 GiB。原始结果在各自 `results/<ID>/`，控制收据在 `results/ws25-v2-correctness-receipts.jsonl`；此为小样正确性，不计 v2 收益。
+
+控制器曾两次因 SSH 读取超时退出。每次均先批量只读核对原 ID、SHA、PID、raw 和资源：未启动格仍为 `BUILT` 且无 raw，在途仿真为空，已验收格不重跑。最后用串行准入与有界 SSH stdin 状态读取沿原 ID 恢复，未覆盖旧结果。非扰动诊断和独立需求筛选尚未验收。
