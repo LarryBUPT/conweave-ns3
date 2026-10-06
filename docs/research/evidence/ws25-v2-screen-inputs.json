@@ -1,0 +1,150 @@
+{
+  "calibration_pilot_reserved": [
+    20262549,
+    20262550,
+    20262551,
+    20262552
+  ],
+  "final_reserved": [
+    20262553,
+    20262576
+  ],
+  "generator": "scripts/make_ws25_demand.py",
+  "role": "v2 exploratory screening, not confirmatory evidence",
+  "screening_seeds": [
+    20262545,
+    20262546,
+    20262547,
+    20262548
+  ],
+  "seeds": {
+    "20262545": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262545_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "82b5f2d3ec2617ed3354d2e124067790b709b3ad9c9bfc616e526cec2b5f42f3"
+        },
+        "128": {
+          "file": "ws25_seed20262545_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "3866ae9fe120f443c8dd1d059b8dfd98f7aa61533739f3c523bf33d01095dd83"
+        },
+        "192": {
+          "file": "ws25_seed20262545_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "f30debceb90455d74c2bd98e3ab1e45b1fbf66def16291ea170bfc97cd2ed622"
+        },
+        "64": {
+          "file": "ws25_seed20262545_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "5ea9a86d210aa94493aa3a8ca57cebd14a3f42ce9098ec70f740fe30334f955a"
+        }
+      },
+      "seed": 20262545
+    },
+    "20262546": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262546_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "462ff126e409ba21aefcfa808a80cca1b367967d58fd7d4a0ec1e1c4da20df8f"
+        },
+        "128": {
+          "file": "ws25_seed20262546_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "6e3746cbbaa8b151f805833f95bfda7fd2abadb3e1b013ff6313295e7d8db5cf"
+        },
+        "192": {
+          "file": "ws25_seed20262546_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "31bf748f10df1b94b2fd80226fd4262c7c67205c56702acc1cfe91c6521f17b2"
+        },
+        "64": {
+          "file": "ws25_seed20262546_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "2dc664a3bff6bc7de451c42959a696e7445ab0a5d2c4ba41d3c8c1fa1f2ba827"
+        }
+      },
+      "seed": 20262546
+    },
+    "20262547": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262547_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "41654839c0d51c5e194bba6e02d5991083a98d34dc72079873b36606702d469d"
+        },
+        "128": {
+          "file": "ws25_seed20262547_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "cc4884b094c5bcb753255d823aabd4d51a5f8d7477f738f2396b7d753e43552c"
+        },
+        "192": {
+          "file": "ws25_seed20262547_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "4889607ead3071f8771e4182709380230a713a787859f09a64c4e4d934b51234"
+        },
+        "64": {
+          "file": "ws25_seed20262547_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "29e1f3f8cbfb7f2e64bddd878fcf10d7ba2d48a0d6b1689f42eb31afa295b09a"
+        }
+      },
+      "seed": 20262547
+    },
+    "20262548": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262548_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "ac284cf32625c592cec1c32606cfcfc1de8afcdb9727a511bc6644aff822b982"
+        },
+        "128": {
+          "file": "ws25_seed20262548_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "61f0ba19ba16a48e5a52829fde2f9c3dbe6ce1be76e3b22faf51e7cbebc2e8e9"
+        },
+        "192": {
+          "file": "ws25_seed20262548_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "df49537bae1be356f234c210c33889b14ce756994cff8f6e1d0afe5d53bd28c3"
+        },
+        "64": {
+          "file": "ws25_seed20262548_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "04df9a7b1cd4f4c14a8fcfb0bcf244a72864d1a520beb1f515d875bc6cbc160b"
+        }
+      },
+      "seed": 20262548
+    }
+  }
+}
