@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-07 当前入口：WS-25 第一课题七项预设 ns-3 实验与小论文初稿验收完成，正式 576/576 格共同主判据 **NO-GO**；见[验收审计](../research/ws25-first-paper-acceptance-audit.md)、[Handoff 77](../handoffs/2026-10-07-77-ws25-first-paper-prespecified-acceptance.md)和[负结果初稿](../research/ws25-classreserve-v1-paper-draft.md)。下一里程碑是确定投稿目标并适配版式、引用及投稿；尚未投稿，不自动归档。第二课题状态反馈须等投稿后再启动，并先审查 WS-21 的时效、成本及采用/回退证据。下文较早日期的运行安排均属历史快照，不得据此恢复旧矩阵。
+
 2026-10-02 当前执行入口：用户将旧 WS-25 本地证据收束调整为第一课题的机制实现、独立 ns-3 验证和小论文成稿，见 [WS-25 执行清单](WS25_FIRST_PAPER_EXECUTION.md)。先做类别感知选路，五原始模式同条件对照；独立 pilot 后冻结双侧数值与最终样本。WS-21 状态反馈余项不并行推进，待小论文投稿后作为第二课题门槛审查。下文旧 WS-25“仅收束”的记录属于历史规划，不是当前执行范围。
 
 2026-10-04 WS-25 状态更新：修正版四需求 192 档及 0/64/128 档 72 格校准均已完成 raw/资源验收，并完成逐 seed [低档双侧分析](../research/ws25-v1fix-lower-load-calibration-analysis.md)。它显示与 DRILL、CONGA 等存在 MoE/后台权衡，不产生正式收益结论。18 路容量相对 16 路吞吐只增 4.23%，矩阵继续 cap=16。事前 [正式协议](../research/ws25-v1fix-formal-protocol.md)已固定两项共同主判据、五基线层级比较、低档约束及 24 个独立最终需求；96 份输入 SHA 和 576 格 ID/顺序见[机器计划](../research/evidence/ws25-v1fix-formal-plan.json)。前 10 批 **160/576 格**已通过正式 raw 与资源验收；第 11 批 16 个原 ID 已启动。唯一 runner PID `46324` 仍活、stderr 空；17 个 `built_recovered_transport` 事件均在状态回读后终结，其中重复 build 被远端拒绝，未覆盖已验收 raw。按半小时读取收据与资源摘要，批次验收后继续冻结计划；全格终态切 Sol High 双侧分析及写论文。详情见 [Handoff 73](../handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md)。WS-25 尚未闭环。
