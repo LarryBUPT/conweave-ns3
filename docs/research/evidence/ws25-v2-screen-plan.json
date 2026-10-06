@@ -1,0 +1,311 @@
+{
+  "buffer_mib": 9,
+  "bw_gbps": 400,
+  "cap_after_first_block": 4,
+  "cap_first_block": 1,
+  "cells": [
+    {
+      "id": "20261006-140000-ws25-v2-screen-s45-b192-conweave",
+      "level": 192,
+      "mode": "conweave",
+      "run_order": 1,
+      "seed": 20262545,
+      "trace": "ws25_seed20262545_b192.txt",
+      "trace_sha256": "f30debceb90455d74c2bd98e3ab1e45b1fbf66def16291ea170bfc97cd2ed622",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s45-b192-fecmp",
+      "level": 192,
+      "mode": "fecmp",
+      "run_order": 2,
+      "seed": 20262545,
+      "trace": "ws25_seed20262545_b192.txt",
+      "trace_sha256": "f30debceb90455d74c2bd98e3ab1e45b1fbf66def16291ea170bfc97cd2ed622",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s45-b192-letflow",
+      "level": 192,
+      "mode": "letflow",
+      "run_order": 3,
+      "seed": 20262545,
+      "trace": "ws25_seed20262545_b192.txt",
+      "trace_sha256": "f30debceb90455d74c2bd98e3ab1e45b1fbf66def16291ea170bfc97cd2ed622",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s45-b192-conga",
+      "level": 192,
+      "mode": "conga",
+      "run_order": 4,
+      "seed": 20262545,
+      "trace": "ws25_seed20262545_b192.txt",
+      "trace_sha256": "f30debceb90455d74c2bd98e3ab1e45b1fbf66def16291ea170bfc97cd2ed622",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s45-b192-destspread",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 5,
+      "seed": 20262545,
+      "trace": "ws25_seed20262545_b192.txt",
+      "trace_sha256": "f30debceb90455d74c2bd98e3ab1e45b1fbf66def16291ea170bfc97cd2ed622",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s45-b192-drill",
+      "level": 192,
+      "mode": "drill",
+      "run_order": 6,
+      "seed": 20262545,
+      "trace": "ws25_seed20262545_b192.txt",
+      "trace_sha256": "f30debceb90455d74c2bd98e3ab1e45b1fbf66def16291ea170bfc97cd2ed622",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s45-b192-destspread-diag",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 7,
+      "seed": 20262545,
+      "trace": "ws25_seed20262545_b192.txt",
+      "trace_sha256": "f30debceb90455d74c2bd98e3ab1e45b1fbf66def16291ea170bfc97cd2ed622",
+      "ws25_diag": 1
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s48-b192-fecmp",
+      "level": 192,
+      "mode": "fecmp",
+      "run_order": 8,
+      "seed": 20262548,
+      "trace": "ws25_seed20262548_b192.txt",
+      "trace_sha256": "df49537bae1be356f234c210c33889b14ce756994cff8f6e1d0afe5d53bd28c3",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s48-b192-letflow",
+      "level": 192,
+      "mode": "letflow",
+      "run_order": 9,
+      "seed": 20262548,
+      "trace": "ws25_seed20262548_b192.txt",
+      "trace_sha256": "df49537bae1be356f234c210c33889b14ce756994cff8f6e1d0afe5d53bd28c3",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s48-b192-destspread",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 10,
+      "seed": 20262548,
+      "trace": "ws25_seed20262548_b192.txt",
+      "trace_sha256": "df49537bae1be356f234c210c33889b14ce756994cff8f6e1d0afe5d53bd28c3",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s48-b192-conga",
+      "level": 192,
+      "mode": "conga",
+      "run_order": 11,
+      "seed": 20262548,
+      "trace": "ws25_seed20262548_b192.txt",
+      "trace_sha256": "df49537bae1be356f234c210c33889b14ce756994cff8f6e1d0afe5d53bd28c3",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s48-b192-conweave",
+      "level": 192,
+      "mode": "conweave",
+      "run_order": 12,
+      "seed": 20262548,
+      "trace": "ws25_seed20262548_b192.txt",
+      "trace_sha256": "df49537bae1be356f234c210c33889b14ce756994cff8f6e1d0afe5d53bd28c3",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s48-b192-drill",
+      "level": 192,
+      "mode": "drill",
+      "run_order": 13,
+      "seed": 20262548,
+      "trace": "ws25_seed20262548_b192.txt",
+      "trace_sha256": "df49537bae1be356f234c210c33889b14ce756994cff8f6e1d0afe5d53bd28c3",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s48-b192-destspread-diag",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 14,
+      "seed": 20262548,
+      "trace": "ws25_seed20262548_b192.txt",
+      "trace_sha256": "df49537bae1be356f234c210c33889b14ce756994cff8f6e1d0afe5d53bd28c3",
+      "ws25_diag": 1
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s47-b192-letflow",
+      "level": 192,
+      "mode": "letflow",
+      "run_order": 15,
+      "seed": 20262547,
+      "trace": "ws25_seed20262547_b192.txt",
+      "trace_sha256": "4889607ead3071f8771e4182709380230a713a787859f09a64c4e4d934b51234",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s47-b192-conga",
+      "level": 192,
+      "mode": "conga",
+      "run_order": 16,
+      "seed": 20262547,
+      "trace": "ws25_seed20262547_b192.txt",
+      "trace_sha256": "4889607ead3071f8771e4182709380230a713a787859f09a64c4e4d934b51234",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s47-b192-destspread",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 17,
+      "seed": 20262547,
+      "trace": "ws25_seed20262547_b192.txt",
+      "trace_sha256": "4889607ead3071f8771e4182709380230a713a787859f09a64c4e4d934b51234",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s47-b192-fecmp",
+      "level": 192,
+      "mode": "fecmp",
+      "run_order": 18,
+      "seed": 20262547,
+      "trace": "ws25_seed20262547_b192.txt",
+      "trace_sha256": "4889607ead3071f8771e4182709380230a713a787859f09a64c4e4d934b51234",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s47-b192-conweave",
+      "level": 192,
+      "mode": "conweave",
+      "run_order": 19,
+      "seed": 20262547,
+      "trace": "ws25_seed20262547_b192.txt",
+      "trace_sha256": "4889607ead3071f8771e4182709380230a713a787859f09a64c4e4d934b51234",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s47-b192-drill",
+      "level": 192,
+      "mode": "drill",
+      "run_order": 20,
+      "seed": 20262547,
+      "trace": "ws25_seed20262547_b192.txt",
+      "trace_sha256": "4889607ead3071f8771e4182709380230a713a787859f09a64c4e4d934b51234",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s47-b192-destspread-diag",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 21,
+      "seed": 20262547,
+      "trace": "ws25_seed20262547_b192.txt",
+      "trace_sha256": "4889607ead3071f8771e4182709380230a713a787859f09a64c4e4d934b51234",
+      "ws25_diag": 1
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s46-b192-conweave",
+      "level": 192,
+      "mode": "conweave",
+      "run_order": 22,
+      "seed": 20262546,
+      "trace": "ws25_seed20262546_b192.txt",
+      "trace_sha256": "31bf748f10df1b94b2fd80226fd4262c7c67205c56702acc1cfe91c6521f17b2",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s46-b192-fecmp",
+      "level": 192,
+      "mode": "fecmp",
+      "run_order": 23,
+      "seed": 20262546,
+      "trace": "ws25_seed20262546_b192.txt",
+      "trace_sha256": "31bf748f10df1b94b2fd80226fd4262c7c67205c56702acc1cfe91c6521f17b2",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s46-b192-destspread",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 24,
+      "seed": 20262546,
+      "trace": "ws25_seed20262546_b192.txt",
+      "trace_sha256": "31bf748f10df1b94b2fd80226fd4262c7c67205c56702acc1cfe91c6521f17b2",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s46-b192-conga",
+      "level": 192,
+      "mode": "conga",
+      "run_order": 25,
+      "seed": 20262546,
+      "trace": "ws25_seed20262546_b192.txt",
+      "trace_sha256": "31bf748f10df1b94b2fd80226fd4262c7c67205c56702acc1cfe91c6521f17b2",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s46-b192-letflow",
+      "level": 192,
+      "mode": "letflow",
+      "run_order": 26,
+      "seed": 20262546,
+      "trace": "ws25_seed20262546_b192.txt",
+      "trace_sha256": "31bf748f10df1b94b2fd80226fd4262c7c67205c56702acc1cfe91c6521f17b2",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s46-b192-drill",
+      "level": 192,
+      "mode": "drill",
+      "run_order": 27,
+      "seed": 20262546,
+      "trace": "ws25_seed20262546_b192.txt",
+      "trace_sha256": "31bf748f10df1b94b2fd80226fd4262c7c67205c56702acc1cfe91c6521f17b2",
+      "ws25_diag": 0
+    },
+    {
+      "id": "20261006-140000-ws25-v2-screen-s46-b192-destspread-diag",
+      "level": 192,
+      "mode": "destspread",
+      "run_order": 28,
+      "seed": 20262546,
+      "trace": "ws25_seed20262546_b192.txt",
+      "trace_sha256": "31bf748f10df1b94b2fd80226fd4262c7c67205c56702acc1cfe91c6521f17b2",
+      "ws25_diag": 1
+    }
+  ],
+  "irn": 1,
+  "level": 192,
+  "modes": [
+    "fecmp",
+    "drill",
+    "conga",
+    "letflow",
+    "conweave",
+    "destspread"
+  ],
+  "ns3_seed": 1,
+  "order_seed": 2026100614,
+  "pfc": 0,
+  "role": "exploratory screening; no confirmatory efficacy claims",
+  "seeds": [
+    20262545,
+    20262546,
+    20262547,
+    20262548
+  ],
+  "simulator_sha": "87bb136ba85126c8c6c883814c7fa10cdcd74fda",
+  "source_sha": "7aa09f5ab8e9cd7ef852db3c3fab6aa551ca8ecb",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
