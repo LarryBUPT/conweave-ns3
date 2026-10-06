@@ -57,12 +57,12 @@ def counters(line):
     return {name: int(value) for name, value in re.findall(r"(\w+)=(\d+)", line)}
 
 
-def verify(experiment_id, mode, trace, diag=0):
+def verify(experiment_id, mode, trace, diag=0, source_sha=SHA):
     folder = ROOT / "results" / experiment_id
     meta = json.loads((folder / "metadata.json").read_text(encoding="utf-8"))
     params = meta["parameters"]
     trace_sha, expected_tags = TRACES[trace]
-    if not (meta["status"] == "SUCCEEDED" and meta["git_commit"] == SHA and
+    if not (meta["status"] == "SUCCEEDED" and meta["git_commit"] == source_sha and
             meta["algorithm"] == mode and meta["seed"] == 1 and
             meta["input_flow_sha256"] == trace_sha and meta["topology_sha256"] == TOPO and
             params["lb"] == mode and params["flow_file"] == trace and
