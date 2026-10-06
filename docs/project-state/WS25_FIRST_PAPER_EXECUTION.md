@@ -20,6 +20,8 @@
 
 ## 当前执行检查点（2026-10-06）
 
+v2 已冻结[独立需求探索筛选协议](../research/ws25-v2-independent-screen-protocol.md)、seed `20262545–48` 的[输入哈希](../research/evidence/ws25-v2-screen-inputs.json)和[28 原 ID 计划](../research/evidence/ws25-v2-screen-plan.json)。构建源码 SHA `7aa09f5ab8e9cd7ef852db3c3fab6aa551ca8ecb` 的仿真路径与已验收 v2 SHA `87bb136b…` 相同，远端通过 Git bundle 同步。首个 seed45 ConWeave 格 `20261006-140000-ws25-v2-screen-s45-b192-conweave` 已完成隔离构建并按 cap=1 启动，唯一控制器本地 PID `10708`，远端 worker PID `64616`、watcher PID `64563`；其 raw 尚未验收。控制收据在本地 `results/ws25-v2-screen-receipts.jsonl`。全部 28 格仍属探索筛选，不能给 v2 正式收益结论。
+
 | 预设项 | 当前证据 | 剩余动作 |
 | --- | --- | --- |
 | 1. 证据与机制 | v1 假说、可实现信号、失败预测及 1/3 候选台账见[审计](../research/ws25-classreserve-audit-and-preflight.md)；v1 唯一诊断修正已用（1/1）；正式反例与两格诊断见[报告](../research/ws25-v1fix-formal-analysis.md)和[诊断](../research/ws25-v1-formal-tail-diagnostic-analysis.md)；[v2 DestSpread Hybrid](../research/ws25-v2-destspread-hybrid-hypothesis.md)已有模式号 22、12 格正确性和同输入非扰动诊断证据 | 新独立需求的双侧筛选与失败模式复核；不得在已揭盲最终 seed 上改 v1 或将小输入当 v2 效果证据 |
