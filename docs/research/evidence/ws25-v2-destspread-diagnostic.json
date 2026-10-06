@@ -1,0 +1,36 @@
+{
+  "background_hop_rows": 12,
+  "fct_sha256": "d689d88a6d6d187be45c723d9d44319d46718a87288c3186bb354dc37d3a1bbf",
+  "not_independent_efficacy": true,
+  "off_id": "20261006-070000-ws25-v2-pre-mixed8",
+  "on_id": "20261006-123000-ws25-v2-diag-mixed8",
+  "qp_by_tag": {
+    "1": {
+      "cnp_feedback": 0,
+      "qp_count": 4,
+      "repeated_sends": 0,
+      "rx_ooo_packets": 0,
+      "sack_feedback": 0,
+      "timeout_recovery": 0
+    },
+    "2": {
+      "cnp_feedback": 0,
+      "qp_count": 4,
+      "repeated_sends": 0,
+      "rx_ooo_packets": 0,
+      "sack_feedback": 0,
+      "timeout_recovery": 0
+    }
+  },
+  "resource": {
+    "final_status": "SUCCEEDED",
+    "id": "20261006-123000-ws25-v2-diag-mixed8",
+    "minimum_free_gib": 4949.973804473877,
+    "minimum_mem_available_gib": 118.4105339050293,
+    "peak_tree_rss_mib": 4544.56640625,
+    "samples": 39
+  },
+  "role": "same-input correctness and nonintrusive diagnostic only",
+  "source_sha": "87bb136ba85126c8c6c883814c7fa10cdcd74fda",
+  "unpaired_inflight": 0
+}

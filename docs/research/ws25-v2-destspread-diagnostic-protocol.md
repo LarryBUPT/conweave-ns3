@@ -8,3 +8,7 @@
 - 两格必须分别通过 metadata、trace/拓扑、8/8 完成、逐流身份、类别队列守恒和逐运行资源验收，且原始 FCT 文件 SHA-256 完全相同。关闭诊断格的 FCT SHA 为 `d689d88a6d6d187be45c723d9d44319d46718a87288c3186bb354dc37d3a1bbf`。若不同，诊断有扰动，保留该 ID 并停止将日志解释成非扰动观测。
 - 检查诊断原始记录是否包含 tag1/tag2 的逐 QP 乱序、NACK/CNP、重复发送与超时，以及源 ToR 端口选择计数。缺失字段不能填零；即使全零也只适用于此 8 流小输入，不代表全量需求无乱序风险。
 - 启动前现场确认其他用户作业、未知 ns-3/worker、锁、load≤20、每 worker 预留 5 GiB 后 MemAvailable≥32 GiB、空盘≥100 GiB；watcher 先于 run，RSS≤32 GiB。SSH 超时不当作失败重启；先读原 ID、PID、raw 再恢复。诊断通过后使用与 v1 完全不重合的新需求 seed 作独立筛选和资源 pilot，正式实验另冻。
+
+## 终态核验（2026-10-06）
+
+原 ID `20261006-123000-ws25-v2-diag-mixed8` 在固定源码 SHA 下 `SUCCEEDED`，8/8 流完成；metadata、trace/拓扑哈希、类别队列守恒和逐格资源收据通过。诊断开关前后的原始 FCT SHA-256 均为 `d689d88a6d6d187be45c723d9d44319d46718a87288c3186bb354dc37d3a1bbf`，可作为本小输入的非扰动伴随观测。逐 QP 共 8 行，tag1/tag2 各 4；两类乱序、SACK/CNP 反馈、重复发送与超时恢复均为 0。背景逐跳观测 12 行、未配对记录 0。39 次资源采样的最大进程树 RSS 为 4544.57 MiB，最低 MemAvailable 118.41 GiB、最低空盘 4949.97 GiB。机器复验见[evidence](evidence/ws25-v2-destspread-diagnostic.json)。这些零值只适用于 8 流小输入；新独立需求的效果与乱序风险仍须另验。

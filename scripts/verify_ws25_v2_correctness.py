@@ -57,7 +57,7 @@ def counters(line):
     return {name: int(value) for name, value in re.findall(r"(\w+)=(\d+)", line)}
 
 
-def verify(experiment_id, mode, trace):
+def verify(experiment_id, mode, trace, diag=0):
     folder = ROOT / "results" / experiment_id
     meta = json.loads((folder / "metadata.json").read_text(encoding="utf-8"))
     params = meta["parameters"]
@@ -68,7 +68,7 @@ def verify(experiment_id, mode, trace):
             params["lb"] == mode and params["flow_file"] == trace and
             params["topo"] == "topo_1280_400G_400G_OS1" and
             params["bw"] == 400 and params["buffer"] == 9 and
-            params["pfc"] == 0 and params["irn"] == 1 and params["ws25_diag"] == 0 and
+            params["pfc"] == 0 and params["irn"] == 1 and params["ws25_diag"] == diag and
             params["netload"] == 10 and params["simul_time"] == "0.01"):
         raise RuntimeError("Metadata identity mismatch: " + experiment_id)
     if digest(folder / "config" / "traffic_trace.txt") != trace_sha or digest(
