@@ -1,0 +1,628 @@
+{
+  "comparisons": {
+    "conga": {
+      "background_p99_us": {
+        "by_seed_pct": {
+          "20262577": 26.80026893298926,
+          "20262578": 0.49529986199376985,
+          "20262579": 10.184031180809527,
+          "20262580": -10.509912147070233
+        },
+        "improved_seeds": 1,
+        "median_pct": 5.339665521401648
+      },
+      "moe_batch_us": {
+        "by_seed_pct": {
+          "20262577": 3.7504868955539505,
+          "20262578": -10.537282333680597,
+          "20262579": -2.11181504946093,
+          "20262580": -1.053936763794161
+        },
+        "improved_seeds": 3,
+        "median_pct": -1.5828759066275455
+      }
+    },
+    "conweave": {
+      "background_p99_us": {
+        "by_seed_pct": {
+          "20262577": 25.84093840219539,
+          "20262578": -4.759369089171084,
+          "20262579": 8.84343567049386,
+          "20262580": -7.680378142658373
+        },
+        "improved_seeds": 2,
+        "median_pct": 2.0420332906613883
+      },
+      "moe_batch_us": {
+        "by_seed_pct": {
+          "20262577": 5.338983050847457,
+          "20262578": -1.1131827155077878,
+          "20262579": -4.994606256742173,
+          "20262580": -4.3582479843103155
+        },
+        "improved_seeds": 3,
+        "median_pct": -2.735715349909052
+      }
+    },
+    "drill": {
+      "background_p99_us": {
+        "by_seed_pct": {
+          "20262577": 19.73718966854221,
+          "20262578": -8.416704850262036,
+          "20262579": 0.7383253283920865,
+          "20262580": -16.608618599940527
+        },
+        "improved_seeds": 2,
+        "median_pct": -3.8391897609349748
+      },
+      "moe_batch_us": {
+        "by_seed_pct": {
+          "20262577": 20.453517669100087,
+          "20262578": 20.775567611010672,
+          "20262579": 12.997177315884034,
+          "20262580": 8.29683548208009
+        },
+        "improved_seeds": 0,
+        "median_pct": 16.725347492492062
+      }
+    },
+    "fecmp": {
+      "background_p99_us": {
+        "by_seed_pct": {
+          "20262577": 30.77823786385274,
+          "20262578": -3.954280114034703,
+          "20262579": 6.365721797866808,
+          "20262580": -7.928542947336714
+        },
+        "improved_seeds": 2,
+        "median_pct": 1.2057208419160526
+      },
+      "moe_batch_us": {
+        "by_seed_pct": {
+          "20262577": 1.1226814188089795,
+          "20262578": 6.395657560918044,
+          "20262579": -17.040316503391107,
+          "20262580": -8.747855917667236
+        },
+        "improved_seeds": 2,
+        "median_pct": -3.812587249429128
+      }
+    },
+    "letflow": {
+      "background_p99_us": {
+        "by_seed_pct": {
+          "20262577": 26.450821858866647,
+          "20262578": -2.424036861888623,
+          "20262579": 6.446805205430173,
+          "20262580": -13.092358668140259
+        },
+        "improved_seeds": 2,
+        "median_pct": 2.011384171770775
+      },
+      "moe_batch_us": {
+        "by_seed_pct": {
+          "20262577": 3.256354876225287,
+          "20262578": -2.996234534696063,
+          "20262579": -0.08508707243746194,
+          "20262580": -3.368560105680307
+        },
+        "improved_seeds": 3,
+        "median_pct": -1.5406608035667624
+      }
+    }
+  },
+  "resource": {
+    "minimum_free_gib": 4893.061241149902,
+    "minimum_mem_available_gib": 105.05799865722656,
+    "peak_tree_rss_mib": 4562.5078125
+  },
+  "screen_gate_pass": false,
+  "seeds": {
+    "20262577": {
+      "background_flow_median_delta_us": -1.356999999999971,
+      "metrics": {
+        "conga": {
+          "background_p99_us": 1575.66389,
+          "id": "20261006-180000-ws25-v2r1-screen-s77-b192-conga",
+          "moe_batch_us": 17.971
+        },
+        "conweave": {
+          "background_p99_us": 1587.6757400000004,
+          "id": "20261006-180000-ws25-v2r1-screen-s77-b192-conweave",
+          "moe_batch_us": 17.7
+        },
+        "destspread": {
+          "background_p99_us": 1997.9460500000002,
+          "id": "20261006-180000-ws25-v2r1-screen-s77-b192-destspread",
+          "moe_batch_us": 18.645
+        },
+        "drill": {
+          "background_p99_us": 1668.6094400000002,
+          "id": "20261006-180000-ws25-v2r1-screen-s77-b192-drill",
+          "moe_batch_us": 15.479
+        },
+        "fecmp": {
+          "background_p99_us": 1527.73587,
+          "id": "20261006-180000-ws25-v2r1-screen-s77-b192-fecmp",
+          "moe_batch_us": 18.438
+        },
+        "letflow": {
+          "background_p99_us": 1580.01824,
+          "id": "20261006-180000-ws25-v2r1-screen-s77-b192-letflow",
+          "moe_batch_us": 18.057
+        }
+      },
+      "qp_affected": {
+        "1": {
+          "cnp_feedback": 97,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        },
+        "2": {
+          "cnp_feedback": 240,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        }
+      },
+      "qp_totals": {
+        "1": {
+          "cnp_feedback": 3015,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        },
+        "2": {
+          "cnp_feedback": 264,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        }
+      },
+      "route": {
+        "background_all_empty": 77,
+        "background_new": 878,
+        "background_packets": 7365542,
+        "background_reused": 7364664,
+        "background_ties": 337,
+        "fallback_packets": 0,
+        "moe_new": 74696,
+        "moe_packets": 672264,
+        "moe_reused": 597568,
+        "queue_violations": 0
+      },
+      "worst_background_flows": [
+        {
+          "candidate_fct_us": 2044.943,
+          "delta_us": 1548.782,
+          "dst": 740,
+          "ecmp_fct_us": 496.161,
+          "qp": {
+            "cnp_feedback": 144,
+            "flow_id": 38,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        },
+        {
+          "candidate_fct_us": 1993.298,
+          "delta_us": 1465.129,
+          "dst": 740,
+          "ecmp_fct_us": 528.169,
+          "qp": {
+            "cnp_feedback": 146,
+            "flow_id": 20,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        },
+        {
+          "candidate_fct_us": 2117.091,
+          "delta_us": 1301.835,
+          "dst": 736,
+          "ecmp_fct_us": 815.256,
+          "qp": {
+            "cnp_feedback": 143,
+            "flow_id": 24,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        }
+      ]
+    },
+    "20262578": {
+      "background_flow_median_delta_us": 0.23300000000006094,
+      "metrics": {
+        "conga": {
+          "background_p99_us": 1996.4754200000007,
+          "id": "20261006-180000-ws25-v2r1-screen-s78-b192-conga",
+          "moe_batch_us": 20.157
+        },
+        "conweave": {
+          "background_p99_us": 2106.62607,
+          "id": "20261006-180000-ws25-v2r1-screen-s78-b192-conweave",
+          "moe_batch_us": 18.236
+        },
+        "destspread": {
+          "background_p99_us": 2006.3639600000001,
+          "id": "20261006-180000-ws25-v2r1-screen-s78-b192-destspread",
+          "moe_batch_us": 18.033
+        },
+        "drill": {
+          "background_p99_us": 2190.7531900000004,
+          "id": "20261006-180000-ws25-v2r1-screen-s78-b192-drill",
+          "moe_batch_us": 14.931
+        },
+        "fecmp": {
+          "background_p99_us": 2088.96759,
+          "id": "20261006-180000-ws25-v2r1-screen-s78-b192-fecmp",
+          "moe_batch_us": 16.949
+        },
+        "letflow": {
+          "background_p99_us": 2056.207180000001,
+          "id": "20261006-180000-ws25-v2r1-screen-s78-b192-letflow",
+          "moe_batch_us": 18.59
+        }
+      },
+      "qp_affected": {
+        "1": {
+          "cnp_feedback": 71,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        },
+        "2": {
+          "cnp_feedback": 206,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        }
+      },
+      "qp_totals": {
+        "1": {
+          "cnp_feedback": 2980,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        },
+        "2": {
+          "cnp_feedback": 234,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        }
+      },
+      "route": {
+        "background_all_empty": 71,
+        "background_new": 864,
+        "background_packets": 7248096,
+        "background_reused": 7247232,
+        "background_ties": 329,
+        "fallback_packets": 0,
+        "moe_new": 74628,
+        "moe_packets": 671652,
+        "moe_reused": 597024,
+        "queue_violations": 0
+      },
+      "worst_background_flows": [
+        {
+          "candidate_fct_us": 1695.241,
+          "delta_us": 1229.522,
+          "dst": 720,
+          "ecmp_fct_us": 465.719,
+          "qp": {
+            "cnp_feedback": 103,
+            "flow_id": 60,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        },
+        {
+          "candidate_fct_us": 1853.747,
+          "delta_us": 1063.8580000000002,
+          "dst": 732,
+          "ecmp_fct_us": 789.889,
+          "qp": {
+            "cnp_feedback": 102,
+            "flow_id": 127,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        },
+        {
+          "candidate_fct_us": 1780.795,
+          "delta_us": 1062.182,
+          "dst": 720,
+          "ecmp_fct_us": 718.613,
+          "qp": {
+            "cnp_feedback": 103,
+            "flow_id": 37,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        }
+      ]
+    },
+    "20262579": {
+      "background_flow_median_delta_us": -3.4904999999999973,
+      "metrics": {
+        "conga": {
+          "background_p99_us": 1786.5809400000003,
+          "id": "20261006-180000-ws25-v2r1-screen-s79-b192-conga",
+          "moe_batch_us": 17.994
+        },
+        "conweave": {
+          "background_p99_us": 1808.5857800000003,
+          "id": "20261006-180000-ws25-v2r1-screen-s79-b192-conweave",
+          "moe_batch_us": 18.54
+        },
+        "destspread": {
+          "background_p99_us": 1968.5269,
+          "id": "20261006-180000-ws25-v2r1-screen-s79-b192-destspread",
+          "moe_batch_us": 17.614
+        },
+        "drill": {
+          "background_p99_us": 1954.09929,
+          "id": "20261006-180000-ws25-v2r1-screen-s79-b192-drill",
+          "moe_batch_us": 15.588
+        },
+        "fecmp": {
+          "background_p99_us": 1850.7155000000002,
+          "id": "20261006-180000-ws25-v2r1-screen-s79-b192-fecmp",
+          "moe_batch_us": 21.232
+        },
+        "letflow": {
+          "background_p99_us": 1849.3057600000002,
+          "id": "20261006-180000-ws25-v2r1-screen-s79-b192-letflow",
+          "moe_batch_us": 17.629
+        }
+      },
+      "qp_affected": {
+        "1": {
+          "cnp_feedback": 108,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        },
+        "2": {
+          "cnp_feedback": 231,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        }
+      },
+      "qp_totals": {
+        "1": {
+          "cnp_feedback": 3961,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        },
+        "2": {
+          "cnp_feedback": 263,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        }
+      },
+      "route": {
+        "background_all_empty": 79,
+        "background_new": 840,
+        "background_packets": 7046760,
+        "background_reused": 7045920,
+        "background_ties": 318,
+        "fallback_packets": 0,
+        "moe_new": 74678,
+        "moe_packets": 672102,
+        "moe_reused": 597424,
+        "queue_violations": 0
+      },
+      "worst_background_flows": [
+        {
+          "candidate_fct_us": 1697.008,
+          "delta_us": 1169.5700000000002,
+          "dst": 252,
+          "ecmp_fct_us": 527.438,
+          "qp": {
+            "cnp_feedback": 97,
+            "flow_id": 142,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        },
+        {
+          "candidate_fct_us": 1399.446,
+          "delta_us": 1143.426,
+          "dst": 232,
+          "ecmp_fct_us": 256.02,
+          "qp": {
+            "cnp_feedback": 87,
+            "flow_id": 72,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        },
+        {
+          "candidate_fct_us": 1599.111,
+          "delta_us": 894.3040000000001,
+          "dst": 236,
+          "ecmp_fct_us": 704.807,
+          "qp": {
+            "cnp_feedback": 84,
+            "flow_id": 21,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        }
+      ]
+    },
+    "20262580": {
+      "background_flow_median_delta_us": -1.530999999999949,
+      "metrics": {
+        "conga": {
+          "background_p99_us": 1517.1662500000002,
+          "id": "20261006-180000-ws25-v2r1-screen-s80-b192-conga",
+          "moe_batch_us": 17.743
+        },
+        "conweave": {
+          "background_p99_us": 1470.66613,
+          "id": "20261006-180000-ws25-v2r1-screen-s80-b192-conweave",
+          "moe_batch_us": 18.356
+        },
+        "destspread": {
+          "background_p99_us": 1357.7134100000003,
+          "id": "20261006-180000-ws25-v2r1-screen-s80-b192-destspread",
+          "moe_batch_us": 17.556
+        },
+        "drill": {
+          "background_p99_us": 1628.1219800000003,
+          "id": "20261006-180000-ws25-v2r1-screen-s80-b192-drill",
+          "moe_batch_us": 16.211
+        },
+        "fecmp": {
+          "background_p99_us": 1474.6300900000003,
+          "id": "20261006-180000-ws25-v2r1-screen-s80-b192-fecmp",
+          "moe_batch_us": 19.239
+        },
+        "letflow": {
+          "background_p99_us": 1562.2486000000001,
+          "id": "20261006-180000-ws25-v2r1-screen-s80-b192-letflow",
+          "moe_batch_us": 18.168
+        }
+      },
+      "qp_affected": {
+        "1": {
+          "cnp_feedback": 99,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        },
+        "2": {
+          "cnp_feedback": 208,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        }
+      },
+      "qp_totals": {
+        "1": {
+          "cnp_feedback": 2063,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        },
+        "2": {
+          "cnp_feedback": 230,
+          "repeated_sends": 0,
+          "rx_ooo_packets": 0,
+          "sack_feedback": 0,
+          "timeout_recovery": 0
+        }
+      },
+      "route": {
+        "background_all_empty": 77,
+        "background_new": 884,
+        "background_packets": 7415876,
+        "background_reused": 7414992,
+        "background_ties": 342,
+        "fallback_packets": 0,
+        "moe_new": 74698,
+        "moe_packets": 672282,
+        "moe_reused": 597584,
+        "queue_violations": 0
+      },
+      "worst_background_flows": [
+        {
+          "candidate_fct_us": 1260.016,
+          "delta_us": 786.124,
+          "dst": 356,
+          "ecmp_fct_us": 473.892,
+          "qp": {
+            "cnp_feedback": 67,
+            "flow_id": 177,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        },
+        {
+          "candidate_fct_us": 1275.634,
+          "delta_us": 640.933,
+          "dst": 984,
+          "ecmp_fct_us": 634.701,
+          "qp": {
+            "cnp_feedback": 51,
+            "flow_id": 125,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        },
+        {
+          "candidate_fct_us": 1173.473,
+          "delta_us": 627.625,
+          "dst": 356,
+          "ecmp_fct_us": 545.848,
+          "qp": {
+            "cnp_feedback": 48,
+            "flow_id": 71,
+            "repeated_sends": 0,
+            "rx_ooo_packets": 0,
+            "sack_feedback": 0,
+            "tag": 1,
+            "timeout_recovery": 0
+          }
+        }
+      ]
+    }
+  },
+  "source_sha": "5a4334116bdb38466533204af51f6f12d77d07b4",
+  "verified_cells": 28
+}

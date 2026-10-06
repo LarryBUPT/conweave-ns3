@@ -1,6 +1,10 @@
 # WS-25：第一课题类别感知包流混合负载均衡执行清单
 
-状态：**ACTIVE，2026-10-06**。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。第一课题的 ClassReserve v1 修正版正式矩阵已完成 36 批、576/576 格 raw 逐格验收，确认性共同主结果为 **NO-GO**；详见[正式分析](../research/ws25-v1fix-formal-analysis.md)及[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)。两格事后尾流诊断已按资源收据恢复计划验收，见[诊断报告](../research/ws25-v1-formal-tail-diagnostic-analysis.md)；正式逐格指标表、逐 seed 配对表、六臂 FCT/CDF、上联与 ConWeave VOQ 适用图已落盘，见[数据索引](../research/ws25-v1fix-formal-data-index.md)。v2 DestSpread 已在新 SHA 下完成 12/12 个已见小输入正确性格及 1 格非扰动诊断；独立需求实验未做，不能宣称 v2 收益。小论文负结果初稿已形成，但图包终审、候选后续决策、成稿核对与全部预设验收尚未闭环。旧 WS-21 状态反馈余项仍在投稿后第二课题门槛，不与本课题并行。下方较早日期的检查点仅作历史记录，不能代替本段当前状态。
+状态：**ACTIVE，2026-10-06**。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。第一课题的 ClassReserve v1 修正版正式矩阵已完成 36 批、576/576 格 raw 逐格验收，确认性共同主结果为 **NO-GO**；详见[正式分析](../research/ws25-v1fix-formal-analysis.md)及[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)。两格事后尾流诊断已验收，正式逐格指标表、逐 seed 配对表、六臂 FCT/CDF、上联与 ConWeave VOQ 适用图已落盘，见[数据索引](../research/ws25-v1fix-formal-data-index.md)。v2 DestSpread 原版及其唯一修正版 v2r1 各完成 28/28 个独立探索筛选格，均未过双侧筛选门；[v2r1 分析](../research/ws25-v2r1-independent-screen-analysis.md)仅作探索证据。小论文负结果初稿已形成，但图包终审、第三候选决策、成稿核对与全部预设验收尚未闭环。旧 WS-21 状态反馈余项仍在投稿后第二课题门槛，不与本课题并行。下方较早日期的检查点仅作历史记录，不能代替本段当前状态。
+
+## 最新检查点（2026-10-06）
+
+v2r1 冻结源码 `5a4334116bdb38466533204af51f6f12d77d07b4`、seed `20262577–80`、六主臂及四个非扰动诊断共 28/28 原 ID raw/metadata/输入哈希/资源逐格验收通过，失败 0；四格诊断 FCT 指纹与主格相同。唯一控制器本地 PID `14084` 已退出，本地[收据](../../results/ws25-v2r1-screen-receipts.jsonl)末条为第 28 格 `verified`，未再开格。相对 ECMP 的 MoE 批次中位变化 −3.813%、改善 2/4；背景 P99 中位变化 +1.206%、改善 2/4，两项都未过预冻 ≤−5% 且 ≥3/4 的探索门。故不运行预留 pilot seed `20262549–52`，v2 修正额度耗尽。逐 seed、四其他基线、路径/QP 诊断和尾流反例见[分析](../research/ws25-v2r1-independent-screen-analysis.md)。下一步审定是否有可证伪且不同于 v1/v2 的第三候选，再完成正式图包与稿件终审；当前不存在远端在途 WS-25 矩阵，不以探索筛选宣布整个课题闭环。
 
 ## 研究问题与边界
 
