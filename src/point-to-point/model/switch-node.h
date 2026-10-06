@@ -62,6 +62,8 @@ class SwitchNode : public Node {
         m_classReserveMoePort;
     std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t>
         m_destSpreadBackgroundPort;
+    std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t>
+        m_destSpreadMoePort;
     std::map<uint32_t, uint32_t> m_destSpreadNextByDestination;
     std::map<uint32_t, uint32_t> m_packetRoundRobinNext;  // destination IP -> next index
     std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t> m_ws18FlowPort;

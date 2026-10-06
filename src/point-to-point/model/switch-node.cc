@@ -50,6 +50,7 @@ static uint64_t classreserve_fallback_packets = 0;
 static uint64_t classreserve_background_new_flows = 0, classreserve_background_reused = 0;
 static uint64_t classreserve_background_queue_avoids = 0;
 static uint64_t destspread_moe_packets = 0, destspread_background_packets = 0;
+static uint64_t destspread_moe_new = 0, destspread_moe_reused = 0;
 static uint64_t destspread_background_new = 0, destspread_background_reused = 0;
 static uint64_t destspread_background_ties = 0, destspread_background_all_empty = 0;
 static uint64_t destspread_fallback_packets = 0;
@@ -839,6 +840,8 @@ void SwitchNode::PrintWorkloadTagCounts() {
                       << " background_packets=" << destspread_background_packets
                       << " background_new=" << destspread_background_new
                       << " background_reused=" << destspread_background_reused
+                      << " moe_new=" << destspread_moe_new
+                      << " moe_reused=" << destspread_moe_reused
                       << " background_ties=" << destspread_background_ties
                       << " background_all_empty=" << destspread_background_all_empty
                       << " fallback_packets=" << destspread_fallback_packets
@@ -1138,8 +1141,9 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
     return chosen;
 }
 
-// WS-25 v2 candidate. MoE packets use the existing DRILL decision; a
-// background flow chooses once and keeps the same next hop at this switch.
+// WS-25 v2 diagnostic correction. A MoE QP uses the existing DRILL decision
+// only for its first packet at this switch, then retains that next hop. A
+// background flow also chooses once and keeps its next hop at this switch.
 // When instantaneous egress queues tie, rotate assignments for this
 // destination instead of letting a fixed hash choose every long flow.
 uint32_t SwitchNode::DoLbDestSpread(Ptr<const Packet> p, const CustomHeader &ch,
@@ -1152,7 +1156,17 @@ uint32_t SwitchNode::DoLbDestSpread(Ptr<const Packet> p, const CustomHeader &ch,
     }
     if (label.GetValue() == 2) {
         ++destspread_moe_packets;
-        const uint32_t chosen = DoLbDrill(p, ch, nexthops);
+        const auto flow = std::make_tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+        auto cached = m_destSpreadMoePort.find(flow);
+        uint32_t chosen;
+        if (cached != m_destSpreadMoePort.end()) {
+            ++destspread_moe_reused;
+            chosen = cached->second;
+        } else {
+            ++destspread_moe_new;
+            chosen = DoLbDrill(p, ch, nexthops);
+            m_destSpreadMoePort[flow] = chosen;
+        }
         if (m_isToR && m_isToR_hostIP.count(ch.sip))
             ++destspread_source_port_packets[std::make_tuple(m_id, chosen, 2U)];
         return chosen;

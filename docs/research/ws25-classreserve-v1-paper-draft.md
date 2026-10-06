@@ -12,7 +12,7 @@
 
 在本研究的混合负载中，一批 8 KiB 的 MoE 流与逐档增加的 8 MiB 背景流共同使用多路径网络。同步批次需要等最后一条 MoE 流完成，背景业务则关注慢流尾部。对某一类流有利的选路可能把另一类流挤到拥塞出口，因此应分别测量两个结果，并预先规定“同时获益”的条件。
 
-原始 ConWeave 仿真仓库包含 ECMP、DRILL、CONGA、LetFlow 和 ConWeave 的选路入口。CONGA 研究拥塞感知路径选择 [2]；ConWeave 研究 RDMA 网络中的路径变化与网络内重排 [1]；粒度选择与逐包、逐 flowlet 组合也已有研究 [3]。这些机制提供有意义的对照，但模拟器里某种模式成功完成流量，并不表示其动态分支在给定输入下被充分触发。本研究的问题是：加入本地类别队列信号及逐流缓存后，能否在同一独立需求上同时缩短 MoE 合成批次和背景流 P99？
+原始 ConWeave 仿真仓库包含 ECMP、DRILL、CONGA、LetFlow 和 ConWeave 的选路入口。DRILL 研究微粒度本地负载均衡 [1]；CONGA 研究拥塞感知路径选择 [2]；ConWeave 研究 RDMA 网络中的路径变化与网络内重排 [3]；粒度选择与逐包、逐 flowlet 组合也已有研究 [4]。这些机制提供有意义的对照，但模拟器里某种模式成功完成流量，并不表示其动态分支在给定输入下被充分触发。本研究的问题是：加入本地类别队列信号及逐流缓存后，能否在同一独立需求上同时缩短 MoE 合成批次和背景流 P99？
 
 本文的贡献是一项可复核的机制实现与确认性负结果：我们事前冻结输入、原始实验 ID、源码、主判据和资源线，运行全部配对格，逐格从 raw 重新计算结果，并如实报告没有达到共同目标的原因和反例。本文不把标签解释成真实业务协议差异：两类流在模拟器中均为 RDMA QP。
 
@@ -28,7 +28,7 @@ ClassReserve v1 在可选择的下一跳中为每条 MoE 流形成两个确定�
 
 固定仿真源码和输入提交为 `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`，拓扑为项目 OS1/400 Gbps 配置。每个需求 seed 生成 16,384 条 8 KiB MoE 流，并分别添加 0、64、128、192 条 8 MiB 背景流；背景档越高，总提供字节越多。24 个最终需求 seed 为 `20262521–20262544`，与筛选和校准 seed 不重合。每个 seed 和档位上的 ECMP、DRILL、CONGA、LetFlow、ConWeave、ClassReserve 六臂使用字节相同的 trace，模式顺序按冻结计划随机化。实验共 24 × 4 × 6 = 576 格，每格独立结果目录，分 36 批运行。
 
-流从仿真时间 2.000 s 同步开始。共同配置包括 ns-3 seed 1、DCQCN [4]、PFC 关闭、IRN [5] 开启、400 Gbps 带宽和 9 MiB 缓冲区。需求 seed 才是独立重复单位；同一需求下的多档位、六臂和上万条流不增加统计样本数。所有流都是模拟器的 RDMA QP，`tag=1/2` 分别标记背景/MoE 类别。
+流从仿真时间 2.000 s 同步开始。共同配置包括 ns-3 seed 1、DCQCN [5]、PFC 关闭、IRN [6] 开启、400 Gbps 带宽和 9 MiB 缓冲区。需求 seed 才是独立重复单位；同一需求下的多档位、六臂和上万条流不增加统计样本数。所有流都是模拟器的 RDMA QP，`tag=1/2` 分别标记背景/MoE 类别。
 
 ### 3.2 指标与事前判据
 
@@ -49,7 +49,7 @@ MoE 合成批次时间定义为最后一条 MoE 流的绝对完成时刻减去 2
 | MoE 合成批次时间 | −3.536% | 20/24 | [−6.463%, −1.552%] | 未到 −5% 幅度线 |
 | 背景流 P99 FCT | −0.065% | 13/24 | [−2.447%, +0.947%] | 幅度与方向均未过线 |
 
-MoE 改善方向的精确符号检验 `p=0.000772`，但工程幅度线未过；背景 P99 的方向检验 `p=0.419410`。同一 seed 两项均改善仅 12/24。主判据因此为 **NO-GO**。MoE 最差 seed `20262540` 相对 ECMP 恶化 5.151%；背景 P99 最差 seed `20262524` 恶化 12.876%。[配对效应图](figures/ws25-v1fix-formal-192-effects.svg)给出五个对照的描述性中位变化及区间；[逐格数据与图表索引](ws25-v1fix-formal-data-index.md)提供全部 24 seed、四档和六机制的 FCT/CDF、逐 seed 对照及原始 ID。
+MoE 改善方向的精确符号检验 `p=0.000772`，但工程幅度线未过；背景 P99 的方向检验 `p=0.419410`。同一 seed 两项均改善仅 12/24。主判据因此为 **NO-GO**。MoE 最差 seed `20262540` 相对 ECMP 恶化 5.151%；背景 P99 最差 seed `20262524` 恶化 12.876%。[配对效应图](figures/ws25-v1fix-formal-192-effects.svg)给出五个对照的描述性中位变化及区间。[192 档六机制 MoE 批次图](figures/ws25-v1fix-formal-seed-overview/b192-moe_batch_us.svg)与[背景 P99 图](figures/ws25-v1fix-formal-seed-overview/b192-background_p99_fct_us.svg)逐 seed 展示绝对值；[逐格数据与图表索引](ws25-v1fix-formal-data-index.md)提供全部 24 seed、四档和六机制的 FCT/CDF、逐 seed 对照及原始 ID。
 
 ### 4.3 次级对照与低档约束
 
@@ -88,10 +88,11 @@ MoE 改善方向的精确符号检验 `p=0.000772`，但工程幅度线未过；
 
 ## 参考文献（初稿）
 
-1. Song, C. H., et al. Network Load Balancing with In-network Reordering Support for RDMA. ACM SIGCOMM, 2023. DOI: 10.1145/3603269.3604849.
+1. Ghorbani, S., et al. DRILL: Micro Load Balancing for Low-latency Data Center Networks. ACM SIGCOMM, 2017. DOI: 10.1145/3098822.3098839.
 2. Alizadeh, M., et al. CONGA: Distributed Congestion-Aware Load Balancing for Datacenters. ACM SIGCOMM, 2014. DOI: 10.1145/2619239.2626316.
-3. Shi, Q., Wang, F., and Feng, D. IntFlow: Integrating Per-Packet and Per-Flowlet Switching Strategy for Load Balancing in Datacenter Networks. IEEE Transactions on Network and Service Management, 17(3), 2020. DOI: 10.1109/TNSM.2020.2990868.
-4. Zhu, Y., et al. Congestion Control for Large-Scale RDMA Deployments. ACM SIGCOMM, 2015. DOI: 10.1145/2785956.2787484.
-5. Mittal, R., et al. Revisiting Network Support for RDMA. ACM SIGCOMM, 2018. DOI: 10.1145/3230543.3230557.
+3. Song, C. H., et al. Network Load Balancing with In-network Reordering Support for RDMA. ACM SIGCOMM, 2023. DOI: 10.1145/3603269.3604849.
+4. Shi, Q., Wang, F., and Feng, D. IntFlow: Integrating Per-Packet and Per-Flowlet Switching Strategy for Load Balancing in Datacenter Networks. IEEE Transactions on Network and Service Management, 17(3), 2020. DOI: 10.1109/TNSM.2020.2990868.
+5. Zhu, Y., et al. Congestion Control for Large-Scale RDMA Deployments. ACM SIGCOMM, 2015. DOI: 10.1145/2785956.2787484.
+6. Mittal, R., et al. Revisiting Network Support for RDMA. ACM SIGCOMM, 2018. DOI: 10.1145/3230543.3230557.
 
-参考元数据取自项目已有[引文库](../../../../docs/research/refs.bib)；投稿版需按目标会议模板核对格式和引用位置。
+上述六条 DOI、作者顺序、出版年和页码已在 2026-10-06 对 Crossref 出版元数据核对；引用库 48 条记录通过项目引用校验器（无错误、警告或重复）。[引文库](../../../../docs/research/refs.bib)保留完整作者和出版信息；投稿版仍需按目标会议模板调整格式。
