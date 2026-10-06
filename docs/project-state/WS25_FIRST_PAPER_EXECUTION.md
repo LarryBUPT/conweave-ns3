@@ -1,10 +1,10 @@
 # WS-25：第一课题类别感知包流混合负载均衡执行清单
 
-状态：**ACTIVE，2026-10-06**。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)及[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)。第一课题的 ClassReserve v1 修正版正式矩阵已完成 36 批、576/576 格 raw 逐格验收，确认性共同主结果为 **NO-GO**；详见[正式分析](../research/ws25-v1fix-formal-analysis.md)及[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)。两格事后尾流诊断已验收，正式逐格指标表、逐 seed 配对表、六臂 FCT/CDF、上联与 ConWeave VOQ 适用图已落盘，见[数据索引](../research/ws25-v1fix-formal-data-index.md)。v2 DestSpread 原版及其唯一修正版 v2r1 各完成 28/28 个独立探索筛选格，均未过双侧筛选门；[v2r1 分析](../research/ws25-v2r1-independent-screen-analysis.md)仅作探索证据。[第三候选准入审查](../research/ws25-third-candidate-decision.md)决定暂不实施证据不足的新机制，保留名额未使用。小论文负结果初稿及[图文终审](../research/ws25-v1fix-paper-package-audit.md)已形成；全部预设验收的逐项闭环核对尚未完成。旧 WS-21 状态反馈余项仍在投稿后第二课题门槛，不与本课题并行。下方较早日期的检查点仅作历史记录，不能代替本段当前状态。
+状态：**COMPLETE FOR PRESET NS-3 EXPERIMENT AND PAPER DRAFT，2026-10-07；对话保持活动，尚未投稿**。依据：[ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md)、[远程实验工作流](../REMOTE_EXPERIMENT_WORKFLOW.md)及[七项逐项验收](../research/ws25-first-paper-acceptance-audit.md)。第一课题的 ClassReserve v1 修正版正式矩阵已完成 36 批、576/576 格 raw 逐格验收，确认性共同主结果为 **NO-GO**；详见[正式分析](../research/ws25-v1fix-formal-analysis.md)及[复现清单](../research/ws25-v1fix-reproducibility-checklist.md)。两格事后尾流诊断已验收，正式逐格指标表、逐 seed 配对表、六臂 FCT/CDF、上联与 ConWeave VOQ 适用图已落盘，见[数据索引](../research/ws25-v1fix-formal-data-index.md)。v2 DestSpread 原版及其唯一修正版 v2r1 各完成 28/28 个独立探索筛选格，均未过双侧筛选门；[v2r1 分析](../research/ws25-v2r1-independent-screen-analysis.md)仅作探索证据。[第三候选准入审查](../research/ws25-third-candidate-decision.md)决定暂不实施证据不足的新机制，保留名额未使用。小论文负结果初稿及[图文终审](../research/ws25-v1fix-paper-package-audit.md)已形成。目标会议版式、引用格式与投稿属下一里程碑；旧 WS-21 状态反馈余项仍在投稿后第二课题门槛，不与本课题并行。下方较早日期的检查点仅作历史记录，不能代替本段当前状态。
 
-## 最新检查点（2026-10-06）
+## 最新检查点（2026-10-07）
 
-v2r1 冻结源码 `5a4334116bdb38466533204af51f6f12d77d07b4`、seed `20262577–80`、六主臂及四个非扰动诊断共 28/28 原 ID raw/metadata/输入哈希/资源逐格验收通过，失败 0；四格诊断 FCT 指纹与主格相同。唯一控制器本地 PID `14084` 已退出，本地[收据](../../results/ws25-v2r1-screen-receipts.jsonl)末条为第 28 格 `verified`，未再开格。相对 ECMP 的 MoE 批次中位变化 −3.813%、改善 2/4；背景 P99 中位变化 +1.206%、改善 2/4，两项都未过预冻 ≤−5% 且 ≥3/4 的探索门。故不运行预留 pilot seed `20262549–52`，v2 修正额度耗尽。逐 seed、四其他基线、路径/QP 诊断和尾流反例见[分析](../research/ws25-v2r1-independent-screen-analysis.md)。[第三候选准入审查](../research/ws25-third-candidate-decision.md)发现现有本地信号尚不足以提出有独立双侧预测的新机制，故保留第三名额未使用，继续负结果论文与验收，不以探索筛选宣布整个课题闭环。当前不存在远端在途 WS-25 矩阵。
+2026-10-07 本地再验正式计划、收据和原始数据为 576/576，正式分析 JSON SHA-256 保持 `f4d4ce0bb7e0ed8af26ee84276c472e082d8d6163c964e2c6dd7a3f632931f43`。192 档相对 ECMP 的 MoE 批次中位 −3.536%（20/24 改善），背景 P99 −0.065%（13/24 改善），共同主判据未过。v2r1 冻结源码 `5a4334116bdb38466533204af51f6f12d77d07b4`、seed `20262577–80` 的六主臂与四个非扰动诊断共 28/28 原 ID 逐格验收，探索双侧门未过，旧 PID `14084` 已退出。第一课题七项实验与初稿验收和证据边界见[逐项审计](../research/ws25-first-paper-acceptance-audit.md)、[Handoff 77](../handoffs/2026-10-07-77-ws25-first-paper-prespecified-acceptance.md)；目前没有在途 WS-25 矩阵或待恢复格。负结果初稿尚未投稿，投稿前不启动第二课题。本节以下的较早执行检查点为历史记录。
 
 ## 研究问题与边界
 
@@ -22,11 +22,13 @@ v2r1 冻结源码 `5a4334116bdb38466533204af51f6f12d77d07b4`、seed `20262577–
 | 6. 正式验证 | 在现场无其他作业、隔离与资源 pilot 通过后，按冻结协议执行五基线与候选的必要配对格，使用实测吞吐安全批量调度；每格保留 raw、metadata、哈希与资源收据。失败保留原 ID，停止扩格，诊断修复后用新 SHA/ID 重验。 |
 | 7. 分析及成稿 | 从 raw 逐格复核，报告全部档位、失败格与双侧主结果，并用解释指标核对机制因果链及局限；可过预设门槛才写正向结论。形成可复现清单、图表和小论文初稿。投稿作为后续里程碑单独记录。 |
 
-## 当前执行检查点（2026-10-06）
+## 历史执行检查点（2026-10-06，v2 首格启动时）
+
+本节保存当时的原始执行记录与待办快照；v2/v2r1 后来均已终态，现况以上方 2026-10-07 检查点和[七项审计](../research/ws25-first-paper-acceptance-audit.md)为准。
 
 v2 已冻结[独立需求探索筛选协议](../research/ws25-v2-independent-screen-protocol.md)、seed `20262545–48` 的[输入哈希](../research/evidence/ws25-v2-screen-inputs.json)和[28 原 ID 计划](../research/evidence/ws25-v2-screen-plan.json)。构建源码 SHA `7aa09f5ab8e9cd7ef852db3c3fab6aa551ca8ecb` 的仿真路径与已验收 v2 SHA `87bb136b…` 相同，远端通过 Git bundle 同步。首个 seed45 ConWeave 格 `20261006-140000-ws25-v2-screen-s45-b192-conweave` 已完成隔离构建并按 cap=1 启动，唯一控制器本地 PID `10708`，远端 worker PID `64616`、watcher PID `64563`；其 raw 尚未验收。控制收据在本地 `results/ws25-v2-screen-receipts.jsonl`。全部 28 格仍属探索筛选，不能给 v2 正式收益结论。
 
-| 预设项 | 当前证据 | 剩余动作 |
+| 预设项 | 当时证据及随后补记 | 当时剩余动作 |
 | --- | --- | --- |
 | 1. 证据与机制 | v1 假说与正式反例见[报告](../research/ws25-v1fix-formal-analysis.md)；v2 原版和唯一修正版各 28/28 独立探索格均未过门，见[原版分析](../research/ws25-v2-independent-screen-analysis.md)与[修正版分析](../research/ws25-v2r1-independent-screen-analysis.md)；[第三候选审查](../research/ws25-third-candidate-decision.md)保留未使用版次，避免无辨识信号的再次拼接 | 确认所有机制叙述只到现有观测所支持的证据等级；不在已揭盲 seed 上改 v1/v2 或将筛选当正式结论 |
 | 2. 五模式同条件 | 修正版 11/11 正确性/fallback 格通过；正式五基线和候选 576/576 格同输入、同 SHA、全部流完成，元数据和字节核验通过 | 对动态分支覆盖不足维持限制，必要的定向正确性验证另用新身份 |

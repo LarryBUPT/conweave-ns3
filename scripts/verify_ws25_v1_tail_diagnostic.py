@@ -175,12 +175,18 @@ def check(cell, plan, execution):
             flow_id = trace_by_pair[src, dst]
             matched = hops.get((src, dst, sport, dport), [])
             dest_hops = [row for row in matched if row["switch"] == tors[dst]]
+            upstream_hops = [row for row in matched if row["switch"] != tors[dst]]
             background_flows.append({"src": src, "dst": dst, "flow_id": flow_id,
                                      "destination_tor": tors[dst],
                                      "ecmp_fct_us": control[key],
                                      "classreserve_fct_us": compared[key],
                                      "change_us": compared[key] - control[key],
                                      "qp": qp[flow_id], "destination_hops": dest_hops,
+                                     "upstream_hop_rows": len(upstream_hops),
+                                     "upstream_max_wait_ns": max(
+                                         (row["wait_ns_max"] for row in upstream_hops), default=0),
+                                     "upstream_max_queued_bytes": max(
+                                         (row["queued_bytes_max"] for row in upstream_hops), default=0),
                                      "all_hop_rows": len(matched)})
     return {"id": cell["id"], "seed": cell["seed"], "background": cell["background"],
             "fct_sha256": sha(fct), "matches_formal_fct": same_fct,
