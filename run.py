@@ -199,6 +199,8 @@ def main():
                         help='opt-in flow-hop and QP diagnostic for WS-13 tail probes')
     parser.add_argument('--ws25-diag', dest='ws25_diag', type=int, choices=(0, 1), default=0,
                         help='opt-in per-QP and background egress diagnostic for WS-25')
+    parser.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0,
+                        help='bounded time probe for ten already unblinded WS-25 background flows')
     parser.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -277,6 +279,8 @@ def main():
         raise Exception("CONFIG ERROR : factorial pilot and formal flags are exclusive")
     if args.factorial_formal and not args.flow_file:
         raise Exception("CONFIG ERROR : factorial formal requires a fixed flow file")
+    if args.ws26_time_probe and (not args.ws25_diag or not args.flow_file or args.factorial_formal):
+        raise Exception("CONFIG ERROR : WS-26 time probe needs fixed trace and WS-25 diagnostics")
     if enabled_irn == 1 and enabled_pfc == 1 and not (args.factorial_pilot or args.factorial_formal):
         raise Exception(
             "CONFIG ERROR : If IRN is turn-on, then you should turn off PFC (for better perforamnce).")
@@ -539,6 +543,8 @@ def main():
         simulation_env['WS13_DIAG'] = '1'
     if args.ws25_diag:
         simulation_env['WS25_DIAG'] = '1'
+    if args.ws26_time_probe:
+        simulation_env['WS26_TIME_PROBE'] = '1'
     if args.factorial_drop_diag:
         simulation_env['IRN_PFC_DROP_DIAG'] = '1'
     if args.factorial_pilot and enabled_irn and enabled_pfc:

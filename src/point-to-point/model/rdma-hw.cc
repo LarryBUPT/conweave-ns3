@@ -8,6 +8,7 @@
 #include <climits>
 #include <cstdlib>
 #include <map>
+#include <set>
 
 #include "cn-header.h"
 #include "flow-stat-tag.h"
@@ -24,6 +25,7 @@
 #include "ns3/workload-tag.h"
 #include "ppp-header.h"
 #include "qbb-header.h"
+#include "ws26-time-probe.h"
 
 namespace ns3 {
 
@@ -69,6 +71,29 @@ static void Ws13LogQp(const char *event, Ptr<RdmaQueuePair> qp,
               << " snd_nxt=" << qp->snd_nxt
               << " rate_bps=" << qp->m_rate.GetBitRate()
               << " irn_nack_size=" << irn_nack_size << std::endl;
+}
+
+static std::map<int32_t, uint32_t> ws26_qp_event_rows;
+static std::set<int32_t> ws26_qp_event_truncated;
+static void Ws26LogQp(const char *event, Ptr<RdmaQueuePair> qp) {
+    if (!Ws26TimeProbeEnabled() || qp->m_workload_tag != 1) return;
+    auto src = Settings::hostIp2IdMap.find(qp->sip.Get());
+    auto dst = Settings::hostIp2IdMap.find(qp->dip.Get());
+    if (src == Settings::hostIp2IdMap.end() || dst == Settings::hostIp2IdMap.end() ||
+        !Ws26TimeProbeTarget(src->second, dst->second, qp->sport, qp->dport)) return;
+    uint32_t &rows = ws26_qp_event_rows[qp->m_flow_id];
+    if (rows >= 4096) {
+        ws26_qp_event_truncated.insert(qp->m_flow_id);
+        return;
+    }
+    ++rows;
+    std::cout << "WS26_QP_EVENT event=" << event
+              << " time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " src=" << src->second << " dst=" << dst->second
+              << " sport=" << qp->sport << " dport=" << qp->dport
+              << " flow_id=" << qp->m_flow_id
+              << " snd_una=" << qp->snd_una << " snd_nxt=" << qp->snd_nxt
+              << " rate_bps=" << qp->m_rate.GetBitRate() << std::endl;
 }
 
 NS_LOG_COMPONENT_DEFINE("RdmaHw");
@@ -523,6 +548,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         if (ch.l3Prot == 0xFD && ch.ack.irnNackSize) ++s.sack_feedback;
         if (cnp) ++s.cnp_feedback;
     }
+    if (cnp) Ws26LogQp("cnp", qp);
 
     uint32_t nic_idx = GetNicIdxOfQp(qp);
     Ptr<QbbNetDevice> dev = m_nic[nic_idx].dev;
@@ -795,6 +821,18 @@ void RdmaHw::RecoverQueue(Ptr<RdmaQueuePair> qp) {
 
 void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
     NS_ASSERT(!m_qpCompleteCallback.IsNull());
+    Ws26LogQp("complete", qp);
+    if (Ws26TimeProbeEnabled()) {
+        auto rows = ws26_qp_event_rows.find(qp->m_flow_id);
+        if (rows != ws26_qp_event_rows.end()) {
+            std::cout << "WS26_QP_EVENT_SUMMARY flow_id=" << qp->m_flow_id
+                      << " rows=" << rows->second
+                      << " truncated=" << (ws26_qp_event_truncated.count(qp->m_flow_id) ? 1 : 0)
+                      << std::endl;
+            ws26_qp_event_rows.erase(rows);
+            ws26_qp_event_truncated.erase(qp->m_flow_id);
+        }
+    }
     if (Ws25DiagnosticEnabled()) {
         const Ws25QpDiagnostic &s = ws25_qp_diagnostics[qp->m_flow_id];
         std::cout << "WS25_QP flow_id=" << qp->m_flow_id
@@ -1040,6 +1078,7 @@ void RdmaHw::ChangeRate(Ptr<RdmaQueuePair> qp, DataRate new_rate) {
     // change to new rate
     qp->m_rate = new_rate;
     if (Ws13BackgroundQp(qp)) Ws13LogQp("rate_change", qp);
+    Ws26LogQp("rate_change", qp);
 }
 
 #define PRINT_LOG 0
@@ -1084,6 +1123,7 @@ void RdmaHw::cnp_received_mlx(Ptr<RdmaQueuePair> q) {
         q->mlx.m_targetRate = q->m_rate = m_rateOnFirstCNP * q->m_rate;
         q->mlx.m_first_cnp = false;
         if (Ws13BackgroundQp(q)) Ws13LogQp("rate_first_cnp", q);
+        Ws26LogQp("rate_first_cnp", q);
     }
 }
 
@@ -1104,6 +1144,7 @@ void RdmaHw::CheckRateDecreaseMlx(Ptr<RdmaQueuePair> q) {
         }
         q->m_rate = std::max(m_minRate, q->m_rate * (1 - q->mlx.m_alpha / 2));
         if (Ws13BackgroundQp(q)) Ws13LogQp("rate_decrease", q);
+        Ws26LogQp("rate_decrease", q);
         // reset rate increase related things
         q->mlx.m_rpTimeStage = 0;
         q->mlx.m_decrease_cnp_arrived = false;
@@ -1147,6 +1188,7 @@ void RdmaHw::FastRecoveryMlx(Ptr<RdmaQueuePair> q) {
 #endif
     q->m_rate = (q->m_rate / 2) + (q->mlx.m_targetRate / 2);
     if (Ws13BackgroundQp(q)) Ws13LogQp("rate_fast_recovery", q);
+    Ws26LogQp("rate_fast_recovery", q);
 #if PRINT_LOG
     printf("(%.3lf %.3lf)\n", q->mlx.m_targetRate.GetBitRate() * 1e-9,
            q->m_rate.GetBitRate() * 1e-9);
@@ -1166,6 +1208,7 @@ void RdmaHw::ActiveIncreaseMlx(Ptr<RdmaQueuePair> q) {
     if (q->mlx.m_targetRate > dev->GetDataRate()) q->mlx.m_targetRate = dev->GetDataRate();
     q->m_rate = (q->m_rate / 2) + (q->mlx.m_targetRate / 2);
     if (Ws13BackgroundQp(q)) Ws13LogQp("rate_active_increase", q);
+    Ws26LogQp("rate_active_increase", q);
 #if PRINT_LOG
     printf("(%.3lf %.3lf)\n", q->mlx.m_targetRate.GetBitRate() * 1e-9,
            q->m_rate.GetBitRate() * 1e-9);
@@ -1185,6 +1228,7 @@ void RdmaHw::HyperIncreaseMlx(Ptr<RdmaQueuePair> q) {
     if (q->mlx.m_targetRate > dev->GetDataRate()) q->mlx.m_targetRate = dev->GetDataRate();
     q->m_rate = (q->m_rate / 2) + (q->mlx.m_targetRate / 2);
     if (Ws13BackgroundQp(q)) Ws13LogQp("rate_hyper_increase", q);
+    Ws26LogQp("rate_hyper_increase", q);
 #if PRINT_LOG
     printf("(%.3lf %.3lf)\n", q->mlx.m_targetRate.GetBitRate() * 1e-9,
            q->m_rate.GetBitRate() * 1e-9);

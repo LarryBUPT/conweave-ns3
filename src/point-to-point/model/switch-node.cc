@@ -18,6 +18,7 @@
 #include "ns3/workload-tag.h"
 #include "ws21-feedback-header.h"
 #include "ws21-heartbeat-header.h"
+#include "ws26-time-probe.h"
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
@@ -122,6 +123,12 @@ struct Ws13FlowHop {
 static std::map<std::pair<uint32_t, uint64_t>, Ws13Packet> ws13_inflight;
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t>,
                 Ws13FlowHop> ws13_hops;
+struct Ws26MarkBucket {
+    uint64_t decisions = 0, bytes = 0;
+};
+static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint32_t,
+                           uint32_t, uint32_t, uint64_t>, Ws26MarkBucket> ws26_mark_buckets;
+static uint64_t ws26_mark_bucket_overflow = 0;
 static bool Ws13DiagnosticEnabled() {
     static const bool enabled = []() {
         const char *value = std::getenv("WS13_DIAG");
@@ -770,6 +777,22 @@ void SwitchNode::PrintWorkloadTagCounts() {
                       << " wait_ns_max=" << s.maxWaitNs << std::endl;
         }
         std::cout << "WS13_INFLIGHT unpaired=" << ws13_inflight.size() << std::endl;
+    }
+    if (Ws26TimeProbeEnabled()) {
+        for (const auto &entry : ws26_mark_buckets) {
+            const auto &key = entry.first;
+            std::cout << "WS26_ECN_BUCKET src=" << std::get<0>(key)
+                      << " dst=" << std::get<1>(key)
+                      << " sport=" << std::get<2>(key)
+                      << " dport=" << std::get<3>(key)
+                      << " switch=" << std::get<4>(key)
+                      << " port=" << std::get<5>(key)
+                      << " bucket_start_ns=" << std::get<6>(key) * 10000
+                      << " decisions=" << entry.second.decisions
+                      << " bytes=" << entry.second.bytes << std::endl;
+        }
+        std::cout << "WS26_ECN_SUMMARY bucket_rows=" << ws26_mark_buckets.size()
+                  << " overflow=" << ws26_mark_bucket_overflow << std::endl;
     }
     for (const auto &entry : workload_tag_packets)
         std::cout << "WS06_ROUTING_TAG tag=" << entry.first << " packets=" << entry.second << std::endl;
@@ -1646,6 +1669,8 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 }
 
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
+    bool ws26_target = false;
+    uint32_t ws26_src = 0, ws26_dst = 0, ws26_sport = 0, ws26_dport = 0;
     bool controlPacket = false;
     if (Ws21FeedbackEnabled() || ws21_heartbeat_enabled) {
         CustomHeader feedback(CustomHeader::L2_Header | CustomHeader::L3_Header |
@@ -1663,6 +1688,14 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         auto hit = ws13_inflight.find(std::make_pair(m_id, p->GetUid()));
         if (hit != ws13_inflight.end()) {
             const Ws13Packet &item = hit->second;
+            if (Ws26TimeProbeEnabled() &&
+                Ws26TimeProbeTarget(item.src, item.dst, item.sport, item.dport)) {
+                ws26_target = true;
+                ws26_src = item.src;
+                ws26_dst = item.dst;
+                ws26_sport = item.sport;
+                ws26_dport = item.dport;
+            }
             NS_ASSERT_MSG(item.outDev == ifIndex, "WS-13 diagnostic port mismatch");
             uint64_t waited = uint64_t(Simulator::Now().GetNanoSeconds()) - item.enqueueNs;
             auto key = std::make_tuple(item.src, item.dst, item.sport, item.dport, m_id, ifIndex);
@@ -1696,6 +1729,19 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         if (m_ecnEnabled) {
             bool egressCongested = m_mmu->ShouldSendCN(ifIndex, qIndex);
             if (egressCongested) {
+                if (ws26_target) {
+                    uint64_t bucket = uint64_t(Simulator::Now().GetNanoSeconds()) / 10000;
+                    auto key = std::make_tuple(ws26_src, ws26_dst, ws26_sport, ws26_dport,
+                                               m_id, ifIndex, bucket);
+                    auto found = ws26_mark_buckets.find(key);
+                    if (found != ws26_mark_buckets.end() || ws26_mark_buckets.size() < 8192) {
+                        Ws26MarkBucket &s = ws26_mark_buckets[key];
+                        ++s.decisions;
+                        s.bytes += p->GetSize();
+                    } else {
+                        ++ws26_mark_bucket_overflow;
+                    }
+                }
                 PppHeader ppp;
                 Ipv4Header h;
                 p->RemoveHeader(ppp);
