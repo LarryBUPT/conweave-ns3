@@ -63,6 +63,17 @@ def one_file(folder, suffix):
     return files[0]
 
 
+def prior_result_folder(experiment_id):
+    candidates = (
+        ROOT / "results" / experiment_id,
+        ROOT.parent / "ws25-first-paper" / "results" / experiment_id,
+    )
+    for folder in candidates:
+        if folder.is_dir() and not folder.is_symlink():
+            return folder
+    raise RuntimeError("Prior baseline result is unavailable: " + experiment_id)
+
+
 def fields(line):
     return {key: int(value) for key, value in re.findall(r"(\w+)=(-?\d+)", line)}
 
@@ -126,9 +137,20 @@ def verify(cell, source_sha):
         if diag:
             paths = [fields(line) for line in log.splitlines()
                      if line.startswith("WS26_CLASSRESERVE3_QP ")]
-            if (len(paths) != 8 or any(row.get("inconsistent") != 0 or
-                                       row.get("packets", 0) <= 0 for row in paths) or
-                    {row.get("tag") for row in paths} != {1, 2}):
+            path_tags = {tag: [row for row in paths if row.get("tag") == tag]
+                         for tag in (1, 2)}
+            path_keys = {(row.get("switch"), row.get("sip"), row.get("dip"),
+                          row.get("sport"), row.get("dport")) for row in paths}
+            if (len(paths) != route.get("background_new", 0) + route.get("moe_new", 0) or
+                    len(path_keys) != len(paths) or
+                    len(path_tags[1]) != route.get("background_new", 0) or
+                    len(path_tags[2]) != route.get("moe_new", 0) or
+                    sum(row.get("packets", 0) for row in path_tags[1]) !=
+                    route.get("background_packets", 0) or
+                    sum(row.get("packets", 0) for row in path_tags[2]) !=
+                    route.get("moe_packets", 0) or
+                    any(row.get("inconsistent") != 0 or row.get("packets", 0) <= 0
+                        for row in paths)):
                 raise RuntimeError("Per-QP path identity failed: " + experiment_id)
     resource = json.loads((folder / "logs/resource-summary.json").read_text(encoding="utf-8"))
     samples = [json.loads(line) for line in (folder / "logs/resource-samples.jsonl").read_text(
@@ -174,9 +196,19 @@ def main():
     for mode, old_id in OLD_MIXED8_IDS.items():
         row = by_key.get((mode, "mixed8", 0, 1, 0))
         if row:
-            old_meta = json.loads((ROOT / "results" / old_id / "metadata.json").read_text(
-                encoding="utf-8"))
-            old_raw = ROOT / "results" / old_id / "raw" / str(old_meta["raw_directory"])
+            old_folder = prior_result_folder(old_id)
+            old_meta = json.loads((old_folder / "metadata.json").read_text(encoding="utf-8"))
+            old_params = old_meta["parameters"]
+            if not (old_meta["status"] == "SUCCEEDED" and old_meta["algorithm"] == mode and
+                    old_meta["input_flow_sha256"] == TRACES["mixed8"][1] and
+                    old_meta["topology_sha256"] == TOPO_SHA and old_meta["seed"] == 1 and
+                    old_params["lb"] == mode and old_params["pfc"] == 0 and
+                    old_params["irn"] == 1 and old_params["bw"] == 400 and
+                    old_params["buffer"] == 9 and
+                    old_params["topo"] == "topo_1280_400G_400G_OS1" and
+                    old_params["simul_time"] == "0.01" and old_params["netload"] == 10):
+                raise RuntimeError("Prior baseline identity or parameters mismatch: " + old_id)
+            old_raw = old_folder / "raw" / str(old_meta["raw_directory"])
             if row["fct_sha256"] != digest(one_file(old_raw, "_out_fct.txt")):
                 raise RuntimeError("Original baseline FCT changed: " + mode)
     result = {"complete": len(results) == len(CELLS), "verified": len(results), "cells": results}

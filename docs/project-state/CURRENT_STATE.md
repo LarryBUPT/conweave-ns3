@@ -2,7 +2,9 @@
 
 ## 当前快照（2026-10-08）
 
-WS-26 的第二组四格时间探针已按固定提交 `e6603e7f2cbe529fe168ea67c3a549fd2c4889cd` 通过非扰动与资源验收；首组缺资源收据的 ID 保留为失败记录。探针的上游标记与反馈时序支持继续检验本地背景占用，但有不符合该单一解释的尾流。[候选规格](../research/ws26-classreserve3-candidate-spec.md)已选定 ClassReserve v3：背景保留 ECMP，MoE 在源 ToR 首包使用近期背景 QP 占用与本地排队选路，后续按 QP 缓存。模式 23 的实现和[18 格正确性协议](../research/ws26-classreserve3-correctness-protocol.md)待远端编译与逐格验收；独立 pilot、正式主矩阵及三组合敏感性矩阵均未开始。时间探针与正确性小样不是正式收益证据，WS-25 的 NO-GO 保持不变。
+截至 2026-10-08，WS-26 ClassReserve v3 固定仿真提交 `b6fc1a423774790f971ad86b64e1c1646d63c36b` 的 18 格正确性预检已通过；全流、输入指纹、回归、队列路径与资源收据均核验完成。机器摘要为 `results/ws26-classreserve3-preflight-b6fc1a423774790f.json`，格级收据为同前缀的 `-receipts.jsonl`。旧失败 ID `20261008-030000-ws26-v3-pre-mixed8-p1i1` 及其 raw 保留。
+
+第 18 格的诊断验收已修正为按实际进入多路径选路的新建 QP 数和逐标签包数核对；4 条记录覆盖 2 个背景 QP 和 2 个 MoE QP，路径稳定且诊断 FCT 未变。mixed8 主条件中 `with_background=0`、`with_same_destination=0`、`diverted=0`，尚未证明机制信号有效覆盖。独立 pilot、正式主矩阵及敏感性矩阵均未开始；本次无性能结论。详见[正确性协议](../research/ws26-classreserve3-correctness-protocol.md)与[Handoff 78](../handoffs/2026-10-08-78-ws26-classreserve3-correctness-preflight.md)。WS-25 的 NO-GO 保持不变。
 
 ## 启动快照（2026-10-07；以下 WS-26 状态已过期）
 
