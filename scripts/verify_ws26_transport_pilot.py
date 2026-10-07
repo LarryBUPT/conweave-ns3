@@ -89,12 +89,24 @@ def verify(experiment_id, pfc, irn):
         raise RuntimeError("Pilot resource gate failed: " + experiment_id)
     if not pfc and pfc_events != {"pause": 0, "resume": 0}:
         raise RuntimeError("PFC-disabled pilot emitted PFC events: " + experiment_id)
+    diagnostics = {"timeout_recovery": 0, "nack_recovery": 0,
+                   "irn_pfc_deferred": 0, "irn_pfc_recovery": 0}
+    prefixes = (("WS08_TX_TIMEOUT ", "timeout_recovery"),
+                ("WS08_TX_NACK ", "nack_recovery"),
+                ("WS23_IRN_PFC_TIMEOUT_DEFERRED ", "irn_pfc_deferred"),
+                ("WS23_IRN_PFC_TIMEOUT_RECOVERY ", "irn_pfc_recovery"))
+    with (raw / "config.log").open(encoding="utf-8", errors="replace") as source:
+        for line in source:
+            for prefix, name in prefixes:
+                if line.startswith(prefix):
+                    diagnostics[name] += 1
     return {"id": experiment_id, "pfc": pfc, "irn": irn,
             "fct_sha256": summary["fct_sha256"],
             "input_flows": 16576, "completed_flows": 16576,
             "moe_batch_us": tags["2"]["synthetic_batch_completion_us"],
             "background_p99_us": tags["1"]["p99_fct_us"],
-            "pfc_events": pfc_events, "resource": resource}
+            "pfc_events": pfc_events, "recovery_diagnostics": diagnostics,
+            "resource": resource}
 
 
 def main():
