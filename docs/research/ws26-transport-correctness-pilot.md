@@ -21,3 +21,5 @@ PFC=0、IRN=1 的正式旧格 `20261004-070000-ws25-formal-s24-b192-fecmp` 已�
 副对话负责唯一 runner。每格启动前核对无其他用户作业、未知 ns-3/worker 和持锁进程，三 ID 均不存在；保存固定源码和输入哈希。cap=1，逐格构建、运行、回传、验收后才开下一格。1 分钟 load ≤20、可用内存 ≥32 GiB、空闲盘 ≥100 GiB、单格树 RSS ≤32 GiB；资源采样必须在仿真前启动。SSH 超时先回读原 ID，绝不覆盖原目录。
 
 每格必须核对终态、metadata、配置、trace/拓扑、FCT 原始文件、全部 16,576 个输入 QP 的身份与完成、总字节、重复/失配行、PFC/CNP/重传诊断和资源收据。PFC 次数为事件文件中的 pause/resume 原始次数，分别报告，不以零计数推断 PFC 路径安全。只在正确性完整通过后，才将该设置视为可进入候选校准；正式矩阵仍须使用新独立需求、候选固定 SHA 和新的完整验收。
+
+逐格复算入口为 `python scripts/verify_ws26_transport_pilot.py --id <原 ID>`。它核对固定源码、输入与参数、全部 QP 身份和完成、FCT/PFC/CNP/uplink raw 及资源门槛。三格均终态后运行不带 `--id` 的命令，生成 `docs/research/evidence/ws26-transport-correctness-pilot.json`。验收器的 Python 静态检查已通过；在三格 raw 回传前，它尚未完成实测验证。
