@@ -1,6 +1,6 @@
 # WS-26 ClassReserve v3 正确性预检
 
-状态：首格远端 build 前冻结 ID 和验收规则；候选源码 SHA 在提交后、首次 build 前登记。日期：2026-10-08。本组只检查实现、旧模式回归与四种传输设置，不作为新候选的收益证据。旧 WS-25 seed 及本组小输入不进入 WS-26 正式样本。
+状态：原首格在固定提交 `d4fb60dec340e282bd1150c82b2dfb2db9b64851` 下完成仿真，但 `missing_destination=16796`，正确性验收失败。原 ID `20261008-030000-ws26-v3-pre-mixed8-p1i1` 及其原始结果保留；其余 17 个旧 ID 均未启动。源码已修正目的 ToR 映射初始化。本表为修正后的 18 个全新 ID，最终固定源码 SHA 在首次 build 前登记。日期：2026-10-08。本组只检查实现、旧模式回归与四种传输设置，不作为新候选的收益证据。旧 WS-25 seed 及本组小输入不进入 WS-26 正式样本。
 
 ## 固定输入与参数
 
@@ -8,24 +8,24 @@
 
 | 顺序 | 新实验 ID | 模式 | trace | PFC/IRN |
 | ---: | --- | --- | --- | --- |
-| 1 | `20261008-030000-ws26-v3-pre-mixed8-p1i1` | classreserve3 | mixed8 | 1/1 |
-| 2 | `20261008-030001-ws26-v3-pre-background4-p1i1` | classreserve3 | background4 | 1/1 |
-| 3 | `20261008-030002-ws26-v3-pre-moe4-p1i1` | classreserve3 | moe4 | 1/1 |
-| 4 | `20261008-030003-ws26-v3-pre-unclassified8-p1i1` | classreserve3 | unclassified8 | 1/1 |
-| 5 | `20261008-030004-ws26-v3-pre-legacy5-p1i1` | classreserve3 | legacy5 | 1/1 |
-| 6 | `20261008-030005-ws26-v3-pre-unclassified8-ecmp-p1i1` | fecmp | unclassified8 | 1/1 |
-| 7 | `20261008-030006-ws26-v3-pre-legacy5-ecmp-p1i1` | fecmp | legacy5 | 1/1 |
-| 8 | `20261008-030007-ws26-v3-pre-mixed8-ecmp-p1i1` | fecmp | mixed8 | 1/1 |
-| 9 | `20261008-030008-ws26-v3-pre-mixed8-p0i0` | classreserve3 | mixed8 | 0/0 |
-| 10 | `20261008-030009-ws26-v3-pre-mixed8-p0i1` | classreserve3 | mixed8 | 0/1 |
-| 11 | `20261008-030010-ws26-v3-pre-mixed8-p1i0` | classreserve3 | mixed8 | 1/0 |
-| 12 | `20261008-030011-ws26-v3-pre-fecmp-mixed8-p0i1` | fecmp | mixed8 | 0/1 |
-| 13 | `20261008-030012-ws26-v3-pre-drill-mixed8-p0i1` | drill | mixed8 | 0/1 |
-| 14 | `20261008-030013-ws26-v3-pre-conga-mixed8-p0i1` | conga | mixed8 | 0/1 |
-| 15 | `20261008-030014-ws26-v3-pre-letflow-mixed8-p0i1` | letflow | mixed8 | 0/1 |
-| 16 | `20261008-030015-ws26-v3-pre-conweave-mixed8-p0i1` | conweave | mixed8 | 0/1 |
-| 17 | `20261008-030016-ws26-v3-pre-background4-ecmp-p1i1` | fecmp | background4 | 1/1 |
-| 18 | `20261008-030017-ws26-v3-pre-mixed8-diag-p1i1` | classreserve3 | mixed8，诊断开关开 | 1/1 |
+| 1 | `20261008-040000-ws26-v3-pre-mixed8-p1i1` | classreserve3 | mixed8 | 1/1 |
+| 2 | `20261008-040001-ws26-v3-pre-background4-p1i1` | classreserve3 | background4 | 1/1 |
+| 3 | `20261008-040002-ws26-v3-pre-moe4-p1i1` | classreserve3 | moe4 | 1/1 |
+| 4 | `20261008-040003-ws26-v3-pre-unclassified8-p1i1` | classreserve3 | unclassified8 | 1/1 |
+| 5 | `20261008-040004-ws26-v3-pre-legacy5-p1i1` | classreserve3 | legacy5 | 1/1 |
+| 6 | `20261008-040005-ws26-v3-pre-unclassified8-ecmp-p1i1` | fecmp | unclassified8 | 1/1 |
+| 7 | `20261008-040006-ws26-v3-pre-legacy5-ecmp-p1i1` | fecmp | legacy5 | 1/1 |
+| 8 | `20261008-040007-ws26-v3-pre-mixed8-ecmp-p1i1` | fecmp | mixed8 | 1/1 |
+| 9 | `20261008-040008-ws26-v3-pre-mixed8-p0i0` | classreserve3 | mixed8 | 0/0 |
+| 10 | `20261008-040009-ws26-v3-pre-mixed8-p0i1` | classreserve3 | mixed8 | 0/1 |
+| 11 | `20261008-040010-ws26-v3-pre-mixed8-p1i0` | classreserve3 | mixed8 | 1/0 |
+| 12 | `20261008-040011-ws26-v3-pre-fecmp-mixed8-p0i1` | fecmp | mixed8 | 0/1 |
+| 13 | `20261008-040012-ws26-v3-pre-drill-mixed8-p0i1` | drill | mixed8 | 0/1 |
+| 14 | `20261008-040013-ws26-v3-pre-conga-mixed8-p0i1` | conga | mixed8 | 0/1 |
+| 15 | `20261008-040014-ws26-v3-pre-letflow-mixed8-p0i1` | letflow | mixed8 | 0/1 |
+| 16 | `20261008-040015-ws26-v3-pre-conweave-mixed8-p0i1` | conweave | mixed8 | 0/1 |
+| 17 | `20261008-040016-ws26-v3-pre-background4-ecmp-p1i1` | fecmp | background4 | 1/1 |
+| 18 | `20261008-040017-ws26-v3-pre-mixed8-diag-p1i1` | classreserve3 | mixed8，诊断开关开 | 1/1 |
 
 每格使用独立源码目录、metadata、raw、资源 watcher 和收据；按表串行，cap=1。先查询原 ID 是否已使用，再决定 build/run/fetch。首格验收通过后才能扩展。
 

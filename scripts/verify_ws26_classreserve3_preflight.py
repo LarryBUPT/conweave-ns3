@@ -19,7 +19,7 @@ TRACES = {
     "unclassified8": ("ws25_v1fix_unclassified8.txt", "73704cadbdb95708c5ba26126af43b2758af688e332a80fdad46e7bc42c66dd3", {"0": 8}),
     "legacy5": ("ws25_v1fix_legacy5.txt", "cc80f3a1eb23dcf936a8b371bf5b63763acac283923361efe9bcd3ebb1ae6c94", {"0": 8}),
 }
-PREFIX = "20261008-0300"
+PREFIX = "20261008-0400"
 CELLS = [
     ("00", "mixed8-p1i1", "classreserve3", "mixed8", 1, 1, 0),
     ("01", "background4-p1i1", "classreserve3", "background4", 1, 1, 0),
