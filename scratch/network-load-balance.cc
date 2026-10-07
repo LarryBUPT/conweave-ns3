@@ -1856,8 +1856,10 @@ int main(int argc, char *argv[]) {
             sw->m_isToR = true;
             uint32_t hostIP = serverAddress[pair.first].Get();
             sw->m_isToR_hostIP.insert(hostIP);
-            if (ws21_identity) {
+            if (ws21_identity || lb_mode == 23) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
+            }
+            if (ws21_identity) {
                 SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
             if (ws21_port_events || ws21_heartbeat)
