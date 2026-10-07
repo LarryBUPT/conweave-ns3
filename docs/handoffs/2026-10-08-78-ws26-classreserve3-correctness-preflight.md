@@ -28,7 +28,7 @@
 
 ## 5. 当前状态
 
-截至 2026-10-08，18 格技术正确性预检已通过，WS-26 整体仍 ACTIVE。独立 pilot、正式主矩阵和敏感性矩阵均未开始。本次交接不应被解释为 WS-26 任务闭环。仿真源码 SHA 保持 `b6fc1a423774790f971ad86b64e1c1646d63c36b`；本地验收脚本有修订，详见 `scripts/verify_ws26_classreserve3_preflight.py`。
+截至 2026-10-08，分支 `feature/ws26-classmix-validation` 的状态记录已推送，工作树干净。18 格技术正确性预检已通过，WS-26 整体仍 ACTIVE。独立 pilot、正式主矩阵和敏感性矩阵均未开始。本次交接不应被解释为 WS-26 任务闭环。仿真源码 SHA 保持 `b6fc1a423774790f971ad86b64e1c1646d63c36b`；本地验收脚本有修订，详见 `scripts/verify_ws26_classreserve3_preflight.py`。
 
 当前工具没有模型查询或切换接口，因此无法核实监督期间是否实际使用 GPT-6 Luna High，也未声称已切换。后续长时实验须由具备模型切换能力的线程先实际切换并确认。
 
