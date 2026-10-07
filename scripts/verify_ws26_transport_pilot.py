@@ -73,7 +73,8 @@ def verify(experiment_id, pfc, irn):
     for suffix, path, width in (("CNP", cnp_path, 5), ("uplink", uplink_path, 4)):
         with path.open(encoding="ascii") as source:
             for line in source:
-                parts = line.split()
+                parts = line.split(",") if suffix == "uplink" else line.split()
+                parts = [value.strip() for value in parts]
                 if len(parts) != width or any(not value.isdigit() for value in parts):
                     raise RuntimeError("Malformed " + suffix + " row: " + experiment_id)
     resource = json.loads((folder / "logs" / "resource-summary.json").read_text(encoding="utf-8"))
