@@ -1,0 +1,91 @@
+{
+  "cells": [
+    {
+      "background_p99_us": 1300.2713400000005,
+      "completed_flows": 16576,
+      "fct_sha256": "48453a24b8c32fdd0d44bea7bfefbf40fcfb4cf96ac05a1c5e9cba544e70b834",
+      "id": "20261007-171000-ws26-transport-s24-b192-p1i1",
+      "input_flows": 16576,
+      "irn": 1,
+      "moe_batch_us": 19.671,
+      "pfc": 1,
+      "pfc_events": {
+        "pause": 0,
+        "resume": 0
+      },
+      "recovery_diagnostics": {
+        "irn_pfc_deferred": 0,
+        "irn_pfc_recovery": 0,
+        "nack_recovery": 0,
+        "timeout_recovery": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261007-171000-ws26-transport-s24-b192-p1i1",
+        "minimum_free_gib": 4890.6257400512695,
+        "minimum_mem_available_gib": 118.38251495361328,
+        "peak_tree_rss_mib": 4544.66796875,
+        "samples": 59
+      }
+    },
+    {
+      "background_p99_us": 1943.64984,
+      "completed_flows": 16576,
+      "fct_sha256": "97bb69ff8b9177dffb62641a67db149ab179642fdfc00f7c50507439adcf1c08",
+      "id": "20261007-171001-ws26-transport-s24-b192-p1i0",
+      "input_flows": 16576,
+      "irn": 0,
+      "moe_batch_us": 34.891,
+      "pfc": 1,
+      "pfc_events": {
+        "pause": 283,
+        "resume": 174
+      },
+      "recovery_diagnostics": {
+        "irn_pfc_deferred": 0,
+        "irn_pfc_recovery": 0,
+        "nack_recovery": 0,
+        "timeout_recovery": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261007-171001-ws26-transport-s24-b192-p1i0",
+        "minimum_free_gib": 4889.81782913208,
+        "minimum_mem_available_gib": 118.37899017333984,
+        "peak_tree_rss_mib": 4544.5234375,
+        "samples": 60
+      }
+    },
+    {
+      "background_p99_us": 1957.9186300000001,
+      "completed_flows": 16576,
+      "fct_sha256": "a093d37ee2f27497ebf675d1b80319f96ade302315929763141be9596e2356b7",
+      "id": "20261007-171002-ws26-transport-s24-b192-p0i0",
+      "input_flows": 16576,
+      "irn": 0,
+      "moe_batch_us": 34.891,
+      "pfc": 0,
+      "pfc_events": {
+        "pause": 0,
+        "resume": 0
+      },
+      "recovery_diagnostics": {
+        "irn_pfc_deferred": 0,
+        "irn_pfc_recovery": 0,
+        "nack_recovery": 0,
+        "timeout_recovery": 0
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261007-171002-ws26-transport-s24-b192-p0i0",
+        "minimum_free_gib": 4889.009441375732,
+        "minimum_mem_available_gib": 118.38276672363281,
+        "peak_tree_rss_mib": 4544.69921875,
+        "samples": 62
+      }
+    }
+  ],
+  "role": "technical correctness pilot, not efficacy",
+  "source_sha": "ce699dffe2845dc83e2171a1c309c6d96b96d2b3",
+  "trace_sha256": "d72f0f360d89dd3504c4cba730d903e1d939400ff2abd3566cf0428f4e59e2e3"
+}
