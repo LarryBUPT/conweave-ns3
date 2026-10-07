@@ -1,6 +1,10 @@
 # ConWeave 毕业论文项目状态
 
-## 当前快照（2026-10-07）
+## 当前快照（2026-10-08）
+
+WS-26 的第二组四格时间探针已按固定提交 `e6603e7f2cbe529fe168ea67c3a549fd2c4889cd` 通过非扰动与资源验收；首组缺资源收据的 ID 保留为失败记录。探针的上游标记与反馈时序支持继续检验本地背景占用，但有不符合该单一解释的尾流。[候选规格](../research/ws26-classreserve3-candidate-spec.md)已选定 ClassReserve v3：背景保留 ECMP，MoE 在源 ToR 首包使用近期背景 QP 占用与本地排队选路，后续按 QP 缓存。模式 23 的实现和[18 格正确性协议](../research/ws26-classreserve3-correctness-protocol.md)待远端编译与逐格验收；独立 pilot、正式主矩阵及三组合敏感性矩阵均未开始。时间探针与正确性小样不是正式收益证据，WS-25 的 NO-GO 保持不变。
+
+## 启动快照（2026-10-07；以下 WS-26 状态已过期）
 
 WS-26 已按用户新契约启动，属于**第一课题后续机制与实验验证**，不是 ADR-010 中投稿后才启动的第二课题。独立工作树 `feature/ws26-classmix-validation` 从集成提交 `159b59190e20375bfc3aece10e927fa8110331fb` 起步；[执行清单](../research/ws26-classmix-execution-plan.md)列出诊断、实现、正确性、pilot、正式 576 格、敏感性 576 格及全部 raw/资源验收。实验副对话 `01a11568-af40-7ba0-9814-8c462f6bf9e8` 是唯一远端 runner。两格已揭盲 ECMP 诊断 `20261007-170000-ws26-ecmpdiag-s43-b064` 与 `20261007-170001-ws26-ecmpdiag-s24-b192` 分别完成 16,448/16,448 与 16,576/16,576 条流，FCT 均与旧正式格逐字节一致，资源收据通过；[配对记录](../research/ws26-paired-tail-mechanism-notes.md)仅用于机制定位，下一步补有界时间对齐探针。三格传输正确性 pilot 正在副对话串行执行，尚待逐格验收。**尚无 WS-26 新候选 SHA、正式冻结输入或正式收益结果**；WS-25 NO-GO 不改判。主条件为 PFC=1、IRN=1；最终协议在独立 pilot 后、正式 seed 揭盲前冻结。小论文、投稿和第二课题均不在 WS-26 范围。
 

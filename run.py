@@ -138,6 +138,7 @@ lb_modes = {
     "ws18": 20,
     "classreserve": 21,
     "destspread": 22,
+    "classreserve3": 23,
     "drill": 2,
     "conga": 3,
     "letflow": 6,
