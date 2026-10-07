@@ -505,6 +505,8 @@ def execute(experiment_id):
                         '--ws21-port-max-bytes', str(params.get('ws21_port_max_bytes', 268435456))])
     if params.get('factorial_pilot'):
         command.append('--factorial-pilot')
+    if params.get('factorial_formal'):
+        command.append('--factorial-formal')
     if params.get('factorial_drop_diag'):
         command.append('--factorial-drop-diag')
     if params.get('ws23_pfc_probe_host', -1) >= 0:
@@ -559,14 +561,14 @@ def execute(experiment_id):
             shutil.copy2(topology_source, inside(os.path.join(base, 'config', 'topology.txt')))
             with open(topology_source, 'rb') as handle:
                 data['topology_sha256'] = hashlib.sha256(handle.read()).hexdigest()
-        if params.get('factorial_pilot'):
+        if params.get('factorial_pilot') or params.get('factorial_formal'):
             with open(os.path.join(base, 'config', 'traffic_trace.txt')) as handle:
                 data['input_flows'] = int(handle.readline().strip())
             with open(fct[0]) as handle:
                 data['completed_flows'] = sum(1 for line in handle if line.strip())
             data['unfinished_flows'] = data['input_flows'] - data['completed_flows']
             if data['unfinished_flows']:
-                raise RuntimeError('Factorial pilot has %d unfinished flows' % data['unfinished_flows'])
+                raise RuntimeError('Factorial validation has %d unfinished flows' % data['unfinished_flows'])
         data['status'] = 'SUCCEEDED'
     except Exception as error:
         data['status'] = 'FAILED'
@@ -714,6 +716,7 @@ def main():
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     run_cmd.add_argument('--factorial-pilot', action='store_true')
+    run_cmd.add_argument('--factorial-formal', action='store_true')
     run_cmd.add_argument('--factorial-drop-diag', action='store_true')
     run_cmd.add_argument('--ws23-pfc-probe-host', type=int, default=-1)
     run_cmd.add_argument('--ws23-pfc-probe-pg', type=int, default=3)
@@ -733,7 +736,11 @@ def main():
     elif args.command == 'build':
         build(args.id, args.sha, args.branch)
     elif args.command == 'run':
-        if args.pfc + args.irn != 1 and not args.factorial_pilot:
+        if args.factorial_pilot and args.factorial_formal:
+            raise RuntimeError('Factorial pilot and formal flags are exclusive')
+        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag):
+            raise RuntimeError('Factorial formal requires a fixed trace and no diagnostics')
+        if args.pfc + args.irn != 1 and not (args.factorial_pilot or args.factorial_formal):
             raise RuntimeError('Exactly one of PFC and IRN must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
             raise RuntimeError('Factorial drop diagnostics require factorial pilot mode')
@@ -799,6 +806,7 @@ def main():
                         'ws21_port_max_bytes': args.ws21_port_max_bytes,
                         'ws18_admission_rate_gbps': args.ws18_admission_rate_gbps,
                         'factorial_pilot': args.factorial_pilot,
+                        'factorial_formal': args.factorial_formal,
                         'factorial_drop_diag': args.factorial_drop_diag,
                         'ws23_pfc_probe_host': args.ws23_pfc_probe_host,
                         'ws23_pfc_probe_pg': args.ws23_pfc_probe_pg,

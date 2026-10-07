@@ -361,6 +361,8 @@ def main():
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     run_cmd.add_argument('--factorial-pilot', action='store_true',
                          help='allow exploratory IRN/PFC 00 and 11 configurations')
+    run_cmd.add_argument('--factorial-formal', action='store_true',
+                         help='allow fixed-input formal IRN/PFC 00 and 11 configurations')
     run_cmd.add_argument('--factorial-drop-diag', action='store_true',
                          help='log packet drops in a factorial pilot')
     run_cmd.add_argument('--ws23-pfc-probe-host', type=int, default=-1)
@@ -409,7 +411,11 @@ def main():
             worker_call(cfg, 'build', '--id', experiment_id, '--sha', sha, '--branch', branch)
             print('Experiment ID: ' + experiment_id)
     elif args.command == 'run':
-        if args.pfc + args.irn != 1 and not args.factorial_pilot:
+        if args.factorial_pilot and args.factorial_formal:
+            parser.error('--factorial-pilot and --factorial-formal are exclusive')
+        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag):
+            parser.error('--factorial-formal requires a fixed trace and no diagnostic flags')
+        if args.pfc + args.irn != 1 and not (args.factorial_pilot or args.factorial_formal):
             parser.error('Exactly one of --pfc and --irn must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
             parser.error('--factorial-drop-diag requires --factorial-pilot')
@@ -473,6 +479,8 @@ def main():
             command.extend(['--ws25-diag', '1'])
         if args.factorial_pilot:
             command.append('--factorial-pilot')
+        if args.factorial_formal:
+            command.append('--factorial-formal')
         if args.factorial_drop_diag:
             command.append('--factorial-drop-diag')
         if args.ws23_pfc_probe_host >= 0:

@@ -172,6 +172,8 @@ def main():
                         type=int, default=0, help="enable IRN (default: 0)")
     parser.add_argument('--factorial-pilot', action='store_true',
                         help='allow exploratory IRN/PFC 00 and 11 configurations')
+    parser.add_argument('--factorial-formal', action='store_true',
+                        help='allow validated formal IRN/PFC 00 and 11 configurations')
     parser.add_argument('--factorial-drop-diag', action='store_true',
                         help='log switch admission and queue rejects during a factorial pilot')
     parser.add_argument('--ws23-pfc-probe-host', type=int, default=-1)
@@ -271,10 +273,14 @@ def main():
     if (args.cc == "timely" or args.cc == "hpcc") and args.lb == "conweave":
         raise Exception(
             "CONFIG ERROR : ConWeave currently does not support RTT-based protocols. Plz modify its logic accordingly.")
-    if enabled_irn == 1 and enabled_pfc == 1 and not args.factorial_pilot:
+    if args.factorial_pilot and args.factorial_formal:
+        raise Exception("CONFIG ERROR : factorial pilot and formal flags are exclusive")
+    if args.factorial_formal and not args.flow_file:
+        raise Exception("CONFIG ERROR : factorial formal requires a fixed flow file")
+    if enabled_irn == 1 and enabled_pfc == 1 and not (args.factorial_pilot or args.factorial_formal):
         raise Exception(
             "CONFIG ERROR : If IRN is turn-on, then you should turn off PFC (for better perforamnce).")
-    if enabled_irn == 0 and enabled_pfc == 0 and not args.factorial_pilot:
+    if enabled_irn == 0 and enabled_pfc == 0 and not (args.factorial_pilot or args.factorial_formal):
         raise Exception(
             "CONFIG ERROR : Either IRN or PFC should be true (at least one).")
     if args.factorial_drop_diag and not args.factorial_pilot:
