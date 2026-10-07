@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LEVELS = (0, 64, 128, 192)
 
 
-def make(seed, out_dir):
+def make(seed, out_dir, prefix="ws25"):
     rng = random.Random(seed)
     aligned = list(range(0, 1280, 4))
     experts = sorted(rng.sample(aligned, 256))
@@ -36,12 +36,12 @@ def make(seed, out_dir):
         moe.extend((src, dst) for dst in peers)
     assert len(moe) == 16384 and len(set(moe)) == 16384
     assert not (set(background_hosts) & expert_set)
-    manifest = {"seed": seed, "generator": "scripts/make_ws25_demand.py",
+    manifest = {"seed": seed, "generator": "scripts/make_{}_demand.py".format(prefix),
                 "levels": {}, "expert_hosts": len(experts),
                 "background_hosts": len(background_hosts)}
     out_dir.mkdir(parents=True, exist_ok=True)
     for level in LEVELS:
-        name = "ws25_seed{}_b{}.txt".format(seed, level)
+        name = "{}_seed{}_b{}.txt".format(prefix, seed, level)
         lines = [str(16384 + level)]
         lines.extend("{} {} 3 8388608 2.000000000 1".format(src, dst)
                      for src, dst in pairs[:level])
