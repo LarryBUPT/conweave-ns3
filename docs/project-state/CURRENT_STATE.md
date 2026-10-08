@@ -2,6 +2,8 @@
 
 ## 当前快照（2026-10-08）
 
+截至 2026-10-08，WS-26 独立需求 pilot 的 v1 在旧源码 SHA `d6fdc5efe9a9aa77a90d24ab3aee931f721b607f` 下完成 6/28 格；第 7 格 ConWeave 因 `run.py` 拒绝 OS1、PFC=1、IRN=1 参数组合而在仿真前失败，控制器随即停止。失败 ID `20261008-070000-ws26v3-p90-b192-conweave` 和旧批次数据均保留，不能与修复版混算。修复提交 `593038416fa16f4982b600d256b563260f9106a8` 已推送个人 fork，为 OS1、PFC=1、IRN=1 明确设置 ConWeave `flush=16`、`waiting=300`、`expiry=1000`；该设置属于工程比较配置，不代表原版官方校准。v2 已冻结 52 个全新 ID：高档 28 格、低档 24 格。当前尚未在新 SHA 下构建或运行；下一步先做远端资源门和最小正确性验证，再重跑同 SHA 的高档 28 格。详见[独立需求 pilot 协议](../research/ws26-classreserve3-independent-pilot-protocol.md)、[v2 冻结计划](../research/evidence/ws26-v3-pilot-plan.json)与[Handoff 79](../handoffs/2026-10-08-79-ws26-v3-pilot-r2-recovery.md)。
+
 截至 2026-10-08，WS-26 ClassReserve v3 固定仿真提交 `b6fc1a423774790f971ad86b64e1c1646d63c36b` 的 18 格正确性预检已通过；全流、输入指纹、回归、队列路径与资源收据均核验完成。机器摘要为 `results/ws26-classreserve3-preflight-b6fc1a423774790f.json`，格级收据为同前缀的 `-receipts.jsonl`。旧失败 ID `20261008-030000-ws26-v3-pre-mixed8-p1i1` 及其 raw 保留。
 
 第 18 格的诊断验收已修正为按实际进入多路径选路的新建 QP 数和逐标签包数核对；4 条记录覆盖 2 个背景 QP 和 2 个 MoE QP，路径稳定且诊断 FCT 未变。mixed8 主条件中 `with_background=0`、`with_same_destination=0`、`diverted=0`，尚未证明机制信号有效覆盖。独立 pilot、正式主矩阵及敏感性矩阵均未开始；本次无性能结论。详见[正确性协议](../research/ws26-classreserve3-correctness-protocol.md)与[Handoff 78](../handoffs/2026-10-08-78-ws26-classreserve3-correctness-preflight.md)。WS-25 的 NO-GO 保持不变。

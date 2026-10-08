@@ -1,12 +1,12 @@
 # WS-26 ClassReserve v3 独立需求 pilot 协议
 
-状态：事前冻结，尚未启动任何 pilot 格。日期：2026-10-08。本协议只决定候选筛选与资源调度。pilot 结果不作为正式收益证据，也不改变 WS-25 的 NO-GO 结论。
+状态：v1 因 ConWeave 参数门失败而停止；v2 已冻结，尚未启动。日期：2026-10-08。本协议只决定候选筛选与资源调度。pilot 结果不作为正式收益证据，也不改变 WS-25 的 NO-GO 结论。
 
 ## 目标与固定输入
 
 本轮检验 ClassReserve v3 在新需求上能否同时改善 MoE 整批时间和背景 P99，并确认背景占用信号与真实改选是否出现。四个 pilot seed 为 `20262690～20262693`，与预留的 24 个正式 seed `20262601～20262624` 分开。每个 seed 的同档算法共用逐字节相同的输入。seed 是独立重复单位；流、档位和算法臂不增加重复数。
 
-固定仿真源码为 `d6fdc5efe9a9aa77a90d24ab3aee931f721b607f`，拓扑 SHA-256 为 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`。16 份 trace 的哈希、52 个原 ID、运行顺序与参数列于 [冻结计划](evidence/ws26-v3-pilot-plan.json)。生成器是 `scripts/make_ws26_v3_pilot_plan.py`。所有格使用 OS1 拓扑、400 Gbit/s、buffer 9、PFC=1、IRN=1、相同 ns-3 seed 1。输入含 16,384 条 MoE 流及对应档位的 0、64、128 或 192 条背景流。
+v1 使用源码 `d6fdc5efe9a9aa77a90d24ab3aee931f721b607f`，在第 7 格 ConWeave 启动前因 `Unsupported ConWeave Parameter Setup` 失败；该 SHA 下的 6 个已完成格和失败 ID `20261008-070000-ws26v3-p90-b192-conweave` 仅作历史记录，不进入 v2 分析。v1 原计划见[停止批次计划](evidence/ws26-v3-pilot-plan-v1-stopped.json)，对应收据在本机忽略目录 `results/ws26-v3-independent-pilot/receipts.jsonl`。v2 固定源码为 `593038416fa16f4982b600d256b563260f9106a8`。该源码为 OS1、PFC=1、IRN=1 的 ConWeave 明确设置 `flush=16`、`waiting=300`、`expiry=1000`；这是工程比较配置，不是原版官方校准。拓扑 SHA-256 为 `74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba`。16 份 trace 的哈希、52 个全新 ID、运行顺序与参数列于[v2 冻结计划](evidence/ws26-v3-pilot-plan.json)。生成器为 `scripts/make_ws26_v3_pilot_plan.py`。所有格使用 OS1 拓扑、400 Gbit/s、buffer 9、PFC=1、IRN=1 和 ns-3 seed 1。输入含 16,384 条 MoE 流及对应档位的 0、64、128 或 192 条背景流。
 
 ## 两阶段运行
 

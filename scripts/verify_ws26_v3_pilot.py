@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PLAN_PATH = ROOT / "docs/research/evidence/ws26-v3-pilot-plan.json"
 PLAN = json.loads(PLAN_PATH.read_text(encoding="utf-8"))
 TOPO_NAME = "topo_1280_400G_400G_OS1"
+EXPECTED_SOURCE_SHA = "593038416fa16f4982b600d256b563260f9106a8"
+ID_PREFIX = "20261008-140000-ws26v3r2-"
 
 
 def digest(path):
@@ -44,7 +46,8 @@ def one_counter(log, prefix, experiment_id):
 
 def check_plan():
     cells = PLAN["cells"]
-    if (len(cells) != 52 or len({row["id"] for row in cells}) != 52 or
+    if (PLAN["source_sha"] != EXPECTED_SOURCE_SHA or
+            len(cells) != 52 or len({row["id"] for row in cells}) != 52 or
             [row["order"] for row in cells] != list(range(1, 53)) or
             sum(row["stage"] == "high" for row in cells) != 28 or
             sum(row["stage"] == "low" for row in cells) != 24):
@@ -52,7 +55,8 @@ def check_plan():
     if digest(ROOT / "config" / (TOPO_NAME + ".txt")) != PLAN["topology_sha256"]:
         raise RuntimeError("Local topology changed")
     for row in cells:
-        if (row["seed"] not in range(20262690, 20262694) or
+        if (not row["id"].startswith(ID_PREFIX) or
+                row["seed"] not in range(20262690, 20262694) or
                 row["background"] not in (0, 64, 128, 192) or
                 row["pfc"] != 1 or row["irn"] != 1 or
                 row["expected_flows"] != 16384 + row["background"] or
@@ -99,6 +103,20 @@ def verify(cell):
     if (digest(folder / "config/traffic_trace.txt") != cell["trace_sha256"] or
             digest(folder / "config/topology.txt") != PLAN["topology_sha256"]):
         raise RuntimeError("Pilot input snapshot mismatch: " + experiment_id)
+    if cell["mode"] == "conweave":
+        config_text = (folder / "config/config.txt").read_text(encoding="utf-8")
+        expected_conweave = {
+            "CONWEAVE_EXTRA_VOQ_FLUSH_TIME": 16,
+            "CONWEAVE_DEFAULT_VOQ_WAITING_TIME": 300,
+            "CONWEAVE_TX_EXPIRY_TIME": 1000,
+        }
+        actual = {}
+        for line in config_text.splitlines():
+            parts = line.split()
+            if len(parts) == 2 and parts[0] in expected_conweave:
+                actual[parts[0]] = int(parts[1])
+        if actual != expected_conweave:
+            raise RuntimeError("ConWeave engineering parameters mismatch: " + experiment_id)
     summary = analyze_moe_tags.summarize(experiment_id)
     tags = summary["tags"]
     expected_tags = {"2": 16384}
