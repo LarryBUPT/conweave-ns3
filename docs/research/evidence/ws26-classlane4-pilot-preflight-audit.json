@@ -1,0 +1,30 @@
+{
+  "checked_at_cst": "2026-10-09 02:55:52",
+  "event": "pilot_preflight_remote_audit",
+  "next_gate": "Actual task/model switch to GPT-6 Luna High, then start watcher and confirm a sample before each simulation.",
+  "plan_path": "docs/research/evidence/ws26-classlane4-pilot-plan.json",
+  "plan_sha256": "ebfa7643461972ca968f9982ca23ec0e9cdb57da8c78b7f0127ab2f1aa70c162",
+  "remote_host_alias": "ns3host",
+  "remote_id_audit": {
+    "checked_ids": 52,
+    "conditional_low_ids": 24,
+    "high_stage_ids": 28,
+    "raw_overwritten": false,
+    "results_or_runs_collisions": []
+  },
+  "resource_audit": {
+    "active_simulation_pids": 0,
+    "free_disk_tib_approx": 4.7,
+    "load_15m": 0.95,
+    "load_1m": 0.0,
+    "load_5m": 0.44,
+    "logical_cpu": 40,
+    "mem_available_gib_approx": 122,
+    "other_user_jobs": 0,
+    "remote_check": "passed",
+    "running_worker_metadata": 0,
+    "simulation_lock_held": false
+  },
+  "resource_audit_at_cst": "2026-10-09 02:53:22",
+  "source_sha": "41384701c865082655cdea9a9e64daae74f51327"
+}
