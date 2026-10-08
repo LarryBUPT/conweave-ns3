@@ -28,6 +28,26 @@ def fields(line):
     return {key: int(value) for key, value in re.findall(r"(\w+)=(-?\d+)", line)}
 
 
+def topology_host_to_tor():
+    path = ROOT / "config" / (PLAN["topology"] + ".txt")
+    lines = path.read_text(encoding="ascii").splitlines()
+    node_count, switch_count = map(int, lines[0].split()[:2])
+    host_count = node_count - switch_count
+    result = {}
+    for line in lines[2:]:
+        parts = line.split()
+        if len(parts) < 5 or not parts[0].isdigit() or not parts[1].isdigit():
+            continue
+        left, right = int(parts[0]), int(parts[1])
+        if left < host_count <= right:
+            result[left] = right
+        elif right < host_count <= left:
+            result[right] = left
+    if set(result) != set(range(host_count)):
+        raise RuntimeError("Could not map every host to its directly connected switch")
+    return result
+
+
 def check_plan():
     cells = PLAN["cells"]
     if (PLAN["source_sha"] != "593038416fa16f4982b600d256b563260f9106a8"
@@ -37,6 +57,7 @@ def check_plan():
     topo = ROOT / "config/topo_1280_400G_400G_OS1.txt"
     if sha(topo) != PLAN["topology_sha256"]:
         raise RuntimeError("Frozen diagnostic topology changed")
+    topology_host_to_tor()
     pilot = json.loads((ROOT / "docs/research/evidence/ws26-v3-pilot-plan.json").read_text(
         encoding="utf-8"))
     pilot_cells = pilot["cells"]
@@ -94,6 +115,20 @@ def load_cell(cell):
     if not log_path.is_file() or log_path.is_symlink():
         raise RuntimeError("Fetched diagnostic config.log missing: " + cell["id"])
     log = log_path.read_text(encoding="utf-8", errors="replace").splitlines()
+    fct_by_tuple = {}
+    fct_rows = 0
+    with fcts[0].open(encoding="ascii") as stream:
+        for line in stream:
+            values = [int(value) for value in line.split()]
+            if len(values) != 8:
+                raise RuntimeError("Malformed FCT row: " + cell["id"])
+            key = tuple(values[:4])
+            if key in fct_by_tuple:
+                raise RuntimeError("Duplicate FCT flow tuple: " + cell["id"])
+            fct_by_tuple[key] = values[6] / 1000.0
+            fct_rows += 1
+    if fct_rows != 16576:
+        raise RuntimeError("FCT completion count mismatch: " + cell["id"])
     qp_rows = [fields(line) for line in log if line.startswith("WS25_QP ")]
     if (len(qp_rows) != 16576 or
             {row.get("flow_id") for row in qp_rows} != set(range(16576))):
@@ -112,6 +147,27 @@ def load_cell(cell):
                 raise RuntimeError("Invalid per-hop counters: " + cell["id"])
             key = tuple(row.get(k) for k in ("src", "dst", "sport", "dport"))
             hops[key].append(row)
+    choice_rows = [fields(line) for line in log
+                   if line.startswith("WS26_CLASSRESERVE3_QP ")]
+    chosen_paths = {}
+    candidate_moe_by_tor_port = collections.defaultdict(lambda: {"qp_count": 0, "packets": 0})
+    if cell["mode"] == "classreserve3":
+        route_summary_rows = [fields(line) for line in log
+                              if line.startswith("WS26_CLASSRESERVE3 ")]
+        if len(route_summary_rows) != 1:
+            raise RuntimeError("ClassReserve summary missing or duplicated: " + cell["id"])
+        route_summary = route_summary_rows[0]
+        if (len(choice_rows) != route_summary["background_new"] + route_summary["moe_new"] or
+                sum(row.get("tag") == 1 for row in choice_rows) != route_summary["background_new"] or
+                sum(row.get("tag") == 2 for row in choice_rows) != route_summary["moe_new"]):
+            raise RuntimeError("ClassReserve path-choice rows are incomplete: " + cell["id"])
+        for row in choice_rows:
+            key = (((row["sip"] >> 8) & 0xffff), ((row["dip"] >> 8) & 0xffff),
+                   row["sport"], row["dport"])
+            if key in chosen_paths or row.get("inconsistent") != 0:
+                raise RuntimeError("Duplicate or unstable ClassReserve path choice: " + cell["id"])
+            chosen_paths[key] = {"source_tor": row["switch"], "port": row["port"],
+                                 "packets": row["packets"], "tag": row["tag"]}
     inflight = [fields(line) for line in log if line.startswith("WS13_INFLIGHT ")]
     if len(inflight) != 1 or inflight[0].get("unpaired") != 0:
         raise RuntimeError("Flow-hop diagnostic did not close: " + cell["id"])
@@ -128,6 +184,14 @@ def load_cell(cell):
         input_ids[key] = index
         source_ports[src] += 1
         destination_ports[dst] += 1
+    host_to_tor = topology_host_to_tor()
+    for key, choice in chosen_paths.items():
+        if key not in input_ids or choice["source_tor"] != host_to_tor[key[0]]:
+            raise RuntimeError("ClassReserve source-ToR choice identity mismatch: " + cell["id"])
+        if choice["tag"] == 2:
+            target = candidate_moe_by_tor_port[(choice["source_tor"], choice["port"])]
+            target["qp_count"] += 1
+            target["packets"] += choice["packets"]
     detail = []
     for flow_key, flow_id in input_ids.items():
         if flow_id not in background_qps:
@@ -135,8 +199,9 @@ def load_cell(cell):
         if flow_key not in hops:
             raise RuntimeError("Background QP missing hop rows: " + cell["id"])
         selected = hops[flow_key]
-        detail.append({"flow_id": flow_id, "src": flow_key[0], "dst": flow_key[1],
+        record = {"flow_id": flow_id, "src": flow_key[0], "dst": flow_key[1],
                        "sport": flow_key[2], "dport": flow_key[3],
+                       "fct_us": fct_by_tuple.get(flow_key),
                        "counters": {key: background_qps[flow_id][key] for key in COUNTERS},
                        "hops": [{"switch": row["switch"], "port": row["port"],
                                  "packets": row["packets"],
@@ -144,7 +209,28 @@ def load_cell(cell):
                                  "wait_ns_max": row["wait_ns_max"],
                                  "queued_bytes_sum": row["queued_bytes_sum"],
                                  "wait_ns_sum": row["wait_ns_sum"]}
-                                for row in selected]})
+                                for row in selected]}
+        if record["fct_us"] is None:
+            raise RuntimeError("Background FCT tuple missing: " + cell["id"])
+        source_tor = host_to_tor[flow_key[0]]
+        source_hops = [row for row in selected if row["switch"] == source_tor]
+        if len(source_hops) != 1:
+            raise RuntimeError("Background source-ToR hop missing or duplicated: " + cell["id"])
+        record["source_tor_path"] = {"switch": source_tor,
+            "selected_port": source_hops[0]["port"],
+            "queued_bytes_max": source_hops[0]["queued_bytes_max"],
+            "wait_ns_max": source_hops[0]["wait_ns_max"],
+            "queued_bytes_sum": source_hops[0]["queued_bytes_sum"],
+            "wait_ns_sum": source_hops[0]["wait_ns_sum"]}
+        record["classreserve3_moe_choices_at_source_tor"] = [
+            {"port": port, **counts} for (switch, port), counts in
+            sorted(candidate_moe_by_tor_port.items()) if switch == source_tor]
+        if cell["mode"] == "classreserve3":
+            choice = chosen_paths.get(flow_key)
+            if choice is not None and (choice["tag"] != 1 or
+                                       source_hops[0]["port"] != choice["port"]):
+                raise RuntimeError("ClassReserve choice disagrees with source-ToR hop: " + cell["id"])
+        detail.append(record)
     if len(detail) != 192:
         raise RuntimeError("Could not map all 192 background QPs to diagnostics: " + cell["id"])
     resource = json.loads((folder / "logs/resource-summary.json").read_text(encoding="utf-8"))
@@ -161,6 +247,27 @@ def load_cell(cell):
     return {"id": cell["id"], "seed": cell["seed"], "mode": cell["mode"],
             "fct_sha256": fct_sha, "resource": resource,
             "background_qps": detail}
+
+
+def summarize_cell(cell):
+    flows = cell["background_qps"]
+    hop_rows = [{"flow_id": flow["flow_id"], "src": flow["src"], "dst": flow["dst"],
+                 "sport": flow["sport"], "dport": flow["dport"], **hop}
+                for flow in flows for hop in flow["hops"]]
+    counters = {key: {"total": sum(flow["counters"][key] for flow in flows),
+                      "flows_nonzero": sum(flow["counters"][key] > 0 for flow in flows)}
+                for key in COUNTERS}
+    ports = sorted({(row["switch"], row["port"]) for row in hop_rows})
+    return {"id": cell["id"], "seed": cell["seed"], "mode": cell["mode"],
+            "fct_sha256": cell["fct_sha256"], "flow_count": len(flows),
+            "counters": counters, "hop_row_count": len(hop_rows),
+            "switch_port_count": len(ports),
+            "top_queue_hops": sorted(hop_rows,
+                key=lambda row: (row["queued_bytes_max"], row["wait_ns_max"]),
+                reverse=True)[:10],
+            "top_wait_hops": sorted(hop_rows,
+                key=lambda row: (row["wait_ns_max"], row["queued_bytes_max"]),
+                reverse=True)[:10]}
 
 
 def main():
@@ -181,11 +288,24 @@ def main():
                 if (a["src"], a["dst"], a["sport"], a["dport"]) != \
                         (b["src"], b["dst"], b["sport"], b["dport"]):
                     raise RuntimeError("Paired background QP identity mismatch")
+                if a["source_tor_path"]["selected_port"] != b["source_tor_path"]["selected_port"]:
+                    raise RuntimeError("Background ECMP source-ToR path changed: " + ecmp["id"])
                 paired.append({"flow_id": a["flow_id"], "src": a["src"], "dst": a["dst"],
                                "sport": a["sport"], "dport": a["dport"],
+                               "ecmp_fct_us": a["fct_us"],
+                               "classreserve3_fct_us": b["fct_us"],
+                               "fct_change_us": b["fct_us"] - a["fct_us"],
                                "ecmp_counters": a["counters"],
                                "classreserve3_counters": b["counters"],
-                               "ecmp_hops": a["hops"], "classreserve3_hops": b["hops"]})
+                               "ecmp_hops": a["hops"], "classreserve3_hops": b["hops"],
+                               "controlled_source_tor": {
+                                   "switch": b["source_tor_path"]["switch"],
+                                   "ecmp_port": a["source_tor_path"]["selected_port"],
+                                   "classreserve3_port": b["source_tor_path"]["selected_port"],
+                                   "ecmp_queue_hop": a["source_tor_path"],
+                                   "classreserve3_queue_hop": b["source_tor_path"]},
+                               "classreserve3_moe_choices_at_source_tor":
+                                   b["classreserve3_moe_choices_at_source_tor"]})
             pairs.append({"seed": seed, "ecmp_id": ecmp["id"],
                           "classreserve3_id": candidate["id"],
                           "trace_sha256": next(c["trace_sha256"] for c in cells
@@ -202,7 +322,38 @@ def main():
               "interpretation_limit": "NS-3 diagnostics only; no new efficacy sample"}
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(output, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    print(json.dumps({"verified_cells": len(rows), "output": str(args.output)}, sort_keys=True))
+    summary_path = args.output.with_name("ws26-v3-tail-diagnostic-summary.json")
+    summary_pairs = []
+    for pair_index, pair in enumerate(pairs):
+        ecmp = by_pair[(pair["seed"], "fecmp")]
+        candidate = by_pair[(pair["seed"], "classreserve3")]
+        flow_index = []
+        for index, flow in enumerate(pair["flows"]):
+            flow_index.append({"flow_id": flow["flow_id"],
+                               "tuple": [flow["src"], flow["dst"], flow["sport"], flow["dport"]],
+                               "full_evidence_pointer": "pairs[%d].flows[%d]" % (pair_index, index),
+                               "fct_change_us": flow["fct_change_us"],
+                               "ecmp_switch_ports": [[hop["switch"], hop["port"]]
+                                                     for hop in flow["ecmp_hops"]],
+                               "classreserve3_switch_ports": [[hop["switch"], hop["port"]]
+                                                               for hop in flow["classreserve3_hops"]],
+                               "controlled_source_tor": flow["controlled_source_tor"],
+                               "classreserve3_moe_choices_at_source_tor":
+                                   flow["classreserve3_moe_choices_at_source_tor"],
+                               "ecmp_counters": flow["ecmp_counters"],
+                               "classreserve3_counters": flow["classreserve3_counters"]})
+        summary_pairs.append({"seed": pair["seed"], "trace_sha256": pair["trace_sha256"],
+                              "ecmp": summarize_cell(ecmp),
+                              "classreserve3": summarize_cell(candidate),
+                              "per_flow_path_evidence_index": flow_index})
+    summary = {"purpose": PLAN["purpose"], "evidence_level": PLAN["evidence_level"],
+               "source_sha": PLAN["source_sha"], "full_analysis_file": args.output.name,
+               "verified_cells": len(rows), "paired_seeds": len(summary_pairs),
+               "background_qps_per_pair": 192, "pairs": summary_pairs,
+               "interpretation_limit": "NS-3 diagnostics only; no new efficacy sample"}
+    summary_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    print(json.dumps({"verified_cells": len(rows), "analysis": str(args.output),
+                      "summary": str(summary_path)}, sort_keys=True))
 
 
 if __name__ == "__main__":
