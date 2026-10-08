@@ -8,11 +8,11 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "docs/research/evidence/ws26-classlane4-pilot-plan.json"
+OUTPUT = ROOT / "docs/research/evidence/ws26-classlane4-pilot-plan-r2.json"
 SOURCE_SHA = "41384701c865082655cdea9a9e64daae74f51327"
 TOPOLOGY = "topo_1280_400G_400G_OS1"
 TOPOLOGY_SHA = "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
-ID_PREFIX = "20261009-025500-ws26v4p1"
+ID_PREFIX = "20261009-031000-ws26v4p1r2"
 SEEDS = [20262694, 20262695, 20262696, 20262697]
 HIGH_ARMS = ["fecmp", "drill", "conga", "letflow", "conweave", "classlane4"]
 LOW_ARMS = ["fecmp", "classlane4"]
@@ -102,6 +102,9 @@ def main():
     plan = {
         "design": "four independent demand seeds; paired arms within seed",
         "purpose": "candidate screening only; not formal efficacy evidence",
+        "revision": "r2",
+        "supersedes_plan": "docs/research/evidence/ws26-classlane4-pilot-plan.json",
+        "revision_reason": "Remove the ClassReserve v3-only with_background gate; use the ClassLane v4 dual effect screen.",
         "source_sha": SOURCE_SHA,
         "topology": TOPOLOGY,
         "topology_sha256": TOPOLOGY_SHA,
@@ -116,11 +119,16 @@ def main():
             "both_metrics_required": True,
             "zero_is_strict_improvement": False,
         },
-        "mechanism_coverage_gate": {
-            "counters": ["with_background", "diverted"],
-            "minimum_seeds_each_counter_positive": 3,
-            "report": ["with_same_destination", "actual_diversion_ratio",
-                       "per_qp_paths", "queue_conservation"],
+        "mechanism_diagnostics": {
+            "report_counters": ["background_packets", "moe_packets",
+                                "background_qp_new", "moe_qp_new",
+                                "background_qp_reused", "moe_qp_reused",
+                                "background_diverted", "moe_diverted",
+                                "fallback", "missing_destination", "inconsistent",
+                                "queue_violations"],
+            "report": ["per_qp_paths", "per_switch_destination_tor_class_ports",
+                       "queue_conservation"],
+            "additional_seed_threshold": None,
         },
         "conditional_low_stage_gate": {
             "start_only_after_high_stage_effect_gate_pass": True,

@@ -1,0 +1,32 @@
+{
+  "checked_at_cst": "2026-10-09 03:02:11",
+  "event": "pilot_r2_preflight_remote_id_audit",
+  "next_gate": "Refresh resource admission immediately before build; switch the runner task to GPT-6 Luna High; confirm a watcher sample before each run.",
+  "plan_path": "docs/research/evidence/ws26-classlane4-pilot-plan-r2.json",
+  "plan_sha256": "b71155816dff1fd7410073913a35ae714c9bc6988c789867eba79829aa58cc02",
+  "remote_host_alias": "ns3host",
+  "remote_id_audit": {
+    "checked_ids": 52,
+    "conditional_low_ids": 24,
+    "high_stage_ids": 28,
+    "raw_overwritten": false,
+    "results_or_runs_collisions": []
+  },
+  "resource_audit": {
+    "active_simulation_pids": 0,
+    "free_disk_tib_approx": 4.7,
+    "load_15m": 0.95,
+    "load_1m": 0.0,
+    "load_5m": 0.44,
+    "logical_cpu": 40,
+    "mem_available_gib_approx": 122,
+    "other_user_jobs": 0,
+    "remote_check": "passed",
+    "running_worker_metadata": 0,
+    "simulation_lock_held": false
+  },
+  "resource_audit_at_cst": "2026-10-09 02:53:22",
+  "revision": "r2",
+  "source_sha": "41384701c865082655cdea9a9e64daae74f51327",
+  "supersedes_unrun_plan": "docs/research/evidence/ws26-classlane4-pilot-plan.json"
+}
