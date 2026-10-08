@@ -287,6 +287,26 @@ def ensure_config_log(cell, meta):
     return digest(target)
 
 
+def diagnostic_pair(cell, summary):
+    if not cell["ws25_diag"]:
+        return None
+    plain = next((row for row in PLAN["cells"]
+                  if row["stage"] == cell["stage"] and
+                  row["seed"] == cell["seed"] and
+                  row["background"] == cell["background"] and
+                  row["mode"] == cell["mode"] and
+                  row["ws25_diag"] == 0), None)
+    if plain is None:
+        raise RuntimeError("Diagnostic cell has no paired candidate: " + cell["id"])
+    receipt_path = OUT / (plain["id"] + ".verified.json")
+    if receipt_path.is_symlink() or not receipt_path.is_file():
+        raise RuntimeError("Paired candidate is not verified before diagnostic: " + plain["id"])
+    candidate = json.loads(receipt_path.read_text(encoding="utf-8"))
+    if candidate.get("fct_sha256") != summary.get("fct_sha256"):
+        raise RuntimeError("Diagnostic changed paired FCT: " + cell["id"])
+    return plain["id"]
+
+
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -306,6 +326,7 @@ def verify_local(cell):
                            output.stdout[-2500:])
     result = json.loads(output.stdout[output.stdout.find("{"):])
     summary = result["cells"][0]
+    paired_id = diagnostic_pair(cell, summary)
     summary["config_log_sha256"] = config_log_sha
     receipt_path = OUT / (cell["id"] + ".verified.json")
     if receipt_path.exists():
@@ -315,6 +336,9 @@ def verify_local(cell):
     else:
         receipt_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n",
                                 encoding="utf-8")
+    if paired_id:
+        record("diagnostic_fct_parity_verified", id=cell["id"], paired_id=paired_id,
+               fct_sha256=summary["fct_sha256"])
     return summary
 
 
@@ -343,7 +367,7 @@ def process(cell):
         record("built", id=experiment_id, source_sha=state.get("git_commit"),
                build_finished_utc=state.get("build_finished_utc"))
     elif state.get("status") == "BUILDING":
-        state = wait_for_state(experiment_id, ("BUILT",), interval_seconds=1800)
+        state = wait_for_state(experiment_id, ("BUILT",), interval_seconds=300)
 
     if state.get("git_commit") != SOURCE_SHA:
         raise RuntimeError("Remote source SHA mismatch: " + experiment_id)
