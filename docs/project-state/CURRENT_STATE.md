@@ -4,7 +4,7 @@
 
 截至 2026-10-08，WS-26 独立需求 pilot 的 v1 在旧源码 SHA `d6fdc5efe9a9aa77a90d24ab3aee931f721b607f` 下完成 6/28 格；第 7 格 ConWeave 因参数门拒绝 OS1、PFC=1、IRN=1 而在仿真前失败。旧 ID 和数据均保留，不能与修复版混算。修复提交 `593038416fa16f4982b600d256b563260f9106a8` 已推送，为该组合明确设置 ConWeave `flush=16`、`waiting=300`、`expiry=1000`。这属于工程比较配置，不代表原版官方校准。v2 计划包含 52 个全新 ID：高档 28 格、低档 24 格。
 
-v2 的 ConWeave 独立预检 `20261008-150000-ws26v3r2-conweave-preflight` 已在同一 SHA 下完成 16,576/16,576 流。参数快照验收通过，资源收据含 65 次采样，进程树 RSS 峰值为 4,561.8 MiB；该预检不计入效果筛选。高档 3/28 格已验收，分别为 DRILL、ClassReserve v3 和其诊断格。三格各完成 16,576/16,576 流，诊断与普通候选的 FCT SHA-256 相同；RSS 峰值约 4.44 GiB。2026-10-08 06:30 UTC 的监督核查显示负载 1.46、可用内存 122.52 GiB、剩余磁盘 4,857.6 GiB，无其他用户进程或活动仿真。下一格在固定 SHA 下构建。详见[独立需求 pilot 协议](../research/ws26-classreserve3-independent-pilot-protocol.md)、[v2 冻结计划](../research/evidence/ws26-v3-pilot-plan.json)与[Handoff 79](../handoffs/2026-10-08-79-ws26-v3-pilot-r2-recovery.md)。
+v2 的 ConWeave 独立预检 `20261008-150000-ws26v3r2-conweave-preflight` 已在同一 SHA 下完成 16,576/16,576 流。参数快照验收通过，资源收据含 65 次采样，进程树 RSS 峰值为 4,561.8 MiB；该预检不计入效果筛选。高档 5/28 格已验收，分别为 DRILL、ClassReserve v3、诊断、CONGA 和 LetFlow。五格各完成 16,576/16,576 流；诊断与普通候选的 FCT SHA-256 相同，RSS 峰值约 4.44～4.46 GiB。2026-10-08 06:54 UTC 的监督核查显示负载 1.83、可用内存 122.58 GiB、剩余磁盘 4,855.7 GiB，无其他用户进程。下一格在固定 SHA 下构建。详见[独立需求 pilot 协议](../research/ws26-classreserve3-independent-pilot-protocol.md)、[v2 冻结计划](../research/evidence/ws26-v3-pilot-plan.json)与[Handoff 79](../handoffs/2026-10-08-79-ws26-v3-pilot-r2-recovery.md)。
 
 截至 2026-10-08，WS-26 ClassReserve v3 固定仿真提交 `b6fc1a423774790f971ad86b64e1c1646d63c36b` 的 18 格正确性预检已通过；全流、输入指纹、回归、队列路径与资源收据均核验完成。机器摘要为 `results/ws26-classreserve3-preflight-b6fc1a423774790f.json`，格级收据为同前缀的 `-receipts.jsonl`。旧失败 ID `20261008-030000-ws26-v3-pre-mixed8-p1i1` 及其 raw 保留。
 
