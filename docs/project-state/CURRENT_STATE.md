@@ -8,6 +8,8 @@ v2 的 ConWeave 独立预检 `20261008-150000-ws26v3r2-conweave-preflight` 已�
 
 高档双侧筛选失败：MoE 批次时间变化中位数为 −0.476%，2/4 个 seed 改善；背景 P99 变化中位数为 +2.079%，1/4 个 seed 改善。机制覆盖门通过，但这两项均未达到筛选门槛，低档 24 格保持未启动。新增原始 CNP/ECN 诊断显示 OoO CNP 和 PFC pause/resume 均为 0；接收主机聚合 ECN 总量与背景尾流变化并非稳定同向。该计数不能定位单条尾流的标记交换机或因果路径。已冻结 8 格 `ws25_diag=1` 逐 QP/逐跳复跑；其 FCT SHA 必须匹配高档原始格。见[诊断协议](../research/ws26-v3-tail-counterexample-diagnostic.md)、[机器计划](../research/evidence/ws26-v3-tail-diagnostic-plan.json)和[Handoff 80](../handoffs/2026-10-08-80-ws26-v3-pilot-diagnostic-checkpoint.md)。WS-26 仍 ACTIVE。
 
+本轮恢复确认独立工作树位于 `feature/ws26-classmix-validation`。新增的[逐 QP/逐跳分析器](../../scripts/analyze_ws26_v3_tail_diagnostic.py)会核对 8 格输入、身份、资源收据和 FCT 指纹，并配对输出四个 seed 的 192 条背景 QP。计划检查、Python 语法检查和 `git diff --check` 均通过。提交 `dd1d63400997fe78a14d6d72b6e6e72e24098887` 已推送至个人 fork。当前工具没有提供可核验的模型切换状态，因此尚未访问远端、检查预留 ID 或启动实验；WS-26 的下一步仍是确认 Luna High 实际生效，再核查远端 ID、其他用户作业、锁和资源门，最后按 cap=1 串行运行 8 格。分析器通过后仍须切至 Sol High 收束。WS-26 保持 ACTIVE。
+
 截至 2026-10-08，WS-26 ClassReserve v3 固定仿真提交 `b6fc1a423774790f971ad86b64e1c1646d63c36b` 的 18 格正确性预检已通过；全流、输入指纹、回归、队列路径与资源收据均核验完成。机器摘要为 `results/ws26-classreserve3-preflight-b6fc1a423774790f.json`，格级收据为同前缀的 `-receipts.jsonl`。旧失败 ID `20261008-030000-ws26-v3-pre-mixed8-p1i1` 及其 raw 保留。
 
 第 18 格的诊断验收已修正为按实际进入多路径选路的新建 QP 数和逐标签包数核对；4 条记录覆盖 2 个背景 QP 和 2 个 MoE QP，路径稳定且诊断 FCT 未变。mixed8 主条件中 `with_background=0`、`with_same_destination=0`、`diverted=0`，尚未证明机制信号有效覆盖。独立 pilot、正式主矩阵及敏感性矩阵均未开始；本次无性能结论。详见[正确性协议](../research/ws26-classreserve3-correctness-protocol.md)与[Handoff 78](../handoffs/2026-10-08-78-ws26-classreserve3-correctness-preflight.md)。WS-25 的 NO-GO 保持不变。
