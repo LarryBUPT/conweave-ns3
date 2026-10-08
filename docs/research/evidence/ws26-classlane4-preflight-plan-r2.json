@@ -1,0 +1,305 @@
+{
+  "acceptance": [
+    "Audit all 19 remote IDs before build; never overwrite an existing result.",
+    "Run in listed order at cap=1; start and confirm the resource watcher before each run.",
+    "Verify frozen source, trace, topology, parameters, full flow identity, and raw files.",
+    "Verify QP path stability, per-tag packet counts, and queue byte conservation.",
+    "Verify shared ToR category port sets are disjoint in cell 17.",
+    "Verify diagnostic mode leaves the cell 1 FCT SHA unchanged.",
+    "Verify tag-zero and legacy baseline FCT parity; stop on any failure."
+  ],
+  "buffer_mib": 9,
+  "bw_gbps": 400,
+  "cap": 1,
+  "cc": "dcqcn",
+  "cells": [
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231000-ws26-v4r1-pre-mixed8-p1i1",
+      "irn": 1,
+      "mode": "classlane4",
+      "order": 1,
+      "pfc": 1,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4
+      },
+      "id": "20261008-231001-ws26-v4r1-pre-background4-p1i1",
+      "irn": 1,
+      "mode": "classlane4",
+      "order": 2,
+      "pfc": 1,
+      "trace": "ws25_v1fix_background4.txt",
+      "trace_key": "background4",
+      "trace_sha256": "e1259a4dbb17fe70e15a72881cbc3faaeac637123ba18ac29596b4f4f2743015",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "2": 4
+      },
+      "id": "20261008-231002-ws26-v4r1-pre-moe4-p1i1",
+      "irn": 1,
+      "mode": "classlane4",
+      "order": 3,
+      "pfc": 1,
+      "trace": "ws25_v1fix_moe4.txt",
+      "trace_key": "moe4",
+      "trace_sha256": "8acfe14d19d7ef7822bfd9a78334b830ce581456003e132d6557a44d1e41ea60",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "0": 8
+      },
+      "id": "20261008-231003-ws26-v4r1-pre-unclassified8-p1i1",
+      "irn": 1,
+      "mode": "classlane4",
+      "order": 4,
+      "pfc": 1,
+      "trace": "ws25_v1fix_unclassified8.txt",
+      "trace_key": "unclassified8",
+      "trace_sha256": "73704cadbdb95708c5ba26126af43b2758af688e332a80fdad46e7bc42c66dd3",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "0": 8
+      },
+      "id": "20261008-231004-ws26-v4r1-pre-legacy5-p1i1",
+      "irn": 1,
+      "mode": "classlane4",
+      "order": 5,
+      "pfc": 1,
+      "trace": "ws25_v1fix_legacy5.txt",
+      "trace_key": "legacy5",
+      "trace_sha256": "cc80f3a1eb23dcf936a8b371bf5b63763acac283923361efe9bcd3ebb1ae6c94",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "0": 8
+      },
+      "id": "20261008-231005-ws26-v4r1-pre-unclassified8-ecmp-p1i1",
+      "irn": 1,
+      "mode": "fecmp",
+      "order": 6,
+      "pfc": 1,
+      "trace": "ws25_v1fix_unclassified8.txt",
+      "trace_key": "unclassified8",
+      "trace_sha256": "73704cadbdb95708c5ba26126af43b2758af688e332a80fdad46e7bc42c66dd3",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "0": 8
+      },
+      "id": "20261008-231006-ws26-v4r1-pre-legacy5-ecmp-p1i1",
+      "irn": 1,
+      "mode": "fecmp",
+      "order": 7,
+      "pfc": 1,
+      "trace": "ws25_v1fix_legacy5.txt",
+      "trace_key": "legacy5",
+      "trace_sha256": "cc80f3a1eb23dcf936a8b371bf5b63763acac283923361efe9bcd3ebb1ae6c94",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231007-ws26-v4r1-pre-mixed8-ecmp-p1i1",
+      "irn": 1,
+      "mode": "fecmp",
+      "order": 8,
+      "pfc": 1,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231008-ws26-v4r1-pre-mixed8-p0i0",
+      "irn": 0,
+      "mode": "classlane4",
+      "order": 9,
+      "pfc": 0,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231009-ws26-v4r1-pre-mixed8-p0i1",
+      "irn": 1,
+      "mode": "classlane4",
+      "order": 10,
+      "pfc": 0,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231010-ws26-v4r1-pre-mixed8-p1i0",
+      "irn": 0,
+      "mode": "classlane4",
+      "order": 11,
+      "pfc": 1,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231011-ws26-v4r1-pre-fecmp-mixed8-p0i1",
+      "irn": 1,
+      "mode": "fecmp",
+      "order": 12,
+      "pfc": 0,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231012-ws26-v4r1-pre-drill-mixed8-p0i1",
+      "irn": 1,
+      "mode": "drill",
+      "order": 13,
+      "pfc": 0,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231013-ws26-v4r1-pre-conga-mixed8-p0i1",
+      "irn": 1,
+      "mode": "conga",
+      "order": 14,
+      "pfc": 0,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231014-ws26-v4r1-pre-letflow-mixed8-p0i1",
+      "irn": 1,
+      "mode": "letflow",
+      "order": 15,
+      "pfc": 0,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231015-ws26-v4r1-pre-conweave-mixed8-p0i1",
+      "irn": 1,
+      "mode": "conweave",
+      "order": 16,
+      "pfc": 0,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 0
+    },
+    {
+      "expected_tag_flows": {
+        "1": 2,
+        "2": 2
+      },
+      "id": "20261009-021700-ws26-v4r2-pre-shared-tor4-p1i1",
+      "irn": 1,
+      "mode": "classlane4",
+      "order": 17,
+      "pfc": 1,
+      "trace": "ws26_classlane4_shared_tor4.txt",
+      "trace_key": "shared_tor4",
+      "trace_sha256": "513b85e3c2e2422df2bb8f3c9b3812408fd02f7ee4aaba2ee11fd6cfbf16db2a",
+      "ws25_diag": 1
+    },
+    {
+      "expected_tag_flows": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261008-231017-ws26-v4r1-pre-mixed8-diag-p1i1",
+      "irn": 1,
+      "mode": "classlane4",
+      "order": 18,
+      "pfc": 1,
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_key": "mixed8",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb",
+      "ws25_diag": 1
+    },
+    {
+      "expected_tag_flows": {
+        "1": 2,
+        "2": 2
+      },
+      "id": "20261008-231018-ws26-v4r1-pre-shared-tor4-ecmp-p1i1",
+      "irn": 1,
+      "mode": "fecmp",
+      "order": 19,
+      "pfc": 1,
+      "trace": "ws26_classlane4_shared_tor4.txt",
+      "trace_key": "shared_tor4",
+      "trace_sha256": "513b85e3c2e2422df2bb8f3c9b3812408fd02f7ee4aaba2ee11fd6cfbf16db2a",
+      "ws25_diag": 0
+    }
+  ],
+  "evidence_level": "correctness and path isolation only; no efficacy claim",
+  "netload": 10,
+  "ns3_seed": 1,
+  "simul_time": "0.01",
+  "source_sha": "41384701c865082655cdea9a9e64daae74f51327",
+  "superseded_cell_17_id": "20261008-231016-ws26-v4r1-pre-shared-tor4-p1i1",
+  "superseded_cell_17_reason": "ws25_diag=0 was run instead of the frozen ws25_diag=1; preserve original raw",
+  "topology": "topo_1280_400G_400G_OS1",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
