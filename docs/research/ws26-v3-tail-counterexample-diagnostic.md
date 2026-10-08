@@ -1,6 +1,6 @@
 # WS-26 ClassReserve v3 尾流反例诊断
 
-状态：高档 pilot 已完成，双侧效果门失败；本文登记一次有界的非扰动诊断复跑。日期：2026-10-08。
+状态：高档 pilot 双侧效果门失败；登记的 8 格逐 QP/逐跳非扰动诊断已完成。日期：2026-10-08。
 
 ## 诊断依据
 
@@ -21,3 +21,9 @@ v2 高档 28 格固定于源码 SHA `593038416fa16f4982b600d256b563260f9106a8`�
 若逐 QP 反馈和逐跳等待把退化集中到可选上游路径，才登记 ClassReserve v3 唯一一次诊断修正，并使用新 SHA 与新 ID 做正确性和独立 pilot。若退化主要落在候选不可控制的路径或接收端聚合状态，不能用调高同目的权重冒充有证据的修正；应转入下一候选的独立设计，或在候选名额上限内形成有边界的负结果。
 
 此复跑仍属于 NS-3 合成需求诊断。即使全部通过，也不构成正式收益证据，不改变 WS-25 的确认性 NO-GO。
+
+## 诊断结果
+
+8 格均完成 16,576/16,576 条流，资源收据通过；各格 FCT SHA-256 与对应 v2 高档格完全相同。四个 seed 的 192 条背景流，其 ClassReserve 源 ToR 端口均与同输入 ECMP 一致。候选最大逐跳等待端口随 seed 变化；CNP 总量在一个 seed 上升、三个 seed 下降。`rx_ooo_packets`、`sack_feedback`、`repeated_sends` 和 `timeout_recovery` 均为 0。
+
+因此，本次诊断没有发现跨 seed 稳定且可控的退化路径，不支持 v3 的唯一调权或路由修正。原始分析、路径索引及证据边界见[Handoff 81](../handoffs/2026-10-08-81-ws26-v3-tail-diagnostic-analysis.md)、[完整分析](evidence/ws26-v3-tail-diagnostic-analysis.json)和[摘要](evidence/ws26-v3-tail-diagnostic-summary.json)。低档和正式矩阵仍关闭；候选名额、门槛和原有高档结果不变。
