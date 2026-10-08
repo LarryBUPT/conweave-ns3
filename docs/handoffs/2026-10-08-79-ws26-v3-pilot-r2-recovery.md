@@ -17,6 +17,8 @@
 - 在 `run.py` 增加明确参数分支，做 `python -m py_compile run.py` 和 `git diff --check`，均通过。
 - 提交并推送修复 SHA。计划生成器和逐格验收器已更新为新 SHA 与新 ID 命名。
 - 生成 52 个新 ID，执行计划结构、唯一性和 Python 编译检查，均通过。
+- 远端隔离构建通过。ConWeave 预检 `20261008-150000-ws26v3r2-conweave-preflight` 在固定 SHA 下完成 16,576/16,576 流；参数快照验收通过，资源收据有 65 次采样，RSS 峰值为 4,561.8 MiB。
+- 高档 28 格已启动。启动时间为 2026-10-08 05:54 UTC；当时尚未完成首格，调度并发上限为 1。
 - 阅读阮一峰《中文技术文档的写作规范》README 及标题、文本、段落、数值、标点符号和文档体系章节；据此更新协议和项目状态用语。
 
 ## 4. 已形成的设计决策
@@ -29,11 +31,11 @@
 
 ## 5. 当前状态
 
-WS-26 仍为 ACTIVE。修复源码已提交和推送；本地计划结构检查通过。新 SHA 尚未在服务器构建，也尚无 v2 运行格。高档与低档资源收据均未产生。工作区位于 `E:\研\毕业论文\workspace\ws26-classmix-validation`，分支 `feature/ws26-classmix-validation`。
+WS-26 仍为 ACTIVE。修复源码已提交和推送；v2 计划结构检查通过。新 SHA 远端构建及 ConWeave 全流预检已通过；v2 高档 28 格已开始串行执行。低档 24 格尚未启动。工作区位于 `E:\研\毕业论文\workspace\ws26-classmix-validation`，分支 `feature/ws26-classmix-validation`。
 
 ## 6. 未解决问题
 
-必须完成新 SHA 的远端编译和 ConWeave 参数/全流正确性检查；随后重跑高档 28 格并逐格核验原始数据与资源收据。高档双侧效果门和机制覆盖门通过后，才运行低档 24 格。最终结果还需由 GPT-6 Sol High 分析。正式矩阵尚未获准或启动。
+必须完成高档 28 格并逐格核验原始数据与资源收据。高档双侧效果门和机制覆盖门通过后，才运行低档 24 格。最终结果还需由 GPT-6 Sol High 分析。正式矩阵尚未获准或启动。
 
 ## 7. 后续推荐动作
 
@@ -49,5 +51,4 @@ WS-26 仍为 ACTIVE。修复源码已提交和推送；本地计划结构检查�
 
 ## 9. CONTEXT SNAPSHOT
 
-WS-26 pilot v1 使用旧 SHA `d6fdc5e…`，高档 6/28 成功后在 ConWeave 仿真前失败；旧 ID/raw 被保留并排除。OS1、PFC=1、IRN=1 的 ConWeave 参数入口已在 `run.py` 修复为 flush=16、waiting=300、expiry=1000，固定修复 SHA `593038416fa16f4982b600d256b563260f9106a8`。新计划有全新 52 个 ID（高档 28、低档 24），尚未远端构建或运行。继续遵守 `docs/REMOTE_EXPERIMENT_WORKFLOW.md` 的资源门、串行起步、逐格收据和持续验证要求。
-
+WS-26 pilot v1 使用旧 SHA `d6fdc5e…`，高档 6/28 成功后在 ConWeave 仿真前失败；旧 ID/raw 被保留并排除。修复 SHA `593038416fa16f4982b600d256b563260f9106a8` 已通过远端构建及 ConWeave 16,576/16,576 全流预检。新计划有 52 个全新 ID（高档 28、低档 24）；高档已开始串行执行，低档仍未开始。继续遵守 `docs/REMOTE_EXPERIMENT_WORKFLOW.md` 的资源门、逐格收据和持续验证要求。

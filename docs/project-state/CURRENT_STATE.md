@@ -2,7 +2,9 @@
 
 ## 当前快照（2026-10-08）
 
-截至 2026-10-08，WS-26 独立需求 pilot 的 v1 在旧源码 SHA `d6fdc5efe9a9aa77a90d24ab3aee931f721b607f` 下完成 6/28 格；第 7 格 ConWeave 因 `run.py` 拒绝 OS1、PFC=1、IRN=1 参数组合而在仿真前失败，控制器随即停止。失败 ID `20261008-070000-ws26v3-p90-b192-conweave` 和旧批次数据均保留，不能与修复版混算。修复提交 `593038416fa16f4982b600d256b563260f9106a8` 已推送个人 fork，为 OS1、PFC=1、IRN=1 明确设置 ConWeave `flush=16`、`waiting=300`、`expiry=1000`；该设置属于工程比较配置，不代表原版官方校准。v2 已冻结 52 个全新 ID：高档 28 格、低档 24 格。当前尚未在新 SHA 下构建或运行；下一步先做远端资源门和最小正确性验证，再重跑同 SHA 的高档 28 格。详见[独立需求 pilot 协议](../research/ws26-classreserve3-independent-pilot-protocol.md)、[v2 冻结计划](../research/evidence/ws26-v3-pilot-plan.json)与[Handoff 79](../handoffs/2026-10-08-79-ws26-v3-pilot-r2-recovery.md)。
+截至 2026-10-08，WS-26 独立需求 pilot 的 v1 在旧源码 SHA `d6fdc5efe9a9aa77a90d24ab3aee931f721b607f` 下完成 6/28 格；第 7 格 ConWeave 因参数门拒绝 OS1、PFC=1、IRN=1 而在仿真前失败。旧 ID 和数据均保留，不能与修复版混算。修复提交 `593038416fa16f4982b600d256b563260f9106a8` 已推送，为该组合明确设置 ConWeave `flush=16`、`waiting=300`、`expiry=1000`。这属于工程比较配置，不代表原版官方校准。v2 计划包含 52 个全新 ID：高档 28 格、低档 24 格。
+
+v2 的 ConWeave 独立预检 `20261008-150000-ws26v3r2-conweave-preflight` 已在同一 SHA 下完成 16,576/16,576 流。参数快照验收通过，资源收据含 65 次采样，进程树 RSS 峰值为 4,561.8 MiB；该预检不计入效果筛选。高档 28 格已开始串行执行，截至 2026-10-08 05:54 UTC 尚未完成首格。详见[独立需求 pilot 协议](../research/ws26-classreserve3-independent-pilot-protocol.md)、[v2 冻结计划](../research/evidence/ws26-v3-pilot-plan.json)与[Handoff 79](../handoffs/2026-10-08-79-ws26-v3-pilot-r2-recovery.md)。
 
 截至 2026-10-08，WS-26 ClassReserve v3 固定仿真提交 `b6fc1a423774790f971ad86b64e1c1646d63c36b` 的 18 格正确性预检已通过；全流、输入指纹、回归、队列路径与资源收据均核验完成。机器摘要为 `results/ws26-classreserve3-preflight-b6fc1a423774790f.json`，格级收据为同前缀的 `-receipts.jsonl`。旧失败 ID `20261008-030000-ws26-v3-pre-mixed8-p1i1` 及其 raw 保留。
 
