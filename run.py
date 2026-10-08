@@ -394,6 +394,13 @@ def main():
             cwh_extra_voq_flush_time = 16
             cwh_default_voq_waiting_time = 200
             cwh_tx_expiry_time = 300  # 300us
+        elif topo == "topo_1280_400G_400G_OS1" and \
+                enabled_pfc == 1 and enabled_irn == 1:
+            # Engineering comparison configuration for the WS-26 OS1 pilot;
+            # these values are not an official ConWeave calibration.
+            cwh_extra_voq_flush_time = 16
+            cwh_default_voq_waiting_time = 300
+            cwh_tx_expiry_time = 1000  # 1ms
         elif ("fat" in topo or topo == "topo_1280_400G_400G_OS1") and \
                 enabled_pfc == 0 and enabled_irn == 1:  # 3-tier Clos, IRN
             cwh_extra_voq_flush_time = 16
