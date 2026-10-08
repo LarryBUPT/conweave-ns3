@@ -1856,7 +1856,7 @@ int main(int argc, char *argv[]) {
             sw->m_isToR = true;
             uint32_t hostIP = serverAddress[pair.first].Get();
             sw->m_isToR_hostIP.insert(hostIP);
-            if (ws21_identity || lb_mode == 23) {
+            if (ws21_identity || lb_mode == 23 || lb_mode == 24) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
             }
             if (ws21_identity) {

@@ -139,6 +139,7 @@ lb_modes = {
     "classreserve": 21,
     "destspread": 22,
     "classreserve3": 23,
+    "classlane4": 24,
     "drill": 2,
     "conga": 3,
     "letflow": 6,

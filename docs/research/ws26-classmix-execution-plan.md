@@ -54,3 +54,5 @@ PFC=1、IRN=1 是唯一正式主条件。192 档对 ECMP 的 MoE 合成批次完
 第二组四个时间探针 ID 已全部通过固定源码、输入、FCT 非扰动与资源验收，机器索引见[时间探针收据](evidence/ws26-time-aligned-tail-probe.json)。事后尾流显示上游 ECN 与 CNP 时序相关，同时存在反馈更晚而 FCT 仍退化的反例。依据[候选规格](ws26-classreserve3-candidate-spec.md)，本轮只实施一个新候选 ClassReserve v3：背景保留 ECMP，MoE 首包根据本源 ToR 近期背景 QP 占用、同目的端重合和当前队列选两条路径之一，后续按 QP 缓存。[18 格正确性协议](ws26-classreserve3-correctness-protocol.md)先于独立需求 pilot；两者都不算正式收益。
 
 2026-10-08 更新：ClassReserve v3 的 v2 高档 28 格逐格通过正确性、raw、输入和资源验收，但双侧筛选失败，低档 24 格未运行。后续 8 格逐 QP/逐跳复跑全部完成；每格 FCT SHA 与对应高档格一致。4 个 seed 的背景源 ToR 端口均与 ECMP 一致，尾部热点位置与 CNP 总量变化方向跨 seed 不稳定，因此不实施 v3 调权修正。[Handoff 81](../handoffs/2026-10-08-81-ws26-v3-tail-diagnostic-analysis.md)和[诊断摘要](evidence/ws26-v3-tail-diagnostic-summary.json)记录了完整结果。WS-26 保持 ACTIVE；正式 576 格主矩阵和 576 格敏感性矩阵尚未启动。下一候选须有独立机制依据和新的可证伪门槛，再进入正确性与独立 pilot。
+
+2026-10-08 设计阶段：第二候选 [ClassLane v4](ws26-classlane4-candidate-spec.md)已先写事前机制、反例预测与停止条件，再加入独立模式号 24 的本地源码。它在 8 路分叉处按目的 ToR 轮转，将 2 条路径给 MoE、6 条给背景流；其余情况按原 ECMP。该候选针对跨源流在可选上游链路重合的问题，不依赖事后逐跳统计或远端在线状态。固定 OS1 拓扑的[本地最短路检查](../../scripts/check_ws26_classlane4_topology.py)通过；源码尚未远端编译，正确性、独立 pilot、正式矩阵及敏感性均未完成。不得将设计或拓扑检查写成性能证据。

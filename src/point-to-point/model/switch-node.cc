@@ -65,6 +65,20 @@ struct Ws26V3PathObservation {
 };
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint16_t, uint16_t>,
                 Ws26V3PathObservation> ws26_v3_paths;
+static uint64_t ws26_v4_packets[3] = {0, 0, 0};
+static uint64_t ws26_v4_qp_new[3] = {0, 0, 0};
+static uint64_t ws26_v4_qp_reused[3] = {0, 0, 0};
+static uint64_t ws26_v4_diverted[3] = {0, 0, 0};
+static uint64_t ws26_v4_fallback = 0, ws26_v4_missing_destination = 0;
+static uint64_t ws26_v4_inconsistent = 0;
+static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t>
+    ws26_v4_port_packets;
+struct Ws26V4PathObservation {
+    uint32_t tag = 0, port = 0, destinationTor = 0;
+    uint64_t packets = 0;
+};
+static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint16_t, uint16_t>,
+                Ws26V4PathObservation> ws26_v4_paths;
 static uint64_t destspread_moe_packets = 0, destspread_background_packets = 0;
 static uint64_t destspread_moe_new = 0, destspread_moe_reused = 0;
 static uint64_t destspread_background_new = 0, destspread_background_reused = 0;
@@ -850,7 +864,8 @@ void SwitchNode::PrintWorkloadTagCounts() {
         std::cout << "WS09_QUEUE_CHECK violations=" << guard_queue_violations << std::endl;
         NS_ASSERT_MSG(guard_queue_violations == 0, "GuardHash queue counters do not conserve bytes");
     }
-    if (Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23) {
+    if (Settings::lb_mode == 21 || Settings::lb_mode == 22 ||
+        Settings::lb_mode == 23 || Settings::lb_mode == 24) {
         uint64_t enqueued = 0, dequeued = 0, queuedDropped = 0, current = 0;
         for (const auto &entry : guard_queue_stats) {
             const GuardQueueStat &s = entry.second;
@@ -884,7 +899,7 @@ void SwitchNode::PrintWorkloadTagCounts() {
                       << " background_all_empty=" << destspread_background_all_empty
                       << " fallback_packets=" << destspread_fallback_packets
                       << " queue_violations=" << guard_queue_violations << std::endl;
-        } else {
+        } else if (Settings::lb_mode == 23) {
             std::cout << "WS26_CLASSRESERVE3 background_packets=" << ws26_v3_background_packets
                       << " background_new=" << ws26_v3_background_new
                       << " background_reused=" << ws26_v3_background_reused
@@ -898,8 +913,21 @@ void SwitchNode::PrintWorkloadTagCounts() {
                       << " fallback=" << ws26_v3_fallback
                       << " missing_destination=" << ws26_v3_missing_destination
                       << " queue_violations=" << guard_queue_violations << std::endl;
+        } else {
+            std::cout << "WS26_CLASSLANE4 background_packets=" << ws26_v4_packets[1]
+                      << " moe_packets=" << ws26_v4_packets[2]
+                      << " background_qp_new=" << ws26_v4_qp_new[1]
+                      << " moe_qp_new=" << ws26_v4_qp_new[2]
+                      << " background_qp_reused=" << ws26_v4_qp_reused[1]
+                      << " moe_qp_reused=" << ws26_v4_qp_reused[2]
+                      << " background_diverted=" << ws26_v4_diverted[1]
+                      << " moe_diverted=" << ws26_v4_diverted[2]
+                      << " fallback=" << ws26_v4_fallback
+                      << " missing_destination=" << ws26_v4_missing_destination
+                      << " inconsistent=" << ws26_v4_inconsistent
+                      << " queue_violations=" << guard_queue_violations << std::endl;
         }
-        std::cout << (Settings::lb_mode == 23 ? "WS26_QUEUE" : "WS25_QUEUE")
+        std::cout << (Settings::lb_mode >= 23 ? "WS26_QUEUE" : "WS25_QUEUE")
                   << " enqueued=" << enqueued << " dequeued=" << dequeued
                   << " queued_drop=" << queuedDropped << " current=" << current << std::endl;
         if (Settings::lb_mode == 21 && Ws25DiagnosticEnabled()) {
@@ -924,7 +952,7 @@ void SwitchNode::PrintWorkloadTagCounts() {
                           << " port=" << std::get<1>(entry.first)
                           << " tag=" << std::get<2>(entry.first)
                           << " packets=" << entry.second << std::endl;
-        } else {
+        } else if (Settings::lb_mode == 23) {
             for (const auto &entry : ws26_v3_source_port_packets)
                 std::cout << "WS26_CLASSRESERVE3_PORT switch=" << std::get<0>(entry.first)
                           << " port=" << std::get<1>(entry.first)
@@ -944,8 +972,29 @@ void SwitchNode::PrintWorkloadTagCounts() {
                               << " inconsistent=" << s.inconsistent << std::endl;
                 }
             }
+        } else {
+            for (const auto &entry : ws26_v4_port_packets)
+                std::cout << "WS26_CLASSLANE4_PORT switch=" << std::get<0>(entry.first)
+                          << " tag=" << std::get<1>(entry.first)
+                          << " port=" << std::get<2>(entry.first)
+                          << " packets=" << entry.second << std::endl;
+            if (Ws25DiagnosticEnabled()) {
+                for (const auto &entry : ws26_v4_paths) {
+                    const auto &key = entry.first;
+                    const auto &s = entry.second;
+                    std::cout << "WS26_CLASSLANE4_QP switch=" << std::get<0>(key)
+                              << " sip=" << std::get<1>(key)
+                              << " dip=" << std::get<2>(key)
+                              << " sport=" << std::get<3>(key)
+                              << " dport=" << std::get<4>(key)
+                              << " dst_tor=" << s.destinationTor
+                              << " tag=" << s.tag
+                              << " port=" << s.port
+                              << " packets=" << s.packets << std::endl;
+                }
+            }
         }
-        NS_ASSERT_MSG(guard_queue_violations == 0, "WS-25 queue counters do not conserve bytes");
+        NS_ASSERT_MSG(guard_queue_violations == 0, "Class-aware queue counters do not conserve bytes");
     }
 }
 
@@ -1318,6 +1367,55 @@ uint32_t SwitchNode::DoLbClassReserve3(Ptr<const Packet> p, const CustomHeader &
     return chosen;
 }
 
+// WS-26 second candidate: reserve two of eight ECMP next hops for MoE and
+// six for background traffic at every eight-way fork. The reservation rotates
+// by switch and destination ToR. A flow hash keeps every QP on one next hop.
+uint32_t SwitchNode::DoLbClassLane4(Ptr<const Packet> p, const CustomHeader &ch,
+                                    const std::vector<int> &nexthops) {
+    WorkloadTag label;
+    if (ch.l3Prot != 0x11 || !p->PeekPacketTag(label) ||
+        (label.GetValue() != 1 && label.GetValue() != 2) || nexthops.size() != 8) {
+        ++ws26_v4_fallback;
+        return DoLbFlowECMP(p, ch, nexthops);
+    }
+    const auto destination = Settings::hostIp2SwitchId.find(ch.dip);
+    if (destination == Settings::hostIp2SwitchId.end()) {
+        ++ws26_v4_missing_destination;
+        return DoLbFlowECMP(p, ch, nexthops);
+    }
+    const uint32_t tag = label.GetValue();
+    const uint32_t laneKey[2] = {m_id, destination->second};
+    const uint32_t offset = EcmpHash(reinterpret_cast<const uint8_t *>(laneKey),
+                                     sizeof(laneKey), m_ecmpSeed ^ 0x4c414e45U) % 8;
+    const uint32_t flowKey[3] = {ch.sip, ch.dip,
+        uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16)};
+    const uint32_t choice = EcmpHash(reinterpret_cast<const uint8_t *>(flowKey),
+                                     sizeof(flowKey), m_ecmpSeed ^ 0x436c7334U);
+    const uint32_t index = tag == 2 ? (offset + choice % 2) % 8
+                                    : (offset + 2 + choice % 6) % 8;
+    const uint32_t selected = nexthops[index];
+    ++ws26_v4_packets[tag];
+    if (selected != DoLbFlowECMP(p, ch, nexthops)) ++ws26_v4_diverted[tag];
+    ++ws26_v4_port_packets[std::make_tuple(m_id, tag, selected)];
+    const auto key = std::make_tuple(m_id, ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    Ws26V4PathObservation &observation = ws26_v4_paths[key];
+    if (observation.packets == 0) {
+        observation.tag = tag;
+        observation.port = selected;
+        observation.destinationTor = destination->second;
+        ++ws26_v4_qp_new[tag];
+    } else {
+        ++ws26_v4_qp_reused[tag];
+        if (observation.tag != tag || observation.port != selected ||
+            observation.destinationTor != destination->second) {
+            ++ws26_v4_inconsistent;
+            NS_ASSERT_MSG(false, "WS-26 ClassLane QP path changed");
+        }
+    }
+    ++observation.packets;
+    return selected;
+}
+
 // WS-25 v2 diagnostic correction. A MoE QP uses the existing DRILL decision
 // only for its first packet at this switch, then retains that next hop. A
 // background flow also chooses once and keeps its next hop at this switch.
@@ -1651,6 +1749,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbDestSpread(p, ch, nexthops);
         case 23:
             return DoLbClassReserve3(p, ch, nexthops);
+        case 24:
+            return DoLbClassLane4(p, ch, nexthops);
         case 13:
         case 14:
         case 15:
@@ -1706,7 +1806,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                     if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                     else ++ws21_feedback_hop_rejects;
                 }
-                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23)
+                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
                     SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
             }
@@ -1723,7 +1823,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                 else ++ws21_feedback_hop_rejects;
             }
-            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23)
+            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
                 SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
         }
@@ -1768,7 +1868,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         } else {
             // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
             // Release the admission reservation made above for this packet.
-            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23)) {
+            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)) {
                 if (!locallyGenerated)
                     m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
@@ -1865,7 +1965,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             ws13_inflight.erase(hit);
         }
     }
-    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23) {
+    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
         s.current -= p->GetSize();
