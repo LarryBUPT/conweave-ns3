@@ -2,6 +2,7 @@
 """Execute the frozen WS-26 MoE hop diagnostic serially with receipts."""
 
 import datetime
+import base64
 import hashlib
 import json
 import os
@@ -86,7 +87,10 @@ def ssh(command, timeout=60):
 
 
 def remote_python(source, timeout=60):
-    return ssh("python3 -c " + shlex.quote("exec(" + repr(source) + ")"), timeout).strip()
+    payload = base64.b64encode(source.encode("utf-8")).decode("ascii")
+    command = ("python3 -c \"import base64;exec(compile(base64.b64decode('" + payload +
+               "'),'<ws26-controller>','exec'))\"")
+    return ssh(command, timeout).strip()
 
 
 def status(experiment_id):
@@ -229,7 +233,7 @@ def copy_trace(cell):
                               cwd=str(ROOT), timeout=180)
     elif result != "present":
         raise RuntimeError("Remote trace state unclear: " + cell["id"])
-    verify = r'''import hashlib,os,subprocess,sys
+    verify = r'''import hashlib,json,os,subprocess,sys
 repo,relative,want=sys.argv[1:]; p=os.path.join(repo,relative)
 if os.path.islink(p) or not os.path.isfile(p): raise RuntimeError('trace is not regular')
 got=hashlib.sha256(open(p,'rb').read()).hexdigest()
@@ -238,15 +242,15 @@ exclude=os.path.join(repo,'.git','info','exclude')
 text=open(exclude).read() if os.path.isfile(exclude) else ''
 if relative not in text.splitlines():
  with open(exclude,'a') as f:
-  if text and not text.endswith('\\n'): f.write('\\n')
-  f.write(relative+'\\n')
+  if text and not text.endswith('\n'): f.write('\n')
+  f.write(relative+'\n')
 status=subprocess.check_output(['git','-C',repo,'status','--porcelain']).decode().strip()
 if status: raise RuntimeError('source became dirty: '+status)
 print(json.dumps({'sha256':got,'clean':True}))'''
     relative = "config/" + cell["trace"]
-    bootstrap = ("import sys; sys.argv=['',%r,%r,%r]; exec(%s)" %
+    bootstrap = ("import sys; sys.argv=['',%r,%r,%r]\n" %
                  ("/home/fnl/lzy/runs/" + cell["id"] + "/source",
-                  relative, cell["trace_sha256"], repr(verify)))
+                  relative, cell["trace_sha256"])) + verify
     result = remote_python(bootstrap)
     receipt = json.loads(result)
     if receipt.get("sha256") != cell["trace_sha256"] or not receipt.get("clean"):
@@ -388,12 +392,26 @@ def main():
     try:
         ids = [cell["id"] for cell in plan["cells"]]
         collision_report = remote_preflight(ids)
-        if (collision_report["collisions"] or collision_report["other_user_processes"] or
-                collision_report["simulation_lock_held"]):
+        if collision_report["other_user_processes"] or collision_report["simulation_lock_held"]:
             raise RuntimeError("Remote preflight failed: " + json.dumps(collision_report))
+        resumable = {}
+        for experiment_id in collision_report["collisions"]:
+            state = status(experiment_id)
+            cell = next(row for row in plan["cells"] if row["id"] == experiment_id)
+            paths = remote_paths([experiment_id])[experiment_id]
+            local = ROOT / "results" / experiment_id
+            if (not state or state.get("git_commit") != SOURCE_SHA or
+                    paths != (True, True) or state.get("status") not in
+                    ("BUILT", "BUILDING", "RUNNING", "SUCCEEDED")):
+                raise RuntimeError("Remote ID collision is not a resumable planned cell: " + experiment_id)
+            if local.exists() and state.get("status") != "SUCCEEDED":
+                raise RuntimeError("Local result conflicts with nonterminal remote state: " + experiment_id)
+            resumable[experiment_id] = state.get("status")
+        if resumable:
+            record("resume_audit", planned_cells=resumable)
         for cell in plan["cells"]:
             path = ROOT / "results" / cell["id"]
-            if path.exists() or path.is_symlink():
+            if (path.exists() or path.is_symlink()) and cell["id"] not in resumable:
                 raise RuntimeError("Local ID collision; preserving existing path: " + cell["id"])
         gate = resource_gate()
         paired_audits = [audit_paired_plain(cell) for cell in plan["cells"]]
@@ -410,8 +428,6 @@ def main():
                 if row.get("event") in ("verified", "verified_reused"):
                     verified.add(row["id"])
         for cell in plan["cells"]:
-            if cell["id"] in verified:
-                raise RuntimeError("Receipt says verified but initial audit found ID collision")
             try:
                 process(cell, plan)
             except Exception as error:
