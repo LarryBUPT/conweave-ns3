@@ -43,7 +43,7 @@ def make_dir(path):
     inside(path)
 
 
-def run_checked(argv, cwd=None, log=None, timeout=None):
+def run_checked(argv, cwd=None, log=None, timeout=None, env=None):
     if cwd:
         inside(cwd)
     if log:
@@ -51,12 +51,12 @@ def run_checked(argv, cwd=None, log=None, timeout=None):
         with open(log, 'ab') as output:
             try:
                 result = subprocess.call(argv, cwd=cwd, stdout=output,
-                                         stderr=subprocess.STDOUT, timeout=timeout)
+                                         stderr=subprocess.STDOUT, timeout=timeout, env=env)
             except subprocess.TimeoutExpired:
                 raise RuntimeError('Command timed out: ' + ' '.join(argv[:3]))
     else:
         try:
-            result = subprocess.call(argv, cwd=cwd, timeout=timeout)
+            result = subprocess.call(argv, cwd=cwd, timeout=timeout, env=env)
         except subprocess.TimeoutExpired:
             raise RuntimeError('Command timed out: ' + ' '.join(argv[:3]))
     if result:
@@ -535,7 +535,12 @@ def execute(experiment_id):
         if os.path.lexists(output_dir):
             raise RuntimeError('Expected a fresh, empty output path')
         os.symlink(inside(os.path.join(base, 'raw')), output_dir)
-        run_checked(command, cwd=source, log=log)
+        simulation_env = os.environ.copy()
+        if params.get('ws26_moe_hop_diag'):
+            simulation_env['WS26_MOE_HOP_DIAG'] = '1'
+        else:
+            simulation_env.pop('WS26_MOE_HOP_DIAG', None)
+        run_checked(command, cwd=source, log=log, env=simulation_env)
         raw_dirs = [p for p in glob.glob(os.path.join(base, 'raw', '*')) if os.path.isdir(p)]
         fct = glob.glob(os.path.join(base, 'raw', '*', '*_out_fct.txt'))
         if len(raw_dirs) != 1 or len(fct) != 1 or os.path.getsize(fct[0]) == 0:
@@ -700,6 +705,7 @@ def main():
     run_cmd.add_argument('--flow-file')
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
@@ -745,6 +751,8 @@ def main():
             raise RuntimeError('Factorial formal requires a fixed trace and no diagnostics')
         if args.ws26_time_probe and (not args.ws25_diag or not args.flow_file):
             raise RuntimeError('WS-26 time probe needs fixed trace and WS-25 diagnostics')
+        if args.ws26_moe_hop_diag and (not args.ws25_diag or not args.flow_file):
+            raise RuntimeError('WS-26 MoE hop diagnostic needs fixed trace and WS-25 diagnostics')
         if args.pfc + args.irn != 1 and not (args.factorial_pilot or args.factorial_formal):
             raise RuntimeError('Exactly one of PFC and IRN must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
@@ -795,6 +803,7 @@ def main():
                         'topo': args.topo, 'cdf': args.cdf,
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
                         'ws25_diag': args.ws25_diag,
+                        'ws26_moe_hop_diag': args.ws26_moe_hop_diag,
                         'ws26_time_probe': args.ws26_time_probe,
                         'ws18_admission': args.ws18_admission,
                         'ws18_path': args.ws18_path,
