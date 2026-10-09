@@ -1,0 +1,2145 @@
+{
+  "analysis_scope": "diagnostic mechanism comparison only",
+  "ecmp_analyzer_sha256": "df3246807ad9055e90421cf21041af57a08f95bc9642f6e449f61be80ab08ca4",
+  "ecmp_full_analysis_sha256": "4c076f0ad7e916c6e9daeaae0faea56abdd4ee95a64aa41157ab872f7c8b3ca5",
+  "ecmp_verifier_sha256": "4473bfd130f45c81192e11d8b10ad6ccb703b700505401f82037f73ba944c49f",
+  "normalized_plan_sha256": "030976066b815ef76fc941d0b8e612712e1a60c26a1ada05d9df8687981d6add",
+  "plan_file_sha256": "72a1d1af19168bbeeadaacf8d4391fbe3ef50aad61a22a6dbe9daeb76bb688c8",
+  "seeds": [
+    {
+      "background_p99_fct_us": {
+        "classlane4": 2023.0225300000002,
+        "ecmp": 2020.2906700000003
+      },
+      "candidate_diagnostic_id": "20261009-031000-ws26v4p1r2-s94-b192-classlane4-diag",
+      "candidate_fct_sha256": "23a981b7bdb4d4c70c1c659f394971a464901b997cc878314f4a92c4cd146c06",
+      "ecmp_verification": {
+        "background_qps": 192,
+        "fct_sha256": "2dfe240c883bcfa58cbf65caf2ebe531630e8301fe29a7499f6bfeee09f1b03c",
+        "flow_count": 16576,
+        "hop_rows": 882,
+        "hop_unique_qps": 192,
+        "id": "20261009-230000-ws26v4-ecmpdiag-s94-b192",
+        "inflight_unpaired": 0,
+        "maximum_load_1m": 1.98,
+        "minimum_free_gib": 4780.207378387451,
+        "minimum_mem_available_gib": 118.33895111083984,
+        "paired_plain_fct_sha256": "2dfe240c883bcfa58cbf65caf2ebe531630e8301fe29a7499f6bfeee09f1b03c",
+        "paired_plain_id": "20261009-031000-ws26v4p1r2-s94-b192-fecmp",
+        "peak_tree_rss_mib": 4544.79296875,
+        "resource_samples": 124,
+        "source_sha": "41384701c865082655cdea9a9e64daae74f51327",
+        "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+        "trace_sha256": "04987e0b2ba4dc4d9ab57ebbdda88530696dd7e347e3f8c9b9bb99e7d8cde456"
+      },
+      "paired_background_fct_delta_us": {
+        "equal": 0,
+        "faster": 91,
+        "median": 1.3169999999999504,
+        "slower": 101
+      },
+      "region_distributions": {
+        "classlane4": {
+          "destination_tor": {
+            "flow_count": 192,
+            "hop_queued_bytes_max_p50": 88556.0,
+            "hop_queued_bytes_max_p95": 227416.0,
+            "hop_queued_bytes_max_p99": 246280.0,
+            "hop_row_count": 192,
+            "hop_wait_ns_max_p50": 1699.5,
+            "hop_wait_ns_max_p95": 4466.45,
+            "hop_wait_ns_max_p99": 4897.09,
+            "max_queued_bytes_p50": 88556.0,
+            "max_queued_bytes_p95": 227416.0,
+            "max_queued_bytes_p99": 246280.0,
+            "max_wait_ns_p50": 1699.5,
+            "max_wait_ns_p95": 4466.45,
+            "max_wait_ns_p99": 4897.09
+          },
+          "source_tor": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 33536.0,
+            "hop_queued_bytes_max_p95": 204793.6,
+            "hop_queued_bytes_max_p99": 264158.07999999984,
+            "hop_row_count": 185,
+            "hop_wait_ns_max_p50": 675.0,
+            "hop_wait_ns_max_p95": 4022.4,
+            "hop_wait_ns_max_p99": 5152.119999999997,
+            "max_queued_bytes_p50": 33536.0,
+            "max_queued_bytes_p95": 204793.6,
+            "max_queued_bytes_p99": 264158.07999999984,
+            "max_wait_ns_p50": 675.0,
+            "max_wait_ns_p95": 4022.4,
+            "max_wait_ns_p99": 5152.119999999997
+          },
+          "transit": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 13624.0,
+            "hop_queued_bytes_max_p95": 146944.0,
+            "hop_queued_bytes_max_p99": 323963.5199999983,
+            "hop_row_count": 505,
+            "hop_wait_ns_max_p50": 266.0,
+            "hop_wait_ns_max_p95": 2886.2000000000003,
+            "hop_wait_ns_max_p99": 6232.759999999968,
+            "max_queued_bytes_p50": 44016.0,
+            "max_queued_bytes_p95": 183752.0,
+            "max_queued_bytes_p99": 354153.9199999998,
+            "max_wait_ns_p50": 856.0,
+            "max_wait_ns_p95": 3590.2,
+            "max_wait_ns_p99": 6913.399999999996
+          }
+        },
+        "ecmp": {
+          "destination_tor": {
+            "flow_count": 192,
+            "hop_queued_bytes_max_p50": 95428.0,
+            "hop_queued_bytes_max_p95": 227416.0,
+            "hop_queued_bytes_max_p99": 249429.4,
+            "hop_row_count": 192,
+            "hop_wait_ns_max_p50": 1847.0,
+            "hop_wait_ns_max_p95": 4386.25,
+            "hop_wait_ns_max_p99": 4969.17,
+            "max_queued_bytes_p50": 95428.0,
+            "max_queued_bytes_p95": 227416.0,
+            "max_queued_bytes_p99": 249429.4,
+            "max_wait_ns_p50": 1847.0,
+            "max_wait_ns_p95": 4386.25,
+            "max_wait_ns_p99": 4969.17
+          },
+          "source_tor": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 47264.0,
+            "hop_queued_bytes_max_p95": 181387.20000000036,
+            "hop_queued_bytes_max_p99": 204472.63999999998,
+            "hop_row_count": 185,
+            "hop_wait_ns_max_p50": 937.0,
+            "hop_wait_ns_max_p95": 3583.4000000000065,
+            "hop_wait_ns_max_p99": 4083.04,
+            "max_queued_bytes_p50": 47264.0,
+            "max_queued_bytes_p95": 181387.20000000036,
+            "max_queued_bytes_p99": 204472.63999999998,
+            "max_wait_ns_p50": 937.0,
+            "max_wait_ns_p95": 3583.4000000000065,
+            "max_wait_ns_p99": 4083.04
+          },
+          "transit": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 18984.0,
+            "hop_queued_bytes_max_p95": 141555.2,
+            "hop_queued_bytes_max_p99": 224944.0,
+            "hop_row_count": 505,
+            "hop_wait_ns_max_p50": 384.0,
+            "hop_wait_ns_max_p95": 2808.4,
+            "hop_wait_ns_max_p99": 4394.48,
+            "max_queued_bytes_p50": 59736.0,
+            "max_queued_bytes_p95": 189712.0,
+            "max_queued_bytes_p99": 226772.8,
+            "max_wait_ns_p50": 1180.0,
+            "max_wait_ns_p95": 3674.4,
+            "max_wait_ns_p99": 4432.72
+          }
+        }
+      },
+      "seed": 20262694,
+      "tail_flows": {
+        "classlane4": {
+          "nearest_p99": {
+            "destination_host_egress_port": 3,
+            "destination_tor": 1283,
+            "fct_us": 2019.574,
+            "paired_mode_fct_us": 2152.601,
+            "path": [
+              {
+                "egress_port": 12,
+                "neighbor": 1571,
+                "queued_bytes_max": 3144,
+                "switch": 1413,
+                "wait_ns_max": 71
+              },
+              {
+                "egress_port": 15,
+                "neighbor": 1630,
+                "queued_bytes_max": 10480,
+                "switch": 1571,
+                "wait_ns_max": 209
+              },
+              {
+                "egress_port": 1,
+                "neighbor": 1443,
+                "queued_bytes_max": 15720,
+                "switch": 1630,
+                "wait_ns_max": 330
+              },
+              {
+                "egress_port": 4,
+                "neighbor": 1283,
+                "queued_bytes_max": 10480,
+                "switch": 1443,
+                "wait_ns_max": 219
+              },
+              {
+                "egress_port": 3,
+                "neighbor": 104,
+                "queued_bytes_max": 246280,
+                "switch": 1283,
+                "wait_ns_max": 4902
+              }
+            ],
+            "qp": {
+              "dport": 103,
+              "dst": 104,
+              "sport": 10002,
+              "src": 1204
+            },
+            "source_tor": 1413,
+            "source_uplink_port": 12
+          },
+          "slowest_three": [
+            {
+              "destination_host_egress_port": 3,
+              "destination_tor": 1283,
+              "fct_us": 2235.132,
+              "paired_mode_fct_us": 2074.493,
+              "path": [
+                {
+                  "egress_port": 16,
+                  "neighbor": 1543,
+                  "queued_bytes_max": 12636,
+                  "switch": 1378,
+                  "wait_ns_max": 261
+                },
+                {
+                  "egress_port": 11,
+                  "neighbor": 1658,
+                  "queued_bytes_max": 11648,
+                  "switch": 1543,
+                  "wait_ns_max": 237
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 1447,
+                  "queued_bytes_max": 15720,
+                  "switch": 1658,
+                  "wait_ns_max": 307
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1283,
+                  "queued_bytes_max": 80696,
+                  "switch": 1447,
+                  "wait_ns_max": 1595
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 104,
+                  "queued_bytes_max": 246340,
+                  "switch": 1283,
+                  "wait_ns_max": 4897
+                }
+              ],
+              "qp": {
+                "dport": 101,
+                "dst": 104,
+                "sport": 10001,
+                "src": 832
+              },
+              "source_tor": 1378,
+              "source_uplink_port": 16
+            },
+            {
+              "destination_host_egress_port": 3,
+              "destination_tor": 1283,
+              "fct_us": 2057.891,
+              "paired_mode_fct_us": 1940.256,
+              "path": [
+                {
+                  "egress_port": 11,
+                  "neighbor": 1538,
+                  "queued_bytes_max": 14732,
+                  "switch": 1377,
+                  "wait_ns_max": 294
+                },
+                {
+                  "egress_port": 12,
+                  "neighbor": 1619,
+                  "queued_bytes_max": 9492,
+                  "switch": 1538,
+                  "wait_ns_max": 194
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 1442,
+                  "queued_bytes_max": 33536,
+                  "switch": 1619,
+                  "wait_ns_max": 648
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1283,
+                  "queued_bytes_max": 3264,
+                  "switch": 1442,
+                  "wait_ns_max": 76
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 104,
+                  "queued_bytes_max": 245352,
+                  "switch": 1283,
+                  "wait_ns_max": 4892
+                }
+              ],
+              "qp": {
+                "dport": 108,
+                "dst": 104,
+                "sport": 10003,
+                "src": 824
+              },
+              "source_tor": 1377,
+              "source_uplink_port": 11
+            },
+            {
+              "destination_host_egress_port": 3,
+              "destination_tor": 1283,
+              "fct_us": 2019.574,
+              "paired_mode_fct_us": 2152.601,
+              "path": [
+                {
+                  "egress_port": 12,
+                  "neighbor": 1571,
+                  "queued_bytes_max": 3144,
+                  "switch": 1413,
+                  "wait_ns_max": 71
+                },
+                {
+                  "egress_port": 15,
+                  "neighbor": 1630,
+                  "queued_bytes_max": 10480,
+                  "switch": 1571,
+                  "wait_ns_max": 209
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 1443,
+                  "queued_bytes_max": 15720,
+                  "switch": 1630,
+                  "wait_ns_max": 330
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1283,
+                  "queued_bytes_max": 10480,
+                  "switch": 1443,
+                  "wait_ns_max": 219
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 104,
+                  "queued_bytes_max": 246280,
+                  "switch": 1283,
+                  "wait_ns_max": 4902
+                }
+              ],
+              "qp": {
+                "dport": 103,
+                "dst": 104,
+                "sport": 10002,
+                "src": 1204
+              },
+              "source_tor": 1413,
+              "source_uplink_port": 12
+            }
+          ]
+        },
+        "ecmp": {
+          "nearest_p99": {
+            "destination_host_egress_port": 3,
+            "destination_tor": 1283,
+            "fct_us": 2014.93,
+            "paired_mode_fct_us": 1980.369,
+            "path": [
+              {
+                "egress_port": 9,
+                "neighbor": 1472,
+                "queued_bytes_max": 3144,
+                "switch": 1317,
+                "wait_ns_max": 78
+              },
+              {
+                "egress_port": 14,
+                "neighbor": 1605,
+                "queued_bytes_max": 1108,
+                "switch": 1472,
+                "wait_ns_max": 40
+              },
+              {
+                "egress_port": 1,
+                "neighbor": 1440,
+                "queued_bytes_max": 27248,
+                "switch": 1605,
+                "wait_ns_max": 525
+              },
+              {
+                "egress_port": 4,
+                "neighbor": 1283,
+                "queued_bytes_max": 4192,
+                "switch": 1440,
+                "wait_ns_max": 98
+              },
+              {
+                "egress_port": 3,
+                "neighbor": 104,
+                "queued_bytes_max": 248496,
+                "switch": 1283,
+                "wait_ns_max": 4966
+              }
+            ],
+            "qp": {
+              "dport": 100,
+              "dst": 104,
+              "sport": 10001,
+              "src": 424
+            },
+            "source_tor": 1317,
+            "source_uplink_port": 9
+          },
+          "slowest_three": [
+            {
+              "destination_host_egress_port": 3,
+              "destination_tor": 1283,
+              "fct_us": 2152.601,
+              "paired_mode_fct_us": 2019.574,
+              "path": [
+                {
+                  "egress_port": 13,
+                  "neighbor": 1572,
+                  "queued_bytes_max": 31560,
+                  "switch": 1413,
+                  "wait_ns_max": 637
+                },
+                {
+                  "egress_port": 9,
+                  "neighbor": 1632,
+                  "queued_bytes_max": 19912,
+                  "switch": 1572,
+                  "wait_ns_max": 402
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 1444,
+                  "queued_bytes_max": 41920,
+                  "switch": 1632,
+                  "wait_ns_max": 841
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1283,
+                  "queued_bytes_max": 18864,
+                  "switch": 1444,
+                  "wait_ns_max": 396
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 104,
+                  "queued_bytes_max": 249484,
+                  "switch": 1283,
+                  "wait_ns_max": 4985
+                }
+              ],
+              "qp": {
+                "dport": 103,
+                "dst": 104,
+                "sport": 10002,
+                "src": 1204
+              },
+              "source_tor": 1413,
+              "source_uplink_port": 13
+            },
+            {
+              "destination_host_egress_port": 3,
+              "destination_tor": 1283,
+              "fct_us": 2074.493,
+              "paired_mode_fct_us": 2235.132,
+              "path": [
+                {
+                  "egress_port": 15,
+                  "neighbor": 1542,
+                  "queued_bytes_max": 35632,
+                  "switch": 1378,
+                  "wait_ns_max": 724
+                },
+                {
+                  "egress_port": 13,
+                  "neighbor": 1652,
+                  "queued_bytes_max": 19912,
+                  "switch": 1542,
+                  "wait_ns_max": 403
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 1446,
+                  "queued_bytes_max": 26200,
+                  "switch": 1652,
+                  "wait_ns_max": 509
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1283,
+                  "queued_bytes_max": 16768,
+                  "switch": 1446,
+                  "wait_ns_max": 361
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 104,
+                  "queued_bytes_max": 246280,
+                  "switch": 1283,
+                  "wait_ns_max": 4921
+                }
+              ],
+              "qp": {
+                "dport": 101,
+                "dst": 104,
+                "sport": 10001,
+                "src": 832
+              },
+              "source_tor": 1378,
+              "source_uplink_port": 15
+            },
+            {
+              "destination_host_egress_port": 3,
+              "destination_tor": 1283,
+              "fct_us": 2014.93,
+              "paired_mode_fct_us": 1980.369,
+              "path": [
+                {
+                  "egress_port": 9,
+                  "neighbor": 1472,
+                  "queued_bytes_max": 3144,
+                  "switch": 1317,
+                  "wait_ns_max": 78
+                },
+                {
+                  "egress_port": 14,
+                  "neighbor": 1605,
+                  "queued_bytes_max": 1108,
+                  "switch": 1472,
+                  "wait_ns_max": 40
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 1440,
+                  "queued_bytes_max": 27248,
+                  "switch": 1605,
+                  "wait_ns_max": 525
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1283,
+                  "queued_bytes_max": 4192,
+                  "switch": 1440,
+                  "wait_ns_max": 98
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 104,
+                  "queued_bytes_max": 248496,
+                  "switch": 1283,
+                  "wait_ns_max": 4966
+                }
+              ],
+              "qp": {
+                "dport": 100,
+                "dst": 104,
+                "sport": 10001,
+                "src": 424
+              },
+              "source_tor": 1317,
+              "source_uplink_port": 9
+            }
+          ]
+        }
+      }
+    },
+    {
+      "background_p99_fct_us": {
+        "classlane4": 1590.7753400000001,
+        "ecmp": 1607.74262
+      },
+      "candidate_diagnostic_id": "20261009-031000-ws26v4p1r2-s95-b192-classlane4-diag",
+      "candidate_fct_sha256": "1748d0581202fb162d6c829a8749f33455ade183147268b7ffd3fd56d73e9164",
+      "ecmp_verification": {
+        "background_qps": 192,
+        "fct_sha256": "7fc56330340d1f70f22709d1dd39ec1c7f29828574d83daeee4924474dd5997b",
+        "flow_count": 16576,
+        "hop_rows": 868,
+        "hop_unique_qps": 192,
+        "id": "20261009-230000-ws26v4-ecmpdiag-s95-b192",
+        "inflight_unpaired": 0,
+        "maximum_load_1m": 1.0,
+        "minimum_free_gib": 4779.253391265869,
+        "minimum_mem_available_gib": 118.33332061767578,
+        "paired_plain_fct_sha256": "7fc56330340d1f70f22709d1dd39ec1c7f29828574d83daeee4924474dd5997b",
+        "paired_plain_id": "20261009-031000-ws26v4p1r2-s95-b192-fecmp",
+        "peak_tree_rss_mib": 4544.65625,
+        "resource_samples": 60,
+        "source_sha": "41384701c865082655cdea9a9e64daae74f51327",
+        "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+        "trace_sha256": "9001ce6042957b6d4bc9909ba0ac41e7a49fc7382121eec62a574d008add55b3"
+      },
+      "paired_background_fct_delta_us": {
+        "equal": 5,
+        "faster": 105,
+        "median": -2.0645000000000095,
+        "slower": 82
+      },
+      "region_distributions": {
+        "classlane4": {
+          "destination_tor": {
+            "flow_count": 192,
+            "hop_queued_bytes_max_p50": 72432.0,
+            "hop_queued_bytes_max_p95": 193940.0,
+            "hop_queued_bytes_max_p99": 199120.0,
+            "hop_row_count": 192,
+            "hop_wait_ns_max_p50": 1465.5,
+            "hop_wait_ns_max_p95": 3895.9,
+            "hop_wait_ns_max_p99": 4000.0,
+            "max_queued_bytes_p50": 72432.0,
+            "max_queued_bytes_p95": 193940.0,
+            "max_queued_bytes_p99": 199120.0,
+            "max_wait_ns_p50": 1465.5,
+            "max_wait_ns_p95": 3895.9,
+            "max_wait_ns_p99": 4000.0
+          },
+          "source_tor": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 54496.0,
+            "hop_queued_bytes_max_p95": 272648.0,
+            "hop_queued_bytes_max_p99": 332898.23999999993,
+            "hop_row_count": 185,
+            "hop_wait_ns_max_p50": 1100.0,
+            "hop_wait_ns_max_p95": 5327.8,
+            "hop_wait_ns_max_p99": 6429.6799999999985,
+            "max_queued_bytes_p50": 54496.0,
+            "max_queued_bytes_p95": 272648.0,
+            "max_queued_bytes_p99": 332898.23999999993,
+            "max_wait_ns_p50": 1100.0,
+            "max_wait_ns_p95": 5327.8,
+            "max_wait_ns_p99": 6429.6799999999985
+          },
+          "transit": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 15720.0,
+            "hop_queued_bytes_max_p95": 165472.0,
+            "hop_queued_bytes_max_p99": 233862.80000000002,
+            "hop_row_count": 491,
+            "hop_wait_ns_max_p50": 321.0,
+            "hop_wait_ns_max_p95": 3273.0,
+            "hop_wait_ns_max_p99": 4615.500000000001,
+            "max_queued_bytes_p50": 57260.0,
+            "max_queued_bytes_p95": 217105.60000000036,
+            "max_queued_bytes_p99": 236077.12,
+            "max_wait_ns_p50": 1152.0,
+            "max_wait_ns_p95": 4288.600000000008,
+            "max_wait_ns_p99": 4679.96
+          }
+        },
+        "ecmp": {
+          "destination_tor": {
+            "flow_count": 192,
+            "hop_queued_bytes_max_p50": 72402.0,
+            "hop_queued_bytes_max_p95": 197171.0,
+            "hop_queued_bytes_max_p99": 198132.0,
+            "hop_row_count": 192,
+            "hop_wait_ns_max_p50": 1460.0,
+            "hop_wait_ns_max_p95": 3966.0,
+            "hop_wait_ns_max_p99": 3977.54,
+            "max_queued_bytes_p50": 72402.0,
+            "max_queued_bytes_p95": 197171.0,
+            "max_queued_bytes_p99": 198132.0,
+            "max_wait_ns_p50": 1460.0,
+            "max_wait_ns_p95": 3966.0,
+            "max_wait_ns_p99": 3977.54
+          },
+          "source_tor": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 35632.0,
+            "hop_queued_bytes_max_p95": 203702.40000000005,
+            "hop_queued_bytes_max_p99": 298168.64,
+            "hop_row_count": 185,
+            "hop_wait_ns_max_p50": 708.0,
+            "hop_wait_ns_max_p95": 4087.400000000001,
+            "hop_wait_ns_max_p99": 5787.48,
+            "max_queued_bytes_p50": 35632.0,
+            "max_queued_bytes_p95": 203702.40000000005,
+            "max_queued_bytes_p99": 298168.64,
+            "max_wait_ns_p50": 708.0,
+            "max_wait_ns_p95": 4087.400000000001,
+            "max_wait_ns_p99": 5787.48
+          },
+          "transit": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 18924.0,
+            "hop_queued_bytes_max_p95": 140200.0,
+            "hop_queued_bytes_max_p99": 215992.80000000002,
+            "hop_row_count": 491,
+            "hop_wait_ns_max_p50": 380.0,
+            "hop_wait_ns_max_p95": 2783.0,
+            "hop_wait_ns_max_p99": 4235.400000000001,
+            "max_queued_bytes_p50": 56592.0,
+            "max_queued_bytes_p95": 167582.4,
+            "max_queued_bytes_p99": 225284.47999999998,
+            "max_wait_ns_p50": 1127.0,
+            "max_wait_ns_p95": 3335.0,
+            "max_wait_ns_p99": 4429.64
+          }
+        }
+      },
+      "seed": 20262695,
+      "tail_flows": {
+        "classlane4": {
+          "nearest_p99": {
+            "destination_host_egress_port": 2,
+            "destination_tor": 1346,
+            "fct_us": 1586.957,
+            "paired_mode_fct_us": 1521.21,
+            "path": [
+              {
+                "egress_port": 14,
+                "neighbor": 1541,
+                "queued_bytes_max": 9432,
+                "switch": 1381,
+                "wait_ns_max": 205
+              },
+              {
+                "egress_port": 11,
+                "neighbor": 1642,
+                "queued_bytes_max": 47160,
+                "switch": 1541,
+                "wait_ns_max": 950
+              },
+              {
+                "egress_port": 3,
+                "neighbor": 1509,
+                "queued_bytes_max": 7396,
+                "switch": 1642,
+                "wait_ns_max": 164
+              },
+              {
+                "egress_port": 3,
+                "neighbor": 1346,
+                "queued_bytes_max": 82852,
+                "switch": 1509,
+                "wait_ns_max": 1648
+              },
+              {
+                "egress_port": 2,
+                "neighbor": 580,
+                "queued_bytes_max": 197144,
+                "switch": 1346,
+                "wait_ns_max": 3962
+              }
+            ],
+            "qp": {
+              "dport": 103,
+              "dst": 580,
+              "sport": 10004,
+              "src": 952
+            },
+            "source_tor": 1381,
+            "source_uplink_port": 14
+          },
+          "slowest_three": [
+            {
+              "destination_host_egress_port": 4,
+              "destination_tor": 1381,
+              "fct_us": 1689.915,
+              "paired_mode_fct_us": 1451.333,
+              "path": [
+                {
+                  "egress_port": 13,
+                  "neighbor": 1572,
+                  "queued_bytes_max": 53900,
+                  "switch": 1411,
+                  "wait_ns_max": 1089
+                },
+                {
+                  "egress_port": 14,
+                  "neighbor": 1637,
+                  "queued_bytes_max": 53568,
+                  "switch": 1572,
+                  "wait_ns_max": 1052
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1540,
+                  "queued_bytes_max": 25152,
+                  "switch": 1637,
+                  "wait_ns_max": 503
+                },
+                {
+                  "egress_port": 6,
+                  "neighbor": 1381,
+                  "queued_bytes_max": 16768,
+                  "switch": 1540,
+                  "wait_ns_max": 355
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 940,
+                  "queued_bytes_max": 193940,
+                  "switch": 1381,
+                  "wait_ns_max": 3898
+                }
+              ],
+              "qp": {
+                "dport": 106,
+                "dst": 940,
+                "sport": 10003,
+                "src": 1132
+              },
+              "source_tor": 1411,
+              "source_uplink_port": 13
+            },
+            {
+              "destination_host_egress_port": 2,
+              "destination_tor": 1346,
+              "fct_us": 1629.383,
+              "paired_mode_fct_us": 1340.34,
+              "path": [
+                {
+                  "egress_port": 12,
+                  "neighbor": 1507,
+                  "queued_bytes_max": 52400,
+                  "switch": 1347,
+                  "wait_ns_max": 1056
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1346,
+                  "queued_bytes_max": 22128,
+                  "switch": 1507,
+                  "wait_ns_max": 441
+                },
+                {
+                  "egress_port": 2,
+                  "neighbor": 580,
+                  "queued_bytes_max": 199120,
+                  "switch": 1346,
+                  "wait_ns_max": 4000
+                }
+              ],
+              "qp": {
+                "dport": 106,
+                "dst": 580,
+                "sport": 10001,
+                "src": 608
+              },
+              "source_tor": 1347,
+              "source_uplink_port": 12
+            },
+            {
+              "destination_host_egress_port": 2,
+              "destination_tor": 1346,
+              "fct_us": 1586.957,
+              "paired_mode_fct_us": 1521.21,
+              "path": [
+                {
+                  "egress_port": 14,
+                  "neighbor": 1541,
+                  "queued_bytes_max": 9432,
+                  "switch": 1381,
+                  "wait_ns_max": 205
+                },
+                {
+                  "egress_port": 11,
+                  "neighbor": 1642,
+                  "queued_bytes_max": 47160,
+                  "switch": 1541,
+                  "wait_ns_max": 950
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1509,
+                  "queued_bytes_max": 7396,
+                  "switch": 1642,
+                  "wait_ns_max": 164
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1346,
+                  "queued_bytes_max": 82852,
+                  "switch": 1509,
+                  "wait_ns_max": 1648
+                },
+                {
+                  "egress_port": 2,
+                  "neighbor": 580,
+                  "queued_bytes_max": 197144,
+                  "switch": 1346,
+                  "wait_ns_max": 3962
+                }
+              ],
+              "qp": {
+                "dport": 103,
+                "dst": 580,
+                "sport": 10004,
+                "src": 952
+              },
+              "source_tor": 1381,
+              "source_uplink_port": 14
+            }
+          ]
+        },
+        "ecmp": {
+          "nearest_p99": {
+            "destination_host_egress_port": 4,
+            "destination_tor": 1381,
+            "fct_us": 1603.484,
+            "paired_mode_fct_us": 1575.981,
+            "path": [
+              {
+                "egress_port": 13,
+                "neighbor": 1508,
+                "queued_bytes_max": 11588,
+                "switch": 1347,
+                "wait_ns_max": 232
+              },
+              {
+                "egress_port": 14,
+                "neighbor": 1637,
+                "queued_bytes_max": 10600,
+                "switch": 1508,
+                "wait_ns_max": 220
+              },
+              {
+                "egress_port": 4,
+                "neighbor": 1540,
+                "queued_bytes_max": 14672,
+                "switch": 1637,
+                "wait_ns_max": 306
+              },
+              {
+                "egress_port": 6,
+                "neighbor": 1381,
+                "queued_bytes_max": 10600,
+                "switch": 1540,
+                "wait_ns_max": 205
+              },
+              {
+                "egress_port": 4,
+                "neighbor": 940,
+                "queued_bytes_max": 192952,
+                "switch": 1381,
+                "wait_ns_max": 3889
+              }
+            ],
+            "qp": {
+              "dport": 105,
+              "dst": 940,
+              "sport": 10001,
+              "src": 632
+            },
+            "source_tor": 1347,
+            "source_uplink_port": 13
+          },
+          "slowest_three": [
+            {
+              "destination_host_egress_port": 3,
+              "destination_tor": 1349,
+              "fct_us": 1664.093,
+              "paired_mode_fct_us": 1171.15,
+              "path": [
+                {
+                  "egress_port": 16,
+                  "neighbor": 1543,
+                  "queued_bytes_max": 4192,
+                  "switch": 1376,
+                  "wait_ns_max": 98
+                },
+                {
+                  "egress_port": 11,
+                  "neighbor": 1658,
+                  "queued_bytes_max": 12576,
+                  "switch": 1543,
+                  "wait_ns_max": 244
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1511,
+                  "queued_bytes_max": 19912,
+                  "switch": 1658,
+                  "wait_ns_max": 397
+                },
+                {
+                  "egress_port": 6,
+                  "neighbor": 1349,
+                  "queued_bytes_max": 133496,
+                  "switch": 1511,
+                  "wait_ns_max": 2651
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 680,
+                  "queued_bytes_max": 198192,
+                  "switch": 1349,
+                  "wait_ns_max": 3974
+                }
+              ],
+              "qp": {
+                "dport": 106,
+                "dst": 680,
+                "sport": 10002,
+                "src": 784
+              },
+              "source_tor": 1376,
+              "source_uplink_port": 16
+            },
+            {
+              "destination_host_egress_port": 2,
+              "destination_tor": 1346,
+              "fct_us": 1650.802,
+              "paired_mode_fct_us": 1435.204,
+              "path": [
+                {
+                  "egress_port": 16,
+                  "neighbor": 1543,
+                  "queued_bytes_max": 35632,
+                  "switch": 1382,
+                  "wait_ns_max": 710
+                },
+                {
+                  "egress_port": 14,
+                  "neighbor": 1661,
+                  "queued_bytes_max": 8444,
+                  "switch": 1543,
+                  "wait_ns_max": 175
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1511,
+                  "queued_bytes_max": 27248,
+                  "switch": 1661,
+                  "wait_ns_max": 546
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1346,
+                  "queued_bytes_max": 61892,
+                  "switch": 1511,
+                  "wait_ns_max": 1247
+                },
+                {
+                  "egress_port": 2,
+                  "neighbor": 580,
+                  "queued_bytes_max": 197144,
+                  "switch": 1346,
+                  "wait_ns_max": 3966
+                }
+              ],
+              "qp": {
+                "dport": 105,
+                "dst": 580,
+                "sport": 10001,
+                "src": 976
+              },
+              "source_tor": 1382,
+              "source_uplink_port": 16
+            },
+            {
+              "destination_host_egress_port": 4,
+              "destination_tor": 1381,
+              "fct_us": 1603.484,
+              "paired_mode_fct_us": 1575.981,
+              "path": [
+                {
+                  "egress_port": 13,
+                  "neighbor": 1508,
+                  "queued_bytes_max": 11588,
+                  "switch": 1347,
+                  "wait_ns_max": 232
+                },
+                {
+                  "egress_port": 14,
+                  "neighbor": 1637,
+                  "queued_bytes_max": 10600,
+                  "switch": 1508,
+                  "wait_ns_max": 220
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1540,
+                  "queued_bytes_max": 14672,
+                  "switch": 1637,
+                  "wait_ns_max": 306
+                },
+                {
+                  "egress_port": 6,
+                  "neighbor": 1381,
+                  "queued_bytes_max": 10600,
+                  "switch": 1540,
+                  "wait_ns_max": 205
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 940,
+                  "queued_bytes_max": 192952,
+                  "switch": 1381,
+                  "wait_ns_max": 3889
+                }
+              ],
+              "qp": {
+                "dport": 105,
+                "dst": 940,
+                "sport": 10001,
+                "src": 632
+              },
+              "source_tor": 1347,
+              "source_uplink_port": 13
+            }
+          ]
+        }
+      }
+    },
+    {
+      "background_p99_fct_us": {
+        "classlane4": 2080.32261,
+        "ecmp": 2098.34277
+      },
+      "candidate_diagnostic_id": "20261009-031000-ws26v4p1r2-s96-b192-classlane4-diag",
+      "candidate_fct_sha256": "5a497a40c098c8bc65e79cb38d033a9a2979bddf3e519f10a365ef3e852dc9db",
+      "ecmp_verification": {
+        "background_qps": 192,
+        "fct_sha256": "041b71782b2dd14d0c336ab9d9edade314bb0e9d9f708cb0ff0d98c62a629672",
+        "flow_count": 16576,
+        "hop_rows": 876,
+        "hop_unique_qps": 192,
+        "id": "20261009-230000-ws26v4-ecmpdiag-s96-b192",
+        "inflight_unpaired": 0,
+        "maximum_load_1m": 1.92,
+        "minimum_free_gib": 4778.296443939209,
+        "minimum_mem_available_gib": 118.33586883544922,
+        "paired_plain_fct_sha256": "041b71782b2dd14d0c336ab9d9edade314bb0e9d9f708cb0ff0d98c62a629672",
+        "paired_plain_id": "20261009-031000-ws26v4p1r2-s96-b192-fecmp",
+        "peak_tree_rss_mib": 4544.75390625,
+        "resource_samples": 61,
+        "source_sha": "41384701c865082655cdea9a9e64daae74f51327",
+        "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+        "trace_sha256": "67a67e404c5cb6ea45576e5fd9043c79c996742ae75b36270c6c9a3b9f0fa52b"
+      },
+      "paired_background_fct_delta_us": {
+        "equal": 0,
+        "faster": 104,
+        "median": -2.1440000000000055,
+        "slower": 88
+      },
+      "region_distributions": {
+        "classlane4": {
+          "destination_tor": {
+            "flow_count": 192,
+            "hop_queued_bytes_max_p50": 66084.0,
+            "hop_queued_bytes_max_p95": 192859.0,
+            "hop_queued_bytes_max_p99": 254664.0,
+            "hop_row_count": 192,
+            "hop_wait_ns_max_p50": 1323.0,
+            "hop_wait_ns_max_p95": 3794.45,
+            "hop_wait_ns_max_p99": 4874.0,
+            "max_queued_bytes_p50": 66084.0,
+            "max_queued_bytes_p95": 192859.0,
+            "max_queued_bytes_p99": 254664.0,
+            "max_wait_ns_p50": 1323.0,
+            "max_wait_ns_p95": 3794.45,
+            "max_wait_ns_p99": 4874.0
+          },
+          "source_tor": {
+            "flow_count": 190,
+            "hop_queued_bytes_max_p50": 64068.0,
+            "hop_queued_bytes_max_p95": 278412.4000000001,
+            "hop_queued_bytes_max_p99": 363856.12000000017,
+            "hop_row_count": 190,
+            "hop_wait_ns_max_p50": 1277.0,
+            "hop_wait_ns_max_p95": 5392.300000000001,
+            "hop_wait_ns_max_p99": 7072.970000000002,
+            "max_queued_bytes_p50": 64068.0,
+            "max_queued_bytes_p95": 278412.4000000001,
+            "max_queued_bytes_p99": 363856.12000000017,
+            "max_wait_ns_p50": 1277.0,
+            "max_wait_ns_p95": 5392.300000000001,
+            "max_wait_ns_p99": 7072.970000000002
+          },
+          "transit": {
+            "flow_count": 190,
+            "hop_queued_bytes_max_p50": 15720.0,
+            "hop_queued_bytes_max_p95": 161173.6,
+            "hop_queued_bytes_max_p99": 269099.12,
+            "hop_row_count": 494,
+            "hop_wait_ns_max_p50": 308.5,
+            "hop_wait_ns_max_p95": 3162.4500000000007,
+            "hop_wait_ns_max_p99": 5277.8099999999995,
+            "max_queued_bytes_p50": 59786.0,
+            "max_queued_bytes_p95": 217178.8000000003,
+            "max_queued_bytes_p99": 294540.0400000001,
+            "max_wait_ns_p50": 1180.5,
+            "max_wait_ns_p95": 4214.700000000006,
+            "max_wait_ns_p99": 5773.290000000001
+          }
+        },
+        "ecmp": {
+          "destination_tor": {
+            "flow_count": 192,
+            "hop_queued_bytes_max_p50": 68270.0,
+            "hop_queued_bytes_max_p95": 192892.0,
+            "hop_queued_bytes_max_p99": 254664.0,
+            "hop_row_count": 192,
+            "hop_wait_ns_max_p50": 1379.0,
+            "hop_wait_ns_max_p95": 3869.15,
+            "hop_wait_ns_max_p99": 4874.0,
+            "max_queued_bytes_p50": 68270.0,
+            "max_queued_bytes_p95": 192892.0,
+            "max_queued_bytes_p99": 254664.0,
+            "max_wait_ns_p50": 1379.0,
+            "max_wait_ns_p95": 3869.15,
+            "max_wait_ns_p99": 4874.0
+          },
+          "source_tor": {
+            "flow_count": 190,
+            "hop_queued_bytes_max_p50": 70740.0,
+            "hop_queued_bytes_max_p95": 194548.0,
+            "hop_queued_bytes_max_p99": 218593.32000000004,
+            "hop_row_count": 190,
+            "hop_wait_ns_max_p50": 1409.5,
+            "hop_wait_ns_max_p95": 3889.75,
+            "hop_wait_ns_max_p99": 4267.5700000000015,
+            "max_queued_bytes_p50": 70740.0,
+            "max_queued_bytes_p95": 194548.0,
+            "max_queued_bytes_p99": 218593.32000000004,
+            "max_wait_ns_p50": 1409.5,
+            "max_wait_ns_p95": 3889.75,
+            "max_wait_ns_p99": 4267.5700000000015
+          },
+          "transit": {
+            "flow_count": 190,
+            "hop_queued_bytes_max_p50": 19912.0,
+            "hop_queued_bytes_max_p95": 117692.40000000002,
+            "hop_queued_bytes_max_p99": 199150.76,
+            "hop_row_count": 494,
+            "hop_wait_ns_max_p50": 388.0,
+            "hop_wait_ns_max_p95": 2330.05,
+            "hop_wait_ns_max_p99": 3912.35,
+            "max_queued_bytes_p50": 46172.0,
+            "max_queued_bytes_p95": 169857.40000000008,
+            "max_queued_bytes_p99": 226499.28000000003,
+            "max_wait_ns_p50": 934.0,
+            "max_wait_ns_p95": 3337.800000000002,
+            "max_wait_ns_p99": 4369.54
+          }
+        }
+      },
+      "seed": 20262696,
+      "tail_flows": {
+        "classlane4": {
+          "nearest_p99": {
+            "destination_host_egress_port": 1,
+            "destination_tor": 1316,
+            "fct_us": 2078.25,
+            "paired_mode_fct_us": 2096.196,
+            "path": [
+              {
+                "egress_port": 15,
+                "neighbor": 1574,
+                "queued_bytes_max": 88032,
+                "switch": 1411,
+                "wait_ns_max": 1755
+              },
+              {
+                "egress_port": 12,
+                "neighbor": 1651,
+                "queued_bytes_max": 5240,
+                "switch": 1574,
+                "wait_ns_max": 106
+              },
+              {
+                "egress_port": 2,
+                "neighbor": 1478,
+                "queued_bytes_max": 19912,
+                "switch": 1651,
+                "wait_ns_max": 401
+              },
+              {
+                "egress_port": 5,
+                "neighbor": 1316,
+                "queued_bytes_max": 39824,
+                "switch": 1478,
+                "wait_ns_max": 817
+              },
+              {
+                "egress_port": 1,
+                "neighbor": 384,
+                "queued_bytes_max": 254664,
+                "switch": 1316,
+                "wait_ns_max": 4874
+              }
+            ],
+            "qp": {
+              "dport": 101,
+              "dst": 384,
+              "sport": 10000,
+              "src": 1144
+            },
+            "source_tor": 1411,
+            "source_uplink_port": 15
+          },
+          "slowest_three": [
+            {
+              "destination_host_egress_port": 1,
+              "destination_tor": 1316,
+              "fct_us": 2196.306,
+              "paired_mode_fct_us": 2031.729,
+              "path": [
+                {
+                  "egress_port": 13,
+                  "neighbor": 1476,
+                  "queued_bytes_max": 12636,
+                  "switch": 1313,
+                  "wait_ns_max": 259
+                },
+                {
+                  "egress_port": 5,
+                  "neighbor": 1316,
+                  "queued_bytes_max": 130012,
+                  "switch": 1476,
+                  "wait_ns_max": 2583
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 384,
+                  "queued_bytes_max": 254664,
+                  "switch": 1316,
+                  "wait_ns_max": 4874
+                }
+              ],
+              "qp": {
+                "dport": 106,
+                "dst": 384,
+                "sport": 10002,
+                "src": 308
+              },
+              "source_tor": 1313,
+              "source_uplink_port": 13
+            },
+            {
+              "destination_host_egress_port": 1,
+              "destination_tor": 1316,
+              "fct_us": 2101.279,
+              "paired_mode_fct_us": 2251.673,
+              "path": [
+                {
+                  "egress_port": 12,
+                  "neighbor": 1571,
+                  "queued_bytes_max": 4252,
+                  "switch": 1412,
+                  "wait_ns_max": 84
+                },
+                {
+                  "egress_port": 11,
+                  "neighbor": 1626,
+                  "queued_bytes_max": 6348,
+                  "switch": 1571,
+                  "wait_ns_max": 137
+                },
+                {
+                  "egress_port": 2,
+                  "neighbor": 1475,
+                  "queued_bytes_max": 13624,
+                  "switch": 1626,
+                  "wait_ns_max": 281
+                },
+                {
+                  "egress_port": 5,
+                  "neighbor": 1316,
+                  "queued_bytes_max": 142392,
+                  "switch": 1475,
+                  "wait_ns_max": 2782
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 384,
+                  "queued_bytes_max": 254664,
+                  "switch": 1316,
+                  "wait_ns_max": 4874
+                }
+              ],
+              "qp": {
+                "dport": 102,
+                "dst": 384,
+                "sport": 10003,
+                "src": 1160
+              },
+              "source_tor": 1412,
+              "source_uplink_port": 12
+            },
+            {
+              "destination_host_egress_port": 1,
+              "destination_tor": 1316,
+              "fct_us": 2078.25,
+              "paired_mode_fct_us": 2096.196,
+              "path": [
+                {
+                  "egress_port": 15,
+                  "neighbor": 1574,
+                  "queued_bytes_max": 88032,
+                  "switch": 1411,
+                  "wait_ns_max": 1755
+                },
+                {
+                  "egress_port": 12,
+                  "neighbor": 1651,
+                  "queued_bytes_max": 5240,
+                  "switch": 1574,
+                  "wait_ns_max": 106
+                },
+                {
+                  "egress_port": 2,
+                  "neighbor": 1478,
+                  "queued_bytes_max": 19912,
+                  "switch": 1651,
+                  "wait_ns_max": 401
+                },
+                {
+                  "egress_port": 5,
+                  "neighbor": 1316,
+                  "queued_bytes_max": 39824,
+                  "switch": 1478,
+                  "wait_ns_max": 817
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 384,
+                  "queued_bytes_max": 254664,
+                  "switch": 1316,
+                  "wait_ns_max": 4874
+                }
+              ],
+              "qp": {
+                "dport": 101,
+                "dst": 384,
+                "sport": 10000,
+                "src": 1144
+              },
+              "source_tor": 1411,
+              "source_uplink_port": 15
+            }
+          ]
+        },
+        "ecmp": {
+          "nearest_p99": {
+            "destination_host_egress_port": 1,
+            "destination_tor": 1316,
+            "fct_us": 2096.196,
+            "paired_mode_fct_us": 2078.25,
+            "path": [
+              {
+                "egress_port": 9,
+                "neighbor": 1568,
+                "queued_bytes_max": 139384,
+                "switch": 1411,
+                "wait_ns_max": 2781
+              },
+              {
+                "egress_port": 13,
+                "neighbor": 1604,
+                "queued_bytes_max": 104208,
+                "switch": 1568,
+                "wait_ns_max": 2084
+              },
+              {
+                "egress_port": 2,
+                "neighbor": 1472,
+                "queued_bytes_max": 10540,
+                "switch": 1604,
+                "wait_ns_max": 218
+              },
+              {
+                "egress_port": 5,
+                "neighbor": 1316,
+                "queued_bytes_max": 76504,
+                "switch": 1472,
+                "wait_ns_max": 1550
+              },
+              {
+                "egress_port": 1,
+                "neighbor": 384,
+                "queued_bytes_max": 254664,
+                "switch": 1316,
+                "wait_ns_max": 4870
+              }
+            ],
+            "qp": {
+              "dport": 101,
+              "dst": 384,
+              "sport": 10000,
+              "src": 1144
+            },
+            "source_tor": 1411,
+            "source_uplink_port": 9
+          },
+          "slowest_three": [
+            {
+              "destination_host_egress_port": 1,
+              "destination_tor": 1316,
+              "fct_us": 2251.673,
+              "paired_mode_fct_us": 2101.279,
+              "path": [
+                {
+                  "egress_port": 11,
+                  "neighbor": 1570,
+                  "queued_bytes_max": 6348,
+                  "switch": 1412,
+                  "wait_ns_max": 135
+                },
+                {
+                  "egress_port": 16,
+                  "neighbor": 1623,
+                  "queued_bytes_max": 6288,
+                  "switch": 1570,
+                  "wait_ns_max": 139
+                },
+                {
+                  "egress_port": 2,
+                  "neighbor": 1474,
+                  "queued_bytes_max": 25152,
+                  "switch": 1623,
+                  "wait_ns_max": 502
+                },
+                {
+                  "egress_port": 5,
+                  "neighbor": 1316,
+                  "queued_bytes_max": 35632,
+                  "switch": 1474,
+                  "wait_ns_max": 707
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 384,
+                  "queued_bytes_max": 254664,
+                  "switch": 1316,
+                  "wait_ns_max": 4874
+                }
+              ],
+              "qp": {
+                "dport": 102,
+                "dst": 384,
+                "sport": 10003,
+                "src": 1160
+              },
+              "source_tor": 1412,
+              "source_uplink_port": 11
+            },
+            {
+              "destination_host_egress_port": 1,
+              "destination_tor": 1316,
+              "fct_us": 2120.049,
+              "paired_mode_fct_us": 1918.169,
+              "path": [
+                {
+                  "egress_port": 16,
+                  "neighbor": 1575,
+                  "queued_bytes_max": 14672,
+                  "switch": 1415,
+                  "wait_ns_max": 294
+                },
+                {
+                  "egress_port": 13,
+                  "neighbor": 1660,
+                  "queued_bytes_max": 5240,
+                  "switch": 1575,
+                  "wait_ns_max": 110
+                },
+                {
+                  "egress_port": 2,
+                  "neighbor": 1479,
+                  "queued_bytes_max": 21020,
+                  "switch": 1660,
+                  "wait_ns_max": 430
+                },
+                {
+                  "egress_port": 5,
+                  "neighbor": 1316,
+                  "queued_bytes_max": 100384,
+                  "switch": 1479,
+                  "wait_ns_max": 1983
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 384,
+                  "queued_bytes_max": 254664,
+                  "switch": 1316,
+                  "wait_ns_max": 4874
+                }
+              ],
+              "qp": {
+                "dport": 107,
+                "dst": 384,
+                "sport": 10002,
+                "src": 1276
+              },
+              "source_tor": 1415,
+              "source_uplink_port": 16
+            },
+            {
+              "destination_host_egress_port": 1,
+              "destination_tor": 1316,
+              "fct_us": 2096.196,
+              "paired_mode_fct_us": 2078.25,
+              "path": [
+                {
+                  "egress_port": 9,
+                  "neighbor": 1568,
+                  "queued_bytes_max": 139384,
+                  "switch": 1411,
+                  "wait_ns_max": 2781
+                },
+                {
+                  "egress_port": 13,
+                  "neighbor": 1604,
+                  "queued_bytes_max": 104208,
+                  "switch": 1568,
+                  "wait_ns_max": 2084
+                },
+                {
+                  "egress_port": 2,
+                  "neighbor": 1472,
+                  "queued_bytes_max": 10540,
+                  "switch": 1604,
+                  "wait_ns_max": 218
+                },
+                {
+                  "egress_port": 5,
+                  "neighbor": 1316,
+                  "queued_bytes_max": 76504,
+                  "switch": 1472,
+                  "wait_ns_max": 1550
+                },
+                {
+                  "egress_port": 1,
+                  "neighbor": 384,
+                  "queued_bytes_max": 254664,
+                  "switch": 1316,
+                  "wait_ns_max": 4870
+                }
+              ],
+              "qp": {
+                "dport": 101,
+                "dst": 384,
+                "sport": 10000,
+                "src": 1144
+              },
+              "source_tor": 1411,
+              "source_uplink_port": 9
+            }
+          ]
+        }
+      }
+    },
+    {
+      "background_p99_fct_us": {
+        "classlane4": 1779.78528,
+        "ecmp": 1686.4597500000002
+      },
+      "candidate_diagnostic_id": "20261009-031000-ws26v4p1r2-s97-b192-classlane4-diag",
+      "candidate_fct_sha256": "537dad823db4de5cf1b2b09ae711f0cd5976a2638024adc685e5317f029bb30e",
+      "ecmp_verification": {
+        "background_qps": 192,
+        "fct_sha256": "5782262613100533dd04fbcca515feda56beed12a3db0c27b32b02f16d5c3c68",
+        "flow_count": 16576,
+        "hop_rows": 862,
+        "hop_unique_qps": 192,
+        "id": "20261009-230000-ws26v4-ecmpdiag-s97-b192",
+        "inflight_unpaired": 0,
+        "maximum_load_1m": 2.01,
+        "minimum_free_gib": 4777.34196472168,
+        "minimum_mem_available_gib": 118.33466339111328,
+        "paired_plain_fct_sha256": "5782262613100533dd04fbcca515feda56beed12a3db0c27b32b02f16d5c3c68",
+        "paired_plain_id": "20261009-031000-ws26v4p1r2-s97-b192-fecmp",
+        "peak_tree_rss_mib": 4544.52734375,
+        "resource_samples": 62,
+        "source_sha": "41384701c865082655cdea9a9e64daae74f51327",
+        "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+        "trace_sha256": "58bbc2d8ca78753c5e6e2fee119341ea94c8ee76cbad58e013c93707833ee3ca"
+      },
+      "paired_background_fct_delta_us": {
+        "equal": 0,
+        "faster": 98,
+        "median": -0.250500000000045,
+        "slower": 94
+      },
+      "region_distributions": {
+        "classlane4": {
+          "destination_tor": {
+            "flow_count": 192,
+            "hop_queued_bytes_max_p50": 77582.0,
+            "hop_queued_bytes_max_p95": 192832.0,
+            "hop_queued_bytes_max_p99": 226368.0,
+            "hop_row_count": 192,
+            "hop_wait_ns_max_p50": 1522.5,
+            "hop_wait_ns_max_p95": 3760.7,
+            "hop_wait_ns_max_p99": 4388.0,
+            "max_queued_bytes_p50": 77582.0,
+            "max_queued_bytes_p95": 192832.0,
+            "max_queued_bytes_p99": 226368.0,
+            "max_wait_ns_p50": 1522.5,
+            "max_wait_ns_p95": 3760.7,
+            "max_wait_ns_p99": 4388.0
+          },
+          "source_tor": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 51352.0,
+            "hop_queued_bytes_max_p95": 234052.00000000023,
+            "hop_queued_bytes_max_p99": 296548.96,
+            "hop_row_count": 185,
+            "hop_wait_ns_max_p50": 1027.0,
+            "hop_wait_ns_max_p95": 4546.400000000004,
+            "hop_wait_ns_max_p99": 5759.92,
+            "max_queued_bytes_p50": 51352.0,
+            "max_queued_bytes_p95": 234052.00000000023,
+            "max_queued_bytes_p99": 296548.96,
+            "max_wait_ns_p50": 1027.0,
+            "max_wait_ns_p95": 4546.400000000004,
+            "max_wait_ns_p99": 5759.92
+          },
+          "transit": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 14732.0,
+            "hop_queued_bytes_max_p95": 168906.40000000002,
+            "hop_queued_bytes_max_p99": 306440.9600000001,
+            "hop_row_count": 485,
+            "hop_wait_ns_max_p50": 298.0,
+            "hop_wait_ns_max_p95": 3262.4,
+            "hop_wait_ns_max_p99": 5863.160000000001,
+            "max_queued_bytes_p50": 48360.0,
+            "max_queued_bytes_p95": 230560.0,
+            "max_queued_bytes_p99": 312702.24,
+            "max_wait_ns_p50": 958.0,
+            "max_wait_ns_p95": 4538.0,
+            "max_wait_ns_p99": 6110.12
+          }
+        },
+        "ecmp": {
+          "destination_tor": {
+            "flow_count": 192,
+            "hop_queued_bytes_max_p50": 71818.0,
+            "hop_queued_bytes_max_p95": 192832.0,
+            "hop_queued_bytes_max_p99": 225325.4,
+            "hop_row_count": 192,
+            "hop_wait_ns_max_p50": 1414.5,
+            "hop_wait_ns_max_p95": 3764.9,
+            "hop_wait_ns_max_p99": 4383.45,
+            "max_queued_bytes_p50": 71818.0,
+            "max_queued_bytes_p95": 192832.0,
+            "max_queued_bytes_p99": 225325.4,
+            "max_wait_ns_p50": 1414.5,
+            "max_wait_ns_p95": 3764.9,
+            "max_wait_ns_p99": 4383.45
+          },
+          "source_tor": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 55604.0,
+            "hop_queued_bytes_max_p95": 224168.80000000002,
+            "hop_queued_bytes_max_p99": 264247.04,
+            "hop_row_count": 185,
+            "hop_wait_ns_max_p50": 1124.0,
+            "hop_wait_ns_max_p95": 4366.8,
+            "hop_wait_ns_max_p99": 5251.72,
+            "max_queued_bytes_p50": 55604.0,
+            "max_queued_bytes_p95": 224168.80000000002,
+            "max_queued_bytes_p99": 264247.04,
+            "max_wait_ns_p50": 1124.0,
+            "max_wait_ns_p95": 4366.8,
+            "max_wait_ns_p99": 5251.72
+          },
+          "transit": {
+            "flow_count": 185,
+            "hop_queued_bytes_max_p50": 16768.0,
+            "hop_queued_bytes_max_p95": 123772.80000000002,
+            "hop_queued_bytes_max_p99": 214620.48000000004,
+            "hop_row_count": 485,
+            "hop_wait_ns_max_p50": 333.0,
+            "hop_wait_ns_max_p95": 2480.8,
+            "hop_wait_ns_max_p99": 4185.040000000001,
+            "max_queued_bytes_p50": 57172.0,
+            "max_queued_bytes_p95": 197201.60000000027,
+            "max_queued_bytes_p99": 256018.88,
+            "max_wait_ns_p50": 1132.0,
+            "max_wait_ns_p95": 3821.2000000000053,
+            "max_wait_ns_p99": 4948.64
+          }
+        }
+      },
+      "seed": 20262697,
+      "tail_flows": {
+        "classlane4": {
+          "nearest_p99": {
+            "destination_host_egress_port": 6,
+            "destination_tor": 1347,
+            "fct_us": 1778.733,
+            "paired_mode_fct_us": 1394.156,
+            "path": [
+              {
+                "egress_port": 10,
+                "neighbor": 1505,
+                "queued_bytes_max": 141040,
+                "switch": 1349,
+                "wait_ns_max": 2773
+              },
+              {
+                "egress_port": 4,
+                "neighbor": 1347,
+                "queued_bytes_max": 24736,
+                "switch": 1505,
+                "wait_ns_max": 493
+              },
+              {
+                "egress_port": 6,
+                "neighbor": 628,
+                "queued_bytes_max": 227416,
+                "switch": 1347,
+                "wait_ns_max": 4376
+              }
+            ],
+            "qp": {
+              "dport": 104,
+              "dst": 628,
+              "sport": 10005,
+              "src": 692
+            },
+            "source_tor": 1349,
+            "source_uplink_port": 10
+          },
+          "slowest_three": [
+            {
+              "destination_host_egress_port": 6,
+              "destination_tor": 1347,
+              "fct_us": 1953.438,
+              "paired_mode_fct_us": 1561.055,
+              "path": [
+                {
+                  "egress_port": 15,
+                  "neighbor": 1574,
+                  "queued_bytes_max": 1048,
+                  "switch": 1411,
+                  "wait_ns_max": 40
+                },
+                {
+                  "egress_port": 9,
+                  "neighbor": 1648,
+                  "queued_bytes_max": 9552,
+                  "switch": 1574,
+                  "wait_ns_max": 189
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1510,
+                  "queued_bytes_max": 9552,
+                  "switch": 1648,
+                  "wait_ns_max": 192
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1347,
+                  "queued_bytes_max": 13624,
+                  "switch": 1510,
+                  "wait_ns_max": 288
+                },
+                {
+                  "egress_port": 6,
+                  "neighbor": 628,
+                  "queued_bytes_max": 226368,
+                  "switch": 1347,
+                  "wait_ns_max": 4390
+                }
+              ],
+              "qp": {
+                "dport": 102,
+                "dst": 628,
+                "sport": 10000,
+                "src": 1124
+              },
+              "source_tor": 1411,
+              "source_uplink_port": 15
+            },
+            {
+              "destination_host_egress_port": 6,
+              "destination_tor": 1347,
+              "fct_us": 1790.425,
+              "paired_mode_fct_us": 1146.787,
+              "path": [
+                {
+                  "egress_port": 12,
+                  "neighbor": 1539,
+                  "queued_bytes_max": 27248,
+                  "switch": 1380,
+                  "wait_ns_max": 547
+                },
+                {
+                  "egress_port": 15,
+                  "neighbor": 1630,
+                  "queued_bytes_max": 7396,
+                  "switch": 1539,
+                  "wait_ns_max": 155
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1507,
+                  "queued_bytes_max": 6288,
+                  "switch": 1630,
+                  "wait_ns_max": 134
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1347,
+                  "queued_bytes_max": 66204,
+                  "switch": 1507,
+                  "wait_ns_max": 1305
+                },
+                {
+                  "egress_port": 6,
+                  "neighbor": 628,
+                  "queued_bytes_max": 226368,
+                  "switch": 1347,
+                  "wait_ns_max": 4388
+                }
+              ],
+              "qp": {
+                "dport": 100,
+                "dst": 628,
+                "sport": 10000,
+                "src": 896
+              },
+              "source_tor": 1380,
+              "source_uplink_port": 12
+            },
+            {
+              "destination_host_egress_port": 6,
+              "destination_tor": 1347,
+              "fct_us": 1778.733,
+              "paired_mode_fct_us": 1394.156,
+              "path": [
+                {
+                  "egress_port": 10,
+                  "neighbor": 1505,
+                  "queued_bytes_max": 141040,
+                  "switch": 1349,
+                  "wait_ns_max": 2773
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1347,
+                  "queued_bytes_max": 24736,
+                  "switch": 1505,
+                  "wait_ns_max": 493
+                },
+                {
+                  "egress_port": 6,
+                  "neighbor": 628,
+                  "queued_bytes_max": 227416,
+                  "switch": 1347,
+                  "wait_ns_max": 4376
+                }
+              ],
+              "qp": {
+                "dport": 104,
+                "dst": 628,
+                "sport": 10005,
+                "src": 692
+              },
+              "source_tor": 1349,
+              "source_uplink_port": 10
+            }
+          ]
+        },
+        "ecmp": {
+          "nearest_p99": {
+            "destination_host_egress_port": 6,
+            "destination_tor": 1347,
+            "fct_us": 1681.89,
+            "paired_mode_fct_us": 1736.986,
+            "path": [
+              {
+                "egress_port": 14,
+                "neighbor": 1509,
+                "queued_bytes_max": 168336,
+                "switch": 1345,
+                "wait_ns_max": 3317
+              },
+              {
+                "egress_port": 4,
+                "neighbor": 1347,
+                "queued_bytes_max": 7396,
+                "switch": 1509,
+                "wait_ns_max": 165
+              },
+              {
+                "egress_port": 6,
+                "neighbor": 628,
+                "queued_bytes_max": 225320,
+                "switch": 1347,
+                "wait_ns_max": 4373
+              }
+            ],
+            "qp": {
+              "dport": 103,
+              "dst": 628,
+              "sport": 10000,
+              "src": 544
+            },
+            "source_tor": 1345,
+            "source_uplink_port": 14
+          },
+          "slowest_three": [
+            {
+              "destination_host_egress_port": 6,
+              "destination_tor": 1347,
+              "fct_us": 1781.814,
+              "paired_mode_fct_us": 1647.796,
+              "path": [
+                {
+                  "egress_port": 16,
+                  "neighbor": 1479,
+                  "queued_bytes_max": 117568,
+                  "switch": 1312,
+                  "wait_ns_max": 2295
+                },
+                {
+                  "egress_port": 12,
+                  "neighbor": 1659,
+                  "queued_bytes_max": 2156,
+                  "switch": 1479,
+                  "wait_ns_max": 61
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1511,
+                  "queued_bytes_max": 7336,
+                  "switch": 1659,
+                  "wait_ns_max": 165
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1347,
+                  "queued_bytes_max": 254584,
+                  "switch": 1511,
+                  "wait_ns_max": 4933
+                },
+                {
+                  "egress_port": 6,
+                  "neighbor": 628,
+                  "queued_bytes_max": 225320,
+                  "switch": 1347,
+                  "wait_ns_max": 4374
+                }
+              ],
+              "qp": {
+                "dport": 105,
+                "dst": 628,
+                "sport": 10001,
+                "src": 268
+              },
+              "source_tor": 1312,
+              "source_uplink_port": 16
+            },
+            {
+              "destination_host_egress_port": 6,
+              "destination_tor": 1347,
+              "fct_us": 1732.665,
+              "paired_mode_fct_us": 1630.702,
+              "path": [
+                {
+                  "egress_port": 16,
+                  "neighbor": 1479,
+                  "queued_bytes_max": 60620,
+                  "switch": 1314,
+                  "wait_ns_max": 1204
+                },
+                {
+                  "egress_port": 13,
+                  "neighbor": 1660,
+                  "queued_bytes_max": 5300,
+                  "switch": 1479,
+                  "wait_ns_max": 106
+                },
+                {
+                  "egress_port": 3,
+                  "neighbor": 1511,
+                  "queued_bytes_max": 25152,
+                  "switch": 1660,
+                  "wait_ns_max": 506
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1347,
+                  "queued_bytes_max": 257584,
+                  "switch": 1511,
+                  "wait_ns_max": 4983
+                },
+                {
+                  "egress_port": 6,
+                  "neighbor": 628,
+                  "queued_bytes_max": 225380,
+                  "switch": 1347,
+                  "wait_ns_max": 4383
+                }
+              ],
+              "qp": {
+                "dport": 101,
+                "dst": 628,
+                "sport": 10000,
+                "src": 340
+              },
+              "source_tor": 1314,
+              "source_uplink_port": 16
+            },
+            {
+              "destination_host_egress_port": 6,
+              "destination_tor": 1347,
+              "fct_us": 1681.89,
+              "paired_mode_fct_us": 1736.986,
+              "path": [
+                {
+                  "egress_port": 14,
+                  "neighbor": 1509,
+                  "queued_bytes_max": 168336,
+                  "switch": 1345,
+                  "wait_ns_max": 3317
+                },
+                {
+                  "egress_port": 4,
+                  "neighbor": 1347,
+                  "queued_bytes_max": 7396,
+                  "switch": 1509,
+                  "wait_ns_max": 165
+                },
+                {
+                  "egress_port": 6,
+                  "neighbor": 628,
+                  "queued_bytes_max": 225320,
+                  "switch": 1347,
+                  "wait_ns_max": 4373
+                }
+              ],
+              "qp": {
+                "dport": 103,
+                "dst": 628,
+                "sport": 10000,
+                "src": 544
+              },
+              "source_tor": 1345,
+              "source_uplink_port": 14
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "source_sha": "41384701c865082655cdea9a9e64daae74f51327",
+  "topology_hosts": 1856,
+  "topology_switches": 576
+}

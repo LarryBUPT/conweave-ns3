@@ -1,6 +1,6 @@
 # WS-26 ClassLane v4 背景流配对逐跳诊断
 
-状态：事前冻结，尚未运行。日期：2026-10-09。本诊断仅补齐现有 pilot 的 ECMP 逐跳观测，不重新判定候选效果，也不增加独立需求 seed。
+状态：2026-10-09 事前冻结；四格已完成并通过逐格验收。结果见[诊断分析](ws26-v4-ecmp-hop-diagnostic-analysis.md)、[机器摘要](evidence/ws26-v4-ecmp-hop-diagnostic-summary.json)和[完整逐流分析](../../results/ws26-v4-ecmp-diagnostic-execution/hop-analysis.json)。本诊断仅补齐现有 pilot 的 ECMP 逐跳观测，不重新判定候选效果，也不增加独立需求 seed。
 
 ## 问题与证据边界
 
@@ -27,3 +27,7 @@
 尾流是已揭盲 pilot 的事后选择，描述只用于机制定位。若退化主要落在不可选择的终端出口，或各 seed 的可控上游差异不稳定，现有证据不支持 v4 的唯一一次诊断修正。即使发现可控上游差异，仍需另行验证 MoE 容量集中及双指标同时改善的可证伪预测，才能冻结修正规则。不得用本诊断改写 v4 的高档 NO-GO、启动条件低档，或将其充作正式收益证据。
 
 WS-26 的正式 576 格主矩阵、576 格传输敏感性矩阵及最终验收继续标记未完成。后续候选仍受 [ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md) 的最多三个新版本、每版至多一次诊断修正约束。
+
+## 执行结果（2026-10-10）
+
+四个新 ID 均有成功终态、原始流和资源回执。每格 16,576/16,576 条流完成，192/192 条背景 QP 有逐跳记录，`WS13_INFLIGHT unpaired=0`。四格 FCT 哈希与各自普通 ECMP 格完全相同。完整分析文件 SHA-256 为 `4c076f0ad7e916c6e9daeaae0faea56abdd4ee95a64aa41157ab872f7c8b3ca5`。结论与限制见[分析报告](ws26-v4-ecmp-hop-diagnostic-analysis.md)及[Handoff 83](../handoffs/2026-10-10-83-ws26-v4-ecmp-hop-diagnostic.md)。事前门槛保持不变。

@@ -1,12 +1,18 @@
 # ConWeave 毕业论文项目状态
 
-## 当前快照（2026-10-09）
+## 当前快照（2026-10-10）
+
+WS-26 ClassLane v4 的四格新增 ECMP 背景逐跳诊断已通过原始数据验收：各 16,576/16,576 条流完成，192/192 条背景 QP 均有逐跳记录，`WS13_INFLIGHT unpaired=0`；诊断 FCT 与普通 ECMP 配对格 4/4 同哈希。完整分析 SHA-256 为 `4c076f0ad7e916c6e9daeaae0faea56abdd4ee95a64aa41157ab872f7c8b3ca5`。候选源 ToR 和中转区域的高分位等待较 ECMP 上升，但背景 P99 四 seed 两好两坏，尾流身份迁移。逐跳最大值不足以解释 FCT 差值；MoE 逐跳未观测，因此不实施 v4 唯一诊断修正。见[分析报告](../research/ws26-v4-ecmp-hop-diagnostic-analysis.md)与[Handoff 83](../handoffs/2026-10-10-83-ws26-v4-ecmp-hop-diagnostic.md)。
+
+ClassLane v4 高档筛选 NO-GO、条件低档 24 格未启动的结论保持。WS-26 整体仍 ACTIVE；正式主矩阵 576 格、传输敏感性矩阵 576 格及最终验收是未完成的预设任务。后续仍须形成有独立机制依据的候选，并重走正确性与独立 pilot。
+
+## 前次快照（2026-10-09）
 
 WS-26 ClassLane v4 r2 使用固定仿真源码 `41384701c865082655cdea9a9e64daae74f51327`，完成 28/28 格独立需求高档 pilot。逐格从 raw 复算后，输入、全流、诊断 FCT 和资源收据全部通过；汇总 SHA-256 为 `34f3150ba008359ffd25b2b7052b48ef2dbf768ad5302b153c01c13f20aec5ba`。四 seed 相对 ECMP 的 MoE 批次中位变化为 +20.851%，0/4 改善；背景 P99 中位变化为 −0.362%，2/4 改善。两项均未达到冻结的中位 ≤−3%、至少 3/4 改善门槛。条件低档 24 格保持未启动；该版本不进入正式矩阵冻结。见[分析报告](../research/ws26-classlane4-pilot-r2-analysis.md)与[Handoff 82](../handoffs/2026-10-09-82-ws26-classlane4-pilot-r2-high-analysis.md)。
 
 WS-26 仍 ACTIVE。正式 576 格主矩阵、576 格敏感性矩阵和最终逐格验收仍为预设未完成项。后续须先形成有独立机制依据的新候选并重走正确性及独立 pilot；现有负结果与 raw 保留，WS-25 正式 NO-GO 不变。
 
-## 前次快照（2026-10-08）
+## 历史快照（2026-10-08）
 
 截至 2026-10-08，WS-26 独立需求 pilot 的 v1 在旧源码 SHA `d6fdc5efe9a9aa77a90d24ab3aee931f721b607f` 下完成 6/28 格；第 7 格 ConWeave 因参数门拒绝 OS1、PFC=1、IRN=1 而在仿真前失败。旧 ID 和数据均保留，不能与修复版混算。修复提交 `593038416fa16f4982b600d256b563260f9106a8` 已推送，为该组合明确设置 ConWeave `flush=16`、`waiting=300`、`expiry=1000`。这属于工程比较配置，不代表原版官方校准。v2 计划包含 52 个全新 ID：高档 28 格、低档 24 格。
 
