@@ -114,9 +114,9 @@ def path_for(rows, src, dst, hosts, host_tors, port_to_neighbor):
             raise RuntimeError("QP hop path is discontinuous")
         visited.add(current)
         row = by_switch[current]
-        neighbor = port_to_neighbor.get(current, {}).get(row["outDev"])
+        neighbor = port_to_neighbor.get(current, {}).get(row["port"] - 1)
         if neighbor is None:
-            raise RuntimeError("QP outDev is absent from topology")
+            raise RuntimeError("QP port is absent from topology")
         ordered.append(row)
         current = neighbor
     if current != dst or not ordered or ordered[-1]["switch"] != destination_tor:
