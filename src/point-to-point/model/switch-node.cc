@@ -144,10 +144,12 @@ static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, GuardQueueStat> guard_
 struct Ws13Packet {
     uint32_t src, dst, sport, dport, outDev, queuedBytes;
     uint64_t enqueueNs;
+    uint8_t tag;
 };
 struct Ws13FlowHop {
     uint64_t packets = 0, bytes = 0, queuedBytesSum = 0, waitNsSum = 0;
     uint64_t maxQueuedBytes = 0, maxWaitNs = 0;
+    uint8_t tag = 0;
 };
 static std::map<std::pair<uint32_t, uint64_t>, Ws13Packet> ws13_inflight;
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t>,
@@ -161,6 +163,14 @@ static uint64_t ws26_mark_bucket_overflow = 0;
 static bool Ws13DiagnosticEnabled() {
     static const bool enabled = []() {
         const char *value = std::getenv("WS13_DIAG");
+        return value && value[0] == '1' && value[1] == '\0';
+    }();
+    return enabled;
+}
+
+static bool Ws26MoeHopDiagnosticEnabled() {
+    static const bool enabled = []() {
+        const char *value = std::getenv("WS26_MOE_HOP_DIAG");
         return value && value[0] == '1' && value[1] == '\0';
     }();
     return enabled;
@@ -789,11 +799,13 @@ void SwitchNode::PrintWorkloadTagCounts() {
                   << " alternate=" << ws18_path_alternate
                   << " packets=" << ws18_path_packets
                   << " multipath_packets=" << ws18_path_multipath << std::endl;
-    if (Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled()) {
+    if (Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled() || Ws26MoeHopDiagnosticEnabled()) {
         for (const auto &entry : ws13_hops) {
             const auto &key = entry.first;
             const Ws13FlowHop &s = entry.second;
-            std::cout << "WS13_HOP src=" << std::get<0>(key)
+            NS_ASSERT_MSG(s.tag == 1 || s.tag == 2, "Invalid diagnostic workload tag");
+            std::cout << (s.tag == 2 ? "WS26_MOE_HOP src=" : "WS13_HOP src=")
+                      << std::get<0>(key)
                       << " dst=" << std::get<1>(key)
                       << " sport=" << std::get<2>(key)
                       << " dport=" << std::get<3>(key)
@@ -1831,21 +1843,26 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         if (!locallyGenerated) CheckAndSendPfc(inDev, qIndex);
     }
 
-    if ((Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled()) && ch.l3Prot == 0x11) {
+    if ((Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled() || Ws26MoeHopDiagnosticEnabled()) &&
+        ch.l3Prot == 0x11) {
         WorkloadTag tag;
         auto destination = Settings::hostIp2IdMap.find(ch.dip);
         auto source = Settings::hostIp2IdMap.find(ch.sip);
-        if (p->PeekPacketTag(tag) && tag.GetValue() == 1 &&
+        const bool hasTag = p->PeekPacketTag(tag);
+        const bool trackMoe = hasTag && tag.GetValue() == 2 && Ws26MoeHopDiagnosticEnabled();
+        const bool trackBackground = hasTag && tag.GetValue() == 1 &&
             destination != Settings::hostIp2IdMap.end() &&
             (Ws25DiagnosticEnabled() || Settings::lb_mode == 20 || destination->second == 856 ||
-             destination->second == 576) &&
+             destination->second == 576);
+        if ((trackMoe || trackBackground) &&
+            destination != Settings::hostIp2IdMap.end() &&
             source != Settings::hostIp2IdMap.end()) {
             Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[outDev]);
             NS_ASSERT_MSG(dev && dev->GetQueue(), "WS-13 diagnostic egress queue absent");
             Ws13Packet item = {source->second, destination->second,
                                ch.udp.sport, ch.udp.dport, outDev,
                                dev->GetQueue()->GetNBytesTotal(),
-                               uint64_t(Simulator::Now().GetNanoSeconds())};
+                               uint64_t(Simulator::Now().GetNanoSeconds()), tag.GetValue()};
             auto key = std::make_pair(m_id, p->GetUid());
             NS_ASSERT_MSG(ws13_inflight.count(key) == 0, "WS-13 duplicate packet UID at switch");
             ws13_inflight[key] = item;
@@ -1940,7 +1957,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         }
     }
     RecordWs21PortEvent(ifIndex, 'D');
-    if (Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled()) {
+    if (Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled() || Ws26MoeHopDiagnosticEnabled()) {
         auto hit = ws13_inflight.find(std::make_pair(m_id, p->GetUid()));
         if (hit != ws13_inflight.end()) {
             const Ws13Packet &item = hit->second;
@@ -1956,6 +1973,8 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             uint64_t waited = uint64_t(Simulator::Now().GetNanoSeconds()) - item.enqueueNs;
             auto key = std::make_tuple(item.src, item.dst, item.sport, item.dport, m_id, ifIndex);
             Ws13FlowHop &s = ws13_hops[key];
+            if (s.tag == 0) s.tag = item.tag;
+            NS_ASSERT_MSG(s.tag == item.tag, "Diagnostic QP workload tag changed");
             ++s.packets;
             s.bytes += p->GetSize();
             s.queuedBytesSum += item.queuedBytes;
