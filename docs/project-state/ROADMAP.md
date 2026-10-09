@@ -1,6 +1,6 @@
 # 下一阶段路线与停机条件
 
-2026-10-08 当前入口：[WS-26 执行清单](../research/ws26-classmix-execution-plan.md)继续推进第一课题后续机制验证。固定仿真 SHA `b6fc1a423774790f971ad86b64e1c1646d63c36b` 的 18 格正确性预检已全部通过，逐格 raw 和资源验收见[正确性协议](../research/ws26-classreserve3-correctness-protocol.md)及[Handoff 78](../handoffs/2026-10-08-78-ws26-classreserve3-correctness-preflight.md)。mixed8 小样的占用信号和改选计数为零；尚无独立 pilot 或效果结论。后续工作须先实际切换并确认 GPT-6 Luna High，再核对远端状态，使用独立输入开展 pilot。正式主矩阵和敏感性矩阵仍未开始；WS-25 确认性 NO-GO 不变，小论文和投稿不在 WS-26 范围，第二课题仍须等投稿后启动。
+2026-10-09 当前入口：[WS-26 执行清单](../research/ws26-classmix-execution-plan.md)继续推进第一课题后续机制验证。ClassLane v4 r2 独立需求高档 28/28 格已通过 raw、全流和资源验收，但[双侧筛选](../research/ws26-classlane4-pilot-r2-analysis.md)未通过：MoE 批次中位变化 +20.851%、0/4 改善；背景 P99 中位变化 −0.362%、2/4 改善。条件低档 24 格未启动，当前版本不进入正式矩阵冻结。ClassReserve v3 的高档筛选此前也未通过。正式 576 格主矩阵与 576 格敏感性矩阵仍是 WS-26 的未完成项；下一步先形成有独立机制依据的新候选并重走正确性与独立 pilot。WS-25 确认性 NO-GO 不变，小论文和投稿不在 WS-26 范围，第二课题仍须等投稿后启动。
 
 2026-10-07 WS-25 历史快照：第一课题七项预设 ns-3 实验与小论文初稿验收完成，正式 576/576 格共同主判据 **NO-GO**；见[验收审计](../research/ws25-first-paper-acceptance-audit.md)、[Handoff 77](../handoffs/2026-10-07-77-ws25-first-paper-prespecified-acceptance.md)和[负结果初稿](../research/ws25-classreserve-v1-paper-draft.md)。下一里程碑是确定投稿目标并适配版式、引用及投稿；尚未投稿，不自动归档。第二课题状态反馈须等投稿后再启动，并先审查 WS-21 的时效、成本及采用/回退证据。下文较早日期的运行安排均属历史快照，不得据此恢复旧矩阵。
 

@@ -1,0 +1,170 @@
+{
+  "conditional_low_stage": null,
+  "conditional_low_stage_passed": null,
+  "decision": "high_stage_no_go_analyze_counterexamples",
+  "evidence_level": "exploratory candidate screening only",
+  "high_stage": {
+    "background_fct_p99": {
+      "median_change_percent": -0.3617797168451842,
+      "over_ten_percent_harms": null,
+      "pairs": [
+        {
+          "background": 192,
+          "change_percent": 0.13522113627342236,
+          "classlane4": 2023.0225300000002,
+          "fecmp": 2020.2906700000003,
+          "seed": 20262694,
+          "strict_improvement": false
+        },
+        {
+          "background": 192,
+          "change_percent": -1.0553480257928238,
+          "classlane4": 1590.7753400000001,
+          "fecmp": 1607.74262,
+          "seed": 20262695,
+          "strict_improvement": true
+        },
+        {
+          "background": 192,
+          "change_percent": -0.8587805699637907,
+          "classlane4": 2080.32261,
+          "fecmp": 2098.34277,
+          "seed": 20262696,
+          "strict_improvement": true
+        },
+        {
+          "background": 192,
+          "change_percent": 5.533813066098969,
+          "classlane4": 1779.78528,
+          "fecmp": 1686.4597500000002,
+          "seed": 20262697,
+          "strict_improvement": false
+        }
+      ],
+      "passed": false,
+      "strict_improvements": 2
+    },
+    "dual_effect_gate_passed": false,
+    "moe_batch_completion": {
+      "median_change_percent": 20.8508592491133,
+      "over_ten_percent_harms": null,
+      "pairs": [
+        {
+          "background": 192,
+          "change_percent": 40.33723921120318,
+          "classlane4": 24.552,
+          "fecmp": 17.495,
+          "seed": 20262694,
+          "strict_improvement": false
+        },
+        {
+          "background": 192,
+          "change_percent": 18.829262889738075,
+          "classlane4": 21.457,
+          "fecmp": 18.057,
+          "seed": 20262695,
+          "strict_improvement": false
+        },
+        {
+          "background": 192,
+          "change_percent": 18.69204489995122,
+          "classlane4": 21.888,
+          "fecmp": 18.441,
+          "seed": 20262696,
+          "strict_improvement": false
+        },
+        {
+          "background": 192,
+          "change_percent": 22.87245560848852,
+          "classlane4": 22.697,
+          "fecmp": 18.472,
+          "seed": 20262697,
+          "strict_improvement": false
+        }
+      ],
+      "passed": false,
+      "strict_improvements": 0
+    },
+    "seed_count": 4
+  },
+  "mechanism_diagnostics": [
+    {
+      "background_diversion_ratio": 0.9217391304347826,
+      "background_diverted": 2667702,
+      "background_packets": 2894205,
+      "background_qp_new": 345,
+      "background_qp_reused": 2893860,
+      "diagnostic_port_rows": 890,
+      "diagnostic_qp_path_rows": 29453,
+      "fallback": 4914321,
+      "inconsistent": 0,
+      "missing_destination": 0,
+      "moe_diversion_ratio": 0.8720283083688333,
+      "moe_diverted": 228447,
+      "moe_packets": 261972,
+      "moe_qp_new": 29108,
+      "moe_qp_reused": 232864,
+      "queue_violations": 0,
+      "seed": 20262694
+    },
+    {
+      "background_diversion_ratio": 0.8727810650887574,
+      "background_diverted": 2474755,
+      "background_packets": 2835482,
+      "background_qp_new": 338,
+      "background_qp_reused": 2835144,
+      "diagnostic_port_rows": 897,
+      "diagnostic_qp_path_rows": 29531,
+      "fallback": 4856363,
+      "inconsistent": 0,
+      "missing_destination": 0,
+      "moe_diversion_ratio": 0.8742506765320454,
+      "moe_diverted": 229698,
+      "moe_packets": 262737,
+      "moe_qp_new": 29193,
+      "moe_qp_reused": 233544,
+      "queue_violations": 0,
+      "seed": 20262695
+    },
+    {
+      "background_diversion_ratio": 0.8918128654970761,
+      "background_diverted": 2558645,
+      "background_packets": 2869038,
+      "background_qp_new": 342,
+      "background_qp_reused": 2868696,
+      "diagnostic_port_rows": 898,
+      "diagnostic_qp_path_rows": 29588,
+      "fallback": 4890396,
+      "inconsistent": 0,
+      "missing_destination": 0,
+      "moe_diversion_ratio": 0.8776926759214936,
+      "moe_diverted": 231021,
+      "moe_packets": 263214,
+      "moe_qp_new": 29246,
+      "moe_qp_reused": 233968,
+      "queue_violations": 0,
+      "seed": 20262696
+    },
+    {
+      "background_diversion_ratio": 0.8716417910447761,
+      "background_diverted": 2449588,
+      "background_packets": 2810315,
+      "background_qp_new": 335,
+      "background_qp_reused": 2809980,
+      "diagnostic_port_rows": 896,
+      "diagnostic_qp_path_rows": 29407,
+      "fallback": 4830107,
+      "inconsistent": 0,
+      "missing_destination": 0,
+      "moe_diversion_ratio": 0.8723858007705009,
+      "moe_diverted": 228258,
+      "moe_packets": 261648,
+      "moe_qp_new": 29072,
+      "moe_qp_reused": 232576,
+      "queue_violations": 0,
+      "seed": 20262697
+    }
+  ],
+  "pilot_seed_count": 4,
+  "verified_cells": 28
+}
