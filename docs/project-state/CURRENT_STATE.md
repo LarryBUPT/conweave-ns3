@@ -6,6 +6,8 @@ WS-26 ClassLane v4 的四格新增 ECMP 背景逐跳诊断已通过原始数据�
 
 随后完成十格 WS-26 MoE 逐跳诊断：两格 mixed8、八格四 seed 高档 ECMP/v4 配对均通过冻结 SHA、全流、输入、逐跳路径、FCT parity 与资源验收。MoE 批次四 seed 均变慢，中位变化 +20.851%；源 ToR 与中转等待 P99 四 seed 均升、目的 ToR 等待 P99 均降。部分配对 QP 的等待变化与 FCT 方向不一致，且等待峰值并未按包时间对齐，因此只支持上游排队可能参与，不形成因果结论。详见[分析报告](../research/ws26-moe-hop-diagnostic-analysis.md)、[机器摘要](../research/evidence/ws26-moe-hop-diagnostic-analysis.json)与[Handoff 84](../handoffs/2026-10-10-84-ws26-moe-hop-diagnostic-analysis.md)。
 
+WS-26 seed `20262697` 的四格时间对齐诊断已通过固定源码、输入、全流、FCT 非扰动、逐包链和资源验收：两格 smoke 均 61/61，两格高档均 16,576/16,576。23 条预选 QP 的机器摘要从原始结果重算，SHA-256 为 `ca45c4e5df941663aa5889c4c220dc141483d2214ffa350cf5ad9bd54b0004a5`。背景反例 `1124→628` 的 v4 FCT 多 392.383 μs，差值主要出现在最后发包前；v4 的 3 条 MoE 新尾流在共同上游链的末包各等待约 11.3 μs。这是已揭盲单 seed 的时序诊断，反馈与其他流改道仍无法分离；不重判 v4 高档 NO-GO。见[诊断报告](../research/ws26-seed97-time-aligned-diagnostic-analysis.md)、[机器摘要](../research/evidence/ws26-seed97-time-aligned-analysis.json)与[Handoff 85](../handoffs/2026-10-10-85-ws26-seed97-time-aligned-diagnostic.md)。
+
 ClassLane v4 高档筛选 NO-GO、条件低档 24 格未启动的结论保持。WS-26 整体仍 ACTIVE；正式主矩阵 576 格、传输敏感性矩阵 576 格及最终验收是未完成的预设任务。后续仍须形成有独立机制依据的候选，并重走正确性与独立 pilot。
 
 ## 前次快照（2026-10-09）

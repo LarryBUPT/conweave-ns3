@@ -1,6 +1,6 @@
 # WS-26 类别感知包流混合机制与验证执行清单
 
-状态：ACTIVE；ClassLane v4 的 19 格正确性预检及 28 格独立需求高档验收通过，但高档双侧效果门 NO-GO，条件低档 24 格未启动。此前 ClassReserve v3 高档双侧筛选也未通过，诊断未支持唯一修正。更新日期：2026-10-09。WS-26 延续第一课题的机制研究，不启动 [ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md) 中投稿后的第二课题。本任务交付实验设计、实现、仿真、逐格验收、统计分析、反例与证据；不写小论文或投稿。
+状态：ACTIVE；ClassLane v4 的 19 格正确性预检及 28 格独立需求高档验收通过，但高档双侧效果门 NO-GO，条件低档 24 格未启动。此前 ClassReserve v3 高档双侧筛选也未通过；seed 97 的四格时间对齐诊断尚未提供唯一修正依据。更新日期：2026-10-10。WS-26 延续第一课题的机制研究，不启动 [ADR-010](../decisions/ADR-010-sequential-mixed-lb-paper-plan.md) 中投稿后的第二课题。本任务交付实验设计、实现、仿真、逐格验收、统计分析、反例与证据；不写小论文或投稿。
 
 ## 问题与现有证据
 
@@ -21,7 +21,7 @@ MixHash 的计数哈希、路径分散和接收重排实现只作只读设计参
 | 5 | 独立需求 pilot 与正式冻结 | 使用独立于正式池的 seed；冻结候选、参数、24 个正式 seed、两项主判据、低档约束、四次级 Holm、停止线、SHA、输入哈希和全部 ID | v3 高档 28/28 raw 与资源收据通过但效果门未通过；8 格诊断未支持唯一修正。v4 的 52 个 v1 ID 因误带入 v3 专用覆盖门而在未运行时废止。r2 的 28 格高档 raw、输入、全流及资源验收通过，分析显示 MoE 批次中位 +20.851%、0/4 改善；背景 P99 中位 −0.362%、2/4 改善，两项效果门均失败。24 格条件低档未启动；正式矩阵冻结未开始。见[分析报告](ws26-classlane4-pilot-r2-analysis.md) |
 | 6 | PFC=1、IRN=1 正式主矩阵 | 24 seed × 四档 × 六臂，共 576/576 个原 ID；逐格全流、身份、守恒和资源验收 | 未开始 |
 | 7 | 其余三种 PFC×IRN 敏感性矩阵 | 同一 24 seed × 四档 × ECMP/候选 × 三组合，共 576/576 个原 ID；逐格正确性和资源验收 | 未开始 |
-| 8 | 双侧统计、诊断、反例与 Handoff | 从原始数据复算，报告所有指标、失败格与限制；更新项目状态；全部预设验证完成后方可称闭环 | v3 的 CNP/ECN、PFC、IRN 与逐 QP/逐跳诊断已记录，未支持唯一修正。v4 r2 高档从 28 格 raw 重算，四 seed 的 MoE 批次均变慢，背景 P99 两 seed 恶化；四格新增 ECMP 逐跳诊断也未支持唯一修正，见[Handoff 83](../handoffs/2026-10-10-83-ws26-v4-ecmp-hop-diagnostic.md)。正式矩阵、敏感性矩阵和最终全任务闭环仍未完成 |
+| 8 | 双侧统计、诊断、反例与 Handoff | 从原始数据复算，报告所有指标、失败格与限制；更新项目状态；全部预设验证完成后方可称闭环 | v3 的 CNP/ECN、PFC、IRN 与逐 QP/逐跳诊断已记录，未支持唯一修正。v4 r2 高档从 28 格 raw 重算，四 seed 的 MoE 批次均变慢，背景 P99 两 seed 恶化。[四格时间对齐报告](ws26-seed97-time-aligned-diagnostic-analysis.md)与[Handoff 85](../handoffs/2026-10-10-85-ws26-seed97-time-aligned-diagnostic.md)定位了背景发送进度和 MoE 上游等待，但未分离因果贡献。正式矩阵、敏感性矩阵和最终全任务闭环仍未完成 |
 
 任何正确性失败先暂停新格并定位。修复使用新 SHA、独立 ID，重验受影响的全部配对。性能 NO-GO 不取消正确性或敏感性验证。最多三个新候选版本，每版至多一次诊断修正；失败版本的 raw、参数和分析保留。阶段 Handoff、构建、单测和 pilot 均不代表任务闭环。
 
@@ -58,3 +58,5 @@ PFC=1、IRN=1 是唯一正式主条件。192 档对 ECMP 的 MoE 合成批次完
 2026-10-08～09：第二候选 [ClassLane v4](ws26-classlane4-candidate-spec.md) 先记录事前机制、反例预测与停止条件，再加入独立模式号 24 的源码。它在 8 路分叉处按目的 ToR 轮转，将 2 条路径分给 MoE、6 条给背景流；其他情况沿用 ECMP。固定 OS1 拓扑的[本地最短路检查](../../scripts/check_ws26_classlane4_topology.py)通过。固定 SHA `41384701c865082655cdea9a9e64daae74f51327` 的 r2 正确性预检已通过 19/19 格，证据见[预检计划](evidence/ws26-classlane4-preflight-plan-r2.json)和忽略目录中的逐格收据。第一版 pilot 计划曾误加 v3 专用的 `with_background` 覆盖门，52 个 v1 ID 全部未运行并已废止；r2 按候选规格的双指标门重冻相同 seed 与输入，换用全新 ID。筛选规则和资源线见[独立需求 pilot 协议](ws26-classlane4-independent-pilot-protocol.md)及[r2 机器计划](evidence/ws26-classlane4-pilot-plan-r2.json)。r2 的 52 个 ID 已逐一核对远端 `results/` 和 `runs/`，均无冲突；证据见[r2 远端 ID 收据](evidence/ws26-classlane4-pilot-r2-preflight-audit.json)。高档 28/28 格在 cap=1 下完成，逐格 raw 和资源验收通过，但[双侧效果门](ws26-classlane4-pilot-r2-analysis.md)失败；条件低档 24 格未启动。正式主矩阵、敏感性矩阵和最终闭环仍未完成。
 
 2026-10-10：四个新增 ECMP 诊断格按[事前协议](ws26-v4-ecmp-background-hop-diagnostic.md)完成，并通过 16,576/16,576 全流、192/192 背景 QP 逐跳、诊断 FCT 非扰动与资源验收。[分析报告](ws26-v4-ecmp-hop-diagnostic-analysis.md)与[Handoff 83](../handoffs/2026-10-10-83-ws26-v4-ecmp-hop-diagnostic.md)记录区域等待分布和尾流迁移。诊断没有 MoE 逐跳观测，也没有提供 v4 唯一修正依据。高档 NO-GO、低档未启动及正式两组各 576 格未完成状态保持。
+
+2026-10-10：seed `20262697` 的[四格时间对齐诊断](ws26-seed97-time-aligned-diagnostic-analysis.md)按[冻结设计](ws26-seed97-time-aligned-diagnostic-design.md)完成。两格 smoke 均 61/61、两格高档均 16,576/16,576 完成；固定源码、输入、FCT 非扰动、选中 QP 的逐包逐跳链和资源收据均通过。背景反例的额外时长主要出现在发送完成前，v4 的 3 条 MoE 新尾流末包在共同上游链排队；反馈与其他流改道的贡献尚未分离。[Handoff 85](../handoffs/2026-10-10-85-ws26-seed97-time-aligned-diagnostic.md)记录本节点限制。第三候选未冻结，条件低档 24 格、正式主矩阵 576 格、敏感性矩阵 576 格与最终验收仍未完成。

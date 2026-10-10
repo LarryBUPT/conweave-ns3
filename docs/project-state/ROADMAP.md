@@ -2,6 +2,8 @@
 
 2026-10-10 当前入口：[WS-26 执行清单](../research/ws26-classmix-execution-plan.md)继续推进第一课题后续机制验证。ClassLane v4 r2 独立需求高档 28/28 格验收通过，但[双侧筛选](../research/ws26-classlane4-pilot-r2-analysis.md)失败。四格新增 ECMP 背景[逐跳诊断](../research/ws26-v4-ecmp-hop-diagnostic-analysis.md)及十格 MoE[逐跳诊断](../research/ws26-moe-hop-diagnostic-analysis.md)已完成；MoE 批次仍是四 seed 全慢，上游区域等待增加只是相关迹象，不能证明因果或支持调参。两项诊断均不重判 v4 NO-GO。条件低档 24 格未启动，当前版本不进入正式矩阵冻结。ClassReserve v3 的高档筛选此前也未通过。正式 576 格主矩阵与 576 格传输敏感性矩阵仍是 WS-26 的未完成项；新机制如有提出，应先复核失败证据、反例和替代解释，并学习 Ofan 等已有方法，再重走正确性与独立 pilot。WS-25 确认性 NO-GO 不变，小论文和投稿不在 WS-26 范围，第二课题仍须等投稿后启动。
 
+同日新增的[seed 97 时间对齐诊断](../research/ws26-seed97-time-aligned-diagnostic-analysis.md)及[Handoff 85](../handoffs/2026-10-10-85-ws26-seed97-time-aligned-diagnostic.md)已完成四格验收。背景尾流的额外时长主要形成于发包完成前；v4 MoE 新尾流的末包集中等待于共同上游链。两者仍受反馈、共享出口和其他流改道耦合，暂未给出第三候选的唯一设计依据。下一步先定义可操纵信号、信息时效和双侧反例预测，再决定是否冻结第三候选；既有条件低档、两组正式矩阵及全任务验收继续列为未完成项。
+
 2026-10-07 WS-25 历史快照：第一课题七项预设 ns-3 实验与小论文初稿验收完成，正式 576/576 格共同主判据 **NO-GO**；见[验收审计](../research/ws25-first-paper-acceptance-audit.md)、[Handoff 77](../handoffs/2026-10-07-77-ws25-first-paper-prespecified-acceptance.md)和[负结果初稿](../research/ws25-classreserve-v1-paper-draft.md)。下一里程碑是确定投稿目标并适配版式、引用及投稿；尚未投稿，不自动归档。第二课题状态反馈须等投稿后再启动，并先审查 WS-21 的时效、成本及采用/回退证据。下文较早日期的运行安排均属历史快照，不得据此恢复旧矩阵。
 
 2026-10-02 当前执行入口：用户将旧 WS-25 本地证据收束调整为第一课题的机制实现、独立 ns-3 验证和小论文成稿，见 [WS-25 执行清单](WS25_FIRST_PAPER_EXECUTION.md)。先做类别感知选路，五原始模式同条件对照；独立 pilot 后冻结双侧数值与最终样本。WS-21 状态反馈余项不并行推进，待小论文投稿后作为第二课题门槛审查。下文旧 WS-25“仅收束”的记录属于历史规划，不是当前执行范围。
