@@ -138,10 +138,13 @@ def check_classlane(log, cell, expected):
             raise RuntimeError("ClassLane QP path counts differ from route count")
         if not enabled and matching_qps:
             raise RuntimeError("Bypassed class emitted ClassLane QP path rows")
-        if enabled and not {tuple(row.get(k) for k in ("sip", "dip", "sport", "dport"))
-                            for row in matching_qps} <= {
-                                key for key, value in expected.items() if value["tag"] == tag}:
-            raise RuntimeError("ClassLane QP path identity absent from input")
+        qp_keys = [tuple(row.get(k) for k in ("switch", "sip", "dip", "sport", "dport"))
+                   for row in matching_qps]
+        if (any(any(value is None for value in key) for key in qp_keys) or
+                len(set(qp_keys)) != len(qp_keys) or
+                any(row.get("dst_tor", 0) <= 0 or row.get("port", 0) <= 0
+                    for row in matching_qps)):
+            raise RuntimeError("ClassLane QP path identity is malformed or duplicated")
     return {"route": route, "queue": queue, "qp_path_rows": len(qp_rows)}
 
 
