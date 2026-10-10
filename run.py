@@ -140,6 +140,8 @@ lb_modes = {
     "destspread": 22,
     "classreserve3": 23,
     "classlane4": 24,
+    "classlane4-moe-only": 25,
+    "classlane4-background-only": 26,
     "drill": 2,
     "conga": 3,
     "letflow": 6,

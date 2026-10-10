@@ -72,6 +72,7 @@ static uint64_t ws26_v4_packets[3] = {0, 0, 0};
 static uint64_t ws26_v4_qp_new[3] = {0, 0, 0};
 static uint64_t ws26_v4_qp_reused[3] = {0, 0, 0};
 static uint64_t ws26_v4_diverted[3] = {0, 0, 0};
+static uint64_t ws26_v4_bypassed[3] = {0, 0, 0};
 static uint64_t ws26_v4_fallback = 0, ws26_v4_missing_destination = 0;
 static uint64_t ws26_v4_inconsistent = 0;
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, uint64_t>
@@ -896,7 +897,8 @@ void SwitchNode::PrintWorkloadTagCounts() {
         NS_ASSERT_MSG(guard_queue_violations == 0, "GuardHash queue counters do not conserve bytes");
     }
     if (Settings::lb_mode == 21 || Settings::lb_mode == 22 ||
-        Settings::lb_mode == 23 || Settings::lb_mode == 24) {
+        Settings::lb_mode == 23 ||
+        (Settings::lb_mode >= 24 && Settings::lb_mode <= 26)) {
         uint64_t enqueued = 0, dequeued = 0, queuedDropped = 0, current = 0;
         for (const auto &entry : guard_queue_stats) {
             const GuardQueueStat &s = entry.second;
@@ -953,6 +955,9 @@ void SwitchNode::PrintWorkloadTagCounts() {
                       << " moe_qp_reused=" << ws26_v4_qp_reused[2]
                       << " background_diverted=" << ws26_v4_diverted[1]
                       << " moe_diverted=" << ws26_v4_diverted[2]
+                      << " background_bypassed=" << ws26_v4_bypassed[1]
+                      << " moe_bypassed=" << ws26_v4_bypassed[2]
+                      << " mode=" << Settings::lb_mode
                       << " fallback=" << ws26_v4_fallback
                       << " missing_destination=" << ws26_v4_missing_destination
                       << " inconsistent=" << ws26_v4_inconsistent
@@ -1409,12 +1414,17 @@ uint32_t SwitchNode::DoLbClassLane4(Ptr<const Packet> p, const CustomHeader &ch,
         ++ws26_v4_fallback;
         return DoLbFlowECMP(p, ch, nexthops);
     }
+    const uint32_t tag = label.GetValue();
+    if ((Settings::lb_mode == 25 && tag == 1) ||
+        (Settings::lb_mode == 26 && tag == 2)) {
+        ++ws26_v4_bypassed[tag];
+        return DoLbFlowECMP(p, ch, nexthops);
+    }
     const auto destination = Settings::hostIp2SwitchId.find(ch.dip);
     if (destination == Settings::hostIp2SwitchId.end()) {
         ++ws26_v4_missing_destination;
         return DoLbFlowECMP(p, ch, nexthops);
     }
-    const uint32_t tag = label.GetValue();
     const uint32_t laneKey[2] = {m_id, destination->second};
     const uint32_t offset = EcmpHash(reinterpret_cast<const uint8_t *>(laneKey),
                                      sizeof(laneKey), m_ecmpSeed ^ 0x4c414e45U) % 8;
@@ -1781,6 +1791,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         case 23:
             return DoLbClassReserve3(p, ch, nexthops);
         case 24:
+        case 25:
+        case 26:
             return DoLbClassLane4(p, ch, nexthops);
         case 13:
         case 14:
@@ -1837,7 +1849,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                     if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                     else ++ws21_feedback_hop_rejects;
                 }
-                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
+                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || (Settings::lb_mode >= 24 && Settings::lb_mode <= 26))
                     SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
             }
@@ -1854,7 +1866,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                 else ++ws21_feedback_hop_rejects;
             }
-            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
+            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || (Settings::lb_mode >= 24 && Settings::lb_mode <= 26))
                 SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
         }
@@ -1907,7 +1919,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         } else {
             // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
             // Release the admission reservation made above for this packet.
-            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)) {
+            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || (Settings::lb_mode >= 24 && Settings::lb_mode <= 26))) {
                 if (!locallyGenerated)
                     m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
@@ -2016,7 +2028,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             ws13_inflight.erase(hit);
         }
     }
-    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24) {
+    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || (Settings::lb_mode >= 24 && Settings::lb_mode <= 26)) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
         s.current -= p->GetSize();
