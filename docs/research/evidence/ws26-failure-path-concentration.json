@@ -1,0 +1,1463 @@
+{
+  "cells": [
+    {
+      "config_log_sha256": "389f216d035590b9148b1af1fc7196e34199387c2951918d454c5550d11c5085",
+      "fct_sha256": "2dfe240c883bcfa58cbf65caf2ebe531630e8301fe29a7499f6bfeee09f1b03c",
+      "id": "20261010-040000-ws26moehop-s94-fecmp",
+      "metrics": {
+        "background": {
+          "all_qps": 192,
+          "cross_tor_qps": 185,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "observed_finish_ns_max": 2002152601,
+          "observed_finish_ns_min": 2000269274,
+          "source_destination_groups_all": 160,
+          "source_destination_groups_min_8_qps": 0,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 1626386800,
+            "groups": 31,
+            "qps": 185,
+            "weighted_hhi": 0.28584181584181584,
+            "weighted_largest_port_share": 0.3837837837837838
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 1626386800,
+            "groups": 31,
+            "qps": 185,
+            "weighted_hhi": 0.272314031787716,
+            "weighted_largest_port_share": 0.34054054054054056
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        },
+        "moe": {
+          "all_qps": 16384,
+          "cross_tor_qps": 16008,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 118752480,
+            "groups": 1140,
+            "qps": 13770,
+            "weighted_hhi": 0.1964640930297979,
+            "weighted_largest_port_share": 0.28257080610021784
+          },
+          "observed_finish_ns_max": 2000017495,
+          "observed_finish_ns_min": 2000010739,
+          "source_destination_groups_all": 1556,
+          "source_destination_groups_min_8_qps": 1140,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 118752480,
+            "groups": 1140,
+            "qps": 13770,
+            "weighted_hhi": 0.1964640930297979,
+            "weighted_largest_port_share": 0.28257080610021784
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 138052992,
+            "groups": 40,
+            "qps": 16008,
+            "weighted_hhi": 0.12723595275026467,
+            "weighted_largest_port_share": 0.15061219390304847
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 138052992,
+            "groups": 40,
+            "qps": 16008,
+            "weighted_hhi": 0.12696785139980873,
+            "weighted_largest_port_share": 0.14936281859070466
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        }
+      },
+      "mismatched_hop_bytes_qps": 0,
+      "mode": "fecmp",
+      "seed": 20262694,
+      "source_sha": "3bdb6c520a079a79f915300c7540fe1828f4445a",
+      "trace_sha256": "04987e0b2ba4dc4d9ab57ebbdda88530696dd7e347e3f8c9b9bb99e7d8cde456"
+    },
+    {
+      "config_log_sha256": "1318a562a43e17cae0bdb4227bba8ad221982c5f72dcad018366fb0df5b953ac",
+      "fct_sha256": "23a981b7bdb4d4c70c1c659f394971a464901b997cc878314f4a92c4cd146c06",
+      "id": "20261010-040000-ws26moehop-s94-classlane4",
+      "metrics": {
+        "background": {
+          "all_qps": 192,
+          "cross_tor_qps": 185,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "observed_finish_ns_max": 2002235132,
+          "observed_finish_ns_min": 2000238430,
+          "source_destination_groups_all": 160,
+          "source_destination_groups_min_8_qps": 0,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 1626386800,
+            "groups": 31,
+            "qps": 185,
+            "weighted_hhi": 0.25930411930411934,
+            "weighted_largest_port_share": 0.32972972972972975
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 1626386800,
+            "groups": 31,
+            "qps": 185,
+            "weighted_hhi": 0.2568937763674606,
+            "weighted_largest_port_share": 0.33513513513513515
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        },
+        "moe": {
+          "all_qps": 16384,
+          "cross_tor_qps": 16008,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 118752480,
+            "groups": 1140,
+            "qps": 13770,
+            "weighted_hhi": 0.5416232601666823,
+            "weighted_largest_port_share": 0.6131445170660857
+          },
+          "observed_finish_ns_max": 2000024552,
+          "observed_finish_ns_min": 2000010672,
+          "source_destination_groups_all": 1556,
+          "source_destination_groups_min_8_qps": 1140,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 118752480,
+            "groups": 1140,
+            "qps": 13770,
+            "weighted_hhi": 0.5416232601666823,
+            "weighted_largest_port_share": 0.6131445170660857
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 138052992,
+            "groups": 40,
+            "qps": 16008,
+            "weighted_hhi": 0.13965831990630656,
+            "weighted_largest_port_share": 0.1924662668665667
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 138052992,
+            "groups": 40,
+            "qps": 16008,
+            "weighted_hhi": 0.13798729275526997,
+            "weighted_largest_port_share": 0.18478260869565216
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        }
+      },
+      "mismatched_hop_bytes_qps": 0,
+      "mode": "classlane4",
+      "seed": 20262694,
+      "source_sha": "3bdb6c520a079a79f915300c7540fe1828f4445a",
+      "trace_sha256": "04987e0b2ba4dc4d9ab57ebbdda88530696dd7e347e3f8c9b9bb99e7d8cde456"
+    },
+    {
+      "config_log_sha256": "79f4aada0475cd6c99a8c262de80694a498a01bdb4ab30544839cdeb88060365",
+      "fct_sha256": "7fc56330340d1f70f22709d1dd39ec1c7f29828574d83daeee4924474dd5997b",
+      "id": "20261010-040000-ws26moehop-s95-fecmp",
+      "metrics": {
+        "background": {
+          "all_qps": 192,
+          "cross_tor_qps": 185,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "observed_finish_ns_max": 2001664093,
+          "observed_finish_ns_min": 2000189096,
+          "source_destination_groups_all": 171,
+          "source_destination_groups_min_8_qps": 0,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 1626386800,
+            "groups": 33,
+            "qps": 185,
+            "weighted_hhi": 0.30127221127221127,
+            "weighted_largest_port_share": 0.372972972972973
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 1626386800,
+            "groups": 34,
+            "qps": 185,
+            "weighted_hhi": 0.2751160251160251,
+            "weighted_largest_port_share": 0.3567567567567568
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        },
+        "moe": {
+          "all_qps": 16384,
+          "cross_tor_qps": 16036,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 120166816,
+            "groups": 1187,
+            "qps": 13934,
+            "weighted_hhi": 0.20054583005130291,
+            "weighted_largest_port_share": 0.2872829051241567
+          },
+          "observed_finish_ns_max": 2000018057,
+          "observed_finish_ns_min": 2000010674,
+          "source_destination_groups_all": 1560,
+          "source_destination_groups_min_8_qps": 1187,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 120166816,
+            "groups": 1187,
+            "qps": 13934,
+            "weighted_hhi": 0.20054583005130291,
+            "weighted_largest_port_share": 0.2872829051241567
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 138294464,
+            "groups": 40,
+            "qps": 16036,
+            "weighted_hhi": 0.12742006916348092,
+            "weighted_largest_port_share": 0.1526565228236468
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 138294464,
+            "groups": 40,
+            "qps": 16036,
+            "weighted_hhi": 0.12777507467766283,
+            "weighted_largest_port_share": 0.15409079570965328
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        }
+      },
+      "mismatched_hop_bytes_qps": 0,
+      "mode": "fecmp",
+      "seed": 20262695,
+      "source_sha": "3bdb6c520a079a79f915300c7540fe1828f4445a",
+      "trace_sha256": "9001ce6042957b6d4bc9909ba0ac41e7a49fc7382121eec62a574d008add55b3"
+    },
+    {
+      "config_log_sha256": "8ad75ef24270820dc03eb26b1f4cfd999c9528e00d470399ffcecb774b1c8024",
+      "fct_sha256": "1748d0581202fb162d6c829a8749f33455ade183147268b7ffd3fd56d73e9164",
+      "id": "20261010-040000-ws26moehop-s95-classlane4",
+      "metrics": {
+        "background": {
+          "all_qps": 192,
+          "cross_tor_qps": 185,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "observed_finish_ns_max": 2001689915,
+          "observed_finish_ns_min": 2000204879,
+          "source_destination_groups_all": 171,
+          "source_destination_groups_min_8_qps": 0,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 1626386800,
+            "groups": 33,
+            "qps": 185,
+            "weighted_hhi": 0.28720216720216724,
+            "weighted_largest_port_share": 0.3621621621621622
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 1626386800,
+            "groups": 34,
+            "qps": 185,
+            "weighted_hhi": 0.28204009204009206,
+            "weighted_largest_port_share": 0.35135135135135137
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        },
+        "moe": {
+          "all_qps": 16384,
+          "cross_tor_qps": 16036,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 120166816,
+            "groups": 1187,
+            "qps": 13934,
+            "weighted_hhi": 0.5416615693089359,
+            "weighted_largest_port_share": 0.6137505382517583
+          },
+          "observed_finish_ns_max": 2000021457,
+          "observed_finish_ns_min": 2000010659,
+          "source_destination_groups_all": 1560,
+          "source_destination_groups_min_8_qps": 1187,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 120166816,
+            "groups": 1187,
+            "qps": 13934,
+            "weighted_hhi": 0.5416615693089359,
+            "weighted_largest_port_share": 0.6137505382517583
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 138294464,
+            "groups": 40,
+            "qps": 16036,
+            "weighted_hhi": 0.13746783441411053,
+            "weighted_largest_port_share": 0.18795210775754553
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 138294464,
+            "groups": 40,
+            "qps": 16036,
+            "weighted_hhi": 0.13589302631504044,
+            "weighted_largest_port_share": 0.182776253429783
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        }
+      },
+      "mismatched_hop_bytes_qps": 0,
+      "mode": "classlane4",
+      "seed": 20262695,
+      "source_sha": "3bdb6c520a079a79f915300c7540fe1828f4445a",
+      "trace_sha256": "9001ce6042957b6d4bc9909ba0ac41e7a49fc7382121eec62a574d008add55b3"
+    },
+    {
+      "config_log_sha256": "c59bc03c4c0795b61bb949e0f1adb2993b4fef53ef312808d1bd2c2e3db51179",
+      "fct_sha256": "041b71782b2dd14d0c336ab9d9edade314bb0e9d9f708cb0ff0d98c62a629672",
+      "id": "20261010-040000-ws26moehop-s96-fecmp",
+      "metrics": {
+        "background": {
+          "all_qps": 192,
+          "cross_tor_qps": 190,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "observed_finish_ns_max": 2002251673,
+          "observed_finish_ns_min": 2000216333,
+          "source_destination_groups_all": 181,
+          "source_destination_groups_min_8_qps": 0,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 1670343200,
+            "groups": 36,
+            "qps": 190,
+            "weighted_hhi": 0.2977758790916685,
+            "weighted_largest_port_share": 0.3736842105263158
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 1670343200,
+            "groups": 35,
+            "qps": 190,
+            "weighted_hhi": 0.2848036758563074,
+            "weighted_largest_port_share": 0.3684210526315789
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        },
+        "moe": {
+          "all_qps": 16384,
+          "cross_tor_qps": 16043,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 121546656,
+            "groups": 1227,
+            "qps": 14094,
+            "weighted_hhi": 0.2007173746073854,
+            "weighted_largest_port_share": 0.2882077479778629
+          },
+          "observed_finish_ns_max": 2000018441,
+          "observed_finish_ns_min": 2000010715,
+          "source_destination_groups_all": 1560,
+          "source_destination_groups_min_8_qps": 1227,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 121546656,
+            "groups": 1227,
+            "qps": 14094,
+            "weighted_hhi": 0.2007173746073854,
+            "weighted_largest_port_share": 0.2882077479778629
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 138354832,
+            "groups": 40,
+            "qps": 16043,
+            "weighted_hhi": 0.12681014384507075,
+            "weighted_largest_port_share": 0.14785264601383782
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 138354832,
+            "groups": 40,
+            "qps": 16043,
+            "weighted_hhi": 0.12711612062499272,
+            "weighted_largest_port_share": 0.1511562675310104
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        }
+      },
+      "mismatched_hop_bytes_qps": 0,
+      "mode": "fecmp",
+      "seed": 20262696,
+      "source_sha": "3bdb6c520a079a79f915300c7540fe1828f4445a",
+      "trace_sha256": "67a67e404c5cb6ea45576e5fd9043c79c996742ae75b36270c6c9a3b9f0fa52b"
+    },
+    {
+      "config_log_sha256": "b5ffcc8b993c218cd9dd7420ba907a0886918ae32db6f9b7b91d2b7db8f09668",
+      "fct_sha256": "5a497a40c098c8bc65e79cb38d033a9a2979bddf3e519f10a365ef3e852dc9db",
+      "id": "20261010-040000-ws26moehop-s96-classlane4",
+      "metrics": {
+        "background": {
+          "all_qps": 192,
+          "cross_tor_qps": 190,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "observed_finish_ns_max": 2002196306,
+          "observed_finish_ns_min": 2000234598,
+          "source_destination_groups_all": 181,
+          "source_destination_groups_min_8_qps": 0,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 1670343200,
+            "groups": 36,
+            "qps": 190,
+            "weighted_hhi": 0.30198450672134886,
+            "weighted_largest_port_share": 0.38421052631578945
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 1670343200,
+            "groups": 35,
+            "qps": 190,
+            "weighted_hhi": 0.29249373433583964,
+            "weighted_largest_port_share": 0.37894736842105264
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        },
+        "moe": {
+          "all_qps": 16384,
+          "cross_tor_qps": 16043,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 121546656,
+            "groups": 1227,
+            "qps": 14094,
+            "weighted_hhi": 0.546552946541454,
+            "weighted_largest_port_share": 0.622179650915283
+          },
+          "observed_finish_ns_max": 2000021888,
+          "observed_finish_ns_min": 2000010665,
+          "source_destination_groups_all": 1560,
+          "source_destination_groups_min_8_qps": 1227,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 121546656,
+            "groups": 1227,
+            "qps": 14094,
+            "weighted_hhi": 0.546552946541454,
+            "weighted_largest_port_share": 0.622179650915283
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 138354832,
+            "groups": 40,
+            "qps": 16043,
+            "weighted_hhi": 0.13614303574104009,
+            "weighted_largest_port_share": 0.18537679985040204
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 138354832,
+            "groups": 40,
+            "qps": 16043,
+            "weighted_hhi": 0.13657787817319314,
+            "weighted_largest_port_share": 0.1874337717384529
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        }
+      },
+      "mismatched_hop_bytes_qps": 0,
+      "mode": "classlane4",
+      "seed": 20262696,
+      "source_sha": "3bdb6c520a079a79f915300c7540fe1828f4445a",
+      "trace_sha256": "67a67e404c5cb6ea45576e5fd9043c79c996742ae75b36270c6c9a3b9f0fa52b"
+    },
+    {
+      "config_log_sha256": "e763fdb62976c8004d9b0fee4bbf64f1f1d7bb11e3b8d988b67d1d61ff87096c",
+      "fct_sha256": "5782262613100533dd04fbcca515feda56beed12a3db0c27b32b02f16d5c3c68",
+      "id": "20261010-040000-ws26moehop-s97-fecmp",
+      "metrics": {
+        "background": {
+          "all_qps": 192,
+          "cross_tor_qps": 185,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "observed_finish_ns_max": 2001781814,
+          "observed_finish_ns_min": 2000253213,
+          "source_destination_groups_all": 172,
+          "source_destination_groups_min_8_qps": 0,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 1626386800,
+            "groups": 33,
+            "qps": 185,
+            "weighted_hhi": 0.27568776568776565,
+            "weighted_largest_port_share": 0.35135135135135137
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 1626386800,
+            "groups": 35,
+            "qps": 185,
+            "weighted_hhi": 0.2955126555126555,
+            "weighted_largest_port_share": 0.3891891891891892
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        },
+        "moe": {
+          "all_qps": 16384,
+          "cross_tor_qps": 16006,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 119106064,
+            "groups": 1171,
+            "qps": 13811,
+            "weighted_hhi": 0.1999094540146106,
+            "weighted_largest_port_share": 0.2870175946709145
+          },
+          "observed_finish_ns_max": 2000018472,
+          "observed_finish_ns_min": 2000010731,
+          "source_destination_groups_all": 1560,
+          "source_destination_groups_min_8_qps": 1171,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 119106064,
+            "groups": 1171,
+            "qps": 13811,
+            "weighted_hhi": 0.1999094540146106,
+            "weighted_largest_port_share": 0.2870175946709145
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 138035744,
+            "groups": 40,
+            "qps": 16006,
+            "weighted_hhi": 0.12692907066041162,
+            "weighted_largest_port_share": 0.14788204423341247
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 138035744,
+            "groups": 40,
+            "qps": 16006,
+            "weighted_hhi": 0.12699999344975263,
+            "weighted_largest_port_share": 0.15069348994127202
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        }
+      },
+      "mismatched_hop_bytes_qps": 0,
+      "mode": "fecmp",
+      "seed": 20262697,
+      "source_sha": "3bdb6c520a079a79f915300c7540fe1828f4445a",
+      "trace_sha256": "58bbc2d8ca78753c5e6e2fee119341ea94c8ee76cbad58e013c93707833ee3ca"
+    },
+    {
+      "config_log_sha256": "a1a0129396e22b34ce0954be1920b6a7da4b97e129474dd94f027f98701ab51f",
+      "fct_sha256": "537dad823db4de5cf1b2b09ae711f0cd5976a2638024adc685e5317f029bb30e",
+      "id": "20261010-040000-ws26moehop-s97-classlane4",
+      "metrics": {
+        "background": {
+          "all_qps": 192,
+          "cross_tor_qps": 185,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "observed_finish_ns_max": 2001953438,
+          "observed_finish_ns_min": 2000211523,
+          "source_destination_groups_all": 172,
+          "source_destination_groups_min_8_qps": 0,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 0,
+            "groups": 0,
+            "qps": 0,
+            "weighted_hhi": null,
+            "weighted_largest_port_share": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 1626386800,
+            "groups": 33,
+            "qps": 185,
+            "weighted_hhi": 0.28683631683631683,
+            "weighted_largest_port_share": 0.372972972972973
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 1626386800,
+            "groups": 35,
+            "qps": 185,
+            "weighted_hhi": 0.3003560703560703,
+            "weighted_largest_port_share": 0.3891891891891892
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        },
+        "moe": {
+          "all_qps": 16384,
+          "cross_tor_qps": 16006,
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "bytes": 119106064,
+            "groups": 1171,
+            "qps": 13811,
+            "weighted_hhi": 0.5456208333589639,
+            "weighted_largest_port_share": 0.6207370936210267
+          },
+          "observed_finish_ns_max": 2000022697,
+          "observed_finish_ns_min": 2000010630,
+          "source_destination_groups_all": 1560,
+          "source_destination_groups_min_8_qps": 1171,
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "bytes": 119106064,
+            "groups": 1171,
+            "qps": 13811,
+            "weighted_hhi": 0.5456208333589639,
+            "weighted_largest_port_share": 0.6207370936210267
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "bytes": 138035744,
+            "groups": 40,
+            "qps": 16006,
+            "weighted_hhi": 0.13748397022626793,
+            "weighted_largest_port_share": 0.1857428464325878
+          },
+          "total_source_uplink_by_source_tor": {
+            "bytes": 138035744,
+            "groups": 40,
+            "qps": 16006,
+            "weighted_hhi": 0.13648006042933425,
+            "weighted_largest_port_share": 0.182993877296014
+          },
+          "trace_start_ns_max": 2000000000,
+          "trace_start_ns_min": 2000000000
+        }
+      },
+      "mismatched_hop_bytes_qps": 0,
+      "mode": "classlane4",
+      "seed": 20262697,
+      "source_sha": "3bdb6c520a079a79f915300c7540fe1828f4445a",
+      "trace_sha256": "58bbc2d8ca78753c5e6e2fee119341ea94c8ee76cbad58e013c93707833ee3ca"
+    }
+  ],
+  "limits": [
+    "Whole-cell byte shares do not measure simultaneous link load or queue causality",
+    "MoE and background finish windows differ; classes are not pooled",
+    "At least eight QPs per source/destination ToR is descriptive, not a significance threshold",
+    "Conditional source and destination HHI can coincide through deterministic path mapping; they are not independent measurements",
+    "Results reuse four revealed seeds and are not new efficacy samples"
+  ],
+  "metrics_definition": {
+    "conditional_destination": "per destination ToR and source ToR, minimum eight QPs",
+    "conditional_source": "per source ToR and destination ToR, minimum eight QPs",
+    "downward_port": "penultimate switch sending into destination ToR",
+    "hhi": "sum of squared port byte shares; larger means more concentration",
+    "total_destination": "per destination ToR, combine all source ToRs within one class",
+    "total_source": "per source ToR, combine all destination ToRs within one class",
+    "weight": "observed data bytes at each hop, summed over entire cell"
+  },
+  "minimum_qps_per_source_destination_tor_group": 8,
+  "pairs": [
+    {
+      "classes": {
+        "background": {
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "ecmp": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "hhi_difference": null
+          },
+          "largest_absolute_group_changes": [],
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "ecmp": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "hhi_difference": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "classlane4": {
+              "bytes": 1626386800,
+              "groups": 31,
+              "qps": 185,
+              "weighted_hhi": 0.25930411930411934,
+              "weighted_largest_port_share": 0.32972972972972975
+            },
+            "ecmp": {
+              "bytes": 1626386800,
+              "groups": 31,
+              "qps": 185,
+              "weighted_hhi": 0.28584181584181584,
+              "weighted_largest_port_share": 0.3837837837837838
+            },
+            "hhi_difference": -0.026537696537696498
+          },
+          "total_source_uplink_by_source_tor": {
+            "classlane4": {
+              "bytes": 1626386800,
+              "groups": 31,
+              "qps": 185,
+              "weighted_hhi": 0.2568937763674606,
+              "weighted_largest_port_share": 0.33513513513513515
+            },
+            "ecmp": {
+              "bytes": 1626386800,
+              "groups": 31,
+              "qps": 185,
+              "weighted_hhi": 0.272314031787716,
+              "weighted_largest_port_share": 0.34054054054054056
+            },
+            "hhi_difference": -0.015420255420255435
+          }
+        },
+        "moe": {
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 118752480,
+              "groups": 1140,
+              "qps": 13770,
+              "weighted_hhi": 0.5416232601666823,
+              "weighted_largest_port_share": 0.6131445170660857
+            },
+            "ecmp": {
+              "bytes": 118752480,
+              "groups": 1140,
+              "qps": 13770,
+              "weighted_hhi": 0.1964640930297979,
+              "weighted_largest_port_share": 0.28257080610021784
+            },
+            "hhi_difference": 0.3451591671368844
+          },
+          "largest_absolute_group_changes": [
+            {
+              "bytes": 94864,
+              "destination_ingress_hhi_difference": 0.8429752066115703,
+              "qps": 11,
+              "source_destination_tor": "1344:1314",
+              "source_uplink_hhi_difference": 0.8429752066115703
+            },
+            {
+              "bytes": 77616,
+              "destination_ingress_hhi_difference": 0.7654320987654322,
+              "qps": 9,
+              "source_destination_tor": "1415:1410",
+              "source_uplink_hhi_difference": 0.7654320987654322
+            },
+            {
+              "bytes": 120736,
+              "destination_ingress_hhi_difference": 0.7244897959183674,
+              "qps": 14,
+              "source_destination_tor": "1287:1349",
+              "source_uplink_hhi_difference": 0.7244897959183674
+            },
+            {
+              "bytes": 94864,
+              "destination_ingress_hhi_difference": 0.6942148760330578,
+              "qps": 11,
+              "source_destination_tor": "1348:1318",
+              "source_uplink_hhi_difference": 0.6942148760330578
+            },
+            {
+              "bytes": 68992,
+              "destination_ingress_hhi_difference": 0.6875,
+              "qps": 8,
+              "source_destination_tor": "1281:1348",
+              "source_uplink_hhi_difference": 0.6875
+            }
+          ],
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 118752480,
+              "groups": 1140,
+              "qps": 13770,
+              "weighted_hhi": 0.5416232601666823,
+              "weighted_largest_port_share": 0.6131445170660857
+            },
+            "ecmp": {
+              "bytes": 118752480,
+              "groups": 1140,
+              "qps": 13770,
+              "weighted_hhi": 0.1964640930297979,
+              "weighted_largest_port_share": 0.28257080610021784
+            },
+            "hhi_difference": 0.3451591671368844
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "classlane4": {
+              "bytes": 138052992,
+              "groups": 40,
+              "qps": 16008,
+              "weighted_hhi": 0.13965831990630656,
+              "weighted_largest_port_share": 0.1924662668665667
+            },
+            "ecmp": {
+              "bytes": 138052992,
+              "groups": 40,
+              "qps": 16008,
+              "weighted_hhi": 0.12723595275026467,
+              "weighted_largest_port_share": 0.15061219390304847
+            },
+            "hhi_difference": 0.012422367156041891
+          },
+          "total_source_uplink_by_source_tor": {
+            "classlane4": {
+              "bytes": 138052992,
+              "groups": 40,
+              "qps": 16008,
+              "weighted_hhi": 0.13798729275526997,
+              "weighted_largest_port_share": 0.18478260869565216
+            },
+            "ecmp": {
+              "bytes": 138052992,
+              "groups": 40,
+              "qps": 16008,
+              "weighted_hhi": 0.12696785139980873,
+              "weighted_largest_port_share": 0.14936281859070466
+            },
+            "hhi_difference": 0.011019441355461235
+          }
+        }
+      },
+      "seed": 20262694
+    },
+    {
+      "classes": {
+        "background": {
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "ecmp": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "hhi_difference": null
+          },
+          "largest_absolute_group_changes": [],
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "ecmp": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "hhi_difference": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "classlane4": {
+              "bytes": 1626386800,
+              "groups": 33,
+              "qps": 185,
+              "weighted_hhi": 0.28720216720216724,
+              "weighted_largest_port_share": 0.3621621621621622
+            },
+            "ecmp": {
+              "bytes": 1626386800,
+              "groups": 33,
+              "qps": 185,
+              "weighted_hhi": 0.30127221127221127,
+              "weighted_largest_port_share": 0.372972972972973
+            },
+            "hhi_difference": -0.01407004407004403
+          },
+          "total_source_uplink_by_source_tor": {
+            "classlane4": {
+              "bytes": 1626386800,
+              "groups": 34,
+              "qps": 185,
+              "weighted_hhi": 0.28204009204009206,
+              "weighted_largest_port_share": 0.35135135135135137
+            },
+            "ecmp": {
+              "bytes": 1626386800,
+              "groups": 34,
+              "qps": 185,
+              "weighted_hhi": 0.2751160251160251,
+              "weighted_largest_port_share": 0.3567567567567568
+            },
+            "hhi_difference": 0.006924066924066941
+          }
+        },
+        "moe": {
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 120166816,
+              "groups": 1187,
+              "qps": 13934,
+              "weighted_hhi": 0.5416615693089359,
+              "weighted_largest_port_share": 0.6137505382517583
+            },
+            "ecmp": {
+              "bytes": 120166816,
+              "groups": 1187,
+              "qps": 13934,
+              "weighted_hhi": 0.20054583005130291,
+              "weighted_largest_port_share": 0.2872829051241567
+            },
+            "hhi_difference": 0.34111573925763305
+          },
+          "largest_absolute_group_changes": [
+            {
+              "bytes": 68992,
+              "destination_ingress_hhi_difference": 0.75,
+              "qps": 8,
+              "source_destination_tor": "1413:1415",
+              "source_uplink_hhi_difference": 0.75
+            },
+            {
+              "bytes": 68992,
+              "destination_ingress_hhi_difference": 0.71875,
+              "qps": 8,
+              "source_destination_tor": "1378:1314",
+              "source_uplink_hhi_difference": 0.71875
+            },
+            {
+              "bytes": 103488,
+              "destination_ingress_hhi_difference": 0.6805555555555555,
+              "qps": 12,
+              "source_destination_tor": "1344:1316",
+              "source_uplink_hhi_difference": 0.6805555555555555
+            },
+            {
+              "bytes": 77616,
+              "destination_ingress_hhi_difference": 0.6666666666666667,
+              "qps": 9,
+              "source_destination_tor": "1350:1412",
+              "source_uplink_hhi_difference": 0.6666666666666667
+            },
+            {
+              "bytes": 94864,
+              "destination_ingress_hhi_difference": 0.6611570247933883,
+              "qps": 11,
+              "source_destination_tor": "1284:1316",
+              "source_uplink_hhi_difference": 0.6611570247933883
+            }
+          ],
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 120166816,
+              "groups": 1187,
+              "qps": 13934,
+              "weighted_hhi": 0.5416615693089359,
+              "weighted_largest_port_share": 0.6137505382517583
+            },
+            "ecmp": {
+              "bytes": 120166816,
+              "groups": 1187,
+              "qps": 13934,
+              "weighted_hhi": 0.20054583005130291,
+              "weighted_largest_port_share": 0.2872829051241567
+            },
+            "hhi_difference": 0.34111573925763305
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "classlane4": {
+              "bytes": 138294464,
+              "groups": 40,
+              "qps": 16036,
+              "weighted_hhi": 0.13746783441411053,
+              "weighted_largest_port_share": 0.18795210775754553
+            },
+            "ecmp": {
+              "bytes": 138294464,
+              "groups": 40,
+              "qps": 16036,
+              "weighted_hhi": 0.12742006916348092,
+              "weighted_largest_port_share": 0.1526565228236468
+            },
+            "hhi_difference": 0.010047765250629614
+          },
+          "total_source_uplink_by_source_tor": {
+            "classlane4": {
+              "bytes": 138294464,
+              "groups": 40,
+              "qps": 16036,
+              "weighted_hhi": 0.13589302631504044,
+              "weighted_largest_port_share": 0.182776253429783
+            },
+            "ecmp": {
+              "bytes": 138294464,
+              "groups": 40,
+              "qps": 16036,
+              "weighted_hhi": 0.12777507467766283,
+              "weighted_largest_port_share": 0.15409079570965328
+            },
+            "hhi_difference": 0.008117951637377607
+          }
+        }
+      },
+      "seed": 20262695
+    },
+    {
+      "classes": {
+        "background": {
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "ecmp": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "hhi_difference": null
+          },
+          "largest_absolute_group_changes": [],
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "ecmp": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "hhi_difference": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "classlane4": {
+              "bytes": 1670343200,
+              "groups": 36,
+              "qps": 190,
+              "weighted_hhi": 0.30198450672134886,
+              "weighted_largest_port_share": 0.38421052631578945
+            },
+            "ecmp": {
+              "bytes": 1670343200,
+              "groups": 36,
+              "qps": 190,
+              "weighted_hhi": 0.2977758790916685,
+              "weighted_largest_port_share": 0.3736842105263158
+            },
+            "hhi_difference": 0.004208627629680328
+          },
+          "total_source_uplink_by_source_tor": {
+            "classlane4": {
+              "bytes": 1670343200,
+              "groups": 35,
+              "qps": 190,
+              "weighted_hhi": 0.29249373433583964,
+              "weighted_largest_port_share": 0.37894736842105264
+            },
+            "ecmp": {
+              "bytes": 1670343200,
+              "groups": 35,
+              "qps": 190,
+              "weighted_hhi": 0.2848036758563074,
+              "weighted_largest_port_share": 0.3684210526315789
+            },
+            "hhi_difference": 0.007690058479532247
+          }
+        },
+        "moe": {
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 121546656,
+              "groups": 1227,
+              "qps": 14094,
+              "weighted_hhi": 0.546552946541454,
+              "weighted_largest_port_share": 0.622179650915283
+            },
+            "ecmp": {
+              "bytes": 121546656,
+              "groups": 1227,
+              "qps": 14094,
+              "weighted_hhi": 0.2007173746073854,
+              "weighted_largest_port_share": 0.2882077479778629
+            },
+            "hhi_difference": 0.34583557193406866
+          },
+          "largest_absolute_group_changes": [
+            {
+              "bytes": 86240,
+              "destination_ingress_hhi_difference": 0.8,
+              "qps": 10,
+              "source_destination_tor": "1280:1381",
+              "source_uplink_hhi_difference": 0.8
+            },
+            {
+              "bytes": 103488,
+              "destination_ingress_hhi_difference": 0.6666666666666665,
+              "qps": 12,
+              "source_destination_tor": "1349:1318",
+              "source_uplink_hhi_difference": 0.6666666666666665
+            },
+            {
+              "bytes": 120736,
+              "destination_ingress_hhi_difference": 0.6632653061224489,
+              "qps": 14,
+              "source_destination_tor": "1283:1414",
+              "source_uplink_hhi_difference": 0.6632653061224489
+            },
+            {
+              "bytes": 94864,
+              "destination_ingress_hhi_difference": 0.6611570247933883,
+              "qps": 11,
+              "source_destination_tor": "1382:1383",
+              "source_uplink_hhi_difference": 0.6611570247933883
+            },
+            {
+              "bytes": 94864,
+              "destination_ingress_hhi_difference": 0.6446280991735536,
+              "qps": 11,
+              "source_destination_tor": "1413:1380",
+              "source_uplink_hhi_difference": 0.6446280991735536
+            }
+          ],
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 121546656,
+              "groups": 1227,
+              "qps": 14094,
+              "weighted_hhi": 0.546552946541454,
+              "weighted_largest_port_share": 0.622179650915283
+            },
+            "ecmp": {
+              "bytes": 121546656,
+              "groups": 1227,
+              "qps": 14094,
+              "weighted_hhi": 0.2007173746073854,
+              "weighted_largest_port_share": 0.2882077479778629
+            },
+            "hhi_difference": 0.34583557193406866
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "classlane4": {
+              "bytes": 138354832,
+              "groups": 40,
+              "qps": 16043,
+              "weighted_hhi": 0.13614303574104009,
+              "weighted_largest_port_share": 0.18537679985040204
+            },
+            "ecmp": {
+              "bytes": 138354832,
+              "groups": 40,
+              "qps": 16043,
+              "weighted_hhi": 0.12681014384507075,
+              "weighted_largest_port_share": 0.14785264601383782
+            },
+            "hhi_difference": 0.009332891895969336
+          },
+          "total_source_uplink_by_source_tor": {
+            "classlane4": {
+              "bytes": 138354832,
+              "groups": 40,
+              "qps": 16043,
+              "weighted_hhi": 0.13657787817319314,
+              "weighted_largest_port_share": 0.1874337717384529
+            },
+            "ecmp": {
+              "bytes": 138354832,
+              "groups": 40,
+              "qps": 16043,
+              "weighted_hhi": 0.12711612062499272,
+              "weighted_largest_port_share": 0.1511562675310104
+            },
+            "hhi_difference": 0.009461757548200417
+          }
+        }
+      },
+      "seed": 20262696
+    },
+    {
+      "classes": {
+        "background": {
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "ecmp": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "hhi_difference": null
+          },
+          "largest_absolute_group_changes": [],
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "ecmp": {
+              "bytes": 0,
+              "groups": 0,
+              "qps": 0,
+              "weighted_hhi": null,
+              "weighted_largest_port_share": null
+            },
+            "hhi_difference": null
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "classlane4": {
+              "bytes": 1626386800,
+              "groups": 33,
+              "qps": 185,
+              "weighted_hhi": 0.28683631683631683,
+              "weighted_largest_port_share": 0.372972972972973
+            },
+            "ecmp": {
+              "bytes": 1626386800,
+              "groups": 33,
+              "qps": 185,
+              "weighted_hhi": 0.27568776568776565,
+              "weighted_largest_port_share": 0.35135135135135137
+            },
+            "hhi_difference": 0.011148551148551178
+          },
+          "total_source_uplink_by_source_tor": {
+            "classlane4": {
+              "bytes": 1626386800,
+              "groups": 35,
+              "qps": 185,
+              "weighted_hhi": 0.3003560703560703,
+              "weighted_largest_port_share": 0.3891891891891892
+            },
+            "ecmp": {
+              "bytes": 1626386800,
+              "groups": 35,
+              "qps": 185,
+              "weighted_hhi": 0.2955126555126555,
+              "weighted_largest_port_share": 0.3891891891891892
+            },
+            "hhi_difference": 0.004843414843414828
+          }
+        },
+        "moe": {
+          "destination_ingress_by_source_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 119106064,
+              "groups": 1171,
+              "qps": 13811,
+              "weighted_hhi": 0.5456208333589639,
+              "weighted_largest_port_share": 0.6207370936210267
+            },
+            "ecmp": {
+              "bytes": 119106064,
+              "groups": 1171,
+              "qps": 13811,
+              "weighted_hhi": 0.1999094540146106,
+              "weighted_largest_port_share": 0.2870175946709145
+            },
+            "hhi_difference": 0.34571137934435336
+          },
+          "largest_absolute_group_changes": [
+            {
+              "bytes": 86240,
+              "destination_ingress_hhi_difference": 0.84,
+              "qps": 10,
+              "source_destination_tor": "1376:1282",
+              "source_uplink_hhi_difference": 0.84
+            },
+            {
+              "bytes": 86240,
+              "destination_ingress_hhi_difference": 0.82,
+              "qps": 10,
+              "source_destination_tor": "1316:1282",
+              "source_uplink_hhi_difference": 0.82
+            },
+            {
+              "bytes": 68992,
+              "destination_ingress_hhi_difference": 0.78125,
+              "qps": 8,
+              "source_destination_tor": "1380:1346",
+              "source_uplink_hhi_difference": 0.78125
+            },
+            {
+              "bytes": 68992,
+              "destination_ingress_hhi_difference": 0.78125,
+              "qps": 8,
+              "source_destination_tor": "1410:1346",
+              "source_uplink_hhi_difference": 0.78125
+            },
+            {
+              "bytes": 86240,
+              "destination_ingress_hhi_difference": 0.7,
+              "qps": 10,
+              "source_destination_tor": "1381:1346",
+              "source_uplink_hhi_difference": 0.7
+            }
+          ],
+          "source_uplink_by_destination_tor_min_8_qps": {
+            "classlane4": {
+              "bytes": 119106064,
+              "groups": 1171,
+              "qps": 13811,
+              "weighted_hhi": 0.5456208333589639,
+              "weighted_largest_port_share": 0.6207370936210267
+            },
+            "ecmp": {
+              "bytes": 119106064,
+              "groups": 1171,
+              "qps": 13811,
+              "weighted_hhi": 0.1999094540146106,
+              "weighted_largest_port_share": 0.2870175946709145
+            },
+            "hhi_difference": 0.34571137934435336
+          },
+          "total_destination_ingress_by_destination_tor": {
+            "classlane4": {
+              "bytes": 138035744,
+              "groups": 40,
+              "qps": 16006,
+              "weighted_hhi": 0.13748397022626793,
+              "weighted_largest_port_share": 0.1857428464325878
+            },
+            "ecmp": {
+              "bytes": 138035744,
+              "groups": 40,
+              "qps": 16006,
+              "weighted_hhi": 0.12692907066041162,
+              "weighted_largest_port_share": 0.14788204423341247
+            },
+            "hhi_difference": 0.010554899565856313
+          },
+          "total_source_uplink_by_source_tor": {
+            "classlane4": {
+              "bytes": 138035744,
+              "groups": 40,
+              "qps": 16006,
+              "weighted_hhi": 0.13648006042933425,
+              "weighted_largest_port_share": 0.182993877296014
+            },
+            "ecmp": {
+              "bytes": 138035744,
+              "groups": 40,
+              "qps": 16006,
+              "weighted_hhi": 0.12699999344975263,
+              "weighted_largest_port_share": 0.15069348994127202
+            },
+            "hhi_difference": 0.00948006697958162
+          }
+        }
+      },
+      "seed": 20262697
+    }
+  ],
+  "plan_sha256": "ea17bce8eda8441d16139acafd9849bc3c3de615be6b9b797f4e46f65db7f5ea",
+  "purpose": "Ofan-inspired read-only destination-conditioned path audit",
+  "source_sha": "3bdb6c520a079a79f915300c7540fe1828f4445a",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
