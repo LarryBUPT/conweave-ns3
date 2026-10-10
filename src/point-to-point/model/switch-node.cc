@@ -19,11 +19,14 @@
 #include "ws21-feedback-header.h"
 #include "ws21-heartbeat-header.h"
 #include "ws26-time-probe.h"
+#include "ws26-seed97-probe.h"
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
 #include <map>
 #include <limits>
+#include <sstream>
+#include <string>
 #include <tuple>
 #include "ppp-header.h"
 #include "qbb-net-device.h"
@@ -142,7 +145,7 @@ static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, GuardQueueStat> guard_
 // WS-13 legacy cells retain their two frozen destinations. WS-19 opt-in cells
 // observe all background destinations because each independent demand redraws them.
 struct Ws13Packet {
-    uint32_t src, dst, sport, dport, outDev, queuedBytes;
+    uint32_t src, dst, sport, dport, outDev, queuedBytes, seq, packetBytes;
     uint64_t enqueueNs;
     uint8_t tag;
 };
@@ -154,6 +157,18 @@ struct Ws13FlowHop {
 static std::map<std::pair<uint32_t, uint64_t>, Ws13Packet> ws13_inflight;
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uint32_t>,
                 Ws13FlowHop> ws13_hops;
+static uint64_t ws26_s97_switch_rows = 0, ws26_s97_switch_bytes = 0;
+static uint64_t ws26_s97_switch_overflow = 0;
+static void Ws26Seed97SwitchEmit(const std::string &row) {
+    const uint64_t size = row.size() + 1;
+    if (ws26_s97_switch_rows >= 500000 || ws26_s97_switch_bytes + size > 128ULL * 1024 * 1024) {
+        ++ws26_s97_switch_overflow;
+        return;
+    }
+    std::cout << row << '\n';
+    ++ws26_s97_switch_rows;
+    ws26_s97_switch_bytes += size;
+}
 struct Ws26MarkBucket {
     uint64_t decisions = 0, bytes = 0;
 };
@@ -819,6 +834,10 @@ void SwitchNode::PrintWorkloadTagCounts() {
         }
         std::cout << "WS13_INFLIGHT unpaired=" << ws13_inflight.size() << std::endl;
     }
+    if (Ws26Seed97ProbeEnabled())
+        std::cout << "WS26_S97_SWITCH_SUMMARY rows=" << ws26_s97_switch_rows
+                  << " bytes=" << ws26_s97_switch_bytes
+                  << " overflow=" << ws26_s97_switch_overflow << std::endl;
     if (Ws26TimeProbeEnabled()) {
         for (const auto &entry : ws26_mark_buckets) {
             const auto &key = entry.first;
@@ -1843,7 +1862,8 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         if (!locallyGenerated) CheckAndSendPfc(inDev, qIndex);
     }
 
-    if ((Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled() || Ws26MoeHopDiagnosticEnabled()) &&
+    if ((Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled() || Ws26MoeHopDiagnosticEnabled() ||
+         Ws26Seed97ProbeEnabled()) &&
         ch.l3Prot == 0x11) {
         WorkloadTag tag;
         auto destination = Settings::hostIp2IdMap.find(ch.dip);
@@ -1862,7 +1882,9 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
             Ws13Packet item = {source->second, destination->second,
                                ch.udp.sport, ch.udp.dport, outDev,
                                dev->GetQueue()->GetNBytesTotal(),
-                               uint64_t(Simulator::Now().GetNanoSeconds()), tag.GetValue()};
+                               ch.udp.seq, p->GetSize(),
+                               uint64_t(Simulator::Now().GetNanoSeconds()),
+                               tag.GetValue()};
             auto key = std::make_pair(m_id, p->GetUid());
             NS_ASSERT_MSG(ws13_inflight.count(key) == 0, "WS-13 duplicate packet UID at switch");
             ws13_inflight[key] = item;
@@ -1944,6 +1966,9 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
     bool ws26_target = false;
     uint32_t ws26_src = 0, ws26_dst = 0, ws26_sport = 0, ws26_dport = 0;
+    bool ws26_s97_target = false, ws26_s97_ecn = false;
+    Ws13Packet ws26_s97_item = {};
+    uint64_t ws26_s97_uid = 0;
     bool controlPacket = false;
     if (Ws21FeedbackEnabled() || ws21_heartbeat_enabled) {
         CustomHeader feedback(CustomHeader::L2_Header | CustomHeader::L3_Header |
@@ -1957,7 +1982,8 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         }
     }
     RecordWs21PortEvent(ifIndex, 'D');
-    if (Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled() || Ws26MoeHopDiagnosticEnabled()) {
+    if (Ws13DiagnosticEnabled() || Ws25DiagnosticEnabled() || Ws26MoeHopDiagnosticEnabled() ||
+        Ws26Seed97ProbeEnabled()) {
         auto hit = ws13_inflight.find(std::make_pair(m_id, p->GetUid()));
         if (hit != ws13_inflight.end()) {
             const Ws13Packet &item = hit->second;
@@ -1971,6 +1997,12 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             }
             NS_ASSERT_MSG(item.outDev == ifIndex, "WS-13 diagnostic port mismatch");
             uint64_t waited = uint64_t(Simulator::Now().GetNanoSeconds()) - item.enqueueNs;
+            if (Ws26Seed97ProbeEnabled() &&
+                Ws26Seed97Target(item.src, item.dst, item.sport, item.dport)) {
+                ws26_s97_target = true;
+                ws26_s97_item = item;
+                ws26_s97_uid = p->GetUid();
+            }
             auto key = std::make_tuple(item.src, item.dst, item.sport, item.dport, m_id, ifIndex);
             Ws13FlowHop &s = ws13_hops[key];
             if (s.tag == 0) s.tag = item.tag;
@@ -2003,6 +2035,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         m_mmu->RemoveFromEgressAdmission(ifIndex, qIndex, p->GetSize());
         if (m_ecnEnabled) {
             bool egressCongested = m_mmu->ShouldSendCN(ifIndex, qIndex);
+            if (ws26_s97_target) ws26_s97_ecn = egressCongested;
             if (egressCongested) {
                 if (ws26_target) {
                     uint64_t bucket = uint64_t(Simulator::Now().GetNanoSeconds()) / 10000;
@@ -2052,6 +2085,23 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         }
     }
     m_txBytes[ifIndex] += p->GetSize();
+    if (ws26_s97_target) {
+        std::ostringstream row;
+        row << "WS26_S97_HOP src=" << ws26_s97_item.src
+            << " dst=" << ws26_s97_item.dst
+            << " sport=" << ws26_s97_item.sport
+            << " dport=" << ws26_s97_item.dport
+            << " tag=" << uint32_t(ws26_s97_item.tag)
+            << " seq=" << ws26_s97_item.seq
+            << " uid=" << ws26_s97_uid
+            << " switch=" << m_id << " port=" << ifIndex
+            << " enqueue_ns=" << ws26_s97_item.enqueueNs
+            << " dequeue_ns=" << Simulator::Now().GetNanoSeconds()
+            << " queued_bytes=" << ws26_s97_item.queuedBytes
+            << " packet_bytes=" << ws26_s97_item.packetBytes
+            << " ecn=" << (ws26_s97_ecn ? 1 : 0);
+        Ws26Seed97SwitchEmit(row.str());
+    }
 }
 
 uint32_t SwitchNode::EcmpHash(const uint8_t *key, size_t len, uint32_t seed) {

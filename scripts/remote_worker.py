@@ -482,6 +482,8 @@ def execute(experiment_id):
         command.extend(['--ws25-diag', '1'])
     if params.get('ws26_time_probe'):
         command.extend(['--ws26-time-probe', '1'])
+    if params.get('ws26_seed97_time_diag'):
+        command.extend(['--ws26-seed97-time-diag', '1'])
     if params['lb'] == 'ws18':
         command.extend(['--ws18-admission', str(params['ws18_admission']),
                         '--ws18-path', str(params['ws18_path']),
@@ -707,6 +709,7 @@ def main():
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-seed97-time-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
@@ -747,10 +750,12 @@ def main():
     elif args.command == 'run':
         if args.factorial_pilot and args.factorial_formal:
             raise RuntimeError('Factorial pilot and formal flags are exclusive')
-        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe):
+        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe or args.ws26_seed97_time_diag):
             raise RuntimeError('Factorial formal requires a fixed trace and no diagnostics')
         if args.ws26_time_probe and (not args.ws25_diag or not args.flow_file):
             raise RuntimeError('WS-26 time probe needs fixed trace and WS-25 diagnostics')
+        if args.ws26_seed97_time_diag and (not args.ws25_diag or not args.flow_file or args.ws26_time_probe):
+            raise RuntimeError('Seed 97 time probe needs fixed trace, WS-25 diagnostics, and no old time probe')
         if args.ws26_moe_hop_diag and (not args.ws25_diag or not args.flow_file):
             raise RuntimeError('WS-26 MoE hop diagnostic needs fixed trace and WS-25 diagnostics')
         if args.pfc + args.irn != 1 and not (args.factorial_pilot or args.factorial_formal):
@@ -805,6 +810,7 @@ def main():
                         'ws25_diag': args.ws25_diag,
                         'ws26_moe_hop_diag': args.ws26_moe_hop_diag,
                         'ws26_time_probe': args.ws26_time_probe,
+                        'ws26_seed97_time_diag': args.ws26_seed97_time_diag,
                         'ws18_admission': args.ws18_admission,
                         'ws18_path': args.ws18_path,
                         'ws21_identity': args.ws21_identity,

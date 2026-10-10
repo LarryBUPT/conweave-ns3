@@ -9,6 +9,8 @@
 #include <cstdlib>
 #include <map>
 #include <set>
+#include <sstream>
+#include <string>
 
 #include "cn-header.h"
 #include "flow-stat-tag.h"
@@ -26,6 +28,7 @@
 #include "ppp-header.h"
 #include "qbb-header.h"
 #include "ws26-time-probe.h"
+#include "ws26-seed97-probe.h"
 
 namespace ns3 {
 
@@ -75,7 +78,52 @@ static void Ws13LogQp(const char *event, Ptr<RdmaQueuePair> qp,
 
 static std::map<int32_t, uint32_t> ws26_qp_event_rows;
 static std::set<int32_t> ws26_qp_event_truncated;
+struct Ws26Seed97QpStats {
+    uint64_t rows = 0, bytes = 0, overflow = 0;
+};
+static std::map<int32_t, Ws26Seed97QpStats> ws26_s97_qp_stats;
+static uint64_t ws26_s97_qp_rows = 0, ws26_s97_qp_bytes = 0;
+static bool Ws26Seed97Selected(Ptr<RdmaQueuePair> qp, uint32_t &src, uint32_t &dst) {
+    if (!Ws26Seed97ProbeEnabled()) return false;
+    auto source = Settings::hostIp2IdMap.find(qp->sip.Get());
+    auto destination = Settings::hostIp2IdMap.find(qp->dip.Get());
+    if (source == Settings::hostIp2IdMap.end() ||
+        destination == Settings::hostIp2IdMap.end()) return false;
+    src = source->second;
+    dst = destination->second;
+    return Ws26Seed97Target(src, dst, qp->sport, qp->dport);
+}
+static void Ws26Seed97QpLog(const char *event, Ptr<RdmaQueuePair> qp,
+                            uint32_t seq = 0, uint64_t uid = 0,
+                            uint32_t packet_bytes = 0, uint32_t cnp = 0) {
+    uint32_t src = 0, dst = 0;
+    if (!Ws26Seed97Selected(qp, src, dst)) return;
+    std::ostringstream row;
+    row << "WS26_S97_QP event=" << event
+        << " time_ns=" << Simulator::Now().GetNanoSeconds()
+        << " src=" << src << " dst=" << dst
+        << " sport=" << qp->sport << " dport=" << qp->dport
+        << " tag=" << uint32_t(qp->m_workload_tag)
+        << " flow_id=" << qp->m_flow_id
+        << " seq=" << seq << " uid=" << uid
+        << " packet_bytes=" << packet_bytes << " cnp=" << cnp
+        << " snd_una=" << qp->snd_una << " snd_nxt=" << qp->snd_nxt
+        << " rate_bps=" << qp->m_rate.GetBitRate();
+    const std::string line = row.str();
+    const uint64_t size = line.size() + 1;
+    Ws26Seed97QpStats &stats = ws26_s97_qp_stats[qp->m_flow_id];
+    if (ws26_s97_qp_rows >= 300000 || ws26_s97_qp_bytes + size > 64ULL * 1024 * 1024) {
+        ++stats.overflow;
+        return;
+    }
+    std::cout << line << '\n';
+    ++stats.rows;
+    stats.bytes += size;
+    ++ws26_s97_qp_rows;
+    ws26_s97_qp_bytes += size;
+}
 static void Ws26LogQp(const char *event, Ptr<RdmaQueuePair> qp) {
+    Ws26Seed97QpLog(event, qp);
     if (!Ws26TimeProbeEnabled() || qp->m_workload_tag != 1) return;
     auto src = Settings::hostIp2IdMap.find(qp->sip.Get());
     auto dst = Settings::hostIp2IdMap.find(qp->dip.Get());
@@ -548,6 +596,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         if (ch.l3Prot == 0xFD && ch.ack.irnNackSize) ++s.sack_feedback;
         if (cnp) ++s.cnp_feedback;
     }
+    Ws26Seed97QpLog("ack", qp, seq, p->GetUid(), p->GetSize(), cnp);
     if (cnp) Ws26LogQp("cnp", qp);
 
     uint32_t nic_idx = GetNicIdxOfQp(qp);
@@ -822,6 +871,18 @@ void RdmaHw::RecoverQueue(Ptr<RdmaQueuePair> qp) {
 void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
     NS_ASSERT(!m_qpCompleteCallback.IsNull());
     Ws26LogQp("complete", qp);
+    uint32_t ws26_s97_src = 0, ws26_s97_dst = 0;
+    if (Ws26Seed97Selected(qp, ws26_s97_src, ws26_s97_dst)) {
+        const Ws26Seed97QpStats &s = ws26_s97_qp_stats[qp->m_flow_id];
+        std::cout << "WS26_S97_QP_SUMMARY src=" << ws26_s97_src
+                  << " dst=" << ws26_s97_dst
+                  << " sport=" << qp->sport << " dport=" << qp->dport
+                  << " tag=" << uint32_t(qp->m_workload_tag)
+                  << " flow_id=" << qp->m_flow_id
+                  << " rows=" << s.rows << " bytes=" << s.bytes
+                  << " overflow=" << s.overflow << std::endl;
+        ws26_s97_qp_stats.erase(qp->m_flow_id);
+    }
     if (Ws26TimeProbeEnabled()) {
         auto rows = ws26_qp_event_rows.find(qp->m_flow_id);
         if (rows != ws26_qp_event_rows.end()) {
@@ -985,6 +1046,7 @@ void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap)
 #endif
         RdmaHw::nAllPkts += 1;
         if (ch.l3Prot == 0x11) {  // UDP
+            Ws26Seed97QpLog("send", qp, ch.udp.seq, pkt->GetUid(), pkt->GetSize());
             const uint32_t payload_size = pkt->GetSize() - ch.GetSerializedSize();
             if (Ws25DiagnosticEnabled() && ch.udp.seq < qp->m_ws13_maxSentSeq)
                 ++ws25_qp_diagnostics[qp->m_flow_id].repeated_sends;

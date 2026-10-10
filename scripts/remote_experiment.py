@@ -344,6 +344,7 @@ def main():
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-seed97-time-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -415,10 +416,12 @@ def main():
     elif args.command == 'run':
         if args.factorial_pilot and args.factorial_formal:
             parser.error('--factorial-pilot and --factorial-formal are exclusive')
-        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe):
+        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe or args.ws26_seed97_time_diag):
             parser.error('--factorial-formal requires a fixed trace and no diagnostic flags')
         if args.ws26_time_probe and (not args.ws25_diag or not args.flow_file):
             parser.error('--ws26-time-probe requires a fixed trace and --ws25-diag 1')
+        if args.ws26_seed97_time_diag and (not args.ws25_diag or not args.flow_file or args.ws26_time_probe):
+            parser.error('--ws26-seed97-time-diag requires a fixed trace, --ws25-diag 1, and no old time probe')
         if args.ws26_moe_hop_diag and (not args.ws25_diag or not args.flow_file):
             parser.error('--ws26-moe-hop-diag requires a fixed trace and --ws25-diag 1')
         if args.pfc + args.irn != 1 and not (args.factorial_pilot or args.factorial_formal):
@@ -487,6 +490,8 @@ def main():
             command.extend(['--ws26-moe-hop-diag', '1'])
         if args.ws26_time_probe:
             command.extend(['--ws26-time-probe', '1'])
+        if args.ws26_seed97_time_diag:
+            command.extend(['--ws26-seed97-time-diag', '1'])
         if args.factorial_pilot:
             command.append('--factorial-pilot')
         if args.factorial_formal:
