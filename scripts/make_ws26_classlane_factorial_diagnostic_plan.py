@@ -25,6 +25,15 @@ ARMS = {
     "classlane4-background-only": {"mode_number": 26, "moe_rule": 0, "background_rule": 1},
     "classlane4": {"mode_number": 24, "moe_rule": 1, "background_rule": 1},
 }
+STAGE_CODES = {
+    "smoke_plain": "splain", "smoke_probe": "sprobe",
+    "high_reference_probe": "href", "high_mixed_plain": "hplain",
+    "high_mixed_probe": "hprobe",
+}
+MODE_CODES = {
+    "fecmp": "ecmp", "classlane4": "v4",
+    "classlane4-moe-only": "moe", "classlane4-background-only": "bg",
+}
 SCHEDULE = [
     ("smoke_plain", "classlane4-moe-only", 0),
     ("smoke_probe", "classlane4-moe-only", 1),
@@ -57,7 +66,10 @@ def main():
     cells = []
     for order, (stage, mode, probe) in enumerate(SCHEDULE, 1):
         smoke = stage.startswith("smoke_")
-        experiment_id = "%s-%02d-%s-%s" % (args.id_prefix, order, stage, mode)
+        experiment_id = "%s-%02d-%s-%s" % (
+            args.id_prefix, order, STAGE_CODES[stage], MODE_CODES[mode])
+        if not re.fullmatch(r"[0-9]{8}-[0-9]{6}-[a-z0-9][a-z0-9-]{0,40}", experiment_id):
+            raise RuntimeError("Experiment ID violates remote runner format: " + experiment_id)
         if (ROOT / "results" / experiment_id).exists():
             raise RuntimeError("Experiment ID already exists locally: " + experiment_id)
         cells.append({
