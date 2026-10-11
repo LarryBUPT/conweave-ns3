@@ -360,6 +360,8 @@ def main():
     run_cmd.add_argument('--ws21-heartbeat-fault-end-ns', type=int, default=0)
     run_cmd.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
+    run_cmd.add_argument('--ws26-signal-qualification', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-signal-qualification-max-bytes', type=int, default=67108864)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     run_cmd.add_argument('--factorial-pilot', action='store_true',
@@ -441,10 +443,16 @@ def main():
             parser.error('WS-23 PFC probe options need a host')
         if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
             parser.error('WS-18 switches require --lb ws18')
-        if args.ws21_identity and args.lb != 'ws18':
-            parser.error('WS-21 identity diagnostic requires --lb ws18')
-        if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
-            parser.error('WS-21 feedback requires --lb ws18 and --ws21-identity 1')
+        if args.ws21_identity and args.lb not in ('ws18', 'classlane4'):
+            parser.error('WS-21 identity diagnostic requires --lb ws18 or classlane4')
+        if args.ws21_feedback and (args.lb not in ('ws18', 'classlane4') or not args.ws21_identity):
+            parser.error('WS-21 feedback requires ws18/classlane4 and --ws21-identity 1')
+        if args.ws21_feedback and args.lb == 'classlane4' and not args.ws26_signal_qualification:
+            parser.error('ClassLane feedback requires WS-26 signal qualification logging')
+        if args.ws26_signal_qualification and (
+                args.lb != 'classlane4' or not args.ws21_identity or not args.flow_file or
+                args.factorial_formal or args.ws26_signal_qualification_max_bytes < 1024):
+            parser.error('WS-26 signal qualification requires fixed-trace classlane4, identity, and a byte cap >= 1024')
         if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
             parser.error('WS-21 feedback interval must be 1000..60000 ns')
         if args.ws21_heartbeat and args.lb != 'ws18':
@@ -467,10 +475,6 @@ def main():
             command.extend(['--ws18-admission', str(args.ws18_admission),
                             '--ws18-path', str(args.ws18_path),
                             '--ws18-admission-rate-gbps', str(args.ws18_admission_rate_gbps)])
-            command.extend(['--ws21-identity', str(args.ws21_identity)])
-            command.extend(['--ws21-feedback', str(args.ws21_feedback)])
-            command.extend(['--ws21-feedback-interval-ns',
-                            str(args.ws21_feedback_interval_ns)])
             command.extend(['--ws21-heartbeat', str(args.ws21_heartbeat),
                             '--ws21-heartbeat-interval-ns', str(args.ws21_heartbeat_interval_ns),
                             '--ws21-heartbeat-fault-mode', str(args.ws21_heartbeat_fault_mode),
@@ -480,6 +484,14 @@ def main():
                             '--ws21-heartbeat-fault-end-ns', str(args.ws21_heartbeat_fault_end_ns)])
             command.extend(['--ws21-port-events', str(args.ws21_port_events),
                             '--ws21-port-max-bytes', str(args.ws21_port_max_bytes)])
+        if args.lb in ('ws18', 'classlane4'):
+            command.extend(['--ws21-identity', str(args.ws21_identity),
+                            '--ws21-feedback', str(args.ws21_feedback),
+                            '--ws21-feedback-interval-ns', str(args.ws21_feedback_interval_ns)])
+        if args.lb == 'classlane4':
+            command.extend(['--ws26-signal-qualification', str(args.ws26_signal_qualification),
+                            '--ws26-signal-qualification-max-bytes',
+                            str(args.ws26_signal_qualification_max_bytes)])
         if args.flow_file:
             command.extend(['--flow-file', args.flow_file])
         if args.ws13_diag:

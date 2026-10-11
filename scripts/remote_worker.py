@@ -488,10 +488,6 @@ def execute(experiment_id):
         command.extend(['--ws18-admission', str(params['ws18_admission']),
                         '--ws18-path', str(params['ws18_path']),
                         '--ws18-admission-rate-gbps', str(params['ws18_admission_rate_gbps'])])
-        command.extend(['--ws21-identity', str(params.get('ws21_identity', 0))])
-        command.extend(['--ws21-feedback', str(params.get('ws21_feedback', 0))])
-        command.extend(['--ws21-feedback-interval-ns',
-                        str(params.get('ws21_feedback_interval_ns', 10000))])
         command.extend(['--ws21-heartbeat', str(params.get('ws21_heartbeat', 0)),
                         '--ws21-heartbeat-interval-ns',
                         str(params.get('ws21_heartbeat_interval_ns', 200000)),
@@ -507,6 +503,16 @@ def execute(experiment_id):
                         str(params.get('ws21_heartbeat_fault_end_ns', 0))])
         command.extend(['--ws21-port-events', str(params.get('ws21_port_events', 0)),
                         '--ws21-port-max-bytes', str(params.get('ws21_port_max_bytes', 268435456))])
+    if params['lb'] in ('ws18', 'classlane4'):
+        command.extend(['--ws21-identity', str(params.get('ws21_identity', 0)),
+                        '--ws21-feedback', str(params.get('ws21_feedback', 0)),
+                        '--ws21-feedback-interval-ns',
+                        str(params.get('ws21_feedback_interval_ns', 10000))])
+    if params['lb'] == 'classlane4':
+        command.extend(['--ws26-signal-qualification',
+                        str(params.get('ws26_signal_qualification', 0)),
+                        '--ws26-signal-qualification-max-bytes',
+                        str(params.get('ws26_signal_qualification_max_bytes', 67108864))])
     if params.get('factorial_pilot'):
         command.append('--factorial-pilot')
     if params.get('factorial_formal'):
@@ -724,6 +730,8 @@ def main():
     run_cmd.add_argument('--ws21-heartbeat-fault-end-ns', type=int, default=0)
     run_cmd.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
+    run_cmd.add_argument('--ws26-signal-qualification', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-signal-qualification-max-bytes', type=int, default=67108864)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
@@ -775,10 +783,16 @@ def main():
             raise RuntimeError('WS-23 PFC probe options need a host')
         if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
             raise RuntimeError('WS-18 switches require ws18 mode')
-        if args.ws21_identity and args.lb != 'ws18':
-            raise RuntimeError('WS-21 identity diagnostic requires ws18 mode')
-        if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
-            raise RuntimeError('WS-21 feedback requires ws18 mode and identity diagnostics')
+        if args.ws21_identity and args.lb not in ('ws18', 'classlane4'):
+            raise RuntimeError('WS-21 identity diagnostic requires ws18 or classlane4 mode')
+        if args.ws21_feedback and (args.lb not in ('ws18', 'classlane4') or not args.ws21_identity):
+            raise RuntimeError('WS-21 feedback requires ws18/classlane4 and identity diagnostics')
+        if args.ws21_feedback and args.lb == 'classlane4' and not args.ws26_signal_qualification:
+            raise RuntimeError('ClassLane feedback requires WS-26 signal qualification logging')
+        if args.ws26_signal_qualification and (
+                args.lb != 'classlane4' or not args.ws21_identity or not args.flow_file or
+                args.factorial_formal or args.ws26_signal_qualification_max_bytes < 1024):
+            raise RuntimeError('WS-26 signal qualification requires fixed-trace classlane4, identity, and a byte cap >= 1024')
         if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
             raise RuntimeError('WS-21 feedback interval must be 1000..60000 ns')
         if args.ws21_heartbeat and args.lb != 'ws18':
@@ -825,6 +839,9 @@ def main():
                         'ws21_heartbeat_fault_end_ns': args.ws21_heartbeat_fault_end_ns,
                         'ws21_port_events': args.ws21_port_events,
                         'ws21_port_max_bytes': args.ws21_port_max_bytes,
+                        'ws26_signal_qualification': args.ws26_signal_qualification,
+                        'ws26_signal_qualification_max_bytes':
+                        args.ws26_signal_qualification_max_bytes,
                         'ws18_admission_rate_gbps': args.ws18_admission_rate_gbps,
                         'factorial_pilot': args.factorial_pilot,
                         'factorial_formal': args.factorial_formal,
