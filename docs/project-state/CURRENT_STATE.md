@@ -2,6 +2,8 @@
 
 ## 当前快照（2026-10-11）
 
+四臂分析后的[下一门槛本地复核](../research/ws26-next-candidate-admission-gate.md)重新计算 v4 r2 高档双指标门：MoE 批次中位 +20.851%、0/4 改善；背景 P99 中位 −0.362%、2/4 改善，均未通过冻结的 ≤−3%、至少 3/4 改善门。24 个条件低档 ID 的配对和 trace 哈希在本机核对通过，本地结果目录为 0；冻结协议要求高档过门后才启动，因此保持未运行。WS-21 反馈报文虽有技术成本实测，目前只允许 `ws18` 使用，缓存未参与 WS-26 选路。第三候选仍缺在线信号、时效、成本和双主反例预测，尚无可运行的新计划。见[机器收据](../research/evidence/ws26-next-gate-local-audit.json)与[Handoff 87](../handoffs/2026-10-11-87-ws26-next-gate-audit.md)。
+
 WS-26 ClassLane 类别规则四臂诊断十格已通过独立 raw 与资源验收：四格 smoke 各 61/61 流，六格高档各 16,576/16,576 流。固定仿真源码为 `9877303a6be2e63836373d94f315283dc5bea453`，计划 SHA-256 为 `4a08ce8746e984c301ffdcfdbf18336e408d1b17391aeb967c3abb5a11d5f77b`。`00`／`11` 与旧普通格 FCT 同哈希，`10`／`01` 各自普通与探针同哈希。第 1 格旧验收错误已用原 ID、原 raw 复核为 `verified_reused`，其余九格为 `verified`。进程树 RSS 峰值为 4,545.070 MiB。
 
 已揭盲 seed `20262697` 的 `00`、`10`、`01`、`11` 四臂 MoE 批次为 18.472、21.126、17.942、22.697 μs，背景 P99 FCT 为 1,686.460、1,798.531、1,751.452、1,779.785 μs。交互项分别为 +2.101 μs 和 −83.738 μs；固定路径背景反例及 MoE 共同上游排队仍无法隔离反馈和其他流改道。见[诊断报告](../research/ws26-classlane-factorial-diagnostic-analysis.md)、[机器摘要](../research/evidence/ws26-classlane-factorial-diagnostic-analysis.json)和[Handoff 86](../handoffs/2026-10-11-86-ws26-classlane-factorial-diagnostic.md)。这是机制诊断，不计正式收益；v3 与 v4 r2 高档双侧 NO-GO 不变。WS-26 仍 ACTIVE，第三候选、条件低档 24 格、正式主矩阵 576 格、传输敏感性矩阵 576 格和最终验收未完成。

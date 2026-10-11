@@ -1,0 +1,23 @@
+{
+  "analysis_sha256": "44375a60a5fa3d9a5a411e366ddb938397d27e055437c74314fb8454b42b19d1",
+  "conditional_low_ids": 24,
+  "conditional_low_local_result_directories": 0,
+  "conditional_low_trace_hashes_valid": true,
+  "high_dual_gate_passed": false,
+  "high_metrics": {
+    "background_fct_p99": {
+      "median_change_percent": -0.3617797168451842,
+      "passed": false,
+      "strict_improvements": 2
+    },
+    "moe_batch_completion": {
+      "median_change_percent": 20.8508592491133,
+      "passed": false,
+      "strict_improvements": 0
+    }
+  },
+  "high_result_directories": 28,
+  "next_action": "keep low-stage IDs unstarted; define and review a new candidate",
+  "plan_sha256": "b71155816dff1fd7410073913a35ae714c9bc6988c789867eba79829aa58cc02",
+  "scope": "local gate audit only; no remote ID inventory or new run"
+}
