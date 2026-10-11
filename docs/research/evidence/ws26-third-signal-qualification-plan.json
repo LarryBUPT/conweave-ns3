@@ -1,0 +1,114 @@
+{
+  "acceptance": [
+    "fixed_source_and_input_hashes",
+    "no_id_collision",
+    "watcher_first_sample_before_run",
+    "all_flows_complete_once",
+    "all_qp_identity_size_start_match",
+    "eight_candidate_rows_per_cross_tor_moe_qp",
+    "qualification_log_footer_and_byte_cap",
+    "source_destination_identity_route_join",
+    "selected_first_port_equal_between_feedback_arms",
+    "high_feedback_off_fct_equal_old_plain",
+    "feedback_report_hop_and_byte_conservation",
+    "resource_terminal_receipt"
+  ],
+  "branch": "feature/ws26-classmix-validation",
+  "cells": [
+    {
+      "expected_background_qps": 1,
+      "expected_flows": 61,
+      "expected_moe_qps": 60,
+      "feedback_enabled": 0,
+      "flow_file": "ws26_seed97_probe_smoke.txt",
+      "flow_sha256": "e6e55714818d84971d831ad9dc39e37e0a4cea7eb5ce5636eeb28dc94bd439bd",
+      "id": "20261011-214000-ws26sig-01-smoke-off",
+      "order": 1,
+      "stage": "smoke"
+    },
+    {
+      "expected_background_qps": 1,
+      "expected_flows": 61,
+      "expected_moe_qps": 60,
+      "feedback_enabled": 1,
+      "flow_file": "ws26_seed97_probe_smoke.txt",
+      "flow_sha256": "e6e55714818d84971d831ad9dc39e37e0a4cea7eb5ce5636eeb28dc94bd439bd",
+      "id": "20261011-214000-ws26sig-02-smoke-on",
+      "order": 2,
+      "stage": "smoke"
+    },
+    {
+      "expected_background_qps": 192,
+      "expected_flows": 16576,
+      "expected_moe_qps": 16384,
+      "feedback_enabled": 0,
+      "flow_file": "ws26_seed20262697_b192.txt",
+      "flow_sha256": "58bbc2d8ca78753c5e6e2fee119341ea94c8ee76cbad58e013c93707833ee3ca",
+      "id": "20261011-214000-ws26sig-03-high-off",
+      "order": 3,
+      "stage": "high"
+    },
+    {
+      "expected_background_qps": 192,
+      "expected_flows": 16576,
+      "expected_moe_qps": 16384,
+      "feedback_enabled": 1,
+      "flow_file": "ws26_seed20262697_b192.txt",
+      "flow_sha256": "58bbc2d8ca78753c5e6e2fee119341ea94c8ee76cbad58e013c93707833ee3ca",
+      "id": "20261011-214000-ws26sig-04-high-on",
+      "order": 4,
+      "stage": "high"
+    }
+  ],
+  "common_parameters": {
+    "buffer": 9,
+    "bw": 400,
+    "cdf": "AliStorage2019",
+    "factorial_pilot": true,
+    "irn": 1,
+    "lb": "classlane4",
+    "max_concurrent": 1,
+    "netload": 10,
+    "ns3_seed": 1,
+    "pfc": 1,
+    "simul_time": "0.01",
+    "ws21_feedback_interval_ns": 10000,
+    "ws21_heartbeat": 0,
+    "ws21_identity": 1,
+    "ws25_diag": 0,
+    "ws26_seed97_time_diag": 0,
+    "ws26_signal_qualification": 1,
+    "ws26_signal_qualification_max_bytes": 67108864,
+    "ws26_time_probe": 0
+  },
+  "evidence_root_local": "results/<experiment_id>",
+  "evidence_root_remote": "/home/fnl/lzy/results/<experiment_id>",
+  "high_feedback_off_plain_fct_sha256": "537dad823db4de5cf1b2b09ae711f0cd5976a2638024adc685e5317f029bb30e",
+  "limitations": [
+    "One disclosed trace seed is not an independent performance replicate.",
+    "Feedback-on FCT differences are control-traffic perturbation, not routing benefit."
+  ],
+  "origin": "https://github.com/LarryBUPT/conweave-ns3.git",
+  "purpose": "Disclosed-seed technical qualification of WS-26 destination-ToR reports; not an effect pilot",
+  "resource_limits": {
+    "cap": 1,
+    "free_gib_min": 100,
+    "load_1m_max": 20,
+    "mem_available_gib_min": 32,
+    "process_tree_rss_mib_max": 32768
+  },
+  "source_file_sha256": {
+    "run.py": "9c037bcd2fc6eeb3eab496a2e08644a21a180e4fb2856fce9caf6263f776a46f",
+    "scratch/network-load-balance.cc": "01ad88ca651e1e513188fe180ccf378608df731b9a16bc0eee914263e48434ce",
+    "scripts/remote_experiment.py": "6c1b265da8d1bf018effab1022f27eabaa90f68b3ef6b14f8b14cc145e49cad3",
+    "scripts/remote_worker.py": "87c5307453eed5e26ca56090e1bb5459b0d66b253d7a0f0fcbb24562b3cefbf3",
+    "scripts/verify_ws26_signal_qualification.py": "1265627bf5656b7cecf523cc255bddc8151b64f6ac2dd29a436d4b526fc5c273",
+    "src/point-to-point/model/switch-node.cc": "b7cbc261ee26de784d540150246bc84f2ea8c89ef7dd3ebc9b3cdee037df8c8e",
+    "src/point-to-point/model/ws21-feedback-header.h": "e17670668eafb2d18411b29817620f8058fdc51aaf07cac05f9aa350663f5dfa"
+  },
+  "source_sha": "2e17531c51bb91299182656a32adfda50451389c",
+  "stop_rule": "Stop on first failed cell; retain raw and ID; repair at a new SHA with four new IDs and plan hash.",
+  "topology": "topo_1280_400G_400G_OS1",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "version": 1
+}
