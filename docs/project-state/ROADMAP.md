@@ -1,5 +1,7 @@
 # 下一阶段路线与停机条件
 
+2026-10-11 当前入口：WS-26 的[类别规则四臂诊断](../research/ws26-classlane-factorial-diagnostic-analysis.md)与[Handoff 86](../handoffs/2026-10-11-86-ws26-classlane-factorial-diagnostic.md)完成十格 raw 和资源验收。已揭盲 seed 97 的 `00`、`10`、`01`、`11` 显示 MoE 批次和背景 P99 存在非零交互，固定路径背景反例仍随规则改变而变慢；尚无唯一因果归因或第三候选准入。ClassLane v4 r2 高档双侧 NO-GO 保持。先定义可在线获取的信号、反馈年龄、控制成本及双侧反例预测，再决定新候选与独立 pilot。条件低档 24 格、正式主矩阵 576 格、传输敏感性矩阵 576 格及最终验收继续作为 WS-26 必做未完成项；任务保持 ACTIVE。
+
 2026-10-10 当前入口：[WS-26 执行清单](../research/ws26-classmix-execution-plan.md)继续推进第一课题后续机制验证。ClassLane v4 r2 独立需求高档 28/28 格验收通过，但[双侧筛选](../research/ws26-classlane4-pilot-r2-analysis.md)失败。四格新增 ECMP 背景[逐跳诊断](../research/ws26-v4-ecmp-hop-diagnostic-analysis.md)及十格 MoE[逐跳诊断](../research/ws26-moe-hop-diagnostic-analysis.md)已完成；MoE 批次仍是四 seed 全慢，上游区域等待增加只是相关迹象，不能证明因果或支持调参。两项诊断均不重判 v4 NO-GO。条件低档 24 格未启动，当前版本不进入正式矩阵冻结。ClassReserve v3 的高档筛选此前也未通过。正式 576 格主矩阵与 576 格传输敏感性矩阵仍是 WS-26 的未完成项；新机制如有提出，应先复核失败证据、反例和替代解释，并学习 Ofan 等已有方法，再重走正确性与独立 pilot。WS-25 确认性 NO-GO 不变，小论文和投稿不在 WS-26 范围，第二课题仍须等投稿后启动。
 
 同日新增的[seed 97 时间对齐诊断](../research/ws26-seed97-time-aligned-diagnostic-analysis.md)及[Handoff 85](../handoffs/2026-10-10-85-ws26-seed97-time-aligned-diagnostic.md)已完成四格验收。背景尾流的额外时长主要形成于发包完成前；v4 MoE 新尾流的末包集中等待于共同上游链。两者仍受反馈、共享出口和其他流改道耦合，暂未给出第三候选的唯一设计依据。下一步先定义可操纵信号、信息时效和双侧反例预测，再决定是否冻结第三候选；既有条件低档、两组正式矩阵及全任务验收继续列为未完成项。

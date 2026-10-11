@@ -1,6 +1,12 @@
 # ConWeave 毕业论文项目状态
 
-## 当前快照（2026-10-10）
+## 当前快照（2026-10-11）
+
+WS-26 ClassLane 类别规则四臂诊断十格已通过独立 raw 与资源验收：四格 smoke 各 61/61 流，六格高档各 16,576/16,576 流。固定仿真源码为 `9877303a6be2e63836373d94f315283dc5bea453`，计划 SHA-256 为 `4a08ce8746e984c301ffdcfdbf18336e408d1b17391aeb967c3abb5a11d5f77b`。`00`／`11` 与旧普通格 FCT 同哈希，`10`／`01` 各自普通与探针同哈希。第 1 格旧验收错误已用原 ID、原 raw 复核为 `verified_reused`，其余九格为 `verified`。进程树 RSS 峰值为 4,545.070 MiB。
+
+已揭盲 seed `20262697` 的 `00`、`10`、`01`、`11` 四臂 MoE 批次为 18.472、21.126、17.942、22.697 μs，背景 P99 FCT 为 1,686.460、1,798.531、1,751.452、1,779.785 μs。交互项分别为 +2.101 μs 和 −83.738 μs；固定路径背景反例及 MoE 共同上游排队仍无法隔离反馈和其他流改道。见[诊断报告](../research/ws26-classlane-factorial-diagnostic-analysis.md)、[机器摘要](../research/evidence/ws26-classlane-factorial-diagnostic-analysis.json)和[Handoff 86](../handoffs/2026-10-11-86-ws26-classlane-factorial-diagnostic.md)。这是机制诊断，不计正式收益；v3 与 v4 r2 高档双侧 NO-GO 不变。WS-26 仍 ACTIVE，第三候选、条件低档 24 格、正式主矩阵 576 格、传输敏感性矩阵 576 格和最终验收未完成。
+
+## 前次快照（2026-10-10）
 
 WS-26 ClassLane v4 的四格新增 ECMP 背景逐跳诊断已通过原始数据验收：各 16,576/16,576 条流完成，192/192 条背景 QP 均有逐跳记录，`WS13_INFLIGHT unpaired=0`；诊断 FCT 与普通 ECMP 配对格 4/4 同哈希。完整分析 SHA-256 为 `4c076f0ad7e916c6e9daeaae0faea56abdd4ee95a64aa41157ab872f7c8b3ca5`。候选源 ToR 和中转区域的高分位等待较 ECMP 上升，但背景 P99 四 seed 两好两坏，尾流身份迁移。该四格当时尚未观测 MoE 逐跳，且逐跳最大值不足以解释 FCT 差值，因此未实施 v4 唯一诊断修正。见[分析报告](../research/ws26-v4-ecmp-hop-diagnostic-analysis.md)与[Handoff 83](../handoffs/2026-10-10-83-ws26-v4-ecmp-hop-diagnostic.md)。
 
