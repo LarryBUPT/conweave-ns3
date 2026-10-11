@@ -28,6 +28,7 @@ FCT_OUTPUT_FILE mix/output/{id}/{id}_out_fct.txt
 WS18_OUTPUT_FILE mix/output/{id}/{id}_out_ws18.txt
 WS21_IDENTITY_OUTPUT_FILE mix/output/{id}/{id}_out_ws21_identity.txt
 WS21_PORT_OUTPUT_FILE mix/output/{id}/{id}_out_ws21_port.txt
+WS26_SIGNAL_QUALIFICATION_OUTPUT_FILE mix/output/{id}/{id}_out_ws26_signal_qualification.txt
 PFC_OUTPUT_FILE mix/output/{id}/{id}_out_pfc.txt
 QLEN_MON_FILE mix/output/{id}/{id}_out_qlen.txt
 VOQ_MON_FILE mix/output/{id}/{id}_out_voq.txt
@@ -61,6 +62,8 @@ WS21_HEARTBEAT_FAULT_START_NS {ws21_heartbeat_fault_start_ns}
 WS21_HEARTBEAT_FAULT_END_NS {ws21_heartbeat_fault_end_ns}
 WS21_PORT_EVENTS {ws21_port_events}
 WS21_PORT_MAX_BYTES {ws21_port_max_bytes}
+WS26_SIGNAL_QUALIFICATION {ws26_signal_qualification}
+WS26_SIGNAL_QUALIFICATION_MAX_BYTES {ws26_signal_qualification_max_bytes}
 WS23_PFC_PROBE {ws23_pfc_probe_host} {ws23_pfc_probe_pg} {ws23_pfc_probe_start_ns} {ws23_pfc_probe_end_ns}
 GUARDHASH_LAMBDA 1
 GUARDHASH_TAU_BYTES 0
@@ -227,6 +230,9 @@ def main():
     parser.add_argument('--ws21-heartbeat-fault-end-ns', type=int, default=0)
     parser.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
+    parser.add_argument('--ws26-signal-qualification', type=int, choices=(0, 1), default=0,
+                        help='record per-QP feedback eligibility at ClassLane first-hop decisions')
+    parser.add_argument('--ws26-signal-qualification-max-bytes', type=int, default=67108864)
     parser.add_argument('--enforce_win', dest='enforce_win', action='store',
                         type=int, default=0, help="enforce to use window scheme (default: 0)")
     parser.add_argument('--sw_monitoring_interval', dest='sw_monitoring_interval', action='store',
@@ -313,10 +319,16 @@ def main():
         raise Exception("CONFIG ERROR : WS-18 switches require --lb ws18")
     if args.lb == 'ws18' and args.ws18_admission_rate_gbps <= 0:
         raise Exception("CONFIG ERROR : WS-18 admission rate must be positive")
-    if args.ws21_identity and args.lb != 'ws18':
-        raise Exception("CONFIG ERROR : WS-21 identity diagnostic requires --lb ws18")
-    if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
-        raise Exception("CONFIG ERROR : WS-21 feedback requires --lb ws18 and --ws21-identity 1")
+    if args.ws21_identity and args.lb not in ('ws18', 'classlane4'):
+        raise Exception("CONFIG ERROR : WS-21 identity diagnostic requires --lb ws18 or classlane4")
+    if args.ws21_feedback and (args.lb not in ('ws18', 'classlane4') or not args.ws21_identity):
+        raise Exception("CONFIG ERROR : WS-21 feedback requires ws18/classlane4 and --ws21-identity 1")
+    if args.ws21_feedback and args.lb == 'classlane4' and not args.ws26_signal_qualification:
+        raise Exception("CONFIG ERROR : classlane4 feedback requires WS-26 signal qualification logging")
+    if args.ws26_signal_qualification and (
+            args.lb != 'classlane4' or not args.ws21_identity or not args.flow_file or
+            args.factorial_formal or args.ws26_signal_qualification_max_bytes < 1024):
+        raise Exception("CONFIG ERROR : WS-26 signal qualification requires a fixed-trace classlane4 diagnostic, identity logging, and a byte cap >= 1024")
     if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
         raise Exception("CONFIG ERROR : WS-21 feedback interval must be 1000..60000 ns")
     if args.ws21_heartbeat and args.lb != 'ws18':
@@ -520,6 +532,8 @@ def main():
                                         ws21_heartbeat_fault_end_ns=args.ws21_heartbeat_fault_end_ns,
                                         ws21_port_events=args.ws21_port_events,
                                         ws21_port_max_bytes=args.ws21_port_max_bytes,
+                                        ws26_signal_qualification=args.ws26_signal_qualification,
+                                        ws26_signal_qualification_max_bytes=args.ws26_signal_qualification_max_bytes,
                                         ws23_pfc_probe_host=args.ws23_pfc_probe_host,
                                         ws23_pfc_probe_pg=args.ws23_pfc_probe_pg,
                                         ws23_pfc_probe_start_ns=args.ws23_pfc_probe_start_ns,

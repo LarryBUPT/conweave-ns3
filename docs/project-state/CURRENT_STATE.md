@@ -2,9 +2,9 @@
 
 ## 当前快照（2026-10-11）
 
-[第三候选在线信号设计审查](../research/ws26-third-candidate-signal-admission-design.md)已将目的 ToR 上游 CE 报告列为待验信号，并核对其身份映射、真实报文、缓存年龄与 WS-26 模式限制。当前缺少新 QP 决策前双侧有效且可区分样本的证据；旧 WS-21 技术格不能替代。下一项是非采用反馈的同输入技术诊断，先审查映射、样本资格和报文扰动，再决定是否冻结第三候选。尚无新源码 SHA、实验 ID 或远端运行计划；WS-26 保持 ACTIVE。见 [Handoff 88](../handoffs/2026-10-11-88-ws26-third-signal-admission-design.md)。
+[第三候选在线信号设计审查](../research/ws26-third-candidate-signal-admission-design.md)已将目的 ToR 上游 CE 报告列为待验信号，并核对其身份映射、真实报文、缓存年龄与 WS-26 模式限制。当前缺少新 QP 决策前双侧有效且可区分样本的证据；旧 WS-21 技术格不能替代。[技术资格诊断协议](../research/ws26-third-signal-qualification-protocol.md)已起草，本地代码已接入 `classlane4` 首包资格快照、候选队列字节与 64 MiB 日志上限，并新增原始资格／路径身份核验器。Python 语法、参数与拓扑静态检查及合成日志夹具通过；C++ 尚未成功构建，也未通过仿真正确性验证。源码 SHA、机器计划和远端 ID 准入未完成，未启动新实验。下一步在受控 Linux 构建环境编译，完成 61 流开／关 smoke 及旧模式回归，再冻结机器计划。WS-26 保持 ACTIVE。见 [Handoff 88](../handoffs/2026-10-11-88-ws26-third-signal-admission-design.md)。
 
-四臂分析后的[下一门槛本地复核](../research/ws26-next-candidate-admission-gate.md)重新计算 v4 r2 高档双指标门：MoE 批次中位 +20.851%、0/4 改善；背景 P99 中位 −0.362%、2/4 改善，均未通过冻结的 ≤−3%、至少 3/4 改善门。24 个条件低档 ID 的配对和 trace 哈希在本机核对通过，本地结果目录为 0；冻结协议要求高档过门后才启动，因此保持未运行。WS-21 反馈报文虽有技术成本实测，目前只允许 `ws18` 使用，缓存未参与 WS-26 选路。此节点尚缺在线信号、时效、成本和双主反例预测；上方新设计文档已补条件预测，但实测资格与新运行计划仍缺。见[机器收据](../research/evidence/ws26-next-gate-local-audit.json)与[Handoff 87](../handoffs/2026-10-11-87-ws26-next-gate-audit.md)。
+四臂分析后的[下一门槛本地复核](../research/ws26-next-candidate-admission-gate.md)重新计算 v4 r2 高档双指标门：MoE 批次中位 +20.851%、0/4 改善；背景 P99 中位 −0.362%、2/4 改善，均未通过冻结的 ≤−3%、至少 3/4 改善门。24 个条件低档 ID 的配对和 trace 哈希在本机核对通过，本地结果目录为 0；冻结协议要求高档过门后才启动，因此保持未运行。已验收的 WS-21 反馈报文曾在 `ws18` 使用，缓存未参与 WS-26 选路。本地未验收改动现允许 `classlane4` 使用该报告通路并写资格快照，尚待构建与正确性检查。此节点已补在线信号、时效、成本和双主反例预测；实测资格与新运行计划仍缺。见[机器收据](../research/evidence/ws26-next-gate-local-audit.json)与[Handoff 87](../handoffs/2026-10-11-87-ws26-next-gate-audit.md)。
 
 WS-26 ClassLane 类别规则四臂诊断十格已通过独立 raw 与资源验收：四格 smoke 各 61/61 流，六格高档各 16,576/16,576 流。固定仿真源码为 `9877303a6be2e63836373d94f315283dc5bea453`，计划 SHA-256 为 `4a08ce8746e984c301ffdcfdbf18336e408d1b17391aeb967c3abb5a11d5f77b`。`00`／`11` 与旧普通格 FCT 同哈希，`10`／`01` 各自普通与探针同哈希。第 1 格旧验收错误已用原 ID、原 raw 复核为 `verified_reused`，其余九格为 `verified`。进程树 RSS 峰值为 4,545.070 MiB。
 

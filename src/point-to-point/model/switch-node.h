@@ -88,7 +88,7 @@ class SwitchNode : public Node {
         m_ws21Source, m_ws21Destination;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21IngressToFirst;
     struct Ws21FeedbackState {
-        uint64_t windowEndNs = 0, generatedNs = 0;
+        uint64_t windowEndNs = 0, generatedNs = 0, receivedNs = 0;
         uint32_t sequence = 0;
         uint32_t cePackets = 0, samplePackets = 0;
     };
@@ -98,6 +98,10 @@ class SwitchNode : public Node {
         uint32_t cePackets = 0, samplePackets = 0;
         bool scheduled = false;
     };
+    void RecordWs26SignalQualification(const CustomHeader &ch, uint32_t tag,
+                                      uint32_t destinationTor,
+                                      uint32_t selectedPort, uint32_t ecmpPort,
+                                      const std::vector<int> &nexthops);
     std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackState> m_ws21Feedback;
     std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackWindow> m_ws21FeedbackWindows;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21FeedbackSequence;
@@ -160,6 +164,9 @@ class SwitchNode : public Node {
                                        uint32_t faultPort, uint64_t faultStartNs,
                                        uint64_t faultEndNs);
     static void ConfigureWs21Identity(bool enabled);
+    static void ConfigureWs26SignalQualification(FILE *out, uint64_t maxBytes,
+                                                bool feedbackEnabled);
+    static void FinishWs26SignalQualification();
     static void ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes);
     static void FinishWs21PortEvents();
     static void SetWs21HostTor(uint32_t hostIp, uint32_t torId);

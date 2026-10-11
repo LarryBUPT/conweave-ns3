@@ -112,6 +112,10 @@ static uint64_t ws21_feedback_sequence_gaps = 0;
 static uint64_t ws21_feedback_generated = 0, ws21_feedback_hop_bytes = 0;
 static uint64_t ws21_feedback_hop_enqueues = 0, ws21_feedback_hop_rejects = 0;
 static uint64_t ws21_feedback_hop_dequeues = 0;
+static FILE *ws26_signal_qualification_output = NULL;
+static uint64_t ws26_signal_qualification_max_bytes = 0;
+static uint64_t ws26_signal_qualification_bytes = 0;
+static uint64_t ws26_signal_qualification_rows = 0;
 static bool ws21_heartbeat_enabled = false;
 static uint32_t ws21_heartbeat_interval_ns = 200000;
 static uint32_t ws21_heartbeat_fault_mode = 0, ws21_heartbeat_fault_tor = 0;
@@ -303,6 +307,94 @@ void SwitchNode::ConfigureWs21Heartbeat(bool enabled, uint32_t intervalNs,
 }
 
 void SwitchNode::ConfigureWs21Identity(bool enabled) { ws21_identity_enabled = enabled; }
+
+void SwitchNode::ConfigureWs26SignalQualification(FILE *out, uint64_t maxBytes,
+                                                  bool feedbackEnabled) {
+    NS_ASSERT_MSG(!out || maxBytes >= 1024, "WS-26 qualification log cap is too small");
+    ws26_signal_qualification_output = out;
+    ws26_signal_qualification_max_bytes = maxBytes;
+    ws26_signal_qualification_bytes = 0;
+    ws26_signal_qualification_rows = 0;
+    if (out) {
+        const int written = fprintf(out,
+            "# feedback_enabled=%u\ndecision_ns src_tor dst_tor src_id dst_id src_ip dst_ip sport dport tag selected_port ecmp_port candidate_port candidate_queue_bytes cache_present sequence window_end_ns generated_ns received_ns sample_packets ce_packets window_age_ns generated_age_ns received_age_ns\n",
+            unsigned(feedbackEnabled ? 1 : 0));
+        NS_ASSERT_MSG(written > 0, "WS-26 qualification header write failed");
+        ws26_signal_qualification_bytes += written;
+    }
+}
+
+void SwitchNode::FinishWs26SignalQualification() {
+    if (!ws26_signal_qualification_output) return;
+    char footer[96];
+    const int length = snprintf(footer, sizeof(footer), "# rows=%lu payload_bytes=%lu\n",
+                                ws26_signal_qualification_rows,
+                                ws26_signal_qualification_bytes);
+    NS_ASSERT_MSG(length > 0 && length < int(sizeof(footer)),
+                  "WS-26 qualification footer overflow");
+    if (ws26_signal_qualification_bytes + uint64_t(length) >
+        ws26_signal_qualification_max_bytes)
+        NS_FATAL_ERROR("WS-26 qualification log byte cap exceeded by footer");
+    const size_t written = fwrite(footer, 1, length, ws26_signal_qualification_output);
+    if (written != size_t(length))
+        NS_FATAL_ERROR("WS-26 qualification footer write failed");
+    ws26_signal_qualification_bytes += written;
+    fflush(ws26_signal_qualification_output);
+    ws26_signal_qualification_output = NULL;
+}
+
+void SwitchNode::RecordWs26SignalQualification(const CustomHeader &ch, uint32_t tag,
+                                               uint32_t destinationTor,
+                                               uint32_t selectedPort,
+                                               uint32_t ecmpPort,
+                                               const std::vector<int> &nexthops) {
+    if (!ws26_signal_qualification_output || !m_isToR ||
+        !m_isToR_hostIP.count(ch.sip) || ch.l3Prot != 0x11) return;
+    const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
+    for (int candidate : nexthops) {
+        const auto key = std::make_pair(destinationTor, uint32_t(candidate));
+        const auto found = m_ws21Feedback.find(key);
+        const bool present = found != m_ws21Feedback.end();
+        uint64_t windowAgeNs = 0, generatedAgeNs = 0, receivedAgeNs = 0;
+        uint32_t sequence = 0, samplePackets = 0, cePackets = 0;
+        uint64_t windowEndNs = 0, generatedNs = 0, receivedNs = 0;
+        if (present) {
+            const Ws21FeedbackState &state = found->second;
+            if (state.windowEndNs > nowNs || state.generatedNs > nowNs ||
+                state.receivedNs > nowNs)
+                NS_FATAL_ERROR("WS-26 qualification cache timestamp is in the future");
+            windowAgeNs = nowNs - state.windowEndNs;
+            generatedAgeNs = nowNs - state.generatedNs;
+            receivedAgeNs = nowNs - state.receivedNs;
+            sequence = state.sequence;
+            samplePackets = state.samplePackets;
+            cePackets = state.cePackets;
+            windowEndNs = state.windowEndNs;
+            generatedNs = state.generatedNs;
+            receivedNs = state.receivedNs;
+        }
+        char row[320];
+        const int length = snprintf(row, sizeof(row),
+            "%lu %u %u %u %u %u %u %u %u %u %u %u %u %u %u %u %lu %lu %lu %u %u %lu %lu %lu\n",
+            nowNs, m_id, destinationTor, Settings::hostIp2IdMap.at(ch.sip),
+            Settings::hostIp2IdMap.at(ch.dip), ch.sip, ch.dip,
+            uint32_t(ch.udp.sport), uint32_t(ch.udp.dport), tag,
+            selectedPort, ecmpPort,
+            uint32_t(candidate), CalculateInterfaceLoad(uint32_t(candidate)),
+            present ? 1 : 0, sequence, windowEndNs, generatedNs, receivedNs,
+            samplePackets, cePackets, windowAgeNs, generatedAgeNs, receivedAgeNs);
+        NS_ASSERT_MSG(length > 0 && length < int(sizeof(row)),
+                      "WS-26 qualification row overflow");
+        if (ws26_signal_qualification_bytes + uint64_t(length) >
+            ws26_signal_qualification_max_bytes)
+            NS_FATAL_ERROR("WS-26 qualification log byte cap exceeded");
+        const size_t written = fwrite(row, 1, length, ws26_signal_qualification_output);
+        if (written != size_t(length))
+            NS_FATAL_ERROR("WS-26 qualification log write failed");
+        ws26_signal_qualification_bytes += written;
+        ++ws26_signal_qualification_rows;
+    }
+}
 
 void SwitchNode::ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes) {
     NS_ASSERT_MSG(!out || maxBytes >= 1024, "WS-21 port log cap is too small");
@@ -552,6 +644,7 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
     state.sequence = report.sequence;
     state.windowEndNs = report.windowEndNs;
     state.generatedNs = report.GetGeneratedNs();
+    state.receivedNs = nowNs;
     state.cePackets = report.cePackets;
     state.samplePackets = report.samplePackets;
     ++ws21_feedback_delivered;
@@ -1435,8 +1528,9 @@ uint32_t SwitchNode::DoLbClassLane4(Ptr<const Packet> p, const CustomHeader &ch,
     const uint32_t index = tag == 2 ? (offset + choice % 2) % 8
                                     : (offset + 2 + choice % 6) % 8;
     const uint32_t selected = nexthops[index];
+    const uint32_t ecmpPort = DoLbFlowECMP(p, ch, nexthops);
     ++ws26_v4_packets[tag];
-    if (selected != DoLbFlowECMP(p, ch, nexthops)) ++ws26_v4_diverted[tag];
+    if (selected != ecmpPort) ++ws26_v4_diverted[tag];
     ++ws26_v4_port_packets[std::make_tuple(m_id, tag, selected)];
     const auto key = std::make_tuple(m_id, ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
     Ws26V4PathObservation &observation = ws26_v4_paths[key];
@@ -1445,6 +1539,10 @@ uint32_t SwitchNode::DoLbClassLane4(Ptr<const Packet> p, const CustomHeader &ch,
         observation.port = selected;
         observation.destinationTor = destination->second;
         ++ws26_v4_qp_new[tag];
+        if (tag == 2 && m_isToR && m_isToR_hostIP.count(ch.sip)) {
+            RecordWs26SignalQualification(ch, tag, destination->second, selected,
+                                          ecmpPort, nexthops);
+        }
     } else {
         ++ws26_v4_qp_reused[tag];
         if (observation.tag != tag || observation.port != selected ||
@@ -1454,6 +1552,8 @@ uint32_t SwitchNode::DoLbClassLane4(Ptr<const Packet> p, const CustomHeader &ch,
         }
     }
     ++observation.packets;
+    if (m_isToR && m_isToR_hostIP.count(ch.sip) && ws21_identity_enabled)
+        ObserveWs21Source(ch, selected);
     return selected;
 }
 

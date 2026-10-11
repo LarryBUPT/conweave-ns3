@@ -84,6 +84,10 @@ bool ws21_port_events = false;
 std::string ws21_port_output_file;
 uint64_t ws21_port_max_bytes = 268435456;
 FILE *ws21_port_output = NULL;
+bool ws26_signal_qualification = false;
+uint64_t ws26_signal_qualification_max_bytes = 67108864;
+std::string ws26_signal_qualification_output_file;
+FILE *ws26_signal_qualification_output = NULL;
 
 // Conga params (based on paper recommendation)
 Time conga_flowletTimeout = MicroSeconds(100);  // 100us
@@ -1067,6 +1071,12 @@ int main(int argc, char *argv[]) {
                 conf >> ws21_port_output_file;
             } else if (key.compare("WS21_PORT_MAX_BYTES") == 0) {
                 conf >> ws21_port_max_bytes;
+            } else if (key.compare("WS26_SIGNAL_QUALIFICATION") == 0) {
+                uint32_t value; conf >> value; ws26_signal_qualification = value != 0;
+            } else if (key.compare("WS26_SIGNAL_QUALIFICATION_MAX_BYTES") == 0) {
+                conf >> ws26_signal_qualification_max_bytes;
+            } else if (key.compare("WS26_SIGNAL_QUALIFICATION_OUTPUT_FILE") == 0) {
+                conf >> ws26_signal_qualification_output_file;
             } else if (key.compare("WS23_PFC_PROBE") == 0) {
                 conf >> ws23_pfc_probe_host >> ws23_pfc_probe_pg
                      >> ws23_pfc_probe_start_ns >> ws23_pfc_probe_end_ns;
@@ -1489,10 +1499,16 @@ int main(int argc, char *argv[]) {
     NS_ASSERT_MSG(lb_mode != 20 || (ws18_admission_rate_gbps > 0 && !ws18_output_file.empty()),
                   "WS-18 requires positive admission rate and an output file");
     SwitchNode::ConfigureWs18Path(lb_mode == 20 && ws18_path);
-    if (ws21_feedback && (lb_mode != 20 || !ws21_identity))
-        NS_FATAL_ERROR("WS-21 feedback requires mode 20 and path identity mapping");
-    if (ws21_identity && (lb_mode != 20 || ws21_identity_output_file.empty()))
-        NS_FATAL_ERROR("WS-21 identity diagnostic requires mode 20 and an output file");
+    if (ws21_feedback && ((lb_mode != 20 && lb_mode != 24) || !ws21_identity))
+        NS_FATAL_ERROR("WS-21 feedback requires mode 20 or 24 and path identity mapping");
+    if (ws21_identity && ((lb_mode != 20 && lb_mode != 24) || ws21_identity_output_file.empty()))
+        NS_FATAL_ERROR("WS-21 identity diagnostic requires mode 20 or 24 and an output file");
+    if (ws26_signal_qualification &&
+        (lb_mode != 24 || !ws21_identity || ws26_signal_qualification_output_file.empty() ||
+         ws26_signal_qualification_max_bytes < 1024))
+        NS_FATAL_ERROR("WS-26 signal qualification requires mode 24, identity mapping, output file, and byte cap");
+    if (ws21_feedback && lb_mode == 24 && !ws26_signal_qualification)
+        NS_FATAL_ERROR("ClassLane feedback requires WS-26 signal qualification logging");
     NS_ASSERT_MSG(!ws21_port_events ||
                       (lb_mode == 20 && !ws21_port_output_file.empty() &&
                        ws21_port_max_bytes >= 1024),
@@ -1692,6 +1708,15 @@ int main(int argc, char *argv[]) {
         ws21_port_output = fopen(ws21_port_output_file.c_str(), "w");
         NS_ASSERT_MSG(ws21_port_output, "WS-21 cannot open port-event output");
         SwitchNode::ConfigureWs21PortEvents(ws21_port_output, ws21_port_max_bytes);
+    }
+    if (ws26_signal_qualification) {
+        ws26_signal_qualification_output =
+            fopen(ws26_signal_qualification_output_file.c_str(), "w");
+        NS_ASSERT_MSG(ws26_signal_qualification_output,
+                      "WS-26 cannot open signal qualification output");
+        SwitchNode::ConfigureWs26SignalQualification(
+            ws26_signal_qualification_output, ws26_signal_qualification_max_bytes,
+            ws21_feedback);
     }
     flow_input_stream = fopen(flow_input_file.c_str(), "w");
     if (cc_mode == 1) {
@@ -2228,6 +2253,10 @@ int main(int argc, char *argv[]) {
     if (ws21_port_events) {
         SwitchNode::FinishWs21PortEvents();
         fclose(ws21_port_output);
+    }
+    if (ws26_signal_qualification) {
+        SwitchNode::FinishWs26SignalQualification();
+        fclose(ws26_signal_qualification_output);
     }
     SwitchNode::PrintWorkloadTagCounts();
 
