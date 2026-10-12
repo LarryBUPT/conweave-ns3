@@ -15,7 +15,7 @@ LEVELS = (0, 64, 128, 192)
 SCREEN = tuple(range(20262701, 20262709))
 CONFIRM = tuple(range(20262721, 20262745))
 TOPO_SHA = "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
-CAPS = {"screen": 4, "confirm": 12}
+CAPS = {"screen": 12, "confirm": 12}
 
 
 def configure(stage):
@@ -37,7 +37,8 @@ def configure(stage):
     engine.ID_PREFIX = "20261013-030000-" + stem
     engine.SOURCE_SHA = SOURCE_SHA
     engine.TOPO_SHA = TOPO_SHA
-    engine.pilot.POLL_SECONDS = 1800
+    engine.pilot.POLL_SECONDS = 600
+    engine.BUILD_GROUP_SIZE = 6
 
     original_verify = engine.verify
 
@@ -64,6 +65,43 @@ def configure(stage):
         return result
 
     engine.verify = verify
+
+    def resume_summary(cells, batches):
+        """Accept a shorter final batch so an interrupted matrix can resume."""
+        empty = {"kind": "WS-27 independent-demand " + stage,
+                 "source_sha": SOURCE_SHA,
+                 "randomization_seed": engine.RANDOMIZATION_SEED,
+                 "max_concurrent": cap, "batches": [], "verified_cells": []}
+        if not engine.SUMMARY.exists():
+            return empty, 0
+        try:
+            saved = json.loads(engine.SUMMARY.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as error:
+            raise RuntimeError("Cannot safely resume: summary is unreadable") from error
+        for key in ("kind", "source_sha", "randomization_seed", "max_concurrent"):
+            if saved.get(key) != empty[key]:
+                raise RuntimeError("Cannot safely resume: summary mismatch in " + key)
+        completed = saved.get("batches", [])
+        if len(completed) > len(batches):
+            raise RuntimeError("Cannot safely resume: summary has too many batches")
+        offset = 0
+        for index, row in enumerate(completed, 1):
+            if row.get("batch") != index or row.get("cells") != len(batches[index - 1]):
+                raise RuntimeError("Cannot safely resume: batches are not contiguous")
+            offset += len(batches[index - 1])
+        expected_cells = cells[:offset]
+        recorded = saved.get("verified_cells", [])
+        if len(recorded) != len(expected_cells):
+            raise RuntimeError("Cannot safely resume: summary is not a complete batch prefix")
+        for planned, summary_row in zip(expected_cells, recorded):
+            if summary_row.get("id") != planned["id"]:
+                raise RuntimeError("Cannot safely resume: verified IDs are not the frozen prefix")
+            if engine.verify(planned) != summary_row:
+                raise RuntimeError("Cannot safely resume: saved raw verification differs for " +
+                                   planned["id"])
+        return saved, len(completed)
+
+    engine.resume_summary = resume_summary
 
     def frozen_plan():
         manifest = json.loads(engine.MANIFEST.read_text(encoding="utf-8"))
