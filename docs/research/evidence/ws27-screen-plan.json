@@ -1,0 +1,547 @@
+{
+  "background_levels": [
+    192
+  ],
+  "buffer_mib": 9,
+  "bw_gbps": 400,
+  "cells": [
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262704-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "screen",
+      "run_order": 1,
+      "seed": 20262704,
+      "trace": "ws25_seed20262704_b192.txt",
+      "trace_sha256": "abe4e86ee6a72dd1e24163509f671e6cf710bd7f248d65bf9571d03dd1eaa74a"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262704-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "screen",
+      "run_order": 2,
+      "seed": 20262704,
+      "trace": "ws25_seed20262704_b192.txt",
+      "trace_sha256": "abe4e86ee6a72dd1e24163509f671e6cf710bd7f248d65bf9571d03dd1eaa74a"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262704-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "screen",
+      "run_order": 3,
+      "seed": 20262704,
+      "trace": "ws25_seed20262704_b192.txt",
+      "trace_sha256": "abe4e86ee6a72dd1e24163509f671e6cf710bd7f248d65bf9571d03dd1eaa74a"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262704-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "screen",
+      "run_order": 4,
+      "seed": 20262704,
+      "trace": "ws25_seed20262704_b192.txt",
+      "trace_sha256": "abe4e86ee6a72dd1e24163509f671e6cf710bd7f248d65bf9571d03dd1eaa74a"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262706-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "screen",
+      "run_order": 5,
+      "seed": 20262706,
+      "trace": "ws25_seed20262706_b192.txt",
+      "trace_sha256": "4865a97baa57d107ae0287782aa7786085798d17e86e8ac37f46cc4878a91bea"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262706-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "screen",
+      "run_order": 6,
+      "seed": 20262706,
+      "trace": "ws25_seed20262706_b192.txt",
+      "trace_sha256": "4865a97baa57d107ae0287782aa7786085798d17e86e8ac37f46cc4878a91bea"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262706-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "screen",
+      "run_order": 7,
+      "seed": 20262706,
+      "trace": "ws25_seed20262706_b192.txt",
+      "trace_sha256": "4865a97baa57d107ae0287782aa7786085798d17e86e8ac37f46cc4878a91bea"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262706-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "screen",
+      "run_order": 8,
+      "seed": 20262706,
+      "trace": "ws25_seed20262706_b192.txt",
+      "trace_sha256": "4865a97baa57d107ae0287782aa7786085798d17e86e8ac37f46cc4878a91bea"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262703-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "screen",
+      "run_order": 9,
+      "seed": 20262703,
+      "trace": "ws25_seed20262703_b192.txt",
+      "trace_sha256": "86e8810d890b820dd0ffde3addfefda8632183aabd82702b9cb049200e97c478"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262703-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "screen",
+      "run_order": 10,
+      "seed": 20262703,
+      "trace": "ws25_seed20262703_b192.txt",
+      "trace_sha256": "86e8810d890b820dd0ffde3addfefda8632183aabd82702b9cb049200e97c478"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262703-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "screen",
+      "run_order": 11,
+      "seed": 20262703,
+      "trace": "ws25_seed20262703_b192.txt",
+      "trace_sha256": "86e8810d890b820dd0ffde3addfefda8632183aabd82702b9cb049200e97c478"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262703-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "screen",
+      "run_order": 12,
+      "seed": 20262703,
+      "trace": "ws25_seed20262703_b192.txt",
+      "trace_sha256": "86e8810d890b820dd0ffde3addfefda8632183aabd82702b9cb049200e97c478"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262702-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "screen",
+      "run_order": 13,
+      "seed": 20262702,
+      "trace": "ws25_seed20262702_b192.txt",
+      "trace_sha256": "5669354759537c83c5258b3220876d579361cfa93da67e391e658d0881993832"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262702-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "screen",
+      "run_order": 14,
+      "seed": 20262702,
+      "trace": "ws25_seed20262702_b192.txt",
+      "trace_sha256": "5669354759537c83c5258b3220876d579361cfa93da67e391e658d0881993832"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262702-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "screen",
+      "run_order": 15,
+      "seed": 20262702,
+      "trace": "ws25_seed20262702_b192.txt",
+      "trace_sha256": "5669354759537c83c5258b3220876d579361cfa93da67e391e658d0881993832"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262702-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "screen",
+      "run_order": 16,
+      "seed": 20262702,
+      "trace": "ws25_seed20262702_b192.txt",
+      "trace_sha256": "5669354759537c83c5258b3220876d579361cfa93da67e391e658d0881993832"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262705-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "screen",
+      "run_order": 17,
+      "seed": 20262705,
+      "trace": "ws25_seed20262705_b192.txt",
+      "trace_sha256": "051120e67a81e80b617b2bf3d8eb6a97e08adb19dea7562b69706c98a9143dc4"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262705-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "screen",
+      "run_order": 18,
+      "seed": 20262705,
+      "trace": "ws25_seed20262705_b192.txt",
+      "trace_sha256": "051120e67a81e80b617b2bf3d8eb6a97e08adb19dea7562b69706c98a9143dc4"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262705-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "screen",
+      "run_order": 19,
+      "seed": 20262705,
+      "trace": "ws25_seed20262705_b192.txt",
+      "trace_sha256": "051120e67a81e80b617b2bf3d8eb6a97e08adb19dea7562b69706c98a9143dc4"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262705-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "screen",
+      "run_order": 20,
+      "seed": 20262705,
+      "trace": "ws25_seed20262705_b192.txt",
+      "trace_sha256": "051120e67a81e80b617b2bf3d8eb6a97e08adb19dea7562b69706c98a9143dc4"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262708-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "screen",
+      "run_order": 21,
+      "seed": 20262708,
+      "trace": "ws25_seed20262708_b192.txt",
+      "trace_sha256": "4208a3d2119cda56f37c6f150e21248051f99fd7d22c1d690a6681f6eafd01dd"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262708-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "screen",
+      "run_order": 22,
+      "seed": 20262708,
+      "trace": "ws25_seed20262708_b192.txt",
+      "trace_sha256": "4208a3d2119cda56f37c6f150e21248051f99fd7d22c1d690a6681f6eafd01dd"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262708-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "screen",
+      "run_order": 23,
+      "seed": 20262708,
+      "trace": "ws25_seed20262708_b192.txt",
+      "trace_sha256": "4208a3d2119cda56f37c6f150e21248051f99fd7d22c1d690a6681f6eafd01dd"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262708-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "screen",
+      "run_order": 24,
+      "seed": 20262708,
+      "trace": "ws25_seed20262708_b192.txt",
+      "trace_sha256": "4208a3d2119cda56f37c6f150e21248051f99fd7d22c1d690a6681f6eafd01dd"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262707-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "screen",
+      "run_order": 25,
+      "seed": 20262707,
+      "trace": "ws25_seed20262707_b192.txt",
+      "trace_sha256": "0081feb8615169788268519fa534da601175ab007925476797bc4a7c2d9d4f8a"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262707-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "screen",
+      "run_order": 26,
+      "seed": 20262707,
+      "trace": "ws25_seed20262707_b192.txt",
+      "trace_sha256": "0081feb8615169788268519fa534da601175ab007925476797bc4a7c2d9d4f8a"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262707-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "screen",
+      "run_order": 27,
+      "seed": 20262707,
+      "trace": "ws25_seed20262707_b192.txt",
+      "trace_sha256": "0081feb8615169788268519fa534da601175ab007925476797bc4a7c2d9d4f8a"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262707-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "screen",
+      "run_order": 28,
+      "seed": 20262707,
+      "trace": "ws25_seed20262707_b192.txt",
+      "trace_sha256": "0081feb8615169788268519fa534da601175ab007925476797bc4a7c2d9d4f8a"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262701-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "screen",
+      "run_order": 29,
+      "seed": 20262701,
+      "trace": "ws25_seed20262701_b192.txt",
+      "trace_sha256": "bd91273ec1819d55c1506ec8ca94e4e5390f5f1f8b071065bf330c6137872589"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262701-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "screen",
+      "run_order": 30,
+      "seed": 20262701,
+      "trace": "ws25_seed20262701_b192.txt",
+      "trace_sha256": "bd91273ec1819d55c1506ec8ca94e4e5390f5f1f8b071065bf330c6137872589"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262701-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "screen",
+      "run_order": 31,
+      "seed": 20262701,
+      "trace": "ws25_seed20262701_b192.txt",
+      "trace_sha256": "bd91273ec1819d55c1506ec8ca94e4e5390f5f1f8b071065bf330c6137872589"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-screen-s20262701-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "screen",
+      "run_order": 32,
+      "seed": 20262701,
+      "trace": "ws25_seed20262701_b192.txt",
+      "trace_sha256": "bd91273ec1819d55c1506ec8ca94e4e5390f5f1f8b071065bf330c6137872589"
+    }
+  ],
+  "demand_seed_order": [
+    20262701,
+    20262702,
+    20262703,
+    20262704,
+    20262705,
+    20262706,
+    20262707,
+    20262708
+  ],
+  "irn": 1,
+  "kind": "WS-27 independent-demand screen",
+  "max_concurrent": 12,
+  "modes": [
+    "fecmp",
+    "classreserve",
+    "guardhash-v2",
+    "harmgate-v2"
+  ],
+  "netload": 10,
+  "ns3_seed": 1,
+  "pfc": 0,
+  "randomization_seed": 20262710,
+  "simul_time": "0.01",
+  "source_sha": "ee236f27920aa56b3dd562ed971e5abee9e1e659",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
