@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Verify WS-27 single-class fallback and diagnostic non-interference."""
 import argparse
+import concurrent.futures
 import json
 import re
 import time
@@ -18,7 +19,7 @@ RESULT = ROOT / "docs/research/evidence/ws27-correctness-results.json"
 TRACES = {
     "moe4": ("ws25_v1fix_moe4.txt", "8acfe14d19d7ef7822bfd9a78334b830ce581456003e132d6557a44d1e41ea60", {"2": 4}),
     "background4": ("ws25_v1fix_background4.txt", "e1259a4dbb17fe70e15a72881cbc3faaeac637123ba18ac29596b4f4f2743015", {"1": 4}),
-    "diag_mixed8": ("ws25_v1fix_mixed8.txt", "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb", {"1": 4, "2": 4}),
+    "diagmixed8": ("ws25_v1fix_mixed8.txt", "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb", {"1": 4, "2": 4}),
 }
 REFERENCE = {
     "guardhash-v2": "20261013-012000-ws27-guard-v2-preflight",
@@ -30,13 +31,13 @@ def cells():
     entries = []
     for scenario, modes in (("moe4", ("guardhash-v2", "harmgate-v2")),
                             ("background4", ("fecmp", "guardhash-v2", "harmgate-v2")),
-                            ("diag_mixed8", ("guardhash-v2", "harmgate-v2"))):
+                            ("diagmixed8", ("guardhash-v2", "harmgate-v2"))):
         trace, digest, tags = TRACES[scenario]
         for mode in modes:
             entries.append({"id": "20261013-023000-ws27-%s-%s" % (scenario, mode),
                             "scenario": scenario, "mode": mode,
                             "trace": trace, "trace_sha256": digest,
-                            "expected_tags": tags, "ws25_diag": int(scenario == "diag_mixed8")})
+                            "expected_tags": tags, "ws25_diag": int(scenario == "diagmixed8")})
     return entries
 
 
@@ -149,13 +150,65 @@ def run_cell(cell):
     return verify(cell)
 
 
+def prebuild(cells):
+    """Compile isolated sources four at a time; never start a simulation."""
+    pending = []
+    for cell in cells:
+        if (ROOT / "results" / cell["id"]).exists():
+            verify(cell)
+            continue
+        try:
+            state = remote.status(cell["id"])
+        except RuntimeError as error:
+            if "REMOTE_METADATA_MISSING:" not in str(error):
+                raise
+            pending.append(cell)
+            continue
+        if state.get("git_commit") != SOURCE_SHA:
+            raise RuntimeError("Correctness source SHA changed: " + cell["id"])
+    for offset in range(0, len(pending), 4):
+        group = pending[offset:offset + 4]
+        resources.host_gate(reject_active=True)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(group)) as pool:
+            futures = {pool.submit(build_one, cell): cell for cell in group}
+            errors = {}
+            for future in concurrent.futures.as_completed(futures):
+                cell = futures[future]
+                try:
+                    future.result()
+                except Exception as error:
+                    errors[cell["id"]] = str(error)
+        resources.host_gate(reject_active=True)
+        # Re-read every ID only after all submitted builds returned.
+        for cell in group:
+            try:
+                state = remote.status(cell["id"])
+            except RuntimeError as error:
+                raise RuntimeError("Build did not register: %s (%s)" %
+                                   (cell["id"], errors.get(cell["id"], str(error))))
+            if state.get("status") != "BUILT" or state.get("git_commit") != SOURCE_SHA:
+                raise RuntimeError("Build stopped; preserve IDs: %s=%s %s" %
+                                   (cell["id"], state.get("status"),
+                                    errors.get(cell["id"], "")))
+            print(json.dumps({"built": cell["id"]}), flush=True)
+
+
+def build_one(cell):
+    remote.command("build", "--repo-local", str(ROOT), "--id", cell["id"],
+                   "--source-sha", SOURCE_SHA, "--label", "ws27-correctness")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("phase", choices=("plan", "run", "verify"))
+    parser.add_argument("phase", choices=("plan", "prebuild", "run", "verify"))
     args = parser.parse_args()
     plan = frozen_plan()
     if args.phase == "plan":
         print(json.dumps({"cells": len(plan["cells"]), "source_sha": SOURCE_SHA}))
+        return
+    if args.phase == "prebuild":
+        prebuild(plan["cells"])
+        print(json.dumps({"prebuilt_cells": len(plan["cells"])}, sort_keys=True))
         return
     if args.phase == "run":
         resources.host_gate()
@@ -169,7 +222,7 @@ def main():
     by_id = {row["id"]: row for row in rows}
     for mode, reference in REFERENCE.items():
         expected = analyze_moe_tags.summarize(reference)["fct_sha256"]
-        actual = by_id["20261013-023000-ws27-diag_mixed8-" + mode]["fct_sha256"]
+        actual = by_id["20261013-023000-ws27-diagmixed8-" + mode]["fct_sha256"]
         if actual != expected:
             raise RuntimeError("Diagnostic changed FCT for " + mode)
     background_hashes = {row["fct_sha256"] for row in rows
