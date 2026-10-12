@@ -1,0 +1,340 @@
+{
+  "bootstrap": {
+    "draws": 10000,
+    "method": "resample demand seeds with replacement; percentile interval",
+    "seed": 20262799
+  },
+  "decision": "Report effects and uncertainty to user; no automatic business-effect winner",
+  "effects": [
+    {
+      "background": 192,
+      "background_constraint_pass": true,
+      "background_p99_median_bootstrap_95pct": [
+        -2.289226068052763,
+        2.103873465009576
+      ],
+      "background_p99_median_change_pct": -0.8665674784554878,
+      "demand_seeds": 8,
+      "mode": "classreserve",
+      "moe_batch_improved_seeds": 8,
+      "moe_batch_median_bootstrap_95pct": [
+        -9.855502037791785,
+        -5.761475998453314
+      ],
+      "moe_batch_median_change_pct": -7.895438605737914,
+      "moe_batch_worsened_seeds": 0,
+      "moe_fct_p50_median_change_pct": -0.384300899427642,
+      "moe_fct_p99_median_change_pct": -0.7285790685312821
+    },
+    {
+      "background": 192,
+      "background_constraint_pass": true,
+      "background_p99_median_bootstrap_95pct": [
+        -4.314608495240025,
+        5.005164425053987
+      ],
+      "background_p99_median_change_pct": 0.7249475738662192,
+      "demand_seeds": 8,
+      "mode": "guardhash-v2",
+      "moe_batch_improved_seeds": 7,
+      "moe_batch_median_bootstrap_95pct": [
+        -8.073130649137239,
+        -4.186735828084476
+      ],
+      "moe_batch_median_change_pct": -6.721379117828252,
+      "moe_batch_worsened_seeds": 1,
+      "moe_fct_p50_median_change_pct": -0.5589937566385983,
+      "moe_fct_p99_median_change_pct": -0.6252723142997019
+    },
+    {
+      "background": 192,
+      "background_constraint_pass": true,
+      "background_p99_median_bootstrap_95pct": [
+        -4.288848663639233,
+        1.7114833165682963
+      ],
+      "background_p99_median_change_pct": -1.7900876512015773,
+      "demand_seeds": 8,
+      "mode": "harmgate-v2",
+      "moe_batch_improved_seeds": 5,
+      "moe_batch_median_bootstrap_95pct": [
+        -4.942402633022491,
+        0.6986714656221693
+      ],
+      "moe_batch_median_change_pct": -2.335583525035101,
+      "moe_batch_worsened_seeds": 3,
+      "moe_fct_p50_median_change_pct": -0.29377854108098567,
+      "moe_fct_p99_median_change_pct": 0.5355559025079115
+    }
+  ],
+  "independent_unit": "one synthetic demand seed; flows are nested observations",
+  "paired_changes": [
+    {
+      "background": 192,
+      "background_p99_change_pct": -3.277161375446158,
+      "baseline_id": "20261013-030000-ws27-screen-s20262701-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262701-b192-classreserve",
+      "mode": "classreserve",
+      "moe_batch_change_pct": -4.808743169398899,
+      "moe_fct_p50_change_pct": -0.5701254275940704,
+      "moe_fct_p99_change_pct": -1.909273825662794,
+      "seed": 20262701
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -4.314608495240025,
+      "baseline_id": "20261013-030000-ws27-screen-s20262701-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262701-b192-guardhash-v2",
+      "mode": "guardhash-v2",
+      "moe_batch_change_pct": -4.972677595628417,
+      "moe_fct_p50_change_pct": -0.7981755986317007,
+      "moe_fct_p99_change_pct": -3.307566923473515,
+      "seed": 20262701
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 1.6066757175291935,
+      "baseline_id": "20261013-030000-ws27-screen-s20262701-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262701-b192-harmgate-v2",
+      "mode": "harmgate-v2",
+      "moe_batch_change_pct": 0.1420765027322357,
+      "moe_fct_p50_change_pct": -0.6760058641472555,
+      "moe_fct_p99_change_pct": -3.1004191940159354,
+      "seed": 20262701
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 1.5670689420656858,
+      "baseline_id": "20261013-030000-ws27-screen-s20262702-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262702-b192-classreserve",
+      "mode": "classreserve",
+      "moe_batch_change_pct": -7.590347796533359,
+      "moe_fct_p50_change_pct": -0.3679476696647588,
+      "moe_fct_p99_change_pct": -0.5511474077696144,
+      "seed": 20262702
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 0.7318354781135294,
+      "baseline_id": "20261013-030000-ws27-screen-s20262702-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262702-b192-guardhash-v2",
+      "mode": "guardhash-v2",
+      "moe_batch_change_pct": -6.4631245043616055,
+      "moe_fct_p50_change_pct": -0.09811937857727715,
+      "moe_fct_p99_change_pct": -2.0187331621224214,
+      "seed": 20262702
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 1.7114833165682963,
+      "baseline_id": "20261013-030000-ws27-screen-s20262702-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262702-b192-harmgate-v2",
+      "mode": "harmgate-v2",
+      "moe_batch_change_pct": -1.2461765039084582,
+      "moe_fct_p50_change_pct": -0.16353229762877675,
+      "moe_fct_p99_change_pct": 1.125312277654178,
+      "seed": 20262702
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 2.103873465009576,
+      "baseline_id": "20261013-030000-ws27-screen-s20262703-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262703-b192-classreserve",
+      "mode": "classreserve",
+      "moe_batch_change_pct": -13.480895645028756,
+      "moe_fct_p50_change_pct": -0.23213194868662024,
+      "moe_fct_p99_change_pct": -7.672167671297769,
+      "seed": 20262703
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 6.866543416069204,
+      "baseline_id": "20261013-030000-ws27-screen-s20262703-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262703-b192-guardhash-v2",
+      "mode": "guardhash-v2",
+      "moe_batch_change_pct": -8.073130649137239,
+      "moe_fct_p50_change_pct": -0.24842190999796454,
+      "moe_fct_p99_change_pct": -6.026940786572387,
+      "seed": 20262703
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 7.828018762892741,
+      "baseline_id": "20261013-030000-ws27-screen-s20262703-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262703-b192-harmgate-v2",
+      "mode": "harmgate-v2",
+      "moe_batch_change_pct": -4.781224322103538,
+      "moe_fct_p50_change_pct": -0.05294237426185511,
+      "moe_fct_p99_change_pct": -7.689022275866986,
+      "seed": 20262703
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -1.9946064963698107,
+      "baseline_id": "20261013-030000-ws27-screen-s20262704-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262704-b192-classreserve",
+      "mode": "classreserve",
+      "moe_batch_change_pct": -6.050466264399345,
+      "moe_fct_p50_change_pct": 0.03687164570445045,
+      "moe_fct_p99_change_pct": -0.017021636035186027,
+      "seed": 20262704
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -0.48953065518306804,
+      "baseline_id": "20261013-030000-ws27-screen-s20262704-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262704-b192-guardhash-v2",
+      "mode": "guardhash-v2",
+      "moe_batch_change_pct": -7.284695556774546,
+      "moe_fct_p50_change_pct": 0.5530746855668012,
+      "moe_fct_p99_change_pct": -0.22505674411937848,
+      "seed": 20262704
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -1.5573705056055154,
+      "baseline_id": "20261013-030000-ws27-screen-s20262704-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262704-b192-harmgate-v2",
+      "mode": "harmgate-v2",
+      "moe_batch_change_pct": -4.942402633022491,
+      "moe_fct_p50_change_pct": 0.2744889180220422,
+      "moe_fct_p99_change_pct": -0.054200472638354924,
+      "seed": 20262704
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -1.2463969754503368,
+      "baseline_id": "20261013-030000-ws27-screen-s20262705-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262705-b192-classreserve",
+      "mode": "classreserve",
+      "moe_batch_change_pct": -9.855502037791785,
+      "moe_fct_p50_change_pct": -0.6170064969558298,
+      "moe_fct_p99_change_pct": 0.422361228092516,
+      "seed": 20262705
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 5.005164425053987,
+      "baseline_id": "20261013-030000-ws27-screen-s20262705-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262705-b192-guardhash-v2",
+      "mode": "guardhash-v2",
+      "moe_batch_change_pct": -4.186735828084476,
+      "moe_fct_p50_change_pct": -0.5843174110243932,
+      "moe_fct_p99_change_pct": 1.6689538641139645,
+      "seed": 20262705
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -5.9275345353362985,
+      "baseline_id": "20261013-030000-ws27-screen-s20262705-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262705-b192-harmgate-v2",
+      "mode": "harmgate-v2",
+      "moe_batch_change_pct": 0.6986714656221693,
+      "moe_fct_p50_change_pct": -0.6823846688186919,
+      "moe_fct_p99_change_pct": 2.9790881418885418,
+      "seed": 20262705
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 5.483566933264705,
+      "baseline_id": "20261013-030000-ws27-screen-s20262706-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262706-b192-classreserve",
+      "mode": "classreserve",
+      "moe_batch_change_pct": -5.761475998453314,
+      "moe_fct_p50_change_pct": -0.9301566579634546,
+      "moe_fct_p99_change_pct": -2.1359387691187504,
+      "seed": 20262706
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 2.336416731825408,
+      "baseline_id": "20261013-030000-ws27-screen-s20262706-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262706-b192-guardhash-v2",
+      "mode": "guardhash-v2",
+      "moe_batch_change_pct": 1.0882174225266494,
+      "moe_fct_p50_change_pct": -0.9546344647519689,
+      "moe_fct_p99_change_pct": 1.5210964931265503,
+      "seed": 20262706
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -2.2366632295014455,
+      "baseline_id": "20261013-030000-ws27-screen-s20262706-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262706-b192-harmgate-v2",
+      "mode": "harmgate-v2",
+      "moe_batch_change_pct": 5.75042810583879,
+      "moe_fct_p50_change_pct": -0.8730417754569286,
+      "moe_fct_p99_change_pct": 2.604311216240629,
+      "seed": 20262706
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -0.48673798146063874,
+      "baseline_id": "20261013-030000-ws27-screen-s20262707-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262707-b192-classreserve",
+      "mode": "classreserve",
+      "moe_batch_change_pct": -8.20052941494247,
+      "moe_fct_p50_change_pct": -0.40065412919052523,
+      "moe_fct_p99_change_pct": -0.9060107292929498,
+      "seed": 20262707
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -4.6158426877771275,
+      "baseline_id": "20261013-030000-ws27-screen-s20262707-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262707-b192-guardhash-v2",
+      "mode": "guardhash-v2",
+      "moe_batch_change_pct": -6.979633731294898,
+      "moe_fct_p50_change_pct": -0.6091578086672156,
+      "moe_fct_p99_change_pct": 2.148541554610417,
+      "seed": 20262707
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -4.288848663639233,
+      "baseline_id": "20261013-030000-ws27-screen-s20262707-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262707-b192-harmgate-v2",
+      "mode": "harmgate-v2",
+      "moe_batch_change_pct": -3.4249905461617436,
+      "moe_fct_p50_change_pct": -0.2616516762060539,
+      "moe_fct_p99_change_pct": 2.3380097787578435,
+      "seed": 20262707
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -2.289226068052763,
+      "baseline_id": "20261013-030000-ws27-screen-s20262708-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262708-b192-classreserve",
+      "mode": "classreserve",
+      "moe_batch_change_pct": -9.05170174071188,
+      "moe_fct_p50_change_pct": -0.2851672302114139,
+      "moe_fct_p99_change_pct": -0.01870304367098674,
+      "seed": 20262708
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": 0.718059669618909,
+      "baseline_id": "20261013-030000-ws27-screen-s20262708-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262708-b192-guardhash-v2",
+      "mode": "guardhash-v2",
+      "moe_batch_change_pct": -10.506625097427913,
+      "moe_fct_p50_change_pct": -0.5336701022528034,
+      "moe_fct_p99_change_pct": -1.0254878844800253,
+      "seed": 20262708
+    },
+    {
+      "background": 192,
+      "background_p99_change_pct": -2.0228047967976392,
+      "baseline_id": "20261013-030000-ws27-screen-s20262708-b192-fecmp",
+      "candidate_id": "20261013-030000-ws27-screen-s20262708-b192-harmgate-v2",
+      "mode": "harmgate-v2",
+      "moe_batch_change_pct": -10.371525071447142,
+      "moe_fct_p50_change_pct": -0.32590540595591744,
+      "moe_fct_p99_change_pct": -1.8420627711551618,
+      "seed": 20262708
+    }
+  ],
+  "source_sha": "ee236f27920aa56b3dd562ed971e5abee9e1e659",
+  "stage": "screen",
+  "verified_cells": 32
+}
