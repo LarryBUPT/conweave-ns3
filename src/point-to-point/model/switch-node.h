@@ -176,11 +176,13 @@ class SwitchNode : public Node {
     bool AddWs21IngressMapping(uint32_t sourceTor, uint32_t ingressPort,
                                uint32_t firstPort);
     void WriteWs21Identity(FILE *out) const;
-    void SwitchNotifyEnqueue(uint32_t ifIndex, Ptr<const Packet> p);
+    void SwitchNotifyEnqueue(uint32_t ifIndex, uint32_t qIndex, Ptr<const Packet> p);
     void SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p);
     void SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
                                Ptr<const Packet> p, bool wasQueued);
     void SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p);
+    void RecordWs26QueueFront(char event, uint32_t ifIndex, uint32_t qIndex,
+                              Ptr<const Packet> p, uint64_t serviceDoneNs = 0);
     uint64_t GetTxBytesOutDev(uint32_t outdev);
 };
 

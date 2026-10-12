@@ -63,6 +63,46 @@ def run_checked(argv, cwd=None, log=None, timeout=None, env=None):
         raise RuntimeError('Command failed (exit %d): %s' % (result, ' '.join(argv[:3])))
 
 
+def verify_ws26_queue_front_fct(trace_path, fct_path):
+    source_ports = {}
+    destination_ports = {}
+    expected = {}
+    with open(trace_path, 'r') as trace:
+        declared = int(trace.readline().strip())
+        for line in trace:
+            fields = line.split()
+            if len(fields) != 6:
+                raise RuntimeError('Queue-front trace must have six tagged columns')
+            src, dst, _, size = [int(value) for value in fields[:4]]
+            start_ns = int(round(float(fields[4]) * 1e9))
+            sport = source_ports.get(src, 10000)
+            dport = destination_ports.get(dst, 100)
+            source_ports[src] = sport + 1
+            destination_ports[dst] = dport + 1
+            key = (src, dst, sport, dport)
+            if key in expected:
+                raise RuntimeError('Duplicate QP in queue-front trace')
+            expected[key] = (size, start_ns)
+    if declared != len(expected):
+        raise RuntimeError('Queue-front trace count mismatch')
+    observed = set()
+    with open(fct_path, 'r') as fct:
+        for line in fct:
+            values = [int(value) for value in line.split()]
+            if len(values) != 8:
+                raise RuntimeError('Malformed queue-front FCT row')
+            key = tuple(values[:4])
+            if key in observed or key not in expected:
+                raise RuntimeError('Duplicate or unexpected queue-front FCT QP')
+            size, start_ns = expected[key]
+            if values[4] != size or abs(values[5] - start_ns) > 2:
+                raise RuntimeError('Queue-front FCT size/start differs from trace')
+            observed.add(key)
+    if observed != set(expected):
+        raise RuntimeError('Queue-front FCT identities differ from trace')
+    return declared
+
+
 def output(argv, cwd=None):
     if cwd:
         inside(cwd)
@@ -548,6 +588,10 @@ def execute(experiment_id):
             simulation_env['WS26_MOE_HOP_DIAG'] = '1'
         else:
             simulation_env.pop('WS26_MOE_HOP_DIAG', None)
+        if params.get('ws26_queue_front_diag'):
+            simulation_env['WS26_QUEUE_FRONT_DIAG'] = '1'
+        else:
+            simulation_env.pop('WS26_QUEUE_FRONT_DIAG', None)
         run_checked(command, cwd=source, log=log, env=simulation_env)
         raw_dirs = [p for p in glob.glob(os.path.join(base, 'raw', '*')) if os.path.isdir(p)]
         fct = glob.glob(os.path.join(base, 'raw', '*', '*_out_fct.txt'))
@@ -584,6 +628,36 @@ def execute(experiment_id):
             data['unfinished_flows'] = data['input_flows'] - data['completed_flows']
             if data['unfinished_flows']:
                 raise RuntimeError('Factorial validation has %d unfinished flows' % data['unfinished_flows'])
+        if params.get('ws26_queue_front_diag'):
+            probe_logs = glob.glob(os.path.join(base, 'raw', '*', 'config.log'))
+            if len(probe_logs) != 1:
+                raise RuntimeError('Queue-front diagnostic has no unique config.log')
+            rows = 0
+            row_bytes = 0
+            summaries = []
+            summary_seen = False
+            with open(probe_logs[0], 'rb') as probe_log:
+                for line in probe_log:
+                    if line.startswith(b'WS26_QFRONT '):
+                        if summary_seen:
+                            raise RuntimeError('Queue-front row follows terminal summary')
+                        rows += 1
+                        row_bytes += len(line)
+                    elif line.startswith(b'WS26_QFRONT_SUMMARY '):
+                        summary_seen = True
+                        summaries.append(line.decode('ascii').strip())
+            if len(summaries) != 1 or rows == 0 or rows > 400000 or row_bytes > 96 * 1024 * 1024:
+                raise RuntimeError('Queue-front diagnostic summary/budget gate failed')
+            receipt = dict(field.split('=', 1) for field in summaries[0].split()[1:])
+            if int(receipt['rows']) != rows or int(receipt['bytes']) != row_bytes:
+                raise RuntimeError('Queue-front diagnostic summary mismatch')
+            expected_flows = verify_ws26_queue_front_fct(
+                os.path.join(base, 'config', 'traffic_trace.txt'), fct[0])
+            completed_flows = expected_flows
+            data['queue_front_rows'] = rows
+            data['queue_front_bytes'] = row_bytes
+            data['input_flows'] = expected_flows
+            data['completed_flows'] = completed_flows
         data['status'] = 'SUCCEEDED'
     except Exception as error:
         data['status'] = 'FAILED'
@@ -714,6 +788,7 @@ def main():
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-queue-front-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-seed97-time-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
@@ -758,7 +833,7 @@ def main():
     elif args.command == 'run':
         if args.factorial_pilot and args.factorial_formal:
             raise RuntimeError('Factorial pilot and formal flags are exclusive')
-        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe or args.ws26_seed97_time_diag):
+        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe or args.ws26_seed97_time_diag or args.ws26_queue_front_diag):
             raise RuntimeError('Factorial formal requires a fixed trace and no diagnostics')
         if args.ws26_time_probe and (not args.ws25_diag or not args.flow_file):
             raise RuntimeError('WS-26 time probe needs fixed trace and WS-25 diagnostics')
@@ -766,6 +841,9 @@ def main():
             raise RuntimeError('Seed 97 time probe needs fixed trace, WS-25 diagnostics, and no old time probe')
         if args.ws26_moe_hop_diag and (not args.ws25_diag or not args.flow_file):
             raise RuntimeError('WS-26 MoE hop diagnostic needs fixed trace and WS-25 diagnostics')
+        if args.ws26_queue_front_diag and (not args.ws26_seed97_time_diag or
+                                           not args.ws26_moe_hop_diag or not args.flow_file):
+            raise RuntimeError('WS-26 queue-front diagnostic needs fixed trace and both seed-97 diagnostics')
         if args.pfc + args.irn != 1 and not (args.factorial_pilot or args.factorial_formal):
             raise RuntimeError('Exactly one of PFC and IRN must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
@@ -823,6 +901,7 @@ def main():
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
                         'ws25_diag': args.ws25_diag,
                         'ws26_moe_hop_diag': args.ws26_moe_hop_diag,
+                        'ws26_queue_front_diag': args.ws26_queue_front_diag,
                         'ws26_time_probe': args.ws26_time_probe,
                         'ws26_seed97_time_diag': args.ws26_seed97_time_diag,
                         'ws18_admission': args.ws18_admission,

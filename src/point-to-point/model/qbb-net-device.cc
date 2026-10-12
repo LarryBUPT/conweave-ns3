@@ -56,6 +56,7 @@
 #include "ns3/simulator.h"
 #include "ns3/udp-header.h"
 #include "ns3/uinteger.h"
+#include "ws26-queue-front-probe.h"
 
 #define MAP_KEY_EXISTS(map, key) (((map).find(key) != (map).end()))
 
@@ -440,7 +441,7 @@ bool QbbNetDevice::SwitchSend(uint32_t qIndex, Ptr<Packet> packet, CustomHeader 
     if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || (Settings::lb_mode >= 24 && Settings::lb_mode <= 26)) {
         accepted = m_queue->Enqueue(packet, qIndex);
         if (accepted)
-            m_node->GetObject<SwitchNode>()->SwitchNotifyEnqueue(m_ifIndex, packet);
+            m_node->GetObject<SwitchNode>()->SwitchNotifyEnqueue(m_ifIndex, qIndex, packet);
         else {
             m_node->GetObject<SwitchNode>()->SwitchNotifyQueueDrop(m_ifIndex, qIndex, packet, false);
             m_traceDrop(packet, qIndex);
@@ -450,6 +451,9 @@ bool QbbNetDevice::SwitchSend(uint32_t qIndex, Ptr<Packet> packet, CustomHeader 
     } else {
         m_traceEnqueue(packet, qIndex);
         accepted = m_queue->Enqueue(packet, qIndex);
+        if (accepted && Ws26QueueFrontProbeEnabled())
+            m_node->GetObject<SwitchNode>()->RecordWs26QueueFront(
+                'E', m_ifIndex, qIndex, packet);
         if (Settings::lb_mode == 20)
             m_node->GetObject<SwitchNode>()->RecordWs21PortEvent(
                 m_ifIndex, accepted ? 'E' : 'R');
@@ -508,6 +512,10 @@ bool QbbNetDevice::TransmitStart(Ptr<Packet> p) {
     m_phyTxBeginTrace(m_currentPkt);
     Time txTime = Seconds(m_bps.CalculateTxTime(p->GetSize()));
     Time txCompleteTime = txTime + m_tInterframeGap;
+    if (Ws26QueueFrontProbeEnabled() && m_node->GetNodeType() > 0)
+        m_node->GetObject<SwitchNode>()->RecordWs26QueueFront(
+            'T', m_ifIndex, m_queue->GetLastQueue(), p,
+            uint64_t((Simulator::Now() + txCompleteTime).GetNanoSeconds()));
     NS_LOG_LOGIC("Schedule TransmitCompleteEvent in " << txCompleteTime.GetSeconds() << "sec");
     Simulator::Schedule(txCompleteTime, &QbbNetDevice::TransmitComplete, this);
 
@@ -559,6 +567,9 @@ void QbbNetDevice::TakeDown() {
         while (1) {
             Ptr<Packet> p = m_queue->DequeueRR(m_paused);
             if (p == 0) break;
+            if (Ws26QueueFrontProbeEnabled())
+                m_node->GetObject<SwitchNode>()->RecordWs26QueueFront(
+                    'X', m_ifIndex, m_queue->GetLastQueue(), p);
             if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || (Settings::lb_mode >= 24 && Settings::lb_mode <= 26))
                 m_node->GetObject<SwitchNode>()->SwitchNotifyQueueDrop(m_ifIndex, m_queue->GetLastQueue(), p, true);
             if (Settings::lb_mode == 20)

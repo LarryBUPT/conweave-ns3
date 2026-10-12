@@ -20,6 +20,8 @@
 #include "ws21-heartbeat-header.h"
 #include "ws26-time-probe.h"
 #include "ws26-seed97-probe.h"
+#include "ws26-queue-front-probe.h"
+#include "ns3/abort.h"
 #include <iostream>
 #include <cstdlib>
 #include <algorithm>
@@ -164,6 +166,30 @@ static std::map<std::tuple<uint32_t, uint32_t, uint32_t, uint32_t, uint32_t, uin
                 Ws13FlowHop> ws13_hops;
 static uint64_t ws26_s97_switch_rows = 0, ws26_s97_switch_bytes = 0;
 static uint64_t ws26_s97_switch_overflow = 0;
+static uint64_t ws26_queue_front_rows = 0, ws26_queue_front_bytes = 0;
+static const uint64_t WS26_QUEUE_FRONT_MAX_ROWS = 400000;
+static const uint64_t WS26_QUEUE_FRONT_MAX_BYTES = 96ULL * 1024 * 1024;
+static uint64_t Ws26QueueFrontQpHash(uint32_t sip, uint32_t dip,
+                                      uint32_t sport, uint32_t dport) {
+    uint64_t hash = 14695981039346656037ULL;
+    const uint32_t words[4] = {sip, dip, sport, dport};
+    for (uint32_t word : words) {
+        for (unsigned shift = 0; shift < 32; shift += 8) {
+            hash ^= (word >> shift) & 0xffU;
+            hash *= 1099511628211ULL;
+        }
+    }
+    return hash;
+}
+static void Ws26QueueFrontEmit(const std::string &row) {
+    const uint64_t bytes = row.size() + 1;
+    NS_ABORT_MSG_IF(ws26_queue_front_rows >= WS26_QUEUE_FRONT_MAX_ROWS ||
+                    ws26_queue_front_bytes + bytes > WS26_QUEUE_FRONT_MAX_BYTES,
+                    "WS-26 queue-front diagnostic log budget exceeded");
+    std::cout << row << '\n';
+    ++ws26_queue_front_rows;
+    ws26_queue_front_bytes += bytes;
+}
 static void Ws26Seed97SwitchEmit(const std::string &row) {
     const uint64_t size = row.size() + 1;
     if (ws26_s97_switch_rows >= 500000 || ws26_s97_switch_bytes + size > 128ULL * 1024 * 1024) {
@@ -932,6 +958,9 @@ void SwitchNode::PrintWorkloadTagCounts() {
         std::cout << "WS26_S97_SWITCH_SUMMARY rows=" << ws26_s97_switch_rows
                   << " bytes=" << ws26_s97_switch_bytes
                   << " overflow=" << ws26_s97_switch_overflow << std::endl;
+    if (Ws26QueueFrontProbeEnabled())
+        std::cout << "WS26_QFRONT_SUMMARY rows=" << ws26_queue_front_rows
+                  << " bytes=" << ws26_queue_front_bytes << std::endl;
     if (Ws26TimeProbeEnabled()) {
         for (const auto &entry : ws26_mark_buckets) {
             const auto &key = entry.first;
@@ -2044,11 +2073,49 @@ void SwitchNode::CheckGuardQueue(uint32_t ifIndex) {
     }
 }
 
-void SwitchNode::SwitchNotifyEnqueue(uint32_t ifIndex, Ptr<const Packet> p) {
+void SwitchNode::SwitchNotifyEnqueue(uint32_t ifIndex, uint32_t qIndex,
+                                     Ptr<const Packet> p) {
     GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
     s.enqueued += p->GetSize();
     s.current += p->GetSize();
     CheckGuardQueue(ifIndex);
+    RecordWs26QueueFront('E', ifIndex, qIndex, p);
+}
+
+void SwitchNode::RecordWs26QueueFront(char event, uint32_t ifIndex, uint32_t qIndex,
+                                      Ptr<const Packet> p, uint64_t serviceDoneNs) {
+    if (!Ws26QueueFrontProbeEnabled()) return;
+    const uint64_t nowNs = uint64_t(Simulator::Now().GetNanoSeconds());
+    if (!Ws26QueueFrontWindow(m_id, ifIndex, nowNs)) return;
+    Ptr<QbbNetDevice> device = DynamicCast<QbbNetDevice>(m_devices[ifIndex]);
+    NS_ABORT_MSG_UNLESS(device && device->GetQueue(),
+                        "WS-26 queue-front egress queue missing");
+    CustomHeader ch(CustomHeader::L2_Header | CustomHeader::L3_Header |
+                    CustomHeader::L4_Header);
+    ch.getInt = 1;
+    const bool parsed = p->PeekHeader(ch);
+    WorkloadTag label;
+    const bool data = parsed && ch.l3Prot == 0x11 && p->PeekPacketTag(label);
+    const auto destination = data ? Settings::hostIp2SwitchId.find(ch.dip) :
+                                    Settings::hostIp2SwitchId.end();
+    const uint32_t tag = data ? label.GetValue() : 0;
+    const uint32_t destinationTor = destination == Settings::hostIp2SwitchId.end() ?
+                                    0 : destination->second;
+    const uint64_t qpHash = data ? Ws26QueueFrontQpHash(
+        ch.sip, ch.dip, ch.udp.sport, ch.udp.dport) : 0;
+    std::ostringstream row;
+    row << "WS26_QFRONT event=" << event
+        << " time_ns=" << nowNs << " switch=" << m_id
+        << " port=" << ifIndex << " qindex=" << qIndex
+        << " uid=" << p->GetUid() << " packet_bytes=" << p->GetSize()
+        << " queue_bytes_after=" << device->GetQueue()->GetNBytesTotal()
+        << " subqueue_bytes_after=" << device->GetQueue()->GetNBytes(qIndex)
+        << " tag=" << tag << " dst_tor=" << destinationTor
+        << " qp_hash=" << qpHash
+        << " seq=" << (data ? ch.udp.seq : 0)
+        << " l3=" << (parsed ? uint32_t(ch.l3Prot) : 0)
+        << " service_done_ns=" << serviceDoneNs;
+    Ws26QueueFrontEmit(row.str());
 }
 
 void SwitchNode::SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p) {
@@ -2076,6 +2143,7 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 }
 
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
+    RecordWs26QueueFront('D', ifIndex, qIndex, p);
     bool ws26_target = false;
     uint32_t ws26_src = 0, ws26_dst = 0, ws26_sport = 0, ws26_dport = 0;
     bool ws26_s97_target = false, ws26_s97_ecn = false;

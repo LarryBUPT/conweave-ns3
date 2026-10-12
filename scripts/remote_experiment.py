@@ -343,6 +343,7 @@ def main():
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-queue-front-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-seed97-time-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
@@ -418,7 +419,7 @@ def main():
     elif args.command == 'run':
         if args.factorial_pilot and args.factorial_formal:
             parser.error('--factorial-pilot and --factorial-formal are exclusive')
-        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe or args.ws26_seed97_time_diag):
+        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe or args.ws26_seed97_time_diag or args.ws26_queue_front_diag):
             parser.error('--factorial-formal requires a fixed trace and no diagnostic flags')
         if args.ws26_time_probe and (not args.ws25_diag or not args.flow_file):
             parser.error('--ws26-time-probe requires a fixed trace and --ws25-diag 1')
@@ -426,6 +427,9 @@ def main():
             parser.error('--ws26-seed97-time-diag requires a fixed trace, --ws25-diag 1, and no old time probe')
         if args.ws26_moe_hop_diag and (not args.ws25_diag or not args.flow_file):
             parser.error('--ws26-moe-hop-diag requires a fixed trace and --ws25-diag 1')
+        if args.ws26_queue_front_diag and (not args.ws26_seed97_time_diag or
+                                           not args.ws26_moe_hop_diag or not args.flow_file):
+            parser.error('--ws26-queue-front-diag requires fixed trace and both seed-97 diagnostics')
         if args.pfc + args.irn != 1 and not (args.factorial_pilot or args.factorial_formal):
             parser.error('Exactly one of --pfc and --irn must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
@@ -500,6 +504,8 @@ def main():
             command.extend(['--ws25-diag', '1'])
         if args.ws26_moe_hop_diag:
             command.extend(['--ws26-moe-hop-diag', '1'])
+        if args.ws26_queue_front_diag:
+            command.extend(['--ws26-queue-front-diag', '1'])
         if args.ws26_time_probe:
             command.extend(['--ws26-time-probe', '1'])
         if args.ws26_seed97_time_diag:
