@@ -25,7 +25,7 @@ def configure(cap):
     engine.TOPO_SHA = TOPO_SHA
     engine.MAX_CONCURRENT = cap
     engine.RECEIPTS = ROOT / "results/ws27-resource-pilot-receipts.jsonl"
-    engine.pilot.POLL_SECONDS = 1800
+    engine.pilot.POLL_SECONDS = 120
 
 
 def frozen_plan():
