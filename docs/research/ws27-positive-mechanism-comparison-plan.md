@@ -42,6 +42,12 @@ WS-25 的 576 格正式结果仍按原冻结规则判为双侧 NO-GO；WS-26 保
 
 阶梯已完成并据此冻结并发：4、8、12 三阶段吞吐为 45.28、79.78、109.92 格/小时，峰值负载 12.12，最低可用内存 69.8 GiB，四臂 FCT 指纹跨阶段完全一致。筛选与确认阶段都使用并发 12，逐项数据与降载条件见[资源阶梯报告](ws27-resource-ladder-report.md)。
 
+## 运行与恢复
+
+筛选阶段 32 格已完成，结果见 [筛选报告](ws27-screen-report.md)；确认阶段 384 格按 `docs/research/evidence/ws27-confirm-plan.json` 冻结的计划运行，进度写入 `results/ws27-confirm-summary.json` 与 `results/ws27-confirm-receipts.jsonl`。
+
+确认阶段由 `scripts/supervise_ws27_confirm.py` 监督：控制器在偶发 SSH 或主机错误后退出时，监督器按固定间隔重启它。控制器本身可重入，重启后复用已编译源码、跳过已验证格，并拒绝对既有实验 ID 写入第二份原始结果。恢复命令为 `python scripts/run_ws27_matrix.py confirm run`，核对命令为 `python scripts/run_ws27_matrix.py confirm verify`。2026 年 10 月 13 日 22:27 曾出现一次 `Connection timed out during banner exchange` 导致控制器退出，重启后从已完成前缀继续，未重跑任何已完成格。
+
 剩余工程正确性预留 7 格，固定源码为 `592211afe90dcc056051941a924480c1b4a876a2`，计划见 `docs/research/evidence/ws27-correctness-plan.json`。两种新模式分别运行纯 MoE、纯背景输入，并在已完成的 8 流混合输入上打开诊断。纯背景另运行 ECMP，以 FCT 哈希验证回退；诊断格与各自已完成的关闭诊断格逐字节比较 FCT。已有四臂混合预检覆盖跨 ToR 路径。全部格须核对输入哈希、全流完成、缓存与队列计数和资源收据。这些格也不计入性能估计。
 
 ## 参考借鉴边界
