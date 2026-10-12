@@ -73,6 +73,8 @@ def configure(stage):
         for seed in seeds:
             for background in levels:
                 item = manifest["seeds"][str(seed)]["levels"][str(background)]
+                if item["flows"] != 16384 + background:
+                    raise RuntimeError("WS-27 demand flow count changed: " + item["file"])
                 if engine.sha(ROOT / "config" / item["file"]) != item["sha256"]:
                     raise RuntimeError("WS-27 trace hash changed: " + item["file"])
                 block = []
