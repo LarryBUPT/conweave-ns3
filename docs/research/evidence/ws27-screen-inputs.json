@@ -1,0 +1,305 @@
+{
+  "confirmation_seeds": [
+    20262721,
+    20262722,
+    20262723,
+    20262724,
+    20262725,
+    20262726,
+    20262727,
+    20262728,
+    20262729,
+    20262730,
+    20262731,
+    20262732,
+    20262733,
+    20262734,
+    20262735,
+    20262736,
+    20262737,
+    20262738,
+    20262739,
+    20262740,
+    20262741,
+    20262742,
+    20262743,
+    20262744
+  ],
+  "generator": "scripts/make_ws25_demand.py",
+  "generator_sha256": "70304feb55853e2b5328ed8739a525550c80801e395d2ed4f30e7c8564a298bf",
+  "kind": "independent synthetic demand for WS-27 paired comparison",
+  "levels": [
+    0,
+    64,
+    128,
+    192
+  ],
+  "screening_seeds": [
+    20262701,
+    20262702,
+    20262703,
+    20262704,
+    20262705,
+    20262706,
+    20262707,
+    20262708
+  ],
+  "seeds": {
+    "20262701": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262701_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "5171e46d0abc450f600c6f82586635253deb21471161b98490809b5e53ab278e"
+        },
+        "128": {
+          "file": "ws25_seed20262701_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "a068cf5a7a489296eeaa2b4aa65c77b6234de9d5077cf728d352c5d07cf61a78"
+        },
+        "192": {
+          "file": "ws25_seed20262701_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "bd91273ec1819d55c1506ec8ca94e4e5390f5f1f8b071065bf330c6137872589"
+        },
+        "64": {
+          "file": "ws25_seed20262701_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "20ad1bd26c666a1404c71a26ec0bd3d012daa8dfd4ca8e1ffb08b1b7c503b71e"
+        }
+      },
+      "seed": 20262701
+    },
+    "20262702": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262702_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "fc1146d9c40bbfd28a04a65e709b0a3972a71ae3dd73e6fb0040604a45303e91"
+        },
+        "128": {
+          "file": "ws25_seed20262702_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "ade8e145037600a791c136a75465073c639962046b56470b52d09c569f740fbc"
+        },
+        "192": {
+          "file": "ws25_seed20262702_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "5669354759537c83c5258b3220876d579361cfa93da67e391e658d0881993832"
+        },
+        "64": {
+          "file": "ws25_seed20262702_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "e949c9166aeb1a4c52e7d586d5b579d32f9b2defcc86117729811a676d4d2438"
+        }
+      },
+      "seed": 20262702
+    },
+    "20262703": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262703_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "c1c219f8b1d2d5e23cdcd260a511edbd042187e2f7519968cf4b0598e6bedbfa"
+        },
+        "128": {
+          "file": "ws25_seed20262703_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "5c6e29c657015046970d69abec0b4382b26e4c97c98893889e5fe1517fb7a682"
+        },
+        "192": {
+          "file": "ws25_seed20262703_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "86e8810d890b820dd0ffde3addfefda8632183aabd82702b9cb049200e97c478"
+        },
+        "64": {
+          "file": "ws25_seed20262703_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "ed7825264dbecc2393bc98034978d2f4a724911915c49fed41a0d82a18ccead0"
+        }
+      },
+      "seed": 20262703
+    },
+    "20262704": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262704_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "8aa454863895a81dab5e1c2093eff2051dea0116fff5968a6ea8d7ccf7cc6482"
+        },
+        "128": {
+          "file": "ws25_seed20262704_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "9d00562d3aba7e14750ea3b266a09af6eab5d09dbab2ffb6eced37d834596243"
+        },
+        "192": {
+          "file": "ws25_seed20262704_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "abe4e86ee6a72dd1e24163509f671e6cf710bd7f248d65bf9571d03dd1eaa74a"
+        },
+        "64": {
+          "file": "ws25_seed20262704_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "366d27cf8921f9beeffdb77306d1c96a2b23a69a4e98f0478af6f0818f74f8f3"
+        }
+      },
+      "seed": 20262704
+    },
+    "20262705": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262705_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "99b2d5216a193daf6dae49d5bf77c251e085adff574eed39b45a0a73f8b8ff7b"
+        },
+        "128": {
+          "file": "ws25_seed20262705_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "6aa9faff48b0fc3a7bcdc5bb2f4cc424ac21386615efdfe4f7bf9e2a72953576"
+        },
+        "192": {
+          "file": "ws25_seed20262705_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "051120e67a81e80b617b2bf3d8eb6a97e08adb19dea7562b69706c98a9143dc4"
+        },
+        "64": {
+          "file": "ws25_seed20262705_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "505d8acd35c88a900c28ff2828a52686eade6c36209baa6a7a9e1d7389547c85"
+        }
+      },
+      "seed": 20262705
+    },
+    "20262706": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262706_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "579f8cca730f56a95c5afd87d317b0906bf722ceefe805bf7ac6469ea0fb47ae"
+        },
+        "128": {
+          "file": "ws25_seed20262706_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "22a3b6f4ed1b5623015597e9b7a18cb3d8e50e42871801ca0c99ac579d4d2b14"
+        },
+        "192": {
+          "file": "ws25_seed20262706_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "4865a97baa57d107ae0287782aa7786085798d17e86e8ac37f46cc4878a91bea"
+        },
+        "64": {
+          "file": "ws25_seed20262706_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "6f6fdb444dd5accad985b8575d43dd04e477208de4ab644c824612dff409422a"
+        }
+      },
+      "seed": 20262706
+    },
+    "20262707": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262707_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "d9a5186fc9299a8939c2ffd4e965677d7e7fa3bb83ae90f8d5cc65396ed877c4"
+        },
+        "128": {
+          "file": "ws25_seed20262707_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "bac311e334d4c63b3e9acaa76b56fc2bfad00c68f6972fa277539499c60ee042"
+        },
+        "192": {
+          "file": "ws25_seed20262707_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "0081feb8615169788268519fa534da601175ab007925476797bc4a7c2d9d4f8a"
+        },
+        "64": {
+          "file": "ws25_seed20262707_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "999319d69bff34b6486504e9c45673fea67d03fc88505891a7942e065d4db828"
+        }
+      },
+      "seed": 20262707
+    },
+    "20262708": {
+      "background_hosts": 64,
+      "expert_hosts": 256,
+      "generator": "scripts/make_ws25_demand.py",
+      "levels": {
+        "0": {
+          "file": "ws25_seed20262708_b0.txt",
+          "flows": 16384,
+          "offered_bytes": 134217728,
+          "sha256": "166009d8b076050677743c615adab901cbd8351423b0f948f129bd601c4e7763"
+        },
+        "128": {
+          "file": "ws25_seed20262708_b128.txt",
+          "flows": 16512,
+          "offered_bytes": 1207959552,
+          "sha256": "492455eb2a140b1d359bed0fff02290bbd917e0ba690a7e25921e151208f5a19"
+        },
+        "192": {
+          "file": "ws25_seed20262708_b192.txt",
+          "flows": 16576,
+          "offered_bytes": 1744830464,
+          "sha256": "4208a3d2119cda56f37c6f150e21248051f99fd7d22c1d690a6681f6eafd01dd"
+        },
+        "64": {
+          "file": "ws25_seed20262708_b64.txt",
+          "flows": 16448,
+          "offered_bytes": 671088640,
+          "sha256": "b0c2935d7724438a9ccd02116adf872bb25003cf3c171456854721d9fe918583"
+        }
+      },
+      "seed": 20262708
+    }
+  }
+}

@@ -8,6 +8,8 @@ from make_ws25_demand import make
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "docs/research/evidence/ws27-demand-manifest.json"
+SCREEN_MANIFEST = ROOT / "docs/research/evidence/ws27-screen-inputs.json"
+CONFIRM_MANIFEST = ROOT / "docs/research/evidence/ws27-confirm-inputs.json"
 SCREEN = tuple(range(20262701, 20262709))
 CONFIRM = tuple(range(20262721, 20262745))
 
@@ -33,10 +35,16 @@ def main():
     }
     for seed in SCREEN + CONFIRM:
         output["seeds"][str(seed)] = make(seed, ROOT / "config")
-    content = json.dumps(output, indent=2, sort_keys=True) + "\n"
-    if MANIFEST.exists() and MANIFEST.read_text(encoding="utf-8") != content:
-        raise RuntimeError("Existing WS-27 demand manifest differs")
-    MANIFEST.write_text(content, encoding="utf-8")
+    for path, data in (
+            (MANIFEST, output),
+            (SCREEN_MANIFEST, {**output, "seeds": {str(seed): output["seeds"][str(seed)]
+                                                 for seed in SCREEN}}),
+            (CONFIRM_MANIFEST, {**output, "seeds": {str(seed): output["seeds"][str(seed)]
+                                                  for seed in CONFIRM}})):
+        encoded = json.dumps(data, indent=2, sort_keys=True) + "\n"
+        if path.exists() and path.read_text(encoding="utf-8") != encoded:
+            raise RuntimeError("Existing WS-27 demand manifest differs: " + str(path))
+        path.write_text(encoded, encoding="utf-8")
     print(json.dumps({"seeds": len(output["seeds"]), "traces": len(output["seeds"]) * 4,
                       "manifest_sha256": sha(MANIFEST)}, sort_keys=True))
 
