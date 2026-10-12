@@ -1,0 +1,6102 @@
+{
+  "background_levels": [
+    0,
+    64,
+    128,
+    192
+  ],
+  "buffer_mib": 9,
+  "bw_gbps": 400,
+  "cells": [
+    {
+      "background": 0,
+      "batch": 1,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 1,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b0.txt",
+      "trace_sha256": "e641cb5da73a364d792068a5f8022a1fa121dd054d055265082876f9c91dfb79"
+    },
+    {
+      "background": 0,
+      "batch": 1,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 2,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b0.txt",
+      "trace_sha256": "e641cb5da73a364d792068a5f8022a1fa121dd054d055265082876f9c91dfb79"
+    },
+    {
+      "background": 0,
+      "batch": 1,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 3,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b0.txt",
+      "trace_sha256": "e641cb5da73a364d792068a5f8022a1fa121dd054d055265082876f9c91dfb79"
+    },
+    {
+      "background": 0,
+      "batch": 1,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 4,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b0.txt",
+      "trace_sha256": "e641cb5da73a364d792068a5f8022a1fa121dd054d055265082876f9c91dfb79"
+    },
+    {
+      "background": 0,
+      "batch": 1,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 5,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b0.txt",
+      "trace_sha256": "2c1d7450923132b3a998396dddfefbfd4d4e6474f2d78ef8886d4e01a4cb0729"
+    },
+    {
+      "background": 0,
+      "batch": 1,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 6,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b0.txt",
+      "trace_sha256": "2c1d7450923132b3a998396dddfefbfd4d4e6474f2d78ef8886d4e01a4cb0729"
+    },
+    {
+      "background": 0,
+      "batch": 1,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 7,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b0.txt",
+      "trace_sha256": "2c1d7450923132b3a998396dddfefbfd4d4e6474f2d78ef8886d4e01a4cb0729"
+    },
+    {
+      "background": 0,
+      "batch": 1,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 8,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b0.txt",
+      "trace_sha256": "2c1d7450923132b3a998396dddfefbfd4d4e6474f2d78ef8886d4e01a4cb0729"
+    },
+    {
+      "background": 64,
+      "batch": 1,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 9,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b64.txt",
+      "trace_sha256": "746efd47befbb5426c8ee07a9fcee2c9e3ca1c6303c0ee100269dd8112e7a7fa"
+    },
+    {
+      "background": 64,
+      "batch": 1,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 10,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b64.txt",
+      "trace_sha256": "746efd47befbb5426c8ee07a9fcee2c9e3ca1c6303c0ee100269dd8112e7a7fa"
+    },
+    {
+      "background": 64,
+      "batch": 1,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 11,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b64.txt",
+      "trace_sha256": "746efd47befbb5426c8ee07a9fcee2c9e3ca1c6303c0ee100269dd8112e7a7fa"
+    },
+    {
+      "background": 64,
+      "batch": 1,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 12,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b64.txt",
+      "trace_sha256": "746efd47befbb5426c8ee07a9fcee2c9e3ca1c6303c0ee100269dd8112e7a7fa"
+    },
+    {
+      "background": 0,
+      "batch": 2,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 13,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b0.txt",
+      "trace_sha256": "d4dd9c6721d4192952a659e2f81471a3ad992fd39b25262f7a0be3a3d4f0d954"
+    },
+    {
+      "background": 0,
+      "batch": 2,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 14,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b0.txt",
+      "trace_sha256": "d4dd9c6721d4192952a659e2f81471a3ad992fd39b25262f7a0be3a3d4f0d954"
+    },
+    {
+      "background": 0,
+      "batch": 2,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 15,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b0.txt",
+      "trace_sha256": "d4dd9c6721d4192952a659e2f81471a3ad992fd39b25262f7a0be3a3d4f0d954"
+    },
+    {
+      "background": 0,
+      "batch": 2,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 16,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b0.txt",
+      "trace_sha256": "d4dd9c6721d4192952a659e2f81471a3ad992fd39b25262f7a0be3a3d4f0d954"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 17,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b192.txt",
+      "trace_sha256": "1f2b98b2354f746c4d9a8e0b080edfe9c80bca5315ac676eaee14afd6859e2b6"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 18,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b192.txt",
+      "trace_sha256": "1f2b98b2354f746c4d9a8e0b080edfe9c80bca5315ac676eaee14afd6859e2b6"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 19,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b192.txt",
+      "trace_sha256": "1f2b98b2354f746c4d9a8e0b080edfe9c80bca5315ac676eaee14afd6859e2b6"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 20,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b192.txt",
+      "trace_sha256": "1f2b98b2354f746c4d9a8e0b080edfe9c80bca5315ac676eaee14afd6859e2b6"
+    },
+    {
+      "background": 64,
+      "batch": 2,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 21,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b64.txt",
+      "trace_sha256": "da75e337837adb5b415e7350f9f1865f1b1a6ebf48b74e35517183775ac2b258"
+    },
+    {
+      "background": 64,
+      "batch": 2,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 22,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b64.txt",
+      "trace_sha256": "da75e337837adb5b415e7350f9f1865f1b1a6ebf48b74e35517183775ac2b258"
+    },
+    {
+      "background": 64,
+      "batch": 2,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 23,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b64.txt",
+      "trace_sha256": "da75e337837adb5b415e7350f9f1865f1b1a6ebf48b74e35517183775ac2b258"
+    },
+    {
+      "background": 64,
+      "batch": 2,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 24,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b64.txt",
+      "trace_sha256": "da75e337837adb5b415e7350f9f1865f1b1a6ebf48b74e35517183775ac2b258"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 25,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b192.txt",
+      "trace_sha256": "d716a0da979f0d68f4ddfc60d1f9d22d31b8cc89382b1f31208d595ff1e5f251"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 26,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b192.txt",
+      "trace_sha256": "d716a0da979f0d68f4ddfc60d1f9d22d31b8cc89382b1f31208d595ff1e5f251"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 27,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b192.txt",
+      "trace_sha256": "d716a0da979f0d68f4ddfc60d1f9d22d31b8cc89382b1f31208d595ff1e5f251"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 28,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b192.txt",
+      "trace_sha256": "d716a0da979f0d68f4ddfc60d1f9d22d31b8cc89382b1f31208d595ff1e5f251"
+    },
+    {
+      "background": 128,
+      "batch": 3,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 29,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b128.txt",
+      "trace_sha256": "bc3e5304ed015728387faf8b87c4b999672ef65c34c7c3e48bd4c4b727f31d30"
+    },
+    {
+      "background": 128,
+      "batch": 3,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 30,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b128.txt",
+      "trace_sha256": "bc3e5304ed015728387faf8b87c4b999672ef65c34c7c3e48bd4c4b727f31d30"
+    },
+    {
+      "background": 128,
+      "batch": 3,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 31,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b128.txt",
+      "trace_sha256": "bc3e5304ed015728387faf8b87c4b999672ef65c34c7c3e48bd4c4b727f31d30"
+    },
+    {
+      "background": 128,
+      "batch": 3,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 32,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b128.txt",
+      "trace_sha256": "bc3e5304ed015728387faf8b87c4b999672ef65c34c7c3e48bd4c4b727f31d30"
+    },
+    {
+      "background": 64,
+      "batch": 3,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 33,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b64.txt",
+      "trace_sha256": "ec7b3ded65bdec863622a89da1b6b7175ebb5ecc7acad3e6315a8641c51ae695"
+    },
+    {
+      "background": 64,
+      "batch": 3,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 34,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b64.txt",
+      "trace_sha256": "ec7b3ded65bdec863622a89da1b6b7175ebb5ecc7acad3e6315a8641c51ae695"
+    },
+    {
+      "background": 64,
+      "batch": 3,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 35,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b64.txt",
+      "trace_sha256": "ec7b3ded65bdec863622a89da1b6b7175ebb5ecc7acad3e6315a8641c51ae695"
+    },
+    {
+      "background": 64,
+      "batch": 3,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 36,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b64.txt",
+      "trace_sha256": "ec7b3ded65bdec863622a89da1b6b7175ebb5ecc7acad3e6315a8641c51ae695"
+    },
+    {
+      "background": 0,
+      "batch": 4,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 37,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b0.txt",
+      "trace_sha256": "52c1cf22775b8256c526d6d187716d4c319011edd3cf6b36cf03b337985d8180"
+    },
+    {
+      "background": 0,
+      "batch": 4,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 38,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b0.txt",
+      "trace_sha256": "52c1cf22775b8256c526d6d187716d4c319011edd3cf6b36cf03b337985d8180"
+    },
+    {
+      "background": 0,
+      "batch": 4,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 39,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b0.txt",
+      "trace_sha256": "52c1cf22775b8256c526d6d187716d4c319011edd3cf6b36cf03b337985d8180"
+    },
+    {
+      "background": 0,
+      "batch": 4,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 40,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b0.txt",
+      "trace_sha256": "52c1cf22775b8256c526d6d187716d4c319011edd3cf6b36cf03b337985d8180"
+    },
+    {
+      "background": 128,
+      "batch": 4,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 41,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b128.txt",
+      "trace_sha256": "77be2385d6908d33e6efe9f4a40af4a4143f8d21067403327adc9441964d43e7"
+    },
+    {
+      "background": 128,
+      "batch": 4,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 42,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b128.txt",
+      "trace_sha256": "77be2385d6908d33e6efe9f4a40af4a4143f8d21067403327adc9441964d43e7"
+    },
+    {
+      "background": 128,
+      "batch": 4,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 43,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b128.txt",
+      "trace_sha256": "77be2385d6908d33e6efe9f4a40af4a4143f8d21067403327adc9441964d43e7"
+    },
+    {
+      "background": 128,
+      "batch": 4,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 44,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b128.txt",
+      "trace_sha256": "77be2385d6908d33e6efe9f4a40af4a4143f8d21067403327adc9441964d43e7"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 45,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b192.txt",
+      "trace_sha256": "982703626831d50419fafb3916e0e537414c3b91437d0b600e91f503cd94a446"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 46,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b192.txt",
+      "trace_sha256": "982703626831d50419fafb3916e0e537414c3b91437d0b600e91f503cd94a446"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 47,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b192.txt",
+      "trace_sha256": "982703626831d50419fafb3916e0e537414c3b91437d0b600e91f503cd94a446"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 48,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b192.txt",
+      "trace_sha256": "982703626831d50419fafb3916e0e537414c3b91437d0b600e91f503cd94a446"
+    },
+    {
+      "background": 128,
+      "batch": 5,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 49,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b128.txt",
+      "trace_sha256": "bc42d540ed38e46ed69e2051a098d766bcc8a8d61fa7339efa0a1f40991088d2"
+    },
+    {
+      "background": 128,
+      "batch": 5,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 50,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b128.txt",
+      "trace_sha256": "bc42d540ed38e46ed69e2051a098d766bcc8a8d61fa7339efa0a1f40991088d2"
+    },
+    {
+      "background": 128,
+      "batch": 5,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 51,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b128.txt",
+      "trace_sha256": "bc42d540ed38e46ed69e2051a098d766bcc8a8d61fa7339efa0a1f40991088d2"
+    },
+    {
+      "background": 128,
+      "batch": 5,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 52,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b128.txt",
+      "trace_sha256": "bc42d540ed38e46ed69e2051a098d766bcc8a8d61fa7339efa0a1f40991088d2"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 53,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b192.txt",
+      "trace_sha256": "9ecb58c5307d56c441142a215ee2c50499d3463d1021b64e3a4e03b1f784735c"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 54,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b192.txt",
+      "trace_sha256": "9ecb58c5307d56c441142a215ee2c50499d3463d1021b64e3a4e03b1f784735c"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 55,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b192.txt",
+      "trace_sha256": "9ecb58c5307d56c441142a215ee2c50499d3463d1021b64e3a4e03b1f784735c"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 56,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b192.txt",
+      "trace_sha256": "9ecb58c5307d56c441142a215ee2c50499d3463d1021b64e3a4e03b1f784735c"
+    },
+    {
+      "background": 64,
+      "batch": 5,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 57,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b64.txt",
+      "trace_sha256": "66db3ff8b6cb3604cf9cca02024c7cadf8b48786bdd8196ea27344574931e819"
+    },
+    {
+      "background": 64,
+      "batch": 5,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 58,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b64.txt",
+      "trace_sha256": "66db3ff8b6cb3604cf9cca02024c7cadf8b48786bdd8196ea27344574931e819"
+    },
+    {
+      "background": 64,
+      "batch": 5,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 59,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b64.txt",
+      "trace_sha256": "66db3ff8b6cb3604cf9cca02024c7cadf8b48786bdd8196ea27344574931e819"
+    },
+    {
+      "background": 64,
+      "batch": 5,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 60,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b64.txt",
+      "trace_sha256": "66db3ff8b6cb3604cf9cca02024c7cadf8b48786bdd8196ea27344574931e819"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 61,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b192.txt",
+      "trace_sha256": "5c6e42d53da953aa253a41929acd0aa4d0727e8d11c1c8a1be6c003dd5b52a76"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 62,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b192.txt",
+      "trace_sha256": "5c6e42d53da953aa253a41929acd0aa4d0727e8d11c1c8a1be6c003dd5b52a76"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 63,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b192.txt",
+      "trace_sha256": "5c6e42d53da953aa253a41929acd0aa4d0727e8d11c1c8a1be6c003dd5b52a76"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 64,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b192.txt",
+      "trace_sha256": "5c6e42d53da953aa253a41929acd0aa4d0727e8d11c1c8a1be6c003dd5b52a76"
+    },
+    {
+      "background": 0,
+      "batch": 6,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 65,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b0.txt",
+      "trace_sha256": "959dd9fc0f5287c7bfa9e4cd99f8d3d651e590eb5c63d427a389164db608ca05"
+    },
+    {
+      "background": 0,
+      "batch": 6,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 66,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b0.txt",
+      "trace_sha256": "959dd9fc0f5287c7bfa9e4cd99f8d3d651e590eb5c63d427a389164db608ca05"
+    },
+    {
+      "background": 0,
+      "batch": 6,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 67,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b0.txt",
+      "trace_sha256": "959dd9fc0f5287c7bfa9e4cd99f8d3d651e590eb5c63d427a389164db608ca05"
+    },
+    {
+      "background": 0,
+      "batch": 6,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 68,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b0.txt",
+      "trace_sha256": "959dd9fc0f5287c7bfa9e4cd99f8d3d651e590eb5c63d427a389164db608ca05"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 69,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b192.txt",
+      "trace_sha256": "90eb4e93a95c7e6dd9ce0d7e7f1e8486d5be0a9bc3382de7bb9d71721a1ed7b6"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 70,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b192.txt",
+      "trace_sha256": "90eb4e93a95c7e6dd9ce0d7e7f1e8486d5be0a9bc3382de7bb9d71721a1ed7b6"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 71,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b192.txt",
+      "trace_sha256": "90eb4e93a95c7e6dd9ce0d7e7f1e8486d5be0a9bc3382de7bb9d71721a1ed7b6"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 72,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b192.txt",
+      "trace_sha256": "90eb4e93a95c7e6dd9ce0d7e7f1e8486d5be0a9bc3382de7bb9d71721a1ed7b6"
+    },
+    {
+      "background": 64,
+      "batch": 7,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 73,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b64.txt",
+      "trace_sha256": "61bf0744923e60cf943fb5b8935fecf5c8c2bcf6ef2dea236f22a7679890b70f"
+    },
+    {
+      "background": 64,
+      "batch": 7,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 74,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b64.txt",
+      "trace_sha256": "61bf0744923e60cf943fb5b8935fecf5c8c2bcf6ef2dea236f22a7679890b70f"
+    },
+    {
+      "background": 64,
+      "batch": 7,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 75,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b64.txt",
+      "trace_sha256": "61bf0744923e60cf943fb5b8935fecf5c8c2bcf6ef2dea236f22a7679890b70f"
+    },
+    {
+      "background": 64,
+      "batch": 7,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 76,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b64.txt",
+      "trace_sha256": "61bf0744923e60cf943fb5b8935fecf5c8c2bcf6ef2dea236f22a7679890b70f"
+    },
+    {
+      "background": 0,
+      "batch": 7,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 77,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b0.txt",
+      "trace_sha256": "d59a5bd593527016cba64944d2ceb6306c17d5aaec2d4ff49cf7e9dbead4d1c4"
+    },
+    {
+      "background": 0,
+      "batch": 7,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 78,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b0.txt",
+      "trace_sha256": "d59a5bd593527016cba64944d2ceb6306c17d5aaec2d4ff49cf7e9dbead4d1c4"
+    },
+    {
+      "background": 0,
+      "batch": 7,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 79,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b0.txt",
+      "trace_sha256": "d59a5bd593527016cba64944d2ceb6306c17d5aaec2d4ff49cf7e9dbead4d1c4"
+    },
+    {
+      "background": 0,
+      "batch": 7,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 80,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b0.txt",
+      "trace_sha256": "d59a5bd593527016cba64944d2ceb6306c17d5aaec2d4ff49cf7e9dbead4d1c4"
+    },
+    {
+      "background": 0,
+      "batch": 7,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 81,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b0.txt",
+      "trace_sha256": "f88c6f86673586eb6ee9eb8bb7ada8973d0fc7f38f6fd20d5ca3fda6d818e8ee"
+    },
+    {
+      "background": 0,
+      "batch": 7,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 82,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b0.txt",
+      "trace_sha256": "f88c6f86673586eb6ee9eb8bb7ada8973d0fc7f38f6fd20d5ca3fda6d818e8ee"
+    },
+    {
+      "background": 0,
+      "batch": 7,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 83,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b0.txt",
+      "trace_sha256": "f88c6f86673586eb6ee9eb8bb7ada8973d0fc7f38f6fd20d5ca3fda6d818e8ee"
+    },
+    {
+      "background": 0,
+      "batch": 7,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 84,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b0.txt",
+      "trace_sha256": "f88c6f86673586eb6ee9eb8bb7ada8973d0fc7f38f6fd20d5ca3fda6d818e8ee"
+    },
+    {
+      "background": 0,
+      "batch": 8,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 85,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b0.txt",
+      "trace_sha256": "ecb080fdf871f60d2ce1f2f8eea03d62a0de7801c9068726c5b4ad3f21880e28"
+    },
+    {
+      "background": 0,
+      "batch": 8,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 86,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b0.txt",
+      "trace_sha256": "ecb080fdf871f60d2ce1f2f8eea03d62a0de7801c9068726c5b4ad3f21880e28"
+    },
+    {
+      "background": 0,
+      "batch": 8,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 87,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b0.txt",
+      "trace_sha256": "ecb080fdf871f60d2ce1f2f8eea03d62a0de7801c9068726c5b4ad3f21880e28"
+    },
+    {
+      "background": 0,
+      "batch": 8,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 88,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b0.txt",
+      "trace_sha256": "ecb080fdf871f60d2ce1f2f8eea03d62a0de7801c9068726c5b4ad3f21880e28"
+    },
+    {
+      "background": 128,
+      "batch": 8,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 89,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b128.txt",
+      "trace_sha256": "6fd5be1840d89c30442866d4259f9b5bf3f83ac4a70183c84f3cbdd4b70c6b03"
+    },
+    {
+      "background": 128,
+      "batch": 8,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 90,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b128.txt",
+      "trace_sha256": "6fd5be1840d89c30442866d4259f9b5bf3f83ac4a70183c84f3cbdd4b70c6b03"
+    },
+    {
+      "background": 128,
+      "batch": 8,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 91,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b128.txt",
+      "trace_sha256": "6fd5be1840d89c30442866d4259f9b5bf3f83ac4a70183c84f3cbdd4b70c6b03"
+    },
+    {
+      "background": 128,
+      "batch": 8,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 92,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b128.txt",
+      "trace_sha256": "6fd5be1840d89c30442866d4259f9b5bf3f83ac4a70183c84f3cbdd4b70c6b03"
+    },
+    {
+      "background": 128,
+      "batch": 8,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 93,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b128.txt",
+      "trace_sha256": "190533bf6bfd247e0aac16ae5ba0c1a294ba17a8e66f916f3459e58769fbe622"
+    },
+    {
+      "background": 128,
+      "batch": 8,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 94,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b128.txt",
+      "trace_sha256": "190533bf6bfd247e0aac16ae5ba0c1a294ba17a8e66f916f3459e58769fbe622"
+    },
+    {
+      "background": 128,
+      "batch": 8,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 95,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b128.txt",
+      "trace_sha256": "190533bf6bfd247e0aac16ae5ba0c1a294ba17a8e66f916f3459e58769fbe622"
+    },
+    {
+      "background": 128,
+      "batch": 8,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 96,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b128.txt",
+      "trace_sha256": "190533bf6bfd247e0aac16ae5ba0c1a294ba17a8e66f916f3459e58769fbe622"
+    },
+    {
+      "background": 128,
+      "batch": 9,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 97,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b128.txt",
+      "trace_sha256": "95e5a5519c80034b4d1b26203a8e78085e2e7b709713125c46814b404631a5ed"
+    },
+    {
+      "background": 128,
+      "batch": 9,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 98,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b128.txt",
+      "trace_sha256": "95e5a5519c80034b4d1b26203a8e78085e2e7b709713125c46814b404631a5ed"
+    },
+    {
+      "background": 128,
+      "batch": 9,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 99,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b128.txt",
+      "trace_sha256": "95e5a5519c80034b4d1b26203a8e78085e2e7b709713125c46814b404631a5ed"
+    },
+    {
+      "background": 128,
+      "batch": 9,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 100,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b128.txt",
+      "trace_sha256": "95e5a5519c80034b4d1b26203a8e78085e2e7b709713125c46814b404631a5ed"
+    },
+    {
+      "background": 128,
+      "batch": 9,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 101,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b128.txt",
+      "trace_sha256": "be1400a5fa4c26b8aa96a60adcf2df38946aee7e300d9c158416b37707698608"
+    },
+    {
+      "background": 128,
+      "batch": 9,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 102,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b128.txt",
+      "trace_sha256": "be1400a5fa4c26b8aa96a60adcf2df38946aee7e300d9c158416b37707698608"
+    },
+    {
+      "background": 128,
+      "batch": 9,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 103,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b128.txt",
+      "trace_sha256": "be1400a5fa4c26b8aa96a60adcf2df38946aee7e300d9c158416b37707698608"
+    },
+    {
+      "background": 128,
+      "batch": 9,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 104,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b128.txt",
+      "trace_sha256": "be1400a5fa4c26b8aa96a60adcf2df38946aee7e300d9c158416b37707698608"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 105,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b192.txt",
+      "trace_sha256": "fd517da586fc905bffa7af5ce5f4d850b01a833255f9361f0fee4328b3ba599e"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 106,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b192.txt",
+      "trace_sha256": "fd517da586fc905bffa7af5ce5f4d850b01a833255f9361f0fee4328b3ba599e"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 107,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b192.txt",
+      "trace_sha256": "fd517da586fc905bffa7af5ce5f4d850b01a833255f9361f0fee4328b3ba599e"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 108,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b192.txt",
+      "trace_sha256": "fd517da586fc905bffa7af5ce5f4d850b01a833255f9361f0fee4328b3ba599e"
+    },
+    {
+      "background": 128,
+      "batch": 10,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 109,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b128.txt",
+      "trace_sha256": "dd7281e5a8565bb011ecaafd58127f8211bbcb3f554096413fed83a6e4059174"
+    },
+    {
+      "background": 128,
+      "batch": 10,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 110,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b128.txt",
+      "trace_sha256": "dd7281e5a8565bb011ecaafd58127f8211bbcb3f554096413fed83a6e4059174"
+    },
+    {
+      "background": 128,
+      "batch": 10,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 111,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b128.txt",
+      "trace_sha256": "dd7281e5a8565bb011ecaafd58127f8211bbcb3f554096413fed83a6e4059174"
+    },
+    {
+      "background": 128,
+      "batch": 10,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 112,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b128.txt",
+      "trace_sha256": "dd7281e5a8565bb011ecaafd58127f8211bbcb3f554096413fed83a6e4059174"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 113,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b192.txt",
+      "trace_sha256": "5d695149fe6ac2e07a6c6e39916934428ab36776f86620611d71bbdd91125462"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 114,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b192.txt",
+      "trace_sha256": "5d695149fe6ac2e07a6c6e39916934428ab36776f86620611d71bbdd91125462"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 115,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b192.txt",
+      "trace_sha256": "5d695149fe6ac2e07a6c6e39916934428ab36776f86620611d71bbdd91125462"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 116,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b192.txt",
+      "trace_sha256": "5d695149fe6ac2e07a6c6e39916934428ab36776f86620611d71bbdd91125462"
+    },
+    {
+      "background": 64,
+      "batch": 10,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 117,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b64.txt",
+      "trace_sha256": "ccb9c21f9db25cf742e039a673dc100fdf2656ad23b9f42e2bef4e7c42f5bb91"
+    },
+    {
+      "background": 64,
+      "batch": 10,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 118,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b64.txt",
+      "trace_sha256": "ccb9c21f9db25cf742e039a673dc100fdf2656ad23b9f42e2bef4e7c42f5bb91"
+    },
+    {
+      "background": 64,
+      "batch": 10,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 119,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b64.txt",
+      "trace_sha256": "ccb9c21f9db25cf742e039a673dc100fdf2656ad23b9f42e2bef4e7c42f5bb91"
+    },
+    {
+      "background": 64,
+      "batch": 10,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 120,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b64.txt",
+      "trace_sha256": "ccb9c21f9db25cf742e039a673dc100fdf2656ad23b9f42e2bef4e7c42f5bb91"
+    },
+    {
+      "background": 128,
+      "batch": 11,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 121,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b128.txt",
+      "trace_sha256": "47637ba852446fac03207b0c27e2654e0f8fdf882fb2486a3d730f740e1308bc"
+    },
+    {
+      "background": 128,
+      "batch": 11,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 122,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b128.txt",
+      "trace_sha256": "47637ba852446fac03207b0c27e2654e0f8fdf882fb2486a3d730f740e1308bc"
+    },
+    {
+      "background": 128,
+      "batch": 11,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 123,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b128.txt",
+      "trace_sha256": "47637ba852446fac03207b0c27e2654e0f8fdf882fb2486a3d730f740e1308bc"
+    },
+    {
+      "background": 128,
+      "batch": 11,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 124,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b128.txt",
+      "trace_sha256": "47637ba852446fac03207b0c27e2654e0f8fdf882fb2486a3d730f740e1308bc"
+    },
+    {
+      "background": 128,
+      "batch": 11,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 125,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b128.txt",
+      "trace_sha256": "117b9255940970fa7631b965d46026644f2405bff9272e49ce20459f88fb4768"
+    },
+    {
+      "background": 128,
+      "batch": 11,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 126,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b128.txt",
+      "trace_sha256": "117b9255940970fa7631b965d46026644f2405bff9272e49ce20459f88fb4768"
+    },
+    {
+      "background": 128,
+      "batch": 11,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 127,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b128.txt",
+      "trace_sha256": "117b9255940970fa7631b965d46026644f2405bff9272e49ce20459f88fb4768"
+    },
+    {
+      "background": 128,
+      "batch": 11,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 128,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b128.txt",
+      "trace_sha256": "117b9255940970fa7631b965d46026644f2405bff9272e49ce20459f88fb4768"
+    },
+    {
+      "background": 192,
+      "batch": 11,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 129,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b192.txt",
+      "trace_sha256": "75f06f0579467daf0c2f94c4778d312978554d8f1138f363a0d02c25b35f1ed9"
+    },
+    {
+      "background": 192,
+      "batch": 11,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 130,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b192.txt",
+      "trace_sha256": "75f06f0579467daf0c2f94c4778d312978554d8f1138f363a0d02c25b35f1ed9"
+    },
+    {
+      "background": 192,
+      "batch": 11,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 131,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b192.txt",
+      "trace_sha256": "75f06f0579467daf0c2f94c4778d312978554d8f1138f363a0d02c25b35f1ed9"
+    },
+    {
+      "background": 192,
+      "batch": 11,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 132,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b192.txt",
+      "trace_sha256": "75f06f0579467daf0c2f94c4778d312978554d8f1138f363a0d02c25b35f1ed9"
+    },
+    {
+      "background": 128,
+      "batch": 12,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 133,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b128.txt",
+      "trace_sha256": "87c6f73529b8e7c872e4aa2b576e6f7fa06a3dd8f4eafe50badb22d3288b62a7"
+    },
+    {
+      "background": 128,
+      "batch": 12,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 134,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b128.txt",
+      "trace_sha256": "87c6f73529b8e7c872e4aa2b576e6f7fa06a3dd8f4eafe50badb22d3288b62a7"
+    },
+    {
+      "background": 128,
+      "batch": 12,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 135,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b128.txt",
+      "trace_sha256": "87c6f73529b8e7c872e4aa2b576e6f7fa06a3dd8f4eafe50badb22d3288b62a7"
+    },
+    {
+      "background": 128,
+      "batch": 12,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 136,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b128.txt",
+      "trace_sha256": "87c6f73529b8e7c872e4aa2b576e6f7fa06a3dd8f4eafe50badb22d3288b62a7"
+    },
+    {
+      "background": 64,
+      "batch": 12,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 137,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b64.txt",
+      "trace_sha256": "6b10d6711a8d6a6f14d6a1f791afba23a4b6a08ea6bbb4c60b6c7fd5b3325f06"
+    },
+    {
+      "background": 64,
+      "batch": 12,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 138,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b64.txt",
+      "trace_sha256": "6b10d6711a8d6a6f14d6a1f791afba23a4b6a08ea6bbb4c60b6c7fd5b3325f06"
+    },
+    {
+      "background": 64,
+      "batch": 12,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 139,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b64.txt",
+      "trace_sha256": "6b10d6711a8d6a6f14d6a1f791afba23a4b6a08ea6bbb4c60b6c7fd5b3325f06"
+    },
+    {
+      "background": 64,
+      "batch": 12,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 140,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b64.txt",
+      "trace_sha256": "6b10d6711a8d6a6f14d6a1f791afba23a4b6a08ea6bbb4c60b6c7fd5b3325f06"
+    },
+    {
+      "background": 0,
+      "batch": 12,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 141,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b0.txt",
+      "trace_sha256": "5a3038d390be6ef45dbf3020976132f51ee85a231665bfe70baf1c91d1537c25"
+    },
+    {
+      "background": 0,
+      "batch": 12,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 142,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b0.txt",
+      "trace_sha256": "5a3038d390be6ef45dbf3020976132f51ee85a231665bfe70baf1c91d1537c25"
+    },
+    {
+      "background": 0,
+      "batch": 12,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 143,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b0.txt",
+      "trace_sha256": "5a3038d390be6ef45dbf3020976132f51ee85a231665bfe70baf1c91d1537c25"
+    },
+    {
+      "background": 0,
+      "batch": 12,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 144,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b0.txt",
+      "trace_sha256": "5a3038d390be6ef45dbf3020976132f51ee85a231665bfe70baf1c91d1537c25"
+    },
+    {
+      "background": 64,
+      "batch": 13,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 145,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b64.txt",
+      "trace_sha256": "96678db02ae9d82b02c7a517bc9e2faae4c7b8b55e0da2c122069ad9301b86f4"
+    },
+    {
+      "background": 64,
+      "batch": 13,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 146,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b64.txt",
+      "trace_sha256": "96678db02ae9d82b02c7a517bc9e2faae4c7b8b55e0da2c122069ad9301b86f4"
+    },
+    {
+      "background": 64,
+      "batch": 13,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 147,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b64.txt",
+      "trace_sha256": "96678db02ae9d82b02c7a517bc9e2faae4c7b8b55e0da2c122069ad9301b86f4"
+    },
+    {
+      "background": 64,
+      "batch": 13,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 148,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b64.txt",
+      "trace_sha256": "96678db02ae9d82b02c7a517bc9e2faae4c7b8b55e0da2c122069ad9301b86f4"
+    },
+    {
+      "background": 64,
+      "batch": 13,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 149,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b64.txt",
+      "trace_sha256": "f06dfa856cad72d69af273f2ba4d981f1dd8de2a3649aefbabf2ca5181101f60"
+    },
+    {
+      "background": 64,
+      "batch": 13,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 150,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b64.txt",
+      "trace_sha256": "f06dfa856cad72d69af273f2ba4d981f1dd8de2a3649aefbabf2ca5181101f60"
+    },
+    {
+      "background": 64,
+      "batch": 13,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 151,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b64.txt",
+      "trace_sha256": "f06dfa856cad72d69af273f2ba4d981f1dd8de2a3649aefbabf2ca5181101f60"
+    },
+    {
+      "background": 64,
+      "batch": 13,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262740-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 152,
+      "seed": 20262740,
+      "trace": "ws25_seed20262740_b64.txt",
+      "trace_sha256": "f06dfa856cad72d69af273f2ba4d981f1dd8de2a3649aefbabf2ca5181101f60"
+    },
+    {
+      "background": 0,
+      "batch": 13,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 153,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b0.txt",
+      "trace_sha256": "2e97a7b91c0b6d3ef2562b45d4de16c8f400a45c009186fb7d64b14b21ed0532"
+    },
+    {
+      "background": 0,
+      "batch": 13,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 154,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b0.txt",
+      "trace_sha256": "2e97a7b91c0b6d3ef2562b45d4de16c8f400a45c009186fb7d64b14b21ed0532"
+    },
+    {
+      "background": 0,
+      "batch": 13,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 155,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b0.txt",
+      "trace_sha256": "2e97a7b91c0b6d3ef2562b45d4de16c8f400a45c009186fb7d64b14b21ed0532"
+    },
+    {
+      "background": 0,
+      "batch": 13,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262738-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 156,
+      "seed": 20262738,
+      "trace": "ws25_seed20262738_b0.txt",
+      "trace_sha256": "2e97a7b91c0b6d3ef2562b45d4de16c8f400a45c009186fb7d64b14b21ed0532"
+    },
+    {
+      "background": 0,
+      "batch": 14,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 157,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b0.txt",
+      "trace_sha256": "c8140ca7bb40bdd5157dfc20671dc0dbfe86bc8d2689be52350d3a32c8ed7370"
+    },
+    {
+      "background": 0,
+      "batch": 14,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 158,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b0.txt",
+      "trace_sha256": "c8140ca7bb40bdd5157dfc20671dc0dbfe86bc8d2689be52350d3a32c8ed7370"
+    },
+    {
+      "background": 0,
+      "batch": 14,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 159,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b0.txt",
+      "trace_sha256": "c8140ca7bb40bdd5157dfc20671dc0dbfe86bc8d2689be52350d3a32c8ed7370"
+    },
+    {
+      "background": 0,
+      "batch": 14,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 160,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b0.txt",
+      "trace_sha256": "c8140ca7bb40bdd5157dfc20671dc0dbfe86bc8d2689be52350d3a32c8ed7370"
+    },
+    {
+      "background": 64,
+      "batch": 14,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 161,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b64.txt",
+      "trace_sha256": "82d28e0524732d899deb382449b02a50b1ea3c8b92ca2311afadbc8c4b9ce9c7"
+    },
+    {
+      "background": 64,
+      "batch": 14,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 162,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b64.txt",
+      "trace_sha256": "82d28e0524732d899deb382449b02a50b1ea3c8b92ca2311afadbc8c4b9ce9c7"
+    },
+    {
+      "background": 64,
+      "batch": 14,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 163,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b64.txt",
+      "trace_sha256": "82d28e0524732d899deb382449b02a50b1ea3c8b92ca2311afadbc8c4b9ce9c7"
+    },
+    {
+      "background": 64,
+      "batch": 14,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 164,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b64.txt",
+      "trace_sha256": "82d28e0524732d899deb382449b02a50b1ea3c8b92ca2311afadbc8c4b9ce9c7"
+    },
+    {
+      "background": 64,
+      "batch": 14,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 165,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b64.txt",
+      "trace_sha256": "0ef169f7cc0fae494352506cf57b6bcd7013009ce1fe595785fc15200959c516"
+    },
+    {
+      "background": 64,
+      "batch": 14,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 166,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b64.txt",
+      "trace_sha256": "0ef169f7cc0fae494352506cf57b6bcd7013009ce1fe595785fc15200959c516"
+    },
+    {
+      "background": 64,
+      "batch": 14,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 167,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b64.txt",
+      "trace_sha256": "0ef169f7cc0fae494352506cf57b6bcd7013009ce1fe595785fc15200959c516"
+    },
+    {
+      "background": 64,
+      "batch": 14,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 168,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b64.txt",
+      "trace_sha256": "0ef169f7cc0fae494352506cf57b6bcd7013009ce1fe595785fc15200959c516"
+    },
+    {
+      "background": 64,
+      "batch": 15,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 169,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b64.txt",
+      "trace_sha256": "fab1f4514e286939efb290443d3f5325c10c8e90b7a1c7705b2849387c8d885a"
+    },
+    {
+      "background": 64,
+      "batch": 15,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 170,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b64.txt",
+      "trace_sha256": "fab1f4514e286939efb290443d3f5325c10c8e90b7a1c7705b2849387c8d885a"
+    },
+    {
+      "background": 64,
+      "batch": 15,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 171,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b64.txt",
+      "trace_sha256": "fab1f4514e286939efb290443d3f5325c10c8e90b7a1c7705b2849387c8d885a"
+    },
+    {
+      "background": 64,
+      "batch": 15,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 172,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b64.txt",
+      "trace_sha256": "fab1f4514e286939efb290443d3f5325c10c8e90b7a1c7705b2849387c8d885a"
+    },
+    {
+      "background": 192,
+      "batch": 15,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 173,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b192.txt",
+      "trace_sha256": "e56481a94753de0382811480333cd7a29ffdacec762110c3e7f1df2cc22a77c6"
+    },
+    {
+      "background": 192,
+      "batch": 15,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 174,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b192.txt",
+      "trace_sha256": "e56481a94753de0382811480333cd7a29ffdacec762110c3e7f1df2cc22a77c6"
+    },
+    {
+      "background": 192,
+      "batch": 15,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 175,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b192.txt",
+      "trace_sha256": "e56481a94753de0382811480333cd7a29ffdacec762110c3e7f1df2cc22a77c6"
+    },
+    {
+      "background": 192,
+      "batch": 15,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 176,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b192.txt",
+      "trace_sha256": "e56481a94753de0382811480333cd7a29ffdacec762110c3e7f1df2cc22a77c6"
+    },
+    {
+      "background": 64,
+      "batch": 15,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 177,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b64.txt",
+      "trace_sha256": "3361b3ddd2466f9d8b93f16cd0b8c57e56ec34cf8a83fab800e7700882da2693"
+    },
+    {
+      "background": 64,
+      "batch": 15,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 178,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b64.txt",
+      "trace_sha256": "3361b3ddd2466f9d8b93f16cd0b8c57e56ec34cf8a83fab800e7700882da2693"
+    },
+    {
+      "background": 64,
+      "batch": 15,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 179,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b64.txt",
+      "trace_sha256": "3361b3ddd2466f9d8b93f16cd0b8c57e56ec34cf8a83fab800e7700882da2693"
+    },
+    {
+      "background": 64,
+      "batch": 15,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 180,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b64.txt",
+      "trace_sha256": "3361b3ddd2466f9d8b93f16cd0b8c57e56ec34cf8a83fab800e7700882da2693"
+    },
+    {
+      "background": 128,
+      "batch": 16,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 181,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b128.txt",
+      "trace_sha256": "f37e100862ae91fbcca4a09f60183a26812d309f3a8d0e29d58be2f5446014ed"
+    },
+    {
+      "background": 128,
+      "batch": 16,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 182,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b128.txt",
+      "trace_sha256": "f37e100862ae91fbcca4a09f60183a26812d309f3a8d0e29d58be2f5446014ed"
+    },
+    {
+      "background": 128,
+      "batch": 16,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 183,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b128.txt",
+      "trace_sha256": "f37e100862ae91fbcca4a09f60183a26812d309f3a8d0e29d58be2f5446014ed"
+    },
+    {
+      "background": 128,
+      "batch": 16,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 184,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b128.txt",
+      "trace_sha256": "f37e100862ae91fbcca4a09f60183a26812d309f3a8d0e29d58be2f5446014ed"
+    },
+    {
+      "background": 64,
+      "batch": 16,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 185,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b64.txt",
+      "trace_sha256": "23b30ab3f7f577dd4afd07ec03c98b9d0913589bc16e8143295c0e06532aa5e6"
+    },
+    {
+      "background": 64,
+      "batch": 16,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 186,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b64.txt",
+      "trace_sha256": "23b30ab3f7f577dd4afd07ec03c98b9d0913589bc16e8143295c0e06532aa5e6"
+    },
+    {
+      "background": 64,
+      "batch": 16,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 187,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b64.txt",
+      "trace_sha256": "23b30ab3f7f577dd4afd07ec03c98b9d0913589bc16e8143295c0e06532aa5e6"
+    },
+    {
+      "background": 64,
+      "batch": 16,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 188,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b64.txt",
+      "trace_sha256": "23b30ab3f7f577dd4afd07ec03c98b9d0913589bc16e8143295c0e06532aa5e6"
+    },
+    {
+      "background": 0,
+      "batch": 16,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 189,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b0.txt",
+      "trace_sha256": "cc7c66f5348d68d9eff1cbf130e4918bf213c990d79a848cbef9cc96b3b74582"
+    },
+    {
+      "background": 0,
+      "batch": 16,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 190,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b0.txt",
+      "trace_sha256": "cc7c66f5348d68d9eff1cbf130e4918bf213c990d79a848cbef9cc96b3b74582"
+    },
+    {
+      "background": 0,
+      "batch": 16,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 191,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b0.txt",
+      "trace_sha256": "cc7c66f5348d68d9eff1cbf130e4918bf213c990d79a848cbef9cc96b3b74582"
+    },
+    {
+      "background": 0,
+      "batch": 16,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 192,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b0.txt",
+      "trace_sha256": "cc7c66f5348d68d9eff1cbf130e4918bf213c990d79a848cbef9cc96b3b74582"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 193,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b192.txt",
+      "trace_sha256": "dbf46c496841486749a249356149ae3f1560758c184857c93b9fb5de34a2a5a9"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 194,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b192.txt",
+      "trace_sha256": "dbf46c496841486749a249356149ae3f1560758c184857c93b9fb5de34a2a5a9"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 195,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b192.txt",
+      "trace_sha256": "dbf46c496841486749a249356149ae3f1560758c184857c93b9fb5de34a2a5a9"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 196,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b192.txt",
+      "trace_sha256": "dbf46c496841486749a249356149ae3f1560758c184857c93b9fb5de34a2a5a9"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 197,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b192.txt",
+      "trace_sha256": "03f02047ce694ea436a0b79f6d14174ce60c9043d5dd0bf2e472f4519df7c084"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 198,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b192.txt",
+      "trace_sha256": "03f02047ce694ea436a0b79f6d14174ce60c9043d5dd0bf2e472f4519df7c084"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 199,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b192.txt",
+      "trace_sha256": "03f02047ce694ea436a0b79f6d14174ce60c9043d5dd0bf2e472f4519df7c084"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 200,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b192.txt",
+      "trace_sha256": "03f02047ce694ea436a0b79f6d14174ce60c9043d5dd0bf2e472f4519df7c084"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 201,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b192.txt",
+      "trace_sha256": "a7065055fd63bdb595291daf3f5114544a46508ba361ce4389879724400ccb0e"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 202,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b192.txt",
+      "trace_sha256": "a7065055fd63bdb595291daf3f5114544a46508ba361ce4389879724400ccb0e"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 203,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b192.txt",
+      "trace_sha256": "a7065055fd63bdb595291daf3f5114544a46508ba361ce4389879724400ccb0e"
+    },
+    {
+      "background": 192,
+      "batch": 17,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 204,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b192.txt",
+      "trace_sha256": "a7065055fd63bdb595291daf3f5114544a46508ba361ce4389879724400ccb0e"
+    },
+    {
+      "background": 192,
+      "batch": 18,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 205,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b192.txt",
+      "trace_sha256": "c105b1743756f058837619bef5335e6a09715fb34958fe0b6df0dc6a05f98455"
+    },
+    {
+      "background": 192,
+      "batch": 18,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 206,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b192.txt",
+      "trace_sha256": "c105b1743756f058837619bef5335e6a09715fb34958fe0b6df0dc6a05f98455"
+    },
+    {
+      "background": 192,
+      "batch": 18,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 207,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b192.txt",
+      "trace_sha256": "c105b1743756f058837619bef5335e6a09715fb34958fe0b6df0dc6a05f98455"
+    },
+    {
+      "background": 192,
+      "batch": 18,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 208,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b192.txt",
+      "trace_sha256": "c105b1743756f058837619bef5335e6a09715fb34958fe0b6df0dc6a05f98455"
+    },
+    {
+      "background": 0,
+      "batch": 18,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 209,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b0.txt",
+      "trace_sha256": "62a3613763f8cef34d28615c870104c344f298caa4dafb1bec5bdb2a5c09be04"
+    },
+    {
+      "background": 0,
+      "batch": 18,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 210,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b0.txt",
+      "trace_sha256": "62a3613763f8cef34d28615c870104c344f298caa4dafb1bec5bdb2a5c09be04"
+    },
+    {
+      "background": 0,
+      "batch": 18,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 211,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b0.txt",
+      "trace_sha256": "62a3613763f8cef34d28615c870104c344f298caa4dafb1bec5bdb2a5c09be04"
+    },
+    {
+      "background": 0,
+      "batch": 18,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 212,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b0.txt",
+      "trace_sha256": "62a3613763f8cef34d28615c870104c344f298caa4dafb1bec5bdb2a5c09be04"
+    },
+    {
+      "background": 192,
+      "batch": 18,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 213,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b192.txt",
+      "trace_sha256": "168e30c7f6919c5a4ed29728e51d8301102bea9ebdb2792aed794b001208d253"
+    },
+    {
+      "background": 192,
+      "batch": 18,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 214,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b192.txt",
+      "trace_sha256": "168e30c7f6919c5a4ed29728e51d8301102bea9ebdb2792aed794b001208d253"
+    },
+    {
+      "background": 192,
+      "batch": 18,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 215,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b192.txt",
+      "trace_sha256": "168e30c7f6919c5a4ed29728e51d8301102bea9ebdb2792aed794b001208d253"
+    },
+    {
+      "background": 192,
+      "batch": 18,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262735-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 216,
+      "seed": 20262735,
+      "trace": "ws25_seed20262735_b192.txt",
+      "trace_sha256": "168e30c7f6919c5a4ed29728e51d8301102bea9ebdb2792aed794b001208d253"
+    },
+    {
+      "background": 64,
+      "batch": 19,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 217,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b64.txt",
+      "trace_sha256": "8e44ad24f13e7f6e4eb4c5d0dd3d033c45e548054567c228581327a3909a5df7"
+    },
+    {
+      "background": 64,
+      "batch": 19,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 218,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b64.txt",
+      "trace_sha256": "8e44ad24f13e7f6e4eb4c5d0dd3d033c45e548054567c228581327a3909a5df7"
+    },
+    {
+      "background": 64,
+      "batch": 19,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 219,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b64.txt",
+      "trace_sha256": "8e44ad24f13e7f6e4eb4c5d0dd3d033c45e548054567c228581327a3909a5df7"
+    },
+    {
+      "background": 64,
+      "batch": 19,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 220,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b64.txt",
+      "trace_sha256": "8e44ad24f13e7f6e4eb4c5d0dd3d033c45e548054567c228581327a3909a5df7"
+    },
+    {
+      "background": 0,
+      "batch": 19,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 221,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b0.txt",
+      "trace_sha256": "39b76c7deb26e31ad91400bc69c3da82768c5e99ba80a31ebed3bd3bea6eede0"
+    },
+    {
+      "background": 0,
+      "batch": 19,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 222,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b0.txt",
+      "trace_sha256": "39b76c7deb26e31ad91400bc69c3da82768c5e99ba80a31ebed3bd3bea6eede0"
+    },
+    {
+      "background": 0,
+      "batch": 19,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 223,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b0.txt",
+      "trace_sha256": "39b76c7deb26e31ad91400bc69c3da82768c5e99ba80a31ebed3bd3bea6eede0"
+    },
+    {
+      "background": 0,
+      "batch": 19,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 224,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b0.txt",
+      "trace_sha256": "39b76c7deb26e31ad91400bc69c3da82768c5e99ba80a31ebed3bd3bea6eede0"
+    },
+    {
+      "background": 64,
+      "batch": 19,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 225,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b64.txt",
+      "trace_sha256": "4c1f81423d9efd73d8f9464652e64f450374f243d52a1518227c36ffa1882a61"
+    },
+    {
+      "background": 64,
+      "batch": 19,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 226,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b64.txt",
+      "trace_sha256": "4c1f81423d9efd73d8f9464652e64f450374f243d52a1518227c36ffa1882a61"
+    },
+    {
+      "background": 64,
+      "batch": 19,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 227,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b64.txt",
+      "trace_sha256": "4c1f81423d9efd73d8f9464652e64f450374f243d52a1518227c36ffa1882a61"
+    },
+    {
+      "background": 64,
+      "batch": 19,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 228,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b64.txt",
+      "trace_sha256": "4c1f81423d9efd73d8f9464652e64f450374f243d52a1518227c36ffa1882a61"
+    },
+    {
+      "background": 64,
+      "batch": 20,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 229,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b64.txt",
+      "trace_sha256": "d6fb87b4f17431381c5064a2c69d896f53ba756707fd19fdaf1ef91bc7480fb6"
+    },
+    {
+      "background": 64,
+      "batch": 20,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 230,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b64.txt",
+      "trace_sha256": "d6fb87b4f17431381c5064a2c69d896f53ba756707fd19fdaf1ef91bc7480fb6"
+    },
+    {
+      "background": 64,
+      "batch": 20,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 231,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b64.txt",
+      "trace_sha256": "d6fb87b4f17431381c5064a2c69d896f53ba756707fd19fdaf1ef91bc7480fb6"
+    },
+    {
+      "background": 64,
+      "batch": 20,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 232,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b64.txt",
+      "trace_sha256": "d6fb87b4f17431381c5064a2c69d896f53ba756707fd19fdaf1ef91bc7480fb6"
+    },
+    {
+      "background": 192,
+      "batch": 20,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 233,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b192.txt",
+      "trace_sha256": "2cd1723f9352a8e404385c6a436c2e75b427aca67105efcc9cb83a6b65f7eeb7"
+    },
+    {
+      "background": 192,
+      "batch": 20,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 234,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b192.txt",
+      "trace_sha256": "2cd1723f9352a8e404385c6a436c2e75b427aca67105efcc9cb83a6b65f7eeb7"
+    },
+    {
+      "background": 192,
+      "batch": 20,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 235,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b192.txt",
+      "trace_sha256": "2cd1723f9352a8e404385c6a436c2e75b427aca67105efcc9cb83a6b65f7eeb7"
+    },
+    {
+      "background": 192,
+      "batch": 20,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 236,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b192.txt",
+      "trace_sha256": "2cd1723f9352a8e404385c6a436c2e75b427aca67105efcc9cb83a6b65f7eeb7"
+    },
+    {
+      "background": 0,
+      "batch": 20,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 237,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b0.txt",
+      "trace_sha256": "e3abfed1331b78a32fd5d48d00a031fc764b6ac4350864194439db5a1640c2f5"
+    },
+    {
+      "background": 0,
+      "batch": 20,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 238,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b0.txt",
+      "trace_sha256": "e3abfed1331b78a32fd5d48d00a031fc764b6ac4350864194439db5a1640c2f5"
+    },
+    {
+      "background": 0,
+      "batch": 20,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 239,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b0.txt",
+      "trace_sha256": "e3abfed1331b78a32fd5d48d00a031fc764b6ac4350864194439db5a1640c2f5"
+    },
+    {
+      "background": 0,
+      "batch": 20,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 240,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b0.txt",
+      "trace_sha256": "e3abfed1331b78a32fd5d48d00a031fc764b6ac4350864194439db5a1640c2f5"
+    },
+    {
+      "background": 128,
+      "batch": 21,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 241,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b128.txt",
+      "trace_sha256": "47223c36e922c99c5314eb1a2b2c00ea002d0a4ebd9b91888ac936ccb457ec60"
+    },
+    {
+      "background": 128,
+      "batch": 21,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 242,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b128.txt",
+      "trace_sha256": "47223c36e922c99c5314eb1a2b2c00ea002d0a4ebd9b91888ac936ccb457ec60"
+    },
+    {
+      "background": 128,
+      "batch": 21,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 243,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b128.txt",
+      "trace_sha256": "47223c36e922c99c5314eb1a2b2c00ea002d0a4ebd9b91888ac936ccb457ec60"
+    },
+    {
+      "background": 128,
+      "batch": 21,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262723-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 244,
+      "seed": 20262723,
+      "trace": "ws25_seed20262723_b128.txt",
+      "trace_sha256": "47223c36e922c99c5314eb1a2b2c00ea002d0a4ebd9b91888ac936ccb457ec60"
+    },
+    {
+      "background": 192,
+      "batch": 21,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 245,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b192.txt",
+      "trace_sha256": "9fca0d1a0d3b27dd4a5e0ccff1e42f4e021a4bb74ac8f5aed10da5b2d024ac92"
+    },
+    {
+      "background": 192,
+      "batch": 21,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 246,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b192.txt",
+      "trace_sha256": "9fca0d1a0d3b27dd4a5e0ccff1e42f4e021a4bb74ac8f5aed10da5b2d024ac92"
+    },
+    {
+      "background": 192,
+      "batch": 21,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 247,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b192.txt",
+      "trace_sha256": "9fca0d1a0d3b27dd4a5e0ccff1e42f4e021a4bb74ac8f5aed10da5b2d024ac92"
+    },
+    {
+      "background": 192,
+      "batch": 21,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 248,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b192.txt",
+      "trace_sha256": "9fca0d1a0d3b27dd4a5e0ccff1e42f4e021a4bb74ac8f5aed10da5b2d024ac92"
+    },
+    {
+      "background": 64,
+      "batch": 21,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 249,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b64.txt",
+      "trace_sha256": "5c23bffe69f5117efc815e160092790f4d710f3dd61cdc9abd032a13ec40de57"
+    },
+    {
+      "background": 64,
+      "batch": 21,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 250,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b64.txt",
+      "trace_sha256": "5c23bffe69f5117efc815e160092790f4d710f3dd61cdc9abd032a13ec40de57"
+    },
+    {
+      "background": 64,
+      "batch": 21,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 251,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b64.txt",
+      "trace_sha256": "5c23bffe69f5117efc815e160092790f4d710f3dd61cdc9abd032a13ec40de57"
+    },
+    {
+      "background": 64,
+      "batch": 21,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 252,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b64.txt",
+      "trace_sha256": "5c23bffe69f5117efc815e160092790f4d710f3dd61cdc9abd032a13ec40de57"
+    },
+    {
+      "background": 192,
+      "batch": 22,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 253,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b192.txt",
+      "trace_sha256": "8a670da8248c2fd6b0f0889782322b567f2aea61c1d107edb91093014385c9be"
+    },
+    {
+      "background": 192,
+      "batch": 22,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 254,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b192.txt",
+      "trace_sha256": "8a670da8248c2fd6b0f0889782322b567f2aea61c1d107edb91093014385c9be"
+    },
+    {
+      "background": 192,
+      "batch": 22,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 255,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b192.txt",
+      "trace_sha256": "8a670da8248c2fd6b0f0889782322b567f2aea61c1d107edb91093014385c9be"
+    },
+    {
+      "background": 192,
+      "batch": 22,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 256,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b192.txt",
+      "trace_sha256": "8a670da8248c2fd6b0f0889782322b567f2aea61c1d107edb91093014385c9be"
+    },
+    {
+      "background": 128,
+      "batch": 22,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 257,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b128.txt",
+      "trace_sha256": "22e047b85a1ff6c3c5bac21aa51e8ea6e91338da03e324af384bfa50c96a69fa"
+    },
+    {
+      "background": 128,
+      "batch": 22,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 258,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b128.txt",
+      "trace_sha256": "22e047b85a1ff6c3c5bac21aa51e8ea6e91338da03e324af384bfa50c96a69fa"
+    },
+    {
+      "background": 128,
+      "batch": 22,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 259,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b128.txt",
+      "trace_sha256": "22e047b85a1ff6c3c5bac21aa51e8ea6e91338da03e324af384bfa50c96a69fa"
+    },
+    {
+      "background": 128,
+      "batch": 22,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 260,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b128.txt",
+      "trace_sha256": "22e047b85a1ff6c3c5bac21aa51e8ea6e91338da03e324af384bfa50c96a69fa"
+    },
+    {
+      "background": 128,
+      "batch": 22,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 261,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b128.txt",
+      "trace_sha256": "3e54da8efec580d4313532d2a70f1616793487f795e69e5916f8f02179c86ef4"
+    },
+    {
+      "background": 128,
+      "batch": 22,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 262,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b128.txt",
+      "trace_sha256": "3e54da8efec580d4313532d2a70f1616793487f795e69e5916f8f02179c86ef4"
+    },
+    {
+      "background": 128,
+      "batch": 22,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 263,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b128.txt",
+      "trace_sha256": "3e54da8efec580d4313532d2a70f1616793487f795e69e5916f8f02179c86ef4"
+    },
+    {
+      "background": 128,
+      "batch": 22,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 264,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b128.txt",
+      "trace_sha256": "3e54da8efec580d4313532d2a70f1616793487f795e69e5916f8f02179c86ef4"
+    },
+    {
+      "background": 0,
+      "batch": 23,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 265,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b0.txt",
+      "trace_sha256": "0830ad5eca0e54dbacbea4b10e318c75d39b191cce065186824d28af40acce1a"
+    },
+    {
+      "background": 0,
+      "batch": 23,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 266,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b0.txt",
+      "trace_sha256": "0830ad5eca0e54dbacbea4b10e318c75d39b191cce065186824d28af40acce1a"
+    },
+    {
+      "background": 0,
+      "batch": 23,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 267,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b0.txt",
+      "trace_sha256": "0830ad5eca0e54dbacbea4b10e318c75d39b191cce065186824d28af40acce1a"
+    },
+    {
+      "background": 0,
+      "batch": 23,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 268,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b0.txt",
+      "trace_sha256": "0830ad5eca0e54dbacbea4b10e318c75d39b191cce065186824d28af40acce1a"
+    },
+    {
+      "background": 192,
+      "batch": 23,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 269,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b192.txt",
+      "trace_sha256": "753ce75fdf066f969888d0f09233598588cb135fa28b31577935372f97866280"
+    },
+    {
+      "background": 192,
+      "batch": 23,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 270,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b192.txt",
+      "trace_sha256": "753ce75fdf066f969888d0f09233598588cb135fa28b31577935372f97866280"
+    },
+    {
+      "background": 192,
+      "batch": 23,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 271,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b192.txt",
+      "trace_sha256": "753ce75fdf066f969888d0f09233598588cb135fa28b31577935372f97866280"
+    },
+    {
+      "background": 192,
+      "batch": 23,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 272,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b192.txt",
+      "trace_sha256": "753ce75fdf066f969888d0f09233598588cb135fa28b31577935372f97866280"
+    },
+    {
+      "background": 192,
+      "batch": 23,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 273,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b192.txt",
+      "trace_sha256": "a4e37b058f940944eb12577e6aa687da09b79a699f4d84f018143c3123efeb32"
+    },
+    {
+      "background": 192,
+      "batch": 23,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 274,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b192.txt",
+      "trace_sha256": "a4e37b058f940944eb12577e6aa687da09b79a699f4d84f018143c3123efeb32"
+    },
+    {
+      "background": 192,
+      "batch": 23,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 275,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b192.txt",
+      "trace_sha256": "a4e37b058f940944eb12577e6aa687da09b79a699f4d84f018143c3123efeb32"
+    },
+    {
+      "background": 192,
+      "batch": 23,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262722-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 276,
+      "seed": 20262722,
+      "trace": "ws25_seed20262722_b192.txt",
+      "trace_sha256": "a4e37b058f940944eb12577e6aa687da09b79a699f4d84f018143c3123efeb32"
+    },
+    {
+      "background": 0,
+      "batch": 24,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 277,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b0.txt",
+      "trace_sha256": "1575884608adac45b72e1271b201e9eb7c407d8caddc9f1f639e8096a6aa5bca"
+    },
+    {
+      "background": 0,
+      "batch": 24,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 278,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b0.txt",
+      "trace_sha256": "1575884608adac45b72e1271b201e9eb7c407d8caddc9f1f639e8096a6aa5bca"
+    },
+    {
+      "background": 0,
+      "batch": 24,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 279,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b0.txt",
+      "trace_sha256": "1575884608adac45b72e1271b201e9eb7c407d8caddc9f1f639e8096a6aa5bca"
+    },
+    {
+      "background": 0,
+      "batch": 24,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 280,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b0.txt",
+      "trace_sha256": "1575884608adac45b72e1271b201e9eb7c407d8caddc9f1f639e8096a6aa5bca"
+    },
+    {
+      "background": 128,
+      "batch": 24,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 281,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b128.txt",
+      "trace_sha256": "e34cefcfd78b51b3e6e0640b23b5bece2e9a4a309c4d34bc118fedc880383083"
+    },
+    {
+      "background": 128,
+      "batch": 24,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 282,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b128.txt",
+      "trace_sha256": "e34cefcfd78b51b3e6e0640b23b5bece2e9a4a309c4d34bc118fedc880383083"
+    },
+    {
+      "background": 128,
+      "batch": 24,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 283,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b128.txt",
+      "trace_sha256": "e34cefcfd78b51b3e6e0640b23b5bece2e9a4a309c4d34bc118fedc880383083"
+    },
+    {
+      "background": 128,
+      "batch": 24,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262725-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 284,
+      "seed": 20262725,
+      "trace": "ws25_seed20262725_b128.txt",
+      "trace_sha256": "e34cefcfd78b51b3e6e0640b23b5bece2e9a4a309c4d34bc118fedc880383083"
+    },
+    {
+      "background": 64,
+      "batch": 24,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 285,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b64.txt",
+      "trace_sha256": "e296f873f37b1b9fe7d9d6727d036f3f252cbf5533470691a7f604145a00a53a"
+    },
+    {
+      "background": 64,
+      "batch": 24,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 286,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b64.txt",
+      "trace_sha256": "e296f873f37b1b9fe7d9d6727d036f3f252cbf5533470691a7f604145a00a53a"
+    },
+    {
+      "background": 64,
+      "batch": 24,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 287,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b64.txt",
+      "trace_sha256": "e296f873f37b1b9fe7d9d6727d036f3f252cbf5533470691a7f604145a00a53a"
+    },
+    {
+      "background": 64,
+      "batch": 24,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 288,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b64.txt",
+      "trace_sha256": "e296f873f37b1b9fe7d9d6727d036f3f252cbf5533470691a7f604145a00a53a"
+    },
+    {
+      "background": 128,
+      "batch": 25,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 289,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b128.txt",
+      "trace_sha256": "d161e1965b70f03b43abc08844b28cf7ea11bd5f4c841ea3216dd78cc0a87b2e"
+    },
+    {
+      "background": 128,
+      "batch": 25,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 290,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b128.txt",
+      "trace_sha256": "d161e1965b70f03b43abc08844b28cf7ea11bd5f4c841ea3216dd78cc0a87b2e"
+    },
+    {
+      "background": 128,
+      "batch": 25,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 291,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b128.txt",
+      "trace_sha256": "d161e1965b70f03b43abc08844b28cf7ea11bd5f4c841ea3216dd78cc0a87b2e"
+    },
+    {
+      "background": 128,
+      "batch": 25,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262721-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 292,
+      "seed": 20262721,
+      "trace": "ws25_seed20262721_b128.txt",
+      "trace_sha256": "d161e1965b70f03b43abc08844b28cf7ea11bd5f4c841ea3216dd78cc0a87b2e"
+    },
+    {
+      "background": 128,
+      "batch": 25,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 293,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b128.txt",
+      "trace_sha256": "547d14b6e416eb8af620d1e7155165e65e9a80117eb0d5c311d196f61700a219"
+    },
+    {
+      "background": 128,
+      "batch": 25,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 294,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b128.txt",
+      "trace_sha256": "547d14b6e416eb8af620d1e7155165e65e9a80117eb0d5c311d196f61700a219"
+    },
+    {
+      "background": 128,
+      "batch": 25,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 295,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b128.txt",
+      "trace_sha256": "547d14b6e416eb8af620d1e7155165e65e9a80117eb0d5c311d196f61700a219"
+    },
+    {
+      "background": 128,
+      "batch": 25,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 296,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b128.txt",
+      "trace_sha256": "547d14b6e416eb8af620d1e7155165e65e9a80117eb0d5c311d196f61700a219"
+    },
+    {
+      "background": 192,
+      "batch": 25,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 297,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b192.txt",
+      "trace_sha256": "d58c28ac27e481cb6fd128516ec7c7e4a5db3e3093bb92dcd116aaa6009ba9f6"
+    },
+    {
+      "background": 192,
+      "batch": 25,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 298,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b192.txt",
+      "trace_sha256": "d58c28ac27e481cb6fd128516ec7c7e4a5db3e3093bb92dcd116aaa6009ba9f6"
+    },
+    {
+      "background": 192,
+      "batch": 25,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 299,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b192.txt",
+      "trace_sha256": "d58c28ac27e481cb6fd128516ec7c7e4a5db3e3093bb92dcd116aaa6009ba9f6"
+    },
+    {
+      "background": 192,
+      "batch": 25,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 300,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b192.txt",
+      "trace_sha256": "d58c28ac27e481cb6fd128516ec7c7e4a5db3e3093bb92dcd116aaa6009ba9f6"
+    },
+    {
+      "background": 64,
+      "batch": 26,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 301,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b64.txt",
+      "trace_sha256": "f2902e5f44962e18298dcca53c78e36ff49e3b4cd283a91ddc9f6d8f3bc3ee55"
+    },
+    {
+      "background": 64,
+      "batch": 26,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 302,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b64.txt",
+      "trace_sha256": "f2902e5f44962e18298dcca53c78e36ff49e3b4cd283a91ddc9f6d8f3bc3ee55"
+    },
+    {
+      "background": 64,
+      "batch": 26,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 303,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b64.txt",
+      "trace_sha256": "f2902e5f44962e18298dcca53c78e36ff49e3b4cd283a91ddc9f6d8f3bc3ee55"
+    },
+    {
+      "background": 64,
+      "batch": 26,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262724-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 304,
+      "seed": 20262724,
+      "trace": "ws25_seed20262724_b64.txt",
+      "trace_sha256": "f2902e5f44962e18298dcca53c78e36ff49e3b4cd283a91ddc9f6d8f3bc3ee55"
+    },
+    {
+      "background": 0,
+      "batch": 26,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 305,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b0.txt",
+      "trace_sha256": "ef669bd4ac0a1ad3bb27c5e7a5ace31cea8c636d4eded23047d2cbc873aa4d15"
+    },
+    {
+      "background": 0,
+      "batch": 26,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 306,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b0.txt",
+      "trace_sha256": "ef669bd4ac0a1ad3bb27c5e7a5ace31cea8c636d4eded23047d2cbc873aa4d15"
+    },
+    {
+      "background": 0,
+      "batch": 26,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 307,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b0.txt",
+      "trace_sha256": "ef669bd4ac0a1ad3bb27c5e7a5ace31cea8c636d4eded23047d2cbc873aa4d15"
+    },
+    {
+      "background": 0,
+      "batch": 26,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262741-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 308,
+      "seed": 20262741,
+      "trace": "ws25_seed20262741_b0.txt",
+      "trace_sha256": "ef669bd4ac0a1ad3bb27c5e7a5ace31cea8c636d4eded23047d2cbc873aa4d15"
+    },
+    {
+      "background": 128,
+      "batch": 26,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 309,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b128.txt",
+      "trace_sha256": "6de832a162225f70b7a97f3ad5e9ba448300f0deba9542f0dd817606b82f9819"
+    },
+    {
+      "background": 128,
+      "batch": 26,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 310,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b128.txt",
+      "trace_sha256": "6de832a162225f70b7a97f3ad5e9ba448300f0deba9542f0dd817606b82f9819"
+    },
+    {
+      "background": 128,
+      "batch": 26,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 311,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b128.txt",
+      "trace_sha256": "6de832a162225f70b7a97f3ad5e9ba448300f0deba9542f0dd817606b82f9819"
+    },
+    {
+      "background": 128,
+      "batch": 26,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262743-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 312,
+      "seed": 20262743,
+      "trace": "ws25_seed20262743_b128.txt",
+      "trace_sha256": "6de832a162225f70b7a97f3ad5e9ba448300f0deba9542f0dd817606b82f9819"
+    },
+    {
+      "background": 0,
+      "batch": 27,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 313,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b0.txt",
+      "trace_sha256": "05cebd29306573bd2daa1cbe511cae65dfc743d235d7479a4aaf6043d611673d"
+    },
+    {
+      "background": 0,
+      "batch": 27,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 314,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b0.txt",
+      "trace_sha256": "05cebd29306573bd2daa1cbe511cae65dfc743d235d7479a4aaf6043d611673d"
+    },
+    {
+      "background": 0,
+      "batch": 27,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 315,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b0.txt",
+      "trace_sha256": "05cebd29306573bd2daa1cbe511cae65dfc743d235d7479a4aaf6043d611673d"
+    },
+    {
+      "background": 0,
+      "batch": 27,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 316,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b0.txt",
+      "trace_sha256": "05cebd29306573bd2daa1cbe511cae65dfc743d235d7479a4aaf6043d611673d"
+    },
+    {
+      "background": 128,
+      "batch": 27,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 317,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b128.txt",
+      "trace_sha256": "ee33c67c46c059866edcb59c2da885dfce1c0f9ec01d1c7bc827192e914141f8"
+    },
+    {
+      "background": 128,
+      "batch": 27,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 318,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b128.txt",
+      "trace_sha256": "ee33c67c46c059866edcb59c2da885dfce1c0f9ec01d1c7bc827192e914141f8"
+    },
+    {
+      "background": 128,
+      "batch": 27,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 319,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b128.txt",
+      "trace_sha256": "ee33c67c46c059866edcb59c2da885dfce1c0f9ec01d1c7bc827192e914141f8"
+    },
+    {
+      "background": 128,
+      "batch": 27,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262730-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 320,
+      "seed": 20262730,
+      "trace": "ws25_seed20262730_b128.txt",
+      "trace_sha256": "ee33c67c46c059866edcb59c2da885dfce1c0f9ec01d1c7bc827192e914141f8"
+    },
+    {
+      "background": 192,
+      "batch": 27,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 321,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b192.txt",
+      "trace_sha256": "55434af5ac64434fd7fa65c10a1349275dea044feabbed9295e90535cbff0e6d"
+    },
+    {
+      "background": 192,
+      "batch": 27,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 322,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b192.txt",
+      "trace_sha256": "55434af5ac64434fd7fa65c10a1349275dea044feabbed9295e90535cbff0e6d"
+    },
+    {
+      "background": 192,
+      "batch": 27,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 323,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b192.txt",
+      "trace_sha256": "55434af5ac64434fd7fa65c10a1349275dea044feabbed9295e90535cbff0e6d"
+    },
+    {
+      "background": 192,
+      "batch": 27,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262726-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 324,
+      "seed": 20262726,
+      "trace": "ws25_seed20262726_b192.txt",
+      "trace_sha256": "55434af5ac64434fd7fa65c10a1349275dea044feabbed9295e90535cbff0e6d"
+    },
+    {
+      "background": 128,
+      "batch": 28,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 325,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b128.txt",
+      "trace_sha256": "af5de56875cd7185ba807104a269dd9bec46bfc95bbcc409023d5fd4181a5161"
+    },
+    {
+      "background": 128,
+      "batch": 28,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 326,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b128.txt",
+      "trace_sha256": "af5de56875cd7185ba807104a269dd9bec46bfc95bbcc409023d5fd4181a5161"
+    },
+    {
+      "background": 128,
+      "batch": 28,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 327,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b128.txt",
+      "trace_sha256": "af5de56875cd7185ba807104a269dd9bec46bfc95bbcc409023d5fd4181a5161"
+    },
+    {
+      "background": 128,
+      "batch": 28,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 328,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b128.txt",
+      "trace_sha256": "af5de56875cd7185ba807104a269dd9bec46bfc95bbcc409023d5fd4181a5161"
+    },
+    {
+      "background": 128,
+      "batch": 28,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 329,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b128.txt",
+      "trace_sha256": "486d043c32befaaeda5ba7fea7109db664af5f514eeb138762d4f6045a26e134"
+    },
+    {
+      "background": 128,
+      "batch": 28,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 330,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b128.txt",
+      "trace_sha256": "486d043c32befaaeda5ba7fea7109db664af5f514eeb138762d4f6045a26e134"
+    },
+    {
+      "background": 128,
+      "batch": 28,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 331,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b128.txt",
+      "trace_sha256": "486d043c32befaaeda5ba7fea7109db664af5f514eeb138762d4f6045a26e134"
+    },
+    {
+      "background": 128,
+      "batch": 28,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262727-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 332,
+      "seed": 20262727,
+      "trace": "ws25_seed20262727_b128.txt",
+      "trace_sha256": "486d043c32befaaeda5ba7fea7109db664af5f514eeb138762d4f6045a26e134"
+    },
+    {
+      "background": 0,
+      "batch": 28,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 333,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b0.txt",
+      "trace_sha256": "1fb994b8134ad74883aa392c3610e886b7624ea05942676b0ced2acccc96f793"
+    },
+    {
+      "background": 0,
+      "batch": 28,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 334,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b0.txt",
+      "trace_sha256": "1fb994b8134ad74883aa392c3610e886b7624ea05942676b0ced2acccc96f793"
+    },
+    {
+      "background": 0,
+      "batch": 28,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 335,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b0.txt",
+      "trace_sha256": "1fb994b8134ad74883aa392c3610e886b7624ea05942676b0ced2acccc96f793"
+    },
+    {
+      "background": 0,
+      "batch": 28,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262742-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 336,
+      "seed": 20262742,
+      "trace": "ws25_seed20262742_b0.txt",
+      "trace_sha256": "1fb994b8134ad74883aa392c3610e886b7624ea05942676b0ced2acccc96f793"
+    },
+    {
+      "background": 64,
+      "batch": 29,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 337,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b64.txt",
+      "trace_sha256": "45251fb38d294d39afaed998af80664496144b647be04843afb52207ff3776cd"
+    },
+    {
+      "background": 64,
+      "batch": 29,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 338,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b64.txt",
+      "trace_sha256": "45251fb38d294d39afaed998af80664496144b647be04843afb52207ff3776cd"
+    },
+    {
+      "background": 64,
+      "batch": 29,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 339,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b64.txt",
+      "trace_sha256": "45251fb38d294d39afaed998af80664496144b647be04843afb52207ff3776cd"
+    },
+    {
+      "background": 64,
+      "batch": 29,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262739-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 340,
+      "seed": 20262739,
+      "trace": "ws25_seed20262739_b64.txt",
+      "trace_sha256": "45251fb38d294d39afaed998af80664496144b647be04843afb52207ff3776cd"
+    },
+    {
+      "background": 0,
+      "batch": 29,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 341,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b0.txt",
+      "trace_sha256": "d44fe173a141fdda98fdb89963773b3f69ea72677eefbf2b3196bccc754d0927"
+    },
+    {
+      "background": 0,
+      "batch": 29,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 342,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b0.txt",
+      "trace_sha256": "d44fe173a141fdda98fdb89963773b3f69ea72677eefbf2b3196bccc754d0927"
+    },
+    {
+      "background": 0,
+      "batch": 29,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 343,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b0.txt",
+      "trace_sha256": "d44fe173a141fdda98fdb89963773b3f69ea72677eefbf2b3196bccc754d0927"
+    },
+    {
+      "background": 0,
+      "batch": 29,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 344,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b0.txt",
+      "trace_sha256": "d44fe173a141fdda98fdb89963773b3f69ea72677eefbf2b3196bccc754d0927"
+    },
+    {
+      "background": 64,
+      "batch": 29,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 345,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b64.txt",
+      "trace_sha256": "36b4195f7df989b0e56907787edfa1de29e2055cd59129ed879524ed01156e08"
+    },
+    {
+      "background": 64,
+      "batch": 29,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 346,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b64.txt",
+      "trace_sha256": "36b4195f7df989b0e56907787edfa1de29e2055cd59129ed879524ed01156e08"
+    },
+    {
+      "background": 64,
+      "batch": 29,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 347,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b64.txt",
+      "trace_sha256": "36b4195f7df989b0e56907787edfa1de29e2055cd59129ed879524ed01156e08"
+    },
+    {
+      "background": 64,
+      "batch": 29,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262737-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 348,
+      "seed": 20262737,
+      "trace": "ws25_seed20262737_b64.txt",
+      "trace_sha256": "36b4195f7df989b0e56907787edfa1de29e2055cd59129ed879524ed01156e08"
+    },
+    {
+      "background": 0,
+      "batch": 30,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 349,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b0.txt",
+      "trace_sha256": "398cd9692cf85567ff65eb527373799c2f8d34f3e2ea010a7b441421885008a0"
+    },
+    {
+      "background": 0,
+      "batch": 30,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 350,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b0.txt",
+      "trace_sha256": "398cd9692cf85567ff65eb527373799c2f8d34f3e2ea010a7b441421885008a0"
+    },
+    {
+      "background": 0,
+      "batch": 30,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 351,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b0.txt",
+      "trace_sha256": "398cd9692cf85567ff65eb527373799c2f8d34f3e2ea010a7b441421885008a0"
+    },
+    {
+      "background": 0,
+      "batch": 30,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 352,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b0.txt",
+      "trace_sha256": "398cd9692cf85567ff65eb527373799c2f8d34f3e2ea010a7b441421885008a0"
+    },
+    {
+      "background": 128,
+      "batch": 30,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 353,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b128.txt",
+      "trace_sha256": "cbd8d81595bf29490dd114bf38c815858c509e3228ab81d7170e4d77a7c5d3ae"
+    },
+    {
+      "background": 128,
+      "batch": 30,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 354,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b128.txt",
+      "trace_sha256": "cbd8d81595bf29490dd114bf38c815858c509e3228ab81d7170e4d77a7c5d3ae"
+    },
+    {
+      "background": 128,
+      "batch": 30,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 355,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b128.txt",
+      "trace_sha256": "cbd8d81595bf29490dd114bf38c815858c509e3228ab81d7170e4d77a7c5d3ae"
+    },
+    {
+      "background": 128,
+      "batch": 30,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262729-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 356,
+      "seed": 20262729,
+      "trace": "ws25_seed20262729_b128.txt",
+      "trace_sha256": "cbd8d81595bf29490dd114bf38c815858c509e3228ab81d7170e4d77a7c5d3ae"
+    },
+    {
+      "background": 64,
+      "batch": 30,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 357,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b64.txt",
+      "trace_sha256": "cf957ec53e4765a2308d5cd53e97ccb9166f37d840457b9616895a56a8c24ee4"
+    },
+    {
+      "background": 64,
+      "batch": 30,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 358,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b64.txt",
+      "trace_sha256": "cf957ec53e4765a2308d5cd53e97ccb9166f37d840457b9616895a56a8c24ee4"
+    },
+    {
+      "background": 64,
+      "batch": 30,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 359,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b64.txt",
+      "trace_sha256": "cf957ec53e4765a2308d5cd53e97ccb9166f37d840457b9616895a56a8c24ee4"
+    },
+    {
+      "background": 64,
+      "batch": 30,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262732-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 360,
+      "seed": 20262732,
+      "trace": "ws25_seed20262732_b64.txt",
+      "trace_sha256": "cf957ec53e4765a2308d5cd53e97ccb9166f37d840457b9616895a56a8c24ee4"
+    },
+    {
+      "background": 64,
+      "batch": 31,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b064-harmgate-v2",
+      "input_flows": 16448,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 361,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b64.txt",
+      "trace_sha256": "f1873dc23dc05820bc180e71637371b2091a039bd0a756723ea4453a915a1d5a"
+    },
+    {
+      "background": 64,
+      "batch": 31,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b064-classreserve",
+      "input_flows": 16448,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 362,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b64.txt",
+      "trace_sha256": "f1873dc23dc05820bc180e71637371b2091a039bd0a756723ea4453a915a1d5a"
+    },
+    {
+      "background": 64,
+      "batch": 31,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b064-fecmp",
+      "input_flows": 16448,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 363,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b64.txt",
+      "trace_sha256": "f1873dc23dc05820bc180e71637371b2091a039bd0a756723ea4453a915a1d5a"
+    },
+    {
+      "background": 64,
+      "batch": 31,
+      "expected_tags": {
+        "1": 64,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262736-b064-guardhash-v2",
+      "input_flows": 16448,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 364,
+      "seed": 20262736,
+      "trace": "ws25_seed20262736_b64.txt",
+      "trace_sha256": "f1873dc23dc05820bc180e71637371b2091a039bd0a756723ea4453a915a1d5a"
+    },
+    {
+      "background": 192,
+      "batch": 31,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 365,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b192.txt",
+      "trace_sha256": "a4bd9c4fe8cc18b23c03c6260a31085fedebf0d0c416f134d096529b0ac6d167"
+    },
+    {
+      "background": 192,
+      "batch": 31,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 366,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b192.txt",
+      "trace_sha256": "a4bd9c4fe8cc18b23c03c6260a31085fedebf0d0c416f134d096529b0ac6d167"
+    },
+    {
+      "background": 192,
+      "batch": 31,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 367,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b192.txt",
+      "trace_sha256": "a4bd9c4fe8cc18b23c03c6260a31085fedebf0d0c416f134d096529b0ac6d167"
+    },
+    {
+      "background": 192,
+      "batch": 31,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262728-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 368,
+      "seed": 20262728,
+      "trace": "ws25_seed20262728_b192.txt",
+      "trace_sha256": "a4bd9c4fe8cc18b23c03c6260a31085fedebf0d0c416f134d096529b0ac6d167"
+    },
+    {
+      "background": 0,
+      "batch": 31,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 369,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b0.txt",
+      "trace_sha256": "5cff0db6939f40faf6876f1b94e55720ffca10446fb349a7eabcd199176acad0"
+    },
+    {
+      "background": 0,
+      "batch": 31,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 370,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b0.txt",
+      "trace_sha256": "5cff0db6939f40faf6876f1b94e55720ffca10446fb349a7eabcd199176acad0"
+    },
+    {
+      "background": 0,
+      "batch": 31,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 371,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b0.txt",
+      "trace_sha256": "5cff0db6939f40faf6876f1b94e55720ffca10446fb349a7eabcd199176acad0"
+    },
+    {
+      "background": 0,
+      "batch": 31,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262731-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 372,
+      "seed": 20262731,
+      "trace": "ws25_seed20262731_b0.txt",
+      "trace_sha256": "5cff0db6939f40faf6876f1b94e55720ffca10446fb349a7eabcd199176acad0"
+    },
+    {
+      "background": 128,
+      "batch": 32,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b128-fecmp",
+      "input_flows": 16512,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 373,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b128.txt",
+      "trace_sha256": "a98ddbdad30c6d96e7ceafee7245dfe72d9f4ca0239c756b428580c429ebfe06"
+    },
+    {
+      "background": 128,
+      "batch": 32,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b128-guardhash-v2",
+      "input_flows": 16512,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 374,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b128.txt",
+      "trace_sha256": "a98ddbdad30c6d96e7ceafee7245dfe72d9f4ca0239c756b428580c429ebfe06"
+    },
+    {
+      "background": 128,
+      "batch": 32,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b128-harmgate-v2",
+      "input_flows": 16512,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 375,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b128.txt",
+      "trace_sha256": "a98ddbdad30c6d96e7ceafee7245dfe72d9f4ca0239c756b428580c429ebfe06"
+    },
+    {
+      "background": 128,
+      "batch": 32,
+      "expected_tags": {
+        "1": 128,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262744-b128-classreserve",
+      "input_flows": 16512,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 376,
+      "seed": 20262744,
+      "trace": "ws25_seed20262744_b128.txt",
+      "trace_sha256": "a98ddbdad30c6d96e7ceafee7245dfe72d9f4ca0239c756b428580c429ebfe06"
+    },
+    {
+      "background": 0,
+      "batch": 32,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b000-harmgate-v2",
+      "input_flows": 16384,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 377,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b0.txt",
+      "trace_sha256": "cd260e3ee5f38b78594989e0ca3147c05531aed208bdb47ab6fbc01f91574f37"
+    },
+    {
+      "background": 0,
+      "batch": 32,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b000-classreserve",
+      "input_flows": 16384,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 378,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b0.txt",
+      "trace_sha256": "cd260e3ee5f38b78594989e0ca3147c05531aed208bdb47ab6fbc01f91574f37"
+    },
+    {
+      "background": 0,
+      "batch": 32,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b000-guardhash-v2",
+      "input_flows": 16384,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 379,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b0.txt",
+      "trace_sha256": "cd260e3ee5f38b78594989e0ca3147c05531aed208bdb47ab6fbc01f91574f37"
+    },
+    {
+      "background": 0,
+      "batch": 32,
+      "expected_tags": {
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262734-b000-fecmp",
+      "input_flows": 16384,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 380,
+      "seed": 20262734,
+      "trace": "ws25_seed20262734_b0.txt",
+      "trace_sha256": "cd260e3ee5f38b78594989e0ca3147c05531aed208bdb47ab6fbc01f91574f37"
+    },
+    {
+      "background": 192,
+      "batch": 32,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b192-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "role": "confirm",
+      "run_order": 381,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b192.txt",
+      "trace_sha256": "9fc542f708f6b84fc82fe7ab418d4e5ecf694a1da2f4527527b25eaebe43911d"
+    },
+    {
+      "background": 192,
+      "batch": 32,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b192-guardhash-v2",
+      "input_flows": 16576,
+      "mode": "guardhash-v2",
+      "role": "confirm",
+      "run_order": 382,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b192.txt",
+      "trace_sha256": "9fc542f708f6b84fc82fe7ab418d4e5ecf694a1da2f4527527b25eaebe43911d"
+    },
+    {
+      "background": 192,
+      "batch": 32,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b192-classreserve",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "role": "confirm",
+      "run_order": 383,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b192.txt",
+      "trace_sha256": "9fc542f708f6b84fc82fe7ab418d4e5ecf694a1da2f4527527b25eaebe43911d"
+    },
+    {
+      "background": 192,
+      "batch": 32,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261013-030000-ws27-confirm-s20262733-b192-harmgate-v2",
+      "input_flows": 16576,
+      "mode": "harmgate-v2",
+      "role": "confirm",
+      "run_order": 384,
+      "seed": 20262733,
+      "trace": "ws25_seed20262733_b192.txt",
+      "trace_sha256": "9fc542f708f6b84fc82fe7ab418d4e5ecf694a1da2f4527527b25eaebe43911d"
+    }
+  ],
+  "demand_seed_order": [
+    20262721,
+    20262722,
+    20262723,
+    20262724,
+    20262725,
+    20262726,
+    20262727,
+    20262728,
+    20262729,
+    20262730,
+    20262731,
+    20262732,
+    20262733,
+    20262734,
+    20262735,
+    20262736,
+    20262737,
+    20262738,
+    20262739,
+    20262740,
+    20262741,
+    20262742,
+    20262743,
+    20262744
+  ],
+  "irn": 1,
+  "kind": "WS-27 independent-demand confirm",
+  "max_concurrent": 12,
+  "modes": [
+    "fecmp",
+    "classreserve",
+    "guardhash-v2",
+    "harmgate-v2"
+  ],
+  "netload": 10,
+  "ns3_seed": 1,
+  "pfc": 0,
+  "randomization_seed": 20262745,
+  "simul_time": "0.01",
+  "source_sha": "ee236f27920aa56b3dd562ed971e5abee9e1e659",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
