@@ -66,10 +66,16 @@ def verify(mode, experiment_id):
                 queue["current"] == queue["queued_drop"] == 0):
             raise RuntimeError("ClassReserve queue invariant failed: " + experiment_id)
     raw = folder / "raw" / str(meta["raw_directory"])
+    raw_files = {}
     for suffix in ("_out_fct.txt", "_out_cnp.txt", "_out_pfc.txt", "_out_uplink.txt"):
         matches = list(raw.glob("*" + suffix))
         if len(matches) != 1 or matches[0].is_symlink():
             raise RuntimeError("Pilot raw file missing: " + suffix)
+        raw_files[suffix] = matches[0]
+    cnp_rows = [tuple(map(int, line.split())) for line in
+                raw_files["_out_cnp.txt"].read_text(encoding="utf-8").splitlines()]
+    if any(len(row) != 5 or row[4] != row[2] + row[3] for row in cnp_rows):
+        raise RuntimeError("Malformed CNP counters: " + experiment_id)
     resources = json.loads((folder / "logs/resource-summary.json").read_text(encoding="utf-8"))
     samples = [json.loads(line) for line in
                (folder / "logs/resource-samples.jsonl").read_text(encoding="utf-8").splitlines()
@@ -89,8 +95,11 @@ def verify(mode, experiment_id):
             "background_p99_fct_us": tags["1"]["p99_fct_us"],
             "background_max_fct_us": max(
                 int(line.split()[6]) / 1000 for line in
-                next(raw.glob("*_out_fct.txt")).read_text(encoding="utf-8").splitlines()
+                raw_files["_out_fct.txt"].read_text(encoding="utf-8").splitlines()
                 if int(line.split()[4]) == 8388608),
+            "cnp_ecn_events": sum(row[2] for row in cnp_rows),
+            "cnp_ooo_events": sum(row[3] for row in cnp_rows),
+            "pfc_rows": len(raw_files["_out_pfc.txt"].read_text(encoding="utf-8").splitlines()),
             "tags": tags, "diagnostic": diagnostic, "resource": resources}
 
 

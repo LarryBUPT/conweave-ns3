@@ -1,0 +1,275 @@
+{
+  "cells": {
+    "classreserve": {
+      "background_max_fct_us": 2207.359,
+      "background_p99_fct_us": 2083.6382700000004,
+      "cnp_ecn_events": 2790,
+      "cnp_ooo_events": 0,
+      "diagnostic": {
+        "background_new_flows": 884,
+        "background_packets": 7415876,
+        "background_queue_avoids": 41,
+        "background_reused": 7414992,
+        "fallback_packets": 0,
+        "moe_diverted": 9551,
+        "moe_flow_new": 74772,
+        "moe_flow_reused": 598176,
+        "moe_packets": 672948,
+        "moe_two_choices": 25598,
+        "queue_violations": 0
+      },
+      "fct_sha256": "2c176e1f1bb8cb4e2fe391f736a4a62ac3caae532dadfae620695b8d2a13b400",
+      "id": "20261013-013001-ws27-classreserve-b192-pilot",
+      "moe_batch_us": 16.286,
+      "moe_p50_fct_us": 12.223,
+      "moe_p99_fct_us": 15.393,
+      "pfc_rows": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-013001-ws27-classreserve-b192-pilot",
+        "minimum_free_gib": 4734.450519561768,
+        "minimum_mem_available_gib": 113.81927108764648,
+        "peak_tree_rss_mib": 4544.76171875,
+        "samples": 60
+      },
+      "source_sha": "592211afe90dcc056051941a924480c1b4a876a2",
+      "tags": {
+        "1": {
+          "complete_sources": 61,
+          "completed_flows": 192,
+          "completion_rate": 1.0,
+          "input_flows": 192,
+          "input_sources": 61,
+          "mean_fct_us": 782.2171197916666,
+          "p50_fct_us": 696.491,
+          "p95_fct_us": 1633.2531999999992,
+          "p99_complete_source_batch_us": 2134.0018,
+          "p99_fct_us": 2083.6382700000004,
+          "synthetic_batch_completion_us": 2207.359,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.484994201660156,
+          "p50_fct_us": 12.223,
+          "p95_fct_us": 14.482,
+          "p99_complete_source_batch_us": 16.23245,
+          "p99_fct_us": 15.393,
+          "synthetic_batch_completion_us": 16.286,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    "fecmp": {
+      "background_max_fct_us": 2200.02,
+      "background_p99_fct_us": 2129.41845,
+      "cnp_ecn_events": 2981,
+      "cnp_ooo_events": 0,
+      "diagnostic": null,
+      "fct_sha256": "f00b25083bd9ed8ce4938d0a6eb3e9afd1043a74399f25b2e12de41dccedeb41",
+      "id": "20261013-013000-ws27-fecmp-b192-pilot",
+      "moe_batch_us": 18.088,
+      "moe_p50_fct_us": 12.259,
+      "moe_p99_fct_us": 15.754380000000001,
+      "pfc_rows": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-013000-ws27-fecmp-b192-pilot",
+        "minimum_free_gib": 4734.459392547607,
+        "minimum_mem_available_gib": 113.81804656982422,
+        "peak_tree_rss_mib": 4544.49609375,
+        "samples": 55
+      },
+      "source_sha": "592211afe90dcc056051941a924480c1b4a876a2",
+      "tags": {
+        "1": {
+          "complete_sources": 61,
+          "completed_flows": 192,
+          "completion_rate": 1.0,
+          "input_flows": 192,
+          "input_sources": 61,
+          "mean_fct_us": 794.7734635416666,
+          "p50_fct_us": 700.5115000000001,
+          "p95_fct_us": 1604.7658999999996,
+          "p99_complete_source_batch_us": 2177.154,
+          "p99_fct_us": 2129.41845,
+          "synthetic_batch_completion_us": 2200.02,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.498367797851563,
+          "p50_fct_us": 12.259,
+          "p95_fct_us": 14.50385,
+          "p99_complete_source_batch_us": 17.234099999999998,
+          "p99_fct_us": 15.754380000000001,
+          "synthetic_batch_completion_us": 18.088,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    "guardhash-v2": {
+      "background_max_fct_us": 2239.184,
+      "background_p99_fct_us": 2167.8395100000002,
+      "cnp_ecn_events": 2829,
+      "cnp_ooo_events": 0,
+      "diagnostic": {
+        "diverted": 9570,
+        "fallback_packets": 7415876,
+        "gate_activations": 0,
+        "gate_exits": 0,
+        "mode": 23,
+        "moe_packets": 672948,
+        "new_flows": 74772,
+        "queue_violations": 0,
+        "reused_packets": 598176,
+        "scored": 25576,
+        "two_candidates": 25576
+      },
+      "fct_sha256": "7f6a95d8d2f07f6f05e2706f303bba580969a5cacc9de2fae3e33fe327bd761c",
+      "id": "20261013-013002-ws27-guard-b192-pilot",
+      "moe_batch_us": 16.135,
+      "moe_p50_fct_us": 12.228,
+      "moe_p99_fct_us": 15.18317,
+      "pfc_rows": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-013002-ws27-guard-b192-pilot",
+        "minimum_free_gib": 4734.438106536865,
+        "minimum_mem_available_gib": 118.13863372802734,
+        "peak_tree_rss_mib": 4544.9453125,
+        "samples": 61
+      },
+      "source_sha": "592211afe90dcc056051941a924480c1b4a876a2",
+      "tags": {
+        "1": {
+          "complete_sources": 61,
+          "completed_flows": 192,
+          "completion_rate": 1.0,
+          "input_flows": 192,
+          "input_sources": 61,
+          "mean_fct_us": 782.7738489583334,
+          "p50_fct_us": 698.1635,
+          "p95_fct_us": 1503.7686999999994,
+          "p99_complete_source_batch_us": 2222.1152,
+          "p99_fct_us": 2167.8395100000002,
+          "synthetic_batch_completion_us": 2239.184,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.461985656738282,
+          "p50_fct_us": 12.228,
+          "p95_fct_us": 14.35285,
+          "p99_complete_source_batch_us": 15.8407,
+          "p99_fct_us": 15.18317,
+          "synthetic_batch_completion_us": 16.135,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    "harmgate-v2": {
+      "background_max_fct_us": 2120.85,
+      "background_p99_fct_us": 2078.7002199999997,
+      "cnp_ecn_events": 2859,
+      "cnp_ooo_events": 0,
+      "diagnostic": {
+        "diverted": 2552,
+        "fallback_packets": 7415876,
+        "gate_activations": 930,
+        "gate_exits": 173,
+        "mode": 24,
+        "moe_packets": 672948,
+        "new_flows": 74772,
+        "queue_violations": 0,
+        "reused_packets": 598176,
+        "scored": 5312,
+        "two_candidates": 25571
+      },
+      "fct_sha256": "b4dc69aea29c0ce91de3bd353eaba106b3528f8487581d302dd65ddd36a1abb1",
+      "id": "20261013-011000-ws27-harm-b192-pilot",
+      "moe_batch_us": 16.813,
+      "moe_p50_fct_us": 12.266,
+      "moe_p99_fct_us": 15.381680000000001,
+      "pfc_rows": 0,
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-011000-ws27-harm-b192-pilot",
+        "minimum_free_gib": 4737.821472167969,
+        "minimum_mem_available_gib": 117.66047286987305,
+        "peak_tree_rss_mib": 4544.6484375,
+        "samples": 62
+      },
+      "source_sha": "592211afe90dcc056051941a924480c1b4a876a2",
+      "tags": {
+        "1": {
+          "complete_sources": 61,
+          "completed_flows": 192,
+          "completion_rate": 1.0,
+          "input_flows": 192,
+          "input_sources": 61,
+          "mean_fct_us": 785.9830989583334,
+          "p50_fct_us": 694.645,
+          "p95_fct_us": 1571.6583,
+          "p99_complete_source_batch_us": 2100.3966,
+          "p99_fct_us": 2078.7002199999997,
+          "synthetic_batch_completion_us": 2120.85,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 256,
+          "completed_flows": 16384,
+          "completion_rate": 1.0,
+          "input_flows": 16384,
+          "input_sources": 256,
+          "mean_fct_us": 12.50539288330078,
+          "p50_fct_us": 12.266,
+          "p95_fct_us": 14.384,
+          "p99_complete_source_batch_us": 16.7281,
+          "p99_fct_us": 15.381680000000001,
+          "synthetic_batch_completion_us": 16.813,
+          "unfinished_flows": 0
+        }
+      },
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    }
+  },
+  "kind": "same-trace engineering pilot; no independent-seed inference",
+  "paired_effects": {
+    "classreserve": {
+      "background_p99_change_pct": -2.149891206211707,
+      "moe_batch_change_pct": -9.962406015037594,
+      "moe_p50_fct_change_pct": -0.2936617994942492,
+      "moe_p99_fct_change_pct": -2.293838284972183
+    },
+    "guardhash-v2": {
+      "background_p99_change_pct": 1.8042982580525724,
+      "moe_batch_change_pct": -10.797213622291013,
+      "moe_p50_fct_change_pct": -0.25287543845338156,
+      "moe_p99_fct_change_pct": -3.625721862745479
+    },
+    "harmgate-v2": {
+      "background_p99_change_pct": -2.381787853862183,
+      "moe_batch_change_pct": -7.048872180451138,
+      "moe_p50_fct_change_pct": 0.05710090545720803,
+      "moe_p99_fct_change_pct": -2.3656913188586315
+    }
+  },
+  "source_sha": "592211afe90dcc056051941a924480c1b4a876a2",
+  "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+}
