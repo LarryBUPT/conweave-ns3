@@ -1,0 +1,322 @@
+{
+  "source_sha": "592211afe90dcc056051941a924480c1b4a876a2",
+  "verified_cells": [
+    {
+      "fct_sha256": "7865797cc4c09e4eebec4fb358838200b7356af3990b6cb6f0479d4d7a562036",
+      "id": "20261013-023000-ws27-moe4-guardhash-v2",
+      "mode": "guardhash-v2",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-023000-ws27-moe4-guardhash-v2",
+        "minimum_free_gib": 4726.594284057617,
+        "minimum_mem_available_gib": 118.25631332397461,
+        "peak_tree_rss_mib": 4544.46875,
+        "samples": 37
+      },
+      "scenario": "moe4",
+      "tags": {
+        "2": {
+          "complete_sources": 1,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 1,
+          "mean_fct_us": 0.735,
+          "p50_fct_us": 0.731,
+          "p95_fct_us": 0.785,
+          "p99_complete_source_batch_us": 0.788,
+          "p99_fct_us": 0.7874,
+          "synthetic_batch_completion_us": 0.788,
+          "unfinished_flows": 0
+        }
+      },
+      "ws27_guard": {
+        "diverted": 0,
+        "fallback_packets": 0,
+        "gate_activations": 0,
+        "gate_exits": 0,
+        "mode": 23,
+        "moe_packets": 72,
+        "new_flows": 8,
+        "queue_violations": 0,
+        "reused_packets": 64,
+        "scored": 2,
+        "two_candidates": 2
+      }
+    },
+    {
+      "fct_sha256": "7865797cc4c09e4eebec4fb358838200b7356af3990b6cb6f0479d4d7a562036",
+      "id": "20261013-023000-ws27-moe4-harmgate-v2",
+      "mode": "harmgate-v2",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-023000-ws27-moe4-harmgate-v2",
+        "minimum_free_gib": 4726.593597412109,
+        "minimum_mem_available_gib": 118.25758361816406,
+        "peak_tree_rss_mib": 4544.890625,
+        "samples": 37
+      },
+      "scenario": "moe4",
+      "tags": {
+        "2": {
+          "complete_sources": 1,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 1,
+          "mean_fct_us": 0.735,
+          "p50_fct_us": 0.731,
+          "p95_fct_us": 0.785,
+          "p99_complete_source_batch_us": 0.788,
+          "p99_fct_us": 0.7874,
+          "synthetic_batch_completion_us": 0.788,
+          "unfinished_flows": 0
+        }
+      },
+      "ws27_guard": {
+        "diverted": 0,
+        "fallback_packets": 0,
+        "gate_activations": 0,
+        "gate_exits": 0,
+        "mode": 24,
+        "moe_packets": 72,
+        "new_flows": 8,
+        "queue_violations": 0,
+        "reused_packets": 64,
+        "scored": 0,
+        "two_candidates": 2
+      }
+    },
+    {
+      "fct_sha256": "393daca3ae82586a117f8ef17bea4b312fbff2bfcc8ad74cf4ab150e3ecf6a40",
+      "id": "20261013-023000-ws27-background4-fecmp",
+      "mode": "fecmp",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-023000-ws27-background4-fecmp",
+        "minimum_free_gib": 4726.592426300049,
+        "minimum_mem_available_gib": 118.2448959350586,
+        "peak_tree_rss_mib": 4544.875,
+        "samples": 35
+      },
+      "scenario": "background4",
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        }
+      },
+      "ws27_guard": null
+    },
+    {
+      "fct_sha256": "393daca3ae82586a117f8ef17bea4b312fbff2bfcc8ad74cf4ab150e3ecf6a40",
+      "id": "20261013-023000-ws27-background4-guardhash-v2",
+      "mode": "guardhash-v2",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-023000-ws27-background4-guardhash-v2",
+        "minimum_free_gib": 4726.591259002686,
+        "minimum_mem_available_gib": 118.2466812133789,
+        "peak_tree_rss_mib": 4544.6875,
+        "samples": 37
+      },
+      "scenario": "background4",
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        }
+      },
+      "ws27_guard": {
+        "diverted": 0,
+        "fallback_packets": 100668,
+        "gate_activations": 0,
+        "gate_exits": 0,
+        "mode": 23,
+        "moe_packets": 0,
+        "new_flows": 0,
+        "queue_violations": 0,
+        "reused_packets": 0,
+        "scored": 0,
+        "two_candidates": 0
+      }
+    },
+    {
+      "fct_sha256": "393daca3ae82586a117f8ef17bea4b312fbff2bfcc8ad74cf4ab150e3ecf6a40",
+      "id": "20261013-023000-ws27-background4-harmgate-v2",
+      "mode": "harmgate-v2",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-023000-ws27-background4-harmgate-v2",
+        "minimum_free_gib": 4726.590087890625,
+        "minimum_mem_available_gib": 118.25093841552734,
+        "peak_tree_rss_mib": 4544.7578125,
+        "samples": 37
+      },
+      "scenario": "background4",
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        }
+      },
+      "ws27_guard": {
+        "diverted": 0,
+        "fallback_packets": 100668,
+        "gate_activations": 0,
+        "gate_exits": 0,
+        "mode": 24,
+        "moe_packets": 0,
+        "new_flows": 0,
+        "queue_violations": 0,
+        "reused_packets": 0,
+        "scored": 0,
+        "two_candidates": 0
+      }
+    },
+    {
+      "fct_sha256": "e3fa403b4768239fdd0e916f333117ecd84177c3d0553eefc923a76cb249fdbc",
+      "id": "20261013-023000-ws27-diagmixed8-guardhash-v2",
+      "mode": "guardhash-v2",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-023000-ws27-diagmixed8-guardhash-v2",
+        "minimum_free_gib": 4726.588916778564,
+        "minimum_mem_available_gib": 118.24862670898438,
+        "peak_tree_rss_mib": 4544.8046875,
+        "samples": 37
+      },
+      "scenario": "diagmixed8",
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 1,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 1,
+          "mean_fct_us": 0.735,
+          "p50_fct_us": 0.731,
+          "p95_fct_us": 0.785,
+          "p99_complete_source_batch_us": 0.788,
+          "p99_fct_us": 0.7874,
+          "synthetic_batch_completion_us": 0.788,
+          "unfinished_flows": 0
+        }
+      },
+      "ws27_guard": {
+        "diverted": 0,
+        "fallback_packets": 100668,
+        "gate_activations": 0,
+        "gate_exits": 0,
+        "mode": 23,
+        "moe_packets": 72,
+        "new_flows": 8,
+        "queue_violations": 0,
+        "reused_packets": 64,
+        "scored": 2,
+        "two_candidates": 2
+      }
+    },
+    {
+      "fct_sha256": "e3fa403b4768239fdd0e916f333117ecd84177c3d0553eefc923a76cb249fdbc",
+      "id": "20261013-023000-ws27-diagmixed8-harmgate-v2",
+      "mode": "harmgate-v2",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261013-023000-ws27-diagmixed8-harmgate-v2",
+        "minimum_free_gib": 4726.587745666504,
+        "minimum_mem_available_gib": 118.2480239868164,
+        "peak_tree_rss_mib": 4544.64453125,
+        "samples": 37
+      },
+      "scenario": "diagmixed8",
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 1,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 1,
+          "mean_fct_us": 0.735,
+          "p50_fct_us": 0.731,
+          "p95_fct_us": 0.785,
+          "p99_complete_source_batch_us": 0.788,
+          "p99_fct_us": 0.7874,
+          "synthetic_batch_completion_us": 0.788,
+          "unfinished_flows": 0
+        }
+      },
+      "ws27_guard": {
+        "diverted": 0,
+        "fallback_packets": 100668,
+        "gate_activations": 0,
+        "gate_exits": 0,
+        "mode": 24,
+        "moe_packets": 72,
+        "new_flows": 8,
+        "queue_violations": 0,
+        "reused_packets": 64,
+        "scored": 0,
+        "two_candidates": 2
+      }
+    }
+  ]
+}
