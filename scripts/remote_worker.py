@@ -43,7 +43,7 @@ def make_dir(path):
     inside(path)
 
 
-def run_checked(argv, cwd=None, log=None, timeout=None):
+def run_checked(argv, cwd=None, log=None, timeout=None, env=None):
     if cwd:
         inside(cwd)
     if log:
@@ -51,16 +51,56 @@ def run_checked(argv, cwd=None, log=None, timeout=None):
         with open(log, 'ab') as output:
             try:
                 result = subprocess.call(argv, cwd=cwd, stdout=output,
-                                         stderr=subprocess.STDOUT, timeout=timeout)
+                                         stderr=subprocess.STDOUT, timeout=timeout, env=env)
             except subprocess.TimeoutExpired:
                 raise RuntimeError('Command timed out: ' + ' '.join(argv[:3]))
     else:
         try:
-            result = subprocess.call(argv, cwd=cwd, timeout=timeout)
+            result = subprocess.call(argv, cwd=cwd, timeout=timeout, env=env)
         except subprocess.TimeoutExpired:
             raise RuntimeError('Command timed out: ' + ' '.join(argv[:3]))
     if result:
         raise RuntimeError('Command failed (exit %d): %s' % (result, ' '.join(argv[:3])))
+
+
+def verify_ws26_queue_front_fct(trace_path, fct_path):
+    source_ports = {}
+    destination_ports = {}
+    expected = {}
+    with open(trace_path, 'r') as trace:
+        declared = int(trace.readline().strip())
+        for line in trace:
+            fields = line.split()
+            if len(fields) != 6:
+                raise RuntimeError('Queue-front trace must have six tagged columns')
+            src, dst, _, size = [int(value) for value in fields[:4]]
+            start_ns = int(round(float(fields[4]) * 1e9))
+            sport = source_ports.get(src, 10000)
+            dport = destination_ports.get(dst, 100)
+            source_ports[src] = sport + 1
+            destination_ports[dst] = dport + 1
+            key = (src, dst, sport, dport)
+            if key in expected:
+                raise RuntimeError('Duplicate QP in queue-front trace')
+            expected[key] = (size, start_ns)
+    if declared != len(expected):
+        raise RuntimeError('Queue-front trace count mismatch')
+    observed = set()
+    with open(fct_path, 'r') as fct:
+        for line in fct:
+            values = [int(value) for value in line.split()]
+            if len(values) != 8:
+                raise RuntimeError('Malformed queue-front FCT row')
+            key = tuple(values[:4])
+            if key in observed or key not in expected:
+                raise RuntimeError('Duplicate or unexpected queue-front FCT QP')
+            size, start_ns = expected[key]
+            if values[4] != size or abs(values[5] - start_ns) > 2:
+                raise RuntimeError('Queue-front FCT size/start differs from trace')
+            observed.add(key)
+    if observed != set(expected):
+        raise RuntimeError('Queue-front FCT identities differ from trace')
+    return declared
 
 
 def output(argv, cwd=None):
@@ -480,14 +520,14 @@ def execute(experiment_id):
         command.extend(['--ws13-diag', '1'])
     if params.get('ws25_diag'):
         command.extend(['--ws25-diag', '1'])
+    if params.get('ws26_time_probe'):
+        command.extend(['--ws26-time-probe', '1'])
+    if params.get('ws26_seed97_time_diag'):
+        command.extend(['--ws26-seed97-time-diag', '1'])
     if params['lb'] == 'ws18':
         command.extend(['--ws18-admission', str(params['ws18_admission']),
                         '--ws18-path', str(params['ws18_path']),
                         '--ws18-admission-rate-gbps', str(params['ws18_admission_rate_gbps'])])
-        command.extend(['--ws21-identity', str(params.get('ws21_identity', 0))])
-        command.extend(['--ws21-feedback', str(params.get('ws21_feedback', 0))])
-        command.extend(['--ws21-feedback-interval-ns',
-                        str(params.get('ws21_feedback_interval_ns', 10000))])
         command.extend(['--ws21-heartbeat', str(params.get('ws21_heartbeat', 0)),
                         '--ws21-heartbeat-interval-ns',
                         str(params.get('ws21_heartbeat_interval_ns', 200000)),
@@ -503,8 +543,20 @@ def execute(experiment_id):
                         str(params.get('ws21_heartbeat_fault_end_ns', 0))])
         command.extend(['--ws21-port-events', str(params.get('ws21_port_events', 0)),
                         '--ws21-port-max-bytes', str(params.get('ws21_port_max_bytes', 268435456))])
+    if params['lb'] in ('ws18', 'classlane4'):
+        command.extend(['--ws21-identity', str(params.get('ws21_identity', 0)),
+                        '--ws21-feedback', str(params.get('ws21_feedback', 0)),
+                        '--ws21-feedback-interval-ns',
+                        str(params.get('ws21_feedback_interval_ns', 10000))])
+    if params['lb'] == 'classlane4':
+        command.extend(['--ws26-signal-qualification',
+                        str(params.get('ws26_signal_qualification', 0)),
+                        '--ws26-signal-qualification-max-bytes',
+                        str(params.get('ws26_signal_qualification_max_bytes', 67108864))])
     if params.get('factorial_pilot'):
         command.append('--factorial-pilot')
+    if params.get('factorial_formal'):
+        command.append('--factorial-formal')
     if params.get('factorial_drop_diag'):
         command.append('--factorial-drop-diag')
     if params.get('ws23_pfc_probe_host', -1) >= 0:
@@ -531,7 +583,16 @@ def execute(experiment_id):
         if os.path.lexists(output_dir):
             raise RuntimeError('Expected a fresh, empty output path')
         os.symlink(inside(os.path.join(base, 'raw')), output_dir)
-        run_checked(command, cwd=source, log=log)
+        simulation_env = os.environ.copy()
+        if params.get('ws26_moe_hop_diag'):
+            simulation_env['WS26_MOE_HOP_DIAG'] = '1'
+        else:
+            simulation_env.pop('WS26_MOE_HOP_DIAG', None)
+        if params.get('ws26_queue_front_diag'):
+            simulation_env['WS26_QUEUE_FRONT_DIAG'] = '1'
+        else:
+            simulation_env.pop('WS26_QUEUE_FRONT_DIAG', None)
+        run_checked(command, cwd=source, log=log, env=simulation_env)
         raw_dirs = [p for p in glob.glob(os.path.join(base, 'raw', '*')) if os.path.isdir(p)]
         fct = glob.glob(os.path.join(base, 'raw', '*', '*_out_fct.txt'))
         if len(raw_dirs) != 1 or len(fct) != 1 or os.path.getsize(fct[0]) == 0:
@@ -559,14 +620,44 @@ def execute(experiment_id):
             shutil.copy2(topology_source, inside(os.path.join(base, 'config', 'topology.txt')))
             with open(topology_source, 'rb') as handle:
                 data['topology_sha256'] = hashlib.sha256(handle.read()).hexdigest()
-        if params.get('factorial_pilot'):
+        if params.get('factorial_pilot') or params.get('factorial_formal'):
             with open(os.path.join(base, 'config', 'traffic_trace.txt')) as handle:
                 data['input_flows'] = int(handle.readline().strip())
             with open(fct[0]) as handle:
                 data['completed_flows'] = sum(1 for line in handle if line.strip())
             data['unfinished_flows'] = data['input_flows'] - data['completed_flows']
             if data['unfinished_flows']:
-                raise RuntimeError('Factorial pilot has %d unfinished flows' % data['unfinished_flows'])
+                raise RuntimeError('Factorial validation has %d unfinished flows' % data['unfinished_flows'])
+        if params.get('ws26_queue_front_diag'):
+            probe_logs = glob.glob(os.path.join(base, 'raw', '*', 'config.log'))
+            if len(probe_logs) != 1:
+                raise RuntimeError('Queue-front diagnostic has no unique config.log')
+            rows = 0
+            row_bytes = 0
+            summaries = []
+            summary_seen = False
+            with open(probe_logs[0], 'rb') as probe_log:
+                for line in probe_log:
+                    if line.startswith(b'WS26_QFRONT '):
+                        if summary_seen:
+                            raise RuntimeError('Queue-front row follows terminal summary')
+                        rows += 1
+                        row_bytes += len(line)
+                    elif line.startswith(b'WS26_QFRONT_SUMMARY '):
+                        summary_seen = True
+                        summaries.append(line.decode('ascii').strip())
+            if len(summaries) != 1 or rows == 0 or rows > 400000 or row_bytes > 96 * 1024 * 1024:
+                raise RuntimeError('Queue-front diagnostic summary/budget gate failed')
+            receipt = dict(field.split('=', 1) for field in summaries[0].split()[1:])
+            if int(receipt['rows']) != rows or int(receipt['bytes']) != row_bytes:
+                raise RuntimeError('Queue-front diagnostic summary mismatch')
+            expected_flows = verify_ws26_queue_front_fct(
+                os.path.join(base, 'config', 'traffic_trace.txt'), fct[0])
+            completed_flows = expected_flows
+            data['queue_front_rows'] = rows
+            data['queue_front_bytes'] = row_bytes
+            data['input_flows'] = expected_flows
+            data['completed_flows'] = completed_flows
         data['status'] = 'SUCCEEDED'
     except Exception as error:
         data['status'] = 'FAILED'
@@ -685,7 +776,7 @@ def main():
     build_cmd.add_argument('--branch', required=True)
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('--id', required=True)
-    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'destspread'], default='fecmp')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'destspread', 'classreserve3', 'classlane4', 'classlane4-moe-only', 'classlane4-background-only', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12, 16, 18), default=1)
@@ -696,6 +787,10 @@ def main():
     run_cmd.add_argument('--flow-file')
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-queue-front-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-seed97-time-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
@@ -710,10 +805,13 @@ def main():
     run_cmd.add_argument('--ws21-heartbeat-fault-end-ns', type=int, default=0)
     run_cmd.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
+    run_cmd.add_argument('--ws26-signal-qualification', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws26-signal-qualification-max-bytes', type=int, default=67108864)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
     run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
     run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
     run_cmd.add_argument('--factorial-pilot', action='store_true')
+    run_cmd.add_argument('--factorial-formal', action='store_true')
     run_cmd.add_argument('--factorial-drop-diag', action='store_true')
     run_cmd.add_argument('--ws23-pfc-probe-host', type=int, default=-1)
     run_cmd.add_argument('--ws23-pfc-probe-pg', type=int, default=3)
@@ -733,7 +831,20 @@ def main():
     elif args.command == 'build':
         build(args.id, args.sha, args.branch)
     elif args.command == 'run':
-        if args.pfc + args.irn != 1 and not args.factorial_pilot:
+        if args.factorial_pilot and args.factorial_formal:
+            raise RuntimeError('Factorial pilot and formal flags are exclusive')
+        if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe or args.ws26_seed97_time_diag or args.ws26_queue_front_diag):
+            raise RuntimeError('Factorial formal requires a fixed trace and no diagnostics')
+        if args.ws26_time_probe and (not args.ws25_diag or not args.flow_file):
+            raise RuntimeError('WS-26 time probe needs fixed trace and WS-25 diagnostics')
+        if args.ws26_seed97_time_diag and (not args.ws25_diag or not args.flow_file or args.ws26_time_probe):
+            raise RuntimeError('Seed 97 time probe needs fixed trace, WS-25 diagnostics, and no old time probe')
+        if args.ws26_moe_hop_diag and (not args.ws25_diag or not args.flow_file):
+            raise RuntimeError('WS-26 MoE hop diagnostic needs fixed trace and WS-25 diagnostics')
+        if args.ws26_queue_front_diag and (not args.ws26_seed97_time_diag or
+                                           not args.ws26_moe_hop_diag or not args.flow_file):
+            raise RuntimeError('WS-26 queue-front diagnostic needs fixed trace and both seed-97 diagnostics')
+        if args.pfc + args.irn != 1 and not (args.factorial_pilot or args.factorial_formal):
             raise RuntimeError('Exactly one of PFC and IRN must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
             raise RuntimeError('Factorial drop diagnostics require factorial pilot mode')
@@ -750,10 +861,16 @@ def main():
             raise RuntimeError('WS-23 PFC probe options need a host')
         if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
             raise RuntimeError('WS-18 switches require ws18 mode')
-        if args.ws21_identity and args.lb != 'ws18':
-            raise RuntimeError('WS-21 identity diagnostic requires ws18 mode')
-        if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
-            raise RuntimeError('WS-21 feedback requires ws18 mode and identity diagnostics')
+        if args.ws21_identity and args.lb not in ('ws18', 'classlane4'):
+            raise RuntimeError('WS-21 identity diagnostic requires ws18 or classlane4 mode')
+        if args.ws21_feedback and (args.lb not in ('ws18', 'classlane4') or not args.ws21_identity):
+            raise RuntimeError('WS-21 feedback requires ws18/classlane4 and identity diagnostics')
+        if args.ws21_feedback and args.lb == 'classlane4' and not args.ws26_signal_qualification:
+            raise RuntimeError('ClassLane feedback requires WS-26 signal qualification logging')
+        if args.ws26_signal_qualification and (
+                args.lb != 'classlane4' or not args.ws21_identity or not args.flow_file or
+                args.factorial_formal or args.ws26_signal_qualification_max_bytes < 1024):
+            raise RuntimeError('WS-26 signal qualification requires fixed-trace classlane4, identity, and a byte cap >= 1024')
         if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
             raise RuntimeError('WS-21 feedback interval must be 1000..60000 ns')
         if args.ws21_heartbeat and args.lb != 'ws18':
@@ -783,6 +900,10 @@ def main():
                         'topo': args.topo, 'cdf': args.cdf,
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
                         'ws25_diag': args.ws25_diag,
+                        'ws26_moe_hop_diag': args.ws26_moe_hop_diag,
+                        'ws26_queue_front_diag': args.ws26_queue_front_diag,
+                        'ws26_time_probe': args.ws26_time_probe,
+                        'ws26_seed97_time_diag': args.ws26_seed97_time_diag,
                         'ws18_admission': args.ws18_admission,
                         'ws18_path': args.ws18_path,
                         'ws21_identity': args.ws21_identity,
@@ -797,8 +918,12 @@ def main():
                         'ws21_heartbeat_fault_end_ns': args.ws21_heartbeat_fault_end_ns,
                         'ws21_port_events': args.ws21_port_events,
                         'ws21_port_max_bytes': args.ws21_port_max_bytes,
+                        'ws26_signal_qualification': args.ws26_signal_qualification,
+                        'ws26_signal_qualification_max_bytes':
+                        args.ws26_signal_qualification_max_bytes,
                         'ws18_admission_rate_gbps': args.ws18_admission_rate_gbps,
                         'factorial_pilot': args.factorial_pilot,
+                        'factorial_formal': args.factorial_formal,
                         'factorial_drop_diag': args.factorial_drop_diag,
                         'ws23_pfc_probe_host': args.ws23_pfc_probe_host,
                         'ws23_pfc_probe_pg': args.ws23_pfc_probe_pg,

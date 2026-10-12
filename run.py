@@ -138,6 +138,8 @@ lb_modes = {
     "ws18": 20,
     "classreserve": 21,
     "destspread": 22,
+    "guardhash-v2": 23,
+    "harmgate-v2": 24,
     "drill": 2,
     "conga": 3,
     "letflow": 6,

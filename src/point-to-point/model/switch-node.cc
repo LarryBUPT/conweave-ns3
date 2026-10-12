@@ -39,6 +39,10 @@ static uint64_t ws12_multipath_packets = 0;
 static std::map<std::pair<uint32_t, uint32_t>, uint64_t> ws12_source_port_choices;
 static uint32_t guard_lambda = 1, guard_tau = 0;
 static uint32_t guard_on_bytes = 8192, guard_off_bytes = 4096;
+static uint64_t ws27_moe_packets = 0, ws27_new_flows = 0, ws27_reused_packets = 0;
+static uint64_t ws27_two_candidates = 0, ws27_scored = 0, ws27_diverted = 0;
+static uint64_t ws27_gate_activations = 0, ws27_gate_exits = 0;
+static uint64_t ws27_fallback_packets = 0;
 static uint64_t guard_packets = 0, guard_two_candidates = 0;
 static uint64_t guard_scored = 0, guard_diverted = 0;
 static uint64_t guard_activations = 0, guard_exits = 0;
@@ -812,6 +816,25 @@ void SwitchNode::PrintWorkloadTagCounts() {
         std::cout << "WS09_QUEUE_CHECK violations=" << guard_queue_violations << std::endl;
         NS_ASSERT_MSG(guard_queue_violations == 0, "GuardHash queue counters do not conserve bytes");
     }
+    if (Settings::lb_mode == 23 || Settings::lb_mode == 24) {
+        for (const auto &entry : guard_queue_stats) {
+            const GuardQueueStat &s = entry.second;
+            if (s.enqueued != s.dequeued + s.queuedDropped + s.current)
+                ++guard_queue_violations;
+        }
+        std::cout << "WS27_GUARD mode=" << Settings::lb_mode
+                  << " moe_packets=" << ws27_moe_packets
+                  << " new_flows=" << ws27_new_flows
+                  << " reused_packets=" << ws27_reused_packets
+                  << " two_candidates=" << ws27_two_candidates
+                  << " scored=" << ws27_scored
+                  << " diverted=" << ws27_diverted
+                  << " gate_activations=" << ws27_gate_activations
+                  << " gate_exits=" << ws27_gate_exits
+                  << " fallback_packets=" << ws27_fallback_packets
+                  << " queue_violations=" << guard_queue_violations << std::endl;
+        NS_ASSERT_MSG(guard_queue_violations == 0, "WS27 queue counters do not conserve bytes");
+    }
     if (Settings::lb_mode == 21 || Settings::lb_mode == 22) {
         uint64_t enqueued = 0, dequeued = 0, queuedDropped = 0, current = 0;
         for (const auto &entry : guard_queue_stats) {
@@ -1249,6 +1272,71 @@ uint32_t SwitchNode::DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
     return first;
 }
 
+// WS-27 keeps GuardHash scoring and HarmGate hysteresis, but pins each MoE
+// QP to its first selected next hop at this switch. Modes 14/15 stay intact.
+uint32_t SwitchNode::DoLbWs27Guard(Ptr<const Packet> p, const CustomHeader &ch,
+                                   const std::vector<int> &nexthops) {
+    WorkloadTag label;
+    if (ch.l3Prot != 0x11 || !p->PeekPacketTag(label) || label.GetValue() != 2) {
+        ++ws27_fallback_packets;
+        return DoLbFlowECMP(p, ch, nexthops);
+    }
+    ++ws27_moe_packets;
+    const auto flow = std::make_tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    auto cached = m_ws27MoePort.find(flow);
+    if (cached != m_ws27MoePort.end()) {
+        ++ws27_reused_packets;
+        return cached->second;
+    }
+    ++ws27_new_flows;
+    NS_ASSERT_MSG(!nexthops.empty(), "WS27 has no next hop");
+    const uint32_t key[4] = {ch.sip, ch.dip,
+        uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16), ch.udp.seq};
+    const uint32_t first = nexthops[EcmpHash(reinterpret_cast<const uint8_t *>(key),
+                                            sizeof(key), m_ecmpSeed) % nexthops.size()];
+    uint32_t chosen = first;
+    if (nexthops.size() > 1) {
+        const uint32_t second = nexthops[EcmpHash(reinterpret_cast<const uint8_t *>(key),
+            sizeof(key), m_ecmpSeed ^ 0x9e3779b9U) % nexthops.size()];
+        if (second != first) {
+            ++ws27_two_candidates;
+            const uint32_t qFirst = CalculateInterfaceLoad(first);
+            const uint32_t qSecond = CalculateInterfaceLoad(second);
+            bool score = true;
+            if (Settings::lb_mode == 24) {
+                const uint32_t low = std::min(first, second);
+                const uint32_t high = std::max(first, second);
+                const uint64_t pair = (uint64_t(low) << 32) | high;
+                bool &active = m_ws27GateActive[pair];
+                const uint32_t peak = std::max(qFirst, qSecond);
+                if (!active && peak >= guard_on_bytes) {
+                    active = true;
+                    ++ws27_gate_activations;
+                } else if (active && peak <= guard_off_bytes) {
+                    active = false;
+                    ++ws27_gate_exits;
+                }
+                score = active;
+            }
+            if (score) {
+                ++ws27_scored;
+                const auto a = guard_queue_stats.find(std::make_tuple(m_id, first, 1));
+                const auto b = guard_queue_stats.find(std::make_tuple(m_id, second, 1));
+                const uint64_t firstBackground = a == guard_queue_stats.end() ? 0 : a->second.current;
+                const uint64_t secondBackground = b == guard_queue_stats.end() ? 0 : b->second.current;
+                const uint64_t scoreFirst = uint64_t(qFirst) + uint64_t(guard_lambda) * firstBackground;
+                const uint64_t scoreSecond = uint64_t(qSecond) + uint64_t(guard_lambda) * secondBackground;
+                if (scoreSecond + guard_tau < scoreFirst) {
+                    chosen = second;
+                    ++ws27_diverted;
+                }
+            }
+        }
+    }
+    m_ws27MoePort[flow] = chosen;
+    return chosen;
+}
+
 /*-----------------CONGA-----------------*/
 uint32_t SwitchNode::DoLbConga(Ptr<Packet> p, CustomHeader &ch, const std::vector<int> &nexthops) {
     return DoLbFlowECMP(p, ch, nexthops);  // flow ECMP (dummy)
@@ -1472,6 +1560,9 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbClassReserve(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
+        case 23:
+        case 24:
+            return DoLbWs27Guard(p, ch, nexthops);
         case 13:
         case 14:
         case 15:
@@ -1527,7 +1618,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                     if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                     else ++ws21_feedback_hop_rejects;
                 }
-                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22)
+                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
                     SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
             }
@@ -1544,7 +1635,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                 else ++ws21_feedback_hop_rejects;
             }
-            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22)
+            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
                 SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
         }
@@ -1589,7 +1680,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         } else {
             // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
             // Release the admission reservation made above for this packet.
-            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22)) {
+            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)) {
                 if (!locallyGenerated)
                     m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
@@ -1676,7 +1767,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             ws13_inflight.erase(hit);
         }
     }
-    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22) {
+    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
         s.current -= p->GetSize();

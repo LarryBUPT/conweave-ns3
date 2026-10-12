@@ -21,6 +21,7 @@ class SwitchNode : public Node {
     static const unsigned pCnt = 128;  // port 0 is not used so + 1	// Number of ports used
     uint32_t m_ecmpSeed;
     std::map<uint64_t, bool> m_guardGateActive;
+    std::map<uint64_t, bool> m_ws27GateActive;
     std::unordered_map<uint32_t, std::vector<int> >
         m_rtTable;  // map from ip address (u32) to possible ECMP port (index of dev)
 
@@ -112,6 +113,10 @@ class SwitchNode : public Node {
                       const std::vector<int> &nexthops);
     uint32_t DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
                            const std::vector<int> &nexthops);
+    uint32_t DoLbWs27Guard(Ptr<const Packet> p, const CustomHeader &ch,
+                           const std::vector<int> &nexthops);
+    std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t>
+        m_ws27MoePort;
     // DRILL (lb_mode = 2)
     uint32_t DoLbDrill(Ptr<const Packet> p, const CustomHeader &ch,
                        const std::vector<int> &nexthops);     // choose egress port
