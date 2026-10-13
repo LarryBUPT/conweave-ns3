@@ -1,6 +1,6 @@
 # 工作流台账
 
-更新：2026-10-02。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。
+更新：2026-10-13。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
@@ -29,6 +29,7 @@
 | WS-22 | 重排预算与粒度机制 | COMPLETE FOR LOCAL MECHANISM/OBSERVABILITY AUDIT; REMOTE SIMULATION NO-GO | [Handoff 40](../handoffs/2026-09-30-40-ws22-reorder-budget-gate.md)：上游路径机会存在，但共同最终出口唯一；VOQ 仅处理相邻 phase 换路且无字节预算；逐 QP 乱序、NACK/超时/重传和接收占用无法由现有原始指标恢复 | 不冻结仿真协议。若新观测尚无法证明路径转换收益或接收成本可控，保持 no-go；不以小段尺寸或损害阈值事后调参。WS-10/11/12/19/20/21 结论不改
 | WS-23 | IRN×PFC 恢复正确性与隔离探索 | COMPLETE FOR PRESET NS-3 SYNTHETIC CORRECTNESS AND ISOLATION EXPLORATION; EFFICACY NO-GO | [最终清单](WS23_WS24_VALIDATION_PLAN.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)；固定矩阵 SHA `3db2685a…` 的 18/18 有效格从 raw 与资源收据重算，`exploratory_positive=false`；旧失败 ID 保留并排除 | 预设合成范围闭环。小拓扑三组合成需求未达到隔离效果正向判据；不得称真实业务收益或把 NO-GO 改写为论文正向结论 |
 | WS-24 | 合成多 NIC、多 rail 与放置 | COMPLETE FOR PRESET NS-3 SYNTHETIC MULTI-RAIL × PLACEMENT VALIDATION | [最终清单](WS23_WS24_VALIDATION_PLAN.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)；旧 A/B/C/D 14 格、同 SHA 单测及 12 个独立合成 job × 四臂 48/48 格验收；主效应中位 −19.667%，精确双侧 `p=0.00048828125` | 用户限定仅 ns-3，真实主机/NIC 数据不作本任务条件。结果限固定合成需求生成器、拓扑与 ns-3 配置；不能直接充当包流混合新机制或真实部署收益 |
-| WS-25 | 第一课题类别感知包流混合负载均衡 | ACTIVE FOR FORMAL MATRIX; 224/576 VERIFIED, BATCH 15 PENDING; NO FORMAL EFFECT CLAIM | [执行清单](WS25_FIRST_PAPER_EXECUTION.md)、[正式协议](../research/ws25-v1fix-formal-protocol.md)、[机器计划](../research/evidence/ws25-v1fix-formal-plan.json)：固定仿真 SHA `ce699df…`、24 个最终 seed、96 输入、576 ID；前14批 **224格 raw/资源验收**。PID `5752` 已因本地提交未推送而退出；提交 `094e198` 现已推至个人fork，ID225尚未建立/启动；见 [Handoff 74](../handoffs/2026-10-04-74-ws25-formal-fetch-resume-recovery.md) | 双主结果为 MoE 批次与背景 P99；0档后者不适用。恢复后仍按唯一 runner、批次 raw逐格验收；576格验收后切 Sol High 做双侧分析、反例与成稿。仍无正式效果结论，WS-25 未闭环。WS-21反馈/心跳留给投稿后第二课题 |
+| WS-25 | 第一课题类别感知包流混合负载均衡 | 历史快照：2026-10-04 完成 224/576 格；后续正式 NO-GO 由 WS-27 计划转述，本分支未复核 | [执行清单](WS25_FIRST_PAPER_EXECUTION.md)、[正式协议](../research/ws25-v1fix-formal-protocol.md)、[机器计划](../research/evidence/ws25-v1fix-formal-plan.json)及 [Handoff 74](../handoffs/2026-10-04-74-ws25-formal-fetch-resume-recovery.md)记录当时的固定 SHA、输入、批次与恢复门槛 | WS-27 不改变 WS-25 的预设双主结果或正式判定。当前完整状态须从 WS-25 自身的最新报告、原始数据和交接集成；本行旧批次数字不作为当前进度 |
+| WS-27 | ClassReserve、GuardHash v2、HarmGate v2 同条件比较 | COMPLETE FOR PRESET ENGINEERING AND INDEPENDENT CONFIRMATION; PAPER MECHANISM UNSELECTED | [确认报告](../research/ws27-confirm-report.md)、[机器摘要](../research/evidence/ws27-confirm-analysis.json)、[Handoff 78](../handoffs/2026-10-13-78-ws27-independent-confirmation.md)：正确性 7/7、资源阶梯 24/24、筛选 32/32、确认 384/384；192 档三候选 MoE 批次中位变化 −6.899%／−5.965%／−6.095%，背景 P99 中位变化 +0.552%／+0.340%／+0.064% | 固定源码 `ee236f27…`，24 个未见需求 seed 与同输入 ECMP 配对。背景 +3% 仅为跨 seed 中位数工程容忍线，个别 seed 越线；无硬件或生产 SLO 证据。WS-25 旧 NO-GO 不重判；WS-26 暂停；用户研判论文定位 |
 
 `CHECKPOINTED` 表示研究资料已收口，但研究假设仍开放；各项 `COMPLETE FOR ...` 都只覆盖行内注明的核验范围，不等于论文性能实验完成。对话是否归档不改变工作流状态。

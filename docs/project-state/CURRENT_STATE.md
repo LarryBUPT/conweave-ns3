@@ -1,5 +1,11 @@
 # ConWeave 毕业论文项目状态
 
+## WS-27 当前入口（2026-10-13）
+
+WS-27 已完成预设的三机制同条件比较。工程正确性 7/7 格、资源阶梯 24/24 格、独立筛选 32/32 格与独立确认 384/384 格均从本地原始结果通过逐格校验；固定仿真源码为 `ee236f27920aa56b3dd562ed971e5abee9e1e659`。192 档中 ClassReserve v1、GuardHash v2、HarmGate v2 的合成 MoE 整批完成时间相对同输入 ECMP 的跨 24 个需求 seed 中位变化分别为 −6.899%、−5.965%、−6.095%。背景 P99 中位变化分别为 +0.552%、+0.340%、+0.064%，均低于本轮 +3% 工程容忍线；单 seed 背景越线数仍为 6/24、6/24、7/24。效应区间、反例、输入和实验 ID 见[确认报告](../research/ws27-confirm-report.md)、[机器摘要](../research/evidence/ws27-confirm-analysis.json)及[Handoff 78](../handoffs/2026-10-13-78-ws27-independent-confirmation.md)。用户尚未选择论文主机制；不按本轮最大中位数自动定稿。
+
+本入口只更新 WS-27 的已核验范围。下方“当前快照（2026-10-04）”及其在途 WS-25 批次数字为当日历史记录，不能用于判断 2026 年 10 月 13 日的远端进度。WS-27 比较计划记录 WS-25 的 576 格按原协议为 NO-GO、WS-26 暂停；本次未在对应工作树重新核验或重判它们。两项后续状态需从各自工作流的最新原始证据集成。
+
 ## 当前快照（2026-10-04）
 
 WS-25 继续执行**第一课题类别感知包流混合负载均衡实现、独立验证与小论文成稿**，逐项门槛见 [WS-25 清单](WS25_FIRST_PAPER_EXECUTION.md)。修正版校准固定 SHA `a656104d05c681f9b3a998b5ef4ce3e644558d02`：四需求 192 档 24 主格/4 诊断格和 0/64/128 档 72 格均完成并逐格验收。[192 档分析](../research/ws25-v1fix-four-seed-calibration-analysis.md)与[低档分析](../research/ws25-v1fix-lower-load-calibration-analysis.md)显示跨档和基线之间有双侧权衡，不能声称五基线普遍收益。容量试跑 18 路相对 16 路吞吐只增 4.23%，未过 5% 升档线，正式调度 cap=16。根据校准已**事前固定**[正式协议](../research/ws25-v1fix-formal-protocol.md)：192 档双主结果、24 个未见需求 seed `20262521–44`、五基线及 0/64/128 约束。96 份最终输入哈希在[manifest](../research/evidence/ws25-v1fix-formal-inputs.json)，固定输入/仿真源码 SHA `ce699dffe2845dc83e2171a1c309c6d96b96d2b3`，576 格顺序在[机器计划](../research/evidence/ws25-v1fix-formal-plan.json)。截至 2026-10-04 16:12（北京时间），前 10 批 **160/576 格**已通过正式 raw 与资源逐格验收；第 11 批 16 个原 ID 已启动。唯一 runner PID `46324` 存活、stderr 为空。收据记录 17 个 `built_recovered_transport`：一项重复 build 被远端因 ID 已存在拒绝、其余为控制器超时后状态回读；原 ID 未覆盖，raw 已验收至 160。控制器与状态记录见 [Handoff 73](../handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md)。下一步按半小时读取精简收据与资源摘要；批次终态逐格验收后扩展。尚无正式算法结论，WS-25 ACTIVE。
