@@ -1,0 +1,3137 @@
+{
+  "source_sha": "ee236f27920aa56b3dd562ed971e5abee9e1e659",
+  "input_plan_sha256": "44637c74dbdb80b546141de2b1c508b4b24d4009419c9fdf1a3aa27ac375222c",
+  "independent_unit": "demand seed",
+  "verified_raw_cells": 48,
+  "p95_definitions": {
+    "single_flow": "within each seed, 16384 MoE FCT values",
+    "batch": "across 24 seed-level MoE batch times"
+  },
+  "across_seed_batch_p95_us": {
+    "ecmp": 20.04695,
+    "classreserve": 18.66615
+  },
+  "across_seed_batch_p95_change_pct": -6.8878308171567255,
+  "median_within_seed_single_flow_p95_change_pct": -1.0119136073470536,
+  "paired_seeds": [
+    {
+      "seed": 20262721,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262721-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262721-b192-classreserve",
+      "trace_sha256": "e56481a94753de0382811480333cd7a29ffdacec762110c3e7f1df2cc22a77c6",
+      "fct_sha256": {
+        "ecmp": "b769122b55e4875047484254f7c17439f4689bff1ad349610680687f0875c1a1",
+        "classreserve": "f3864f6319fcdff5474a31ae4c60be2bf3f51151747055913abb6f05a574bbc6"
+      },
+      "moe_batch_us": {
+        "ecmp": 17.965,
+        "classreserve": 16.979
+      },
+      "moe_batch_change_pct": -5.488449763428893,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.763,
+        "classreserve": 14.473700000000001
+      },
+      "moe_single_flow_p95_change_pct": -1.959628801734059,
+      "background_p99_change_pct": -6.177761930744818
+    },
+    {
+      "seed": 20262722,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262722-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262722-b192-classreserve",
+      "trace_sha256": "a4e37b058f940944eb12577e6aa687da09b79a699f4d84f018143c3123efeb32",
+      "fct_sha256": {
+        "ecmp": "71d3f82a6f3969cbc6c07dd335b596dd53a358f673228be643acf52ccdefbed0",
+        "classreserve": "de7d8134ed92b9b4fd6df6ab18b2f7e30fc4c08f1e3c6e5357df2ec907ba8952"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.572,
+        "classreserve": 16.508
+      },
+      "moe_batch_change_pct": -11.113504199870771,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.536,
+        "classreserve": 14.787
+      },
+      "moe_single_flow_p95_change_pct": 1.7267473858007865,
+      "background_p99_change_pct": 4.271817894848273
+    },
+    {
+      "seed": 20262723,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262723-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262723-b192-classreserve",
+      "trace_sha256": "982703626831d50419fafb3916e0e537414c3b91437d0b600e91f503cd94a446",
+      "fct_sha256": {
+        "ecmp": "da66ac99f56a016f3a49e59ac9a0a0bcc0e38ed83569bdf520b8c40c3d95724b",
+        "classreserve": "023e40cb6ab4aa10f3c1c13f3fb2c3c4d5035b1ff868f79e2b3c2d947e5d275c"
+      },
+      "moe_batch_us": {
+        "ecmp": 19.871,
+        "classreserve": 17.088
+      },
+      "moe_batch_change_pct": -14.005334406924652,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.662,
+        "classreserve": 14.67985
+      },
+      "moe_single_flow_p95_change_pct": 0.12174328195333484,
+      "background_p99_change_pct": -6.447787152239304
+    },
+    {
+      "seed": 20262724,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262724-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262724-b192-classreserve",
+      "trace_sha256": "c105b1743756f058837619bef5335e6a09715fb34958fe0b6df0dc6a05f98455",
+      "fct_sha256": {
+        "ecmp": "8a63e90b178e03ff094fea12b54d67957092c81b61db43595bdac9da8c5691f8",
+        "classreserve": "c6771d8d7cf93404b1b1b2912702e6db0862681b227fc714bf669951ab83b8af"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.011,
+        "classreserve": 17.309
+      },
+      "moe_batch_change_pct": -3.897618122258606,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.585,
+        "classreserve": 14.468
+      },
+      "moe_single_flow_p95_change_pct": -0.8021940349674406,
+      "background_p99_change_pct": 3.052435998554759
+    },
+    {
+      "seed": 20262725,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262725-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262725-b192-classreserve",
+      "trace_sha256": "753ce75fdf066f969888d0f09233598588cb135fa28b31577935372f97866280",
+      "fct_sha256": {
+        "ecmp": "25f23194366a4e52fbbe5847473cce54519fe6ed90143b4b38ab254be4fe39b0",
+        "classreserve": "792288f155807053c6926f979cb9fac057d2fa6b5b5049abc81adb58bfe8e579"
+      },
+      "moe_batch_us": {
+        "ecmp": 17.588,
+        "classreserve": 17.779
+      },
+      "moe_batch_change_pct": 1.0859677052535766,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.568,
+        "classreserve": 14.51985
+      },
+      "moe_single_flow_p95_change_pct": -0.33051894563426165,
+      "background_p99_change_pct": -3.70952793100775
+    },
+    {
+      "seed": 20262726,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262726-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262726-b192-classreserve",
+      "trace_sha256": "55434af5ac64434fd7fa65c10a1349275dea044feabbed9295e90535cbff0e6d",
+      "fct_sha256": {
+        "ecmp": "7d015a375cb0c1d9cd94edf29a90e5cc70c1d4868bdf47a5c8d9b0a54a3247cb",
+        "classreserve": "8e3d504d25c0f98bb768a273a61a1e831599b4d33c418a1de3d089864dd5c2dd"
+      },
+      "moe_batch_us": {
+        "ecmp": 17.509,
+        "classreserve": 16.303
+      },
+      "moe_batch_change_pct": -6.887886229938889,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.71585,
+        "classreserve": 14.217
+      },
+      "moe_single_flow_p95_change_pct": -3.389882337751471,
+      "background_p99_change_pct": 1.9561689560254836
+    },
+    {
+      "seed": 20262727,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262727-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262727-b192-classreserve",
+      "trace_sha256": "8a670da8248c2fd6b0f0889782322b567f2aea61c1d107edb91093014385c9be",
+      "fct_sha256": {
+        "ecmp": "33e14939525aa8ddb878f6e5a9b2fd702b3dc0f28c1f032a5240a905b4d8087e",
+        "classreserve": "c6473e55f30d7ee01376bcdc9d907474f1d12f03525a07d66addd9abc63a001a"
+      },
+      "moe_batch_us": {
+        "ecmp": 17.984,
+        "classreserve": 17.79
+      },
+      "moe_batch_change_pct": -1.0787366548042798,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.89085,
+        "classreserve": 14.4997
+      },
+      "moe_single_flow_p95_change_pct": -2.6267808755040867,
+      "background_p99_change_pct": -1.5039639942199812
+    },
+    {
+      "seed": 20262728,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262728-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262728-b192-classreserve",
+      "trace_sha256": "a4bd9c4fe8cc18b23c03c6260a31085fedebf0d0c416f134d096529b0ac6d167",
+      "fct_sha256": {
+        "ecmp": "89638fa75c320d8d4972fc00f61c1b5a3ad231f1a2286c985962a5c9f67472a9",
+        "classreserve": "c259a44e117552b942d8326e2e5350898ee997fe0a8f1764f8dcf20461cce0d8"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.369,
+        "classreserve": 17.524
+      },
+      "moe_batch_change_pct": -4.600141542816694,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.855,
+        "classreserve": 14.754850000000001
+      },
+      "moe_single_flow_p95_change_pct": -0.6741837765062209,
+      "background_p99_change_pct": 0.8815364891572308
+    },
+    {
+      "seed": 20262729,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262729-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262729-b192-classreserve",
+      "trace_sha256": "2cd1723f9352a8e404385c6a436c2e75b427aca67105efcc9cb83a6b65f7eeb7",
+      "fct_sha256": {
+        "ecmp": "efda3f4e1ad61de22749c6821a621b0a4d8f72c3492b5c09e31092b8e0244fe5",
+        "classreserve": "311878a31868330c0045ebd0334eaac3d957ac505d21d41f0392fd544b27de93"
+      },
+      "moe_batch_us": {
+        "ecmp": 17.9,
+        "classreserve": 18.72
+      },
+      "moe_batch_change_pct": 4.5810055865921795,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.722,
+        "classreserve": 14.16985
+      },
+      "moe_single_flow_p95_change_pct": -3.750509441651939,
+      "background_p99_change_pct": 1.0289946194638855
+    },
+    {
+      "seed": 20262730,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262730-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262730-b192-classreserve",
+      "trace_sha256": "a7065055fd63bdb595291daf3f5114544a46508ba361ce4389879724400ccb0e",
+      "fct_sha256": {
+        "ecmp": "c69fa9e1131b0eab2e4381a2977908b7c9058cca22a64f6faf9ce1e9b73a2b71",
+        "classreserve": "7cdcd6adf26577455ae40d2a46c96ce53c2d4d0ce8d06c76c92cd69c48f08b27"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.792,
+        "classreserve": 18.361
+      },
+      "moe_batch_change_pct": -2.2935291613452535,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.67085,
+        "classreserve": 14.6927
+      },
+      "moe_single_flow_p95_change_pct": 0.1489347924626072,
+      "background_p99_change_pct": -0.11153050099622641
+    },
+    {
+      "seed": 20262731,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262731-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262731-b192-classreserve",
+      "trace_sha256": "90eb4e93a95c7e6dd9ce0d7e7f1e8486d5be0a9bc3382de7bb9d71721a1ed7b6",
+      "fct_sha256": {
+        "ecmp": "a04b8de006575383c40404158e9d8f1ad3039d68813dfe0649e65d3e723c8fb4",
+        "classreserve": "66ba190e56536854649bdc2ea8aea19a102c4c822b52ebc885e91408b11ad965"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.807,
+        "classreserve": 16.595
+      },
+      "moe_batch_change_pct": -11.761578135800498,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.74685,
+        "classreserve": 14.524700000000001
+      },
+      "moe_single_flow_p95_change_pct": -1.5064234056764603,
+      "background_p99_change_pct": -1.6298945526515451
+    },
+    {
+      "seed": 20262732,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262732-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262732-b192-classreserve",
+      "trace_sha256": "fd517da586fc905bffa7af5ce5f4d850b01a833255f9361f0fee4328b3ba599e",
+      "fct_sha256": {
+        "ecmp": "d861d7d9472385116aeb6ba8b9b2a00e53bec4be167519981ba0c6460b74bc48",
+        "classreserve": "42e2c5386ad76117ef17f10a4bd0e99236c1d919f2240283c31f15fc2864ea90"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.825,
+        "classreserve": 17.844
+      },
+      "moe_batch_change_pct": -5.211155378486043,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.555,
+        "classreserve": 14.611
+      },
+      "moe_single_flow_p95_change_pct": 0.3847475094469255,
+      "background_p99_change_pct": 0.22330521988840335
+    },
+    {
+      "seed": 20262733,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262733-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262733-b192-classreserve",
+      "trace_sha256": "9fc542f708f6b84fc82fe7ab418d4e5ecf694a1da2f4527527b25eaebe43911d",
+      "fct_sha256": {
+        "ecmp": "da72f0054bf1bcdc9e3bf33db55d19a88987960add4bcd1a1846fefa6263ca49",
+        "classreserve": "b4a292507a3f02ad33cdcfed2e4a1a0a979d2db839b854bc5969ce731f2b3e32"
+      },
+      "moe_batch_us": {
+        "ecmp": 20.116,
+        "classreserve": 16.959
+      },
+      "moe_batch_change_pct": -15.693974945317157,
+      "moe_single_flow_p95_us": {
+        "ecmp": 15.09185,
+        "classreserve": 14.3567
+      },
+      "moe_single_flow_p95_change_pct": -4.871172188962925,
+      "background_p99_change_pct": 7.191861179687886
+    },
+    {
+      "seed": 20262734,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262734-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262734-b192-classreserve",
+      "trace_sha256": "5c6e42d53da953aa253a41929acd0aa4d0727e8d11c1c8a1be6c003dd5b52a76",
+      "fct_sha256": {
+        "ecmp": "0f0459ccb8e083f3db31d234bf1818d5b2bd631f8e32a9672926e30030dbf96c",
+        "classreserve": "9e19f84bf794510eecec6e67d111b857206e1269b32c0880aeac9b6c9bd99f75"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.508,
+        "classreserve": 17.454
+      },
+      "moe_batch_change_pct": -5.6948346660903315,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.5327,
+        "classreserve": 14.36785
+      },
+      "moe_single_flow_p95_change_pct": -1.134338423004666,
+      "background_p99_change_pct": -0.8841020989517223
+    },
+    {
+      "seed": 20262735,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262735-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262735-b192-classreserve",
+      "trace_sha256": "168e30c7f6919c5a4ed29728e51d8301102bea9ebdb2792aed794b001208d253",
+      "fct_sha256": {
+        "ecmp": "763470f25904c2452b8f52c108914bd7765c4baec6e3cd5d0bf9b9b0669206bd",
+        "classreserve": "f1029d287d184a1f7e1739334e0ee0a20d7c33a7978197d1277ab46a3aa82405"
+      },
+      "moe_batch_us": {
+        "ecmp": 17.682,
+        "classreserve": 16.46
+      },
+      "moe_batch_change_pct": -6.9109829204840985,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.676,
+        "classreserve": 14.3397
+      },
+      "moe_single_flow_p95_change_pct": -2.2914963205233008,
+      "background_p99_change_pct": -2.864830549213815
+    },
+    {
+      "seed": 20262736,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262736-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262736-b192-classreserve",
+      "trace_sha256": "d58c28ac27e481cb6fd128516ec7c7e4a5db3e3093bb92dcd116aaa6009ba9f6",
+      "fct_sha256": {
+        "ecmp": "584e478d088109f027858f89161b33eb53742eedbe48cbcbd2eed7a34ae373c3",
+        "classreserve": "7fa25d94bc948c46090c9c9a7e08796928b0e8ea4a63407e3dbaf684878f00e9"
+      },
+      "moe_batch_us": {
+        "ecmp": 17.826,
+        "classreserve": 16.343
+      },
+      "moe_batch_change_pct": -8.319308874677445,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.82185,
+        "classreserve": 14.534
+      },
+      "moe_single_flow_p95_change_pct": -1.9420652617588186,
+      "background_p99_change_pct": 6.360945380169203
+    },
+    {
+      "seed": 20262737,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262737-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262737-b192-classreserve",
+      "trace_sha256": "75f06f0579467daf0c2f94c4778d312978554d8f1138f363a0d02c25b35f1ed9",
+      "fct_sha256": {
+        "ecmp": "bd910b2828a34dfdcc42eb9f46a762e940d54165ec923936a2ee0920a9fd178a",
+        "classreserve": "2dd553fc6dc70f576e64ab4b4763f9ddd3489162ceac14dd53019780da9a292f"
+      },
+      "moe_batch_us": {
+        "ecmp": 20.078,
+        "classreserve": 18.001
+      },
+      "moe_batch_change_pct": -10.344655842215357,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.87485,
+        "classreserve": 14.68185
+      },
+      "moe_single_flow_p95_change_pct": -1.2974920755503438,
+      "background_p99_change_pct": -1.5412178164296741
+    },
+    {
+      "seed": 20262738,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262738-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262738-b192-classreserve",
+      "trace_sha256": "d716a0da979f0d68f4ddfc60d1f9d22d31b8cc89382b1f31208d595ff1e5f251",
+      "fct_sha256": {
+        "ecmp": "9027828d08ef41743a3d922e18ec121f97f22d1fec1a9b53e3fb555c7e2b9bbe",
+        "classreserve": "f1d2507b60e60119393c6171b4e1fb81adbc7cc856996be3eef34324c2c01506"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.741,
+        "classreserve": 16.831
+      },
+      "moe_batch_change_pct": -10.191558614801776,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.72185,
+        "classreserve": 14.673
+      },
+      "moe_single_flow_p95_change_pct": -0.3318197101587095,
+      "background_p99_change_pct": 6.552698644539934
+    },
+    {
+      "seed": 20262739,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262739-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262739-b192-classreserve",
+      "trace_sha256": "5d695149fe6ac2e07a6c6e39916934428ab36776f86620611d71bbdd91125462",
+      "fct_sha256": {
+        "ecmp": "4eec956fa24d721fcbed824ae11b81ecb629d78a60115d62a873167fd89526f5",
+        "classreserve": "f6d96f2f779b782755eb103b349f636d58f497c6e65948805992c323231c1635"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.609,
+        "classreserve": 19.034
+      },
+      "moe_batch_change_pct": 2.2838411521306723,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.70785,
+        "classreserve": 14.786400000000002
+      },
+      "moe_single_flow_p95_change_pct": 0.5340685416291402,
+      "background_p99_change_pct": -0.42858136827960136
+    },
+    {
+      "seed": 20262740,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262740-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262740-b192-classreserve",
+      "trace_sha256": "9ecb58c5307d56c441142a215ee2c50499d3463d1021b64e3a4e03b1f784735c",
+      "fct_sha256": {
+        "ecmp": "42f32aadbdf16f953f73e9e5301939126219ed9af9b1c4295ae3c9c6ac48e9be",
+        "classreserve": "7e20d478bfd116a83fd858d9d29ec88fb8a00b7f551079558e798170737affcf"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.271,
+        "classreserve": 17.16
+      },
+      "moe_batch_change_pct": -6.080674292594823,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.437,
+        "classreserve": 14.31685
+      },
+      "moe_single_flow_p95_change_pct": -0.832236614255033,
+      "background_p99_change_pct": 1.606176681186544
+    },
+    {
+      "seed": 20262741,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262741-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262741-b192-classreserve",
+      "trace_sha256": "03f02047ce694ea436a0b79f6d14174ce60c9043d5dd0bf2e472f4519df7c084",
+      "fct_sha256": {
+        "ecmp": "1e46a8542d7b0a18b1f4775eb087acb1577add59b5335180c4fcacc0e87eaa30",
+        "classreserve": "337481877c25c93aea26a3454e3594e3be268617901296b8b3b70b424dffe193"
+      },
+      "moe_batch_us": {
+        "ecmp": 18.31,
+        "classreserve": 16.432
+      },
+      "moe_batch_change_pct": -10.256690333151287,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.632,
+        "classreserve": 14.501850000000001
+      },
+      "moe_single_flow_p95_change_pct": -0.8894887916894412,
+      "background_p99_change_pct": -4.9953266576934
+    },
+    {
+      "seed": 20262742,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262742-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262742-b192-classreserve",
+      "trace_sha256": "dbf46c496841486749a249356149ae3f1560758c184857c93b9fb5de34a2a5a9",
+      "fct_sha256": {
+        "ecmp": "f5b68b7fd6dc3442657d5c3792af77885ad98fc6c588393e49c9b1e4257ba9fc",
+        "classreserve": "e40294fdd56e071dc2f409a4696ff215dba189e052465c4e8a9dcb8f0179d55c"
+      },
+      "moe_batch_us": {
+        "ecmp": 19.725,
+        "classreserve": 17.256
+      },
+      "moe_batch_change_pct": -12.517110266159703,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.763,
+        "classreserve": 14.661850000000001
+      },
+      "moe_single_flow_p95_change_pct": -0.6851588430535682,
+      "background_p99_change_pct": 2.0078979557736742
+    },
+    {
+      "seed": 20262743,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262743-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262743-b192-classreserve",
+      "trace_sha256": "1f2b98b2354f746c4d9a8e0b080edfe9c80bca5315ac676eaee14afd6859e2b6",
+      "fct_sha256": {
+        "ecmp": "f8905bc3e31e3e400d301f86d6397069f6e9e358326a252ac4e6e7eca882f332",
+        "classreserve": "ef373dc250faac36880f6ed2c3a1b5cc5fe6f057a6bacc18904e42c0b5ab2fc8"
+      },
+      "moe_batch_us": {
+        "ecmp": 19.3,
+        "classreserve": 17.536
+      },
+      "moe_batch_change_pct": -9.139896373056988,
+      "moe_single_flow_p95_us": {
+        "ecmp": 14.6637,
+        "classreserve": 14.21285
+      },
+      "moe_single_flow_p95_change_pct": -3.0745991802887507,
+      "background_p99_change_pct": 4.285860170186573
+    },
+    {
+      "seed": 20262744,
+      "ecmp_id": "20261013-030000-ws27-confirm-s20262744-b192-fecmp",
+      "classreserve_id": "20261013-030000-ws27-confirm-s20262744-b192-classreserve",
+      "trace_sha256": "9fca0d1a0d3b27dd4a5e0ccff1e42f4e021a4bb74ac8f5aed10da5b2d024ac92",
+      "fct_sha256": {
+        "ecmp": "48e82a25afb34972664845e92e27e82ca669e80c1a3d8221bffc0d89b5f4887f",
+        "classreserve": "bf8c3f82fee8a723f6046052d59f9501d64368c996546f82c071007ec7bee8a6"
+      },
+      "moe_batch_us": {
+        "ecmp": 19.62,
+        "classreserve": 18.083
+      },
+      "moe_batch_change_pct": -7.833843017329267,
+      "moe_single_flow_p95_us": {
+        "ecmp": 15.064,
+        "classreserve": 14.793700000000001
+      },
+      "moe_single_flow_p95_change_pct": -1.794344131704717,
+      "background_p99_change_pct": 2.714832510643106
+    }
+  ],
+  "worsened_seed_tails": {
+    "20262725": {
+      "top10_by_completion": {
+        "ecmp": [
+          {
+            "flow_key": [
+              780,
+              956,
+              10045,
+              142,
+              8192
+            ],
+            "fct_us": 17.588,
+            "end_us_after_2s": 17.588
+          },
+          {
+            "flow_key": [
+              388,
+              952,
+              10050,
+              119,
+              8192
+            ],
+            "fct_us": 17.311,
+            "end_us_after_2s": 17.311
+          },
+          {
+            "flow_key": [
+              0,
+              956,
+              10048,
+              100,
+              8192
+            ],
+            "fct_us": 17.289,
+            "end_us_after_2s": 17.289
+          },
+          {
+            "flow_key": [
+              8,
+              944,
+              10046,
+              100,
+              8192
+            ],
+            "fct_us": 17.238,
+            "end_us_after_2s": 17.238
+          },
+          {
+            "flow_key": [
+              20,
+              932,
+              10048,
+              101,
+              8192
+            ],
+            "fct_us": 17.228,
+            "end_us_after_2s": 17.228
+          },
+          {
+            "flow_key": [
+              396,
+              932,
+              10044,
+              119,
+              8192
+            ],
+            "fct_us": 17.051,
+            "end_us_after_2s": 17.051
+          },
+          {
+            "flow_key": [
+              392,
+              936,
+              10047,
+              120,
+              8192
+            ],
+            "fct_us": 17.03,
+            "end_us_after_2s": 17.03
+          },
+          {
+            "flow_key": [
+              576,
+              1072,
+              10052,
+              135,
+              8192
+            ],
+            "fct_us": 16.88,
+            "end_us_after_2s": 16.88
+          },
+          {
+            "flow_key": [
+              1176,
+              564,
+              10028,
+              169,
+              8192
+            ],
+            "fct_us": 16.828,
+            "end_us_after_2s": 16.828
+          },
+          {
+            "flow_key": [
+              1096,
+              428,
+              10021,
+              163,
+              8192
+            ],
+            "fct_us": 16.656,
+            "end_us_after_2s": 16.656
+          }
+        ],
+        "classreserve": [
+          {
+            "flow_key": [
+              964,
+              304,
+              10020,
+              139,
+              8192
+            ],
+            "fct_us": 17.779,
+            "end_us_after_2s": 17.779
+          },
+          {
+            "flow_key": [
+              632,
+              316,
+              10023,
+              137,
+              8192
+            ],
+            "fct_us": 17.764,
+            "end_us_after_2s": 17.764
+          },
+          {
+            "flow_key": [
+              964,
+              296,
+              10019,
+              147,
+              8192
+            ],
+            "fct_us": 17.753,
+            "end_us_after_2s": 17.753
+          },
+          {
+            "flow_key": [
+              772,
+              288,
+              10020,
+              137,
+              8192
+            ],
+            "fct_us": 17.74,
+            "end_us_after_2s": 17.74
+          },
+          {
+            "flow_key": [
+              664,
+              288,
+              10016,
+              133,
+              8192
+            ],
+            "fct_us": 17.736,
+            "end_us_after_2s": 17.736
+          },
+          {
+            "flow_key": [
+              804,
+              288,
+              10015,
+              139,
+              8192
+            ],
+            "fct_us": 17.732,
+            "end_us_after_2s": 17.732
+          },
+          {
+            "flow_key": [
+              792,
+              308,
+              10020,
+              141,
+              8192
+            ],
+            "fct_us": 17.717,
+            "end_us_after_2s": 17.717
+          },
+          {
+            "flow_key": [
+              836,
+              296,
+              10019,
+              134,
+              8192
+            ],
+            "fct_us": 17.715,
+            "end_us_after_2s": 17.715
+          },
+          {
+            "flow_key": [
+              188,
+              316,
+              10015,
+              111,
+              8192
+            ],
+            "fct_us": 17.713,
+            "end_us_after_2s": 17.713
+          },
+          {
+            "flow_key": [
+              88,
+              288,
+              10014,
+              106,
+              8192
+            ],
+            "fct_us": 17.705,
+            "end_us_after_2s": 17.705
+          }
+        ]
+      },
+      "matched_tail_union": [
+        {
+          "flow_key": [
+            0,
+            956,
+            10048,
+            100,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              0,
+              956,
+              10048,
+              100,
+              8192
+            ],
+            "fct_us": 17.289,
+            "end_us_after_2s": 17.289
+          },
+          "classreserve": {
+            "flow_key": [
+              0,
+              956,
+              10048,
+              100,
+              8192
+            ],
+            "fct_us": 12.758,
+            "end_us_after_2s": 12.758
+          },
+          "fct_change_us": -4.531
+        },
+        {
+          "flow_key": [
+            8,
+            944,
+            10046,
+            100,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              8,
+              944,
+              10046,
+              100,
+              8192
+            ],
+            "fct_us": 17.238,
+            "end_us_after_2s": 17.238
+          },
+          "classreserve": {
+            "flow_key": [
+              8,
+              944,
+              10046,
+              100,
+              8192
+            ],
+            "fct_us": 12.035,
+            "end_us_after_2s": 12.035
+          },
+          "fct_change_us": -5.203
+        },
+        {
+          "flow_key": [
+            20,
+            932,
+            10048,
+            101,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              20,
+              932,
+              10048,
+              101,
+              8192
+            ],
+            "fct_us": 17.228,
+            "end_us_after_2s": 17.228
+          },
+          "classreserve": {
+            "flow_key": [
+              20,
+              932,
+              10048,
+              101,
+              8192
+            ],
+            "fct_us": 14.84,
+            "end_us_after_2s": 14.84
+          },
+          "fct_change_us": -2.388
+        },
+        {
+          "flow_key": [
+            88,
+            288,
+            10014,
+            106,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              88,
+              288,
+              10014,
+              106,
+              8192
+            ],
+            "fct_us": 11.449,
+            "end_us_after_2s": 11.449
+          },
+          "classreserve": {
+            "flow_key": [
+              88,
+              288,
+              10014,
+              106,
+              8192
+            ],
+            "fct_us": 17.705,
+            "end_us_after_2s": 17.705
+          },
+          "fct_change_us": 6.256
+        },
+        {
+          "flow_key": [
+            188,
+            316,
+            10015,
+            111,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              188,
+              316,
+              10015,
+              111,
+              8192
+            ],
+            "fct_us": 13.429,
+            "end_us_after_2s": 13.429
+          },
+          "classreserve": {
+            "flow_key": [
+              188,
+              316,
+              10015,
+              111,
+              8192
+            ],
+            "fct_us": 17.713,
+            "end_us_after_2s": 17.713
+          },
+          "fct_change_us": 4.284
+        },
+        {
+          "flow_key": [
+            388,
+            952,
+            10050,
+            119,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              388,
+              952,
+              10050,
+              119,
+              8192
+            ],
+            "fct_us": 17.311,
+            "end_us_after_2s": 17.311
+          },
+          "classreserve": {
+            "flow_key": [
+              388,
+              952,
+              10050,
+              119,
+              8192
+            ],
+            "fct_us": 12.6,
+            "end_us_after_2s": 12.6
+          },
+          "fct_change_us": -4.711
+        },
+        {
+          "flow_key": [
+            392,
+            936,
+            10047,
+            120,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              392,
+              936,
+              10047,
+              120,
+              8192
+            ],
+            "fct_us": 17.03,
+            "end_us_after_2s": 17.03
+          },
+          "classreserve": {
+            "flow_key": [
+              392,
+              936,
+              10047,
+              120,
+              8192
+            ],
+            "fct_us": 12.552,
+            "end_us_after_2s": 12.552
+          },
+          "fct_change_us": -4.478
+        },
+        {
+          "flow_key": [
+            396,
+            932,
+            10044,
+            119,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              396,
+              932,
+              10044,
+              119,
+              8192
+            ],
+            "fct_us": 17.051,
+            "end_us_after_2s": 17.051
+          },
+          "classreserve": {
+            "flow_key": [
+              396,
+              932,
+              10044,
+              119,
+              8192
+            ],
+            "fct_us": 14.801,
+            "end_us_after_2s": 14.801
+          },
+          "fct_change_us": -2.25
+        },
+        {
+          "flow_key": [
+            576,
+            1072,
+            10052,
+            135,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              576,
+              1072,
+              10052,
+              135,
+              8192
+            ],
+            "fct_us": 16.88,
+            "end_us_after_2s": 16.88
+          },
+          "classreserve": {
+            "flow_key": [
+              576,
+              1072,
+              10052,
+              135,
+              8192
+            ],
+            "fct_us": 12.635,
+            "end_us_after_2s": 12.635
+          },
+          "fct_change_us": -4.245
+        },
+        {
+          "flow_key": [
+            632,
+            316,
+            10023,
+            137,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              632,
+              316,
+              10023,
+              137,
+              8192
+            ],
+            "fct_us": 11.437,
+            "end_us_after_2s": 11.437
+          },
+          "classreserve": {
+            "flow_key": [
+              632,
+              316,
+              10023,
+              137,
+              8192
+            ],
+            "fct_us": 17.764,
+            "end_us_after_2s": 17.764
+          },
+          "fct_change_us": 6.327
+        },
+        {
+          "flow_key": [
+            664,
+            288,
+            10016,
+            133,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              664,
+              288,
+              10016,
+              133,
+              8192
+            ],
+            "fct_us": 12.819,
+            "end_us_after_2s": 12.819
+          },
+          "classreserve": {
+            "flow_key": [
+              664,
+              288,
+              10016,
+              133,
+              8192
+            ],
+            "fct_us": 17.736,
+            "end_us_after_2s": 17.736
+          },
+          "fct_change_us": 4.917
+        },
+        {
+          "flow_key": [
+            772,
+            288,
+            10020,
+            137,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              772,
+              288,
+              10020,
+              137,
+              8192
+            ],
+            "fct_us": 14.906,
+            "end_us_after_2s": 14.906
+          },
+          "classreserve": {
+            "flow_key": [
+              772,
+              288,
+              10020,
+              137,
+              8192
+            ],
+            "fct_us": 17.74,
+            "end_us_after_2s": 17.74
+          },
+          "fct_change_us": 2.834
+        },
+        {
+          "flow_key": [
+            780,
+            956,
+            10045,
+            142,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              780,
+              956,
+              10045,
+              142,
+              8192
+            ],
+            "fct_us": 17.588,
+            "end_us_after_2s": 17.588
+          },
+          "classreserve": {
+            "flow_key": [
+              780,
+              956,
+              10045,
+              142,
+              8192
+            ],
+            "fct_us": 11.479,
+            "end_us_after_2s": 11.479
+          },
+          "fct_change_us": -6.109
+        },
+        {
+          "flow_key": [
+            792,
+            308,
+            10020,
+            141,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              792,
+              308,
+              10020,
+              141,
+              8192
+            ],
+            "fct_us": 13.883,
+            "end_us_after_2s": 13.883
+          },
+          "classreserve": {
+            "flow_key": [
+              792,
+              308,
+              10020,
+              141,
+              8192
+            ],
+            "fct_us": 17.717,
+            "end_us_after_2s": 17.717
+          },
+          "fct_change_us": 3.834
+        },
+        {
+          "flow_key": [
+            804,
+            288,
+            10015,
+            139,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              804,
+              288,
+              10015,
+              139,
+              8192
+            ],
+            "fct_us": 12.785,
+            "end_us_after_2s": 12.785
+          },
+          "classreserve": {
+            "flow_key": [
+              804,
+              288,
+              10015,
+              139,
+              8192
+            ],
+            "fct_us": 17.732,
+            "end_us_after_2s": 17.732
+          },
+          "fct_change_us": 4.947
+        },
+        {
+          "flow_key": [
+            836,
+            296,
+            10019,
+            134,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              836,
+              296,
+              10019,
+              134,
+              8192
+            ],
+            "fct_us": 11.581,
+            "end_us_after_2s": 11.581
+          },
+          "classreserve": {
+            "flow_key": [
+              836,
+              296,
+              10019,
+              134,
+              8192
+            ],
+            "fct_us": 17.715,
+            "end_us_after_2s": 17.715
+          },
+          "fct_change_us": 6.134
+        },
+        {
+          "flow_key": [
+            964,
+            296,
+            10019,
+            147,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              964,
+              296,
+              10019,
+              147,
+              8192
+            ],
+            "fct_us": 12.828,
+            "end_us_after_2s": 12.828
+          },
+          "classreserve": {
+            "flow_key": [
+              964,
+              296,
+              10019,
+              147,
+              8192
+            ],
+            "fct_us": 17.753,
+            "end_us_after_2s": 17.753
+          },
+          "fct_change_us": 4.925
+        },
+        {
+          "flow_key": [
+            964,
+            304,
+            10020,
+            139,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              964,
+              304,
+              10020,
+              139,
+              8192
+            ],
+            "fct_us": 13.66,
+            "end_us_after_2s": 13.66
+          },
+          "classreserve": {
+            "flow_key": [
+              964,
+              304,
+              10020,
+              139,
+              8192
+            ],
+            "fct_us": 17.779,
+            "end_us_after_2s": 17.779
+          },
+          "fct_change_us": 4.119
+        },
+        {
+          "flow_key": [
+            1096,
+            428,
+            10021,
+            163,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1096,
+              428,
+              10021,
+              163,
+              8192
+            ],
+            "fct_us": 16.656,
+            "end_us_after_2s": 16.656
+          },
+          "classreserve": {
+            "flow_key": [
+              1096,
+              428,
+              10021,
+              163,
+              8192
+            ],
+            "fct_us": 11.736,
+            "end_us_after_2s": 11.736
+          },
+          "fct_change_us": -4.92
+        },
+        {
+          "flow_key": [
+            1176,
+            564,
+            10028,
+            169,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1176,
+              564,
+              10028,
+              169,
+              8192
+            ],
+            "fct_us": 16.828,
+            "end_us_after_2s": 16.828
+          },
+          "classreserve": {
+            "flow_key": [
+              1176,
+              564,
+              10028,
+              169,
+              8192
+            ],
+            "fct_us": 12.042,
+            "end_us_after_2s": 12.042
+          },
+          "fct_change_us": -4.786
+        }
+      ],
+      "tail_identity_same": false
+    },
+    "20262729": {
+      "top10_by_completion": {
+        "ecmp": [
+          {
+            "flow_key": [
+              1176,
+              344,
+              10010,
+              165,
+              8192
+            ],
+            "fct_us": 17.9,
+            "end_us_after_2s": 17.9
+          },
+          {
+            "flow_key": [
+              1164,
+              344,
+              10013,
+              164,
+              8192
+            ],
+            "fct_us": 17.897,
+            "end_us_after_2s": 17.897
+          },
+          {
+            "flow_key": [
+              1036,
+              512,
+              10029,
+              157,
+              8192
+            ],
+            "fct_us": 17.849,
+            "end_us_after_2s": 17.849
+          },
+          {
+            "flow_key": [
+              1028,
+              540,
+              10023,
+              155,
+              8192
+            ],
+            "fct_us": 17.825,
+            "end_us_after_2s": 17.825
+          },
+          {
+            "flow_key": [
+              1024,
+              528,
+              10029,
+              147,
+              8192
+            ],
+            "fct_us": 17.821,
+            "end_us_after_2s": 17.821
+          },
+          {
+            "flow_key": [
+              436,
+              320,
+              10018,
+              119,
+              8192
+            ],
+            "fct_us": 17.814,
+            "end_us_after_2s": 17.814
+          },
+          {
+            "flow_key": [
+              788,
+              344,
+              10014,
+              145,
+              8192
+            ],
+            "fct_us": 17.762,
+            "end_us_after_2s": 17.762
+          },
+          {
+            "flow_key": [
+              784,
+              320,
+              10013,
+              136,
+              8192
+            ],
+            "fct_us": 17.73,
+            "end_us_after_2s": 17.73
+          },
+          {
+            "flow_key": [
+              280,
+              536,
+              10024,
+              112,
+              8192
+            ],
+            "fct_us": 17.237,
+            "end_us_after_2s": 17.237
+          },
+          {
+            "flow_key": [
+              860,
+              324,
+              10015,
+              141,
+              8192
+            ],
+            "fct_us": 17.188,
+            "end_us_after_2s": 17.188
+          }
+        ],
+        "classreserve": [
+          {
+            "flow_key": [
+              320,
+              528,
+              10033,
+              115,
+              8192
+            ],
+            "fct_us": 18.72,
+            "end_us_after_2s": 18.72
+          },
+          {
+            "flow_key": [
+              320,
+              536,
+              10034,
+              114,
+              8192
+            ],
+            "fct_us": 18.709,
+            "end_us_after_2s": 18.709
+          },
+          {
+            "flow_key": [
+              376,
+              520,
+              10024,
+              116,
+              8192
+            ],
+            "fct_us": 18.681,
+            "end_us_after_2s": 18.681
+          },
+          {
+            "flow_key": [
+              340,
+              512,
+              10021,
+              119,
+              8192
+            ],
+            "fct_us": 18.677,
+            "end_us_after_2s": 18.677
+          },
+          {
+            "flow_key": [
+              496,
+              516,
+              10031,
+              128,
+              8192
+            ],
+            "fct_us": 18.653,
+            "end_us_after_2s": 18.653
+          },
+          {
+            "flow_key": [
+              788,
+              516,
+              10026,
+              146,
+              8192
+            ],
+            "fct_us": 18.484,
+            "end_us_after_2s": 18.484
+          },
+          {
+            "flow_key": [
+              224,
+              512,
+              10027,
+              112,
+              8192
+            ],
+            "fct_us": 18.469,
+            "end_us_after_2s": 18.469
+          },
+          {
+            "flow_key": [
+              416,
+              516,
+              10029,
+              123,
+              8192
+            ],
+            "fct_us": 18.456,
+            "end_us_after_2s": 18.456
+          },
+          {
+            "flow_key": [
+              104,
+              520,
+              10024,
+              103,
+              8192
+            ],
+            "fct_us": 18.437,
+            "end_us_after_2s": 18.437
+          },
+          {
+            "flow_key": [
+              308,
+              528,
+              10031,
+              114,
+              8192
+            ],
+            "fct_us": 18.413,
+            "end_us_after_2s": 18.413
+          }
+        ]
+      },
+      "matched_tail_union": [
+        {
+          "flow_key": [
+            104,
+            520,
+            10024,
+            103,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              104,
+              520,
+              10024,
+              103,
+              8192
+            ],
+            "fct_us": 11.483,
+            "end_us_after_2s": 11.483
+          },
+          "classreserve": {
+            "flow_key": [
+              104,
+              520,
+              10024,
+              103,
+              8192
+            ],
+            "fct_us": 18.437,
+            "end_us_after_2s": 18.437
+          },
+          "fct_change_us": 6.954
+        },
+        {
+          "flow_key": [
+            224,
+            512,
+            10027,
+            112,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              224,
+              512,
+              10027,
+              112,
+              8192
+            ],
+            "fct_us": 11.557,
+            "end_us_after_2s": 11.557
+          },
+          "classreserve": {
+            "flow_key": [
+              224,
+              512,
+              10027,
+              112,
+              8192
+            ],
+            "fct_us": 18.469,
+            "end_us_after_2s": 18.469
+          },
+          "fct_change_us": 6.912
+        },
+        {
+          "flow_key": [
+            280,
+            536,
+            10024,
+            112,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              280,
+              536,
+              10024,
+              112,
+              8192
+            ],
+            "fct_us": 17.237,
+            "end_us_after_2s": 17.237
+          },
+          "classreserve": {
+            "flow_key": [
+              280,
+              536,
+              10024,
+              112,
+              8192
+            ],
+            "fct_us": 11.52,
+            "end_us_after_2s": 11.52
+          },
+          "fct_change_us": -5.717
+        },
+        {
+          "flow_key": [
+            308,
+            528,
+            10031,
+            114,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              308,
+              528,
+              10031,
+              114,
+              8192
+            ],
+            "fct_us": 11.548,
+            "end_us_after_2s": 11.548
+          },
+          "classreserve": {
+            "flow_key": [
+              308,
+              528,
+              10031,
+              114,
+              8192
+            ],
+            "fct_us": 18.413,
+            "end_us_after_2s": 18.413
+          },
+          "fct_change_us": 6.865
+        },
+        {
+          "flow_key": [
+            320,
+            528,
+            10033,
+            115,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              320,
+              528,
+              10033,
+              115,
+              8192
+            ],
+            "fct_us": 11.844,
+            "end_us_after_2s": 11.844
+          },
+          "classreserve": {
+            "flow_key": [
+              320,
+              528,
+              10033,
+              115,
+              8192
+            ],
+            "fct_us": 18.72,
+            "end_us_after_2s": 18.72
+          },
+          "fct_change_us": 6.876
+        },
+        {
+          "flow_key": [
+            320,
+            536,
+            10034,
+            114,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              320,
+              536,
+              10034,
+              114,
+              8192
+            ],
+            "fct_us": 14.611,
+            "end_us_after_2s": 14.611
+          },
+          "classreserve": {
+            "flow_key": [
+              320,
+              536,
+              10034,
+              114,
+              8192
+            ],
+            "fct_us": 18.709,
+            "end_us_after_2s": 18.709
+          },
+          "fct_change_us": 4.098
+        },
+        {
+          "flow_key": [
+            340,
+            512,
+            10021,
+            119,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              340,
+              512,
+              10021,
+              119,
+              8192
+            ],
+            "fct_us": 13.521,
+            "end_us_after_2s": 13.521
+          },
+          "classreserve": {
+            "flow_key": [
+              340,
+              512,
+              10021,
+              119,
+              8192
+            ],
+            "fct_us": 18.677,
+            "end_us_after_2s": 18.677
+          },
+          "fct_change_us": 5.156
+        },
+        {
+          "flow_key": [
+            376,
+            520,
+            10024,
+            116,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              376,
+              520,
+              10024,
+              116,
+              8192
+            ],
+            "fct_us": 11.479,
+            "end_us_after_2s": 11.479
+          },
+          "classreserve": {
+            "flow_key": [
+              376,
+              520,
+              10024,
+              116,
+              8192
+            ],
+            "fct_us": 18.681,
+            "end_us_after_2s": 18.681
+          },
+          "fct_change_us": 7.202
+        },
+        {
+          "flow_key": [
+            416,
+            516,
+            10029,
+            123,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              416,
+              516,
+              10029,
+              123,
+              8192
+            ],
+            "fct_us": 14.532,
+            "end_us_after_2s": 14.532
+          },
+          "classreserve": {
+            "flow_key": [
+              416,
+              516,
+              10029,
+              123,
+              8192
+            ],
+            "fct_us": 18.456,
+            "end_us_after_2s": 18.456
+          },
+          "fct_change_us": 3.924
+        },
+        {
+          "flow_key": [
+            436,
+            320,
+            10018,
+            119,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              436,
+              320,
+              10018,
+              119,
+              8192
+            ],
+            "fct_us": 17.814,
+            "end_us_after_2s": 17.814
+          },
+          "classreserve": {
+            "flow_key": [
+              436,
+              320,
+              10018,
+              119,
+              8192
+            ],
+            "fct_us": 10.933,
+            "end_us_after_2s": 10.933
+          },
+          "fct_change_us": -6.881
+        },
+        {
+          "flow_key": [
+            496,
+            516,
+            10031,
+            128,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              496,
+              516,
+              10031,
+              128,
+              8192
+            ],
+            "fct_us": 12.074,
+            "end_us_after_2s": 12.074
+          },
+          "classreserve": {
+            "flow_key": [
+              496,
+              516,
+              10031,
+              128,
+              8192
+            ],
+            "fct_us": 18.653,
+            "end_us_after_2s": 18.653
+          },
+          "fct_change_us": 6.579
+        },
+        {
+          "flow_key": [
+            784,
+            320,
+            10013,
+            136,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              784,
+              320,
+              10013,
+              136,
+              8192
+            ],
+            "fct_us": 17.73,
+            "end_us_after_2s": 17.73
+          },
+          "classreserve": {
+            "flow_key": [
+              784,
+              320,
+              10013,
+              136,
+              8192
+            ],
+            "fct_us": 12.132,
+            "end_us_after_2s": 12.132
+          },
+          "fct_change_us": -5.598
+        },
+        {
+          "flow_key": [
+            788,
+            344,
+            10014,
+            145,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              788,
+              344,
+              10014,
+              145,
+              8192
+            ],
+            "fct_us": 17.762,
+            "end_us_after_2s": 17.762
+          },
+          "classreserve": {
+            "flow_key": [
+              788,
+              344,
+              10014,
+              145,
+              8192
+            ],
+            "fct_us": 17.363,
+            "end_us_after_2s": 17.363
+          },
+          "fct_change_us": -0.399
+        },
+        {
+          "flow_key": [
+            788,
+            516,
+            10026,
+            146,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              788,
+              516,
+              10026,
+              146,
+              8192
+            ],
+            "fct_us": 11.733,
+            "end_us_after_2s": 11.733
+          },
+          "classreserve": {
+            "flow_key": [
+              788,
+              516,
+              10026,
+              146,
+              8192
+            ],
+            "fct_us": 18.484,
+            "end_us_after_2s": 18.484
+          },
+          "fct_change_us": 6.751
+        },
+        {
+          "flow_key": [
+            860,
+            324,
+            10015,
+            141,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              860,
+              324,
+              10015,
+              141,
+              8192
+            ],
+            "fct_us": 17.188,
+            "end_us_after_2s": 17.188
+          },
+          "classreserve": {
+            "flow_key": [
+              860,
+              324,
+              10015,
+              141,
+              8192
+            ],
+            "fct_us": 12.369,
+            "end_us_after_2s": 12.369
+          },
+          "fct_change_us": -4.819
+        },
+        {
+          "flow_key": [
+            1024,
+            528,
+            10029,
+            147,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1024,
+              528,
+              10029,
+              147,
+              8192
+            ],
+            "fct_us": 17.821,
+            "end_us_after_2s": 17.821
+          },
+          "classreserve": {
+            "flow_key": [
+              1024,
+              528,
+              10029,
+              147,
+              8192
+            ],
+            "fct_us": 12.491,
+            "end_us_after_2s": 12.491
+          },
+          "fct_change_us": -5.33
+        },
+        {
+          "flow_key": [
+            1028,
+            540,
+            10023,
+            155,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1028,
+              540,
+              10023,
+              155,
+              8192
+            ],
+            "fct_us": 17.825,
+            "end_us_after_2s": 17.825
+          },
+          "classreserve": {
+            "flow_key": [
+              1028,
+              540,
+              10023,
+              155,
+              8192
+            ],
+            "fct_us": 12.358,
+            "end_us_after_2s": 12.358
+          },
+          "fct_change_us": -5.467
+        },
+        {
+          "flow_key": [
+            1036,
+            512,
+            10029,
+            157,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1036,
+              512,
+              10029,
+              157,
+              8192
+            ],
+            "fct_us": 17.849,
+            "end_us_after_2s": 17.849
+          },
+          "classreserve": {
+            "flow_key": [
+              1036,
+              512,
+              10029,
+              157,
+              8192
+            ],
+            "fct_us": 11.485,
+            "end_us_after_2s": 11.485
+          },
+          "fct_change_us": -6.364
+        },
+        {
+          "flow_key": [
+            1164,
+            344,
+            10013,
+            164,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1164,
+              344,
+              10013,
+              164,
+              8192
+            ],
+            "fct_us": 17.897,
+            "end_us_after_2s": 17.897
+          },
+          "classreserve": {
+            "flow_key": [
+              1164,
+              344,
+              10013,
+              164,
+              8192
+            ],
+            "fct_us": 11.271,
+            "end_us_after_2s": 11.271
+          },
+          "fct_change_us": -6.626
+        },
+        {
+          "flow_key": [
+            1176,
+            344,
+            10010,
+            165,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1176,
+              344,
+              10010,
+              165,
+              8192
+            ],
+            "fct_us": 17.9,
+            "end_us_after_2s": 17.9
+          },
+          "classreserve": {
+            "flow_key": [
+              1176,
+              344,
+              10010,
+              165,
+              8192
+            ],
+            "fct_us": 17.452,
+            "end_us_after_2s": 17.452
+          },
+          "fct_change_us": -0.448
+        }
+      ],
+      "tail_identity_same": false
+    },
+    "20262739": {
+      "top10_by_completion": {
+        "ecmp": [
+          {
+            "flow_key": [
+              860,
+              1160,
+              10057,
+              137,
+              8192
+            ],
+            "fct_us": 18.609,
+            "end_us_after_2s": 18.609
+          },
+          {
+            "flow_key": [
+              856,
+              1152,
+              10058,
+              153,
+              8192
+            ],
+            "fct_us": 18.582,
+            "end_us_after_2s": 18.582
+          },
+          {
+            "flow_key": [
+              1012,
+              1156,
+              10060,
+              155,
+              8192
+            ],
+            "fct_us": 18.566,
+            "end_us_after_2s": 18.566
+          },
+          {
+            "flow_key": [
+              992,
+              1180,
+              10057,
+              159,
+              8192
+            ],
+            "fct_us": 18.562,
+            "end_us_after_2s": 18.562
+          },
+          {
+            "flow_key": [
+              1000,
+              1180,
+              10057,
+              160,
+              8192
+            ],
+            "fct_us": 18.55,
+            "end_us_after_2s": 18.55
+          },
+          {
+            "flow_key": [
+              1004,
+              1156,
+              10058,
+              154,
+              8192
+            ],
+            "fct_us": 18.508,
+            "end_us_after_2s": 18.508
+          },
+          {
+            "flow_key": [
+              872,
+              1168,
+              10053,
+              151,
+              8192
+            ],
+            "fct_us": 18.442,
+            "end_us_after_2s": 18.442
+          },
+          {
+            "flow_key": [
+              208,
+              1168,
+              10058,
+              112,
+              8192
+            ],
+            "fct_us": 18.337,
+            "end_us_after_2s": 18.337
+          },
+          {
+            "flow_key": [
+              216,
+              1168,
+              10058,
+              113,
+              8192
+            ],
+            "fct_us": 18.214,
+            "end_us_after_2s": 18.214
+          },
+          {
+            "flow_key": [
+              212,
+              1180,
+              10058,
+              120,
+              8192
+            ],
+            "fct_us": 18.01,
+            "end_us_after_2s": 18.01
+          }
+        ],
+        "classreserve": [
+          {
+            "flow_key": [
+              560,
+              448,
+              10027,
+              133,
+              8192
+            ],
+            "fct_us": 19.034,
+            "end_us_after_2s": 19.034
+          },
+          {
+            "flow_key": [
+              596,
+              448,
+              10030,
+              136,
+              8192
+            ],
+            "fct_us": 19.026,
+            "end_us_after_2s": 19.026
+          },
+          {
+            "flow_key": [
+              1008,
+              472,
+              10025,
+              152,
+              8192
+            ],
+            "fct_us": 19.011,
+            "end_us_after_2s": 19.011
+          },
+          {
+            "flow_key": [
+              668,
+              464,
+              10023,
+              134,
+              8192
+            ],
+            "fct_us": 18.702,
+            "end_us_after_2s": 18.702
+          },
+          {
+            "flow_key": [
+              128,
+              460,
+              10024,
+              104,
+              8192
+            ],
+            "fct_us": 18.687,
+            "end_us_after_2s": 18.687
+          },
+          {
+            "flow_key": [
+              0,
+              448,
+              10018,
+              100,
+              8192
+            ],
+            "fct_us": 18.68,
+            "end_us_after_2s": 18.68
+          },
+          {
+            "flow_key": [
+              88,
+              448,
+              10023,
+              108,
+              8192
+            ],
+            "fct_us": 18.676,
+            "end_us_after_2s": 18.676
+          },
+          {
+            "flow_key": [
+              788,
+              468,
+              10027,
+              148,
+              8192
+            ],
+            "fct_us": 18.654,
+            "end_us_after_2s": 18.654
+          },
+          {
+            "flow_key": [
+              128,
+              452,
+              10023,
+              109,
+              8192
+            ],
+            "fct_us": 18.638,
+            "end_us_after_2s": 18.638
+          },
+          {
+            "flow_key": [
+              192,
+              468,
+              10025,
+              110,
+              8192
+            ],
+            "fct_us": 18.634,
+            "end_us_after_2s": 18.634
+          }
+        ]
+      },
+      "matched_tail_union": [
+        {
+          "flow_key": [
+            0,
+            448,
+            10018,
+            100,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              0,
+              448,
+              10018,
+              100,
+              8192
+            ],
+            "fct_us": 12.833,
+            "end_us_after_2s": 12.833
+          },
+          "classreserve": {
+            "flow_key": [
+              0,
+              448,
+              10018,
+              100,
+              8192
+            ],
+            "fct_us": 18.68,
+            "end_us_after_2s": 18.68
+          },
+          "fct_change_us": 5.847
+        },
+        {
+          "flow_key": [
+            88,
+            448,
+            10023,
+            108,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              88,
+              448,
+              10023,
+              108,
+              8192
+            ],
+            "fct_us": 12.885,
+            "end_us_after_2s": 12.885
+          },
+          "classreserve": {
+            "flow_key": [
+              88,
+              448,
+              10023,
+              108,
+              8192
+            ],
+            "fct_us": 18.676,
+            "end_us_after_2s": 18.676
+          },
+          "fct_change_us": 5.791
+        },
+        {
+          "flow_key": [
+            128,
+            452,
+            10023,
+            109,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              128,
+              452,
+              10023,
+              109,
+              8192
+            ],
+            "fct_us": 13.535,
+            "end_us_after_2s": 13.535
+          },
+          "classreserve": {
+            "flow_key": [
+              128,
+              452,
+              10023,
+              109,
+              8192
+            ],
+            "fct_us": 18.638,
+            "end_us_after_2s": 18.638
+          },
+          "fct_change_us": 5.103
+        },
+        {
+          "flow_key": [
+            128,
+            460,
+            10024,
+            104,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              128,
+              460,
+              10024,
+              104,
+              8192
+            ],
+            "fct_us": 11.635,
+            "end_us_after_2s": 11.635
+          },
+          "classreserve": {
+            "flow_key": [
+              128,
+              460,
+              10024,
+              104,
+              8192
+            ],
+            "fct_us": 18.687,
+            "end_us_after_2s": 18.687
+          },
+          "fct_change_us": 7.052
+        },
+        {
+          "flow_key": [
+            192,
+            468,
+            10025,
+            110,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              192,
+              468,
+              10025,
+              110,
+              8192
+            ],
+            "fct_us": 11.949,
+            "end_us_after_2s": 11.949
+          },
+          "classreserve": {
+            "flow_key": [
+              192,
+              468,
+              10025,
+              110,
+              8192
+            ],
+            "fct_us": 18.634,
+            "end_us_after_2s": 18.634
+          },
+          "fct_change_us": 6.685
+        },
+        {
+          "flow_key": [
+            208,
+            1168,
+            10058,
+            112,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              208,
+              1168,
+              10058,
+              112,
+              8192
+            ],
+            "fct_us": 18.337,
+            "end_us_after_2s": 18.337
+          },
+          "classreserve": {
+            "flow_key": [
+              208,
+              1168,
+              10058,
+              112,
+              8192
+            ],
+            "fct_us": 13.891,
+            "end_us_after_2s": 13.891
+          },
+          "fct_change_us": -4.446
+        },
+        {
+          "flow_key": [
+            212,
+            1180,
+            10058,
+            120,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              212,
+              1180,
+              10058,
+              120,
+              8192
+            ],
+            "fct_us": 18.01,
+            "end_us_after_2s": 18.01
+          },
+          "classreserve": {
+            "flow_key": [
+              212,
+              1180,
+              10058,
+              120,
+              8192
+            ],
+            "fct_us": 12.999,
+            "end_us_after_2s": 12.999
+          },
+          "fct_change_us": -5.011
+        },
+        {
+          "flow_key": [
+            216,
+            1168,
+            10058,
+            113,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              216,
+              1168,
+              10058,
+              113,
+              8192
+            ],
+            "fct_us": 18.214,
+            "end_us_after_2s": 18.214
+          },
+          "classreserve": {
+            "flow_key": [
+              216,
+              1168,
+              10058,
+              113,
+              8192
+            ],
+            "fct_us": 14.928,
+            "end_us_after_2s": 14.928
+          },
+          "fct_change_us": -3.286
+        },
+        {
+          "flow_key": [
+            560,
+            448,
+            10027,
+            133,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              560,
+              448,
+              10027,
+              133,
+              8192
+            ],
+            "fct_us": 12.387,
+            "end_us_after_2s": 12.387
+          },
+          "classreserve": {
+            "flow_key": [
+              560,
+              448,
+              10027,
+              133,
+              8192
+            ],
+            "fct_us": 19.034,
+            "end_us_after_2s": 19.034
+          },
+          "fct_change_us": 6.647
+        },
+        {
+          "flow_key": [
+            596,
+            448,
+            10030,
+            136,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              596,
+              448,
+              10030,
+              136,
+              8192
+            ],
+            "fct_us": 12.471,
+            "end_us_after_2s": 12.471
+          },
+          "classreserve": {
+            "flow_key": [
+              596,
+              448,
+              10030,
+              136,
+              8192
+            ],
+            "fct_us": 19.026,
+            "end_us_after_2s": 19.026
+          },
+          "fct_change_us": 6.555
+        },
+        {
+          "flow_key": [
+            668,
+            464,
+            10023,
+            134,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              668,
+              464,
+              10023,
+              134,
+              8192
+            ],
+            "fct_us": 12.27,
+            "end_us_after_2s": 12.27
+          },
+          "classreserve": {
+            "flow_key": [
+              668,
+              464,
+              10023,
+              134,
+              8192
+            ],
+            "fct_us": 18.702,
+            "end_us_after_2s": 18.702
+          },
+          "fct_change_us": 6.432
+        },
+        {
+          "flow_key": [
+            788,
+            468,
+            10027,
+            148,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              788,
+              468,
+              10027,
+              148,
+              8192
+            ],
+            "fct_us": 12.044,
+            "end_us_after_2s": 12.044
+          },
+          "classreserve": {
+            "flow_key": [
+              788,
+              468,
+              10027,
+              148,
+              8192
+            ],
+            "fct_us": 18.654,
+            "end_us_after_2s": 18.654
+          },
+          "fct_change_us": 6.61
+        },
+        {
+          "flow_key": [
+            856,
+            1152,
+            10058,
+            153,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              856,
+              1152,
+              10058,
+              153,
+              8192
+            ],
+            "fct_us": 18.582,
+            "end_us_after_2s": 18.582
+          },
+          "classreserve": {
+            "flow_key": [
+              856,
+              1152,
+              10058,
+              153,
+              8192
+            ],
+            "fct_us": 14.117,
+            "end_us_after_2s": 14.117
+          },
+          "fct_change_us": -4.465
+        },
+        {
+          "flow_key": [
+            860,
+            1160,
+            10057,
+            137,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              860,
+              1160,
+              10057,
+              137,
+              8192
+            ],
+            "fct_us": 18.609,
+            "end_us_after_2s": 18.609
+          },
+          "classreserve": {
+            "flow_key": [
+              860,
+              1160,
+              10057,
+              137,
+              8192
+            ],
+            "fct_us": 12.215,
+            "end_us_after_2s": 12.215
+          },
+          "fct_change_us": -6.394
+        },
+        {
+          "flow_key": [
+            872,
+            1168,
+            10053,
+            151,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              872,
+              1168,
+              10053,
+              151,
+              8192
+            ],
+            "fct_us": 18.442,
+            "end_us_after_2s": 18.442
+          },
+          "classreserve": {
+            "flow_key": [
+              872,
+              1168,
+              10053,
+              151,
+              8192
+            ],
+            "fct_us": 12.802,
+            "end_us_after_2s": 12.802
+          },
+          "fct_change_us": -5.64
+        },
+        {
+          "flow_key": [
+            992,
+            1180,
+            10057,
+            159,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              992,
+              1180,
+              10057,
+              159,
+              8192
+            ],
+            "fct_us": 18.562,
+            "end_us_after_2s": 18.562
+          },
+          "classreserve": {
+            "flow_key": [
+              992,
+              1180,
+              10057,
+              159,
+              8192
+            ],
+            "fct_us": 12.247,
+            "end_us_after_2s": 12.247
+          },
+          "fct_change_us": -6.315
+        },
+        {
+          "flow_key": [
+            1000,
+            1180,
+            10057,
+            160,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1000,
+              1180,
+              10057,
+              160,
+              8192
+            ],
+            "fct_us": 18.55,
+            "end_us_after_2s": 18.55
+          },
+          "classreserve": {
+            "flow_key": [
+              1000,
+              1180,
+              10057,
+              160,
+              8192
+            ],
+            "fct_us": 12.099,
+            "end_us_after_2s": 12.099
+          },
+          "fct_change_us": -6.451
+        },
+        {
+          "flow_key": [
+            1004,
+            1156,
+            10058,
+            154,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1004,
+              1156,
+              10058,
+              154,
+              8192
+            ],
+            "fct_us": 18.508,
+            "end_us_after_2s": 18.508
+          },
+          "classreserve": {
+            "flow_key": [
+              1004,
+              1156,
+              10058,
+              154,
+              8192
+            ],
+            "fct_us": 11.925,
+            "end_us_after_2s": 11.925
+          },
+          "fct_change_us": -6.583
+        },
+        {
+          "flow_key": [
+            1008,
+            472,
+            10025,
+            152,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1008,
+              472,
+              10025,
+              152,
+              8192
+            ],
+            "fct_us": 11.816,
+            "end_us_after_2s": 11.816
+          },
+          "classreserve": {
+            "flow_key": [
+              1008,
+              472,
+              10025,
+              152,
+              8192
+            ],
+            "fct_us": 19.011,
+            "end_us_after_2s": 19.011
+          },
+          "fct_change_us": 7.195
+        },
+        {
+          "flow_key": [
+            1012,
+            1156,
+            10060,
+            155,
+            8192
+          ],
+          "ecmp": {
+            "flow_key": [
+              1012,
+              1156,
+              10060,
+              155,
+              8192
+            ],
+            "fct_us": 18.566,
+            "end_us_after_2s": 18.566
+          },
+          "classreserve": {
+            "flow_key": [
+              1012,
+              1156,
+              10060,
+              155,
+              8192
+            ],
+            "fct_us": 16.631,
+            "end_us_after_2s": 16.631
+          },
+          "fct_change_us": -1.935
+        }
+      ],
+      "tail_identity_same": false
+    }
+  }
+}

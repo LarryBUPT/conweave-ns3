@@ -2,7 +2,11 @@
 
 ## WS-27 当前入口（2026-10-13）
 
-WS-27 已完成预设的三机制同条件比较。工程正确性 7/7 格、资源阶梯 24/24 格、独立筛选 32/32 格与独立确认 384/384 格均从本地原始结果通过逐格校验；固定仿真源码为 `ee236f27920aa56b3dd562ed971e5abee9e1e659`。192 档中 ClassReserve v1、GuardHash v2、HarmGate v2 的合成 MoE 整批完成时间相对同输入 ECMP 的跨 24 个需求 seed 中位变化分别为 −6.899%、−5.965%、−6.095%。背景 P99 中位变化分别为 +0.552%、+0.340%、+0.064%，均低于本轮 +3% 工程容忍线；单 seed 背景越线数仍为 6/24、6/24、7/24。效应区间、反例、输入和实验 ID 见[确认报告](../research/ws27-confirm-report.md)、[机器摘要](../research/evidence/ws27-confirm-analysis.json)及[Handoff 78](../handoffs/2026-10-13-78-ws27-independent-confirmation.md)。用户尚未选择论文主机制；不按本轮最大中位数自动定稿。
+WS-27 已完成预设的三机制同条件比较。工程正确性 7/7 格、资源阶梯 24/24 格、独立筛选 32/32 格与独立确认 384/384 格均从本地原始结果通过逐格校验；固定仿真源码为 `ee236f27920aa56b3dd562ed971e5abee9e1e659`。192 档中 ClassReserve v1、GuardHash v2、HarmGate v2 的合成 MoE 整批完成时间相对同输入 ECMP 的跨 24 个需求 seed 中位变化分别为 −6.899%、−5.965%、−6.095%。背景 P99 中位变化分别为 +0.552%、+0.340%、+0.064%，均低于本轮 +3% 工程容忍线；单 seed 背景越线数仍为 6/24、6/24、7/24。效应区间、反例、输入和实验 ID 见[确认报告](../research/ws27-confirm-report.md)、[机器摘要](../research/evidence/ws27-confirm-analysis.json)及[Handoff 78](../handoffs/2026-10-13-78-ws27-independent-confirmation.md)。用户随后选定 ClassReserve v1 为唯一论文主机制；此选择开启 WS-28 的解释与基线验证，不改写 WS-27 的原始比较结论。
+
+## WS-28 当前入口（2026-10-14）
+
+WS-28 为 ACTIVE，使用独立分支 `feature/ws28-classreserve-explanation`。[执行协议](../research/ws28-classreserve-explanation-protocol.md)列出反例诊断、两种 P95、同输入原生机制基线、组件消融和图表验收。现已只读复算 WS-27 的 48 个 192 档 ECMP/ClassReserve 原始格。跨 24 个 seed 的批完成时间 P95 变化为 −6.888%；每个 seed 内 MoE 单流 FCT P95 的配对变化中位数为 −1.012%。三个整批劣化 seed 的批尾流身份均发生切换；旧 FCT 不包含关键窗口的逐跳队列组成，当前不作单一因果归因。见[阶段报告](../research/ws28-existing-raw-diagnosis.md)和[机器结果](../research/evidence/ws28-existing-raw-analysis.json)。原生基线、组件消融、定向诊断与最终图表仍待完成；WS-28 尚未闭环。
 
 本入口只更新 WS-27 的已核验范围。下方“当前快照（2026-10-04）”及其在途 WS-25 批次数字为当日历史记录，不能用于判断 2026 年 10 月 13 日的远端进度。WS-27 比较计划记录 WS-25 的 576 格按原协议为 NO-GO、WS-26 暂停；本次未在对应工作树重新核验或重判它们。两项后续状态需从各自工作流的最新原始证据集成。
 

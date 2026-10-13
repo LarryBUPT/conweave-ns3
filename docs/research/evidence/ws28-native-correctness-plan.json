@@ -1,0 +1,60 @@
+{
+  "cells": [
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261014-000001-ws28-ncheck-fecmp",
+      "mode": "fecmp",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    },
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261014-000001-ws28-ncheck-drill",
+      "mode": "drill",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    },
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261014-000001-ws28-ncheck-conga",
+      "mode": "conga",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    },
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261014-000001-ws28-ncheck-letflow",
+      "mode": "letflow",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    },
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261014-000001-ws28-ncheck-conweave",
+      "mode": "conweave",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    }
+  ],
+  "irn": 1,
+  "kind": "WS-28 native mixed-eight technical check",
+  "max_concurrent": 1,
+  "pfc": 0,
+  "source_sha": "ee236f27920aa56b3dd562ed971e5abee9e1e659",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
