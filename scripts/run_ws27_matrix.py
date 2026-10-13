@@ -37,7 +37,7 @@ def configure(stage):
     engine.ID_PREFIX = "20261013-030000-" + stem
     engine.SOURCE_SHA = SOURCE_SHA
     engine.TOPO_SHA = TOPO_SHA
-    engine.pilot.POLL_SECONDS = 600
+    engine.pilot.POLL_SECONDS = 180
     engine.BUILD_GROUP_SIZE = 6
 
     original_verify = engine.verify
