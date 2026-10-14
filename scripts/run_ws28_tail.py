@@ -14,7 +14,7 @@ import run_ws25_v1fix_calibration as calibration
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PLAN = ROOT / "docs/research/evidence/ws28-tail-plan.json"
+PLAN = ROOT / "docs/research/evidence/ws28-tail-plan-v2.json"
 SUMMARY = ROOT / "results/ws28-tail-summary.json"
 RECEIPTS = ROOT / "results/ws28-tail-receipts.jsonl"
 pilot.RECEIPTS = RECEIPTS

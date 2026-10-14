@@ -24,7 +24,7 @@ def write_once(path, data):
     return sha(path)
 
 
-def tail(source_sha):
+def tail(source_sha, revision=1):
     prior = json.loads((EVIDENCE / "ws28-existing-raw-analysis.json").read_text(encoding="utf-8"))
     old = {row["seed"]: row for row in prior["paired_seeds"]}
     seeds = (20262725, 20262729, 20262739)
@@ -37,7 +37,7 @@ def tail(source_sha):
         for mode in ("fecmp", "classreserve"):
             for enabled in (0, 1):
                 cells.append({
-                    "id": "20261015-010000-ws28-tail-s{}-{}-d{}".format(seed, mode, enabled),
+                    "id": "20261015-0{}0000-ws28-tail-s{}-{}-d{}".format(revision, seed, mode, enabled),
                     "seed": seed, "mode": mode, "diag": enabled,
                     "trace": trace, "trace_sha256": trace_sha,
                     "old_id": old[seed]["ecmp_id" if mode == "fecmp" else "classreserve_id"],
@@ -139,15 +139,17 @@ def main():
     parser.add_argument("kind", choices=("tail", "technical", "resource", "ablation"))
     parser.add_argument("--source-sha", required=True)
     parser.add_argument("--cap", type=int, choices=(1, 2, 4, 8, 12, 16, 18), default=1)
+    parser.add_argument("--revision", type=int, choices=(1, 2), default=1)
     args = parser.parse_args()
     if len(args.source_sha) != 40 or any(c not in "0123456789abcdef" for c in args.source_sha):
         raise ValueError("source SHA must be a full lowercase Git commit")
-    builders = {"tail": lambda: tail(args.source_sha),
+    builders = {"tail": lambda: tail(args.source_sha, args.revision),
                 "technical": lambda: technical(args.source_sha),
                 "resource": lambda: resource(args.source_sha),
                 "ablation": lambda: ablation(args.source_sha, args.cap)}
     data = builders[args.kind]()
-    path = EVIDENCE / ("ws28-{}-plan.json".format(args.kind))
+    suffix = "-v2" if args.kind == "tail" and args.revision == 2 else ""
+    path = EVIDENCE / ("ws28-{}-plan{}.json".format(args.kind, suffix))
     digest = write_once(path, data)
     print(json.dumps({"kind": args.kind, "cells": len(data["cells"]),
                       "source_sha": args.source_sha, "plan_sha256": digest}, sort_keys=True))
