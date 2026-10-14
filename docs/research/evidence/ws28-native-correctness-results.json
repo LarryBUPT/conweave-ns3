@@ -1,0 +1,232 @@
+{
+  "rows": [
+    {
+      "dynamic_receipt": {},
+      "fct_sha256": "e3fa403b4768239fdd0e916f333117ecd84177c3d0553eefc923a76cb249fdbc",
+      "id": "20261014-000001-ws28-ncheck-fecmp",
+      "mode": "fecmp",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261014-000001-ws28-ncheck-fecmp",
+        "minimum_free_gib": 4203.891750335693,
+        "minimum_mem_available_gib": 118.2814712524414,
+        "peak_tree_rss_mib": 4544.80078125,
+        "samples": 38
+      },
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 1,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 1,
+          "mean_fct_us": 0.735,
+          "p50_fct_us": 0.731,
+          "p95_fct_us": 0.785,
+          "p99_complete_source_batch_us": 0.788,
+          "p99_fct_us": 0.7874,
+          "synthetic_batch_completion_us": 0.788,
+          "unfinished_flows": 0
+        }
+      }
+    },
+    {
+      "dynamic_receipt": {},
+      "fct_sha256": "1d4b790ebf475bdb21646356acb921a5ac35b41667abbe7e6472de0c0f6fe15f",
+      "id": "20261014-000001-ws28-ncheck-drill",
+      "mode": "drill",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261014-000001-ws28-ncheck-drill",
+        "minimum_free_gib": 4202.712333679199,
+        "minimum_mem_available_gib": 118.27712631225586,
+        "peak_tree_rss_mib": 4544.37890625,
+        "samples": 37
+      },
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 1,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 1,
+          "mean_fct_us": 0.735,
+          "p50_fct_us": 0.733,
+          "p95_fct_us": 0.7822,
+          "p99_complete_source_batch_us": 0.784,
+          "p99_fct_us": 0.78364,
+          "synthetic_batch_completion_us": 0.784,
+          "unfinished_flows": 0
+        }
+      }
+    },
+    {
+      "dynamic_receipt": {
+        "flowlet_timeouts": 0
+      },
+      "fct_sha256": "e3fa403b4768239fdd0e916f333117ecd84177c3d0553eefc923a76cb249fdbc",
+      "id": "20261014-000001-ws28-ncheck-conga",
+      "mode": "conga",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261014-000001-ws28-ncheck-conga",
+        "minimum_free_gib": 4201.5329246521,
+        "minimum_mem_available_gib": 118.25807189941406,
+        "peak_tree_rss_mib": 4561.98046875,
+        "samples": 39
+      },
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 1,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 1,
+          "mean_fct_us": 0.735,
+          "p50_fct_us": 0.731,
+          "p95_fct_us": 0.785,
+          "p99_complete_source_batch_us": 0.788,
+          "p99_fct_us": 0.7874,
+          "synthetic_batch_completion_us": 0.788,
+          "unfinished_flows": 0
+        }
+      }
+    },
+    {
+      "dynamic_receipt": {
+        "flowlet_timeouts": 0
+      },
+      "fct_sha256": "e3fa403b4768239fdd0e916f333117ecd84177c3d0553eefc923a76cb249fdbc",
+      "id": "20261014-000001-ws28-ncheck-letflow",
+      "mode": "letflow",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261014-000001-ws28-ncheck-letflow",
+        "minimum_free_gib": 4200.353504180908,
+        "minimum_mem_available_gib": 118.25873565673828,
+        "peak_tree_rss_mib": 4561.234375,
+        "samples": 39
+      },
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 1,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 1,
+          "mean_fct_us": 0.735,
+          "p50_fct_us": 0.731,
+          "p95_fct_us": 0.785,
+          "p99_complete_source_batch_us": 0.788,
+          "p99_fct_us": 0.7874,
+          "synthetic_batch_completion_us": 0.788,
+          "unfinished_flows": 0
+        }
+      }
+    },
+    {
+      "dynamic_receipt": {
+        "rtt_replies": 650
+      },
+      "fct_sha256": "e3fa403b4768239fdd0e916f333117ecd84177c3d0553eefc923a76cb249fdbc",
+      "id": "20261014-000001-ws28-ncheck-conweave",
+      "mode": "conweave",
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261014-000001-ws28-ncheck-conweave",
+        "minimum_free_gib": 4199.174018859863,
+        "minimum_mem_available_gib": 118.25850296020508,
+        "peak_tree_rss_mib": 4561.71484375,
+        "samples": 39
+      },
+      "tags": {
+        "1": {
+          "complete_sources": 4,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 4,
+          "mean_fct_us": 168.934,
+          "p50_fct_us": 168.934,
+          "p95_fct_us": 170.033,
+          "p99_complete_source_batch_us": 170.033,
+          "p99_fct_us": 170.033,
+          "synthetic_batch_completion_us": 170.033,
+          "unfinished_flows": 0
+        },
+        "2": {
+          "complete_sources": 1,
+          "completed_flows": 4,
+          "completion_rate": 1.0,
+          "input_flows": 4,
+          "input_sources": 1,
+          "mean_fct_us": 0.735,
+          "p50_fct_us": 0.731,
+          "p95_fct_us": 0.785,
+          "p99_complete_source_batch_us": 0.788,
+          "p99_fct_us": 0.7874,
+          "synthetic_batch_completion_us": 0.788,
+          "unfinished_flows": 0
+        }
+      }
+    }
+  ],
+  "source_sha": "ee236f27920aa56b3dd562ed971e5abee9e1e659",
+  "verified_cells": 5
+}
