@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 LEVELS = (0, 64, 128, 192)
 
 
-def make(seed, out_dir):
+def make(seed, out_dir, levels=LEVELS):
     rng = random.Random(seed)
     aligned = list(range(0, 1280, 4))
     experts = sorted(rng.sample(aligned, 256))
@@ -40,7 +40,9 @@ def make(seed, out_dir):
                 "levels": {}, "expert_hosts": len(experts),
                 "background_hosts": len(background_hosts)}
     out_dir.mkdir(parents=True, exist_ok=True)
-    for level in LEVELS:
+    for level in levels:
+        if level not in LEVELS:
+            raise ValueError("unsupported background level: {}".format(level))
         name = "ws25_seed{}_b{}.txt".format(seed, level)
         lines = [str(16384 + level)]
         lines.extend("{} {} 3 8388608 2.000000000 1".format(src, dst)

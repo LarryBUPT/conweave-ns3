@@ -29,6 +29,19 @@
 
 namespace ns3 {
 
+static bool ClassReserveFamilyMode() {
+    return Settings::lb_mode == 21 ||
+           (Settings::lb_mode >= 25 && Settings::lb_mode <= 27);
+}
+
+static bool ClassReserveBackgroundWeight() {
+    return Settings::lb_mode != 25 && Settings::lb_mode != 27;
+}
+
+static bool ClassReserveBackgroundRouting() {
+    return Settings::lb_mode != 25 && Settings::lb_mode != 26;
+}
+
 static std::map<uint32_t, uint64_t> workload_tag_packets;
 static uint64_t missing_workload_tag_packets = 0;
 static uint64_t dualtrack_flow_packets = 0;
@@ -112,6 +125,70 @@ struct GuardQueueStat {
     uint64_t queueRejected = 0, queuedDropped = 0, current = 0;
 };
 static std::map<std::tuple<uint32_t, uint32_t, uint32_t>, GuardQueueStat> guard_queue_stats;
+
+struct Ws28TailTarget {
+    uint32_t seed, src, dst, sport, dport;
+};
+static const Ws28TailTarget ws28_tail_targets[] = {
+    {20262725, 780, 956, 10045, 142}, {20262725, 964, 304, 10020, 139},
+    {20262729, 1176, 344, 10010, 165}, {20262729, 320, 528, 10033, 115},
+    {20262739, 860, 1160, 10057, 137}, {20262739, 560, 448, 10027, 133},
+};
+struct Ws28TailQueued {
+    uint32_t target, port, seq, bytes;
+    uint64_t enqueueNs, queueBytes, backgroundBytes;
+};
+static std::map<std::pair<uint32_t, uint64_t>, Ws28TailQueued> ws28_tail_queued;
+static uint32_t ws28_tail_rows = 0;
+static const uint32_t WS28_TAIL_MAX_ROWS = 20000;
+static bool Ws28TailDiagnosticEnabled() {
+    static const bool enabled = []() {
+        const char *value = std::getenv("WS28_TAIL_DIAG");
+        return value && value[0] == '1' && value[1] == '\0';
+    }();
+    return enabled;
+}
+static int Ws28TailTargetIndex(const CustomHeader &ch) {
+    if (!Ws28TailDiagnosticEnabled() || ch.l3Prot != 0x11) return -1;
+    const uint64_t now = uint64_t(Simulator::Now().GetNanoSeconds());
+    if (now < 2000000000ULL || now > 2000025000ULL) return -1;
+    for (size_t i = 0; i < sizeof(ws28_tail_targets) / sizeof(ws28_tail_targets[0]); ++i) {
+        const Ws28TailTarget &t = ws28_tail_targets[i];
+        if (ch.udp.sport != t.sport || ch.udp.dport != t.dport) continue;
+        auto src = Settings::hostIp2IdMap.find(ch.sip);
+        auto dst = Settings::hostIp2IdMap.find(ch.dip);
+        if (src != Settings::hostIp2IdMap.end() && dst != Settings::hostIp2IdMap.end() &&
+            src->second == t.src && dst->second == t.dst)
+            return int(i);
+    }
+    return -1;
+}
+static uint64_t Ws28BackgroundQueueBytes(uint32_t switchId, uint32_t port) {
+    auto it = guard_queue_stats.find(std::make_tuple(switchId, port, 1U));
+    return it == guard_queue_stats.end() ? 0 : it->second.current;
+}
+static bool Ws28TailReserveRow() {
+    if (!Ws28TailDiagnosticEnabled()) return false;
+    if (ws28_tail_rows == WS28_TAIL_MAX_ROWS) {
+        std::cout << "WS28_TAIL_OVERFLOW limit=" << WS28_TAIL_MAX_ROWS << std::endl;
+        ++ws28_tail_rows;
+        return false;
+    }
+    if (ws28_tail_rows > WS28_TAIL_MAX_ROWS) return false;
+    ++ws28_tail_rows;
+    return true;
+}
+static void Ws28TailAdmissionDrop(const CustomHeader &ch, uint32_t switchId,
+                                  uint32_t port, uint64_t uid, const char *side) {
+    const int target = Ws28TailTargetIndex(ch);
+    if (target < 0 || !Ws28TailReserveRow()) return;
+    std::cout << "WS28_TAIL_ADMISSION_DROP seed=" << ws28_tail_targets[target].seed
+              << " target=" << target
+              << " time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " switch=" << switchId << " port=" << port
+              << " uid=" << uid << " seq=" << ch.udp.seq
+              << " side=" << side << std::endl;
+}
 
 // WS-13 legacy cells retain their two frozen destinations. WS-19 opt-in cells
 // observe all background destinations because each independent demand redraws them.
@@ -835,7 +912,7 @@ void SwitchNode::PrintWorkloadTagCounts() {
                   << " queue_violations=" << guard_queue_violations << std::endl;
         NS_ASSERT_MSG(guard_queue_violations == 0, "WS27 queue counters do not conserve bytes");
     }
-    if (Settings::lb_mode == 21 || Settings::lb_mode == 22) {
+    if (ClassReserveFamilyMode() || Settings::lb_mode == 22) {
         uint64_t enqueued = 0, dequeued = 0, queuedDropped = 0, current = 0;
         for (const auto &entry : guard_queue_stats) {
             const GuardQueueStat &s = entry.second;
@@ -846,7 +923,7 @@ void SwitchNode::PrintWorkloadTagCounts() {
             if (s.enqueued != s.dequeued + s.queuedDropped + s.current)
                 ++guard_queue_violations;
         }
-        if (Settings::lb_mode == 21) {
+        if (ClassReserveFamilyMode()) {
             std::cout << "WS25_CLASSRESERVE moe_packets=" << classreserve_moe_packets
                       << " background_packets=" << classreserve_background_packets
                       << " moe_two_choices=" << classreserve_moe_two_choices
@@ -858,6 +935,10 @@ void SwitchNode::PrintWorkloadTagCounts() {
                       << " background_reused=" << classreserve_background_reused
                       << " background_queue_avoids=" << classreserve_background_queue_avoids
                       << " queue_violations=" << guard_queue_violations << std::endl;
+            std::cout << "WS28_FACTOR mode=" << Settings::lb_mode
+                      << " background_weight=" << int(ClassReserveBackgroundWeight())
+                      << " background_routing=" << int(ClassReserveBackgroundRouting())
+                      << std::endl;
         } else {
             std::cout << "WS25_DESTSPREAD moe_packets=" << destspread_moe_packets
                       << " background_packets=" << destspread_background_packets
@@ -872,7 +953,7 @@ void SwitchNode::PrintWorkloadTagCounts() {
         }
         std::cout << "WS25_QUEUE enqueued=" << enqueued << " dequeued=" << dequeued
                   << " queued_drop=" << queuedDropped << " current=" << current << std::endl;
-        if (Settings::lb_mode == 21 && Ws25DiagnosticEnabled()) {
+        if (ClassReserveFamilyMode() && Ws25DiagnosticEnabled()) {
             for (uint32_t tag = 1; tag <= 2; ++tag)
                 std::cout << "WS25_CHOICE tag=" << tag
                           << " events=" << ws25_choice_events[tag]
@@ -882,7 +963,7 @@ void SwitchNode::PrintWorkloadTagCounts() {
                           << " background_queue_nonzero="
                           << (tag == 2 ? ws25_background_queue_nonzero : 0) << std::endl;
         }
-        if (Settings::lb_mode == 21) {
+        if (ClassReserveFamilyMode()) {
             for (const auto &entry : classreserve_source_port_packets)
                 std::cout << "WS25_PORT switch=" << std::get<0>(entry.first)
                           << " port=" << std::get<1>(entry.first)
@@ -965,7 +1046,17 @@ uint32_t SwitchNode::DoLbFlowECMP(Ptr<const Packet> p, const CustomHeader &ch,
 
     uint32_t hashVal = EcmpHash(buf.u8, 12, m_ecmpSeed);
     uint32_t idx = hashVal % nexthops.size();
-    return nexthops[idx];
+    const uint32_t chosen = nexthops[idx];
+    const int ws28Target = Ws28TailTargetIndex(ch);
+    if (Settings::lb_mode == 0 && ws28Target >= 0 && m_isToR &&
+        m_isToR_hostIP.count(ch.sip) && Ws28TailReserveRow()) {
+        std::cout << "WS28_TAIL_CHOICE seed=" << ws28_tail_targets[ws28Target].seed
+                  << " target=" << ws28Target
+                  << " time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " chosen=" << chosen
+                  << " uid=" << p->GetUid() << std::endl;
+    }
+    return chosen;
 }
 
 // The two candidates are determined by the immutable 4-tuple. Queue load is
@@ -1119,12 +1210,15 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
         ++classreserve_moe_flow_new;
     }
     uint32_t chosen = first;
+    uint32_t second = first;
+    uint64_t firstQueue = 0, secondQueue = 0;
+    uint64_t firstBackground = 0, secondBackground = 0;
     if (nexthops.size() > 1) {
-        const uint32_t second = nexthops[EcmpHash(key, keyBytes,
+        second = nexthops[EcmpHash(key, keyBytes,
             m_ecmpSeed ^ 0x9e3779b9U) % nexthops.size()];
         if (second != first) {
-            const uint64_t firstQueue = CalculateInterfaceLoad(first);
-            const uint64_t secondQueue = CalculateInterfaceLoad(second);
+            firstQueue = CalculateInterfaceLoad(first);
+            secondQueue = CalculateInterfaceLoad(second);
             if (Ws25DiagnosticEnabled()) {
                 const uint32_t tag = background ? 1 : 2;
                 ++ws25_choice_events[tag];
@@ -1133,7 +1227,7 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
                 ws25_second_queue_sum[tag] += secondQueue;
             }
             if (background) {
-                if (secondQueue < firstQueue) {
+                if (ClassReserveBackgroundRouting() && secondQueue < firstQueue) {
                     chosen = second;
                     ++classreserve_background_queue_avoids;
                 }
@@ -1141,16 +1235,33 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
                 ++classreserve_moe_two_choices;
                 const auto a = guard_queue_stats.find(std::make_tuple(m_id, first, 1));
                 const auto b = guard_queue_stats.find(std::make_tuple(m_id, second, 1));
-                const uint64_t firstBackground = a == guard_queue_stats.end() ? 0 : a->second.current;
-                const uint64_t secondBackground = b == guard_queue_stats.end() ? 0 : b->second.current;
+                firstBackground = a == guard_queue_stats.end() ? 0 : a->second.current;
+                secondBackground = b == guard_queue_stats.end() ? 0 : b->second.current;
                 if (Ws25DiagnosticEnabled() && (firstBackground || secondBackground))
                     ++ws25_background_queue_nonzero;
-                if (secondQueue + secondBackground < firstQueue + firstBackground) {
+                const uint64_t firstScore = firstQueue +
+                    (ClassReserveBackgroundWeight() ? firstBackground : 0);
+                const uint64_t secondScore = secondQueue +
+                    (ClassReserveBackgroundWeight() ? secondBackground : 0);
+                if (secondScore < firstScore) {
                     chosen = second;
                     ++classreserve_moe_diverted;
                 }
             }
         }
+    }
+    const int ws28Target = Ws28TailTargetIndex(ch);
+    if (!background && ws28Target >= 0 && m_isToR && m_isToR_hostIP.count(ch.sip) &&
+        Ws28TailReserveRow()) {
+        std::cout << "WS28_TAIL_CHOICE seed=" << ws28_tail_targets[ws28Target].seed
+                  << " target=" << ws28Target
+                  << " time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " first=" << first
+                  << " second=" << second << " chosen=" << chosen
+                  << " first_queue=" << firstQueue
+                  << " second_queue=" << secondQueue
+                  << " first_background=" << firstBackground
+                  << " second_background=" << secondBackground << std::endl;
     }
     if (background) {
         m_classReserveBackgroundPort[flow] = chosen;
@@ -1557,6 +1668,9 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return port;
         }
         case 21:
+        case 25:
+        case 26:
+        case 27:
             return DoLbClassReserve(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
@@ -1606,6 +1720,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 m_mmu->UpdateEgressAdmission(outDev, qIndex, p->GetSize());
             } else { /** DROP: At Ingress */
                 FactorialAdmissionDrop("ingress", m_id, ch, inDev, outDev, p->GetSize());
+                Ws28TailAdmissionDrop(ch, m_id, outDev, p->GetUid(), "ingress");
 #if (0)
                 // /** NOTE: logging dropped pkts */
                 // std::cout << "LostPkt ingress - Sw(" << m_id << ")," << PARSE_FIVE_TUPLE(ch)
@@ -1618,12 +1733,13 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                     if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                     else ++ws21_feedback_hop_rejects;
                 }
-                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
+                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
                     SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
             }
         } else { /** DROP: At Egress */
             FactorialAdmissionDrop("egress", m_id, ch, inDev, outDev, p->GetSize());
+            Ws28TailAdmissionDrop(ch, m_id, outDev, p->GetUid(), "egress");
 #if (0)
             // /** NOTE: logging dropped pkts */
             // std::cout << "LostPkt egress - Sw(" << m_id << ")," << PARSE_FIVE_TUPLE(ch)
@@ -1635,7 +1751,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                 else ++ws21_feedback_hop_rejects;
             }
-            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
+            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
                 SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
         }
@@ -1663,7 +1779,39 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
             ws13_inflight[key] = item;
         }
     }
+    const int ws28Target = Ws28TailTargetIndex(ch);
+    if (ws28Target >= 0) {
+        Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[outDev]);
+        NS_ASSERT_MSG(dev && dev->GetQueue(), "WS-28 target egress queue absent");
+        const auto packetKey = std::make_pair(m_id, p->GetUid());
+        NS_ASSERT_MSG(ws28_tail_queued.count(packetKey) == 0,
+                      "WS-28 target packet already tracked at this switch");
+        Ws28TailQueued item = {uint32_t(ws28Target), outDev, ch.udp.seq,
+                               p->GetSize(), uint64_t(Simulator::Now().GetNanoSeconds()),
+                               dev->GetQueue()->GetNBytesTotal(),
+                               Ws28BackgroundQueueBytes(m_id, outDev)};
+        ws28_tail_queued[packetKey] = item;
+        if (Ws28TailReserveRow())
+            std::cout << "WS28_TAIL_OFFER seed=" << ws28_tail_targets[ws28Target].seed
+                      << " target=" << ws28Target << " time_ns=" << item.enqueueNs
+                      << " switch=" << m_id << " port=" << outDev
+                      << " qindex=" << qIndex << " uid=" << p->GetUid()
+                      << " seq=" << item.seq << " bytes=" << item.bytes
+                      << " queue_before=" << item.queueBytes
+                      << " background_before=" << item.backgroundBytes
+                      << " background_valid=" << int(ClassReserveFamilyMode())
+                      << std::endl;
+    }
     const bool accepted = m_devices[outDev]->SwitchSend(qIndex, p, ch);
+    if (!accepted && ws28Target >= 0) {
+        ws28_tail_queued.erase(std::make_pair(m_id, p->GetUid()));
+        if (Ws28TailReserveRow())
+            std::cout << "WS28_TAIL_REJECT seed=" << ws28_tail_targets[ws28Target].seed
+                      << " target=" << ws28Target
+                      << " time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " switch=" << m_id << " port=" << outDev
+                      << " uid=" << p->GetUid() << std::endl;
+    }
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
         if (accepted) {
             if (heartbeatPacket) {
@@ -1680,7 +1828,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         } else {
             // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
             // Release the admission reservation made above for this packet.
-            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)) {
+            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)) {
                 if (!locallyGenerated)
                     m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
@@ -1706,6 +1854,15 @@ void SwitchNode::CheckGuardQueue(uint32_t ifIndex) {
 }
 
 void SwitchNode::SwitchNotifyEnqueue(uint32_t ifIndex, Ptr<const Packet> p) {
+    auto ws28Hit = ws28_tail_queued.find(std::make_pair(m_id, p->GetUid()));
+    if (ws28Hit != ws28_tail_queued.end() && Ws28TailReserveRow()) {
+        const Ws28TailQueued &item = ws28Hit->second;
+        std::cout << "WS28_TAIL_ENQUEUE seed=" << ws28_tail_targets[item.target].seed
+                  << " target=" << item.target
+                  << " time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " port=" << ifIndex
+                  << " uid=" << p->GetUid() << std::endl;
+    }
     GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
     s.enqueued += p->GetSize();
     s.current += p->GetSize();
@@ -1719,6 +1876,18 @@ void SwitchNode::SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p
 
 void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
                                        Ptr<const Packet> p, bool wasQueued) {
+    auto ws28Hit = ws28_tail_queued.find(std::make_pair(m_id, p->GetUid()));
+    if (ws28Hit != ws28_tail_queued.end()) {
+        const uint32_t target = ws28Hit->second.target;
+        if (Ws28TailReserveRow())
+            std::cout << "WS28_TAIL_DROP seed=" << ws28_tail_targets[target].seed
+                      << " target=" << target
+                      << " time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " switch=" << m_id << " port=" << ifIndex
+                      << " uid=" << p->GetUid()
+                      << " was_queued=" << int(wasQueued) << std::endl;
+        ws28_tail_queued.erase(ws28Hit);
+    }
     GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
     if (wasQueued) {
         s.queuedDropped += p->GetSize();
@@ -1737,6 +1906,28 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 }
 
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
+    auto ws28Hit = ws28_tail_queued.find(std::make_pair(m_id, p->GetUid()));
+    if (ws28Hit != ws28_tail_queued.end()) {
+        const Ws28TailQueued item = ws28Hit->second;
+        NS_ASSERT_MSG(item.port == ifIndex, "WS-28 target dequeue port mismatch");
+        const uint64_t now = uint64_t(Simulator::Now().GetNanoSeconds());
+        Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[ifIndex]);
+        NS_ASSERT_MSG(dev && dev->GetQueue(), "WS-28 target dequeue queue absent");
+        if (Ws28TailReserveRow())
+            std::cout << "WS28_TAIL_DEQUEUE seed=" << ws28_tail_targets[item.target].seed
+                      << " target=" << item.target << " time_ns=" << now
+                      << " switch=" << m_id << " port=" << ifIndex
+                      << " qindex=" << qIndex << " uid=" << p->GetUid()
+                      << " seq=" << item.seq << " bytes=" << item.bytes
+                      << " enqueue_ns=" << item.enqueueNs
+                      << " wait_ns=" << (now - item.enqueueNs)
+                      << " queue_at_enqueue=" << item.queueBytes
+                      << " background_at_enqueue=" << item.backgroundBytes
+                      << " queue_after_dequeue=" << dev->GetQueue()->GetNBytesTotal()
+                      << " background_valid=" << int(ClassReserveFamilyMode())
+                      << std::endl;
+        ws28_tail_queued.erase(ws28Hit);
+    }
     bool controlPacket = false;
     if (Ws21FeedbackEnabled() || ws21_heartbeat_enabled) {
         CustomHeader feedback(CustomHeader::L2_Header | CustomHeader::L3_Header |
@@ -1767,7 +1958,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             ws13_inflight.erase(hit);
         }
     }
-    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || Settings::lb_mode == 21 || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24) {
+    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
         s.current -= p->GetSize();
