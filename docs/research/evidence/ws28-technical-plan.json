@@ -1,0 +1,72 @@
+{
+  "cells": [
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261015-000010-ws28-technical-fecmp",
+      "mode": "fecmp",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    },
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261015-000010-ws28-technical-classreserve",
+      "mode": "classreserve",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    },
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261015-000010-ws28-technical-cr-a0-b0",
+      "mode": "cr-a0-b0",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    },
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261015-000010-ws28-technical-cr-a1-b0",
+      "mode": "cr-a1-b0",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    },
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261015-000010-ws28-technical-cr-a0-b1",
+      "mode": "cr-a0-b1",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    },
+    {
+      "expected_tags": {
+        "1": 4,
+        "2": 4
+      },
+      "id": "20261015-000010-ws28-technical-cr-a1-b1",
+      "mode": "cr-a1-b1",
+      "trace": "ws25_v1fix_mixed8.txt",
+      "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+    }
+  ],
+  "irn": 1,
+  "kind": "WS-28 six-arm technical correctness",
+  "max_concurrent": 1,
+  "ns3_seed": 1,
+  "pfc": 0,
+  "source_sha": "955d26b580c9ca9249e66dea68638b22e0e32e2c",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "trace_sha256": "29ebe2dcf38c0e4d29326947c4bc4e111f6b56fe378c020c30ee788fbaa5effb"
+}

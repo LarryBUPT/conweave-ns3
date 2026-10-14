@@ -93,15 +93,60 @@ def ablation(source_sha, cap):
     }
 
 
+def technical(source_sha):
+    trace = "ws25_v1fix_mixed8.txt"
+    trace_sha = sha(ROOT / "config" / trace)
+    modes = ("fecmp", "classreserve", "cr-a0-b0", "cr-a1-b0", "cr-a0-b1", "cr-a1-b1")
+    return {
+        "kind": "WS-28 six-arm technical correctness",
+        "source_sha": source_sha, "topology_sha256": TOPO_SHA,
+        "trace_sha256": trace_sha, "max_concurrent": 1,
+        "ns3_seed": 1, "pfc": 0, "irn": 1,
+        "cells": [{"id": "20261015-000010-ws28-technical-" + mode,
+                   "mode": mode, "trace": trace, "trace_sha256": trace_sha,
+                   "expected_tags": {"1": 4, "2": 4}}
+                  for mode in modes],
+    }
+
+
+def resource(source_sha):
+    trace = "ws25_seed20262501_b192.txt"
+    trace_sha = sha(ROOT / "config" / trace)
+    modes = ("cr-a0-b0", "cr-a1-b0", "cr-a0-b1", "cr-a1-b1")
+    stages = (4, 8, 12)
+    cells = []
+    for cap in stages:
+        for repeat in range(1, cap // len(modes) + 1):
+            for mode in modes:
+                cells.append({
+                    "id": "20261015-000100-ws28-resource-c{:02d}-r{}-{}".format(cap, repeat, mode),
+                    "mode": mode, "trace": trace, "trace_sha256": trace_sha,
+                    "stage_cap": cap, "input_flows": 16576,
+                    "expected_tags": {"1": 192, "2": 16384},
+                })
+    return {
+        "kind": "WS-28 factorial mode resource pilot",
+        "source_sha": source_sha, "topology_sha256": TOPO_SHA,
+        "trace_sha256": trace_sha, "stages": list(stages),
+        "minimum_mem_available_gib": 32, "minimum_free_gib": 100,
+        "maximum_load_1m": 20, "maximum_tree_rss_mib": 32768,
+        "cells": cells,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("kind", choices=("tail", "ablation"))
+    parser.add_argument("kind", choices=("tail", "technical", "resource", "ablation"))
     parser.add_argument("--source-sha", required=True)
     parser.add_argument("--cap", type=int, choices=(1, 2, 4, 8, 12, 16, 18), default=1)
     args = parser.parse_args()
     if len(args.source_sha) != 40 or any(c not in "0123456789abcdef" for c in args.source_sha):
         raise ValueError("source SHA must be a full lowercase Git commit")
-    data = tail(args.source_sha) if args.kind == "tail" else ablation(args.source_sha, args.cap)
+    builders = {"tail": lambda: tail(args.source_sha),
+                "technical": lambda: technical(args.source_sha),
+                "resource": lambda: resource(args.source_sha),
+                "ablation": lambda: ablation(args.source_sha, args.cap)}
+    data = builders[args.kind]()
     path = EVIDENCE / ("ws28-{}-plan.json".format(args.kind))
     digest = write_once(path, data)
     print(json.dumps({"kind": args.kind, "cells": len(data["cells"]),
