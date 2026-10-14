@@ -1803,6 +1803,15 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                       << std::endl;
     }
     const bool accepted = m_devices[outDev]->SwitchSend(qIndex, p, ch);
+    // ECMP does not invoke SwitchNotifyEnqueue; record its successful queue
+    // acceptance here. A synchronous dequeue may already have been logged.
+    if (accepted && ws28Target >= 0 && !ClassReserveFamilyMode() &&
+        Ws28TailReserveRow())
+        std::cout << "WS28_TAIL_ENQUEUE seed=" << ws28_tail_targets[ws28Target].seed
+                  << " target=" << ws28Target
+                  << " time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " port=" << outDev
+                  << " uid=" << p->GetUid() << std::endl;
     if (!accepted && ws28Target >= 0) {
         ws28_tail_queued.erase(std::make_pair(m_id, p->GetUid()));
         if (Ws28TailReserveRow())
