@@ -1,6 +1,8 @@
 # WS-28 ClassReserve v1 两因素消融协议
 
-状态：因素与未见需求已冻结；技术正确性、资源 pilot 和正式并发待验。记录日期：2026 年 10 月 15 日。消融仿真源码 SHA 为 `955d26b580c9ca9249e66dea68638b22e0e32e2c`。[192 档输入清单](evidence/ws28-ablation-inputs.json)的 SHA-256 为 `6c07022c872c6d21b321412f62d8aa70dfd601317ae0f439cd343dfbfdd073a4`，固定 24 个未见需求 seed 和 24 份 trace。[六臂技术计划](evidence/ws28-technical-plan.json)与[资源计划 v2](evidence/ws28-resource-plan-v2.json)各有独立 ID，其 SHA-256 分别为 `95725cec5c8e020cd140cff4f251298300a4da55c3c2749097b71828baa67dd0` 和 `4d95e3a1446909fa887c0e0590c97b084d6bbda203a55aca3ee8595a55bf4568`。原[资源计划 v1](evidence/ws28-resource-plan.json)缺执行器需要的 seed、背景档和顺序字段，尚未运行，保留作审计；v2 使用全新 ID。正式 120 格计划须在资源 pilot 后固定并发与哈希；此处不表示技术或效果验收已通过。
+状态：技术 6/6、资源 24/24、正式消融 120/120 格原始验收通过。结果见[双侧分析](ws28-factorial-and-tail-analysis.md)。
+
+以下保留 2026 年 10 月 15 日设计冻结时的记录。消融仿真源码 SHA 为 `955d26b580c9ca9249e66dea68638b22e0e32e2c`。[192 档输入清单](evidence/ws28-ablation-inputs.json)的 SHA-256 为 `6c07022c872c6d21b321412f62d8aa70dfd601317ae0f439cd343dfbfdd073a4`，固定 24 个未见需求 seed 和 24 份 trace。[六臂技术计划](evidence/ws28-technical-plan.json)与[资源计划 v2](evidence/ws28-resource-plan-v2.json)各有独立 ID，其 SHA-256 分别为 `95725cec5c8e020cd140cff4f251298300a4da55c3c2749097b71828baa67dd0` 和 `4d95e3a1446909fa887c0e0590c97b084d6bbda203a55aca3ee8595a55bf4568`。原[资源计划 v1](evidence/ws28-resource-plan.json)缺执行器需要的 seed、背景档和顺序字段，尚未运行，保留作审计；v2 使用全新 ID。正式 120 格计划在资源 pilot 后固定并发与哈希；设计冻结记录本身不表示技术或效果验收通过。
 
 ## 问题与因素
 

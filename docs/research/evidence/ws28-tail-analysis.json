@@ -1,0 +1,1606 @@
+{
+  "analyzed_cells": [
+    {
+      "diag": 0,
+      "fct_sha256": "25f23194366a4e52fbbe5847473cce54519fe6ed90143b4b38ab254be4fe39b0",
+      "id": "20261015-020000-ws28-tail-s20262725-fecmp-d0",
+      "mode": "fecmp",
+      "seed": 20262725,
+      "targets": []
+    },
+    {
+      "admission_drops": [],
+      "diag": 1,
+      "events": {
+        "ADMISSION_DROP": 0,
+        "CHOICE": 18,
+        "DEQUEUE": 72,
+        "DROP": 0,
+        "ENQUEUE": 72,
+        "OFFER": 72,
+        "REJECT": 0
+      },
+      "fct_sha256": "25f23194366a4e52fbbe5847473cce54519fe6ed90143b4b38ab254be4fe39b0",
+      "id": "20261015-020000-ws28-tail-s20262725-fecmp-d1",
+      "mode": "fecmp",
+      "seed": 20262725,
+      "targets": [
+        {
+          "flow": [
+            780,
+            956,
+            10045,
+            142
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000014541,
+                  "enqueue_ns": 2000010910,
+                  "event": "DEQUEUE",
+                  "port": 12,
+                  "queue_before": 183960,
+                  "switch": 1376,
+                  "wait_ns": 3631
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000017503,
+                  "enqueue_ns": 2000014555,
+                  "event": "DEQUEUE",
+                  "port": 6,
+                  "queue_before": 154704,
+                  "switch": 1539,
+                  "wait_ns": 2948
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000017517,
+                  "enqueue_ns": 2000017517,
+                  "event": "DEQUEUE",
+                  "port": 8,
+                  "queue_before": 0,
+                  "switch": 1381,
+                  "wait_ns": 0
+                }
+              ],
+              "total_wait_ns": 6579,
+              "uid": 431587
+            }
+          ],
+          "packet_hops": 27,
+          "source_choices": [
+            {
+              "chosen": 12,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000000931,
+              "uid": 22139
+            },
+            {
+              "chosen": 12,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000002275,
+              "uid": 74151
+            },
+            {
+              "chosen": 12,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000003620,
+              "uid": 128851
+            },
+            {
+              "chosen": 12,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000004964,
+              "uid": 182778
+            },
+            {
+              "chosen": 12,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000006307,
+              "uid": 236661
+            },
+            {
+              "chosen": 12,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000007652,
+              "uid": 290285
+            },
+            {
+              "chosen": 12,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000008993,
+              "uid": 343721
+            },
+            {
+              "chosen": 12,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000010338,
+              "uid": 397321
+            },
+            {
+              "chosen": 12,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000010910,
+              "uid": 431587
+            }
+          ],
+          "target": 0
+        },
+        {
+          "flow": [
+            964,
+            304,
+            10020,
+            139
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000011157,
+                  "enqueue_ns": 2000010745,
+                  "event": "DEQUEUE",
+                  "port": 13,
+                  "queue_before": 20280,
+                  "switch": 1382,
+                  "wait_ns": 412
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000011171,
+                  "enqueue_ns": 2000011171,
+                  "event": "DEQUEUE",
+                  "port": 13,
+                  "queue_before": 0,
+                  "switch": 1540,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000013255,
+                  "enqueue_ns": 2000011275,
+                  "event": "DEQUEUE",
+                  "port": 2,
+                  "queue_before": 100168,
+                  "switch": 1636,
+                  "wait_ns": 1980
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000013359,
+                  "enqueue_ns": 2000013359,
+                  "event": "DEQUEUE",
+                  "port": 2,
+                  "queue_before": 0,
+                  "switch": 1476,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000013373,
+                  "enqueue_ns": 2000013373,
+                  "event": "DEQUEUE",
+                  "port": 5,
+                  "queue_before": 0,
+                  "switch": 1313,
+                  "wait_ns": 0
+                }
+              ],
+              "total_wait_ns": 2392,
+              "uid": 416858
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 13,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000000430,
+              "uid": 7971
+            },
+            {
+              "chosen": 13,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000001738,
+              "uid": 52516
+            },
+            {
+              "chosen": 13,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000003074,
+              "uid": 106832
+            },
+            {
+              "chosen": 13,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000004415,
+              "uid": 160853
+            },
+            {
+              "chosen": 13,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000005748,
+              "uid": 214298
+            },
+            {
+              "chosen": 13,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000007087,
+              "uid": 267780
+            },
+            {
+              "chosen": 13,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000008424,
+              "uid": 320991
+            },
+            {
+              "chosen": 13,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000009760,
+              "uid": 374313
+            },
+            {
+              "chosen": 13,
+              "kind": "CHOICE",
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000010745,
+              "uid": 416858
+            }
+          ],
+          "target": 1
+        }
+      ]
+    },
+    {
+      "diag": 0,
+      "fct_sha256": "792288f155807053c6926f979cb9fac057d2fa6b5b5049abc81adb58bfe8e579",
+      "id": "20261015-020000-ws28-tail-s20262725-classreserve-d0",
+      "mode": "classreserve",
+      "seed": 20262725,
+      "targets": []
+    },
+    {
+      "admission_drops": [],
+      "diag": 1,
+      "events": {
+        "ADMISSION_DROP": 0,
+        "CHOICE": 2,
+        "DEQUEUE": 72,
+        "DROP": 0,
+        "ENQUEUE": 72,
+        "OFFER": 72,
+        "REJECT": 0
+      },
+      "fct_sha256": "792288f155807053c6926f979cb9fac057d2fa6b5b5049abc81adb58bfe8e579",
+      "id": "20261015-020000-ws28-tail-s20262725-classreserve-d1",
+      "mode": "classreserve",
+      "seed": 20262725,
+      "targets": [
+        {
+          "flow": [
+            780,
+            956,
+            10045,
+            142
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000010920,
+                  "enqueue_ns": 2000010915,
+                  "event": "DEQUEUE",
+                  "port": 14,
+                  "queue_before": 240,
+                  "switch": 1376,
+                  "wait_ns": 5
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000010954,
+                  "enqueue_ns": 2000010934,
+                  "event": "DEQUEUE",
+                  "port": 6,
+                  "queue_before": 720,
+                  "switch": 1541,
+                  "wait_ns": 20
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011411,
+                  "enqueue_ns": 2000010968,
+                  "event": "DEQUEUE",
+                  "port": 8,
+                  "queue_before": 20872,
+                  "switch": 1381,
+                  "wait_ns": 443
+                }
+              ],
+              "total_wait_ns": 468,
+              "uid": 440311
+            }
+          ],
+          "packet_hops": 27,
+          "source_choices": [
+            {
+              "chosen": 14,
+              "first": 14,
+              "first_background": 0,
+              "first_queue": 0,
+              "kind": "CHOICE",
+              "second": 12,
+              "second_background": 1048,
+              "second_queue": 1048,
+              "seed": 20262725,
+              "switch": 1376,
+              "target": 0,
+              "time_ns": 2000000933
+            }
+          ],
+          "target": 0
+        },
+        {
+          "flow": [
+            964,
+            304,
+            10020,
+            139
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 8384,
+                  "background_valid": 1,
+                  "end_ns": 2000011082,
+                  "enqueue_ns": 2000010755,
+                  "event": "DEQUEUE",
+                  "port": 15,
+                  "queue_before": 16264,
+                  "switch": 1382,
+                  "wait_ns": 327
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011096,
+                  "enqueue_ns": 2000011096,
+                  "event": "DEQUEUE",
+                  "port": 13,
+                  "queue_before": 0,
+                  "switch": 1542,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011200,
+                  "enqueue_ns": 2000011200,
+                  "event": "DEQUEUE",
+                  "port": 2,
+                  "queue_before": 0,
+                  "switch": 1652,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 97464,
+                  "background_valid": 1,
+                  "end_ns": 2000017483,
+                  "enqueue_ns": 2000011304,
+                  "event": "DEQUEUE",
+                  "port": 2,
+                  "queue_before": 314608,
+                  "switch": 1478,
+                  "wait_ns": 6179
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000017497,
+                  "enqueue_ns": 2000017497,
+                  "event": "DEQUEUE",
+                  "port": 5,
+                  "queue_before": 0,
+                  "switch": 1313,
+                  "wait_ns": 0
+                }
+              ],
+              "total_wait_ns": 6506,
+              "uid": 425874
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 15,
+              "first": 15,
+              "first_background": 1048,
+              "first_queue": 2096,
+              "kind": "CHOICE",
+              "second": 9,
+              "second_background": 2096,
+              "second_queue": 2156,
+              "seed": 20262725,
+              "switch": 1382,
+              "target": 1,
+              "time_ns": 2000000430
+            }
+          ],
+          "target": 1
+        }
+      ]
+    },
+    {
+      "diag": 0,
+      "fct_sha256": "efda3f4e1ad61de22749c6821a621b0a4d8f72c3492b5c09e31092b8e0244fe5",
+      "id": "20261015-020000-ws28-tail-s20262729-fecmp-d0",
+      "mode": "fecmp",
+      "seed": 20262729,
+      "targets": []
+    },
+    {
+      "admission_drops": [],
+      "diag": 1,
+      "events": {
+        "ADMISSION_DROP": 0,
+        "CHOICE": 18,
+        "DEQUEUE": 90,
+        "DROP": 0,
+        "ENQUEUE": 90,
+        "OFFER": 90,
+        "REJECT": 0
+      },
+      "fct_sha256": "efda3f4e1ad61de22749c6821a621b0a4d8f72c3492b5c09e31092b8e0244fe5",
+      "id": "20261015-020000-ws28-tail-s20262729-fecmp-d1",
+      "mode": "fecmp",
+      "seed": 20262729,
+      "targets": [
+        {
+          "flow": [
+            1176,
+            344,
+            10010,
+            165
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000013516,
+                  "enqueue_ns": 2000010736,
+                  "event": "DEQUEUE",
+                  "port": 9,
+                  "queue_before": 138400,
+                  "switch": 1412,
+                  "wait_ns": 2780
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000013530,
+                  "enqueue_ns": 2000013530,
+                  "event": "DEQUEUE",
+                  "port": 14,
+                  "queue_before": 0,
+                  "switch": 1568,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000013634,
+                  "enqueue_ns": 2000013634,
+                  "event": "DEQUEUE",
+                  "port": 2,
+                  "queue_before": 0,
+                  "switch": 1605,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000017618,
+                  "enqueue_ns": 2000013738,
+                  "event": "DEQUEUE",
+                  "port": 3,
+                  "queue_before": 202252,
+                  "switch": 1472,
+                  "wait_ns": 3880
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000017632,
+                  "enqueue_ns": 2000017632,
+                  "event": "DEQUEUE",
+                  "port": 7,
+                  "queue_before": 0,
+                  "switch": 1314,
+                  "wait_ns": 0
+                }
+              ],
+              "total_wait_ns": 6660,
+              "uid": 418089
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 9,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000000230,
+              "uid": 3731
+            },
+            {
+              "chosen": 9,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000001519,
+              "uid": 43900
+            },
+            {
+              "chosen": 9,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000002858,
+              "uid": 98368
+            },
+            {
+              "chosen": 9,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000004202,
+              "uid": 152828
+            },
+            {
+              "chosen": 9,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000005546,
+              "uid": 206926
+            },
+            {
+              "chosen": 9,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000006887,
+              "uid": 260902
+            },
+            {
+              "chosen": 9,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000008231,
+              "uid": 314884
+            },
+            {
+              "chosen": 9,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000009576,
+              "uid": 368741
+            },
+            {
+              "chosen": 9,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000010736,
+              "uid": 418089
+            }
+          ],
+          "target": 2
+        },
+        {
+          "flow": [
+            320,
+            528,
+            10033,
+            115
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000010842,
+                  "enqueue_ns": 2000010789,
+                  "event": "DEQUEUE",
+                  "port": 15,
+                  "queue_before": 1920,
+                  "switch": 1314,
+                  "wait_ns": 53
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000010865,
+                  "enqueue_ns": 2000010856,
+                  "event": "DEQUEUE",
+                  "port": 15,
+                  "queue_before": 0,
+                  "switch": 1478,
+                  "wait_ns": 9
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000011122,
+                  "enqueue_ns": 2000010969,
+                  "event": "DEQUEUE",
+                  "port": 3,
+                  "queue_before": 7008,
+                  "switch": 1654,
+                  "wait_ns": 153
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000011535,
+                  "enqueue_ns": 2000011226,
+                  "event": "DEQUEUE",
+                  "port": 1,
+                  "queue_before": 15248,
+                  "switch": 1510,
+                  "wait_ns": 309
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000011562,
+                  "enqueue_ns": 2000011549,
+                  "event": "DEQUEUE",
+                  "port": 5,
+                  "queue_before": 0,
+                  "switch": 1344,
+                  "wait_ns": 13
+                }
+              ],
+              "total_wait_ns": 537,
+              "uid": 422719
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000000705,
+              "uid": 15196
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000002039,
+              "uid": 64773
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000003366,
+              "uid": 118882
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000004697,
+              "uid": 172632
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000006026,
+              "uid": 226056
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000007357,
+              "uid": 279646
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000008687,
+              "uid": 333138
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000010018,
+              "uid": 386342
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000010789,
+              "uid": 422719
+            }
+          ],
+          "target": 3
+        }
+      ]
+    },
+    {
+      "diag": 0,
+      "fct_sha256": "311878a31868330c0045ebd0334eaac3d957ac505d21d41f0392fd544b27de93",
+      "id": "20261015-020000-ws28-tail-s20262729-classreserve-d0",
+      "mode": "classreserve",
+      "seed": 20262729,
+      "targets": []
+    },
+    {
+      "admission_drops": [],
+      "diag": 1,
+      "events": {
+        "ADMISSION_DROP": 0,
+        "CHOICE": 2,
+        "DEQUEUE": 90,
+        "DROP": 0,
+        "ENQUEUE": 90,
+        "OFFER": 90,
+        "REJECT": 0
+      },
+      "fct_sha256": "311878a31868330c0045ebd0334eaac3d957ac505d21d41f0392fd544b27de93",
+      "id": "20261015-020000-ws28-tail-s20262729-classreserve-d1",
+      "mode": "classreserve",
+      "seed": 20262729,
+      "targets": [
+        {
+          "flow": [
+            1176,
+            344,
+            10010,
+            165
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 12576,
+                  "background_valid": 1,
+                  "end_ns": 2000011169,
+                  "enqueue_ns": 2000010735,
+                  "event": "DEQUEUE",
+                  "port": 9,
+                  "queue_before": 20872,
+                  "switch": 1412,
+                  "wait_ns": 434
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011183,
+                  "enqueue_ns": 2000011183,
+                  "event": "DEQUEUE",
+                  "port": 9,
+                  "queue_before": 0,
+                  "switch": 1568,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011287,
+                  "enqueue_ns": 2000011287,
+                  "event": "DEQUEUE",
+                  "port": 2,
+                  "queue_before": 0,
+                  "switch": 1600,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 144624,
+                  "background_valid": 1,
+                  "end_ns": 2000017178,
+                  "enqueue_ns": 2000011391,
+                  "event": "DEQUEUE",
+                  "port": 3,
+                  "queue_before": 298340,
+                  "switch": 1472,
+                  "wait_ns": 5787
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000017192,
+                  "enqueue_ns": 2000017192,
+                  "event": "DEQUEUE",
+                  "port": 7,
+                  "queue_before": 0,
+                  "switch": 1314,
+                  "wait_ns": 0
+                }
+              ],
+              "total_wait_ns": 6221,
+              "uid": 425862
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 9,
+              "first": 9,
+              "first_background": 0,
+              "first_queue": 0,
+              "kind": "CHOICE",
+              "second": 16,
+              "second_background": 0,
+              "second_queue": 1048,
+              "seed": 20262729,
+              "switch": 1412,
+              "target": 2,
+              "time_ns": 2000000230
+            }
+          ],
+          "target": 2
+        },
+        {
+          "flow": [
+            320,
+            528,
+            10033,
+            115
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 10480,
+                  "background_valid": 1,
+                  "end_ns": 2000011304,
+                  "enqueue_ns": 2000010786,
+                  "event": "DEQUEUE",
+                  "port": 16,
+                  "queue_before": 24408,
+                  "switch": 1314,
+                  "wait_ns": 518
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011318,
+                  "enqueue_ns": 2000011318,
+                  "event": "DEQUEUE",
+                  "port": 11,
+                  "queue_before": 0,
+                  "switch": 1479,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011422,
+                  "enqueue_ns": 2000011422,
+                  "event": "DEQUEUE",
+                  "port": 3,
+                  "queue_before": 0,
+                  "switch": 1658,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 167680,
+                  "background_valid": 1,
+                  "end_ns": 2000018431,
+                  "enqueue_ns": 2000011526,
+                  "event": "DEQUEUE",
+                  "port": 1,
+                  "queue_before": 359216,
+                  "switch": 1511,
+                  "wait_ns": 6905
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000018445,
+                  "enqueue_ns": 2000018445,
+                  "event": "DEQUEUE",
+                  "port": 5,
+                  "queue_before": 0,
+                  "switch": 1344,
+                  "wait_ns": 0
+                }
+              ],
+              "total_wait_ns": 7423,
+              "uid": 430317
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 16,
+              "first": 15,
+              "first_background": 1048,
+              "first_queue": 3144,
+              "kind": "CHOICE",
+              "second": 16,
+              "second_background": 0,
+              "second_queue": 0,
+              "seed": 20262729,
+              "switch": 1314,
+              "target": 3,
+              "time_ns": 2000000705
+            }
+          ],
+          "target": 3
+        }
+      ]
+    },
+    {
+      "diag": 0,
+      "fct_sha256": "4eec956fa24d721fcbed824ae11b81ecb629d78a60115d62a873167fd89526f5",
+      "id": "20261015-020000-ws28-tail-s20262739-fecmp-d0",
+      "mode": "fecmp",
+      "seed": 20262739,
+      "targets": []
+    },
+    {
+      "admission_drops": [],
+      "diag": 1,
+      "events": {
+        "ADMISSION_DROP": 0,
+        "CHOICE": 18,
+        "DEQUEUE": 90,
+        "DROP": 0,
+        "ENQUEUE": 90,
+        "OFFER": 90,
+        "REJECT": 0
+      },
+      "fct_sha256": "4eec956fa24d721fcbed824ae11b81ecb629d78a60115d62a873167fd89526f5",
+      "id": "20261015-020000-ws28-tail-s20262739-fecmp-d1",
+      "mode": "fecmp",
+      "seed": 20262739,
+      "targets": [
+        {
+          "flow": [
+            860,
+            1160,
+            10057,
+            137
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000013504,
+                  "enqueue_ns": 2000010963,
+                  "event": "DEQUEUE",
+                  "port": 10,
+                  "queue_before": 129856,
+                  "switch": 1378,
+                  "wait_ns": 2541
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000013518,
+                  "enqueue_ns": 2000013518,
+                  "event": "DEQUEUE",
+                  "port": 14,
+                  "queue_before": 0,
+                  "switch": 1537,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000013629,
+                  "enqueue_ns": 2000013622,
+                  "event": "DEQUEUE",
+                  "port": 5,
+                  "queue_before": 60,
+                  "switch": 1613,
+                  "wait_ns": 7
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000018332,
+                  "enqueue_ns": 2000013733,
+                  "event": "DEQUEUE",
+                  "port": 5,
+                  "queue_before": 242328,
+                  "switch": 1569,
+                  "wait_ns": 4599
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000018346,
+                  "enqueue_ns": 2000018346,
+                  "event": "DEQUEUE",
+                  "port": 3,
+                  "queue_before": 0,
+                  "switch": 1412,
+                  "wait_ns": 0
+                }
+              ],
+              "total_wait_ns": 7147,
+              "uid": 438379
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 10,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000001183,
+              "uid": 31014
+            },
+            {
+              "chosen": 10,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000002527,
+              "uid": 85059
+            },
+            {
+              "chosen": 10,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000003871,
+              "uid": 139994
+            },
+            {
+              "chosen": 10,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000005215,
+              "uid": 194075
+            },
+            {
+              "chosen": 10,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000006560,
+              "uid": 248169
+            },
+            {
+              "chosen": 10,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000007904,
+              "uid": 302124
+            },
+            {
+              "chosen": 10,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000009248,
+              "uid": 356128
+            },
+            {
+              "chosen": 10,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000010593,
+              "uid": 410246
+            },
+            {
+              "chosen": 10,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000010963,
+              "uid": 438379
+            }
+          ],
+          "target": 4
+        },
+        {
+          "flow": [
+            560,
+            448,
+            10027,
+            133
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000011030,
+                  "enqueue_ns": 2000010827,
+                  "event": "DEQUEUE",
+                  "port": 15,
+                  "queue_before": 10976,
+                  "switch": 1345,
+                  "wait_ns": 203
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000011079,
+                  "enqueue_ns": 2000011044,
+                  "event": "DEQUEUE",
+                  "port": 16,
+                  "queue_before": 1888,
+                  "switch": 1510,
+                  "wait_ns": 35
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000011208,
+                  "enqueue_ns": 2000011183,
+                  "event": "DEQUEUE",
+                  "port": 2,
+                  "queue_before": 1288,
+                  "switch": 1655,
+                  "wait_ns": 25
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000011312,
+                  "enqueue_ns": 2000011312,
+                  "event": "DEQUEUE",
+                  "port": 7,
+                  "queue_before": 0,
+                  "switch": 1478,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 0,
+                  "end_ns": 2000012116,
+                  "enqueue_ns": 2000011326,
+                  "event": "DEQUEUE",
+                  "port": 1,
+                  "queue_before": 39176,
+                  "switch": 1318,
+                  "wait_ns": 790
+                }
+              ],
+              "total_wait_ns": 1053,
+              "uid": 426981
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000000571,
+              "uid": 11705
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000001907,
+              "uid": 59740
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000003249,
+              "uid": 114617
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000004589,
+              "uid": 168880
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000005931,
+              "uid": 222793
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000007272,
+              "uid": 276738
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000008613,
+              "uid": 330686
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000009955,
+              "uid": 384603
+            },
+            {
+              "chosen": 15,
+              "kind": "CHOICE",
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000010827,
+              "uid": 426981
+            }
+          ],
+          "target": 5
+        }
+      ]
+    },
+    {
+      "diag": 0,
+      "fct_sha256": "f6d96f2f779b782755eb103b349f636d58f497c6e65948805992c323231c1635",
+      "id": "20261015-020000-ws28-tail-s20262739-classreserve-d0",
+      "mode": "classreserve",
+      "seed": 20262739,
+      "targets": []
+    },
+    {
+      "admission_drops": [],
+      "diag": 1,
+      "events": {
+        "ADMISSION_DROP": 0,
+        "CHOICE": 2,
+        "DEQUEUE": 90,
+        "DROP": 0,
+        "ENQUEUE": 90,
+        "OFFER": 90,
+        "REJECT": 0
+      },
+      "fct_sha256": "f6d96f2f779b782755eb103b349f636d58f497c6e65948805992c323231c1635",
+      "id": "20261015-020000-ws28-tail-s20262739-classreserve-d1",
+      "mode": "classreserve",
+      "seed": 20262739,
+      "targets": [
+        {
+          "flow": [
+            860,
+            1160,
+            10057,
+            137
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000010963,
+                  "enqueue_ns": 2000010963,
+                  "event": "DEQUEUE",
+                  "port": 9,
+                  "queue_before": 0,
+                  "switch": 1378,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000010977,
+                  "enqueue_ns": 2000010977,
+                  "event": "DEQUEUE",
+                  "port": 13,
+                  "queue_before": 0,
+                  "switch": 1536,
+                  "wait_ns": 0
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011448,
+                  "enqueue_ns": 2000011081,
+                  "event": "DEQUEUE",
+                  "port": 5,
+                  "queue_before": 18840,
+                  "switch": 1604,
+                  "wait_ns": 367
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011730,
+                  "enqueue_ns": 2000011552,
+                  "event": "DEQUEUE",
+                  "port": 5,
+                  "queue_before": 8600,
+                  "switch": 1568,
+                  "wait_ns": 178
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000011943,
+                  "enqueue_ns": 2000011744,
+                  "event": "DEQUEUE",
+                  "port": 3,
+                  "queue_before": 9796,
+                  "switch": 1412,
+                  "wait_ns": 199
+                }
+              ],
+              "total_wait_ns": 744,
+              "uid": 445772
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 9,
+              "first": 9,
+              "first_background": 0,
+              "first_queue": 0,
+              "kind": "CHOICE",
+              "second": 16,
+              "second_background": 0,
+              "second_queue": 60,
+              "seed": 20262739,
+              "switch": 1378,
+              "target": 4,
+              "time_ns": 2000001183
+            }
+          ],
+          "target": 4
+        },
+        {
+          "flow": [
+            560,
+            448,
+            10027,
+            133
+          ],
+          "max_seq": 8000,
+          "max_seq_paths": [
+            {
+              "hops": [
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000010897,
+                  "enqueue_ns": 2000010834,
+                  "event": "DEQUEUE",
+                  "port": 9,
+                  "queue_before": 3600,
+                  "switch": 1345,
+                  "wait_ns": 63
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000010914,
+                  "enqueue_ns": 2000010911,
+                  "event": "DEQUEUE",
+                  "port": 11,
+                  "queue_before": 0,
+                  "switch": 1504,
+                  "wait_ns": 3
+                },
+                {
+                  "background_before": 23056,
+                  "background_valid": 1,
+                  "end_ns": 2000012085,
+                  "enqueue_ns": 2000011018,
+                  "event": "DEQUEUE",
+                  "port": 2,
+                  "queue_before": 54032,
+                  "switch": 1602,
+                  "wait_ns": 1067
+                },
+                {
+                  "background_before": 99560,
+                  "background_valid": 1,
+                  "end_ns": 2000018760,
+                  "enqueue_ns": 2000012189,
+                  "event": "DEQUEUE",
+                  "port": 7,
+                  "queue_before": 342728,
+                  "switch": 1472,
+                  "wait_ns": 6571
+                },
+                {
+                  "background_before": 0,
+                  "background_valid": 1,
+                  "end_ns": 2000018774,
+                  "enqueue_ns": 2000018774,
+                  "event": "DEQUEUE",
+                  "port": 1,
+                  "queue_before": 0,
+                  "switch": 1318,
+                  "wait_ns": 0
+                }
+              ],
+              "total_wait_ns": 7704,
+              "uid": 434740
+            }
+          ],
+          "packet_hops": 45,
+          "source_choices": [
+            {
+              "chosen": 9,
+              "first": 9,
+              "first_background": 0,
+              "first_queue": 0,
+              "kind": "CHOICE",
+              "second": 15,
+              "second_background": 0,
+              "second_queue": 1048,
+              "seed": 20262739,
+              "switch": 1345,
+              "target": 5,
+              "time_ns": 2000000571
+            }
+          ],
+          "target": 5
+        }
+      ]
+    }
+  ],
+  "plan_sha256": "40f7eebb18c3b6576e9c2e42a0284111b02c69f9a73bf3de36723456ce9259ee",
+  "source_sha": "ca03c7bccf05120fde219606bbb478e48a467619"
+}

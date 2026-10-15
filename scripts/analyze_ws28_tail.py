@@ -11,6 +11,7 @@ import run_ws28_tail as tail
 ROOT = Path(__file__).resolve().parents[1]
 PLAN = ROOT / "docs/research/evidence/ws28-tail-plan-v2.json"
 PROGRESS = ROOT / "results/ws28-tail-analysis-progress.json"
+FINAL = ROOT / "docs/research/evidence/ws28-tail-analysis.json"
 TARGETS = (
     (20262725, 780, 956, 10045, 142), (20262725, 964, 304, 10020, 139),
     (20262729, 1176, 344, 10010, 165), (20262729, 320, 528, 10033, 115),
@@ -35,8 +36,8 @@ def parse_events(log):
 def analyze_cell(cell, plan):
     receipt = tail.verify(cell, plan)
     if not cell["diag"]:
-        return {"id": cell["id"], "fct_sha256": receipt["fct_sha256"],
-                "diag": 0, "targets": []}
+        return {"id": cell["id"], "seed": cell["seed"], "mode": cell["mode"],
+                "fct_sha256": receipt["fct_sha256"], "diag": 0, "targets": []}
     folder = ROOT / "results" / cell["id"]
     log = (folder / "logs/config.log").read_text(encoding="utf-8", errors="replace")
     events = parse_events(log)
@@ -117,9 +118,20 @@ def main():
     plan = json.loads(PLAN.read_text(encoding="utf-8"))
     rows = [analyze_cell(cell, plan) for cell in plan["cells"][:args.limit]]
     PROGRESS.parent.mkdir(parents=True, exist_ok=True)
-    PROGRESS.write_text(json.dumps({"source_sha": plan["source_sha"],
-                                    "analyzed_cells": rows}, indent=2, sort_keys=True) + "\n",
+    payload = {"source_sha": plan["source_sha"],
+               "plan_sha256": tail.analyze_moe_tags.sha256(PLAN),
+               "analyzed_cells": rows}
+    PROGRESS.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n",
                         encoding="utf-8")
+    if len(rows) == 12:
+        pairs = defaultdict(dict)
+        for row in rows:
+            pairs[(row["seed"], row["mode"])][row["diag"]] = row["fct_sha256"]
+        if len(pairs) != 6 or any(set(pair) != {0, 1} or
+                                  pair[0] != pair[1] for pair in pairs.values()):
+            raise RuntimeError("tail probe on/off FCT identity failed")
+        FINAL.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n",
+                         encoding="utf-8")
     print(json.dumps({"analyzed_cells": len(rows), "target_summaries":
                       sum(len(row["targets"]) for row in rows)}, sort_keys=True))
 

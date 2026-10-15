@@ -1,0 +1,2056 @@
+{
+  "component_effects": {
+    "A_by_B_interaction": {
+      "background_p99_pct": {
+        "bootstrap_95pct": [
+          -2.646327673494908,
+          0.8003872808348413
+        ],
+        "improved_seeds": 13,
+        "median_pct": -0.692109016032538,
+        "range_pct": [
+          -6.5735034479356464,
+          7.322305825916453
+        ],
+        "worsened_seeds": 11
+      },
+      "moe_batch_pct": {
+        "bootstrap_95pct": [
+          -0.3415085791952821,
+          1.3206671394377256
+        ],
+        "improved_seeds": 8,
+        "median_pct": 0.7323839462413828,
+        "range_pct": [
+          -7.900404694018226,
+          9.298572116424019
+        ],
+        "worsened_seeds": 16
+      }
+    },
+    "A_when_B0": {
+      "background_p99_pct": {
+        "bootstrap_95pct": [
+          -2.6837747592113157,
+          0.20893294546338037
+        ],
+        "improved_seeds": 14,
+        "median_pct": -0.9401753006644087,
+        "range_pct": [
+          -7.518765665512572,
+          5.931617638092157
+        ],
+        "worsened_seeds": 10
+      },
+      "moe_batch_pct": {
+        "bootstrap_95pct": [
+          -0.5829326923077027,
+          0.35211267605634866
+        ],
+        "improved_seeds": 14,
+        "median_pct": -0.14496560842660045,
+        "range_pct": [
+          -7.753512781445737,
+          4.646163033741413
+        ],
+        "worsened_seeds": 10
+      }
+    },
+    "A_when_B1": {
+      "background_p99_pct": {
+        "bootstrap_95pct": [
+          -3.166652366935485,
+          0.14713379405204563
+        ],
+        "improved_seeds": 16,
+        "median_pct": -2.123504074857263,
+        "range_pct": [
+          -7.2826693491709555,
+          5.649950115173641
+        ],
+        "worsened_seeds": 8
+      },
+      "moe_batch_pct": {
+        "bootstrap_95pct": [
+          -0.7499129991700104,
+          0.7969570729940312
+        ],
+        "improved_seeds": 10,
+        "median_pct": 0.5006584164436445,
+        "range_pct": [
+          -5.419946763323336,
+          4.695532960127946
+        ],
+        "worsened_seeds": 14
+      }
+    },
+    "B_when_A0": {
+      "background_p99_pct": {
+        "bootstrap_95pct": [
+          -0.5787500693100633,
+          1.8928424274280875
+        ],
+        "improved_seeds": 8,
+        "median_pct": 1.189337992192574,
+        "range_pct": [
+          -6.573232426214903,
+          7.831117727420911
+        ],
+        "worsened_seeds": 16
+      },
+      "moe_batch_pct": {
+        "bootstrap_95pct": [
+          -1.4498881614971704,
+          1.1959134615384448
+        ],
+        "improved_seeds": 13,
+        "median_pct": -0.25245429417023457,
+        "range_pct": [
+          -4.4540393137143415,
+          10.504841361671048
+        ],
+        "worsened_seeds": 11
+      }
+    },
+    "B_when_A1": {
+      "background_p99_pct": {
+        "bootstrap_95pct": [
+          -0.6273969952039993,
+          1.4182083248928778
+        ],
+        "improved_seeds": 12,
+        "median_pct": 0.2220774413181803,
+        "range_pct": [
+          -6.739105205304741,
+          6.150880720943497
+        ],
+        "worsened_seeds": 12
+      },
+      "moe_batch_pct": {
+        "bootstrap_95pct": [
+          -0.8869555392350681,
+          2.6963991125775078
+        ],
+        "improved_seeds": 9,
+        "median_pct": 0.751612603510543,
+        "range_pct": [
+          -6.193713322874905,
+          8.80166517989891
+        ],
+        "worsened_seeds": 15
+      }
+    }
+  },
+  "independent_units": 24,
+  "input_manifest_sha256": "6c07022c872c6d21b321412f62d8aa70dfd601317ae0f439cd343dfbfdd073a4",
+  "kind": "WS-28 two-factor paired raw analysis",
+  "mode_effects": {
+    "cr-a0-b0": {
+      "background_constraint_pass": true,
+      "background_over_3pct_seeds": 5,
+      "background_p99": {
+        "bootstrap_95pct": [
+          -1.2058740566356807,
+          2.4122014056853436
+        ],
+        "improved_seeds": 11,
+        "median_pct": 0.39785997984014276,
+        "range_pct": [
+          -10.261431185757141,
+          15.703561795079167
+        ],
+        "worsened_seeds": 13
+      },
+      "moe_batch": {
+        "bootstrap_95pct": [
+          -7.457718120805367,
+          -2.4218305855599698
+        ],
+        "improved_seeds": 22,
+        "median_pct": -4.451196183456757,
+        "range_pct": [
+          -14.177809533530683,
+          1.3093482748451901
+        ],
+        "worsened_seeds": 2
+      }
+    },
+    "cr-a0-b1": {
+      "background_constraint_pass": true,
+      "background_over_3pct_seeds": 6,
+      "background_p99": {
+        "bootstrap_95pct": [
+          -0.5647100052247667,
+          2.0832841443864547
+        ],
+        "improved_seeds": 11,
+        "median_pct": 0.567686884840124,
+        "range_pct": [
+          -4.924620142798119,
+          10.611269298355118
+        ],
+        "worsened_seeds": 13
+      },
+      "moe_batch": {
+        "bootstrap_95pct": [
+          -7.555975331962883,
+          -1.93893713474248
+        ],
+        "improved_seeds": 20,
+        "median_pct": -5.970687816175641,
+        "range_pct": [
+          -13.618190904547733,
+          4.29490523387237
+        ],
+        "worsened_seeds": 4
+      }
+    },
+    "cr-a1-b0": {
+      "background_constraint_pass": true,
+      "background_over_3pct_seeds": 4,
+      "background_p99": {
+        "bootstrap_95pct": [
+          -2.5435094791134816,
+          1.042010071209143
+        ],
+        "improved_seeds": 14,
+        "median_pct": -1.1753756573310958,
+        "range_pct": [
+          -4.954823679641429,
+          7.004082117055632
+        ],
+        "worsened_seeds": 10
+      },
+      "moe_batch": {
+        "bootstrap_95pct": [
+          -7.255958664370232,
+          -2.9680491721579383
+        ],
+        "improved_seeds": 23,
+        "median_pct": -5.232534578640962,
+        "range_pct": [
+          -16.836581709145438,
+          1.1854910056030787
+        ],
+        "worsened_seeds": 1
+      }
+    },
+    "cr-a1-b1": {
+      "background_constraint_pass": true,
+      "background_over_3pct_seeds": 4,
+      "background_p99": {
+        "bootstrap_95pct": [
+          -1.2077638105169874,
+          1.4902293353058704
+        ],
+        "improved_seeds": 13,
+        "median_pct": -0.18071012956181742,
+        "range_pct": [
+          -6.608811173131923,
+          7.256983588732924
+        ],
+        "worsened_seeds": 11
+      },
+      "moe_batch": {
+        "bootstrap_95pct": [
+          -6.939274404133555,
+          -2.387007282395104
+        ],
+        "improved_seeds": 21,
+        "median_pct": -5.211145743273243,
+        "range_pct": [
+          -16.00699650174914,
+          6.039529357213258
+        ],
+        "worsened_seeds": 3
+      }
+    },
+    "fecmp": {
+      "background_constraint_pass": true,
+      "background_over_3pct_seeds": 0,
+      "background_p99": {
+        "bootstrap_95pct": [
+          0.0,
+          0.0
+        ],
+        "improved_seeds": 0,
+        "median_pct": 0.0,
+        "range_pct": [
+          0.0,
+          0.0
+        ],
+        "worsened_seeds": 0
+      },
+      "moe_batch": {
+        "bootstrap_95pct": [
+          0.0,
+          0.0
+        ],
+        "improved_seeds": 0,
+        "median_pct": 0.0,
+        "range_pct": [
+          0.0,
+          0.0
+        ],
+        "worsened_seeds": 0
+      }
+    }
+  },
+  "paired_seeds": [
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 1.0399446999274753,
+          "moe_batch_pct": 9.298572116424019
+        },
+        "A_when_B0": {
+          "background_p99_pct": -1.3971563048765678,
+          "moe_batch_pct": -7.753512781445737
+        },
+        "A_when_B1": {
+          "background_p99_pct": -0.35721160494909254,
+          "moe_batch_pct": 1.5450593349782826
+        },
+        "B_when_A0": {
+          "background_p99_pct": 0.3597340497103918,
+          "moe_batch_pct": -3.944472659556464
+        },
+        "B_when_A1": {
+          "background_p99_pct": 1.4182083248928778,
+          "moe_batch_pct": 5.73805591239982
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1376.23614,
+          "background_p99_vs_ecmp_pct": 0.002906562432292148,
+          "fct_sha256": "7f8a598cb8ccb05382f4e2b7da97a011398d095a31e8abf64f89b96627e22e6e",
+          "id": "20261015-020000-ws28-ablation-s20262921-cr-a0-b0",
+          "moe_batch_us": 17.721,
+          "moe_batch_vs_ecmp_pct": -3.4909051301601046,
+          "moe_single_flow_p95_us": 14.524
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1381.18693,
+          "background_p99_vs_ecmp_pct": 0.36265106803743397,
+          "fct_sha256": "58c36f8e7e83af84d468db905a50f3fadd29f9fec9e4bf7d5ee736d819de27bb",
+          "id": "20261015-020000-ws28-ablation-s20262921-cr-a0-b1",
+          "moe_batch_us": 17.022,
+          "moe_batch_vs_ecmp_pct": -7.297679991286355,
+          "moe_single_flow_p95_us": 14.467400000000001
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1357.0079700000001,
+          "background_p99_vs_ecmp_pct": -1.39429035166454,
+          "fct_sha256": "634d60266b2014f920d684fcab12421fa15ffd73dc2d31ac05bebb991eae5f5f",
+          "id": "20261015-020000-ws28-ablation-s20262921-cr-a1-b0",
+          "moe_batch_us": 16.347,
+          "moe_batch_vs_ecmp_pct": -10.973750136150729,
+          "moe_single_flow_p95_us": 14.536
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1376.25317,
+          "background_p99_vs_ecmp_pct": 0.004144031387842695,
+          "fct_sha256": "36934fb7cc076485709cafd00042d257074762ffecc38a7a7f778c93aed6d56b",
+          "id": "20261015-020000-ws28-ablation-s20262921-cr-a1-b1",
+          "moe_batch_us": 17.285,
+          "moe_batch_vs_ecmp_pct": -5.865374142250291,
+          "moe_single_flow_p95_us": 14.61
+        },
+        "fecmp": {
+          "background_p99_us": 1376.19614,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "12a2c57b819062c46cfb9e8bad8a88d0088117049a88de688fb49e609ca4ce4a",
+          "id": "20261015-020000-ws28-ablation-s20262921-fecmp",
+          "moe_batch_us": 18.362,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.911850000000001
+        }
+      },
+      "seed": 20262921,
+      "trace_sha256": "0c871e0727f0fac79c754a9b504429e2394216c7542d3b0ef227b74e88d0adb6"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -3.703164072441334,
+          "moe_batch_pct": 0.144144116658107
+        },
+        "A_when_B0": {
+          "background_p99_pct": 0.20893294546338037,
+          "moe_batch_pct": 1.409372026641309
+        },
+        "A_when_B1": {
+          "background_p99_pct": -3.4942311269779536,
+          "moe_batch_pct": 1.553516143299416
+        },
+        "B_when_A0": {
+          "background_p99_pct": 1.2719513257237303,
+          "moe_batch_pct": 7.564224548049481
+        },
+        "B_when_A1": {
+          "background_p99_pct": -2.47049598583029,
+          "moe_batch_pct": 7.717117222776038
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1554.0775500000002,
+          "background_p99_vs_ecmp_pct": -4.162374950474046,
+          "fct_sha256": "dd43e3c5a0a10274be584413fca35a05ac2d2b0aa43e5da162640c7f97509d92",
+          "id": "20261015-020000-ws28-ablation-s20262922-cr-a0-b0",
+          "moe_batch_us": 16.816,
+          "moe_batch_vs_ecmp_pct": -14.177809533530683,
+          "moe_single_flow_p95_us": 14.321
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1573.8446600000002,
+          "background_p99_vs_ecmp_pct": -2.9433670081144503,
+          "fct_sha256": "fe89508ad2e98178450f18e3e40f831b154e8f0d1d8ecb76de428c44b9a209c2",
+          "id": "20261015-020000-ws28-ablation-s20262922-cr-a0-b1",
+          "moe_batch_us": 18.088,
+          "moe_batch_vs_ecmp_pct": -7.686026334592222,
+          "moe_single_flow_p95_us": 14.66985
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1557.3245300000003,
+          "background_p99_vs_ecmp_pct": -3.9621385775959195,
+          "fct_sha256": "86aed86c37c02e01e2dd327c073eafef16d8a6b1348f3b483e5e09f4420d9b45",
+          "id": "20261015-020000-ws28-ablation-s20262922-cr-a1-b0",
+          "moe_batch_us": 17.053,
+          "moe_batch_vs_ecmp_pct": -12.968255588445443,
+          "moe_single_flow_p95_us": 14.397
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1518.85089,
+          "background_p99_vs_ecmp_pct": -6.334750088913665,
+          "fct_sha256": "9f9b1d706f17bcd90ab09ef3d4ae111109ed7d161404da5db54f04aef22c3335",
+          "id": "20261015-020000-ws28-ablation-s20262922-cr-a1-b1",
+          "moe_batch_us": 18.369,
+          "moe_batch_vs_ecmp_pct": -6.251913851178936,
+          "moe_single_flow_p95_us": 14.54185
+        },
+        "fecmp": {
+          "background_p99_us": 1621.5735200000004,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "f1e91041e385fb1264d623cc35f51826a9525780258396d473b5305f66a4d26a",
+          "id": "20261015-020000-ws28-ablation-s20262922-fecmp",
+          "moe_batch_us": 19.594,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.758700000000001
+        }
+      },
+      "seed": 20262922,
+      "trace_sha256": "b271984fc46c9b420c827fab947ac91f161a498ce188553260feda6125e070c1"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 5.286492680272836,
+          "moe_batch_pct": -5.210504813842642
+        },
+        "A_when_B0": {
+          "background_p99_pct": -5.139358886220791,
+          "moe_batch_pct": 2.289750928688883
+        },
+        "A_when_B1": {
+          "background_p99_pct": 0.14713379405204563,
+          "moe_batch_pct": -2.9207538851537596
+        },
+        "B_when_A0": {
+          "background_p99_pct": -5.483849570857591,
+          "moe_batch_pct": 10.504841361671048
+        },
+        "B_when_A1": {
+          "background_p99_pct": -0.21655502651735103,
+          "moe_batch_pct": 4.875870691194861
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 2170.49991,
+          "background_p99_vs_ecmp_pct": 5.267155976686677,
+          "fct_sha256": "497ccece31e3342082b91fc96558b1b4f0c142a3a46041f23bbc27d4488bdd67",
+          "id": "20261015-020000-ws28-ablation-s20262923-cr-a0-b0",
+          "moe_batch_us": 16.421,
+          "moe_batch_vs_ecmp_pct": -10.687479604046557,
+          "moe_single_flow_p95_us": 14.79085
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 2051.4729600000005,
+          "background_p99_vs_ecmp_pct": -0.5055365045948501,
+          "fct_sha256": "f5b0f99e2c028c519cc4522f59a5cfeb15fc768c83ad746e1ad594a955cdaccc",
+          "id": "20261015-020000-ws28-ablation-s20262923-cr-a0-b1",
+          "moe_batch_us": 18.146,
+          "moe_batch_vs_ecmp_pct": -1.305341020341555,
+          "moe_single_flow_p95_us": 14.66285
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 2058.9501300000006,
+          "background_p99_vs_ecmp_pct": -0.14290095827307336,
+          "fct_sha256": "1a4f1420edd9fd94c999a05598229c58c9c02669f354b6af75c562d4c30da9c3",
+          "id": "20261015-020000-ws28-ablation-s20262923-cr-a1-b0",
+          "moe_batch_us": 16.797,
+          "moe_batch_vs_ecmp_pct": -8.642445338844762,
+          "moe_single_flow_p95_us": 14.674850000000001
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 2054.49137,
+          "background_p99_vs_ecmp_pct": -0.3591465255823323,
+          "fct_sha256": "57637f38ea373b9300b8531c7ab6bbc5765abe581291021315a0261757287a3b",
+          "id": "20261015-020000-ws28-ablation-s20262923-cr-a1-b1",
+          "moe_batch_us": 17.616,
+          "moe_batch_vs_ecmp_pct": -4.187969106929179,
+          "moe_single_flow_p95_us": 14.72485
+        },
+        "fecmp": {
+          "background_p99_us": 2061.8966000000005,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "2cd787d185545a78e8b1cac0663de8545cc07b799f2e659ea2e2c464cff79d8d",
+          "id": "20261015-020000-ws28-ablation-s20262923-fecmp",
+          "moe_batch_us": 18.386,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.86485
+        }
+      },
+      "seed": 20262923,
+      "trace_sha256": "bf2708fb50a73e8fd8ad756a56905dc36d9bf5e161e348b92ecd0a48c828f0e6"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 0.5608298617422074,
+          "moe_batch_pct": -7.900404694018226
+        },
+        "A_when_B0": {
+          "background_p99_pct": -7.518765665512572,
+          "moe_batch_pct": 2.4804579306948904
+        },
+        "A_when_B1": {
+          "background_p99_pct": -6.957935803770365,
+          "moe_batch_pct": -5.419946763323336
+        },
+        "B_when_A0": {
+          "background_p99_pct": -4.401154482817871,
+          "moe_batch_pct": 8.678525266202985
+        },
+        "B_when_A1": {
+          "background_p99_pct": -3.821418629377571,
+          "moe_batch_pct": 0.30030030030030463
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1590.3086400000002,
+          "background_p99_vs_ecmp_pct": 15.703561795079167,
+          "fct_sha256": "c17650545d3b36e4e3a179085e735fa73c54d67e7564500f424025cf917b862c",
+          "id": "20261015-020000-ws28-ablation-s20262924-cr-a0-b0",
+          "moe_batch_us": 16.247,
+          "moe_batch_vs_ecmp_pct": -7.708475346512156,
+          "moe_single_flow_p95_us": 14.232850000000001
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1520.3167000000003,
+          "background_p99_vs_ecmp_pct": 10.611269298355118,
+          "fct_sha256": "69aac8821ad25f942d9239f523f00450bf70439856ab03e433f7f6925bae6372",
+          "id": "20261015-020000-ws28-ablation-s20262924-cr-a0-b1",
+          "moe_batch_us": 17.657,
+          "moe_batch_vs_ecmp_pct": 0.30106793910475993,
+          "moe_single_flow_p95_us": 14.41285
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1470.7370600000002,
+          "background_p99_vs_ecmp_pct": 7.004082117055632,
+          "fct_sha256": "e5c4b94e409f77bb8af9b6a91fdf85b4b4c65ce9b16ded50278d6f6fa04eb329",
+          "id": "20261015-020000-ws28-ablation-s20262924-cr-a1-b0",
+          "moe_batch_us": 16.65,
+          "moe_batch_vs_ecmp_pct": -5.419222903885479,
+          "moe_single_flow_p95_us": 14.289
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1414.5340400000002,
+          "background_p99_vs_ecmp_pct": 2.915008188840007,
+          "fct_sha256": "ea3d8043f374e08644c19b5cc1cce2a669a5a9445b26f70adab55091133e3903",
+          "id": "20261015-020000-ws28-ablation-s20262924-cr-a1-b1",
+          "moe_batch_us": 16.7,
+          "moe_batch_vs_ecmp_pct": -5.135196546239495,
+          "moe_single_flow_p95_us": 14.36185
+        },
+        "fecmp": {
+          "background_p99_us": 1374.46818,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "b405158a5981adfe8c8900424174d69682ec7e7a4163110beee69f3e94e23bd8",
+          "id": "20261015-020000-ws28-ablation-s20262924-fecmp",
+          "moe_batch_us": 17.604,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.829550000000001
+        }
+      },
+      "seed": 20262924,
+      "trace_sha256": "3243a8be22ad7cc45fd8f583799ab3c0c5938377e6b60362dfb66d9acc64d96a"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -4.871524963826534,
+          "moe_batch_pct": 2.4844386676978747
+        },
+        "A_when_B0": {
+          "background_p99_pct": 1.5725381135411443,
+          "moe_batch_pct": -0.03908649282482468
+        },
+        "A_when_B1": {
+          "background_p99_pct": -3.2989868502853903,
+          "moe_batch_pct": 2.44535217487305
+        },
+        "B_when_A0": {
+          "background_p99_pct": 7.831117727420911,
+          "moe_batch_pct": 1.1558434306773169
+        },
+        "B_when_A1": {
+          "background_p99_pct": 2.659424751714723,
+          "moe_batch_pct": 3.6699810077086337
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 2017.39848,
+          "background_p99_vs_ecmp_pct": -4.05232326483127,
+          "fct_sha256": "4636e2830edef6adf9aeb2c2dd2b6d94018d576fdfae80e9be4def3309b0cc9a",
+          "id": "20261015-020000-ws28-ablation-s20262925-cr-a0-b0",
+          "moe_batch_us": 17.909,
+          "moe_batch_vs_ecmp_pct": -0.18392598372534152,
+          "moe_single_flow_p95_us": 14.5937
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 2175.38333,
+          "background_p99_vs_ecmp_pct": 3.461452257025033,
+          "fct_sha256": "f29a6d1640abccf8ed3ea57c7d328394e729b8da3853fe0d448b173be7bd2ef0",
+          "id": "20261015-020000-ws28-ablation-s20262925-cr-a0-b1",
+          "moe_batch_us": 18.116,
+          "moe_batch_vs_ecmp_pct": 0.9697915505517685,
+          "moe_single_flow_p95_us": 14.441950000000002
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 2049.12284,
+          "background_p99_vs_ecmp_pct": -2.5435094791134816,
+          "fct_sha256": "a9886f51fae8303ee0df183457c8c0203d1b6a25c669a572e688f976d9cf0da1",
+          "id": "20261015-020000-ws28-ablation-s20262925-cr-a1-b0",
+          "moe_batch_us": 17.902,
+          "moe_batch_vs_ecmp_pct": -0.22294058633374192,
+          "moe_single_flow_p95_us": 14.552850000000001
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 2103.6177199999997,
+          "background_p99_vs_ecmp_pct": 0.04827255195147817,
+          "fct_sha256": "f011acd72a9e845e8df39ebdbbc12ddcfcd89e4e9ffa4aaaf21d70dcb77f96c2",
+          "id": "20261015-020000-ws28-ablation-s20262925-cr-a1-b1",
+          "moe_batch_us": 18.559,
+          "moe_batch_vs_ecmp_pct": 3.438858544197987,
+          "moe_single_flow_p95_us": 14.521400000000002
+        },
+        "fecmp": {
+          "background_p99_us": 2102.60274,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "3b7548102e7aefe9b2451953ea8f6f7baaedf6975f3088a920c2544b9c299c2e",
+          "id": "20261015-020000-ws28-ablation-s20262925-fecmp",
+          "moe_batch_us": 17.942,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.923
+        }
+      },
+      "seed": 20262925,
+      "trace_sha256": "c6226e6efd24ebaaa76df46aa421fbee93f3127af6f85609ee862896f8effda2"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 5.56238249287806,
+          "moe_batch_pct": 0.047479513676851326
+        },
+        "A_when_B0": {
+          "background_p99_pct": -0.262874251161338,
+          "moe_batch_pct": -0.19599436516199997
+        },
+        "A_when_B1": {
+          "background_p99_pct": 5.299508241716722,
+          "moe_batch_pct": -0.14851485148514865
+        },
+        "B_when_A0": {
+          "background_p99_pct": 0.5435249945485499,
+          "moe_batch_pct": -1.0228455931892033
+        },
+        "B_when_A1": {
+          "background_p99_pct": 6.150880720943497,
+          "moe_batch_pct": -0.975759435409651
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1783.9290000000003,
+          "background_p99_vs_ecmp_pct": 1.3083235681530248,
+          "fct_sha256": "9798976eb658a6dcd775295cb686e4b36180a072f770b40443e8feeff837ebe9",
+          "id": "20261015-020000-ws28-ablation-s20262926-cr-a0-b0",
+          "moe_batch_us": 16.327,
+          "moe_batch_vs_ecmp_pct": -5.0479790636812965,
+          "moe_single_flow_p95_us": 14.42285
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1793.6251000000002,
+          "background_p99_vs_ecmp_pct": 1.8589596283040466,
+          "fct_sha256": "a21e63f4b5b865186150cfdc75ebd307fa36e3cbb38f1c5b8f0db422b9acdbe3",
+          "id": "20261015-020000-ws28-ablation-s20262926-cr-a0-b1",
+          "moe_batch_us": 16.16,
+          "moe_batch_vs_ecmp_pct": -6.019191625472519,
+          "moe_single_flow_p95_us": 14.3747
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1779.2395100000003,
+          "background_p99_vs_ecmp_pct": 1.042010071209143,
+          "fct_sha256": "703265d07d935d317d5585ad023f93fdb7e5a814fd4fcd4cbb5cafa89db83f81",
+          "id": "20261015-020000-ws28-ablation-s20262926-cr-a1-b0",
+          "moe_batch_us": 16.295,
+          "moe_batch_vs_ecmp_pct": -5.2340796743239215,
+          "moe_single_flow_p95_us": 14.52385
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1888.67841,
+          "background_p99_vs_ecmp_pct": 7.256983588732924,
+          "fct_sha256": "776dfcc7c41f923abcbfb9201b8139c065d0818418ca189ddeae05f1cc16121d",
+          "id": "20261015-020000-ws28-ablation-s20262926-cr-a1-b1",
+          "moe_batch_us": 16.136,
+          "moe_batch_vs_ecmp_pct": -6.158767083454498,
+          "moe_single_flow_p95_us": 14.43685
+        },
+        "fecmp": {
+          "background_p99_us": 1760.8908500000002,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "bc5aa80c7de22ce722b4ecf4845c283c385cada7d43c5d4024102e04b032a2a2",
+          "id": "20261015-020000-ws28-ablation-s20262926-fecmp",
+          "moe_batch_us": 17.195,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.719700000000001
+        }
+      },
+      "seed": 20262926,
+      "trace_sha256": "ee6f94e4d27c4ab54b4bdd189f69fec6aa0d10b0c486bc23aaf41638501af7fc"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 0.6208314081404209,
+          "moe_batch_pct": 1.3206671394377256
+        },
+        "A_when_B0": {
+          "background_p99_pct": -3.970393213546064,
+          "moe_batch_pct": 0.35211267605634866
+        },
+        "A_when_B1": {
+          "background_p99_pct": -3.349561805405643,
+          "moe_batch_pct": 1.6727798154940743
+        },
+        "B_when_A0": {
+          "background_p99_pct": 1.8121026808038732,
+          "moe_batch_pct": 7.388398185724521
+        },
+        "B_when_A1": {
+          "background_p99_pct": 2.470317924917298,
+          "moe_batch_pct": 8.80166517989891
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1930.3277,
+          "background_p99_vs_ecmp_pct": 3.1385448211306954,
+          "fct_sha256": "f5c31b786603aac2c50d41e3fa0b75bf8e8e591e1d9d19aba0b29476b95b4219",
+          "id": "20261015-020000-ws28-ablation-s20262927-cr-a0-b0",
+          "moe_batch_us": 16.756,
+          "moe_batch_vs_ecmp_pct": -2.8806584362139898,
+          "moe_single_flow_p95_us": 14.287
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1965.30722,
+          "background_p99_vs_ecmp_pct": 5.007521156776518,
+          "fct_sha256": "ce7e0fe69e0f911fcda5deb20bb74552b27c53dff9384eede9be0bd802d54ae8",
+          "id": "20261015-020000-ws28-ablation-s20262927-cr-a0-b1",
+          "moe_batch_us": 17.994,
+          "moe_batch_vs_ecmp_pct": 4.29490523387237,
+          "moe_single_flow_p95_us": 14.315850000000001
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1853.6861000000001,
+          "background_p99_vs_ecmp_pct": -0.9564609629976517,
+          "fct_sha256": "20e2df8d62c2b8a5757385d78c3551d7f4ff3e83009329f6f0440e0d6eb283bf",
+          "id": "20261015-020000-ws28-ablation-s20262927-cr-a1-b0",
+          "moe_batch_us": 16.815,
+          "moe_batch_vs_ecmp_pct": -2.538688923665444,
+          "moe_single_flow_p95_us": 14.401
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1899.4780400000004,
+          "background_p99_vs_ecmp_pct": 1.4902293353058704,
+          "fct_sha256": "70fc4abaded3c004925d89554d300a2dcbd75c92fb58c08c039f89b916a9bb79",
+          "id": "20261015-020000-ws28-ablation-s20262927-cr-a1-b1",
+          "moe_batch_us": 18.295,
+          "moe_batch_vs_ecmp_pct": 6.039529357213258,
+          "moe_single_flow_p95_us": 14.39785
+        },
+        "fecmp": {
+          "background_p99_us": 1871.5871,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "3350fb3dd49f8f648b88a5f3a919bc26d324258596ee17e6e6233a93a8a76fc3",
+          "id": "20261015-020000-ws28-ablation-s20262927-fecmp",
+          "moe_batch_us": 17.253,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.859
+        }
+      },
+      "seed": 20262927,
+      "trace_sha256": "d50ad8e06009b8fa4960deb08a9fa91d30bc48eff3f6e9a164080fe74f04b082"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -1.1399462129834665,
+          "moe_batch_pct": 4.083009033412077
+        },
+        "A_when_B0": {
+          "background_p99_pct": -6.142723136187489,
+          "moe_batch_pct": 0.6125239267158689
+        },
+        "A_when_B1": {
+          "background_p99_pct": -7.2826693491709555,
+          "moe_batch_pct": 4.695532960127946
+        },
+        "B_when_A0": {
+          "background_p99_pct": 4.334590511534042,
+          "moe_batch_pct": -4.260322668854255
+        },
+        "B_when_A1": {
+          "background_p99_pct": 3.0673917890590596,
+          "moe_batch_pct": -0.3750611512746582
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1496.29013,
+          "background_p99_vs_ecmp_pct": 2.4122014056853436,
+          "fct_sha256": "5e280f785740f6c45db83ac5d6c80110812518595ec51e05b0ae84aa8493b7ba",
+          "id": "20261015-020000-ws28-ablation-s20262928-cr-a0-b0",
+          "moe_batch_us": 18.285,
+          "moe_batch_vs_ecmp_pct": -1.7358125537403235,
+          "moe_single_flow_p95_us": 14.329
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1561.1481800000004,
+          "background_p99_vs_ecmp_pct": 6.851350970469294,
+          "fct_sha256": "b86dbdd500d782140c4443b3f9c0f23225c33b323b9f928072c2faf2421ae640",
+          "id": "20261015-020000-ws28-ablation-s20262928-cr-a0-b1",
+          "moe_batch_us": 17.506,
+          "moe_batch_vs_ecmp_pct": -5.922184006878761,
+          "moe_single_flow_p95_us": 14.30785
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1404.3771700000002,
+          "background_p99_vs_ecmp_pct": -3.878696584340624,
+          "fct_sha256": "c776f13ba99a56b716ad156cb01141f243c8f8a4c8d209efa863c3cd04682800",
+          "id": "20261015-020000-ws28-ablation-s20262928-cr-a1-b0",
+          "moe_batch_us": 18.397,
+          "moe_batch_vs_ecmp_pct": -1.1339208942390488,
+          "moe_single_flow_p95_us": 14.128
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1447.4549200000001,
+          "background_p99_vs_ecmp_pct": -0.9302796158321414,
+          "fct_sha256": "7ee1ac0a0b874e0a83ab4891d97805d14e15b7ca7ab91e93acadd503910929cd",
+          "id": "20261015-020000-ws28-ablation-s20262928-cr-a1-b1",
+          "moe_batch_us": 18.328,
+          "moe_batch_vs_ecmp_pct": -1.5047291487532255,
+          "moe_single_flow_p95_us": 14.3557
+        },
+        "fecmp": {
+          "background_p99_us": 1461.0467400000002,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "c0cccc002406010fdff472a9a00e252e657688cd649d10a23a72969b6ba570bb",
+          "id": "20261015-020000-ws28-ablation-s20262928-fecmp",
+          "moe_batch_us": 18.608,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.501
+        }
+      },
+      "seed": 20262928,
+      "trace_sha256": "b77567d7c8a805885b8e130c59c6c5edc10e22694062541a43267717762249d6"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -3.438741810103152,
+          "moe_batch_pct": 1.058020286582917
+        },
+        "A_when_B0": {
+          "background_p99_pct": 0.9105886511838079,
+          "moe_batch_pct": -0.5829326923077027
+        },
+        "A_when_B1": {
+          "background_p99_pct": -2.528153158919344,
+          "moe_batch_pct": 0.4750875942752142
+        },
+        "B_when_A0": {
+          "background_p99_pct": 4.011843514003988,
+          "moe_batch_pct": 1.1959134615384448
+        },
+        "B_when_A1": {
+          "background_p99_pct": 0.46741988296299386,
+          "moe_batch_pct": 2.2728646557456322
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1896.4304000000002,
+          "background_p99_vs_ecmp_pct": -2.4146546757036536,
+          "fct_sha256": "8acb39f5bab25732bdfa9bdd002e7f73e9c833e89f716870d86ceb7933e852f1",
+          "id": "20261015-020000-ws28-ablation-s20262929-cr-a0-b0",
+          "moe_batch_us": 16.64,
+          "moe_batch_vs_ecmp_pct": -11.07310816588285,
+          "moe_single_flow_p95_us": 14.4657
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1972.51222,
+          "background_p99_vs_ecmp_pct": 1.5003166713075222,
+          "fct_sha256": "15423dbe7763ff6ce3553d6a6d0d908b2956ea40d6f1f6095b7f601b406df068",
+          "id": "20261015-020000-ws28-ablation-s20262929-cr-a0-b1",
+          "moe_batch_us": 16.839,
+          "moe_batch_vs_ecmp_pct": -10.009619495510913,
+          "moe_single_flow_p95_us": 14.463
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1913.69908,
+          "background_p99_vs_ecmp_pct": -1.5260535959620736,
+          "fct_sha256": "35f9f2d23e59959adc22951387c413e757ae96ff8e2e909d9034139980dc3c9b",
+          "id": "20261015-020000-ws28-ablation-s20262929-cr-a1-b0",
+          "moe_batch_us": 16.543,
+          "moe_batch_vs_ecmp_pct": -11.591492090637024,
+          "moe_single_flow_p95_us": 14.347850000000001
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1922.64409,
+          "background_p99_vs_ecmp_pct": -1.0657667909312663,
+          "fct_sha256": "d38c3be69db174f99302c5e9d441b427f0a2e364c9cef4ef72573118fbaa9b93",
+          "id": "20261015-020000-ws28-ablation-s20262929-cr-a1-b1",
+          "moe_batch_us": 16.919,
+          "moe_batch_vs_ecmp_pct": -9.582086361693031,
+          "moe_single_flow_p95_us": 14.42
+        },
+        "fecmp": {
+          "background_p99_us": 1943.35573,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "8ec408917bd85844996caf23ad07aa2981c6c546cb0c73d2b54cf0a8b99b68a5",
+          "id": "20261015-020000-ws28-ablation-s20262929-fecmp",
+          "moe_batch_us": 18.712,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.703
+        }
+      },
+      "seed": 20262929,
+      "trace_sha256": "5c44b50d021aa7187a1cc64dff13d9fe4d1632d6ee36587b7ebdd6864174e8da"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -3.4988395904079317,
+          "moe_batch_pct": -2.786800276386958
+        },
+        "A_when_B0": {
+          "background_p99_pct": 4.827930889020382,
+          "moe_batch_pct": 0.13400139827546287
+        },
+        "A_when_B1": {
+          "background_p99_pct": 1.3290912986124503,
+          "moe_batch_pct": -2.6527988781114953
+        },
+        "B_when_A0": {
+          "background_p99_pct": 1.4853197790753336,
+          "moe_batch_pct": -0.2913073875553507
+        },
+        "B_when_A1": {
+          "background_p99_pct": -1.9019535523438935,
+          "moe_batch_pct": -3.0662710187932762
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 2062.00984,
+          "background_p99_vs_ecmp_pct": -0.7021676425553847,
+          "fct_sha256": "f9889cb350908e96cb9f6e418dcd7be3b564d3c4e3f13a22e821c85ec93c7f71",
+          "id": "20261015-020000-ws28-ablation-s20262930-cr-a0-b0",
+          "moe_batch_us": 17.164,
+          "moe_batch_vs_ecmp_pct": -2.4218305855599698,
+          "moe_single_flow_p95_us": 14.530250000000002
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 2092.63728,
+          "background_p99_vs_ecmp_pct": 0.772722701642814,
+          "fct_sha256": "47f1a4af82f8c2ce220e4ffd1dd182d26be2b50991842ec53aa15e1a53bb9498",
+          "id": "20261015-020000-ws28-ablation-s20262930-cr-a0-b1",
+          "moe_batch_us": 17.114,
+          "moe_batch_vs_ecmp_pct": -2.706083001705506,
+          "moe_single_flow_p95_us": 14.32485
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 2161.56225,
+          "background_p99_vs_ecmp_pct": 4.0918630779573695,
+          "fct_sha256": "27fd89d3f68af72fe626d74b46a1c033a2ce245c24ed61ac9724c5f7b7528762",
+          "id": "20261015-020000-ws28-ablation-s20262930-cr-a1-b0",
+          "moe_batch_us": 17.187,
+          "moe_batch_vs_ecmp_pct": -2.291074474133026,
+          "moe_single_flow_p95_us": 14.440850000000001
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 2120.4503400000003,
+          "background_p99_vs_ecmp_pct": 2.112084190445218,
+          "fct_sha256": "bb969c16a00e7643fc4ecbdf974b9cd7e2ddfae1a9b09d187b5646911d2d3f27",
+          "id": "20261015-020000-ws28-ablation-s20262930-cr-a1-b1",
+          "moe_batch_us": 16.66,
+          "moe_batch_vs_ecmp_pct": -5.287094940306991,
+          "moe_single_flow_p95_us": 14.18385
+        },
+        "fecmp": {
+          "background_p99_us": 2076.5909900000006,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "c773df772f8eae2bca7171304701217256c3da49ed8c4cae80a4678f3b0c071d",
+          "id": "20261015-020000-ws28-ablation-s20262930-fecmp",
+          "moe_batch_us": 17.59,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.70785
+        }
+      },
+      "seed": 20262930,
+      "trace_sha256": "80d5b35a9b82e982876e8434fc0c17f76e4f82caa08bf25e962d6aad33a3e511"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -0.24427181908160955,
+          "moe_batch_pct": -1.2133828758148835
+        },
+        "A_when_B0": {
+          "background_p99_pct": -1.7099754969411074,
+          "moe_batch_pct": -0.6632148467042964
+        },
+        "A_when_B1": {
+          "background_p99_pct": -1.954247316022717,
+          "moe_batch_pct": -1.87659772251918
+        },
+        "B_when_A0": {
+          "background_p99_pct": -6.506754411955162,
+          "moe_batch_pct": 0.13380650415963924
+        },
+        "B_when_A1": {
+          "background_p99_pct": -6.739105205304741,
+          "moe_batch_pct": -1.0893118594436313
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1635.73455,
+          "background_p99_vs_ecmp_pct": 1.881864092663288,
+          "fct_sha256": "a56731ae2d0ae5d58e9590059574079a1ccd19a6aec3910c3006ac1cc2621b11",
+          "id": "20261015-020000-ws28-ablation-s20262931-cr-a0-b0",
+          "moe_batch_us": 17.189,
+          "moe_batch_vs_ecmp_pct": -0.6531036874349749,
+          "moe_single_flow_p95_us": 14.461
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1529.30132,
+          "background_p99_vs_ecmp_pct": -4.747338594168249,
+          "fct_sha256": "b4da1eb9240c320db9c176450ade8fde85ab08bf1d079d26f36caddba08f9214",
+          "id": "20261015-020000-ws28-ablation-s20262931-cr-a0-b1",
+          "moe_batch_us": 17.212,
+          "moe_batch_vs_ecmp_pct": -0.5201710784880298,
+          "moe_single_flow_p95_us": 14.667
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1607.76389,
+          "background_p99_vs_ecmp_pct": 0.139709180851888,
+          "fct_sha256": "8fc84aae8ed382f4409dd8280a59d7e8e6cc2942b844916d36e8fdcb13b33e2e",
+          "id": "20261015-020000-ws28-ablation-s20262931-cr-a1-b0",
+          "moe_batch_us": 17.075,
+          "moe_batch_vs_ecmp_pct": -1.3119870535198253,
+          "moe_single_flow_p95_us": 14.512
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1499.41499,
+          "background_p99_vs_ecmp_pct": -6.608811173131923,
+          "fct_sha256": "6af2ddf30733d8f58b8c93792d96f6faa7af31e6d9504a8d031c6f9cd3bf99f6",
+          "id": "20261015-020000-ws28-ablation-s20262931-cr-a1-b1",
+          "moe_batch_us": 16.889,
+          "moe_batch_vs_ecmp_pct": -2.387007282395104,
+          "moe_single_flow_p95_us": 14.594700000000001
+        },
+        "fecmp": {
+          "background_p99_us": 1605.5208300000004,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "c6da7db4d3d61498713ccc7bec89cb8aedd58036ee244084f5b4a8661d3d1fc9",
+          "id": "20261015-020000-ws28-ablation-s20262931-fecmp",
+          "moe_batch_us": 17.302,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.774550000000001
+        }
+      },
+      "seed": 20262931,
+      "trace_sha256": "7ee0051e15581ff89f30744f37b8e19eee1188d77332f00fde0a7252d56f216c"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -2.7663463459541626,
+          "moe_batch_pct": 2.5800554254737817
+        },
+        "A_when_B0": {
+          "background_p99_pct": 4.0622887846173406,
+          "moe_batch_pct": -2.0286462687398976
+        },
+        "A_when_B1": {
+          "background_p99_pct": 1.295942438663178,
+          "moe_batch_pct": 0.5514091567338841
+        },
+        "B_when_A0": {
+          "background_p99_pct": 2.3003650757808414,
+          "moe_batch_pct": 0.06130524438499041
+        },
+        "B_when_A1": {
+          "background_p99_pct": -0.4191430613397884,
+          "moe_batch_pct": 2.6963991125775078
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 2092.0588000000002,
+          "background_p99_vs_ecmp_pct": -0.21219956667172246,
+          "fct_sha256": "2d34dc838609811187b35bd0e84c15973fd2757d011e00b16c1fd3032a0e836e",
+          "id": "20261015-020000-ws28-ablation-s20262932-cr-a0-b0",
+          "moe_batch_us": 17.943,
+          "moe_batch_vs_ecmp_pct": -1.9990168769457584,
+          "moe_single_flow_p95_us": 14.520850000000001
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 2140.18379,
+          "background_p99_vs_ecmp_pct": 2.0832841443864547,
+          "fct_sha256": "48d0d35ab07be447ab1fe6f8e252d776e43960dd02076befd4497c1e4eceed07",
+          "id": "20261015-020000-ws28-ablation-s20262932-cr-a0-b1",
+          "moe_batch_us": 17.954,
+          "moe_batch_vs_ecmp_pct": -1.93893713474248,
+          "moe_single_flow_p95_us": 14.48455
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 2177.0442700000003,
+          "background_p99_vs_ecmp_pct": 3.841469058747715,
+          "fct_sha256": "9fdad4d931fe21db0f4df77cbe386024a452e7d11c20ec9a2de63cae1869ec4f",
+          "id": "20261015-020000-ws28-ablation-s20262932-cr-a1-b0",
+          "moe_batch_us": 17.579,
+          "moe_batch_vs_ecmp_pct": -3.9871101644000206,
+          "moe_single_flow_p95_us": 14.579
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 2167.91934,
+          "background_p99_vs_ecmp_pct": 3.4062247463946704,
+          "fct_sha256": "5fc21c1f3e72798d43535bd1b61cd2a3f604c0d0d87e31b450e85184352e1b69",
+          "id": "20261015-020000-ws28-ablation-s20262932-cr-a1-b1",
+          "moe_batch_us": 18.053,
+          "moe_batch_vs_ecmp_pct": -1.3982194549128857,
+          "moe_single_flow_p95_us": 14.593100000000002
+        },
+        "fecmp": {
+          "background_p99_us": 2096.50758,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "bd6139f22ad6a89fe85fd56abb7d0ac42342ab22402cd9d9f9f1a4aefcd1b76c",
+          "id": "20261015-020000-ws28-ablation-s20262932-fecmp",
+          "moe_batch_us": 18.309,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.6737
+        }
+      },
+      "seed": 20262932,
+      "trace_sha256": "fdbdeddd522a9896305b30a4167b7c1ac2f17857f916c2e41bc63597881975f4"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 5.6566819311606675,
+          "moe_batch_pct": 1.0791037892865063
+        },
+        "A_when_B0": {
+          "background_p99_pct": -2.0600960375439126,
+          "moe_batch_pct": -0.2821467162924751
+        },
+        "A_when_B1": {
+          "background_p99_pct": 3.596585893616755,
+          "moe_batch_pct": 0.7969570729940312
+        },
+        "B_when_A0": {
+          "background_p99_pct": -6.573232426214903,
+          "moe_batch_pct": -0.570296554208205
+        },
+        "B_when_A1": {
+          "background_p99_pct": -1.1772141880924347,
+          "moe_batch_pct": 0.5056890012642201
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1868.26727,
+          "background_p99_vs_ecmp_pct": 4.893162844718724,
+          "fct_sha256": "7335309c97db68a4f57ac5ddecf45e6cd486a9a553a4b4f1dc70119fc5d304d7",
+          "id": "20261015-020000-ws28-ablation-s20262933-cr-a0-b0",
+          "moe_batch_us": 16.658,
+          "moe_batch_vs_ecmp_pct": -1.7690765420450338,
+          "moe_single_flow_p95_us": 14.53185
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1745.46172,
+          "background_p99_vs_ecmp_pct": -2.0017085482727293,
+          "fct_sha256": "eb37d21e38ab537136ffa5436aa4c2368d3e67e77d47bd564b54e294b1685292",
+          "id": "20261015-020000-ws28-ablation-s20262933-cr-a0-b1",
+          "moe_batch_us": 16.563,
+          "moe_batch_vs_ecmp_pct": -2.3292841136926534,
+          "moe_single_flow_p95_us": 14.452
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1829.7791700000002,
+          "background_p99_vs_ecmp_pct": 2.732262953300202,
+          "fct_sha256": "d4384c314221203d0a934c07528717cb25f2bb3b5b47b4478487fd56b4cff503",
+          "id": "20261015-020000-ws28-ablation-s20262933-cr-a1-b0",
+          "moe_batch_us": 16.611,
+          "moe_batch_vs_ecmp_pct": -2.046231866965431,
+          "moe_single_flow_p95_us": 14.453850000000001
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1808.2387500000002,
+          "background_p99_vs_ecmp_pct": 1.52288417806552,
+          "fct_sha256": "43eb4a1affd9d13f3667ca726131e5a618976c64897ff13f901975c693c9612e",
+          "id": "20261015-020000-ws28-ablation-s20262933-cr-a1-b1",
+          "moe_batch_us": 16.695,
+          "moe_batch_vs_ecmp_pct": -1.5508904351928199,
+          "moe_single_flow_p95_us": 14.418550000000002
+        },
+        "fecmp": {
+          "background_p99_us": 1781.11444,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "4df7bded7ed1b2e8ecfc3c385ec3c2403844f979495d6d4a74e0cc5b43126e29",
+          "id": "20261015-020000-ws28-ablation-s20262933-fecmp",
+          "moe_batch_us": 16.958,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.82585
+        }
+      },
+      "seed": 20262933,
+      "trace_sha256": "471b30bfe3590af9a3c7acbfece58afa53601fee1db919ddcb68485cf1a33eca"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 0.7809727658629306,
+          "moe_batch_pct": -0.3415085791952821
+        },
+        "A_when_B0": {
+          "background_p99_pct": 0.014438174299025164,
+          "moe_batch_pct": 1.212578324437219
+        },
+        "A_when_B1": {
+          "background_p99_pct": 0.7954109401619558,
+          "moe_batch_pct": 0.8710697452419369
+        },
+        "B_when_A0": {
+          "background_p99_pct": 1.4937709750435735,
+          "moe_batch_pct": -2.755859828266427
+        },
+        "B_when_A1": {
+          "background_p99_pct": 2.2862952593684316,
+          "moe_batch_pct": -3.083978217254224
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 2104.07489,
+          "background_p99_vs_ecmp_pct": -2.5843516451952153,
+          "fct_sha256": "274dfcdc33403a76656c428090976cb033f5d6c42aeee785ac41e5e8bf706b99",
+          "id": "20261015-020000-ws28-ablation-s20262934-cr-a0-b0",
+          "moe_batch_us": 17.236,
+          "moe_batch_vs_ecmp_pct": -7.457718120805367,
+          "moe_single_flow_p95_us": 14.245700000000001
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 2135.50495,
+          "background_p99_vs_ecmp_pct": -1.1291849649206265,
+          "fct_sha256": "b7ce0814e39f961412102151dcb91cd7b4b577cfcc9b7042e588427bfd6ac6fc",
+          "id": "20261015-020000-ws28-ablation-s20262934-cr-a0-b1",
+          "moe_batch_us": 16.761,
+          "moe_batch_vs_ecmp_pct": -10.008053691275176,
+          "moe_single_flow_p95_us": 14.444
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 2104.3786800000003,
+          "background_p99_vs_ecmp_pct": -2.57028660409121,
+          "fct_sha256": "b39f525e40f2cf3849fb6b95fa5d9d7583ae1c6feea3c3405495f1305273f564",
+          "id": "20261015-020000-ws28-ablation-s20262934-cr-a1-b0",
+          "moe_batch_us": 17.445,
+          "moe_batch_vs_ecmp_pct": -6.3355704697986575,
+          "moe_single_flow_p95_us": 14.30585
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 2152.4909900000002,
+          "background_p99_vs_ecmp_pct": -0.34275568550430346,
+          "fct_sha256": "14e1a90f9b5215664f872e6b48865483a330f6e74d44751f7442e55d9426be20",
+          "id": "20261015-020000-ws28-ablation-s20262934-cr-a1-b1",
+          "moe_batch_us": 16.907,
+          "moe_batch_vs_ecmp_pct": -9.224161073825499,
+          "moe_single_flow_p95_us": 14.50585
+        },
+        "fecmp": {
+          "background_p99_us": 2159.89415,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "1d59f786050d3b1847a6ab9b9a888eb5618460917881e04a94d8e884bd35b622",
+          "id": "20261015-020000-ws28-ablation-s20262934-fecmp",
+          "moe_batch_us": 18.625,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.87085
+        }
+      },
+      "seed": 20262934,
+      "trace_sha256": "d792440805f062828e9829a104709ea9fdb44f14446111432043efe7c3307683"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -2.083524093013444,
+          "moe_batch_pct": -2.499965581255581
+        },
+        "A_when_B0": {
+          "background_p99_pct": -2.346469444174615,
+          "moe_batch_pct": 0.039163030099587104
+        },
+        "A_when_B1": {
+          "background_p99_pct": -4.429993537188059,
+          "moe_batch_pct": -2.460802551155994
+        },
+        "B_when_A0": {
+          "background_p99_pct": 1.7476732404158701,
+          "moe_batch_pct": 5.264630189101505
+        },
+        "B_when_A1": {
+          "background_p99_pct": -0.42320299311954246,
+          "moe_batch_pct": 2.6340808679603978
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1584.18172,
+          "background_p99_vs_ecmp_pct": -2.671029117555257,
+          "fct_sha256": "7778270c700a677aa42e5ea4d038f73d2e17ebe626636607680a03d41be4bbcf",
+          "id": "20261015-020000-ws28-ablation-s20262935-cr-a0-b0",
+          "moe_batch_us": 17.874,
+          "moe_batch_vs_ecmp_pct": -11.246834500223446,
+          "moe_single_flow_p95_us": 14.36555
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1611.86804,
+          "background_p99_vs_ecmp_pct": -0.9700367382706077,
+          "fct_sha256": "4290563817e763a0f72b4772762eabe1200178b2e6310cd32e016c04d776a9f6",
+          "id": "20261015-020000-ws28-ablation-s20262935-cr-a0-b1",
+          "moe_batch_us": 18.815,
+          "moe_batch_vs_ecmp_pct": -6.574308555538999,
+          "moe_single_flow_p95_us": 14.313
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1547.0093800000002,
+          "background_p99_vs_ecmp_pct": -4.954823679641429,
+          "fct_sha256": "b94e8a6cad757dcecbaeea92499063635003ddc430a690c390ec467a884e12cf",
+          "id": "20261015-020000-ws28-ablation-s20262935-cr-a1-b0",
+          "moe_batch_us": 17.881,
+          "moe_batch_vs_ecmp_pct": -11.212076071304434,
+          "moe_single_flow_p95_us": 14.193
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1540.4623900000001,
+          "background_p99_vs_ecmp_pct": -5.357057710644931,
+          "fct_sha256": "01bef1cf185859630d9d28105b799f89199bf3ee37d22833521c0de158506a8f",
+          "id": "20261015-020000-ws28-ablation-s20262935-cr-a1-b1",
+          "moe_batch_us": 18.352,
+          "moe_batch_vs_ecmp_pct": -8.873330354039421,
+          "moe_single_flow_p95_us": 14.48985
+        },
+        "fecmp": {
+          "background_p99_us": 1627.6569100000002,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "c4ffb1f3a2b3b7e3732d5c84689c0fed6d53f80a776d8c0775593bd8079be248",
+          "id": "20261015-020000-ws28-ablation-s20262935-fecmp",
+          "moe_batch_us": 20.139,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.65085
+        }
+      },
+      "seed": 20262935,
+      "trace_sha256": "13a6538301724364e064d3b32af475e1aa5279cf68e13d7b8a4c1c0ac2841fde"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 0.40146566853668286,
+          "moe_batch_pct": 1.5111630104328144
+        },
+        "A_when_B0": {
+          "background_p99_pct": -4.2535123626522235,
+          "moe_batch_pct": 2.3179190751445145
+        },
+        "A_when_B1": {
+          "background_p99_pct": -3.8520466941155407,
+          "moe_batch_pct": 3.829082085577329
+        },
+        "B_when_A0": {
+          "background_p99_pct": 0.7150017206768666,
+          "moe_batch_pct": -2.3294797687861357
+        },
+        "B_when_A1": {
+          "background_p99_pct": 1.1373004022808386,
+          "moe_batch_pct": -0.8869555392350681
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1898.84578,
+          "background_p99_vs_ecmp_pct": 0.7928133972479934,
+          "fct_sha256": "767648877f599a199de674686fba4989482d0d28ab2d64779e6ae5f3d7660b0e",
+          "id": "20261015-020000-ws28-ablation-s20262936-cr-a0-b0",
+          "moe_batch_us": 17.3,
+          "moe_batch_vs_ecmp_pct": -5.1898942291883525,
+          "moe_single_flow_p95_us": 14.55485
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1912.42256,
+          "background_p99_vs_ecmp_pct": 1.5134837473569362,
+          "fct_sha256": "e563dbb0ed532cb1d4e444769dba90ad6b171574191bf7c0c5da428da02e5849",
+          "id": "20261015-020000-ws28-ablation-s20262936-cr-a0-b1",
+          "moe_batch_us": 16.897,
+          "moe_batch_vs_ecmp_pct": -7.398476461884151,
+          "moe_single_flow_p95_us": 14.508
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1818.07814,
+          "background_p99_vs_ecmp_pct": -3.4944213812689306,
+          "fct_sha256": "1b15c8764b70423aaaf2351b8b8b0fae34d3bd04885ac9f5bcf3e1bff92018d9",
+          "id": "20261015-020000-ws28-ablation-s20262936-cr-a1-b0",
+          "moe_batch_us": 17.701,
+          "moe_batch_vs_ecmp_pct": -2.992272702362031,
+          "moe_single_flow_p95_us": 14.604700000000001
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1838.7551500000002,
+          "background_p99_vs_ecmp_pct": -2.3968630474146435,
+          "fct_sha256": "9c6e7c5422155b5b04e1ac64edf53b28999fe858887bb7d1e361ced0474aa908",
+          "id": "20261015-020000-ws28-ablation-s20262936-cr-a1-b1",
+          "moe_batch_us": 17.544,
+          "moe_batch_vs_ecmp_pct": -3.8526881131144775,
+          "moe_single_flow_p95_us": 14.738
+        },
+        "fecmp": {
+          "background_p99_us": 1883.9098900000001,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "6155f5532d6df03358437e46aa1c19ab020816a06b393513becf76138619c061",
+          "id": "20261015-020000-ws28-ablation-s20262936-fecmp",
+          "moe_batch_us": 18.247,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.581
+        }
+      },
+      "seed": 20262936,
+      "trace_sha256": "b40c3c0fd111c686d03b93d74d2410b5be4d9a18ee516e16d153639972596d06"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -2.646327673494908,
+          "moe_batch_pct": 1.1660131664602447
+        },
+        "A_when_B0": {
+          "background_p99_pct": 2.1795534226570545,
+          "moe_batch_pct": -3.9314166955316976
+        },
+        "A_when_B1": {
+          "background_p99_pct": -0.4667742508378536,
+          "moe_batch_pct": -2.765403529071453
+        },
+        "B_when_A0": {
+          "background_p99_pct": 3.5362116887728723,
+          "moe_batch_pct": -0.21360120078511846
+        },
+        "B_when_A1": {
+          "background_p99_pct": 0.8547481960965442,
+          "moe_batch_pct": 0.997536205756866
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1785.26388,
+          "background_p99_vs_ecmp_pct": -3.7886653856588515,
+          "fct_sha256": "c0ba0b5ee46920b0faf6cf76f95e35fcdd5947010c557ee40898e156dce3d7a4",
+          "id": "20261015-020000-ws28-ablation-s20262937-cr-a0-b0",
+          "moe_batch_us": 17.322,
+          "moe_batch_vs_ecmp_pct": -13.433283358320846,
+          "moe_single_flow_p95_us": 14.3564
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1848.39459,
+          "background_p99_vs_ecmp_pct": -0.38642892510213356,
+          "fct_sha256": "ae039617bf638b2d3f0a71ae02a46f38707398b128270bf89932fee4695e2041",
+          "id": "20261015-020000-ws28-ablation-s20262937-cr-a0-b1",
+          "moe_batch_us": 17.285,
+          "moe_batch_vs_ecmp_pct": -13.618190904547733,
+          "moe_single_flow_p95_us": 14.30085
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1824.1746600000001,
+          "background_p99_vs_ecmp_pct": -1.6916879490879388,
+          "fct_sha256": "719df8ba0cdec79f8aeb58a6120aaf48bcb7f4956be75f80e85b18f2d58e0027",
+          "id": "20261015-020000-ws28-ablation-s20262937-cr-a1-b0",
+          "moe_batch_us": 16.641,
+          "moe_batch_vs_ecmp_pct": -16.836581709145438,
+          "moe_single_flow_p95_us": 14.380700000000001
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1839.7667600000002,
+          "background_p99_vs_ecmp_pct": -0.8513994252198231,
+          "fct_sha256": "8e83faca7c2b585fd01b90772118b12ae22e027b727f9139d3934a09c74cd196",
+          "id": "20261015-020000-ws28-ablation-s20262937-cr-a1-b1",
+          "moe_batch_us": 16.807,
+          "moe_batch_vs_ecmp_pct": -16.00699650174914,
+          "moe_single_flow_p95_us": 14.19585
+        },
+        "fecmp": {
+          "background_p99_us": 1855.5650300000002,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "f72d41a98e694cc6ab61a9c8d3394e00013293ac30b2b3fbeba6e45e69b89f75",
+          "id": "20261015-020000-ws28-ablation-s20262937-fecmp",
+          "moe_batch_us": 20.01,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.750250000000001
+        }
+      },
+      "seed": 20262937,
+      "trace_sha256": "42615c31c237e0afe6497e13a9ae93f9a18bcb9a0f5702e318291bfde2ef2bb1"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 7.322305825916453,
+          "moe_batch_pct": 0.027781962168060836
+        },
+        "A_when_B0": {
+          "background_p99_pct": -5.079437770386541,
+          "moe_batch_pct": -0.16767471106056142
+        },
+        "A_when_B1": {
+          "background_p99_pct": 2.242868055529912,
+          "moe_batch_pct": -0.13989274889250058
+        },
+        "B_when_A0": {
+          "background_p99_pct": -5.5853562973417255,
+          "moe_batch_pct": 2.736690819809562
+        },
+        "B_when_A1": {
+          "background_p99_pct": 1.6979222610328248,
+          "moe_batch_pct": 2.7652810269330086
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1977.18792,
+          "background_p99_vs_ecmp_pct": 9.32825719480348,
+          "fct_sha256": "065811b2eb4c386d5e241ff7cfee51d35e92c22a2016470a4b9ddafc0ab0456d",
+          "id": "20261015-020000-ws28-ablation-s20262938-cr-a0-b0",
+          "moe_batch_us": 16.699,
+          "moe_batch_vs_ecmp_pct": -12.497380004191982,
+          "moe_single_flow_p95_us": 14.404
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1866.7549300000003,
+          "background_p99_vs_ecmp_pct": 3.2218844967995652,
+          "fct_sha256": "5c25ffbaa98b1ab06b14000d5ad3becdbf857032d2695b84712b91ff9034e8c4",
+          "id": "20261015-020000-ws28-ablation-s20262938-cr-a0-b1",
+          "moe_batch_us": 17.156,
+          "moe_batch_vs_ecmp_pct": -10.102703835673864,
+          "moe_single_flow_p95_us": 14.311
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1876.75789,
+          "background_p99_vs_ecmp_pct": 3.774996405145292,
+          "fct_sha256": "36d3768329b92cf012a20b5aff1798e2623881649ff735519f9ebc25c5e82dad",
+          "id": "20261015-020000-ws28-ablation-s20262938-cr-a1-b0",
+          "moe_batch_us": 16.671,
+          "moe_batch_vs_ecmp_pct": -12.644099769440375,
+          "moe_single_flow_p95_us": 14.1987
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1908.6237800000001,
+          "background_p99_vs_ecmp_pct": 5.537015170494275,
+          "fct_sha256": "14bb9ffb5439024807ebf411679c9b221e3c6f93799c64259d8c0a2fd69193be",
+          "id": "20261015-020000-ws28-ablation-s20262938-cr-a1-b1",
+          "moe_batch_us": 17.132,
+          "moe_batch_vs_ecmp_pct": -10.228463634458173,
+          "moe_single_flow_p95_us": 14.56
+        },
+        "fecmp": {
+          "background_p99_us": 1808.48755,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "5987ce1672b04c3e0147e20d16266c53218bb612efa7fb8276b7f9cefdd5f746",
+          "id": "20261015-020000-ws28-ablation-s20262938-fecmp",
+          "moe_batch_us": 19.084,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.772400000000001
+        }
+      },
+      "seed": 20262938,
+      "trace_sha256": "a2268ba5e4dd5f24f10cdb989e6d0002976673b96c8493d4c003d4b027acde85"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -2.5184337165044313,
+          "moe_batch_pct": 1.8468663184737832
+        },
+        "A_when_B0": {
+          "background_p99_pct": -0.6482186504310539,
+          "moe_batch_pct": -1.3206370798617084
+        },
+        "A_when_B1": {
+          "background_p99_pct": -3.166652366935485,
+          "moe_batch_pct": 0.5262292386120748
+        },
+        "B_when_A0": {
+          "background_p99_pct": -0.08387208417910408,
+          "moe_batch_pct": 3.4007821799013627
+        },
+        "B_when_A1": {
+          "background_p99_pct": -2.6166112253164453,
+          "moe_batch_pct": 5.336013785180915
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1931.1431400000001,
+          "background_p99_vs_ecmp_pct": -1.1261313614064794,
+          "fct_sha256": "a6925651c6acea1ce374fa9e9ec4fab3f6f7a93cdfd37b2400653a02a5cf9883",
+          "id": "20261015-020000-ws28-ablation-s20262939-cr-a0-b0",
+          "moe_batch_us": 17.643,
+          "moe_batch_vs_ecmp_pct": -2.551781275890641,
+          "moe_single_flow_p95_us": 14.72685
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1929.5234500000004,
+          "background_p99_vs_ecmp_pct": -1.20905893574218,
+          "fct_sha256": "3472972266598a8892d2df523f479753132f7aeb2d66bd0fc668250ed4d91297",
+          "id": "20261015-020000-ws28-ablation-s20262939-cr-a0-b1",
+          "moe_batch_us": 18.243,
+          "moe_batch_vs_ecmp_pct": 0.7622203811101791,
+          "moe_single_flow_p95_us": 14.703
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1918.6251100000002,
+          "background_p99_vs_ecmp_pct": -1.7670502183245507,
+          "fct_sha256": "74042c0dc4dfa80dd3393a494fb5a68df9234933b0e78952474367d770504d04",
+          "id": "20261015-020000-ws28-ablation-s20262939-cr-a1-b0",
+          "moe_batch_us": 17.41,
+          "moe_batch_vs_ecmp_pct": -3.8387185860259576,
+          "moe_single_flow_p95_us": 14.64385
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1868.42215,
+          "background_p99_vs_ecmp_pct": -4.337424609271345,
+          "fct_sha256": "4f8a0046ea2c5e3ad7666bcb881af12a9c73dbc741838b3cd14d252922f61f74",
+          "id": "20261015-020000-ws28-ablation-s20262939-cr-a1-b1",
+          "moe_batch_us": 18.339,
+          "moe_batch_vs_ecmp_pct": 1.29246064623032,
+          "moe_single_flow_p95_us": 14.492700000000001
+        },
+        "fecmp": {
+          "background_p99_us": 1953.13804,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "2a2caee0a72435b213a9e364c5679e5fb6316eaaafe210f44fc2ccc8dde4f420",
+          "id": "20261015-020000-ws28-ablation-s20262939-fecmp",
+          "moe_batch_us": 18.105,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.745700000000001
+        }
+      },
+      "seed": 20262939,
+      "trace_sha256": "66bef569ad064783ae1b0eecc3d6b5f5ce1908a752329fc446435975b577b182"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -2.5943543978085515,
+          "moe_batch_pct": 5.951075246870896
+        },
+        "A_when_B0": {
+          "background_p99_pct": 0.022419026441089507,
+          "moe_batch_pct": -6.141347574139299
+        },
+        "A_when_B1": {
+          "background_p99_pct": -2.571935371367462,
+          "moe_batch_pct": -0.1902723272684037
+        },
+        "B_when_A0": {
+          "background_p99_pct": 2.6389564357000905,
+          "moe_batch_pct": -4.4540393137143415
+        },
+        "B_when_A1": {
+          "background_p99_pct": -0.023265000326633256,
+          "moe_batch_pct": 1.6040191271714743
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1527.27417,
+          "background_p99_vs_ecmp_pct": -0.01781353557419596,
+          "fct_sha256": "4817669bca3d2bdc17f572c448f233716f47c4cb9feba830a14665ebe482f9c6",
+          "id": "20261015-020000-ws28-ablation-s20262940-cr-a0-b0",
+          "moe_batch_us": 17.602,
+          "moe_batch_vs_ecmp_pct": 0.17072615524698076,
+          "moe_single_flow_p95_us": 14.34055
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1567.5782700000002,
+          "background_p99_vs_ecmp_pct": 2.620672808682434,
+          "fct_sha256": "3291bb3a2d985f1c773dedff73c815b3ffb35d44abe2d058ffe7871841bc70e2",
+          "id": "20261015-020000-ws28-ablation-s20262940-cr-a0-b1",
+          "moe_batch_us": 16.818,
+          "moe_batch_vs_ecmp_pct": -4.290917368540848,
+          "moe_single_flow_p95_us": 14.329
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1527.6165700000001,
+          "background_p99_vs_ecmp_pct": 0.004601497245637631,
+          "fct_sha256": "c9071f8fafd9c0d4e1aaa940271a8478d0bba64e0303125b9626a8bc9a1b7468",
+          "id": "20261015-020000-ws28-ablation-s20262940-cr-a1-b0",
+          "moe_batch_us": 16.521,
+          "moe_batch_vs_ecmp_pct": -5.981106305485994,
+          "moe_single_flow_p95_us": 14.47855
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1527.26117,
+          "background_p99_vs_ecmp_pct": -0.01866457361933138,
+          "fct_sha256": "f99df38e76cad7f7b9f89304bce1cea86a23ae86c4b33978e6ebbb478aed49bc",
+          "id": "20261015-020000-ws28-ablation-s20262940-cr-a1-b1",
+          "moe_batch_us": 16.786,
+          "moe_batch_vs_ecmp_pct": -4.473025267470964,
+          "moe_single_flow_p95_us": 14.37585
+        },
+        "fecmp": {
+          "background_p99_us": 1527.54628,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "e5346ff81da1ed6eb431eb248cffe45f1bd24c0f53fa752bf90ff71cf890455c",
+          "id": "20261015-020000-ws28-ablation-s20262940-fecmp",
+          "moe_batch_us": 17.572,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.596
+        }
+      },
+      "seed": 20262940,
+      "trace_sha256": "a85b2243659815200a792e3054a7ac60cedd5e21834ab9b7e5d8fa0aa4394c3d"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -6.5735034479356464,
+          "moe_batch_pct": 0.4990282299717985
+        },
+        "A_when_B0": {
+          "background_p99_pct": 5.931617638092157,
+          "moe_batch_pct": -0.12225650579263947
+        },
+        "A_when_B1": {
+          "background_p99_pct": -0.6418858098434899,
+          "moe_batch_pct": 0.37677172417915905
+        },
+        "B_when_A0": {
+          "background_p99_pct": 5.94706502842286,
+          "moe_batch_pct": -2.654712697211381
+        },
+        "B_when_A1": {
+          "background_p99_pct": -0.6273969952039993,
+          "moe_batch_pct": -2.168337607833992
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1703.2003100000002,
+          "background_p99_vs_ecmp_pct": -10.261431185757141,
+          "fct_sha256": "16f113d42aa5e8a32e6eafd36e65818a048fc7e94467e9a9cc84e0a8c97e0353",
+          "id": "20261015-020000-ws28-ablation-s20262941-cr-a0-b0",
+          "moe_batch_us": 17.177,
+          "moe_batch_vs_ecmp_pct": 1.3093482748451901,
+          "moe_single_flow_p95_us": 14.521
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1804.49074,
+          "background_p99_vs_ecmp_pct": -4.924620142798119,
+          "fct_sha256": "1b42f99cdd100966a0a44e01c33c7c0b148462ef9bc2dee9724921bcc73c29cd",
+          "id": "20261015-020000-ws28-ablation-s20262941-cr-a0-b1",
+          "moe_batch_us": 16.721,
+          "moe_batch_vs_ecmp_pct": -1.3801238572692331,
+          "moe_single_flow_p95_us": 14.442
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1804.2276400000003,
+          "background_p99_vs_ecmp_pct": -4.938482409800049,
+          "fct_sha256": "b9c7eb245202c641275757721715fffd81df4e0e2bd178c92975ea80338f494e",
+          "id": "20261015-020000-ws28-ablation-s20262941-cr-a1-b0",
+          "moe_batch_us": 17.156,
+          "moe_batch_vs_ecmp_pct": 1.1854910056030787,
+          "moe_single_flow_p95_us": 14.478
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1792.9079700000002,
+          "background_p99_vs_ecmp_pct": -5.534895514756288,
+          "fct_sha256": "af70da71f4fbbfa6893e5d34b14d03d9abbd3e6c158c27f1737c348ac71b7575",
+          "id": "20261015-020000-ws28-ablation-s20262941-cr-a1-b1",
+          "moe_batch_us": 16.784,
+          "moe_batch_vs_ecmp_pct": -1.008552049542899,
+          "moe_single_flow_p95_us": 14.51185
+        },
+        "fecmp": {
+          "background_p99_us": 1897.9579600000002,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "9ef68007c48b8ff0990972a1ae0a37890fc980b17af2605c42571fc9be036ac0",
+          "id": "20261015-020000-ws28-ablation-s20262941-fecmp",
+          "moe_batch_us": 16.955,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.71885
+        }
+      },
+      "seed": 20262941,
+      "trace_sha256": "08c1840796c0d33db2b74434e95536372084d3e20ce375eed2f69f344dac5278"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 3.816339120383083,
+          "moe_batch_pct": -3.9026910801630788
+        },
+        "A_when_B0": {
+          "background_p99_pct": -6.1090999540748925,
+          "moe_batch_pct": 4.646163033741413
+        },
+        "A_when_B1": {
+          "background_p99_pct": -2.2927608336918093,
+          "moe_batch_pct": 0.7434719535783341
+        },
+        "B_when_A0": {
+          "background_p99_pct": -2.969602819424,
+          "moe_batch_pct": -1.2003583159152065
+        },
+        "B_when_A1": {
+          "background_p99_pct": 0.9743459599083293,
+          "moe_batch_pct": -4.885008274838776
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1920.8235399999999,
+          "background_p99_vs_ecmp_pct": 2.896225954857412,
+          "fct_sha256": "ab1a8576a05f4127358a7cc1e62ebd97cb9c7be00d51445378c5f2ebd92bfe52",
+          "id": "20261015-020000-ws28-ablation-s20262942-cr-a0-b0",
+          "moe_batch_us": 16.745,
+          "moe_batch_vs_ecmp_pct": -7.276150395924475,
+          "moe_single_flow_p95_us": 14.36855
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1863.78271,
+          "background_p99_vs_ecmp_pct": -0.15938327217892567,
+          "fct_sha256": "d6fc60d5bdbe93b1d45cd9bf00820956e7ccb8be2d835d301aa45720093e7c59",
+          "id": "20261015-020000-ws28-ablation-s20262942-cr-a0-b1",
+          "moe_batch_us": 16.544,
+          "moe_batch_vs_ecmp_pct": -8.389168835483696,
+          "moe_single_flow_p95_us": 14.493
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1803.4785100000001,
+          "background_p99_vs_ecmp_pct": -3.389807337695583,
+          "fct_sha256": "403c0c5bdb7870ba63db1400eabfc2b85e85c2c717933a00615fb5501be935ff",
+          "id": "20261015-020000-ws28-ablation-s20262942-cr-a1-b0",
+          "moe_batch_us": 17.523,
+          "moe_batch_vs_ecmp_pct": -2.9680491721579383,
+          "moe_single_flow_p95_us": 14.46085
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1821.0506300000002,
+          "background_p99_vs_ecmp_pct": -2.448489828630762,
+          "fct_sha256": "6ab62d668aaf70eeebc932dbdea94d89805564de3202210bb12a67f2f29c4654",
+          "id": "20261015-020000-ws28-ablation-s20262942-cr-a1-b1",
+          "moe_batch_us": 16.667,
+          "moe_batch_vs_ecmp_pct": -7.70806799933551,
+          "moe_single_flow_p95_us": 14.60185
+        },
+        "fecmp": {
+          "background_p99_us": 1866.7580100000002,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "ae8eddb58fad3632630a177c66a76be465b2f04e5e6070050cb29c84fa26601b",
+          "id": "20261015-020000-ws28-ablation-s20262942-fecmp",
+          "moe_batch_us": 18.059,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.6257
+        }
+      },
+      "seed": 20262942,
+      "trace_sha256": "5d4484ef9d5b5126b561fb9427cc2a584997739e27e448ca95dc1a2aedf61816"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": -2.863859959780246,
+          "moe_batch_pct": -2.018781980346651
+        },
+        "A_when_B0": {
+          "background_p99_pct": 0.482688884183724,
+          "moe_batch_pct": -1.4317622129316754
+        },
+        "A_when_B1": {
+          "background_p99_pct": -2.381171075596522,
+          "moe_batch_pct": -3.4505441932783265
+        },
+        "B_when_A0": {
+          "background_p99_pct": 1.1067246586614177,
+          "moe_batch_pct": -4.232289101426023
+        },
+        "B_when_A1": {
+          "background_p99_pct": -1.7749209623888818,
+          "moe_batch_pct": -6.193713322874905
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 2338.04224,
+          "background_p99_vs_ecmp_pct": 2.272761978746596,
+          "fct_sha256": "d2248608eda8f50ea5c896d5aba25ea1b4a992f17f3062f7c0d7b5967af5db2e",
+          "id": "20261015-020000-ws28-ablation-s20262943-cr-a0-b0",
+          "moe_batch_us": 17.461,
+          "moe_batch_vs_ecmp_pct": -3.854413303232218,
+          "moe_single_flow_p95_us": 14.3147
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 2363.91793,
+          "background_p99_vs_ecmp_pct": 3.404639854659486,
+          "fct_sha256": "4b5533c8c37bc1d96456138e9a54fcdd7262efd59669200df7f057db9fbc3d00",
+          "id": "20261015-020000-ws28-ablation-s20262943-cr-a0-b1",
+          "moe_batch_us": 16.722,
+          "moe_batch_vs_ecmp_pct": -7.923572490501629,
+          "moe_single_flow_p95_us": 14.34985
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 2349.3277100000005,
+          "background_p99_vs_ecmp_pct": 2.766421232365679,
+          "fct_sha256": "7de07f81069bf27c981cfd080e0bac4587eb269a14bcbdde5c4db5c866b1a330",
+          "id": "20261015-020000-ws28-ablation-s20262943-cr-a1-b0",
+          "moe_batch_us": 17.211,
+          "moe_batch_vs_ecmp_pct": -5.2309894829580035,
+          "moe_single_flow_p95_us": 14.2697
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 2307.629,
+          "background_p99_vs_ecmp_pct": 0.9423984796155693,
+          "fct_sha256": "796850fca7db13856eafcacfecee27ddc33eda137a3f9082cd1fb4cf34ab21ea",
+          "id": "20261015-020000-ws28-ablation-s20262943-cr-a1-b1",
+          "moe_batch_us": 16.145,
+          "moe_batch_vs_ecmp_pct": -11.100710313308749,
+          "moe_single_flow_p95_us": 14.324
+        },
+        "fecmp": {
+          "background_p99_us": 2286.08497,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "a4a721f49a5f3a76ba5c0b73708020dccc4d55d9fa8ba07236cb750fd4f5eef2",
+          "id": "20261015-020000-ws28-ablation-s20262943-fecmp",
+          "moe_batch_us": 18.161,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.63085
+        }
+      },
+      "seed": 20262943,
+      "trace_sha256": "db091dcbe732bce37aaf254637f91c4cf60a1921e567e439d0aae2453ca8180b"
+    },
+    {
+      "contrasts": {
+        "A_by_B_interaction": {
+          "background_p99_pct": 6.882082066071405,
+          "moe_batch_pct": 0.9657396625109671
+        },
+        "A_when_B0": {
+          "background_p99_pct": -1.2321319508977635,
+          "moe_batch_pct": -0.2986322642298145
+        },
+        "A_when_B1": {
+          "background_p99_pct": 5.649950115173641,
+          "moe_batch_pct": 0.6671073982811526
+        },
+        "B_when_A0": {
+          "background_p99_pct": -3.237974104115726,
+          "moe_batch_pct": -0.6211551095980372
+        },
+        "B_when_A1": {
+          "background_p99_pct": 3.5043421597499735,
+          "moe_batch_pct": 0.3414604924219633
+        }
+      },
+      "modes": {
+        "cr-a0-b0": {
+          "background_p99_us": 1792.9930300000005,
+          "background_p99_vs_ecmp_pct": 2.8164281633561217,
+          "fct_sha256": "abdd19e4b45aabd50cd71f8d8fb41911ab85c29dc7f0a5f01768ef95d738fd00",
+          "id": "20261015-020000-ws28-ablation-s20262944-cr-a0-b0",
+          "moe_batch_us": 16.743,
+          "moe_batch_vs_ecmp_pct": -6.97816545363632,
+          "moe_single_flow_p95_us": 14.311
+        },
+        "cr-a0-b1": {
+          "background_p99_us": 1734.9363800000006,
+          "background_p99_vs_ecmp_pct": -0.5127411553501049,
+          "fct_sha256": "a80ab3af7e491e3cd3a9b1591499eaa7912b5bac3b867a72cf2d5e0fe585c83a",
+          "id": "20261015-020000-ws28-ablation-s20262944-cr-a0-b1",
+          "moe_batch_us": 16.639,
+          "moe_batch_vs_ecmp_pct": -7.555975331962883,
+          "moe_single_flow_p95_us": 14.53855
+        },
+        "cr-a1-b0": {
+          "background_p99_us": 1770.9009900000005,
+          "background_p99_vs_ecmp_pct": 1.5495941011835601,
+          "fct_sha256": "91f08d70ef45accdd6c74fe8cf0cef021fadea30426029c7b7d1e81cd7eed6c1",
+          "id": "20261015-020000-ws28-ablation-s20262944-cr-a1-b0",
+          "moe_batch_us": 16.693,
+          "moe_batch_vs_ecmp_pct": -7.255958664370232,
+          "moe_single_flow_p95_us": 14.261
+        },
+        "cr-a1-b1": {
+          "background_p99_us": 1832.9594200000001,
+          "background_p99_vs_ecmp_pct": 5.108239340326293,
+          "fct_sha256": "af770becc01f5e4bac2b31ed1e13e86b8678b4494eeb8a70a32eabd9a4fe03bb",
+          "id": "20261015-020000-ws28-ablation-s20262944-cr-a1-b1",
+          "moe_batch_us": 16.75,
+          "moe_batch_vs_ecmp_pct": -6.939274404133555,
+          "moe_single_flow_p95_us": 14.755700000000001
+        },
+        "fecmp": {
+          "background_p99_us": 1743.8779600000005,
+          "background_p99_vs_ecmp_pct": 0.0,
+          "fct_sha256": "dc8f6ea9323f4b80c69960bbeccf5654b1c284e44acc027a26723f1d213a412e",
+          "id": "20261015-020000-ws28-ablation-s20262944-fecmp",
+          "moe_batch_us": 17.999,
+          "moe_batch_vs_ecmp_pct": 0.0,
+          "moe_single_flow_p95_us": 14.56985
+        }
+      },
+      "seed": 20262944,
+      "trace_sha256": "ec8d0ed8dcaaf78d7bbcb89e4cf675418afa0055661c85c08c254eb8f08fd96b"
+    }
+  ],
+  "plan_sha256": "ba1844df84175e7af27d20b96cd107e3e79e0c3fb4264ab00dfa58fa6a448b89",
+  "source_sha": "955d26b580c9ca9249e66dea68638b22e0e32e2c",
+  "verified_cells": 120
+}

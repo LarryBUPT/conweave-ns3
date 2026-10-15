@@ -1,6 +1,14 @@
 # ConWeave 毕业论文项目状态
 
-## WS-28 当前入口（2026-10-15）
+## WS-28 最终入口（2026-10-16）
+
+WS-28 已按预设的 ns-3 合成机制解释与原生基线对照范围完成验收。[最终审计](../research/ws28-final-acceptance-audit.md)逐项对应六项任务。[Handoff 81](../handoffs/2026-10-16-81-ws28-final-explanation-and-closure.md)记录交接。原生对照为新增 96 格加 WS-27 同输入控制 48 格，共 144/144；两因素消融在 24 个未见需求 seed 上完成技术 6/6、资源 24/24、正式 120/120 格；三个旧劣化 seed 的探针开关诊断 12/12 格通过，FCT 与原格一致。
+
+[双侧分析](../research/ws28-factorial-and-tail-analysis.md)、[组件图](../research/figures/ws28-component-effects.pdf)和三个反例时序图已完成。四消融臂相对 ECMP 的 MoE 批时间中位变化为 −4.451%～−5.971%，背景 P99 中位变化均低于 +3% 工程门槛。四个组件条件效应与交互的 95% 区间均跨零。反例末包在下游有 6,179～6,905 ns 的单跳等待，不能作唯一因果归因。
+
+结论限固定合成需求与传输配置；WS-25/26/27 不重判。下方同日 `ACTIVE` 段是正式矩阵启动前的历史快照。
+
+## WS-28 矩阵启动前快照（2026-10-15）
 
 WS-28 仍为 `ACTIVE`。[原生对照报告](../research/ws28-native-comparison-report.md)已从 96 个新增格与 48 个 WS-27 控制格复算通过，共 144 格。两因素源码 SHA 为 `955d26b580c9ca9249e66dea68638b22e0e32e2c`；诊断探针修正版 SHA 为 `ca03c7bccf05120fde219606bbb478e48a467619`。24 个未见 seed 的 192 背景档输入已固定；消融六臂技术计划仅 1/6 格通过，资源 pilot 0/24，正式消融 0/120。三个劣化 seed 的诊断已完成首个 seed `20262725` 的四格探针开关核验，4/12 格逐 raw 通过并与 WS-27 原 FCT 哈希一致；其余两个 seed 未运行。首个 seed 的局部逐跳队列时序尚不能作三个反例的总体归因。具体 ID、哈希、资源、限制和安全恢复步骤见[Handoff 80](../handoffs/2026-10-15-80-ws28-tail-pilot-and-factorial-preflight.md)。当前工具尚不能核验本聊天的 Luna／Sol High 实际模型切换，长时矩阵仍受该工作流门槛约束。下方 10 月 14 日入口保留为历史阶段快照。
 
