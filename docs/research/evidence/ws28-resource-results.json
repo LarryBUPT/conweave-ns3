@@ -1,0 +1,97 @@
+{
+  "kind": "WS-28 factorial mode resource pilot",
+  "resource_plan_sha256": "4d95e3a1446909fa887c0e0590c97b084d6bbda203a55aca3ee8595a55bf4568",
+  "selected_cap": 12,
+  "source_sha": "955d26b580c9ca9249e66dea68638b22e0e32e2c",
+  "stages": [
+    {
+      "cap": 4,
+      "cells": 4,
+      "controller_wall_seconds": 834.266,
+      "fct_sha256_by_mode": {
+        "cr-a0-b0": [
+          "66830e282e326bc261b02514e742360a90321eab7d941dc006519e851b2eb672"
+        ],
+        "cr-a0-b1": [
+          "dc0e77bacf3c68fb5d589b7ff06e0aa21284e32693fba4688e25cfcae79260ae"
+        ],
+        "cr-a1-b0": [
+          "7f6a95d8d2f07f6f05e2706f303bba580969a5cacc9de2fae3e33fe327bd761c"
+        ],
+        "cr-a1-b1": [
+          "2c176e1f1bb8cb4e2fe391f736a4a62ac3caae532dadfae620695b8d2a13b400"
+        ]
+      },
+      "resource": {
+        "batch": 1,
+        "cells": 4,
+        "maximum_tree_rss_mib": 4544.953125,
+        "minimum_free_gib": 4027.111072540283,
+        "minimum_mem_available_gib": 105.01688003540039,
+        "peak_load_1m": 7.42
+      },
+      "simulation_wall_seconds": 331.0,
+      "throughput_cells_per_hour": 43.50453172205438
+    },
+    {
+      "cap": 8,
+      "cells": 8,
+      "controller_wall_seconds": 1288.609,
+      "fct_sha256_by_mode": {
+        "cr-a0-b0": [
+          "66830e282e326bc261b02514e742360a90321eab7d941dc006519e851b2eb672"
+        ],
+        "cr-a0-b1": [
+          "dc0e77bacf3c68fb5d589b7ff06e0aa21284e32693fba4688e25cfcae79260ae"
+        ],
+        "cr-a1-b0": [
+          "7f6a95d8d2f07f6f05e2706f303bba580969a5cacc9de2fae3e33fe327bd761c"
+        ],
+        "cr-a1-b1": [
+          "2c176e1f1bb8cb4e2fe391f736a4a62ac3caae532dadfae620695b8d2a13b400"
+        ]
+      },
+      "resource": {
+        "batch": 2,
+        "cells": 8,
+        "maximum_tree_rss_mib": 4544.91796875,
+        "minimum_free_gib": 4016.9184341430664,
+        "minimum_mem_available_gib": 87.36634826660156,
+        "peak_load_1m": 8.16
+      },
+      "simulation_wall_seconds": 368.0,
+      "throughput_cells_per_hour": 78.26086956521739
+    },
+    {
+      "cap": 12,
+      "cells": 12,
+      "controller_wall_seconds": 1365.797,
+      "fct_sha256_by_mode": {
+        "cr-a0-b0": [
+          "66830e282e326bc261b02514e742360a90321eab7d941dc006519e851b2eb672"
+        ],
+        "cr-a0-b1": [
+          "dc0e77bacf3c68fb5d589b7ff06e0aa21284e32693fba4688e25cfcae79260ae"
+        ],
+        "cr-a1-b0": [
+          "7f6a95d8d2f07f6f05e2706f303bba580969a5cacc9de2fae3e33fe327bd761c"
+        ],
+        "cr-a1-b1": [
+          "2c176e1f1bb8cb4e2fe391f736a4a62ac3caae532dadfae620695b8d2a13b400"
+        ]
+      },
+      "resource": {
+        "batch": 3,
+        "cells": 12,
+        "maximum_tree_rss_mib": 4545.00390625,
+        "minimum_free_gib": 4001.629161834717,
+        "minimum_mem_available_gib": 69.68708801269531,
+        "peak_load_1m": 12.26
+      },
+      "simulation_wall_seconds": 413.0,
+      "throughput_cells_per_hour": 104.60048426150121
+    }
+  ],
+  "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48",
+  "verified_cells": 24
+}\n

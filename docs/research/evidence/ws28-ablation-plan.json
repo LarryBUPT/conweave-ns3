@@ -1,0 +1,1852 @@
+{
+  "background_levels": [
+    192
+  ],
+  "buffer_mib": 9,
+  "bw_gbps": 400,
+  "cells": [
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262940-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 1,
+      "seed": 20262940,
+      "trace": "ws25_seed20262940_b192.txt",
+      "trace_sha256": "a85b2243659815200a792e3054a7ac60cedd5e21834ab9b7e5d8fa0aa4394c3d"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262940-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 2,
+      "seed": 20262940,
+      "trace": "ws25_seed20262940_b192.txt",
+      "trace_sha256": "a85b2243659815200a792e3054a7ac60cedd5e21834ab9b7e5d8fa0aa4394c3d"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262940-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 3,
+      "seed": 20262940,
+      "trace": "ws25_seed20262940_b192.txt",
+      "trace_sha256": "a85b2243659815200a792e3054a7ac60cedd5e21834ab9b7e5d8fa0aa4394c3d"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262940-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 4,
+      "seed": 20262940,
+      "trace": "ws25_seed20262940_b192.txt",
+      "trace_sha256": "a85b2243659815200a792e3054a7ac60cedd5e21834ab9b7e5d8fa0aa4394c3d"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262940-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 5,
+      "seed": 20262940,
+      "trace": "ws25_seed20262940_b192.txt",
+      "trace_sha256": "a85b2243659815200a792e3054a7ac60cedd5e21834ab9b7e5d8fa0aa4394c3d"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262944-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 6,
+      "seed": 20262944,
+      "trace": "ws25_seed20262944_b192.txt",
+      "trace_sha256": "ec8d0ed8dcaaf78d7bbcb89e4cf675418afa0055661c85c08c254eb8f08fd96b"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262944-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 7,
+      "seed": 20262944,
+      "trace": "ws25_seed20262944_b192.txt",
+      "trace_sha256": "ec8d0ed8dcaaf78d7bbcb89e4cf675418afa0055661c85c08c254eb8f08fd96b"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262944-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 8,
+      "seed": 20262944,
+      "trace": "ws25_seed20262944_b192.txt",
+      "trace_sha256": "ec8d0ed8dcaaf78d7bbcb89e4cf675418afa0055661c85c08c254eb8f08fd96b"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262944-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 9,
+      "seed": 20262944,
+      "trace": "ws25_seed20262944_b192.txt",
+      "trace_sha256": "ec8d0ed8dcaaf78d7bbcb89e4cf675418afa0055661c85c08c254eb8f08fd96b"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262944-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 10,
+      "seed": 20262944,
+      "trace": "ws25_seed20262944_b192.txt",
+      "trace_sha256": "ec8d0ed8dcaaf78d7bbcb89e4cf675418afa0055661c85c08c254eb8f08fd96b"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262931-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 11,
+      "seed": 20262931,
+      "trace": "ws25_seed20262931_b192.txt",
+      "trace_sha256": "7ee0051e15581ff89f30744f37b8e19eee1188d77332f00fde0a7252d56f216c"
+    },
+    {
+      "background": 192,
+      "batch": 1,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262931-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 12,
+      "seed": 20262931,
+      "trace": "ws25_seed20262931_b192.txt",
+      "trace_sha256": "7ee0051e15581ff89f30744f37b8e19eee1188d77332f00fde0a7252d56f216c"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262931-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 13,
+      "seed": 20262931,
+      "trace": "ws25_seed20262931_b192.txt",
+      "trace_sha256": "7ee0051e15581ff89f30744f37b8e19eee1188d77332f00fde0a7252d56f216c"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262931-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 14,
+      "seed": 20262931,
+      "trace": "ws25_seed20262931_b192.txt",
+      "trace_sha256": "7ee0051e15581ff89f30744f37b8e19eee1188d77332f00fde0a7252d56f216c"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262931-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 15,
+      "seed": 20262931,
+      "trace": "ws25_seed20262931_b192.txt",
+      "trace_sha256": "7ee0051e15581ff89f30744f37b8e19eee1188d77332f00fde0a7252d56f216c"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262922-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 16,
+      "seed": 20262922,
+      "trace": "ws25_seed20262922_b192.txt",
+      "trace_sha256": "b271984fc46c9b420c827fab947ac91f161a498ce188553260feda6125e070c1"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262922-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 17,
+      "seed": 20262922,
+      "trace": "ws25_seed20262922_b192.txt",
+      "trace_sha256": "b271984fc46c9b420c827fab947ac91f161a498ce188553260feda6125e070c1"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262922-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 18,
+      "seed": 20262922,
+      "trace": "ws25_seed20262922_b192.txt",
+      "trace_sha256": "b271984fc46c9b420c827fab947ac91f161a498ce188553260feda6125e070c1"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262922-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 19,
+      "seed": 20262922,
+      "trace": "ws25_seed20262922_b192.txt",
+      "trace_sha256": "b271984fc46c9b420c827fab947ac91f161a498ce188553260feda6125e070c1"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262922-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 20,
+      "seed": 20262922,
+      "trace": "ws25_seed20262922_b192.txt",
+      "trace_sha256": "b271984fc46c9b420c827fab947ac91f161a498ce188553260feda6125e070c1"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262923-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 21,
+      "seed": 20262923,
+      "trace": "ws25_seed20262923_b192.txt",
+      "trace_sha256": "bf2708fb50a73e8fd8ad756a56905dc36d9bf5e161e348b92ecd0a48c828f0e6"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262923-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 22,
+      "seed": 20262923,
+      "trace": "ws25_seed20262923_b192.txt",
+      "trace_sha256": "bf2708fb50a73e8fd8ad756a56905dc36d9bf5e161e348b92ecd0a48c828f0e6"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262923-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 23,
+      "seed": 20262923,
+      "trace": "ws25_seed20262923_b192.txt",
+      "trace_sha256": "bf2708fb50a73e8fd8ad756a56905dc36d9bf5e161e348b92ecd0a48c828f0e6"
+    },
+    {
+      "background": 192,
+      "batch": 2,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262923-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 24,
+      "seed": 20262923,
+      "trace": "ws25_seed20262923_b192.txt",
+      "trace_sha256": "bf2708fb50a73e8fd8ad756a56905dc36d9bf5e161e348b92ecd0a48c828f0e6"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262923-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 25,
+      "seed": 20262923,
+      "trace": "ws25_seed20262923_b192.txt",
+      "trace_sha256": "bf2708fb50a73e8fd8ad756a56905dc36d9bf5e161e348b92ecd0a48c828f0e6"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262942-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 26,
+      "seed": 20262942,
+      "trace": "ws25_seed20262942_b192.txt",
+      "trace_sha256": "5d4484ef9d5b5126b561fb9427cc2a584997739e27e448ca95dc1a2aedf61816"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262942-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 27,
+      "seed": 20262942,
+      "trace": "ws25_seed20262942_b192.txt",
+      "trace_sha256": "5d4484ef9d5b5126b561fb9427cc2a584997739e27e448ca95dc1a2aedf61816"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262942-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 28,
+      "seed": 20262942,
+      "trace": "ws25_seed20262942_b192.txt",
+      "trace_sha256": "5d4484ef9d5b5126b561fb9427cc2a584997739e27e448ca95dc1a2aedf61816"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262942-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 29,
+      "seed": 20262942,
+      "trace": "ws25_seed20262942_b192.txt",
+      "trace_sha256": "5d4484ef9d5b5126b561fb9427cc2a584997739e27e448ca95dc1a2aedf61816"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262942-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 30,
+      "seed": 20262942,
+      "trace": "ws25_seed20262942_b192.txt",
+      "trace_sha256": "5d4484ef9d5b5126b561fb9427cc2a584997739e27e448ca95dc1a2aedf61816"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262928-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 31,
+      "seed": 20262928,
+      "trace": "ws25_seed20262928_b192.txt",
+      "trace_sha256": "b77567d7c8a805885b8e130c59c6c5edc10e22694062541a43267717762249d6"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262928-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 32,
+      "seed": 20262928,
+      "trace": "ws25_seed20262928_b192.txt",
+      "trace_sha256": "b77567d7c8a805885b8e130c59c6c5edc10e22694062541a43267717762249d6"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262928-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 33,
+      "seed": 20262928,
+      "trace": "ws25_seed20262928_b192.txt",
+      "trace_sha256": "b77567d7c8a805885b8e130c59c6c5edc10e22694062541a43267717762249d6"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262928-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 34,
+      "seed": 20262928,
+      "trace": "ws25_seed20262928_b192.txt",
+      "trace_sha256": "b77567d7c8a805885b8e130c59c6c5edc10e22694062541a43267717762249d6"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262928-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 35,
+      "seed": 20262928,
+      "trace": "ws25_seed20262928_b192.txt",
+      "trace_sha256": "b77567d7c8a805885b8e130c59c6c5edc10e22694062541a43267717762249d6"
+    },
+    {
+      "background": 192,
+      "batch": 3,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262924-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 36,
+      "seed": 20262924,
+      "trace": "ws25_seed20262924_b192.txt",
+      "trace_sha256": "3243a8be22ad7cc45fd8f583799ab3c0c5938377e6b60362dfb66d9acc64d96a"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262924-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 37,
+      "seed": 20262924,
+      "trace": "ws25_seed20262924_b192.txt",
+      "trace_sha256": "3243a8be22ad7cc45fd8f583799ab3c0c5938377e6b60362dfb66d9acc64d96a"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262924-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 38,
+      "seed": 20262924,
+      "trace": "ws25_seed20262924_b192.txt",
+      "trace_sha256": "3243a8be22ad7cc45fd8f583799ab3c0c5938377e6b60362dfb66d9acc64d96a"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262924-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 39,
+      "seed": 20262924,
+      "trace": "ws25_seed20262924_b192.txt",
+      "trace_sha256": "3243a8be22ad7cc45fd8f583799ab3c0c5938377e6b60362dfb66d9acc64d96a"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262924-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 40,
+      "seed": 20262924,
+      "trace": "ws25_seed20262924_b192.txt",
+      "trace_sha256": "3243a8be22ad7cc45fd8f583799ab3c0c5938377e6b60362dfb66d9acc64d96a"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262934-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 41,
+      "seed": 20262934,
+      "trace": "ws25_seed20262934_b192.txt",
+      "trace_sha256": "d792440805f062828e9829a104709ea9fdb44f14446111432043efe7c3307683"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262934-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 42,
+      "seed": 20262934,
+      "trace": "ws25_seed20262934_b192.txt",
+      "trace_sha256": "d792440805f062828e9829a104709ea9fdb44f14446111432043efe7c3307683"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262934-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 43,
+      "seed": 20262934,
+      "trace": "ws25_seed20262934_b192.txt",
+      "trace_sha256": "d792440805f062828e9829a104709ea9fdb44f14446111432043efe7c3307683"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262934-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 44,
+      "seed": 20262934,
+      "trace": "ws25_seed20262934_b192.txt",
+      "trace_sha256": "d792440805f062828e9829a104709ea9fdb44f14446111432043efe7c3307683"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262934-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 45,
+      "seed": 20262934,
+      "trace": "ws25_seed20262934_b192.txt",
+      "trace_sha256": "d792440805f062828e9829a104709ea9fdb44f14446111432043efe7c3307683"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262936-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 46,
+      "seed": 20262936,
+      "trace": "ws25_seed20262936_b192.txt",
+      "trace_sha256": "b40c3c0fd111c686d03b93d74d2410b5be4d9a18ee516e16d153639972596d06"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262936-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 47,
+      "seed": 20262936,
+      "trace": "ws25_seed20262936_b192.txt",
+      "trace_sha256": "b40c3c0fd111c686d03b93d74d2410b5be4d9a18ee516e16d153639972596d06"
+    },
+    {
+      "background": 192,
+      "batch": 4,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262936-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 48,
+      "seed": 20262936,
+      "trace": "ws25_seed20262936_b192.txt",
+      "trace_sha256": "b40c3c0fd111c686d03b93d74d2410b5be4d9a18ee516e16d153639972596d06"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262936-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 49,
+      "seed": 20262936,
+      "trace": "ws25_seed20262936_b192.txt",
+      "trace_sha256": "b40c3c0fd111c686d03b93d74d2410b5be4d9a18ee516e16d153639972596d06"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262936-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 50,
+      "seed": 20262936,
+      "trace": "ws25_seed20262936_b192.txt",
+      "trace_sha256": "b40c3c0fd111c686d03b93d74d2410b5be4d9a18ee516e16d153639972596d06"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262933-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 51,
+      "seed": 20262933,
+      "trace": "ws25_seed20262933_b192.txt",
+      "trace_sha256": "471b30bfe3590af9a3c7acbfece58afa53601fee1db919ddcb68485cf1a33eca"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262933-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 52,
+      "seed": 20262933,
+      "trace": "ws25_seed20262933_b192.txt",
+      "trace_sha256": "471b30bfe3590af9a3c7acbfece58afa53601fee1db919ddcb68485cf1a33eca"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262933-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 53,
+      "seed": 20262933,
+      "trace": "ws25_seed20262933_b192.txt",
+      "trace_sha256": "471b30bfe3590af9a3c7acbfece58afa53601fee1db919ddcb68485cf1a33eca"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262933-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 54,
+      "seed": 20262933,
+      "trace": "ws25_seed20262933_b192.txt",
+      "trace_sha256": "471b30bfe3590af9a3c7acbfece58afa53601fee1db919ddcb68485cf1a33eca"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262933-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 55,
+      "seed": 20262933,
+      "trace": "ws25_seed20262933_b192.txt",
+      "trace_sha256": "471b30bfe3590af9a3c7acbfece58afa53601fee1db919ddcb68485cf1a33eca"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262929-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 56,
+      "seed": 20262929,
+      "trace": "ws25_seed20262929_b192.txt",
+      "trace_sha256": "5c44b50d021aa7187a1cc64dff13d9fe4d1632d6ee36587b7ebdd6864174e8da"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262929-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 57,
+      "seed": 20262929,
+      "trace": "ws25_seed20262929_b192.txt",
+      "trace_sha256": "5c44b50d021aa7187a1cc64dff13d9fe4d1632d6ee36587b7ebdd6864174e8da"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262929-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 58,
+      "seed": 20262929,
+      "trace": "ws25_seed20262929_b192.txt",
+      "trace_sha256": "5c44b50d021aa7187a1cc64dff13d9fe4d1632d6ee36587b7ebdd6864174e8da"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262929-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 59,
+      "seed": 20262929,
+      "trace": "ws25_seed20262929_b192.txt",
+      "trace_sha256": "5c44b50d021aa7187a1cc64dff13d9fe4d1632d6ee36587b7ebdd6864174e8da"
+    },
+    {
+      "background": 192,
+      "batch": 5,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262929-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 60,
+      "seed": 20262929,
+      "trace": "ws25_seed20262929_b192.txt",
+      "trace_sha256": "5c44b50d021aa7187a1cc64dff13d9fe4d1632d6ee36587b7ebdd6864174e8da"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262921-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 61,
+      "seed": 20262921,
+      "trace": "ws25_seed20262921_b192.txt",
+      "trace_sha256": "0c871e0727f0fac79c754a9b504429e2394216c7542d3b0ef227b74e88d0adb6"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262921-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 62,
+      "seed": 20262921,
+      "trace": "ws25_seed20262921_b192.txt",
+      "trace_sha256": "0c871e0727f0fac79c754a9b504429e2394216c7542d3b0ef227b74e88d0adb6"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262921-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 63,
+      "seed": 20262921,
+      "trace": "ws25_seed20262921_b192.txt",
+      "trace_sha256": "0c871e0727f0fac79c754a9b504429e2394216c7542d3b0ef227b74e88d0adb6"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262921-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 64,
+      "seed": 20262921,
+      "trace": "ws25_seed20262921_b192.txt",
+      "trace_sha256": "0c871e0727f0fac79c754a9b504429e2394216c7542d3b0ef227b74e88d0adb6"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262921-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 65,
+      "seed": 20262921,
+      "trace": "ws25_seed20262921_b192.txt",
+      "trace_sha256": "0c871e0727f0fac79c754a9b504429e2394216c7542d3b0ef227b74e88d0adb6"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262939-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 66,
+      "seed": 20262939,
+      "trace": "ws25_seed20262939_b192.txt",
+      "trace_sha256": "66bef569ad064783ae1b0eecc3d6b5f5ce1908a752329fc446435975b577b182"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262939-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 67,
+      "seed": 20262939,
+      "trace": "ws25_seed20262939_b192.txt",
+      "trace_sha256": "66bef569ad064783ae1b0eecc3d6b5f5ce1908a752329fc446435975b577b182"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262939-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 68,
+      "seed": 20262939,
+      "trace": "ws25_seed20262939_b192.txt",
+      "trace_sha256": "66bef569ad064783ae1b0eecc3d6b5f5ce1908a752329fc446435975b577b182"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262939-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 69,
+      "seed": 20262939,
+      "trace": "ws25_seed20262939_b192.txt",
+      "trace_sha256": "66bef569ad064783ae1b0eecc3d6b5f5ce1908a752329fc446435975b577b182"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262939-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 70,
+      "seed": 20262939,
+      "trace": "ws25_seed20262939_b192.txt",
+      "trace_sha256": "66bef569ad064783ae1b0eecc3d6b5f5ce1908a752329fc446435975b577b182"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262926-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 71,
+      "seed": 20262926,
+      "trace": "ws25_seed20262926_b192.txt",
+      "trace_sha256": "ee6f94e4d27c4ab54b4bdd189f69fec6aa0d10b0c486bc23aaf41638501af7fc"
+    },
+    {
+      "background": 192,
+      "batch": 6,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262926-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 72,
+      "seed": 20262926,
+      "trace": "ws25_seed20262926_b192.txt",
+      "trace_sha256": "ee6f94e4d27c4ab54b4bdd189f69fec6aa0d10b0c486bc23aaf41638501af7fc"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262926-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 73,
+      "seed": 20262926,
+      "trace": "ws25_seed20262926_b192.txt",
+      "trace_sha256": "ee6f94e4d27c4ab54b4bdd189f69fec6aa0d10b0c486bc23aaf41638501af7fc"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262926-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 74,
+      "seed": 20262926,
+      "trace": "ws25_seed20262926_b192.txt",
+      "trace_sha256": "ee6f94e4d27c4ab54b4bdd189f69fec6aa0d10b0c486bc23aaf41638501af7fc"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262926-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 75,
+      "seed": 20262926,
+      "trace": "ws25_seed20262926_b192.txt",
+      "trace_sha256": "ee6f94e4d27c4ab54b4bdd189f69fec6aa0d10b0c486bc23aaf41638501af7fc"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262925-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 76,
+      "seed": 20262925,
+      "trace": "ws25_seed20262925_b192.txt",
+      "trace_sha256": "c6226e6efd24ebaaa76df46aa421fbee93f3127af6f85609ee862896f8effda2"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262925-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 77,
+      "seed": 20262925,
+      "trace": "ws25_seed20262925_b192.txt",
+      "trace_sha256": "c6226e6efd24ebaaa76df46aa421fbee93f3127af6f85609ee862896f8effda2"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262925-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 78,
+      "seed": 20262925,
+      "trace": "ws25_seed20262925_b192.txt",
+      "trace_sha256": "c6226e6efd24ebaaa76df46aa421fbee93f3127af6f85609ee862896f8effda2"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262925-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 79,
+      "seed": 20262925,
+      "trace": "ws25_seed20262925_b192.txt",
+      "trace_sha256": "c6226e6efd24ebaaa76df46aa421fbee93f3127af6f85609ee862896f8effda2"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262925-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 80,
+      "seed": 20262925,
+      "trace": "ws25_seed20262925_b192.txt",
+      "trace_sha256": "c6226e6efd24ebaaa76df46aa421fbee93f3127af6f85609ee862896f8effda2"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262943-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 81,
+      "seed": 20262943,
+      "trace": "ws25_seed20262943_b192.txt",
+      "trace_sha256": "db091dcbe732bce37aaf254637f91c4cf60a1921e567e439d0aae2453ca8180b"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262943-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 82,
+      "seed": 20262943,
+      "trace": "ws25_seed20262943_b192.txt",
+      "trace_sha256": "db091dcbe732bce37aaf254637f91c4cf60a1921e567e439d0aae2453ca8180b"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262943-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 83,
+      "seed": 20262943,
+      "trace": "ws25_seed20262943_b192.txt",
+      "trace_sha256": "db091dcbe732bce37aaf254637f91c4cf60a1921e567e439d0aae2453ca8180b"
+    },
+    {
+      "background": 192,
+      "batch": 7,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262943-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 84,
+      "seed": 20262943,
+      "trace": "ws25_seed20262943_b192.txt",
+      "trace_sha256": "db091dcbe732bce37aaf254637f91c4cf60a1921e567e439d0aae2453ca8180b"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262943-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 85,
+      "seed": 20262943,
+      "trace": "ws25_seed20262943_b192.txt",
+      "trace_sha256": "db091dcbe732bce37aaf254637f91c4cf60a1921e567e439d0aae2453ca8180b"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262930-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 86,
+      "seed": 20262930,
+      "trace": "ws25_seed20262930_b192.txt",
+      "trace_sha256": "80d5b35a9b82e982876e8434fc0c17f76e4f82caa08bf25e962d6aad33a3e511"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262930-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 87,
+      "seed": 20262930,
+      "trace": "ws25_seed20262930_b192.txt",
+      "trace_sha256": "80d5b35a9b82e982876e8434fc0c17f76e4f82caa08bf25e962d6aad33a3e511"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262930-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 88,
+      "seed": 20262930,
+      "trace": "ws25_seed20262930_b192.txt",
+      "trace_sha256": "80d5b35a9b82e982876e8434fc0c17f76e4f82caa08bf25e962d6aad33a3e511"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262930-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 89,
+      "seed": 20262930,
+      "trace": "ws25_seed20262930_b192.txt",
+      "trace_sha256": "80d5b35a9b82e982876e8434fc0c17f76e4f82caa08bf25e962d6aad33a3e511"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262930-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 90,
+      "seed": 20262930,
+      "trace": "ws25_seed20262930_b192.txt",
+      "trace_sha256": "80d5b35a9b82e982876e8434fc0c17f76e4f82caa08bf25e962d6aad33a3e511"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262927-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 91,
+      "seed": 20262927,
+      "trace": "ws25_seed20262927_b192.txt",
+      "trace_sha256": "d50ad8e06009b8fa4960deb08a9fa91d30bc48eff3f6e9a164080fe74f04b082"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262927-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 92,
+      "seed": 20262927,
+      "trace": "ws25_seed20262927_b192.txt",
+      "trace_sha256": "d50ad8e06009b8fa4960deb08a9fa91d30bc48eff3f6e9a164080fe74f04b082"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262927-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 93,
+      "seed": 20262927,
+      "trace": "ws25_seed20262927_b192.txt",
+      "trace_sha256": "d50ad8e06009b8fa4960deb08a9fa91d30bc48eff3f6e9a164080fe74f04b082"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262927-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 94,
+      "seed": 20262927,
+      "trace": "ws25_seed20262927_b192.txt",
+      "trace_sha256": "d50ad8e06009b8fa4960deb08a9fa91d30bc48eff3f6e9a164080fe74f04b082"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262927-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 95,
+      "seed": 20262927,
+      "trace": "ws25_seed20262927_b192.txt",
+      "trace_sha256": "d50ad8e06009b8fa4960deb08a9fa91d30bc48eff3f6e9a164080fe74f04b082"
+    },
+    {
+      "background": 192,
+      "batch": 8,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262938-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 96,
+      "seed": 20262938,
+      "trace": "ws25_seed20262938_b192.txt",
+      "trace_sha256": "a2268ba5e4dd5f24f10cdb989e6d0002976673b96c8493d4c003d4b027acde85"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262938-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 97,
+      "seed": 20262938,
+      "trace": "ws25_seed20262938_b192.txt",
+      "trace_sha256": "a2268ba5e4dd5f24f10cdb989e6d0002976673b96c8493d4c003d4b027acde85"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262938-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 98,
+      "seed": 20262938,
+      "trace": "ws25_seed20262938_b192.txt",
+      "trace_sha256": "a2268ba5e4dd5f24f10cdb989e6d0002976673b96c8493d4c003d4b027acde85"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262938-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 99,
+      "seed": 20262938,
+      "trace": "ws25_seed20262938_b192.txt",
+      "trace_sha256": "a2268ba5e4dd5f24f10cdb989e6d0002976673b96c8493d4c003d4b027acde85"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262938-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 100,
+      "seed": 20262938,
+      "trace": "ws25_seed20262938_b192.txt",
+      "trace_sha256": "a2268ba5e4dd5f24f10cdb989e6d0002976673b96c8493d4c003d4b027acde85"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262941-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 101,
+      "seed": 20262941,
+      "trace": "ws25_seed20262941_b192.txt",
+      "trace_sha256": "08c1840796c0d33db2b74434e95536372084d3e20ce375eed2f69f344dac5278"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262941-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 102,
+      "seed": 20262941,
+      "trace": "ws25_seed20262941_b192.txt",
+      "trace_sha256": "08c1840796c0d33db2b74434e95536372084d3e20ce375eed2f69f344dac5278"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262941-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 103,
+      "seed": 20262941,
+      "trace": "ws25_seed20262941_b192.txt",
+      "trace_sha256": "08c1840796c0d33db2b74434e95536372084d3e20ce375eed2f69f344dac5278"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262941-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 104,
+      "seed": 20262941,
+      "trace": "ws25_seed20262941_b192.txt",
+      "trace_sha256": "08c1840796c0d33db2b74434e95536372084d3e20ce375eed2f69f344dac5278"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262941-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 105,
+      "seed": 20262941,
+      "trace": "ws25_seed20262941_b192.txt",
+      "trace_sha256": "08c1840796c0d33db2b74434e95536372084d3e20ce375eed2f69f344dac5278"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262932-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 106,
+      "seed": 20262932,
+      "trace": "ws25_seed20262932_b192.txt",
+      "trace_sha256": "fdbdeddd522a9896305b30a4167b7c1ac2f17857f916c2e41bc63597881975f4"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262932-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 107,
+      "seed": 20262932,
+      "trace": "ws25_seed20262932_b192.txt",
+      "trace_sha256": "fdbdeddd522a9896305b30a4167b7c1ac2f17857f916c2e41bc63597881975f4"
+    },
+    {
+      "background": 192,
+      "batch": 9,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262932-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 108,
+      "seed": 20262932,
+      "trace": "ws25_seed20262932_b192.txt",
+      "trace_sha256": "fdbdeddd522a9896305b30a4167b7c1ac2f17857f916c2e41bc63597881975f4"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262932-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 109,
+      "seed": 20262932,
+      "trace": "ws25_seed20262932_b192.txt",
+      "trace_sha256": "fdbdeddd522a9896305b30a4167b7c1ac2f17857f916c2e41bc63597881975f4"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262932-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 110,
+      "seed": 20262932,
+      "trace": "ws25_seed20262932_b192.txt",
+      "trace_sha256": "fdbdeddd522a9896305b30a4167b7c1ac2f17857f916c2e41bc63597881975f4"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262937-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 111,
+      "seed": 20262937,
+      "trace": "ws25_seed20262937_b192.txt",
+      "trace_sha256": "42615c31c237e0afe6497e13a9ae93f9a18bcb9a0f5702e318291bfde2ef2bb1"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262937-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 112,
+      "seed": 20262937,
+      "trace": "ws25_seed20262937_b192.txt",
+      "trace_sha256": "42615c31c237e0afe6497e13a9ae93f9a18bcb9a0f5702e318291bfde2ef2bb1"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262937-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 113,
+      "seed": 20262937,
+      "trace": "ws25_seed20262937_b192.txt",
+      "trace_sha256": "42615c31c237e0afe6497e13a9ae93f9a18bcb9a0f5702e318291bfde2ef2bb1"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262937-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 114,
+      "seed": 20262937,
+      "trace": "ws25_seed20262937_b192.txt",
+      "trace_sha256": "42615c31c237e0afe6497e13a9ae93f9a18bcb9a0f5702e318291bfde2ef2bb1"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262937-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 115,
+      "seed": 20262937,
+      "trace": "ws25_seed20262937_b192.txt",
+      "trace_sha256": "42615c31c237e0afe6497e13a9ae93f9a18bcb9a0f5702e318291bfde2ef2bb1"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262935-cr-a1-b0",
+      "input_flows": 16576,
+      "mode": "cr-a1-b0",
+      "run_order": 116,
+      "seed": 20262935,
+      "trace": "ws25_seed20262935_b192.txt",
+      "trace_sha256": "13a6538301724364e064d3b32af475e1aa5279cf68e13d7b8a4c1c0ac2841fde"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262935-cr-a0-b0",
+      "input_flows": 16576,
+      "mode": "cr-a0-b0",
+      "run_order": 117,
+      "seed": 20262935,
+      "trace": "ws25_seed20262935_b192.txt",
+      "trace_sha256": "13a6538301724364e064d3b32af475e1aa5279cf68e13d7b8a4c1c0ac2841fde"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262935-fecmp",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "run_order": 118,
+      "seed": 20262935,
+      "trace": "ws25_seed20262935_b192.txt",
+      "trace_sha256": "13a6538301724364e064d3b32af475e1aa5279cf68e13d7b8a4c1c0ac2841fde"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262935-cr-a0-b1",
+      "input_flows": 16576,
+      "mode": "cr-a0-b1",
+      "run_order": 119,
+      "seed": 20262935,
+      "trace": "ws25_seed20262935_b192.txt",
+      "trace_sha256": "13a6538301724364e064d3b32af475e1aa5279cf68e13d7b8a4c1c0ac2841fde"
+    },
+    {
+      "background": 192,
+      "batch": 10,
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261015-020000-ws28-ablation-s20262935-cr-a1-b1",
+      "input_flows": 16576,
+      "mode": "cr-a1-b1",
+      "run_order": 120,
+      "seed": 20262935,
+      "trace": "ws25_seed20262935_b192.txt",
+      "trace_sha256": "13a6538301724364e064d3b32af475e1aa5279cf68e13d7b8a4c1c0ac2841fde"
+    }
+  ],
+  "demand_seeds": [
+    20262921,
+    20262922,
+    20262923,
+    20262924,
+    20262925,
+    20262926,
+    20262927,
+    20262928,
+    20262929,
+    20262930,
+    20262931,
+    20262932,
+    20262933,
+    20262934,
+    20262935,
+    20262936,
+    20262937,
+    20262938,
+    20262939,
+    20262940,
+    20262941,
+    20262942,
+    20262943,
+    20262944
+  ],
+  "input_manifest_sha256": "6c07022c872c6d21b321412f62d8aa70dfd601317ae0f439cd343dfbfdd073a4",
+  "irn": 1,
+  "kind": "WS-28 independent-demand two-factor ablation",
+  "max_concurrent": 12,
+  "modes": [
+    "fecmp",
+    "cr-a0-b0",
+    "cr-a1-b0",
+    "cr-a0-b1",
+    "cr-a1-b1"
+  ],
+  "ns3_seed": 1,
+  "pfc": 0,
+  "randomization_seed": 20262945,
+  "simul_time": "0.01",
+  "source_sha": "955d26b580c9ca9249e66dea68638b22e0e32e2c",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba"
+}
