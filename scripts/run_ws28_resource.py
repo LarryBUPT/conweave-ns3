@@ -10,7 +10,7 @@ import run_ws28_native_resource as native_resource
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PLAN = ROOT / "docs/research/evidence/ws28-resource-plan.json"
+PLAN = ROOT / "docs/research/evidence/ws28-resource-plan-v2.json"
 SUMMARY = ROOT / "results/ws28-resource-summary.json"
 RECEIPTS = ROOT / "results/ws28-resource-receipts.jsonl"
 MODES = tuple(ablation.FACTORS)
@@ -51,8 +51,11 @@ def main():
     if (plan["kind"] != "WS-28 factorial mode resource pilot" or
             len(plan["cells"]) != sum(plan["stages"])):
         raise RuntimeError("WS-28 resource plan is incomplete")
-    for cell in plan["cells"]:
-        if cell["mode"] not in MODES or cell["stage_cap"] not in plan["stages"]:
+    for order, cell in enumerate(plan["cells"], 1):
+        if (cell["mode"] not in MODES or cell["stage_cap"] not in plan["stages"] or
+                cell["seed"] != 20262501 or cell["background"] != 192 or
+                cell["role"] != "resource_only" or cell["run_order"] != order or
+                cell["batch"] != plan["stages"].index(cell["stage_cap"]) + 1):
             raise RuntimeError("WS-28 resource cell differs from plan")
         if ablation.engine.sha(ROOT / "config" / cell["trace"]) != cell["trace_sha256"]:
             raise RuntimeError("WS-28 resource trace changed")

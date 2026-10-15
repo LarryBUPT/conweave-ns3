@@ -10,7 +10,7 @@ WS-27 原始对照源码为 `ee236f27920aa56b3dd562ed971e5abee9e1e659`。原生�
 
 ## 3. 已完成工作
 
-24 个未见需求 seed `20262921～20262944` 的 192 背景档 trace 已固定在[输入清单](../research/evidence/ws28-ablation-inputs.json)，SHA-256 为 `6c07022c872c6d21b321412f62d8aa70dfd601317ae0f439cd343dfbfdd073a4`。因素 A 控制 MoE 评分中的额外背景排队字节；因素 B 控制背景 QP 首包的两候选队列感知改路。六臂技术计划、24 格资源计划及 120 格正式计划生成器已落盘。正式并发须等待资源 pilot，尚未生成正式机器计划。
+24 个未见需求 seed `20262921～20262944` 的 192 背景档 trace 已固定在[输入清单](../research/evidence/ws28-ablation-inputs.json)，SHA-256 为 `6c07022c872c6d21b321412f62d8aa70dfd601317ae0f439cd343dfbfdd073a4`。因素 A 控制 MoE 评分中的额外背景排队字节；因素 B 控制背景 QP 首包的两候选队列感知改路。六臂技术计划、[24 格资源计划 v2](../research/evidence/ws28-resource-plan-v2.json)及 120 格正式计划生成器已落盘。资源计划 v1 缺执行器所需字段，未运行且保留作审计；v2 改用全新 ID。正式并发须等待资源 pilot，尚未生成正式机器计划。
 
 固定 `955d26b…` 的隔离 optimized 构建 `20261015-000001-ws28-build-check` 成功。该 ID 的 8 流 ClassReserve 技术运行与独立 ID `20261015-000010-ws28-technical-cr-a1-b1` 均为 8/8 流完成、资源收据通过，原始 FCT SHA-256 同为 `e3fa403b4768239fdd0e916f333117ecd84177c3d0553eefc923a76cb249fdbc`。后者日志确认 mode 21、A=1、B=1 和队列计数守恒。这是小输入等价性，不是四因素分支全部动态覆盖。
 

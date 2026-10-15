@@ -109,7 +109,7 @@ def technical(source_sha):
     }
 
 
-def resource(source_sha):
+def resource(source_sha, revision=1):
     trace = "ws25_seed20262501_b192.txt"
     trace_sha = sha(ROOT / "config" / trace)
     modes = ("cr-a0-b0", "cr-a1-b0", "cr-a0-b1", "cr-a1-b1")
@@ -118,12 +118,18 @@ def resource(source_sha):
     for cap in stages:
         for repeat in range(1, cap // len(modes) + 1):
             for mode in modes:
-                cells.append({
-                    "id": "20261015-000100-ws28-resource-c{:02d}-r{}-{}".format(cap, repeat, mode),
+                cell = {
+                    "id": "20261015-000{}00-ws28-resource-c{:02d}-r{}-{}".format(
+                        revision, cap, repeat, mode),
                     "mode": mode, "trace": trace, "trace_sha256": trace_sha,
                     "stage_cap": cap, "input_flows": 16576,
                     "expected_tags": {"1": 192, "2": 16384},
-                })
+                }
+                if revision == 2:
+                    cell.update({"seed": 20262501, "background": 192,
+                                 "role": "resource_only", "run_order": len(cells) + 1,
+                                 "batch": stages.index(cap) + 1})
+                cells.append(cell)
     return {
         "kind": "WS-28 factorial mode resource pilot",
         "source_sha": source_sha, "topology_sha256": TOPO_SHA,
@@ -145,10 +151,10 @@ def main():
         raise ValueError("source SHA must be a full lowercase Git commit")
     builders = {"tail": lambda: tail(args.source_sha, args.revision),
                 "technical": lambda: technical(args.source_sha),
-                "resource": lambda: resource(args.source_sha),
+                "resource": lambda: resource(args.source_sha, args.revision),
                 "ablation": lambda: ablation(args.source_sha, args.cap)}
     data = builders[args.kind]()
-    suffix = "-v2" if args.kind == "tail" and args.revision == 2 else ""
+    suffix = "-v2" if args.kind in ("tail", "resource") and args.revision == 2 else ""
     path = EVIDENCE / ("ws28-{}-plan{}.json".format(args.kind, suffix))
     digest = write_once(path, data)
     print(json.dumps({"kind": args.kind, "cells": len(data["cells"]),
