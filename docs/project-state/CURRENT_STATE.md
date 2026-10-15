@@ -1,10 +1,14 @@
 # ConWeave 毕业论文项目状态
 
+## WS-28 当前入口（2026-10-15）
+
+WS-28 仍为 `ACTIVE`。[原生对照报告](../research/ws28-native-comparison-report.md)已从 96 个新增格与 48 个 WS-27 控制格复算通过，共 144 格。两因素源码 SHA 为 `955d26b580c9ca9249e66dea68638b22e0e32e2c`；诊断探针修正版 SHA 为 `ca03c7bccf05120fde219606bbb478e48a467619`。24 个未见 seed 的 192 背景档输入已固定；消融六臂技术计划仅 1/6 格通过，资源 pilot 0/24，正式消融 0/120。三个劣化 seed 的诊断已完成首个 seed `20262725` 的四格探针开关核验，4/12 格逐 raw 通过并与 WS-27 原 FCT 哈希一致；其余两个 seed 未运行。首个 seed 的局部逐跳队列时序尚不能作三个反例的总体归因。具体 ID、哈希、资源、限制和安全恢复步骤见[Handoff 80](../handoffs/2026-10-15-80-ws28-tail-pilot-and-factorial-preflight.md)。当前工具尚不能核验本聊天的 Luna／Sol High 实际模型切换，长时矩阵仍受该工作流门槛约束。下方 10 月 14 日入口保留为历史阶段快照。
+
 ## WS-27 当前入口（2026-10-13）
 
 WS-27 已完成预设的三机制同条件比较。工程正确性 7/7 格、资源阶梯 24/24 格、独立筛选 32/32 格与独立确认 384/384 格均从本地原始结果通过逐格校验；固定仿真源码为 `ee236f27920aa56b3dd562ed971e5abee9e1e659`。192 档中 ClassReserve v1、GuardHash v2、HarmGate v2 的合成 MoE 整批完成时间相对同输入 ECMP 的跨 24 个需求 seed 中位变化分别为 −6.899%、−5.965%、−6.095%。背景 P99 中位变化分别为 +0.552%、+0.340%、+0.064%，均低于本轮 +3% 工程容忍线；单 seed 背景越线数仍为 6/24、6/24、7/24。效应区间、反例、输入和实验 ID 见[确认报告](../research/ws27-confirm-report.md)、[机器摘要](../research/evidence/ws27-confirm-analysis.json)及[Handoff 78](../handoffs/2026-10-13-78-ws27-independent-confirmation.md)。用户随后选定 ClassReserve v1 为唯一论文主机制；此选择开启 WS-28 的解释与基线验证，不改写 WS-27 的原始比较结论。
 
-## WS-28 当前入口（2026-10-14）
+## WS-28 历史入口（2026-10-14）
 
 WS-28 为 ACTIVE，使用独立分支 `feature/ws28-classreserve-explanation`。[执行协议](../research/ws28-classreserve-explanation-protocol.md)列出反例诊断、两种 P95、同输入原生机制基线、组件消融和图表验收。现已只读复算 WS-27 的 48 个 192 档 ECMP/ClassReserve 原始格。跨 24 个 seed 的批完成时间 P95 变化为 −6.888%；每个 seed 内 MoE 单流 FCT P95 的配对变化中位数为 −1.012%。三个整批劣化 seed 的批尾流身份均发生切换；旧 FCT 不包含关键窗口的逐跳队列组成，当前不作单一因果归因。见[阶段报告](../research/ws28-existing-raw-diagnosis.md)和[机器结果](../research/evidence/ws28-existing-raw-analysis.json)。原生基线、组件消融、定向诊断与最终图表仍待完成；WS-28 尚未闭环。
 
