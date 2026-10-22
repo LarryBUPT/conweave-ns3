@@ -29,6 +29,28 @@ def config(path):
                 if line.strip() and not line.startswith('#'))
 
 
+IDENTITY_COLUMNS = ('side tor src dst sport dport first_port packets upstream_ce '
+                    'first_ns last_ns inconsistent unmapped').split()
+
+
+def parse_identity(lines):
+    """Read the exact WS21 schema; reject malformed headers and data rows."""
+    require(bool(lines) and lines[0].split() == IDENTITY_COLUMNS,
+            'identity header schema mismatch')
+    require(len(lines) > 1, 'identity data absent')
+    rows = []
+    for number, line in enumerate(lines[1:], 2):
+        values = line.split()
+        require(len(values) == len(IDENTITY_COLUMNS),
+                'identity column count at line ' + str(number))
+        require(values[0] in ('source', 'destination'),
+                'identity side at line ' + str(number))
+        require(all(value.isascii() and value.isdecimal() for value in values[1:]),
+                'identity non-integer data at line ' + str(number))
+        rows.append(dict(zip(IDENTITY_COLUMNS, [values[0]] + list(map(int, values[1:])))))
+    return rows
+
+
 def check_decision(row, arm):
     n = lambda k: int(row[k])
     valid = row['reason'] in ('equal_ce', 'distinct_ce')
@@ -105,9 +127,10 @@ def verify(folder, cell, limits):
         require('WS06_ROUTING_TAG missing=0' in lines, 'missing workload tag')
         identity = raw / (rawid + '_out_ws21_identity.txt')
         require(identity.exists(), 'identity raw absent')
-        for line in identity.read_text().splitlines():
-            r = line.split(); require(len(r) == 13 and int(r[12]) == 0, 'identity unmapped')
-            if cell['fault'] not in (20, 23): require(int(r[11]) == 0, 'QP path identity inconsistent')
+        for row in parse_identity(identity.read_text(encoding='utf-8').splitlines()):
+            require(row['unmapped'] == 0, 'identity unmapped')
+            if cell['fault'] not in (20, 23):
+                require(row['inconsistent'] == 0, 'QP path identity inconsistent')
         qps = [fields(x) for x in lines if x.startswith('WS29_QP ')]
         transport = [fields(x) for x in lines if x.startswith('WS25_QP ')]
         require(len(qps) == len(transport) == cell['input_flows'], 'QP/transport diagnostic coverage')
