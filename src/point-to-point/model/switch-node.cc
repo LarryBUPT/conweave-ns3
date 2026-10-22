@@ -34,6 +34,26 @@ static bool ClassReserveFamilyMode() {
            (Settings::lb_mode >= 25 && Settings::lb_mode <= 27);
 }
 
+// -1 preserves every historical code path. 0=C0, 1=C1, 2=C2, 3=STATE-only.
+static int32_t ws29_arm = -1;
+static uint32_t ws29_fault = 0, ws29_fault_tor = 0, ws29_fault_port = 0;
+static uint64_t ws29_fault_start = 0, ws29_fault_end = 0;
+static uint64_t ws29_rows = 0, ws29_overflow = 0;
+static std::map<std::string, uint64_t> ws29_counts;
+static bool Ws29Row() {
+    if (ws29_rows >= 500000) { ++ws29_overflow; return false; }
+    ++ws29_rows;
+    return true;
+}
+
+void SwitchNode::ConfigureWs29(int32_t arm, uint32_t fault, uint32_t tor,
+                              uint32_t port, uint64_t startNs, uint64_t endNs) {
+    ws29_arm = arm;
+    ws29_fault = fault; ws29_fault_tor = tor; ws29_fault_port = port;
+    ws29_fault_start = startNs; ws29_fault_end = endNs;
+}
+
+
 static bool ClassReserveBackgroundWeight() {
     return Settings::lb_mode != 25 && Settings::lb_mode != 27;
 }
@@ -237,6 +257,21 @@ struct Ws21PeerInfo {
     uint32_t nodeId, port, nodeType;
 };
 
+static void Ws29ControlEvent(Ptr<const Packet> p, uint32_t node, uint32_t port,
+                             const char *event) {
+    if (ws29_arm < 0) return;
+    CustomHeader ch(CustomHeader::L2_Header | CustomHeader::L3_Header | CustomHeader::L4_Header);
+    p->PeekHeader(ch);
+    if (ch.l3Prot != Ws21FeedbackHeader::IP_PROTOCOL) return;
+    const uint8_t type = Ws21HeartbeatPacketType(p);
+    const std::string kind = type == 2 ? "hello" : (type == 3 ? "ack" : "state");
+    ++ws29_counts[kind + "_" + event + "_packets"];
+    ws29_counts[kind + "_" + event + "_bytes"] += p->GetSize();
+    if (Ws29Row()) std::cout << "WS29_CONTROL time_ns=" << Simulator::Now().GetNanoSeconds()
+        << " switch=" << node << " port=" << port << " event=" << event
+        << " type=" << kind << " bytes=" << p->GetSize() << std::endl;
+}
+
 static Ws21PeerInfo Ws21Peer(Ptr<NetDevice> device) {
     Ptr<Channel> channel = device->GetChannel();
     if (!channel || channel->GetNDevices() != 2)
@@ -319,6 +354,28 @@ void SwitchNode::ConfigureWs21Heartbeat(bool enabled, uint32_t intervalNs,
     ws21_heartbeat_fault_port = faultPort;
     ws21_heartbeat_fault_start_ns = faultStartNs;
     ws21_heartbeat_fault_end_ns = faultEndNs;
+}
+
+void SwitchNode::RestartWs29Session() {
+    NS_ASSERT_MSG(ws29_arm >= 0, "WS-29 restart requires an enabled experiment");
+    NS_ASSERT_MSG(m_ws29StateSession < std::numeric_limits<uint32_t>::max(),
+                  "STATE session exhausted; fail closed instead of reusing an identity");
+    ++m_ws29StateSession;
+    m_ws29RestartNs = Simulator::Now().GetNanoSeconds();
+    m_ws21Feedback.clear();
+    m_ws21FeedbackWindows.clear();
+    m_ws21FeedbackSequence.clear();
+    for (auto &item : m_ws21HeartbeatPorts) {
+        Ws21HeartbeatPort &state = item.second;
+        const bool active = state.active;
+        if (active) --ws21_heartbeat_active;
+        state.active = false;
+        state.outstanding = state.missed = 0;
+        // Touch increments epoch, invalidating every scheduled old Tick.
+        if (active) TouchWs21Heartbeat(item.first);
+    }
+    if (Ws29Row()) std::cout << "WS29_SESSION time_ns=" << m_ws29RestartNs
+        << " switch=" << m_id << " session=" << m_ws29StateSession << std::endl;
 }
 
 void SwitchNode::ConfigureWs21Identity(bool enabled) { ws21_identity_enabled = enabled; }
@@ -438,6 +495,7 @@ void SwitchNode::AccumulateWs21Feedback(uint32_t sourceTor, uint32_t candidatePo
     if (!window.samplePackets) {
         window.sourceHostIp = ch.sip;
         window.destinationHostIp = ch.dip;
+        window.startNs = nowNs;
     }
     ++window.samplePackets;
     if (ce) ++window.cePackets;
@@ -445,11 +503,16 @@ void SwitchNode::AccumulateWs21Feedback(uint32_t sourceTor, uint32_t candidatePo
     if (!window.scheduled) {
         window.scheduled = true;
         Simulator::Schedule(NanoSeconds(ws21_feedback_interval_ns), &SwitchNode::FlushWs21Feedback,
-                            this, sourceTor, candidatePort);
+                            this, sourceTor, candidatePort, m_ws29StateSession);
     }
 }
 
-void SwitchNode::FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort) {
+void SwitchNode::FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort,
+                                  uint32_t session) {
+    if (session != m_ws29StateSession) {
+        if (ws29_arm >= 0) ++ws29_counts["state_old_timer_ignored"];
+        return; // old session timer owns no new window
+    }
     const auto key = std::make_pair(sourceTor, candidatePort);
     auto found = m_ws21FeedbackWindows.find(key);
     if (found == m_ws21FeedbackWindows.end()) return;
@@ -462,10 +525,21 @@ void SwitchNode::FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort) {
     report.windowEndNs = window.endNs;
     report.cePackets = window.cePackets;
     report.samplePackets = window.samplePackets;
+    if (ws29_arm >= 0) {
+        report.version = 3;
+        report.session = session;
+        report.windowStartNs = window.startNs;
+    }
     uint32_t &sequence = m_ws21FeedbackSequence[key];
-    if (sequence == std::numeric_limits<uint32_t>::max())
-        NS_FATAL_ERROR("WS-21 compact feedback sequence exhausted");
-    report.sequence = ++sequence;
+    if (sequence == std::numeric_limits<uint32_t>::max()) {
+        if (ws29_arm < 0) NS_FATAL_ERROR("WS-21 compact feedback sequence exhausted");
+        // Session rollover invalidates old timers; this window is already copied.
+        RestartWs29Session();
+        ++ws29_counts["state_sequence_rollover"];
+        report.session = m_ws29StateSession;
+        m_ws21FeedbackSequence[key] = 0;
+        report.sequence = ++m_ws21FeedbackSequence[key];
+    } else report.sequence = ++sequence;
     const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
     if (nowNs < window.endNs ||
         nowNs - window.endNs > std::numeric_limits<uint16_t>::max())
@@ -493,6 +567,13 @@ void SwitchNode::FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort) {
                     CustomHeader::L4_Header);
     packet->PeekHeader(ch);
     ++ws21_feedback_generated;
+    if (ws29_arm >= 0 && Ws29Row())
+        std::cout << "WS29_STATE_SEND time_ns=" << nowNs << " switch=" << m_id
+                  << " source_tor=" << sourceTor << " candidate=" << candidatePort
+                  << " session=" << report.session << " sequence=" << report.sequence
+                  << " start_ns=" << window.startNs << " end_ns=" << window.endNs
+                  << " ce=" << window.cePackets << " samples=" << window.samplePackets
+                  << " bytes=" << packet->GetSize() << std::endl;
     SendToDevContinue(packet, ch);
 }
 
@@ -511,11 +592,12 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
     PppHeader ppp;
     Ipv4Header ipv4;
     Ws21FeedbackHeader report;
-    if (p->GetSize() < ppp.GetSerializedSize() + ipv4.GetSerializedSize() +
-                           report.GetSerializedSize()) {
+    if (p->GetSize() != ppp.GetSerializedSize() + ipv4.GetSerializedSize() +
+                           (ws29_arm >= 0 ? 38U : 26U)) {
         ++ws21_feedback_rejected;
         return true;
     }
+    if (ws29_arm >= 0) report.version = 3;
     if (p->RemoveHeader(ppp) != ppp.GetSerializedSize() ||
         p->RemoveHeader(ipv4) != ipv4.GetSerializedSize() ||
         p->RemoveHeader(report) != report.GetSerializedSize()) {
@@ -524,7 +606,8 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
     }
 
     const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
-    if (!report.IsValid() || ipv4.GetProtocol() != Ws21FeedbackHeader::IP_PROTOCOL ||
+    if (!report.IsValid() || report.version != (ws29_arm >= 0 ? 3 : 2) ||
+        ipv4.GetProtocol() != Ws21FeedbackHeader::IP_PROTOCOL ||
         ipv4.GetPayloadSize() != report.GetSerializedSize() ||
         ipv4.GetSource().Get() != ch.sip || ipv4.GetDestination().Get() != ch.dip ||
         report.GetGeneratedNs() > nowNs) {
@@ -533,6 +616,11 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
     }
     const uint64_t ageNs = nowNs - report.GetGeneratedNs();
     const uint64_t sampleAgeNs = nowNs - report.windowEndNs;
+    if (ws29_arm >= 0 && report.windowStartNs < m_ws29RestartNs) {
+        ++ws21_feedback_rejected;
+        ++ws29_counts["state_before_receiver_restart"];
+        return true;
+    }
     ws21_feedback_age_sum_ns += ageNs;
     ws21_feedback_age_max_ns = std::max(ws21_feedback_age_max_ns, ageNs);
     ws21_feedback_sample_age_sum_ns += sampleAgeNs;
@@ -557,26 +645,47 @@ bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
     }
 
     const auto key = std::make_pair(remoteDestination->second, report.candidatePort);
+    if (ws29_arm >= 0 && !m_ws29StateHighWater.count(key) &&
+        m_ws29StateHighWater.size() >= WS21_FEEDBACK_MAX_KEYS_PER_TOR) {
+        ++ws21_feedback_rejected;
+        return true;
+    }
     if (!m_ws21Feedback.count(key) && m_ws21Feedback.size() >= WS21_FEEDBACK_MAX_KEYS_PER_TOR) {
         ++ws21_feedback_rejected;
         return true;
     }
     Ws21FeedbackState &state = m_ws21Feedback[key];
-    if (report.sequence <= state.sequence) {
+    if (ws29_arm >= 0 && report.session < m_ws29StateHighWater[key]) {
+        ++ws21_feedback_rejected;
+        ++ws29_counts["state_old_session"];
+        return true;
+    }
+    const bool sameSession = ws29_arm < 0 || report.session == state.session;
+    if (sameSession && report.sequence <= state.sequence) {
         ++ws21_feedback_rejected;
         return true;
     }
-    if (state.sequence && report.sequence > state.sequence + 1)
+    if (sameSession && state.sequence && report.sequence > state.sequence + 1)
         ws21_feedback_sequence_gaps += report.sequence - state.sequence - 1;
     state.sequence = report.sequence;
     state.windowEndNs = report.windowEndNs;
     state.generatedNs = report.GetGeneratedNs();
     state.cePackets = report.cePackets;
     state.samplePackets = report.samplePackets;
+    state.session = report.session;
+    if (ws29_arm >= 0) m_ws29StateHighWater[key] = report.session;
+    state.windowStartNs = report.windowStartNs;
     ++ws21_feedback_delivered;
     ws21_feedback_bytes += packetBytes;
     ws21_feedback_cache_peak = std::max<uint64_t>(ws21_feedback_cache_peak,
                                                    m_ws21Feedback.size());
+    if (ws29_arm >= 0 && Ws29Row())
+        std::cout << "WS29_STATE_CACHE time_ns=" << nowNs << " switch=" << m_id
+                  << " destination=" << remoteDestination->second
+                  << " candidate=" << report.candidatePort << " session=" << state.session
+                  << " sequence=" << state.sequence << " start_ns=" << state.windowStartNs
+                  << " end_ns=" << state.windowEndNs << " ce=" << state.cePackets
+                  << " samples=" << state.samplePackets << " bytes=" << packetBytes << std::endl;
     return true;
 }
 
@@ -641,7 +750,11 @@ void SwitchNode::TouchWs21Heartbeat(uint32_t port) {
 void SwitchNode::TickWs21Heartbeat(uint32_t port, uint32_t epoch) {
     auto found = m_ws21HeartbeatPorts.find(port);
     if (found == m_ws21HeartbeatPorts.end() || !found->second.active ||
-        found->second.epoch != epoch) return;
+        found->second.epoch != epoch) {
+        if (ws29_arm >= 0 && found != m_ws21HeartbeatPorts.end() && found->second.epoch != epoch)
+            ++ws29_counts["hb_old_timer_ignored"];
+        return;
+    }
     Ws21HeartbeatPort &state = found->second;
     const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
     const uint64_t idleNs = 4ULL * ws21_heartbeat_interval_ns;
@@ -671,12 +784,24 @@ void SwitchNode::TickWs21Heartbeat(uint32_t port, uint32_t epoch) {
                                  state.nextSequence);
     }
     if (m_devices[port]->IsLinkUp()) {
-        if (state.nextSequence == std::numeric_limits<uint32_t>::max())
-            NS_FATAL_ERROR("WS-21 heartbeat sequence exhausted");
+        if (state.nextSequence == std::numeric_limits<uint32_t>::max()) {
+            if (ws29_arm < 0) NS_FATAL_ERROR("WS-21 heartbeat sequence exhausted");
+            state.active = false;
+            --ws21_heartbeat_active;
+            TouchWs21Heartbeat(port);
+            ++ws29_counts["hb_sequence_rollover"];
+            return;
+        }
         const uint32_t sequence = ++state.nextSequence;
         if (SendWs21Heartbeat(port, Ws21HeartbeatHeader::HELLO, epoch, sequence)) {
             state.outstanding = sequence;
             state.sentNs = nowNs;
+            if (ws29_arm >= 0 && ws29_fault >= 3 && ws29_fault <= 8 &&
+                m_id == ws29_fault_tor && port == ws29_fault_port &&
+                nowNs >= ws29_fault_start && nowNs < ws29_fault_end &&
+                !ws29_counts["fault_injected"])
+                Simulator::Schedule(NanoSeconds(1), &SwitchNode::Ws29Fault,
+                                    this, ws29_fault, port);
         }
     }
     Simulator::Schedule(NanoSeconds(ws21_heartbeat_interval_ns),
@@ -696,7 +821,7 @@ bool SwitchNode::ReceiveWs21Heartbeat(Ptr<NetDevice> device, Ptr<Packet> p,
     Ptr<Packet> copy = p->Copy();
     copy->RemoveHeader(ppp);
     copy->RemoveHeader(ipv4);
-    if (ipv4.GetPayloadSize() == Ws21FeedbackHeader::SERIALIZED_SIZE &&
+    if (ipv4.GetPayloadSize() == (ws29_arm >= 0 ? 38U : 26U) &&
         ws21_feedback_enabled)
         return false;  // Existing multi-hop STATE report.
     if (ipv4.GetPayloadSize() != Ws21HeartbeatHeader::SERIALIZED_SIZE ||
@@ -719,6 +844,21 @@ bool SwitchNode::ReceiveWs21Heartbeat(Ptr<NetDevice> device, Ptr<Packet> p,
     const bool inFaultWindow = ws21_heartbeat_fault_mode &&
         nowNs >= ws21_heartbeat_fault_start_ns &&
         nowNs < ws21_heartbeat_fault_end_ns;
+    const bool ws29Single = ws29_arm >= 0 && (ws29_fault == 1 || ws29_fault == 2) &&
+        nowNs >= ws29_fault_start && nowNs < ws29_fault_end &&
+        !ws29_counts["fault_injected"];
+    if (ws29Single &&
+        ((ws29_fault == 1 && heartbeat.type == Ws21HeartbeatHeader::HELLO &&
+          peer.nodeId == ws29_fault_tor && peer.port == ws29_fault_port) ||
+         (ws29_fault == 2 && heartbeat.type == Ws21HeartbeatHeader::ACK &&
+          m_id == ws29_fault_tor && port == ws29_fault_port))) {
+        ++ws29_counts["fault_injected"];
+        ++ws21_heartbeat_injected_drops;
+        RecordWs21HeartbeatEvent(ws29_fault_tor, ws29_fault_port,
+            ws29_fault == 1 ? "single_drop_hello" : "single_drop_ack",
+            heartbeat.epoch, heartbeat.sequence);
+        return true;
+    }
     if (heartbeat.type == Ws21HeartbeatHeader::HELLO) {
         if (inFaultWindow && ws21_heartbeat_fault_mode == 1 &&
             peer.nodeId == ws21_heartbeat_fault_tor &&
@@ -765,7 +905,172 @@ bool SwitchNode::ReceiveWs21Heartbeat(Ptr<NetDevice> device, Ptr<Packet> p,
                                  heartbeat.sequence);
     }
     ++ws21_heartbeat_ack_received;
+    if (ws29_arm >= 0 && Ws29Row())
+        std::cout << "WS29_ACK time_ns=" << nowNs << " switch=" << m_id
+                  << " port=" << port << " epoch=" << heartbeat.epoch
+                  << " sequence=" << heartbeat.sequence << " rtt_ns=" << rttNs << std::endl;
     return true;
+}
+
+void SwitchNode::Ws29LinkState(uint32_t port, bool up) {
+    NS_ASSERT_MSG(ws29_arm >= 0 && port > 0 && port < m_devices.size(), "invalid link target");
+    Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[port]);
+    NS_ASSERT_MSG(dev && Ws21Peer(dev).nodeType == 1, "switch-switch faults only");
+    if (up) dev->Ws29BringUp();
+    else dev->Ws29TakeDown();
+    // No route recomputation: this experiment changes the directly attached link.
+    // All arms filter live physical ports and invalidate cached QPs identically.
+    for (auto it = m_ws21Feedback.begin(); it != m_ws21Feedback.end(); ) {
+        if (it->first.second == port) it = m_ws21Feedback.erase(it);
+        else ++it;
+    }
+    auto h = m_ws21HeartbeatPorts.find(port);
+    if (h != m_ws21HeartbeatPorts.end()) {
+        const bool wasActive = h->second.active;
+        h->second.active = false;
+        if (wasActive) --ws21_heartbeat_active;
+        h->second.lastAckNs = 0;
+        h->second.outstanding = 0;
+        h->second.unknown = !up;
+        if (up) TouchWs21Heartbeat(port);
+    }
+    if (Ws29Row()) std::cout << "WS29_LINK time_ns=" << Simulator::Now().GetNanoSeconds()
+        << " switch=" << m_id << " port=" << port << " up=" << int(up) << std::endl;
+}
+
+void SwitchNode::Ws29Fault(uint32_t fault, uint32_t port) {
+    NS_ASSERT_MSG(ws29_arm >= 0, "WS-29 faults are disabled for historical runs");
+    if (fault == 23 || fault == 24) {
+        for (uint32_t i = 1; i < m_devices.size(); ++i)
+            if (!m_ws21HostPorts.count(i)) Ws29Fault(fault == 23 ? 21 : 22, i);
+        return;
+    }
+    if (fault == 20 || fault == 21 || fault == 22) {
+        Ptr<NetDevice> dev = m_devices.at(port);
+        const auto peer = Ws21Peer(dev);
+        Ptr<Channel> channel = dev->GetChannel();
+        Ptr<SwitchNode> other;
+        for (uint32_t i = 0; i < channel->GetNDevices(); ++i)
+            if (channel->GetDevice(i) != dev)
+                other = DynamicCast<SwitchNode>(channel->GetDevice(i)->GetNode());
+        NS_ASSERT_MSG(other, "missing switch neighbor");
+        Ws29LinkState(port, fault == 22);
+        other->Ws29LinkState(peer.port, fault == 22);
+        ++ws29_counts["physical_link_events"];
+        return;
+    }
+    if (fault == 9) { RestartWs29Session(); ++ws29_counts["session_restart_injected"]; return; }
+    if (fault == 11) {
+        for (auto &item : m_ws21FeedbackSequence)
+            item.second = std::numeric_limits<uint32_t>::max();
+        ++ws29_counts["state_sequence_boundary_injected"];
+        return;
+    }
+    if (fault == 10) {
+        NS_ASSERT_MSG(!m_ws21Feedback.empty(), "old STATE test needs an actual cached report");
+        const auto key = m_ws21Feedback.begin()->first;
+        const auto previous = m_ws21Feedback.begin()->second;
+        uint32_t sourceHost = 0, remoteHost = 0;
+        bool haveSource = false, haveRemote = false;
+        for (const auto &host : ws21_host_tor) {
+            if (host.second == m_id) { sourceHost = host.first; haveSource = true; }
+            if (host.second == key.first) { remoteHost = host.first; haveRemote = true; }
+        }
+        NS_ASSERT_MSG(haveSource && haveRemote && previous.session < UINT32_MAX,
+                      "STATE test identity/session missing");
+        const auto inject = [&](uint32_t session, uint32_t sequence) {
+            Ws21FeedbackHeader h; h.version = 3; h.session = session; h.sequence = sequence;
+            h.candidatePort = key.second; h.samplePackets = 1; h.cePackets = 0;
+            h.windowStartNs = h.windowEndNs = Simulator::Now().GetNanoSeconds();
+            Ptr<Packet> p = Create<Packet>(); p->AddHeader(h);
+            Ipv4Header ip; ip.SetSource(Ipv4Address(remoteHost));
+            ip.SetDestination(Ipv4Address(sourceHost)); ip.SetProtocol(Ws21FeedbackHeader::IP_PROTOCOL);
+            ip.SetTtl(64); ip.SetPayloadSize(p->GetSize()); p->AddHeader(ip);
+            PppHeader ppp; ppp.SetProtocol(0x0021); p->AddHeader(ppp);
+            CustomHeader ch(CustomHeader::L2_Header | CustomHeader::L3_Header | CustomHeader::L4_Header);
+            p->PeekHeader(ch); ReceiveWs21Feedback(p, ch);
+        };
+        const uint64_t before = ws21_feedback_rejected;
+        inject(previous.session + 1, 1);
+        inject(previous.session, previous.sequence);
+        ++ws29_counts["synthetic_state_test"];
+        if (Ws29Row()) std::cout << "WS29_SYNTHETIC time_ns=" << Simulator::Now().GetNanoSeconds()
+            << " fault=10 rejected_delta=" << ws21_feedback_rejected - before << std::endl;
+        return;
+    }
+    if (fault >= 15 && fault <= 17) {
+        // Explicit oracle injection is ONLY permitted in labelled state-machine cells.
+        // The runner must reject these fault modes in any natural-demand effect cell.
+        const uint64_t now = Simulator::Now().GetNanoSeconds();
+        for (const auto &route : m_rtTable) {
+            auto dest = ws21_host_tor.find(route.first);
+            if (dest == ws21_host_tor.end() || dest->second == m_id) continue;
+            for (size_t i = 0; i < route.second.size(); ++i) {
+                const uint32_t candidate = route.second[i];
+                auto key = std::make_pair(dest->second, candidate);
+                if (fault == 17) { m_ws21Feedback.erase(key); continue; }
+                Ws21FeedbackState &s = m_ws21Feedback[key];
+                s.session = 1; s.sequence = 1; s.samplePackets = 10;
+                s.cePackets = i % 2 ? 0 : 10;
+                s.windowStartNs = s.windowEndNs = fault == 16 ? now - 20001 : now;
+                s.generatedNs = s.windowEndNs;
+                TouchWs21Heartbeat(candidate);
+                auto &h = m_ws21HeartbeatPorts[candidate];
+                h.lastAckNs = now; h.unknown = false;
+            }
+        }
+        ++ws29_counts["synthetic_state_test"];
+        if (Ws29Row()) std::cout << "WS29_SYNTHETIC time_ns=" << now
+            << " fault=" << fault << " switch=" << m_id << std::endl;
+        return;
+    }
+    if (fault < 3 || fault > 8 || ws29_counts["fault_injected"]) return;
+    auto found = m_ws21HeartbeatPorts.find(port);
+    if (found == m_ws21HeartbeatPorts.end() || !found->second.outstanding) return;
+    Ws21HeartbeatHeader h;
+    h.type = Ws21HeartbeatHeader::ACK;
+    h.epoch = found->second.epoch;
+    h.sequence = found->second.outstanding;
+    const auto peer = Ws21Peer(m_devices[port]);
+    const auto inject = [&](uint32_t ingress, uint32_t sender) {
+        Ptr<Packet> packet = Create<Packet>();
+        packet->AddHeader(h);
+        Ipv4Header ip;
+        ip.SetSource(Ipv4Address(sender)); ip.SetDestination(Ipv4Address(m_id + 1));
+        ip.SetProtocol(Ws21FeedbackHeader::IP_PROTOCOL); ip.SetTtl(1);
+        ip.SetPayloadSize(packet->GetSize()); packet->AddHeader(ip);
+        PppHeader ppp; ppp.SetProtocol(0x0021); packet->AddHeader(ppp);
+        CustomHeader ch(CustomHeader::L2_Header | CustomHeader::L3_Header | CustomHeader::L4_Header);
+        packet->PeekHeader(ch);
+        ReceiveWs21Heartbeat(m_devices[ingress], packet, ch);
+    };
+    const uint64_t rejected = ws21_heartbeat_rejected;
+    const uint64_t accepted = ws21_heartbeat_ack_received;
+    const uint32_t outstanding = found->second.outstanding;
+    if (fault == 3) {
+        NS_ASSERT_MSG(outstanding > 1, "old-sequence test requires a real earlier probe");
+        h.sequence = outstanding - 1;
+    }
+    if (fault == 4) { inject(port, peer.nodeId + 1); } // then duplicate the accepted ACK
+    if (fault == 5) { ++h.sequence; } // out-of-order future reply cannot confirm current probe
+    if (fault == 8) {
+        // Replay a valid old-session reply after a real local session restart.
+        RestartWs29Session();
+    }
+    uint32_t ingress = port;
+    if (fault == 7) {
+        for (uint32_t i = 1; i < m_devices.size(); ++i)
+            if (i != port && !m_ws21HostPorts.count(i)) { ingress = i; break; }
+        NS_ASSERT_MSG(ingress != port, "wrong-port test needs a second switch uplink");
+    }
+    inject(ingress, fault == 6 ? peer.nodeId + 2 : peer.nodeId + 1);
+    ++ws29_counts["fault_injected"];
+    if (Ws29Row()) std::cout << "WS29_ACK_INJECT time_ns=" << Simulator::Now().GetNanoSeconds()
+        << " fault=" << fault << " switch=" << m_id << " port=" << port
+        << " rejected_delta=" << ws21_heartbeat_rejected - rejected
+        << " accepted_delta=" << ws21_heartbeat_ack_received - accepted
+        << " outstanding_before=" << outstanding
+        << " outstanding_after=" << found->second.outstanding << std::endl;
 }
 
 void SwitchNode::WriteWs21Identity(FILE *out) const {
@@ -784,6 +1089,12 @@ void SwitchNode::WriteWs21Identity(FILE *out) const {
 }
 
 void SwitchNode::PrintWorkloadTagCounts() {
+    if (ws29_arm >= 0) {
+        std::cout << "WS29_SUMMARY arm=" << ws29_arm << " rows=" << ws29_rows
+                  << " overflow=" << ws29_overflow << std::endl;
+        for (const auto &item : ws29_counts)
+            std::cout << "WS29_COUNT name=" << item.first << " count=" << item.second << std::endl;
+    }
     if (ws21_heartbeat_enabled)
         std::cout << "WS21_HEARTBEAT hello_generated=" << ws21_heartbeat_hello_generated
                   << " ack_generated=" << ws21_heartbeat_ack_generated
@@ -1172,6 +1483,69 @@ static bool Ws25DiagnosticEnabled() {
 // candidates, counting queued background bytes twice.  This sees only the
 // local egress queue; it cannot avoid the unique destination-host port or infer
 // downstream congestion.
+uint32_t SwitchNode::ChooseWs29Feedback(const CustomHeader &ch, uint32_t first,
+                                        uint32_t second, uint32_t local, bool background) {
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    auto destination = ws21_host_tor.find(ch.dip);
+    if (destination == ws21_host_tor.end() || destination->second == m_id) return local;
+    const uint32_t tor = destination->second;
+    const auto a = m_ws21Feedback.find(std::make_pair(tor, first));
+    const auto b = m_ws21Feedback.find(std::make_pair(tor, second));
+    const Ws21FeedbackState empty;
+    const auto &sa = a == m_ws21Feedback.end() ? empty : a->second;
+    const auto &sb = b == m_ws21Feedback.end() ? empty : b->second;
+    const auto valid = [&](uint32_t port, const Ws21FeedbackState &s) -> std::string {
+        if (!s.samplePackets) return "no_sample";
+        if (s.windowEndNs > now || now - s.windowEndNs > 20000) return "stale";
+        if (s.windowStartNs < m_ws29RestartNs) return "old_session";
+        if (!m_devices[port]->IsLinkUp()) return "link_down";
+        auto hb = m_ws21HeartbeatPorts.find(port);
+        if (hb == m_ws21HeartbeatPorts.end() || !hb->second.active ||
+            !hb->second.lastAckNs) return "unconfirmed";
+        if (hb->second.unknown) return "unknown";
+        if (now - hb->second.lastAckNs > 4ULL * ws21_heartbeat_interval_ns) return "hb_stale";
+        return "valid";
+    };
+    const std::string va = valid(first, sa), vb = valid(second, sb);
+    std::string reason = "off";
+    uint32_t proposed = local;
+    bool eligible = false;
+    if (ws29_arm == 1 || ws29_arm == 2) {
+        if (first == second) reason = "same_candidate";
+        else if (va != "valid") reason = "a_" + va;
+        else if (vb != "valid") reason = "b_" + vb;
+        else {
+            eligible = true;
+            const uint64_t ca = uint64_t(sa.cePackets) * sb.samplePackets;
+            const uint64_t cb = uint64_t(sb.cePackets) * sa.samplePackets;
+            reason = ca == cb ? "equal_ce" : "distinct_ce";
+            if (ca != cb) proposed = ca < cb ? first : second;
+        }
+    }
+    const uint32_t chosen = ws29_arm == 2 ? proposed : local;
+    ++ws29_counts["decisions"];
+    ++ws29_counts[reason];
+    if (eligible) ++ws29_counts["two_fresh"];
+    if (proposed != local) ++ws29_counts["would_change"];
+    if (chosen != local) ++ws29_counts["adopted_changed"];
+    if (Ws29Row())
+        std::cout << "WS29_DECISION time_ns=" << now << " switch=" << m_id
+                  << " src=" << Settings::hostIp2IdMap.at(ch.sip)
+                  << " dst=" << Settings::hostIp2IdMap.at(ch.dip)
+                  << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
+                  << " tag=" << (background ? 1 : 2) << " first=" << first
+                  << " second=" << second << " local=" << local << " chosen=" << chosen
+                  << " proposed=" << proposed << " reason=" << reason
+                  << " a_status=" << va << " b_status=" << vb
+                  << " a_session=" << sa.session << " b_session=" << sb.session
+                  << " a_sequence=" << sa.sequence << " b_sequence=" << sb.sequence
+                  << " a_start=" << sa.windowStartNs << " a_end=" << sa.windowEndNs
+                  << " b_start=" << sb.windowStartNs << " b_end=" << sb.windowEndNs
+                  << " a_ce=" << sa.cePackets << " a_samples=" << sa.samplePackets
+                  << " b_ce=" << sb.cePackets << " b_samples=" << sb.samplePackets << std::endl;
+    return chosen;
+}
+
 uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &ch,
                                       const std::vector<int> &nexthops) {
     WorkloadTag label;
@@ -1192,6 +1566,12 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
     if (background) {
         ++classreserve_background_packets;
         auto it = m_classReserveBackgroundPort.find(flow);
+        if (ws29_arm >= 0 && it != m_classReserveBackgroundPort.end() &&
+            std::find(nexthops.begin(), nexthops.end(), it->second) == nexthops.end()) {
+            m_classReserveBackgroundPort.erase(it);
+            it = m_classReserveBackgroundPort.end();
+            ++ws29_counts["qp_invalidated"];
+        }
         if (it != m_classReserveBackgroundPort.end()) {
             ++classreserve_background_reused;
             if (m_isToR && m_isToR_hostIP.count(ch.sip))
@@ -1201,6 +1581,12 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
     } else {
         ++classreserve_moe_packets;
         auto it = m_classReserveMoePort.find(flow);
+        if (ws29_arm >= 0 && it != m_classReserveMoePort.end() &&
+            std::find(nexthops.begin(), nexthops.end(), it->second) == nexthops.end()) {
+            m_classReserveMoePort.erase(it);
+            it = m_classReserveMoePort.end();
+            ++ws29_counts["qp_invalidated"];
+        }
         if (it != m_classReserveMoePort.end()) {
             ++classreserve_moe_flow_reused;
             if (m_isToR && m_isToR_hostIP.count(ch.sip))
@@ -1250,6 +1636,8 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
             }
         }
     }
+    if (ws29_arm >= 0 && m_isToR && m_isToR_hostIP.count(ch.sip))
+        chosen = ChooseWs29Feedback(ch, first, second, chosen, background);
     const int ws28Target = Ws28TailTargetIndex(ch);
     if (!background && ws28Target >= 0 && m_isToR && m_isToR_hostIP.count(ch.sip) &&
         Ws28TailReserveRow()) {
@@ -1629,11 +2017,25 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         std::cout << "[ERROR] Sw(" << m_id << ")," << PARSE_FIVE_TUPLE(ch)
                   << "No matching entry, so drop this packet at SwitchNode (l3Prot:" << ch.l3Prot
                   << ")" << std::endl;
+        if (ws29_arm >= 0) { ++ws29_counts["no_route_drop"]; return -1; }
         assert(false);
     }
 
     // entry found
-    const auto &nexthops = entry->second;
+    std::vector<int> usable;
+    if (ws29_arm >= 0) {
+        for (int port : entry->second)
+            if (port > 0 && uint32_t(port) < m_devices.size() && m_devices[port]->IsLinkUp())
+                usable.push_back(port);
+        if (usable.empty()) {
+            ++ws29_counts["no_live_port_drop"];
+            ws29_counts["no_live_port_drop_bytes"] += p->GetSize();
+            if (Ws29Row()) std::cout << "WS29_DROP time_ns=" << Simulator::Now().GetNanoSeconds()
+                << " switch=" << m_id << " reason=no_live_port bytes=" << p->GetSize() << std::endl;
+            return -1;
+        }
+    }
+    const auto &nexthops = ws29_arm >= 0 ? usable : entry->second;
     bool control_pkt =
         (ch.l3Prot == 0xFF || ch.l3Prot == 0xFE || ch.l3Prot == 0xFD || ch.l3Prot == 0xFC ||
          ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL);
@@ -1671,7 +2073,14 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         case 25:
         case 26:
         case 27:
-            return DoLbClassReserve(p, ch, nexthops);
+        {
+            const uint32_t port = DoLbClassReserve(p, ch, nexthops);
+            if (ws29_arm >= 0 && ch.l3Prot == 0x11 && m_isToR && m_isToR_hostIP.count(ch.sip)) {
+                ObserveWs21Source(ch, port);
+                TouchWs21Heartbeat(port);
+            }
+            return port;
+        }
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
         case 23:
@@ -1863,6 +2272,7 @@ void SwitchNode::CheckGuardQueue(uint32_t ifIndex) {
 }
 
 void SwitchNode::SwitchNotifyEnqueue(uint32_t ifIndex, Ptr<const Packet> p) {
+    Ws29ControlEvent(p, m_id, ifIndex, "enqueue");
     auto ws28Hit = ws28_tail_queued.find(std::make_pair(m_id, p->GetUid()));
     if (ws28Hit != ws28_tail_queued.end() && Ws28TailReserveRow()) {
         const Ws28TailQueued &item = ws28Hit->second;
@@ -1885,6 +2295,7 @@ void SwitchNode::SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p
 
 void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
                                        Ptr<const Packet> p, bool wasQueued) {
+    Ws29ControlEvent(p, m_id, ifIndex, wasQueued ? "queued_drop" : "queue_reject");
     auto ws28Hit = ws28_tail_queued.find(std::make_pair(m_id, p->GetUid()));
     if (ws28Hit != ws28_tail_queued.end()) {
         const uint32_t target = ws28Hit->second.target;
@@ -1915,6 +2326,7 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 }
 
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
+    Ws29ControlEvent(p, m_id, ifIndex, "dequeue");
     auto ws28Hit = ws28_tail_queued.find(std::make_pair(m_id, p->GetUid()));
     if (ws28Hit != ws28_tail_queued.end()) {
         const Ws28TailQueued item = ws28Hit->second;

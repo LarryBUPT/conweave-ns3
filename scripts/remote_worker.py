@@ -514,6 +514,12 @@ def execute(experiment_id):
                '--netload', str(params['netload']), '--bw', str(params['bw']),
                '--buffer', str(params.get('buffer', 9)),
                '--topo', params['topo'], '--cdf', params['cdf']]
+    command.extend(['--ws29-arm', str(params.get('ws29_arm', -1))])
+    command.extend(['--ws29-fault', str(params.get('ws29_fault', 0))])
+    command.extend(['--ws29-fault-tor', str(params.get('ws29_fault_tor', 0))])
+    command.extend(['--ws29-fault-port', str(params.get('ws29_fault_port', 0))])
+    command.extend(['--ws29-fault-start-ns', str(params.get('ws29_fault_start_ns', 0))])
+    command.extend(['--ws29-fault-end-ns', str(params.get('ws29_fault_end_ns', 0))])
     if params.get('flow_file'):
         command.extend(['--flow-file', 'config/' + params['flow_file']])
     if params.get('ws13_diag'):
@@ -798,6 +804,12 @@ def main():
     run_cmd.add_argument('--ws26-seed97-time-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws29-arm', type=int, choices=(-1, 0, 1, 2, 3), default=-1)
+    run_cmd.add_argument('--ws29-fault', type=int, default=0)
+    run_cmd.add_argument('--ws29-fault-tor', type=int, default=0)
+    run_cmd.add_argument('--ws29-fault-port', type=int, default=0)
+    run_cmd.add_argument('--ws29-fault-start-ns', type=int, default=0)
+    run_cmd.add_argument('--ws29-fault-end-ns', type=int, default=0)
     run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-feedback', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-feedback-interval-ns', type=int, default=10000)
@@ -912,6 +924,12 @@ def main():
                         'ws26_seed97_time_diag': args.ws26_seed97_time_diag,
                         'ws18_admission': args.ws18_admission,
                         'ws18_path': args.ws18_path,
+                        'ws29_arm': args.ws29_arm,
+                        'ws29_fault': args.ws29_fault,
+                        'ws29_fault_tor': args.ws29_fault_tor,
+                        'ws29_fault_port': args.ws29_fault_port,
+                        'ws29_fault_start_ns': args.ws29_fault_start_ns,
+                        'ws29_fault_end_ns': args.ws29_fault_end_ns,
                         'ws21_identity': args.ws21_identity,
                         'ws21_feedback': args.ws21_feedback,
                         'ws21_feedback_interval_ns': args.ws21_feedback_interval_ns,

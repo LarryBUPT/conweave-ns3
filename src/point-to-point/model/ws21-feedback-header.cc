@@ -22,7 +22,7 @@ Ws21FeedbackHeader::Ws21FeedbackHeader()
       cePackets(0),
       samplePackets(0),
       sequence(0),
-      generationDelayNs(0) {}
+      generationDelayNs(0), session(0), windowStartNs(0) {}
 
 TypeId Ws21FeedbackHeader::GetTypeId(void) {
   static TypeId tid = TypeId("ns3::Ws21FeedbackHeader")
@@ -42,7 +42,9 @@ void Ws21FeedbackHeader::Print(std::ostream &os) const {
      << " generated_ns=" << GetGeneratedNs();
 }
 
-uint32_t Ws21FeedbackHeader::GetSerializedSize(void) const { return SERIALIZED_SIZE; }
+uint32_t Ws21FeedbackHeader::GetSerializedSize(void) const {
+  return version == 3 ? SERIALIZED_SIZE + 12 : SERIALIZED_SIZE;
+}
 
 void Ws21FeedbackHeader::Serialize(Buffer::Iterator start) const {
   start.WriteU8(version);
@@ -53,10 +55,17 @@ void Ws21FeedbackHeader::Serialize(Buffer::Iterator start) const {
   start.WriteHtonU32(samplePackets);
   start.WriteHtonU32(sequence);
   start.WriteHtonU16(generationDelayNs);
+  if (version == 3) {
+    start.WriteHtonU32(session);
+    start.WriteHtonU64(windowStartNs);
+  }
 }
 
 uint32_t Ws21FeedbackHeader::Deserialize(Buffer::Iterator start) {
+  const uint32_t available = start.GetSize();
+  if (available < SERIALIZED_SIZE) { version = 0; return 0; }
   version = start.ReadU8();
+  if (version == 3 && available < SERIALIZED_SIZE + 12) { version = 0; return 0; }
   type = start.ReadU8();
   candidatePort = start.ReadNtohU16();
   windowEndNs = start.ReadNtohU64();
@@ -64,7 +73,9 @@ uint32_t Ws21FeedbackHeader::Deserialize(Buffer::Iterator start) {
   samplePackets = start.ReadNtohU32();
   sequence = start.ReadNtohU32();
   generationDelayNs = start.ReadNtohU16();
-  return SERIALIZED_SIZE;
+  session = version == 3 ? start.ReadNtohU32() : 0;
+  windowStartNs = version == 3 ? start.ReadNtohU64() : 0;
+  return GetSerializedSize();
 }
 
 uint64_t Ws21FeedbackHeader::GetGeneratedNs(void) const {
@@ -72,7 +83,9 @@ uint64_t Ws21FeedbackHeader::GetGeneratedNs(void) const {
 }
 
 bool Ws21FeedbackHeader::IsValid(void) const {
-  return version == 2 && type == 1 && candidatePort != 0 && windowEndNs > 0 &&
+  return (version == 2 || (version == 3 && session > 0 && windowStartNs > 0 &&
+                         windowStartNs <= windowEndNs)) &&
+         type == 1 && candidatePort != 0 && windowEndNs > 0 &&
          samplePackets > 0 &&
          cePackets <= samplePackets && sequence > 0 &&
          windowEndNs <= std::numeric_limits<uint64_t>::max() - generationDelayNs;

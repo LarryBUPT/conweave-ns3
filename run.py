@@ -49,6 +49,12 @@ LB_MODE {lb_mode}
 WS18_ADMISSION {ws18_admission}
 WS18_PATH {ws18_path}
 WS18_ADMISSION_RATE_GBPS {ws18_admission_rate_gbps}
+WS29_ARM {ws29_arm}
+WS29_FAULT {ws29_fault}
+WS29_FAULT_TOR {ws29_fault_tor}
+WS29_FAULT_PORT {ws29_fault_port}
+WS29_FAULT_START_NS {ws29_fault_start_ns}
+WS29_FAULT_END_NS {ws29_fault_end_ns}
 WS21_IDENTITY {ws21_identity}
 WS21_FEEDBACK {ws21_feedback}
 WS21_FEEDBACK_INTERVAL_NS {ws21_feedback_interval_ns}
@@ -206,6 +212,12 @@ def main():
     parser.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
+    parser.add_argument('--ws29-arm', type=int, choices=(-1, 0, 1, 2, 3), default=-1)
+    parser.add_argument('--ws29-fault', type=int, default=0)
+    parser.add_argument('--ws29-fault-tor', type=int, default=0)
+    parser.add_argument('--ws29-fault-port', type=int, default=0)
+    parser.add_argument('--ws29-fault-start-ns', type=int, default=0)
+    parser.add_argument('--ws29-fault-end-ns', type=int, default=0)
     parser.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
     parser.add_argument('--ws21-feedback', type=int, choices=(0, 1), default=0,
                         help='send measured WS-21 reports over the simulated Qbb network')
@@ -301,13 +313,26 @@ def main():
         raise Exception("CONFIG ERROR : WS-18 switches require --lb ws18")
     if args.lb == 'ws18' and args.ws18_admission_rate_gbps <= 0:
         raise Exception("CONFIG ERROR : WS-18 admission rate must be positive")
-    if args.ws21_identity and args.lb != 'ws18':
+    if args.ws29_arm >= 0:
+        if args.lb != 'classreserve' or args.ws29_arm not in (0, 1, 2, 3):
+            raise Exception('WS-29 requires ClassReserve and arm 0..3')
+        args.ws21_identity = 1
+        args.ws21_feedback = int(args.ws29_arm in (1, 2, 3))
+        args.ws21_heartbeat = int(args.ws29_arm in (1, 2))
+        if args.ws21_feedback_interval_ns != 10000 or args.ws21_heartbeat_interval_ns != 200000:
+            raise Exception('WS-29 v1 freezes STATE=10000 ns and HB=200000 ns')
+        if args.ws29_fault and (args.ws29_fault_port <= 0 or args.ws29_fault_start_ns <= 0):
+            raise Exception('WS-29 fault requires a real port and positive time')
+        if args.ws29_fault and os.path.basename(args.flow_file or '') not in (
+                'ws21_heartbeat_fat_k4_long_flow.txt', 'ws29_state_machine_k4.txt'):
+            raise Exception('Fault/oracle injection is restricted to labelled engineering inputs')
+    if args.ws21_identity and args.lb != 'ws18' and args.ws29_arm < 0:
         raise Exception("CONFIG ERROR : WS-21 identity diagnostic requires --lb ws18")
-    if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
+    if args.ws21_feedback and ((args.lb != 'ws18' and args.ws29_arm < 0) or not args.ws21_identity):
         raise Exception("CONFIG ERROR : WS-21 feedback requires --lb ws18 and --ws21-identity 1")
     if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
         raise Exception("CONFIG ERROR : WS-21 feedback interval must be 1000..60000 ns")
-    if args.ws21_heartbeat and args.lb != 'ws18':
+    if args.ws21_heartbeat and args.lb != 'ws18' and args.ws29_arm < 0:
         raise Exception("CONFIG ERROR : WS-21 heartbeat requires --lb ws18")
     if not 50000 <= args.ws21_heartbeat_interval_ns <= 1000000:
         raise Exception("CONFIG ERROR : WS-21 heartbeat interval must be 50000..1000000 ns")
@@ -489,6 +514,12 @@ def main():
                                         load=netload, buffer_size=buffer, lb_mode=lb_mode, cwh_tx_expiry_time=cwh_tx_expiry_time,
                                         ws18_admission=args.ws18_admission, ws18_path=args.ws18_path,
                                         ws18_admission_rate_gbps=args.ws18_admission_rate_gbps,
+                                        ws29_arm=args.ws29_arm,
+                                        ws29_fault=args.ws29_fault,
+                                        ws29_fault_tor=args.ws29_fault_tor,
+                                        ws29_fault_port=args.ws29_fault_port,
+                                        ws29_fault_start_ns=args.ws29_fault_start_ns,
+                                        ws29_fault_end_ns=args.ws29_fault_end_ns,
                                         ws21_identity=args.ws21_identity,
                                         ws21_feedback=args.ws21_feedback,
                                         ws21_feedback_interval_ns=args.ws21_feedback_interval_ns,
@@ -537,6 +568,8 @@ def main():
     simulation_env = os.environ.copy()
     if args.ws13_diag:
         simulation_env['WS13_DIAG'] = '1'
+    if args.ws29_arm >= 0:
+        simulation_env['WS29_ARM'] = str(args.ws29_arm)
     if args.ws25_diag:
         simulation_env['WS25_DIAG'] = '1'
     if args.factorial_drop_diag:

@@ -35,7 +35,9 @@ static std::map<int32_t, Ws25QpDiagnostic> ws25_qp_diagnostics;
 static bool Ws25DiagnosticEnabled() {
     static const bool enabled = []() {
         const char *value = std::getenv("WS25_DIAG");
-        return value && value[0] == '1' && value[1] == '\0';
+        const char *ws29 = std::getenv("WS29_ARM");
+        return (value && value[0] == '1' && value[1] == '\0') ||
+               (ws29 && ws29[0] >= '0' && ws29[0] <= '3' && ws29[1] == '\0');
     }();
     return enabled;
 }

@@ -102,6 +102,25 @@ public:
     received.windowEndNs = std::numeric_limits<uint64_t>::max ();
     received.generationDelayNs = 1;
     NS_TEST_ASSERT_MSG_EQ (received.IsValid (), false, "generation-time overflow accepted");
+    // WS-29 preserves v2 (26 B) and explicitly charges v3 (38 B).
+    sent.version = 3;
+    sent.session = 9;
+    sent.windowStartNs = 128000;
+    Ptr<Packet> v3 = Create<Packet> ();
+    v3->AddHeader (sent);
+    NS_TEST_ASSERT_MSG_EQ (v3->GetSize (), 38U, "v3 wire size not charged");
+    Ws21FeedbackHeader v3received;
+    NS_TEST_ASSERT_MSG_EQ (v3->RemoveHeader (v3received), 38U, "v3 decode length");
+    NS_TEST_ASSERT_MSG_EQ (v3received.IsValid (), true, "valid v3 rejected");
+    NS_TEST_ASSERT_MSG_EQ (v3received.session, 9U, "producer session changed");
+    NS_TEST_ASSERT_MSG_EQ (v3received.windowStartNs, 128000ULL, "window start changed");
+    v3received.session = 0;
+    NS_TEST_ASSERT_MSG_EQ (v3received.IsValid (), false, "zero session accepted");
+    v3received.session = 9;
+    v3received.windowStartNs = v3received.windowEndNs + 1;
+    NS_TEST_ASSERT_MSG_EQ (v3received.IsValid (), false, "reversed sample window accepted");
+    sent.sequence = std::numeric_limits<uint32_t>::max ();
+    NS_TEST_ASSERT_MSG_EQ (sent.IsValid (), true, "last sequence must remain representable");
   }
 };
 

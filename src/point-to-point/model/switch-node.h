@@ -77,17 +77,20 @@ class SwitchNode : public Node {
         m_ws21Source, m_ws21Destination;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21IngressToFirst;
     struct Ws21FeedbackState {
-        uint64_t windowEndNs = 0, generatedNs = 0;
+        uint64_t windowEndNs = 0, generatedNs = 0, windowStartNs = 0;
+        uint32_t session = 0;
         uint32_t sequence = 0;
         uint32_t cePackets = 0, samplePackets = 0;
     };
     struct Ws21FeedbackWindow {
         uint32_t sourceHostIp = 0, destinationHostIp = 0;
-        uint64_t endNs = 0;
+        uint64_t endNs = 0, startNs = 0;
         uint32_t cePackets = 0, samplePackets = 0;
         bool scheduled = false;
     };
     std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackState> m_ws21Feedback;
+    // Receiver control-session restart keeps producer incarnation high-water marks.
+    std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws29StateHighWater;
     std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackWindow> m_ws21FeedbackWindows;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21FeedbackSequence;
     std::unordered_set<uint32_t> m_ws21HostPorts;
@@ -97,6 +100,11 @@ class SwitchNode : public Node {
         bool active = false, unknown = false;
     };
     std::map<uint32_t, Ws21HeartbeatPort> m_ws21HeartbeatPorts;
+    uint32_t m_ws29StateSession = 1;
+    uint64_t m_ws29RestartNs = 0;
+    uint32_t ChooseWs29Feedback(const CustomHeader &ch, uint32_t first,
+                                uint32_t second, uint32_t local, bool background);
+    void RestartWs29Session();
     void TouchWs21Heartbeat(uint32_t port);
     void TickWs21Heartbeat(uint32_t port, uint32_t epoch);
     bool SendWs21Heartbeat(uint32_t port, uint8_t type, uint32_t epoch,
@@ -108,7 +116,7 @@ class SwitchNode : public Node {
     bool ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch);
     void AccumulateWs21Feedback(uint32_t sourceTor, uint32_t candidatePort,
                                 const CustomHeader &ch, bool ce);
-    void FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort);
+    void FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort, uint32_t session);
     uint32_t DoLbWs18(Ptr<const Packet> p, const CustomHeader &ch,
                       const std::vector<int> &nexthops);
     uint32_t DoLbGuardHash(Ptr<const Packet> p, const CustomHeader &ch,
@@ -153,6 +161,10 @@ class SwitchNode : public Node {
                                        uint32_t faultPort, uint64_t faultStartNs,
                                        uint64_t faultEndNs);
     static void ConfigureWs21Identity(bool enabled);
+    static void ConfigureWs29(int32_t arm, uint32_t fault, uint32_t tor,
+                              uint32_t port, uint64_t startNs, uint64_t endNs);
+    void Ws29Fault(uint32_t fault, uint32_t port);
+    void Ws29LinkState(uint32_t port, bool up);
     static void ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes);
     static void FinishWs21PortEvents();
     static void SetWs21HostTor(uint32_t hostIp, uint32_t torId);

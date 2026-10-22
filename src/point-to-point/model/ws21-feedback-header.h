@@ -32,6 +32,9 @@ class Ws21FeedbackHeader : public Header {
   uint32_t samplePackets;
   uint32_t sequence;
   uint16_t generationDelayNs;
+  // Version 3 adds a producer incarnation and the actual first sample time.
+  uint32_t session;
+  uint64_t windowStartNs;
 
   static const uint8_t IP_PROTOCOL = 0xFA;
   static const uint32_t SERIALIZED_SIZE = 26;

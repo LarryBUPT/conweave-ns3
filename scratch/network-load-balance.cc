@@ -71,6 +71,9 @@ bool ws18_admission = false, ws18_path = false;
 uint32_t ws18_admission_rate_gbps = 400;
 std::string ws18_output_file;
 FILE *ws18_output = NULL;
+int32_t ws29_arm = -1;
+uint32_t ws29_fault = 0, ws29_fault_tor = 0, ws29_fault_port = 0;
+uint64_t ws29_fault_start_ns = 0, ws29_fault_end_ns = 0;
 bool ws21_identity = false;
 bool ws21_feedback = false;
 uint32_t ws21_feedback_interval_ns = 10000;
@@ -609,6 +612,14 @@ void conweave_history_print() {
  * @brief When one RDMA is finished, so does (1) QP, (2) RxQP, (3) write it on file fct.txt.
  */
 void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
+    if (ws29_arm >= 0)
+        std::cout << "WS29_QP flow_id=" << q->m_flow_id
+                  << " src=" << Settings::ip_to_node_id(q->sip)
+                  << " dst=" << Settings::ip_to_node_id(q->dip)
+                  << " sport=" << q->sport << " dport=" << q->dport
+                  << " input_bytes=" << q->m_size
+                  << " tx_payload_bytes=" << q->stat.txTotalBytes
+                  << " tx_packets=" << q->stat.txTotalPkts << std::endl;
     uint32_t sid = Settings::ip_to_node_id(q->sip), did = Settings::ip_to_node_id(q->dip);
     uint64_t base_rtt = pairRtt[n.Get(sid)][n.Get(did)];
     uint64_t b = pairBw[n.Get(sid)][n.Get(did)];
@@ -1039,6 +1050,18 @@ int main(int argc, char *argv[]) {
                 conf >> ws18_admission_rate_gbps;
             } else if (key.compare("WS18_OUTPUT_FILE") == 0) {
                 conf >> ws18_output_file;
+            } else if (key.compare("WS29_ARM") == 0) {
+                conf >> ws29_arm;
+            } else if (key.compare("WS29_FAULT") == 0) {
+                conf >> ws29_fault;
+            } else if (key.compare("WS29_FAULT_TOR") == 0) {
+                conf >> ws29_fault_tor;
+            } else if (key.compare("WS29_FAULT_PORT") == 0) {
+                conf >> ws29_fault_port;
+            } else if (key.compare("WS29_FAULT_START_NS") == 0) {
+                conf >> ws29_fault_start_ns;
+            } else if (key.compare("WS29_FAULT_END_NS") == 0) {
+                conf >> ws29_fault_end_ns;
             } else if (key.compare("WS21_IDENTITY") == 0) {
                 uint32_t value; conf >> value; ws21_identity = value != 0;
             } else if (key.compare("WS21_FEEDBACK") == 0) {
@@ -1489,17 +1512,21 @@ int main(int argc, char *argv[]) {
     NS_ASSERT_MSG(lb_mode != 20 || (ws18_admission_rate_gbps > 0 && !ws18_output_file.empty()),
                   "WS-18 requires positive admission rate and an output file");
     SwitchNode::ConfigureWs18Path(lb_mode == 20 && ws18_path);
-    if (ws21_feedback && (lb_mode != 20 || !ws21_identity))
+    if (ws21_feedback && ((lb_mode != 20 && ws29_arm < 0) || !ws21_identity))
         NS_FATAL_ERROR("WS-21 feedback requires mode 20 and path identity mapping");
-    if (ws21_identity && (lb_mode != 20 || ws21_identity_output_file.empty()))
+    if (ws21_identity && ((lb_mode != 20 && ws29_arm < 0) || ws21_identity_output_file.empty()))
         NS_FATAL_ERROR("WS-21 identity diagnostic requires mode 20 and an output file");
     NS_ASSERT_MSG(!ws21_port_events ||
                       (lb_mode == 20 && !ws21_port_output_file.empty() &&
                        ws21_port_max_bytes >= 1024),
                   "WS-21 port events require mode 20, output file, and byte cap");
+    if (ws29_arm >= 0 && (lb_mode != 21 || ws29_arm > 3))
+        NS_FATAL_ERROR("WS-29 requires mode21 and arm 0..3");
+    SwitchNode::ConfigureWs29(ws29_arm, ws29_fault, ws29_fault_tor, ws29_fault_port,
+                              ws29_fault_start_ns, ws29_fault_end_ns);
     SwitchNode::ConfigureWs21Identity(ws21_identity);
     SwitchNode::ConfigureWs21Feedback(ws21_feedback, ws21_feedback_interval_ns);
-    if (ws21_heartbeat && lb_mode != 20)
+    if (ws21_heartbeat && lb_mode != 20 && ws29_arm < 0)
         NS_FATAL_ERROR("WS-21 heartbeat requires mode 20");
     SwitchNode::ConfigureWs21Heartbeat(ws21_heartbeat, ws21_heartbeat_interval_ns,
                                        ws21_heartbeat_fault_mode, ws21_heartbeat_fault_tor,
@@ -2111,6 +2138,22 @@ int main(int argc, char *argv[]) {
     }
 
     topof.close();
+
+    if (ws29_arm >= 0 && ws29_fault) {
+        if (ws29_fault_tor >= n.GetN() || n.Get(ws29_fault_tor)->GetNodeType() != 1 ||
+            ws29_fault_port == 0 || ws29_fault_port >= n.Get(ws29_fault_tor)->GetNDevices() ||
+            ws29_fault_start_ns == 0)
+            NS_FATAL_ERROR("Invalid WS-29 fault target/time");
+        Ptr<SwitchNode> sw = DynamicCast<SwitchNode>(n.Get(ws29_fault_tor));
+        Simulator::Schedule(NanoSeconds(ws29_fault_start_ns),
+                            &SwitchNode::Ws29Fault, sw, ws29_fault, ws29_fault_port);
+        if (ws29_fault == 20 || ws29_fault == 23) {
+            if (ws29_fault_end_ns <= ws29_fault_start_ns)
+                NS_FATAL_ERROR("WS-29 link recovery must follow down");
+            Simulator::Schedule(NanoSeconds(ws29_fault_end_ns),
+                                &SwitchNode::Ws29Fault, sw, ws29_fault == 20 ? 22U : 24U, ws29_fault_port);
+        }
+    }
 
     // schedule link down
     if (link_down_time > 0) {

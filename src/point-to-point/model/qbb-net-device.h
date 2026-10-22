@@ -216,6 +216,8 @@ public:
 
 	Ptr<RdmaEgressQueue> GetRdmaQueue();
 	void TakeDown(); // take down this device
+	void Ws29BringUp(); // explicit switch-switch recovery, no host/NIC remapping
+	void Ws29TakeDown();
 	void UpdateNextAvail(Time t);
 
 	TracedCallback<Ptr<const Packet>, Ptr<RdmaQueuePair> > m_traceQpDequeue; // the trace for printing dequeue

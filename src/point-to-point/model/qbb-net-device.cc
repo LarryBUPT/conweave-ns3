@@ -577,4 +577,21 @@ void QbbNetDevice::UpdateNextAvail(Time t) {
         m_nextSend = Simulator::Schedule(delta, &QbbNetDevice::DequeueAndTransmit, this);
     }
 }
+
+void QbbNetDevice::Ws29BringUp() {
+    NS_ASSERT_MSG(m_node->GetNodeType() == 1, "WS-29 recovery is switch-only");
+    for (uint32_t i = 0; i < qCnt; ++i) {
+        m_paused[i] = false;
+        if (m_resumeEvt[i].IsRunning()) Simulator::Cancel(m_resumeEvt[i]);
+    }
+    NotifyLinkUp();
+    DequeueAndTransmit();
+}
+
+void QbbNetDevice::Ws29TakeDown() {
+    NS_ASSERT_MSG(m_node->GetNodeType() == 1, "WS-29 faults are switch-only");
+    for (uint32_t i = 0; i < qCnt; ++i)
+        if (m_resumeEvt[i].IsRunning()) Simulator::Cancel(m_resumeEvt[i]);
+    TakeDown();
+}
 }  // namespace ns3

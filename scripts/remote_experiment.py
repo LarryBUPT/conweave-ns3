@@ -346,6 +346,12 @@ def main():
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
+    run_cmd.add_argument('--ws29-arm', type=int, choices=(-1, 0, 1, 2, 3), default=-1)
+    run_cmd.add_argument('--ws29-fault', type=int, default=0)
+    run_cmd.add_argument('--ws29-fault-tor', type=int, default=0)
+    run_cmd.add_argument('--ws29-fault-port', type=int, default=0)
+    run_cmd.add_argument('--ws29-fault-start-ns', type=int, default=0)
+    run_cmd.add_argument('--ws29-fault-end-ns', type=int, default=0)
     run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-feedback', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws21-feedback-interval-ns', type=int, default=10000)
@@ -484,6 +490,12 @@ def main():
                             '--ws23-pfc-probe-start-ns', str(args.ws23_pfc_probe_start_ns),
                             '--ws23-pfc-probe-end-ns', str(args.ws23_pfc_probe_end_ns),
                             '--ws23-pause-time-us', str(args.ws23_pause_time_us)])
+        command.extend(['--ws29-arm', str(args.ws29_arm)])
+        command.extend(['--ws29-fault', str(args.ws29_fault)])
+        command.extend(['--ws29-fault-tor', str(args.ws29_fault_tor)])
+        command.extend(['--ws29-fault-port', str(args.ws29_fault_port)])
+        command.extend(['--ws29-fault-start-ns', str(args.ws29_fault_start_ns)])
+        command.extend(['--ws29-fault-end-ns', str(args.ws29_fault_end_ns)])
         worker_call(cfg, *command)
     elif args.command == 'status':
         status_call(cfg, args.id)
