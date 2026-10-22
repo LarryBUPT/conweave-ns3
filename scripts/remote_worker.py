@@ -839,7 +839,8 @@ def fetch_check(experiment_id):
     base, unused = paths(experiment_id)
     if not os.path.isdir(base) or os.path.islink(base):
         raise RuntimeError('Result directory missing or redirected')
-    if load_metadata(base).get('status') not in ('SUCCEEDED', 'FAILED', 'BUILD_FAILED'):
+    if load_metadata(base).get('status') not in (
+            'SUCCEEDED', 'FAILED', 'BUILD_FAILED', 'TESTED', 'UNIT_FAILED'):
         raise RuntimeError('Experiment is not in a terminal state; fetch after status settles')
     for parent, dirs, files in os.walk(base, followlinks=False):
         inside(parent)
