@@ -1,0 +1,34 @@
+{
+  "A06": "OPEN; natural opportunity may be zero; synthetic success cannot close A06",
+  "base_commit": "e1bd96467018e0e75cbe142a954b3d9fccc29c1b",
+  "independent_effect_pilot": "CLOSED",
+  "kind": "Local preparation audit; no SSH or new simulation",
+  "manifest_sha256": "6c80e2a9ac82cb240d87b05f0fe822ba0ec80d58637dfd1d0481485618d6eb4e",
+  "new_entry_tests": 11,
+  "plan_sha256": "5db623e7b38109a43ef0c37e0203e29713c896fe61e4d44581fd9512b551e8fd",
+  "prepared_cells": 24,
+  "prerequisites": [
+    {
+      "completed_bytes": 67108864,
+      "completed_flows": 1,
+      "fct_sha256": "9326c14b9d06e540aa94be432a13541f529a97f84886f68a9007f630d71a395c",
+      "id": "20261022-180000-ws29-obs2-legacy-v2-hb200"
+    },
+    {
+      "completed_bytes": 33587200,
+      "completed_flows": 8,
+      "fct_sha256": "e3fa403b4768239fdd0e916f333117ecd84177c3d0553eefc923a76cb249fdbc",
+      "id": "20261022-180000-ws29-obs2-mixed8-c0"
+    },
+    {
+      "completed_bytes": 1744830464,
+      "completed_flows": 16576,
+      "fct_sha256": "f3864f6319fcdff5474a31ae4c60be2bf3f51151747055913abb6f05a574bbc6",
+      "id": "20261022-180000-ws29-obs2-main-c0"
+    }
+  ],
+  "remote_actions": 0,
+  "simulation_files_unchanged": true,
+  "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f",
+  "tests_passed": 35
+}

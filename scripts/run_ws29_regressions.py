@@ -88,7 +88,7 @@ def immutable(path, data):
         path.write_text(text, encoding='utf-8')
 
 
-def local_verify(plan, cell):
+def local_verify(plan, cell, persist=True):
     folder = ROOT / 'results' / cell['id']
     row = verify(folder, cell, plan['resource_limits'])
     build = json.loads((folder / 'logs/build-resource-summary.json').read_text())
@@ -101,16 +101,18 @@ def local_verify(plan, cell):
             min(s['free_gib'] for s in samples) >= limits['free_disk_gib_min'] and
             max(s['load_1m'] for s in samples) <= limits['load_1m_max'], 'Build resource stop line')
     row['build_resource'] = build
-    immutable(CONTROL / (cell['label'] + '.verified.json'), row)
+    if persist:
+        immutable(CONTROL / (cell['label'] + '.verified.json'), row)
     return row
 
 
-def guard_sequence(plan, cells, selected):
+def guard_sequence(plan, cells, selected, verify_cell=None):
+    verify_cell = verify_cell or local_verify
     require(not (CONTROL / 'STOP.json').exists(), 'Failure stop receipt exists; no automatic retry')
     for cell in cells[:cells.index(selected)]:
         require((CONTROL / (cell['label'] + '.verified.json')).exists(),
                 'Previous cell not accepted: ' + cell['id'])
-        local_verify(plan, cell)  # Recheck raw evidence, not only a success flag.
+        verify_cell(plan, cell)  # Recheck raw evidence, not only a success flag.
 
 
 def command(cell, args):
@@ -202,20 +204,13 @@ def prepare(cells, plan):
     return data
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('phase', choices=('prepare', 'build', 'start', 'collect', 'verify'))
-    parser.add_argument('--label', choices=LABELS)
-    args = parser.parse_args()
-    plan, cells = load_plan()
-    if args.phase == 'prepare':
-        prepare(cells, plan)
-        print(json.dumps(dict(prepared=3, entry=str(MANIFEST), remote_actions=0)))
-        return
+def execute_phase(args, plan, cells, verify_cell=None):
+    """Shared single-cell execution; callers freeze their own allowed order."""
+    verify_cell = verify_cell or local_verify
     require(args.label is not None, 'One explicit --label is required')
     cell = next(c for c in cells if c['label'] == args.label)
-    guard_sequence(plan, cells, cell)
     try:
+        guard_sequence(plan, cells, cell, verify_cell)
         if args.phase == 'build':
             remote.local_fork(str(ROOT), require_pushed=True)
             preflight(cell, plan['resource_limits'], fresh=True)
@@ -244,12 +239,27 @@ def main():
                 require(meta['status'] in ('SUCCEEDED', 'FAILED', 'BUILD_FAILED'), 'Not terminal')
                 command(cell, ['fetch', cell['id']])
                 require(meta['status'] == 'SUCCEEDED', 'Terminal failure; raw preserved')
-            row = local_verify(plan, cell)
+            row = verify_cell(plan, cell)
             receipt(cell, 'verified', resource=row['resource'], fct_sha256=row['fct_sha256'])
             print(json.dumps(dict(id=cell['id'], verified=True, resource=row['resource'])))
+            return row
     except Exception as error:
-        immutable(CONTROL / 'STOP.json', dict(id=cell['id'], phase=args.phase, error=str(error)))
+        if not (CONTROL / 'STOP.json').exists():
+            immutable(CONTROL / 'STOP.json', dict(id=cell['id'], phase=args.phase, error=str(error)))
         raise
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('phase', choices=('prepare', 'build', 'start', 'collect', 'verify'))
+    parser.add_argument('--label', choices=LABELS)
+    args = parser.parse_args()
+    plan, cells = load_plan()
+    if args.phase == 'prepare':
+        prepare(cells, plan)
+        print(json.dumps(dict(prepared=3, entry=str(MANIFEST), remote_actions=0)))
+        return
+    return execute_phase(args, plan, cells)
 
 
 if __name__ == '__main__':
