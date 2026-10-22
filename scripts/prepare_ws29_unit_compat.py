@@ -18,7 +18,8 @@ def main():
     parser.add_argument('--source-sha', default=SOURCE)
     parser.add_argument('--output', type=Path, default=ROOT / 'docs/research/evidence/ws29-unit-compat-contract.json')
     args = parser.parse_args()
-    original = subprocess.check_output(['git', 'show', args.source_sha + ':' + NAME], cwd=ROOT)
+    source = subprocess.check_output(['git', 'rev-parse', args.source_sha], cwd=ROOT, text=True).strip()
+    original = subprocess.check_output(['git', 'show', source + ':' + NAME], cwd=ROOT)
     if hashlib.sha256(original).hexdigest() != 'b7285686202442d47d339fd5817e9001c47bfc23377c8a8f5f596ba694373881':
         raise ValueError('Core original hash changed')
     token = b'Parse (const CommandLine &cmd, int n, ...)'
@@ -29,7 +30,7 @@ def main():
                                       patched.decode().splitlines(True),
                                       fromfile='a/' + NAME, tofile='b/' + NAME))
     data = {'kind': 'test-only compatibility contract; remote GO pending',
-            'source_sha': args.source_sha, 'previous_source_sha': SOURCE,
+            'source_sha': source, 'previous_source_sha': SOURCE,
             'failed_id': '20261022-150000-ws29-eng-unit',
             'new_id': ATTEMPT, 'remote_id_availability': 'not checked; SSH forbidden in this stage',
             'file': NAME, 'original_sha256': hashlib.sha256(original).hexdigest(),

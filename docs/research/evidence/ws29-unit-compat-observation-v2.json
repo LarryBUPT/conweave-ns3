@@ -1,0 +1,32 @@
+{
+  "kind": "test-only compatibility contract; remote GO pending",
+  "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f",
+  "previous_source_sha": "526802e6b25635435aba960d821e8e5561ebb50a",
+  "failed_id": "20261022-150000-ws29-eng-unit",
+  "new_id": "20261022-173000-ws29-eng-unit-compat-r1",
+  "remote_id_availability": "not checked; SSH forbidden in this stage",
+  "file": "src/core/test/command-line-test-suite.cc",
+  "original_sha256": "b7285686202442d47d339fd5817e9001c47bfc23377c8a8f5f596ba694373881",
+  "patched_sha256": "3c474633f4545bc10c3fede9e8fbaddd83e5526bd19597ed19be509a4537cd99",
+  "exact_diff": "--- a/src/core/test/command-line-test-suite.cc\n+++ b/src/core/test/command-line-test-suite.cc\n@@ -38,7 +38,7 @@\n   CommandLineTestCaseBase (std::string description);\n   virtual ~CommandLineTestCaseBase () {}\n \n-  void Parse (const CommandLine &cmd, int n, ...);\n+  void Parse (CommandLine &cmd, int n, ...);\n };\n \n CommandLineTestCaseBase::CommandLineTestCaseBase (std::string description)\n@@ -47,7 +47,7 @@\n }\n \n void\n-CommandLineTestCaseBase::Parse (const CommandLine &cmd, int n, ...)\n+CommandLineTestCaseBase::Parse (CommandLine &cmd, int n, ...)\n {\n   char **args = new char* [n+1];\n   args[0] = (char *) \"Test\";\n",
+  "scope": "Only the new isolated test source copy. No routing, transport, scoring or demand changes.",
+  "steps": [
+    "Refuse existing run/result ID; clone and checkout exact source SHA into the new ID.",
+    "Verify HEAD and clean tracked source; hash the original file and archive its bytes and exact diff in result logs.",
+    "Complete the unmodified optimized build before applying the compatibility patch.",
+    "Apply only the two exact replacements after original hash validation.",
+    "./waf configure --enable-tests --build-profile=optimized --out=build-ws29-tests",
+    "./waf --out=build-ws29-tests -j2",
+    "Record suite listing and run optimized test runner with --suite=devices-point-to-point --verbose and isolated LD_LIBRARY_PATH.",
+    "In finally, restore archived original bytes even on failure; verify original SHA256 and clean tracked git diff.",
+    "Archive patched hash, exact diff, original/restored hashes, commands, return codes and complete resource receipts.",
+    "Keep original failed ID unchanged. Do not start any simulation."
+  ],
+  "interpretation": "PASS applies to an optimized test-enabled binary compiled with the disclosed two-line compatibility edit. Restoring source does not undo the compiled binary edit. Formal simulation copies must be fresh, unpatched checkouts.",
+  "acceptance": [
+    "All intended suite cases PASS, including v2/v3 and boundary tests.",
+    "Original and restored hashes equal; patched hash equals the contract.",
+    "No tracked differences except the disclosed edit while compiling tests.",
+    "Nonempty resource samples and terminal TESTED receipt; no automatic retry."
+  ]
+}
