@@ -12,6 +12,7 @@ import shutil
 import socket
 import subprocess
 import sys
+import threading
 import time
 
 ROOT = '/home/fnl/lzy'
@@ -153,6 +154,77 @@ def resources_ok():
         raise RuntimeError('Less than 4 GiB memory available')
     if os.getloadavg()[0] > 20:
         raise RuntimeError('Server load is high; retry later')
+
+
+def process_tree_rss_kib(root_pid):
+    listing = subprocess.check_output(
+        ['ps', '-eo', 'pid,ppid,rss', '--no-headers']).decode('ascii')
+    rows = {}
+    for line in listing.splitlines():
+        fields = line.split()
+        if len(fields) == 3:
+            rows[int(fields[0])] = (int(fields[1]), int(fields[2]))
+    descendants = {root_pid}
+    for _ in range(20):
+        addition = {pid for pid, (parent, _) in rows.items() if parent in descendants}
+        if addition.issubset(descendants):
+            break
+        descendants.update(addition)
+    return sum(rows[pid][1] for pid in descendants if pid in rows)
+
+
+class ResourceSampler(object):
+    def __init__(self, experiment_id, base, root_pid):
+        self.base = base
+        self.root_pid = root_pid
+        self.path = inside(os.path.join(base, 'logs', 'resource-samples.jsonl'))
+        if os.path.lexists(self.path):
+            raise RuntimeError('Resource receipt exists; refusing overwrite')
+        self.receipt = open(self.path, 'x')
+        self.stop_event = threading.Event()
+        self.peak_rss = 0.0
+        self.min_mem = float('inf')
+        self.min_disk = float('inf')
+        self.max_load = 0.0
+        self.count = 0
+        self.thread = threading.Thread(target=self._sample, name='ws29-resource-sampler')
+        self.thread.daemon = True
+        self.thread.start()
+
+    def _sample(self):
+        while not self.stop_event.is_set():
+            with open('/proc/meminfo') as source:
+                memory = source.read()
+            match = re.search(r'^MemAvailable:\s+(\d+) kB', memory, re.M)
+            stat = os.statvfs(ROOT)
+            point = {'time_utc_epoch': time.time(),
+                     'process_tree_rss_mib': process_tree_rss_kib(self.root_pid) / 1024.0,
+                     'mem_available_gib': int(match.group(1)) / float(1024 ** 2) if match else 0.0,
+                     'free_gib': stat.f_bavail * stat.f_frsize / float(1024 ** 3),
+                     'load_1m': os.getloadavg()[0], 'status': load_metadata(self.base).get('status')}
+            self.receipt.write(json.dumps(point, sort_keys=True) + '\n')
+            self.receipt.flush()
+            self.count += 1
+            self.peak_rss = max(self.peak_rss, point['process_tree_rss_mib'])
+            self.min_mem = min(self.min_mem, point['mem_available_gib'])
+            self.min_disk = min(self.min_disk, point['free_gib'])
+            self.max_load = max(self.max_load, point['load_1m'])
+            self.stop_event.wait(5)
+
+    def finish(self, final_status):
+        self.stop_event.set()
+        self.thread.join()
+        self.receipt.close()
+        summary = {'id': os.path.basename(self.base), 'samples': self.count,
+                   'peak_tree_rss_mib': self.peak_rss,
+                   'minimum_mem_available_gib': self.min_mem if self.count else None,
+                   'minimum_free_gib': self.min_disk if self.count else None,
+                   'maximum_load_1m': self.max_load if self.count else None,
+                   'final_status': final_status}
+        path = inside(os.path.join(self.base, 'logs', 'resource-summary.json'))
+        with open(path, 'x') as target:
+            json.dump(summary, target, indent=2, sort_keys=True)
+            target.write('\n')
 
 
 WS25_CAPACITY_SHA = 'a656104d05c681f9b3a998b5ef4ce3e644558d02'
@@ -448,9 +520,11 @@ def sync_bundle(repo_url, sha, branch, bundle_name):
     print('synced personal fork commit via workspace Git bundle=' + sha)
 
 
-def build(experiment_id, sha, branch):
+def build(experiment_id, sha, branch, unit_suite=None):
     if not SHA_RE.match(sha) or not re.match(r'^[A-Za-z0-9._/-]{1,100}$', branch):
         raise RuntimeError('Invalid commit or branch')
+    if unit_suite not in (None, 'devices-point-to-point'):
+        raise RuntimeError('Unsupported unit suite')
     resources_ok()
     base, source = paths(experiment_id)
     if os.path.lexists(base) or os.path.lexists(os.path.dirname(source)):
@@ -469,9 +543,10 @@ def build(experiment_id, sha, branch):
             'git_repository': output(['git', 'config', '--get', 'remote.origin.url'], cwd=code),
             'git_commit': sha, 'git_branch': branch, 'server': socket.gethostname(),
             'cpu_jobs': 2, 'build_mode': 'optimized', 'seed': 1,
-            'pid': os.getpid()}
+            'pid': os.getpid(), 'unit_suite': unit_suite}
     save_metadata(base, data)
     log = inside(os.path.join(base, 'logs', 'build.log'))
+    sampler = ResourceSampler(experiment_id, base, os.getpid())
     try:
         run_checked(['git', 'clone', '--local', '--no-hardlinks', code, source], log=log)
         run_checked(['git', 'checkout', '--detach', sha], cwd=source, log=log)
@@ -482,12 +557,35 @@ def build(experiment_id, sha, branch):
         run_checked(['./waf', 'configure', '--build-profile=optimized'], cwd=source, log=log)
         run_checked(['./waf', '-j2'], cwd=source, log=log)
         data['status'] = 'BUILT'
+        if unit_suite:
+            data['status'] = 'TESTING'
+            data['unit_test_started_utc'] = stamp()
+            save_metadata(base, data)
+            test_log = inside(os.path.join(base, 'logs', 'ws29-point-to-point-unit-test.log'))
+            test_build = 'build-ws29-tests'
+            run_checked(['./waf', 'configure', '--enable-tests',
+                         '--build-profile=optimized', '--out=' + test_build],
+                        cwd=source, log=test_log)
+            run_checked(['./waf', '--out=' + test_build, '-j2'], cwd=source, log=test_log)
+            runners = glob.glob(os.path.join(source, test_build, 'utils',
+                                             '*-test-runner-optimized'))
+            if len(runners) != 1:
+                raise RuntimeError('Expected one optimized test runner; found %d' % len(runners))
+            env = os.environ.copy()
+            env['LD_LIBRARY_PATH'] = os.path.join(source, test_build) + os.pathsep + env.get(
+                'LD_LIBRARY_PATH', '')
+            run_checked([runners[0], '--suite=' + unit_suite, '--verbose'],
+                        cwd=source, log=test_log, env=env)
+            data['unit_status'] = 'PASS'
+            data['unit_test_finished_utc'] = stamp()
+            data['status'] = 'TESTED'
     except Exception:
-        data['status'] = 'BUILD_FAILED'
+        data['status'] = 'UNIT_FAILED' if unit_suite and data.get('status') == 'TESTING' else 'BUILD_FAILED'
         raise
     finally:
         data['build_finished_utc'] = stamp()
         save_metadata(base, data)
+        sampler.finish(data['status'])
     print('build complete=' + experiment_id)
 
 
@@ -784,6 +882,7 @@ def main():
     build_cmd.add_argument('--id', required=True)
     build_cmd.add_argument('--sha', required=True)
     build_cmd.add_argument('--branch', required=True)
+    build_cmd.add_argument('--unit-suite', choices=('devices-point-to-point',))
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('--id', required=True)
     run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'destspread', 'classreserve3', 'classlane4', 'classlane4-moe-only', 'classlane4-background-only', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
@@ -846,7 +945,7 @@ def main():
     elif args.command == 'sync-bundle':
         sync_bundle(args.repo, args.sha, args.branch, args.bundle_name)
     elif args.command == 'build':
-        build(args.id, args.sha, args.branch)
+        build(args.id, args.sha, args.branch, args.unit_suite)
     elif args.command == 'run':
         if args.factorial_pilot and args.factorial_formal:
             raise RuntimeError('Factorial pilot and formal flags are exclusive')

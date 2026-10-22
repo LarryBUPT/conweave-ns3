@@ -325,6 +325,7 @@ def main():
             item.add_argument('--id')
             item.add_argument('--label', default='baseline')
             item.add_argument('--source-sha', help='previously synced ancestor commit for recovery')
+            item.add_argument('--unit-suite', choices=('devices-point-to-point',))
     protect_cmd = sub.add_parser('protect-fork')
     protect_cmd.add_argument('--repo-local', required=True)
     run_cmd = sub.add_parser('run')
@@ -413,7 +414,10 @@ def main():
             experiment_id = args.id or datetime.datetime.now().strftime('%Y%m%d-%H%M%S-') + label
             if not ID_RE.match(experiment_id):
                 raise RuntimeError('Invalid experiment ID')
-            worker_call(cfg, 'build', '--id', experiment_id, '--sha', sha, '--branch', branch)
+            build_args = ['build', '--id', experiment_id, '--sha', sha, '--branch', branch]
+            if args.unit_suite:
+                build_args.extend(['--unit-suite', args.unit_suite])
+            worker_call(cfg, *build_args)
             print('Experiment ID: ' + experiment_id)
     elif args.command == 'run':
         if args.pfc + args.irn != 1 and not args.factorial_pilot:
