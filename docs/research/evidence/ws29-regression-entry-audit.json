@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-22",
+  "files_sha256": {
+    "docs/research/evidence/ws29-regression-entry.json": "9513f36880dbf170ecd7f9c205f6043ca4b1b48d96e5ee47df33c5a5dc2f1ed2",
+    "scripts/remote_experiment.py": "45dc63dec406774dd113e6213aac4a8545c8513a7e6114da743437cd78725f85",
+    "scripts/remote_worker.py": "d385c90ba37ededdcb81411f1029d690cda5f702a0355abc14ed5a94b995427a",
+    "scripts/run_ws29_regressions.py": "29e2cf2e899a73557c9999c7884ccc55dfcd7d6bc16d4bd2e40ab14462a3a411",
+    "scripts/test_ws29_regression_entry.py": "80899538a97a1e8b54dc9b0a65cceeaddf6dab952942096c1a293d4cf737f3f5",
+    "scripts/verify_ws29_engineering.py": "b70190ad308be0d2f0f7325f90f948d1d7db1eebb09783ca9112b1cf761a3634",
+    "scripts/ws29_evidence_checks.py": "5c962c073e9c3c5d41565cece3a40f4ed7e9aa72d7bd1c837e15468bba49cb33"
+  },
+  "fixed_run_py_three_config_renders_checked": true,
+  "frozen_simulation_sources_unchanged": true,
+  "kind": "local preparation only; no SSH or simulation in this stage",
+  "legacy_actual_old_config_and_runtime_checked": true,
+  "local_tests_passed": 20,
+  "plan_sha256": "5db623e7b38109a43ef0c37e0203e29713c896fe61e4d44581fd9512b551e8fd",
+  "remote_worker_python35_syntax": true,
+  "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+}

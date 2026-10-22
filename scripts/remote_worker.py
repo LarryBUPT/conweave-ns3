@@ -22,6 +22,29 @@ SHA_RE = re.compile(r'^[0-9a-f]{40}$')
 REPO_RE = re.compile(r'^https://github[.]com/LarryBUPT/[A-Za-z0-9_.-]+(?:[.]git)?$')
 REFERENCE_PUSH = 'no-push://read-only-reference'
 _LOGIN_ATTEMPTED = False
+WS29_OBS2_PREFIX = '20261022-180000-ws29-obs2-'
+
+
+def normalize_ws29_args(args):
+    """Mirror fixed run.py arm switches before validation and metadata capture."""
+    if args.ws29_arm < 0:
+        return
+    if args.lb != 'classreserve':
+        raise RuntimeError('WS-29 requires classreserve mode')
+    if args.ws21_feedback_interval_ns != 10000 or args.ws21_heartbeat_interval_ns != 200000:
+        raise RuntimeError('WS-29 freezes STATE=10000 ns and HB=200000 ns')
+    args.ws21_identity = 1
+    args.ws21_feedback = int(args.ws29_arm in (1, 2, 3))
+    args.ws21_heartbeat = int(args.ws29_arm in (1, 2))
+
+
+def ws29_clean_environment(environment):
+    clean = environment.copy()
+    for name in list(clean):
+        if name.startswith(('WS13_', 'WS25_', 'WS26_', 'WS28_', 'WS29_')) or name in (
+                'IRN_PFC_DROP_DIAG', 'WS23_RECOVERY_DIAG'):
+            clean.pop(name)
+    return clean
 
 
 def inside(path, allow_root=False):
@@ -175,10 +198,11 @@ def process_tree_rss_kib(root_pid):
 
 
 class ResourceSampler(object):
-    def __init__(self, experiment_id, base, root_pid):
+    def __init__(self, experiment_id, base, root_pid, prefix='resource'):
         self.base = base
         self.root_pid = root_pid
-        self.path = inside(os.path.join(base, 'logs', 'resource-samples.jsonl'))
+        self.prefix = prefix
+        self.path = inside(os.path.join(base, 'logs', prefix + '-samples.jsonl'))
         if os.path.lexists(self.path):
             raise RuntimeError('Resource receipt exists; refusing overwrite')
         self.receipt = open(self.path, 'x')
@@ -193,7 +217,8 @@ class ResourceSampler(object):
         self.thread.start()
 
     def _sample(self):
-        while not self.stop_event.is_set():
+        # Always record the first sample, including a very short simulation.
+        while self.count == 0 or not self.stop_event.is_set():
             with open('/proc/meminfo') as source:
                 memory = source.read()
             match = re.search(r'^MemAvailable:\s+(\d+) kB', memory, re.M)
@@ -222,7 +247,7 @@ class ResourceSampler(object):
                    'minimum_free_gib': self.min_disk if self.count else None,
                    'maximum_load_1m': self.max_load if self.count else None,
                    'final_status': final_status}
-        path = inside(os.path.join(self.base, 'logs', 'resource-summary.json'))
+        path = inside(os.path.join(self.base, 'logs', self.prefix + '-summary.json'))
         with open(path, 'x') as target:
             json.dump(summary, target, indent=2, sort_keys=True)
             target.write('\n')
@@ -596,7 +621,9 @@ def build(experiment_id, sha, branch, unit_suite=None, unit_compat=False):
             'pid': os.getpid(), 'unit_suite': unit_suite, 'unit_compatibility': unit_compat}
     save_metadata(base, data)
     log = inside(os.path.join(base, 'logs', 'build.log'))
-    sampler = ResourceSampler(experiment_id, base, os.getpid())
+    sampler = ResourceSampler(experiment_id, base, os.getpid(),
+                              'build-resource' if experiment_id.startswith(WS29_OBS2_PREFIX)
+                              and not unit_suite else 'resource')
     try:
         run_checked(['git', 'clone', '--local', '--no-hardlinks', code, source], log=log)
         run_checked(['git', 'checkout', '--detach', sha], cwd=source, log=log)
@@ -712,7 +739,7 @@ def execute(experiment_id):
                         str(params.get('ws21_heartbeat_fault_end_ns', 0))])
         command.extend(['--ws21-port-events', str(params.get('ws21_port_events', 0)),
                         '--ws21-port-max-bytes', str(params.get('ws21_port_max_bytes', 268435456))])
-    if params['lb'] in ('ws18', 'classlane4'):
+    if params['lb'] in ('ws18', 'classlane4') or params.get('ws29_arm', -1) >= 0:
         command.extend(['--ws21-identity', str(params.get('ws21_identity', 0)),
                         '--ws21-feedback', str(params.get('ws21_feedback', 0)),
                         '--ws21-feedback-interval-ns',
@@ -737,6 +764,8 @@ def execute(experiment_id):
     log = inside(os.path.join(base, 'logs', 'simulation.log'))
     data['command'] = ' '.join(command)
     save_metadata(base, data)
+    sampler = (ResourceSampler(experiment_id, base, os.getpid())
+               if experiment_id.startswith(WS29_OBS2_PREFIX) else None)
     try:
         if params.get('flow_file'):
             selected = inside(os.path.join(source, 'config', params['flow_file']))
@@ -753,6 +782,9 @@ def execute(experiment_id):
             raise RuntimeError('Expected a fresh, empty output path')
         os.symlink(inside(os.path.join(base, 'raw')), output_dir)
         simulation_env = os.environ.copy()
+        if experiment_id.startswith(WS29_OBS2_PREFIX):
+            simulation_env = ws29_clean_environment(simulation_env)
+            data['environment_policy'] = 'WS29 diagnostic environment cleared before explicit run.py options'
         if params.get('ws28_tail_diag'):
             simulation_env['WS28_TAIL_DIAG'] = '1'
         else:
@@ -838,6 +870,8 @@ def execute(experiment_id):
         raise
     finally:
         data['finished_utc'] = stamp()
+        if sampler:
+            sampler.finish(data['status'])
         save_metadata(base, data)
 
 
@@ -1014,6 +1048,7 @@ def main():
     elif args.command == 'build':
         build(args.id, args.sha, args.branch, args.unit_suite, args.unit_compat)
     elif args.command == 'run':
+        normalize_ws29_args(args)
         if args.factorial_pilot and args.factorial_formal:
             raise RuntimeError('Factorial pilot and formal flags are exclusive')
         if args.factorial_formal and (not args.flow_file or args.ws13_diag or args.ws25_diag or args.ws26_time_probe or args.ws26_seed97_time_diag or args.ws26_queue_front_diag):
@@ -1044,9 +1079,9 @@ def main():
             raise RuntimeError('WS-23 PFC probe options need a host')
         if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
             raise RuntimeError('WS-18 switches require ws18 mode')
-        if args.ws21_identity and args.lb not in ('ws18', 'classlane4'):
+        if args.ws21_identity and args.lb not in ('ws18', 'classlane4') and args.ws29_arm < 0:
             raise RuntimeError('WS-21 identity diagnostic requires ws18 or classlane4 mode')
-        if args.ws21_feedback and (args.lb not in ('ws18', 'classlane4') or not args.ws21_identity):
+        if args.ws21_feedback and ((args.lb not in ('ws18', 'classlane4') and args.ws29_arm < 0) or not args.ws21_identity):
             raise RuntimeError('WS-21 feedback requires ws18/classlane4 and identity diagnostics')
         if args.ws21_feedback and args.lb == 'classlane4' and not args.ws26_signal_qualification:
             raise RuntimeError('ClassLane feedback requires WS-26 signal qualification logging')
@@ -1056,7 +1091,7 @@ def main():
             raise RuntimeError('WS-26 signal qualification requires fixed-trace classlane4, identity, and a byte cap >= 1024')
         if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
             raise RuntimeError('WS-21 feedback interval must be 1000..60000 ns')
-        if args.ws21_heartbeat and args.lb != 'ws18':
+        if args.ws21_heartbeat and args.lb != 'ws18' and args.ws29_arm < 0:
             raise RuntimeError('WS-21 heartbeat requires ws18 mode')
         if not 50000 <= args.ws21_heartbeat_interval_ns <= 1000000:
             raise RuntimeError('WS-21 heartbeat interval must be 50000..1000000 ns')

@@ -11,6 +11,7 @@ import subprocess
 import sys
 import threading
 import time
+from remote_worker import normalize_ws29_args
 
 PROJECT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 ENV_FILE = os.path.join(PROJECT, '.project', 'remote.env')
@@ -427,6 +428,7 @@ def main():
             worker_call(cfg, *build_args)
             print('Experiment ID: ' + experiment_id)
     elif args.command == 'run':
+        normalize_ws29_args(args)
         if args.pfc + args.irn != 1 and not args.factorial_pilot:
             parser.error('Exactly one of --pfc and --irn must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
@@ -444,13 +446,13 @@ def main():
             parser.error('WS-23 PFC probe options need a host')
         if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
             parser.error('WS-18 switches require --lb ws18')
-        if args.ws21_identity and args.lb != 'ws18':
+        if args.ws21_identity and args.lb != 'ws18' and args.ws29_arm < 0:
             parser.error('WS-21 identity diagnostic requires --lb ws18')
-        if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
+        if args.ws21_feedback and ((args.lb != 'ws18' and args.ws29_arm < 0) or not args.ws21_identity):
             parser.error('WS-21 feedback requires --lb ws18 and --ws21-identity 1')
         if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
             parser.error('WS-21 feedback interval must be 1000..60000 ns')
-        if args.ws21_heartbeat and args.lb != 'ws18':
+        if args.ws21_heartbeat and args.lb != 'ws18' and args.ws29_arm < 0:
             parser.error('WS-21 heartbeat requires --lb ws18')
         if not 50000 <= args.ws21_heartbeat_interval_ns <= 1000000:
             parser.error('WS-21 heartbeat interval must be 50000..1000000 ns')
@@ -470,6 +472,7 @@ def main():
             command.extend(['--ws18-admission', str(args.ws18_admission),
                             '--ws18-path', str(args.ws18_path),
                             '--ws18-admission-rate-gbps', str(args.ws18_admission_rate_gbps)])
+        if args.lb == 'ws18' or args.ws29_arm >= 0:
             command.extend(['--ws21-identity', str(args.ws21_identity)])
             command.extend(['--ws21-feedback', str(args.ws21_feedback)])
             command.extend(['--ws21-feedback-interval-ns',

@@ -23,7 +23,7 @@ def verify_settings(meta, cfg, cell):
     pairs = {'ws29_arm': cell['arm']}
     pairs.update({'ws29_' + k: cell[k] for k in
                   ('fault', 'fault_tor', 'fault_port', 'fault_start_ns', 'fault_end_ns')})
-    control = cell.get('legacy_control_options', {})
+    control = cell.get('control_options', cell.get('legacy_control_options', {}))
     pairs.update(ws21_identity=control.get('ws21_identity', int(cell['arm'] >= 0)),
                  ws21_feedback=control.get('ws21_feedback', int(cell['arm'] in (1, 2, 3))),
                  ws21_heartbeat=control.get('ws21_heartbeat', int(cell['arm'] in (1, 2))),
@@ -31,8 +31,34 @@ def verify_settings(meta, cfg, cell):
     for name, expected in pairs.items():
         require(meta['parameters'].get(name) == expected, 'metadata mismatch: ' + name)
         require(cfg.get(name.upper()) == str(expected), 'effective config mismatch: ' + name)
+    if cell['arm'] < 0:
+        require(meta['parameters'].get('ws18_path') == 1 and cfg.get('WS18_PATH') == '1',
+                'legacy mode20 path switch differs')
     for name, key in (('RANDOM_SEED', 'ns3_seed'), ('ENABLE_PFC', 'pfc'), ('ENABLE_IRN', 'irn')):
         require(cfg.get(name) == str(cell[key]), 'effective config mismatch: ' + name)
+
+
+def verify_regression_config(oldcfg, cfg):
+    # Older mode20 snapshots predate WS23/WS29 fields. Compare the fields that
+    # existed, then independently require disabled defaults for new features.
+    for key, value in oldcfg.items():
+        if 'FILE' in key or key in ('WS21_IDENTITY',) or key.startswith('WS29_'):
+            continue
+        require(cfg.get(key) == value, 'old/new common config differs: ' + key)
+    require(cfg.get('WS18_ADMISSION') == '0' and
+            cfg.get('WS23_PFC_PROBE') == '-1 3 0 0' and
+            cfg.get('PAUSE_TIME') == '5', 'unexpected admission/PFC probe/pause default')
+
+
+def verify_regression_diagnostics(meta, cell):
+    expected = dict(ws13_diag=0, ws25_diag=0, ws28_tail_diag=0,
+                    ws26_moe_hop_diag=0, ws26_queue_front_diag=0, ws26_time_probe=0,
+                    ws26_seed97_time_diag=0, ws26_signal_qualification=0,
+                    ws21_port_events=0)
+    for name, value in expected.items():
+        require(meta['parameters'].get(name) == value, 'diagnostic setting differs: ' + name)
+    for name in ('factorial_pilot', 'factorial_formal', 'factorial_drop_diag'):
+        require(meta['parameters'].get(name) is False, 'unexpected factorial mode: ' + name)
 
 
 def verify_reference(old):
@@ -53,6 +79,14 @@ def verify_reference(old):
 
 def verify_runtime(lines, cell):
     if cell['arm'] < 0:
+        require(not any(x.startswith('WS29_') for x in lines), 'WS29 active in legacy mode20')
+        heartbeat = rows(lines, 'WS21_HEARTBEAT')
+        require(len(heartbeat) == 1 and int(heartbeat[0]['hello_generated']) > 0 and
+                int(heartbeat[0]['ack_received']) > 0 and
+                int(heartbeat[0]['event_overflow']) == 0 and
+                int(heartbeat[0]['event_rows']) <= 20000,
+                'legacy heartbeat absent/overflow')
+        require(not rows(lines, 'WS21_FEEDBACK'), 'legacy STATE unexpectedly enabled')
         return
     settings = rows(lines, 'WS29_SETTINGS')
     expected = {k: cell[k] for k in ('arm', 'fault', 'fault_tor', 'fault_port', 'fault_start_ns', 'fault_end_ns')}

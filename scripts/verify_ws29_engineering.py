@@ -6,7 +6,8 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 from ws29_evidence_checks import (verify_settings, verify_reference, verify_runtime,
-                                  verify_control, verify_provenance, verify_lifecycle)
+                                  verify_control, verify_provenance, verify_lifecycle,
+                                  verify_regression_config, verify_regression_diagnostics)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -188,12 +189,11 @@ def verify(folder, cell, limits):
     require(changed <= cell.get('expected_adopted_changed_max', changed), 'unsafe synthetic fallback')
     if 'reference' in cell:
         old = cell['reference']; verify_reference(old)
+        verify_regression_diagnostics(meta, cell)
         require(sha(fct) == old['fct_sha256'], 'C0/legacy FCT fingerprint differs')
         oldcfg = config(Path(old['root']) / 'config/config.txt')
         require(sha(Path(old['root']) / 'config/config.txt') == old['config_sha256'], 'old config changed')
-        for key, value in oldcfg.items():
-            if 'FILE' in key or key.startswith('WS21_') or key.startswith('WS29_'): continue
-            require(cfg.get(key) == value, 'old/new common config differs: ' + key)
+        verify_regression_config(oldcfg, cfg)
     resource = json.loads((folder / 'logs/resource-summary.json').read_text())
     samples = [json.loads(x) for x in (folder / 'logs/resource-samples.jsonl').read_text().splitlines() if x]
     require(resource['id'] == cell['id'] and resource['final_status'] == 'SUCCEEDED' and
