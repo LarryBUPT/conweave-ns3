@@ -1,0 +1,546 @@
+{
+  "age_definitions": {
+    "age_max_ns": "generation time to report arrival; reports older than 10 us are explicitly counted expired and not cached",
+    "sample_age_max_ns": "window end time to report arrival; distinct from generation-to-arrival age"
+  },
+  "cells": [
+    {
+      "application_bytes": 1744830464,
+      "delivered_bytes_per_application_byte": 0.0016082594027886023,
+      "experiment_id": "20260929-221400-ws21c-v2-tail-5us",
+      "fct_by_group": {
+        "all": {
+          "count": 16576,
+          "max_us": 3762.358,
+          "p50_us": 2.435,
+          "p90_us": 15.203,
+          "p99_us": 347.643,
+          "percentile_method": "nearest-rank"
+        },
+        "background_8m": {
+          "count": 192,
+          "max_us": 3762.358,
+          "p50_us": 677.737,
+          "p90_us": 1774.047,
+          "p99_us": 3361.519,
+          "percentile_method": "nearest-rank"
+        },
+        "moe_8k": {
+          "count": 16384,
+          "max_us": 28.374,
+          "p50_us": 2.423,
+          "p90_us": 14.836,
+          "p99_us": 20.223,
+          "percentile_method": "nearest-rank"
+        }
+      },
+      "fct_sha256": "1d75a76ff75114c55fc7bd4d6ee08b2bc64e335b812c6a919fe3f9019e955b31",
+      "feedback": {
+        "age_1_2us": 537,
+        "age_2_5us": 42,
+        "age_5_10us": 244,
+        "age_gt_10us": 15,
+        "age_lt_1us": 45946,
+        "age_max_ns": 12306,
+        "age_sum_ns": 11457536,
+        "cache_peak": 227,
+        "delivered": 46769,
+        "delivered_bytes": 2806140,
+        "expired": 15,
+        "generated": 46784,
+        "hop_bytes": 10043160,
+        "hop_dequeues": 167386,
+        "hop_enqueues": 167386,
+        "hop_rejects": 0,
+        "rejected": 0,
+        "sample_age_max_ns": 16005,
+        "sample_age_sum_ns": 61741355,
+        "sequence_gaps": 0
+      },
+      "feedback_expired_fraction_pct": 0.032062,
+      "feedback_packet_bytes_per_report": 60.0,
+      "finished_utc": "2026-09-29T16:11:35Z",
+      "flow_count": 16576,
+      "hop_bytes_per_application_byte": 0.005755951771369347,
+      "identity": {
+        "complete": true,
+        "cross_tor_qps": 16205,
+        "destination_qps": 16205,
+        "errors": [],
+        "qp_count": 16576,
+        "source_qps": 16205,
+        "upstream_ce_packets": 10092
+      },
+      "interval_us": 5,
+      "log_bytes": {
+        "config.log": 2018918,
+        "simulation.log": 820,
+        "worker.log": 0
+      },
+      "mean_generation_to_arrival_us": 0.245,
+      "mean_window_end_to_arrival_us": 1.32,
+      "moe_round_count": 8,
+      "moe_round_max_us": 28.374,
+      "moe_round_mean_us": 20.521,
+      "paired_vs_off": {
+        "demand_time_changed": 0,
+        "fct_changed": 13990,
+        "fct_decreased": 6611,
+        "fct_delta_max_ns": 611581,
+        "fct_delta_mean_ns": -124.0066361003861,
+        "fct_delta_median_ns": 0,
+        "fct_delta_min_ns": -519836,
+        "fct_increased": 7379,
+        "fct_unchanged": 2586,
+        "finish_time_changed": 13990,
+        "release_time_changed": 0,
+        "wait_time_changed": 0
+      },
+      "raw_directory": "819517817",
+      "resource_summary": {
+        "final_status": "SUCCEEDED",
+        "id": "20260929-221400-ws21c-v2-tail-5us",
+        "minimum_free_gib": 5678.286651611328,
+        "minimum_mem_available_gib": 118.57865524291992,
+        "peak_tree_rss_mib": 4543.80859375,
+        "samples": 142
+      },
+      "runtime_seconds": 285,
+      "seed": 1,
+      "source_sha": "2c14d3b4c952a9cece89a9de14216709b604706f",
+      "started_utc": "2026-09-29T16:06:50Z",
+      "status": "SUCCEEDED",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3",
+      "ws18_sha256": "367777fdb657dd39a21779e598088508a7b6ede2da302035445c00b30f3fe057"
+    },
+    {
+      "application_bytes": 1744830464,
+      "delivered_bytes_per_application_byte": 0.0010259449481964111,
+      "experiment_id": "20260929-221100-ws21c-v2-tail-10us",
+      "fct_by_group": {
+        "all": {
+          "count": 16576,
+          "max_us": 3680.453,
+          "p50_us": 2.437,
+          "p90_us": 15.228,
+          "p99_us": 346.88,
+          "percentile_method": "nearest-rank"
+        },
+        "background_8m": {
+          "count": 192,
+          "max_us": 3680.453,
+          "p50_us": 696.764,
+          "p90_us": 1921.914,
+          "p99_us": 3395.277,
+          "percentile_method": "nearest-rank"
+        },
+        "moe_8k": {
+          "count": 16384,
+          "max_us": 28.374,
+          "p50_us": 2.424,
+          "p90_us": 14.867,
+          "p99_us": 20.054,
+          "percentile_method": "nearest-rank"
+        }
+      },
+      "fct_sha256": "f43eb80491ae96e175b5660b6080f8728c9901df544a0b90e8687f2e5dff240c",
+      "feedback": {
+        "age_1_2us": 482,
+        "age_2_5us": 113,
+        "age_5_10us": 33,
+        "age_gt_10us": 0,
+        "age_lt_1us": 29207,
+        "age_max_ns": 8508,
+        "age_sum_ns": 6946143,
+        "cache_peak": 227,
+        "delivered": 29835,
+        "delivered_bytes": 1790100,
+        "expired": 0,
+        "generated": 29835,
+        "hop_bytes": 6452040,
+        "hop_dequeues": 107534,
+        "hop_enqueues": 107534,
+        "hop_rejects": 0,
+        "rejected": 0,
+        "sample_age_max_ns": 16418,
+        "sample_age_sum_ns": 112282915,
+        "sequence_gaps": 0
+      },
+      "feedback_expired_fraction_pct": 0.0,
+      "feedback_packet_bytes_per_report": 60.0,
+      "finished_utc": "2026-09-29T15:32:33Z",
+      "flow_count": 16576,
+      "hop_bytes_per_application_byte": 0.003697803387275109,
+      "identity": {
+        "complete": true,
+        "cross_tor_qps": 16205,
+        "destination_qps": 16205,
+        "errors": [],
+        "qp_count": 16576,
+        "source_qps": 16205,
+        "upstream_ce_packets": 10115
+      },
+      "interval_us": 10,
+      "log_bytes": {
+        "config.log": 2165077,
+        "simulation.log": 825,
+        "worker.log": 0
+      },
+      "mean_generation_to_arrival_us": 0.233,
+      "mean_window_end_to_arrival_us": 3.763,
+      "moe_round_count": 8,
+      "moe_round_max_us": 28.374,
+      "moe_round_mean_us": 20.264,
+      "paired_vs_off": {
+        "demand_time_changed": 0,
+        "fct_changed": 13893,
+        "fct_decreased": 6340,
+        "fct_delta_max_ns": 698475,
+        "fct_delta_mean_ns": 28.165057915057915,
+        "fct_delta_median_ns": 0,
+        "fct_delta_min_ns": -631813,
+        "fct_increased": 7553,
+        "fct_unchanged": 2683,
+        "finish_time_changed": 13893,
+        "release_time_changed": 0,
+        "wait_time_changed": 0
+      },
+      "raw_directory": "589941339",
+      "resource_summary": {
+        "final_status": "SUCCEEDED",
+        "id": "20260929-221100-ws21c-v2-tail-10us",
+        "minimum_free_gib": 5681.34720993042,
+        "minimum_mem_available_gib": 118.58075332641602,
+        "peak_tree_rss_mib": 4543.80859375,
+        "samples": 143
+      },
+      "runtime_seconds": 286,
+      "seed": 1,
+      "source_sha": "2c14d3b4c952a9cece89a9de14216709b604706f",
+      "started_utc": "2026-09-29T15:27:47Z",
+      "status": "SUCCEEDED",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3",
+      "ws18_sha256": "1f988aedd0aa72b1d8f2423a31bc5344e1909ca85264690a68997ae0d9c333b6"
+    },
+    {
+      "application_bytes": 1744830464,
+      "delivered_bytes_per_application_byte": 0.0007196573110727164,
+      "experiment_id": "20260929-221200-ws21c-v2-tail-20us",
+      "fct_by_group": {
+        "all": {
+          "count": 16576,
+          "max_us": 3068.352,
+          "p50_us": 2.439,
+          "p90_us": 15.138,
+          "p99_us": 346.206,
+          "percentile_method": "nearest-rank"
+        },
+        "background_8m": {
+          "count": 192,
+          "max_us": 3068.352,
+          "p50_us": 692.819,
+          "p90_us": 1886.901,
+          "p99_us": 2961.909,
+          "percentile_method": "nearest-rank"
+        },
+        "moe_8k": {
+          "count": 16384,
+          "max_us": 28.374,
+          "p50_us": 2.425,
+          "p90_us": 14.825,
+          "p99_us": 19.823,
+          "percentile_method": "nearest-rank"
+        }
+      },
+      "fct_sha256": "8fdab39c3a1cd310f96c1720bfda2d2301bd930f1b2c4e8e8623076e43b6dafe",
+      "feedback": {
+        "age_1_2us": 328,
+        "age_2_5us": 9,
+        "age_5_10us": 0,
+        "age_gt_10us": 0,
+        "age_lt_1us": 20591,
+        "age_max_ns": 4906,
+        "age_sum_ns": 4522509,
+        "cache_peak": 227,
+        "delivered": 20928,
+        "delivered_bytes": 1255680,
+        "expired": 0,
+        "generated": 20928,
+        "hop_bytes": 4534680,
+        "hop_dequeues": 75578,
+        "hop_enqueues": 75578,
+        "hop_rejects": 0,
+        "rejected": 0,
+        "sample_age_max_ns": 20310,
+        "sample_age_sum_ns": 230084712,
+        "sequence_gaps": 0
+      },
+      "feedback_expired_fraction_pct": 0.0,
+      "feedback_packet_bytes_per_report": 60.0,
+      "finished_utc": "2026-09-29T15:47:01Z",
+      "flow_count": 16576,
+      "hop_bytes_per_application_byte": 0.002598922986250657,
+      "identity": {
+        "complete": true,
+        "cross_tor_qps": 16205,
+        "destination_qps": 16205,
+        "errors": [],
+        "qp_count": 16576,
+        "source_qps": 16205,
+        "upstream_ce_packets": 10212
+      },
+      "interval_us": 20,
+      "log_bytes": {
+        "config.log": 1649826,
+        "simulation.log": 825,
+        "worker.log": 0
+      },
+      "mean_generation_to_arrival_us": 0.216,
+      "mean_window_end_to_arrival_us": 10.994,
+      "moe_round_count": 8,
+      "moe_round_max_us": 28.374,
+      "moe_round_mean_us": 20.139,
+      "paired_vs_off": {
+        "demand_time_changed": 0,
+        "fct_changed": 13573,
+        "fct_decreased": 6801,
+        "fct_delta_max_ns": 484454,
+        "fct_delta_mean_ns": -276.9864261583012,
+        "fct_delta_median_ns": 0,
+        "fct_delta_min_ns": -858179,
+        "fct_increased": 6772,
+        "fct_unchanged": 3003,
+        "finish_time_changed": 13573,
+        "release_time_changed": 0,
+        "wait_time_changed": 0
+      },
+      "raw_directory": "343807930",
+      "resource_summary": {
+        "final_status": "SUCCEEDED",
+        "id": "20260929-221200-ws21c-v2-tail-20us",
+        "minimum_free_gib": 5680.329635620117,
+        "minimum_mem_available_gib": 118.58069229125977,
+        "peak_tree_rss_mib": 4544.0703125,
+        "samples": 140
+      },
+      "runtime_seconds": 281,
+      "seed": 1,
+      "source_sha": "2c14d3b4c952a9cece89a9de14216709b604706f",
+      "started_utc": "2026-09-29T15:42:20Z",
+      "status": "SUCCEEDED",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3",
+      "ws18_sha256": "23b7fe50f4fb644aa44c8b8900035210e6cb1510f6bdc0eba0746598d71a0ce0"
+    },
+    {
+      "application_bytes": 1744830464,
+      "delivered_bytes_per_application_byte": 0.0005858563459836519,
+      "experiment_id": "20260929-221300-ws21c-v2-tail-40us",
+      "fct_by_group": {
+        "all": {
+          "count": 16576,
+          "max_us": 3740.036,
+          "p50_us": 2.436,
+          "p90_us": 15.061,
+          "p99_us": 347.446,
+          "percentile_method": "nearest-rank"
+        },
+        "background_8m": {
+          "count": 192,
+          "max_us": 3740.036,
+          "p50_us": 677.877,
+          "p90_us": 2016.427,
+          "p99_us": 3606.043,
+          "percentile_method": "nearest-rank"
+        },
+        "moe_8k": {
+          "count": 16384,
+          "max_us": 28.374,
+          "p50_us": 2.424,
+          "p90_us": 14.708,
+          "p99_us": 19.754,
+          "percentile_method": "nearest-rank"
+        }
+      },
+      "fct_sha256": "d600ecef8f2a0a80aa5ccd0acfcbd6413323e0fb16c793ddf6907270f6ce3bec",
+      "feedback": {
+        "age_1_2us": 285,
+        "age_2_5us": 3,
+        "age_5_10us": 0,
+        "age_gt_10us": 0,
+        "age_lt_1us": 16749,
+        "age_max_ns": 3743,
+        "age_sum_ns": 3693133,
+        "cache_peak": 227,
+        "delivered": 17037,
+        "delivered_bytes": 1022220,
+        "expired": 0,
+        "generated": 17037,
+        "hop_bytes": 3701760,
+        "hop_dequeues": 61696,
+        "hop_enqueues": 61696,
+        "hop_rejects": 0,
+        "rejected": 0,
+        "sample_age_max_ns": 40491,
+        "sample_age_sum_ns": 485842119,
+        "sequence_gaps": 0
+      },
+      "feedback_expired_fraction_pct": 0.0,
+      "feedback_packet_bytes_per_report": 60.0,
+      "finished_utc": "2026-09-29T15:59:28Z",
+      "flow_count": 16576,
+      "hop_bytes_per_application_byte": 0.002121558556189904,
+      "identity": {
+        "complete": true,
+        "cross_tor_qps": 16205,
+        "destination_qps": 16205,
+        "errors": [],
+        "qp_count": 16576,
+        "source_qps": 16205,
+        "upstream_ce_packets": 10120
+      },
+      "interval_us": 40,
+      "log_bytes": {
+        "config.log": 2275805,
+        "simulation.log": 825,
+        "worker.log": 0
+      },
+      "mean_generation_to_arrival_us": 0.217,
+      "mean_window_end_to_arrival_us": 28.517,
+      "moe_round_count": 8,
+      "moe_round_max_us": 28.374,
+      "moe_round_mean_us": 19.668,
+      "paired_vs_off": {
+        "demand_time_changed": 0,
+        "fct_changed": 13357,
+        "fct_decreased": 6702,
+        "fct_delta_max_ns": 1135720,
+        "fct_delta_mean_ns": 131.36890685328186,
+        "fct_delta_median_ns": 0,
+        "fct_delta_min_ns": -663264,
+        "fct_increased": 6655,
+        "fct_unchanged": 3219,
+        "finish_time_changed": 13357,
+        "release_time_changed": 0,
+        "wait_time_changed": 0
+      },
+      "raw_directory": "136760792",
+      "resource_summary": {
+        "final_status": "SUCCEEDED",
+        "id": "20260929-221300-ws21c-v2-tail-40us",
+        "minimum_free_gib": 5679.308017730713,
+        "minimum_mem_available_gib": 118.57701873779297,
+        "peak_tree_rss_mib": 4543.875,
+        "samples": 146
+      },
+      "runtime_seconds": 294,
+      "seed": 1,
+      "source_sha": "2c14d3b4c952a9cece89a9de14216709b604706f",
+      "started_utc": "2026-09-29T15:54:34Z",
+      "status": "SUCCEEDED",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace_sha256": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3",
+      "ws18_sha256": "d29e3c072e7b93ea4a8b3e5ac8b4eb4a5b7f5684ed5a27fdea6804885ae056a8"
+    }
+  ],
+  "conditional_minimum_cost_examples": [
+    {
+      "age_cap_ns": 20000,
+      "interpretation": "illustrative constraint on this trace, not an established business SLO",
+      "requires_zero_expiry": true,
+      "selected_hop_bytes": 6452040,
+      "selected_interval_us": 10
+    },
+    {
+      "age_cap_ns": 20500,
+      "interpretation": "illustrative constraint on this trace, not an established business SLO",
+      "requires_zero_expiry": true,
+      "selected_hop_bytes": 4534680,
+      "selected_interval_us": 20
+    },
+    {
+      "age_cap_ns": null,
+      "interpretation": "illustrative constraint on this trace, not an established business SLO",
+      "requires_zero_expiry": true,
+      "selected_hop_bytes": 3701760,
+      "selected_interval_us": 40
+    }
+  ],
+  "cross_version_10us_packet_cost": {
+    "limit": "different source SHAs and report counts; technical packet-size comparison, not a routing-effect or causal total-byte estimate",
+    "new_experiment_id": "20260929-221100-ws21c-v2-tail-10us",
+    "new_hop_bytes": 6452040,
+    "new_packet_bytes": 60.0,
+    "new_reports": 29835,
+    "observed_total_hop_byte_reduction_pct": 28.338853384335494,
+    "old_experiment_id": "20260929-171900-ws21-feedback-longtail-on",
+    "old_hop_bytes": 9003540,
+    "old_packet_bytes": 85.0,
+    "old_reports": 29388,
+    "old_source_sha": "9964203cf6d3de4bc1061d61b6f959bcb537c120",
+    "packet_byte_reduction_pct": 29.411764705882355
+  },
+  "evidence_level": "single_trace_feedback_transport_cost_and_disturbance_matrix",
+  "limits": [
+    "Feedback cache is not consumed by route selection; these data do not measure routing benefit.",
+    "FCT changes are communication perturbations observed on one fixed trace, not independent statistical samples.",
+    "Expired reports are counted and discarded before cache update; route-level stale fallback is not exercised because route selection does not read this cache.",
+    "No local HELLO/ACK heartbeat was implemented or included in communication-cost totals.",
+    "No business SLO or cost preference was provided; report a Pareto set rather than a unique optimum."
+  ],
+  "ns3_seed": 1,
+  "observed_cost_freshness_expiry_pareto_us": [
+    5,
+    10,
+    20,
+    40
+  ],
+  "observed_zero_expiry_cost_freshness_pareto_us": [
+    10,
+    20,
+    40
+  ],
+  "off_baseline": {
+    "application_bytes": 1744830464,
+    "fct_by_group": {
+      "all": {
+        "count": 16576,
+        "max_us": 3646.568,
+        "p50_us": 2.437,
+        "p90_us": 15.135,
+        "p99_us": 345.457,
+        "percentile_method": "nearest-rank"
+      },
+      "background_8m": {
+        "count": 192,
+        "max_us": 3646.568,
+        "p50_us": 689.204,
+        "p90_us": 1836.487,
+        "p99_us": 3366.942,
+        "percentile_method": "nearest-rank"
+      },
+      "moe_8k": {
+        "count": 16384,
+        "max_us": 28.374,
+        "p50_us": 2.424,
+        "p90_us": 14.797,
+        "p99_us": 19.898,
+        "percentile_method": "nearest-rank"
+      }
+    },
+    "flow_count": 16576,
+    "moe_round_count": 8,
+    "moe_round_max_us": 28.374,
+    "moe_round_mean_us": 20.186
+  },
+  "off_experiment_id": "20260929-221000-ws21c-v2-tail-off",
+  "off_fct_sha256": "964b7f757f93397d56f2ab1434aa4647dfc4b23d083ecd08ef6486fac7f0e18f",
+  "off_ws18_sha256": "e12ab3388a27f2ccec9b85acf1d590680816e7b7d91a9e22b90e2a9e58e5fbab",
+  "percentile_method": "nearest-rank",
+  "sampling_unit": "one fixed demand trace; flows are paired observations, not independent repetitions",
+  "source_sha": "2c14d3b4c952a9cece89a9de14216709b604706f",
+  "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+  "trace_sha256": "9996372ea22158ca995937c727b6fef20559e0ce910b22e77529d9a8061b0cc3"
+}
