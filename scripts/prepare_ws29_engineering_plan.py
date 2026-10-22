@@ -33,6 +33,7 @@ def reference(folder):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--source-sha', required=True)
+    parser.add_argument('--id-prefix', default='20261022-150000-ws29-eng')
     parser.add_argument('--output', type=Path, default=ROOT /
                         'docs/research/evidence/ws29-engineering-plan.json')
     args = parser.parse_args()
@@ -47,7 +48,7 @@ def main():
         lines = [line.split() for line in inputs.decode().splitlines()[1:] if line.strip()]
         tags = {}
         for line in lines: tags[line[5]] = tags.get(line[5], 0) + 1
-        row = {'id': '20261022-150000-ws29-eng-' + label, 'label': label,
+        row = {'id': args.id_prefix + '-' + label, 'label': label,
                'arm': arm, 'mode': mode, 'source_sha': source, 'trace': trace, 'topology': topo,
                'trace_sha256': hashlib.sha256(inputs).hexdigest(),
                'topology_sha256': hashlib.sha256(topology).hexdigest(), 'bw': bw,
@@ -61,6 +62,10 @@ def main():
         if arm == -1:
             row['legacy_control_options'] = {'ws18_path': 1, 'ws21_identity': 1,
                 'ws21_heartbeat': 1, 'ws21_heartbeat_interval_ns': 200000}
+        row['control_options'] = {'ws21_identity': 1,
+            'ws21_feedback': int(arm in (1, 2, 3)),
+            'ws21_heartbeat': int(arm in (-1, 1, 2)),
+            'ws21_feedback_interval_ns': 10000, 'ws21_heartbeat_interval_ns': 200000}
         if fault in (1, 2): row['expected_single_drops'] = 1; row['expected_unknown'] = 0
         if 3 <= fault <= 8:
             row['expected_injected_rejected_delta'] = 1
@@ -89,6 +94,8 @@ def main():
         cell('synthetic-' + str(fault), 2, trace='ws29_state_machine_k4.txt', fault=fault,
              synthetic=True)
     plan = {'kind': 'WS-29 engineering only; remote GO pending', 'source_sha': source,
+            'observation_revision': 'v2; lifecycle raw evidence only; scoring and demands unchanged',
+            'unit_id': '20261022-173000-ws29-eng-unit-compat-r1',
             'candidate': 'v1', 'candidate_count_on_remote_start': 1, 'candidate_limit': 3,
             'diagnostic_revision_limit': 1, 'max_concurrent': 1,
             'state_interval_ns': 10000, 'heartbeat_interval_ns': 200000,

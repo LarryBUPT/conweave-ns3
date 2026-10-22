@@ -5,6 +5,8 @@ import hashlib
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
+from ws29_evidence_checks import (verify_settings, verify_reference, verify_runtime,
+                                  verify_control, verify_provenance, verify_lifecycle)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -51,7 +53,8 @@ def check_decision(row, arm):
 
 def verify(folder, cell, limits):
     meta = json.loads((folder / 'metadata.json').read_text())
-    require(meta['status'] == 'SUCCEEDED' and meta['git_commit'] == cell['source_sha'],
+    require(meta['experiment_id'] == cell['id'] and meta['status'] == 'SUCCEEDED' and
+            meta['git_commit'] == cell['source_sha'],
             'terminal state/source mismatch')
     require(meta['algorithm'] == cell['mode'] and meta['seed'] == 1 and
             meta['build_mode'] == 'optimized', 'mode/seed/build mismatch')
@@ -80,10 +83,12 @@ def verify(folder, cell, limits):
     require(len(expected) == len(done) == cell['input_flows'] and
             done_bytes == cell['input_bytes'], 'completion/byte conservation failed')
     cfg = config(folder / 'config/config.txt')
+    verify_settings(meta, cfg, cell)
     require(cfg['LB_MODE'] == ('21' if cell['mode'] == 'classreserve' else '20'), 'config LB_MODE')
     logpath = raw / 'config.log'
     if not logpath.exists(): logpath = folder / 'logs/config.log'
     lines = logpath.read_text(encoding='utf-8', errors='strict').splitlines()
+    verify_runtime(lines, cell)
     if cell['mode'] == 'classreserve':
         require('WS28_FACTOR mode=21 background_weight=1 background_routing=1' in lines,
                 'actual ClassReserve branch receipt absent')
@@ -125,6 +130,9 @@ def verify(folder, cell, limits):
     changed = sum(row['chosen'] != row['local'] for row in decisions)
     summaries = [fields(x) for x in lines if x.startswith('WS29_SUMMARY ')]
     counts = {r['name']: int(r['count']) for r in map(fields, lines) if 'name' in r and 'count' in r}
+    verify_control(lines, cell, counts)
+    verify_provenance(lines, folder / 'config/topology.txt', cell)
+    verify_lifecycle(lines, cell, counts)
     if cell['arm'] >= 0:
         require(len(summaries) == 1 and int(summaries[0]['overflow']) == 0, 'event overflow')
         require(counts.get('two_fresh', 0) == eligible and
@@ -179,7 +187,8 @@ def verify(folder, cell, limits):
     require(changed >= cell.get('expected_adopted_changed_min', 0), 'no forced adoption')
     require(changed <= cell.get('expected_adopted_changed_max', changed), 'unsafe synthetic fallback')
     if 'reference' in cell:
-        old = cell['reference']; require(sha(fct) == old['fct_sha256'], 'C0/legacy FCT fingerprint differs')
+        old = cell['reference']; verify_reference(old)
+        require(sha(fct) == old['fct_sha256'], 'C0/legacy FCT fingerprint differs')
         oldcfg = config(Path(old['root']) / 'config/config.txt')
         require(sha(Path(old['root']) / 'config/config.txt') == old['config_sha256'], 'old config changed')
         for key, value in oldcfg.items():

@@ -1533,6 +1533,12 @@ int main(int argc, char *argv[]) {
                                        ws21_heartbeat_fault_port,
                                        ws21_heartbeat_fault_start_ns,
                                        ws21_heartbeat_fault_end_ns);
+    if (ws29_arm >= 0) std::cout << "WS29_SETTINGS arm=" << ws29_arm << " fault=" << ws29_fault
+        << " fault_tor=" << ws29_fault_tor << " fault_port=" << ws29_fault_port
+        << " fault_start_ns=" << ws29_fault_start_ns << " fault_end_ns=" << ws29_fault_end_ns
+        << " identity=" << int(ws21_identity) << " state=" << int(ws21_feedback)
+        << " heartbeat=" << int(ws21_heartbeat) << " state_interval_ns=" << ws21_feedback_interval_ns
+        << " heartbeat_interval_ns=" << ws21_heartbeat_interval_ns << " decision_ttl_ns=20000" << std::endl;
     Settings::packet_payload = packet_payload_size;
     // Settings::MTU = packet_payload_size + 48;  // for simplicity
     /*------------------------------------*/

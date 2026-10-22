@@ -3,6 +3,7 @@
 import argparse
 import contextlib
 import datetime
+import difflib
 import glob
 import hashlib
 import json
@@ -520,11 +521,60 @@ def sync_bundle(repo_url, sha, branch, bundle_name):
     print('synced personal fork commit via workspace Git bundle=' + sha)
 
 
-def build(experiment_id, sha, branch, unit_suite=None):
+@contextlib.contextmanager
+def unit_compatibility(source, base, enabled):
+    if not enabled:
+        yield
+        return
+    name = 'src/core/test/command-line-test-suite.cc'
+    path = inside(os.path.join(source, name))
+    with open(path, 'rb') as handle:
+        original = handle.read()
+    original_hash = hashlib.sha256(original).hexdigest()
+    if original_hash != 'b7285686202442d47d339fd5817e9001c47bfc23377c8a8f5f596ba694373881':
+        raise RuntimeError('Unexpected core test original hash; refusing compatibility patch')
+    token = b'Parse (const CommandLine &cmd, int n, ...)'
+    if original.count(token) != 2 or output(['git', 'diff', '--name-only'], cwd=source):
+        raise RuntimeError('Compatibility patch needs exactly two signatures and clean source')
+    patched = original.replace(token, b'Parse (CommandLine &cmd, int n, ...)')
+    patched_hash = hashlib.sha256(patched).hexdigest()
+    if patched_hash != '3c474633f4545bc10c3fede9e8fbaddd83e5526bd19597ed19be509a4537cd99':
+        raise RuntimeError('Unexpected patched core test hash')
+    logbase = inside(os.path.join(base, 'logs'))
+    with open(os.path.join(logbase, 'command-line-test-suite.original'), 'xb') as handle:
+        handle.write(original)
+    diff = ''.join(difflib.unified_diff(original.decode().splitlines(True), patched.decode().splitlines(True),
+                                      fromfile='a/' + name, tofile='b/' + name))
+    with open(os.path.join(logbase, 'unit-compatibility.patch'), 'x') as handle:
+        handle.write(diff)
+    receipt = {'file': name, 'source_sha': output(['git', 'rev-parse', 'HEAD'], cwd=source),
+               'original_sha256': original_hash, 'patched_sha256': patched_hash,
+               'binary_scope': 'test-enabled optimized binary compiled with disclosed compatibility edit',
+               'restored_sha256': None, 'tracked_diff_after_restore': None}
+    try:
+        with open(path, 'wb') as handle:
+            handle.write(patched)
+        yield
+    finally:
+        with open(path, 'wb') as handle:
+            handle.write(original)
+        with open(path, 'rb') as handle:
+            receipt['restored_sha256'] = hashlib.sha256(handle.read()).hexdigest()
+        receipt['tracked_diff_after_restore'] = output(['git', 'diff', '--name-only'], cwd=source)
+        with open(os.path.join(logbase, 'unit-compatibility.json'), 'x') as handle:
+            json.dump(receipt, handle, indent=2, sort_keys=True)
+            handle.write('\n')
+        if receipt['restored_sha256'] != original_hash or receipt['tracked_diff_after_restore']:
+            raise RuntimeError('Compatibility source restoration failed')
+
+
+def build(experiment_id, sha, branch, unit_suite=None, unit_compat=False):
     if not SHA_RE.match(sha) or not re.match(r'^[A-Za-z0-9._/-]{1,100}$', branch):
         raise RuntimeError('Invalid commit or branch')
     if unit_suite not in (None, 'devices-point-to-point'):
         raise RuntimeError('Unsupported unit suite')
+    if unit_compat and not unit_suite:
+        raise RuntimeError('Compatibility edit is only allowed for the explicit unit suite')
     resources_ok()
     base, source = paths(experiment_id)
     if os.path.lexists(base) or os.path.lexists(os.path.dirname(source)):
@@ -543,7 +593,7 @@ def build(experiment_id, sha, branch, unit_suite=None):
             'git_repository': output(['git', 'config', '--get', 'remote.origin.url'], cwd=code),
             'git_commit': sha, 'git_branch': branch, 'server': socket.gethostname(),
             'cpu_jobs': 2, 'build_mode': 'optimized', 'seed': 1,
-            'pid': os.getpid(), 'unit_suite': unit_suite}
+            'pid': os.getpid(), 'unit_suite': unit_suite, 'unit_compatibility': unit_compat}
     save_metadata(base, data)
     log = inside(os.path.join(base, 'logs', 'build.log'))
     sampler = ResourceSampler(experiment_id, base, os.getpid())
@@ -563,19 +613,34 @@ def build(experiment_id, sha, branch, unit_suite=None):
             save_metadata(base, data)
             test_log = inside(os.path.join(base, 'logs', 'ws29-point-to-point-unit-test.log'))
             test_build = 'build-ws29-tests'
-            run_checked(['./waf', 'configure', '--enable-tests',
-                         '--build-profile=optimized', '--out=' + test_build],
-                        cwd=source, log=test_log)
-            run_checked(['./waf', '--out=' + test_build, '-j2'], cwd=source, log=test_log)
-            runners = glob.glob(os.path.join(source, test_build, 'utils',
-                                             '*-test-runner-optimized'))
-            if len(runners) != 1:
-                raise RuntimeError('Expected one optimized test runner; found %d' % len(runners))
-            env = os.environ.copy()
-            env['LD_LIBRARY_PATH'] = os.path.join(source, test_build) + os.pathsep + env.get(
-                'LD_LIBRARY_PATH', '')
-            run_checked([runners[0], '--suite=' + unit_suite, '--verbose'],
-                        cwd=source, log=test_log, env=env)
+            with unit_compatibility(source, base, unit_compat):
+                commands = [['./waf', 'configure', '--enable-tests', '--build-profile=optimized', '--out=' + test_build],
+                            ['./waf', '--out=' + test_build, '-j2']]
+                for command in commands:
+                    run_checked(command, cwd=source, log=test_log)
+                runners = glob.glob(os.path.join(source, test_build, 'utils', '*-test-runner-optimized'))
+                if len(runners) != 1:
+                    raise RuntimeError('Expected one optimized test runner; found %d' % len(runners))
+                env = os.environ.copy()
+                env['LD_LIBRARY_PATH'] = os.path.join(source, test_build) + os.pathsep + env.get('LD_LIBRARY_PATH', '')
+                listing = inside(os.path.join(base, 'logs', 'unit-suites.log'))
+                commands.extend([[runners[0], '--print-test-name-list'], [runners[0], '--suite=' + unit_suite, '--verbose']])
+                with open(os.path.join(base, 'logs', 'unit-commands.json'), 'x') as handle:
+                    json.dump(commands, handle, indent=2)
+                run_checked(commands[-2], cwd=source, log=listing, env=env)
+                with open(listing) as handle:
+                    if unit_suite not in handle.read().splitlines():
+                        raise RuntimeError('Requested suite was not registered')
+                run_checked(commands[-1], cwd=source, log=test_log, env=env)
+                with open(test_log) as handle:
+                    test_text = handle.read()
+                required_cases = ('devices-point-to-point', 'PointToPoint',
+                                  'IRN timeout is deferred only for an actual PFC pause and its resume grace',
+                                  'WS-21 feedback header serialization and validation',
+                                  'WS-21 heartbeat header serialization and validation')
+                if not all('PASS ' + name in test_text for name in required_cases):
+                    raise RuntimeError('Suite returned without all required verbose PASS records')
+                data['unit_pass_cases'] = list(required_cases)
             data['unit_status'] = 'PASS'
             data['unit_test_finished_utc'] = stamp()
             data['status'] = 'TESTED'
@@ -884,6 +949,7 @@ def main():
     build_cmd.add_argument('--sha', required=True)
     build_cmd.add_argument('--branch', required=True)
     build_cmd.add_argument('--unit-suite', choices=('devices-point-to-point',))
+    build_cmd.add_argument('--unit-compat', action='store_true')
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('--id', required=True)
     run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'destspread', 'classreserve3', 'classlane4', 'classlane4-moe-only', 'classlane4-background-only', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
@@ -946,7 +1012,7 @@ def main():
     elif args.command == 'sync-bundle':
         sync_bundle(args.repo, args.sha, args.branch, args.bundle_name)
     elif args.command == 'build':
-        build(args.id, args.sha, args.branch, args.unit_suite)
+        build(args.id, args.sha, args.branch, args.unit_suite, args.unit_compat)
     elif args.command == 'run':
         if args.factorial_pilot and args.factorial_formal:
             raise RuntimeError('Factorial pilot and formal flags are exclusive')

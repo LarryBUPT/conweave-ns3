@@ -61,6 +61,8 @@ def worker_call(cfg, *args):
         'status': 45, 'audit': 45, 'fetch-check': 60,
         'run': 60, 'transfer-smoke': 120,
     }.get(operation, 60)
+    if operation == 'build' and '--unit-suite' in args:
+        timeout = 7200
     argv = ssh_base(cfg) + [remote_command]
     if operation != 'build':
         subprocess.check_call(argv, timeout=timeout)
@@ -326,6 +328,7 @@ def main():
             item.add_argument('--label', default='baseline')
             item.add_argument('--source-sha', help='previously synced ancestor commit for recovery')
             item.add_argument('--unit-suite', choices=('devices-point-to-point',))
+            item.add_argument('--unit-compat', action='store_true')
     protect_cmd = sub.add_parser('protect-fork')
     protect_cmd.add_argument('--repo-local', required=True)
     run_cmd = sub.add_parser('run')
@@ -417,6 +420,10 @@ def main():
             build_args = ['build', '--id', experiment_id, '--sha', sha, '--branch', branch]
             if args.unit_suite:
                 build_args.extend(['--unit-suite', args.unit_suite])
+            if args.unit_compat:
+                if not args.unit_suite:
+                    raise RuntimeError('--unit-compat requires --unit-suite')
+                build_args.append('--unit-compat')
             worker_call(cfg, *build_args)
             print('Experiment ID: ' + experiment_id)
     elif args.command == 'run':

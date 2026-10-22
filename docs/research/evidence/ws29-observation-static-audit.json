@@ -1,0 +1,30 @@
+{
+  "base_source_sha": "526802e6b25635435aba960d821e8e5561ebb50a",
+  "unchanged_function_bodies": {
+    "ChooseWs29Feedback": true,
+    "DoLbClassReserve": true
+  },
+  "config_input_blobs_changed": false,
+  "core_original_sha256": "b7285686202442d47d339fd5817e9001c47bfc23377c8a8f5f596ba694373881",
+  "local_evidence_tests": 12,
+  "cpp_compiled_for_observation_revision": false,
+  "remote_operations_in_local_revision_stage": 0,
+  "reference_review": [
+    {
+      "paper": "SGLB SIGCOMM 2025 fixed 20-page PDF",
+      "pdf_sha256": "1bceebbc0a40040646ca6cd3cb81dc258d80ef621c532c62016b156def7ebd6c",
+      "use": "Versioned state, failure and recovery evidence separated; actual link and session provenance.",
+      "condition": "A modeled control-session and physical source uplink, not a deployed SyncMesh network.",
+      "difference": "WS29 keeps two-candidate QP ClassReserve and full-path CE ratio; no GLB ASIC/EDK, BGP or path-profile implementation.",
+      "not_transferred": "Hardware resources, deployment/failure latency or CCT gains."
+    },
+    {
+      "paper": "CONGA SIGCOMM 2014 fixed 12-page conference PDF",
+      "pdf_sha256": "cde4d45c8864484cd11e8fef6ae88a7c8ce12f8305eeb323ae01c9b56652072d",
+      "use": "Source/destination leaf and candidate feedback identity, freshness and retained selection granularity.",
+      "condition": "Actual observed SEND/CACHE provenance; missing or stale states remain ineligible.",
+      "difference": "No DRE quantized maximum-path metric or flowlet implementation; no synthetic warmup for natural decisions.",
+      "not_transferred": "TCP FCT, hardware cost, asymmetry or failure gains."
+    }
+  ]
+}

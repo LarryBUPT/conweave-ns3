@@ -1,0 +1,23 @@
+{
+  "kind": "WS-29 observation-only revision; remote GO pending",
+  "predecessor_source_sha": "526802e6b25635435aba960d821e8e5561ebb50a",
+  "mechanism_change": false,
+  "unchanged": ["ClassReserve scoring", "candidate salts", "new-QP consumption rule", "STATE/HB intervals", "TTL", "demand timing", "traffic and topology blobs", "fault injection schedule"],
+  "new_records": {
+    "WS29_SETTINGS": "Actual arm, six fault settings, identity/STATE/HB enables, intervals and 20000 ns TTL; not charged to capped event rows.",
+    "WS29_ACK_CHECK": "Each heartbeat rejection, and each accepted ACK: packet type/epoch/sequence plus actual lastAck/missed/outstanding/epoch before and after processing.",
+    "WS29_ACK_INJECT": "Additional invalid-probe before/after snapshots taken after the first valid ACK for duplicate testing and after restart for old-epoch testing.",
+    "WS29_STATE_REJECT": "Every STATE rejection/expiry: reason, outcome, receiver, producer ToR, candidate, session, sequence, window bounds and retained high-water.",
+    "WS29_TIMER": "Ignored HB/STATE timer: switch/port, kind, scheduled and current epoch/session; exact reconciliation to old-timer counts.",
+    "WS29_HELLO": "Actual accepted HELLO identities, reconciled to global hello_received.",
+    "WS29_CONTROL_UNSENT": "Unavailable ACK send attempt, zero wire bytes, reconciled separately to hop_rejects.",
+    "WS29_CONTROL": "Adds admission_reject beside existing enqueue/dequeue/queued_drop/queue_reject; per-type packets and observed wire bytes."
+  },
+  "existing_identity_chain": "STATE_SEND producer/source-ToR/candidate/session/sequence/window/CE/samples -> earlier matching STATE_CACHE -> latest surviving cache for both natural eligible decision candidates; active current-epoch ACK required after clears.",
+  "synthetic_cache_exemptions": [10, 15, 16, 17],
+  "acceptance_groups": ["metadata/config/runtime settings", "per-link byte and packet ledger with global summaries", "actual send/cache/decision and session/link invalidation", "invalid ACK non-mutation, restart recovery and rollover delivery", "old metadata/config/trace/topology/FCT hashes"],
+  "limits": {"ws29_event_rows": 500000, "ws21_heartbeat_event_rows": 20000, "max_text_log_bytes": 52428800, "any_overflow": "reject; thresholds unchanged"},
+  "unit_failure_preserved": "20261022-150000-ws29-eng-unit",
+  "unit_recovery_id": "20261022-173000-ws29-eng-unit-compat-r1",
+  "remote_runs_in_this_revision": 0
+}
