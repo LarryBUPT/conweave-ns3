@@ -2,6 +2,7 @@
 import hashlib
 import json
 import random
+import subprocess
 from pathlib import Path
 from make_ws25_demand import make
 
@@ -50,9 +51,11 @@ def main():
     techlead=config/'ws30_technical168_lead.txt'
     put(techlead,tech.read_bytes().replace(b'2.000000000 2',b'2.000020000 2'))
     result={'new_inputs':rows,'technical':[item(x) for x in (tech,five,techlead)],
-            'generator_sha256':hashlib.sha256((ROOT/'scripts/make_ws25_demand.py').read_bytes()).hexdigest(),
+            'generator_sha256':hashlib.sha256(subprocess.check_output(
+                ['git','-C',str(ROOT),'show','HEAD:scripts/make_ws25_demand.py'])).hexdigest(),
+            'generator_hash_convention':'Git blob LF bytes; local Windows checkout may use CRLF',
             'topology_sha256':hashlib.sha256((config/'topo_1280_400G_400G_OS1.txt').read_bytes()).hexdigest()}
-    dest=ROOT/'docs/research/evidence/ws30-inputs.json'
+    dest=ROOT/'docs/research/evidence/ws30-inputs-v2.json'
     put(dest,(json.dumps(result,indent=2,sort_keys=True)+'\n').encode('utf-8'))
     print(json.dumps({'new_inputs':len(rows),'technical_inputs':3,'manifest_sha256':hashlib.sha256(dest.read_bytes()).hexdigest()}))
 if __name__=='__main__':main()
