@@ -55,6 +55,10 @@ class SwitchNode : public Node {
                                 const std::vector<int> &nexthops);
     uint32_t DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &ch,
                               const std::vector<int> &nexthops);
+    struct Ws30Pair { uint32_t first=0, second=0, chosen=0; };
+    std::map<std::tuple<uint32_t,uint32_t,uint16_t,uint16_t>,Ws30Pair> m_ws30Pairs;
+    uint32_t DoLbWs30(Ptr<const Packet> p, const CustomHeader &ch,
+                      const std::vector<int> &nexthops);
     uint32_t DoLbDestSpread(Ptr<const Packet> p, const CustomHeader &ch,
                             const std::vector<int> &nexthops);
     std::map<std::tuple<uint32_t, uint32_t, uint16_t, uint16_t>, uint32_t>

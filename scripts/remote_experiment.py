@@ -329,7 +329,7 @@ def main():
     protect_cmd.add_argument('--repo-local', required=True)
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('id')
-    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'destspread', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'ws30-h16', 'ws30-r16', 'ws30-u16', 'ws30-q12', 'ws30-h12', 'destspread', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12, 16, 18), default=1,
@@ -343,6 +343,7 @@ def main():
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -474,6 +475,7 @@ def main():
             command.extend(['--ws25-diag', '1'])
         if args.ws28_tail_diag:
             command.extend(['--ws28-tail-diag', '1'])
+        command.extend(['--ws30-observe', str(args.ws30_observe)])
         if args.factorial_pilot:
             command.append('--factorial-pilot')
         if args.factorial_drop_diag:

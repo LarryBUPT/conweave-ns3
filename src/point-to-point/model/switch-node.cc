@@ -1,4 +1,5 @@
 #include "switch-node.h"
+#include "ws30-observer.h"
 
 #include "assert.h"
 #include "ns3/boolean.h"
@@ -31,7 +32,7 @@ namespace ns3 {
 
 static bool ClassReserveFamilyMode() {
     return Settings::lb_mode == 21 ||
-           (Settings::lb_mode >= 25 && Settings::lb_mode <= 27);
+           (Settings::lb_mode >= 25 && Settings::lb_mode <= 32);
 }
 
 static bool ClassReserveBackgroundWeight() {
@@ -978,6 +979,17 @@ void SwitchNode::PrintWorkloadTagCounts() {
         }
         NS_ASSERT_MSG(guard_queue_violations == 0, "WS-25 queue counters do not conserve bytes");
     }
+    if (Ws30Level()) {
+        uint64_t enq=0, deq=0, drop=0, current=0;
+        for (const auto &entry:guard_queue_stats) {
+            const GuardQueueStat &s=entry.second;
+            enq+=s.enqueued; deq+=s.dequeued; drop+=s.queuedDropped; current+=s.current;
+        }
+        std::cout << "WS30_QUEUE enqueued=" << enq << " dequeued=" << deq
+                  << " dropped=" << drop << " current=" << current
+                  << " violations=" << guard_queue_violations << std::endl;
+        Ws30Print();
+    }
 }
 
 TypeId SwitchNode::GetTypeId(void) {
@@ -1263,6 +1275,8 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
                   << " first_background=" << firstBackground
                   << " second_background=" << secondBackground << std::endl;
     }
+    Ws30Choice(m_id, ch, background ? 1U : 2U, first, second, firstQueue, secondQueue,
+                 firstBackground, secondBackground, chosen, p->GetSize());
     if (background) {
         m_classReserveBackgroundPort[flow] = chosen;
         ++classreserve_background_new_flows;
@@ -1272,6 +1286,47 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
     if (m_isToR && m_isToR_hostIP.count(ch.sip))
         ++classreserve_source_port_packets[std::make_tuple(m_id, chosen,
                                                             background ? 1U : 2U)];
+    return chosen;
+}
+
+// WS-30: retain a first-arrival candidate pair separately from the chosen port.
+uint32_t SwitchNode::DoLbWs30(Ptr<const Packet> p, const CustomHeader &ch,
+                             const std::vector<int> &nexthops) {
+    WorkloadTag tag;
+    if (ch.l3Prot!=0x11 || !p->PeekPacketTag(tag) ||
+        (tag.GetValue()!=1 && tag.GetValue()!=2)) return DoLbFlowECMP(p,ch,nexthops);
+    const uint32_t label=tag.GetValue();
+    const auto flow=std::make_tuple(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport);
+    auto hit=m_ws30Pairs.find(flow);
+    const bool fresh=hit==m_ws30Pairs.end();
+    const bool perPacket=Settings::lb_mode==30;
+    if (!fresh && !perPacket) return hit->second.chosen;
+    if (fresh) {
+        uint32_t key[4]={ch.sip,ch.dip,
+            uint32_t(ch.udp.sport)|(uint32_t(ch.udp.dport)<<16),ch.udp.seq};
+        const size_t bytes=(label==1 || Settings::lb_mode>=31)?12:16;
+        Ws30Pair pair;
+        pair.first=nexthops[EcmpHash(reinterpret_cast<const uint8_t*>(key),bytes,m_ecmpSeed)%nexthops.size()];
+        pair.second=nexthops[EcmpHash(reinterpret_cast<const uint8_t*>(key),bytes,m_ecmpSeed^0x9e3779b9U)%nexthops.size()];
+        pair.chosen=pair.first;
+        if (Settings::lb_mode==29 &&
+            (EcmpHash(reinterpret_cast<const uint8_t*>(key),bytes,m_ecmpSeed^0x85ebca6bU)&1U))
+            pair.chosen=pair.second;
+        hit=m_ws30Pairs.insert(std::make_pair(flow,pair)).first;
+    }
+    Ws30Pair &pair=hit->second;
+    const bool readQueues=Ws30Level() || Settings::lb_mode==30 || Settings::lb_mode==31;
+    const uint64_t q1=readQueues?CalculateInterfaceLoad(pair.first):0;
+    const uint64_t q2=readQueues?CalculateInterfaceLoad(pair.second):0;
+    const uint64_t b1=Ws30Level()?Ws28BackgroundQueueBytes(m_id,pair.first):0;
+    const uint64_t b2=Ws30Level()?Ws28BackgroundQueueBytes(m_id,pair.second):0;
+    uint32_t chosen=pair.chosen;
+    if (Settings::lb_mode==30 || Settings::lb_mode==31)
+        chosen=q2<q1?pair.second:pair.first;
+    // H16/H12 and R16 perform no queue-dependent selection. Reads above are
+    // observation only; both pinned decisions are independent of these values.
+    if (fresh) Ws30Choice(m_id,ch,label,pair.first,pair.second,q1,q2,b1,b2,chosen,p->GetSize());
+    pair.chosen=chosen;
     return chosen;
 }
 
@@ -1672,6 +1727,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         case 26:
         case 27:
             return DoLbClassReserve(p, ch, nexthops);
+        case 28: case 29: case 30: case 31: case 32:
+            return DoLbWs30(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
         case 23:
@@ -1733,7 +1790,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                     if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                     else ++ws21_feedback_hop_rejects;
                 }
-                if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
+                if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
                     SwitchNotifyAdmissionDrop(outDev, p);
                 return;  // drop
             }
@@ -1751,7 +1808,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                 else ++ws21_feedback_hop_rejects;
             }
-            if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
+            if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
                 SwitchNotifyAdmissionDrop(outDev, p);
             return;  // drop
         }
@@ -1803,6 +1860,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                       << std::endl;
     }
     const bool accepted = m_devices[outDev]->SwitchSend(qIndex, p, ch);
+    Ws30Route(m_id, p, ch, outDev, accepted);
     // ECMP does not invoke SwitchNotifyEnqueue; record its successful queue
     // acceptance here. A synchronous dequeue may already have been logged.
     if (accepted && ws28Target >= 0 && !ClassReserveFamilyMode() &&
@@ -1837,7 +1895,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         } else {
             // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
             // Release the admission reservation made above for this packet.
-            if (qIndex != 0 && !((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)) {
+            if (qIndex != 0 && !(Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)) {
                 if (!locallyGenerated)
                     m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
@@ -1967,7 +2025,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             ws13_inflight.erase(hit);
         }
     }
-    if ((Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24) {
+    if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
         s.current -= p->GetSize();

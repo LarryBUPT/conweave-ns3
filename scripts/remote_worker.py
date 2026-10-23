@@ -584,6 +584,7 @@ def execute(experiment_id):
             raise RuntimeError('Expected a fresh, empty output path')
         os.symlink(inside(os.path.join(base, 'raw')), output_dir)
         simulation_env = os.environ.copy()
+        simulation_env['WS30_OBSERVE'] = str(params.get('ws30_observe', 0))
         if params.get('ws28_tail_diag'):
             simulation_env['WS28_TAIL_DIAG'] = '1'
         else:
@@ -780,7 +781,7 @@ def main():
     build_cmd.add_argument('--branch', required=True)
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('--id', required=True)
-    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'destspread', 'classreserve3', 'classlane4', 'classlane4-moe-only', 'classlane4-background-only', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'ws30-h16', 'ws30-r16', 'ws30-u16', 'ws30-q12', 'ws30-h12', 'destspread', 'classreserve3', 'classlane4', 'classlane4-moe-only', 'classlane4-background-only', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12, 16, 18), default=1)
@@ -792,6 +793,7 @@ def main():
     run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-queue-front-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
@@ -906,6 +908,7 @@ def main():
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
                         'ws25_diag': args.ws25_diag,
                         'ws28_tail_diag': args.ws28_tail_diag,
+                        'ws30_observe': args.ws30_observe,
                         'ws26_moe_hop_diag': args.ws26_moe_hop_diag,
                         'ws26_queue_front_diag': args.ws26_queue_front_diag,
                         'ws26_time_probe': args.ws26_time_probe,
