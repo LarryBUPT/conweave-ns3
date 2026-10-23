@@ -949,9 +949,11 @@ bool SwitchNode::ReceiveWs21Heartbeat(Ptr<NetDevice> device, Ptr<Packet> p,
 }
 
 void SwitchNode::Ws29LinkState(uint32_t port, bool up) {
-    NS_ASSERT_MSG(ws29_arm >= 0 && port > 0 && port < m_devices.size(), "invalid link target");
+    if (ws29_arm < 0 || port == 0 || port >= m_devices.size())
+        NS_FATAL_ERROR("invalid WS-29 link target");
     Ptr<QbbNetDevice> dev = DynamicCast<QbbNetDevice>(m_devices[port]);
-    NS_ASSERT_MSG(dev && Ws21Peer(dev).nodeType == 1, "switch-switch faults only");
+    if (!dev || Ws21Peer(dev).nodeType != 1)
+        NS_FATAL_ERROR("WS-29 physical faults require a switch-switch link");
     if (up) dev->Ws29BringUp();
     else dev->Ws29TakeDown();
     // No route recomputation: this experiment changes the directly attached link.
@@ -978,7 +980,9 @@ void SwitchNode::Ws29Fault(uint32_t fault, uint32_t port) {
     NS_ASSERT_MSG(ws29_arm >= 0, "WS-29 faults are disabled for historical runs");
     if (fault == 23 || fault == 24) {
         for (uint32_t i = 1; i < m_devices.size(); ++i)
-            if (!m_ws21HostPorts.count(i)) Ws29Fault(fault == 23 ? 21 : 22, i);
+            // Physical targets must not depend on optional telemetry initialization.
+            if (Ws21Peer(m_devices[i]).nodeType == 1)
+                Ws29Fault(fault == 23 ? 21 : 22, i);
         return;
     }
     if (fault == 20 || fault == 21 || fault == 22) {
@@ -989,7 +993,7 @@ void SwitchNode::Ws29Fault(uint32_t fault, uint32_t port) {
         for (uint32_t i = 0; i < channel->GetNDevices(); ++i)
             if (channel->GetDevice(i) != dev)
                 other = DynamicCast<SwitchNode>(channel->GetDevice(i)->GetNode());
-        NS_ASSERT_MSG(other, "missing switch neighbor");
+        if (!other) NS_FATAL_ERROR("WS-29 physical fault has no switch neighbor");
         Ws29LinkState(port, fault == 22);
         other->Ws29LinkState(peer.port, fault == 22);
         ++ws29_counts["physical_link_events"];

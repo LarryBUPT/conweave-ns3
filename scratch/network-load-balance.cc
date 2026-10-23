@@ -1893,7 +1893,7 @@ int main(int argc, char *argv[]) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
                 SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
-            if (ws21_port_events || ws21_heartbeat)
+            if (ws21_port_events || ws21_heartbeat || ws29_arm >= 0)
                 sw->AddWs21HostPort(nbr2if.at(probably_switch).at(probably_host).idx);
             if (idxNodeToR.find(sw->GetId()) == idxNodeToR.end()) {
                 idxNodeToR[sw->GetId()] = sw;

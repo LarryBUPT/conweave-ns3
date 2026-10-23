@@ -7,6 +7,8 @@
 #include "ns3/ws21-feedback-header.h"
 #include "ns3/ws21-heartbeat-header.h"
 #include "ns3/irn-pfc-timeout.h"
+#include "ns3/qbb-helper.h"
+#include "ns3/switch-node.h"
 
 #include <limits>
 
@@ -162,6 +164,42 @@ public:
   }
 };
 
+class Ws29PhysicalTargetTestCase : public TestCase
+{
+public:
+  Ws29PhysicalTargetTestCase () : TestCase ("WS-29 all-link faults preserve host links without telemetry") {}
+  virtual void DoRun (void)
+  {
+    SwitchNode::ConfigureWs21Feedback (false, 10000);
+    SwitchNode::ConfigureWs21Heartbeat (false, 200000, 0, 0, 0, 0, 0);
+    for (int32_t arm = 0; arm <= 2; ++arm)
+      {
+        Ptr<SwitchNode> tor = CreateObject<SwitchNode> ();
+        Ptr<SwitchNode> peer = CreateObject<SwitchNode> ();
+        Ptr<Node> host = CreateObject<Node> ();
+        // Match the simulation's reserved device zero, then host port and uplink.
+        tor->AddDevice (CreateObject<PointToPointNetDevice> ());
+        peer->AddDevice (CreateObject<PointToPointNetDevice> ());
+        QbbHelper helper;
+        NetDeviceContainer hostLink = helper.Install (host, tor);
+        NetDeviceContainer uplink = helper.Install (tor, peer);
+        // Deliberately do not call AddWs21HostPort: neighbor type is authoritative.
+        SwitchNode::ConfigureWs29 (arm, 23, tor->GetId (), 2, 0, 1);
+        tor->Ws29Fault (23, 2);
+        NS_TEST_ASSERT_MSG_EQ (hostLink.Get (0)->IsLinkUp (), true, "host NIC was disabled");
+        NS_TEST_ASSERT_MSG_EQ (hostLink.Get (1)->IsLinkUp (), true, "host-facing port was disabled");
+        NS_TEST_ASSERT_MSG_EQ (uplink.Get (0)->IsLinkUp (), false, "local uplink stayed up");
+        NS_TEST_ASSERT_MSG_EQ (uplink.Get (1)->IsLinkUp (), false, "peer uplink stayed up");
+        tor->Ws29Fault (24, 2);
+        NS_TEST_ASSERT_MSG_EQ (hostLink.Get (1)->IsLinkUp (), true, "recovery changed host port");
+        NS_TEST_ASSERT_MSG_EQ (uplink.Get (0)->IsLinkUp (), true, "local uplink did not recover");
+        NS_TEST_ASSERT_MSG_EQ (uplink.Get (1)->IsLinkUp (), true, "peer uplink did not recover");
+        Simulator::Destroy ();
+      }
+    SwitchNode::ConfigureWs29 (-1, 0, 0, 0, 0, 0);
+  }
+};
+
 PointToPointTest::PointToPointTest ()
   : TestCase ("PointToPoint")
 {
@@ -214,6 +252,7 @@ PointToPointTestSuite::PointToPointTestSuite ()
   AddTestCase (new IrnPfcTimeoutTestCase);
   AddTestCase (new Ws21FeedbackHeaderTestCase);
   AddTestCase (new Ws21HeartbeatHeaderTestCase);
+  AddTestCase (new Ws29PhysicalTargetTestCase);
 }
 
 static PointToPointTestSuite g_pointToPointTestSuite;
