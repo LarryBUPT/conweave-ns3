@@ -1,0 +1,191 @@
+{
+  "cause_evidence": "Fixed source and raw log boundary support the path; no runtime backtrace or dynamic reproduction.",
+  "changed_files": [
+    "docs/research/evidence/ws29-engineering-entry-audit.json",
+    "docs/research/evidence/ws29-engineering-entry.json",
+    "docs/research/evidence/ws29-engineering-plan-observation-v2.json",
+    "docs/research/evidence/ws29-regression-entry-audit.json",
+    "docs/research/evidence/ws29-regression-entry.json",
+    "docs/research/evidence/ws29-unit-compat-observation-v2.json",
+    "docs/research/evidence/ws29-unit-compat-observation-v2.patch",
+    "docs/research/ws29-observation-v2-and-unit-recovery.md",
+    "docs/research/ws29-remaining-engineering-entry.md",
+    "docs/research/ws29-three-regression-entry.md",
+    "scratch/network-load-balance.cc",
+    "scripts/prepare_ws29_unit_compat.py",
+    "scripts/remote_experiment.py",
+    "scripts/remote_worker.py",
+    "scripts/run_ws29_engineering.py",
+    "scripts/run_ws29_regressions.py",
+    "scripts/test_ws29_engineering_entry.py",
+    "scripts/test_ws29_identity_parser.py",
+    "scripts/test_ws29_regression_entry.py",
+    "scripts/verify_ws29_engineering.py",
+    "scripts/ws29_evidence_checks.py",
+    "src/point-to-point/model/switch-node.cc",
+    "src/point-to-point/test/point-to-point-test.cc"
+  ],
+  "initialization_readers": [
+    "RecordWs21PortEvent: disabled by port-events=0",
+    "TouchWs21Heartbeat: disabled by heartbeat=0",
+    "Ws29Fault bulk physical: fault23/24 only",
+    "Ws29Fault abnormal ACK ingress selection: already initialized in protocol heartbeat cells"
+  ],
+  "mandatory_revalidation": [
+    {
+      "label": "link-20-c0",
+      "reason": "Direct physical down/up and new runtime guards changed; compare single-link baseline with all-link failure under same new SHA."
+    },
+    {
+      "label": "main-c0",
+      "reason": "Same-SHA natural baseline required for C1-C0, C2-C0, C2-C1 and C3 cost interpretation; old baseline kept as compatibility evidence."
+    }
+  ],
+  "mechanism_budget": "Engineering correction; no candidate/diagnostic-revision slot consumed (main review confirmed).",
+  "old_source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f",
+  "other_changes": "Intervening local controller, verifier, test and documentation commits are listed separately from the simulation production diff; run.py and all config inputs are unchanged.",
+  "reused": [
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-legacy-v2-hb200",
+      "label": "legacy-v2-hb200",
+      "reason": "WS29 disabled; host-port initialization and physical fault paths unchanged for this cell.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-mixed8-c0",
+      "label": "mixed8-c0",
+      "reason": "Host set newly populated; fault=0, heartbeat=0, port-events=0: all set readers inactive for this cell; routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-k4-c1-normal",
+      "label": "k4-c1-normal",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-1",
+      "label": "protocol-1",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-2",
+      "label": "protocol-2",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-3",
+      "label": "protocol-3",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-4",
+      "label": "protocol-4",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-5",
+      "label": "protocol-5",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-6",
+      "label": "protocol-6",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-7",
+      "label": "protocol-7",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-8",
+      "label": "protocol-8",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-9",
+      "label": "protocol-9",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-10",
+      "label": "protocol-10",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    },
+    {
+      "claim": "Verified only on old SHA; static impact audit supports reuse, not a new-SHA runtime PASS.",
+      "id": "20261022-180000-ws29-obs2-protocol-11",
+      "label": "protocol-11",
+      "reason": "Host ports already initialized by heartbeat; no fault20-24 call; nonphysical suffix and routing/feedback functions byte-identical.",
+      "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f"
+    }
+  ],
+  "runtime_validation": "NOT RUN",
+  "simulation_changes": [
+    "scratch/network-load-balance.cc",
+    "src/point-to-point/model/switch-node.cc",
+    "src/point-to-point/test/point-to-point-test.cc"
+  ],
+  "source_sha": "ec0c718f435a54f684d18e6933583335a60f81d5",
+  "unchanged_functions": {
+    "ChooseWs29Feedback": {
+      "byte_identical": true,
+      "new_sha256": "9e270be02a2aa5ad861aab1293127447722cb894742968544c3524dd6bf879b3",
+      "old_sha256": "9e270be02a2aa5ad861aab1293127447722cb894742968544c3524dd6bf879b3"
+    },
+    "DoLbClassReserve": {
+      "byte_identical": true,
+      "new_sha256": "5f0b2e73f7ee3b224e02b92d8542822e17098e34b524c92dc59d87aaa381074e",
+      "old_sha256": "5f0b2e73f7ee3b224e02b92d8542822e17098e34b524c92dc59d87aaa381074e"
+    },
+    "GetOutDev": {
+      "byte_identical": true,
+      "new_sha256": "a4b12da0c934657f3e42c5a8992e99803d815cb323f33969b94bda7072ab5124",
+      "old_sha256": "a4b12da0c934657f3e42c5a8992e99803d815cb323f33969b94bda7072ab5124"
+    },
+    "RecordWs21PortBoundary": {
+      "byte_identical": true,
+      "new_sha256": "c897b5df094542bab02eaeaa96058e429c8352c1dcc5c51dcdf83910265f858a",
+      "old_sha256": "c897b5df094542bab02eaeaa96058e429c8352c1dcc5c51dcdf83910265f858a"
+    },
+    "RecordWs21PortEvent": {
+      "byte_identical": true,
+      "new_sha256": "b02c7b122aa5c8c9af7f82a356d448f677b9e7d55f44c68930a21bb684121426",
+      "old_sha256": "b02c7b122aa5c8c9af7f82a356d448f677b9e7d55f44c68930a21bb684121426"
+    },
+    "TouchWs21Heartbeat": {
+      "byte_identical": true,
+      "new_sha256": "d50d5aa82c5b0fe93284cdb57ef6833956aef141680ffcdba9f35c0c6ba64015",
+      "old_sha256": "d50d5aa82c5b0fe93284cdb57ef6833956aef141680ffcdba9f35c0c6ba64015"
+    },
+    "Ws29Fault_nonphysical_suffix": {
+      "byte_identical": true,
+      "new_sha256": "8c3a2c11311608c25e897a240192a9cb2dd7be322aa241a9bb246e6f4d8be560",
+      "old_sha256": "8c3a2c11311608c25e897a240192a9cb2dd7be322aa241a9bb246e6f4d8be560"
+    }
+  }
+}

@@ -23,6 +23,21 @@ REPO_RE = re.compile(r'^https://github[.]com/LarryBUPT/[A-Za-z0-9_.-]+(?:[.]git)
 REFERENCE_PUSH = 'no-push://read-only-reference'
 _LOGIN_ATTEMPTED = False
 WS29_OBS2_PREFIX = '20261022-180000-ws29-obs2-'
+WS29_RECOVERY_PREFIX = '20261023-090000-ws29-p1-'
+
+
+def ws29_managed_experiment(experiment_id):
+    return experiment_id.startswith((WS29_OBS2_PREFIX, WS29_RECOVERY_PREFIX))
+
+
+def ws29_unit_cases(experiment_id):
+    cases = ('devices-point-to-point', 'PointToPoint',
+             'IRN timeout is deferred only for an actual PFC pause and its resume grace',
+             'WS-21 feedback header serialization and validation',
+             'WS-21 heartbeat header serialization and validation')
+    if experiment_id.startswith(WS29_RECOVERY_PREFIX):
+        cases += ('WS-29 all-link faults preserve host links without telemetry',)
+    return cases
 
 
 def normalize_ws29_args(args):
@@ -622,7 +637,7 @@ def build(experiment_id, sha, branch, unit_suite=None, unit_compat=False):
     save_metadata(base, data)
     log = inside(os.path.join(base, 'logs', 'build.log'))
     sampler = ResourceSampler(experiment_id, base, os.getpid(),
-                              'build-resource' if experiment_id.startswith(WS29_OBS2_PREFIX)
+                              'build-resource' if ws29_managed_experiment(experiment_id)
                               and not unit_suite else 'resource')
     try:
         run_checked(['git', 'clone', '--local', '--no-hardlinks', code, source], log=log)
@@ -661,10 +676,7 @@ def build(experiment_id, sha, branch, unit_suite=None, unit_compat=False):
                 run_checked(commands[-1], cwd=source, log=test_log, env=env)
                 with open(test_log) as handle:
                     test_text = handle.read()
-                required_cases = ('devices-point-to-point', 'PointToPoint',
-                                  'IRN timeout is deferred only for an actual PFC pause and its resume grace',
-                                  'WS-21 feedback header serialization and validation',
-                                  'WS-21 heartbeat header serialization and validation')
+                required_cases = ws29_unit_cases(experiment_id)
                 if not all('PASS ' + name in test_text for name in required_cases):
                     raise RuntimeError('Suite returned without all required verbose PASS records')
                 data['unit_pass_cases'] = list(required_cases)
@@ -765,7 +777,7 @@ def execute(experiment_id):
     data['command'] = ' '.join(command)
     save_metadata(base, data)
     sampler = (ResourceSampler(experiment_id, base, os.getpid())
-               if experiment_id.startswith(WS29_OBS2_PREFIX) else None)
+               if ws29_managed_experiment(experiment_id) else None)
     try:
         if params.get('flow_file'):
             selected = inside(os.path.join(source, 'config', params['flow_file']))
@@ -782,7 +794,7 @@ def execute(experiment_id):
             raise RuntimeError('Expected a fresh, empty output path')
         os.symlink(inside(os.path.join(base, 'raw')), output_dir)
         simulation_env = os.environ.copy()
-        if experiment_id.startswith(WS29_OBS2_PREFIX):
+        if ws29_managed_experiment(experiment_id):
             simulation_env = ws29_clean_environment(simulation_env)
             data['environment_policy'] = 'WS29 diagnostic environment cleared before explicit run.py options'
         if params.get('ws28_tail_diag'):

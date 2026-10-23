@@ -144,7 +144,7 @@
     }
   ],
   "unit": {
-    "id": "20261023-090000-ws29-phyfix-unit-r1",
+    "id": "20261023-090000-ws29-p1-unit",
     "suite": "devices-point-to-point",
     "new_case": "WS-29 all-link faults preserve host links without telemetry",
     "status": "NOT BUILT OR RUN",
@@ -1398,9 +1398,12 @@
       "max_text_log_bytes": 52428800,
       "rss_mib_max": 32768
     },
-    "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f",
+    "source_sha": "ec0c718f435a54f684d18e6933583335a60f81d5",
     "state_interval_ns": 10000,
     "state_wire_payload_v3_bytes": 38,
-    "unit_id": "20261022-173000-ws29-eng-unit-compat-r1"
-  }
+    "unit_id": "20261023-090000-ws29-p1-unit"
+  },
+  "status": "SUPERSEDED_BY_SEGMENTED_RECOVERY",
+  "superseded_by": "ws29-segmented-recovery-plan.json",
+  "review_decision": "Main review rejected whole-27 rerun solely for one SHA; this is historical non-executable proposal."
 }

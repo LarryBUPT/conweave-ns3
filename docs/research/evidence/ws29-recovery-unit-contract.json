@@ -1,0 +1,32 @@
+{
+  "availability": "NOT CHECKED; local preparation only",
+  "build_mode": "optimized",
+  "cpu_jobs": 2,
+  "exact_diff": "--- a/src/core/test/command-line-test-suite.cc\n+++ b/src/core/test/command-line-test-suite.cc\n@@ -38,7 +38,7 @@\n   CommandLineTestCaseBase (std::string description);\n   virtual ~CommandLineTestCaseBase () {}\n \n-  void Parse (const CommandLine &cmd, int n, ...);\n+  void Parse (CommandLine &cmd, int n, ...);\n };\n \n CommandLineTestCaseBase::CommandLineTestCaseBase (std::string description)\n@@ -47,7 +47,7 @@\n }\n \n void\n-CommandLineTestCaseBase::Parse (const CommandLine &cmd, int n, ...)\n+CommandLineTestCaseBase::Parse (CommandLine &cmd, int n, ...)\n {\n   char **args = new char* [n+1];\n   args[0] = (char *) \"Test\";\n",
+  "file": "src/core/test/command-line-test-suite.cc",
+  "new_id": "20261023-090000-ws29-p1-unit",
+  "original_sha256": "b7285686202442d47d339fd5817e9001c47bfc23377c8a8f5f596ba694373881",
+  "patched_sha256": "3c474633f4545bc10c3fede9e8fbaddd83e5526bd19597ed19be509a4537cd99",
+  "required_logs": [
+    "build.log",
+    "ws29-point-to-point-unit-test.log",
+    "unit-suites.log",
+    "unit-commands.json",
+    "unit-compatibility.json",
+    "unit-compatibility.patch",
+    "command-line-test-suite.original",
+    "resource-summary.json",
+    "resource-samples.jsonl"
+  ],
+  "required_pass_cases": [
+    "devices-point-to-point",
+    "PointToPoint",
+    "IRN timeout is deferred only for an actual PFC pause and its resume grace",
+    "WS-21 feedback header serialization and validation",
+    "WS-21 heartbeat header serialization and validation",
+    "WS-29 all-link faults preserve host links without telemetry"
+  ],
+  "scope": "Fresh source: ordinary optimized build first, then disclosed test-only compatibility build; restore source in finally. Not a simulation binary.",
+  "source_sha": "ec0c718f435a54f684d18e6933583335a60f81d5",
+  "suite": "devices-point-to-point"
+}

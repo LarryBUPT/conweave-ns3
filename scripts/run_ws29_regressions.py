@@ -67,8 +67,8 @@ def run_arguments(cell):
     return args
 
 
-def build_arguments(cell):
-    return ['build', '--repo-local', str(ROOT), '--id', cell['id'], '--source-sha', SOURCE]
+def build_arguments(cell, source_sha=None):
+    return ['build', '--repo-local', str(ROOT), '--id', cell['id'], '--source-sha', source_sha or SOURCE]
 
 
 def receipt(cell, event, **data):
@@ -134,7 +134,7 @@ def status(cell):
     return json.JSONDecoder().raw_decode(output.lstrip())[0]
 
 
-def preflight(cell, limits, fresh):
+def preflight(cell, limits, fresh, source_sha=None, record=None):
     # No writes on the remote host. Only attempt an existing lock non-blockingly.
     code = '''import os,json,glob,subprocess,fcntl,hashlib
 root='/home/fnl/lzy'; ident=%r; fresh=%r
@@ -176,12 +176,12 @@ else:
  assert not d.get('unit_compatibility') and not d.get('unit_suite')
  assert not os.path.lexists(source+'/build-ws29-tests')
 print(json.dumps(data,sort_keys=True))
-''' % (cell['id'], fresh, SOURCE, ORIGINAL)
+''' % (cell['id'], fresh, source_sha or SOURCE, ORIGINAL)
     cfg = remote.config()
     result = subprocess.run(remote.ssh_base(cfg) + ['python3 -c ' + shlex.quote(code)],
                             stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=60)
     output = result.stdout.decode('utf-8', errors='replace')
-    receipt(cell, 'fresh-preflight' if fresh else 'unpatched-source-preflight',
+    (record or receipt)(cell, 'fresh-preflight' if fresh else 'unpatched-source-preflight',
             exit_code=result.returncode, output=output)
     require(result.returncode == 0, 'Preflight failed; no new action')
     data = json.loads(output)
