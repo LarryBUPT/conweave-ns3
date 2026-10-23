@@ -1,0 +1,1732 @@
+{
+  "arms": {
+    "C16": "original ClassReserve A1B1",
+    "E": "original ECMP, 12-byte flow hash",
+    "H16": "original mixed 12/16-byte candidates, first only, selected port pinned",
+    "M16": "WS28 A0B0: MoE total queue, background first candidate, pinned",
+    "Q12": "total queue for BOTH classes, canonical 12-byte flow candidates, pinned",
+    "Q16": "same candidates, total queue for BOTH classes, pinned; WS28 A0B1",
+    "R16": "same candidates, independent stateless hash coin, selected port pinned",
+    "U16": "Q16 with same first-arrival candidate PAIR retained but selected port recomputed per packet"
+  },
+  "background_lead_cells": [
+    {
+      "arm": "E",
+      "demand_seed": 20263040,
+      "design_key": "ws30-lead20us-s20263040-E",
+      "moe_delay_ns": 20000,
+      "order": 1
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263040,
+      "design_key": "ws30-lead20us-s20263040-Q16",
+      "moe_delay_ns": 20000,
+      "order": 2
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263040,
+      "design_key": "ws30-lead20us-s20263040-C16",
+      "moe_delay_ns": 20000,
+      "order": 3
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263033,
+      "design_key": "ws30-lead20us-s20263033-Q16",
+      "moe_delay_ns": 20000,
+      "order": 4
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263033,
+      "design_key": "ws30-lead20us-s20263033-E",
+      "moe_delay_ns": 20000,
+      "order": 5
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263033,
+      "design_key": "ws30-lead20us-s20263033-C16",
+      "moe_delay_ns": 20000,
+      "order": 6
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263031,
+      "design_key": "ws30-lead20us-s20263031-Q16",
+      "moe_delay_ns": 20000,
+      "order": 7
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263031,
+      "design_key": "ws30-lead20us-s20263031-C16",
+      "moe_delay_ns": 20000,
+      "order": 8
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263031,
+      "design_key": "ws30-lead20us-s20263031-E",
+      "moe_delay_ns": 20000,
+      "order": 9
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263036,
+      "design_key": "ws30-lead20us-s20263036-E",
+      "moe_delay_ns": 20000,
+      "order": 10
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263036,
+      "design_key": "ws30-lead20us-s20263036-C16",
+      "moe_delay_ns": 20000,
+      "order": 11
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263036,
+      "design_key": "ws30-lead20us-s20263036-Q16",
+      "moe_delay_ns": 20000,
+      "order": 12
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263030,
+      "design_key": "ws30-lead20us-s20263030-C16",
+      "moe_delay_ns": 20000,
+      "order": 13
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263030,
+      "design_key": "ws30-lead20us-s20263030-Q16",
+      "moe_delay_ns": 20000,
+      "order": 14
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263030,
+      "design_key": "ws30-lead20us-s20263030-E",
+      "moe_delay_ns": 20000,
+      "order": 15
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263024,
+      "design_key": "ws30-lead20us-s20263024-C16",
+      "moe_delay_ns": 20000,
+      "order": 16
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263024,
+      "design_key": "ws30-lead20us-s20263024-E",
+      "moe_delay_ns": 20000,
+      "order": 17
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263024,
+      "design_key": "ws30-lead20us-s20263024-Q16",
+      "moe_delay_ns": 20000,
+      "order": 18
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263041,
+      "design_key": "ws30-lead20us-s20263041-C16",
+      "moe_delay_ns": 20000,
+      "order": 19
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263041,
+      "design_key": "ws30-lead20us-s20263041-E",
+      "moe_delay_ns": 20000,
+      "order": 20
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263041,
+      "design_key": "ws30-lead20us-s20263041-Q16",
+      "moe_delay_ns": 20000,
+      "order": 21
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263026,
+      "design_key": "ws30-lead20us-s20263026-C16",
+      "moe_delay_ns": 20000,
+      "order": 22
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263026,
+      "design_key": "ws30-lead20us-s20263026-E",
+      "moe_delay_ns": 20000,
+      "order": 23
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263026,
+      "design_key": "ws30-lead20us-s20263026-Q16",
+      "moe_delay_ns": 20000,
+      "order": 24
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263023,
+      "design_key": "ws30-lead20us-s20263023-Q16",
+      "moe_delay_ns": 20000,
+      "order": 25
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263023,
+      "design_key": "ws30-lead20us-s20263023-C16",
+      "moe_delay_ns": 20000,
+      "order": 26
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263023,
+      "design_key": "ws30-lead20us-s20263023-E",
+      "moe_delay_ns": 20000,
+      "order": 27
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263021,
+      "design_key": "ws30-lead20us-s20263021-C16",
+      "moe_delay_ns": 20000,
+      "order": 28
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263021,
+      "design_key": "ws30-lead20us-s20263021-E",
+      "moe_delay_ns": 20000,
+      "order": 29
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263021,
+      "design_key": "ws30-lead20us-s20263021-Q16",
+      "moe_delay_ns": 20000,
+      "order": 30
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263027,
+      "design_key": "ws30-lead20us-s20263027-C16",
+      "moe_delay_ns": 20000,
+      "order": 31
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263027,
+      "design_key": "ws30-lead20us-s20263027-E",
+      "moe_delay_ns": 20000,
+      "order": 32
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263027,
+      "design_key": "ws30-lead20us-s20263027-Q16",
+      "moe_delay_ns": 20000,
+      "order": 33
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263035,
+      "design_key": "ws30-lead20us-s20263035-Q16",
+      "moe_delay_ns": 20000,
+      "order": 34
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263035,
+      "design_key": "ws30-lead20us-s20263035-E",
+      "moe_delay_ns": 20000,
+      "order": 35
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263035,
+      "design_key": "ws30-lead20us-s20263035-C16",
+      "moe_delay_ns": 20000,
+      "order": 36
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263022,
+      "design_key": "ws30-lead20us-s20263022-E",
+      "moe_delay_ns": 20000,
+      "order": 37
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263022,
+      "design_key": "ws30-lead20us-s20263022-C16",
+      "moe_delay_ns": 20000,
+      "order": 38
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263022,
+      "design_key": "ws30-lead20us-s20263022-Q16",
+      "moe_delay_ns": 20000,
+      "order": 39
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263039,
+      "design_key": "ws30-lead20us-s20263039-C16",
+      "moe_delay_ns": 20000,
+      "order": 40
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263039,
+      "design_key": "ws30-lead20us-s20263039-Q16",
+      "moe_delay_ns": 20000,
+      "order": 41
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263039,
+      "design_key": "ws30-lead20us-s20263039-E",
+      "moe_delay_ns": 20000,
+      "order": 42
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263044,
+      "design_key": "ws30-lead20us-s20263044-E",
+      "moe_delay_ns": 20000,
+      "order": 43
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263044,
+      "design_key": "ws30-lead20us-s20263044-Q16",
+      "moe_delay_ns": 20000,
+      "order": 44
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263044,
+      "design_key": "ws30-lead20us-s20263044-C16",
+      "moe_delay_ns": 20000,
+      "order": 45
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263029,
+      "design_key": "ws30-lead20us-s20263029-C16",
+      "moe_delay_ns": 20000,
+      "order": 46
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263029,
+      "design_key": "ws30-lead20us-s20263029-Q16",
+      "moe_delay_ns": 20000,
+      "order": 47
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263029,
+      "design_key": "ws30-lead20us-s20263029-E",
+      "moe_delay_ns": 20000,
+      "order": 48
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263028,
+      "design_key": "ws30-lead20us-s20263028-E",
+      "moe_delay_ns": 20000,
+      "order": 49
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263028,
+      "design_key": "ws30-lead20us-s20263028-Q16",
+      "moe_delay_ns": 20000,
+      "order": 50
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263028,
+      "design_key": "ws30-lead20us-s20263028-C16",
+      "moe_delay_ns": 20000,
+      "order": 51
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263038,
+      "design_key": "ws30-lead20us-s20263038-E",
+      "moe_delay_ns": 20000,
+      "order": 52
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263038,
+      "design_key": "ws30-lead20us-s20263038-Q16",
+      "moe_delay_ns": 20000,
+      "order": 53
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263038,
+      "design_key": "ws30-lead20us-s20263038-C16",
+      "moe_delay_ns": 20000,
+      "order": 54
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263037,
+      "design_key": "ws30-lead20us-s20263037-C16",
+      "moe_delay_ns": 20000,
+      "order": 55
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263037,
+      "design_key": "ws30-lead20us-s20263037-Q16",
+      "moe_delay_ns": 20000,
+      "order": 56
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263037,
+      "design_key": "ws30-lead20us-s20263037-E",
+      "moe_delay_ns": 20000,
+      "order": 57
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263043,
+      "design_key": "ws30-lead20us-s20263043-C16",
+      "moe_delay_ns": 20000,
+      "order": 58
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263043,
+      "design_key": "ws30-lead20us-s20263043-Q16",
+      "moe_delay_ns": 20000,
+      "order": 59
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263043,
+      "design_key": "ws30-lead20us-s20263043-E",
+      "moe_delay_ns": 20000,
+      "order": 60
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263034,
+      "design_key": "ws30-lead20us-s20263034-Q16",
+      "moe_delay_ns": 20000,
+      "order": 61
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263034,
+      "design_key": "ws30-lead20us-s20263034-E",
+      "moe_delay_ns": 20000,
+      "order": 62
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263034,
+      "design_key": "ws30-lead20us-s20263034-C16",
+      "moe_delay_ns": 20000,
+      "order": 63
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263032,
+      "design_key": "ws30-lead20us-s20263032-Q16",
+      "moe_delay_ns": 20000,
+      "order": 64
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263032,
+      "design_key": "ws30-lead20us-s20263032-C16",
+      "moe_delay_ns": 20000,
+      "order": 65
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263032,
+      "design_key": "ws30-lead20us-s20263032-E",
+      "moe_delay_ns": 20000,
+      "order": 66
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263025,
+      "design_key": "ws30-lead20us-s20263025-Q16",
+      "moe_delay_ns": 20000,
+      "order": 67
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263025,
+      "design_key": "ws30-lead20us-s20263025-E",
+      "moe_delay_ns": 20000,
+      "order": 68
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263025,
+      "design_key": "ws30-lead20us-s20263025-C16",
+      "moe_delay_ns": 20000,
+      "order": 69
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263042,
+      "design_key": "ws30-lead20us-s20263042-C16",
+      "moe_delay_ns": 20000,
+      "order": 70
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263042,
+      "design_key": "ws30-lead20us-s20263042-E",
+      "moe_delay_ns": 20000,
+      "order": 71
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263042,
+      "design_key": "ws30-lead20us-s20263042-Q16",
+      "moe_delay_ns": 20000,
+      "order": 72
+    }
+  ],
+  "base_commit": "842b96ebd9d2037fd5c7486a41b2f101ead013c9",
+  "bridge_cells": 96,
+  "directed_composition_fixture_cells": 12,
+  "experiment_ids": null,
+  "implementation_sha": null,
+  "independent_unit": "demand seed; same trace shared across all arms",
+  "initial_concurrency_cap_max": 12,
+  "main_cells": [
+    {
+      "arm": "Q16",
+      "demand_seed": 20263040,
+      "design_key": "ws30-main-s20263040-Q16",
+      "order": 1
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263040,
+      "design_key": "ws30-main-s20263040-Q12",
+      "order": 2
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263040,
+      "design_key": "ws30-main-s20263040-R16",
+      "order": 3
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263040,
+      "design_key": "ws30-main-s20263040-U16",
+      "order": 4
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263040,
+      "design_key": "ws30-main-s20263040-E",
+      "order": 5
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263040,
+      "design_key": "ws30-main-s20263040-M16",
+      "order": 6
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263040,
+      "design_key": "ws30-main-s20263040-H16",
+      "order": 7
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263040,
+      "design_key": "ws30-main-s20263040-C16",
+      "order": 8
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263033,
+      "design_key": "ws30-main-s20263033-M16",
+      "order": 9
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263033,
+      "design_key": "ws30-main-s20263033-E",
+      "order": 10
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263033,
+      "design_key": "ws30-main-s20263033-Q12",
+      "order": 11
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263033,
+      "design_key": "ws30-main-s20263033-C16",
+      "order": 12
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263033,
+      "design_key": "ws30-main-s20263033-R16",
+      "order": 13
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263033,
+      "design_key": "ws30-main-s20263033-H16",
+      "order": 14
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263033,
+      "design_key": "ws30-main-s20263033-U16",
+      "order": 15
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263033,
+      "design_key": "ws30-main-s20263033-Q16",
+      "order": 16
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263031,
+      "design_key": "ws30-main-s20263031-U16",
+      "order": 17
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263031,
+      "design_key": "ws30-main-s20263031-Q16",
+      "order": 18
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263031,
+      "design_key": "ws30-main-s20263031-M16",
+      "order": 19
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263031,
+      "design_key": "ws30-main-s20263031-R16",
+      "order": 20
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263031,
+      "design_key": "ws30-main-s20263031-C16",
+      "order": 21
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263031,
+      "design_key": "ws30-main-s20263031-H16",
+      "order": 22
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263031,
+      "design_key": "ws30-main-s20263031-E",
+      "order": 23
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263031,
+      "design_key": "ws30-main-s20263031-Q12",
+      "order": 24
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263036,
+      "design_key": "ws30-main-s20263036-M16",
+      "order": 25
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263036,
+      "design_key": "ws30-main-s20263036-H16",
+      "order": 26
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263036,
+      "design_key": "ws30-main-s20263036-Q12",
+      "order": 27
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263036,
+      "design_key": "ws30-main-s20263036-E",
+      "order": 28
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263036,
+      "design_key": "ws30-main-s20263036-U16",
+      "order": 29
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263036,
+      "design_key": "ws30-main-s20263036-C16",
+      "order": 30
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263036,
+      "design_key": "ws30-main-s20263036-R16",
+      "order": 31
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263036,
+      "design_key": "ws30-main-s20263036-Q16",
+      "order": 32
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263030,
+      "design_key": "ws30-main-s20263030-M16",
+      "order": 33
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263030,
+      "design_key": "ws30-main-s20263030-C16",
+      "order": 34
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263030,
+      "design_key": "ws30-main-s20263030-H16",
+      "order": 35
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263030,
+      "design_key": "ws30-main-s20263030-R16",
+      "order": 36
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263030,
+      "design_key": "ws30-main-s20263030-E",
+      "order": 37
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263030,
+      "design_key": "ws30-main-s20263030-Q16",
+      "order": 38
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263030,
+      "design_key": "ws30-main-s20263030-U16",
+      "order": 39
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263030,
+      "design_key": "ws30-main-s20263030-Q12",
+      "order": 40
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263024,
+      "design_key": "ws30-main-s20263024-Q12",
+      "order": 41
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263024,
+      "design_key": "ws30-main-s20263024-C16",
+      "order": 42
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263024,
+      "design_key": "ws30-main-s20263024-M16",
+      "order": 43
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263024,
+      "design_key": "ws30-main-s20263024-U16",
+      "order": 44
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263024,
+      "design_key": "ws30-main-s20263024-R16",
+      "order": 45
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263024,
+      "design_key": "ws30-main-s20263024-E",
+      "order": 46
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263024,
+      "design_key": "ws30-main-s20263024-H16",
+      "order": 47
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263024,
+      "design_key": "ws30-main-s20263024-Q16",
+      "order": 48
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263041,
+      "design_key": "ws30-main-s20263041-R16",
+      "order": 49
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263041,
+      "design_key": "ws30-main-s20263041-M16",
+      "order": 50
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263041,
+      "design_key": "ws30-main-s20263041-Q16",
+      "order": 51
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263041,
+      "design_key": "ws30-main-s20263041-U16",
+      "order": 52
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263041,
+      "design_key": "ws30-main-s20263041-E",
+      "order": 53
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263041,
+      "design_key": "ws30-main-s20263041-C16",
+      "order": 54
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263041,
+      "design_key": "ws30-main-s20263041-H16",
+      "order": 55
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263041,
+      "design_key": "ws30-main-s20263041-Q12",
+      "order": 56
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263026,
+      "design_key": "ws30-main-s20263026-M16",
+      "order": 57
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263026,
+      "design_key": "ws30-main-s20263026-H16",
+      "order": 58
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263026,
+      "design_key": "ws30-main-s20263026-Q16",
+      "order": 59
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263026,
+      "design_key": "ws30-main-s20263026-C16",
+      "order": 60
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263026,
+      "design_key": "ws30-main-s20263026-U16",
+      "order": 61
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263026,
+      "design_key": "ws30-main-s20263026-E",
+      "order": 62
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263026,
+      "design_key": "ws30-main-s20263026-Q12",
+      "order": 63
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263026,
+      "design_key": "ws30-main-s20263026-R16",
+      "order": 64
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263023,
+      "design_key": "ws30-main-s20263023-C16",
+      "order": 65
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263023,
+      "design_key": "ws30-main-s20263023-R16",
+      "order": 66
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263023,
+      "design_key": "ws30-main-s20263023-M16",
+      "order": 67
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263023,
+      "design_key": "ws30-main-s20263023-Q12",
+      "order": 68
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263023,
+      "design_key": "ws30-main-s20263023-H16",
+      "order": 69
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263023,
+      "design_key": "ws30-main-s20263023-Q16",
+      "order": 70
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263023,
+      "design_key": "ws30-main-s20263023-E",
+      "order": 71
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263023,
+      "design_key": "ws30-main-s20263023-U16",
+      "order": 72
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263021,
+      "design_key": "ws30-main-s20263021-Q16",
+      "order": 73
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263021,
+      "design_key": "ws30-main-s20263021-E",
+      "order": 74
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263021,
+      "design_key": "ws30-main-s20263021-H16",
+      "order": 75
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263021,
+      "design_key": "ws30-main-s20263021-C16",
+      "order": 76
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263021,
+      "design_key": "ws30-main-s20263021-R16",
+      "order": 77
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263021,
+      "design_key": "ws30-main-s20263021-Q12",
+      "order": 78
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263021,
+      "design_key": "ws30-main-s20263021-U16",
+      "order": 79
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263021,
+      "design_key": "ws30-main-s20263021-M16",
+      "order": 80
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263027,
+      "design_key": "ws30-main-s20263027-C16",
+      "order": 81
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263027,
+      "design_key": "ws30-main-s20263027-U16",
+      "order": 82
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263027,
+      "design_key": "ws30-main-s20263027-M16",
+      "order": 83
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263027,
+      "design_key": "ws30-main-s20263027-H16",
+      "order": 84
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263027,
+      "design_key": "ws30-main-s20263027-Q12",
+      "order": 85
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263027,
+      "design_key": "ws30-main-s20263027-E",
+      "order": 86
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263027,
+      "design_key": "ws30-main-s20263027-R16",
+      "order": 87
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263027,
+      "design_key": "ws30-main-s20263027-Q16",
+      "order": 88
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263035,
+      "design_key": "ws30-main-s20263035-M16",
+      "order": 89
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263035,
+      "design_key": "ws30-main-s20263035-U16",
+      "order": 90
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263035,
+      "design_key": "ws30-main-s20263035-Q16",
+      "order": 91
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263035,
+      "design_key": "ws30-main-s20263035-H16",
+      "order": 92
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263035,
+      "design_key": "ws30-main-s20263035-R16",
+      "order": 93
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263035,
+      "design_key": "ws30-main-s20263035-Q12",
+      "order": 94
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263035,
+      "design_key": "ws30-main-s20263035-C16",
+      "order": 95
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263035,
+      "design_key": "ws30-main-s20263035-E",
+      "order": 96
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263022,
+      "design_key": "ws30-main-s20263022-C16",
+      "order": 97
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263022,
+      "design_key": "ws30-main-s20263022-H16",
+      "order": 98
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263022,
+      "design_key": "ws30-main-s20263022-U16",
+      "order": 99
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263022,
+      "design_key": "ws30-main-s20263022-Q12",
+      "order": 100
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263022,
+      "design_key": "ws30-main-s20263022-Q16",
+      "order": 101
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263022,
+      "design_key": "ws30-main-s20263022-R16",
+      "order": 102
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263022,
+      "design_key": "ws30-main-s20263022-E",
+      "order": 103
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263022,
+      "design_key": "ws30-main-s20263022-M16",
+      "order": 104
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263039,
+      "design_key": "ws30-main-s20263039-C16",
+      "order": 105
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263039,
+      "design_key": "ws30-main-s20263039-U16",
+      "order": 106
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263039,
+      "design_key": "ws30-main-s20263039-H16",
+      "order": 107
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263039,
+      "design_key": "ws30-main-s20263039-E",
+      "order": 108
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263039,
+      "design_key": "ws30-main-s20263039-R16",
+      "order": 109
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263039,
+      "design_key": "ws30-main-s20263039-M16",
+      "order": 110
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263039,
+      "design_key": "ws30-main-s20263039-Q12",
+      "order": 111
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263039,
+      "design_key": "ws30-main-s20263039-Q16",
+      "order": 112
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263044,
+      "design_key": "ws30-main-s20263044-M16",
+      "order": 113
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263044,
+      "design_key": "ws30-main-s20263044-C16",
+      "order": 114
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263044,
+      "design_key": "ws30-main-s20263044-H16",
+      "order": 115
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263044,
+      "design_key": "ws30-main-s20263044-U16",
+      "order": 116
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263044,
+      "design_key": "ws30-main-s20263044-Q12",
+      "order": 117
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263044,
+      "design_key": "ws30-main-s20263044-Q16",
+      "order": 118
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263044,
+      "design_key": "ws30-main-s20263044-E",
+      "order": 119
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263044,
+      "design_key": "ws30-main-s20263044-R16",
+      "order": 120
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263029,
+      "design_key": "ws30-main-s20263029-E",
+      "order": 121
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263029,
+      "design_key": "ws30-main-s20263029-R16",
+      "order": 122
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263029,
+      "design_key": "ws30-main-s20263029-Q16",
+      "order": 123
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263029,
+      "design_key": "ws30-main-s20263029-M16",
+      "order": 124
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263029,
+      "design_key": "ws30-main-s20263029-Q12",
+      "order": 125
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263029,
+      "design_key": "ws30-main-s20263029-C16",
+      "order": 126
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263029,
+      "design_key": "ws30-main-s20263029-U16",
+      "order": 127
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263029,
+      "design_key": "ws30-main-s20263029-H16",
+      "order": 128
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263028,
+      "design_key": "ws30-main-s20263028-H16",
+      "order": 129
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263028,
+      "design_key": "ws30-main-s20263028-Q16",
+      "order": 130
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263028,
+      "design_key": "ws30-main-s20263028-U16",
+      "order": 131
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263028,
+      "design_key": "ws30-main-s20263028-R16",
+      "order": 132
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263028,
+      "design_key": "ws30-main-s20263028-Q12",
+      "order": 133
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263028,
+      "design_key": "ws30-main-s20263028-C16",
+      "order": 134
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263028,
+      "design_key": "ws30-main-s20263028-E",
+      "order": 135
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263028,
+      "design_key": "ws30-main-s20263028-M16",
+      "order": 136
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263038,
+      "design_key": "ws30-main-s20263038-M16",
+      "order": 137
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263038,
+      "design_key": "ws30-main-s20263038-Q12",
+      "order": 138
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263038,
+      "design_key": "ws30-main-s20263038-H16",
+      "order": 139
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263038,
+      "design_key": "ws30-main-s20263038-E",
+      "order": 140
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263038,
+      "design_key": "ws30-main-s20263038-U16",
+      "order": 141
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263038,
+      "design_key": "ws30-main-s20263038-C16",
+      "order": 142
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263038,
+      "design_key": "ws30-main-s20263038-R16",
+      "order": 143
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263038,
+      "design_key": "ws30-main-s20263038-Q16",
+      "order": 144
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263037,
+      "design_key": "ws30-main-s20263037-H16",
+      "order": 145
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263037,
+      "design_key": "ws30-main-s20263037-U16",
+      "order": 146
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263037,
+      "design_key": "ws30-main-s20263037-R16",
+      "order": 147
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263037,
+      "design_key": "ws30-main-s20263037-Q16",
+      "order": 148
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263037,
+      "design_key": "ws30-main-s20263037-M16",
+      "order": 149
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263037,
+      "design_key": "ws30-main-s20263037-Q12",
+      "order": 150
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263037,
+      "design_key": "ws30-main-s20263037-C16",
+      "order": 151
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263037,
+      "design_key": "ws30-main-s20263037-E",
+      "order": 152
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263043,
+      "design_key": "ws30-main-s20263043-Q12",
+      "order": 153
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263043,
+      "design_key": "ws30-main-s20263043-U16",
+      "order": 154
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263043,
+      "design_key": "ws30-main-s20263043-M16",
+      "order": 155
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263043,
+      "design_key": "ws30-main-s20263043-Q16",
+      "order": 156
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263043,
+      "design_key": "ws30-main-s20263043-R16",
+      "order": 157
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263043,
+      "design_key": "ws30-main-s20263043-C16",
+      "order": 158
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263043,
+      "design_key": "ws30-main-s20263043-E",
+      "order": 159
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263043,
+      "design_key": "ws30-main-s20263043-H16",
+      "order": 160
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263034,
+      "design_key": "ws30-main-s20263034-Q12",
+      "order": 161
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263034,
+      "design_key": "ws30-main-s20263034-C16",
+      "order": 162
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263034,
+      "design_key": "ws30-main-s20263034-Q16",
+      "order": 163
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263034,
+      "design_key": "ws30-main-s20263034-H16",
+      "order": 164
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263034,
+      "design_key": "ws30-main-s20263034-E",
+      "order": 165
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263034,
+      "design_key": "ws30-main-s20263034-U16",
+      "order": 166
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263034,
+      "design_key": "ws30-main-s20263034-R16",
+      "order": 167
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263034,
+      "design_key": "ws30-main-s20263034-M16",
+      "order": 168
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263032,
+      "design_key": "ws30-main-s20263032-Q12",
+      "order": 169
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263032,
+      "design_key": "ws30-main-s20263032-R16",
+      "order": 170
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263032,
+      "design_key": "ws30-main-s20263032-C16",
+      "order": 171
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263032,
+      "design_key": "ws30-main-s20263032-M16",
+      "order": 172
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263032,
+      "design_key": "ws30-main-s20263032-Q16",
+      "order": 173
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263032,
+      "design_key": "ws30-main-s20263032-U16",
+      "order": 174
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263032,
+      "design_key": "ws30-main-s20263032-E",
+      "order": 175
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263032,
+      "design_key": "ws30-main-s20263032-H16",
+      "order": 176
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263025,
+      "design_key": "ws30-main-s20263025-U16",
+      "order": 177
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263025,
+      "design_key": "ws30-main-s20263025-M16",
+      "order": 178
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263025,
+      "design_key": "ws30-main-s20263025-R16",
+      "order": 179
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263025,
+      "design_key": "ws30-main-s20263025-Q12",
+      "order": 180
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263025,
+      "design_key": "ws30-main-s20263025-Q16",
+      "order": 181
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263025,
+      "design_key": "ws30-main-s20263025-E",
+      "order": 182
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263025,
+      "design_key": "ws30-main-s20263025-C16",
+      "order": 183
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263025,
+      "design_key": "ws30-main-s20263025-H16",
+      "order": 184
+    },
+    {
+      "arm": "Q12",
+      "demand_seed": 20263042,
+      "design_key": "ws30-main-s20263042-Q12",
+      "order": 185
+    },
+    {
+      "arm": "C16",
+      "demand_seed": 20263042,
+      "design_key": "ws30-main-s20263042-C16",
+      "order": 186
+    },
+    {
+      "arm": "E",
+      "demand_seed": 20263042,
+      "design_key": "ws30-main-s20263042-E",
+      "order": 187
+    },
+    {
+      "arm": "R16",
+      "demand_seed": 20263042,
+      "design_key": "ws30-main-s20263042-R16",
+      "order": 188
+    },
+    {
+      "arm": "U16",
+      "demand_seed": 20263042,
+      "design_key": "ws30-main-s20263042-U16",
+      "order": 189
+    },
+    {
+      "arm": "Q16",
+      "demand_seed": 20263042,
+      "design_key": "ws30-main-s20263042-Q16",
+      "order": 190
+    },
+    {
+      "arm": "M16",
+      "demand_seed": 20263042,
+      "design_key": "ws30-main-s20263042-M16",
+      "order": 191
+    },
+    {
+      "arm": "H16",
+      "demand_seed": 20263042,
+      "design_key": "ws30-main-s20263042-H16",
+      "order": 192
+    }
+  ],
+  "mandatory_contrasts": [
+    "H16/E",
+    "R16/H16",
+    "Q16/R16",
+    "Q16/H16",
+    "U16/Q16",
+    "Q12/E",
+    "Q16/Q12",
+    "C16/Q16",
+    "Q16/M16"
+  ],
+  "new_seeds": [
+    20263021,
+    20263022,
+    20263023,
+    20263024,
+    20263025,
+    20263026,
+    20263027,
+    20263028,
+    20263029,
+    20263030,
+    20263031,
+    20263032,
+    20263033,
+    20263034,
+    20263035,
+    20263036,
+    20263037,
+    20263038,
+    20263039,
+    20263040,
+    20263041,
+    20263042,
+    20263043,
+    20263044
+  ],
+  "ns3_seed": 1,
+  "performance_cells_total": 360,
+  "randomization_seed": 20263002,
+  "required_before_run": [
+    "main-thread review and explicit next-stage task",
+    "implementation SHA and all input hashes frozen",
+    "unique actual experiment IDs assigned",
+    "correctness and nonperturbation gates",
+    "resource pilot and actual model switch confirmed"
+  ],
+  "resource_pilot_cells_max": 24,
+  "status": "DESIGN FROZEN FOR REVIEW; NO REMOTE EXECUTION AUTHORIZED IN STAGE 1",
+  "stopping": "No early efficacy/futility stop; failures retained and repaired; no optional sample extension",
+  "technical_budget_max": 32,
+  "total_cells_budget_max": 428,
+  "trace_manifest_sha256": null
+}
