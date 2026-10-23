@@ -38,12 +38,16 @@ inline void Ws30Choice(uint32_t sw, const CustomHeader &ch, uint32_t tag,
     Ws30ChoiceStat &s=Ws30Data().choice[tag<=2?tag:0];
     ++s.events;
     if (first==second) ++s.same;
-    if (!q1 && !q2) ++s.empty;
-    if (b1 || b2) ++s.background;
-    if (q1==q2) ++s.equal;
-    const uint64_t diff=q1>q2?q1-q2:q2-q1;
-    if (diff<=packetBytes) { ++s.near; if (b1!=b2) ++s.composition; }
-    if ((q2<q1) != (q2+b2<q1+b1)) ++s.aDisagrees;
+    else {
+        // Pair-composition frequencies are defined only for distinct ports.
+        // Legacy pinning skips queue reads on a collision; zeros are placeholders.
+        if (!q1 && !q2) ++s.empty;
+        if (b1 || b2) ++s.background;
+        if (q1==q2) ++s.equal;
+        const uint64_t diff=q1>q2?q1-q2:q2-q1;
+        if (diff<=packetBytes) { ++s.near; if (b1!=b2) ++s.composition; }
+        if ((q2<q1) != (q2+b2<q1+b1)) ++s.aDisagrees;
+    }
     if (chosen==second && second!=first) ++s.choseSecond;
     if (Ws30Level()==2)
         std::cout << "WS30_CHOICE time_ns=" << Simulator::Now().GetNanoSeconds()

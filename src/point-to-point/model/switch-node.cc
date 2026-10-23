@@ -1276,7 +1276,9 @@ uint32_t SwitchNode::DoLbClassReserve(Ptr<const Packet> p, const CustomHeader &c
                   << " second_background=" << secondBackground << std::endl;
     }
     Ws30Choice(m_id, ch, background ? 1U : 2U, first, second, firstQueue, secondQueue,
-                 firstBackground, secondBackground, chosen, p->GetSize());
+                 Ws30Level()?Ws28BackgroundQueueBytes(m_id,first):firstBackground,
+                 Ws30Level()?Ws28BackgroundQueueBytes(m_id,second):secondBackground,
+                 chosen, p->GetSize());
     if (background) {
         m_classReserveBackgroundPort[flow] = chosen;
         ++classreserve_background_new_flows;
