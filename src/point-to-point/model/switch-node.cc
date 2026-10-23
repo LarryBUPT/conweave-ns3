@@ -913,7 +913,8 @@ void SwitchNode::PrintWorkloadTagCounts() {
                   << " queue_violations=" << guard_queue_violations << std::endl;
         NS_ASSERT_MSG(guard_queue_violations == 0, "WS27 queue counters do not conserve bytes");
     }
-    if (ClassReserveFamilyMode() || Settings::lb_mode == 22) {
+    // New WS-30 arms use their own receipts, never legacy A/B factor labels.
+    if ((ClassReserveFamilyMode() && Settings::lb_mode < 28) || Settings::lb_mode == 22) {
         uint64_t enqueued = 0, dequeued = 0, queuedDropped = 0, current = 0;
         for (const auto &entry : guard_queue_stats) {
             const GuardQueueStat &s = entry.second;
