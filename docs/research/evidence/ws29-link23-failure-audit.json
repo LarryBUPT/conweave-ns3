@@ -1,0 +1,117 @@
+{
+  "failed_id": "20261022-180000-ws29-obs2-link-23-c0",
+  "source_sha": "3e68b3604e93cf34a4d938ebb48f1b1e0cfc988f",
+  "stop": {
+    "error": "Terminal failure; raw preserved",
+    "id": "20261022-180000-ws29-obs2-link-23-c0",
+    "phase": "collect"
+  },
+  "stop_sha256": "731fd085b1a7a59dd998c79488c1307d70fe4f20302f4499b7859d1a88ada7e9",
+  "stop_unchanged": true,
+  "stop_gate_checks": [
+    {
+      "label": "link-23-c0",
+      "phase": "build",
+      "blocked_before_remote": true
+    },
+    {
+      "label": "link-23-c0",
+      "phase": "start",
+      "blocked_before_remote": true
+    },
+    {
+      "label": "link-23-c0",
+      "phase": "collect",
+      "blocked_before_remote": true
+    },
+    {
+      "label": "link-23-c0",
+      "phase": "verify",
+      "blocked_before_remote": true
+    },
+    {
+      "label": "link-20-c1",
+      "phase": "build",
+      "blocked_before_remote": true
+    },
+    {
+      "label": "link-20-c1",
+      "phase": "start",
+      "blocked_before_remote": true
+    },
+    {
+      "label": "link-20-c1",
+      "phase": "collect",
+      "blocked_before_remote": true
+    },
+    {
+      "label": "link-20-c1",
+      "phase": "verify",
+      "blocked_before_remote": true
+    }
+  ],
+  "files": {
+    "metadata.json": "075e93815590468612f9539a7caee95d9c262c64b4beadebb24e2fe8cccfe493",
+    "logs/resource-summary.json": "60b9e0e231f2a7ec19c81527348c3f4626f5adca92f086c680d9c237eebd7fcc",
+    "logs/build-resource-summary.json": "5be41f5f84ab68d9d47f6e47c5c82c1751f38c9373b19020a7434a35e7e59fa3",
+    "logs/simulation.log": "c28c83cb395c1be2767bab616fab7b4639c9bf95f5a7fbc99ff4306eaf204220",
+    "raw/818845041/config.log": "78e3eeff0990961b89fe792acc906cda415f1c0280c342be6ab72433a33fbfcf"
+  },
+  "resource": {
+    "final_status": "FAILED",
+    "id": "20261022-180000-ws29-obs2-link-23-c0",
+    "maximum_load_1m": 1.7,
+    "minimum_free_gib": 3821.975898742676,
+    "minimum_mem_available_gib": 122.61528396606445,
+    "peak_tree_rss_mib": 15.8359375,
+    "samples": 1
+  },
+  "build_resource": {
+    "final_status": "BUILT",
+    "id": "20261022-180000-ws29-obs2-link-23-c0",
+    "maximum_load_1m": 2.06,
+    "minimum_free_gib": 3821.986156463623,
+    "minimum_mem_available_gib": 121.95479202270508,
+    "peak_tree_rss_mib": 745.84765625,
+    "samples": 70
+  },
+  "accepted_original_labels": [
+    "k4-c1-normal",
+    "legacy-v2-hb200",
+    "link-20-c0",
+    "main-c0",
+    "mixed8-c0",
+    "protocol-1",
+    "protocol-10",
+    "protocol-11",
+    "protocol-2",
+    "protocol-3",
+    "protocol-4",
+    "protocol-5",
+    "protocol-6",
+    "protocol-7",
+    "protocol-8",
+    "protocol-9"
+  ],
+  "runtime_backtrace_available": false,
+  "diagnosis": "C0 disables heartbeat and port events; host-port set is empty. Fault 23 treats host port 1 as switch port, takes it down, then dereferences null SwitchNode peer. SIGSEGV follows first WS29_LINK at switch 32 port 1.",
+  "new_simulations_started": 0,
+  "remote_existing_evidence": {
+    "receipt": "results\\ws29-link23-diagnosis\\receipt.json",
+    "receipt_sha256": "24634af6147bd2eee6ffc25e802b52e04d5a8ebb964b0666eca0394c58737b1b",
+    "output": "results\\ws29-link23-diagnosis\\existing-remote-evidence.txt",
+    "output_sha256": "a1aeb7599f0ecc092f6a636337ad4b285a6db0955b95b1e5bce4b544e5857628",
+    "core_found_in_run_or_result": false,
+    "core_pattern": "|/usr/share/apport/apport %p %s %c %d %P %E",
+    "runtime_tracked_diff": "mix/.history: 4 inserted run-history lines; preserved"
+  },
+  "local_python_tests": {
+    "command": "python -m unittest discover -s scripts -p 'test_ws29*.py'",
+    "passed": 35,
+    "failed": 0
+  },
+  "new_cpp_test": {
+    "status": "NOT COMPILED OR RUN",
+    "source_sha": "ec0c718f435a54f684d18e6933583335a60f81d5"
+  }
+}
