@@ -87,6 +87,10 @@ class RecoveryTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError,'closed'):run.authorize('main',None)
             external.assert_not_called()
 
+    def test_unknown_simulation_blocks_admission_even_with_idle_resources(self):
+        self.assertEqual(run.capacity({'load_1m':0,'mem_available_gib':120,'free_gib':1000,
+                                       'unexpected_simulation_pids':['123']},12),0)
+
     def test_class_release_origins_use_hand_calculated_complete_times(self):
         folder=Path(self.temp.name);(folder/'config').mkdir();(folder/'raw/1').mkdir(parents=True)
         trace='3\n0 1 3 1000 2.000000000 1\n0 2 3 1000 2.000020000 2\n0 3 3 1000 2.000020000 2\n'

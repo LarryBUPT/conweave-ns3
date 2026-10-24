@@ -182,7 +182,7 @@ def verify(cell):
 
 
 def capacity(resource, ceiling):
-    if resource.get('other_users') or resource.get('rss_mib',0)>32768 or \
+    if resource.get('other_users') or resource.get('unexpected_simulation_pids') or resource.get('rss_mib',0)>32768 or \
             float(resource['load_1m'])>20 or float(resource['mem_available_gib'])<32 or \
             float(resource['free_gib'])<100:
         return 0
@@ -194,6 +194,7 @@ def capacity(resource, ceiling):
 REMOTE_WAIT = r'''
 import json,os,subprocess,sys,time
 q=json.loads(sys.argv[1]); root='/home/fnl/lzy'; deadline=time.time()+q['seconds']
+sys.dont_write_bytecode=True;sys.path.insert(0,root+'/.research-workflow');import remote_worker as worker
 peak=0.; minmem=1e9; mindisk=1e9; maxrss=0.
 while True:
     states={}
@@ -210,18 +211,20 @@ while True:
             for line in reversed(tail):
                 try: row=json.loads(line)
                 except ValueError: continue
-                maxrss=max(maxrss,row.get('process_tree_rss_mib',0)); break
+                maxrss=max(maxrss,row.get('process_tree_rss_mib',0))
     load=os.getloadavg()[0]
     with open('/proc/meminfo') as f: mem={l.split(':')[0]:int(l.split()[1]) for l in f}
     available=mem['MemAvailable']/1024.**2; fs=os.statvfs(root); free=fs.f_bavail*fs.f_frsize/1024.**3
     users=[l for l in subprocess.check_output(['ps','-eo','uid,pid,stat,comm','--no-headers']).decode().splitlines()
            if int(l.split()[0])>=1000 and int(l.split()[0])!=os.getuid() and not l.split()[2].startswith('Z')]
+    own=[int(v['pid']) for v in states.values() if v and v.get('status')=='RUNNING']
+    unknown=[p for p in worker.active_simulations() if not any(worker.descendant_of(int(p),pid) for pid in own)]
     peak=max(peak,load); minmem=min(minmem,available); mindisk=min(mindisk,free)
     statuses={k:(v['status'] if v else None) for k,v in states.items()}
-    unsafe=bool(users) or load>20 or available<32 or free<100 or maxrss>32768
+    unsafe=bool(users) or bool(unknown) or load>20 or available<32 or free<100 or maxrss>32768
     if statuses!=q['known'] or time.time()>=deadline or (unsafe and not q['drain']):
         print(json.dumps({'states':states,'resource':{'load_1m':load,'mem_available_gib':available,
-          'free_gib':free,'other_users':users,'rss_mib':maxrss},'window':{'peak_load_1m':peak,
+          'free_gib':free,'other_users':users,'unexpected_simulation_pids':unknown,'rss_mib':maxrss},'window':{'peak_load_1m':peak,
           'minimum_mem_available_gib':minmem,'minimum_free_gib':mindisk,'peak_tree_rss_mib':maxrss}})); break
     time.sleep(10)
 '''
