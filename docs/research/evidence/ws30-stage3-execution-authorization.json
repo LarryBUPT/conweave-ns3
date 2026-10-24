@@ -1,0 +1,72 @@
+{
+  "approved": true,
+  "approved_utc": "2026-10-24T15:22:29Z",
+  "authorization_basis": "User authorization recorded in the supplied project AGENTS.md and docs/REMOTE_EXPERIMENT_WORKFLOW.md: use available resources and run the research matrices after resource, isolation and correctness gates pass.",
+  "correctness_scope": {
+    "compatibility_checks": 2,
+    "composition_cells": 12,
+    "formal_effect_cells_counted": 0,
+    "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+    "verified_ids": 14
+  },
+  "correctness_sha256": "7cceb62d5f844f191641788c1bc57102845ea3008d98ce2d112ebee37297946c",
+  "execution_limits": {
+    "compile_jobs_per_source": 2,
+    "free_gib_min": 100,
+    "initial_phase_caps": {
+      "composition": 4,
+      "lead": 12,
+      "main": 12
+    },
+    "load_1m_max": 20,
+    "maximum_cap": 12,
+    "mem_available_gib_min": 32,
+    "process_tree_rss_gib_max": 32
+  },
+  "fresh_preflight": {
+    "active_simulation_pids": [],
+    "free_gib": 3522.0,
+    "load_1m": 0.0,
+    "mem_available_gib": 122.57,
+    "observed_utc": "2026-10-24T15:18:00Z",
+    "ordinary_processes_of_other_uids": [],
+    "same_uid_idle_processes": [
+      "6 VS Code OpenDebugAD7 (~29 MiB RSS each; sampled CPU 0%)",
+      "hg outgoing -q (~12 MiB RSS; sampled CPU 0%)"
+    ],
+    "simulation_start_lock_held": false
+  },
+  "kind": "WS-30 stage-3 user authorization for frozen formal execution",
+  "phases": [
+    "main",
+    "lead",
+    "composition"
+  ],
+  "plan_sha256": "77ca6064d4b4f275b409123302b01bd4eabd97e9c978e013f8d3e67edbf420f8",
+  "resource_pilot": {
+    "caps": [
+      4,
+      8,
+      12
+    ],
+    "selected_cap": 12,
+    "verified_cells": 24
+  },
+  "resource_pilot_sha256": "5eaf15696b8a434243e6130a54c6fd2454bf51ffb9475112fde086fbf310086d",
+  "stop_conditions": [
+    "other-user work appears",
+    "unknown simulation process appears",
+    "load_1m exceeds 20",
+    "available memory falls below 32 GiB",
+    "free disk falls below 100 GiB",
+    "process-tree RSS exceeds 32 GiB",
+    "resource contention or throughput degradation",
+    "source/input/identity mismatch",
+    "failed cell"
+  ],
+  "supervision_context": {
+    "effort": "medium",
+    "model": "gpt-6-luna",
+    "turn_id": "01a16e6f-65eb-7b41-86aa-c00ee45355aa"
+  }
+}

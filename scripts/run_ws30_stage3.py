@@ -19,6 +19,7 @@ COMPOSITION_SOURCE = '2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f'
 PLAN = EV / 'ws30-stage3-execution-plan-r5.json'
 CHECK_PLAN = EV / 'ws30-stage3-correctness-plan-r5.json'
 AUTHORIZATION = EV / 'ws30-stage3-execution-authorization.json'
+CORRECTNESS_RECEIPT = EV / 'ws30-stage3-correctness-combined-r1.json'
 REVIEW_SHA = 'c48c4bfeacffc6bfc915cd035309fd12317802dc78cf2927e96956d76bda0c1b'
 
 
@@ -410,9 +411,15 @@ def authorize(phase,session_file):
     if not (gate.get('approved') is True and phase in gate.get('phases',[]) and
             gate.get('plan_sha256')==stage.sha(PLAN)):
         raise RuntimeError('Authorization does not bind this frozen phase and plan')
-    check_result=EV/'ws30-stage3-correctness-results-r5.json'
-    if not check_result.exists() or stage.sha(check_result)!=gate.get('correctness_sha256'):
-        raise RuntimeError('Approved correctness receipt missing or changed')
+    if not CORRECTNESS_RECEIPT.exists() or stage.sha(CORRECTNESS_RECEIPT)!=gate.get('correctness_sha256'):
+        raise RuntimeError('Approved combined correctness receipt missing or changed')
+    correctness=read(CORRECTNESS_RECEIPT)
+    if not (correctness.get('source_sha')==COMPOSITION_SOURCE and
+            correctness.get('verified_ids')==14 and len(correctness.get('rows',[]))==14 and
+            correctness.get('composition_cells')==12 and correctness.get('compatibility_checks')==2 and
+            correctness.get('formal_effect_cells_counted')==0 and
+            correctness.get('formal_plan_sha256')==stage.sha(PLAN)):
+        raise RuntimeError('Combined correctness receipt does not cover the approved 14 technical IDs and frozen formal plan')
     if not session_file:raise RuntimeError('Actual supervising task session file is required')
     context=None
     for line in session_file.open(encoding='utf-8'):
