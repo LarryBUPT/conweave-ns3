@@ -135,7 +135,10 @@ def bridge(plan,summary):
     for c in plan['bridge']:
         if c['id'] in summary['rows']:cells.append(c);continue
         new=dict(c)
-        if cap!=c['cap']:
+        # Historical preflight IDs belong to the frozen r5 plan. Give every
+        # newly launched bridge cell a fresh ID tied to the selected cap so
+        # the execution plan agrees with the startup-readiness receipt.
+        if c['role']=='historical-bridge':
             new.update(id=f'20261024-020000-ws30-bridge-c{cap:02d}-s{c["seed"]}-{c["arm"].lower()}',
                        cap=cap,replaces_unrun_id=c['id'])
         cells.append(new)
