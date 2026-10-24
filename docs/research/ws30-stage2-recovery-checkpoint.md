@@ -45,11 +45,11 @@
 | 独立逐包验收 | 32 格已复核 | `scripts/verify_ws30_technical_paths.py` 已完成 |
 | 4/8/12 资源 pilot | 24/24 格 | 已完成；冻结调度上限为 12 |
 | 历史桥接原始数据预检 | 96/96 个映射已核验 | 96 份历史 raw FCT、输入哈希和完成行数均通过；4 个桥接预检与历史 FCT 哈希相同，见 [预检收据](evidence/ws30-bridge-history-preflight-r1.json) |
-| 完整历史桥接 | 4/96 格已验收，0/92 格新运行 | 主对话已批准节点；模型切换确认后运行剩余 92 格，逐格 FCT SHA 必须与历史 raw 相同 |
+| 完整历史桥接 | 4/96 格已验收，0/92 格新运行 | 主对话已批准节点；GPT-6 Luna / Medium 任务级模型覆盖已接受。启动前门槛见 [就绪收据](evidence/ws30-bridge-startup-readiness-r1.json)；运行剩余 92 格，逐格 FCT SHA 必须与历史 raw 相同 |
 | 正式新输入效果矩阵 | 0 格 | 本恢复入口不启动；192 格主矩阵和 72 格先占矩阵继续关闭 |
 | 组成夹具、双侧正式分析与图表 | 未完成 | 保持原协议必做，不以阶段交接取消 |
 
-技术、路径和资源 pilot 阶段均已完成。当前只待 GPT-6 Luna / Medium 实际切换确认；确认后仅运行 recovery r1 的 `bridge` 阶段，不重跑此前通过的 14 格或 4 个预检格。每个完整节点先自然语言汇报，再进入下一节点。
+技术、路径和资源 pilot 阶段均已完成。当前执行回合使用任务级模型覆盖 GPT-6 Luna / Medium。仅运行 recovery r1 的 `bridge` 阶段，不重跑此前通过的技术格、pilot 格或 4 个预检格。每个完整节点先自然语言汇报，再进入下一节点。
 
 ```powershell
 python scripts/resume_ws30_stage2.py bridge *> results/ws30-stage2-recovery-bridge-r1.log
@@ -63,7 +63,7 @@ python scripts/resume_ws30_stage2.py bridge *> results/ws30-stage2-recovery-brid
 
 本轮启动准备时的只读主机核验显示：无活动仿真、负载 0、可用内存 122.60 GiB、空盘 3,694.20 GiB。该状态只适用于核验时刻；桥接实际启动前仍须重新检查作业、资源、锁和隔离目录。
 
-剩余 92 格桥接预计需数小时。进入长时远程监督前，须由可执行模型切换的任务实际切到 GPT-6 Luna / Medium。本线程的工具没有模型切换接口；computer-use 技能也禁止自动化 Codex 应用界面，因此目前没有启动远程实验或声称模型已切换。
+剩余 92 格桥接预计需数小时。监督模型已通过任务级模型覆盖指定为 GPT-6 Luna / Medium。启动前主机 gate 通过：无其他用户作业或活动仿真，load1 为 0，可用内存 122.60 GiB，空盘 3,694.20 GiB。
 
 阶段 2 完成后仍须回到分析模型收束，并由主对话验收。中文 v12 可先使用[两组统一分母基线表](ws30-historical-baseline-tables.md)，其中包括绝对值、名义区间、背景两侧指标和真实动态分支。新实验图表仍按[事前协议](ws30-prespecified-protocol.md)逐图逐表交付，不制作预期效果图。
 
