@@ -1454,6 +1454,18 @@ int main(int argc, char *argv[]) {
     else  // others, no extra header
         IntHeader::mode = 5;
 
+    if (Ws30CompositionEnabled()) {
+        if (cc_mode!=1 || enable_pfc || !enable_irn)
+            NS_FATAL_ERROR("WS-30 composition requires DCQCN, PFC=0, IRN=1");
+        // run.py's bw=400 map starts at 80 Gbps. Freeze the diagnostic
+        // 40-Gbps entry explicitly, using the same ECN thresholds as its
+        // other rates; this branch is absent from every normal run.
+        rate2kmin[40000000000ULL] = 100;
+        rate2kmax[40000000000ULL] = 400;
+        rate2pmax[40000000000ULL] = 0.2;
+        std::cout << "WS30_COMPOSITION_ECN rate=40000000000 kmin=100 kmax=400 pmax=0.2" << std::endl;
+    }
+
     /**
      * @brief open topology config, input-flows config.
      */
