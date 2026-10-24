@@ -1,5 +1,11 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 阶段 3 当前入口（2026-10-24）
+
+WS-30 仍为 ACTIVE。阶段 3 的组成夹具技术验收已完成：[报告](../research/ws30-stage3-correctness-report-r1.md)、[合并收据](../research/evidence/ws30-stage3-correctness-combined-r1.json)和[审计脚本](../../scripts/audit_ws30_stage3_correctness.py)记录 12 个组成格与 2 个关闭夹具回归格，共 14 个成功 ID；固定仿真 SHA 为 `2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f`。组成交换按预期改变 C16 的选择，E 和 Q16 在该固定场景中分别保持出口 3 与首候选出口 2。该证据只验证受控夹具，不构成性能收益证据。3 个早期失败 ID 保留，未覆盖。
+
+技术验收脚本已通过。远端检查时点无其他用户作业，资源余量充足；正式资源 pilot 前仍须重查用户作业、CPU/load、内存、磁盘、锁和隔离。下一步完成资源审计与 4/8/12 阶梯 pilot。阶段协议要求长时监督上下文实际为 GPT-6 Luna / Medium；本次长时监督回合记录为 Luna / Medium，不能将其表述为 High。若工具不能实际切换到规定监督模型，不启动后台长时实验。主矩阵 192 格、先占 72 格及正式组成 12 格均尚未运行，正式效果格为 0/276；全 WS-30 未闭环。详见[阶段 3 Handoff](../handoffs/2026-10-24-ws30-stage3-composition-correctness.md)。
+
 ## WS-30 阶段 2 当前入口（2026-10-24）
 
 WS-30 为 ACTIVE，阶段 2 已完成：[验收报告](../research/ws30-stage2-completion-report-r1.md)、[Handoff](../handoffs/2026-10-24-ws30-stage2-complete.md)。技术 32/32、资源 pilot 24/24、历史桥接 96/96 格通过；桥接复用 4 个技术预检，因此独立成功实验为 148 个，另有 3 个输入错误失败 ID 保留。96 份桥接 raw FCT 与历史逐文件 SHA-256 一致，支持固定历史输入上的输出回归，不产生新八臂收益结论。

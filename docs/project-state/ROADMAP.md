@@ -1,6 +1,12 @@
 # 下一阶段路线与停机条件
 
-## WS-30 阶段 2 当前入口（2026-10-24）
+## WS-30 阶段 3 当前入口（2026-10-24）
+
+WS-30 仍为 ACTIVE。阶段 3 的组成夹具已通过 12 格技术验收，另有 2 个关闭夹具回归格通过；固定仿真 SHA `2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f`，14/14 ID 成功。[报告](../research/ws30-stage3-correctness-report-r1.md)、[合并收据](../research/evidence/ws30-stage3-correctness-combined-r1.json)与[Handoff](../handoffs/2026-10-24-ws30-stage3-composition-correctness.md)记录组成、raw 哈希和逐项断言。该结果验证固定输入的队列组成和选路响应，不支持性能收益推断。3 个早期失败 ID 保留；当前正式效果格 0/276。
+
+下一步重新核对服务器作业、资源、运行器锁、隔离、恢复和吞吐，再运行资源 pilot 的 4/8/12 阶梯。模型监督必须由实际上下文满足阶段协议规定的 GPT-6 Luna / Medium；目前记录仅证实 Luna / Medium，不应声称 High。所有 pilot 和正式格终态、raw 回传后再切换到分析模型并完成双侧分析、图表及结论核验。未完成前不得称 WS-30 闭环。
+
+## WS-30 阶段 2 历史入口（2026-10-24）
 
 WS-30 为 ACTIVE，阶段 2 已完成：[验收报告](../research/ws30-stage2-completion-report-r1.md)、[Handoff](../handoffs/2026-10-24-ws30-stage2-complete.md)。技术 32/32、资源 pilot 24/24、历史桥接 96/96 格通过；桥接复用 4 个技术预检，因此独立成功实验为 148 个，另有 3 个输入错误失败 ID 保留。96 份桥接 raw FCT 与历史逐文件 SHA-256 一致，支持固定历史输入上的输出回归，不产生新八臂收益结论。
 
