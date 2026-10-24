@@ -66,12 +66,13 @@ def generate():
         'prefill_qps_per_port': 2, 'prefill_payload_per_qp': 31616,
         'prefill_packets_per_qp': 32, 'wire_bytes_per_port': 65536,
         'output_bps': 40000000000, 'host_bps': 400000000000,
+        'ecn_40g': {'kmin_bytes':100000,'kmax_bytes':400000,'pmax':0.2},
         'continuing_arrivals': {'qps_per_port': 16, 'payload_per_qp': 8000,
                                 'start_ns': 2000022000, 'interval_ns': 1000},
         'arms': ['E', 'Q16', 'C16'], 'required_cells': 12,
         'interpretation': 'controlled scheduler hold; real RDMA QPs and real shared queues; no queue/score writes',
     }
-    stage.frozen(stage.EV / 'ws30-composition-design-r1.json', design)
+    stage.frozen(stage.EV / 'ws30-composition-design-r2.json', design)
     return design
 
 
