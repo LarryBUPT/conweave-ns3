@@ -812,8 +812,10 @@ void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
         if (Ws30Level())
             std::cout << "WS30_QP flow_id=" << qp->m_flow_id
                       << " tag=" << uint32_t(qp->m_workload_tag)
-                      << " rx_gap=" << s.rx_ooo_packets << " rx_duplicate=" << s.rx_duplicate
-                      << " nack_feedback=" << s.nack_feedback << " sack_feedback=" << s.sack_feedback
+                      << " rx_gap=" << s.rx_ooo_packets << " rx_below_expected=" << s.rx_duplicate
+                      << " fd_feedback_frames=" << s.nack_feedback
+                      << " fd_without_sack=" << s.nack_feedback-s.sack_feedback
+                      << " sack_feedback=" << s.sack_feedback
                       << " cnp_feedback=" << s.cnp_feedback << " retransmit_packets=" << s.repeated_sends
                       << " retransmit_bytes=" << s.repeated_bytes
                       << " timeout=" << s.timeout_recovery << std::endl;

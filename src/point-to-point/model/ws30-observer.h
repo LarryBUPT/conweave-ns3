@@ -31,6 +31,17 @@ struct Ws30Observation {
     uint64_t routeRows=0, rejected=0;
 };
 inline Ws30Observation &Ws30Data() { static Ws30Observation d; return d; }
+inline void Ws30Reject(uint32_t sw, Ptr<const Packet> p, const CustomHeader &ch,
+                       uint32_t port, const char *reason) {
+    if (!Ws30Level() || ch.l3Prot!=0x11) return;
+    ++Ws30Data().rejected;
+    if (Ws30Level()==2)
+        std::cout << "WS30_REJECT time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << sw << " sip=" << ch.sip << " dip=" << ch.dip
+                  << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
+                  << " seq=" << ch.udp.seq << " port=" << port
+                  << " bytes=" << p->GetSize() << " reason=" << reason << std::endl;
+}
 inline void Ws30Choice(uint32_t sw, const CustomHeader &ch, uint32_t tag,
                        uint32_t first, uint32_t second, uint64_t q1, uint64_t q2,
                        uint64_t b1, uint64_t b2, uint32_t chosen, uint32_t packetBytes) {
@@ -61,7 +72,7 @@ inline void Ws30Route(uint32_t sw, Ptr<const Packet> p, const CustomHeader &ch,
                       uint32_t port, bool accepted) {
     if (!Ws30Level() || ch.l3Prot!=0x11) return;
     Ws30Observation &d=Ws30Data();
-    if (!accepted) { ++d.rejected; return; }
+    if (!accepted) { Ws30Reject(sw,p,ch,port,"queue_rejected"); return; }
     auto key=std::make_tuple(sw,ch.sip,ch.dip,ch.udp.sport,ch.udp.dport);
     Ws30RouteState &s=d.routes[key];
     if (!s.packets) s.first=port;

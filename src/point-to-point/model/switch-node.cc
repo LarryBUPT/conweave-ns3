@@ -981,13 +981,15 @@ void SwitchNode::PrintWorkloadTagCounts() {
         NS_ASSERT_MSG(guard_queue_violations == 0, "WS-25 queue counters do not conserve bytes");
     }
     if (Ws30Level()) {
-        uint64_t enq=0, deq=0, drop=0, current=0;
+        uint64_t enq=0, deq=0, drop=0, current=0, admission=0, rejected=0;
         for (const auto &entry:guard_queue_stats) {
             const GuardQueueStat &s=entry.second;
             enq+=s.enqueued; deq+=s.dequeued; drop+=s.queuedDropped; current+=s.current;
+            admission+=s.admissionDropped; rejected+=s.queueRejected;
         }
         std::cout << "WS30_QUEUE enqueued=" << enq << " dequeued=" << deq
                   << " dropped=" << drop << " current=" << current
+                  << " admission_dropped_bytes=" << admission << " queue_rejected_bytes=" << rejected
                   << " violations=" << guard_queue_violations << std::endl;
         Ws30Print();
     }
@@ -1941,6 +1943,11 @@ void SwitchNode::SwitchNotifyEnqueue(uint32_t ifIndex, Ptr<const Packet> p) {
 
 void SwitchNode::SwitchNotifyAdmissionDrop(uint32_t ifIndex, Ptr<const Packet> p) {
     guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))].admissionDropped += p->GetSize();
+    if (Ws30Level()) {
+        CustomHeader ch(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
+        p->PeekHeader(ch);
+        Ws30Reject(m_id,p,ch,ifIndex,"admission_drop");
+    }
     CheckGuardQueue(ifIndex);
 }
 
@@ -1961,6 +1968,11 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
     GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
     if (wasQueued) {
         s.queuedDropped += p->GetSize();
+        if (Ws30Level()) {
+            CustomHeader ch(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
+            p->PeekHeader(ch);
+            Ws30Reject(m_id,p,ch,ifIndex,"queued_drop");
+        }
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash queue drop underflow");
         s.current -= p->GetSize();
     } else s.queueRejected += p->GetSize();
