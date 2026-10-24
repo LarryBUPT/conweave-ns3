@@ -4,7 +4,7 @@
 
 WS-30 仍为 ACTIVE。阶段 3 的组成夹具技术验收已完成：[报告](../research/ws30-stage3-correctness-report-r1.md)、[合并收据](../research/evidence/ws30-stage3-correctness-combined-r1.json)和[审计脚本](../../scripts/audit_ws30_stage3_correctness.py)记录 12 个组成格与 2 个关闭夹具回归格，共 14 个成功 ID；固定仿真 SHA 为 `2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f`。组成交换按预期改变 C16 的选择，E 和 Q16 在该固定场景中分别保持出口 3 与首候选出口 2。该证据只验证受控夹具，不构成性能收益证据。3 个早期失败 ID 保留，未覆盖。
 
-技术验收脚本已通过。阶段 2 的 WS-30 资源 pilot 与正式矩阵使用同一源码 SHA `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`；24/24 格按 4/8/12 阶梯完成，吞吐为 43.64、73.10、100.00 格/小时，选定 cap=12。2026-10-24 本次新快照无活动仿真，load1=0.0、可用内存 122.57 GiB、空闲磁盘 3,522.0 GiB；同账户另有长期 VS Code 调试适配器和 `hg outgoing -q` 进程，采样 CPU 为 0%，单进程 RSS 约 12～30 MiB。`simulation-start.lock` 文件存在，但 `lslocks` 未显示该路径被持有。当前 turn_context 已从本机会话记录核实为 GPT-6 Luna / Medium。启动每个正式阶段前仍须重查资源、隔离、锁和恢复。主矩阵 192 格、先占 72 格及正式组成 12 格均尚未运行，正式效果格为 0/276；全 WS-30 未闭环。详见[阶段 3 Handoff](../handoffs/2026-10-24-ws30-stage3-composition-correctness.md)。
+技术验收脚本已通过。阶段 2 的 WS-30 资源 pilot 与正式矩阵使用同一源码 SHA `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`；24/24 格按 4/8/12 阶梯完成，吞吐为 43.64、73.10、100.00 格/小时，选定 cap=12。2026-10-24 本次新快照无活动仿真，load1=0.0、可用内存 122.57 GiB、空闲磁盘 3,522.0 GiB；同账户另有长期 VS Code 调试适配器和 `hg outgoing -q` 进程，采样 CPU 为 0%，单进程 RSS 约 12～30 MiB。`simulation-start.lock` 文件存在，但 `lslocks` 未显示该路径被持有。当前 turn_context 已从本机会话记录核实为 GPT-6 Luna / Medium。主矩阵 runner 已启动，首批 12 格已保留；首格 `20261024-230000-ws30-main-s20263040-q16` 正在以 SHA `1ef424749e3c551dd788d0a709bd8e21c7cc89c9` 构建，当前验收 0/192、失败 0。runner 每批复查资源、锁与隔离。先占 72 格和正式组成 12 格未启动；正式效果格仍为 0/276，WS-30 未闭环。详见[阶段 3 Handoff](../handoffs/2026-10-24-ws30-stage3-composition-correctness.md)。
 
 ## WS-30 阶段 2 当前入口（2026-10-24）
 
