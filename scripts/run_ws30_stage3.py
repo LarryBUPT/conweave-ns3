@@ -314,6 +314,8 @@ class Runner:
         self.state=read(path) if path.exists() else {'contract':self.contract,'verified':{},'pending':[],
                                                     'failures':{},'cap':cap,'events':[]}
         if self.state['contract']!=self.contract:raise RuntimeError('Resume contract changed')
+        if not set(self.state['verified']).issubset({c['id'] for c in cells}):
+            raise RuntimeError('Summary contains IDs outside this frozen phase')
 
     def save(self,event,**details):
         self.state['events'].append({'event':event,'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),**details})
@@ -434,6 +436,8 @@ def main():
     if args.command in ['status','verify-local','verify-check']:
         local=[c for c in cells if (ROOT/'results'/c['id']).exists()]
         for c in local:verify(c)
+        if args.command!='status' and len(local)!=len(cells):
+            raise RuntimeError('Verification incomplete: %d/%d local cells' % (len(local),len(cells)))
         print(json.dumps({'phase':'correctness' if checks else args.phase,'verified_local':len(local),'required':len(cells),
                           'authorization_present':AUTHORIZATION.exists()}));return
     path=ROOT/'results'/('ws30-stage3-correctness-summary-r5.json' if checks else 'ws30-stage3-'+args.phase+'-summary-r5.json')

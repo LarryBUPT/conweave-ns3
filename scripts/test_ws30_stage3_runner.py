@@ -89,6 +89,13 @@ class RecoveryTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError,'Raw identity'):r.run()
         self.assertFalse(b.starts);self.assertFalse(b.builds)
 
+    def test_foreign_summary_ids_cannot_inflate_completed_count(self):
+        b=FakeBackend();r=run.Runner(self.cells[:2],b,self.path)
+        r.state['verified']={'foreign-cell':{'id':'foreign-cell'}};r.save('damaged_summary')
+        with self.assertRaisesRegex(RuntimeError,'outside this frozen phase'):
+            run.Runner(self.cells[:2],b,self.path)
+        self.assertFalse(b.starts)
+
     def test_closed_authorization_performs_no_external_work(self):
         with mock.patch.object(run,'AUTHORIZATION',Path(self.temp.name)/'absent.json'), \
              mock.patch.object(run.subprocess,'check_output') as external:
