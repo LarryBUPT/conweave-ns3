@@ -54,6 +54,7 @@
 #include "ns3/rdma-hw.h"
 #include "ns3/settings.h"
 #include "ns3/workload-tag.h"
+#include "ws30-composition-fixture.h"
 
 using namespace ns3;
 using namespace std;
@@ -1732,6 +1733,8 @@ int main(int argc, char *argv[]) {
     topo2bdpMap[std::string("fat_k8_100G_OS2")] = 156000;      // RTT=12480 --> all 100G links
     topo2bdpMap[std::string("fat_k4_100G_OS2")] = 156000;      // same three-tier link rates
     topo2bdpMap[std::string("topo_1280_400G_400G_OS1")] = 30000;  // 600ns * 400Gbps / 8
+    if (Ws30CompositionEnabled())
+        topo2bdpMap[std::string("ws30_composition8")] = 42200;  // 8440ns * 40Gbps / 8
 
     // topology_file
     bool found_topo2bdpMap = false;
@@ -2193,7 +2196,9 @@ int main(int argc, char *argv[]) {
     if (ws21_port_events)
         for (const auto &entry : idxNodeToR)
             entry.second->RecordWs21PortBoundary('B');
+    Ws30CompositionInstall(n, flowgen_start_time);
     Simulator::Run();
+    Ws30CompositionFinish();
     if (ws21_port_events)
         for (const auto &entry : idxNodeToR)
             entry.second->RecordWs21PortBoundary('F');

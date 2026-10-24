@@ -352,6 +352,17 @@ void QbbNetDevice::DequeueAndTransmit(void) {
     return;
 }
 
+void QbbNetDevice::Ws30FixtureHold(uint32_t qIndex, bool hold) {
+    const char *fixture = std::getenv("WS30_COMPOSITION");
+    if (!(fixture && fixture[0]=='1' && fixture[1]=='\0' &&
+          m_node->GetNodeType()==1 && qIndex<qCnt))
+        NS_FATAL_ERROR("WS-30 fixture hold is restricted to the explicit composition fixture");
+    if (m_paused[qIndex] == hold)
+        NS_FATAL_ERROR("WS-30 fixture hold transition repeated");
+    if (hold) m_paused[qIndex] = true;
+    else Resume(qIndex);
+}
+
 void QbbNetDevice::Resume(unsigned qIndex) {
     NS_LOG_FUNCTION(this << qIndex);
     NS_ASSERT_MSG(m_paused[qIndex], "Must be PAUSEd");

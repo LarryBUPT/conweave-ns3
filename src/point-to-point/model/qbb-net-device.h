@@ -131,6 +131,8 @@ public:
    void NewQp(Ptr<RdmaQueuePair> qp);
    void ReassignedQp(Ptr<RdmaQueuePair> qp);
    void TriggerTransmit(void);
+   // Controlled WS-30 microfixture only; normal runs never call this hook.
+   void Ws30FixtureHold(uint32_t qIndex, bool hold);
 
    bool IsQbbEnabled(void) { return m_qbbEnabled; }
    bool IsPaused(unsigned qIndex) const { return qIndex < qCnt && m_paused[qIndex]; }

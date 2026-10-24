@@ -1,0 +1,102 @@
+{
+  "arms": [
+    "E",
+    "Q16",
+    "C16"
+  ],
+  "continuing_arrivals": {
+    "interval_ns": 1000,
+    "payload_per_qp": 8000,
+    "qps_per_port": 16,
+    "start_ns": 2000022000
+  },
+  "execution_enabled": false,
+  "hold_ns": 1999999000,
+  "host_bps": 400000000000,
+  "interpretation": "controlled scheduler hold; real RDMA QPs and real shared queues; no queue/score writes",
+  "kind": "WS-30 actual-enqueue composition fixture r1",
+  "output_bps": 40000000000,
+  "payload_mtu": 1000,
+  "prefill_packets_per_qp": 32,
+  "prefill_payload_per_qp": 31616,
+  "prefill_qps_per_port": 2,
+  "probe": {
+    "bytes": 16000,
+    "dport": 100,
+    "dst": 3,
+    "first": 2,
+    "second": 3,
+    "sport": 10004,
+    "src": 0,
+    "start_ns": 2000020000,
+    "tag": 2
+  },
+  "release_ns": 2000022000,
+  "required_cells": 12,
+  "topology": "ws30_composition8",
+  "topology_sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+  "traces": [
+    {
+      "continuing": 0,
+      "expected_background_by_port": {
+        "2": 65536,
+        "3": 0
+      },
+      "expected_tags": {
+        "1": 2,
+        "2": 3
+      },
+      "input_flows": 5,
+      "swap": 0,
+      "trace": "ws30_composition_swap0_cont0.txt",
+      "trace_sha256": "e9b598ff3805545eb31ca825c0459bc035c6ee2fe4b140b8e860184865c156d7"
+    },
+    {
+      "continuing": 0,
+      "expected_background_by_port": {
+        "2": 0,
+        "3": 65536
+      },
+      "expected_tags": {
+        "1": 2,
+        "2": 3
+      },
+      "input_flows": 5,
+      "swap": 1,
+      "trace": "ws30_composition_swap1_cont0.txt",
+      "trace_sha256": "50d5946d29977489bbd0a55d5d75a43a60b121a7a7d712ea04f726bfb86f675c"
+    },
+    {
+      "continuing": 1,
+      "expected_background_by_port": {
+        "2": 65536,
+        "3": 0
+      },
+      "expected_tags": {
+        "1": 34,
+        "2": 3
+      },
+      "input_flows": 37,
+      "swap": 0,
+      "trace": "ws30_composition_swap0_cont1.txt",
+      "trace_sha256": "a7f5f1f3b7bd9138dc2c7db538ae1c95d1cd523e9ffbc77fe2d040b5c614eb29"
+    },
+    {
+      "continuing": 1,
+      "expected_background_by_port": {
+        "2": 0,
+        "3": 65536
+      },
+      "expected_tags": {
+        "1": 34,
+        "2": 3
+      },
+      "input_flows": 37,
+      "swap": 1,
+      "trace": "ws30_composition_swap1_cont1.txt",
+      "trace_sha256": "e8c07465fd171803cf6ee322f0de89bc89ab9516337ac6ece7a5c5fce2238179"
+    }
+  ],
+  "wire_bytes_per_port": 65536,
+  "wire_header_bytes": 36
+}

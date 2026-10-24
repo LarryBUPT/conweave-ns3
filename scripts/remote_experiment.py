@@ -344,6 +344,7 @@ def main():
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ws30-composition', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -476,6 +477,7 @@ def main():
         if args.ws28_tail_diag:
             command.extend(['--ws28-tail-diag', '1'])
         command.extend(['--ws30-observe', str(args.ws30_observe)])
+        command.extend(['--ws30-composition', str(args.ws30_composition)])
         if args.factorial_pilot:
             command.append('--factorial-pilot')
         if args.factorial_drop_diag:
