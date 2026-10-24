@@ -15,14 +15,14 @@ import run_ws25_resource_pilot as resources
 
 ROOT=Path(__file__).resolve().parents[1]
 EV=ROOT/'docs/research/evidence'
-SOURCE='e59242a8a36ea7d43cf02135ecb44a148e1294cd'
+SOURCE='1ef424749e3c551dd788d0a709bd8e21c7cc89c9'
 MANIFEST=EV/'ws30-inputs-v2.json'
-PLAN=EV/'ws30-execution-plan-r4.json'
-RECEIPTS=ROOT/'results/ws30-stage2-receipts-r4.jsonl'
-SUMMARY=ROOT/'results/ws30-stage2-summary-r4.json'
+PLAN=EV/'ws30-execution-plan-r5.json'
+RECEIPTS=ROOT/'results/ws30-stage2-receipts-r5.jsonl'
+SUMMARY=ROOT/'results/ws30-stage2-summary-r5.json'
 ARMS={'E':'fecmp','H16':'ws30-h16','R16':'ws30-r16','Q16':'cr-a0-b1',
       'C16':'classreserve','U16':'ws30-u16','Q12':'ws30-q12','M16':'cr-a0-b0','H12':'ws30-h12'}
-PREFIX='20261024-220000-ws30'
+PREFIX='20261024-230000-ws30'
 
 def sha(path):return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 def frozen(path,obj):
@@ -81,6 +81,17 @@ def makeplan():
             'topology_sha256':'74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba',
             'technical':technical,'pilot':pilot,'bridge':bridge,'main':main,'lead':lead,
             'formal_execution_enabled':False,
+            'observation_definitions':{
+                'rx_gap':'arrival sequence > cumulative expected sequence, not distinct missing bytes',
+                'rx_below_expected':'arrival sequence < cumulative expected sequence; subset of duplicates',
+                'fd_feedback_frames':'all protocol-0xFD frames, including ordinary IRN ACKs',
+                'fd_without_sack':'0xFD with irnNackSize==0; not evidence of loss',
+                'sack_feedback':'0xFD with irnNackSize>0',
+                'retransmit_packets':'actual PktSent UDP sequence below prior sent high-water mark',
+                'retransmit_bytes':'actual payload bytes sent in those repeat-range packets',
+                'queue':'accepted enqueue/dequeue/queued-drop bytes; admission and queue rejection separately',
+                'choice_denominator':'composition/empty/tie statistics apply only to DISTINCT candidate ports',
+                'counter_window':'transport counters reported at QP completion'},
             'directed_composition':'12 actual-queue fixture IDs remain for separate freeze before stage 3',
             'source_and_input_frozen_before_execution':True}
 def kv(line):return {k:int(v) for k,v in re.findall(r'(\w+)=(\d+)',line)}
@@ -109,12 +120,13 @@ def verify(cell):
         queue=one('WS30_QUEUE');path=one('WS30_PATH')
         assert queue['enqueued']==queue['dequeued']+queue['dropped']+queue['current']
         assert queue['current']==queue['dropped']==queue['violations']==path['rejected']==0
+        assert queue['admission_dropped_bytes']==queue['queue_rejected_bytes']==0
         if cell['arm'] not in ['U16']:assert path['changed_qps']==0,cell['id']
         qps=[kv(l) for l in log.splitlines() if l.startswith('WS30_QP ')]
         assert len(qps)==cell['input_flows'] and len({r['flow_id'] for r in qps})==len(qps)
         assert collections.Counter(str(r['tag']) for r in qps)==cell['expected_tags']
         observation={'queue':queue,'path':path,'transport_sums':{k:sum(r[k] for r in qps)
-                    for k in ['rx_gap','rx_duplicate','nack_feedback','sack_feedback','cnp_feedback',
+                    for k in ['rx_gap','rx_below_expected','fd_feedback_frames','fd_without_sack','sack_feedback','cnp_feedback',
                               'retransmit_packets','retransmit_bytes','timeout']},
                      'choices':[kv(l) for l in log.splitlines() if l.startswith('WS30_CHOICES ')]}
     elif 'WS30_PATH ' in log:raise RuntimeError('Observation leaked into off cell')
@@ -178,9 +190,9 @@ def main():
         a=next(c for c in plan['technical'] if c['arm']=='cr-a1-b1')
         b=next(c for c in plan['technical'] if c['arm']=='C16' and c['trace']=='ws30_technical168.txt')
         assert rows[a['id']]['fct_sha256']==rows[b['id']]['fct_sha256']
-        frozen(EV/'ws30-technical-results-r4.json',{'source':SOURCE,'verified_cells':32,'rows':[rows[c['id']] for c in plan['technical']]})
+        frozen(EV/'ws30-technical-results-r5.json',{'source':SOURCE,'verified_cells':32,'rows':[rows[c['id']] for c in plan['technical']]})
     elif args.phase=='pilot':
-        assert (EV/'ws30-technical-results-r4.json').exists(),'Technical gate not passed'
+        assert (EV/'ws30-technical-results-r5.json').exists(),'Technical gate not passed'
         baseline={};stages=[]
         for cap in [4,8,12]:
             cells=[c for c in plan['pilot'] if c['cap']==cap];rows=runblock(cells,cap,summary)
@@ -198,7 +210,7 @@ def main():
         for i in range(1,len(stages)):
             if stages[i]['throughput_cells_per_hour']<=stages[i-1]['throughput_cells_per_hour']*1.05:
                 selected=stages[i-1]['cap'];break
-        frozen(EV/'ws30-resource-results-r4.json',{'source':SOURCE,'verified_cells':24,'selected_cap':selected,
+        frozen(EV/'ws30-resource-results-r5.json',{'source':SOURCE,'verified_cells':24,'selected_cap':selected,
                                                 'stages':stages,'hashes':baseline})
     else:
         rows=[verify(c) for c in plan['technical']+plan['pilot']]
