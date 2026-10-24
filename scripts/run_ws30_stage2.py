@@ -98,7 +98,8 @@ def kv(line):return {k:int(v) for k,v in re.findall(r'(\w+)=(\d+)',line)}
 
 def verify(cell):
     folder=ROOT/'results'/cell['id'];meta=json.loads((folder/'metadata.json').read_text())
-    assert meta['status']=='SUCCEEDED' and meta['git_commit']==SOURCE and meta['algorithm']==cell['mode']
+    expected_source=cell.get('source_sha',SOURCE)
+    assert meta['status']=='SUCCEEDED' and meta['git_commit']==expected_source and meta['algorithm']==cell['mode']
     assert meta['seed']==1 and meta['input_flow_sha256']==cell['trace_sha256']
     assert meta['topology_sha256']==makeplan()['topology_sha256']
     assert meta['concurrency_cap']==cell['cap']
@@ -141,13 +142,14 @@ def verify(cell):
     rs['peak_load_1m']=max(x['load_1m'] for x in samples);assert rs['peak_load_1m']<=20
     return {'id':cell['id'],'arm':cell['arm'],'role':cell['role'],**stats,'observation':observation,'resource':rs}
 
-def configure(cap):
-    engine.SOURCE_SHA=SOURCE;engine.MAX_CONCURRENT=cap;engine.BUILD_GROUP_SIZE=min(4,cap)
+def configure(cap, source_sha=None):
+    active_source=source_sha or SOURCE
+    engine.SOURCE_SHA=active_source;engine.MAX_CONCURRENT=cap;engine.BUILD_GROUP_SIZE=min(4,cap)
     engine.RECEIPTS=RECEIPTS;engine.pilot.RECEIPTS=RECEIPTS;engine.pilot.POLL_SECONDS=60
     engine.verify=verify
     def start(cell):
         assert not (ROOT/'results'/cell['id']).exists()
-        meta=remote.status(cell['id']);assert meta['status']=='BUILT' and meta['git_commit']==SOURCE
+        meta=remote.status(cell['id']);assert meta['status']=='BUILT' and meta['git_commit']==active_source
         engine.calibration.verify_remote_trace(cell);remote.start_watch(cell['id'])
         remote.command('run',cell['id'],'--lb',cell['mode'],'--pfc','0','--irn','1','--bw','400',
                        '--buffer','9','--topo','topo_1280_400G_400G_OS1','--flow-file',cell['trace'],
@@ -157,7 +159,9 @@ def configure(cap):
     engine.start_one=start
 
 def runblock(cells,cap,summary):
-    configure(cap)
+    sources={c.get('source_sha',SOURCE) for c in cells}
+    assert len(sources)==1,'A build/run block must have one fixed source'
+    configure(cap,next(iter(sources)))
     for c in cells:assert c['cap']==cap
     # Existing verified cells are revalidated; incomplete IDs are resumed by engine.
     resource,rows=engine.run_batch(cells,len(summary['blocks'])+1,0)

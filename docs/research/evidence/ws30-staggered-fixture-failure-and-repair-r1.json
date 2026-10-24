@@ -1,0 +1,66 @@
+{
+  "failed_cells_preserved": [
+    {
+      "cause": "FLOW_INPUT_ERROR line 162: invalid host, priority, size, time order, or tag",
+      "config_log_sha256": "ebc300d122cff7ff9d300bd55638378dc494f6401916d950d1a0a31e95f74a10",
+      "excluded_from_effects": true,
+      "id": "20261024-230000-ws30-t15-e-o2",
+      "local_raw": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws30-attribution-audit\\results\\20261024-230000-ws30-t15-e-o2",
+      "metadata_sha256": "355c4282bc52c68cc5e0b20c3000e5b71657ab6b087457d1bcb76d2701434111",
+      "resource": {
+        "final_status": "FAILED",
+        "id": "20261024-230000-ws30-t15-e-o2",
+        "minimum_free_gib": 3760.004077911377,
+        "minimum_mem_available_gib": 105.00151443481445,
+        "peak_tree_rss_mib": 4544.86328125,
+        "samples": 37
+      },
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "status": "FAILED",
+      "trace_sha256": "e1cd7429d40d766c3dec22fe3d75dfca847d6ad0ab241bf146dbebf14fba85d5"
+    },
+    {
+      "cause": "FLOW_INPUT_ERROR line 162: invalid host, priority, size, time order, or tag",
+      "config_log_sha256": "cc3c593e731639411e6d0b23c4f4caa118bfcbeb4d67d49d80dc207768c3f273",
+      "excluded_from_effects": true,
+      "id": "20261024-230000-ws30-t16-q16-o2",
+      "local_raw": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws30-attribution-audit\\results\\20261024-230000-ws30-t16-q16-o2",
+      "metadata_sha256": "3aa9b4647a4f3e098f11a531c12d6cc81a6f6b2165b577d671928577f0f1f9f2",
+      "resource": {
+        "final_status": "FAILED",
+        "id": "20261024-230000-ws30-t16-q16-o2",
+        "minimum_free_gib": 3760.0040588378906,
+        "minimum_mem_available_gib": 104.99209213256836,
+        "peak_tree_rss_mib": 4544.49609375,
+        "samples": 37
+      },
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "status": "FAILED",
+      "trace_sha256": "e1cd7429d40d766c3dec22fe3d75dfca847d6ad0ab241bf146dbebf14fba85d5"
+    },
+    {
+      "cause": "FLOW_INPUT_ERROR line 162: invalid host, priority, size, time order, or tag",
+      "config_log_sha256": "3b8acd0635188ae592160bf019ffc42278c77c007bb63face11a8b78cf0cd6f0",
+      "excluded_from_effects": true,
+      "id": "20261024-230000-ws30-t17-c16-o2",
+      "local_raw": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws30-attribution-audit\\results\\20261024-230000-ws30-t17-c16-o2",
+      "metadata_sha256": "1ad9faea584a813e9967d7fe628be198ddcbd2ee09cd392a4b58ec8299afa924",
+      "resource": {
+        "final_status": "FAILED",
+        "id": "20261024-230000-ws30-t17-c16-o2",
+        "minimum_free_gib": 3759.9943504333496,
+        "minimum_mem_available_gib": 104.9947624206543,
+        "peak_tree_rss_mib": 4544.71484375,
+        "samples": 38
+      },
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "status": "FAILED",
+      "trace_sha256": "e1cd7429d40d766c3dec22fe3d75dfca847d6ad0ab241bf146dbebf14fba85d5"
+    }
+  ],
+  "formal_input_traces_unchanged": 48,
+  "new_input_manifest_sha256": "7dd69012ab91c7c5fa38d2e8e3943919dc2edca7b37af237971f769fca6a0ac5",
+  "old_input_manifest_sha256": "165dfd8e34f97efca2873abd606ebfa21faa22e7c36335e510e2447466103e8d",
+  "repair": "Stable sort the technical fixture by release time; preserve the original malformed file and all FAILED IDs",
+  "scope": "Input validation failure, not a routing efficacy result"
+}
