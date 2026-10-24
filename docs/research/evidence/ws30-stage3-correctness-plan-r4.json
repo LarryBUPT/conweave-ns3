@@ -1,0 +1,205 @@
+{
+  "cells": [
+    {
+      "arm": "C16",
+      "cap": 4,
+      "composition": 1,
+      "continuing": 0,
+      "expected_background_by_port": {
+        "2": 65536,
+        "3": 0
+      },
+      "expected_tags": {
+        "1": 2,
+        "2": 3
+      },
+      "id": "20261024-210000-ws30-cprep4-s0-c0-c16",
+      "input_flows": 5,
+      "mode": "classreserve",
+      "observe": 2,
+      "role": "composition-check",
+      "source_sha": "c5132513fbcd7c08ddd3d5c4333cf7ba01c6ee6e",
+      "swap": 0,
+      "topology": "ws30_composition8",
+      "topology_sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+      "trace": "ws30_composition_swap0_cont0.txt",
+      "trace_sha256": "e9b598ff3805545eb31ca825c0459bc035c6ee2fe4b140b8e860184865c156d7"
+    },
+    {
+      "arm": "E",
+      "cap": 4,
+      "composition": 1,
+      "continuing": 0,
+      "expected_background_by_port": {
+        "2": 65536,
+        "3": 0
+      },
+      "expected_tags": {
+        "1": 2,
+        "2": 3
+      },
+      "id": "20261024-210000-ws30-cprep4-s0-c0-e",
+      "input_flows": 5,
+      "mode": "fecmp",
+      "observe": 2,
+      "role": "composition-check",
+      "source_sha": "c5132513fbcd7c08ddd3d5c4333cf7ba01c6ee6e",
+      "swap": 0,
+      "topology": "ws30_composition8",
+      "topology_sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+      "trace": "ws30_composition_swap0_cont0.txt",
+      "trace_sha256": "e9b598ff3805545eb31ca825c0459bc035c6ee2fe4b140b8e860184865c156d7"
+    },
+    {
+      "arm": "Q16",
+      "cap": 4,
+      "composition": 1,
+      "continuing": 0,
+      "expected_background_by_port": {
+        "2": 65536,
+        "3": 0
+      },
+      "expected_tags": {
+        "1": 2,
+        "2": 3
+      },
+      "id": "20261024-210000-ws30-cprep4-s0-c0-q16",
+      "input_flows": 5,
+      "mode": "cr-a0-b1",
+      "observe": 2,
+      "role": "composition-check",
+      "source_sha": "c5132513fbcd7c08ddd3d5c4333cf7ba01c6ee6e",
+      "swap": 0,
+      "topology": "ws30_composition8",
+      "topology_sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+      "trace": "ws30_composition_swap0_cont0.txt",
+      "trace_sha256": "e9b598ff3805545eb31ca825c0459bc035c6ee2fe4b140b8e860184865c156d7"
+    },
+    {
+      "arm": "C16",
+      "cap": 4,
+      "composition": 1,
+      "continuing": 0,
+      "expected_background_by_port": {
+        "2": 0,
+        "3": 65536
+      },
+      "expected_tags": {
+        "1": 2,
+        "2": 3
+      },
+      "id": "20261024-210000-ws30-cprep4-s1-c0-c16",
+      "input_flows": 5,
+      "mode": "classreserve",
+      "observe": 2,
+      "role": "composition-check",
+      "source_sha": "c5132513fbcd7c08ddd3d5c4333cf7ba01c6ee6e",
+      "swap": 1,
+      "topology": "ws30_composition8",
+      "topology_sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+      "trace": "ws30_composition_swap1_cont0.txt",
+      "trace_sha256": "50d5946d29977489bbd0a55d5d75a43a60b121a7a7d712ea04f726bfb86f675c"
+    },
+    {
+      "arm": "C16",
+      "cap": 4,
+      "composition": 1,
+      "continuing": 1,
+      "expected_background_by_port": {
+        "2": 65536,
+        "3": 0
+      },
+      "expected_tags": {
+        "1": 34,
+        "2": 3
+      },
+      "id": "20261024-210000-ws30-cprep4-s0-c1-c16",
+      "input_flows": 37,
+      "mode": "classreserve",
+      "observe": 2,
+      "role": "composition-check",
+      "source_sha": "c5132513fbcd7c08ddd3d5c4333cf7ba01c6ee6e",
+      "swap": 0,
+      "topology": "ws30_composition8",
+      "topology_sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+      "trace": "ws30_composition_swap0_cont1.txt",
+      "trace_sha256": "a7f5f1f3b7bd9138dc2c7db538ae1c95d1cd523e9ffbc77fe2d040b5c614eb29"
+    },
+    {
+      "arm": "C16",
+      "cap": 4,
+      "composition": 1,
+      "continuing": 1,
+      "expected_background_by_port": {
+        "2": 0,
+        "3": 65536
+      },
+      "expected_tags": {
+        "1": 34,
+        "2": 3
+      },
+      "id": "20261024-210000-ws30-cprep4-s1-c1-c16",
+      "input_flows": 37,
+      "mode": "classreserve",
+      "observe": 2,
+      "role": "composition-check",
+      "source_sha": "c5132513fbcd7c08ddd3d5c4333cf7ba01c6ee6e",
+      "swap": 1,
+      "topology": "ws30_composition8",
+      "topology_sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+      "trace": "ws30_composition_swap1_cont1.txt",
+      "trace_sha256": "e8c07465fd171803cf6ee322f0de89bc89ab9516337ac6ece7a5c5fce2238179"
+    },
+    {
+      "arm": "E",
+      "background": 192,
+      "batch": 0,
+      "cap": 4,
+      "composition": 0,
+      "expected_fct_sha256": "a67b0077bf0939c444ac039882e21ad4577ea7ce391c67090531a3d8d91403c8",
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261024-210000-ws30-cprep4-off-e",
+      "input_flows": 16576,
+      "mode": "fecmp",
+      "observe": 0,
+      "role": "compatibility-check",
+      "run_order": 27,
+      "seed": 20262521,
+      "source_sha": "c5132513fbcd7c08ddd3d5c4333cf7ba01c6ee6e",
+      "topology": "topo_1280_400G_400G_OS1",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace": "ws25_seed20262521_b192.txt",
+      "trace_sha256": "f2a3e21ae7393825f22ce9ef9f358c41422f5236e113b86ef6ea9333f0dd2553"
+    },
+    {
+      "arm": "C16",
+      "background": 192,
+      "batch": 0,
+      "cap": 4,
+      "composition": 0,
+      "expected_fct_sha256": "b2d559e59ae490ebc56fac3e167f775ede0a9dce82b4b4099de144cf22f76816",
+      "expected_tags": {
+        "1": 192,
+        "2": 16384
+      },
+      "id": "20261024-210000-ws30-cprep4-off-c16",
+      "input_flows": 16576,
+      "mode": "classreserve",
+      "observe": 0,
+      "role": "compatibility-check",
+      "run_order": 28,
+      "seed": 20262521,
+      "source_sha": "c5132513fbcd7c08ddd3d5c4333cf7ba01c6ee6e",
+      "topology": "topo_1280_400G_400G_OS1",
+      "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+      "trace": "ws25_seed20262521_b192.txt",
+      "trace_sha256": "f2a3e21ae7393825f22ce9ef9f358c41422f5236e113b86ef6ea9333f0dd2553"
+    }
+  ],
+  "formal_plan_sha256": "dfa7f8f5f9764b5bd91c3705b7d9f6c85b15930e28ceb62476ce0f415d021c5e",
+  "kind": "WS-30 small correctness only; no formal effects",
+  "source_sha": "c5132513fbcd7c08ddd3d5c4333cf7ba01c6ee6e"
+}
