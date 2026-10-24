@@ -14,9 +14,11 @@ def put(path,data):
     return hashlib.sha256(data).hexdigest()
 def item(path):
     lines=path.read_text().splitlines()
-    counts={}
+    counts={};previous=-1.0
     for line in lines[1:]:
         parts=line.split(); tag=parts[5] if len(parts)==6 else '0'
+        start=float(parts[4]);assert start>=previous,('Input time decreases',path)
+        previous=start
         counts[tag]=counts.get(tag,0)+1
     assert int(lines[0])==sum(counts.values())
     return {'trace':path.name,'trace_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
@@ -48,14 +50,18 @@ def main():
     put(tech,(str(len(lines))+'\n'+'\n'.join(lines)+'\n').encode('ascii'))
     five=config/'ws30_fivecol4.txt'
     put(five,b'4\n4 320 3 8192 2.000000000\n8 324 3 8192 2.000000000\n12 328 3 8192 2.000000000\n16 332 3 8192 2.000000000\n')
-    techlead=config/'ws30_technical168_lead.txt'
-    put(techlead,tech.read_bytes().replace(b'2.000000000 2',b'2.000020000 2'))
+    # Stable chronological order is required by the streaming input parser.
+    # Keep the original invalid fixture as a failed-input audit artifact.
+    techlead=config/'ws30_technical168_lead_v2.txt'
+    shifted=tech.read_text().replace('2.000000000 2','2.000020000 2').splitlines()
+    ordered=sorted(shifted[1:],key=lambda line:float(line.split()[4]))
+    put(techlead,('\n'.join([shifted[0]]+ordered)+'\n').encode('ascii'))
     result={'new_inputs':rows,'technical':[item(x) for x in (tech,five,techlead)],
             'generator_sha256':hashlib.sha256(subprocess.check_output(
                 ['git','-C',str(ROOT),'show','HEAD:scripts/make_ws25_demand.py'])).hexdigest(),
             'generator_hash_convention':'Git blob LF bytes; local Windows checkout may use CRLF',
             'topology_sha256':hashlib.sha256((config/'topo_1280_400G_400G_OS1.txt').read_bytes()).hexdigest()}
-    dest=ROOT/'docs/research/evidence/ws30-inputs-v2.json'
+    dest=ROOT/'docs/research/evidence/ws30-inputs-v3.json'
     put(dest,(json.dumps(result,indent=2,sort_keys=True)+'\n').encode('utf-8'))
     print(json.dumps({'new_inputs':len(rows),'technical_inputs':3,'manifest_sha256':hashlib.sha256(dest.read_bytes()).hexdigest()}))
 if __name__=='__main__':main()
