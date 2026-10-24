@@ -1,0 +1,869 @@
+{
+  "formal_effect_cells_counted": 0,
+  "plan_sha256": "63ec29cc7aae33faa88473dd4f56b5dada0f1e45bf08e9159849cd2c571227be",
+  "rows": [
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 3,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "e9603b9cba53afa8c35931aa7c778fa88cbc0a8ecdebc86f4fd8125801a5414b",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-210000-ws30-cprep5-s0-c0-c16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 4,
+            "near": 0,
+            "same": 4,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 1,
+            "background_nonzero": 1,
+            "chose_second": 1,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-210000-ws30-cprep5-s0-c0-c16",
+        "minimum_free_gib": 3542.51180267334,
+        "minimum_mem_available_gib": 122.57273483276367,
+        "peak_load_1m": 1.97,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition-check",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.086,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.086,
+          "p50_us": 40.058499999999995,
+          "p95_us": 40.08325,
+          "p99_us": 40.08545,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 3,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "c3a9224b5e047da6e450958dbf011903956ab2590aabb0b537d68ffdd0dc7ac6",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-210000-ws30-cprep5-s0-c0-e",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-210000-ws30-cprep5-s0-c0-e",
+        "minimum_free_gib": 3536.2823638916016,
+        "minimum_mem_available_gib": 122.57197189331055,
+        "peak_load_1m": 6.89,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition-check",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.086,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.086,
+          "p50_us": 40.058499999999995,
+          "p95_us": 40.08325,
+          "p99_us": 40.08545,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "Q16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 2,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "6ae59e87a82ceb42592b3cd4f2c52c3b8f944aad7ca2892685dcc1fbcb93f4e4",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-210000-ws30-cprep5-s0-c0-q16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 4,
+            "near": 0,
+            "same": 4,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 1,
+            "background_nonzero": 1,
+            "chose_second": 0,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-210000-ws30-cprep5-s0-c0-q16",
+        "minimum_free_gib": 3536.282241821289,
+        "minimum_mem_available_gib": 122.56673049926758,
+        "peak_load_1m": 6.89,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition-check",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.086,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.086,
+          "p50_us": 40.058499999999995,
+          "p95_us": 40.08325,
+          "p99_us": 40.08545,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 2,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "4c8a0e6a3ed2463385e9b8385c9097a6545aff7dfc724a447a2a8cb89362a35a",
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-210000-ws30-cprep5-s1-c0-c16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 4,
+            "near": 0,
+            "same": 4,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 1,
+            "chose_second": 0,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-210000-ws30-cprep5-s1-c0-c16",
+        "minimum_free_gib": 3536.2821197509766,
+        "minimum_mem_available_gib": 122.56766510009766,
+        "peak_load_1m": 6.34,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition-check",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.087,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.087,
+          "p50_us": 40.0595,
+          "p95_us": 40.084250000000004,
+          "p99_us": 40.086450000000006,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "bdb4458981e326e30931bcc4de52a733432ea0b9e78466fb884471b1d46a99bc"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 134144,
+          "3": 134144
+        },
+        "all_completed_rows": 37,
+        "chosen_port": 3,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "8bcd71f5eb0e241769a76678186fee529c1c65d14b669c69584335fd42b0c5fb",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "2554c3332683677a59ee4849d0b01ca950cfc4c71bdde74f9721ade6857bcd8e",
+      "id": "20261024-210000-ws30-cprep5-s0-c1-c16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 68,
+            "near": 0,
+            "same": 68,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 1,
+            "background_nonzero": 1,
+            "chose_second": 1,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 816,
+          "full_rows": 816,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 897984,
+          "dropped": 0,
+          "enqueued": 897984,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 1,
+          "fd_feedback_frames": 400,
+          "fd_without_sack": 400,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-210000-ws30-cprep5-s0-c1-c16",
+        "minimum_free_gib": 3536.2818756103516,
+        "minimum_mem_available_gib": 122.56464767456055,
+        "peak_load_1m": 5.91,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition-check",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 70.197,
+          "completed_flows": 34,
+          "input_flows": 34,
+          "max_us": 40.086,
+          "p50_us": 26.822,
+          "p95_us": 35.58955000000001,
+          "p99_us": 40.06785,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b3f380befa96299652a397e0ab90d8c2d4a3bc07d6180f19b5a61b1c16970918"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 134144,
+          "3": 134144
+        },
+        "all_completed_rows": 37,
+        "chosen_port": 2,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "0c6ba8d8fca8610ceeb876b9517d730fdeaa0600c6379e308178421b89780d93",
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "09515f61f496616d665147495f0dda87d35c6d666bb5acab9d7d487470dc55ad",
+      "id": "20261024-210000-ws30-cprep5-s1-c1-c16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 68,
+            "near": 0,
+            "same": 68,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 1,
+            "chose_second": 0,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 816,
+          "full_rows": 816,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 897984,
+          "dropped": 0,
+          "enqueued": 897984,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 1,
+          "fd_feedback_frames": 400,
+          "fd_without_sack": 400,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-210000-ws30-cprep5-s1-c1-c16",
+        "minimum_free_gib": 3531.6096420288086,
+        "minimum_mem_available_gib": 122.57141876220703,
+        "peak_load_1m": 5.24,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition-check",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 70.197,
+          "completed_flows": 34,
+          "input_flows": 34,
+          "max_us": 40.087,
+          "p50_us": 26.822,
+          "p95_us": 35.58990000000001,
+          "p99_us": 40.06885,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "fdae9c3131bd3e2e2c62e8947af974f6ac08acbac4eaa117b4d99ddcabb3ec56"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "fct_sha256": "a67b0077bf0939c444ac039882e21ad4577ea7ce391c67090531a3d8d91403c8",
+      "id": "20261024-210000-ws30-cprep5-off-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-210000-ws30-cprep5-off-e",
+        "minimum_free_gib": 3531.5963973999023,
+        "minimum_mem_available_gib": 113.76304626464844,
+        "peak_load_1m": 5.24,
+        "peak_tree_rss_mib": 4544.74609375,
+        "samples": 55
+      },
+      "role": "compatibility-check",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 1519.088,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1519.088,
+          "p50_us": 703.635,
+          "p95_us": 1342.66845,
+          "p99_us": 1518.29229,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.462,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.462,
+          "p50_us": 12.228,
+          "p95_us": 14.81185,
+          "p99_us": 15.79751,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "f2a3e21ae7393825f22ce9ef9f358c41422f5236e113b86ef6ea9333f0dd2553"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "fct_sha256": "b2d559e59ae490ebc56fac3e167f775ede0a9dce82b4b4099de144cf22f76816",
+      "id": "20261024-210000-ws30-cprep5-off-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-210000-ws30-cprep5-off-c16",
+        "minimum_free_gib": 3531.591133117676,
+        "minimum_mem_available_gib": 113.76305770874023,
+        "peak_load_1m": 4.82,
+        "peak_tree_rss_mib": 4544.93359375,
+        "samples": 59
+      },
+      "role": "compatibility-check",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 1518.897,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1518.897,
+          "p50_us": 703.6655000000001,
+          "p95_us": 1439.6473999999996,
+          "p99_us": 1518.87217,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.999,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.999,
+          "p50_us": 12.199,
+          "p95_us": 14.498700000000001,
+          "p99_us": 16.26319,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "f2a3e21ae7393825f22ce9ef9f358c41422f5236e113b86ef6ea9333f0dd2553"
+    }
+  ],
+  "verified_cells": 8
+}
