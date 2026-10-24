@@ -36,7 +36,7 @@
 
 阶段 3 文件提交 `2b44ccf` 与资源预检状态提交 `8e5ebdd` 已推送到个人 fork 的 `research/ws30-attribution-audit`。本次 runner 授权校验、执行授权收据和最终状态更新尚待提交。
 
-阶段 3 组成夹具技术验收完成。此前同 WS-30 正式源码 SHA 的资源 pilot 为 24/24，通过 4/8/12 阶梯并选择 cap=12。2026-10-24 本次远端只读审计显示：无活动仿真，load1=0.0、可用内存 122.57 GiB、空闲磁盘 3,522.0 GiB。账户 UID 1000 下有 6 个长期 VS Code `OpenDebugAD7` 进程（各约 29 MiB RSS、采样 CPU 0%）和一个 `/usr/bin/python /usr/bin/hg outgoing -q` 进程（约 12 MiB RSS、CPU 0%）；未见其他非本账户普通 UID 作业。`simulation-start.lock` 存在但未见于 `lslocks` 的已持有锁。没有终止或修改这些进程。当前 turn_context 已核实为 GPT-6 Luna / Medium。正式效果格仍为 0/276。WS-30 整体未闭环，也不得据此归档。
+阶段 3 组成夹具技术验收完成。此前同 WS-30 正式源码 SHA 的资源 pilot 为 24/24，通过 4/8/12 阶梯并选择 cap=12。2026-10-24 本次远端只读审计显示：无活动仿真，load1=0.0、可用内存 122.57 GiB、空闲磁盘 3,522.0 GiB。账户 UID 1000 下有 6 个长期 VS Code `OpenDebugAD7` 进程（各约 29 MiB RSS、采样 CPU 0%）和一个 `/usr/bin/python /usr/bin/hg outgoing -q` 进程（约 12 MiB RSS、CPU 0%）；未见其他非本账户普通 UID 作业。`simulation-start.lock` 存在但未见于 `lslocks` 的已持有锁。没有终止或修改这些进程。当前 turn_context 已核实为 GPT-6 Luna / Medium。主矩阵 runner 已启动，首批 12 格已保留；首格 `20261024-230000-ws30-main-s20263040-q16` 正在构建，当前验收 0/192、失败 0。先占和正式组成格未启动；正式效果格仍为 0/276。WS-30 整体未闭环，也不得据此归档。
 
 ## 6. 未解决问题
 
