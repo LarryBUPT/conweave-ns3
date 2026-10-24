@@ -279,6 +279,7 @@ def main():
         # The microfixture has fixed QPs, not generated offered load. Keep a
         # nominal divisor for the legacy printed hostload; it generates no input.
         oversub = 1
+        topo2bdp[topo] = 42200  # same 8440ns x 40Gbps contract as the simulator
     else:
         oversub = int(topo.replace("\n", "").split("OS")[-1].replace(".txt", ""))
     assert (int(args.netload) % oversub == 0)

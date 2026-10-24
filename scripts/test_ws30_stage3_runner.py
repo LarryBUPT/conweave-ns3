@@ -3,6 +3,14 @@ import hashlib
 import json
 from pathlib import Path
 import tempfile
+import contextlib
+import io
+import os
+import runpy
+import random
+import shutil
+import sys
+import types
 import unittest
 from unittest import mock
 
@@ -100,6 +108,32 @@ class RecoveryTests(unittest.TestCase):
             adapted=build.call_args.args[0][0]
             self.assertEqual(adapted['seed'],0);self.assertEqual(adapted['background'],2)
             self.assertEqual(adapted['run_order'],0);self.assertEqual(cell,original)
+
+    def test_real_driver_reaches_simulator_with_fixed_non_os_topology(self):
+        directory=Path(self.temp.name);(directory/'config').mkdir()
+        for name in ['ws30_composition8.txt','ws30_composition_swap0_cont0.txt']:
+            shutil.copyfile(run.ROOT/'config'/name,directory/'config'/name)
+        class ReachedSimulator(Exception):pass
+        def waf(argv,**kwargs):
+            self.assertEqual(argv[0],'./waf')
+            config=Path(argv[2].split(' ',1)[1]).read_text()
+            self.assertIn('TOPOLOGY_FILE config/ws30_composition8.txt',config)
+            self.assertIn('LB_MODE 21',config)
+            raise ReachedSimulator()
+        previous=Path.cwd()
+        try:
+            os.chdir(directory)
+            with mock.patch.dict(os.environ,{'WS30_COMPOSITION':'1'}), \
+                 mock.patch.dict(sys.modules,{'numpy':types.ModuleType('numpy')}), \
+                 mock.patch.object(random,'seed'), \
+                 mock.patch.object(sys,'argv',['run.py','--lb','classreserve','--pfc','0','--irn','1',
+                  '--bw','400','--buffer','9','--topo','ws30_composition8',
+                  '--flow-file','config/ws30_composition_swap0_cont0.txt']), \
+                 mock.patch.object(run.subprocess,'check_call',side_effect=waf), \
+                 contextlib.redirect_stdout(io.StringIO()):
+                module=runpy.run_path(str(run.ROOT/'run.py'))
+                with self.assertRaises(ReachedSimulator):module['main']()
+        finally:os.chdir(previous)
 
     def test_class_release_origins_use_hand_calculated_complete_times(self):
         folder=Path(self.temp.name);(folder/'config').mkdir();(folder/'raw/1').mkdir(parents=True)
