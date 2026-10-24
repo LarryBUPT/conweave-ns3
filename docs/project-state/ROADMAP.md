@@ -4,7 +4,7 @@
 
 WS-30 仍为 ACTIVE。阶段 3 的组成夹具已通过 12 格技术验收，另有 2 个关闭夹具回归格通过；固定仿真 SHA `2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f`，14/14 ID 成功。[报告](../research/ws30-stage3-correctness-report-r1.md)、[合并收据](../research/evidence/ws30-stage3-correctness-combined-r1.json)与[Handoff](../handoffs/2026-10-24-ws30-stage3-composition-correctness.md)记录组成、raw 哈希和逐项断言。该结果验证固定输入的队列组成和选路响应，不支持性能收益推断。3 个早期失败 ID 保留；当前正式效果格 0/276。
 
-下一步重新核对服务器作业、资源、运行器锁、隔离、恢复和吞吐，再运行资源 pilot 的 4/8/12 阶梯。模型监督必须由实际上下文满足阶段协议规定的 GPT-6 Luna / Medium；目前记录仅证实 Luna / Medium，不应声称 High。所有 pilot 和正式格终态、raw 回传后再切换到分析模型并完成双侧分析、图表及结论核验。未完成前不得称 WS-30 闭环。
+最新只读快照无活动仿真，load1=0.0、可用内存 122.57 GiB、空闲磁盘 3,522.0 GiB；同账户还有长期 VS Code 调试适配器与 `hg outgoing -q` 进程，采样 CPU 均为 0%，RSS 约 12～30 MiB。simulation-start.lock 未显示为已持有。此快照不能替代 pilot 启动时的重查。资源 pilot 计划为 4/8/12 阶梯。监督上下文须由实际模型切换／状态工具确认满足阶段协议的 GPT-6 Luna / Medium；当前工具无此能力，故没有启动后台长时实验。所有 pilot 和正式格终态、raw 回传后再切换到分析模型，完成双侧分析、图表及结论核验。未完成前不得称 WS-30 闭环。
 
 ## WS-30 阶段 2 历史入口（2026-10-24）
 

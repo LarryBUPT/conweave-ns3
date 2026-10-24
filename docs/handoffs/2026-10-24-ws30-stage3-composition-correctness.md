@@ -34,9 +34,9 @@
 
 ## 5. 当前状态
 
-截至本次交接，工作区 HEAD 为 `84a44564ac605541f644f4dcb2a0e6376b1ffb98`，分支为 `research/ws30-attribution-audit`。阶段 3 报告、机器收据、r6 收据和审计脚本此前未跟踪；本次新增 Handoff 和状态索引更新。提交／推送前须再次检查 `git status`，只纳入 WS-30 阶段 3 明确文件。
+截至首次交接，工作区 HEAD 为 `84a44564ac605541f644f4dcb2a0e6376b1ffb98`；阶段 3 文件随后已提交为 `2b44ccf` 并推送到个人 fork 的 `research/ws30-attribution-audit`。提交前工作树干净。
 
-阶段 3 组成夹具技术验收完成。资源阶梯 pilot 尚未在本轮重启；正式效果格仍为 0/276。WS-30 整体未闭环，也不得据此归档。
+阶段 3 组成夹具技术验收完成。2026-10-24 本次远端只读审计显示：无活动仿真，load1=0.0、可用内存 122.57 GiB、空闲磁盘 3,522.0 GiB。账户 UID 1000 下有 6 个长期 VS Code `OpenDebugAD7` 进程（各约 29 MiB RSS、采样 CPU 0%）和一个 `/usr/bin/python /usr/bin/hg outgoing -q` 进程（约 12 MiB RSS、CPU 0%）；未见其他非本账户普通 UID 作业。`simulation-start.lock` 存在但未见于 `lslocks` 的已持有锁。没有终止或修改这些进程。资源阶梯 pilot 尚未启动；当前工具不能实际切换或读取模型上下文，无法确认 GPT-6 Luna / Medium 门槛。正式效果格仍为 0/276。WS-30 整体未闭环，也不得据此归档。
 
 ## 6. 未解决问题
 

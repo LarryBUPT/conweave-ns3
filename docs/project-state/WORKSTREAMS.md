@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | ClassReserve 实验补正与归因审计 | ACTIVE；阶段 2 COMPLETE FOR TECHNICAL, RESOURCE AND HISTORICAL BRIDGE；阶段 3 组成夹具 COMPLETE FOR TECHNICAL CORRECTNESS | [阶段 3 报告](../research/ws30-stage3-correctness-report-r1.md)、[Handoff](../handoffs/2026-10-24-ws30-stage3-composition-correctness.md)：组成 12 格＋关闭夹具回归 2 格，共 14/14 成功，SHA `2d7e31a…`；组成交换改变 C16 出口，未作效果结论 | 阶段 3 失败 ID 保留；下一步重查资源并执行 4/8/12 pilot。主矩阵 192、先占 72、正式组成 12 及双侧图表待完成；WS-30 未闭环；不触碰 WS-29 |
+| WS-30 | ClassReserve 实验补正与归因审计 | ACTIVE；阶段 2 COMPLETE FOR TECHNICAL, RESOURCE AND HISTORICAL BRIDGE；阶段 3 组成夹具 COMPLETE FOR TECHNICAL CORRECTNESS | [阶段 3 报告](../research/ws30-stage3-correctness-report-r1.md)、[Handoff](../handoffs/2026-10-24-ws30-stage3-composition-correctness.md)：组成 12 格＋关闭夹具回归 2 格，共 14/14 成功，SHA `2d7e31a…`；组成交换改变 C16 出口，未作效果结论 | 阶段 3 失败 ID 保留；新快照无仿真、资源余量充足，但同账户存在闲置调试适配器与 `hg outgoing` 进程；当前工具无法确认模型切换，故 pilot 未启动。其余正式矩阵及双侧图表待完成；WS-30 未闭环；不触碰 WS-29 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |
