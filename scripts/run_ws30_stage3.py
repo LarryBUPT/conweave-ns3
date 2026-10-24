@@ -240,6 +240,17 @@ class Backend:
 
     def build(self,cells):
         assert len({c['source_sha'] for c in cells})==1
+        if not getattr(self,'synced',False):
+            try:stage.remote.command('sync','--repo-local',str(ROOT))
+            except RuntimeError:
+                # One quiet workspace login retry, then the normal Git bundle
+                # transport. Never print the credential/bootstrap script.
+                subprocess.run(stage.remote.remote.ssh_base(stage.remote.remote.config())+
+                               ['bash /home/fnl/lzy/login.sh >/dev/null 2>&1'],
+                               stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=120)
+                try:stage.remote.command('sync','--repo-local',str(ROOT))
+                except RuntimeError:stage.remote.command('sync-bundle','--repo-local',str(ROOT))
+            self.synced=True
         stage.engine.SOURCE_SHA=cells[0]['source_sha']
         stage.engine.build_missing_group(cells,0,0)
 
