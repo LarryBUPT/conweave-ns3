@@ -273,7 +273,14 @@ def main():
     # get over-subscription ratio from topoogy name
 
     netload = args.netload
-    oversub = int(topo.replace("\n", "").split("OS")[-1].replace(".txt", ""))
+    if os.environ.get('WS30_COMPOSITION') == '1':
+        if topo != 'ws30_composition8' or not args.flow_file:
+            raise Exception('WS-30 composition requires its fixed topology and explicit trace')
+        # The microfixture has fixed QPs, not generated offered load. Keep a
+        # nominal divisor for the legacy printed hostload; it generates no input.
+        oversub = 1
+    else:
+        oversub = int(topo.replace("\n", "").split("OS")[-1].replace(".txt", ""))
     assert (int(args.netload) % oversub == 0)
     hostload = int(args.netload) / oversub
     assert (hostload > 0)
