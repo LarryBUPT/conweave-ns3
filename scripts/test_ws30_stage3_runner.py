@@ -111,7 +111,7 @@ class RecoveryTests(unittest.TestCase):
 
     def test_real_driver_reaches_simulator_with_fixed_non_os_topology(self):
         directory=Path(self.temp.name);(directory/'config').mkdir()
-        for name in ['ws30_composition8.txt','ws30_composition_swap0_cont0.txt']:
+        for name in ['ws30_composition8.txt','ws30_composition_v3_swap0_cont0.txt']:
             shutil.copyfile(run.ROOT/'config'/name,directory/'config'/name)
         class ReachedSimulator(Exception):pass
         def waf(argv,**kwargs):
@@ -128,7 +128,7 @@ class RecoveryTests(unittest.TestCase):
                  mock.patch.object(random,'seed'), \
                  mock.patch.object(sys,'argv',['run.py','--lb','classreserve','--pfc','0','--irn','1',
                   '--bw','400','--buffer','9','--topo','ws30_composition8',
-                  '--flow-file','config/ws30_composition_swap0_cont0.txt']), \
+                  '--flow-file','config/ws30_composition_v3_swap0_cont0.txt']), \
                  mock.patch.object(run.subprocess,'check_call',side_effect=waf), \
                  contextlib.redirect_stdout(io.StringIO()):
                 module=runpy.run_path(str(run.ROOT/'run.py'))

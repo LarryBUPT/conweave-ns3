@@ -36,8 +36,11 @@ def generate():
     rows = []
     for continuing in [0, 1]:
         for swap in [0, 1]:
-            flows = [(0, dst, 3, 31616, 2000000000, (1 if dst == 1 else 2) if not swap
+            flows = [(0, dst, 3, 31232, 2000000000, (1 if dst == 1 else 2) if not swap
                       else (2 if dst == 1 else 1)) for repeat in range(2) for dst in [1, 2]]
+            for dst in [1, 2]:
+                wire=sum(f[3]+((f[3]+999)//1000)*48 for f in flows if f[1]==dst)
+                assert wire==65536
             flows.append((0, 3, 3, 16000, 2000020000, 2))
             if continuing:
                 flows.extend((0, dst, 3, 8000, 2000022000 + repeat * 1000, 1)
@@ -46,7 +49,7 @@ def generate():
             text = str(len(flows)) + '\n' + ''.join(
                 '%d %d %d %d %d.%09d %d\n' % (*f[:4], f[4]//10**9, f[4]%10**9, f[5])
                 for f in flows)
-            name = 'ws30_composition_swap%d_cont%d.txt' % (swap, continuing)
+            name = 'ws30_composition_v3_swap%d_cont%d.txt' % (swap, continuing)
             path = stage.ROOT / 'config' / name
             if path.exists(): assert path.read_text() == text
             else: path.write_text(text)
@@ -56,14 +59,14 @@ def generate():
                          'expected_background_by_port': {'2': 0 if swap else 65536,
                                                         '3': 65536 if swap else 0}})
     design = {
-        'kind': 'WS-30 actual-enqueue composition fixture r1',
+        'kind': 'WS-30 actual-enqueue composition fixture r3; 48-byte repository headers',
         'execution_enabled': False, 'topology': 'ws30_composition8',
         'topology_sha256': stage.sha(topo), 'traces': rows,
         'probe': {'src': 0, 'dst': 3, 'sport': 10004, 'dport': 100, 'bytes': 16000,
                   'start_ns': 2000020000, 'tag': 2, 'first': 2, 'second': 3},
         'hold_ns': 1999999000, 'release_ns': 2000022000,
-        'wire_header_bytes': 36, 'payload_mtu': 1000,
-        'prefill_qps_per_port': 2, 'prefill_payload_per_qp': 31616,
+        'wire_header_bytes': 48, 'payload_mtu': 1000,
+        'prefill_qps_per_port': 2, 'prefill_payload_per_qp': 31232,
         'prefill_packets_per_qp': 32, 'wire_bytes_per_port': 65536,
         'output_bps': 40000000000, 'host_bps': 400000000000,
         'ecn_40g': {'kmin_bytes':100000,'kmax_bytes':400000,'pmax':0.2},
@@ -72,7 +75,7 @@ def generate():
         'arms': ['E', 'Q16', 'C16'], 'required_cells': 12,
         'interpretation': 'controlled scheduler hold; real RDMA QPs and real shared queues; no queue/score writes',
     }
-    stage.frozen(stage.EV / 'ws30-composition-design-r2.json', design)
+    stage.frozen(stage.EV / 'ws30-composition-design-r3.json', design)
     return design
 
 

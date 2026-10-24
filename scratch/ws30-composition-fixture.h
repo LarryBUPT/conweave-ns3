@@ -5,6 +5,7 @@
 // Prefill packets originate in real RDMA QPs. No queue/score value is written.
 #include "ns3/custom-header.h"
 #include "ns3/seq-ts-header.h"
+#include "ns3/ppp-header.h"
 #include "ns3/workload-tag.h"
 #include <cstdlib>
 #include <map>
@@ -84,8 +85,8 @@ static void Ws30CompositionInstall(NodeContainer nodes, double origin) {
     const char *observe=std::getenv("WS30_OBSERVE");
     WS30_COMPOSITION_REQUIRE(nodes.GetN()==8 && Settings::host_num==4 && origin==2.0 &&
                   observe && observe[0]=='2' && observe[1]=='\0', "Invalid composition fixture setup");
-    WS30_COMPOSITION_REQUIRE(30+SeqTsHeader::GetHeaderSize()==36,
-                  "Composition trace assumes 36 on-wire header bytes per data packet");
+    WS30_COMPOSITION_REQUIRE(PppHeader::GetStaticSize()+20+8+SeqTsHeader::GetHeaderSize()==48,
+                  "Composition trace assumes the repository's 48 on-wire header bytes");
     for (uint32_t i=0;i<2;++i) {
         auto port=DynamicCast<QbbNetDevice>(nodes.Get(4)->GetDevice(2+i));
         WS30_COMPOSITION_REQUIRE(port && port->GetDataRate().GetBitRate()==40000000000ULL,
