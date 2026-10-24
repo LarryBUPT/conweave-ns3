@@ -91,6 +91,16 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(run.capacity({'load_1m':0,'mem_available_gib':120,'free_gib':1000,
                                        'unexpected_simulation_pids':['123']},12),0)
 
+    def test_fixture_build_adapter_supplies_receipt_context_without_changing_cell(self):
+        cell={'id':'fixture','source_sha':'source','mode':'classreserve','expected_tags':{'1':2,'2':3}}
+        original=dict(cell)
+        with mock.patch.object(run.stage.remote,'command'), \
+             mock.patch.object(run.stage.engine,'build_missing_group') as build:
+            run.Backend().build([cell])
+            adapted=build.call_args.args[0][0]
+            self.assertEqual(adapted['seed'],0);self.assertEqual(adapted['background'],2)
+            self.assertEqual(adapted['run_order'],0);self.assertEqual(cell,original)
+
     def test_class_release_origins_use_hand_calculated_complete_times(self):
         folder=Path(self.temp.name);(folder/'config').mkdir();(folder/'raw/1').mkdir(parents=True)
         trace='3\n0 1 3 1000 2.000000000 1\n0 2 3 1000 2.000020000 2\n0 3 3 1000 2.000020000 2\n'

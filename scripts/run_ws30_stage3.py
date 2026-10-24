@@ -257,7 +257,13 @@ class Backend:
                 except RuntimeError:stage.remote.command('sync-bundle','--repo-local',str(ROOT))
             self.synced=True
         stage.engine.SOURCE_SHA=cells[0]['source_sha']
-        stage.engine.build_missing_group(cells,0,0)
+        # The shared WS-25 receipt helper expects demand fields. Composition
+        # fixtures have no demand seed; add receipt-only context, leaving the
+        # frozen cell contract and ns-3 seed unchanged.
+        receipt_cells=[dict(c,seed=c.get('seed',0),
+                            background=c.get('background',c['expected_tags'].get('1',0)),
+                            run_order=c.get('run_order',0)) for c in cells]
+        stage.engine.build_missing_group(receipt_cells,0,0)
 
     def local(self,cell):
         return (ROOT/'results'/cell['id']).exists()
