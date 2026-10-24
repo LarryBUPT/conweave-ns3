@@ -1,5 +1,11 @@
 # 下一阶段路线与停机条件
 
+## WS-30 阶段 2 当前入口（2026-10-24）
+
+WS-30 为 ACTIVE，阶段 2 已完成：[验收报告](../research/ws30-stage2-completion-report-r1.md)、[Handoff](../handoffs/2026-10-24-ws30-stage2-complete.md)。技术 32/32、资源 pilot 24/24、历史桥接 96/96 格通过；桥接复用 4 个技术预检，因此独立成功实验为 148 个，另有 3 个输入错误失败 ID 保留。96 份桥接 raw FCT 与历史逐文件 SHA-256 一致，支持固定历史输入上的输出回归，不产生新八臂收益结论。
+
+本分支 `research/ws30-attribution-audit` 的核心源码为 `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`，资源调度 cap=12。[恢复入口](../research/ws30-stage2-recovery-checkpoint.md)和[阶段 3 审核计划](../research/evidence/ws30-stage3-review-plan-r1.json)保留 192 格主矩阵、72 格先占、12 格组成及双侧图表任务；执行开关关闭。下一步先审核本节点并冻结组成夹具与正式 runner，不把阶段完成写成 WS-30 闭环。此更新限本 WS-30 分支，不代表已合入项目集成分支。下方其他工作流的旧快照保留各自日期。
+
 2026-10-16 WS-28 终态入口：预设原生对照、两种 P95、两因素消融、三个反例的非扰动逐跳诊断及图表复核均已验收；见[最终审计](../research/ws28-final-acceptance-audit.md)和[最终分析](../research/ws28-factorial-and-tail-analysis.md)。ClassReserve v1 在固定合成需求中的整体收益得到同输入证据，组件独立收益尚未识别，局部排队不足以形成唯一归因。WS-28 在这一预设范围闭环。下一步由论文主线决定图表纳入与投稿材料，不新增 WS-28 远程格，不重判 WS-25/26/27。下方 10 月 13 日与更早的进度均为历史快照。
 
 2026-10-13 WS-27 当前入口：三候选与 ECMP 的正确性 7 格、资源阶梯 24 格、独立筛选 32 格、独立确认 384 格均从原始结果通过逐格核验。[确认报告](../research/ws27-confirm-report.md)与[Handoff 78](../handoffs/2026-10-13-78-ws27-independent-confirmation.md)提供三机制效应、反例和边界。下一步由用户研判论文主机制与措辞；本轮不自动选赢家，不重跑已完成格。WS-25 原冻结规则的 NO-GO 和 WS-26 暂停按各自工作流保留。下方 10 月 2～4 日的 WS-25 在途批次是历史快照，不代表当前进度。

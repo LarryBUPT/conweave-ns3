@@ -1,5 +1,11 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 阶段 2 当前入口（2026-10-24）
+
+WS-30 为 ACTIVE，阶段 2 已完成：[验收报告](../research/ws30-stage2-completion-report-r1.md)、[Handoff](../handoffs/2026-10-24-ws30-stage2-complete.md)。技术 32/32、资源 pilot 24/24、历史桥接 96/96 格通过；桥接复用 4 个技术预检，因此独立成功实验为 148 个，另有 3 个输入错误失败 ID 保留。96 份桥接 raw FCT 与历史逐文件 SHA-256 一致，支持固定历史输入上的输出回归，不产生新八臂收益结论。
+
+本分支 `research/ws30-attribution-audit` 的核心源码为 `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`，资源调度 cap=12。[恢复入口](../research/ws30-stage2-recovery-checkpoint.md)和[阶段 3 审核计划](../research/evidence/ws30-stage3-review-plan-r1.json)保留 192 格主矩阵、72 格先占、12 格组成及双侧图表任务；执行开关关闭。下一步先审核本节点并冻结组成夹具与正式 runner，不把阶段完成写成 WS-30 闭环。此更新限本 WS-30 分支，不代表已合入项目集成分支。下方其他工作流的旧快照保留各自日期。
+
 ## WS-28 最终入口（2026-10-16）
 
 WS-28 已按预设的 ns-3 合成机制解释与原生基线对照范围完成验收。[最终审计](../research/ws28-final-acceptance-audit.md)逐项对应六项任务。[Handoff 81](../handoffs/2026-10-16-81-ws28-final-explanation-and-closure.md)记录交接。原生对照为新增 96 格加 WS-27 同输入控制 48 格，共 144/144；两因素消融在 24 个未见需求 seed 上完成技术 6/6、资源 24/24、正式 120/120 格；三个旧劣化 seed 的探针开关诊断 12/12 格通过，FCT 与原格一致。

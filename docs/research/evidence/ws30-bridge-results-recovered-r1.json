@@ -1,0 +1,3847 @@
+{
+  "all_fct_match_historical": true,
+  "rows": [
+    {
+      "arm": "E",
+      "fct_sha256": "a67b0077bf0939c444ac039882e21ad4577ea7ce391c67090531a3d8d91403c8",
+      "id": "20261024-230000-ws30-t27-e-o0",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-230000-ws30-t27-e-o0",
+        "minimum_free_gib": 3736.6038246154785,
+        "minimum_mem_available_gib": 104.96905899047852,
+        "peak_load_1m": 6.58,
+        "peak_tree_rss_mib": 4544.8515625,
+        "samples": 57
+      },
+      "role": "bridge-precheck",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1519.088,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1519.088,
+          "p50_us": 703.635,
+          "p95_us": 1342.66845,
+          "p99_us": 1518.29229,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.462,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.462,
+          "p50_us": 12.228,
+          "p95_us": 14.81185,
+          "p99_us": 15.79751,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "f2a3e21ae7393825f22ce9ef9f358c41422f5236e113b86ef6ea9333f0dd2553"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "b2d559e59ae490ebc56fac3e167f775ede0a9dce82b4b4099de144cf22f76816",
+      "id": "20261024-230000-ws30-t28-c16-o0",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-230000-ws30-t28-c16-o0",
+        "minimum_free_gib": 3736.593173980713,
+        "minimum_mem_available_gib": 104.96028900146484,
+        "peak_load_1m": 6.21,
+        "peak_tree_rss_mib": 4544.765625,
+        "samples": 60
+      },
+      "role": "bridge-precheck",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1518.897,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1518.897,
+          "p50_us": 703.6655000000001,
+          "p95_us": 1439.6473999999996,
+          "p99_us": 1518.87217,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.999,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.999,
+          "p50_us": 12.199,
+          "p95_us": 14.498700000000001,
+          "p99_us": 16.26319,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "f2a3e21ae7393825f22ce9ef9f358c41422f5236e113b86ef6ea9333f0dd2553"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "b769122b55e4875047484254f7c17439f4689bff1ad349610680687f0875c1a1",
+      "id": "20261024-230000-ws30-t29-e-o0",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-230000-ws30-t29-e-o0",
+        "minimum_free_gib": 3736.5937538146973,
+        "minimum_mem_available_gib": 104.96089553833008,
+        "peak_load_1m": 5.95,
+        "peak_tree_rss_mib": 4544.8515625,
+        "samples": 58
+      },
+      "role": "bridge-precheck",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1869.319,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1869.319,
+          "p50_us": 704.2665,
+          "p95_us": 1482.68625,
+          "p99_us": 1809.04527,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.965,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.965,
+          "p50_us": 12.25,
+          "p95_us": 14.763,
+          "p99_us": 15.599700000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "e56481a94753de0382811480333cd7a29ffdacec762110c3e7f1df2cc22a77c6"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "f3864f6319fcdff5474a31ae4c60be2bf3f51151747055913abb6f05a574bbc6",
+      "id": "20261024-230000-ws30-t30-c16-o0",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-230000-ws30-t30-c16-o0",
+        "minimum_free_gib": 3731.913345336914,
+        "minimum_mem_available_gib": 109.37063217163086,
+        "peak_load_1m": 5.46,
+        "peak_tree_rss_mib": 4544.84765625,
+        "samples": 61
+      },
+      "role": "bridge-precheck",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1744.342,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1744.342,
+          "p50_us": 702.2705,
+          "p95_us": 1408.2323499999998,
+          "p99_us": 1697.2867600000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.979,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.979,
+          "p50_us": 12.212,
+          "p95_us": 14.473700000000001,
+          "p99_us": 15.796339999999999,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "e56481a94753de0382811480333cd7a29ffdacec762110c3e7f1df2cc22a77c6"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "4caf752445434f06ab52d298d2407d2799a087f5a9bdbcc39b18381ca8a20492",
+      "id": "20261024-020000-ws30-bridge-c12-s20262522-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262522-e",
+        "minimum_free_gib": 3675.5148887634277,
+        "minimum_mem_available_gib": 69.66738510131836,
+        "peak_load_1m": 11.99,
+        "peak_tree_rss_mib": 4544.91015625,
+        "samples": 62
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1634.956,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1634.956,
+          "p50_us": 762.5485000000001,
+          "p95_us": 1392.4421499999999,
+          "p99_us": 1600.6923100000001,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.851,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.851,
+          "p50_us": 12.18,
+          "p95_us": 14.69785,
+          "p99_us": 15.80668,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b75d1938804a101ad2bffe08e54ac98734ed9f98bc7b6a549d88004655bd6769"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "44881fca7881ebdc8607ca653f6f4d3f52550f9eb28ad1ed31890b4fb6be54cb",
+      "id": "20261024-020000-ws30-bridge-c12-s20262522-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262522-c16",
+        "minimum_free_gib": 3675.474391937256,
+        "minimum_mem_available_gib": 69.66909790039062,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.8203125,
+        "samples": 70
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1663.805,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1663.805,
+          "p50_us": 742.326,
+          "p95_us": 1448.1219999999998,
+          "p99_us": 1589.3071800000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.58,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.58,
+          "p50_us": 12.167,
+          "p95_us": 14.50285,
+          "p99_us": 15.546339999999999,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b75d1938804a101ad2bffe08e54ac98734ed9f98bc7b6a549d88004655bd6769"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "a24dff1d8bf7c7caf481635208ac7b985bc53f09fd7502aa236fcddd9b02a1a0",
+      "id": "20261024-020000-ws30-bridge-c12-s20262523-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262523-e",
+        "minimum_free_gib": 3675.5039024353027,
+        "minimum_mem_available_gib": 69.66878509521484,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.6875,
+        "samples": 63
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1887.538,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1887.538,
+          "p50_us": 735.692,
+          "p95_us": 1532.9975999999997,
+          "p99_us": 1823.0784500000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.864,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.864,
+          "p50_us": 12.294,
+          "p95_us": 14.75985,
+          "p99_us": 15.86517,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b290dc7ca5a0227bf4d166338bbf7e888a6d75df9264cdde07c7b54de9a46fee"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "6d1bd0dac5523e2cc4bd8a8cdba020e87250bc46fa7bf42ab2e448b5cc5f3ab9",
+      "id": "20261024-020000-ws30-bridge-c12-s20262523-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262523-c16",
+        "minimum_free_gib": 3675.4585151672363,
+        "minimum_mem_available_gib": 69.66768646240234,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.96875,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1786.5,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1786.5,
+          "p50_us": 734.033,
+          "p95_us": 1558.8937999999998,
+          "p99_us": 1731.05299,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.309,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.309,
+          "p50_us": 12.241,
+          "p95_us": 14.4297,
+          "p99_us": 16.18485,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b290dc7ca5a0227bf4d166338bbf7e888a6d75df9264cdde07c7b54de9a46fee"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "48453a24b8c32fdd0d44bea7bfefbf40fcfb4cf96ac05a1c5e9cba544e70b834",
+      "id": "20261024-020000-ws30-bridge-c12-s20262524-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262524-e",
+        "minimum_free_gib": 3675.49263381958,
+        "minimum_mem_available_gib": 69.6683349609375,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.93359375,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1436.128,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1436.128,
+          "p50_us": 689.0955,
+          "p95_us": 1159.85045,
+          "p99_us": 1300.2713400000005,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 19.671,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 19.671,
+          "p50_us": 12.326,
+          "p95_us": 14.974250000000001,
+          "p99_us": 16.765400000000003,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "d72f0f360d89dd3504c4cba730d903e1d939400ff2abd3566cf0428f4e59e2e3"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "aadffa71291fbaf6fab0fce7635b54bad0f3729fdb59c5841c817c3ba99acb8e",
+      "id": "20261024-020000-ws30-bridge-c12-s20262524-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262524-c16",
+        "minimum_free_gib": 3675.452163696289,
+        "minimum_mem_available_gib": 69.66825485229492,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.68359375,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1546.174,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1546.174,
+          "p50_us": 687.711,
+          "p95_us": 1215.3433499999999,
+          "p99_us": 1467.6892500000001,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.733,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.733,
+          "p50_us": 12.276,
+          "p95_us": 14.72755,
+          "p99_us": 16.36017,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "d72f0f360d89dd3504c4cba730d903e1d939400ff2abd3566cf0428f4e59e2e3"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "6867000d04d5dc0baf86f0045a137836ab96a06be405b5ef9aea62afad42a733",
+      "id": "20261024-020000-ws30-bridge-c12-s20262525-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262525-e",
+        "minimum_free_gib": 3675.485580444336,
+        "minimum_mem_available_gib": 69.66725158691406,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.73046875,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1485.927,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1485.927,
+          "p50_us": 805.7745,
+          "p95_us": 1312.63785,
+          "p99_us": 1456.5013900000001,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.414,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.414,
+          "p50_us": 12.309,
+          "p95_us": 14.9077,
+          "p99_us": 15.957210000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "925d4683adc298d3d1b05ce708127d344f243ffb86c518cd57b94f0a2a0bad2f"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "163a2977a33aeff827edbf96fbb15883aec8602b990259824bb6c36acc3adebd",
+      "id": "20261024-020000-ws30-bridge-c12-s20262525-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262525-c16",
+        "minimum_free_gib": 3675.440284729004,
+        "minimum_mem_available_gib": 69.6662826538086,
+        "peak_load_1m": 12.0,
+        "peak_tree_rss_mib": 4544.62890625,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1474.158,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1474.158,
+          "p50_us": 773.0575,
+          "p95_us": 1293.66985,
+          "p99_us": 1406.7937800000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.033,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.033,
+          "p50_us": 12.27,
+          "p95_us": 14.55785,
+          "p99_us": 16.10453,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "925d4683adc298d3d1b05ce708127d344f243ffb86c518cd57b94f0a2a0bad2f"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "a9a029429cb8bfffcd378c9699c3ff65150a709dfe30ffa779b56b3207072e8e",
+      "id": "20261024-020000-ws30-bridge-c12-s20262526-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262526-e",
+        "minimum_free_gib": 3675.457416534424,
+        "minimum_mem_available_gib": 69.66873931884766,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.55859375,
+        "samples": 67
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2227.212,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2227.212,
+          "p50_us": 785.0795,
+          "p95_us": 1965.1586,
+          "p99_us": 2133.4202800000003,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.732,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.732,
+          "p50_us": 12.2305,
+          "p95_us": 14.54785,
+          "p99_us": 15.477170000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "6710ce30cdc89b2d5095c0408a3f8b3180ab2f6fbbcd1b8c77a7d43f5304f2cd"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "ea8ef1da8a596c300277ab915b991ac8b871dc512b84fb148df62758d4a181da",
+      "id": "20261024-020000-ws30-bridge-c12-s20262526-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262526-c16",
+        "minimum_free_gib": 3675.4368057250977,
+        "minimum_mem_available_gib": 69.66910934448242,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.5546875,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2259.222,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2259.222,
+          "p50_us": 808.0045,
+          "p95_us": 1984.9191499999997,
+          "p99_us": 2173.35273,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.53,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.53,
+          "p50_us": 12.161,
+          "p95_us": 14.435,
+          "p99_us": 15.94668,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "6710ce30cdc89b2d5095c0408a3f8b3180ab2f6fbbcd1b8c77a7d43f5304f2cd"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "1f4f2b1b83be6d3ef1fcb433184916a60bc99c956b6f2bf5c195a3613ebbe722",
+      "id": "20261024-020000-ws30-bridge-c12-s20262527-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262527-e",
+        "minimum_free_gib": 3675.4705848693848,
+        "minimum_mem_available_gib": 69.66878509521484,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.578125,
+        "samples": 63
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1685.42,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1685.42,
+          "p50_us": 785.6885,
+          "p95_us": 1397.5155999999997,
+          "p99_us": 1628.4867700000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.972,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.972,
+          "p50_us": 12.289,
+          "p95_us": 14.522,
+          "p99_us": 15.355170000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b52a74f776840e3ff19af49e239251dff3409f6d6197373e8175b3aff98d19d3"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "726203361099baa08fabfa3eaf324d894356ed3e1acc85ff11d01f8e7e378b78",
+      "id": "20261024-020000-ws30-bridge-c12-s20262527-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262527-c16",
+        "minimum_free_gib": 3675.4362258911133,
+        "minimum_mem_available_gib": 69.66867065429688,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.54296875,
+        "samples": 70
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1619.763,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1619.763,
+          "p50_us": 784.1605,
+          "p95_us": 1404.2089999999994,
+          "p99_us": 1558.25816,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.619,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.619,
+          "p50_us": 12.208,
+          "p95_us": 14.363850000000001,
+          "p99_us": 15.48717,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b52a74f776840e3ff19af49e239251dff3409f6d6197373e8175b3aff98d19d3"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "ee6c5e57384ec079bdda1e42e6674df86ae87106f406a67de77e6b1835531ae1",
+      "id": "20261024-020000-ws30-bridge-c12-s20262528-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262528-e",
+        "minimum_free_gib": 3656.7496604919434,
+        "minimum_mem_available_gib": 69.66939926147461,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.453125,
+        "samples": 62
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1602.411,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1602.411,
+          "p50_us": 724.6405,
+          "p95_us": 1357.3381,
+          "p99_us": 1537.6946400000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 19.197,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 19.197,
+          "p50_us": 12.189499999999999,
+          "p95_us": 15.05385,
+          "p99_us": 15.977680000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "accec0283de8ab914deafc56bfc483323b78c0179cc061e9832562315ce2e352"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "56c6f8c626a396432fb570b9a88a38b660fd8c160d28fac9c915cdfd5e2cbf56",
+      "id": "20261024-020000-ws30-bridge-c12-s20262528-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262528-c16",
+        "minimum_free_gib": 3656.7010345458984,
+        "minimum_mem_available_gib": 69.6682357788086,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.8984375,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1641.515,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1641.515,
+          "p50_us": 730.9939999999999,
+          "p95_us": 1385.7324499999997,
+          "p99_us": 1579.6833400000003,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.212,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.212,
+          "p50_us": 12.188,
+          "p95_us": 14.542,
+          "p99_us": 16.21885,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "accec0283de8ab914deafc56bfc483323b78c0179cc061e9832562315ce2e352"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "445f6a58b44bf73704e28a4c544990a7f9b9d5e8c08427e7f748b4ccbccf08f1",
+      "id": "20261024-020000-ws30-bridge-c12-s20262529-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262529-e",
+        "minimum_free_gib": 3656.7429847717285,
+        "minimum_mem_available_gib": 69.66885375976562,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.640625,
+        "samples": 62
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1553.351,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1553.351,
+          "p50_us": 712.8045,
+          "p95_us": 1227.1798,
+          "p99_us": 1528.48448,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.616,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.616,
+          "p50_us": 12.246,
+          "p95_us": 14.738850000000001,
+          "p99_us": 15.869,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "beea7b7957d4f6b394efafafc20eb6776e62e00ace42d5e98c74930831585072"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "be8cad0436d627fc9a5bf745c291ce52d55bd812ccf952bfc2fed9eef3767aef",
+      "id": "20261024-020000-ws30-bridge-c12-s20262529-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262529-c16",
+        "minimum_free_gib": 3656.67635345459,
+        "minimum_mem_available_gib": 69.66825866699219,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.85546875,
+        "samples": 75
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1621.233,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1621.233,
+          "p50_us": 711.922,
+          "p95_us": 1227.3857999999998,
+          "p99_us": 1478.1595800000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.782,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.782,
+          "p50_us": 12.24,
+          "p95_us": 14.514850000000001,
+          "p99_us": 16.52002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "beea7b7957d4f6b394efafafc20eb6776e62e00ace42d5e98c74930831585072"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "ee9e59fa21fe23c0afa8ba7f3042b0baf07c58c574684d24f3832edd527b381a",
+      "id": "20261024-020000-ws30-bridge-c12-s20262530-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262530-e",
+        "minimum_free_gib": 3656.7269248962402,
+        "minimum_mem_available_gib": 69.6678695678711,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.71875,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1637.271,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1637.271,
+          "p50_us": 777.7764999999999,
+          "p95_us": 1376.20585,
+          "p99_us": 1475.43523,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.415,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.415,
+          "p50_us": 12.199,
+          "p95_us": 14.794800000000002,
+          "p99_us": 15.66751,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "e0e77954780e6577761a0142812fb08727d64b71bda1d6c86a0d3d15f4d32ead"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "1d7f76c09e37cb71cb90e1da9678cd9ff9b5a226db94c3c92d8c21f82ad264c7",
+      "id": "20261024-020000-ws30-bridge-c12-s20262530-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262530-c16",
+        "minimum_free_gib": 3656.6871948242188,
+        "minimum_mem_available_gib": 69.67001342773438,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.70703125,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1585.024,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1585.024,
+          "p50_us": 787.5895,
+          "p95_us": 1356.82525,
+          "p99_us": 1576.7283,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.108,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.108,
+          "p50_us": 12.196,
+          "p95_us": 14.626,
+          "p99_us": 15.76117,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "e0e77954780e6577761a0142812fb08727d64b71bda1d6c86a0d3d15f4d32ead"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "4689cd6d16c95b3278c07b7b1f113d3612fa1f9d4cfa8a84c41a040ca56b9bc8",
+      "id": "20261024-020000-ws30-bridge-c12-s20262531-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262531-e",
+        "minimum_free_gib": 3656.7211532592773,
+        "minimum_mem_available_gib": 69.66982650756836,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4545.0703125,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1894.906,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1894.906,
+          "p50_us": 733.113,
+          "p95_us": 1551.2148,
+          "p99_us": 1791.1325900000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.271,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.271,
+          "p50_us": 12.238,
+          "p95_us": 14.892,
+          "p99_us": 16.02034,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "d07b5a1fe979e40efb123aeed5530ba4296513195a2ef8a47cf23d044ae2dfad"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "64793cfe8141a7f5bf4aaed112799fad18d66c3878246cf61f5e366f3244ffb9",
+      "id": "20261024-020000-ws30-bridge-c12-s20262531-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262531-c16",
+        "minimum_free_gib": 3656.6749305725098,
+        "minimum_mem_available_gib": 69.66910552978516,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.859375,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1859.78,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1859.78,
+          "p50_us": 713.7475,
+          "p95_us": 1543.08425,
+          "p99_us": 1747.2999500000005,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.35,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.35,
+          "p50_us": 12.2105,
+          "p95_us": 14.328700000000001,
+          "p99_us": 15.533190000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "d07b5a1fe979e40efb123aeed5530ba4296513195a2ef8a47cf23d044ae2dfad"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "7836df7c7d7a6e8e57eb0ef115c70c54f8ceaa33d7e56250b419ce8126252b5e",
+      "id": "20261024-020000-ws30-bridge-c12-s20262532-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262532-e",
+        "minimum_free_gib": 3656.703437805176,
+        "minimum_mem_available_gib": 69.66958618164062,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.78125,
+        "samples": 65
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1567.676,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1567.676,
+          "p50_us": 759.842,
+          "p95_us": 1257.7010999999998,
+          "p99_us": 1456.40707,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 21.349,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 21.349,
+          "p50_us": 12.1965,
+          "p95_us": 14.844700000000001,
+          "p99_us": 15.887680000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "f9450883ab6c261a00f87c5d7823dba445381003b86c1ca00f77544c093b1b5c"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "422efbecdea68253f323f22320025d3b57340600084702154f19b8576513304d",
+      "id": "20261024-020000-ws30-bridge-c12-s20262532-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262532-c16",
+        "minimum_free_gib": 3656.6709938049316,
+        "minimum_mem_available_gib": 69.66912841796875,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.5390625,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1719.361,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1719.361,
+          "p50_us": 749.0375,
+          "p95_us": 1231.3994999999998,
+          "p99_us": 1594.3956300000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.591,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.591,
+          "p50_us": 12.216,
+          "p95_us": 14.55785,
+          "p99_us": 15.66734,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "f9450883ab6c261a00f87c5d7823dba445381003b86c1ca00f77544c093b1b5c"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "ff33acfed3e64a85dc7f5291eb61109d29b9fcbb185ca641ceeeb4c28b8526ad",
+      "id": "20261024-020000-ws30-bridge-c12-s20262533-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262533-e",
+        "minimum_free_gib": 3656.7012939453125,
+        "minimum_mem_available_gib": 69.66896438598633,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.70703125,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2012.946,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2012.946,
+          "p50_us": 702.159,
+          "p95_us": 1684.771,
+          "p99_us": 1922.28331,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.768,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.768,
+          "p50_us": 12.271,
+          "p95_us": 14.6387,
+          "p99_us": 15.82417,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "30fc5e26e7a9cfe1ede42a02042eb3bd4bee46a909325ecf36077667a3ee0bfa"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "e894819561754e052083e48007217b61bdaea268cc3ebc4bb1c9ee9aff4cb4ce",
+      "id": "20261024-020000-ws30-bridge-c12-s20262533-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262533-c16",
+        "minimum_free_gib": 3656.6704139709473,
+        "minimum_mem_available_gib": 69.66873550415039,
+        "peak_load_1m": 12.08,
+        "peak_tree_rss_mib": 4544.96484375,
+        "samples": 70
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1941.774,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1941.774,
+          "p50_us": 696.077,
+          "p95_us": 1678.75685,
+          "p99_us": 1880.93737,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.635,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.635,
+          "p50_us": 12.215,
+          "p95_us": 14.444,
+          "p99_us": 15.438080000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "30fc5e26e7a9cfe1ede42a02042eb3bd4bee46a909325ecf36077667a3ee0bfa"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "dc7f1c1eb61328dcc8c3ae025bba7325a3611c828e1e6558e3768d8c56fa5c64",
+      "id": "20261024-020000-ws30-bridge-c12-s20262534-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262534-e",
+        "minimum_free_gib": 3637.9827423095703,
+        "minimum_mem_available_gib": 69.65738677978516,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.5703125,
+        "samples": 61
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2350.38,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2350.38,
+          "p50_us": 725.1655000000001,
+          "p95_us": 1908.7351499999997,
+          "p99_us": 2308.3653400000003,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.266,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.266,
+          "p50_us": 12.272,
+          "p95_us": 14.607,
+          "p99_us": 15.698680000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "85c28b7c410644d0bf6bdf80811be51243c705501c0d307304495906b91ec7c4"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "bf7477af37d4f57f1c8341ab9ebe180780dfc7e6340e72a226765f5781933f18",
+      "id": "20261024-020000-ws30-bridge-c12-s20262534-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262534-c16",
+        "minimum_free_gib": 3637.9305534362793,
+        "minimum_mem_available_gib": 69.65581512451172,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.62109375,
+        "samples": 70
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2357.939,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2357.939,
+          "p50_us": 732.4105,
+          "p95_us": 2023.933399999999,
+          "p99_us": 2336.75608,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.998,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.998,
+          "p50_us": 12.197,
+          "p95_us": 14.5637,
+          "p99_us": 15.93102,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "85c28b7c410644d0bf6bdf80811be51243c705501c0d307304495906b91ec7c4"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "21a3fbd9a018b84cf087496b703213d8b85bbfb9658afa9b4b56515e85e43d77",
+      "id": "20261024-020000-ws30-bridge-c12-s20262535-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262535-e",
+        "minimum_free_gib": 3637.9357566833496,
+        "minimum_mem_available_gib": 69.65640258789062,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.99609375,
+        "samples": 68
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1689.516,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1689.516,
+          "p50_us": 729.1235,
+          "p95_us": 1535.1547,
+          "p99_us": 1537.4002600000001,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.113,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.113,
+          "p50_us": 12.264,
+          "p95_us": 14.875,
+          "p99_us": 16.006,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "42e526cca09cff5faa32b5c84249ac2f721dc57b9aa8bb57441878d45cdeba6f"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "f536b4012e542b28fe67944fcb9ed5627b3fe7bab366a8e464e8e333aec41b2f",
+      "id": "20261024-020000-ws30-bridge-c12-s20262535-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262535-c16",
+        "minimum_free_gib": 3637.916015625,
+        "minimum_mem_available_gib": 69.65517807006836,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4545.1484375,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1635.473,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1635.473,
+          "p50_us": 736.311,
+          "p95_us": 1532.62265,
+          "p99_us": 1535.56997,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.856,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.856,
+          "p50_us": 12.23,
+          "p95_us": 14.66685,
+          "p99_us": 16.15934,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "42e526cca09cff5faa32b5c84249ac2f721dc57b9aa8bb57441878d45cdeba6f"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "13a6750b02566e841bd12980f8db874f63f403ede9c726a41c92f5ed933bacc2",
+      "id": "20261024-020000-ws30-bridge-c12-s20262536-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262536-e",
+        "minimum_free_gib": 3637.9641189575195,
+        "minimum_mem_available_gib": 69.65653610229492,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.97265625,
+        "samples": 63
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1906.548,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1906.548,
+          "p50_us": 762.6315,
+          "p95_us": 1741.1591999999998,
+          "p99_us": 1853.56972,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.767,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.767,
+          "p50_us": 12.219,
+          "p95_us": 14.47,
+          "p99_us": 15.39534,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "13819d480c23d776eddbb351a61574864a6056b2f6c7d394129b74a42fe8cbb0"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "33203f09a21b0bef3879a0e61d06ff60c0e98def9e6e62dd15f59d24399a6c80",
+      "id": "20261024-020000-ws30-bridge-c12-s20262536-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262536-c16",
+        "minimum_free_gib": 3637.909412384033,
+        "minimum_mem_available_gib": 69.65607452392578,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.83984375,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2066.779,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2066.779,
+          "p50_us": 767.0005,
+          "p95_us": 1646.56185,
+          "p99_us": 1871.1167500000001,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.102,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.102,
+          "p50_us": 12.167,
+          "p95_us": 14.48185,
+          "p99_us": 15.393680000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "13819d480c23d776eddbb351a61574864a6056b2f6c7d394129b74a42fe8cbb0"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "11bac30d82edeb2830042045dd228193d4b9591e98e2ac20dd5f640d8419e2da",
+      "id": "20261024-020000-ws30-bridge-c12-s20262537-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262537-e",
+        "minimum_free_gib": 3637.9420051574707,
+        "minimum_mem_available_gib": 69.6563720703125,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.8046875,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2301.409,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2301.409,
+          "p50_us": 744.7625,
+          "p95_us": 1513.6884499999999,
+          "p99_us": 2116.3930600000003,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.071,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.071,
+          "p50_us": 12.2355,
+          "p95_us": 14.890250000000002,
+          "p99_us": 15.855,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "0210f97ae68f31d7cf455ee298be3f264c79a48c487d98f76fc7f8eb7a2b897c"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "4030871d4b24ae4a4153976371fb1b19d7d0167bec59df9b455f20bba270fc61",
+      "id": "20261024-020000-ws30-bridge-c12-s20262537-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262537-c16",
+        "minimum_free_gib": 3637.892292022705,
+        "minimum_mem_available_gib": 69.65702056884766,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.76953125,
+        "samples": 74
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2133.611,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2133.611,
+          "p50_us": 708.917,
+          "p95_us": 1561.9193,
+          "p99_us": 2030.5316000000003,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.624,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.624,
+          "p50_us": 12.162,
+          "p95_us": 14.52,
+          "p99_us": 15.247,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "0210f97ae68f31d7cf455ee298be3f264c79a48c487d98f76fc7f8eb7a2b897c"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "886088675a6a5264e9ffb005676789a9e7cb06cfabba15111bce15e1a1da2e1a",
+      "id": "20261024-020000-ws30-bridge-c12-s20262538-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262538-e",
+        "minimum_free_gib": 3637.9297065734863,
+        "minimum_mem_available_gib": 69.65484619140625,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.70703125,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1417.392,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1417.392,
+          "p50_us": 832.5875,
+          "p95_us": 1362.8979499999994,
+          "p99_us": 1392.75786,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.669,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.669,
+          "p50_us": 12.206,
+          "p95_us": 14.671,
+          "p99_us": 15.547170000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "16fb3627df9980dadb413de0d9826e32e531993121eae964d68ef03152aeea27"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "8bd4c526688ba74a0a80d4881be772644f6f5f96aceb9c77e6225be5273e4622",
+      "id": "20261024-020000-ws30-bridge-c12-s20262538-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262538-c16",
+        "minimum_free_gib": 3637.9025077819824,
+        "minimum_mem_available_gib": 69.65581512451172,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.8203125,
+        "samples": 70
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1436.517,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1436.517,
+          "p50_us": 800.2615000000001,
+          "p95_us": 1362.4028999999998,
+          "p99_us": 1377.8329700000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.137,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.137,
+          "p50_us": 12.177,
+          "p95_us": 14.26285,
+          "p99_us": 15.17034,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "16fb3627df9980dadb413de0d9826e32e531993121eae964d68ef03152aeea27"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "7f6f4b45c5a8e0ee82691552259dbc8e4cbb0c055d156bb7b21963bf95cc82f7",
+      "id": "20261024-020000-ws30-bridge-c12-s20262539-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262539-e",
+        "minimum_free_gib": 3637.919689178467,
+        "minimum_mem_available_gib": 69.65639114379883,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.640625,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1988.154,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1988.154,
+          "p50_us": 801.887,
+          "p95_us": 1524.1126499999993,
+          "p99_us": 1902.27936,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.553,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.553,
+          "p50_us": 12.256499999999999,
+          "p95_us": 14.87285,
+          "p99_us": 15.97534,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "272ea34bd279c0c7728e03278f3dd37f621822176829c281ac49fe9e969c2c2f"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "23a14a4bcb648e717e0c6f7d7db669d9e30a49a4d9d6226335f168b42790bd30",
+      "id": "20261024-020000-ws30-bridge-c12-s20262539-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262539-c16",
+        "minimum_free_gib": 3637.8922958374023,
+        "minimum_mem_available_gib": 69.6550178527832,
+        "peak_load_1m": 12.18,
+        "peak_tree_rss_mib": 4544.66015625,
+        "samples": 70
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1873.027,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1873.027,
+          "p50_us": 776.4245000000001,
+          "p95_us": 1557.17595,
+          "p99_us": 1819.2076000000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.354,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.354,
+          "p50_us": 12.186,
+          "p95_us": 14.78785,
+          "p99_us": 15.88804,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "272ea34bd279c0c7728e03278f3dd37f621822176829c281ac49fe9e969c2c2f"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "f2f08470aa95afacebe0a7e6fca8702dd7bce73deae07991583baa4c21b18900",
+      "id": "20261024-020000-ws30-bridge-c12-s20262540-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262540-e",
+        "minimum_free_gib": 3619.188953399658,
+        "minimum_mem_available_gib": 69.66009521484375,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.81640625,
+        "samples": 65
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2218.593,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2218.593,
+          "p50_us": 756.1975,
+          "p95_us": 1895.2404499999998,
+          "p99_us": 2114.20128,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.277,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.277,
+          "p50_us": 12.29,
+          "p95_us": 14.49385,
+          "p99_us": 15.679190000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "fba8a857a16cb6541561bd6c6b82c363ec70a4d3355be7fc8aa74e361bc1cf30"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "f8e2c55d81e7aebc262eed87d46b444bf470aa0144b2d7f853ed00547d3ff0f7",
+      "id": "20261024-020000-ws30-bridge-c12-s20262540-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262540-c16",
+        "minimum_free_gib": 3619.1589431762695,
+        "minimum_mem_available_gib": 69.65686798095703,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.76171875,
+        "samples": 70
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2196.451,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2196.451,
+          "p50_us": 729.8675000000001,
+          "p95_us": 1903.5439499999998,
+          "p99_us": 2116.6836700000003,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.167,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.167,
+          "p50_us": 12.251,
+          "p95_us": 14.4257,
+          "p99_us": 15.612,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "fba8a857a16cb6541561bd6c6b82c363ec70a4d3355be7fc8aa74e361bc1cf30"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "9cad8b508f17edc70983531b4196671c0642265dc1de272f105e2d6f04bc8f95",
+      "id": "20261024-020000-ws30-bridge-c12-s20262541-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262541-e",
+        "minimum_free_gib": 3619.1911659240723,
+        "minimum_mem_available_gib": 69.66036224365234,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.66015625,
+        "samples": 63
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1885.852,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1885.852,
+          "p50_us": 752.546,
+          "p95_us": 1491.0554499999994,
+          "p99_us": 1801.9940600000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.622,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.622,
+          "p50_us": 12.2395,
+          "p95_us": 14.504850000000001,
+          "p99_us": 16.428510000000003,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "5dd598861b1943b82097199f88982a3d89bf69331e0246895d245c7a8082e56e"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "3bf5d76dd04fb3f45ce5d890728ef118fd39ce5cf1528e112d816ba3e80caa5c",
+      "id": "20261024-020000-ws30-bridge-c12-s20262541-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262541-c16",
+        "minimum_free_gib": 3619.1431846618652,
+        "minimum_mem_available_gib": 69.66004180908203,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.80859375,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1973.0,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1973.0,
+          "p50_us": 777.8040000000001,
+          "p95_us": 1503.3885999999993,
+          "p99_us": 1757.08145,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.527,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.527,
+          "p50_us": 12.229,
+          "p95_us": 14.76355,
+          "p99_us": 15.55617,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "5dd598861b1943b82097199f88982a3d89bf69331e0246895d245c7a8082e56e"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "09f9cd188f60a5b160bb6948c186e5960615b21f85ac432404e68b598158960b",
+      "id": "20261024-020000-ws30-bridge-c12-s20262542-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262542-e",
+        "minimum_free_gib": 3619.1829948425293,
+        "minimum_mem_available_gib": 69.66038513183594,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.6171875,
+        "samples": 63
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1801.46,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1801.46,
+          "p50_us": 763.8015,
+          "p95_us": 1376.22505,
+          "p99_us": 1733.1800500000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.546,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.546,
+          "p50_us": 12.244499999999999,
+          "p95_us": 14.616850000000001,
+          "p99_us": 15.64517,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "2a2d5b971bbe902891f5df2c505a7bd055a97b28e59307941f4498f0610687d2"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "dd0a3971f6d4cdf4e233b0c8b6da2cfec6f335f67c6e110bc7a9a7e6cd64777e",
+      "id": "20261024-020000-ws30-bridge-c12-s20262542-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262542-c16",
+        "minimum_free_gib": 3619.1330223083496,
+        "minimum_mem_available_gib": 69.6572494506836,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.5859375,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1940.468,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1940.468,
+          "p50_us": 788.962,
+          "p95_us": 1468.1601499999995,
+          "p99_us": 1803.3444800000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.287,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.287,
+          "p50_us": 12.19,
+          "p95_us": 14.639850000000001,
+          "p99_us": 15.662170000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "2a2d5b971bbe902891f5df2c505a7bd055a97b28e59307941f4498f0610687d2"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "bbe4d23f0de0cbc59853dd8c983362d4517439d16716093454d94802098a70c8",
+      "id": "20261024-020000-ws30-bridge-c12-s20262543-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262543-e",
+        "minimum_free_gib": 3619.142135620117,
+        "minimum_mem_available_gib": 69.66027450561523,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.984375,
+        "samples": 69
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1367.902,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1367.902,
+          "p50_us": 741.5405,
+          "p95_us": 1307.4464999999998,
+          "p99_us": 1367.87717,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.338,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.338,
+          "p50_us": 12.1995,
+          "p95_us": 14.65085,
+          "p99_us": 15.780630000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "6ae698084037c856c78f020e9f21684e93f8a055a75623f52324db13dd63e1ff"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "356bfc6d4dd33a64886bd176eeb22ca818986434cebf6b4ce83415a264fe73fa",
+      "id": "20261024-020000-ws30-bridge-c12-s20262543-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262543-c16",
+        "minimum_free_gib": 3619.1316986083984,
+        "minimum_mem_available_gib": 69.66046524047852,
+        "peak_load_1m": 12.12,
+        "peak_tree_rss_mib": 4544.609375,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1367.943,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1367.943,
+          "p50_us": 748.2750000000001,
+          "p95_us": 1300.3593999999998,
+          "p99_us": 1367.73717,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.211,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.211,
+          "p50_us": 12.185500000000001,
+          "p95_us": 14.484,
+          "p99_us": 16.34834,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "6ae698084037c856c78f020e9f21684e93f8a055a75623f52324db13dd63e1ff"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "0bf41e727b9b079c87e132265969c2f47943792a195a809f346ef4b64973e5c3",
+      "id": "20261024-020000-ws30-bridge-c12-s20262544-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262544-e",
+        "minimum_free_gib": 3619.159194946289,
+        "minimum_mem_available_gib": 69.66081237792969,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.88671875,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2003.233,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2003.233,
+          "p50_us": 696.8765000000001,
+          "p95_us": 1555.455149999999,
+          "p99_us": 1813.8719900000003,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.452,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.452,
+          "p50_us": 12.273,
+          "p95_us": 14.565850000000001,
+          "p99_us": 15.36968,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "97cc7003ccf1ffed595e029e1e49757f7f34f11d7c3dbcc385b4ada0c7b818df"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "a2aa1fc2dcee66d7be9006176f79ffaa46bdad76bcbdace635b93ffeab1ec4a9",
+      "id": "20261024-020000-ws30-bridge-c12-s20262544-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262544-c16",
+        "minimum_free_gib": 3619.121608734131,
+        "minimum_mem_available_gib": 69.65880584716797,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.98828125,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1846.923,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1846.923,
+          "p50_us": 701.2525,
+          "p95_us": 1521.8127499999998,
+          "p99_us": 1824.0709700000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.63,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.63,
+          "p50_us": 12.201,
+          "p95_us": 14.632,
+          "p99_us": 15.43785,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "97cc7003ccf1ffed595e029e1e49757f7f34f11d7c3dbcc385b4ada0c7b818df"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "71d3f82a6f3969cbc6c07dd335b596dd53a358f673228be643acf52ccdefbed0",
+      "id": "20261024-020000-ws30-bridge-c12-s20262722-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262722-e",
+        "minimum_free_gib": 3619.1458282470703,
+        "minimum_mem_available_gib": 69.65871047973633,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.76953125,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1591.47,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1591.47,
+          "p50_us": 706.4915,
+          "p95_us": 1375.59845,
+          "p99_us": 1534.37065,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.572,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.572,
+          "p50_us": 12.2065,
+          "p95_us": 14.536,
+          "p99_us": 15.951170000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "a4e37b058f940944eb12577e6aa687da09b79a699f4d84f018143c3123efeb32"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "de7d8134ed92b9b4fd6df6ab18b2f7e30fc4c08f1e3c6e5357df2ec907ba8952",
+      "id": "20261024-020000-ws30-bridge-c12-s20262722-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262722-c16",
+        "minimum_free_gib": 3619.1210289001465,
+        "minimum_mem_available_gib": 69.65996170043945,
+        "peak_load_1m": 12.13,
+        "peak_tree_rss_mib": 4544.81640625,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1643.893,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1643.893,
+          "p50_us": 697.702,
+          "p95_us": 1468.4158,
+          "p99_us": 1599.91617,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.508,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.508,
+          "p50_us": 12.167,
+          "p95_us": 14.787,
+          "p99_us": 15.85617,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "a4e37b058f940944eb12577e6aa687da09b79a699f4d84f018143c3123efeb32"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "da66ac99f56a016f3a49e59ac9a0a0bcc0e38ed83569bdf520b8c40c3d95724b",
+      "id": "20261024-020000-ws30-bridge-c12-s20262723-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262723-e",
+        "minimum_free_gib": 3600.4317779541016,
+        "minimum_mem_available_gib": 69.64932632446289,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.90234375,
+        "samples": 61
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2842.635,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2842.635,
+          "p50_us": 730.0025,
+          "p95_us": 2317.837399999999,
+          "p99_us": 2695.21614,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 19.871,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 19.871,
+          "p50_us": 12.299,
+          "p95_us": 14.662,
+          "p99_us": 15.95234,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "982703626831d50419fafb3916e0e537414c3b91437d0b600e91f503cd94a446"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "023e40cb6ab4aa10f3c1c13f3fb2c3c4d5035b1ff868f79e2b3c2d947e5d275c",
+      "id": "20261024-020000-ws30-bridge-c12-s20262723-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262723-c16",
+        "minimum_free_gib": 3600.381603240967,
+        "minimum_mem_available_gib": 69.65049743652344,
+        "peak_load_1m": 12.25,
+        "peak_tree_rss_mib": 4544.46484375,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2572.947,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2572.947,
+          "p50_us": 754.181,
+          "p95_us": 2189.2248499999987,
+          "p99_us": 2521.43434,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.088,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.088,
+          "p50_us": 12.188,
+          "p95_us": 14.67985,
+          "p99_us": 16.264360000000003,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "982703626831d50419fafb3916e0e537414c3b91437d0b600e91f503cd94a446"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "8a63e90b178e03ff094fea12b54d67957092c81b61db43595bdac9da8c5691f8",
+      "id": "20261024-020000-ws30-bridge-c12-s20262724-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262724-e",
+        "minimum_free_gib": 3600.4242782592773,
+        "minimum_mem_available_gib": 69.65006637573242,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.98046875,
+        "samples": 62
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1286.619,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1286.619,
+          "p50_us": 752.7384999999999,
+          "p95_us": 1199.9506000000001,
+          "p99_us": 1274.73762,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.011,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.011,
+          "p50_us": 12.281,
+          "p95_us": 14.585,
+          "p99_us": 15.577,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "c105b1743756f058837619bef5335e6a09715fb34958fe0b6df0dc6a05f98455"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "c6771d8d7cf93404b1b1b2912702e6db0862681b227fc714bf669951ab83b8af",
+      "id": "20261024-020000-ws30-bridge-c12-s20262724-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262724-c16",
+        "minimum_free_gib": 3600.3704223632812,
+        "minimum_mem_available_gib": 69.65008163452148,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4545.07421875,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1418.722,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1418.722,
+          "p50_us": 762.7595,
+          "p95_us": 1239.4436499999997,
+          "p99_us": 1313.6481700000004,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.309,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.309,
+          "p50_us": 12.232,
+          "p95_us": 14.468,
+          "p99_us": 15.52917,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "c105b1743756f058837619bef5335e6a09715fb34958fe0b6df0dc6a05f98455"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "25f23194366a4e52fbbe5847473cce54519fe6ed90143b4b38ab254be4fe39b0",
+      "id": "20261024-020000-ws30-bridge-c12-s20262725-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262725-e",
+        "minimum_free_gib": 3600.379665374756,
+        "minimum_mem_available_gib": 69.64929580688477,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.71875,
+        "samples": 69
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1578.057,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1578.057,
+          "p50_us": 824.3505,
+          "p95_us": 1367.89485,
+          "p99_us": 1546.7383200000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.588,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.588,
+          "p50_us": 12.226,
+          "p95_us": 14.568,
+          "p99_us": 15.81417,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "753ce75fdf066f969888d0f09233598588cb135fa28b31577935372f97866280"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "792288f155807053c6926f979cb9fac057d2fa6b5b5049abc81adb58bfe8e579",
+      "id": "20261024-020000-ws30-bridge-c12-s20262725-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262725-c16",
+        "minimum_free_gib": 3600.3570976257324,
+        "minimum_mem_available_gib": 69.65024948120117,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.6328125,
+        "samples": 73
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1523.087,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1523.087,
+          "p50_us": 796.8925,
+          "p95_us": 1384.6527,
+          "p99_us": 1489.36163,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.779,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.779,
+          "p50_us": 12.2005,
+          "p95_us": 14.51985,
+          "p99_us": 15.438680000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "753ce75fdf066f969888d0f09233598588cb135fa28b31577935372f97866280"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "7d015a375cb0c1d9cd94edf29a90e5cc70c1d4868bdf47a5c8d9b0a54a3247cb",
+      "id": "20261024-020000-ws30-bridge-c12-s20262726-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262726-e",
+        "minimum_free_gib": 3600.3913497924805,
+        "minimum_mem_available_gib": 69.64985656738281,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.85546875,
+        "samples": 65
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1880.926,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1880.926,
+          "p50_us": 738.85,
+          "p95_us": 1634.27385,
+          "p99_us": 1734.45652,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.509,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.509,
+          "p50_us": 12.206,
+          "p95_us": 14.71585,
+          "p99_us": 15.736680000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "55434af5ac64434fd7fa65c10a1349275dea044feabbed9295e90535cbff0e6d"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "8e3d504d25c0f98bb768a273a61a1e831599b4d33c418a1de3d089864dd5c2dd",
+      "id": "20261024-020000-ws30-bridge-c12-s20262726-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262726-c16",
+        "minimum_free_gib": 3600.3453102111816,
+        "minimum_mem_available_gib": 69.64986419677734,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.71484375,
+        "samples": 75
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1873.747,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1873.747,
+          "p50_us": 749.662,
+          "p95_us": 1694.96085,
+          "p99_us": 1768.38542,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.303,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.303,
+          "p50_us": 12.203,
+          "p95_us": 14.217,
+          "p99_us": 15.14851,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "55434af5ac64434fd7fa65c10a1349275dea044feabbed9295e90535cbff0e6d"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "33e14939525aa8ddb878f6e5a9b2fd702b3dc0f28c1f032a5240a905b4d8087e",
+      "id": "20261024-020000-ws30-bridge-c12-s20262727-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262727-e",
+        "minimum_free_gib": 3600.392692565918,
+        "minimum_mem_available_gib": 69.64932632446289,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.64453125,
+        "samples": 63
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2276.423,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2276.423,
+          "p50_us": 777.489,
+          "p95_us": 1557.6059,
+          "p99_us": 2152.3833100000006,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.984,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.984,
+          "p50_us": 12.258,
+          "p95_us": 14.89085,
+          "p99_us": 16.358340000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "8a670da8248c2fd6b0f0889782322b567f2aea61c1d107edb91093014385c9be"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "c6473e55f30d7ee01376bcdc9d907474f1d12f03525a07d66addd9abc63a001a",
+      "id": "20261024-020000-ws30-bridge-c12-s20262727-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262727-c16",
+        "minimum_free_gib": 3600.355728149414,
+        "minimum_mem_available_gib": 69.65087890625,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.796875,
+        "samples": 70
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2275.219,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2275.219,
+          "p50_us": 793.5545,
+          "p95_us": 1624.5554999999993,
+          "p99_us": 2120.0122400000005,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.79,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.79,
+          "p50_us": 12.26,
+          "p95_us": 14.4997,
+          "p99_us": 16.05802,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "8a670da8248c2fd6b0f0889782322b567f2aea61c1d107edb91093014385c9be"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "89638fa75c320d8d4972fc00f61c1b5a3ad231f1a2286c985962a5c9f67472a9",
+      "id": "20261024-020000-ws30-bridge-c12-s20262728-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262728-e",
+        "minimum_free_gib": 3600.3714637756348,
+        "minimum_mem_available_gib": 69.64999008178711,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.59765625,
+        "samples": 65
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1624.601,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1624.601,
+          "p50_us": 740.316,
+          "p95_us": 1425.6678999999995,
+          "p99_us": 1606.34417,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.369,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.369,
+          "p50_us": 12.26,
+          "p95_us": 14.855,
+          "p99_us": 16.385340000000003,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "a4bd9c4fe8cc18b23c03c6260a31085fedebf0d0c416f134d096529b0ac6d167"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "c259a44e117552b942d8326e2e5350898ee997fe0a8f1764f8dcf20461cce0d8",
+      "id": "20261024-020000-ws30-bridge-c12-s20262728-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262728-c16",
+        "minimum_free_gib": 3600.345890045166,
+        "minimum_mem_available_gib": 69.65006637573242,
+        "peak_load_1m": 12.27,
+        "peak_tree_rss_mib": 4544.8125,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1679.935,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1679.935,
+          "p50_us": 703.527,
+          "p95_us": 1475.4897999999998,
+          "p99_us": 1620.50468,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.524,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.524,
+          "p50_us": 12.192,
+          "p95_us": 14.754850000000001,
+          "p99_us": 15.82517,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "a4bd9c4fe8cc18b23c03c6260a31085fedebf0d0c416f134d096529b0ac6d167"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "efda3f4e1ad61de22749c6821a621b0a4d8f72c3492b5c09e31092b8e0244fe5",
+      "id": "20261024-020000-ws30-bridge-c12-s20262729-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262729-e",
+        "minimum_free_gib": 3581.657814025879,
+        "minimum_mem_available_gib": 69.64093017578125,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.87890625,
+        "samples": 61
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2220.069,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2220.069,
+          "p50_us": 727.3915,
+          "p95_us": 1787.6750999999997,
+          "p99_us": 2121.7253800000003,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.9,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.9,
+          "p50_us": 12.222,
+          "p95_us": 14.722,
+          "p99_us": 15.53134,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "2cd1723f9352a8e404385c6a436c2e75b427aca67105efcc9cb83a6b65f7eeb7"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "311878a31868330c0045ebd0334eaac3d957ac505d21d41f0392fd544b27de93",
+      "id": "20261024-020000-ws30-bridge-c12-s20262729-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262729-c16",
+        "minimum_free_gib": 3581.6102600097656,
+        "minimum_mem_available_gib": 69.64151763916016,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.4765625,
+        "samples": 70
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2273.462,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2273.462,
+          "p50_us": 714.4404999999999,
+          "p95_us": 1861.5944,
+          "p99_us": 2143.55782,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.72,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.72,
+          "p50_us": 12.245,
+          "p95_us": 14.16985,
+          "p99_us": 16.16968,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "2cd1723f9352a8e404385c6a436c2e75b427aca67105efcc9cb83a6b65f7eeb7"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "c69fa9e1131b0eab2e4381a2977908b7c9058cca22a64f6faf9ce1e9b73a2b71",
+      "id": "20261024-020000-ws30-bridge-c12-s20262730-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262730-e",
+        "minimum_free_gib": 3581.648136138916,
+        "minimum_mem_available_gib": 69.64208602905273,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.89453125,
+        "samples": 62
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1710.118,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1710.118,
+          "p50_us": 760.185,
+          "p95_us": 1603.6545499999993,
+          "p99_us": 1640.3405200000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.792,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.792,
+          "p50_us": 12.261,
+          "p95_us": 14.67085,
+          "p99_us": 16.110360000000004,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "a7065055fd63bdb595291daf3f5114544a46508ba361ce4389879724400ccb0e"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "7cdcd6adf26577455ae40d2a46c96ce53c2d4d0ce8d06c76c92cd69c48f08b27",
+      "id": "20261024-020000-ws30-bridge-c12-s20262730-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262730-c16",
+        "minimum_free_gib": 3581.5885314941406,
+        "minimum_mem_available_gib": 69.64287948608398,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.86328125,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1689.649,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1689.649,
+          "p50_us": 704.7805,
+          "p95_us": 1622.2614499999997,
+          "p99_us": 1638.51104,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.361,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.361,
+          "p50_us": 12.245,
+          "p95_us": 14.6927,
+          "p99_us": 16.11934,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "a7065055fd63bdb595291daf3f5114544a46508ba361ce4389879724400ccb0e"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "a04b8de006575383c40404158e9d8f1ad3039d68813dfe0649e65d3e723c8fb4",
+      "id": "20261024-020000-ws30-bridge-c12-s20262731-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262731-e",
+        "minimum_free_gib": 3581.6123428344727,
+        "minimum_mem_available_gib": 69.64144134521484,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.703125,
+        "samples": 67
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1644.104,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1644.104,
+          "p50_us": 780.347,
+          "p95_us": 1526.9895000000001,
+          "p99_us": 1552.57958,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.807,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.807,
+          "p50_us": 12.238,
+          "p95_us": 14.74685,
+          "p99_us": 15.729,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "90eb4e93a95c7e6dd9ce0d7e7f1e8486d5be0a9bc3382de7bb9d71721a1ed7b6"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "66ba190e56536854649bdc2ea8aea19a102c4c822b52ebc885e91408b11ad965",
+      "id": "20261024-020000-ws30-bridge-c12-s20262731-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262731-c16",
+        "minimum_free_gib": 3581.586597442627,
+        "minimum_mem_available_gib": 69.63791275024414,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.375,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1529.933,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1529.933,
+          "p50_us": 802.9675,
+          "p95_us": 1515.5441999999998,
+          "p99_us": 1527.27417,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.595,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.595,
+          "p50_us": 12.249,
+          "p95_us": 14.524700000000001,
+          "p99_us": 15.27134,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "90eb4e93a95c7e6dd9ce0d7e7f1e8486d5be0a9bc3382de7bb9d71721a1ed7b6"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "d861d7d9472385116aeb6ba8b9b2a00e53bec4be167519981ba0c6460b74bc48",
+      "id": "20261024-020000-ws30-bridge-c12-s20262732-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262732-e",
+        "minimum_free_gib": 3581.5994567871094,
+        "minimum_mem_available_gib": 69.64236831665039,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.62890625,
+        "samples": 67
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2245.219,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2245.219,
+          "p50_us": 717.605,
+          "p95_us": 1771.8379999999988,
+          "p99_us": 2118.06961,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.825,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.825,
+          "p50_us": 12.212,
+          "p95_us": 14.555,
+          "p99_us": 16.016360000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "fd517da586fc905bffa7af5ce5f4d850b01a833255f9361f0fee4328b3ba599e"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "42e2c5386ad76117ef17f10a4bd0e99236c1d919f2240283c31f15fc2864ea90",
+      "id": "20261024-020000-ws30-bridge-c12-s20262732-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262732-c16",
+        "minimum_free_gib": 3581.5798950195312,
+        "minimum_mem_available_gib": 69.6412239074707,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.46875,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 2243.41,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 2243.41,
+          "p50_us": 745.8299999999999,
+          "p95_us": 1650.1425499999996,
+          "p99_us": 2122.79937,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.844,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.844,
+          "p50_us": 12.174,
+          "p95_us": 14.611,
+          "p99_us": 15.753680000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "fd517da586fc905bffa7af5ce5f4d850b01a833255f9361f0fee4328b3ba599e"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "da72f0054bf1bcdc9e3bf33db55d19a88987960add4bcd1a1846fefa6263ca49",
+      "id": "20261024-020000-ws30-bridge-c12-s20262733-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262733-e",
+        "minimum_free_gib": 3581.6102600097656,
+        "minimum_mem_available_gib": 69.64151763916016,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.84375,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1714.703,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1714.703,
+          "p50_us": 702.1555000000001,
+          "p95_us": 1438.8806499999998,
+          "p99_us": 1698.6107900000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 20.116,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 20.116,
+          "p50_us": 12.169,
+          "p95_us": 15.09185,
+          "p99_us": 17.38668,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "9fc542f708f6b84fc82fe7ab418d4e5ecf694a1da2f4527527b25eaebe43911d"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "b4a292507a3f02ad33cdcfed2e4a1a0a979d2db839b854bc5969ce731f2b3e32",
+      "id": "20261024-020000-ws30-bridge-c12-s20262733-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262733-c16",
+        "minimum_free_gib": 3581.569664001465,
+        "minimum_mem_available_gib": 69.64265441894531,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.4296875,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1940.21,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1940.21,
+          "p50_us": 703.198,
+          "p95_us": 1451.7378999999996,
+          "p99_us": 1820.77252,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.959,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.959,
+          "p50_us": 12.189,
+          "p95_us": 14.3567,
+          "p99_us": 15.13517,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "9fc542f708f6b84fc82fe7ab418d4e5ecf694a1da2f4527527b25eaebe43911d"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "0f0459ccb8e083f3db31d234bf1818d5b2bd631f8e32a9672926e30030dbf96c",
+      "id": "20261024-020000-ws30-bridge-c12-s20262734-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262734-e",
+        "minimum_free_gib": 3581.5987091064453,
+        "minimum_mem_available_gib": 69.64025115966797,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.84375,
+        "samples": 64
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1703.448,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1703.448,
+          "p50_us": 743.467,
+          "p95_us": 1524.5564499999964,
+          "p99_us": 1703.42317,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.508,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.508,
+          "p50_us": 12.31,
+          "p95_us": 14.5327,
+          "p99_us": 15.71917,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "5c6e42d53da953aa253a41929acd0aa4d0727e8d11c1c8a1be6c003dd5b52a76"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "9e19f84bf794510eecec6e67d111b857206e1269b32c0880aeac9b6c9bd99f75",
+      "id": "20261024-020000-ws30-bridge-c12-s20262734-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262734-c16",
+        "minimum_free_gib": 3581.5690841674805,
+        "minimum_mem_available_gib": 69.64305114746094,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.8125,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1733.568,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1733.568,
+          "p50_us": 734.237,
+          "p95_us": 1518.1173499999963,
+          "p99_us": 1688.36317,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.454,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.454,
+          "p50_us": 12.3065,
+          "p95_us": 14.36785,
+          "p99_us": 15.268680000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "5c6e42d53da953aa253a41929acd0aa4d0727e8d11c1c8a1be6c003dd5b52a76"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "763470f25904c2452b8f52c108914bd7765c4baec6e3cd5d0bf9b9b0669206bd",
+      "id": "20261024-020000-ws30-bridge-c12-s20262735-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262735-e",
+        "minimum_free_gib": 3562.8836364746094,
+        "minimum_mem_available_gib": 69.65419387817383,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.8515625,
+        "samples": 63
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1630.239,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1630.239,
+          "p50_us": 684.415,
+          "p95_us": 1216.3854999999999,
+          "p99_us": 1487.96654,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.682,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.682,
+          "p50_us": 12.273,
+          "p95_us": 14.676,
+          "p99_us": 15.85851,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "168e30c7f6919c5a4ed29728e51d8301102bea9ebdb2792aed794b001208d253"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "f1029d287d184a1f7e1739334e0ee0a20d7c33a7978197d1277ab46a3aa82405",
+      "id": "20261024-020000-ws30-bridge-c12-s20262735-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262735-c16",
+        "minimum_free_gib": 3562.8462867736816,
+        "minimum_mem_available_gib": 69.65387344360352,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.87890625,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1507.088,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1507.088,
+          "p50_us": 681.2375,
+          "p95_us": 1191.56685,
+          "p99_us": 1445.3388200000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.46,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.46,
+          "p50_us": 12.232,
+          "p95_us": 14.3397,
+          "p99_us": 15.532,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "168e30c7f6919c5a4ed29728e51d8301102bea9ebdb2792aed794b001208d253"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "584e478d088109f027858f89161b33eb53742eedbe48cbcbd2eed7a34ae373c3",
+      "id": "20261024-020000-ws30-bridge-c12-s20262736-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262736-e",
+        "minimum_free_gib": 3562.8690338134766,
+        "minimum_mem_available_gib": 69.65392303466797,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.59375,
+        "samples": 66
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1500.946,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1500.946,
+          "p50_us": 725.7574999999999,
+          "p95_us": 1392.5877,
+          "p99_us": 1438.7778,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.826,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.826,
+          "p50_us": 12.266,
+          "p95_us": 14.82185,
+          "p99_us": 15.784680000000002,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "d58c28ac27e481cb6fd128516ec7c7e4a5db3e3093bb92dcd116aaa6009ba9f6"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "7fa25d94bc948c46090c9c9a7e08796928b0e8ea4a63407e3dbaf684878f00e9",
+      "id": "20261024-020000-ws30-bridge-c12-s20262736-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262736-c16",
+        "minimum_free_gib": 3562.836196899414,
+        "minimum_mem_available_gib": 69.65126419067383,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.796875,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1589.948,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1589.948,
+          "p50_us": 708.4159999999999,
+          "p95_us": 1392.7770500000001,
+          "p99_us": 1530.2976700000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.343,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.343,
+          "p50_us": 12.217,
+          "p95_us": 14.534,
+          "p99_us": 15.47034,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "d58c28ac27e481cb6fd128516ec7c7e4a5db3e3093bb92dcd116aaa6009ba9f6"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "bd910b2828a34dfdcc42eb9f46a762e940d54165ec923936a2ee0920a9fd178a",
+      "id": "20261024-020000-ws30-bridge-c12-s20262737-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262737-e",
+        "minimum_free_gib": 3562.8479766845703,
+        "minimum_mem_available_gib": 69.65425491333008,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.6484375,
+        "samples": 68
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1572.624,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1572.624,
+          "p50_us": 743.2570000000001,
+          "p95_us": 1500.9702,
+          "p99_us": 1542.64892,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 20.078,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 20.078,
+          "p50_us": 12.198,
+          "p95_us": 14.87485,
+          "p99_us": 16.68053,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "75f06f0579467daf0c2f94c4778d312978554d8f1138f363a0d02c25b35f1ed9"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "2dd553fc6dc70f576e64ab4b4763f9ddd3489162ceac14dd53019780da9a292f",
+      "id": "20261024-020000-ws30-bridge-c12-s20262737-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262737-c16",
+        "minimum_free_gib": 3562.8217697143555,
+        "minimum_mem_available_gib": 69.65357208251953,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.9453125,
+        "samples": 73
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1606.472,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1606.472,
+          "p50_us": 740.1505,
+          "p95_us": 1482.9784999999993,
+          "p99_us": 1518.87334,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.001,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.001,
+          "p50_us": 12.1935,
+          "p95_us": 14.68185,
+          "p99_us": 15.76768,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "75f06f0579467daf0c2f94c4778d312978554d8f1138f363a0d02c25b35f1ed9"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "9027828d08ef41743a3d922e18ec121f97f22d1fec1a9b53e3fb555c7e2b9bbe",
+      "id": "20261024-020000-ws30-bridge-c12-s20262738-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262738-e",
+        "minimum_free_gib": 3562.854160308838,
+        "minimum_mem_available_gib": 69.65264129638672,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.703125,
+        "samples": 65
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1533.102,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1533.102,
+          "p50_us": 721.461,
+          "p95_us": 1279.8591499999998,
+          "p99_us": 1469.50402,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.741,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.741,
+          "p50_us": 12.217500000000001,
+          "p95_us": 14.72185,
+          "p99_us": 16.013060000000003,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "d716a0da979f0d68f4ddfc60d1f9d22d31b8cc89382b1f31208d595ff1e5f251"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "f1d2507b60e60119393c6171b4e1fb81adbc7cc856996be3eef34324c2c01506",
+      "id": "20261024-020000-ws30-bridge-c12-s20262738-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262738-c16",
+        "minimum_free_gib": 3562.811897277832,
+        "minimum_mem_available_gib": 69.65419387817383,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.85546875,
+        "samples": 73
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1622.923,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1622.923,
+          "p50_us": 704.3805,
+          "p95_us": 1287.7527499999985,
+          "p99_us": 1565.79619,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.831,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.831,
+          "p50_us": 12.19,
+          "p95_us": 14.673,
+          "p99_us": 15.53517,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "d716a0da979f0d68f4ddfc60d1f9d22d31b8cc89382b1f31208d595ff1e5f251"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "4eec956fa24d721fcbed824ae11b81ecb629d78a60115d62a873167fd89526f5",
+      "id": "20261024-020000-ws30-bridge-c12-s20262739-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262739-e",
+        "minimum_free_gib": 3562.8254776000977,
+        "minimum_mem_available_gib": 69.65489196777344,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.43359375,
+        "samples": 69
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1733.897,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1733.897,
+          "p50_us": 732.939,
+          "p95_us": 1469.4906999999994,
+          "p99_us": 1623.50268,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.609,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.609,
+          "p50_us": 12.216,
+          "p95_us": 14.70785,
+          "p99_us": 15.601230000000003,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "5d695149fe6ac2e07a6c6e39916934428ab36776f86620611d71bbdd91125462"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "f6d96f2f779b782755eb103b349f636d58f497c6e65948805992c323231c1635",
+      "id": "20261024-020000-ws30-bridge-c12-s20262739-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262739-c16",
+        "minimum_free_gib": 3562.809730529785,
+        "minimum_mem_available_gib": 69.65357971191406,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.69140625,
+        "samples": 72
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1647.431,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1647.431,
+          "p50_us": 723.6575,
+          "p95_us": 1524.3075,
+          "p99_us": 1616.54465,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 19.034,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 19.034,
+          "p50_us": 12.161,
+          "p95_us": 14.786400000000002,
+          "p99_us": 16.52602,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "5d695149fe6ac2e07a6c6e39916934428ab36776f86620611d71bbdd91125462"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "42f32aadbdf16f953f73e9e5301939126219ed9af9b1c4295ae3c9c6ac48e9be",
+      "id": "20261024-020000-ws30-bridge-c12-s20262740-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262740-e",
+        "minimum_free_gib": 3562.8355979919434,
+        "minimum_mem_available_gib": 69.65391159057617,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.77734375,
+        "samples": 65
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1650.156,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1650.156,
+          "p50_us": 710.4014999999999,
+          "p95_us": 1467.95645,
+          "p99_us": 1598.5128100000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.271,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.271,
+          "p50_us": 12.24,
+          "p95_us": 14.437,
+          "p99_us": 15.738890000000001,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "9ecb58c5307d56c441142a215ee2c50499d3463d1021b64e3a4e03b1f784735c"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "7e20d478bfd116a83fd858d9d29ec88fb8a00b7f551079558e798170737affcf",
+      "id": "20261024-020000-ws30-bridge-c12-s20262740-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262740-c16",
+        "minimum_free_gib": 3562.8091621398926,
+        "minimum_mem_available_gib": 69.65288543701172,
+        "peak_load_1m": 12.1,
+        "peak_tree_rss_mib": 4544.8046875,
+        "samples": 71
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1722.153,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1722.153,
+          "p50_us": 717.1245,
+          "p95_us": 1432.47695,
+          "p99_us": 1624.18775,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.16,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.16,
+          "p50_us": 12.25,
+          "p95_us": 14.31685,
+          "p99_us": 15.70017,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "9ecb58c5307d56c441142a215ee2c50499d3463d1021b64e3a4e03b1f784735c"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "1e46a8542d7b0a18b1f4775eb087acb1577add59b5335180c4fcacc0e87eaa30",
+      "id": "20261024-020000-ws30-bridge-c12-s20262741-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262741-e",
+        "minimum_free_gib": 3550.33744430542,
+        "minimum_mem_available_gib": 87.30390167236328,
+        "peak_load_1m": 8.23,
+        "peak_tree_rss_mib": 4545.046875,
+        "samples": 61
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1945.722,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1945.722,
+          "p50_us": 702.9849999999999,
+          "p95_us": 1542.5245999999995,
+          "p99_us": 1886.64759,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.31,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.31,
+          "p50_us": 12.275500000000001,
+          "p95_us": 14.632,
+          "p99_us": 16.38136,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "03f02047ce694ea436a0b79f6d14174ce60c9043d5dd0bf2e472f4519df7c084"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "337481877c25c93aea26a3454e3594e3be268617901296b8b3b70b424dffe193",
+      "id": "20261024-020000-ws30-bridge-c12-s20262741-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262741-c16",
+        "minimum_free_gib": 3550.3168411254883,
+        "minimum_mem_available_gib": 87.30755996704102,
+        "peak_load_1m": 8.23,
+        "peak_tree_rss_mib": 4544.73828125,
+        "samples": 67
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1855.194,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1855.194,
+          "p50_us": 701.1845000000001,
+          "p95_us": 1582.85975,
+          "p99_us": 1792.40338,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 16.432,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 16.432,
+          "p50_us": 12.274,
+          "p95_us": 14.501850000000001,
+          "p99_us": 15.44419,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "03f02047ce694ea436a0b79f6d14174ce60c9043d5dd0bf2e472f4519df7c084"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "f5b68b7fd6dc3442657d5c3792af77885ad98fc6c588393e49c9b1e4257ba9fc",
+      "id": "20261024-020000-ws30-bridge-c12-s20262742-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262742-e",
+        "minimum_free_gib": 3550.335289001465,
+        "minimum_mem_available_gib": 87.30617904663086,
+        "peak_load_1m": 8.23,
+        "peak_tree_rss_mib": 4544.7265625,
+        "samples": 60
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1931.379,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1931.379,
+          "p50_us": 770.3755,
+          "p95_us": 1391.2303,
+          "p99_us": 1765.4517700000001,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 19.725,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 19.725,
+          "p50_us": 12.221,
+          "p95_us": 14.763,
+          "p99_us": 16.53619,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "dbf46c496841486749a249356149ae3f1560758c184857c93b9fb5de34a2a5a9"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "e40294fdd56e071dc2f409a4696ff215dba189e052465c4e8a9dcb8f0179d55c",
+      "id": "20261024-020000-ws30-bridge-c12-s20262742-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262742-c16",
+        "minimum_free_gib": 3550.301555633545,
+        "minimum_mem_available_gib": 87.30587005615234,
+        "peak_load_1m": 8.23,
+        "peak_tree_rss_mib": 4544.56640625,
+        "samples": 68
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1934.211,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1934.211,
+          "p50_us": 778.7049999999999,
+          "p95_us": 1383.43745,
+          "p99_us": 1800.9002400000004,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.256,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.256,
+          "p50_us": 12.233,
+          "p95_us": 14.661850000000001,
+          "p99_us": 15.74517,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "dbf46c496841486749a249356149ae3f1560758c184857c93b9fb5de34a2a5a9"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "f8905bc3e31e3e400d301f86d6397069f6e9e358326a252ac4e6e7eca882f332",
+      "id": "20261024-020000-ws30-bridge-c12-s20262743-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262743-e",
+        "minimum_free_gib": 3550.3302116394043,
+        "minimum_mem_available_gib": 87.30679702758789,
+        "peak_load_1m": 8.23,
+        "peak_tree_rss_mib": 4544.88671875,
+        "samples": 60
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1593.26,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1593.26,
+          "p50_us": 701.683,
+          "p95_us": 1367.3855999999994,
+          "p99_us": 1553.7735100000002,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 19.3,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 19.3,
+          "p50_us": 12.227,
+          "p95_us": 14.6637,
+          "p99_us": 15.733,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "1f2b98b2354f746c4d9a8e0b080edfe9c80bca5315ac676eaee14afd6859e2b6"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "ef373dc250faac36880f6ed2c3a1b5cc5fe6f057a6bacc18904e42c0b5ab2fc8",
+      "id": "20261024-020000-ws30-bridge-c12-s20262743-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262743-c16",
+        "minimum_free_gib": 3550.299892425537,
+        "minimum_mem_available_gib": 87.30603408813477,
+        "peak_load_1m": 8.23,
+        "peak_tree_rss_mib": 4544.78515625,
+        "samples": 67
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1644.693,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1644.693,
+          "p50_us": 733.6075000000001,
+          "p95_us": 1436.20435,
+          "p99_us": 1620.36607,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 17.536,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 17.536,
+          "p50_us": 12.225,
+          "p95_us": 14.21285,
+          "p99_us": 15.83468,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "1f2b98b2354f746c4d9a8e0b080edfe9c80bca5315ac676eaee14afd6859e2b6"
+    },
+    {
+      "arm": "E",
+      "fct_sha256": "48e82a25afb34972664845e92e27e82ca669e80c1a3d8221bffc0d89b5f4887f",
+      "id": "20261024-020000-ws30-bridge-c12-s20262744-e",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262744-e",
+        "minimum_free_gib": 3550.3025398254395,
+        "minimum_mem_available_gib": 87.30221557617188,
+        "peak_load_1m": 8.23,
+        "peak_tree_rss_mib": 4544.53515625,
+        "samples": 65
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1610.819,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1610.819,
+          "p50_us": 696.6855,
+          "p95_us": 1356.6329999999998,
+          "p99_us": 1502.01126,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 19.62,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 19.62,
+          "p50_us": 12.192,
+          "p95_us": 15.064,
+          "p99_us": 16.818,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "9fca0d1a0d3b27dd4a5e0ccff1e42f4e021a4bb74ac8f5aed10da5b2d024ac92"
+    },
+    {
+      "arm": "C16",
+      "fct_sha256": "bf8c3f82fee8a723f6046052d59f9501d64368c996546f82c071007ec7bee8a6",
+      "id": "20261024-020000-ws30-bridge-c12-s20262744-c16",
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-020000-ws30-bridge-c12-s20262744-c16",
+        "minimum_free_gib": 3550.296455383301,
+        "minimum_mem_available_gib": 87.30819702148438,
+        "peak_load_1m": 8.23,
+        "peak_tree_rss_mib": 4544.9609375,
+        "samples": 67
+      },
+      "role": "historical-bridge",
+      "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+      "tags": {
+        "1": {
+          "batch_us": 1618.679,
+          "completed_flows": 192,
+          "input_flows": 192,
+          "max_us": 1618.679,
+          "p50_us": 698.171,
+          "p95_us": 1339.46175,
+          "p99_us": 1542.78835,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 18.083,
+          "completed_flows": 16384,
+          "input_flows": 16384,
+          "max_us": 18.083,
+          "p50_us": 12.152,
+          "p95_us": 14.793700000000001,
+          "p99_us": 16.11817,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "9fca0d1a0d3b27dd4a5e0ccff1e42f4e021a4bb74ac8f5aed10da5b2d024ac92"
+    }
+  ],
+  "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+  "verified_cells": 96
+}

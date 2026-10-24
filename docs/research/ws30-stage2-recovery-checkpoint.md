@@ -1,70 +1,49 @@
-# WS-30 阶段 2 恢复核验与后续执行入口
+# WS-30 阶段 2 恢复与验收入口
 
-记录：2026 年 10 月 24 日，资源 pilot 验收后更新。状态：ACTIVE；技术任务与资源 pilot 已完成，历史桥接尚未启动。正式效果矩阵未启动。
+更新：2026 年 10 月 24 日，阶段 2 完成后。WS-30 为 ACTIVE；本节点完成技术、资源与历史桥接，等待主对话审核。正式效果矩阵保持关闭。
 
-## 已保留的完成项
+## 已验收范围
 
-工作区为 `E:/研/毕业论文/workspace/ws30-attribution-audit`，分支为 `research/ws30-attribution-audit`。恢复时工作树干净，没有仍在运行的 WS-30 本地 runner。随后新增的修复及收据均在本分支提交，不修改旧工作区、历史结果或论文主稿。
-
-完整计数版仿真核心固定为 `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`。八臂已实现，包含首候选、独立哈希硬币、两类总队列、完整类别方案、撤去所选出口固定、统一 12 字节键及旧 A0B0；另有 H12 技术等价臂。前期仅增加观测的旧修订版仍保留作审计，不能计入下列通过数。
-
-从本地 raw 重新验收了 13 个已有收据，未重跑仿真。远端成功但此前未回传的第 14 格已回传并逐项验收。随后完成剩余技术格和路径检查，32/32 格通过。资源 pilot 也已完成 24/24 格，按冻结规则选择并发上限 12。吞吐与资源值、并发档 FCT 哈希见[资源 pilot 报告](ws30-resource-pilot-report-r1.md)和[24 格收据](evidence/ws30-resource-results-recovered-r1.json)。
-
-这 14 格对应原冻结计划 `20261024-230000-ws30-t01-e-o2` 至 `t14-cr-a1-b1-o2`。完整 ID 清单以机器收据为准。其中 10 格有完整逐包日志，已按实际拓扑重建端到端路径；四组 E/Q16/C16/U16 观测开关格 FCT 哈希分别一致，E/H12 的完整出口时序一致，ClassReserve 别名与原名称 FCT 哈希一致。
-
-在这个技术输入中，缓存臂路径保持不变；U16 有 109 个 QP 使用了多个端到端路径。其记录包含 313 次序号高于累积预期值的到达、731 次携带 SACK 的反馈，以及 2379 次重复序号范围发送，共 2,379,000 B。所有输入流完成，准入丢弃、队列拒收与排队后丢弃均为零。这些数据证明重决策、乱序和恢复分支实际运行，不作为独立性能收益。
-
-计数定义已经分开：`0xFD` 帧可能是普通 IRN ACK，不能当作丢失 NACK；`rx_below_expected` 只是低于累积预期序号的到达子集，不声称覆盖全部重复包。传输计数截止到各 QP 完成。字段定义随[原 r5 计划](evidence/ws30-execution-plan-r5.json)冻结。
-
-14 格的最高 1 分钟负载为 7.55，最低可用内存约 104.99 GiB，最低空盘约 3759.99 GiB，最大单格进程树 RSS 约 4544.93 MiB。它们只证明当前技术并发 4 的安全运行，不能替代 4/8/12 资源 pilot。
-
-## 三格输入失败及修复
-
-`t15-e-o2`、`t16-q16-o2` 和 `t17-c16-o2` 均因同一个输入错误失败：技术夹具把 MoE 放流延后 20 µs，却把末尾回退测试流留在 2 s。流式读取器在第 162 行发现时间倒退并终止。它不是选路效果差异，也不是指标分析器造成的失败。
-
-三个失败格的 metadata、原始文件、错误日志和资源收据均已回传，未覆盖或删除。详见[失败与修复收据](evidence/ws30-staggered-fixture-failure-and-repair-r1.json)。部分已完成流不进入效果估计。
-
-新夹具为 `config/ws30_technical168_lead_v2.txt`，按放流时间稳定排序。原错误文件保留。新增输入修复提交为 `6df0a9db9d01e1fd1b4c725b31525983425f4fac`；它与核心提交在 `src`、`scratch`、`run.py`、`remote_worker.py` 和 `wscript` 上完全一致。因此，14 个已验收格继续有效，无须为了新增输入文件而重跑。
-
-修复前后 48 份正式输入逐项相同，仅替换技术错峰夹具。新输入清单为 [v3](evidence/ws30-inputs-v3.json)，SHA-256 为 `7dd69012ab91c7c5fa38d2e8e3943919dc2edca7b37af237971f769fca6a0ac5`。
-
-| 原失败 ID 后缀 | 替代实验 ID | 固定源码 |
+| 项目 | 完成情况 | 原始证据与收据 |
 | --- | --- | --- |
-| `t15-e-o2` | `20261024-010000-ws30-leadfix-e-o2` | `6df0a9db…` |
-| `t16-q16-o2` | `20261024-010000-ws30-leadfix-q16-o2` | `6df0a9db…` |
-| `t17-c16-o2` | `20261024-010000-ws30-leadfix-c16-o2` | `6df0a9db…` |
+| 技术任务 | 32/32 格；其中完整逐包日志 22 格独立重建路径 | [技术收据](evidence/ws30-technical-results-recovered-r1.json)、[路径收据](evidence/ws30-technical-paths-recovered-r1.json) |
+| 资源 pilot | 24/24 格；4/8/12 阶梯验收，冻结 cap=12 | [pilot 报告](ws30-resource-pilot-report-r1.md) |
+| 历史桥接 | 96/96 格；复用 4 个预检，新运行 92 格，全部 raw FCT 哈希匹配历史 | [桥接收据](evidence/ws30-bridge-results-recovered-r1.json)、[解析计划](evidence/ws30-bridge-resolved-recovered-r1.json) |
+| 阶段后复验 | 148 个独立成功实验；96 组历史／新 raw 及输入哈希复验 | [后审计收据](evidence/ws30-stage2-postrun-audit-r1.json) |
 
-三个替代格均已运行并通过验收，原失败 ID 与原始目录仍完整保留。恢复计划为 [recovery r1](evidence/ws30-stage2-recovery-plan-r1.json)，SHA-256 为 `cc61c6b525c7036822439cb74d2511e05acb24eef2930c7a92337cf2951f9e4e`。计划逐格绑定源码和输入，没有重新使用失败 ID。
+32＋24＋96 中有 4 格重叠，独立成功实验为 148 个。详细过程、资源、结论、文献复核及下一阶段入口见[阶段 2 报告](ws30-stage2-completion-report-r1.md)和[阶段 Handoff](../handoffs/2026-10-24-ws30-stage2-complete.md)。此结果证明固定历史输入上的输出保持，未识别新八臂效果或类别增量。
 
-## 剩余验收与执行顺序
+## 固定源码、输入与失败保留
 
-| 项目 | 已完成 | 未完成与执行入口 |
-| --- | --- | --- |
-| 32 格技术验收 | 32/32 格 | 已完成；修复格使用独立 SHA 和新 ID |
-| 五列／回退与完整历史预检 | 已完成 | 完整计数与预检格均通过 |
-| 独立逐包验收 | 32 格已复核 | `scripts/verify_ws30_technical_paths.py` 已完成 |
-| 4/8/12 资源 pilot | 24/24 格 | 已完成；冻结调度上限为 12 |
-| 历史桥接原始数据预检 | 96/96 个映射已核验 | 96 份历史 raw FCT、输入哈希和完成行数均通过；4 个桥接预检与历史 FCT 哈希相同，见 [预检收据](evidence/ws30-bridge-history-preflight-r1.json) |
-| 完整历史桥接 | 4/96 格已验收，0/92 格新运行 | 主对话已批准节点；GPT-6 Luna / Medium 任务级模型覆盖已接受。启动前门槛见 [就绪收据](evidence/ws30-bridge-startup-readiness-r1.json)；运行剩余 92 格，逐格 FCT SHA 必须与历史 raw 相同 |
-| 正式新输入效果矩阵 | 0 格 | 本恢复入口不启动；192 格主矩阵和 72 格先占矩阵继续关闭 |
-| 组成夹具、双侧正式分析与图表 | 未完成 | 保持原协议必做，不以阶段交接取消 |
+工作区为 `E:/研/毕业论文/workspace/ws30-attribution-audit`，分支 `research/ws30-attribution-audit`。核心仿真 SHA 为 `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`；技术错峰输入修复 SHA 为 `6df0a9db9d01e1fd1b4c725b31525983425f4fac`。运行源码路径完全相同，48 份正式输入未被该修复改变。v3 输入清单 SHA-256 为 `7dd69012ab91c7c5fa38d2e8e3943919dc2edca7b37af237971f769fca6a0ac5`。
 
-技术、路径和资源 pilot 阶段均已完成。当前执行回合使用任务级模型覆盖 GPT-6 Luna / Medium。仅运行 recovery r1 的 `bridge` 阶段，不重跑此前通过的技术格、pilot 格或 4 个预检格。每个完整节点先自然语言汇报，再进入下一节点。
+原 `t15-e-o2`、`t16-q16-o2`、`t17-c16-o2` 因技术输入第 162 行时间倒退失败。原 metadata、raw、配置错误日志和资源样本保留；替代格为 `20261024-010000-ws30-leadfix-{e,q16,c16}-o2`，均通过。详见[失败与修复收据](evidence/ws30-staggered-fixture-failure-and-repair-r1.json)。
+
+桥接首次启动因新生成计划使工作树不干净而被编译保护拒绝，尚未启动仿真；日志保留在 `results/ws30-stage2-recovery-bridge-cleanliness-block-r1.log`。控制器 ID 解析修正及计划已在 `5fb0ec245f99649080e28d6433765c3842e683a3` 推送。92 个新格最终使用 `20261024-020000-ws30-bridge-c12-s<seed>-<arm>`，无新桥接仿真失败。
+
+## 恢复与下一阶段入口
+
+阶段 2 执行器 `scripts/resume_ws30_stage2.py bridge` 已成功完成，不再重跑。若需复核，使用以下只读数据验收入口：
 
 ```powershell
-python scripts/resume_ws30_stage2.py bridge *> results/ws30-stage2-recovery-bridge-r1.log
+python scripts/audit_ws30_stage2_closure.py
+python scripts/verify_ws30_technical_paths.py
+python scripts/prepare_ws30_stage3.py
 ```
 
-禁止直接恢复旧脚本的整段 `technical` 循环，因为它仍指向三个原失败 ID。恢复脚本只复验并复用已有本地结果；桥接新格使用核心 SHA `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`，并发上限为 12。执行器逐格校验输入哈希、固定 SHA、完整流数和 raw FCT 哈希。任一桥接格与历史哈希不同，立即停止后续批次并保留当前批次证据。
+第三条只准备审核计划，不启动实验。[阶段 3 审核计划](evidence/ws30-stage3-review-plan-r1.json)绑定 192 个主矩阵格、72 个先占格、核心 SHA、cap=12 和 48 份输入，SHA-256 为 `c48c4bfeacffc6bfc915cd035309fd12317802dc78cf2927e96956d76bda0c1b`，执行开关关闭。没有可直接执行的正式阶段 runner；须先经主对话审核，冻结实际入队组成夹具和可恢复执行器。
 
-桥接出现任一逐流不一致时，停止后续格并定位，不能启动正式效果矩阵。若代码修复影响既有验收，必须明确承接受影响项；本次只修输入行序，故有直接源码等价证据支持保留 14 格。
+| 仍须完成的任务 | 当前状态与承接 |
+| --- | --- |
+| 八臂归因主矩阵 192 格 | 0/192；由本 WS-30 分支承接，审核后按冻结计划执行 |
+| 背景提前 20 µs 的 72 格 | 0/72；独立取 MoE 放流原点，禁止把等待时间混入批完成 |
+| 实际队列组成诊断 12 格 | 0/12；需冻结精确等总占用、组成交换和两种后续到达条件 |
+| 双侧分析与逐图逐表包 | 未完成；按原协议九项对比、负结果及 F1～F5、D1～D4 交付 |
 
-## 监督门槛与移交
+完整停止条件和资源估计见阶段 2 报告。后续暂以 cap=12、每源码 `-j2`、最多 4 份并行编译规划；264 格按桥接完整吞吐估约 10.9 小时，磁盘连同组成和日志暂预留 450 GiB。启动时重新检查作业、锁和 ID 隔离；不能沿用本次终态快照。零／负效应不取消必做验证，不搜索有利权重、盐或提前量。
 
-本轮启动准备时的只读主机核验显示：无活动仿真、负载 0、可用内存 122.60 GiB、空盘 3,694.20 GiB。该状态只适用于核验时刻；桥接实际启动前仍须重新检查作业、资源、锁和隔离目录。
+## 模型与交接状态
 
-剩余 92 格桥接预计需数小时。监督模型已通过任务级模型覆盖指定为 GPT-6 Luna / Medium。启动前主机 gate 通过：无其他用户作业或活动仿真，load1 为 0，可用内存 122.60 GiB，空盘 3,694.20 GiB。
+实际会话 `turn_context` 已核实：监督阶段 GPT-6 Luna / Medium，阶段后分析 GPT-6.1 Sol / Medium。后者为本 WS 明确指定设置，优先于工作流的 High 默认；此前 Sol High 文字不代表最终生效模型。模型字段与时间记录于后审计收据。
 
-阶段 2 完成后仍须回到分析模型收束，并由主对话验收。中文 v12 可先使用[两组统一分母基线表](ws30-historical-baseline-tables.md)，其中包括绝对值、名义区间、背景两侧指标和真实动态分支。新实验图表仍按[事前协议](ws30-prespecified-protocol.md)逐图逐表交付，不制作预期效果图。
-
-本恢复没有新增选路机制或修改门槛。文献借鉴沿用阶段 1 对 Gemma、SeqBalance、DiffFlow 的固定版本复核；本节点仅核对测量口径、路径保持与恢复代价，未借文献数字解释本项目效果。WS-29 保持未读取、未唤醒、未重启。
+终态无活动仿真或其他用户作业，load1=0，可用内存 122.59 GiB、空盘 3,550.3 GiB，见[主机收据](evidence/ws30-stage2-final-host-gate-r1.json)。本节点已按 Gemma、SeqBalance、DiffFlow 固定版本完成参考复核。WS-29 未触碰；不启动正式矩阵、不归档 WS-30，待主对话审核。

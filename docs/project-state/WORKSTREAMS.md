@@ -1,9 +1,10 @@
 # 工作流台账
 
-更新：2026-10-13。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
+更新：2026-10-24（本次仅新增 WS-30 阶段 2 状态）。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
+| WS-30 | ClassReserve 实验补正与归因审计 | ACTIVE；阶段 2 COMPLETE FOR TECHNICAL, RESOURCE AND HISTORICAL BRIDGE | [报告](../research/ws30-stage2-completion-report-r1.md)、[Handoff](../handoffs/2026-10-24-ws30-stage2-complete.md)：技术 32/32、pilot 24/24、桥接 96/96；148 个独立成功 ID、3 个失败 ID 保留 | 本 WS-30 分支承接主矩阵 192、先占 72、组成 12 及双侧图表；准备计划仅供审核，正式执行关闭，待主对话审核；不触碰 WS-29 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |
