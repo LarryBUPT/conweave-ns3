@@ -15,9 +15,9 @@ import run_ws30_stage2 as stage
 import prepare_ws30_composition as composition
 
 ROOT, EV = stage.ROOT, stage.EV
-COMPOSITION_SOURCE = '0961e4d579c908db8e3449208eb147371c1ede2e'
-PLAN = EV / 'ws30-stage3-execution-plan-r2.json'
-CHECK_PLAN = EV / 'ws30-stage3-correctness-plan-r2.json'
+COMPOSITION_SOURCE = 'a674637dd10404066211b0706308d7337395d85a'
+PLAN = EV / 'ws30-stage3-execution-plan-r3.json'
+CHECK_PLAN = EV / 'ws30-stage3-correctness-plan-r3.json'
 AUTHORIZATION = EV / 'ws30-stage3-execution-authorization.json'
 REVIEW_SHA = 'c48c4bfeacffc6bfc915cd035309fd12317802dc78cf2927e96956d76bda0c1b'
 
@@ -62,7 +62,7 @@ def prepare():
     comp = []
     for trace in design['traces']:
         for arm in design['arms']:
-            comp.append(dict(trace, id='20261024-220000-ws30-comp2-s%d-c%d-%s' %
+            comp.append(dict(trace, id='20261024-220000-ws30-comp3-s%d-c%d-%s' %
                              (trace['swap'], trace['continuing'], arm.lower()), arm=arm,
                              mode=stage.ARMS[arm], role='composition', cap=12, observe=2,
                              source_sha=COMPOSITION_SOURCE, topology=design['topology'],
@@ -75,8 +75,9 @@ def prepare():
     data = {'kind': 'WS-30 stage-3 frozen execution contract; authorization separate',
             'execution_enabled': False, 'review_plan_sha256': REVIEW_SHA,
             'composition_design_sha256': stage.sha(EV/'ws30-composition-design-r2.json'),
-            'superseded_plan_sha256':stage.sha(EV/'ws30-stage3-execution-plan-r1.json'),
+            'superseded_plan_sha256':stage.sha(EV/'ws30-stage3-execution-plan-r2.json'),
             'preserved_unrun_build':'20261024-210000-ws30-cprep-s0-c0-c16',
+            'preserved_failed_id':'20261024-210000-ws30-cprep2-s0-c0-c16',
             'main': main, 'lead': lead, 'composition': comp,
             'required_counts': {'main':192, 'lead':72, 'composition':12},
             'maximum_cap':12, 'authorization_file':str(AUTHORIZATION.relative_to(ROOT)).replace('\\','/'),
@@ -92,7 +93,7 @@ def prepare():
     chosen = [next(c for c in comp if c['arm']=='C16' and c['swap']==0 and c['continuing']==0)]
     chosen += [c for c in comp if c not in chosen and
                (c['arm']=='C16' or (c['swap']==0 and c['continuing']==0))]
-    checks = [dict(c, id='20261024-210000-ws30-cprep2-s%d-c%d-%s' %
+    checks = [dict(c, id='20261024-210000-ws30-cprep3-s%d-c%d-%s' %
                    (c['swap'],c['continuing'],c['arm'].lower()), role='composition-check',cap=4)
               for c in chosen]
     old=read(EV/'ws30-stage2-recovery-plan-r1.json')
@@ -100,7 +101,7 @@ def prepare():
     for arm in ['E','C16']:
         prior=next(c for c in old['technical'] if c['arm']==arm and c['role']=='bridge-precheck')
         expected=next(r for r in accepted['rows'] if r['id']==prior['id'])['fct_sha256']
-        checks.append(dict(prior,id='20261024-210000-ws30-cprep2-off-'+arm.lower(),
+        checks.append(dict(prior,id='20261024-210000-ws30-cprep3-off-'+arm.lower(),
                            source_sha=COMPOSITION_SOURCE,role='compatibility-check',cap=4,
                            topology=default_topo,topology_sha256=main[0]['topology_sha256'],
                            composition=0,expected_fct_sha256=expected))
@@ -298,6 +299,7 @@ class Backend:
     def preserve_failure(self,cell):
         # fetch never overwrites an existing local directory; remote originals
         # always survive even if transport or a partial fetch needs attention.
+        stage.remote.wait_watch(cell['id'])
         if not self.local(cell): stage.remote.command('fetch',cell['id'])
 
 
@@ -402,7 +404,7 @@ def authorize(phase,session_file):
     if not (gate.get('approved') is True and phase in gate.get('phases',[]) and
             gate.get('plan_sha256')==stage.sha(PLAN)):
         raise RuntimeError('Authorization does not bind this frozen phase and plan')
-    check_result=EV/'ws30-stage3-correctness-results-r2.json'
+    check_result=EV/'ws30-stage3-correctness-results-r3.json'
     if not check_result.exists() or stage.sha(check_result)!=gate.get('correctness_sha256'):
         raise RuntimeError('Approved correctness receipt missing or changed')
     if not session_file:raise RuntimeError('Actual supervising task session file is required')
@@ -430,8 +432,8 @@ def main():
         for c in local:verify(c)
         print(json.dumps({'phase':args.phase,'verified_local':len(local),'required':len(cells),
                           'authorization_present':AUTHORIZATION.exists()}));return
-    path=ROOT/'results'/('ws30-stage3-correctness-summary-r2.json' if checks else 'ws30-stage3-'+args.phase+'-summary-r2.json')
-    stage.engine.RECEIPTS=ROOT/'results/ws30-stage3-build-receipts-r2.jsonl'
+    path=ROOT/'results'/('ws30-stage3-correctness-summary-r3.json' if checks else 'ws30-stage3-'+args.phase+'-summary-r3.json')
+    stage.engine.RECEIPTS=ROOT/'results/ws30-stage3-build-receipts-r3.jsonl'
     with controller_lock():
         runner=Runner(cells,Backend(),path,cap=4 if checks else 12,first_single=checks)
         try:state=runner.run()
@@ -441,7 +443,7 @@ def main():
         result={'verified_cells':len(state['verified']),'plan_sha256':stage.sha(CHECK_PLAN if checks else PLAN),
                 'formal_effect_cells_counted':0 if checks else len(state['verified']),
                 'rows':[state['verified'][c['id']] for c in cells]}
-        output=EV/('ws30-stage3-correctness-results-r2.json' if checks else 'ws30-stage3-'+args.phase+'-results-r2.json')
+        output=EV/('ws30-stage3-correctness-results-r3.json' if checks else 'ws30-stage3-'+args.phase+'-results-r3.json')
         stage.frozen(output,result)
         print(json.dumps({'verified':len(state['verified']),'formal_execution':not checks}))
 
