@@ -1,0 +1,51 @@
+{
+  "author_effects_used_as_project_evidence": false,
+  "entries": [
+    {
+      "borrowed_method": "Fix shared-queue and service conditions while separating class source and routing decisions.",
+      "boundary": "DiffFlow uses sampled long-flow classification, Java without full TCP, and class-independent queues. Its normalized mean FCT cannot establish this node's RDMA batch/P99 gain.",
+      "files": {
+        "papers/diffflow-2016/analysis-technical.md": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+        "papers/diffflow-2016/paper-v1.pdf": "f552fcb75a0cec582286db0032c81660ff161fe475609ae5e79ad7075a0ae164",
+        "papers/diffflow-2016/verification.md": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+      },
+      "paper": "diffflow-2016",
+      "project_difference_and_applicable_condition": "The node holds real shared FIFO queues and swaps class composition at equal wire-byte backlog; it does not introduce per-class queues or packet spraying.",
+      "reading_scope": "Technical sections 7-9 and verification sections 1-2",
+      "version": "arXiv:1604.05107v1"
+    },
+    {
+      "borrowed_method": "Use the maximum completion time with the full request/batch origin; inspect per-QP paths and actual transport costs.",
+      "boundary": "The fixed preprint's final journal text was not compared. Host shaper and aggregate-CQE semantics and author FCT figures cannot be transferred as project evidence.",
+      "files": {
+        "papers/seqbalance-2024/analysis-technical.md": "1b1ffab4ffd79d1bbf3c5b70f89f1d4793053938b8097a34148fad18c8db9cbe",
+        "papers/seqbalance-2024/paper-v1.pdf": "097821eb41ca8687fc829cb31fdd54e897164de0956b30a830fdbee2c14fb913",
+        "papers/seqbalance-2024/verification.md": "288da35fc28900eb3d40a8747431ef33cd0ceb23754a92f0844b8c9a4b8658fa"
+      },
+      "paper": "seqbalance-2024",
+      "project_difference_and_applicable_condition": "The node aggregates three existing tag2 QPs from 2.000000 s and separately measures the probe released at 2.000020 s. It does not split WQEs, create child QPs or use path-blacklist feedback.",
+      "reading_scope": "Technical section 3 and verification sections 1,3-4",
+      "version": "arXiv:2407.09808v1"
+    },
+    {
+      "borrowed_method": "Check transport-dependent opportunities to adapt and distinguish changed allocation from business completion time.",
+      "boundary": "Random flowlet reselection, elastic flowlet size, TCP/OMNeT++ and hardware results do not establish a gain for the fixed RDMA QP fixture or MoE batches.",
+      "files": {
+        "papers/letflow-2017/analysis-technical.md": "d9f43c52c7e1c128259488111d99ec1ba0668e93e187a9ebd4c0f3b68f698e58",
+        "papers/letflow-2017/paper-local.pdf": "8a89af468f606199146c2146da6fa7e71f466504ff3543db7c7bc9359a5e8264",
+        "papers/letflow-2017/verification.md": "f57eaf6d07ed12ccb13fffed61da49524df1b344ef40ad9a104558361d481b35"
+      },
+      "paper": "letflow-2017",
+      "project_difference_and_applicable_condition": "The node pins every probe packet to its first chosen port; equal backlog and common release hold give no flowlet adaptation opportunity. Later arrivals reveal cost transfer between destination groups.",
+      "reading_scope": "Technical sections 5-6 and version/evidence verification",
+      "version": "NSDI 2017 USENIX official PDF; 15 pages including cover"
+    }
+  ],
+  "entry_files": {
+    "README.md": "4cf5e71bd9b1be600736b599b7e32f280e5cf7f4d88f3fe937cff05ecec249c6",
+    "reading-log.md": "9f2eef008171f951e2e9491799c776fb45273036c70c07deffbed4204a622047"
+  },
+  "kind": "WS-30 composition formal-node reference borrowing review r1",
+  "new_mechanism_admitted": false,
+  "scope": "Read current entry files, relevant local technical analyses and verification records; recompute fixed PDF hashes."
+}

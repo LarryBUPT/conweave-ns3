@@ -1,0 +1,1567 @@
+{
+  "formal_effect_cells_counted": 12,
+  "plan_sha256": "77ca6064d4b4f275b409123302b01bd4eabd97e9c978e013f8d3e67edbf420f8",
+  "rows": [
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 3,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "9597c07531d159a1879ef7f5de98e4dd108e553b1e96d2335c26ca84fcc5fd2e",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-220000-ws30-comp5-s0-c0-e",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s0-c0-e",
+        "minimum_free_gib": 3077.2700157165527,
+        "minimum_mem_available_gib": 122.53163528442383,
+        "peak_load_1m": 7.37,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.086,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.086,
+          "p50_us": 40.058499999999995,
+          "p95_us": 40.08325,
+          "p99_us": 40.08545,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "Q16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 2,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "60300c017d417bf1accbb587976bcaa9b1739439e448db02bca0ff617d51dfa2",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-220000-ws30-comp5-s0-c0-q16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 4,
+            "near": 0,
+            "same": 4,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 1,
+            "background_nonzero": 1,
+            "chose_second": 0,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s0-c0-q16",
+        "minimum_free_gib": 3077.2698936462402,
+        "minimum_mem_available_gib": 122.5235366821289,
+        "peak_load_1m": 6.78,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.086,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.086,
+          "p50_us": 40.058499999999995,
+          "p95_us": 40.08325,
+          "p99_us": 40.08545,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 3,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "cfb5cd17f6cfa1ea6c382cedfdb1a840bf4d56bae6baa7efd6770ebf6f0eecb0",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-220000-ws30-comp5-s0-c0-c16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 4,
+            "near": 0,
+            "same": 4,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 1,
+            "background_nonzero": 1,
+            "chose_second": 1,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s0-c0-c16",
+        "minimum_free_gib": 3077.2697677612305,
+        "minimum_mem_available_gib": 122.52375793457031,
+        "peak_load_1m": 6.32,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.086,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.086,
+          "p50_us": 40.058499999999995,
+          "p95_us": 40.08325,
+          "p99_us": 40.08545,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 3,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "ad55b8d8130e9614827b8492a65dd77aca60fe258fe5982fd0bf7f52a2d15a77",
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-220000-ws30-comp5-s1-c0-e",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s1-c0-e",
+        "minimum_free_gib": 3077.2696533203125,
+        "minimum_mem_available_gib": 122.52693557739258,
+        "peak_load_1m": 5.89,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.087,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.087,
+          "p50_us": 40.0595,
+          "p95_us": 40.084250000000004,
+          "p99_us": 40.086450000000006,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "bdb4458981e326e30931bcc4de52a733432ea0b9e78466fb884471b1d46a99bc"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "Q16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 2,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "a0642a72726d1c38b0495db61a733a3ca00aaf83720d6ead5c410073a1030ad6",
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-220000-ws30-comp5-s1-c0-q16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 4,
+            "near": 0,
+            "same": 4,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 1,
+            "chose_second": 0,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s1-c0-q16",
+        "minimum_free_gib": 3070.567398071289,
+        "minimum_mem_available_gib": 122.53039932250977,
+        "peak_load_1m": 7.46,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.087,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.087,
+          "p50_us": 40.0595,
+          "p95_us": 40.084250000000004,
+          "p99_us": 40.086450000000006,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "bdb4458981e326e30931bcc4de52a733432ea0b9e78466fb884471b1d46a99bc"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 0,
+          "3": 0
+        },
+        "all_completed_rows": 5,
+        "chosen_port": 2,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "9689b96626db579b0882fd397a2fc59ca8e0e370e6cf0d8567233e989437830c",
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11",
+      "id": "20261024-220000-ws30-comp5-s1-c0-c16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 4,
+            "near": 0,
+            "same": 4,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 1,
+            "chose_second": 0,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 304,
+          "full_rows": 304,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 11
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 330688,
+          "dropped": 0,
+          "enqueued": 330688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 0,
+          "fd_feedback_frames": 144,
+          "fd_without_sack": 144,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s1-c0-c16",
+        "minimum_free_gib": 3070.5672760009766,
+        "minimum_mem_available_gib": 122.5219841003418,
+        "peak_load_1m": 6.86,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 40.087,
+          "completed_flows": 2,
+          "input_flows": 2,
+          "max_us": 40.087,
+          "p50_us": 40.0595,
+          "p95_us": 40.084250000000004,
+          "p99_us": 40.086450000000006,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "bdb4458981e326e30931bcc4de52a733432ea0b9e78466fb884471b1d46a99bc"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 134144,
+          "3": 134144
+        },
+        "all_completed_rows": 37,
+        "chosen_port": 3,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "4ac6c9960539b7b6ab0d1f26a1cdb8f111a4aac9fc4cba86d404cef7952056ab",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "2554c3332683677a59ee4849d0b01ca950cfc4c71bdde74f9721ade6857bcd8e",
+      "id": "20261024-220000-ws30-comp5-s0-c1-e",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 816,
+          "full_rows": 816,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 897984,
+          "dropped": 0,
+          "enqueued": 897984,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 1,
+          "fd_feedback_frames": 400,
+          "fd_without_sack": 400,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s0-c1-e",
+        "minimum_free_gib": 3070.567039489746,
+        "minimum_mem_available_gib": 122.52645874023438,
+        "peak_load_1m": 6.39,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 70.197,
+          "completed_flows": 34,
+          "input_flows": 34,
+          "max_us": 40.086,
+          "p50_us": 26.822,
+          "p95_us": 35.58955000000001,
+          "p99_us": 40.06785,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b3f380befa96299652a397e0ab90d8c2d4a3bc07d6180f19b5a61b1c16970918"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "Q16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 134144,
+          "3": 134144
+        },
+        "all_completed_rows": 37,
+        "chosen_port": 2,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "76acf73f837b013bf6a5d170b83dfcbc982750a176e7e4c2581fb5936d408ddb",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "09515f61f496616d665147495f0dda87d35c6d666bb5acab9d7d487470dc55ad",
+      "id": "20261024-220000-ws30-comp5-s0-c1-q16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 68,
+            "near": 0,
+            "same": 68,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 1,
+            "background_nonzero": 1,
+            "chose_second": 0,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 816,
+          "full_rows": 816,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 897984,
+          "dropped": 0,
+          "enqueued": 897984,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 1,
+          "fd_feedback_frames": 400,
+          "fd_without_sack": 400,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s0-c1-q16",
+        "minimum_free_gib": 3070.566791534424,
+        "minimum_mem_available_gib": 122.52412033081055,
+        "peak_load_1m": 5.96,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 70.197,
+          "completed_flows": 34,
+          "input_flows": 34,
+          "max_us": 40.086,
+          "p50_us": 26.822,
+          "p95_us": 35.58955000000001,
+          "p99_us": 40.06785,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b3f380befa96299652a397e0ab90d8c2d4a3bc07d6180f19b5a61b1c16970918"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 134144,
+          "3": 134144
+        },
+        "all_completed_rows": 37,
+        "chosen_port": 3,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "71c1433bf35697e52783d12e7dd6ff03b33b4121539dd1fc2d145806ed92533f",
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "2554c3332683677a59ee4849d0b01ca950cfc4c71bdde74f9721ade6857bcd8e",
+      "id": "20261024-220000-ws30-comp5-s0-c1-c16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 68,
+            "near": 0,
+            "same": 68,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 1,
+            "background_nonzero": 1,
+            "chose_second": 1,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 816,
+          "full_rows": 816,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 897984,
+          "dropped": 0,
+          "enqueued": 897984,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 1,
+          "fd_feedback_frames": 400,
+          "fd_without_sack": 400,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s0-c1-c16",
+        "minimum_free_gib": 3063.864402770996,
+        "minimum_mem_available_gib": 122.52564239501953,
+        "peak_load_1m": 7.15,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 70.197,
+          "completed_flows": 34,
+          "input_flows": 34,
+          "max_us": 40.086,
+          "p50_us": 26.822,
+          "p95_us": 35.58955000000001,
+          "p99_us": 40.06785,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "b3f380befa96299652a397e0ab90d8c2d4a3bc07d6180f19b5a61b1c16970918"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 134144,
+          "3": 134144
+        },
+        "all_completed_rows": 37,
+        "chosen_port": 3,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "4bfeddbc1e334ce2c12dd172f8758405f381b6cc63e360c5ff66ca21152f2546",
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "2554c3332683677a59ee4849d0b01ca950cfc4c71bdde74f9721ade6857bcd8e",
+      "id": "20261024-220000-ws30-comp5-s1-c1-e",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 816,
+          "full_rows": 816,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 897984,
+          "dropped": 0,
+          "enqueued": 897984,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 1,
+          "fd_feedback_frames": 400,
+          "fd_without_sack": 400,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s1-c1-e",
+        "minimum_free_gib": 3063.8641624450684,
+        "minimum_mem_available_gib": 122.52338027954102,
+        "peak_load_1m": 7.15,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 70.197,
+          "completed_flows": 34,
+          "input_flows": 34,
+          "max_us": 40.087,
+          "p50_us": 26.822,
+          "p95_us": 35.58990000000001,
+          "p99_us": 40.06885,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "fdae9c3131bd3e2e2c62e8947af974f6ac08acbac4eaa117b4d99ddcabb3ec56"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "Q16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 134144,
+          "3": 134144
+        },
+        "all_completed_rows": 37,
+        "chosen_port": 2,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "f1279587870d4769d00950723a0ffa991bf34bf4cc0003fcd524d9f7592afe3f",
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "09515f61f496616d665147495f0dda87d35c6d666bb5acab9d7d487470dc55ad",
+      "id": "20261024-220000-ws30-comp5-s1-c1-q16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 68,
+            "near": 0,
+            "same": 68,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 1,
+            "chose_second": 0,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 816,
+          "full_rows": 816,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 897984,
+          "dropped": 0,
+          "enqueued": 897984,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 1,
+          "fd_feedback_frames": 400,
+          "fd_without_sack": 400,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s1-c1-q16",
+        "minimum_free_gib": 3063.863914489746,
+        "minimum_mem_available_gib": 122.52091979980469,
+        "peak_load_1m": 6.58,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 70.197,
+          "completed_flows": 34,
+          "input_flows": 34,
+          "max_us": 40.087,
+          "p50_us": 26.822,
+          "p95_us": 35.58990000000001,
+          "p99_us": 40.06885,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "fdae9c3131bd3e2e2c62e8947af974f6ac08acbac4eaa117b4d99ddcabb3ec56"
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "composition": {
+        "after_probe_background_by_port": {
+          "2": 134144,
+          "3": 134144
+        },
+        "all_completed_rows": 37,
+        "chosen_port": 2,
+        "probe_fct_ns": 25665,
+        "queue_trace_sha256": "984f7dfa608fb0a703f81f78b4a02af58971fadcaa28ac32a1c3a97d5d8f8dd6",
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        }
+      },
+      "fct_sha256": "09515f61f496616d665147495f0dda87d35c6d666bb5acab9d7d487470dc55ad",
+      "id": "20261024-220000-ws30-comp5-s1-c1-c16",
+      "observation": {
+        "choices": [
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 0,
+            "near": 0,
+            "same": 0,
+            "tag": 0
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 0,
+            "chose_second": 0,
+            "composition": 0,
+            "empty": 0,
+            "equal": 0,
+            "events": 68,
+            "near": 0,
+            "same": 68,
+            "tag": 1
+          },
+          {
+            "a_disagrees": 0,
+            "background_nonzero": 1,
+            "chose_second": 0,
+            "composition": 1,
+            "empty": 0,
+            "equal": 1,
+            "events": 7,
+            "near": 1,
+            "same": 6,
+            "tag": 2
+          }
+        ],
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 816,
+          "full_rows": 816,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 897984,
+          "dropped": 0,
+          "enqueued": 897984,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_sums": {
+          "cnp_feedback": 1,
+          "fd_feedback_frames": 400,
+          "fd_without_sack": 400,
+          "retransmit_bytes": 0,
+          "retransmit_packets": 0,
+          "rx_below_expected": 0,
+          "rx_gap": 0,
+          "sack_feedback": 0,
+          "timeout": 0
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261024-220000-ws30-comp5-s1-c1-c16",
+        "minimum_free_gib": 3063.8636741638184,
+        "minimum_mem_available_gib": 122.52195739746094,
+        "peak_load_1m": 6.05,
+        "peak_tree_rss_mib": 0.0,
+        "samples": 2
+      },
+      "role": "composition",
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "tags": {
+        "1": {
+          "batch_us": 70.197,
+          "completed_flows": 34,
+          "input_flows": 34,
+          "max_us": 40.087,
+          "p50_us": 26.822,
+          "p95_us": 35.58990000000001,
+          "p99_us": 40.06885,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_us": 45.665,
+          "completed_flows": 3,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      },
+      "trace_sha256": "fdae9c3131bd3e2e2c62e8947af974f6ac08acbac4eaa117b4d99ddcabb3ec56"
+    }
+  ],
+  "verified_cells": 12
+}

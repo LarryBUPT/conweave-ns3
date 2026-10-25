@@ -1,0 +1,1618 @@
+{
+  "independent_reconstruction": "Decimal timestamps; all QP keys and bytes; per-class FCT; full queue event replay, hold, first packet and complete probe train",
+  "raw_rows": 252,
+  "rows": [
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "continuing": 0,
+      "decision": {
+        "choice": null,
+        "chosen_port": 3,
+        "first": null,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          3
+        ],
+        "second": null
+      },
+      "file_sha256": {
+        "config/config.txt": "ecaa5f32544f3bb9bb4ca34768411b79e092ae39cfc4f7ed33d4490c3a46740e",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13",
+        "logs/config.log": "9597c07531d159a1879ef7f5de98e4dd108e553b1e96d2335c26ca84fcc5fd2e",
+        "logs/resource-samples.jsonl": "0cb0070b56cad81ba5d838139f007ed11dbf75533dce89e85cc06d9d57d0cb50",
+        "logs/resource-summary.json": "8a271118cc3daf040708fddd62a33b83337bfdd00fb098b7f6079062e32718ea",
+        "metadata.json": "7cf506d1bd606182e29be6f231053a2497969f77306091ead66bea42fe7559a0",
+        "raw/328059491/328059491_out_fct.txt": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11"
+      },
+      "finished_utc": "2026-10-25T06:30:26Z",
+      "id": "20261024-220000-ws30-comp5-s0-c0-e",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": null,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "0": 5
+      },
+      "started_utc": "2026-10-25T06:30:25Z",
+      "swap": 0,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              1,
+              10002,
+              101,
+              31232
+            ]
+          ],
+          "batch_us": 40.086,
+          "completed_bytes": 62464,
+          "completed_flows": 2,
+          "input_bytes": 62464,
+          "input_flows": 2,
+          "max_us": 40.086,
+          "mean_us": 40.058499999999995,
+          "p50_us": 40.058499999999995,
+          "p95_us": 40.08325,
+          "p99_us": 40.08545,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "mean_us": 35.26133333333333,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "Q16",
+      "continuing": 0,
+      "decision": {
+        "choice": {
+          "b1": 65536,
+          "b2": 0,
+          "chosen": 2,
+          "dip": 184550145,
+          "dport": 100,
+          "first": 2,
+          "q1": 65536,
+          "q2": 65536,
+          "second": 3,
+          "seq": 0,
+          "sip": 184549377,
+          "sport": 10004,
+          "switch": 4,
+          "tag": 2,
+          "time_ns": 2000021020
+        },
+        "chosen_port": 2,
+        "first": 2,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          2
+        ],
+        "second": 3
+      },
+      "file_sha256": {
+        "config/config.txt": "8c3d372ff5d337da5ecfc8d76a509779fa8a761441817e06ea0e879cdc6816c9",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13",
+        "logs/config.log": "60300c017d417bf1accbb587976bcaa9b1739439e448db02bca0ff617d51dfa2",
+        "logs/resource-samples.jsonl": "901a4f205523636d6ad6d446c581f5ddc8fa763507e37f890736a564862e038d",
+        "logs/resource-summary.json": "8722b6be78db586b05e8d2af6d75d48b6297b98fed9137e747a2332a5fb549ce",
+        "metadata.json": "31a0ec64dedc938e847c9540237ff6476696def95c7cb7c2c2f47a254c957e4b",
+        "raw/771826715/771826715_out_fct.txt": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11"
+      },
+      "finished_utc": "2026-10-25T06:30:30Z",
+      "id": "20261024-220000-ws30-comp5-s0-c0-q16",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": null,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "0": 5
+      },
+      "started_utc": "2026-10-25T06:30:29Z",
+      "swap": 0,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              1,
+              10002,
+              101,
+              31232
+            ]
+          ],
+          "batch_us": 40.086,
+          "completed_bytes": 62464,
+          "completed_flows": 2,
+          "input_bytes": 62464,
+          "input_flows": 2,
+          "max_us": 40.086,
+          "mean_us": 40.058499999999995,
+          "p50_us": 40.058499999999995,
+          "p95_us": 40.08325,
+          "p99_us": 40.08545,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "mean_us": 35.26133333333333,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "continuing": 0,
+      "decision": {
+        "choice": {
+          "b1": 65536,
+          "b2": 0,
+          "chosen": 3,
+          "dip": 184550145,
+          "dport": 100,
+          "first": 2,
+          "q1": 65536,
+          "q2": 65536,
+          "second": 3,
+          "seq": 0,
+          "sip": 184549377,
+          "sport": 10004,
+          "switch": 4,
+          "tag": 2,
+          "time_ns": 2000021020
+        },
+        "chosen_port": 3,
+        "first": 2,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          3
+        ],
+        "second": 3
+      },
+      "file_sha256": {
+        "config/config.txt": "dcb7e64ca4328167f22684e8134e1c013fda04e87adee3bdb9e1697a487eff0e",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13",
+        "logs/config.log": "cfb5cd17f6cfa1ea6c382cedfdb1a840bf4d56bae6baa7efd6770ebf6f0eecb0",
+        "logs/resource-samples.jsonl": "eb9b39b80064e016cd2e976710c71c268b78893af48551ee246980b51b49b4a3",
+        "logs/resource-summary.json": "6ddcf1a4bfba45eb1ec5e9a9e0de6b42280f6f17f0ef99505259c05aed3abd5d",
+        "metadata.json": "5e24bf9a29631eb8b825affc7c1d05c19ff647d783b6ee313067a4ae6166677f",
+        "raw/103693918/103693918_out_fct.txt": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11"
+      },
+      "finished_utc": "2026-10-25T06:30:34Z",
+      "id": "20261024-220000-ws30-comp5-s0-c0-c16",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": null,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "0": 5
+      },
+      "started_utc": "2026-10-25T06:30:33Z",
+      "swap": 0,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              1,
+              10002,
+              101,
+              31232
+            ]
+          ],
+          "batch_us": 40.086,
+          "completed_bytes": 62464,
+          "completed_flows": 2,
+          "input_bytes": 62464,
+          "input_flows": 2,
+          "max_us": 40.086,
+          "mean_us": 40.058499999999995,
+          "p50_us": 40.058499999999995,
+          "p95_us": 40.08325,
+          "p99_us": 40.08545,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "mean_us": 35.26133333333333,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "continuing": 0,
+      "decision": {
+        "choice": null,
+        "chosen_port": 3,
+        "first": null,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          3
+        ],
+        "second": null
+      },
+      "file_sha256": {
+        "config/config.txt": "070531f5f815fe969d677a593720caa8851f73311a3c3be6b24c41cf7bc361a0",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "bdb4458981e326e30931bcc4de52a733432ea0b9e78466fb884471b1d46a99bc",
+        "logs/config.log": "ad55b8d8130e9614827b8492a65dd77aca60fe258fe5982fd0bf7f52a2d15a77",
+        "logs/resource-samples.jsonl": "8c3e1c90e731aec3eb35e77d7538454930fe0532198457d7744c1e755dd63276",
+        "logs/resource-summary.json": "346d20a81d1c7524a31dabb5faf50bf0e7c5b704dbf3c9f2cbf610380cfe74b4",
+        "metadata.json": "04c2bf9d3f6e2e4c0559fd145356b28156831b584808a04b78e1aa011f87e5e0",
+        "raw/954367636/954367636_out_fct.txt": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11"
+      },
+      "finished_utc": "2026-10-25T06:30:38Z",
+      "id": "20261024-220000-ws30-comp5-s1-c0-e",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": null,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "0": 5
+      },
+      "started_utc": "2026-10-25T06:30:37Z",
+      "swap": 1,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              2,
+              10003,
+              101,
+              31232
+            ]
+          ],
+          "batch_us": 40.087,
+          "completed_bytes": 62464,
+          "completed_flows": 2,
+          "input_bytes": 62464,
+          "input_flows": 2,
+          "max_us": 40.087,
+          "mean_us": 40.0595,
+          "p50_us": 40.0595,
+          "p95_us": 40.084250000000004,
+          "p99_us": 40.086450000000006,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "mean_us": 35.260666666666665,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "Q16",
+      "continuing": 0,
+      "decision": {
+        "choice": {
+          "b1": 0,
+          "b2": 65536,
+          "chosen": 2,
+          "dip": 184550145,
+          "dport": 100,
+          "first": 2,
+          "q1": 65536,
+          "q2": 65536,
+          "second": 3,
+          "seq": 0,
+          "sip": 184549377,
+          "sport": 10004,
+          "switch": 4,
+          "tag": 2,
+          "time_ns": 2000021020
+        },
+        "chosen_port": 2,
+        "first": 2,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          2
+        ],
+        "second": 3
+      },
+      "file_sha256": {
+        "config/config.txt": "757e330e9825e290c5a2ec4d49bbb307cd510cd889c290145963fbbf632e633b",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "bdb4458981e326e30931bcc4de52a733432ea0b9e78466fb884471b1d46a99bc",
+        "logs/config.log": "a0642a72726d1c38b0495db61a733a3ca00aaf83720d6ead5c410073a1030ad6",
+        "logs/resource-samples.jsonl": "1ba6ea1bd0b17f7737d7a6cadc618ea669cb3fcc28ca029b0b55380e346af023",
+        "logs/resource-summary.json": "47e7f4abb729fa014fbd6ca9a4ce4efc5d4d231b5847ac8eade9bf15a1647452",
+        "metadata.json": "fe0209339bfc78df22a2107948eac07b2e5292d7047385ca58a54f8e434791eb",
+        "raw/728031232/728031232_out_fct.txt": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11"
+      },
+      "finished_utc": "2026-10-25T06:37:57Z",
+      "id": "20261024-220000-ws30-comp5-s1-c0-q16",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": null,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "0": 5
+      },
+      "started_utc": "2026-10-25T06:37:56Z",
+      "swap": 1,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              2,
+              10003,
+              101,
+              31232
+            ]
+          ],
+          "batch_us": 40.087,
+          "completed_bytes": 62464,
+          "completed_flows": 2,
+          "input_bytes": 62464,
+          "input_flows": 2,
+          "max_us": 40.087,
+          "mean_us": 40.0595,
+          "p50_us": 40.0595,
+          "p95_us": 40.084250000000004,
+          "p99_us": 40.086450000000006,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "mean_us": 35.260666666666665,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "continuing": 0,
+      "decision": {
+        "choice": {
+          "b1": 0,
+          "b2": 65536,
+          "chosen": 2,
+          "dip": 184550145,
+          "dport": 100,
+          "first": 2,
+          "q1": 65536,
+          "q2": 65536,
+          "second": 3,
+          "seq": 0,
+          "sip": 184549377,
+          "sport": 10004,
+          "switch": 4,
+          "tag": 2,
+          "time_ns": 2000021020
+        },
+        "chosen_port": 2,
+        "first": 2,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          2
+        ],
+        "second": 3
+      },
+      "file_sha256": {
+        "config/config.txt": "664035ef1f92437ef2b289ef334b849828842c21dde032c9ddd4621e273b26d6",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "bdb4458981e326e30931bcc4de52a733432ea0b9e78466fb884471b1d46a99bc",
+        "logs/config.log": "9689b96626db579b0882fd397a2fc59ca8e0e370e6cf0d8567233e989437830c",
+        "logs/resource-samples.jsonl": "22402059a536041b7db2460f2bd53d2c4d12026aadc82df5d12d5f063b558cfc",
+        "logs/resource-summary.json": "7e96cc7bd80c05956246a8e92c9c5bfec4dd2ed407bcdb2562c869651ea7c324",
+        "metadata.json": "8e5b25b7de95b97a0e5891a0d4e6ea4d1f8b2b041c950173af09b0167983c03a",
+        "raw/739372381/739372381_out_fct.txt": "7d0f6ce244bea55be693cc5db8bacd95f21bf1682c0a47434fc0775d6156fe11"
+      },
+      "finished_utc": "2026-10-25T06:38:01Z",
+      "id": "20261024-220000-ws30-comp5-s1-c0-c16",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": null,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "0": 5
+      },
+      "started_utc": "2026-10-25T06:38:00Z",
+      "swap": 1,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              2,
+              10003,
+              101,
+              31232
+            ]
+          ],
+          "batch_us": 40.087,
+          "completed_bytes": 62464,
+          "completed_flows": 2,
+          "input_bytes": 62464,
+          "input_flows": 2,
+          "max_us": 40.087,
+          "mean_us": 40.0595,
+          "p50_us": 40.0595,
+          "p95_us": 40.084250000000004,
+          "p99_us": 40.086450000000006,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "mean_us": 35.260666666666665,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "continuing": 1,
+      "decision": {
+        "choice": null,
+        "chosen_port": 3,
+        "first": null,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          3
+        ],
+        "second": null
+      },
+      "file_sha256": {
+        "config/config.txt": "fe997d4e929882e0e9d9de82e4c16f0b3d95eaeec5bdd4854322c053110becb0",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "b3f380befa96299652a397e0ab90d8c2d4a3bc07d6180f19b5a61b1c16970918",
+        "logs/config.log": "4ac6c9960539b7b6ab0d1f26a1cdb8f111a4aac9fc4cba86d404cef7952056ab",
+        "logs/resource-samples.jsonl": "0bd4f05cb0e488d7d2fa5e568ef2377f87e08612b21a9f25cdaaf2060ad9c073",
+        "logs/resource-summary.json": "1dda929dbb92413593d8a1dca09be19001c7be50d3bf3d35cf020c5d740544c5",
+        "metadata.json": "0d4a9acd28125af7801c18d8cbf7d0487bdcb29eaf3675c801cef6fa15616a8b",
+        "raw/420833327/420833327_out_fct.txt": "2554c3332683677a59ee4849d0b01ca950cfc4c71bdde74f9721ade6857bcd8e"
+      },
+      "finished_utc": "2026-10-25T06:38:05Z",
+      "id": "20261024-220000-ws30-comp5-s0-c1-e",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": 2000023019,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "-1": 14,
+        "0": 23
+      },
+      "started_utc": "2026-10-25T06:38:04Z",
+      "swap": 0,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              2,
+              10036,
+              117,
+              8000
+            ]
+          ],
+          "batch_us": 70.197,
+          "completed_bytes": 318464,
+          "completed_flows": 34,
+          "input_bytes": 318464,
+          "input_flows": 34,
+          "max_us": 40.086,
+          "mean_us": 27.284264705882354,
+          "p50_us": 26.822,
+          "p95_us": 35.58955000000001,
+          "p99_us": 40.06785,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "mean_us": 35.26133333333333,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "Q16",
+      "continuing": 1,
+      "decision": {
+        "choice": {
+          "b1": 65536,
+          "b2": 0,
+          "chosen": 2,
+          "dip": 184550145,
+          "dport": 100,
+          "first": 2,
+          "q1": 65536,
+          "q2": 65536,
+          "second": 3,
+          "seq": 0,
+          "sip": 184549377,
+          "sport": 10004,
+          "switch": 4,
+          "tag": 2,
+          "time_ns": 2000021020
+        },
+        "chosen_port": 2,
+        "first": 2,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          2
+        ],
+        "second": 3
+      },
+      "file_sha256": {
+        "config/config.txt": "b98ee7370bc06fac9618dceb56e711ba9f7566a8f5b8cd5e2f55cdcd9eae62b5",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "b3f380befa96299652a397e0ab90d8c2d4a3bc07d6180f19b5a61b1c16970918",
+        "logs/config.log": "76acf73f837b013bf6a5d170b83dfcbc982750a176e7e4c2581fb5936d408ddb",
+        "logs/resource-samples.jsonl": "5c57aa89547a58d73c60b310bffbb15b739102b4603693c47aa4d51a9bdbca5f",
+        "logs/resource-summary.json": "19232362f85bf65b17864e5b53d0e1241df24a17b322764869b33456b9d4555c",
+        "metadata.json": "c547775a5af7a1cb9f96f635b4ad148ca485a7840f96832129190744b0af44e9",
+        "raw/331047539/331047539_out_fct.txt": "09515f61f496616d665147495f0dda87d35c6d666bb5acab9d7d487470dc55ad"
+      },
+      "finished_utc": "2026-10-25T06:38:09Z",
+      "id": "20261024-220000-ws30-comp5-s0-c1-q16",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": 2000023019,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "-1": 14,
+        "0": 23
+      },
+      "started_utc": "2026-10-25T06:38:08Z",
+      "swap": 0,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              1,
+              10035,
+              117,
+              8000
+            ]
+          ],
+          "batch_us": 70.197,
+          "completed_bytes": 318464,
+          "completed_flows": 34,
+          "input_bytes": 318464,
+          "input_flows": 34,
+          "max_us": 40.086,
+          "mean_us": 27.284264705882354,
+          "p50_us": 26.822,
+          "p95_us": 35.58955000000001,
+          "p99_us": 40.06785,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "mean_us": 35.26133333333333,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "continuing": 1,
+      "decision": {
+        "choice": {
+          "b1": 65536,
+          "b2": 0,
+          "chosen": 3,
+          "dip": 184550145,
+          "dport": 100,
+          "first": 2,
+          "q1": 65536,
+          "q2": 65536,
+          "second": 3,
+          "seq": 0,
+          "sip": 184549377,
+          "sport": 10004,
+          "switch": 4,
+          "tag": 2,
+          "time_ns": 2000021020
+        },
+        "chosen_port": 3,
+        "first": 2,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          3
+        ],
+        "second": 3
+      },
+      "file_sha256": {
+        "config/config.txt": "f7d4f355874341e441715a4a05992fb0955c6c6bc4bf90a971f5c5a6e197f663",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "b3f380befa96299652a397e0ab90d8c2d4a3bc07d6180f19b5a61b1c16970918",
+        "logs/config.log": "71c1433bf35697e52783d12e7dd6ff03b33b4121539dd1fc2d145806ed92533f",
+        "logs/resource-samples.jsonl": "2457164d55eb431525e27b63da2fe047222d5c8e5794791015e424c7f44103ff",
+        "logs/resource-summary.json": "fa3410001f80e027e2c1fab3ef35ef0c7ad367de9e3d3c788307bf894f9c29e4",
+        "metadata.json": "6cceedabc4210392abbe87d155b8ee55b2e5f8b24edf2aa51f7365fea6638df1",
+        "raw/161935872/161935872_out_fct.txt": "2554c3332683677a59ee4849d0b01ca950cfc4c71bdde74f9721ade6857bcd8e"
+      },
+      "finished_utc": "2026-10-25T06:45:34Z",
+      "id": "20261024-220000-ws30-comp5-s0-c1-c16",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": 2000023019,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 65536,
+          "b2": 0,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "-1": 14,
+        "0": 23
+      },
+      "started_utc": "2026-10-25T06:45:33Z",
+      "swap": 0,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              2,
+              10036,
+              117,
+              8000
+            ]
+          ],
+          "batch_us": 70.197,
+          "completed_bytes": 318464,
+          "completed_flows": 34,
+          "input_bytes": 318464,
+          "input_flows": 34,
+          "max_us": 40.086,
+          "mean_us": 27.284264705882354,
+          "p50_us": 26.822,
+          "p95_us": 35.58955000000001,
+          "p99_us": 40.06785,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.087,
+          "mean_us": 35.26133333333333,
+          "p50_us": 40.032,
+          "p95_us": 40.081500000000005,
+          "p99_us": 40.0859,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "E",
+      "continuing": 1,
+      "decision": {
+        "choice": null,
+        "chosen_port": 3,
+        "first": null,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          3
+        ],
+        "second": null
+      },
+      "file_sha256": {
+        "config/config.txt": "a620f78756da43c59f9f3434bca2208190a789fad07a8ef5b0c40a4e6196fe91",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "fdae9c3131bd3e2e2c62e8947af974f6ac08acbac4eaa117b4d99ddcabb3ec56",
+        "logs/config.log": "4bfeddbc1e334ce2c12dd172f8758405f381b6cc63e360c5ff66ca21152f2546",
+        "logs/resource-samples.jsonl": "66cb50ddfb965661285cc7f8e07217af767c233073b8c0dea04d85d4e533acbe",
+        "logs/resource-summary.json": "47d51bec84f50e5e122b1673f74494240dc49a19dd7c55db2b5d4f032d7b13ca",
+        "metadata.json": "34b92a29547027d0cac091654485eae2b70d38f4d8ef496a87679e2d16ef6331",
+        "raw/168489885/168489885_out_fct.txt": "2554c3332683677a59ee4849d0b01ca950cfc4c71bdde74f9721ade6857bcd8e"
+      },
+      "finished_utc": "2026-10-25T06:45:38Z",
+      "id": "20261024-220000-ws30-comp5-s1-c1-e",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": 2000023019,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "-1": 14,
+        "0": 23
+      },
+      "started_utc": "2026-10-25T06:45:37Z",
+      "swap": 1,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              2,
+              10036,
+              117,
+              8000
+            ]
+          ],
+          "batch_us": 70.197,
+          "completed_bytes": 318464,
+          "completed_flows": 34,
+          "input_bytes": 318464,
+          "input_flows": 34,
+          "max_us": 40.087,
+          "mean_us": 27.284323529411765,
+          "p50_us": 26.822,
+          "p95_us": 35.58990000000001,
+          "p99_us": 40.06885,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "mean_us": 35.260666666666665,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "Q16",
+      "continuing": 1,
+      "decision": {
+        "choice": {
+          "b1": 0,
+          "b2": 65536,
+          "chosen": 2,
+          "dip": 184550145,
+          "dport": 100,
+          "first": 2,
+          "q1": 65536,
+          "q2": 65536,
+          "second": 3,
+          "seq": 0,
+          "sip": 184549377,
+          "sport": 10004,
+          "switch": 4,
+          "tag": 2,
+          "time_ns": 2000021020
+        },
+        "chosen_port": 2,
+        "first": 2,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          2
+        ],
+        "second": 3
+      },
+      "file_sha256": {
+        "config/config.txt": "f2e250f7770a0770dbe8eabfeea15b5cc320bd2af68aa138597276f86dd2c967",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "fdae9c3131bd3e2e2c62e8947af974f6ac08acbac4eaa117b4d99ddcabb3ec56",
+        "logs/config.log": "f1279587870d4769d00950723a0ffa991bf34bf4cc0003fcd524d9f7592afe3f",
+        "logs/resource-samples.jsonl": "86611af147ce17cc3c56f05f339453dedee672d8f202052704a5dfa23e5cdf8a",
+        "logs/resource-summary.json": "5e615c4d27695c9158b6d00ba0d14e91e324b0d8328041567ebb4d16fa0626b3",
+        "metadata.json": "cff82829f5e9b89cb1c85dba31fa6c9ff75e00d304cb581e42de79423ef6c857",
+        "raw/331737890/331737890_out_fct.txt": "09515f61f496616d665147495f0dda87d35c6d666bb5acab9d7d487470dc55ad"
+      },
+      "finished_utc": "2026-10-25T06:45:42Z",
+      "id": "20261024-220000-ws30-comp5-s1-c1-q16",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": 2000023019,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "-1": 14,
+        "0": 23
+      },
+      "started_utc": "2026-10-25T06:45:41Z",
+      "swap": 1,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              1,
+              10035,
+              117,
+              8000
+            ]
+          ],
+          "batch_us": 70.197,
+          "completed_bytes": 318464,
+          "completed_flows": 34,
+          "input_bytes": 318464,
+          "input_flows": 34,
+          "max_us": 40.087,
+          "mean_us": 27.284323529411765,
+          "p50_us": 26.822,
+          "p95_us": 35.58990000000001,
+          "p99_us": 40.06885,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "mean_us": 35.260666666666665,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      }
+    },
+    {
+      "actual_cap": 4,
+      "arm": "C16",
+      "continuing": 1,
+      "decision": {
+        "choice": {
+          "b1": 0,
+          "b2": 65536,
+          "chosen": 2,
+          "dip": 184550145,
+          "dport": 100,
+          "first": 2,
+          "q1": 65536,
+          "q2": 65536,
+          "second": 3,
+          "seq": 0,
+          "sip": 184549377,
+          "sport": 10004,
+          "switch": 4,
+          "tag": 2,
+          "time_ns": 2000021020
+        },
+        "chosen_port": 2,
+        "first": 2,
+        "probe_data_packets": 16,
+        "probe_ports": [
+          2
+        ],
+        "second": 3
+      },
+      "file_sha256": {
+        "config/config.txt": "de99940dca65c49140e9570c0ccd12ed196c187f6203110be2d867ad0d73e28f",
+        "config/topology.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "config/traffic_trace.txt": "fdae9c3131bd3e2e2c62e8947af974f6ac08acbac4eaa117b4d99ddcabb3ec56",
+        "logs/config.log": "984f7dfa608fb0a703f81f78b4a02af58971fadcaa28ac32a1c3a97d5d8f8dd6",
+        "logs/resource-samples.jsonl": "ad1360369a6919336f1658186fc1072467aa91e868be96d18964c1302e60ccc2",
+        "logs/resource-summary.json": "582bcabcc99f28d2cba1adda516c2b7fce7d3d3186e5952526f6ad7239dd6512",
+        "metadata.json": "15beaea70e9d2c89cdf50945bcfc823a23c9ecd0b4d13986d25923e3b24c8b2e",
+        "raw/861573778/861573778_out_fct.txt": "09515f61f496616d665147495f0dda87d35c6d666bb5acab9d7d487470dc55ad"
+      },
+      "finished_utc": "2026-10-25T06:45:46Z",
+      "id": "20261024-220000-ws30-comp5-s1-c1-c16",
+      "probe": {
+        "fct_ns": 25665,
+        "finish_ns": 2000045665,
+        "identity": [
+          0,
+          3,
+          10004,
+          100,
+          16000
+        ],
+        "standalone_ns": 11793,
+        "start_ns": 2000020000
+      },
+      "queue": {
+        "final_bytes_by_port": {
+          "2": [
+            0,
+            0
+          ],
+          "3": [
+            0,
+            0
+          ]
+        },
+        "first_continuing_background_enqueue_ns": 2000023019,
+        "first_dequeue_ns": 2000022000,
+        "last_prefill_enqueue_ns": 2000003500,
+        "prefill_packets_per_port": 64,
+        "probe_train_last_enqueue_ns": 2000021320,
+        "probe_train_wire_bytes": 16768,
+        "snapshot": {
+          "b1": 0,
+          "b2": 65536,
+          "dport": 100,
+          "port1": 2,
+          "port2": 3,
+          "q1": 65536,
+          "q2": 65536,
+          "sport": 10004,
+          "switch": 4,
+          "time_ns": 2000021020
+        },
+        "wire_bytes_per_port": 65536
+      },
+      "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+      "start_rounding_ns": {
+        "-1": 14,
+        "0": 23
+      },
+      "started_utc": "2026-10-25T06:45:45Z",
+      "swap": 1,
+      "tags": {
+        "1": {
+          "batch_tail_keys": [
+            [
+              0,
+              1,
+              10035,
+              117,
+              8000
+            ]
+          ],
+          "batch_us": 70.197,
+          "completed_bytes": 318464,
+          "completed_flows": 34,
+          "input_bytes": 318464,
+          "input_flows": 34,
+          "max_us": 40.087,
+          "mean_us": 27.284323529411765,
+          "p50_us": 26.822,
+          "p95_us": 35.58990000000001,
+          "p99_us": 40.06885,
+          "release_origin_ns": 2000000000
+        },
+        "2": {
+          "batch_tail_keys": [
+            [
+              0,
+              3,
+              10004,
+              100,
+              16000
+            ]
+          ],
+          "batch_us": 45.665,
+          "completed_bytes": 78464,
+          "completed_flows": 3,
+          "input_bytes": 78464,
+          "input_flows": 3,
+          "max_us": 40.086,
+          "mean_us": 35.260666666666665,
+          "p50_us": 40.031,
+          "p95_us": 40.0805,
+          "p99_us": 40.0849,
+          "release_origin_ns": 2000000000
+        }
+      }
+    }
+  ],
+  "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+  "verified_cells": 12
+}

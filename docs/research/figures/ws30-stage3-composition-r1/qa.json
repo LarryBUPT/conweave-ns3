@@ -1,0 +1,62 @@
+{
+  "archetype": "quantitative grid and paired flow differences",
+  "backend": "Python / Matplotlib",
+  "data": "all 12 cells; every background QP in both C16 contrasts; no exclusions",
+  "exports": [
+    "editable PDF",
+    "editable SVG",
+    "600-dpi PNG"
+  ],
+  "file_sha256": {
+    "background-flow-transfer.pdf": "250b37273bd6cf3bf8f21bfe91924816eabb106cba259e452338d8daeb9dbc5d",
+    "background-flow-transfer.png": "7602b9773d137f87bb0b29a478b61e05ee799fa5f0fb30d415e6d882fe89173d",
+    "background-flow-transfer.svg": "d4208a7791233aff3d88744d864b7a2a56c0c8bcdef3c89a35c39991433ea053",
+    "probe-choice.pdf": "f8cfee0b4fad0d8c22ca7e0f31cdb9c37a8aa6f259201d5b2d0fac66c7a14a26",
+    "probe-choice.png": "ee1a3165be4d644dd3564a95739f64720ed26d831aef2fc8d7980239dcb89a1c",
+    "probe-choice.svg": "54a6380113e3a37473ec41116bc7fc4ba2bd8c5e5a39f7f6bf4f08e2a82bce3b"
+  },
+  "manual_preview": "Both PNGs inspected, including both flow panels; final PDF text/collision geometry audited.",
+  "panels": [
+    {
+      "alignment": "NOT APPLICABLE",
+      "claim": "C16 switches with composition, Q16 keeps first candidate",
+      "collision": "PASS",
+      "figure": "probe-choice",
+      "minimum_font_pt": 8,
+      "panel": "single",
+      "pass": true,
+      "uncertainty": "none; deterministic fixture, no independent repetitions",
+      "unit": "one fixed probe per condition and arm",
+      "visual_check": "all four rows, three arms, port labels and boundaries legible at final size"
+    },
+    {
+      "alignment": "PASS; equal row/height/width",
+      "claim": "C16/Q16 moves later background delay in swap0",
+      "collision": "PASS",
+      "figure": "background-flow-transfer",
+      "minimum_font_pt": 8,
+      "panel": "a",
+      "pass": true,
+      "uncertainty": "raw points; no inferential interval",
+      "unit": "all 2 or 34 paired background QPs per row",
+      "visual_check": "all four conditions and destination markers legible; jitter identifies overlapping raw points"
+    },
+    {
+      "alignment": "PASS; equal row/height/width",
+      "claim": "C16/E moves later background delay in swap1",
+      "collision": "PASS",
+      "figure": "background-flow-transfer",
+      "minimum_font_pt": 8,
+      "panel": "b",
+      "pass": true,
+      "uncertainty": "raw points; no inferential interval",
+      "unit": "all 2 or 34 paired background QPs per row",
+      "visual_check": "same axes/color/marker mapping as panel a; outside legend clear of page and titles"
+    }
+  ],
+  "raster_generation": "native Matplotlib only",
+  "source_preflight_warnings_review": {
+    "EXPORT-RASTER": "600-dpi PNG is a report preview; editable PDF/SVG are the delivery figures. No journal TIFF submission was requested.",
+    "FINAL-WIDTH": "The choice grid uses 119.4 mm and the paired flow plot 182.88 mm. This is an internal node report without a target-journal width requirement; all rendered glyphs are at least 8 pt."
+  }
+}

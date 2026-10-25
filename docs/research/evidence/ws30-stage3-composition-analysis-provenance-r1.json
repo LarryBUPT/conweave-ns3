@@ -1,0 +1,40 @@
+{
+  "analysis_context": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol",
+    "timestamp": "2026-10-25T07:06:49.743Z",
+    "turn_id": "01a171e2-29b3-7e80-b26d-c01502fa1eb3"
+  },
+  "controller_head_at_launch": "eda78d7d5ac749fbbfeb18df79591af964d7545b",
+  "inputs": {
+    "ws30-stage3-composition-node-authorization-r1.json": "81104fdaf40be4645a82c5c75173ad193db7cd24ed9dc33c85310664e08051b6",
+    "ws30-stage3-composition-results-r5.json": "2794ac5210428d575261b93e27e9e2aa411df8f2bf0ee4d542aa494cd5a903cf",
+    "ws30-stage3-correctness-combined-r1.json": "7cceb62d5f844f191641788c1bc57102845ea3008d98ce2d112ebee37297946c"
+  },
+  "kind": "WS-30 composition analysis provenance r1",
+  "outputs": {
+    "ws30-stage3-composition-analysis-r1.json": "7109eef07cfec2b9525863ab4de858a869e5ef435dcf214405ff2c2320435818",
+    "ws30-stage3-composition-execution-audit-r1.json": "8760456beee75e51b7e4aae50daadb2e4f9dd6ae725d6919cd46ad1abb88b0e3",
+    "ws30-stage3-composition-flow-contrasts-r1.csv": "b5298076d1c71a9edcc973a0b2b347d8c8c2b62a2b6d884cb21f6f5fa28c3deb",
+    "ws30-stage3-composition-flows-r1.csv": "83e2c4031f7fed143cd682eaf6d20b651745e6469fcf720537349b59d0ae6cc6",
+    "ws30-stage3-composition-metrics-r1.csv": "bac562ce913e0319394f2b6f3f518a8423396d4119453f4ea5abbb48087e61ea",
+    "ws30-stage3-composition-node-authorization-r1.json": "81104fdaf40be4645a82c5c75173ad193db7cd24ed9dc33c85310664e08051b6",
+    "ws30-stage3-composition-raw-audit-r1.json": "4f0c9b5f6a55dcfa294cb12beb3efc988046ef17b43eeb729448f31547c6e3dc",
+    "ws30-stage3-composition-readiness-r1.json": "40643690b3849b6b205d263ceb630ba0e8142ef99d1aa5aaf4219a2d49f44162",
+    "ws30-stage3-composition-reference-review-r1.json": "599a97bf78fb1a23d88623a7601dcf13f9df328f8a7bbeef41d3501e2e92af8b"
+  },
+  "plan_sha256": "77ca6064d4b4f275b409123302b01bd4eabd97e9c978e013f8d3e67edbf420f8",
+  "scripts": {
+    "scripts/analyze_ws30_stage3_composition.py": "fbb6878352474176fc668431056cf16ef46b9453f4eb7a501e5ccb065f2f1f30",
+    "scripts/plot_ws30_stage3_composition.py": "2b689ad6a843df052c36c2741f593a48670a8311239e75b00fd4c0dd4368364c",
+    "scripts/record_ws30_stage3_composition_audit.py": "a7915ae01fcfda7daacdc504c17f684b3f5688b09c0dd922279bedff8832bff2"
+  },
+  "source_file_blob_sha256": {
+    "config/ws30_composition8.txt": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+    "scratch/network-load-balance.cc": "09067cecc17915fef9c117478b468600e288e0520f826d9144a309bd4c3099cf",
+    "scratch/ws30-composition-fixture.h": "bfda95dfa16647677bd883ed17b92f3fa209ded1234a3acb13047bf2481f5218",
+    "src/point-to-point/model/qbb-net-device.cc": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+    "src/point-to-point/model/switch-node.cc": "5938cc6d5d162e3ec9c7d108c51a67e02ee546725b4ecfa3b24e5ee82aa64f4e"
+  },
+  "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f"
+}
