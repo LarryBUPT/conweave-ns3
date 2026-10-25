@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | ClassReserve 实验补正与归因审计 | ACTIVE；三个正式节点已获核对，跨阶段包完成待验收/全文整合 | 主矩阵 192/192、先占 72/72、组成 12/12；[v12 综合报告](../research/ws30-v12-evidence-synthesis-r1.md)交付 F1～F5、D1～D4、完整点源与 QA；[评审表](../research/ws30-v12-review-acceptance-r1.md)保留 34 项映射和 8 项事实修正。队列信息与 QP 粒度有对应对比，类别响应/未识别时间增量和局部代价分别报告 | 主对话核对统一数值和图表后完成中文 v12 标题、摘要、方法、图注、引用、结论一致性；预设实验无技术缺格，条件扩展未运行；未按闭环归档 |
+| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；v13 第一节点本地审计完成，补充实验待主对话决定 | [v13 节点报告](../research/ws30-v13-node1-audit-and-design-r1.md)：核实 DRILL 抽二加目的历史，定位 Q12 标签准入与持久 QP 缺口；48 格、795,648 条 raw 重建复现 Q12/E，并完成批尾、top-k 和分位数。v12 原证据未改，新仿真 0 格 | 主对话决定最多 214 格的具体范围后，实现严格无类别主体及 R12/U12、真实持久 QP/元组生命周期与 DRILL 观测；再冻结 SHA/ID、完成正确性和资源门槛。主稿由主对话重构，未按闭环归档 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |
