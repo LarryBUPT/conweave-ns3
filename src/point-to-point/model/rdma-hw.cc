@@ -246,6 +246,7 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
     if (Ws30V13Life() && workload_tag == 2) {
         static uint64_t serial = 0;
         qp->m_ws30Serial = ++serial;
+        qp->m_ws30Released = size;
         if (Ws30V13Life() == 1) {
             if (size != 24576) NS_FATAL_ERROR("Persistent fixture requires three 8192-byte requests");
             qp->m_ws30Persistent = true;
@@ -257,6 +258,7 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
                   << " serial=" << qp->m_ws30Serial << " flow_id=" << flow_id
                   << " persistent=" << qp->m_ws30Persistent << " size=" << size
                   << " sport=" << sport << " dport=" << dport << std::endl;
+
     }
 
     if (m_irn) {
@@ -293,6 +295,12 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
     }
 
     // Notify Nic
+    if (qp->m_ws30Serial) {
+        std::cout << "WS30V13_RELEASE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " serial=" << qp->m_ws30Serial << " round=0 demand_ns="
+                  << qp->startTime.GetNanoSeconds() << " released=" << qp->m_ws30Released
+                  << " snd_nxt=0 snd_una=0 rate=" << qp->m_rate.GetBitRate() << " alpha=" << qp->mlx.m_alpha << std::endl;
+    }
     m_nic[nic_idx].dev->NewQp(qp);
 }
 

@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shlex
 import subprocess
 
 import run_ws30_stage3 as old
@@ -83,13 +84,14 @@ def verify(c):
             assert [r['round'] for r in done]==[0,1,2]
             assert [r['snd_una'] for r in done]==[8192,16384,24576]
             assert len({r['serial'] for r in done+sends+creates+deletes})==1
-            assert len(releases)==2 and [r['released'] for r in releases]==[16384,24576]
+            assert len(releases)==3 and [r['released'] for r in releases]==[8192,16384,24576]
             assert [r['seq'] for r in sends]==[0,8192,16384]
             rx=[r for r in records('WS30V13_RX') if r['flow_id']==creates[0]['flow_id']]
             assert len({r['object'] for r in rx})==1
             assert all(any(r['seq']==seq and r['expected']==seq for r in rx) for seq in (0,8192,16384))
         else:
             assert len({r['serial'] for r in creates})==3 and all(r['seq']==0 for r in sends)
+            assert len(releases)==3 and all(r['released']==8192 for r in releases)
         for d,s in zip(done,sends):assert d['demand_ns']<=s['time_ns']<=d['time_ns']
         caches=[r for r in records('WS30V13_CACHE') if r['sip']==0x0b000001 and r['dip']==0x0b000301]
         if c['arm'] in ('Q12','U12'):
@@ -146,7 +148,16 @@ class Backend(old.Backend):
         finally:old.REMOTE_WAIT=previous
     def start(self,c,cap):
         # Resource watcher plus source/trace guards are identical to stage 3.
-        stage.remote.start_watch(c['id'])
+        code=("import os,subprocess; name=%r; sample='/home/fnl/lzy/results/'+name+'/logs/resource-samples.jsonl'; "
+              "rows=subprocess.check_output(['ps','-eo','args','--no-headers']).decode().splitlines(); "
+              "print(sum('ws11_resource_watch.py '+name in r and 'python3 -c' not in r for r in rows)); "
+              "print(int(os.path.exists(sample)))") % c['id']
+        reply=subprocess.check_output(stage.remote.remote.ssh_base(stage.remote.remote.config())+
+            ['python3 -c '+shlex.quote(code)],text=True,timeout=45).splitlines()
+        watchers,samples=map(int,reply[-2:]);assert watchers<=1,'Duplicate resource watcher'
+        if not watchers:
+            assert not samples,'Resource samples exist but watcher disappeared; preserve and inspect'
+            stage.remote.start_watch(c['id'])
         stage.engine.calibration.verify_remote_trace(c)
         stage.remote.command('run',c['id'],'--lb',c['mode'],'--pfc','0','--irn','1','--bw','400','--buffer','9',
             '--topo',c['topology'],'--flow-file',c['trace'],'--simul-time','0.01','--netload','10',
