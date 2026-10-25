@@ -1,0 +1,46 @@
+{
+  "56_boldface": {
+    "label": "Boldface overuse",
+    "count": 1,
+    "samples": [
+      "文件。  ## 1. 结论与审查版本  **本轮所审改动通过。** I1～I4 均已补齐，新增文字与既有实"
+    ]
+  },
+  "60_curly_quotes": {
+    "label": "Curly quotes",
+    "count": 2,
+    "samples": [
+      "选准入或修改实验判据。  主对话可据本轮“所审改动通过”完成其正在执行的中文规范、",
+      "验判据。  主对话可据本轮“所审改动通过”完成其正在执行的中文规范、文件链接与最终"
+    ]
+  },
+  "_metrics": {
+    "scanned_chars": 4864,
+    "truncated": false,
+    "sentences": 6,
+    "length_cv": 0.644,
+    "has_short_sentence": true,
+    "monotonous": false,
+    "paragraph_cv": 0.813,
+    "paragraph_monotonous": false,
+    "invisible_chars": 0,
+    "evasion_defused": 0,
+    "nonstandard_spaces": 0,
+    "trailing_newlines": 1,
+    "eol_trailing_spaces": 0,
+    "leading_whitespace": 0,
+    "first_person_ratio": 0.0,
+    "semicolons_per_1k": null,
+    "parentheticals_per_1k": null,
+    "passive_voice_ratio": 0.0,
+    "readability_fk_stdev": 3.74,
+    "readability_uniform": false,
+    "cadence_zigzag": 0.5,
+    "homoglyphs": 0,
+    "ai_tell_score": 15,
+    "ai_tell_band": "clean",
+    "patterns_flagged": 2,
+    "confidence": "low",
+    "confidence_reason": "156 words and 1 scored pattern: not enough independent evidence."
+  }
+}
