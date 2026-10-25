@@ -1,0 +1,224 @@
+{
+  "analysis_context": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol",
+    "timestamp": "2026-10-25T07:34:07.804Z",
+    "turn_id": "01a171fb-2868-7b20-abce-8be2d81ef7ce"
+  },
+  "base_delivery_commit": "cf20485759c7a95f770945f082a2f850b454b447",
+  "composition_source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+  "controller_summaries": {
+    "composition": {
+      "controller_events": [
+        {
+          "event": "controller_started",
+          "phase": "composition",
+          "pid": 7896,
+          "utc": "2026-10-25T06:23:16.206267+00:00"
+        }
+      ],
+      "failures": 0,
+      "pending": 0,
+      "sha256": "ec70570750cf9be96bd7f404fac35e15aca3520ac49cae667feaff061af61c94",
+      "verified": 12
+    },
+    "lead": {
+      "controller_events": [
+        {
+          "event": "controller_started",
+          "phase": "lead",
+          "pid": 45552,
+          "utc": "2026-10-25T00:53:07.601457+00:00"
+        },
+        {
+          "event": "admission_stop",
+          "resource": {
+            "free_gib": 3185.2374229431152,
+            "load_1m": 11.95,
+            "mem_available_gib": 86.17026138305664,
+            "observed_worker_mapping": [
+              {
+                "id": "20261024-230000-ws30-lead-s20263031-q16",
+                "pid": 266359,
+                "status": "RUNNING"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263033-q16",
+                "pid": 265547,
+                "status": "RUNNING"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263031-c16",
+                "pid": 266632,
+                "status": "RUNNING"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263036-q16",
+                "pid": 267731,
+                "status": "RUNNING"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263033-c16",
+                "pid": 266089,
+                "status": "RUNNING"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263040-q16",
+                "pid": 265012,
+                "status": "SUCCEEDED"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263036-e",
+                "pid": 267181,
+                "status": "RUNNING"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263031-e",
+                "pid": 266906,
+                "status": "RUNNING"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263033-e",
+                "pid": 265816,
+                "status": "RUNNING"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263040-c16",
+                "pid": 265278,
+                "status": "RUNNING"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263040-e",
+                "pid": 264743,
+                "status": "SUCCEEDED"
+              },
+              {
+                "id": "20261024-230000-ws30-lead-s20263036-c16",
+                "pid": 267458,
+                "status": "RUNNING"
+              }
+            ],
+            "other_users": [],
+            "rss_mib": 4544.91796875,
+            "unexpected_simulation_pids": [
+              "265907"
+            ],
+            "unexpected_simulation_processes": [
+              {
+                "comm": "network-load-ba",
+                "command_line": "[network-load-ba]",
+                "matching_worker_ids": [],
+                "pid": 265907,
+                "ppid": 265859,
+                "sampled_utc": "2026-10-25T01:22:24Z",
+                "started_utc": "Sun Oct 25 01:16:22 2026",
+                "uid": 1000
+              }
+            ]
+          },
+          "utc": "2026-10-25T01:22:23.160274+00:00"
+        },
+        {
+          "error": "Admission stopped; all current workers drained; evidence preserved",
+          "event": "controller_stop",
+          "utc": "2026-10-25T01:24:01.867414+00:00"
+        },
+        {
+          "event": "controller_started",
+          "phase": "lead",
+          "pid": 41788,
+          "utc": "2026-10-25T01:25:29.743310+00:00"
+        }
+      ],
+      "failures": 0,
+      "pending": 0,
+      "sha256": "3c312232324c5c9204b5ab77765205a108b4406e18d21c53e27349a095f3ae29",
+      "verified": 72
+    },
+    "main": {
+      "controller_events": [
+        {
+          "event": "controller_started",
+          "phase": "main",
+          "pid": 42852,
+          "utc": "2026-10-24T15:23:56.328445+00:00"
+        },
+        {
+          "error": "Build group stopped; preserve original IDs and inspect states: [('20261024-230000-ws30-main-s20263044-m16', \"controller failed (build --repo-local E:\\\\研\\\\毕业论文\\\\workspace\\\\ws30-attribution-audit): ERROR: Command '['git', '-C', 'E:\\\\\\\\研\\\\\\\\毕业论文\\\\\\\\workspace\\\\\\\\ws30-attribution-audit', 'ls-remote', '--heads', 'origin', 'research/ws30-attribution-audit']' returned non-zero exit status 128.\\n\"), ('20261024-230000-ws30-main-s20263044-c16', \"controller failed (build --repo-local E:\\\\研\\\\毕业论文\\\\workspace\\\\ws30-attribution-audit): ERROR: Command '['git', '-C', 'E:\\\\\\\\研\\\\\\\\毕业论文\\\\\\\\workspace\\\\\\\\ws30-attribution-audit', 'ls-remote', '--heads', 'origin', 'research/ws30-attribution-audit']' returned non-zero exit status 128.\\n\"), ('20261024-230000-ws30-main-s20263044-h16', \"controller failed (build --repo-local E:\\\\研\\\\毕业论文\\\\workspace\\\\ws30-attribution-audit): ERROR: Command '['git', '-C', 'E:\\\\\\\\研\\\\\\\\毕业论文\\\\\\\\workspace\\\\\\\\ws30-attribution-audit', 'ls-remote', '--heads', 'origin', 'research/ws30-attribution-audit']' returned non-zero exit status 128.\\n\"), ('20261024-230000-ws30-main-s20263044-u16', \"controller failed (build --repo-local E:\\\\研\\\\毕业论文\\\\workspace\\\\ws30-attribution-audit): ERROR: Command '['git', '-C', 'E:\\\\\\\\研\\\\\\\\毕业论文\\\\\\\\workspace\\\\\\\\ws30-attribution-audit', 'ls-remote', '--heads', 'origin', 'research/ws30-attribution-audit']' returned non-zero exit status 128.\\n\")]",
+          "event": "controller_stop",
+          "utc": "2026-10-24T20:06:31.799208+00:00"
+        },
+        {
+          "event": "controller_started",
+          "phase": "main",
+          "pid": 16752,
+          "utc": "2026-10-24T20:08:59.926829+00:00"
+        },
+        {
+          "event": "admission_stop",
+          "resource": {
+            "free_gib": 3264.8856887817383,
+            "load_1m": 9.83,
+            "mem_available_gib": 108.44807815551758,
+            "other_users": [],
+            "rss_mib": 4544.92578125,
+            "unexpected_simulation_pids": [
+              "108979"
+            ]
+          },
+          "utc": "2026-10-24T21:57:01.023617+00:00"
+        },
+        {
+          "error": "Admission stopped; all current workers drained; evidence preserved",
+          "event": "controller_stop",
+          "utc": "2026-10-24T21:58:10.767982+00:00"
+        },
+        {
+          "event": "controller_started",
+          "phase": "main",
+          "pid": 40512,
+          "utc": "2026-10-24T22:04:23.252418+00:00"
+        }
+      ],
+      "failures": 0,
+      "pending": 0,
+      "sha256": "0aef53bd95995abee8012885430299889ebc90ef308b5a9879b0c63df7f62da2",
+      "verified": 192
+    }
+  },
+  "limits": [
+    "Historical native DRILL independent retransmit/gap counters unavailable.",
+    "Formal full packet end-to-end paths were not logged; technical full paths and formal switch-QP summaries are separate.",
+    "Main unknown-PID original snapshot lacks complete identity; lead PID further attribution unresolved.",
+    "Short fixture simulations can finish between RSS samples; zero sampled RSS is not a zero peak.",
+    "No dynamic-activation workload, hardware, production SLO or real training validation."
+  ],
+  "new_remote_experiments": 0,
+  "numeric_package_sha256": "6520cf15f1fd13779518a29c8ba4b3773dcac7dc887314dfb559fda8929dba80",
+  "reviews_sha256": "d76f44928ae08b49fed22cefc5a9b8e9741815c75d9e8d6bacab3d5644be94f6",
+  "scripts": {
+    "scripts/build_ws30_v12_package.py": "7889e67fcedf8474c14193f4ef72fc9fca1d289a75048ac5882046e65088fe1a",
+    "scripts/finalize_ws30_v12_package.py": "e81f9b31513b7f33f25ca42772d42bc7f959a3fbccc17447ec782271d34bd1a5",
+    "scripts/plot_ws30_v12_package.py": "5a475b05bea5ce35c8120af9de83da1295dfd59142f5883ec4b79ed4a0a88bf9",
+    "scripts/verify_ws30_v12_package.py": "a5744d70f5691247a869f092014d93b0c8079d397966982233edf78f4804aa1c",
+    "scripts/write_ws30_v12_synthesis.py": "ce0945925d285090344cdc513065e56905baffb4b441c2b47826978348551c41"
+  },
+  "software": {
+    "bootstrap": "random.Random(20263003) 10000 x 24 indices; numpy median, numpy percentile default linear interpolation",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.4",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10 (tags/v3.12.10:0cc8128, Apr  8 2025, 12:21:36) [MSC v.1943 64 bit (AMD64)]"
+  },
+  "source_blob_sha256": {
+    "scratch/network-load-balance.cc": "fb6d40fa0cda202fed10d65742ede3e47f54ab042d2c3a68f95788c78a8caba8",
+    "scripts/make_ws25_demand.py": "0739571b21e4cb7801e41508f3fa7154c24d00e61c5f4f8577b1be85a9fe4291",
+    "src/applications/model/rdma-client.cc": "e1149baf17e9f461453d60826a8ce267c34960f37280ba6177c229eab9a4a70a",
+    "src/point-to-point/model/rdma-hw.cc": "bc21ba22c0d8d014312779bd4b90e9b18589fef4c66afd565c5eafd90d178c77",
+    "src/point-to-point/model/switch-node.cc": "5938cc6d5d162e3ec9c7d108c51a67e02ee546725b4ecfa3b24e5ee82aa64f4e",
+    "src/point-to-point/model/switch-node.h": "e46592c2ec32d32818f2fdd776c6d3691af70a75445d5809862015a08009e1ae",
+    "src/point-to-point/model/workload-tag.cc": "e4b4fe7a179d69b2ac1ed30706975d647ac35d12e37feb4010901cbda39eaa6d",
+    "src/point-to-point/model/workload-tag.h": "a78c0468c9f3a59b177b614dcc5ebc2fde8adec623d9863adfc0e61c3d6388b4"
+  },
+  "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9"
+}

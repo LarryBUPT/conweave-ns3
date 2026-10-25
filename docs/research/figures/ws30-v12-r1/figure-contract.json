@@ -1,0 +1,16 @@
+{
+  "archetype": "quantitative grids",
+  "backend": "Python / Matplotlib",
+  "core_claim": "Local queue information and QP decision granularity have identifiable paired effects; class weighting changes controlled decisions without an identified batch-time increment.",
+  "figures": {
+    "F1": "four independent cohorts kept separate; both business metrics",
+    "F2": "all eight arms vs E; all 24 demand points per arm",
+    "F3": "nine frozen attribution contrasts; exact denominators and both metrics",
+    "F4": "same 24 demands under correlated sync/lead conditions; all three contrasts",
+    "F5": "all 12 formal fixture runs and both real output queues, no event thinning"
+  },
+  "statistics": "Points: fixed demand-level paired percentages. Diamonds: median. Bars: nominal 95% bootstrap percentile intervals (10000 demand resamples). No significance labels. F5 has raw trajectories and no interval.",
+  "data_exclusions": [],
+  "dimensions": "183 mm nominal width; 600-dpi PNG and editable PDF/SVG",
+  "F5_overlap": "Each panel overlays six runs x two output ports; chosen/other normalization is per actual probe decision, not averaging."
+}

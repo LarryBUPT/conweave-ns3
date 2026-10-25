@@ -1,0 +1,36 @@
+{
+  "p99_definition": "0.63 times the 63rd order statistic plus 0.37 times the 64th; linear interpolation, not the maximum",
+  "paired_p99_change_pct": -50.12267933585014,
+  "rows": [
+    {
+      "arm": "E",
+      "id": "20261013-030000-ws27-confirm-s20262744-b064-fecmp",
+      "largest_four_us": [
+        786.952,
+        996.749,
+        1037.823,
+        1054.799
+      ],
+      "max_us": 1054.799,
+      "n": 64,
+      "p95_us": 785.0908000000001,
+      "p99_us": 1044.10412
+    },
+    {
+      "arm": "C16",
+      "id": "20261013-030000-ws27-confirm-s20262744-b064-classreserve",
+      "largest_four_us": [
+        517.294,
+        517.566,
+        520.635,
+        521.003
+      ],
+      "max_us": 521.003,
+      "n": 64,
+      "p95_us": 517.12645,
+      "p99_us": 520.77116
+    }
+  ],
+  "scope": "one revealed demand; no causal attribution from FCT order statistics alone",
+  "seed": 20262744
+}

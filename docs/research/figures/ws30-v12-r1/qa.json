@@ -1,0 +1,154 @@
+{
+  "backend": "Python/Matplotlib",
+  "data_exclusions": [],
+  "exports": [
+    "editable PDF",
+    "editable SVG",
+    "600-dpi PNG"
+  ],
+  "figures": [
+    {
+      "name": "F1-four-cohorts",
+      "panels": [
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "a",
+          "raw_point_count": 96,
+          "role": "MoE batch paired effects",
+          "summary": "median and nominal demand-level 95% bootstrap interval",
+          "unit": "24 independent demands within each row/cohort; conditions correlated",
+          "visual_pass": true
+        },
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "b",
+          "raw_point_count": 96,
+          "role": "Background P99 paired effects",
+          "summary": "median and nominal demand-level 95% bootstrap interval",
+          "unit": "24 independent demands within each row/cohort; conditions correlated",
+          "visual_pass": true
+        }
+      ],
+      "width_mm": 182.88
+    },
+    {
+      "name": "F2-eight-arms",
+      "panels": [
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "a",
+          "raw_point_count": 192,
+          "role": "MoE batch paired effects",
+          "summary": "median and nominal demand-level 95% bootstrap interval",
+          "unit": "24 independent demands within each row/cohort; conditions correlated",
+          "visual_pass": true
+        },
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "b",
+          "raw_point_count": 192,
+          "role": "Background P99 paired effects",
+          "summary": "median and nominal demand-level 95% bootstrap interval",
+          "unit": "24 independent demands within each row/cohort; conditions correlated",
+          "visual_pass": true
+        }
+      ],
+      "width_mm": 182.88
+    },
+    {
+      "name": "F3-main-attribution",
+      "panels": [
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "a",
+          "raw_point_count": 216,
+          "role": "MoE batch paired effects",
+          "summary": "median and nominal demand-level 95% bootstrap interval",
+          "unit": "24 independent demands within each row/cohort; conditions correlated",
+          "visual_pass": true
+        },
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "b",
+          "raw_point_count": 216,
+          "role": "Background P99 paired effects",
+          "summary": "median and nominal demand-level 95% bootstrap interval",
+          "unit": "24 independent demands within each row/cohort; conditions correlated",
+          "visual_pass": true
+        }
+      ],
+      "width_mm": 182.88
+    },
+    {
+      "name": "F4-class-and-timing",
+      "panels": [
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "a",
+          "raw_point_count": 144,
+          "role": "MoE batch paired effects",
+          "summary": "median and nominal demand-level 95% bootstrap interval",
+          "unit": "24 independent demands within each row/cohort; conditions correlated",
+          "visual_pass": true
+        },
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "b",
+          "raw_point_count": 144,
+          "role": "Background P99 paired effects",
+          "summary": "median and nominal demand-level 95% bootstrap interval",
+          "unit": "24 independent demands within each row/cohort; conditions correlated",
+          "visual_pass": true
+        }
+      ],
+      "width_mm": 182.88
+    },
+    {
+      "name": "F5-composition-queue-timing",
+      "panels": [
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "a",
+          "raw_point_count": 1728,
+          "role": "Stop after prefill",
+          "summary": "all raw queue trajectories, no mean or interval",
+          "unit": "six fixed runs x two ports; no independent demand replication",
+          "visual_pass": true
+        },
+        {
+          "alignment": "PASS",
+          "collision": "PASS",
+          "minimum_font_pt": 8.0,
+          "panel": "b",
+          "raw_point_count": 4800,
+          "role": "Later background arrivals",
+          "summary": "all raw queue trajectories, no mean or interval",
+          "unit": "six fixed runs x two ports; no independent demand replication",
+          "visual_pass": true
+        }
+      ],
+      "width_mm": 182.88
+    }
+  ],
+  "glyph_floor_pt": 5,
+  "manual_visual_check": "All ten panels inspected at exported size: labels, all demand points, adverse ranges, interval extents, consistent units/colors, overlapping queue trajectories and legend clearance.",
+  "source_preflight": "PASS, 20 checks; TIFF warning reviewed: internal v12 data/figure package requests editable PDF/SVG and 600-dpi PNG, not a journal TIFF submission."
+}

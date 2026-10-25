@@ -1,5 +1,13 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 跨阶段 v12 数据与图表包完成，等待主对话核对（2026-10-25）
+
+主对话已核对组成节点，授权跨阶段综合。本轮实际上下文为 GPT-6.1 Sol / Medium，仅分析既有本地证据。重新核对 1,050 个成功 ID 的 FCT/输入/拓扑，独立重建主矩阵和先占 264 格的 4,376,064 条流；WS-30 自身 438 个独立成功 ID、6 个保留失败和 1 个未运行构建均有去重角色索引。见[v12 综合报告](../research/ws30-v12-evidence-synthesis-r1.md)、[评审验收表](../research/ws30-v12-review-acceptance-r1.md)与[Handoff](../handoffs/2026-10-25-ws30-v12-cross-stage-package.md)。
+
+F1～F5、D1～D4、五张新图及其完整点源/QA、34 个评审编号项、8 项事实修正和固定文献复核已完成。Q16/R16 批次变化中位数 −4.555%，Q12/E −4.869%；U16/Q16 的两侧变化为 +11.606%、+8.447%。类别额外权重在同步/先占中未识别稳定增量，组成响应与局部代价完整保留。最终包统一重采样索引，历史区间端点保留在原文件和归档列。
+
+WS-30 ACTIVE；本副对话的数据/图表交付完成，等待主对话验收和中文 v12 全文整合。预设技术实验无缺格；未运行动态激活、硬件或真实训练推广。下方保留各阶段当时的历史快照。
+
 ## WS-30 正式组成节点完成，等待主对话核对（2026-10-25）
 
 冻结组成矩阵 12/12 成功、失败 0、pending 0，全部 cap=4，12 次唯一启动。实际运行上下文为 Luna / Medium，分析为 GPT-6.1 Sol / Medium。独立重建 252 条 FCT 的身份、类别、字节和原点，逐事件重放队列、核对首包选择与 QP 路径均通过。见[组成报告](../research/ws30-stage3-composition-node-report-r1.md)、[原始审计](../research/evidence/ws30-stage3-composition-raw-audit-r1.json)和[执行审计](../research/evidence/ws30-stage3-composition-execution-audit-r1.json)。

@@ -1,0 +1,53 @@
+{
+  "additional_log_interaction_bootstrap": {
+    "draws": 10000,
+    "seed": 20263003
+  },
+  "background_3pct": "prespecified median engineering constraint, not individual protection, production SLO or statistical noninferiority",
+  "bridge_fct_matches": 96,
+  "ci": "Nominal two-sided 95% demand-level bootstrap percentile intervals, 10000 draws, random.Random seed 20263003, common draw-index matrix and increasing demand seed order. Archived endpoints retained in separate fields; medians independently matched. Repeated contrasts share identical final intervals. No significance labels or pooled estimate.",
+  "composition_is_four_controlled_conditions": true,
+  "formal_main_lead_composition": [
+    192,
+    72,
+    12
+  ],
+  "frozen_stage3_plan_sha256": "77ca6064d4b4f275b409123302b01bd4eabd97e9c978e013f8d3e67edbf420f8",
+  "historical_raw_audit_cells": 456,
+  "independent_demand_cohorts": {
+    "factorial": 24,
+    "main_history": 24,
+    "new": 24,
+    "old": 24
+  },
+  "inputs": {
+    "ws28-ablation-analysis.json": "d9fac703d8c23e16bf3cf6556620d571efcdc023b328906d1d821590f0a1010f",
+    "ws28-tail-analysis.json": "908bc0e71d55bb4c388124f579700ee4844b60dcf0f700261e46449ac1910b3d",
+    "ws30-historical-baseline-export.json": "79b7d09b1c56f0d8adc34e042af975d4b238df1e07af02b42636dc6df8e744b5",
+    "ws30-historical-raw-audit.json": "0e437923b13c2aad8048e347ffe066fe92ab006afe27ce055b1926901e64105d",
+    "ws30-stage2-postrun-audit-r1.json": "d2abd7416dbd279e44681fcda826325686a41a20628538a579440139560a9508",
+    "ws30-stage3-composition-results-r5.json": "2794ac5210428d575261b93e27e9e2aa411df8f2bf0ee4d542aa494cd5a903cf",
+    "ws30-stage3-lead-analysis-r1.json": "050dcb8fb81565e887f6ff7737b59a442316b53665d222f8e80b356463e8049b",
+    "ws30-stage3-lead-results-r5.json": "569a50b6a0814bc0dfb5c17ecc8c21080ead03e4d6d9af2f6be4feaf416c85a0",
+    "ws30-stage3-main-analysis-r1.json": "4c8287a61bb44531d9ad2adff3529063240538722173314e177aa82160161d15",
+    "ws30-stage3-main-results-r5.json": "de8fa8625af6a09528b67fcdb52123d1f618e195097444f2936b10aa7bf79800"
+  },
+  "lead_is_correlated_with_new": true,
+  "load64_worst": {
+    "background": 64,
+    "background_p99_change_pct": -50.12267933585014,
+    "baseline_id": "20261013-030000-ws27-confirm-s20262744-b064-fecmp",
+    "candidate_id": "20261013-030000-ws27-confirm-s20262744-b064-classreserve",
+    "mode": "classreserve",
+    "moe_batch_change_pct": -6.687360453085001,
+    "moe_fct_p50_change_pct": 0.22302990252767163,
+    "moe_fct_p99_change_pct": -1.194409099222149,
+    "seed": 20262744
+  },
+  "new_remote_experiments": 0,
+  "raw_hash_checked_ids": 1050,
+  "raw_reconstructed_fct_rows": 4376064,
+  "raw_reconstructed_new_cells": 264,
+  "scope": "WS-30 final cross-stage v12 evidence package",
+  "ws30_unique_successes": 438
+}

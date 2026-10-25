@@ -1,0 +1,50 @@
+[
+  {
+    "ci_high": 1.210170438674164,
+    "ci_low": -3.2371904265656686,
+    "contrast": "Q16/E",
+    "median": -0.4891092640312917,
+    "metric": "moe_batch",
+    "unit": "100 ln ratio of ratios; lead minus sync"
+  },
+  {
+    "ci_high": 1.3148544676638931,
+    "ci_low": -2.0011022084112704,
+    "contrast": "Q16/E",
+    "median": -0.3991423217593165,
+    "metric": "background_p99",
+    "unit": "100 ln ratio of ratios; lead minus sync"
+  },
+  {
+    "ci_high": 1.0870515546659218,
+    "ci_low": -3.0703505595623635,
+    "contrast": "C16/E",
+    "median": -0.30859960061866204,
+    "metric": "moe_batch",
+    "unit": "100 ln ratio of ratios; lead minus sync"
+  },
+  {
+    "ci_high": 0.5684413699670202,
+    "ci_low": -1.4839223141548654,
+    "contrast": "C16/E",
+    "median": -0.2756120654648787,
+    "metric": "background_p99",
+    "unit": "100 ln ratio of ratios; lead minus sync"
+  },
+  {
+    "ci_high": 1.0179279318312775,
+    "ci_low": -1.3038359412223068,
+    "contrast": "C16/Q16",
+    "median": -0.43382481914095333,
+    "metric": "moe_batch",
+    "unit": "100 ln ratio of ratios; lead minus sync"
+  },
+  {
+    "ci_high": 0.6697630065278913,
+    "ci_low": -2.9719556644662366,
+    "contrast": "C16/Q16",
+    "median": 0.1284705311294535,
+    "metric": "background_p99",
+    "unit": "100 ln ratio of ratios; lead minus sync"
+  }
+]

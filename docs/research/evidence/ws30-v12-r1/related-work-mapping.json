@@ -1,0 +1,97 @@
+[
+  {
+    "borrowed_method": "separate class source, forwarding granularity and queue service contract",
+    "difference_and_nontransferable_claim": "Sampled long-flow classification and blind spraying, Java simplified transport and class-independent queues differ from this fixed-QP shared RDMA queue. No project batch/P99 evidence.",
+    "file_sha256": {
+      "papers/diffflow-2016/analysis-technical.md": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+      "papers/diffflow-2016/paper-v1.pdf": "f552fcb75a0cec582286db0032c81660ff161fe475609ae5e79ad7075a0ae164",
+      "papers/diffflow-2016/verification.md": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+    },
+    "paper": "diffflow-2016",
+    "reading_scope": "relevant local technical analysis and verification; PDF hash recomputed",
+    "version": "arXiv:1604.05107v1"
+  },
+  {
+    "borrowed_method": "maximum completion aggregation and QP path scope",
+    "difference_and_nontransferable_claim": "Splits WQEs into child QPs and uses feedback; this project preserves original QPs. Final journal body not compared. Parent-CQE and hardware results do not transfer.",
+    "file_sha256": {
+      "papers/seqbalance-2024/analysis-technical.md": "1b1ffab4ffd79d1bbf3c5b70f89f1d4793053938b8097a34148fad18c8db9cbe",
+      "papers/seqbalance-2024/paper-v1.pdf": "097821eb41ca8687fc829cb31fdd54e897164de0956b30a830fdbee2c14fb913",
+      "papers/seqbalance-2024/verification.md": "288da35fc28900eb3d40a8747431ef33cd0ceb23754a92f0844b8c9a4b8658fa"
+    },
+    "paper": "seqbalance-2024",
+    "reading_scope": "relevant local technical analysis and verification; PDF hash recomputed",
+    "version": "arXiv:2407.09808v1"
+  },
+  {
+    "borrowed_method": "adaptation opportunity and actual flowlet actions",
+    "difference_and_nontransferable_claim": "Random flowlet reselection and elastic flowlet size differ from pinned QP placement; 20-us release offset is not a flowlet threshold. TCP/hardware results are not project effects.",
+    "file_sha256": {
+      "papers/letflow-2017/analysis-technical.md": "d9f43c52c7e1c128259488111d99ec1ba0668e93e187a9ebd4c0f3b68f698e58",
+      "papers/letflow-2017/paper-local.pdf": "8a89af468f606199146c2146da6fa7e71f466504ff3543db7c7bc9359a5e8264",
+      "papers/letflow-2017/verification.md": "f57eaf6d07ed12ccb13fffed61da49524df1b344ef40ad9a104558361d481b35"
+    },
+    "paper": "letflow-2017",
+    "reading_scope": "relevant local technical analysis and verification; PDF hash recomputed",
+    "version": "NSDI 2017 USENIX official PDF, 15 pages including cover"
+  },
+  {
+    "borrowed_method": "separate RTT/control feedback, rerouting and receive VOQ; keep baseline faithful",
+    "difference_and_nontransferable_claim": "Epoch/phase control, TAIL/CLEAR and in-network reordering differ from first-packet placement. Current common PFC-off/IRN-on simulation does not measure the original hardware or every dynamic regime.",
+    "file_sha256": {
+      "papers/conweave-2023/analysis-technical.md": "fbbfc6d44ee03620d521f4b8506696332d237a91261961d28b610dfb60dfc8e4",
+      "papers/conweave-2023/paper-local.pdf": "81d6719ed612f6dba05c99f2bfaa8745f0804b1dcd76ef19262ca9a236801c8b",
+      "papers/conweave-2023/verification.md": "84b256b8c15503da86f384f84b0b5d157d6866785a226298294e530460206ade"
+    },
+    "paper": "conweave-2023",
+    "reading_scope": "relevant local technical analysis and verification; PDF hash recomputed",
+    "version": "ACM SIGCOMM 2023 fixed local PDF"
+  },
+  {
+    "borrowed_method": "separate local/downstream information and reordering cost",
+    "difference_and_nontransferable_claim": "Downstream queue synchronization, packet rerouting and switch-side queues differ from local-QP placement. No hardware/production or MoE/P99 transfer.",
+    "file_sha256": {
+      "papers/gemma/analysis-technical.md": "77fcf228d28b84f96e3e26caa037e88f4c291a43357a93edd37f356008ffe01f",
+      "papers/gemma/paper-local.pdf": "2b11ed4e673f8f6201c0182f158359a4d8f8394eb6029fa394dcd2c736052e15",
+      "papers/gemma/verification.md": "908e0c113afee33d7b07646ad95b336d734a6169c77cb2f80c92dc21337577bd"
+    },
+    "paper": "gemma",
+    "reading_scope": "relevant local technical analysis and verification; PDF hash recomputed",
+    "version": "IEEE HPCC 2024 fixed six-page PDF"
+  },
+  {
+    "borrowed_method": "global feedback age and scalable state as a distinct design axis",
+    "difference_and_nontransferable_claim": "GLB engines/SyncMesh and cluster state differ from local first-packet placement. Hardware, CCT and production gains cannot be substituted for these paired batch/P99 effects.",
+    "file_sha256": {
+      "papers/sglb-2025/analysis-technical.md": "6c2e1516ff134540bd19466208ad1f6aef7f966e1f0be5481871929abe0a5559",
+      "papers/sglb-2025/paper-local.pdf": "1bceebbc0a40040646ca6cd3cb81dc258d80ef621c532c62016b156def7ebd6c",
+      "papers/sglb-2025/verification.md": "4db85b12efbcad0a9a88e1bc16a23ea2578c0e1f70ebcb799f1e220d41cf977d"
+    },
+    "paper": "sglb-2025",
+    "reading_scope": "relevant local technical analysis and verification; PDF hash recomputed",
+    "version": "ACM SIGCOMM 2025 fixed 20-page local PDF"
+  },
+  {
+    "borrowed_method": "per-hop bottleneck state, probe freshness and flowlet opportunity",
+    "difference_and_nontransferable_claim": "Probe-maintained destination next hop and flowlet forwarding differ from two local QP candidates. TCP/ns-2 and P4 feasibility are outside current measurements.",
+    "file_sha256": {
+      "papers/hula-2016/analysis-technical.md": "bcefbd47d6150cf0b4354997b2f21ecdc6a0a8c72f708383fdba0afe1e8906d4",
+      "papers/hula-2016/paper-local.pdf": "dd58a9c97d35e8d6c6ba42fcf1264e3446b8b73769bd08ecd77eae184986ec99",
+      "papers/hula-2016/verification.md": "7901b83547159736bf06236b4ddc9c00137001dd5b62b6740cd94e3b4ad25de6"
+    },
+    "paper": "hula-2016",
+    "reading_scope": "relevant local technical analysis and verification; PDF hash recomputed",
+    "version": "ACM SOSR 2016 fixed local PDF"
+  },
+  {
+    "borrowed_method": "per-packet local-queue comparison and correct baseline citation",
+    "difference_and_nontransferable_claim": "Citation and mechanism scope only; candidate directory has no completed page-by-page technical review. U16 fixes the first candidate pair and is not the native DRILL implementation. Historical DRILL recovery counters remain unobserved.",
+    "file_sha256": {
+      "papers/drill-2017/paper-author.pdf": "d5bbb340c1652d21d7e524f16d691af370d0ec775ab9f26847559d4970ddb3a1",
+      "papers/drill-2017/ws30-citation-receipt.md": "dcc5de5b17a18aa74cabdcbdee632087218679bdc828f648a6149ce6fe2d73a3"
+    },
+    "paper": "drill-2017",
+    "reading_scope": "existing citation and mechanism receipt; full technical reading not claimed",
+    "version": "SIGCOMM 2017 author-hosted PDF"
+  }
+]

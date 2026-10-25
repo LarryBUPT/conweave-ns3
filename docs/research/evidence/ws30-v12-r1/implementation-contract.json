@@ -1,0 +1,14 @@
+{
+  "H12": "technical arm equivalent to E for route signatures and FCT; not a ninth formal effect arm",
+  "U16": "retains first candidate pair and re-evaluates only chosen output; still stores candidate state; distinct from native DRILL",
+  "cache_key": "exact (source IP,destination IP,UDP source port,UDP destination port); UDP checked outside lookup",
+  "cache_storage": "C16/Q16/M16 use two per-class std::map objects; Q12/H/R/U use the shared m_ws30Pairs map. No fixed hardware capacity, timeout, aging or eviction; a transport tuple reuses its corresponding entry.",
+  "candidate_key": "legacy MoE 16 bytes including first observed seq; background 12 bytes; Q12 and H12 use 12 bytes for both classes",
+  "hardware_metrics": null,
+  "label": "sixth trace column -> RdmaClient WorkloadTag -> QP m_workload_tag -> ns-3 PacketTag; not a verified on-wire DSCP/BTH classification protocol",
+  "path_coverage": "22 technical full-log cells reconstruct complete accepted packet paths from topology; formal main/lead are switch-QP path summaries; fixture probe is fully traced",
+  "queue": "shared output queue; per-switch/output/tag current bytes incremented/decremented on actual enqueue/dequeue/drop events; no class-specific physical queue is implied",
+  "scope": "one static-topology simulation with unique generated transport tuples; no long-running tuple-reuse or hardware-overflow validation",
+  "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+  "tie": "second only on strict lower score; ties keep first; identical candidates collapse"
+}

@@ -1,5 +1,11 @@
 # 下一阶段路线与停机条件
 
+## WS-30 跨阶段包完成后的全文整合入口（2026-10-25）
+
+组成节点已获主对话核对，跨阶段数据与图表包完成：[综合报告](../research/ws30-v12-evidence-synthesis-r1.md)、[三份评审验收表](../research/ws30-v12-review-acceptance-r1.md)、[Handoff](../handoffs/2026-10-25-ws30-v12-cross-stage-package.md)。F1～F5、D1～D4 覆盖四组独立需求、八臂、九项组件对比、先占与组成、原生动态动作和逐输入风险；所有图点、单位、raw/ID 和统一区间可追溯。没有启动新远端实验。
+
+下一动作由主对话验收本包并整合中文 v12，落实主张收缩、实现前提和原生覆盖说明；最终全文核验前保持 WS-30 ACTIVE。预设实验没有技术缺格，硬件、真实训练和动态激活等条件项未执行。下方为此前阶段历史入口。
+
 ## WS-30 组成节点完成后的综合入口（2026-10-25）
 
 组成 12/12 成功，失败和 pending 均为 0，固定源码 `2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f`，全部 cap=4。相等真实总队列下已识别 C16 的组成响应；完整标签 2 批时间、探针 FCT、背景 P99 在每条件内三臂相同，持续背景存在逐 QP 代价转移。详见[中文节点报告](../research/ws30-stage3-composition-node-report-r1.md)和[Handoff](../handoffs/2026-10-25-ws30-stage3-composition-node.md)。

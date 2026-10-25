@@ -1,10 +1,10 @@
 # 工作流台账
 
-更新：2026-10-25（WS-30 组成节点完成，等待核对）。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
+更新：2026-10-25（WS-30 跨阶段数据/图表包完成，等待核对与全文整合）。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | ClassReserve 实验补正与归因审计 | ACTIVE；主矩阵与先占节点已获核对，组成节点完成待验收 | 主矩阵 192/192、先占 72/72、组成 12/12；[组成报告](../research/ws30-stage3-composition-node-report-r1.md)与[原始审计](../research/evidence/ws30-stage3-composition-raw-audit-r1.json)保留 252 条 FCT、相等真实队列和选择响应。批时间、探针 FCT、背景 P99 在每条件三臂间相同，持续背景有局部时延转移 | 主对话验收组成节点后承接跨阶段最终图表与综合结论；固定四种控制条件不作独立需求重复，保留全部不利 QP；WS-30 未闭环 |
+| WS-30 | ClassReserve 实验补正与归因审计 | ACTIVE；三个正式节点已获核对，跨阶段包完成待验收/全文整合 | 主矩阵 192/192、先占 72/72、组成 12/12；[v12 综合报告](../research/ws30-v12-evidence-synthesis-r1.md)交付 F1～F5、D1～D4、完整点源与 QA；[评审表](../research/ws30-v12-review-acceptance-r1.md)保留 34 项映射和 8 项事实修正。队列信息与 QP 粒度有对应对比，类别响应/未识别时间增量和局部代价分别报告 | 主对话核对统一数值和图表后完成中文 v12 标题、摘要、方法、图注、引用、结论一致性；预设实验无技术缺格，条件扩展未运行；未按闭环归档 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |
