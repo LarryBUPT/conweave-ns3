@@ -1,0 +1,40 @@
+{
+  "60_curly_quotes": {
+    "label": "Curly quotes",
+    "count": 16,
+    "samples": [
+      "5. 34 项评审意见的正文落实状态  “已落实”表示当前稿已完成对应文字或有明确",
+      "4 项评审意见的正文落实状态  “已落实”表示当前稿已完成对应文字或有明确证据的处",
+      "当前稿已完成对应文字或有明确证据的处理；“部分”表示复合要求仍有说明或材料缺口；“"
+    ]
+  },
+  "_metrics": {
+    "scanned_chars": 10288,
+    "truncated": false,
+    "sentences": 18,
+    "length_cv": 1.229,
+    "has_short_sentence": true,
+    "monotonous": false,
+    "paragraph_cv": 1.093,
+    "paragraph_monotonous": false,
+    "invisible_chars": 0,
+    "evasion_defused": 0,
+    "nonstandard_spaces": 0,
+    "trailing_newlines": 1,
+    "eol_trailing_spaces": 0,
+    "leading_whitespace": 0,
+    "first_person_ratio": 0.0,
+    "semicolons_per_1k": null,
+    "parentheticals_per_1k": null,
+    "passive_voice_ratio": 0.0,
+    "readability_fk_stdev": 6.25,
+    "readability_uniform": false,
+    "cadence_zigzag": 0.667,
+    "homoglyphs": 0,
+    "ai_tell_score": 0,
+    "ai_tell_band": "clean",
+    "patterns_flagged": 1,
+    "confidence": "high",
+    "confidence_reason": ""
+  }
+}

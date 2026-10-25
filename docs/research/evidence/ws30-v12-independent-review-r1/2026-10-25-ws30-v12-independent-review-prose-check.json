@@ -1,0 +1,40 @@
+{
+  "60_curly_quotes": {
+    "label": "Curly quotes",
+    "count": 4,
+    "samples": [
+      "S3 设计取舍与相关工作细化；后续稿结论“四组”与“但两组”应同步。  ## 7.",
+      "设计取舍与相关工作细化；后续稿结论“四组”与“但两组”应同步。  ## 7. 后续",
+      "取舍与相关工作细化；后续稿结论“四组”与“但两组”应同步。  ## 7. 后续推荐"
+    ]
+  },
+  "_metrics": {
+    "scanned_chars": 1436,
+    "truncated": false,
+    "sentences": 16,
+    "length_cv": 0.82,
+    "has_short_sentence": true,
+    "monotonous": false,
+    "paragraph_cv": 1.15,
+    "paragraph_monotonous": false,
+    "invisible_chars": 0,
+    "evasion_defused": 0,
+    "nonstandard_spaces": 0,
+    "trailing_newlines": 1,
+    "eol_trailing_spaces": 0,
+    "leading_whitespace": 0,
+    "first_person_ratio": 0.0,
+    "semicolons_per_1k": null,
+    "parentheticals_per_1k": null,
+    "passive_voice_ratio": 0.0,
+    "readability_fk_stdev": 3.13,
+    "readability_uniform": false,
+    "cadence_zigzag": 0.385,
+    "homoglyphs": 0,
+    "ai_tell_score": 0,
+    "ai_tell_band": "clean",
+    "patterns_flagged": 1,
+    "confidence": "low",
+    "confidence_reason": "192 words and 0 scored pattern: not enough independent evidence."
+  }
+}

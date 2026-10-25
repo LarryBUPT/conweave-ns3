@@ -22,3 +22,8 @@ scripts/plot_ws30_v12_package.py text eol=lf
 scripts/write_ws30_v12_synthesis.py text eol=lf
 scripts/finalize_ws30_v12_package.py text eol=lf
 scripts/verify_ws30_v12_package.py text eol=lf
+# Independent review receipts preserve exact UTF-8 bytes.
+docs/research/evidence/ws30-v12-independent-review-r1/** -text
+docs/research/ws30-v12-independent-evidence-review-r1.md -text
+docs/handoffs/2026-10-25-ws30-v12-independent-review.md -text
+scripts/audit_ws30_v12_independent_review.py text eol=lf

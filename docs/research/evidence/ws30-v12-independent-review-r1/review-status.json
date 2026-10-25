@@ -1,0 +1,180 @@
+{
+  "items": [
+    {
+      "item": "R1-W1",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L1、L5、L190～198、L246～258、L280；重定位贡献，类别增量有界。"
+    },
+    {
+      "item": "R1-W2",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L171、L179、L190；同候选随机对照与独立随机盐。"
+    },
+    {
+      "item": "R1-W3",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L146～155；动态动作与反馈分列，比较限制到本输入；动态激活新负载未做。"
+    },
+    {
+      "item": "R1-W4",
+      "status": "部分",
+      "manuscript_evidence_and_action": "L41、L87～89；标签与缓存已写，DiffFlow 未作实测基线，部署未验证；定性区分宜更具体。"
+    },
+    {
+      "item": "R1-W5",
+      "status": "范围收缩",
+      "manuscript_evidence_and_action": "L97～113、L276；固定合成需求，无周期训练或故障推广。"
+    },
+    {
+      "item": "R2-P0-1",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L1、L5、L19、L280；主张与证据对应。"
+    },
+    {
+      "item": "R2-P0-2",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L171～198；八臂、统一键与重决策对照，不把策略差相加拆收益。"
+    },
+    {
+      "item": "R2-P0-3",
+      "status": "部分",
+      "manuscript_evidence_and_action": "L149～155、L309；引用与执行状态已补；完整动态激活基线未新增，比较范围已收缩。"
+    },
+    {
+      "item": "R2-P0-4",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L127～140；四组分别给点、CI 与新独立组，不合池；I3 另处理选择历史。"
+    },
+    {
+      "item": "R2-P0-5",
+      "status": "部分",
+      "manuscript_evidence_and_action": "L167、L200、L234 已给逐需求数；I1 补工程线来源。"
+    },
+    {
+      "item": "R2-P0-6",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L89、L97～113、L276；合成、软件状态、拓扑和传输范围明确。"
+    },
+    {
+      "item": "R2-P1-1",
+      "status": "部分",
+      "manuscript_evidence_and_action": "L63、L75、L77、L190、L196 解释队列与首包；候选数 2、权重 1 的冻结设计属性尚未明确。"
+    },
+    {
+      "item": "R2-P1-2",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L196、L236、L240～258、L264～274；队列、选口、恢复及三例下游等待；没有全体等待分布。"
+    },
+    {
+      "item": "R2-P1-3",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L81、L87～89；精确键、PacketTag、共享队列记账、无容量与老化。"
+    },
+    {
+      "item": "R2-P1-4",
+      "status": "部分",
+      "manuscript_evidence_and_action": "L37～43 已有信息与粒度对比；尚无所要求的对比表，IntFlow 未展开。"
+    },
+    {
+      "item": "R2-P1-5",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L19 用连贯文字列三类贡献，对应 §4.4～4.6；不强制机械编号。"
+    },
+    {
+      "item": "R2-P1-6",
+      "status": "部分",
+      "manuscript_evidence_and_action": "L149、L155、L196、L309；原生 DRILL 引用与缺失状态正确；U16 不能补原生恢复数据。"
+    },
+    {
+      "item": "R2-P2-1",
+      "status": "范围收缩",
+      "manuscript_evidence_and_action": "L97、L240、L276；组成小拓扑是规则检验，非跨拓扑性能验证。"
+    },
+    {
+      "item": "R2-P2-2",
+      "status": "部分",
+      "manuscript_evidence_and_action": "L119、L165、L262；已有 P95/P99 和离群点，未增加流长或背景规模。"
+    },
+    {
+      "item": "R2-P2-3",
+      "status": "范围收缩",
+      "manuscript_evidence_and_action": "L110、L113、L232；每组 24，同步和先占不当 48。"
+    },
+    {
+      "item": "R2-P2-4",
+      "status": "范围收缩",
+      "manuscript_evidence_and_action": "L75、L204；权重为固定配置，未做 sweep，未称最优。"
+    },
+    {
+      "item": "R2-P2-5",
+      "status": "范围收缩",
+      "manuscript_evidence_and_action": "L106、L276；公共 PFC 关／IRN 开，未做传输敏感性。"
+    },
+    {
+      "item": "R2-P2-6",
+      "status": "范围收缩",
+      "manuscript_evidence_and_action": "L89；无硬件资源或线速验证。"
+    },
+    {
+      "item": "R2-P2-7",
+      "status": "范围收缩",
+      "manuscript_evidence_and_action": "L5、L99、L276；明确合成 QP，无真实 MoE trace。"
+    },
+    {
+      "item": "R2-P2-8",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L123、L194、L215；描述性名义区间，无显著性标签；I4 补精确算法。"
+    },
+    {
+      "item": "R2-P2-9",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L165；保留 64 档 −50.123% 与两侧绝对值，不指定唯一原因。"
+    },
+    {
+      "item": "R2-P2-10",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "表 3 L146～155；状态列包含零 flowlet、ConWeave 非零反馈。"
+    },
+    {
+      "item": "R2-11.1",
+      "status": "未落实",
+      "manuscript_evidence_and_action": "旧 NO-GO 无交代；I2。"
+    },
+    {
+      "item": "R2-11.3",
+      "status": "未落实",
+      "manuscript_evidence_and_action": "三候选确认来源无交代；I3。"
+    },
+    {
+      "item": "R3-W1",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L5、L204～258、L280；组成规则响应与效果分开。"
+    },
+    {
+      "item": "R3-W2",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L87～89；标签、计数与缓存语义。"
+    },
+    {
+      "item": "R3-W3",
+      "status": "已落实",
+      "manuscript_evidence_and_action": "L228～258；20 μs 先占与真实预填均已写入。"
+    },
+    {
+      "item": "R3-W4",
+      "status": "部分",
+      "manuscript_evidence_and_action": "L171、L183、L190、L196；哈希与 U16 有界；H12/E 技术等价未在稿中交代，原生恢复未观测。"
+    },
+    {
+      "item": "R3-W5",
+      "status": "部分",
+      "manuscript_evidence_and_action": "L39、L43、L97、L309、L323；DRILL 和模拟器已补，HPN 双平面路线尚未展开。"
+    }
+  ],
+  "counts": {
+    "范围收缩": 7,
+    "部分": 9,
+    "已落实": 16,
+    "未落实": 2
+  }
+}
