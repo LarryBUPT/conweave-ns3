@@ -1,0 +1,43 @@
+{
+  "analysis": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol"
+  },
+  "approval_basis": "Main chat verified main 192/192, 24 demand seeds by 8 arms, frozen plan and all nine contrasts; explicitly authorized frozen 72-cell background-lead node.",
+  "approval_source_thread": "01a0cfac-3176-7590-bf34-c0f176a45118",
+  "approved": true,
+  "approved_cells": 72,
+  "approved_phase": "lead",
+  "controller_checks": {
+    "diagnostic_fields": [
+      "uid",
+      "pid",
+      "ppid",
+      "started_utc",
+      "comm",
+      "command_line",
+      "matching_worker_ids",
+      "observed_worker_mapping"
+    ],
+    "no_lead_ids_created_by_failed_preflight": true,
+    "safety_thresholds_changed": false,
+    "sampler_self_match_caught_at_preflight": true,
+    "tests_passed": 12
+  },
+  "kind": "WS-30 lead node approval and launch prerequisites",
+  "local_acceptance_sha256": "560f22cdac24f40234b663df48f07eaf1d2f7a21726c1bfc8e0042da9f4f5d6c",
+  "main_analysis_sha256": "4c8287a61bb44531d9ad2adff3529063240538722173314e177aa82160161d15",
+  "main_results_sha256": "de8fa8625af6a09528b67fcdb52123d1f618e195097444f2936b10aa7bf79800",
+  "next_composition_phase_requires_main_chat_review": true,
+  "plan_sha256": "77ca6064d4b4f275b409123302b01bd4eabd97e9c978e013f8d3e67edbf420f8",
+  "preflight_sha256": "87d696e78bc77472b4f214559972622a47c9d996e07a75ae44fbe43813ffff19",
+  "recorded_utc": "2026-10-25T00:28:40.342183+00:00",
+  "selected_cap": 12,
+  "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+  "supervision": {
+    "actual_launch_context_must_be_checked": true,
+    "effort": "medium",
+    "interval_minutes": 15,
+    "model": "gpt-6-luna"
+  }
+}

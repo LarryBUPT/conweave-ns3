@@ -1,5 +1,6 @@
 """Failure/recovery and admission tests using no SSH or simulation launches."""
 import hashlib
+import ast
 import json
 from pathlib import Path
 import tempfile
@@ -50,6 +51,27 @@ class RecoveryTests(unittest.TestCase):
         self.temp=tempfile.TemporaryDirectory();self.path=Path(self.temp.name)/'state.json'
         self.cells=[{'id':'cell%d'%i,'source_sha':'source'} for i in range(12)]
     def tearDown(self):self.temp.cleanup()
+
+    def test_simulation_snapshot_keeps_process_identity_from_same_ps_listing(self):
+        listing=('1000 108979 108927 Sun Oct 25 05:50:54 2026 network-load-ba /runs/a/network-load-balance config.txt\n'
+                 '1001 109000 108928 Sun Oct 25 05:50:55 2026 python3 python3 run.py --lb ws30-q12 --pfc 0\n'
+                 '1000 109001 1 Sun Oct 25 05:50:56 2026 python3 python3 unrelated.py\n'
+                 '1000 109002 1 Sun Oct 25 05:50:56 2026 python3 python3 -c " run.py --lb "\n'
+                 '1000 109003 1 Sun Oct 25 05:50:56 2026 python3 python3 -c "run_marker=\' run.py\'+\' --lb \'"\n')
+        function=next(n for n in ast.parse(run.REMOTE_WAIT).body
+                      if isinstance(n,ast.FunctionDef) and n.name=='simulation_process_snapshot')
+        module=ast.Module(body=[function],type_ignores=[])
+        check=mock.Mock(return_value=listing.encode())
+        namespace={'os':os,'subprocess':types.SimpleNamespace(check_output=check)}
+        exec(compile(module,'<remote-process-snapshot>','exec'),namespace)
+        with mock.patch.object(os,'getpid',return_value=109002):
+            snapshot=namespace['simulation_process_snapshot']()
+        self.assertEqual(set(snapshot),{'108979','109000'})
+        self.assertEqual(snapshot['108979']['ppid'],108927)
+        self.assertEqual(snapshot['109000']['uid'],1001)
+        self.assertEqual(snapshot['108979']['started_utc'],'Sun Oct 25 05:50:54 2026')
+        self.assertIn('--lb ws30-q12',snapshot['109000']['command_line'])
+        self.assertEqual(check.call_args.kwargs['env']['TZ'],'UTC')
 
     def test_running_and_building_resume_without_duplicate_build_or_start(self):
         b=FakeBackend();cells=self.cells[:2]

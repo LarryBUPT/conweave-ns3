@@ -1,6 +1,14 @@
 # ConWeave 毕业论文项目状态
 
-## WS-30 阶段 3 当前入口（2026-10-24）
+## WS-30 主矩阵完成、先占矩阵准入（2026-10-25）
+
+主矩阵 192/192 已按固定计划验收，失败 0；24 个需求 seed 各覆盖八臂。主对话已核对[结果索引](../research/evidence/ws30-stage3-main-results-r5.json)和[双侧分析](../research/evidence/ws30-stage3-main-analysis-r1.json)，授权继续 72 格背景先占矩阵。固定仿真 SHA 仍为 `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`。主矩阵结论与参考借鉴复核已保存在[节点报告](../research/ws30-stage3-main-node-report-r1.md)。
+
+先占输入为同 24 份需求乘 E/Q16/C16。背景释放时刻为 2.000000 s，MoE 为 2.000020 s。[本地验收](../research/evidence/ws30-stage3-lead-local-acceptance-r1.json)确认 24 份 trace 的固定源码内容、哈希、行序、需求身份和类别时间原点；手算 MoE 批时间为 7 µs，背景 P99 为 10 µs。192 格同步主矩阵加 96 格历史桥接的新旧指标完全一致。远端新快照为 load1=0.0、可用内存 122.56 GiB、空闲磁盘 3205.47 GiB；72 个 ID 的 runs/results 路径均不存在，未见其他 UID 作业或活动仿真。按同 SHA 的 24 格资源 pilot 和主矩阵 cap=12 记录，本节点重新选择 cap=12。未知进程停止门槛保留，控制器补充同次进程扫描的 UID、父 PID、命令行、UTC 启动时间和 worker 映射。
+
+当前准备回合已核实为 GPT-6.1 Sol / Medium；须待实际 GPT-6 Luna / Medium 生效并再次核对会话记录后启动。先占验收仍为 0/72，正式组成矩阵 0/12。先占结果完整回传和分析后，先向主对话汇报并等待核对；WS-30 仍 ACTIVE。
+
+## WS-30 阶段 3 历史启动入口（2026-10-24）
 
 WS-30 仍为 ACTIVE。阶段 3 的组成夹具技术验收已完成：[报告](../research/ws30-stage3-correctness-report-r1.md)、[合并收据](../research/evidence/ws30-stage3-correctness-combined-r1.json)和[审计脚本](../../scripts/audit_ws30_stage3_correctness.py)记录 12 个组成格与 2 个关闭夹具回归格，共 14 个成功 ID；固定仿真 SHA 为 `2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f`。组成交换按预期改变 C16 的选择，E 和 Q16 在该固定场景中分别保持出口 3 与首候选出口 2。该证据只验证受控夹具，不构成性能收益证据。3 个早期失败 ID 保留，未覆盖。
 

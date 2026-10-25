@@ -1,6 +1,12 @@
 # 下一阶段路线与停机条件
 
-## WS-30 阶段 3 当前入口（2026-10-24）
+## WS-30 主矩阵完成后的先占节点（2026-10-25）
+
+主矩阵 192/192、失败 0，主对话已核对[节点报告](../research/ws30-stage3-main-node-report-r1.md)及逐格证据，授权先占矩阵 72 格。按冻结计划使用原 24 个需求和 E/Q16/C16，背景从 2.000000 s 开始，MoE 从 2.000020 s 开始。MoE 时间原点手算、本地输入核验和 288 格同步分析回归通过，见[准入收据](../research/evidence/ws30-stage3-lead-local-acceptance-r1.json)。
+
+本次重新核对的远端资源与隔离允许 cap=12，其依据是同 SHA 的 4/8/12 pilot、主矩阵 156 格 cap=12 运行及新鲜空闲快照。保留全部准入停止门槛；未知仿真需保存同次扫描的进程身份及 worker 映射。准备回合实际为 Sol / Medium，启动前必须实际切至 Luna / Medium 并核验。先占 72 格完成后，先回传原始数据、双侧分析和节点报告，等待主对话核对后再启动 12 格正式组成矩阵。所有预设图表与最终结论仍待完成。
+
+## WS-30 阶段 3 历史启动入口（2026-10-24）
 
 WS-30 仍为 ACTIVE。阶段 3 的组成夹具已通过 12 格技术验收，另有 2 个关闭夹具回归格通过；固定仿真 SHA `2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f`，14/14 ID 成功。[报告](../research/ws30-stage3-correctness-report-r1.md)、[合并收据](../research/evidence/ws30-stage3-correctness-combined-r1.json)与[Handoff](../handoffs/2026-10-24-ws30-stage3-composition-correctness.md)记录组成、raw 哈希和逐项断言。该结果验证固定输入的队列组成和选路响应，不支持性能收益推断。3 个早期失败 ID 保留；当前正式效果格 0/276。
 

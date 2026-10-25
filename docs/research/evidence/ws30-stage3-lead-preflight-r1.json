@@ -1,0 +1,53 @@
+{
+  "cap_basis": [
+    "same fixed source 24/24 pilot through caps 4/8/12 selected 12",
+    "main 156 cells at cap 12 remained within resource limits",
+    "fresh snapshot has no other-UID work or unexpected simulation and admits 12",
+    "stop thresholds unchanged; same-scan process identity capture added"
+  ],
+  "checked_utc": "2026-10-25T00:27:55.498150+00:00",
+  "isolation_and_lock": {
+    "existing_lead_paths": [],
+    "other_uid_jobs": [],
+    "same_uid_process_summary": [
+      "1000 215645      1  0.0 29448 SLl  OpenDebugAD7",
+      "1000 232141 232102  0.0  3384 S    sshd",
+      "1000 232142 232141  0.0 10324 Ss   python3",
+      "1000 232144 232142  0.0  1480 R    ps",
+      "1000 302325      1  0.0 29408 SLl  OpenDebugAD7",
+      "1000 348833      1  0.0 29328 SLl  OpenDebugAD7",
+      "1000 377959      1  0.0 12004 S    hg",
+      "1000 397391      1  0.0 29164 SLl  OpenDebugAD7",
+      "1000 415208      1  0.0 28668 SLl  OpenDebugAD7",
+      "1000 420873      1  0.0  3704 Ss   systemd",
+      "1000 420878 420873  0.0  1852 S    (sd-pam)",
+      "1000 457365      1  0.0 29292 SLl  OpenDebugAD7"
+    ],
+    "simulation_start_lock_holders": []
+  },
+  "phase": "lead",
+  "plan_sha256": "77ca6064d4b4f275b409123302b01bd4eabd97e9c978e013f8d3e67edbf420f8",
+  "planned_cells": 72,
+  "preparation_context": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol",
+    "turn_id": "01a1706e-1efc-7bf0-963c-c2186ed15bde"
+  },
+  "required_launch_context": {
+    "effort": "medium",
+    "model": "gpt-6-luna"
+  },
+  "selected_cap": 12,
+  "snapshot_resource": {
+    "free_gib": 3205.4690017700195,
+    "load_1m": 0.0,
+    "mem_available_gib": 122.55838012695312,
+    "observed_worker_mapping": [],
+    "other_users": [],
+    "rss_mib": 0.0,
+    "unexpected_simulation_pids": [],
+    "unexpected_simulation_processes": []
+  },
+  "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+  "verified_local": 0
+}

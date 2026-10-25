@@ -201,6 +201,20 @@ REMOTE_WAIT = r'''
 import json,os,subprocess,sys,time
 q=json.loads(sys.argv[1]); root='/home/fnl/lzy'; deadline=time.time()+q['seconds']
 sys.dont_write_bytecode=True;sys.path.insert(0,root+'/.research-workflow');import remote_worker as worker
+def simulation_process_snapshot():
+    env=os.environ.copy();env['TZ']='UTC'
+    listing=subprocess.check_output(['ps','-ww','-eo','uid,pid,ppid,lstart,comm,args','--no-headers'],env=env).decode()
+    found={};run_marker=' run.py'+' --lb '
+    for line in listing.splitlines():
+        fields=line.strip().split(None,9)
+        if len(fields)!=10: continue
+        uid,pid,ppid=fields[:3];command,arguments=fields[8:]
+        if pid==str(os.getpid()): continue
+        if command.startswith('network-load-ba') or (command.startswith('python') and
+                run_marker in ' '+arguments):
+            found[pid]={'uid':int(uid),'pid':int(pid),'ppid':int(ppid),
+                'started_utc':' '.join(fields[3:8]),'comm':command,'command_line':arguments}
+    return found
 peak=0.; minmem=1e9; mindisk=1e9; maxrss=0.
 while True:
     states={}
@@ -224,13 +238,23 @@ while True:
     users=[l for l in subprocess.check_output(['ps','-eo','uid,pid,stat,comm','--no-headers']).decode().splitlines()
            if int(l.split()[0])>=1000 and int(l.split()[0])!=os.getuid() and not l.split()[2].startswith('Z')]
     own=[int(v['pid']) for v in states.values() if v and v.get('status')=='RUNNING']
-    unknown=[p for p in worker.active_simulations() if not any(worker.descendant_of(int(p),pid) for pid in own)]
+    processes=simulation_process_snapshot()
+    unknown=[p for p in processes if not any(worker.descendant_of(int(p),pid) for pid in own)]
+    unknown_details=[]
+    for p in unknown:
+        detail=dict(processes[p]);detail['sampled_utc']=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime())
+        detail['matching_worker_ids']=[i for i,v in states.items() if v and v.get('pid') and
+            worker.descendant_of(int(p),int(v['pid']))]
+        unknown_details.append(detail)
+    worker_mapping=[{'id':i,'status':v.get('status'),'pid':v.get('pid')} for i,v in states.items() if v] if unknown else []
     peak=max(peak,load); minmem=min(minmem,available); mindisk=min(mindisk,free)
     statuses={k:(v['status'] if v else None) for k,v in states.items()}
     unsafe=bool(users) or bool(unknown) or load>20 or available<32 or free<100 or maxrss>32768
     if statuses!=q['known'] or time.time()>=deadline or (unsafe and not q['drain']):
         print(json.dumps({'states':states,'resource':{'load_1m':load,'mem_available_gib':available,
-          'free_gib':free,'other_users':users,'unexpected_simulation_pids':unknown,'rss_mib':maxrss},'window':{'peak_load_1m':peak,
+          'free_gib':free,'other_users':users,'unexpected_simulation_pids':unknown,
+          'unexpected_simulation_processes':unknown_details,'observed_worker_mapping':worker_mapping,
+          'rss_mib':maxrss},'window':{'peak_load_1m':peak,
           'minimum_mem_available_gib':minmem,'minimum_free_gib':mindisk,'peak_tree_rss_mib':maxrss}})); break
     time.sleep(10)
 '''
