@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；v13 第一节点本地审计完成，补充实验待主对话决定 | [v13 节点报告](../research/ws30-v13-node1-audit-and-design-r1.md)：核实 DRILL 抽二加目的历史，定位 Q12 标签准入与持久 QP 缺口；48 格、795,648 条 raw 重建复现 Q12/E，并完成批尾、top-k 和分位数。v12 原证据未改，新仿真 0 格 | 主对话决定最多 214 格的具体范围后，实现严格无类别主体及 R12/U12、真实持久 QP/元组生命周期与 DRILL 观测；再冻结 SHA/ID、完成正确性和资源门槛。主稿由主对话重构，未按闭环归档 |
+| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；v13 工程实现与冻结计划就绪，实际模型切换断点 | [工程断点](../research/ws30-v13-model-switch-checkpoint-r2.md)：严格无类别 Q12/R12/U12、三轮持久 QP 和元组控制已实现；固定源码 `2c9f3a5`，r2 计划与46个新ID资源门槛已冻结，隔离构建已启动；静态输入和历史函数核验通过 | 实际切 Luna / Medium 后连续完成技术18格、生命周期16格、pilot12格；终态回传后实际切回 Sol / Medium 分析验收，正式120＋48格保持关闭；未闭环 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |

@@ -1,0 +1,61 @@
+{
+  "builds": [
+    {
+      "build_finished_utc": "2026-10-25T21:07:51Z",
+      "build_mode": "optimized",
+      "cpu_jobs": 2,
+      "created_utc": "2026-10-25T21:01:43Z",
+      "experiment_id": "20261026-060000-w30v13-t01-e-o0",
+      "git_branch": "research/ws30-attribution-audit",
+      "git_commit": "8b238877d84f29a0caf5f3d85eb275e5ebce55b4",
+      "git_repository": "https://github.com/LarryBUPT/conweave-ns3.git",
+      "pid": 50938,
+      "seed": 1,
+      "server": "ns3host",
+      "status": "BUILT"
+    },
+    {
+      "build_finished_utc": "2026-10-25T21:12:55Z",
+      "build_mode": "optimized",
+      "cpu_jobs": 2,
+      "created_utc": "2026-10-25T21:06:56Z",
+      "experiment_id": "20261026-060000-w30v13-r2-t01-e-o0",
+      "git_branch": "research/ws30-attribution-audit",
+      "git_commit": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "git_repository": "https://github.com/LarryBUPT/conweave-ns3.git",
+      "pid": 53423,
+      "seed": 1,
+      "server": "ns3host",
+      "status": "BUILT"
+    }
+  ],
+  "dynamic_accepted_cells": 0,
+  "fresh_post_build_resource": {
+    "active_simulation_pids": "",
+    "cmake": "/usr/bin/cmake",
+    "cpu_logical": "40",
+    "docker_access": "no",
+    "free_gib": "3060.5",
+    "g++": "/usr/bin/g++",
+    "gcc": "/usr/bin/gcc",
+    "git": "/usr/bin/git",
+    "host": "ns3host",
+    "load_1m": "0.62",
+    "make": "/usr/bin/make",
+    "mem_available_gib": "122.54",
+    "python": "3.5.2",
+    "rsync": "/usr/bin/rsync",
+    "screen": "/usr/bin/screen",
+    "simulation_max_process_rss_mib": "0.0",
+    "tmux": "/usr/bin/tmux",
+    "workspace": "/home/fnl/lzy"
+  },
+  "kind": "two preserved isolated builds; no simulations",
+  "model": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol",
+    "turn_id": "01a174d3-23ab-7371-8308-80ec1e1d09e3"
+  },
+  "recorded_utc": "2026-10-25T21:14:03.896546+00:00",
+  "v12_frozen_files_unchanged": true
+}

@@ -1,0 +1,22 @@
+{
+  "scope": "static preparation audit only; not dynamic correctness",
+  "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+  "source_file_hashes": {
+    "src/point-to-point/model/switch-node.cc": "3ebfc9a5b0ef5e3a2a4210daacc05433e33eee27d6dd6f6163092f55f7e18b09",
+    "src/point-to-point/model/rdma-hw.cc": "60e535b9715c554691bd9e6cb6915863e7d8d01c73143e291717c1f8f1189027",
+    "src/point-to-point/model/rdma-queue-pair.cc": "c7f06fa16c6bef60e2671ded84daa3009ed3312a7bfc55f8afbec7d28c004d20",
+    "scripts/run_ws30_v13.py": "a6881cd0dab007b92237c788d851706c08064fd90b5b3ca96a59857854a0e002"
+  },
+  "legacy_functions_byte_text_unchanged": {
+    "DoLbDrill": "e7f271b1c58b4200d1662ed6f6cfbfbb743ce2d94e1f4fb480707219062d9b8c",
+    "DoLbWs30": "acb545903a8658a46435c811fa5a93a360f94c43dda1cc3b70a5d3f23fd8a872",
+    "DoLbClassReserve": "67bc2718770d3baaeb849b214d19de307a25605bed07c303c50c37c830267e1e"
+  },
+  "new_routing_has_no_tag_access": true,
+  "plan_sha256": "b1b5434d370f77d57669b89c03b3e00f0b73db6fb9c4c9f85aa7e30f5ecdfcef",
+  "planned_cells": 214,
+  "current_stage_cells": 46,
+  "formal_cells_disabled": 168,
+  "source_and_local_input_hashes_match": true,
+  "dynamic_correctness": "NOT RUN"
+}

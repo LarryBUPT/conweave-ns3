@@ -1,5 +1,13 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 v13 工程实现和计划就绪，处于实际模型切换断点（2026-10-26）
+
+主对话已验收第一节点并批准最多 214 格方案。本节点仅开放技术 18 格、生命周期 16 格、资源 pilot 12 格；正式 120＋48 格仍关闭。新模式 33/34/35 实现严格无类别 Q12/R12/U12，持久夹具以同一 QP 的累计字节上限分三轮放行，另设新 QP 和元组重建控制。历史三个路由函数未改。
+
+当前固定源码 `2c9f3a50bafad0740b461496ba24fa81941a9bc7`，见[r2 计划](../research/evidence/ws30-v13-plan-r2.json)和[模型切换断点](../research/ws30-v13-model-switch-checkpoint-r2.md)。214 格输入与拓扑哈希静态核验通过，Python 语法与 Git 空白检查通过；r2 的 46 个新 ID 在资源门槛时均未占用。r1 与 r2 首格均已优化构建成功，均未运行仿真；[构建收据](../research/evidence/ws30-v13-build-gate-r2.json)确认 -j2、固定 SHA 和终态。构建后无活动仿真，load1=0.62、可用内存 122.54 GiB、空闲磁盘 3,060.5 GiB。
+
+当前实际模型从 turn_context 核验为 GPT-6.1 Sol / Medium。需主对话实际切换本副对话至 GPT-6 Luna / Medium，才启动后台 technical → lifecycle → pilot；执行器强制核验实际上下文。技术 0/18、生命周期 0/16、pilot 0/12，未把静态审计或构建算作动态正确性完成。46 格结束并回传 raw 后切回分析模型，再提交完整节点报告；WS-30 保持 ACTIVE。
+
 ## WS-30 v13 第一节点审计完成，补充实验待决定（2026-10-26）
 
 复用 `research/ws30-attribution-audit`，开始 HEAD 为 `6ccf04233d1be35a1f2c9258f0fc534462d1cd2a`、工作树干净。新副对话 `01a174c7-ecf5-7f21-a9dc-6f8b4f5634b8` 实际模型已从 turn_context 核验为 GPT-6.1 Sol / Medium。三份 v12 评审、主稿与复现索引均已阅读；没有修改主稿、冻结证据或仿真源码，没有启动新仿真。
