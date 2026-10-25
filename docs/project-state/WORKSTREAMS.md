@@ -1,10 +1,10 @@
 # 工作流台账
 
-更新：2026-10-25（WS-30 主矩阵完成，先占节点获准）。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
+更新：2026-10-25（WS-30 先占节点完成，等待主对话核对）。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | ClassReserve 实验补正与归因审计 | ACTIVE；主矩阵 COMPLETE FOR 192-CELL ACCEPTANCE AND PAIRED ANALYSIS | [主矩阵节点报告](../research/ws30-stage3-main-node-report-r1.md)、[192 格结果](../research/evidence/ws30-stage3-main-results-r5.json)与[分析](../research/evidence/ws30-stage3-main-analysis-r1.json)已由主对话核对；先占时间原点、24 份固定输入和 288 格同步分析回归通过 | 获准执行 72 格先占矩阵，验收 0/72；新鲜资源/隔离复查允许恢复既有 cap=12，启动前须实际核实 Luna/Medium。先占节点完成后等待主对话核对，再执行 12 格组成；最终图表与结论未完成，WS-30 未闭环 |
+| WS-30 | ClassReserve 实验补正与归因审计 | ACTIVE；主矩阵与先占节点 COMPLETE FOR RAW ACCEPTANCE AND PAIRED ANALYSIS，先占待主对话核对 | 主矩阵 192/192 已获核对；[先占报告](../research/ws30-stage3-lead-node-report-r1.md)、[72 格结果](../research/evidence/ws30-stage3-lead-results-r5.json)、[144 格审计](../research/evidence/ws30-stage3-lead-raw-audit-r1.json)与[配对分析](../research/evidence/ws30-stage3-lead-analysis-r1.json)完成；同需求 n=24、MoE 原点 2.000020 s | 先占 72/72、失败 0。C16/Q16 两侧中位变化 +0.020%/+0.012%，区间跨零。等待主对话核对后执行冻结 12 格组成；跨阶段图表与结论仍未完成，WS-30 未闭环 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |

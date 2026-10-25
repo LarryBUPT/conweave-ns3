@@ -1,0 +1,142 @@
+{
+  "analysis_context": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol",
+    "timestamp": "2026-10-25T04:44:35.589Z",
+    "turn_id": "01a1715f-f168-7c00-aec9-c4f6cd4e9dc0"
+  },
+  "composition_remote_metadata_absent": 12,
+  "controller_events": [
+    {
+      "event": "controller_started",
+      "phase": "lead",
+      "pid": 45552,
+      "utc": "2026-10-25T00:53:07.601457+00:00"
+    },
+    {
+      "event": "admission_stop",
+      "resource": {
+        "free_gib": 3185.2374229431152,
+        "load_1m": 11.95,
+        "mem_available_gib": 86.17026138305664,
+        "observed_worker_mapping": [
+          {
+            "id": "20261024-230000-ws30-lead-s20263031-q16",
+            "pid": 266359,
+            "status": "RUNNING"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263033-q16",
+            "pid": 265547,
+            "status": "RUNNING"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263031-c16",
+            "pid": 266632,
+            "status": "RUNNING"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263036-q16",
+            "pid": 267731,
+            "status": "RUNNING"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263033-c16",
+            "pid": 266089,
+            "status": "RUNNING"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263040-q16",
+            "pid": 265012,
+            "status": "SUCCEEDED"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263036-e",
+            "pid": 267181,
+            "status": "RUNNING"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263031-e",
+            "pid": 266906,
+            "status": "RUNNING"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263033-e",
+            "pid": 265816,
+            "status": "RUNNING"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263040-c16",
+            "pid": 265278,
+            "status": "RUNNING"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263040-e",
+            "pid": 264743,
+            "status": "SUCCEEDED"
+          },
+          {
+            "id": "20261024-230000-ws30-lead-s20263036-c16",
+            "pid": 267458,
+            "status": "RUNNING"
+          }
+        ],
+        "other_users": [],
+        "rss_mib": 4544.91796875,
+        "unexpected_simulation_pids": [
+          "265907"
+        ],
+        "unexpected_simulation_processes": [
+          {
+            "comm": "network-load-ba",
+            "command_line": "[network-load-ba]",
+            "matching_worker_ids": [],
+            "pid": 265907,
+            "ppid": 265859,
+            "sampled_utc": "2026-10-25T01:22:24Z",
+            "started_utc": "Sun Oct 25 01:16:22 2026",
+            "uid": 1000
+          }
+        ]
+      },
+      "utc": "2026-10-25T01:22:23.160274+00:00"
+    },
+    {
+      "error": "Admission stopped; all current workers drained; evidence preserved",
+      "event": "controller_stop",
+      "utc": "2026-10-25T01:24:01.867414+00:00"
+    },
+    {
+      "event": "controller_started",
+      "phase": "lead",
+      "pid": 41788,
+      "utc": "2026-10-25T01:25:29.743310+00:00"
+    }
+  ],
+  "controller_git_commit": "7ddbdc3ea2263e2e9e6af65c5ebe5f040e5ef8f1",
+  "controller_summary_sha256": "3c312232324c5c9204b5ab77765205a108b4406e18d21c53e27349a095f3ae29",
+  "failures": 0,
+  "first_simulation_started_utc": "2026-10-25T01:16:07Z",
+  "kind": "WS-30 lead terminal execution audit r1",
+  "last_simulation_finished_utc": "2026-10-25T04:41:49Z",
+  "local_verified": 72,
+  "observed_utc": "2026-10-25T04:52:38.885364+00:00",
+  "pending": 0,
+  "plan_sha256": "77ca6064d4b4f275b409123302b01bd4eabd97e9c978e013f8d3e67edbf420f8",
+  "remote_lead_succeeded": 72,
+  "remote_resource": {
+    "free_gib": 3083.973361968994,
+    "load_1m": 0.0,
+    "mem_available_gib": 122.54467010498047,
+    "observed_worker_mapping": [],
+    "other_users": [],
+    "rss_mib": 4545.03515625,
+    "unexpected_simulation_pids": [],
+    "unexpected_simulation_processes": []
+  },
+  "results_index_sha256": "569a50b6a0814bc0dfb5c17ecc8c21080ead03e4d6d9af2f6be4feaf416c85a0",
+  "source_sha": "1ef424749e3c551dd788d0a709bd8e21c7cc89c9",
+  "successful_cell_reruns": 0,
+  "unique_start_events": 72,
+  "unknown_process_attribution": "UID/PPID/comm/start/worker mapping captured; transient process disappeared; ownership beyond UID cannot be reconstructed from retained snapshot."
+}

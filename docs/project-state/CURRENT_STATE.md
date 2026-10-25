@@ -1,5 +1,13 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 先占节点完成，等待主对话核对（2026-10-25）
+
+正式先占矩阵 72/72 成功，失败 0，pending 0；本地逐格复核通过。相同 24 个需求的同步 E/Q16/C16 共 72 格也重新核验，独立重建端口身份、字节守恒和类别时间原点。背景起点为 2.000000 s，MoE 为 2.000020 s，批时间按 MoE 自身原点计算。仿真源码保持 `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`。详见[节点报告](../research/ws30-stage3-lead-node-report-r1.md)、[执行审计](../research/evidence/ws30-stage3-lead-execution-audit-r1.json)、[双侧分析](../research/evidence/ws30-stage3-lead-analysis-r1.json)与[原始数据审计](../research/evidence/ws30-stage3-lead-raw-audit-r1.json)。
+
+先占 Q16/E、C16/E 的 MoE 配对变化中位数为 −5.648%、−5.970%，24/24 个需求均更低；背景 P99 为 −0.044%、+0.014%，逐需求超过 +3% 的数量为 4/24、5/24。C16/Q16 的两侧中位变化为 +0.020%、+0.012%，名义 95% 区间均跨零。与同步条件的同需求对数比差也跨零，尚未识别清晰的类别加权或条件增量。首包组成观测和不利输入均完整保留；没有硬件外推。
+
+首批 12 格 cap=12，未知 PID 265907 触发安全排空后，其余 60 格以 cap=4 恢复。成功 ID 未重跑，进程进一步归属仍未明；后续无活动未知进程。分析实际模型已核实为 GPT-6.1 Sol / Medium。参考借鉴复核与三张图表已完成。正式组成仍为 0/12，等待主对话核对后启动；跨阶段最终图表与结论仍须完成。WS-30 保持 ACTIVE。本更新仅在 WS-30 分支，未宣称已集成到其他工作区。
+
 ## WS-30 主矩阵完成、先占矩阵准入（2026-10-25）
 
 主矩阵 192/192 已按固定计划验收，失败 0；24 个需求 seed 各覆盖八臂。主对话已核对[结果索引](../research/evidence/ws30-stage3-main-results-r5.json)和[双侧分析](../research/evidence/ws30-stage3-main-analysis-r1.json)，授权继续 72 格背景先占矩阵。固定仿真 SHA 仍为 `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`。主矩阵结论与参考借鉴复核已保存在[节点报告](../research/ws30-stage3-main-node-report-r1.md)。

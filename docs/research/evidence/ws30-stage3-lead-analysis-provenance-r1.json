@@ -1,0 +1,27 @@
+{
+  "kind": "WS-30 lead analysis provenance r1",
+  "python": "3.12.10",
+  "numpy": "2.5.4",
+  "matplotlib": "3.11.2",
+  "analysis_source_sha256": "9ebc865fa16fcdc3a88afaa60aad52d79e4043733001fa7d5467e5eca23b6d33",
+  "plot_source_sha256": "3a2f8d601621e91db06a677ed5a59b738854f729b4dc9664d9dd03efd608f19f",
+  "analysis_sha256": "050dcb8fb81565e887f6ff7737b59a442316b53665d222f8e80b356463e8049b",
+  "raw_audit_sha256": "80b0fe07b184092c568a0d5afeeb584f634857d413c673d09f3304c95677966c",
+  "source_data_csv_sha256": {
+    "ws30-stage3-lead-contrasts-r1.csv": "370b90f7371370bbab8e8c4b5729e3871f0cc00ba381c8c76a6e06c1e42c436e",
+    "ws30-stage3-lead-paired-r1.csv": "56c8e62cb366559c4e80eaf2cf28cddbe0fe43e55df73337b92e6318c659c425"
+  },
+  "raw_inputs_untouched": true,
+  "max_sync_bootstrap_endpoint_difference_pp": 0.13610832130137585,
+  "main_medians_regression_passed": true,
+  "raw_audit_cells": 144,
+  "statistics_review": {
+    "n": 24,
+    "unit": "demand seed",
+    "paired_conditions": true,
+    "flow_level_pseudoreplication": false,
+    "multiple_comparisons": "nominal descriptive 95% intervals; no significance labels",
+    "no_equivalence_or_noninferiority_claim": true,
+    "exclusions": 0
+  }
+}

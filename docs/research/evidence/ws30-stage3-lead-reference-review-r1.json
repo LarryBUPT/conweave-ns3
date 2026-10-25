@@ -1,0 +1,44 @@
+{
+  "kind": "WS-30 lead formal-node reference borrowing review r1",
+  "entry_files": {
+    "README.md": "4cf5e71bd9b1be600736b599b7e32f280e5cf7f4d88f3fe937cff05ecec249c6",
+    "reading-log.md": "9f2eef008171f951e2e9491799c776fb45273036c70c07deffbed4204a622047"
+  },
+  "entries": [
+    {
+      "paper": "diffflow-2016",
+      "version": "arXiv:1604.05107v1",
+      "borrowed_method": "Separate class source, routing granularity, common queue condition and two-sided costs.",
+      "boundary": "Java model omits TCP and uses class-independent queues; no MoE/P99/RDMA hardware transfer.",
+      "files": {
+        "papers/diffflow-2016/paper-v1.pdf": "f552fcb75a0cec582286db0032c81660ff161fe475609ae5e79ad7075a0ae164",
+        "papers/diffflow-2016/analysis-technical.md": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+        "papers/diffflow-2016/verification.md": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+      }
+    },
+    {
+      "paper": "seqbalance-2024",
+      "version": "arXiv:2407.09808v1",
+      "borrowed_method": "Separate QP path pinning, request maximum-completion aggregation and actual transport counters.",
+      "boundary": "Different child QPs and host shaper; project does not split WQEs; final journal text not compared.",
+      "files": {
+        "papers/seqbalance-2024/paper-v1.pdf": "097821eb41ca8687fc829cb31fdd54e897164de0956b30a830fdbee2c14fb913",
+        "papers/seqbalance-2024/analysis-technical.md": "1b1ffab4ffd79d1bbf3c5b70f89f1d4793053938b8097a34148fad18c8db9cbe",
+        "papers/seqbalance-2024/verification.md": "288da35fc28900eb3d40a8747431ef33cd0ceb23754a92f0844b8c9a4b8658fa"
+      }
+    },
+    {
+      "paper": "letflow-2017",
+      "version": "NSDI 2017 official PDF, 15 pages including cover",
+      "borrowed_method": "Check timing, transport-dependent adaptation and opportunities to change paths before explaining load-balancing effects.",
+      "boundary": "Random flowlet reselection differs from project QP pinning; fixed 20-us release offset is not a flowlet timeout; hardware/TCP/OMNeT++ results do not prove project outcomes.",
+      "files": {
+        "papers/letflow-2017/paper-local.pdf": "8a89af468f606199146c2146da6fa7e71f466504ff3543db7c7bc9359a5e8264",
+        "papers/letflow-2017/analysis-technical.md": "d9f43c52c7e1c128259488111d99ec1ba0668e93e187a9ebd4c0f3b68f698e58",
+        "papers/letflow-2017/verification.md": "f57eaf6d07ed12ccb13fffed61da49524df1b344ef40ad9a104558361d481b35"
+      }
+    }
+  ],
+  "new_mechanism_admitted": false,
+  "author_effects_used_as_project_evidence": false
+}

@@ -1,0 +1,22 @@
+{
+  "backend": "Python / matplotlib",
+  "source_data": "../../evidence/ws30-stage3-lead-analysis-r1.json",
+  "archetype": "single-panel quantitative plots",
+  "excluded_observations": 0,
+  "n": "24 independent demand seeds; conditions and two metrics are paired within seed",
+  "uncertainty": "black diamond = median; horizontal bar = nominal two-sided demand-bootstrap 95% interval; no significance labels",
+  "point_definition": "one demand-seed paired percent change; all 24 points retained per series",
+  "engineering_line": "+3% background line applies to candidate/E comparisons; not a noninferiority test",
+  "question": "Does fixed 20-us background precedence reveal an incremental class-weighting benefit over common queue selection?",
+  "role": {
+    "moe-effects": "MoE relative effects and demand heterogeneity",
+    "background-effects": "background cost and adverse cases",
+    "lead-joint-effects": "within-demand joint outcomes"
+  },
+  "exports": [
+    "PDF editable text",
+    "SVG editable text",
+    "PNG 600 dpi preview"
+  ],
+  "journal": "internal research node report; no journal submission claim"
+}
