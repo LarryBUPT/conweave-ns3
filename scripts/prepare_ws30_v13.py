@@ -34,7 +34,7 @@ def traces():
             data=str(len(rows))+'\n'+'\n'.join(v for _,v in rows)+'\n'
             p=ROOT/f'config/ws30v13_life_w{warm}_{policy}.txt'
             if p.exists(): assert p.read_text()==data
-            else:p.write_text(data,encoding='ascii')
+            else:p.write_text(data,encoding='ascii',newline='\n')
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--source');p.add_argument('--revision',default='r1');args=p.parse_args()
