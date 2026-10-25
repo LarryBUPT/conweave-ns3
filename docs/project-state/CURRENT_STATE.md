@@ -1,5 +1,11 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 先占节点获核对，正式组成准入通过（2026-10-25）
+
+主对话已核对先占节点及提交 `fc87ef0`，授权冻结的 12 格正式组成矩阵。技术夹具 14/14 重新复核通过；两出口各 64 个真实预填包、65,536 B，在探针到达前入队。最后预填入队为 2,000,003,500 ns，探针到达为 2,000,021,020 ns，出口释放为 2,000,022,000 ns。四份 trace 与组成源码提交逐字节一致，只有本地头文件存在 Windows 换行差异。详见[组成准入收据](../research/evidence/ws30-stage3-composition-readiness-r1.json)。
+
+新鲜资源为 load1=0、可用内存 122.55 GiB、空闲磁盘 3,083.97 GiB；12 个正式 ID 的远端 runs/results 路径均空，本地无结果，控制器锁可独占，没有其他 UID 作业、未知仿真或启动锁持有者。按同组成 SHA 的技术格选择 cap=4。准备回合实际为 Sol / Medium，待真实 Luna / Medium 生效并重查启动门槛后运行。标签 2 含预填 MoE 和探针，完整批时间与探针自身 FCT 分别报告。组成当前 0/12，WS-30 ACTIVE。
+
 ## WS-30 先占节点完成，等待主对话核对（2026-10-25）
 
 正式先占矩阵 72/72 成功，失败 0，pending 0；本地逐格复核通过。相同 24 个需求的同步 E/Q16/C16 共 72 格也重新核验，独立重建端口身份、字节守恒和类别时间原点。背景起点为 2.000000 s，MoE 为 2.000020 s，批时间按 MoE 自身原点计算。仿真源码保持 `1ef424749e3c551dd788d0a709bd8e21c7cc89c9`。详见[节点报告](../research/ws30-stage3-lead-node-report-r1.md)、[执行审计](../research/evidence/ws30-stage3-lead-execution-audit-r1.json)、[双侧分析](../research/evidence/ws30-stage3-lead-analysis-r1.json)与[原始数据审计](../research/evidence/ws30-stage3-lead-raw-audit-r1.json)。

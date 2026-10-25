@@ -1,0 +1,313 @@
+{
+  "cap_basis": "Same composition source and fixture passed all 14 technical IDs at cap 4; fresh host and isolation gates passed.",
+  "checked_utc": "2026-10-25T06:08:13.489303+00:00",
+  "composition_design_sha256": "743b0dc3243b79f7be6864bfb835cfd4d4f50256a7b5e45a9561708fbb3ec18b",
+  "correctness_receipt_sha256": "7cceb62d5f844f191641788c1bc57102845ea3008d98ce2d112ebee37297946c",
+  "fixed_files": {
+    "config/ws30_composition8.txt": {
+      "byte_equal": true,
+      "fixed_commit_blob_sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+      "local_sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a"
+    },
+    "config/ws30_composition_v3_swap0_cont0.txt": {
+      "byte_equal": true,
+      "fixed_commit_blob_sha256": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13",
+      "local_sha256": "40348876541f2080374b08aac147d9f1e1f7f9b412dfc27958af2f33080f7b13"
+    },
+    "config/ws30_composition_v3_swap0_cont1.txt": {
+      "byte_equal": true,
+      "fixed_commit_blob_sha256": "b3f380befa96299652a397e0ab90d8c2d4a3bc07d6180f19b5a61b1c16970918",
+      "local_sha256": "b3f380befa96299652a397e0ab90d8c2d4a3bc07d6180f19b5a61b1c16970918"
+    },
+    "config/ws30_composition_v3_swap1_cont0.txt": {
+      "byte_equal": true,
+      "fixed_commit_blob_sha256": "bdb4458981e326e30931bcc4de52a733432ea0b9e78466fb884471b1d46a99bc",
+      "local_sha256": "bdb4458981e326e30931bcc4de52a733432ea0b9e78466fb884471b1d46a99bc"
+    },
+    "config/ws30_composition_v3_swap1_cont1.txt": {
+      "byte_equal": true,
+      "fixed_commit_blob_sha256": "fdae9c3131bd3e2e2c62e8947af974f6ac08acbac4eaa117b4d99ddcabb3ec56",
+      "local_sha256": "fdae9c3131bd3e2e2c62e8947af974f6ac08acbac4eaa117b4d99ddcabb3ec56"
+    },
+    "scratch/ws30-composition-fixture.h": {
+      "byte_equal": false,
+      "fixed_commit_blob_sha256": "bfda95dfa16647677bd883ed17b92f3fa209ded1234a3acb13047bf2481f5218",
+      "local_sha256": "9718a9d9c8e0a49b7362759c2ed79a1137b9a7664c9d32383fdcd9217125c8e4"
+    }
+  },
+  "formal_cells": 12,
+  "formal_cells_launched_by_this_audit": 0,
+  "isolation": {
+    "occupied_paths": [],
+    "simulation_start_lock_holders": [],
+    "uid_processes": [
+      " 1000  10901  10862  0.0  3440 S    sshd",
+      " 1000  10902  10901  0.0 10376 Ss   python3",
+      " 1000  10903  10902  0.0  1444 R    ps",
+      " 1000 215645      1  0.0 29448 SLl  OpenDebugAD7",
+      " 1000 302325      1  0.0 29408 SLl  OpenDebugAD7",
+      " 1000 348833      1  0.0 29328 SLl  OpenDebugAD7",
+      " 1000 377959      1  0.0 12004 S    hg",
+      " 1000 397391      1  0.0 29164 SLl  OpenDebugAD7",
+      " 1000 415208      1  0.0 28668 SLl  OpenDebugAD7",
+      " 1000 420873      1  0.0  3704 Ss   systemd",
+      " 1000 420878 420873  0.0  1852 S    (sd-pam)",
+      " 1000 457365      1  0.0 29292 SLl  OpenDebugAD7"
+    ]
+  },
+  "kind": "WS-30 composition readiness after accepted 14-cell technical audit",
+  "local_controller_lock_probe_passed": true,
+  "plan_sha256": "77ca6064d4b4f275b409123302b01bd4eabd97e9c978e013f8d3e67edbf420f8",
+  "preparation_context": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol",
+    "turn_id": "01a171ab-13f4-79a2-abe1-6362213955bd"
+  },
+  "queue_time_audit": [
+    {
+      "arm": "C16",
+      "background_bytes": [
+        65536,
+        0
+      ],
+      "config_log_sha256": "e9603b9cba53afa8c35931aa7c778fa88cbc0a8ecdebc86f4fd8125801a5414b",
+      "continuing": 0,
+      "formal_id": "20261024-220000-ws30-comp5-s0-c0-c16",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 0,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep5-s0-c0-c16",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "E",
+      "background_bytes": [
+        65536,
+        0
+      ],
+      "config_log_sha256": "c3a9224b5e047da6e450958dbf011903956ab2590aabb0b537d68ffdd0dc7ac6",
+      "continuing": 0,
+      "formal_id": "20261024-220000-ws30-comp5-s0-c0-e",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 0,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep5-s0-c0-e",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "Q16",
+      "background_bytes": [
+        65536,
+        0
+      ],
+      "config_log_sha256": "6ae59e87a82ceb42592b3cd4f2c52c3b8f944aad7ca2892685dcc1fbcb93f4e4",
+      "continuing": 0,
+      "formal_id": "20261024-220000-ws30-comp5-s0-c0-q16",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 0,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep5-s0-c0-q16",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "C16",
+      "background_bytes": [
+        0,
+        65536
+      ],
+      "config_log_sha256": "4c8a0e6a3ed2463385e9b8385c9097a6545aff7dfc724a447a2a8cb89362a35a",
+      "continuing": 0,
+      "formal_id": "20261024-220000-ws30-comp5-s1-c0-c16",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 1,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep5-s1-c0-c16",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "C16",
+      "background_bytes": [
+        65536,
+        0
+      ],
+      "config_log_sha256": "8bcd71f5eb0e241769a76678186fee529c1c65d14b669c69584335fd42b0c5fb",
+      "continuing": 1,
+      "formal_id": "20261024-220000-ws30-comp5-s0-c1-c16",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 0,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep5-s0-c1-c16",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "C16",
+      "background_bytes": [
+        0,
+        65536
+      ],
+      "config_log_sha256": "0c6ba8d8fca8610ceeb876b9517d730fdeaa0600c6379e308178421b89780d93",
+      "continuing": 1,
+      "formal_id": "20261024-220000-ws30-comp5-s1-c1-c16",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 1,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep5-s1-c1-c16",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "E",
+      "background_bytes": [
+        0,
+        65536
+      ],
+      "config_log_sha256": "d8afa294500ff0547f5ac7b88ca8fc36b772e652c71d446f6b1b4320e5f71ae8",
+      "continuing": 0,
+      "formal_id": "20261024-220000-ws30-comp5-s1-c0-e",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 1,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep6-s1-c0-e",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "Q16",
+      "background_bytes": [
+        0,
+        65536
+      ],
+      "config_log_sha256": "53d159d2414797348d5c18de1f62c331aa7f54167e590571a02febb647a41f94",
+      "continuing": 0,
+      "formal_id": "20261024-220000-ws30-comp5-s1-c0-q16",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 1,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep6-s1-c0-q16",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "E",
+      "background_bytes": [
+        65536,
+        0
+      ],
+      "config_log_sha256": "8fdb052a953f385069fb0466e0b23ef212c5de1ae81518fa050fd8ad4f8b2125",
+      "continuing": 1,
+      "formal_id": "20261024-220000-ws30-comp5-s0-c1-e",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 0,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep6-s0-c1-e",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "Q16",
+      "background_bytes": [
+        65536,
+        0
+      ],
+      "config_log_sha256": "b4ffecb0a4df66ba9c4ce46ca119c259cf956f9e5d956610191d9fd87e6ff6c2",
+      "continuing": 1,
+      "formal_id": "20261024-220000-ws30-comp5-s0-c1-q16",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 0,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep6-s0-c1-q16",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "E",
+      "background_bytes": [
+        0,
+        65536
+      ],
+      "config_log_sha256": "49f9aea81219a870f4e8113e20257ce17a84174610af7f5ffec487e0a8dcbce1",
+      "continuing": 1,
+      "formal_id": "20261024-220000-ws30-comp5-s1-c1-e",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 1,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep6-s1-c1-e",
+      "wire_bytes_per_port": 65536
+    },
+    {
+      "arm": "Q16",
+      "background_bytes": [
+        0,
+        65536
+      ],
+      "config_log_sha256": "6088a221e08cf00e5e6d87fed1d595e48d27d7e4a02937f07991ac6c1c85a1e8",
+      "continuing": 1,
+      "formal_id": "20261024-220000-ws30-comp5-s1-c1-q16",
+      "last_prefill_enqueue_ns": 2000003500,
+      "prefill_packets_per_port": 64,
+      "probe_arrival_ns": 2000021020,
+      "probe_origin_ns": 2000020000,
+      "release_ns": 2000022000,
+      "swap": 1,
+      "tag2_batch_origin_ns": 2000000000,
+      "technical_id": "20261024-210000-ws30-cprep6-s1-c1-q16",
+      "wire_bytes_per_port": 65536
+    }
+  ],
+  "required_launch_context": {
+    "effort": "medium",
+    "model": "gpt-6-luna"
+  },
+  "resource": {
+    "free_gib": 3083.973358154297,
+    "load_1m": 0.0,
+    "mem_available_gib": 122.54991912841797,
+    "observed_worker_mapping": [],
+    "other_users": [],
+    "rss_mib": 0.0,
+    "unexpected_simulation_pids": [],
+    "unexpected_simulation_processes": []
+  },
+  "selected_cap": 4,
+  "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+  "technical_ids_previously_reverified": 14
+}

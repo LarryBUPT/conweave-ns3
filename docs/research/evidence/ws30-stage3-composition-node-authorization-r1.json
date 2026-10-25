@@ -1,0 +1,41 @@
+{
+  "WS29_access_authorized": false,
+  "analysis_context": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol"
+  },
+  "approval_basis": "Main chat accepted the complete 72-cell lead node and explicitly authorized the frozen 2 compositions by 2 continuing-arrival conditions by 3 arms, with fresh fixture/resource/identity checks.",
+  "approval_source_thread": "01a0cfac-3176-7590-bf34-c0f176a45118",
+  "approved": true,
+  "correctness_receipt_sha256": "7cceb62d5f844f191641788c1bc57102845ea3008d98ce2d112ebee37297946c",
+  "formal_cells": 12,
+  "input_tuning_authorized": false,
+  "kind": "WS-30 formal composition node authorization and launch contract r1",
+  "launch_requires_fresh_resource_and_empty_ID_recheck": true,
+  "metric_contract": {
+    "background_p99": "all tag1 per-flow FCTs",
+    "interpretation": "Four controlled fixture conditions; no claim of 24 independent demand replicates.",
+    "probe_identity": [
+      0,
+      3,
+      10004,
+      100,
+      16000
+    ],
+    "probe_release_origin_ns": 2000020000,
+    "tag2_batch_origin_ns": 2000000000
+  },
+  "next_node_requires_main_chat_review": true,
+  "phase": "composition",
+  "plan_sha256": "77ca6064d4b4f275b409123302b01bd4eabd97e9c978e013f8d3e67edbf420f8",
+  "readiness_script_sha256": "baa7179af6c234a2474743447ed86aa4bc3d6bcc8e823074eede118b9362fc3e",
+  "readiness_sha256": "40643690b3849b6b205d263ceb630ba0e8142ef99d1aa5aaf4219a2d49f44162",
+  "recorded_utc": "2026-10-25T06:10:10.873402+00:00",
+  "required_launch_context": {
+    "effort": "medium",
+    "model": "gpt-6-luna"
+  },
+  "selected_cap": 4,
+  "source_sha": "2d7e31a9f6ae24f1514d02cbf341d27e6ec0717f",
+  "supervision_interval_minutes": 15
+}
