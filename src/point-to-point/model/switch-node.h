@@ -57,6 +57,11 @@ class SwitchNode : public Node {
                               const std::vector<int> &nexthops);
     struct Ws30Pair { uint32_t first=0, second=0, chosen=0; };
     std::map<std::tuple<uint32_t,uint32_t,uint16_t,uint16_t>,Ws30Pair> m_ws30Pairs;
+    // v13 arms are isolated from every historical mode and table.
+    std::map<std::tuple<uint32_t,uint32_t,uint16_t,uint16_t>,Ws30Pair> m_ws30V13Pairs;
+    uint64_t m_ws30V13Hits{0}, m_ws30V13Misses{0}, m_ws30V13Peak{0};
+    uint32_t DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
+                         const std::vector<int> &nexthops);
     uint32_t DoLbWs30(Ptr<const Packet> p, const CustomHeader &ch,
                       const std::vector<int> &nexthops);
     uint32_t DoLbDestSpread(Ptr<const Packet> p, const CustomHeader &ch,
@@ -136,6 +141,8 @@ class SwitchNode : public Node {
                            const std::vector<int> &nexthops);  // dummy
 
    public:
+    void ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport);
+    void WriteWs30V13State() const;
     // Ptr<BroadcomNode> m_broadcom;
     Ptr<SwitchMmu> m_mmu;
     bool m_isToR;                                 // true if ToR switch

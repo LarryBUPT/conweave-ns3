@@ -64,6 +64,7 @@ def build(bld):
 		'helper/sim-setting.h',
 		'model/flow-stat-tag.h',
         'model/workload-tag.h',
+        'model/ws30-v13-fixture.h',
 		'model/conga-routing.h',
         'model/letflow-routing.h',
         'model/conweave-routing.h',

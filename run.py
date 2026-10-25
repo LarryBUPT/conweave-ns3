@@ -142,6 +142,9 @@ lb_modes = {
     "ws30-u16": 30,
     "ws30-q12": 31,
     "ws30-h12": 32,
+    "ws30v13-q12": 33,
+    "ws30v13-r12": 34,
+    "ws30v13-u12": 35,
     "cr-a0-b0": 25,
     "cr-a1-b0": 26,
     "cr-a0-b1": 27,
@@ -273,7 +276,7 @@ def main():
     # get over-subscription ratio from topoogy name
 
     netload = args.netload
-    if os.environ.get('WS30_COMPOSITION') == '1':
+    if os.environ.get('WS30_COMPOSITION') == '1' or os.environ.get('WS30_LIFECYCLE','0') != '0':
         if topo != 'ws30_composition8' or not args.flow_file:
             raise Exception('WS-30 composition requires its fixed topology and explicit trace')
         # The microfixture has fixed QPs, not generated offered load. Keep a

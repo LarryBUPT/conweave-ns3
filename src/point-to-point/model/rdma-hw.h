@@ -92,6 +92,7 @@ class RdmaHw : public Object {
 
     void RecoverQueue(Ptr<RdmaQueuePair> qp);
     void QpComplete(Ptr<RdmaQueuePair> qp);
+    void ReleaseWs30Round(Ptr<RdmaQueuePair> qp, uint32_t round);
     void SetLinkDown(Ptr<QbbNetDevice> dev);
 
     // call this function after the NIC is setup

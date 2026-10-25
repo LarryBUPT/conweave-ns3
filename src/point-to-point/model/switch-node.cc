@@ -1,5 +1,6 @@
 #include "switch-node.h"
 #include "ws30-observer.h"
+#include "ws30-v13-fixture.h"
 
 #include "assert.h"
 #include "ns3/boolean.h"
@@ -1335,6 +1336,55 @@ uint32_t SwitchNode::DoLbWs30(Ptr<const Packet> p, const CustomHeader &ch,
     return chosen;
 }
 
+// No WorkloadTag is read here: every UDP data flow uses the same key/rule.
+uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
+                                 const std::vector<int> &nexthops) {
+    if (ch.l3Prot != 0x11) return DoLbFlowECMP(p, ch, nexthops);
+    const auto key = std::make_tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    auto hit = m_ws30V13Pairs.find(key);
+    const bool fresh = hit == m_ws30V13Pairs.end();
+    if (fresh) ++m_ws30V13Misses; else ++m_ws30V13Hits;
+    if (Ws30V13Life() && ch.udp.seq%8192==0)
+        std::cout << "WS30V13_CACHE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " sip=" << ch.sip << " dip=" << ch.dip
+                  << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
+                  << " seq=" << ch.udp.seq << " miss=" << fresh
+                  << " entries=" << m_ws30V13Pairs.size() << std::endl;
+    if (!fresh && Settings::lb_mode != 35) return hit->second.chosen;
+    if (fresh) {
+        const uint32_t bytes[3] = {ch.sip, ch.dip,
+            uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16)};
+        const uint8_t *data = reinterpret_cast<const uint8_t *>(bytes);
+        Ws30Pair pair;
+        pair.first = nexthops[EcmpHash(data,12,m_ecmpSeed) % nexthops.size()];
+        pair.second = nexthops[EcmpHash(data,12,m_ecmpSeed ^ 0x9e3779b9U) % nexthops.size()];
+        pair.chosen = pair.first;
+        if (Settings::lb_mode == 34 && (EcmpHash(data,12,m_ecmpSeed ^ 0x85ebca6bU) & 1U))
+            pair.chosen = pair.second;
+        hit = m_ws30V13Pairs.insert(std::make_pair(key,pair)).first;
+        m_ws30V13Peak = std::max<uint64_t>(m_ws30V13Peak,m_ws30V13Pairs.size());
+    }
+    Ws30Pair &pair = hit->second;
+    const uint64_t a = (Settings::lb_mode != 34 || Ws30Level()) ? CalculateInterfaceLoad(pair.first) : 0;
+    const uint64_t b = (Settings::lb_mode != 34 || Ws30Level()) ? CalculateInterfaceLoad(pair.second) : 0;
+    if (Settings::lb_mode != 34) pair.chosen = b < a ? pair.second : pair.first;
+    // Tag is deliberately absent from routing and choice records in these arms.
+    if (fresh) Ws30Choice(m_id,ch,0,pair.first,pair.second,a,b,0,0,pair.chosen,p->GetSize());
+    return pair.chosen;
+}
+
+void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport) {
+    const size_t erased = m_ws30V13Pairs.erase(std::make_tuple(sip,dip,sport,dport));
+    std::cout << "WS30V13_CACHE_RESET switch=" << m_id << " erased=" << erased << std::endl;
+}
+
+void SwitchNode::WriteWs30V13State() const {
+    if (Settings::lb_mode<33 || Settings::lb_mode>35) return;
+    std::cout << "WS30V13_STATE switch=" << m_id << " entries=" << m_ws30V13Pairs.size()
+              << " peak=" << m_ws30V13Peak << " hits=" << m_ws30V13Hits
+              << " misses=" << m_ws30V13Misses << std::endl;
+}
+
 // WS-25 v2 diagnostic correction. A MoE QP uses the existing DRILL decision
 // only for its first packet at this switch, then retains that next hop. A
 // background flow also chooses once and keeps its next hop at this switch.
@@ -1734,6 +1784,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbClassReserve(p, ch, nexthops);
         case 28: case 29: case 30: case 31: case 32:
             return DoLbWs30(p, ch, nexthops);
+        case 33: case 34: case 35:
+            return DoLbWs30V13(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
         case 23:

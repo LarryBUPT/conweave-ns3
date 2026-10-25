@@ -104,7 +104,8 @@ uint64_t RdmaQueuePair::GetBytesLeft() {
         }
     }
 
-    return m_size >= snd_nxt ? m_size - snd_nxt : 0;
+    const uint64_t limit = m_ws30Persistent ? m_ws30Released : m_size;
+    return limit >= snd_nxt ? limit - snd_nxt : 0;
 }
 
 uint32_t RdmaQueuePair::GetHash(void) {

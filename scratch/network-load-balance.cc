@@ -54,6 +54,7 @@
 #include "ns3/rdma-hw.h"
 #include "ns3/settings.h"
 #include "ns3/workload-tag.h"
+#include "ns3/ws30-v13-fixture.h"
 #include "ws30-composition-fixture.h"
 
 using namespace ns3;
@@ -347,6 +348,10 @@ void ScheduleFlowInputs(FILE *infile) {
         // dst port
         dport = dportNumber[dst];
         dportNumber[dst] = dportNumber[dst] + 1;
+        if (Ws30V13Life() >= 3 && flow_input.workload_tag == 2) {
+            sport = 10000;
+            dport = 100;
+        }
 
         target_len = flow_input.maxPacketCount;  // this is actually not packet-count, but bytes
         if (target_len == 0) {
@@ -624,6 +629,14 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
     Ptr<Node> dstNode = n.Get(did);
     Ptr<RdmaDriver> rdma = dstNode->GetObject<RdmaDriver>();
     rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->sport, q->dport, q->m_pg);
+    if (Ws30V13Life() == 4 && q->m_ws30Serial) {
+        // Only after this request's cumulative ACK, with 100 us before reuse.
+        // This is an explicit test intervention, not a timeout eviction policy.
+        for (uint32_t i=0; i<n.GetN(); ++i) {
+            Ptr<SwitchNode> sw = DynamicCast<SwitchNode>(n.Get(i));
+            if (sw) sw->ResetWs30V13Tuple(q->sip.Get(),q->dip.Get(),q->sport,q->dport);
+        }
+    }
 
     // fprintf(fout, "%lu QP complete\n", Simulator::Now().GetTimeStep());
     fprintf(fout, "%u %u %u %u %lu %lu %lu %lu\n", Settings::ip_to_node_id(q->sip),
@@ -1454,7 +1467,7 @@ int main(int argc, char *argv[]) {
     else  // others, no extra header
         IntHeader::mode = 5;
 
-    if (Ws30CompositionEnabled()) {
+    if (Ws30CompositionEnabled() || Ws30V13Life()) {
         if (cc_mode!=1 || enable_pfc || !enable_irn)
             NS_FATAL_ERROR("WS-30 composition requires DCQCN, PFC=0, IRN=1");
         // run.py's bw=400 map starts at 80 Gbps. Freeze the diagnostic
@@ -1745,7 +1758,7 @@ int main(int argc, char *argv[]) {
     topo2bdpMap[std::string("fat_k8_100G_OS2")] = 156000;      // RTT=12480 --> all 100G links
     topo2bdpMap[std::string("fat_k4_100G_OS2")] = 156000;      // same three-tier link rates
     topo2bdpMap[std::string("topo_1280_400G_400G_OS1")] = 30000;  // 600ns * 400Gbps / 8
-    if (Ws30CompositionEnabled())
+    if (Ws30CompositionEnabled() || Ws30V13Life())
         topo2bdpMap[std::string("ws30_composition8")] = 42200;  // 8440ns * 40Gbps / 8
 
     // topology_file
@@ -2211,6 +2224,10 @@ int main(int argc, char *argv[]) {
     Ws30CompositionInstall(n, flowgen_start_time);
     Simulator::Run();
     Ws30CompositionFinish();
+    for (uint32_t i=0; i<n.GetN(); ++i) {
+        Ptr<SwitchNode> sw = DynamicCast<SwitchNode>(n.Get(i));
+        if (sw) sw->WriteWs30V13State();
+    }
     if (ws21_port_events)
         for (const auto &entry : idxNodeToR)
             entry.second->RecordWs21PortBoundary('F');

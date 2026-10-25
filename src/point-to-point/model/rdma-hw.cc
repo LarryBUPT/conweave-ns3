@@ -1,4 +1,5 @@
 #include "rdma-hw.h"
+#include "ws30-v13-fixture.h"
 #include "ws30-observer.h"
 
 #include <ns3/ipv4-header.h>
@@ -242,6 +243,21 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
     qp->SetFlowId(flow_id);
     qp->m_workload_tag = workload_tag;
     qp->SetTimeout(m_waitAckTimeout);
+    if (Ws30V13Life() && workload_tag == 2) {
+        static uint64_t serial = 0;
+        qp->m_ws30Serial = ++serial;
+        if (Ws30V13Life() == 1) {
+            if (size != 24576) NS_FATAL_ERROR("Persistent fixture requires three 8192-byte requests");
+            qp->m_ws30Persistent = true;
+            qp->m_ws30Released = 8192;
+            for (uint32_t r=1; r<3; ++r)
+                Simulator::Schedule(NanoSeconds(uint64_t(r)*100000), &RdmaHw::ReleaseWs30Round, this, qp, r);
+        }
+        std::cout << "WS30V13_CREATE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " serial=" << qp->m_ws30Serial << " flow_id=" << flow_id
+                  << " persistent=" << qp->m_ws30Persistent << " size=" << size
+                  << " sport=" << sport << " dport=" << dport << std::endl;
+    }
 
     if (m_irn) {
         qp->irn.m_enabled = m_irn;
@@ -254,6 +270,11 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
     uint32_t nic_idx = GetNicIdxOfQp(qp);
     m_nic[nic_idx].qpGrp->AddQp(qp);
     uint64_t key = GetQpKey(dip.Get(), sport, dport, pg);
+    if (Ws30V13Life() >= 3 && workload_tag == 2) {
+        if (m_qpMap.count(key)) NS_FATAL_ERROR("Tuple fixture attempted to replace a live QP");
+        // Explicit test-only recreation after final ACK and receiver deletion.
+        akashic_Qp.erase(key);
+    }
     m_qpMap[key] = qp;
 
     // set init variables
@@ -275,9 +296,26 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
     m_nic[nic_idx].dev->NewQp(qp);
 }
 
+void RdmaHw::ReleaseWs30Round(Ptr<RdmaQueuePair> qp, uint32_t round) {
+    if (!qp->m_ws30Persistent || qp->m_ws30Released != uint64_t(round)*8192 ||
+        qp->m_ws30RoundDone != round || qp->snd_una != uint64_t(round)*8192)
+        NS_FATAL_ERROR("Persistent round released before prior request was acknowledged");
+    qp->m_ws30Released += 8192;
+    std::cout << "WS30V13_RELEASE time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " serial=" << qp->m_ws30Serial << " round=" << round
+              << " demand_ns=" << qp->startTime.GetNanoSeconds()+uint64_t(round)*100000
+              << " released=" << qp->m_ws30Released << " snd_nxt=" << qp->snd_nxt
+              << " snd_una=" << qp->snd_una << " rate=" << qp->m_rate.GetBitRate()
+              << " alpha=" << qp->mlx.m_alpha << std::endl;
+    m_nic[GetNicIdxOfQp(qp)].dev->TriggerTransmit();
+}
+
 void RdmaHw::DeleteQueuePair(Ptr<RdmaQueuePair> qp) {
     // remove qp from the m_qpMap
     uint64_t key = GetQpKey(qp->dip.Get(), qp->sport, qp->dport, qp->m_pg);
+    if (qp->m_ws30Serial)
+        std::cout << "WS30V13_DELETE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " serial=" << qp->m_ws30Serial << " snd_una=" << qp->snd_una << std::endl;
 
     // record to Akashic record
     NS_ASSERT(akashic_Qp.find(key) == akashic_Qp.end());  // should not be already existing
@@ -304,6 +342,7 @@ Ptr<RdmaRxQueuePair> RdmaHw::GetRxQp(uint32_t sip, uint32_t dip, uint16_t sport,
     if (it != m_rxQpMap.end()) return it->second;
 
     if (create) {
+        if (Ws30V13Life() >= 3) akashic_RxQp.erase(rxKey);
         // create new rx qp
         Ptr<RdmaRxQueuePair> q = CreateObject<RdmaRxQueuePair>();
         // init the qp
@@ -377,6 +416,12 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
     bool cnp_check = false;
     uint32_t expected_before = rxQp->ReceiverNextExpectedSeq;
+    if (Ws30V13Life() && ch.udp.seq%8192 == 0) {
+        std::cout << "WS30V13_RX time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " flow_id=" << rxQp->m_flow_id
+                  << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(rxQp))
+                  << " seq=" << ch.udp.seq << " expected=" << expected_before << std::endl;
+    }
     int x = ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
     if (Ws25DiagnosticEnabled() && rxQp->m_flow_id >= 0 && ch.udp.seq > expected_before)
         ++ws25_qp_diagnostics[rxQp->m_flow_id].rx_ooo_packets;
@@ -572,6 +617,21 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         } else {
             if (qp->snd_nxt < qp->snd_una) {
                 qp->snd_nxt = qp->snd_una;
+            }
+        }
+        if (qp->m_ws30Serial) {
+            const uint32_t rounds = qp->m_ws30Persistent ? 3 : 1;
+            while (qp->m_ws30RoundDone < rounds &&
+                   qp->snd_una >= uint64_t(qp->m_ws30RoundDone+1)*8192) {
+                const uint32_t r = qp->m_ws30RoundDone++;
+                std::cout << "WS30V13_ROUND_DONE time_ns=" << Simulator::Now().GetNanoSeconds()
+                          << " serial=" << qp->m_ws30Serial << " round=" << r
+                          << " demand_ns=" << qp->startTime.GetNanoSeconds()+uint64_t(r)*100000
+                          << " released_ns=" << qp->startTime.GetNanoSeconds()+uint64_t(r)*100000
+                          << " snd_nxt=" << qp->snd_nxt << " snd_una=" << qp->snd_una
+                          << " rate=" << qp->m_rate.GetBitRate() << " alpha=" << qp->mlx.m_alpha
+                          << " highest_ack=" << qp->irn.m_highest_ack
+                          << " sack_bytes=" << qp->irn.m_sack.getSackBufferOverhead() << std::endl;
             }
         }
         if (qp->IsFinished()) {
@@ -882,7 +942,9 @@ Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) {
     Ptr<Packet> p = Create<Packet>(payload_size);
     WorkloadTag label;
     label.SetValue(qp->m_workload_tag);
-    p->AddPacketTag(label);
+    if (Ws30V13TagTransform() == 2 && (qp->m_workload_tag == 1 || qp->m_workload_tag == 2))
+        label.SetValue(3-qp->m_workload_tag);
+    if (Ws30V13TagTransform() != 1) p->AddPacketTag(label);
     // add SeqTsHeader
     SeqTsHeader seqTs;
     seqTs.SetSeq(seq);
@@ -963,6 +1025,17 @@ void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap)
         RdmaHw::nAllPkts += 1;
         if (ch.l3Prot == 0x11) {  // UDP
             const uint32_t payload_size = pkt->GetSize() - ch.GetSerializedSize();
+            if (qp->m_ws30Serial) {
+                const uint32_t r = qp->m_ws30Persistent ? ch.udp.seq/8192 : 0;
+                if (!(qp->m_ws30FirstSentMask & (1U << r))) {
+                    qp->m_ws30FirstSentMask |= 1U << r;
+                    std::cout << "WS30V13_FIRST_SEND time_ns=" << Simulator::Now().GetNanoSeconds()
+                              << " serial=" << qp->m_ws30Serial << " round=" << r
+                              << " seq=" << ch.udp.seq << " released=" << qp->m_ws30Released << std::endl;
+                }
+                if (qp->m_ws30Persistent && ch.udp.seq+payload_size>qp->m_ws30Released)
+                    NS_FATAL_ERROR("Persistent fixture transmitted unreleased bytes");
+            }
             if (Ws25DiagnosticEnabled() && ch.udp.seq < qp->m_ws13_maxSentSeq)
                 ++ws25_qp_diagnostics[qp->m_flow_id].repeated_sends;
             if (Ws30Level() && ch.udp.seq < qp->m_ws13_maxSentSeq)

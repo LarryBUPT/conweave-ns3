@@ -586,6 +586,8 @@ def execute(experiment_id):
         simulation_env = os.environ.copy()
         simulation_env['WS30_OBSERVE'] = str(params.get('ws30_observe', 0))
         simulation_env['WS30_COMPOSITION'] = str(params.get('ws30_composition', 0))
+        simulation_env['WS30_LIFECYCLE'] = str(params.get('ws30_lifecycle', 0))
+        simulation_env['WS30_TAG_TRANSFORM'] = str(params.get('ws30_tag_transform', 0))
         if params.get('ws28_tail_diag'):
             simulation_env['WS28_TAIL_DIAG'] = '1'
         else:
@@ -782,7 +784,7 @@ def main():
     build_cmd.add_argument('--branch', required=True)
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('--id', required=True)
-    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'ws30-h16', 'ws30-r16', 'ws30-u16', 'ws30-q12', 'ws30-h12', 'destspread', 'classreserve3', 'classlane4', 'classlane4-moe-only', 'classlane4-background-only', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'ws30-h16', 'ws30-r16', 'ws30-u16', 'ws30-q12', 'ws30-h12', 'ws30v13-q12', 'ws30v13-r12', 'ws30v13-u12', 'destspread', 'classreserve3', 'classlane4', 'classlane4-moe-only', 'classlane4-background-only', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12, 16, 18), default=1)
@@ -796,6 +798,8 @@ def main():
     run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws30-composition', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws30-lifecycle', type=int, choices=(0, 1, 2, 3, 4), default=0)
+    run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-queue-front-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
@@ -840,6 +844,10 @@ def main():
     elif args.command == 'build':
         build(args.id, args.sha, args.branch)
     elif args.command == 'run':
+        if args.ws30_lifecycle and (args.topo != 'ws30_composition8' or args.pfc != 0 or args.irn != 1 or args.lb not in ('fecmp','ws30v13-q12','ws30v13-u12') or not args.flow_file or not args.flow_file.startswith('ws30v13_life_')):
+            raise RuntimeError('Lifecycle fixture requires its explicit trace, topology and admitted arms')
+        if args.ws30_tag_transform and args.lb not in ('ws30v13-q12','ws30v13-r12','ws30v13-u12'):
+            raise RuntimeError('Tag transformation is restricted to v13 technical arms')
         if args.ws30_composition and (args.topo != 'ws30_composition8' or
                 args.lb not in ('fecmp', 'cr-a0-b1', 'classreserve') or
                 args.ws30_observe != 2 or args.pfc != 0 or args.irn != 1 or
@@ -917,6 +925,8 @@ def main():
                         'ws28_tail_diag': args.ws28_tail_diag,
                         'ws30_observe': args.ws30_observe,
                         'ws30_composition': args.ws30_composition,
+                        'ws30_lifecycle': args.ws30_lifecycle,
+                        'ws30_tag_transform': args.ws30_tag_transform,
                         'ws26_moe_hop_diag': args.ws26_moe_hop_diag,
                         'ws26_queue_front_diag': args.ws26_queue_front_diag,
                         'ws26_time_probe': args.ws26_time_probe,
