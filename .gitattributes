@@ -12,3 +12,13 @@ docs/research/evidence/ws30-*.json -text whitespace=blank-at-eol,blank-at-eof,sp
 # WS-17 manifest is itself SHA-256 checked; keep the generated LF bytes.
 docs/research/evidence/ws17-demand-manifest.json -text
 scripts/make_ws17_demand.py text eol=lf
+# Preserve the v12 bundle exactly as hashed, including its native line endings.
+docs/research/evidence/ws30-v12-r1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/research/figures/ws30-v12-r1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/research/ws30-v12-evidence-synthesis-r1.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/research/ws30-v12-review-acceptance-r1.md -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+scripts/build_ws30_v12_package.py text eol=lf
+scripts/plot_ws30_v12_package.py text eol=lf
+scripts/write_ws30_v12_synthesis.py text eol=lf
+scripts/finalize_ws30_v12_package.py text eol=lf
+scripts/verify_ws30_v12_package.py text eol=lf
