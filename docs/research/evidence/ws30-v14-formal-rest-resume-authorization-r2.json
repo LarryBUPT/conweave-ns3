@@ -1,7 +1,7 @@
 {
   "analysis_effort": "medium",
   "analysis_model": "gpt-6.1-sol",
-  "approved": false,
+  "approved": true,
   "authorization_evidence": {
     "original_authorization_sha256": "7850eb7c9e937515b29ccdba6f5a888135aa324c98f74b3b13105d1433a48d27",
     "review_request_source_thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
@@ -24,7 +24,13 @@
   },
   "external_sync_approved": true,
   "fixed_source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
-  "main_chat_acceptance": null,
+  "main_chat_acceptance": {
+    "source_thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
+    "human_direction": "User explicitly authorized advancing the previously reviewed formal-rest continuation on 2026-10-26.",
+    "reviewed_commit": "fba151471e2700fdfb699d65d55a98c9d2f0c76a",
+    "reviewed_plan_sha256": "a7ab77abb8e0222133968c98aa28c1e25e38ddacdaeb14eebcbe10ef97bc0648",
+    "review_result": "Accepted for the 140 untouched formal-rest IDs only. Twelve controller hashes, original evidence hashes, disjoint 24/140 partition, fixed simulation source, cap 8 and 34 local tests were checked by the main chat. Retain the 24 successes and all failures; require fresh worker, resource and path checks before admission."
+  },
   "phase_caps": {
     "formal-rest": 8
   },
