@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "E:\研\毕业论文\workspace\ws30-attribution-audit\scripts\run_ws30_v14_technical_single.py", line 105, in <module>
+    main()
+  File "E:\研\毕业论文\workspace\ws30-attribution-audit\scripts\run_ws30_v14_technical_single.py", line 101, in main
+    run(args.session_file)
+  File "E:\研\毕业论文\workspace\ws30-attribution-audit\scripts\run_ws30_v14_technical_single.py", line 87, in run
+    v.main()
+  File "E:\研\毕业论文\workspace\ws30-attribution-audit\scripts\run_ws30_v14.py", line 286, in main
+    plan,sched,cells=load();phases=args.phase or []
+                     ^^^^^^
+  File "E:\研\毕业论文\workspace\ws30-attribution-audit\scripts\run_ws30_v14.py", line 58, in load
+    require(read(SCHEDULE)==expected,'Frozen schedule differs')
+  File "E:\研\毕业论文\workspace\ws30-attribution-audit\scripts\run_ws30_v14.py", line 32, in require
+    if not ok:raise RuntimeError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Frozen schedule differs

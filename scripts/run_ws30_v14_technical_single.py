@@ -4,6 +4,7 @@ The completed formal receipts and all original controller files remain unchanged
 No phase expansion, ID replacement, resume, sync, deployment or push is supported.
 """
 import argparse
+from contextlib import contextmanager
 import json
 from pathlib import Path
 import sys
@@ -77,14 +78,34 @@ def preflight(session, role='analysis'):
             'resource': resource}
 
 
+@contextmanager
+def scoped_executor(session):
+    original_load, previous_auth, previous_argv = v.load, v.AUTH, sys.argv
+
+    def frozen_load():
+        # The frozen schedule records the original authorization *path*.
+        # Run every original load check with that path, then restore the
+        # scoped receipt before authorize() or any controller operation.
+        active_auth = v.AUTH
+        try:
+            v.AUTH = ORIGINAL_AUTH
+            return original_load()
+        finally:
+            v.AUTH = active_auth
+
+    try:
+        v.load, v.AUTH = frozen_load, AUTH
+        sys.argv = [str(v.ROOT/'scripts/run_ws30_v14.py'), 'run', '--phase', PHASE,
+                    '--session-file', str(session)]
+        yield
+    finally:
+        v.load, v.AUTH, sys.argv = original_load, previous_auth, previous_argv
+
+
 def run(session):
     preflight(session, 'supervision')
-    # Reuse the original complete authorization, controller-lock, resource,
-    # isolated build/start, fetch and raw-verification implementation unchanged.
-    v.AUTH = AUTH
-    sys.argv = [str(v.ROOT/'scripts/run_ws30_v14.py'), 'run', '--phase', PHASE,
-                '--session-file', str(session)]
-    v.main()
+    with scoped_executor(session):
+        v.main()
 
 
 def main():

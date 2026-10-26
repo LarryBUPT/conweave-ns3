@@ -1,0 +1,66 @@
+{
+  "created_utc": "2026-10-26T21:24:34.790549+00:00",
+  "status": "LOCAL_REPAIR_READY_FOR_MAIN_ACCEPTANCE",
+  "root_cause": "Changing v.AUTH before original main changed schedule.authorization_file during original load. Frozen files were unchanged.",
+  "repair": "Wrapper restores ORIGINAL_AUTH only around the complete original load, then restores scoped AUTH before original authorize, lock, Backend and Runner. Globals restore on exit.",
+  "scope": {
+    "phase": "technical-single",
+    "id": "20261026-120000-w30v14-t01-e-o0",
+    "source_sha": "0673e4c3de34d83585dd40f6be7fbd3ed000a9ee",
+    "cap": 1
+  },
+  "failure": {
+    "original_log": "results/ws30-v14-technical-single-20261027-052052.err.log",
+    "archived_log": "docs/research/evidence/ws30-v14-technical-single-launch-failure-r1.stderr.log",
+    "sha256": "9cff8adf9c066aa418e59fd89e20b4d754d95751ba4ca1fed6ece812c9b464f9",
+    "error": "Frozen schedule differs",
+    "execution_receipt_exists": false,
+    "local_inventory": [],
+    "new_builds": 0,
+    "new_simulations": 0,
+    "basis": "Traceback stopped at main load before authorization, lock, Backend or Runner construction. Entry preflight was read-only. Repair issued no remote commands.",
+    "remote_inventory_rechecked": false,
+    "encoding": "Original stderr bytes preserved; not valid UTF-8."
+  },
+  "unchanged_original_controls": {
+    "scripts/run_ws30_v14.py": "c0f07d7c3586f38bf8a4a71dc17ee97ce8e37c3cec855a2f9f5c08d103f9c592",
+    "scripts/verify_ws30_v14_raw.py": "38c2f471479da2f5a9d437dfd92b15f1c7e6163ca115c3976bc01bde383e1dbc",
+    "scripts/remote_experiment.py": "5de584f0a91f77a3286b86831fef5b529e614c393cd8fcb67cb20bcea140ab3b",
+    "scripts/remote_worker.py": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc",
+    "scripts/run_ws30_stage3.py": "1f8f9192ea0dbef89eaaabc1f45a68ea26097d71fbd7a10162de9351cf385e58",
+    "scripts/run_ws30_v13.py": "d30dfd565568a83da665605bbd787ac1ee24c137136b76158bcec545c5372392",
+    "scripts/run_ws30_stage2.py": "e2f0d80288f0d44ecb8a849551159fe77738fec8e2e1c77d171ef3e42f6008fe",
+    "scripts/run_ws25_formal.py": "5bebe596708bedc04032980649ef29d3a945be2ff370f811aae85309ddefae9c",
+    "scripts/run_ws25_preflight.py": "1457e1af52db5c1d8d0c8f9cefbcba7ea668d4349456c997867d581bd99402b1",
+    "scripts/run_ws25_resource_pilot.py": "e153c91320e76d5b745c9a70fc771e04ecdfed22f726b91d2f6b3ad95f05f3f0",
+    "scripts/run_ws25_v1fix_calibration.py": "718fb070eac30831632a30a648ec9f774a394b62575a0c19bb21af4404c03ddd",
+    "scripts/resume_ws30_v14.py": "ad6b325b00f5f817ecccd559fa87c54de57c4e60d7eac682d11df2e20693c069"
+  },
+  "unchanged_frozen_files": {
+    "docs/research/evidence/ws30-v14-disabled-contract-r2.json": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+    "docs/research/evidence/ws30-v14-executor-schedule-r1.json": "2999ccc3bcfbf73a099365428cdc2c42fb8dccba23f1d845911a7f521c043994",
+    "docs/research/evidence/ws30-v14-execution-authorization.json": "7850eb7c9e937515b29ccdba6f5a888135aa324c98f74b3b13105d1433a48d27"
+  },
+  "receipt_change": {
+    "only_changed_field": "entry_sha256",
+    "previous_entry_sha256": "19e45268c9051a1d673c8e01ccccce35894c005b636824cf475b2c84e409ddbc",
+    "entry_sha256": "e0c4b1d94b72d0e3ad316a417d2960719200132a8fdf9b311af8987bbe3d9858",
+    "receipt_sha256": "fa3441df85f4e3e2e4232971d4b78064848bfade41eb2362358b244eb3ae4554"
+  },
+  "tests": {
+    "command": "python scripts/test_ws30_v14_technical_single_entry.py -v",
+    "passed": 13,
+    "failed": 0,
+    "file_sha256": "fc98364235248c3fbd604ea50401998eb2f988fa9a91fc1e3f450114a1ebfd4b",
+    "coverage": [
+      "real main passes original load and authorize before offline stop; Backend not constructed",
+      "real load validates all frozen fixed-source inputs",
+      "schedule and source-input corruption rejected",
+      "original authorize rejects altered control hash and actual wrong model",
+      "globals restore after failure",
+      "six original scope/model checks"
+    ],
+    "warning": "Unchanged original actual_model emits an unclosed-read-handle ResourceWarning in wrong-model test."
+  },
+  "next_step": "Main independent acceptance, then actual Luna/Medium rechecks before any launch. No retry performed."
+}
