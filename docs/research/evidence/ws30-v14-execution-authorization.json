@@ -28,10 +28,12 @@
     "scripts/run_ws25_v1fix_calibration.py": "844b319c79e147016c9c8a333125bdda74747bd2f6824970c160fabb23ec8840"
   },
   "phases": [
-    "formal-first"
+    "formal-first",
+    "formal-rest"
   ],
   "phase_caps": {
-    "formal-first": 4
+    "formal-first": 4,
+    "formal-rest": 8
   },
   "supervision_model": "gpt-6-luna",
   "supervision_effort": "medium",
@@ -82,5 +84,27 @@
   ],
   "created_utc": "2026-10-26T06:39:48Z",
   "remote_target": "origin/research/ws30-attribution-audit; /home/fnl/lzy isolated experiment runs",
-  "authorization_note": "Main-chat human authorization verified from its user message. Does not authorize formal-rest; that stage remains contingent on main-chat acceptance of formal-first raw evidence."
+  "authorization_note": "The initial authorization covered formal-first only. After main-chat acceptance of its four raw results, this addendum authorizes formal-rest (164 cells, cap 8). No engineering or W5 phase is authorized by this addendum.",
+  "authorization_addenda": [
+    {
+      "source_thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
+      "authorized_at_utc": "2026-10-26T08:17:10Z",
+      "accepted_phase": "formal-first",
+      "accepted_ids": [
+        "20261026-120000-w30v14-m-s20263021-e",
+        "20261026-120000-w30v14-m-s20263021-q12",
+        "20261026-120000-w30v14-m-s20263021-r12",
+        "20261026-120000-w30v14-m-s20263021-u12"
+      ],
+      "accepted_source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "accepted_fct_rows": 66304,
+      "accepted_demand_seed": 20263021,
+      "accepted_simulation_seed": 1,
+      "authorized_phase": "formal-rest",
+      "authorized_cell_count": 164,
+      "phase_cap": 8,
+      "human_authorization": "主对话已独立验收 formal-first：四格共 66,304 条 FCT，按原 trace 重建逐流身份全部一一匹配、模拟 seed=1/需求 seed 对应、schema 3、固定旧源 SHA、输入哈希、raw SHA 与报告一致，资源峰值及可用量满足门槛。现放行冻结的 formal-rest 164 格，保持同一旧源和逐格独立 ID，按已测安全 cap 8 与新鲜资源门槛调度；失败格保留并暂停新格排查，不重跑/覆盖。",
+      "failure_policy": "preserve failed IDs and raw evidence; stop admissions; never rerun or overwrite"
+    }
+  ]
 }
