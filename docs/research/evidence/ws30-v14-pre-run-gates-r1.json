@@ -1,0 +1,210 @@
+{
+  "date_beijing": "2026-10-26",
+  "actual_model": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "turn_id": "01a1758b-1da9-7c23-a858-775b233fe8c9"
+  },
+  "fixed_simulation_source_sha": "0673e4c3de34d83585dd40f6be7fbd3ed000a9ee",
+  "formal_source_sha_preserved": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+  "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+  "input_manifest_sha256": "d978ec5dbe400ba778486f0e4b21beda257ac2d01ecc8cced6d39a633d459d8b",
+  "legacy_r2_plan_sha256": "b1b5434d370f77d57669b89c03b3e00f0b73db6fb9c4c9f85aa7e30f5ecdfcef",
+  "regression_targets": [
+    {
+      "id": "20261026-120000-w30v14-t01-e-o0",
+      "original_id": "20261026-060000-w30v13-r2-t01-e-o0",
+      "fct_sha256": "70c970c63da906181ac8745f290528c4006ac9818645eafc40af150b140b1086",
+      "route_hash_without_tag": null
+    },
+    {
+      "id": "20261026-120000-w30v14-t02-e-o2",
+      "original_id": "20261026-060000-w30v13-r2-t02-e-o2",
+      "fct_sha256": "70c970c63da906181ac8745f290528c4006ac9818645eafc40af150b140b1086",
+      "route_hash_without_tag": "9c41b61bb0093b22f978bb667e1d550b52f195ce6dd4065c7e76b6804f3ae980"
+    },
+    {
+      "id": "20261026-120000-w30v14-t03-q12-o0",
+      "original_id": "20261026-060000-w30v13-r2-t03-q12-o0",
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "route_hash_without_tag": null
+    },
+    {
+      "id": "20261026-120000-w30v14-t04-q12-o2",
+      "original_id": "20261026-060000-w30v13-r2-t04-q12-o2",
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "route_hash_without_tag": "7dac298026dc028b5e4b13b0be5c6ced47076ba5f5fa6c6907720e23af91501e"
+    },
+    {
+      "id": "20261026-120000-w30v14-t05-r12-o0",
+      "original_id": "20261026-060000-w30v13-r2-t05-r12-o0",
+      "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+      "route_hash_without_tag": null
+    },
+    {
+      "id": "20261026-120000-w30v14-t06-r12-o2",
+      "original_id": "20261026-060000-w30v13-r2-t06-r12-o2",
+      "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+      "route_hash_without_tag": "ac1a122a149eff3113a8856c114925b89645882d8fc91a5a92cd370a957b32dd"
+    },
+    {
+      "id": "20261026-120000-w30v14-t07-u12-o0",
+      "original_id": "20261026-060000-w30v13-r2-t07-u12-o0",
+      "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+      "route_hash_without_tag": null
+    },
+    {
+      "id": "20261026-120000-w30v14-t08-u12-o2",
+      "original_id": "20261026-060000-w30v13-r2-t08-u12-o2",
+      "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+      "route_hash_without_tag": "1fd3713aaccd245f6030e4a7d2fd9fb50a8d4195bf59a5f08d238d10b17bb189"
+    },
+    {
+      "id": "20261026-120000-w30v14-t09-d-o0",
+      "original_id": "20261026-060000-w30v13-r2-t09-d-o0",
+      "fct_sha256": "6fa24eba33f8d5b7a8e2330d3c44d47948007eda060ca8f6e1258838fd497c37",
+      "route_hash_without_tag": null
+    },
+    {
+      "id": "20261026-120000-w30v14-t10-d-o2",
+      "original_id": "20261026-060000-w30v13-r2-t10-d-o2",
+      "fct_sha256": "6fa24eba33f8d5b7a8e2330d3c44d47948007eda060ca8f6e1258838fd497c37",
+      "route_hash_without_tag": "3cdf241e1d0c5e21e7f3672082c0e6a7753814f6f590d416648adecb81e211a3"
+    },
+    {
+      "id": "20261026-120000-w30v14-t11-q12-o1",
+      "original_id": "20261026-060000-w30v13-r2-t11-q12-o1",
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "route_hash_without_tag": null
+    },
+    {
+      "id": "20261026-120000-w30v14-t12-h12-o2",
+      "original_id": "20261026-060000-w30v13-r2-t12-h12-o2",
+      "fct_sha256": "70c970c63da906181ac8745f290528c4006ac9818645eafc40af150b140b1086",
+      "route_hash_without_tag": "9c41b61bb0093b22f978bb667e1d550b52f195ce6dd4065c7e76b6804f3ae980"
+    },
+    {
+      "id": "20261026-120000-w30v14-t13-q12-x1",
+      "original_id": "20261026-060000-w30v13-r2-t13-q12-x1",
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "route_hash_without_tag": "7dac298026dc028b5e4b13b0be5c6ced47076ba5f5fa6c6907720e23af91501e"
+    },
+    {
+      "id": "20261026-120000-w30v14-t14-q12-x2",
+      "original_id": "20261026-060000-w30v13-r2-t14-q12-x2",
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "route_hash_without_tag": "7dac298026dc028b5e4b13b0be5c6ced47076ba5f5fa6c6907720e23af91501e"
+    },
+    {
+      "id": "20261026-120000-w30v14-t15-r12-x1",
+      "original_id": "20261026-060000-w30v13-r2-t15-r12-x1",
+      "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+      "route_hash_without_tag": "ac1a122a149eff3113a8856c114925b89645882d8fc91a5a92cd370a957b32dd"
+    },
+    {
+      "id": "20261026-120000-w30v14-t16-r12-x2",
+      "original_id": "20261026-060000-w30v13-r2-t16-r12-x2",
+      "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+      "route_hash_without_tag": "ac1a122a149eff3113a8856c114925b89645882d8fc91a5a92cd370a957b32dd"
+    },
+    {
+      "id": "20261026-120000-w30v14-t17-u12-x1",
+      "original_id": "20261026-060000-w30v13-r2-t17-u12-x1",
+      "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+      "route_hash_without_tag": "1fd3713aaccd245f6030e4a7d2fd9fb50a8d4195bf59a5f08d238d10b17bb189"
+    },
+    {
+      "id": "20261026-120000-w30v14-t18-u12-x2",
+      "original_id": "20261026-060000-w30v13-r2-t18-u12-x2",
+      "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+      "route_hash_without_tag": "1fd3713aaccd245f6030e4a7d2fd9fb50a8d4195bf59a5f08d238d10b17bb189"
+    }
+  ],
+  "lifecycle_off_on_pairs": [
+    {
+      "off_id": "20261026-120000-w30v14-o0-pair-e",
+      "full_id": "20261026-120000-w30v14-l-pair-persistent-e",
+      "required": "FCT hash equal; physical coverage validated only on full logs"
+    },
+    {
+      "off_id": "20261026-120000-w30v14-o0-pair-q12",
+      "full_id": "20261026-120000-w30v14-l-pair-persistent-q12",
+      "required": "FCT hash equal; physical coverage validated only on full logs"
+    },
+    {
+      "off_id": "20261026-120000-w30v14-o0-pair-u12",
+      "full_id": "20261026-120000-w30v14-l-pair-persistent-u12",
+      "required": "FCT hash equal; physical coverage validated only on full logs"
+    },
+    {
+      "off_id": "20261026-120000-w30v14-o0-state-e",
+      "full_id": "20261026-120000-w30v14-l-state-persistent-e",
+      "required": "FCT hash equal; physical coverage validated only on full logs"
+    },
+    {
+      "off_id": "20261026-120000-w30v14-o0-state-q12",
+      "full_id": "20261026-120000-w30v14-l-state-persistent-q12",
+      "required": "FCT hash equal; physical coverage validated only on full logs"
+    },
+    {
+      "off_id": "20261026-120000-w30v14-o0-state-u12",
+      "full_id": "20261026-120000-w30v14-l-state-persistent-u12",
+      "required": "FCT hash equal; physical coverage validated only on full logs"
+    }
+  ],
+  "ConWeave_off_on_pairs": [
+    {
+      "off_id": "20261026-120000-w30v14-cw-tech-o0",
+      "on_id": "20261026-120000-w30v14-cw-tech-o1",
+      "required": "FCT hash equal plus bounded real state/feedback/VOQ observation"
+    },
+    {
+      "off_id": "20261026-120000-w30v14-cw-long-o0",
+      "on_id": "20261026-120000-w30v14-cw-long-o1",
+      "required": "FCT hash equal plus bounded real state/feedback/VOQ observation"
+    }
+  ],
+  "native_build": "NOT RUN; no compiler found on PATH and no remote build requested",
+  "simulation_runs_started": 0,
+  "remote_deploy_or_sync_performed": false,
+  "push_attempted_this_node": false,
+  "approved_execution_cells": 0,
+  "counts": {
+    "new_engineering": 48,
+    "W5_with_qualification": 36,
+    "formal_disabled": 168,
+    "total_proposed_new": 252
+  },
+  "budget_hours": {
+    "engineering_48_remote": [
+      2,
+      3
+    ],
+    "engineering_raw_analysis": [
+      0.75,
+      1.25
+    ],
+    "W5_36_remote": [
+      2,
+      4
+    ],
+    "W5_analysis": [
+      1.5,
+      2
+    ],
+    "formal_168_remote_old_source": [
+      7.13,
+      7.13
+    ],
+    "formal_analysis": [
+      1.5,
+      2
+    ],
+    "all_serial_excluding_approval_repair": [
+      14.88,
+      19.38
+    ]
+  },
+  "ordering": "Main-chat scope/source-transfer approval, matched worker deployment, fixed-SHA native build, regression, lifecycle off/on and physical coverage, CW qualification, separate W5/formal decisions",
+  "limits": "Static checks are not observation invariance or physical coverage. Do not feed this schema into the old v13 runner."
+}

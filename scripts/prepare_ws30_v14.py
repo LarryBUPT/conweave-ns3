@@ -46,16 +46,18 @@ def main():
     cw=[]
     for name,trace in (('tech','ws30_technical168.txt'),('long','ws30w5_sustained_prefix.txt')):
         for observe in (0,1):cw.append(cell('cw-%s-o%d'%(name,observe),'conweave',trace,observe=observe,role='ConWeave-observation-control'))
-    formal=[normalize(c) for c in old['formal_disabled']+old['historical_disabled']]
+    # Schema correction does not migrate the already frozen formal simulation source.
+    formal=[dict(normalize(c),source_sha=old['source_sha']) for c in old['formal_disabled']+old['historical_disabled']]
     allcells=regress+lifecycle+observation+cw+w5+formal
     assert len(allcells)==len({c['id'] for c in allcells})==252
     for c in allcells:
         assert len(c['id'])<=56 and 'seed' not in c and c['simulation_seed']==1
         for rel,digest in [('config/'+c['trace'],c['trace_sha256']),('config/'+c['topology']+'.txt',c['topology_sha256'])]:
-            data=subprocess.check_output(['git','-c','safe.directory='+ROOT.as_posix(),'show',args.source+':'+rel],cwd=ROOT)
+            data=subprocess.check_output(['git','-c','safe.directory='+ROOT.as_posix(),'show',c['source_sha']+':'+rel],cwd=ROOT)
             assert hashlib.sha256(data).hexdigest()==digest,(c['id'],rel)
     out={'schema_version':3,'source_sha':args.source,'execution_enabled':False,'approved_execution_cells':0,'preserved_r2_plan_sha256':sha(EV/'ws30-v13-plan-r2.json'),'regression':regress,'lifecycle':lifecycle,'lifecycle_observation_controls':observation,'ConWeave_observation_controls':cw,'W5':w5,'formal_disabled':formal,'counts':{'new_engineering':48,'W5_with_qualification':36,'formal_disabled':168,'total_proposed_new':252},'gates':['local static checks only; native build and dynamic regression pending','main-chat scope acceptance','explicit model and fresh host gate','fixed source/input/topology/seed','all on/off regressions hash-identical','pair queues distinct and unequal in actual logs','real CNP/CC and U12 SACK/recovery observed within rounds','completed-round boundary drained; nonempty SACK across it is not required'],'stop':['byte/identity mismatch','observation perturbs FCT or paths','release-before-ACK','unobserved required physical condition','resource/unknown worker/overflow'],'old_r2_cells_retained':46,'inputs':inputs}
-    p=EV/'ws30-v14-disabled-contract-r1.json';s=json.dumps(out,ensure_ascii=False,indent=2)+'\n'
+    out['formal_source_sha_preserved']=old['source_sha']
+    p=EV/'ws30-v14-disabled-contract-r2.json';s=json.dumps(out,ensure_ascii=False,indent=2)+'\n'
     if p.exists():assert json.loads(p.read_text(encoding='utf-8'))==out
     else:p.write_text(s,encoding='utf-8')
     print(json.dumps(out['counts']))

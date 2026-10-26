@@ -1,5 +1,13 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 v14 本地实现与执行前冻结（2026-10-26）
+
+补验和 W5 的固定仿真源码为 `0673e4c3de34d83585dd40f6be7fbd3ed000a9ee`，已实现不同候选与真实背景队列夹具、真实 CC/SACK 事件观测、被动 ConWeave observer 和确定性 W5 输入。新 seed schema 分列 `simulation_seed=1` 与 `demand_seed`，原 v13 r2 和 46 格证据不变。见[本地节点报告](../research/ws30-v14-local-implementation-and-execution-contract-r1.md)和[九节交接](../handoffs/2026-10-26-ws30-v14-local-freeze.md)。
+
+[关闭执行的 r2 契约](../research/evidence/ws30-v14-disabled-contract-r2.json)列出新增工程 48 格、W5 36 格和原正式 168 格，共 252 个建议新 ID；授权执行为 0。本节点无远程部署、构建、同步、仿真或推送。正式 168 格保留原源码 `2c9f3a50bafad0740b461496ba24fa81941a9bc7`，没有迁移到新源。
+
+[静态审计](../research/evidence/ws30-v14-static-audit-r4.json)通过，但原生构建、18 格旧回归、生命周期物理触发、6 对生命周期及 2 对 ConWeave 观测不干扰检查仍待完成。非空 SACK/恢复须在请求内部观测，完成边界则应清空；不能以静态实现宣称动态覆盖。WS-30 保持 ACTIVE，由主对话承接范围与执行顺序，外部同步授权仍由主对话处理。全部阶段串行预计约 14.9～19.4 小时，未计审批、同步和修复；时限存在风险，不取消必做验收。
+
 ## WS-30 v13 的 46 格运行与分析完成，科学覆盖缺口待核对（2026-10-26）
 
 固定仿真源码 `2c9f3a50bafad0740b461496ba24fa81941a9bc7` 的技术 18/18、生命周期 16/16、资源 pilot 12/12 均为成功终态，唯一启动 46 次。GPT-6.1 Sol / Medium 实际上下文已核实，独立 raw 分析匹配 202,020 条完成身份与字节。观测/tag 不变性、H12/E 和历史 E/Q12 回归通过。见[节点报告](../research/ws30-v13-engineering-node-report-r1.md)、[独立 raw 审计](../research/evidence/ws30-v13-engineering-raw-analysis-r2.json)和[执行审计](../research/evidence/ws30-v13-execution-audit-r1.json)。

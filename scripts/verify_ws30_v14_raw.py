@@ -19,6 +19,11 @@ def verify_lifecycle(c):
     folder=ROOT/'results'/c['id']; meta=json.loads((folder/'metadata.json').read_text())
     assert meta['status']=='SUCCEEDED' and meta['git_commit']==c['source_sha']
     assert meta['seed']==c['simulation_seed']==1
+    assert meta['metadata_schema_version']==3 and meta['simulation_seed']==1 and meta['demand_seed']==c['demand_seed']
+    assert meta['algorithm']==c['mode'] and meta['parameters']['ws30_observe']==c['observe'] and meta['parameters']['ws30_tag_transform']==0
+    config=(folder/'config/config.txt').read_text()
+    assert re.search(r'^RANDOM_SEED\s+1\s*$',config,re.M)
+    assert re.search(r'^LB_MODE\s+%d\s*$'%{'E':0,'Q12':33,'U12':35}[c['arm']],config,re.M)
     assert meta['parameters']['ws30_lifecycle']==c['lifecycle'] and meta['parameters']['ws30_life_profile']==c['life_profile']
     assert meta['parameters']['pfc']==0 and meta['parameters']['irn']==1 and meta['parameters']['bw']==400 and meta['parameters']['buffer']==9
     assert hashlib.sha256((folder/'config/traffic_trace.txt').read_bytes()).hexdigest()==c['trace_sha256']
@@ -50,6 +55,7 @@ def verify_lifecycle(c):
     pairs=[r for r in rows('WS30V14_PAIR') if r['switch']==4]
     releases=rows('WS30V13_RELEASE')
     sends=rows('WS30V13_FIRST_SEND');assert len(releases)==len(sends)==3
+    assert [s['seq'] for s in sends]==([0,size,2*size] if persistent else [0,0,0])
     for r,s,d in zip(releases,sends,done):assert r['demand_ns']<=r['time_ns']<=s['time_ns']<=d['time_ns'] and r['demand_ns']==d['demand_ns']
     queue=rows('WS30_QUEUE')
     if c['observe']:assert len(queue)==1 and queue[0]['enqueued']==queue[0]['dequeued'] and all(queue[0][k]==0 for k in ('dropped','current','violations','admission_dropped_bytes','queue_rejected_bytes'))
@@ -61,20 +67,24 @@ def verify_lifecycle(c):
             ss=[s for s in states if s['serial']==serial]
             for field in ('sack_events','cnp_events','recovery_events'):
                 assert [s[field] for s in ss]==sorted(s[field] for s in ss)
-        if c['life_profile']==1 and c['arm']!='E':
+        if c['arm']!='E':
             rounds=[]
             for j in range(3):
                 hits=[p for p in pairs if p['time_ns']>=releases[j]['time_ns'] and (j==2 or p['time_ns']<releases[j+1]['time_ns'])]
                 assert hits,'Missing actual first packet pair'
-                first=min(hits,key=lambda p:p['time_ns']);assert first['first']!=first['second'] and first['q1']!=first['q2']
+                first=min(hits,key=lambda p:p['time_ns']);assert first['first']!=first['second']
+                if c['life_profile']==1:assert first['q1']!=first['q2'],'Actual unequal queues not covered'
                 rounds.append(first)
             assert [p['miss'] for p in rounds]==([1,0,0] if c['lifecycle'] in (5,7) else [1,1,1])
             if persistent or c['lifecycle'] in (7,8):assert len({(p['first'],p['second']) for p in rounds})==1
             if c['arm']=='Q12' and c['lifecycle'] in (5,7):assert len({p['chosen'] for p in rounds})==1
+            if c['lifecycle']==8:assert [r['erased'] for r in rows('WS30V13_CACHE_RESET') if r['switch']==4]==[1,1,1]
         if persistent:
             before=[s for s in states if s['event']=='release_before'];after=[s for s in states if s['event']=='release_after']
             assert len(before)==len(after)==2
             assert len({s['object'] for s in states})==1
+            assert len({s['object'] for s in rxstates})==1
+            assert all(s['snd_nxt']<=s['released'] for s in states)
             for a,b in zip(before,after):
                 assert b['released']==a['released']+size
                 assert {k:v for k,v in a.items() if k not in ('event','released')}=={k:v for k,v in b.items() if k not in ('event','released')}
@@ -96,6 +106,6 @@ def verify_lifecycle(c):
 if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser();parser.add_argument('--id',required=True);args=parser.parse_args()
-    plan=json.loads((ROOT/'docs/research/evidence/ws30-v14-disabled-contract-r1.json').read_text(encoding='utf-8'))
+    plan=json.loads((ROOT/'docs/research/evidence/ws30-v14-disabled-contract-r2.json').read_text(encoding='utf-8'))
     c=next(c for group in ('lifecycle','lifecycle_observation_controls') for c in plan[group] if c['id']==args.id)
     print(json.dumps(verify_lifecycle(c)))

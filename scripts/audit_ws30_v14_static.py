@@ -49,7 +49,7 @@ def main():
     report['source_file_sha256']={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in names}
     report['remote_worker_python35_syntax']=True
     report['analysis_turn_context']={'model':'gpt-6.1-sol','effort':'medium','turn_id':'01a1758b-1da9-7c23-a858-775b233fe8c9'}
-    path=ROOT/'docs/research/evidence/ws30-v14-static-audit-r2.json'
+    path=ROOT/'docs/research/evidence/ws30-v14-static-audit-r4.json'
     data=json.dumps(report,indent=2)+'\n'
     if path.exists():assert json.loads(path.read_text())==report
     else:path.write_text(data,encoding='utf-8')

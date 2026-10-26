@@ -1,5 +1,11 @@
 # 下一阶段路线与停机条件
 
+## WS-30 v14 的后续验收顺序（2026-10-26）
+
+[本地节点报告](../research/ws30-v14-local-implementation-and-execution-contract-r1.md)和[关闭执行的契约](../research/evidence/ws30-v14-disabled-contract-r2.json)已冻结新增工程 48 格与 W5 36 格；正式 168 格保留旧源。当前新执行数为 0，WS-30 ACTIVE。先由主对话接受范围并处理外部同步授权，再成对部署 controller/worker，核验新源隔离 optimized 构建、旧 18 格回归、生命周期 off/on 不干扰及真实队列/CC/SACK 条件。ConWeave 两对资格检查通过后，才进入 W5 比较。
+
+新源资源从单格与 cap 4 实测，cap 8 不继承旧源准入。每格须核验各自源码、输入、模拟/需求 seed、身份和字节；失败保留原 ID，修复用新 SHA/新 ID。实际监督模型、新鲜资源及 ID 冲突门槛仍适用。原生构建与全部动态检查未完成，不能关闭或归档 WS-30；正式 168 格和 W5 的顺序由主对话决定，不自动取消任何任务。详见[交接](../handoffs/2026-10-26-ws30-v14-local-freeze.md)。
+
 ## WS-30 v13 的 46 格分析与下一门槛（2026-10-26）
 
 [工程节点报告](../research/ws30-v13-engineering-node-report-r1.md)已独立核验 46 格 raw，严格入口和回归通过。持久对象/累计 ACK/缓存连续获得支持；非初始 CC/SACK 及持久不同候选的动态覆盖仍需承接。先由主对话核验上述边界和 [seed 审计](../research/evidence/ws30-v13-seed-audit-r1.json)，再冻结修订计划及具体补验。

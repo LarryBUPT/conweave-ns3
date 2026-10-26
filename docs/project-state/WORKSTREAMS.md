@@ -1,10 +1,10 @@
 # 工作流台账
 
-更新：2026-10-26（WS-30 v13 的 46 格运行和分析完成，科学覆盖缺口待核对）。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
+更新：2026-10-26（WS-30 v14 本地实现与执行前契约冻结；新增执行为 0）。状态只表示本行定义的范围，不把静态检查扩展成动态验证。历史工作流结论保留各自证据与日期。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；46 格运行与独立 raw 分析完成，科学覆盖缺口保留 | [节点报告](../research/ws30-v13-engineering-node-report-r1.md)：技术 18、生命周期 16、pilot 12 成功；202,020 条身份/字节核验；观测/tag/旧哈希通过。持久对象、累计 ACK 与缓存清理有证据；非初始 CC/SACK 和持久不同候选未动态覆盖 | 主对话核验后明确补验与正式 seed schema；cap 8 构建运行约 23.55 格/小时。正式 120＋48 格及 [W5 建议 36 格](../research/ws30-w5-baseline-comparability-and-pilot-r1.md)均关闭；未闭环 |
+| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；v14 本地实现和契约冻结，动态验收待执行 | [本地节点报告](../research/ws30-v14-local-implementation-and-execution-contract-r1.md)：补验/W5 源码 `0673e4c`；不同候选、真实 CC/SACK 观测、被动 ConWeave 与确定性输入已实现；静态审计通过 | [契约](../research/evidence/ws30-v14-disabled-contract-r2.json)建议工程 48＋W5 36＋正式 168 格，全部关闭，新执行为 0；正式保留旧源 `2c9f3a5`。主对话承接同步授权、部署/构建、回归和动态覆盖；[交接](../handoffs/2026-10-26-ws30-v14-local-freeze.md)，未闭环 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |
