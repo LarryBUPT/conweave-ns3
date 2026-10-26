@@ -1,0 +1,399 @@
+{
+  "scope": "authorized local reply edit only; no experiment/export authority",
+  "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+  "before_sha256": "bb7195550873ce4962efecd00c06341bf8976375e7611de32a66fc36c0ea4d2c",
+  "after_sha256": "1a233f347091e0e959df4740b231c0999158d57f2d8b603028b00435405ab461",
+  "before_backup": "E:\\研\\毕业论文\\workspace\\ws30-attribution-audit\\results\\ws30-v13-reply-applied-r1\\reply-before.md",
+  "after_snapshot": "E:\\研\\毕业论文\\workspace\\ws30-attribution-audit\\docs\\research\\evidence\\ws30-v13-reply-applied-r1\\reply-after.md",
+  "snapshot_relative_links_base": "E:\\研\\毕业论文\\paper review",
+  "reply_items": 26,
+  "updated_answers": 26,
+  "quotes_and_titles_preserved": true,
+  "explanation_text_completed_ids": [
+    "2.3",
+    "2.5",
+    "2.8",
+    "2.13",
+    "3.3"
+  ],
+  "all_final_items_status": "OPEN",
+  "protected_file_sha256_unchanged": {
+    "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md": "0a8d2067cd382b537801180f2f18a64701759855125eccc0d554a5b4f3d76b28",
+    "E:\\研\\毕业论文\\thesis\\classreserve-v12-reading.md": "7890848ba3c9caa6315dd32881d6d2724ab288cdc5c51fb8139693c23b0e863a",
+    "E:\\研\\毕业论文\\thesis\\ws30-v12-reproducibility-index.md": "2809645bc481835366abb31796a57140c597c31725e44445873d87a2af77c16a",
+    "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md": "97d1e188a601b60465ec57c54f0cf06ea4274994d52df05b8aaab4389d93766d",
+    "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md": "d45e6df59ca9a87d170ebe2002a53397cd8bee830d350bd9a6d3352bd03f67af",
+    "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md": "832db41266bd62b1ca07e1f5219f6a25bcadd79d2271ec6e9219556cad2a7b1c"
+  },
+  "new_simulations": 0,
+  "remote_experiment_actions": 0,
+  "run_authorization_exists": false,
+  "audit_status": "PASS_FOR_LOCAL_REPLY_EDIT_ONLY",
+  "response_text_applied_count": 26,
+  "original_quote_preserved_count": 26,
+  "main_manuscript_modified": false,
+  "v12_manuscript_modified": false,
+  "final_scientific_and_manuscript_correction_closed": false,
+  "actual_model": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "turn_id": "01a17622-6cbd-79f1-b03e-125abeab2824"
+  },
+  "pending_experiment_counts": {
+    "engineering": 48,
+    "formal": 168,
+    "W5_including_qualification": 36
+  },
+  "style_sources": [
+    "https://github.com/ruanyf/document-style-guide/blob/master/README.md",
+    "https://github.com/ruanyf/document-style-guide/blob/master/docs/title.md",
+    "https://github.com/ruanyf/document-style-guide/blob/master/docs/text.md",
+    "https://github.com/ruanyf/document-style-guide/blob/master/docs/paragraph.md",
+    "https://github.com/ruanyf/document-style-guide/blob/master/docs/number.md",
+    "https://github.com/ruanyf/document-style-guide/blob/master/docs/marks.md",
+    "https://github.com/ruanyf/document-style-guide/blob/master/docs/structure.md"
+  ],
+  "evidence_ledger": "E:/研/毕业论文/workspace/ws30-attribution-audit/docs/research/evidence/ws30-v13-review-response-status-r2.json",
+  "rows": [
+    {
+      "id": "1.1",
+      "reply_line": 11,
+      "response_sha256": "d81bf758ae5b95aab589a93c73b7f84ba61fd0d44b691a428f495e410529898f",
+      "quote_sha256": "87c62921a6c49a79c69619ca231e4990653eaf4d8caf5404e4ab204468605462",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "P168",
+        "FULL_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "1.2",
+      "reply_line": 27,
+      "response_sha256": "14c60fb930876f42e0d55fa1cdad18f5cf9e7089534d31d3337b42baa4f6fc3c",
+      "quote_sha256": "8c216c4626a3250ca439f8e8384d99987ec58565c27c2e2561d5e1b680d19bcf",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "FULL_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "1.3",
+      "reply_line": 43,
+      "response_sha256": "c4791a3cf8772f4e1bc6ad807620c16f5ba177730437f7cea3b76e84c59c7ccb",
+      "quote_sha256": "0f091713e43bdcec185436632a82591a85290df171d0cf3529425e04d875798f",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "P168",
+        "RESULT_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "1.4",
+      "reply_line": 58,
+      "response_sha256": "b7ff24eaf8bf37ecc78786748d03d60e0740316251d777bea1464c74d97039b2",
+      "quote_sha256": "10c82b240ec64c9023446dbab74d9aedb09fb1107ca6f680a1253ef9e06f7343",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "P168",
+        "RESULT_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "1.5",
+      "reply_line": 74,
+      "response_sha256": "02e2dec0768b4e70772136fc2ba4a69753ec0bd17f995687e8333092121b9d89",
+      "quote_sha256": "1e515024f33e1b54c6c8166398f29ec6fb9603f9daa8a29f1c5c2b48f03b8c7d",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "CW4",
+        "W32",
+        "RESULT_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "1.6",
+      "reply_line": 88,
+      "response_sha256": "32a1cafda0ce49f53cdde3500da1da5c3fe42c69df9dc6211b99cee707b25c1d",
+      "quote_sha256": "9b470d9e080297b460809cf7575e564b1701d6d5cb556437216eff931115e4f7",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "E48",
+        "STATE_REPORT",
+        "LIMITS_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "1.7",
+      "reply_line": 105,
+      "response_sha256": "41610bd4cf39099c053ee1c1b99bd6de13af3e7821c3bff6f51e41c8c0688a48",
+      "quote_sha256": "dbea6f8f2d35efd9594f5979f6eae295886a4cd76864f46c844ff81f195e1107",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "E48",
+        "P200",
+        "SEED_SCOPE",
+        "LIMITS_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.1",
+      "reply_line": 125,
+      "response_sha256": "2e1cba540a330b17a5e937c2aff9d974fb6cf41e561b7aa3a5fe9be9e790b994",
+      "quote_sha256": "03bdbde3e22b7b8b9f2086c9c43416bb74f8bc78d28f81eb14da4933c3cd8a24",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "FULL_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.2",
+      "reply_line": 137,
+      "response_sha256": "409f229ea02f091a9b89d3c5770053b68f4545530c05f93327e4f425a0629f87",
+      "quote_sha256": "5e171814a518949e0c8e87c32c45034751c73ac43d7350364c1f4046b187459c",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "P168",
+        "FULL_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.3",
+      "reply_line": 149,
+      "response_sha256": "ad9e65c58a57e74d4754a1b963402b6d2fac93a80c555cbd111e7e7d63b8c892",
+      "quote_sha256": "58c166e395cd8bb20fd6a28890ad2efa6902941d36061fa3e4e945dd78cf4932",
+      "response_text_status": "TEXT_EXPLANATION_INTEGRATED",
+      "explanation_text_completed": true,
+      "remaining": [
+        "PROVENANCE_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.4",
+      "reply_line": 161,
+      "response_sha256": "8d683f33728cc79e06ef548cf7e121977f40fbd73e39b76e09f1629cdc20acc2",
+      "quote_sha256": "274c96015f94320484403eda156a06c697d3e0f8bae01b1038b905acfc1bac0e",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "P168",
+        "CW4",
+        "W32",
+        "RESULT_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.5",
+      "reply_line": 173,
+      "response_sha256": "980f3bab83c3d17611713cbfcf5bd234d33f8316a25d819b09df209ebefde129",
+      "quote_sha256": "8f958d40e2970c5b804e40b3de093001ecf021a14ab9620357992cdea0701f3b",
+      "response_text_status": "TEXT_EXPLANATION_INTEGRATED",
+      "explanation_text_completed": true,
+      "remaining": [
+        "CLASS_HISTORY_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.6",
+      "reply_line": 185,
+      "response_sha256": "e21642614a0f7ff014c78b72b450320c83efd59e00e2564abca1e7a2818abe79",
+      "quote_sha256": "f12ba6c25468d10c96f1dad1ed1c8287197fd42231b3b8726469d2571e6dddce",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "P168",
+        "W32",
+        "RESULT_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.7",
+      "reply_line": 197,
+      "response_sha256": "ef1c3ebde62b1b00fed1d243e532726a95518f2558c075c5fa86314f52d9b0df",
+      "quote_sha256": "1bab53f4eae93f63fb2a9ee19198bfa41e25b194cecc5cf99be0d911a20e3e10",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "E48",
+        "LIMITS_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.8",
+      "reply_line": 209,
+      "response_sha256": "61e92f2510b535f486e667c5ecc0f274c0b73a7b5fd67deb123a4339ca24c6a4",
+      "quote_sha256": "b4b76f7f410534defd782071c500a8ba2a8fbf7d1f902e63c1d47f0b16501100",
+      "response_text_status": "TEXT_EXPLANATION_INTEGRATED",
+      "explanation_text_completed": true,
+      "remaining": [
+        "RELATED_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.9",
+      "reply_line": 221,
+      "response_sha256": "a28fe5541603350a68cc7b1ff38c19a5a9de7f57e05b864825efef355388805f",
+      "quote_sha256": "ddac660652842c65587f09b056c6a99d809ecbfe9d697b8e2c16f5f6e014cf2d",
+      "response_text_status": "SCOPE_DECISION",
+      "explanation_text_completed": false,
+      "remaining": [
+        "SEED_SCOPE"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.10",
+      "reply_line": 233,
+      "response_sha256": "7e33a27f7ab34670a74e573782d7589dbc1186bc2f125228a07abd948e23a230",
+      "quote_sha256": "71a137b2426b26ab19883c849c02e171de93802d9d3df96f0fb90b78f6eb6e1b",
+      "response_text_status": "TEXT_COMPLETION_PENDING",
+      "explanation_text_completed": false,
+      "remaining": [
+        "FULL_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.11",
+      "reply_line": 245,
+      "response_sha256": "53e0fb75fbab0c77318507a343abbca30e9a3cdc90151d7c836620aaf7962b58",
+      "quote_sha256": "a040f58a79001296185fa6580a7cf861f6b07b5ee2708e684b84c76b8597f4c2",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "P200",
+        "LIMITS_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.12",
+      "reply_line": 257,
+      "response_sha256": "482151cea792016a461f6d4f151324df3060ededd965fb2218732086885311f8",
+      "quote_sha256": "7835f0b63936dfc4b14ba092b0256623047e947c6ea9bb79cf23be6f062ce3e8",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "E48",
+        "STATE_REPORT",
+        "LIMITS_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "2.13",
+      "reply_line": 269,
+      "response_sha256": "9967324712d222c155f3e53231ee121627aebe9a6ebbf0ff30826589fda14eeb",
+      "quote_sha256": "8be7ebe26f2cf07c6661cea85221ab762c0535fb61a408622edfea57d34ec1ad",
+      "response_text_status": "TEXT_EXPLANATION_INTEGRATED",
+      "explanation_text_completed": true,
+      "remaining": [
+        "FIDELITY_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "3.1",
+      "reply_line": 281,
+      "response_sha256": "b9d3d9b4ac0593b5e658a835c24c0ab09d1e4dc422ab3eecd64fc990c74b5c25",
+      "quote_sha256": "1b3638b327d5c16cf3d4546b86fbde27c5b5ac6d0ce6080957626d69aff9a92c",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "E48",
+        "LIMITS_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "3.2",
+      "reply_line": 293,
+      "response_sha256": "d9407dec2382d0c8033b2a00d648fd67b1031f19da468eb4c05e9110225614e0",
+      "quote_sha256": "683ca7424c30a7c54a0259d99652c10ca8992d2c67df71a87e1cee027052344f",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "P168",
+        "CW4",
+        "W32",
+        "FULL_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "3.3",
+      "reply_line": 305,
+      "response_sha256": "c5c7cf7679fd2f7674a2f36d42f16ddd2980ec6dfc98d07e43dbbdf343cb1146",
+      "quote_sha256": "9491d0b09610d5d55ba0e5edc675315b6569159f3e769247b95899fe1abdac99",
+      "response_text_status": "TEXT_EXPLANATION_INTEGRATED",
+      "explanation_text_completed": true,
+      "remaining": [
+        "PROVENANCE_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "3.4",
+      "reply_line": 317,
+      "response_sha256": "daa474099b349d831bc7f7a303f41888457e36046063d2941ee445eca6f37fdc",
+      "quote_sha256": "1998c6dc1adfc5769ca4d13d7a9dd92515de1d39c32f77809cae69fbb6642e3a",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "FULL_TEXT",
+        "CLASS_HISTORY_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "3.5",
+      "reply_line": 329,
+      "response_sha256": "4fadd78661965491c71b4abd4b5e64b842b02c730c2f0c2549ff90402af495ae",
+      "quote_sha256": "bf082acd28fe414252dff0981f2aa59d807be1539380b693554e0b6c1bdb587d",
+      "response_text_status": "TEXT_COMPLETION_PENDING",
+      "explanation_text_completed": false,
+      "remaining": [
+        "FULL_TEXT"
+      ],
+      "final_status": "OPEN"
+    },
+    {
+      "id": "3.6",
+      "reply_line": 341,
+      "response_sha256": "2ecc3653dc117cefcb0c857cccfaa95dd57c5e6269bc488c185254038696ff32",
+      "quote_sha256": "1224ef7a67a507150a014bda20e8f61cb4aa3b10a1eec267c647fd399da49e55",
+      "response_text_status": "RESPONSE_UPDATED_PARTIAL",
+      "explanation_text_completed": false,
+      "remaining": [
+        "E48",
+        "P200",
+        "SEED_SCOPE",
+        "LIMITS_TEXT"
+      ],
+      "final_status": "OPEN"
+    }
+  ]
+}

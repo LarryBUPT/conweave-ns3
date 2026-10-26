@@ -1,0 +1,1631 @@
+{
+  "scope": "authorized local response integration; parent manuscript and original reviews unchanged",
+  "previous_snapshot_sha256": "1b73b2c8f528271a1ed98728c9f4df59eb1e14f9c59584ed07610a7d153f770d",
+  "before_reply_sha256": "bb7195550873ce4962efecd00c06341bf8976375e7611de32a66fc36c0ea4d2c",
+  "after_reply_sha256": "1a233f347091e0e959df4740b231c0999158d57f2d8b603028b00435405ab461",
+  "coverage_path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation-coverage.json",
+  "coverage_sha256": "0f83e30eef01b10e14c685d6f6a17eb9b8ff5a27a4d67f00f8be49778b3798cc",
+  "actual_model": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "turn_id": "01a17622-6cbd-79f1-b03e-125abeab2824"
+  },
+  "all_26_original_comments_matched": true,
+  "all_26_response_bodies_updated": true,
+  "five_explanation_ids_completed": [
+    "2.13",
+    "2.3",
+    "2.5",
+    "2.8",
+    "3.3"
+  ],
+  "all_final_integration_statuses_open": true,
+  "protected_file_sha256_unchanged": {
+    "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md": "0a8d2067cd382b537801180f2f18a64701759855125eccc0d554a5b4f3d76b28",
+    "E:\\研\\毕业论文\\thesis\\classreserve-v12-reading.md": "7890848ba3c9caa6315dd32881d6d2724ab288cdc5c51fb8139693c23b0e863a",
+    "E:\\研\\毕业论文\\thesis\\ws30-v12-reproducibility-index.md": "2809645bc481835366abb31796a57140c597c31725e44445873d87a2af77c16a",
+    "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md": "97d1e188a601b60465ec57c54f0cf06ea4274994d52df05b8aaab4389d93766d",
+    "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md": "d45e6df59ca9a87d170ebe2002a53397cd8bee830d350bd9a6d3352bd03f67af",
+    "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md": "832db41266bd62b1ca07e1f5219f6a25bcadd79d2271ec6e9219556cad2a7b1c"
+  },
+  "rows": [
+    {
+      "id": "1.1",
+      "title": "W1 逐包结论及 DRILL 的真实候选规则",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "P168",
+        "FULL_TEXT"
+      ],
+      "finding": "已纠正全端口说法；技术匹配控制已运行，独立需求结果和摘要/结论尚未形成。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md",
+        "line": 246,
+        "end_line": 250,
+        "quoted_comment": "### W1（必要，文字级，最高优先级）摘要与结论对\"逐包重选\"的表述与本文自身数据冲突\n\n摘要：\"逐包重新选择出口会使同步批次和背景尾部同时变慢\"；结论：\"并显示逐包重新选路会使同步批次与背景尾部同时变慢\"。两者都是无条件的。\n但表 4 中原生 DRILL（逐包、全上联）的批次变化是 **−15.847%**（旧组 −13.637%），远好于 ClassReserve 的 −6.899%。正文 §4.4 已说明\"U16 保留首次候选状态，与原生 DRILL 的策略不同\"——**限定存在于正文，却没有进入摘要与结论**。\n修法：把该结论限定为\"在本文的两候选设定下（U16）\"；同时在摘要或 §4.4 补一句解释候选端口数是 U16 与 DRILL 结果相反的关键因素（U16 只在 2 个端口间翻转，承担了乱序代价却拿不到全上联的分散收益）。**这是零成本修改，但不改就是可被读者抓到的硬错误。**",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 11,
+        "answer_heading_line": 21,
+        "text": "固定首次候选对的逐包重比与原生 DRILL 是两种不同策略。源码核查表明，原生 DRILL 每包抽取两个随机候选，并与按目的地址保存的历史出口比较，至多涉及三个不同出口，并非逐包比较全部上联。相关工作和比较方法已按此区分，因此不能用“两个候选与全端口”单独解释二者差异。\n\n同一 12 字节键的首包固定、随机二选一和逐包重比已实现，并完成小规模输入上的匹配控制。该结果确认了对照的构造；严格统一规则的独立需求性能比较仍未运行，摘要与结论也尚未写定。后续结论将分别对应固定候选内的决定频率和原生 DRILL 完整策略，不作一般逐包劣化判断。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 23,
+          "text": "逐包方法能够更快地分散流量，但路径变化和包序必须共同考虑。DRILL 使用交换机本地队列决定每个包的出口 [5]。本文采用的实现每包抽取两个随机候选，并与按目的地址保存的上一最佳出口比较。固定候选逐包对照则始终使用同一 QP 的首次候选对，二者在候选刷新、状态共享和平局处理上均有差别。ConWeave 另在网络内处理跨路径乱序 [6]。QueuePin 保持 QP 的本地出口，不增加相应重排机制；这一选择也限制了它对已形成路径拥塞的响应。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 68,
+          "text": "主比较覆盖 ECMP、QueuePin、随机二选一、固定候选逐包重比和原生 DRILL。随机二选一与 QueuePin 使用相同的两个候选，但由预先固定的哈希位选择出口并保持。逐包重比也使用相同的首次候选对，只把队列比较从首包扩展到每个数据包。它们分别检验读取队列和持续重决策的影响。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 76,
+          "text": "| 原生 DRILL | 每包随机抽样两个候选，并比较目的地址历史出口 | 持续更新抽样与历史状态 |"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 78,
+          "text": "QueuePin 与随机二选一的直接比较用于估计首包队列信息的增量；与固定候选逐包重比的直接比较用于评价同一候选集合内的决定频率。原生 DRILL 是完整策略对照，其候选更新、历史共享和随机性都不同，不能被解释为只改变决定频率。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "SRC"
+      ],
+      "proposed_response": "固定首次候选对的逐包重比与原生 DRILL 是两种不同策略。源码核查表明，原生 DRILL 每包抽取两个随机候选，并与按目的地址保存的历史出口比较，至多涉及三个不同出口，并非逐包比较全部上联。当前工作稿的相关工作及比较方法已按此区分，因此不能用“两个候选与全端口”单独解释二者差异。\n\n同一 12 字节键的首包固定、随机二选一和逐包重比已实现，并完成技术输入上的匹配控制。该结果确认了对照的构造；严格统一规则的独立需求性能比较仍未运行，摘要与结论也尚未写定。后续结论将分别对应固定候选内的决定频率和原生 DRILL 完整策略，不作一般逐包劣化判断。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 11,
+        "answer_heading_line": 21,
+        "text": "接受过度概括的指正。固定首次候选对的逐包重比只能支持该配置下的结论。源码核查还发现，原生 DRILL 每包随机抽两个候选，再与按目的 IP 保存的上一最佳出口比较，并非默认比较全部端口。因此，不能把方向差异解释为“两个端口与全端口”的单一差异。将删除摘要和结论中的一般性逐包判断，新增同一 12 字节键的首包固定与逐包重比对照，DRILL 则独立报告同步批次和背景尾部。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "d81bf758ae5b95aab589a93c73b7f84ba61fd0d44b691a428f495e410529898f",
+      "quote_sha256": "87c62921a6c49a79c69619ca231e4990653eaf4d8caf5404e4ab204468605462"
+    },
+    {
+      "id": "1.2",
+      "title": "W2 机制命名与主贡献",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "FULL_TEXT"
+      ],
+      "finding": "题名与引言已转向 QueuePin，严格入口和标签干预通过；不能再写“准入缺口待实现”。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md",
+        "line": 252,
+        "end_line": 256,
+        "quoted_comment": "### W2（必要，文字级）标题机制与实际贡献不匹配\n\n论文名为 ClassReserve，\"类别\"承载了题名、公式 (1) 与 §3.2 的核心叙述，但它在三个独立对照中都没有产生可识别的完成时间收益（C16/Q16：批次 +0.058%、背景 +0.059%，区间跨零；2×2 全部主效应与交互跨零；先占 +0.020%，对数比差跨零）。被数据支撑的是\"首包队列感知 + 出口黏滞\"。\n修法（推荐 i）：保留命名，但在摘要首句与 §1 末尾明确写成——\"本文的主贡献是首包本地队列指导的 QP 初始分配与出口黏滞；类别评分是本文提出并检验的一个假设，其机制响应成立、完成时间收益在本输入下未识别。\" 同时把 §3.1 的 ① 提到最前面。\n**注意：这条不是\"要求作者补实验去证明类别权重有效\"——恰恰相反，作者已经正确地报告了阴性结果。这条要求的是把论文的自我叙述与证据对齐。**",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 27,
+        "answer_heading_line": 37,
+        "text": "当前题名和引言已改为 QueuePin，主体是本地队列指导的 QP 初始分配与后续出口保持。严格实现对全部 UDP 数据使用统一候选键和评分，路由入口不读取类别标签；删除或交换包标签后的完整 FCT 及去标签路径记录，在小规模输入中分别保持一致。\n\n类别加权保留为此前固定条件下的单独设计检验，其结果不作为统一机制的收益证据。摘要、结果和结论尚未形成，仍需在最终正文中同步这一定位，不能将旧类别配置的四组变化直接归给 QueuePin。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 3,
+          "text": "# QueuePin：混合 RDMA 通信中的队列指导初始选路与 QP 路径保持"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 11,
+          "text": "本文围绕这一问题设计 QueuePin。新 QP 的首个数据包到达交换机时，交换机根据流标识生成两个候选出口，选择总排队字节较少的出口，并保存决定。同一 QP 的后续包在该交换机复用这一出口。同步业务和背景业务使用相同的候选规则与评分，路由不需要识别业务类别。QueuePin 以一次本地选择换取持续的路径保持，其代价是同一 QP 不能利用后续出现的更空闲路径。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 15,
+          "text": "评价以同步短 QP 与背景长 QP 共存的合成通信为基础，分别计算完整同步批次和背景完成时间分布。固定候选的直接配对用于识别队列信息与重决策的影响；逐流分布和批尾身份用于解释批次最大值的变化；跨轮夹具则检查持久 QP 与交换机状态。类别加权作为此前设计的单独检验保留，本文的主体机制和研究问题均围绕统一规则的初始分配展开。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 35,
+          "text": "每台交换机独立维护 QP 到出口的映射。对 UDP 数据包，仿真以源、目的 IP 地址和 UDP 两端口组成的四元组标识 QP。交换机首先查询映射。若已有记录，直接使用保存的出口；若没有记录，则以同一 12 字节键和两个固定哈希盐，在等价下一跳中生成候选出口。两次映射可能落在同一个端口，此时只有一个实际候选。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 48,
+          "text": "所有 UDP 数据使用同一流程。业务标签仅用于把完成记录归入同步批次或背景统计，不参与是否使用 QueuePin、候选生成或队列评分。控制报文沿用公共转发逻辑。这样，类别信息和路由决定之间没有数据依赖，移除或置换业务标签后，路径和逐流完成时间应当保持一致。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "SRC"
+      ],
+      "proposed_response": "当前题名和引言已改为 QueuePin，主体是本地队列指导的 QP 初始分配与后续出口保持。严格实现对全部 UDP 数据使用统一候选键和评分，路由入口不读取类别标签；删除或交换包标签后的完整 FCT 及去标签路径记录，在技术输入中分别保持一致。\n\n类别加权保留为此前固定条件下的单独设计检验，其结果不作为统一机制的收益证据。摘要、结果和结论尚未形成，仍需在最终正文中同步这一定位，不能将旧类别配置的四组变化直接归给 QueuePin。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 27,
+        "answer_heading_line": 37,
+        "text": "接受。将以本地队列指导新 QP 初始分配及后续出口保持为主线，停止以类别评分收益组织题名和摘要。现有统一键配置入口仍有类别标签准入，需要新增真正不读取标签的路由，并验证标签移除、置换后路径与完成时间不变。历史类别配置的四组效果不能直接归给新主体。类别评分保留为独立设计检验，报告固定权重与实际场景中的结果。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "14c60fb930876f42e0d55fa1cdad18f5cf9e7089534d31d3337b42baa4f6fc3c",
+      "quote_sha256": "8c216c4626a3250ca439f8e8384d99987ec58565c27c2e2561d5e1b680d19bcf"
+    },
+    {
+      "id": "1.3",
+      "title": "W3 中位数之差与直接配对",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "P168",
+        "RESULT_TEXT"
+      ],
+      "finding": "统计方法第90行已回应核心错误，当前没有结果表，不能声称表注已改。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md",
+        "line": 258,
+        "end_line": 261,
+        "quoted_comment": "### W3（必要，文字级）表 5 的跨臂中位数会诱导错误归因\n\n表 5 中 Q16（−4.242%）与 C16（−5.461%）的 1.219pp 差是**两个相对 E 的中位数之差，不是效应估计**；真正的口径是直接配对 C16/Q16 = **+0.058%（跨零）**。而 §3.7 的量级分析显示，n=24 的跨组中位数摆动就有 1～2pp（A0B1≡Q16 在两组分别是 −5.971% 与 −4.242%）。**表观效应正好落在噪声量级内。**\n修法：表 5 加注\"跨臂中位数不可相减，臂间比较以图 7 直接配对为准\"；§4.4 明确\"类别权重的唯一效应口径是直接配对\"。成本极低，但不加就会系统性误导读者（包括审稿人）。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 43,
+        "answer_heading_line": 52,
+        "text": "统计方法已明确：先在同一需求内计算方法间变化，再跨需求汇总；两个相对 ECMP 的中位数不可相减为方法间增量。此前类别比较仍以同需求的类别配置与无类别配置直接配对为准，统一机制则使用同候选的 QueuePin 与随机二选一等直接比较。\n\n当前稿件还没有新结果表，相应表注和直接配对图尚未整合。补充矩阵的统计单位及直接配对口径已固定，结果到位后按同一口径报告，不能以跨列相减代替。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 90,
+          "text": "每项比较先在同一需求内计算候选方法相对参照的百分比变化，再跨需求报告中位数和区间。两项相对 ECMP 的中位数不可相减为方法间的增量。整份需求是统计单位，包、QP 和交换机记录都不作为独立重复。需求层的重采样区间描述输入变化，不能代表所有仿真随机流的变化。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 92,
+          "text": "批次是最大值，逐流分布和批尾身份需要单独观察。固定 ECMP 排名最慢的若干 QP 后，比较这些相同身份在另一方法下的完成时间，可以看出改善是否集中于原批尾。另将批次差写为原批尾自身的时间变化，加上新批尾相对原批尾的剩余差距。这是逐需求的代数分解，两部分的中位数不能相加为批次中位差，也不表示两项独立因果贡献。"
+        }
+      ],
+      "evidence_keys": [
+        "NODE1",
+        "ANALYSIS"
+      ],
+      "proposed_response": "工作稿统计方法已明确：先在同一需求内计算方法间变化，再跨需求汇总；两个相对 ECMP 的中位数不可相减为方法间增量。此前类别比较仍以同需求的类别配置与无类别配置直接配对为准，统一机制则使用同候选的 QueuePin 与随机二选一等直接比较。\n\n当前稿件还没有新结果表，相应表注和直接配对图尚未整合。补充矩阵的统计单位及直接配对口径已固定，结果到位后按同一口径报告，不能以跨列相减代替。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 43,
+        "answer_heading_line": 52,
+        "text": "接受。比较先在同一需求内计算，再跨需求汇总。将于结果表注和统计方法中明确，不以两项相对 ECMP 的中位数之差估计类别增量。旧类别增量以直接 C16/Q16 为准；新主体的队列增量以同候选的直接比较为准。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "c4791a3cf8772f4e1bc6ad807620c16f5ba177730437f7cea3b76e84c59c7ccb",
+      "quote_sha256": "0f091713e43bdcec185436632a82591a85290df171d0cf3529425e04d875798f"
+    },
+    {
+      "id": "1.4",
+      "title": "W4 双指标权衡与 DRILL 恢复观测",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "P168",
+        "RESULT_TEXT"
+      ],
+      "finding": "DRILL独立恢复观测已有技术/资源数据；历史48与新24的逐需求双侧图仍待。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md",
+        "line": 263,
+        "end_line": 267,
+        "quoted_comment": "### W4（必要，若把\"权衡定位\"作为主要卖点）与 DRILL 的权衡定位缺少业务依据与代价证据\n\n两件事：\n- +3% 背景中位变化是\"本研究预先设置的工程参照\"，论文明确说\"没有据该参照实施统计非劣效检验\"\"生产 SLO 与逐流保护需要相应业务依据\"。那么\"ClassReserve 优于 DRILL\"就完全依赖读者接受这个未论证的阈值。建议给出**批次 vs 背景 P99 的双指标前沿展示**（例如每份需求的二维散点或 E/Q16/C16/DRILL 的前沿），让读者自己按 SLO 选点，而不是由作者替读者假定阈值。\n- 原生 DRILL 的重传与乱序量未观测（\"独立恢复计数缺失\"），所以\"DRILL 伤背景\"的机制在本文内部没有独立证据，只是从 U16 外推。至少要在正文写明这一点；能补则补（这是**影响定位 claim 的必要证据**，但考虑到是历史日志限制，明确声明 + 说明不可得的原因也可接受）。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 58,
+        "answer_heading_line": 68,
+        "text": "原生 DRILL 的独立观测已在小规模输入和单份需求试运行中完成，小规模输入的观测开关得到相同 FCT。其换口、接收序号空洞和实际重传均来自 DRILL 自身运行，没有使用固定候选逐包对照的计数代填。\n\n这些数据目前只支持对应输入中的局部权衡。历史需求的 DRILL 观测补跑、统一规则的新需求比较及逐需求双侧散点尚未完成。论文将并列报告批次和背景 P99 的全部配对变化；没有业务 SLO 或非劣效界时，不用内部百分比参照宣称一种策略全面优于 DRILL，也不将同时出现的换口/重传写成唯一原因。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 78,
+          "text": "QueuePin 与随机二选一的直接比较用于估计首包队列信息的增量；与固定候选逐包重比的直接比较用于评价同一候选集合内的决定频率。原生 DRILL 是完整策略对照，其候选更新、历史共享和随机性都不同，不能被解释为只改变决定频率。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 90,
+          "text": "每项比较先在同一需求内计算候选方法相对参照的百分比变化，再跨需求报告中位数和区间。两项相对 ECMP 的中位数不可相减为方法间的增量。整份需求是统计单位，包、QP 和交换机记录都不作为独立重复。需求层的重采样区间描述输入变化，不能代表所有仿真随机流的变化。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 98,
+          "text": "观测记录实际发送与重传、接收序号空洞、逐交换机出口变化和缓存命中。原生 DRILL 的计数由其自身运行获取，固定候选对照的计数只用于解释该对照。观测先通过开关配对检查，确认不会改变选路随机流和完成时间，再用于比较性能与恢复代价。完整逐包路径用于小规模正确性检查，正式大输入采用逐交换机 QP 汇总，二者的观测粒度分别说明。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "ANALYSIS"
+      ],
+      "proposed_response": "原生 DRILL 的独立观测已在技术输入和单需求资源试运行中完成，技术输入的观测开关得到相同 FCT。其换口、接收序号空洞和实际重传均来自 DRILL 自身运行，没有使用固定候选逐包对照的计数代填。\n\n这些数据目前只支持对应输入中的局部权衡。历史需求的 DRILL 观测补跑、统一规则的新需求比较及逐需求双侧散点尚未完成。论文将并列报告批次和背景 P99 的全部配对变化；没有业务 SLO 或非劣效界时，不用内部百分比参照宣称一种策略全面优于 DRILL，也不将同时出现的换口/重传写成唯一原因。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 58,
+        "answer_heading_line": 68,
+        "text": "接受。双指标配对图将同时保留批次与背景 P99 的全部需求点，不使用内部 +3% 参照替代业务 SLO。拟对原生 DRILL 增加独立只读观测并重放历史输入，先证明观测开关不改变 FCT，再记录换口、序号空洞及实际重传。原 U16 计数只解释 U16，不代填 DRILL；若插桩回归失败，先修复并以新版本验证。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "b7ff24eaf8bf37ecc78786748d03d60e0740316251d777bea1464c74d97039b2",
+      "quote_sha256": "10c82b240ec64c9023446dbab74d9aedb09fb1107ca6f680a1253ef9e06f7343"
+    },
+    {
+      "id": "1.5",
+      "title": "W5 未触发动态动作的基线",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "CW4",
+        "W32",
+        "RESULT_TEXT"
+      ],
+      "finding": "持续/错峰输入、源码和36格设计均已冻结，仍无动态结果；不能再写“尚未冻结”。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md",
+        "line": 269,
+        "end_line": 271,
+        "quoted_comment": "### W5（必要，防误读）三条未激活基线的呈现方式\n\nCONGA/LetFlow（flowlet 超时计数 0）、ConWeave（主组换路 0、旧组 1）在本负载下等同于 ECMP。表 4 已加\"本次执行状态\"列、正文已声明\"比较范围受其实际动态动作约束\"，披露是充分的。但**数字与方法名并排仍会被读成跨方法比较结果**。建议在表注直接写\"本负载下 flowlet/反馈换路机制天然不激活，此三行不代表对应机制的能力\"，或移入附录。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 74,
+        "answer_heading_line": 82,
+        "text": "已有原生基线结果应按本输入中的实际动作解释。零 flowlet 超时或极少换路反映动态机会有限，不代表实现没有运行，也不证明所有路径或输出都与 ECMP 相同。相关工作已区分固定候选控制与原生策略，旧基线表仍需按动作诊断重新组织。\n\n为增加动态机会，已设计持续背景与周期短消息的同步、错峰输入。预定比较采用八种方法，并设置两对 ConWeave 观测开关控制。输入已生成，但这些实验尚未运行。观测控制必须先通过，再报告实际动作和性能。Gemma 的来源和关键语义缺口继续保留，不用简化选口逻辑代称原算法。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 21,
+          "text": "路径调整的机会取决于决定粒度。ECMP 在流标识给定后保持映射，flowlet 方法则在流内空闲间隔后重新选择。LetFlow 利用 flowlet 大小对拥塞的自适应变化，CONGA 同时反馈路径拥塞 [3, 4]。当短 QP 连续发送且很快结束时，可供重新选择的间隔可能很少。QueuePin 把队列读取放在首次到达时，使选择机会不依赖后续出现流内间隔。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 23,
+          "text": "逐包方法能够更快地分散流量，但路径变化和包序必须共同考虑。DRILL 使用交换机本地队列决定每个包的出口 [5]。本文采用的实现每包抽取两个随机候选，并与按目的地址保存的上一最佳出口比较。固定候选逐包对照则始终使用同一 QP 的首次候选对，二者在候选刷新、状态共享和平局处理上均有差别。ConWeave 另在网络内处理跨路径乱序 [6]。QueuePin 保持 QP 的本地出口，不增加相应重排机制；这一选择也限制了它对已形成路径拥塞的响应。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 29,
+          "text": "因此，本文关注队列读取的时机、出口保持的期限，以及它们在混合通信中的双侧权衡。两个候选、本地队列和路径保持各有既有研究基础；这里需要回答的是，在相同输入与传输条件下，将它们用于 QP 初始分配会产生什么效果。固定候选对照与原生逐包方法分别承担机制检验和策略比较，不能相互替代。"
+        }
+      ],
+      "evidence_keys": [
+        "W5",
+        "ANALYSIS"
+      ],
+      "proposed_response": "已有原生基线结果应按本输入中的实际动作解释。零 flowlet 超时或极少换路反映动态机会有限，不代表实现没有运行，也不证明所有路径或输出都与 ECMP 相同。当前相关工作已将固定候选控制与原生策略比较分开；旧基线表仍需按动作诊断重新组织。\n\n持续背景与周期短消息的同步、错峰输入，以及八方法比较和两对 ConWeave 观测资格检查，均已完成本地实现与运行前冻结，但尚无新实验结果。ConWeave 的观测开关资格必须先通过，不能提前宣称新场景已激活其动态或已完成公平性能比较。Gemma 的实现来源和关键语义缺口继续保留，不用简化选口逻辑代称原算法。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 74,
+        "answer_heading_line": 82,
+        "text": "接受呈现需要调整。零 flowlet 超时或极少换路说明当前负载没有充分触发动态重选，不能据此评价这些方法的一般能力，也不等于实现没有运行或所有路径等同 ECMP。将把这些结果按动态动作诊断组织，保留公共配置及实际计数。同时复核已有 ConWeave 的动态触发条件，设计持续或错峰混合负载供所有方法共同运行，先验证动态行为，再冻结效果比较。新增外部基线优先核 Gemma 的完整复现条件，包括下游队列反馈和网络内重排；实现来源及关键参数未核清前，不把简化选口实现称为原生 Gemma。主比较保留 ECMP 与活跃的 DRILL，新增比较方案在运行前固定。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "02e2dec0768b4e70772136fc2ba4a69753ec0bd17f995687e8333092121b9d89",
+      "quote_sha256": "1e515024f33e1b54c6c8166398f29ec6fb9603f9daa8a29f1c5c2b48f03b8c7d"
+    },
+    {
+      "id": "1.6",
+      "title": "W6 缓存、标签与硬件开销",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "E48",
+        "STATE_REPORT",
+        "LIMITS_TEXT"
+      ],
+      "finding": "标签对主体已无路由依赖；生命周期的对象/缓存部分已实测，通用老化与硬件容量未完成。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md",
+        "line": 273,
+        "end_line": 278,
+        "quoted_comment": "### W6（次要，建议做）可部署性的量化缺失\n\n三条都是\"声明了但没有论证\"：\n- QP 缓存无容量上限/老化/淘汰（§3.4 已声明）。建议补一段量级估算：单交换机条目数（我粗估数百至数千量级）× 每条目字节数 → SRAM 需求，以及长训练中的元组复用与老化策略。\n- 业务类别标签的获取方式未给具体方案（DSCP？五元组规则？）。建议给一句。\n- 逐类别字节记账在共享 FIFO 上的硬件实现路径（入队/出队增减分类计数器）值得一句说明。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 88,
+        "answer_heading_line": 99,
+        "text": "统一机制已去除类别标签的路由依赖，技术标签干预结果支持这一点。业务类别只用于实验分组；原类别实验的标签获取与逐类别记账不能据此被解释为已具备线上 DSCP/BTH 分类实现。\n\n模拟器已记录各交换机的条目和峰值，并验证了持久对象、同元组重建以及显式清理对缓存命中的影响。现有持久探针候选重合，非初始拥塞/恢复状态未被动态覆盖，因此生命周期补验和量级表仍待完成。逻辑字段估算、软件容器开销和交换芯片资源须分开，测试中的安全删除也不等于通用老化或线速实现。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 48,
+          "text": "所有 UDP 数据使用同一流程。业务标签仅用于把完成记录归入同步批次或背景统计，不参与是否使用 QueuePin、候选生成或队列评分。控制报文沿用公共转发逻辑。这样，类别信息和路由决定之间没有数据依赖，移除或置换业务标签后，路径和逐流完成时间应当保持一致。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 58,
+          "text": "每个映射至少需要记录 QP 标识和出口。当前软件模型使用按需增长的容器，因此条目数量随经过交换机的 QP 增加。容量估算需要依据各交换机的实际峰值，逻辑字段所需字节与容器运行开销分别计算，不能直接等同于交换芯片的存储资源。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 60,
+          "text": "QP 完成后再次使用相同四元组，还涉及旧映射的处理。保留条目会让新对象继承旧出口，删除条目则需要保证旧数据已经排空，避免迟到包与新对象混淆。本文分别检查持久对象和同元组重新创建，不将按轮清表当作持久 QP 的实现，也不引入未经验证的空闲超时策略。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "SRC"
+      ],
+      "proposed_response": "统一机制已去除类别标签的路由依赖，技术标签干预结果支持这一点。业务类别只用于实验分组；原类别实验的标签获取与逐类别记账不能据此被解释为已具备线上 DSCP/BTH 分类实现。\n\n模拟器已记录各交换机的条目和峰值，并验证了持久对象、同元组重建以及显式清理对缓存命中的影响。现有持久探针候选重合，非初始拥塞/恢复状态未被动态覆盖，因此生命周期补验和量级表仍待完成。逻辑字段估算、软件容器开销和交换芯片资源须分开，测试中的安全删除也不等于通用老化或线速实现。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 88,
+        "answer_heading_line": 99,
+        "text": "接受。新主体路由将不依赖业务类别标签，因此标签获取与逐类别记账只在既有类别实验的实现说明中保留，不假定已有线上 DSCP/BTH 分类。将实测各交换机峰值条目数，分别报告逻辑字段容量估算与软件容器开销。持久 QP、同元组重新创建和安全清理分别验证，不把测试夹具的清理操作称为通用老化方案，也不据软件仿真宣称 ASIC 线速实现。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "32a1cafda0ce49f53cdde3500da1da5c3fe42c69df9dc6211b99cee707b25c1d",
+      "quote_sha256": "9b470d9e080297b460809cf7575e564b1701d6d5cb556437216eff931115e4f7"
+    },
+    {
+      "id": "1.7",
+      "title": "W7 固定参数、随机性、尾部分位数与扩展范围",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "E48",
+        "P200",
+        "SEED_SCOPE",
+        "LIMITS_TEXT"
+      ],
+      "finding": "seed初始化链路已核清，不能再写完全待核；多模拟seed稳健性未执行。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md",
+        "line": 280,
+        "end_line": 288,
+        "quoted_comment": "### W7（锦上添花，不应扣分）\n\n- 候选数固定为 2、权重固定为 1，未做扫描（论文已声明是运行前固定的设计，这是**正确的做法**，我不因此扣分；期刊版可补）。\n- 单一 ns-3 seed（统计单位是需求，口径正确）。\n- 背景 P99 的有效样本仅 2～3 条流（192 条时）——建议在正文点明，但不影响定性结论（与 DRILL 的 +8.388% 相差近 8pp）。\n- 负载广度：单一同步模式、无非对称/故障、无周期性迭代、无真实 trace、无测试床。\n- 未与 DiffFlow 等业务差异化方法对比——鉴于 W2 已经把类别机制定位为\"未识别的假设\"，这条的重要性较上一轮明显下降；且 DiffFlow 本身是 2016 年 arXiv 预印本，不是必须比较的对象。\n\n---",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 105,
+        "answer_heading_line": 119,
+        "text": "实际模拟 seed 已核实为 1。该配置值同时初始化 C 语言和 ns-3 随机数生成器，DRILL 通过随机排列抽取候选。需求级区间描述输入变化，不能替代跨模拟 seed 的稳健性检查。复现材料已将需求生成 seed 与共同模拟 seed 分列。\n\n对于 192 条背景，线性 P99 由第 190 与第 191 个排序值插值。这不意味着推断样本只有两条，独立重复单位仍是整份需求。后续结果同时保留 P95、P99、最大值和全部背景点。持久状态补验继续完成；多模拟 seed 建议单列待决定，更多拓扑、故障、真实 trace 和测试床均未由现有数据覆盖。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 66,
+          "text": "评价使用三层 Clos 网络，包含 1,280 台主机，链路速率为 400 Gbps。同步通信包含 16,384 条 8 KiB 短 QP，背景包含 192 条 8 MiB 长 QP。每份需求重新生成通信关系与背景端点，消息大小和释放模式保持固定。各方法共享逐条相同的需求和公共 RDMA 传输配置，采用 DCQCN，开启 IRN，关闭 PFC。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 88,
+          "text": "背景以逐 QP 的流完成时间计算第 99 百分位（P99），并同时报告 P95 和最大值。分位数采用排序值间的线性插值。对于 192 条背景 QP，P99 位于第 190 与第 191 个排序值之间，因此还需结合逐需求变化和完整分布判断尾部代价。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 90,
+          "text": "每项比较先在同一需求内计算候选方法相对参照的百分比变化，再跨需求报告中位数和区间。两项相对 ECMP 的中位数不可相减为方法间的增量。整份需求是统计单位，包、QP 和交换机记录都不作为独立重复。需求层的重采样区间描述输入变化，不能代表所有仿真随机流的变化。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 96,
+          "text": "跨轮夹具分别设置空队列预热和背景共存首次发送，每种条件都比较持久 QP 与每轮新 QP。持久 QP 在同一次仿真中传输三轮请求，保持对象、累计序号、拥塞控制和交换机缓存；新 QP 对照逐轮使用不同对象和元组。轮完成时间从该轮原始需求时刻计算，包含源端等待。三轮不是三个独立样本。"
+        }
+      ],
+      "evidence_keys": [
+        "SEED",
+        "E46",
+        "ANALYSIS"
+      ],
+      "proposed_response": "实际配置已核实为模拟 seed 1：同一配置值分别传入 C RNG 的 srand 和 ns-3 的 SeedManager::SetSeed，DRILL 使用随机排列抽样。该初始化链路已经确认，需求级区间仍只反映需求变化，不能替代多模拟 seed 的稳健性检查。原计划未定义的 seed 0 是未执行的元数据，修订契约已将需求 seed 与模拟 seed 分开。\n\n工作稿已说明 192 条背景的线性 P99 由第 190 与第 191 个排序值插值，不能把这理解为推断样本量只有两条；独立重复单位仍是整份需求。后续结果保留 P95/P99、最大值及全部背景点。持久状态补验继续作为必要任务；更多拓扑、故障、真实 trace 和测试床尚无证据，多模拟 seed 建议保持单列待决定，不在当前数据中宣称已覆盖。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 105,
+        "answer_heading_line": 119,
+        "text": "固定候选数及权重继续按原设计报告，不为寻找正收益扫描类别权重。原区间反映需求变化，不能代表 ns-3 随机性；DRILL 还消耗 C 随机流，需核实际 seed 控制。将补已有 raw 的背景 P95、P99、最大值及分布说明。192 条流的线性 P99 由第 190 和 191 个排序值插值决定。周期性状态的必要问题由真实持久 QP 夹具回答。更多拓扑、故障、真实 trace、测试床及外部机制完整复现不被写作已完成或已验证能力；其与本文主张的关系将在讨论中说明。类别不作为主贡献后，不以缺 DiffFlow 性能对照维持类别收益叙事。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "41610bd4cf39099c053ee1c1b99bd6de13af3e7821c3bff6f51e41c8c0688a48",
+      "quote_sha256": "dbea6f8f2d35efd9594f5979f6eae295886a4cd76864f46c844ff81f195e1107"
+    },
+    {
+      "id": "2.1",
+      "title": "机制身份及题名摘要",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "FULL_TEXT"
+      ],
+      "finding": "标题/引言已改；摘要缺失，且不能照抄“不显著恶化即保护背景”的建议句。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 441,
+        "end_line": 441,
+        "quoted_comment": "1. **重写标题/摘要/引言的故事。** 现在的标题是 ClassReserve，但真正被数据支持的是 Q16/Q12。建议标题改为“Queue-Aware First-Packet Path Selection for Mixed RDMA Traffic”一类，把 ClassReserve 作为系统名保留；摘要第一句直接说“首包读取本地队列并把 QP 固定，可以在不显著恶化背景 P99 中位数的条件下缩短同步批次”，第二句再说“类别组成评分改变选路但未显示完成时间收益”。不要让读者以为类别评分是主贡献。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 125,
+        "answer_heading_line": 131,
+        "text": "稿件已采用 QueuePin 名称，将初始队列选择与 QP 出口保持置于引言和设计主体。严格实现对所有 UDP 数据使用统一规则，标签删除/交换后的路径及 FCT 在小规模输入中保持一致，这一调整已有代码与受控验证证据支撑。\n\n当前还没有摘要、结果和结论。新主体的需求级性能数据尚未形成，不能提前写入旧配置的收益，也不把“未检出显著恶化”当作背景非劣效或保护结论。类别检验将单列其固定条件与实际证据。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 3,
+          "text": "# QueuePin：混合 RDMA 通信中的队列指导初始选路与 QP 路径保持"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 11,
+          "text": "本文围绕这一问题设计 QueuePin。新 QP 的首个数据包到达交换机时，交换机根据流标识生成两个候选出口，选择总排队字节较少的出口，并保存决定。同一 QP 的后续包在该交换机复用这一出口。同步业务和背景业务使用相同的候选规则与评分，路由不需要识别业务类别。QueuePin 以一次本地选择换取持续的路径保持，其代价是同一 QP 不能利用后续出现的更空闲路径。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 29,
+          "text": "因此，本文关注队列读取的时机、出口保持的期限，以及它们在混合通信中的双侧权衡。两个候选、本地队列和路径保持各有既有研究基础；这里需要回答的是，在相同输入与传输条件下，将它们用于 QP 初始分配会产生什么效果。固定候选对照与原生逐包方法分别承担机制检验和策略比较，不能相互替代。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 48,
+          "text": "所有 UDP 数据使用同一流程。业务标签仅用于把完成记录归入同步批次或背景统计，不参与是否使用 QueuePin、候选生成或队列评分。控制报文沿用公共转发逻辑。这样，类别信息和路由决定之间没有数据依赖，移除或置换业务标签后，路径和逐流完成时间应当保持一致。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "SRC"
+      ],
+      "proposed_response": "工作稿已采用 QueuePin 名称，将初始队列选择与 QP 出口保持置于引言和设计主体。严格实现对所有 UDP 数据使用统一规则，标签删除/交换后的路径及 FCT 在技术输入中保持一致，因此这一调整已有代码与技术证据支撑，而不只是改名。\n\n当前还没有摘要、结果和结论。新主体的需求级性能数据尚未形成，不能提前写入旧配置的收益，也不把“未检出显著恶化”当作背景非劣效或保护结论。类别检验将单列其固定条件与实际证据。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 129,
+        "answer_heading_line": 135,
+        "text": "接受。将重新命名并把首包本地队列选择及 QP 出口保持作为主体。类别评分保留为固定条件下的设计检验。新路由还须去除现有统一键配置的标签准入，并通过标签不变性验证，不能仅改名称。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "2e1cba540a330b17a5e937c2aff9d974fb6cf41e561b7aa3a5fe9be9e790b994",
+      "quote_sha256": "03bdbde3e22b7b8b9f2086c9c43416bb74f8bc78d28f81eb14da4933c3cd8a24"
+    },
+    {
+      "id": "2.2",
+      "title": "逐包重选结论",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "P168",
+        "FULL_TEXT"
+      ],
+      "finding": "方法与技术控制已匹配；严格配置的总体粒度结论仍待正式数据。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 442,
+        "end_line": 442,
+        "quoted_comment": "2. **修正“逐包”表述。** 摘要/结论改成“在我们的 U16 变体中，保留首包候选对并每包重比队列会使两类指标变慢”；加一句“原生 DRILL 是更成熟的逐包方案，批次更快但背景 P99 更差；本文选择的是另一个 trade-off 点”。这是必须的，因为表 4 已经给出反例。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 137,
+        "answer_heading_line": 143,
+        "text": "稿件已将固定候选内的逐包重比和原生 DRILL 分开：前者与 QueuePin 保持同一候选对，后者每包刷新随机候选并共享目的地址历史出口。严格同键的两种控制已实现并通过受控运行，原生 DRILL 的恢复计数也已独立记录。\n\n小规模输入说明了不同策略可出现不同的批次、背景与恢复代价，但不构成一般逐包结论。严格配置的需求级比较和摘要/结论仍待完成，此前固定候选逐包对照的变化不能直接用作新主体的最终结论。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 13,
+          "text": "本文从三个相互关联的问题评价这一设计。首先，在候选出口和路径保持规则相同时，读取队列相较于不读队列的分配能否缩短同步批次？其次，固定首次候选对、逐包重新比较队列会怎样改变批次与背景尾部？最后，当同一 QP 跨轮复用，首次队列信息的作用还能维持多久？原生 DRILL 作为另一种逐包策略单独比较。其候选更新和历史状态与固定候选对照不同，因此性能差距需要结合实际选路行为解释。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 23,
+          "text": "逐包方法能够更快地分散流量，但路径变化和包序必须共同考虑。DRILL 使用交换机本地队列决定每个包的出口 [5]。本文采用的实现每包抽取两个随机候选，并与按目的地址保存的上一最佳出口比较。固定候选逐包对照则始终使用同一 QP 的首次候选对，二者在候选刷新、状态共享和平局处理上均有差别。ConWeave 另在网络内处理跨路径乱序 [6]。QueuePin 保持 QP 的本地出口，不增加相应重排机制；这一选择也限制了它对已形成路径拥塞的响应。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 68,
+          "text": "主比较覆盖 ECMP、QueuePin、随机二选一、固定候选逐包重比和原生 DRILL。随机二选一与 QueuePin 使用相同的两个候选，但由预先固定的哈希位选择出口并保持。逐包重比也使用相同的首次候选对，只把队列比较从首包扩展到每个数据包。它们分别检验读取队列和持续重决策的影响。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 78,
+          "text": "QueuePin 与随机二选一的直接比较用于估计首包队列信息的增量；与固定候选逐包重比的直接比较用于评价同一候选集合内的决定频率。原生 DRILL 是完整策略对照，其候选更新、历史共享和随机性都不同，不能被解释为只改变决定频率。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "SRC"
+      ],
+      "proposed_response": "工作稿已将固定候选内的逐包重比和原生 DRILL 分开：前者与 QueuePin 保持同一候选对，后者每包刷新随机候选并共享目的地址历史出口。严格同键的两种控制已实现并通过技术运行，原生 DRILL 的恢复计数也已独立记录。\n\n技术输入说明了不同策略可出现不同的批次、背景与恢复代价，但不构成一般逐包结论。严格配置的需求级比较和摘要/结论仍待完成，旧 U16 的变化不能直接用作新主体的最终结论。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 141,
+        "answer_heading_line": 147,
+        "text": "接受。删除一般逐包劣化结论，仅对固定候选内的重比作判断，并补同键匹配对照。DRILL 每包抽两个随机候选并比较目的地址历史出口，其批次优势和背景代价独立呈现，不归因于未经控制的单一因素。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "409f229ea02f091a9b89d3c5770053b68f4545530c05f93327e4f425a0629f87",
+      "quote_sha256": "5e171814a518949e0c8e87c32c45034751c73ac43d7350364c1f4046b187459c"
+    },
+    {
+      "id": "2.3",
+      "title": "历史输入与选择来源",
+      "integration_status": "OPEN",
+      "readiness": "TEXT_EXPLANATION_INTEGRATED",
+      "dependencies": [
+        "PROVENANCE_TEXT"
+      ],
+      "finding": "现有索引足以说明来源；当前正文尚未写入历史选择/NO-GO及新输入揭盲身份。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 443,
+        "end_line": 443,
+        "quoted_comment": "3. **披露历史 cohort 的 provenance。** 正文写清楚：历史主组来自三候选确认，−6.899% 是选中候选的结果；旧组原联合判据为 NO-GO；两组新 cohort 是独立证据（−5.211%、−5.461%）。把 headline 改成“四组中位数 −3.5%～−6.9%，新 cohort −5.2%/−5.5%”，不要只突出最大值。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 149,
+        "answer_heading_line": 155,
+        "text": "历史数据包含两种不同来源。旧组没有达到原先的联合门槛；历史确认组比较了三个候选，之后才形成论文主体的选择。这些来源分别保留。筛选与确认需求分离，也不能单凭效应较大就认定已经量化了选择偏差。\n\n统一规则的比较设计使用 24 份已揭盲的需求。方案在运行前固定，定位为补充验证，而非新的盲确认。此前类别配置的四组结果保留原身份，不作为 QueuePin 的四组收益。上述来源已由原始索引核对，正文中的来源段仍待整合。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 66,
+          "text": "评价使用三层 Clos 网络，包含 1,280 台主机，链路速率为 400 Gbps。同步通信包含 16,384 条 8 KiB 短 QP，背景包含 192 条 8 MiB 长 QP。每份需求重新生成通信关系与背景端点，消息大小和释放模式保持固定。各方法共享逐条相同的需求和公共 RDMA 传输配置，采用 DCQCN，开启 IRN，关闭 PFC。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 90,
+          "text": "每项比较先在同一需求内计算候选方法相对参照的百分比变化，再跨需求报告中位数和区间。两项相对 ECMP 的中位数不可相减为方法间的增量。整份需求是统计单位，包、QP 和交换机记录都不作为独立重复。需求层的重采样区间描述输入变化，不能代表所有仿真随机流的变化。"
+        }
+      ],
+      "evidence_keys": [
+        "HISTORY",
+        "NODE1",
+        "ANALYSIS"
+      ],
+      "proposed_response": "历史来源需要进入正文。已核对的材料区分了未达到原联合门槛的旧组，以及比较三个候选后形成论文主体选择的历史确认组；这两种来源不能被简化为同一种未经选择的证据。筛选与确认需求分离也不等于已经量化了选择偏差，不能只凭较大效应断言偏差大小。\n\n当前工作稿尚未加入这段来源说明。统一规则的预定比较使用 24 份已经揭盲的需求，分析方案在运行前固定，属于补充验证而不是新的盲确认。此前类别配置的四组数据继续保留原身份，不移作 QueuePin 的四组效果。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 153,
+        "answer_heading_line": 159,
+        "text": "接受披露要求。正文将说明旧组未达到原联合门槛，以及历史确认同时比较三个候选、论文主体随后选择的过程。筛选输入与确认输入分离，不能仅因数值最大就断定已证明乐观偏差。新无类别主体也不继承类别配置四组整体收益；已揭盲输入的新控制明确为事后提出、运行前冻结的补充验证。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": true,
+      "original_quote_preserved": true,
+      "response_sha256": "ad9e65c58a57e74d4754a1b963402b6d2fac93a80c555cbd111e7e7d63b8c892",
+      "quote_sha256": "58c166e395cd8bb20fd6a28890ad2efa6902941d36061fa3e4e945dd78cf4932"
+    },
+    {
+      "id": "2.4",
+      "title": "原生基线及 DRILL 权衡",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "P168",
+        "CW4",
+        "W32",
+        "RESULT_TEXT"
+      ],
+      "finding": "已有动作诊断和DRILL独立观测；新动态输入设计已冻结，实际比较未发生。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 444,
+        "end_line": 444,
+        "quoted_comment": "4. **重做表 4 的定位。** 要么为 CONGA/LetFlow 设置适合短 QP 的 flowlet timeout 并重跑，要么把表 4 改成“本次负载下各机制是否触发”的诊断表；不要在正文中把 CONGA/LetFlow/ConWeave 当作公平性能对手。DRILL 应单列为“最强活跃基线 + trade-off”。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 161,
+        "answer_heading_line": 167,
+        "text": "原生基线表需要同时说明算法配置和本输入中的动作。没有 flowlet 超时或只有极少换路时，结果不宜被解读为这些机制一般能力的排序；当前方法文字已区分机制控制与完整策略。没有为获得更有利排名调整原生 timeout。\n\nDRILL 已有自身运行的独立恢复观测，其新需求和历史需求补跑仍待完成。持续/错峰的共同输入及 ConWeave 被动观测已实现并冻结，但两对观测资格和 32 格性能比较均未运行。相关表格只能在实际数据到位后报告动作及两侧指标；外部方法缺少忠实实现时不以简化仿制品补表。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 21,
+          "text": "路径调整的机会取决于决定粒度。ECMP 在流标识给定后保持映射，flowlet 方法则在流内空闲间隔后重新选择。LetFlow 利用 flowlet 大小对拥塞的自适应变化，CONGA 同时反馈路径拥塞 [3, 4]。当短 QP 连续发送且很快结束时，可供重新选择的间隔可能很少。QueuePin 把队列读取放在首次到达时，使选择机会不依赖后续出现流内间隔。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 23,
+          "text": "逐包方法能够更快地分散流量，但路径变化和包序必须共同考虑。DRILL 使用交换机本地队列决定每个包的出口 [5]。本文采用的实现每包抽取两个随机候选，并与按目的地址保存的上一最佳出口比较。固定候选逐包对照则始终使用同一 QP 的首次候选对，二者在候选刷新、状态共享和平局处理上均有差别。ConWeave 另在网络内处理跨路径乱序 [6]。QueuePin 保持 QP 的本地出口，不增加相应重排机制；这一选择也限制了它对已形成路径拥塞的响应。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 29,
+          "text": "因此，本文关注队列读取的时机、出口保持的期限，以及它们在混合通信中的双侧权衡。两个候选、本地队列和路径保持各有既有研究基础；这里需要回答的是，在相同输入与传输条件下，将它们用于 QP 初始分配会产生什么效果。固定候选对照与原生逐包方法分别承担机制检验和策略比较，不能相互替代。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 98,
+          "text": "观测记录实际发送与重传、接收序号空洞、逐交换机出口变化和缓存命中。原生 DRILL 的计数由其自身运行获取，固定候选对照的计数只用于解释该对照。观测先通过开关配对检查，确认不会改变选路随机流和完成时间，再用于比较性能与恢复代价。完整逐包路径用于小规模正确性检查，正式大输入采用逐交换机 QP 汇总，二者的观测粒度分别说明。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "W5"
+      ],
+      "proposed_response": "原生基线表需要同时说明算法配置和本输入中的动作。没有 flowlet 超时或只有极少换路时，结果不宜被解读为这些机制一般能力的排序；当前方法文字已区分机制控制与完整策略。没有为获得更有利排名调整原生 timeout。\n\nDRILL 已有自身运行的技术恢复观测，其新需求和历史需求补跑仍待完成。持续/错峰的共同输入及 ConWeave 被动观测已实现并冻结，但两对观测资格和 32 格性能比较均未运行。相关表格只能在实际数据到位后报告动作及两侧指标；外部方法缺少忠实实现时不以简化仿制品补表。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 165,
+        "answer_heading_line": 171,
+        "text": "接受呈现调整。将把 CONGA、LetFlow、ConWeave 的动态动作按实际输入组织为诊断，说明零超时和极少换路的含义。不会为了制造有利性能排名任意改 timeout。进一步核查 ConWeave 在持续或错峰混合负载中的动态机会，各方法共享相同输入和公共配置；先验收实际动态行为，再固定效果矩阵。Gemma 等近邻另核作者实现、反馈、重排和参数完整性，不以相似的简化实现代称原机制。DRILL 单列为活跃对照，新增独立恢复观测并核验观测无干扰。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "8d683f33728cc79e06ef548cf7e121977f40fbd73e39b76e09f1629cdc20acc2",
+      "quote_sha256": "274c96015f94320484403eda156a06c697d3e0f8bae01b1038b905acfc1bac0e"
+    },
+    {
+      "id": "2.5",
+      "title": "类别零增量的条件",
+      "integration_status": "OPEN",
+      "readiness": "TEXT_EXPLANATION_INTEGRATED",
+      "dependencies": [
+        "CLASS_HISTORY_TEXT"
+      ],
+      "finding": "固定条件下的阴性/未识别增量可解释，不需要为保留类别主张新增调权扫描。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 445,
+        "end_line": 445,
+        "quoted_comment": "5. **明确类别 null 的适用范围。** 在 4.5/4.6 节开头写：“本节结论限定于 weight=1、当前拓扑和等 FIFO 组成条件；它不构成‘类别评分永远无效’的结论。”如果作者想保留“类别没有收益”的强结论，补 weight ∈ {0.5, 1, 2, 4} 的扫描和一个非对称服务速率的组成实验。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 173,
+        "answer_heading_line": 179,
+        "text": "此前类别加权检验采用固定权重、需求、拓扑和服务条件。结果表明，评分能改变出口，但现有对照没有识别到稳定的完成时间增量。这不等于类别评分普遍无效，也不是两种规则等效的检验。\n\n当前题名和主体已转向统一的队列指导初始分配。类别加权作为原条件下的单独检验保留，不通过搜索权重恢复类别收益主张。正文的类别结果段仍需沿用上述适用范围。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 15,
+          "text": "评价以同步短 QP 与背景长 QP 共存的合成通信为基础，分别计算完整同步批次和背景完成时间分布。固定候选的直接配对用于识别队列信息与重决策的影响；逐流分布和批尾身份用于解释批次最大值的变化；跨轮夹具则检查持久 QP 与交换机状态。类别加权作为此前设计的单独检验保留，本文的主体机制和研究问题均围绕统一规则的初始分配展开。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 29,
+          "text": "因此，本文关注队列读取的时机、出口保持的期限，以及它们在混合通信中的双侧权衡。两个候选、本地队列和路径保持各有既有研究基础；这里需要回答的是，在相同输入与传输条件下，将它们用于 QP 初始分配会产生什么效果。固定候选对照与原生逐包方法分别承担机制检验和策略比较，不能相互替代。"
+        }
+      ],
+      "evidence_keys": [
+        "HISTORY"
+      ],
+      "proposed_response": "此前类别加权检验的结论限定于固定权重、已测需求、拓扑和服务条件：规则响应可以改变出口，但现有对照没有识别到稳定的完成时间增量。这既不是类别评分普遍无效的证明，也不是两种规则等效的检验。\n\n当前题名和机制主体已转向统一的队列指导初始分配。类别检验将在其原条件下单独报告，不通过搜索权重恢复类别收益主张；相应限定仍需随类别结果段整合进正文。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 177,
+        "answer_heading_line": 183,
+        "text": "接受。类别权重固定为 1，结论限定于已测需求、拓扑和服务条件。对称 FIFO 组成实验说明评分能改变出口，不能检验一般时间收益。论文不主张类别评分普遍无效，也不以权重搜索恢复类别收益主张。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": true,
+      "original_quote_preserved": true,
+      "response_sha256": "980f3bab83c3d17611713cbfcf5bd234d33f8316a25d819b09df209ebefde129",
+      "quote_sha256": "8f958d40e2970c5b804e40b3de093001ecf021a14ab9620357992cdea0701f3b"
+    },
+    {
+      "id": "2.6",
+      "title": "批次最大值与逐流分解",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "P168",
+        "W32",
+        "RESULT_TEXT"
+      ],
+      "finding": "旧48格分解已完成，新200性能格无raw，图表代码不等于结果图。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 449,
+        "end_line": 449,
+        "quoted_comment": "6. **加批次 max 的分解。** 用现有 raw 数据画逐流 FCT CDF、top-k 最慢流的配对变化，或把批次变化分解为“原批尾改善/新批尾出现”。至少用一句话说明“−6.9% 是 tail-risk reduction，不是所有流平均 −6.9%”。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 185,
+        "answer_heading_line": 191,
+        "text": "已有 raw 的批尾分析已完成。此前 24 份需求的 ECMP/统一键对照共 48 格，重建 795,648 条完成记录，其中 23 份更换批尾。记录保留了原批尾、替换批尾、固定 ECMP 排名的 top-k 相同身份及逐需求分位数。统计方法第 4.2 节也已说明 max 的代数分解。\n\n这些结果来自旧配置。严格统一规则的性能数据尚未形成，对应批尾图仍待补充。批次是最大值，批尾变化不表示每条流同比加速；分解各项也不表示独立因果贡献。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 82,
+          "text": "同步批次时间从共同需求时刻算到最后一条短 QP 完成。设同步 QP 集合为 \\(M\\)，共同需求时刻为 \\(t_0\\)，完成时刻为 \\(t_f\\)，则"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 90,
+          "text": "每项比较先在同一需求内计算候选方法相对参照的百分比变化，再跨需求报告中位数和区间。两项相对 ECMP 的中位数不可相减为方法间的增量。整份需求是统计单位，包、QP 和交换机记录都不作为独立重复。需求层的重采样区间描述输入变化，不能代表所有仿真随机流的变化。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 92,
+          "text": "批次是最大值，逐流分布和批尾身份需要单独观察。固定 ECMP 排名最慢的若干 QP 后，比较这些相同身份在另一方法下的完成时间，可以看出改善是否集中于原批尾。另将批次差写为原批尾自身的时间变化，加上新批尾相对原批尾的剩余差距。这是逐需求的代数分解，两部分的中位数不能相加为批次中位差，也不表示两项独立因果贡献。"
+        }
+      ],
+      "evidence_keys": [
+        "NODE1",
+        "ANALYSIS"
+      ],
+      "proposed_response": "已有 raw 的批尾分析已完成：此前 24 份需求的 ECMP/统一键对照共 48 格，重建 795,648 条完成记录，其中 23 份更换批尾。原批尾、替换批尾、固定 ECMP 排名的 top-k 相同身份及逐需求分位数均有来源记录；工作稿统计方法也已说明 max 的代数分解及其非因果含义。\n\n这些是旧配置的分析材料，不是新严格主体的正式结果。新矩阵的同口径分析与图表管线已经准备，但目标 raw 尚未到位，不能把代码或空输出写成新图已完成，也不能把批次缩短解释为每条流同比加速。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 189,
+        "answer_heading_line": 195,
+        "text": "已补做旧 raw 分析。24 份需求的 E/Q12 共 48 格重建 795,648 条记录，23 份更换批尾。固定 ECMP 排名的 top-k 集合按相同流身份配对，逐流分位数与批次分别报告。下一步将生成新矩阵对应图表，不把批尾代数分解解释为独立因果贡献，也不把批次缩短等同每条流同比加速。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "e21642614a0f7ff014c78b72b450320c83efd59e00e2564abca1e7a2818abe79",
+      "quote_sha256": "f12ba6c25468d10c96f1dad1ed1c8287197fd42231b3b8726469d2571e6dddce"
+    },
+    {
+      "id": "2.7",
+      "title": "持久 QP、老化与表项",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "E48",
+        "LIMITS_TEXT"
+      ],
+      "finding": "16格生命周期已完成对象/序号/缓存部分，必要科学覆盖仍未完成。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 450,
+        "end_line": 450,
+        "quoted_comment": "7. **加 QP 持久化/缓存老化的限制段。** 说明本文是“每 batch 新建 QP、无限表项、无老化”的条件；真实持久 QP 下首包决策频率、缓存陈旧和表项压力会改变收益。给一个 back-of-envelope（每交换机表项数、更新率、老化时间）。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 197,
+        "answer_heading_line": 203,
+        "text": "已完成的生命周期运行区分了持久 QP、每轮新 QP 和同元组重建。六个持久条件中，三个请求共享发送 serial 和接收对象，累计序号与确认持续推进；保留缓存和显式清理分别产生预期的命中与首次 miss 序列。方法中也已说明按需增长容器及没有通用空闲淘汰策略。\n\n现有持久探针的候选重合，CC/SACK 保持初始或空值，因此尚未验证不同候选及实际拥塞/恢复后的跨轮行为。对应补验仍为必做；表项量级与陈旧状态影响将在其真实观测基础上报告，不能把三轮对象存活直接写成生产连接池稳健性。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 54,
+          "text": "QP 生命周期决定了队列信息更新的频率。若每次请求使用新 QP，每次请求都获得新的选择机会；若同一个 QP 跨多轮请求复用，后续轮次会命中旧映射。此时网络即使发生变化，也不会触发新的首包选择。评价需要保留这一差别，因此跨轮实验保持 QP 对象、累计序号、传输状态和交换机缓存，并以逐轮新建 QP 作为对照。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 58,
+          "text": "每个映射至少需要记录 QP 标识和出口。当前软件模型使用按需增长的容器，因此条目数量随经过交换机的 QP 增加。容量估算需要依据各交换机的实际峰值，逻辑字段所需字节与容器运行开销分别计算，不能直接等同于交换芯片的存储资源。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 60,
+          "text": "QP 完成后再次使用相同四元组，还涉及旧映射的处理。保留条目会让新对象继承旧出口，删除条目则需要保证旧数据已经排空，避免迟到包与新对象混淆。本文分别检查持久对象和同元组重新创建，不将按轮清表当作持久 QP 的实现，也不引入未经验证的空闲超时策略。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 96,
+          "text": "跨轮夹具分别设置空队列预热和背景共存首次发送，每种条件都比较持久 QP 与每轮新 QP。持久 QP 在同一次仿真中传输三轮请求，保持对象、累计序号、拥塞控制和交换机缓存；新 QP 对照逐轮使用不同对象和元组。轮完成时间从该轮原始需求时刻计算，包含源端等待。三轮不是三个独立样本。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "SRC"
+      ],
+      "proposed_response": "已完成的生命周期运行区分了持久 QP、每轮新 QP 和同元组重建。六个持久条件中，三个请求共享发送 serial 和接收对象，累计序号与确认持续推进；保留缓存和显式清理分别产生预期的命中与首次 miss 序列。工作稿也已说明按需增长容器及没有通用空闲淘汰策略。\n\n现有持久探针的候选重合，CC/SACK 保持初始或空值，因此尚未验证不同候选及实际拥塞/恢复后的跨轮行为。对应补验仍为必做；表项量级与陈旧状态影响将在其真实观测基础上报告，不能把三轮对象存活直接写成生产连接池稳健性。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 201,
+        "answer_heading_line": 207,
+        "text": "接受并补实验。拟用同一次仿真的三轮请求，保留 QP 对象、累计序号、拥塞控制和交换机缓存；另设每轮新 QP 对照，并分别验证同元组销毁重建。每轮从需求时刻计时，记录缓存命中、新建、峰值条目和回收，避免通过重建 QP 或清缓存掩盖陈旧状态。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "ef1c3ebde62b1b00fed1d243e532726a95518f2558c075c5fa86314f52d9b0df",
+      "quote_sha256": "1bab53f4eae93f63fb2a9ee19198bfa41e25b194cecc5cf99be0d911a20e3e10"
+    },
+    {
+      "id": "2.8",
+      "title": "Hopper 与 SeqBalance 等近邻",
+      "integration_status": "OPEN",
+      "readiness": "TEXT_EXPLANATION_INTEGRATED",
+      "dependencies": [
+        "RELATED_TEXT"
+      ],
+      "finding": "主稿已加入Hopper/SeqBalance及设计点定位；“请求拆成子QP”建议更精确。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 451,
+        "end_line": 451,
+        "quoted_comment": "8. **加相关工作的近邻。** 至少讨论 Hopper（双候选、QP 级切换、RTT 探测）和 SeqBalance（子 QP 固定路径）与本文的区别；如果篇幅允许，提一句 Flowcut/REPS/PSP 的包级/保序路线。不要把“首包一次”说成全新，而是说“在 QP 粒度上选择了一个不同的 trade-off 点”。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 209,
+        "answer_heading_line": 215,
+        "text": "相关工作第 2.2 节已介绍 Hopper 和 SeqBalance。Hopper 在主机端用 RTT 探测路径，并在切换时考虑等待。SeqBalance 拆分通信请求，通过子 QP 传输并保持各子 QP 的路径。QueuePin 则在交换机为原 QP 读取本地队列并保存出口。三者的信息来源、决定位置和请求组织不同。\n\n两个候选、本地队列和路径保持都是已有设计要素。本文研究的是这些要素用于 QP 初始分配时的结果，不把首包一次决定当作新原理。Flowcut、REPS 和 PSP 仅在版本及相关性可核时补充讨论，其作者收益不作为本文复现结果。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 23,
+          "text": "逐包方法能够更快地分散流量，但路径变化和包序必须共同考虑。DRILL 使用交换机本地队列决定每个包的出口 [5]。本文采用的实现每包抽取两个随机候选，并与按目的地址保存的上一最佳出口比较。固定候选逐包对照则始终使用同一 QP 的首次候选对，二者在候选刷新、状态共享和平局处理上均有差别。ConWeave 另在网络内处理跨路径乱序 [6]。QueuePin 保持 QP 的本地出口，不增加相应重排机制；这一选择也限制了它对已形成路径拥塞的响应。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 27,
+          "text": "本地队列反映当前交换机出口等待的工作量，而端到端反馈还包含下游路径和接收端的影响。Hopper 在主机端测量 RTT，探测备选路径，并在换路时等待以降低乱序风险 [7]。SeqBalance 在端侧把请求拆成子 QP，再为各子 QP 保持路径 [8]。QueuePin 在交换机为原 QP 分配出口，既不探测端到端路径，也不拆分请求。其本地信息和状态较简单，但无法直接判断下游是否拥塞。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 29,
+          "text": "因此，本文关注队列读取的时机、出口保持的期限，以及它们在混合通信中的双侧权衡。两个候选、本地队列和路径保持各有既有研究基础；这里需要回答的是，在相同输入与传输条件下，将它们用于 QP 初始分配会产生什么效果。固定候选对照与原生逐包方法分别承担机制检验和策略比较，不能相互替代。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 114,
+          "text": "[7] E. Nosrati and M. Ghaderi, “Predictive Load Balancing for RDMA Traffic,” arXiv:2506.08132v1, 2025. doi: 10.48550/arXiv.2506.08132. 固定阅读版本采用 PDF 首页题名。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 116,
+          "text": "[8] H. Luo, J. Zhang, M. Yu, et al., “SeqBalance: Congestion-Aware Load Balancing with no Reordering for RoCE,” arXiv:2407.09808v1, 2024. doi: 10.48550/arXiv.2407.09808."
+        }
+      ],
+      "evidence_keys": [
+        "LITERATURE"
+      ],
+      "proposed_response": "当前相关工作已经加入 Hopper 与 SeqBalance，并按信号、决定位置和请求组织比较。Hopper 在主机端使用 RTT 与路径探测，并在切换时考虑等待；SeqBalance 在端侧拆分请求，通过子 QP 发送并保持各子 QP 的路径；QueuePin 在交换机为原 QP 读取本地队列并保存出口。正文中“把请求拆成子 QP”宜改为这一更准确的表述。\n\n稿件已将两个候选、本地队列和路径保持视为既有设计要素，研究它们用于 QP 初始分配时的效果，而不宣称首包一次决定是新原理。Flowcut、REPS、PSP 仅在与本文问题直接相关且固定版本可核时补充，不迁移作者收益或把未实现机制列入性能比较。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 213,
+        "answer_heading_line": 219,
+        "text": "接受。将直接比较信息来源、决定位置、候选更新及保序条件。Hopper 使用主机 RTT 探测和切换等待，SeqBalance 在端侧拆分子 QP 并固定路径；本文用交换机本地队列为原 QP 初始分配。Flowcut、REPS、PSP 按实际版本和相关性进入讨论，不把作者收益当作本文复现，也不把首包一次决定包装为新原理。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": true,
+      "original_quote_preserved": true,
+      "response_sha256": "61e92f2510b535f486e667c5ecc0f274c0b73a7b5fd67deb123a4339ca24c6a4",
+      "quote_sha256": "b4b76f7f410534defd782071c500a8ba2a8fbf7d1f902e63c1d47f0b16501100"
+    },
+    {
+      "id": "2.9",
+      "title": "小规模仿真 seed 敏感性",
+      "integration_status": "OPEN",
+      "readiness": "SCOPE_DECISION",
+      "dependencies": [
+        "SEED_SCOPE"
+      ],
+      "finding": "初始化控制已查明，但3个模拟seed建议未执行且当前CLI只允许1，必须保持待决。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 452,
+        "end_line": 452,
+        "quoted_comment": "9. **加一个小规模 seed 敏感性检查。** 3 个 ns-3 seed × 8 份需求，确认 Q16/R16 的方向不依赖 seed=1。这不是接收门槛，但能回应“单 seed”质疑。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 221,
+        "answer_heading_line": 227,
+        "text": "配置值 1 同时初始化 C 语言随机数生成器和 ns-3 随机数生成器。DRILL 通过随机排列抽取候选。初始化链路已经核实，但需求级区间与这一事实都不能证明跨模拟 seed 稳健。\n\n建议中的多模拟 seed 检查尚未运行。当前比较仍采用共同模拟 seed 1；多 seed 检查的范围与设计保持待决定，不能写成已经完成随机性敏感性验证。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 90,
+          "text": "每项比较先在同一需求内计算候选方法相对参照的百分比变化，再跨需求报告中位数和区间。两项相对 ECMP 的中位数不可相减为方法间的增量。整份需求是统计单位，包、QP 和交换机记录都不作为独立重复。需求层的重采样区间描述输入变化，不能代表所有仿真随机流的变化。"
+        }
+      ],
+      "evidence_keys": [
+        "SEED",
+        "SRC"
+      ],
+      "proposed_response": "实际 seed 初始化已核实：配置值 1 同时进入 srand 与 ns-3 SeedManager::SetSeed，原生 DRILL 使用全局随机排列抽样。需求级区间与该初始化事实均不能证明跨模拟 seed 稳健。\n\n建议中的多模拟 seed 检查尚未运行，也未被当前只允许 seed 1 的冻结执行入口放行。该建议保持单列待决定；如果纳入范围，须另行固定控制关系、源码和输入后执行，当前不声称已经完成随机性敏感性验证。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 225,
+        "answer_heading_line": 231,
+        "text": "将先核验 ns-3 seed 与 C RNG 的实际控制关系，固定需求层区间的解释。该建议保持单列待决，未运行多 seed 时不会声称已验证随机性稳健。若现有 seed 参数不能控制 DRILL 随机流，先解决可复现性，再冻结相应小规模方案，不把改一个配置数值当作已经控制全部随机性。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "a28fe5541603350a68cc7b1ff38c19a5a9de7f57e05b864825efef355388805f",
+      "quote_sha256": "ddac660652842c65587f09b056c6a99d809ecbfe9d697b8e2c16f5f6e014cf2d"
+    },
+    {
+      "id": "2.10",
+      "title": "摘要可读性",
+      "integration_status": "OPEN",
+      "readiness": "TEXT_COMPLETION_PENDING",
+      "dependencies": [
+        "FULL_TEXT"
+      ],
+      "finding": "引言已有重写；当前无摘要，不能写成摘要润色/最终结论已完成。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 453,
+        "end_line": 453,
+        "quoted_comment": "10. **改进摘要的可读性。** 把“本文研究……”“本文提出……”“本文在……”的句式减少；先用一句话说发现，再给条件和数字。英文版建议找母语/专业编辑重写，目标是把“防御性限定”从主句里移出去。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 233,
+        "answer_heading_line": 239,
+        "text": "当前引言已围绕同步批次、初始队列选择和 QP 出口保持组织，相关方法在首次出现时作了说明。摘要与结论尚未写定，不能将引言的进展作为它们已经完成的证据。\n\n摘要需要在结果冻结后用问题、方法、决定性结果和作用条件形成连续叙述；关键条件放在其实际限定的结论处。新主体没有正式结果前，不预写“不牺牲背景尾部”或真实训练加速。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 1,
+          "text": "> 编辑状态：v13 的引言与方法工作稿。QueuePin 为本轮拟用名称。新增实现、补充实验及最终结果仍在进行，本文件不属于完成稿。摘要、结果、结论与最终图表在证据冻结后整合；当前方法文字须与新代码逐项复核。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 7,
+          "text": "一次同步通信何时结束，取决于最后完成的传输。在专家并行等训练阶段，大量短传输集中发起，其中少数路径上的排队就可能延长整个通信批次。Alibaba HPN 的生产网络研究指出，训练流量的低熵和周期性突发会加剧等价多路径的哈希极化 [1]。当同步通信与数据搬运等背景传输共享网络时，初始路径分配还会改变背景业务的排队。评价这样的分配策略，需要同时观察批次完成时间和背景传输的尾部时延。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 9,
+          "text": "等价多路径（ECMP）依据流标识分配路径，计算简单，同一条流的路径也保持稳定，但这一映射不反映出口的当前排队 [2]。流片和逐包方法提供了更多调整机会。LetFlow 为新的流片（flowlet）随机选择路径，CONGA 在 flowlet 粒度利用拥塞反馈 [3, 4]。DRILL 进一步根据本地队列逐包选路 [5]。对远程直接内存访问（remote direct memory access，RDMA）而言，同一队列对（queue pair，QP）的包走不同路径，还需要处理路径时延差带来的乱序。ConWeave 通过网络内重排支持细粒度换路 [6]。这些路线把路径利用、反馈时效和保序处理结合起来，也引出一个更简单的问题：若让一个 QP 始终保持路径，只在首次分配时读取当前队列，能够获得怎样的收益与代价？"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 11,
+          "text": "本文围绕这一问题设计 QueuePin。新 QP 的首个数据包到达交换机时，交换机根据流标识生成两个候选出口，选择总排队字节较少的出口，并保存决定。同一 QP 的后续包在该交换机复用这一出口。同步业务和背景业务使用相同的候选规则与评分，路由不需要识别业务类别。QueuePin 以一次本地选择换取持续的路径保持，其代价是同一 QP 不能利用后续出现的更空闲路径。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 13,
+          "text": "本文从三个相互关联的问题评价这一设计。首先，在候选出口和路径保持规则相同时，读取队列相较于不读队列的分配能否缩短同步批次？其次，固定首次候选对、逐包重新比较队列会怎样改变批次与背景尾部？最后，当同一 QP 跨轮复用，首次队列信息的作用还能维持多久？原生 DRILL 作为另一种逐包策略单独比较。其候选更新和历史状态与固定候选对照不同，因此性能差距需要结合实际选路行为解释。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 15,
+          "text": "评价以同步短 QP 与背景长 QP 共存的合成通信为基础，分别计算完整同步批次和背景完成时间分布。固定候选的直接配对用于识别队列信息与重决策的影响；逐流分布和批尾身份用于解释批次最大值的变化；跨轮夹具则检查持久 QP 与交换机状态。类别加权作为此前设计的单独检验保留，本文的主体机制和研究问题均围绕统一规则的初始分配展开。"
+        }
+      ],
+      "evidence_keys": [
+        "MAIN"
+      ],
+      "proposed_response": "当前引言已围绕同步批次、初始队列选择和 QP 出口保持组织，相关方法在首次出现时作了说明。摘要与结论尚未写定，不能将引言的进展作为它们已经完成的证据。\n\n摘要需要在结果冻结后用问题、方法、决定性结果和作用条件形成连续叙述；关键条件放在其实际限定的结论处。新主体没有正式结果前，不预写“不牺牲背景尾部”或真实训练加速。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 237,
+        "answer_heading_line": 243,
+        "text": "接受。摘要按问题、核心方法、决定性结果和作用条件重写，减少连续“本文”句式。条件放在真正限定结论的位置；删除项目审计语言。结论将在新证据冻结后最后写定，不提前承诺不牺牲背景尾部或训练加速。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "7e33a27f7ab34670a74e573782d7589dbc1186bc2f125228a07abd948e23a230",
+      "quote_sha256": "71a137b2426b26ab19883c849c02e171de93802d9d3df96f0fb90b78f6eb6e1b"
+    },
+    {
+      "id": "2.11",
+      "title": "更多拓扑、背景模式及尾部指标",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "P200",
+        "LIMITS_TEXT"
+      ],
+      "finding": "统计定义与计算入口已有；目标新分布、广度验证均未完成。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 457,
+        "end_line": 457,
+        "quoted_comment": "11. 更多拓扑（不同 pod 数/超售比/链路速率）、更多背景到达模式（泊松/动态）、P95/P99.9 背景尾部。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 245,
+        "answer_heading_line": 251,
+        "text": "方法中已说明背景 P99 的插值定义，并列报告 P95 与最大值。原始 FCT 足以计算 P99.9 及逐流分布；对于仅 192 条或 32 条背景的输入，这类极高分位值接近最大值，仍须同时保留全部点及需求级变化。新目标 raw 尚未到位，当前没有相应的新分布图或数值。\n\n持续背景与周期短消息的两种时序已冻结，但仍属于待运行的合成场景。更多拓扑、故障、泊松或真实到达模式没有被现有数据覆盖，不能从当前输入外推为任意网络与业务条件的收益。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 66,
+          "text": "评价使用三层 Clos 网络，包含 1,280 台主机，链路速率为 400 Gbps。同步通信包含 16,384 条 8 KiB 短 QP，背景包含 192 条 8 MiB 长 QP。每份需求重新生成通信关系与背景端点，消息大小和释放模式保持固定。各方法共享逐条相同的需求和公共 RDMA 传输配置，采用 DCQCN，开启 IRN，关闭 PFC。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 88,
+          "text": "背景以逐 QP 的流完成时间计算第 99 百分位（P99），并同时报告 P95 和最大值。分位数采用排序值间的线性插值。对于 192 条背景 QP，P99 位于第 190 与第 191 个排序值之间，因此还需结合逐需求变化和完整分布判断尾部代价。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 90,
+          "text": "每项比较先在同一需求内计算候选方法相对参照的百分比变化，再跨需求报告中位数和区间。两项相对 ECMP 的中位数不可相减为方法间的增量。整份需求是统计单位，包、QP 和交换机记录都不作为独立重复。需求层的重采样区间描述输入变化，不能代表所有仿真随机流的变化。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "ANALYSIS"
+      ],
+      "proposed_response": "工作稿已说明背景 P99 的插值定义，并列报告 P95 与最大值。原始 FCT 足以计算 P99.9 及逐流分布；对于仅 192 条或 32 条背景的输入，这类极高分位值接近最大值，仍须同时保留全部点及需求级变化。新目标 raw 尚未到位，当前没有相应的新分布图或数值。\n\n持续背景与周期短消息的两种时序已冻结，但仍属于待运行的合成场景。更多拓扑、故障、泊松或真实到达模式没有被现有数据覆盖，不能从当前输入外推为任意网络与业务条件的收益。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 249,
+        "answer_heading_line": 255,
+        "text": "背景 P95、P99、最大值和逐流分布可由现有及新增 raw 完整计算，已列入交付。其他拓扑、故障与真实到达模式未被本轮现有数据验证，将据实际实验范围说明，不外推为任意网络收益。持久状态的核心缺口单独通过多轮夹具补正。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "53e0fb75fbab0c77318507a343abbca30e9a3cdc90151d7c836620aaf7962b58",
+      "quote_sha256": "a040f58a79001296185fa6580a7cf861f6b07b5ee2708e684b84c76b8597f4c2"
+    },
+    {
+      "id": "2.12",
+      "title": "硬件资源与线速",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "E48",
+        "STATE_REPORT",
+        "LIMITS_TEXT"
+      ],
+      "finding": "软件状态字段、条目观测和语义边界可写实，硬件映射及容量报告仍未完成。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 458,
+        "end_line": 458,
+        "quoted_comment": "12. 硬件/P4 资源分析、表项容量、线速可行性；这是 future work，不是本文 claim。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 257,
+        "answer_heading_line": 263,
+        "text": "软件实现已提供逐交换机的当前/峰值条目、命中及 miss 观测，稿件也区分了逻辑字段与容器开销。容量估算应按实际键、候选和出口字段以及各交换机条目数组织，不能把条目数或软件容器开销直接换算为 ASIC SRAM 或线速能力。\n\n生命周期补验和完整量级表仍待整合；当前没有 P4/ASIC 原型或资源测量，因此不声称硬件可部署性已经验证。硬件边界也不替代当前模拟器内仍须完成的不同候选与真实恢复状态验证。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 58,
+          "text": "每个映射至少需要记录 QP 标识和出口。当前软件模型使用按需增长的容器，因此条目数量随经过交换机的 QP 增加。容量估算需要依据各交换机的实际峰值，逻辑字段所需字节与容器运行开销分别计算，不能直接等同于交换芯片的存储资源。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 60,
+          "text": "QP 完成后再次使用相同四元组，还涉及旧映射的处理。保留条目会让新对象继承旧出口，删除条目则需要保证旧数据已经排空，避免迟到包与新对象混淆。本文分别检查持久对象和同元组重新创建，不将按轮清表当作持久 QP 的实现，也不引入未经验证的空闲超时策略。"
+        }
+      ],
+      "evidence_keys": [
+        "SRC",
+        "E46"
+      ],
+      "proposed_response": "软件实现已提供逐交换机的当前/峰值条目、命中及 miss 观测，工作稿也区分了逻辑字段与容器开销。容量估算应按实际键、候选和出口字段以及各交换机条目数组织，不能把条目数或软件容器开销直接换算为 ASIC SRAM 或线速能力。\n\n生命周期补验和完整量级表仍待整合；当前没有 P4/ASIC 原型或资源测量，因此不声称硬件可部署性已经验证。硬件边界也不替代当前模拟器内仍须完成的不同候选与真实恢复状态验证。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 261,
+        "answer_heading_line": 267,
+        "text": "将报告实测表项峰值与逻辑字段存储估算，明确区别软件容器和交换机硬件成本。没有 P4/ASIC 原型或测量时不声称线速和可部署性已验证；也不以未做硬件实验掩盖能在当前模拟器内完成的生命周期验证。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "482151cea792016a461f6d4f151324df3060ededd965fb2218732086885311f8",
+      "quote_sha256": "7835f0b63936dfc4b14ba092b0256623047e947c6ea9bb79cf23be6f062ce3e8"
+    },
+    {
+      "id": "2.13",
+      "title": "外部机制完整实现比较",
+      "integration_status": "OPEN",
+      "readiness": "TEXT_EXPLANATION_INTEGRATED",
+      "dependencies": [
+        "FIDELITY_TEXT"
+      ],
+      "finding": "外部方法来源/实现缺口已有审计，可说明未纳入排名；不应承诺已完整复现。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md",
+        "line": 459,
+        "end_line": 459,
+        "quoted_comment": "13. 与 Gemma/SGLB/Hopper 的完整实现比较；这些需要不同模拟器/硬件，6 页论文不现实。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 269,
+        "answer_heading_line": 275,
+        "text": "现有来源审计已经列明 Gemma、SGLB 和 Hopper 的信号与系统依赖。Gemma 的作者工件、反馈和重排语义尚未完整核清；SGLB 的硬件与编排条件也不同于当前模拟器。Hopper 已作为相关工作讨论，尚无同输入的完整实现比较。\n\n未忠实实现的方法不进入性能排名，作者报告值也不作为本文数据。预定性能比较采用可核查的原生实现和严格匹配控制。此处对近邻的比较只说明设计差异，不以简化实现代称原系统。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 27,
+          "text": "本地队列反映当前交换机出口等待的工作量，而端到端反馈还包含下游路径和接收端的影响。Hopper 在主机端测量 RTT，探测备选路径，并在换路时等待以降低乱序风险 [7]。SeqBalance 在端侧把请求拆成子 QP，再为各子 QP 保持路径 [8]。QueuePin 在交换机为原 QP 分配出口，既不探测端到端路径，也不拆分请求。其本地信息和状态较简单，但无法直接判断下游是否拥塞。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 29,
+          "text": "因此，本文关注队列读取的时机、出口保持的期限，以及它们在混合通信中的双侧权衡。两个候选、本地队列和路径保持各有既有研究基础；这里需要回答的是，在相同输入与传输条件下，将它们用于 QP 初始分配会产生什么效果。固定候选对照与原生逐包方法分别承担机制检验和策略比较，不能相互替代。"
+        }
+      ],
+      "evidence_keys": [
+        "W5",
+        "LITERATURE"
+      ],
+      "proposed_response": "已有来源审计区分了 Gemma、SGLB、Hopper 的信号和系统依赖。Gemma 的作者工件与关键反馈/重排语义尚未完整核清，SGLB 的硬件与编排条件也不能直接等同当前模拟器。Hopper 的相关工作定位已进入正文，尚无同输入的完整实现比较。\n\n这些方法的作者报告值不作为本文实验数据，未忠实实现者不进入本文性能排名。当前比较由可核查的原生方法及严格匹配控制组成；这一范围说明需要随最终相关工作和结果表同步，而不以简化实现代称原系统。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 273,
+        "answer_heading_line": 279,
+        "text": "将据原论文说明 Gemma、SGLB、Hopper 的信号、状态及系统依赖，并保留现有可核验原生基线和新增匹配控制。未复现的系统不进入本文性能排名，其论文报告的数字不作为本文数据；正文贡献定位为受控设计点及权衡。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": true,
+      "original_quote_preserved": true,
+      "response_sha256": "9967324712d222c155f3e53231ee121627aebe9a6ebbf0ff30826589fda14eeb",
+      "quote_sha256": "8be7ebe26f2cf07c6661cea85221ab762c0535fb61a408622edfea57d34ec1ad"
+    },
+    {
+      "id": "3.1",
+      "title": "W1 持久 QP 与首包时机",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "E48",
+        "LIMITS_TEXT"
+      ],
+      "finding": "必要实验已经部分运行，但候选重合、状态初始使核心稳健性问题仍OPEN。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md",
+        "line": 125,
+        "end_line": 125,
+        "quoted_comment": "- **W1（外部有效性，最大威胁）**：QP 唯一元组/无复用使机制回避了\"首包决策发生在什么时刻、彼时队列有无信息\"这个致命问题。真实 RDMA 大量复用长寿命 QP，届时机制可能退化为一次性静态分配。§3.4 的\"需由部署实现进一步确定\"不能替代正面回应。要求：至少补充一个\"QP 复用/连接池\"场景下的稳健性论证或小实验（例如同一 QP 跨多轮迭代复用、或首包时刻队列状态随机化），或者把论文的适用边界明确改写为\"短生命周期/连接池化 QP 的部署形态\"，并在标题/摘要层体现。这是\"必要实验\"而非锦上添花。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 281,
+        "answer_heading_line": 287,
+        "text": "三轮合成生命周期运行已完成对象、序号和缓存层面的核对。六个持久条件中，每个条件只创建一个发送 QP，接收对象保持，三个请求的累计确认依次推进；每轮按自身需求原点计时。另有新元组以及同元组保留/清理控制，没有用逐轮重建或清表冒充持久 QP。\n\n这部分结果尚不能回答首包队列信息在真实变化下持续多久：持久探针两个候选重合，且没有出现非初始 CC 或 SACK/恢复状态。不同候选、真实队列变化及实际拥塞/恢复的补验仍为必要工作，目前只有本地实现与冻结设计，尚无动态结果。论文不能据现有数据声称生产连接池或持续训练中的稳健性。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 13,
+          "text": "本文从三个相互关联的问题评价这一设计。首先，在候选出口和路径保持规则相同时，读取队列相较于不读队列的分配能否缩短同步批次？其次，固定首次候选对、逐包重新比较队列会怎样改变批次与背景尾部？最后，当同一 QP 跨轮复用，首次队列信息的作用还能维持多久？原生 DRILL 作为另一种逐包策略单独比较。其候选更新和历史状态与固定候选对照不同，因此性能差距需要结合实际选路行为解释。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 54,
+          "text": "QP 生命周期决定了队列信息更新的频率。若每次请求使用新 QP，每次请求都获得新的选择机会；若同一个 QP 跨多轮请求复用，后续轮次会命中旧映射。此时网络即使发生变化，也不会触发新的首包选择。评价需要保留这一差别，因此跨轮实验保持 QP 对象、累计序号、传输状态和交换机缓存，并以逐轮新建 QP 作为对照。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 60,
+          "text": "QP 完成后再次使用相同四元组，还涉及旧映射的处理。保留条目会让新对象继承旧出口，删除条目则需要保证旧数据已经排空，避免迟到包与新对象混淆。本文分别检查持久对象和同元组重新创建，不将按轮清表当作持久 QP 的实现，也不引入未经验证的空闲超时策略。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 96,
+          "text": "跨轮夹具分别设置空队列预热和背景共存首次发送，每种条件都比较持久 QP 与每轮新 QP。持久 QP 在同一次仿真中传输三轮请求，保持对象、累计序号、拥塞控制和交换机缓存；新 QP 对照逐轮使用不同对象和元组。轮完成时间从该轮原始需求时刻计算，包含源端等待。三轮不是三个独立样本。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "SRC"
+      ],
+      "proposed_response": "三轮合成生命周期运行已完成对象、序号和缓存层面的核对。六个持久条件中，每个条件只创建一个发送 QP，接收对象保持，三个请求的累计确认依次推进；每轮按自身需求原点计时。另有新元组以及同元组保留/清理控制，没有用逐轮重建或清表冒充持久 QP。\n\n这部分结果尚不能回答首包队列信息在真实变化下持续多久：持久探针两个候选重合，且没有出现非初始 CC 或 SACK/恢复状态。不同候选、真实队列变化及实际拥塞/恢复的补验仍为必要工作，目前只有本地实现与冻结设计，尚无动态结果。论文不能据现有数据声称生产连接池或持续训练中的稳健性。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 289,
+        "answer_heading_line": 295,
+        "text": "接受，生命周期缺口列为必做实验。将补真实持久 QP 跨三轮传输，分别设置空队列预热和背景共存首次发送，并与逐轮新建 QP 比较。交换机缓存不逐轮清零，QP 序号累计且对象保持，逐轮计入需求等待。此实验检验合成条件下首包状态持续性的影响，不冒充生产训练或连接池测量。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "b9d3d9b4ac0593b5e658a835c24c0ab09d1e4dc422ab3eecd64fc990c74b5c25",
+      "quote_sha256": "1b3638b327d5c16cf3d4546b86fbde27c5b5ac6d0ce6080957626d69aff9a92c"
+    },
+    {
+      "id": "3.2",
+      "title": "W2 逐包结论与基线动态",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "P168",
+        "CW4",
+        "W32",
+        "FULL_TEXT"
+      ],
+      "finding": "逐包区别和DRILL技术观测已有；新基线动态、正式权衡和最终摘要仍待。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md",
+        "line": 126,
+        "end_line": 126,
+        "quoted_comment": "- **W2（叙事与措辞）**：① 抽象/结论中\"逐包重新选择出口会使……同时变慢\"必须限定为\"在两候选对内逐包重比\"——否则与原生 DRILL 批次 −15.8% 的表观矛盾会立刻被审稿人抓住（论文正文有 U16≠DRILL 的说明，但抽象没有）。② 表 4 的解读必须在正文明确一句话：\"CONGA/LetFlow/ConWeave 在本输入下未触发其设计动态，该表不构成对其设计能力的一般比较\"。③ 考虑补充\"机制触发的基线场景\"（如更大的消息/交错释放），或把 DRILL 明确列为唯一有效的原生动态对照并围绕它组织权衡叙事。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 293,
+        "answer_heading_line": 299,
+        "text": "当前相关工作和比较方法已经区分固定候选内的逐包重比与原生 DRILL。原生实现每包抽取两个随机候选，再比较目的地址历史出口，不是全端口最小队列选择；二者差异同时涉及候选刷新、历史共享和随机性，不能只归因于决定频率。DRILL 的独立恢复观测已由自身运行获得。\n\n旧短 QP 输入下的零 flowlet 超时或极少换路将作为动作诊断，不能用来概括对应机制的一般能力。严格配置的需求级比较以及持续/错峰八方法结果仍未形成，摘要与结论也未完成；对应结论须等待实际两侧指标和动作数据。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 13,
+          "text": "本文从三个相互关联的问题评价这一设计。首先，在候选出口和路径保持规则相同时，读取队列相较于不读队列的分配能否缩短同步批次？其次，固定首次候选对、逐包重新比较队列会怎样改变批次与背景尾部？最后，当同一 QP 跨轮复用，首次队列信息的作用还能维持多久？原生 DRILL 作为另一种逐包策略单独比较。其候选更新和历史状态与固定候选对照不同，因此性能差距需要结合实际选路行为解释。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 23,
+          "text": "逐包方法能够更快地分散流量，但路径变化和包序必须共同考虑。DRILL 使用交换机本地队列决定每个包的出口 [5]。本文采用的实现每包抽取两个随机候选，并与按目的地址保存的上一最佳出口比较。固定候选逐包对照则始终使用同一 QP 的首次候选对，二者在候选刷新、状态共享和平局处理上均有差别。ConWeave 另在网络内处理跨路径乱序 [6]。QueuePin 保持 QP 的本地出口，不增加相应重排机制；这一选择也限制了它对已形成路径拥塞的响应。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 68,
+          "text": "主比较覆盖 ECMP、QueuePin、随机二选一、固定候选逐包重比和原生 DRILL。随机二选一与 QueuePin 使用相同的两个候选，但由预先固定的哈希位选择出口并保持。逐包重比也使用相同的首次候选对，只把队列比较从首包扩展到每个数据包。它们分别检验读取队列和持续重决策的影响。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 76,
+          "text": "| 原生 DRILL | 每包随机抽样两个候选，并比较目的地址历史出口 | 持续更新抽样与历史状态 |"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 78,
+          "text": "QueuePin 与随机二选一的直接比较用于估计首包队列信息的增量；与固定候选逐包重比的直接比较用于评价同一候选集合内的决定频率。原生 DRILL 是完整策略对照，其候选更新、历史共享和随机性都不同，不能被解释为只改变决定频率。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 98,
+          "text": "观测记录实际发送与重传、接收序号空洞、逐交换机出口变化和缓存命中。原生 DRILL 的计数由其自身运行获取，固定候选对照的计数只用于解释该对照。观测先通过开关配对检查，确认不会改变选路随机流和完成时间，再用于比较性能与恢复代价。完整逐包路径用于小规模正确性检查，正式大输入采用逐交换机 QP 汇总，二者的观测粒度分别说明。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "W5",
+        "SRC"
+      ],
+      "proposed_response": "当前相关工作和比较方法已经区分固定候选内的逐包重比与原生 DRILL。原生实现每包抽取两个随机候选，再比较目的地址历史出口，不是全端口最小队列选择；二者差异同时涉及候选刷新、历史共享和随机性，不能只归因于决定频率。DRILL 的技术恢复观测已由自身运行获得。\n\n旧短 QP 输入下的零 flowlet 超时或极少换路将作为动作诊断，不能用来概括对应机制的一般能力。严格配置的需求级比较以及持续/错峰八方法结果仍未形成，摘要与结论也未完成；对应结论须等待实际两侧指标和动作数据。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 301,
+        "answer_heading_line": 307,
+        "text": "接受。固定候选内逐包重比只能支持该条件下的结论。原生 DRILL 并非全端口最小队列，其实现每包随机抽两个候选，再比较按目的 IP 共享的上一最佳出口。将补严格同键的重比控制，单列 DRILL 双侧权衡和恢复代价。CONGA、LetFlow、ConWeave 的零超时或极少换路按动作诊断解释，不泛化为对应方法的一般能力。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "d9407dec2382d0c8033b2a00d648fd67b1031f19da468eb4c05e9110225614e0",
+      "quote_sha256": "683ca7424c30a7c54a0259d99652c10ca8992d2c67df71a87e1cee027052344f"
+    },
+    {
+      "id": "3.3",
+      "title": "W3 历史选择与联合门槛",
+      "integration_status": "OPEN",
+      "readiness": "TEXT_EXPLANATION_INTEGRATED",
+      "dependencies": [
+        "PROVENANCE_TEXT"
+      ],
+      "finding": "选择史与NO-GO事实现成，工作稿正文仍缺对应段落。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md",
+        "line": 127,
+        "end_line": 127,
+        "quoted_comment": "- **W3（选择史入正文）**：旧组的原始联合 NO-GO 门槛与历史主组的\"三候选确认\"来源，必须从复现索引移入正文 §4.1（两三句即可，占不了多少版面）。否则 −6.899% 会被默读为干净的确认性数字；两组新输入的 −5.2%/−5.5% 才是确认性证据，叙事应以它们为重心。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 305,
+        "answer_heading_line": 311,
+        "text": "历史来源说明需要区分旧组与历史确认组。旧组没有达到原先的联合门槛；历史确认涉及三个候选，之后才形成论文主体的选择。原始索引保留了这些过程，不能把它们都当作未经选择的同类证据。\n\n统一规则的补充比较使用 24 份已揭盲需求，方案在运行前固定，不是新的盲确认。旧类别配置的各组数据仍保留原身份，不移作新主体的整体收益，也不单凭幅度量化选择偏差。上述解释已落实于本回复，正文来源段尚待写入。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 66,
+          "text": "评价使用三层 Clos 网络，包含 1,280 台主机，链路速率为 400 Gbps。同步通信包含 16,384 条 8 KiB 短 QP，背景包含 192 条 8 MiB 长 QP。每份需求重新生成通信关系与背景端点，消息大小和释放模式保持固定。各方法共享逐条相同的需求和公共 RDMA 传输配置，采用 DCQCN，开启 IRN，关闭 PFC。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 90,
+          "text": "每项比较先在同一需求内计算候选方法相对参照的百分比变化，再跨需求报告中位数和区间。两项相对 ECMP 的中位数不可相减为方法间的增量。整份需求是统计单位，包、QP 和交换机记录都不作为独立重复。需求层的重采样区间描述输入变化，不能代表所有仿真随机流的变化。"
+        }
+      ],
+      "evidence_keys": [
+        "HISTORY",
+        "NODE1",
+        "ANALYSIS"
+      ],
+      "proposed_response": "已核对的历史来源包括未达到原联合门槛的旧组，以及三候选确认和后续论文主体选择的历史过程。这些信息需要在评价设计中直接说明；当前工作稿尚未加入，不能仅以复现索引已有记录代替正文披露。\n\n统一规则的新比较使用 24 份已揭盲需求，属于运行前固定方案的补充验证，而非新的盲确认。此前类别配置的不同来源保留各自身份，不移作新主体的整体收益，也不单凭效应幅度断言已证明或量化选择偏差。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 313,
+        "answer_heading_line": 319,
+        "text": "接受正文需明确来源。将写出旧组未达到原联合判据，以及历史确认比较三个候选和后续论文选择的顺序，保留各输入来源。确认与筛选需求分离，不能仅据结果幅度推定已证明选择偏差。新无类别配置的证据独立标明，不挪用旧类别配置四组收益。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": true,
+      "original_quote_preserved": true,
+      "response_sha256": "c5c7cf7679fd2f7674a2f36d42f16ddd2980ec6dfc98d07e43dbbdf343cb1146",
+      "quote_sha256": "9491d0b09610d5d55ba0e5edc675315b6569159f3e769247b95899fe1abdac99"
+    },
+    {
+      "id": "3.4",
+      "title": "W4 类别命名与贡献",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "FULL_TEXT",
+        "CLASS_HISTORY_TEXT"
+      ],
+      "finding": "名称、主体和严格标签干预已落实；类别历史与最终摘要/结论仍未同步。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md",
+        "line": 128,
+        "end_line": 128,
+        "quoted_comment": "- **W4（类名与贡献一致）**：类别加权零时间收益 + 先占条件无增量 + 组成夹具显示规则响应却无时间收益——\"Class\"招牌没有兑现。要么做一次有界的权重扫描/更有信息量的组成条件（注意避免 p-hacking 观感，事前注册），要么把类别规则正式降级为\"条件性机制\"，在标题、摘要、结论统一改写。现稿在正文已诚实，但摘要仍把类别评分放在显著位置。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 317,
+        "answer_heading_line": 323,
+        "text": "题名和引言已改为 QueuePin，主机制采用统一的本地队列初始分配与出口保持。严格实现不读取类别标签，删除或交换标签后的路径与 FCT 在小规模输入中保持一致；代码与名称的调整已同步。\n\n此前类别规则的出口响应与固定条件下未识别的时间增量单独保留，不写成类别机制普遍无效，也不据此承诺类别收益。摘要、结果与结论仍待形成，尚不能声称全文定位已经全部同步。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 3,
+          "text": "# QueuePin：混合 RDMA 通信中的队列指导初始选路与 QP 路径保持"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 11,
+          "text": "本文围绕这一问题设计 QueuePin。新 QP 的首个数据包到达交换机时，交换机根据流标识生成两个候选出口，选择总排队字节较少的出口，并保存决定。同一 QP 的后续包在该交换机复用这一出口。同步业务和背景业务使用相同的候选规则与评分，路由不需要识别业务类别。QueuePin 以一次本地选择换取持续的路径保持，其代价是同一 QP 不能利用后续出现的更空闲路径。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 15,
+          "text": "评价以同步短 QP 与背景长 QP 共存的合成通信为基础，分别计算完整同步批次和背景完成时间分布。固定候选的直接配对用于识别队列信息与重决策的影响；逐流分布和批尾身份用于解释批次最大值的变化；跨轮夹具则检查持久 QP 与交换机状态。类别加权作为此前设计的单独检验保留，本文的主体机制和研究问题均围绕统一规则的初始分配展开。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 29,
+          "text": "因此，本文关注队列读取的时机、出口保持的期限，以及它们在混合通信中的双侧权衡。两个候选、本地队列和路径保持各有既有研究基础；这里需要回答的是，在相同输入与传输条件下，将它们用于 QP 初始分配会产生什么效果。固定候选对照与原生逐包方法分别承担机制检验和策略比较，不能相互替代。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 48,
+          "text": "所有 UDP 数据使用同一流程。业务标签仅用于把完成记录归入同步批次或背景统计，不参与是否使用 QueuePin、候选生成或队列评分。控制报文沿用公共转发逻辑。这样，类别信息和路由决定之间没有数据依赖，移除或置换业务标签后，路径和逐流完成时间应当保持一致。"
+        }
+      ],
+      "evidence_keys": [
+        "E46",
+        "HISTORY",
+        "SRC"
+      ],
+      "proposed_response": "题名和引言已改为 QueuePin，主机制采用统一的本地队列初始分配与出口保持。严格实现不读取类别标签，删除或交换标签后的路径与 FCT 在技术输入中保持一致；代码与名称的调整已同步。\n\n此前类别规则的出口响应与固定条件下未识别的时间增量单独保留，不写成类别机制普遍无效，也不据此承诺类别收益。摘要、结果与结论仍待形成，尚不能声称全文定位已经全部同步。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 325,
+        "answer_heading_line": 331,
+        "text": "接受。停止以类别收益作为题名、摘要与结论的主承诺。类别加权的规则响应和固定条件下未识别的时间增量继续保留。新主体统一候选键、评分及全部 UDP 数据入口，且做标签删除、置换验证；重命名随实际代码和证据同步，不仅换标题。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "daa474099b349d831bc7f7a303f41888457e36046063d2941ee445eca6f37fdc",
+      "quote_sha256": "1998c6dc1adfc5769ca4d13d7a9dd92515de1d39c32f77809cae69fbb6642e3a"
+    },
+    {
+      "id": "3.5",
+      "title": "文风与叙事",
+      "integration_status": "OPEN",
+      "readiness": "TEXT_COMPLETION_PENDING",
+      "dependencies": [
+        "FULL_TEXT"
+      ],
+      "finding": "引言与方法已改善，仍有“夹具”等项目措辞，结果/摘要/结论及图注不存在。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md",
+        "line": 87,
+        "end_line": 87,
+        "quoted_comment": "**AI 感与生硬感：必须如实指出。** 全文的语言纪律近乎偏执，反而产生了明显的问题：(1) 句式节奏高度均匀——几乎每句都带一至两个限定性从句，长句密度极高；(2) 过程性/合规性词汇渗入正文（\"本次执行状态\"\"技术验收格\"\"保持未观测状态\"\"不把……写成……\"），读起来像审计台账而不是科学论述；(3) 摘要被限定语塞满，可读性差。如果把这稿直译成英文，一个熟练的审稿人会在\"这不是流畅的人类科学写作\"上打勾。我的判断：**内容层面的边界纪律是优秀的（好于大多数被接收论文），但表层文风有明显的机械感/审计腔，英文投稿前需要一次彻底的散文化重写，而不是翻译。** 这不影响核心结论，但影响阅读体验与传播。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 329,
+        "answer_heading_line": 335,
+        "text": "当前引言和方法已按研究问题、选路依据和两侧比较组织，使用 QueuePin、随机二选一和固定候选逐包重比等方法名称。项目编号和实验 ID 不进入正文论证；三轮场景、状态检查与统计定义按其科学用途说明，不把运行步骤写成论文结构。\n\n当前仍只有引言、相关工作、设计和评价方法。摘要、结果、结论及最终图注尚未完成，不能据这些章节认定全文语言问题已经解决；“夹具”等内部表述还需换成具体请求场景或验证条件，并在最终文本中核对相邻段落与术语。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 1,
+          "text": "> 编辑状态：v13 的引言与方法工作稿。QueuePin 为本轮拟用名称。新增实现、补充实验及最终结果仍在进行，本文件不属于完成稿。摘要、结果、结论与最终图表在证据冻结后整合；当前方法文字须与新代码逐项复核。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 7,
+          "text": "一次同步通信何时结束，取决于最后完成的传输。在专家并行等训练阶段，大量短传输集中发起，其中少数路径上的排队就可能延长整个通信批次。Alibaba HPN 的生产网络研究指出，训练流量的低熵和周期性突发会加剧等价多路径的哈希极化 [1]。当同步通信与数据搬运等背景传输共享网络时，初始路径分配还会改变背景业务的排队。评价这样的分配策略，需要同时观察批次完成时间和背景传输的尾部时延。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 11,
+          "text": "本文围绕这一问题设计 QueuePin。新 QP 的首个数据包到达交换机时，交换机根据流标识生成两个候选出口，选择总排队字节较少的出口，并保存决定。同一 QP 的后续包在该交换机复用这一出口。同步业务和背景业务使用相同的候选规则与评分，路由不需要识别业务类别。QueuePin 以一次本地选择换取持续的路径保持，其代价是同一 QP 不能利用后续出现的更空闲路径。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 15,
+          "text": "评价以同步短 QP 与背景长 QP 共存的合成通信为基础，分别计算完整同步批次和背景完成时间分布。固定候选的直接配对用于识别队列信息与重决策的影响；逐流分布和批尾身份用于解释批次最大值的变化；跨轮夹具则检查持久 QP 与交换机状态。类别加权作为此前设计的单独检验保留，本文的主体机制和研究问题均围绕统一规则的初始分配展开。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 54,
+          "text": "QP 生命周期决定了队列信息更新的频率。若每次请求使用新 QP，每次请求都获得新的选择机会；若同一个 QP 跨多轮请求复用，后续轮次会命中旧映射。此时网络即使发生变化，也不会触发新的首包选择。评价需要保留这一差别，因此跨轮实验保持 QP 对象、累计序号、传输状态和交换机缓存，并以逐轮新建 QP 作为对照。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 96,
+          "text": "跨轮夹具分别设置空队列预热和背景共存首次发送，每种条件都比较持久 QP 与每轮新 QP。持久 QP 在同一次仿真中传输三轮请求，保持对象、累计序号、拥塞控制和交换机缓存；新 QP 对照逐轮使用不同对象和元组。轮完成时间从该轮原始需求时刻计算，包含源端等待。三轮不是三个独立样本。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 98,
+          "text": "观测记录实际发送与重传、接收序号空洞、逐交换机出口变化和缓存命中。原生 DRILL 的计数由其自身运行获取，固定候选对照的计数只用于解释该对照。观测先通过开关配对检查，确认不会改变选路随机流和完成时间，再用于比较性能与恢复代价。完整逐包路径用于小规模正确性检查，正式大输入采用逐交换机 QP 汇总，二者的观测粒度分别说明。"
+        }
+      ],
+      "evidence_keys": [
+        "MAIN"
+      ],
+      "proposed_response": "当前引言和方法已按研究问题、选路依据和两侧比较组织，使用 QueuePin、随机二选一和固定候选逐包重比等方法名称。项目编号和实验 ID 不进入正文论证；三轮场景、状态检查与统计定义按其科学用途说明，不把运行步骤写成论文结构。\n\n当前仍只有引言、相关工作、设计和评价方法。摘要、结果、结论及最终图注尚未完成，不能据这些章节认定全文语言问题已经解决；“夹具”等内部表述还需换成具体请求场景或验证条件，并在最终文本中核对相邻段落与术语。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 337,
+        "answer_heading_line": 343,
+        "text": "接受。将围绕研究问题、首包决策的理由和双侧结果重写段落，删除“技术验收格”“保持未观测状态”“本次执行状态”等项目报告用语。正文以对照方法、配置和消融实验称呼比较对象，不使用“技术臂”。必要条件在方法或对应结论处交代，结果段先说明发现及其意义，再给决定性的证据；不把实验执行顺序改写成论文结构。论文中的项目编号与源码身份移入独立复现材料。具体段落、图表和术语检查将在 v13 成稿后逐项登记。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "4fadd78661965491c71b4abd4b5e64b842b02c730c2f0c2549ff90402af495ae",
+      "quote_sha256": "bf082acd28fe414252dff0981f2aa59d807be1539380b693554e0b6c1bdb587d"
+    },
+    {
+      "id": "3.6",
+      "title": "补充建议与适用范围",
+      "integration_status": "OPEN",
+      "readiness": "RESPONSE_UPDATED_PARTIAL",
+      "dependencies": [
+        "E48",
+        "P200",
+        "SEED_SCOPE",
+        "LIMITS_TEXT"
+      ],
+      "finding": "可计算指标/表项观测已具备；必要补验不降为讨论，拓展建议不冒充已做。",
+      "original_review": {
+        "path": "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md",
+        "line": 130,
+        "end_line": 132,
+        "quoted_comment": "**锦上添花（不影响核心结论，篇幅允许则补）：**\n\n- 真实 trace（HPN 式或公开 collective trace）验证；ns-3 seed 鲁棒性（当前固定为 1）；拓扑/超售/故障变化；权重与候选数扫描（现为固定配置，已披露）；硬件/P4 可行性粗略论证或表项规模估算；与 SeqBalance/Gemma/Hopper 类反馈设计的同输入仿真对比；背景 P99 的正式非劣效/等效区间（如果他们想主张\"背景受保护\"）。",
+        "normalized_quote_matches_original": true
+      },
+      "current_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 341,
+        "answer_heading_line": 349,
+        "text": "已有来源和原始数据支持说明随机数初始化、背景分布计算以及软件条目观测。需求级变化将同时保留不确定性和不利输入；没有预定非劣效界与相应检验时，不以背景中位数接近零或区间跨零声称逐流保护。\n\n持久 QP 的不同候选和真实恢复状态覆盖仍是必要补验，不能改成讨论项。新目标性能数据尚未到位，多模拟 seed 建议仍待决定；真实 trace、更多拓扑/故障、完整外部机制比较和硬件测量没有现成证据，均不列为已验证能力。"
+      },
+      "manuscript_existing_anchors": [
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 58,
+          "text": "每个映射至少需要记录 QP 标识和出口。当前软件模型使用按需增长的容器，因此条目数量随经过交换机的 QP 增加。容量估算需要依据各交换机的实际峰值，逻辑字段所需字节与容器运行开销分别计算，不能直接等同于交换芯片的存储资源。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 66,
+          "text": "评价使用三层 Clos 网络，包含 1,280 台主机，链路速率为 400 Gbps。同步通信包含 16,384 条 8 KiB 短 QP，背景包含 192 条 8 MiB 长 QP。每份需求重新生成通信关系与背景端点，消息大小和释放模式保持固定。各方法共享逐条相同的需求和公共 RDMA 传输配置，采用 DCQCN，开启 IRN，关闭 PFC。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 88,
+          "text": "背景以逐 QP 的流完成时间计算第 99 百分位（P99），并同时报告 P95 和最大值。分位数采用排序值间的线性插值。对于 192 条背景 QP，P99 位于第 190 与第 191 个排序值之间，因此还需结合逐需求变化和完整分布判断尾部代价。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 90,
+          "text": "每项比较先在同一需求内计算候选方法相对参照的百分比变化，再跨需求报告中位数和区间。两项相对 ECMP 的中位数不可相减为方法间的增量。整份需求是统计单位，包、QP 和交换机记录都不作为独立重复。需求层的重采样区间描述输入变化，不能代表所有仿真随机流的变化。"
+        },
+        {
+          "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+          "line": 96,
+          "text": "跨轮夹具分别设置空队列预热和背景共存首次发送，每种条件都比较持久 QP 与每轮新 QP。持久 QP 在同一次仿真中传输三轮请求，保持对象、累计序号、拥塞控制和交换机缓存；新 QP 对照逐轮使用不同对象和元组。轮完成时间从该轮原始需求时刻计算，包含源端等待。三轮不是三个独立样本。"
+        }
+      ],
+      "evidence_keys": [
+        "SEED",
+        "E46",
+        "ANALYSIS",
+        "W5"
+      ],
+      "proposed_response": "已有来源和原始数据支持说明随机数初始化、背景分布计算以及软件条目观测。需求级变化将同时保留不确定性和不利输入；没有预定非劣效界与相应检验时，不以背景中位数接近零或区间跨零声称逐流保护。\n\n持久 QP 的不同候选和真实恢复状态覆盖仍是必要补验，不能改成讨论项。新目标性能数据尚未到位，多模拟 seed 建议仍待决定；真实 trace、更多拓扑/故障、完整外部机制比较和硬件测量没有现成证据，均不列为已验证能力。",
+      "not_a_claim_of_manuscript_change": "Response text applied locally; manuscript anchors remain pre-existing and unchanged.",
+      "previous_response": {
+        "path": "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md",
+        "section_line": 349,
+        "answer_heading_line": 357,
+        "text": "将补 raw 可直接计算的背景分布与表项规模，核验实际随机性控制，并在相关工作中说明最新近邻。真实 trace、更多拓扑、故障、完整外部机制复现和硬件测量没有现成证据，论文不会宣称覆盖这些能力。背景结果按逐输入变化和不确定性报告，不把中位数接近零写成非劣效或逐流保护。持久 QP 的核心问题保持单独补实验，不以讨论段替代。"
+      },
+      "response_text_applied": true,
+      "explanation_text_completed": false,
+      "original_quote_preserved": true,
+      "response_sha256": "2ecc3653dc117cefcb0c857cccfaa95dd57c5e6269bc488c185254038696ff32",
+      "quote_sha256": "1224ef7a67a507150a014bda20e8f61cb4aa3b10a1eec267c647fd399da49e55"
+    }
+  ]
+}
