@@ -1,0 +1,36 @@
+{
+  "scope": "writing/reviewer integration only; no new mechanism admission",
+  "versions": {
+    "Hopper": "arXiv:2506.08132v1; fixed PDF a47cd38ee5e31f7bff391b275b2cc7169e92bcf279b2a4856cf6f715f36869f5",
+    "SeqBalance": "arXiv:2407.09808v1; 2025 journal final text not adopted"
+  },
+  "use": "Compare host RTT probing/waiting with switch-local initial allocation; distinguish splitting requests/WQEs from QP objects and preserve lifecycle evidence limits.",
+  "conditions": "Only the fixed local technical/verification records support these descriptions; no full implementation comparison is claimed.",
+  "differences": "QueuePin retains the original QP and local egress; no probe, child-WQE or parent-CQE mechanism is imported; no training/ASIC performance transfer.",
+  "files": [
+    {
+      "path": "参考文献/候选/README.md",
+      "sha256": "505092e5cd98e27ca9a25e7becd3c6c70a93a729870277513270f8e35158d188"
+    },
+    {
+      "path": "参考文献/候选/reading-log.md",
+      "sha256": "03df5b66ba27ea356529c65c37d62d616f3bb42007c8a345f2bf07c0b05fb0ec"
+    },
+    {
+      "path": "参考文献/候选/papers/hopper-2025/analysis-technical.md",
+      "sha256": "39e68f539a01ffc128721cfb686a9c126322ef9d22abdb6e80936bbc693a12d2"
+    },
+    {
+      "path": "参考文献/候选/papers/hopper-2025/verification.md",
+      "sha256": "80486d88cba3177b014253166255eb8131f11a897561ae83afe3b4eb7d089c91"
+    },
+    {
+      "path": "参考文献/候选/papers/seqbalance-2024/analysis-technical.md",
+      "sha256": "1b1ffab4ffd79d1bbf3c5b70f89f1d4793053938b8097a34148fad18c8db9cbe"
+    },
+    {
+      "path": "参考文献/候选/papers/seqbalance-2024/verification.md",
+      "sha256": "288da35fc28900eb3d40a8747431ef33cd0ceb23754a92f0844b8c9a4b8658fa"
+    }
+  ]
+}

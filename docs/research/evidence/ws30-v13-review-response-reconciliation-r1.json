@@ -1,0 +1,46 @@
+{
+  "scope": "26-response read-only reconciliation; no reviewer reply or manuscript edits",
+  "actual_analysis_context": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "turn_id": "01a17606-e901-7bf0-b9f9-74499df95d55"
+  },
+  "input_sha256": {
+    "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md": "0a8d2067cd382b537801180f2f18a64701759855125eccc0d554a5b4f3d76b28",
+    "E:\\研\\毕业论文\\paper review\\v12-review-rebuttal-remediation.md": "bb7195550873ce4962efecd00c06341bf8976375e7611de32a66fc36c0ea4d2c",
+    "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md": "97d1e188a601b60465ec57c54f0cf06ea4274994d52df05b8aaab4389d93766d",
+    "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md": "d45e6df59ca9a87d170ebe2002a53397cd8bee830d350bd9a6d3352bd03f67af",
+    "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md": "832db41266bd62b1ca07e1f5219f6a25bcadd79d2271ec6e9219556cad2a7b1c"
+  },
+  "all_input_hashes_unchanged": true,
+  "response_items": 26,
+  "quotes_matched_to_originals": 26,
+  "readiness_counts": {
+    "PARTIAL_VERIFIED": 18,
+    "TEXT_ONLY_READY": 5,
+    "SCOPE_DECISION": 1,
+    "TEXT_COMPLETION_PENDING": 2
+  },
+  "final_integration_status": "OPEN until actual reply/manuscript reconciliation",
+  "verified_existing_evidence": {
+    "engineering_cells": 46,
+    "completed_FCT_rows": 202020,
+    "persistent_conditions": 6,
+    "persistent_noninitial_CC_or_SACK_covered": false,
+    "persistent_distinct_pair_covered": false,
+    "technical_invariance_checks_pass": true,
+    "old_decomposition_cells": 48,
+    "old_decomposition_rows": 795648,
+    "old_tail_switch_demands": 23
+  },
+  "evidence_sha256": {
+    "evidence/ws30-v13-engineering-raw-analysis-r2.json": "77262d2b3a92fe6b8cf331f4ea3a5014678322d4e6c0ea57fb6e8c9563017d02",
+    "evidence/ws30-v13-node1-r1/audit.json": "7b394e5f40c00f6cef28244f9e6d815030b23b14397d1b447de586e492106ac0",
+    "evidence/ws30-v13-seed-audit-r1.json": "dfae06d6eda598d0f6c845453176e805a671759fa3e6b4565929f1773ee606e8",
+    "evidence/ws30-v14-disabled-contract-r2.json": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+    "evidence/ws30-v13-analysis-pipeline-preparation-r1.json": "264b55114c316377f1819d58d699a64b078fcf7f656912b1c59d904fb363e4ff"
+  },
+  "new_experimental_results": 0,
+  "new_remote_actions": 0,
+  "actual_authorization_receipt_exists": false
+}
