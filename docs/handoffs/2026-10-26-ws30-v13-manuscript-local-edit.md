@@ -26,9 +26,15 @@
 
 工程 48、正式 168、W5 36 格仍为必做。不同候选、真实拥塞/恢复状态与 ConWeave 资格未完成，26 条最终科学与稿件验收 OPEN。摘要、性能结果、贡献量化、结论及最终图表待真实数据。
 
-## 7. 后续推荐动作
+## 7. 等待断点与精简续作清单
 
-由主对话依既有门槛承接授权与原始数据；后续监督实际 Luna Medium，分析 GPT-6.1 Sol Medium。当前停止扩展准备材料，等待授权或新数据，不启动任何运行。
+2026 年 10 月 26 日本地核对：工作树干净，分支 `research/ws30-attribution-audit`，记录前 HEAD 为 `d71286a`。本地缓存的 `origin/research/ws30-attribution-audit` 为 `2943b5d`；按本地 origin 引用，尚有 10 个提交未推送，范围为 `bb4ae65` 至 `d71286a`。未查询远端实时状态。本次断点记录提交另计。
+
+1. **先等授权或新数据。** 主对话已接受现有章节与技术验证的有界整合，尚未接受为全稿。外部传输此前被自动审批拒绝，用户尚未回复；详细拒绝依据以主对话原审批记录为准，不在此推测。实际 `docs/research/evidence/ws30-v14-execution-authorization.json` 不存在；示例不是授权。禁止在等待期间推送、SSH、同步、部署或运行，不创建授权收据。
+2. **授权后恢复正式入口。** [执行器](../../scripts/run_ws30_v14.py)的拟议顺序为 `formal-first`（4 格，cap 至多 4）→`formal-rest`（164 格，cap 至多 8）。仅在授权与所有门槛实际满足后，使用 `run --phase formal-first --phase formal-rest --session-file <实际监督会话文件>`；不得用当前 HEAD 替代固定仿真源码。依据为[阶段表](../research/evidence/ws30-v14-executor-schedule-r1.json)及[模型/命令核对记录](../research/ws30-v13-medium-model-formal-readiness-r1.md)。本次只读核对，未调用运行命令。
+3. **两种源码分开。** 正式固定 `2c9f3a50bafad0740b461496ba24fa81941a9bc7`；工程与 W5 固定 `0673e4c3de34d83585dd40f6be7fbd3ed000a9ee`，两个 commit 均本地存在。正式首批先验 schema、身份、字节及资源；新源仍须隔离原生构建、单格/cap 4 准入和动态覆盖，不能继承旧源 cap 8。
+4. **模型与执行前置。** 实际监督须为 Luna Medium，分析为 GPT-6.1 Sol Medium；由真实会话核对，不以文字代替切换。外部同步授权、配套 controller/worker 部署及哈希握手、固定 trace/拓扑和两种 seed、新鲜主机资源与 ID 冲突检查均为前置；当前未核远端。源码到达远端缓存也必须走获准流程，执行器不代办推送或部署。
+5. **剩余交付不变。** 工程 48＋正式 168＋W5 36 格未完成；持久不同候选、非初始 CC/SACK 和 ConWeave 观测资格必做。新性能原始数据、需求级统计区间、全部点/批尾/恢复代价及最终尺寸图表 QA 仍缺，随后才整合摘要、性能结果、贡献量化、结论和最终回复位置。26 条最终验收 OPEN，WS-30 ACTIVE；不重复复算旧 raw 或增加准备测试。
 
 ## 8. 与其他工作流的关系
 
