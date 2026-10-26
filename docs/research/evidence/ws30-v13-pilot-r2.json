@@ -1,0 +1,1858 @@
+{
+  "blocks": [
+    {
+      "cap": 4,
+      "contract": "c0df69ec4cbdcce483eb1b86454ac2d1a30083a95310dc358bdc086b1eb98f76",
+      "events": [
+        {
+          "cap": 4,
+          "event": "batch_reserved",
+          "ids": [
+            "20261026-060000-w30v13-r2-p-c4-0-e",
+            "20261026-060000-w30v13-r2-p-c4-1-q12",
+            "20261026-060000-w30v13-r2-p-c4-2-u12",
+            "20261026-060000-w30v13-r2-p-c4-3-d"
+          ],
+          "utc": "2026-10-25T22:56:16.173567+00:00"
+        },
+        {
+          "event": "build_group_complete",
+          "ids": [
+            "20261026-060000-w30v13-r2-p-c4-0-e",
+            "20261026-060000-w30v13-r2-p-c4-1-q12",
+            "20261026-060000-w30v13-r2-p-c4-2-u12",
+            "20261026-060000-w30v13-r2-p-c4-3-d"
+          ],
+          "utc": "2026-10-25T23:05:19.912068+00:00"
+        },
+        {
+          "cap": 4,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c4-0-e",
+          "utc": "2026-10-25T23:05:23.863017+00:00"
+        },
+        {
+          "cap": 4,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c4-1-q12",
+          "utc": "2026-10-25T23:05:27.452431+00:00"
+        },
+        {
+          "cap": 4,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c4-2-u12",
+          "utc": "2026-10-25T23:05:31.155121+00:00"
+        },
+        {
+          "cap": 4,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c4-3-d",
+          "utc": "2026-10-25T23:05:34.932058+00:00"
+        },
+        {
+          "event": "worker_change_or_supervision",
+          "resource": {
+            "free_gib": 2997.785182952881,
+            "load_1m": 3.94,
+            "mem_available_gib": 109.30295944213867,
+            "observed_worker_mapping": [],
+            "other_users": [],
+            "rss_mib": 4545.25,
+            "unexpected_simulation_pids": [],
+            "unexpected_simulation_processes": []
+          },
+          "utc": "2026-10-25T23:10:37.682035+00:00",
+          "window": {
+            "minimum_free_gib": 2997.785182952881,
+            "minimum_mem_available_gib": 104.87453079223633,
+            "peak_load_1m": 6.32,
+            "peak_tree_rss_mib": 4545.25
+          }
+        },
+        {
+          "event": "worker_change_or_supervision",
+          "resource": {
+            "free_gib": 2997.7769775390625,
+            "load_1m": 3.72,
+            "mem_available_gib": 113.7108154296875,
+            "observed_worker_mapping": [],
+            "other_users": [],
+            "rss_mib": 4545.25,
+            "unexpected_simulation_pids": [],
+            "unexpected_simulation_processes": []
+          },
+          "utc": "2026-10-25T23:10:48.139249+00:00",
+          "window": {
+            "minimum_free_gib": 2997.7769775390625,
+            "minimum_mem_available_gib": 109.30137252807617,
+            "peak_load_1m": 3.94,
+            "peak_tree_rss_mib": 4545.25
+          }
+        },
+        {
+          "event": "worker_change_or_supervision",
+          "resource": {
+            "free_gib": 2997.7631225585938,
+            "load_1m": 3.0,
+            "mem_available_gib": 122.5262565612793,
+            "observed_worker_mapping": [],
+            "other_users": [],
+            "rss_mib": 4545.25,
+            "unexpected_simulation_pids": [],
+            "unexpected_simulation_processes": []
+          },
+          "utc": "2026-10-25T23:11:08.692349+00:00",
+          "window": {
+            "minimum_free_gib": 2997.7631225585938,
+            "minimum_mem_available_gib": 113.71157455444336,
+            "peak_load_1m": 3.72,
+            "peak_tree_rss_mib": 4545.25
+          }
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c4-0-e",
+          "utc": "2026-10-25T23:11:12.627697+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c4-1-q12",
+          "utc": "2026-10-25T23:11:16.835684+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c4-2-u12",
+          "utc": "2026-10-25T23:11:20.835636+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c4-3-d",
+          "utc": "2026-10-25T23:11:24.669896+00:00"
+        },
+        {
+          "event": "batch_verified",
+          "utc": "2026-10-25T23:11:24.671437+00:00",
+          "verified": 4
+        }
+      ],
+      "failures": {},
+      "pending": [],
+      "verified": {
+        "20261026-060000-w30v13-r2-p-c4-0-e": {
+          "arm": "E",
+          "cap": 4,
+          "completed_rows": 16576,
+          "fct_sha256": "f00b25083bd9ed8ce4938d0a6eb3e9afd1043a74399f25b2e12de41dccedeb41",
+          "id": "20261026-060000-w30v13-r2-p-c4-0-e",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 0,
+              "data_hops": 8088824,
+              "full_rows": 0,
+              "port_changes": 0,
+              "rejected": 0,
+              "switch_qps": 75656
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 8901654688,
+              "dropped": 0,
+              "enqueued": 8901654688,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 2778,
+                "fd_feedback_frames": 1610688,
+                "fd_without_sack": 1610688,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 203,
+                "fd_feedback_frames": 147456,
+                "fd_without_sack": 147456,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c4-0-e",
+            "minimum_free_gib": 2997.7843894958496,
+            "minimum_mem_available_gib": 104.87384796142578,
+            "peak_load_1m": 6.82,
+            "peak_tree_rss_mib": 4545.25,
+            "samples": 64
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c4-1-q12": {
+          "arm": "Q12",
+          "cap": 4,
+          "completed_rows": 16576,
+          "fct_sha256": "6f9744100369b89533ac8fd1fe1d957ca1709cdb0824f343b45fccd123ce3030",
+          "id": "20261026-060000-w30v13-r2-p-c4-1-q12",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 0,
+              "data_hops": 8088824,
+              "full_rows": 0,
+              "port_changes": 0,
+              "rejected": 0,
+              "switch_qps": 75656
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 8901654688,
+              "dropped": 0,
+              "enqueued": 8901654688,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 2975,
+                "fd_feedback_frames": 1610688,
+                "fd_without_sack": 1610688,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 174,
+                "fd_feedback_frames": 147456,
+                "fd_without_sack": 147456,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c4-1-q12",
+            "minimum_free_gib": 2997.7771377563477,
+            "minimum_mem_available_gib": 104.87550735473633,
+            "peak_load_1m": 6.82,
+            "peak_tree_rss_mib": 4545.046875,
+            "samples": 65
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c4-2-u12": {
+          "arm": "U12",
+          "cap": 4,
+          "completed_rows": 16576,
+          "fct_sha256": "dab3f4964b64cc333b3b844cfd4bf5997a759b517f60ed64af4861cc61b92562",
+          "id": "20261026-060000-w30v13-r2-p-c4-2-u12",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 27483,
+              "data_hops": 8188678,
+              "full_rows": 0,
+              "port_changes": 159139,
+              "rejected": 0,
+              "switch_qps": 123795
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 9010392956,
+              "dropped": 0,
+              "enqueued": 9010392956,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 10456,
+                "fd_feedback_frames": 1627485,
+                "fd_without_sack": 1611783,
+                "retransmit_bytes": 17052000,
+                "retransmit_packets": 17052,
+                "rx_below_expected": 16797,
+                "rx_gap": 6537,
+                "sack_feedback": 15702,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 3775,
+                "fd_feedback_frames": 148527,
+                "fd_without_sack": 144498,
+                "retransmit_bytes": 3464744,
+                "retransmit_packets": 3834,
+                "rx_below_expected": 1441,
+                "rx_gap": 3471,
+                "sack_feedback": 4029,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c4-2-u12",
+            "minimum_free_gib": 2997.763126373291,
+            "minimum_mem_available_gib": 104.87428283691406,
+            "peak_load_1m": 6.43,
+            "peak_tree_rss_mib": 4544.65234375,
+            "samples": 68
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c4-3-d": {
+          "arm": "D",
+          "cap": 4,
+          "completed_rows": 16576,
+          "fct_sha256": "a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e",
+          "id": "20261026-060000-w30v13-r2-p-c4-3-d",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 45361,
+              "data_hops": 8177061,
+              "full_rows": 0,
+              "port_changes": 156941,
+              "rejected": 0,
+              "switch_qps": 290771
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 8998714696,
+              "dropped": 0,
+              "enqueued": 8998714696,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 11620,
+                "fd_feedback_frames": 1627373,
+                "fd_without_sack": 1613278,
+                "retransmit_bytes": 16782000,
+                "retransmit_packets": 16782,
+                "rx_below_expected": 16685,
+                "rx_gap": 7667,
+                "sack_feedback": 14095,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 1679,
+                "fd_feedback_frames": 147594,
+                "fd_without_sack": 145902,
+                "retransmit_bytes": 1624448,
+                "retransmit_packets": 1761,
+                "rx_below_expected": 495,
+                "rx_gap": 1675,
+                "sack_feedback": 1692,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c4-3-d",
+            "minimum_free_gib": 2997.7631301879883,
+            "minimum_mem_available_gib": 104.87507629394531,
+            "peak_load_1m": 6.32,
+            "peak_tree_rss_mib": 4544.44140625,
+            "samples": 67
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        }
+      }
+    },
+    {
+      "cap": 8,
+      "contract": "be8476ffbca99dfec8f8a1378a4384a61bd3ca8295cfde7f9a3a9785facc13aa",
+      "events": [
+        {
+          "cap": 8,
+          "event": "batch_reserved",
+          "ids": [
+            "20261026-060000-w30v13-r2-p-c8-0-e",
+            "20261026-060000-w30v13-r2-p-c8-1-q12",
+            "20261026-060000-w30v13-r2-p-c8-2-u12",
+            "20261026-060000-w30v13-r2-p-c8-3-d",
+            "20261026-060000-w30v13-r2-p-c8-4-e",
+            "20261026-060000-w30v13-r2-p-c8-5-q12",
+            "20261026-060000-w30v13-r2-p-c8-6-u12",
+            "20261026-060000-w30v13-r2-p-c8-7-d"
+          ],
+          "utc": "2026-10-25T23:11:25.500807+00:00"
+        },
+        {
+          "event": "build_group_complete",
+          "ids": [
+            "20261026-060000-w30v13-r2-p-c8-0-e",
+            "20261026-060000-w30v13-r2-p-c8-1-q12",
+            "20261026-060000-w30v13-r2-p-c8-2-u12",
+            "20261026-060000-w30v13-r2-p-c8-3-d"
+          ],
+          "utc": "2026-10-25T23:18:22.215901+00:00"
+        },
+        {
+          "event": "build_group_complete",
+          "ids": [
+            "20261026-060000-w30v13-r2-p-c8-4-e",
+            "20261026-060000-w30v13-r2-p-c8-5-q12",
+            "20261026-060000-w30v13-r2-p-c8-6-u12",
+            "20261026-060000-w30v13-r2-p-c8-7-d"
+          ],
+          "utc": "2026-10-25T23:25:24.666975+00:00"
+        },
+        {
+          "cap": 8,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c8-0-e",
+          "utc": "2026-10-25T23:25:28.778185+00:00"
+        },
+        {
+          "cap": 8,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c8-1-q12",
+          "utc": "2026-10-25T23:25:32.358955+00:00"
+        },
+        {
+          "cap": 8,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c8-2-u12",
+          "utc": "2026-10-25T23:25:35.902915+00:00"
+        },
+        {
+          "cap": 8,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c8-3-d",
+          "utc": "2026-10-25T23:25:39.639937+00:00"
+        },
+        {
+          "cap": 8,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c8-4-e",
+          "utc": "2026-10-25T23:25:43.551328+00:00"
+        },
+        {
+          "cap": 8,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c8-5-q12",
+          "utc": "2026-10-25T23:25:47.453931+00:00"
+        },
+        {
+          "cap": 8,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c8-6-u12",
+          "utc": "2026-10-25T23:25:51.587567+00:00"
+        },
+        {
+          "cap": 8,
+          "event": "started",
+          "id": "20261026-060000-w30v13-r2-p-c8-7-d",
+          "utc": "2026-10-25T23:25:55.544053+00:00"
+        },
+        {
+          "event": "worker_change_or_supervision",
+          "resource": {
+            "free_gib": 2984.1475524902344,
+            "load_1m": 7.84,
+            "mem_available_gib": 96.05487060546875,
+            "observed_worker_mapping": [],
+            "other_users": [],
+            "rss_mib": 4545.125,
+            "unexpected_simulation_pids": [],
+            "unexpected_simulation_processes": []
+          },
+          "utc": "2026-10-25T23:31:29.037394+00:00",
+          "window": {
+            "minimum_free_gib": 2984.1475524902344,
+            "minimum_mem_available_gib": 87.22956085205078,
+            "peak_load_1m": 8.08,
+            "peak_tree_rss_mib": 4545.125
+          }
+        },
+        {
+          "event": "worker_change_or_supervision",
+          "resource": {
+            "free_gib": 2984.1233863830566,
+            "load_1m": 7.48,
+            "mem_available_gib": 109.2692642211914,
+            "observed_worker_mapping": [],
+            "other_users": [],
+            "rss_mib": 4545.125,
+            "unexpected_simulation_pids": [],
+            "unexpected_simulation_processes": []
+          },
+          "utc": "2026-10-25T23:31:39.629779+00:00",
+          "window": {
+            "minimum_free_gib": 2984.1233863830566,
+            "minimum_mem_available_gib": 96.05632019042969,
+            "peak_load_1m": 7.84,
+            "peak_tree_rss_mib": 4545.125
+          }
+        },
+        {
+          "event": "worker_change_or_supervision",
+          "resource": {
+            "free_gib": 2984.110610961914,
+            "load_1m": 6.64,
+            "mem_available_gib": 113.6942138671875,
+            "observed_worker_mapping": [],
+            "other_users": [],
+            "rss_mib": 4545.125,
+            "unexpected_simulation_pids": [],
+            "unexpected_simulation_processes": []
+          },
+          "utc": "2026-10-25T23:31:50.103861+00:00",
+          "window": {
+            "minimum_free_gib": 2984.110610961914,
+            "minimum_mem_available_gib": 109.83905029296875,
+            "peak_load_1m": 7.48,
+            "peak_tree_rss_mib": 4545.125
+          }
+        },
+        {
+          "event": "worker_change_or_supervision",
+          "resource": {
+            "free_gib": 2984.1094512939453,
+            "load_1m": 5.62,
+            "mem_available_gib": 122.51682662963867,
+            "observed_worker_mapping": [],
+            "other_users": [],
+            "rss_mib": 4545.125,
+            "unexpected_simulation_pids": [],
+            "unexpected_simulation_processes": []
+          },
+          "utc": "2026-10-25T23:32:00.539086+00:00",
+          "window": {
+            "minimum_free_gib": 2984.1094512939453,
+            "minimum_mem_available_gib": 114.25999069213867,
+            "peak_load_1m": 6.64,
+            "peak_tree_rss_mib": 4545.125
+          }
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c8-0-e",
+          "utc": "2026-10-25T23:32:04.700168+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c8-1-q12",
+          "utc": "2026-10-25T23:32:08.717119+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c8-2-u12",
+          "utc": "2026-10-25T23:32:12.663874+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c8-3-d",
+          "utc": "2026-10-25T23:32:16.635313+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c8-4-e",
+          "utc": "2026-10-25T23:32:20.541059+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c8-5-q12",
+          "utc": "2026-10-25T23:32:24.413128+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c8-6-u12",
+          "utc": "2026-10-25T23:32:28.633456+00:00"
+        },
+        {
+          "event": "verified_fetched",
+          "id": "20261026-060000-w30v13-r2-p-c8-7-d",
+          "utc": "2026-10-25T23:32:32.816765+00:00"
+        },
+        {
+          "event": "batch_verified",
+          "utc": "2026-10-25T23:32:32.817743+00:00",
+          "verified": 8
+        }
+      ],
+      "failures": {},
+      "pending": [],
+      "verified": {
+        "20261026-060000-w30v13-r2-p-c8-0-e": {
+          "arm": "E",
+          "cap": 8,
+          "completed_rows": 16576,
+          "fct_sha256": "f00b25083bd9ed8ce4938d0a6eb3e9afd1043a74399f25b2e12de41dccedeb41",
+          "id": "20261026-060000-w30v13-r2-p-c8-0-e",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 0,
+              "data_hops": 8088824,
+              "full_rows": 0,
+              "port_changes": 0,
+              "rejected": 0,
+              "switch_qps": 75656
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 8901654688,
+              "dropped": 0,
+              "enqueued": 8901654688,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 2778,
+                "fd_feedback_frames": 1610688,
+                "fd_without_sack": 1610688,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 203,
+                "fd_feedback_frames": 147456,
+                "fd_without_sack": 147456,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c8-0-e",
+            "minimum_free_gib": 2984.120948791504,
+            "minimum_mem_available_gib": 87.22962188720703,
+            "peak_load_1m": 8.09,
+            "peak_tree_rss_mib": 4544.62890625,
+            "samples": 76
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c8-1-q12": {
+          "arm": "Q12",
+          "cap": 8,
+          "completed_rows": 16576,
+          "fct_sha256": "6f9744100369b89533ac8fd1fe1d957ca1709cdb0824f343b45fccd123ce3030",
+          "id": "20261026-060000-w30v13-r2-p-c8-1-q12",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 0,
+              "data_hops": 8088824,
+              "full_rows": 0,
+              "port_changes": 0,
+              "rejected": 0,
+              "switch_qps": 75656
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 8901654688,
+              "dropped": 0,
+              "enqueued": 8901654688,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 2975,
+                "fd_feedback_frames": 1610688,
+                "fd_without_sack": 1610688,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 174,
+                "fd_feedback_frames": 147456,
+                "fd_without_sack": 147456,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c8-1-q12",
+            "minimum_free_gib": 2984.1510848999023,
+            "minimum_mem_available_gib": 87.23112106323242,
+            "peak_load_1m": 8.09,
+            "peak_tree_rss_mib": 4545.125,
+            "samples": 72
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c8-2-u12": {
+          "arm": "U12",
+          "cap": 8,
+          "completed_rows": 16576,
+          "fct_sha256": "dab3f4964b64cc333b3b844cfd4bf5997a759b517f60ed64af4861cc61b92562",
+          "id": "20261026-060000-w30v13-r2-p-c8-2-u12",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 27483,
+              "data_hops": 8188678,
+              "full_rows": 0,
+              "port_changes": 159139,
+              "rejected": 0,
+              "switch_qps": 123795
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 9010392956,
+              "dropped": 0,
+              "enqueued": 9010392956,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 10456,
+                "fd_feedback_frames": 1627485,
+                "fd_without_sack": 1611783,
+                "retransmit_bytes": 17052000,
+                "retransmit_packets": 17052,
+                "rx_below_expected": 16797,
+                "rx_gap": 6537,
+                "sack_feedback": 15702,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 3775,
+                "fd_feedback_frames": 148527,
+                "fd_without_sack": 144498,
+                "retransmit_bytes": 3464744,
+                "retransmit_packets": 3834,
+                "rx_below_expected": 1441,
+                "rx_gap": 3471,
+                "sack_feedback": 4029,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c8-2-u12",
+            "minimum_free_gib": 2984.1286849975586,
+            "minimum_mem_available_gib": 87.23042678833008,
+            "peak_load_1m": 8.09,
+            "peak_tree_rss_mib": 4544.7890625,
+            "samples": 73
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c8-3-d": {
+          "arm": "D",
+          "cap": 8,
+          "completed_rows": 16576,
+          "fct_sha256": "a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e",
+          "id": "20261026-060000-w30v13-r2-p-c8-3-d",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 45361,
+              "data_hops": 8177061,
+              "full_rows": 0,
+              "port_changes": 156941,
+              "rejected": 0,
+              "switch_qps": 290771
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 8998714696,
+              "dropped": 0,
+              "enqueued": 8998714696,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 11620,
+                "fd_feedback_frames": 1627373,
+                "fd_without_sack": 1613278,
+                "retransmit_bytes": 16782000,
+                "retransmit_packets": 16782,
+                "rx_below_expected": 16685,
+                "rx_gap": 7667,
+                "sack_feedback": 14095,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 1679,
+                "fd_feedback_frames": 147594,
+                "fd_without_sack": 145902,
+                "retransmit_bytes": 1624448,
+                "retransmit_packets": 1761,
+                "rx_below_expected": 495,
+                "rx_gap": 1675,
+                "sack_feedback": 1692,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c8-3-d",
+            "minimum_free_gib": 2984.1233863830566,
+            "minimum_mem_available_gib": 87.23071670532227,
+            "peak_load_1m": 8.09,
+            "peak_tree_rss_mib": 4544.9609375,
+            "samples": 73
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c8-4-e": {
+          "arm": "E",
+          "cap": 8,
+          "completed_rows": 16576,
+          "fct_sha256": "f00b25083bd9ed8ce4938d0a6eb3e9afd1043a74399f25b2e12de41dccedeb41",
+          "id": "20261026-060000-w30v13-r2-p-c8-4-e",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 0,
+              "data_hops": 8088824,
+              "full_rows": 0,
+              "port_changes": 0,
+              "rejected": 0,
+              "switch_qps": 75656
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 8901654688,
+              "dropped": 0,
+              "enqueued": 8901654688,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 2778,
+                "fd_feedback_frames": 1610688,
+                "fd_without_sack": 1610688,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 203,
+                "fd_feedback_frames": 147456,
+                "fd_without_sack": 147456,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c8-4-e",
+            "minimum_free_gib": 2984.1490936279297,
+            "minimum_mem_available_gib": 87.23051834106445,
+            "peak_load_1m": 8.09,
+            "peak_tree_rss_mib": 4545.01171875,
+            "samples": 70
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c8-5-q12": {
+          "arm": "Q12",
+          "cap": 8,
+          "completed_rows": 16576,
+          "fct_sha256": "6f9744100369b89533ac8fd1fe1d957ca1709cdb0824f343b45fccd123ce3030",
+          "id": "20261026-060000-w30v13-r2-p-c8-5-q12",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 0,
+              "data_hops": 8088824,
+              "full_rows": 0,
+              "port_changes": 0,
+              "rejected": 0,
+              "switch_qps": 75656
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 8901654688,
+              "dropped": 0,
+              "enqueued": 8901654688,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 2975,
+                "fd_feedback_frames": 1610688,
+                "fd_without_sack": 1610688,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 174,
+                "fd_feedback_frames": 147456,
+                "fd_without_sack": 147456,
+                "retransmit_bytes": 0,
+                "retransmit_packets": 0,
+                "rx_below_expected": 0,
+                "rx_gap": 0,
+                "sack_feedback": 0,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c8-5-q12",
+            "minimum_free_gib": 2984.121852874756,
+            "minimum_mem_available_gib": 87.2309455871582,
+            "peak_load_1m": 8.09,
+            "peak_tree_rss_mib": 4544.63671875,
+            "samples": 72
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c8-6-u12": {
+          "arm": "U12",
+          "cap": 8,
+          "completed_rows": 16576,
+          "fct_sha256": "dab3f4964b64cc333b3b844cfd4bf5997a759b517f60ed64af4861cc61b92562",
+          "id": "20261026-060000-w30v13-r2-p-c8-6-u12",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 27483,
+              "data_hops": 8188678,
+              "full_rows": 0,
+              "port_changes": 159139,
+              "rejected": 0,
+              "switch_qps": 123795
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 9010392956,
+              "dropped": 0,
+              "enqueued": 9010392956,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 10456,
+                "fd_feedback_frames": 1627485,
+                "fd_without_sack": 1611783,
+                "retransmit_bytes": 17052000,
+                "retransmit_packets": 17052,
+                "rx_below_expected": 16797,
+                "rx_gap": 6537,
+                "sack_feedback": 15702,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 3775,
+                "fd_feedback_frames": 148527,
+                "fd_without_sack": 144498,
+                "retransmit_bytes": 3464744,
+                "retransmit_packets": 3834,
+                "rx_below_expected": 1441,
+                "rx_gap": 3471,
+                "sack_feedback": 4029,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c8-6-u12",
+            "minimum_free_gib": 2984.110034942627,
+            "minimum_mem_available_gib": 87.23043823242188,
+            "peak_load_1m": 8.09,
+            "peak_tree_rss_mib": 4544.91796875,
+            "samples": 73
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        },
+        "20261026-060000-w30v13-r2-p-c8-7-d": {
+          "arm": "D",
+          "cap": 8,
+          "completed_rows": 16576,
+          "fct_sha256": "a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e",
+          "id": "20261026-060000-w30v13-r2-p-c8-7-d",
+          "lifecycle": {},
+          "observation": {
+            "path": {
+              "changed_qps": 45361,
+              "data_hops": 8177061,
+              "full_rows": 0,
+              "port_changes": 156941,
+              "rejected": 0,
+              "switch_qps": 290771
+            },
+            "queue": {
+              "admission_dropped_bytes": 0,
+              "current": 0,
+              "dequeued": 8998714696,
+              "dropped": 0,
+              "enqueued": 8998714696,
+              "queue_rejected_bytes": 0,
+              "violations": 0
+            },
+            "transport_by_tag": {
+              "1": {
+                "cnp_feedback": 11620,
+                "fd_feedback_frames": 1627373,
+                "fd_without_sack": 1613278,
+                "retransmit_bytes": 16782000,
+                "retransmit_packets": 16782,
+                "rx_below_expected": 16685,
+                "rx_gap": 7667,
+                "sack_feedback": 14095,
+                "timeout": 0
+              },
+              "2": {
+                "cnp_feedback": 1679,
+                "fd_feedback_frames": 147594,
+                "fd_without_sack": 145902,
+                "retransmit_bytes": 1624448,
+                "retransmit_packets": 1761,
+                "rx_below_expected": 495,
+                "rx_gap": 1675,
+                "sack_feedback": 1692,
+                "timeout": 0
+              }
+            }
+          },
+          "resource": {
+            "final_status": "SUCCEEDED",
+            "id": "20261026-060000-w30v13-r2-p-c8-7-d",
+            "minimum_free_gib": 2984.1094551086426,
+            "minimum_mem_available_gib": 87.2310562133789,
+            "peak_load_1m": 8.09,
+            "peak_tree_rss_mib": 4544.703125,
+            "samples": 73
+          },
+          "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+          "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+        }
+      }
+    }
+  ],
+  "model": {
+    "effort": "medium",
+    "model": "gpt-6-luna",
+    "turn_id": "01a1750b-e2b4-7ea1-99ae-733adfb1b9c8"
+  },
+  "rows": [
+    {
+      "arm": "E",
+      "cap": 4,
+      "completed_rows": 16576,
+      "fct_sha256": "f00b25083bd9ed8ce4938d0a6eb3e9afd1043a74399f25b2e12de41dccedeb41",
+      "id": "20261026-060000-w30v13-r2-p-c4-0-e",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 8088824,
+          "full_rows": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75656
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 8901654688,
+          "dropped": 0,
+          "enqueued": 8901654688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 2778,
+            "fd_feedback_frames": 1610688,
+            "fd_without_sack": 1610688,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 203,
+            "fd_feedback_frames": 147456,
+            "fd_without_sack": 147456,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c4-0-e",
+        "minimum_free_gib": 2997.7843894958496,
+        "minimum_mem_available_gib": 104.87384796142578,
+        "peak_load_1m": 6.82,
+        "peak_tree_rss_mib": 4545.25,
+        "samples": 64
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "Q12",
+      "cap": 4,
+      "completed_rows": 16576,
+      "fct_sha256": "6f9744100369b89533ac8fd1fe1d957ca1709cdb0824f343b45fccd123ce3030",
+      "id": "20261026-060000-w30v13-r2-p-c4-1-q12",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 8088824,
+          "full_rows": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75656
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 8901654688,
+          "dropped": 0,
+          "enqueued": 8901654688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 2975,
+            "fd_feedback_frames": 1610688,
+            "fd_without_sack": 1610688,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 174,
+            "fd_feedback_frames": 147456,
+            "fd_without_sack": 147456,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c4-1-q12",
+        "minimum_free_gib": 2997.7771377563477,
+        "minimum_mem_available_gib": 104.87550735473633,
+        "peak_load_1m": 6.82,
+        "peak_tree_rss_mib": 4545.046875,
+        "samples": 65
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "U12",
+      "cap": 4,
+      "completed_rows": 16576,
+      "fct_sha256": "dab3f4964b64cc333b3b844cfd4bf5997a759b517f60ed64af4861cc61b92562",
+      "id": "20261026-060000-w30v13-r2-p-c4-2-u12",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 27483,
+          "data_hops": 8188678,
+          "full_rows": 0,
+          "port_changes": 159139,
+          "rejected": 0,
+          "switch_qps": 123795
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 9010392956,
+          "dropped": 0,
+          "enqueued": 9010392956,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 10456,
+            "fd_feedback_frames": 1627485,
+            "fd_without_sack": 1611783,
+            "retransmit_bytes": 17052000,
+            "retransmit_packets": 17052,
+            "rx_below_expected": 16797,
+            "rx_gap": 6537,
+            "sack_feedback": 15702,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 3775,
+            "fd_feedback_frames": 148527,
+            "fd_without_sack": 144498,
+            "retransmit_bytes": 3464744,
+            "retransmit_packets": 3834,
+            "rx_below_expected": 1441,
+            "rx_gap": 3471,
+            "sack_feedback": 4029,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c4-2-u12",
+        "minimum_free_gib": 2997.763126373291,
+        "minimum_mem_available_gib": 104.87428283691406,
+        "peak_load_1m": 6.43,
+        "peak_tree_rss_mib": 4544.65234375,
+        "samples": 68
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "D",
+      "cap": 4,
+      "completed_rows": 16576,
+      "fct_sha256": "a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e",
+      "id": "20261026-060000-w30v13-r2-p-c4-3-d",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 45361,
+          "data_hops": 8177061,
+          "full_rows": 0,
+          "port_changes": 156941,
+          "rejected": 0,
+          "switch_qps": 290771
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 8998714696,
+          "dropped": 0,
+          "enqueued": 8998714696,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 11620,
+            "fd_feedback_frames": 1627373,
+            "fd_without_sack": 1613278,
+            "retransmit_bytes": 16782000,
+            "retransmit_packets": 16782,
+            "rx_below_expected": 16685,
+            "rx_gap": 7667,
+            "sack_feedback": 14095,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 1679,
+            "fd_feedback_frames": 147594,
+            "fd_without_sack": 145902,
+            "retransmit_bytes": 1624448,
+            "retransmit_packets": 1761,
+            "rx_below_expected": 495,
+            "rx_gap": 1675,
+            "sack_feedback": 1692,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c4-3-d",
+        "minimum_free_gib": 2997.7631301879883,
+        "minimum_mem_available_gib": 104.87507629394531,
+        "peak_load_1m": 6.32,
+        "peak_tree_rss_mib": 4544.44140625,
+        "samples": 67
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "E",
+      "cap": 8,
+      "completed_rows": 16576,
+      "fct_sha256": "f00b25083bd9ed8ce4938d0a6eb3e9afd1043a74399f25b2e12de41dccedeb41",
+      "id": "20261026-060000-w30v13-r2-p-c8-0-e",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 8088824,
+          "full_rows": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75656
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 8901654688,
+          "dropped": 0,
+          "enqueued": 8901654688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 2778,
+            "fd_feedback_frames": 1610688,
+            "fd_without_sack": 1610688,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 203,
+            "fd_feedback_frames": 147456,
+            "fd_without_sack": 147456,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c8-0-e",
+        "minimum_free_gib": 2984.120948791504,
+        "minimum_mem_available_gib": 87.22962188720703,
+        "peak_load_1m": 8.09,
+        "peak_tree_rss_mib": 4544.62890625,
+        "samples": 76
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "Q12",
+      "cap": 8,
+      "completed_rows": 16576,
+      "fct_sha256": "6f9744100369b89533ac8fd1fe1d957ca1709cdb0824f343b45fccd123ce3030",
+      "id": "20261026-060000-w30v13-r2-p-c8-1-q12",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 8088824,
+          "full_rows": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75656
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 8901654688,
+          "dropped": 0,
+          "enqueued": 8901654688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 2975,
+            "fd_feedback_frames": 1610688,
+            "fd_without_sack": 1610688,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 174,
+            "fd_feedback_frames": 147456,
+            "fd_without_sack": 147456,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c8-1-q12",
+        "minimum_free_gib": 2984.1510848999023,
+        "minimum_mem_available_gib": 87.23112106323242,
+        "peak_load_1m": 8.09,
+        "peak_tree_rss_mib": 4545.125,
+        "samples": 72
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "U12",
+      "cap": 8,
+      "completed_rows": 16576,
+      "fct_sha256": "dab3f4964b64cc333b3b844cfd4bf5997a759b517f60ed64af4861cc61b92562",
+      "id": "20261026-060000-w30v13-r2-p-c8-2-u12",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 27483,
+          "data_hops": 8188678,
+          "full_rows": 0,
+          "port_changes": 159139,
+          "rejected": 0,
+          "switch_qps": 123795
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 9010392956,
+          "dropped": 0,
+          "enqueued": 9010392956,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 10456,
+            "fd_feedback_frames": 1627485,
+            "fd_without_sack": 1611783,
+            "retransmit_bytes": 17052000,
+            "retransmit_packets": 17052,
+            "rx_below_expected": 16797,
+            "rx_gap": 6537,
+            "sack_feedback": 15702,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 3775,
+            "fd_feedback_frames": 148527,
+            "fd_without_sack": 144498,
+            "retransmit_bytes": 3464744,
+            "retransmit_packets": 3834,
+            "rx_below_expected": 1441,
+            "rx_gap": 3471,
+            "sack_feedback": 4029,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c8-2-u12",
+        "minimum_free_gib": 2984.1286849975586,
+        "minimum_mem_available_gib": 87.23042678833008,
+        "peak_load_1m": 8.09,
+        "peak_tree_rss_mib": 4544.7890625,
+        "samples": 73
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "D",
+      "cap": 8,
+      "completed_rows": 16576,
+      "fct_sha256": "a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e",
+      "id": "20261026-060000-w30v13-r2-p-c8-3-d",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 45361,
+          "data_hops": 8177061,
+          "full_rows": 0,
+          "port_changes": 156941,
+          "rejected": 0,
+          "switch_qps": 290771
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 8998714696,
+          "dropped": 0,
+          "enqueued": 8998714696,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 11620,
+            "fd_feedback_frames": 1627373,
+            "fd_without_sack": 1613278,
+            "retransmit_bytes": 16782000,
+            "retransmit_packets": 16782,
+            "rx_below_expected": 16685,
+            "rx_gap": 7667,
+            "sack_feedback": 14095,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 1679,
+            "fd_feedback_frames": 147594,
+            "fd_without_sack": 145902,
+            "retransmit_bytes": 1624448,
+            "retransmit_packets": 1761,
+            "rx_below_expected": 495,
+            "rx_gap": 1675,
+            "sack_feedback": 1692,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c8-3-d",
+        "minimum_free_gib": 2984.1233863830566,
+        "minimum_mem_available_gib": 87.23071670532227,
+        "peak_load_1m": 8.09,
+        "peak_tree_rss_mib": 4544.9609375,
+        "samples": 73
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "E",
+      "cap": 8,
+      "completed_rows": 16576,
+      "fct_sha256": "f00b25083bd9ed8ce4938d0a6eb3e9afd1043a74399f25b2e12de41dccedeb41",
+      "id": "20261026-060000-w30v13-r2-p-c8-4-e",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 8088824,
+          "full_rows": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75656
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 8901654688,
+          "dropped": 0,
+          "enqueued": 8901654688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 2778,
+            "fd_feedback_frames": 1610688,
+            "fd_without_sack": 1610688,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 203,
+            "fd_feedback_frames": 147456,
+            "fd_without_sack": 147456,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c8-4-e",
+        "minimum_free_gib": 2984.1490936279297,
+        "minimum_mem_available_gib": 87.23051834106445,
+        "peak_load_1m": 8.09,
+        "peak_tree_rss_mib": 4545.01171875,
+        "samples": 70
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "Q12",
+      "cap": 8,
+      "completed_rows": 16576,
+      "fct_sha256": "6f9744100369b89533ac8fd1fe1d957ca1709cdb0824f343b45fccd123ce3030",
+      "id": "20261026-060000-w30v13-r2-p-c8-5-q12",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 8088824,
+          "full_rows": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 75656
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 8901654688,
+          "dropped": 0,
+          "enqueued": 8901654688,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 2975,
+            "fd_feedback_frames": 1610688,
+            "fd_without_sack": 1610688,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 174,
+            "fd_feedback_frames": 147456,
+            "fd_without_sack": 147456,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c8-5-q12",
+        "minimum_free_gib": 2984.121852874756,
+        "minimum_mem_available_gib": 87.2309455871582,
+        "peak_load_1m": 8.09,
+        "peak_tree_rss_mib": 4544.63671875,
+        "samples": 72
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "U12",
+      "cap": 8,
+      "completed_rows": 16576,
+      "fct_sha256": "dab3f4964b64cc333b3b844cfd4bf5997a759b517f60ed64af4861cc61b92562",
+      "id": "20261026-060000-w30v13-r2-p-c8-6-u12",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 27483,
+          "data_hops": 8188678,
+          "full_rows": 0,
+          "port_changes": 159139,
+          "rejected": 0,
+          "switch_qps": 123795
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 9010392956,
+          "dropped": 0,
+          "enqueued": 9010392956,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 10456,
+            "fd_feedback_frames": 1627485,
+            "fd_without_sack": 1611783,
+            "retransmit_bytes": 17052000,
+            "retransmit_packets": 17052,
+            "rx_below_expected": 16797,
+            "rx_gap": 6537,
+            "sack_feedback": 15702,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 3775,
+            "fd_feedback_frames": 148527,
+            "fd_without_sack": 144498,
+            "retransmit_bytes": 3464744,
+            "retransmit_packets": 3834,
+            "rx_below_expected": 1441,
+            "rx_gap": 3471,
+            "sack_feedback": 4029,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c8-6-u12",
+        "minimum_free_gib": 2984.110034942627,
+        "minimum_mem_available_gib": 87.23043823242188,
+        "peak_load_1m": 8.09,
+        "peak_tree_rss_mib": 4544.91796875,
+        "samples": 73
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    },
+    {
+      "arm": "D",
+      "cap": 8,
+      "completed_rows": 16576,
+      "fct_sha256": "a156f9909339b95a28bdb3a8e2951f611e63a8d33fa96df7f02e4b01502d0d5e",
+      "id": "20261026-060000-w30v13-r2-p-c8-7-d",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 45361,
+          "data_hops": 8177061,
+          "full_rows": 0,
+          "port_changes": 156941,
+          "rejected": 0,
+          "switch_qps": 290771
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 8998714696,
+          "dropped": 0,
+          "enqueued": 8998714696,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "1": {
+            "cnp_feedback": 11620,
+            "fd_feedback_frames": 1627373,
+            "fd_without_sack": 1613278,
+            "retransmit_bytes": 16782000,
+            "retransmit_packets": 16782,
+            "rx_below_expected": 16685,
+            "rx_gap": 7667,
+            "sack_feedback": 14095,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 1679,
+            "fd_feedback_frames": 147594,
+            "fd_without_sack": 145902,
+            "retransmit_bytes": 1624448,
+            "retransmit_packets": 1761,
+            "rx_below_expected": 495,
+            "rx_gap": 1675,
+            "sack_feedback": 1692,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-p-c8-7-d",
+        "minimum_free_gib": 2984.1094551086426,
+        "minimum_mem_available_gib": 87.2310562133789,
+        "peak_load_1m": 8.09,
+        "peak_tree_rss_mib": 4544.703125,
+        "samples": 73
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "9791006f71843ea74b044396f6ae112ea8340aa9781cf0d267876e0940b02f48"
+    }
+  ],
+  "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+}

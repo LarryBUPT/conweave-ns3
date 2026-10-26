@@ -1,0 +1,171 @@
+{
+  "date_beijing": "2026-10-26",
+  "native_reference_repository": "https://github.com/conweave-project/conweave-ns3.git",
+  "native_reference_sha": "236a801a00e35de9078635e04acae2f701c21ded",
+  "experiment_source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+  "native_ConWeave_blobs": {
+    "src/point-to-point/model/conweave-routing.cc": {
+      "reference_blob": "0804304838b66e28354e1bbb12a9301f18d2a457",
+      "experiment_blob": "0804304838b66e28354e1bbb12a9301f18d2a457"
+    },
+    "src/point-to-point/model/conweave-routing.h": {
+      "reference_blob": "5c1d9737c196d1cd3f17f37df1a65992fe1f1ee7",
+      "experiment_blob": "5c1d9737c196d1cd3f17f37df1a65992fe1f1ee7"
+    },
+    "src/point-to-point/model/conweave-voq.cc": {
+      "reference_blob": "cc2fc72bf37b51ea2912563591efc5b8771823fc",
+      "experiment_blob": "cc2fc72bf37b51ea2912563591efc5b8771823fc"
+    },
+    "src/point-to-point/model/conweave-voq.h": {
+      "reference_blob": "ee5b3c0442a765466657a19f3aba35c6c4a0f8e7",
+      "experiment_blob": "ee5b3c0442a765466657a19f3aba35c6c4a0f8e7"
+    }
+  },
+  "reference_files": [
+    {
+      "path": "参考文献\\候选\\papers\\conweave-2023\\analysis-technical.md",
+      "sha256": "fbbfc6d44ee03620d521f4b8506696332d237a91261961d28b610dfb60dfc8e4"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\conweave-2023\\verification.md",
+      "sha256": "84b256b8c15503da86f384f84b0b5d157d6866785a226298294e530460206ade"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\conweave-2023\\paper-local.pdf",
+      "sha256": "81d6719ed612f6dba05c99f2bfaa8745f0804b1dcd76ef19262ca9a236801c8b"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\gemma\\analysis-technical.md",
+      "sha256": "77fcf228d28b84f96e3e26caa037e88f4c291a43357a93edd37f356008ffe01f"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\gemma\\verification.md",
+      "sha256": "908e0c113afee33d7b07646ad95b336d734a6169c77cb2f80c92dc21337577bd"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\gemma\\paper-local.pdf",
+      "sha256": "2b11ed4e673f8f6201c0182f158359a4d8f8394eb6029fa394dcd2c736052e15"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\seqbalance-2024\\analysis-technical.md",
+      "sha256": "1b1ffab4ffd79d1bbf3c5b70f89f1d4793053938b8097a34148fad18c8db9cbe"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\seqbalance-2024\\verification.md",
+      "sha256": "288da35fc28900eb3d40a8747431ef33cd0ceb23754a92f0844b8c9a4b8658fa"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\seqbalance-2024\\paper-v1.pdf",
+      "sha256": "097821eb41ca8687fc829cb31fdd54e897164de0956b30a830fdbee2c14fb913"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\diffflow-2016\\analysis-technical.md",
+      "sha256": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\diffflow-2016\\verification.md",
+      "sha256": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\diffflow-2016\\paper-v1.pdf",
+      "sha256": "f552fcb75a0cec582286db0032c81660ff161fe475609ae5e79ad7075a0ae164"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\sglb-2025\\analysis-technical.md",
+      "sha256": "6c2e1516ff134540bd19466208ad1f6aef7f966e1f0be5481871929abe0a5559"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\sglb-2025\\verification.md",
+      "sha256": "4db85b12efbcad0a9a88e1bc16a23ea2578c0e1f70ebcb799f1e220d41cf977d"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\sglb-2025\\paper-local.pdf",
+      "sha256": "1bceebbc0a40040646ca6cd3cb81dc258d80ef621c532c62016b156def7ebd6c"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\flowcut-2026\\analysis-technical.md",
+      "sha256": "cb6c8b128f88519004f12bb11497a49d019fab0e9c386bf0591a4899e255cc88"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\flowcut-2026\\verification.md",
+      "sha256": "eb93e690f74e282799e59f1204a5fcdcc754001fea1d67cd5853aed9a7d73789"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\flowcut-2026\\paper-arxiv-2506.21406v2.pdf",
+      "sha256": "1ba1e8cbad41973d3b42112a1a33876629541da814ac56bd06132439704fd1a1"
+    },
+    {
+      "path": "参考文献\\候选\\README.md",
+      "sha256": "4cf5e71bd9b1be600736b599b7e32f280e5cf7f4d88f3fe937cff05ecec249c6"
+    },
+    {
+      "path": "参考文献\\候选\\reading-log.md",
+      "sha256": "9f2eef008171f951e2e9491799c776fb45273036c70c07deffbed4204a622047"
+    }
+  ],
+  "external_code_search": {
+    "date": "2026-10-26",
+    "queries": [
+      "Gemma RDMA github Liu Zhao",
+      "SeqBalance github",
+      "DiffFlow Carpio code"
+    ],
+    "github_api_attempts": [
+      "https://api.github.com/search/repositories?q=Gemma+RDMA",
+      "https://api.github.com/search/repositories?q=SeqBalance",
+      "https://api.github.com/search/repositories?q=DiffFlow+load+balancing"
+    ],
+    "github_api_result": "Web access unavailable, not a zero-result query",
+    "result": "No verifiable author implementation or fixed commit located in these bounded title/author searches and the read primary PDFs. This does not establish that no code exists.",
+    "warning": "ResearchGate search snippet about all related code is from its recommended BurstBalancer article, not evidence of Gemma code."
+  },
+  "fidelity": {
+    "Gemma": {
+      "author_code_sha": null,
+      "missing": [
+        "queue length units and Sreroute dimensions",
+        "smooth/congested boundary",
+        "response-frequency convention and synchronization intervals",
+        "phase/END ordering at every upstream hop",
+        "queue allocation/full/fallback behavior and END loss recovery"
+      ],
+      "required": [
+        "local and downstream queues",
+        "delayed physical feedback messages",
+        "phase/END receiving reorder",
+        "capacity and control costs"
+      ]
+    },
+    "SeqBalance": {
+      "version": "arXiv:2407.09808v1; 2025 final text not compared",
+      "author_code_sha": null,
+      "required": [
+        "parent WQE splitting",
+        "independent sub-QP PSN and fixed routes",
+        "ECN feedback and path inactive lifetime",
+        "parent CQE max/bitmap completion and operation semantics"
+      ]
+    },
+    "DiffFlow": {
+      "version": "arXiv:1604.05107v1",
+      "author_code_sha": null,
+      "required": [
+        "sample-based long-flow detection",
+        "SDN rule installation and delay",
+        "short ECMP and long RPS",
+        "class-queue scheduler and RDMA adaptation"
+      ],
+      "oracle_tag_is_native": false
+    },
+    "SGLB": {
+      "version": "SIGCOMM 2025 fixed local PDF; appendix unreviewed",
+      "native_baseline_ready": false,
+      "required": [
+        "GLB/EDK profiles",
+        "SyncMesh/BGP reachability orchestration",
+        "remote-state age and compression",
+        "topology and NIC reordering assumptions"
+      ]
+    }
+  }
+}

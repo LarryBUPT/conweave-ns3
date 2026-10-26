@@ -1,0 +1,87 @@
+{
+  "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+  "simulation_successes": 46,
+  "simulation_failures": 0,
+  "unique_started_ids": 46,
+  "start_counts": {
+    "20261026-060000-w30v13-r2-t01-e-o0": 1,
+    "20261026-060000-w30v13-r2-t02-e-o2": 1,
+    "20261026-060000-w30v13-r2-t03-q12-o0": 1,
+    "20261026-060000-w30v13-r2-t04-q12-o2": 1,
+    "20261026-060000-w30v13-r2-t05-r12-o0": 1,
+    "20261026-060000-w30v13-r2-t06-r12-o2": 1,
+    "20261026-060000-w30v13-r2-t07-u12-o0": 1,
+    "20261026-060000-w30v13-r2-t08-u12-o2": 1,
+    "20261026-060000-w30v13-r2-t09-d-o0": 1,
+    "20261026-060000-w30v13-r2-t10-d-o2": 1,
+    "20261026-060000-w30v13-r2-t11-q12-o1": 1,
+    "20261026-060000-w30v13-r2-t12-h12-o2": 1,
+    "20261026-060000-w30v13-r2-t13-q12-x1": 1,
+    "20261026-060000-w30v13-r2-t14-q12-x2": 1,
+    "20261026-060000-w30v13-r2-t15-r12-x1": 1,
+    "20261026-060000-w30v13-r2-t16-r12-x2": 1,
+    "20261026-060000-w30v13-r2-t17-u12-x1": 1,
+    "20261026-060000-w30v13-r2-t18-u12-x2": 1,
+    "20261026-060000-w30v13-r2-l-w0-p-e": 1,
+    "20261026-060000-w30v13-r2-l-w0-p-q12": 1,
+    "20261026-060000-w30v13-r2-l-w0-p-u12": 1,
+    "20261026-060000-w30v13-r2-l-w0-f-e": 1,
+    "20261026-060000-w30v13-r2-l-w0-f-q12": 1,
+    "20261026-060000-w30v13-r2-l-w0-f-u12": 1,
+    "20261026-060000-w30v13-r2-l-w1-p-e": 1,
+    "20261026-060000-w30v13-r2-l-w1-p-q12": 1,
+    "20261026-060000-w30v13-r2-l-w1-p-u12": 1,
+    "20261026-060000-w30v13-r2-l-w1-f-e": 1,
+    "20261026-060000-w30v13-r2-l-w1-f-q12": 1,
+    "20261026-060000-w30v13-r2-l-w1-f-u12": 1,
+    "20261026-060000-w30v13-r2-l-reuse3-e": 1,
+    "20261026-060000-w30v13-r2-l-reuse3-q12": 1,
+    "20261026-060000-w30v13-r2-l-reuse4-e": 1,
+    "20261026-060000-w30v13-r2-l-reuse4-q12": 1,
+    "20261026-060000-w30v13-r2-p-c4-0-e": 1,
+    "20261026-060000-w30v13-r2-p-c4-1-q12": 1,
+    "20261026-060000-w30v13-r2-p-c4-2-u12": 1,
+    "20261026-060000-w30v13-r2-p-c4-3-d": 1,
+    "20261026-060000-w30v13-r2-p-c8-0-e": 1,
+    "20261026-060000-w30v13-r2-p-c8-1-q12": 1,
+    "20261026-060000-w30v13-r2-p-c8-2-u12": 1,
+    "20261026-060000-w30v13-r2-p-c8-3-d": 1,
+    "20261026-060000-w30v13-r2-p-c8-4-e": 1,
+    "20261026-060000-w30v13-r2-p-c8-5-q12": 1,
+    "20261026-060000-w30v13-r2-p-c8-6-u12": 1,
+    "20261026-060000-w30v13-r2-p-c8-7-d": 1
+  },
+  "states": {
+    "results\\ws30-v13-r2-technical.json": "921210206f6859eefe633c781ee9e594c4f470cab846dc81e0bfa9bd2158abc3",
+    "results\\ws30-v13-r2-lifecycle.json": "8723cc606a8540a72a3374e4d91f6ae0f3ffc9b6ab9286110053832bb3877869",
+    "results\\ws30-v13-r2-pilot-c4.json": "f0de1419619b0fb49e1ffb43acf2749850a86b1b3277bd51b1b06715eec6a0ef",
+    "results\\ws30-v13-r2-pilot-c8.json": "d36521a866ecde7a1438af794d56b297d28e2b6ed33e8311c1413dee79cb49b1"
+  },
+  "build_receipts_sha256": "a9b6cc449c311a346e0dcdd60c05cf35a1a6b92d6d8cd13cb35c0bd5478f7e3f",
+  "administrative_interruptions": [
+    {
+      "phase": "technical",
+      "cause": "sandbox SSH denial before remote admission",
+      "simulation_started": false
+    },
+    {
+      "phase": "lifecycle",
+      "cause": "generated technical summary blocked clean-check before sync/build",
+      "simulation_started": false
+    },
+    {
+      "phase": "pilot",
+      "cause": "generated lifecycle summary blocked clean-check before sync/build",
+      "simulation_started": false
+    }
+  ],
+  "local_exclude_paths": [
+    "/docs/research/evidence/ws30-v13-technical-r2.json",
+    "/docs/research/evidence/ws30-v13-lifecycle-r2.json",
+    "/docs/research/evidence/ws30-v13-pilot-r2.json"
+  ],
+  "all_stage_raw_fetched_and_locally_audited": true,
+  "current_global_host_state": "Not queried again in analysis; owned run metadata all terminal",
+  "formal_execution_enabled": false,
+  "W5_execution_enabled": false
+}

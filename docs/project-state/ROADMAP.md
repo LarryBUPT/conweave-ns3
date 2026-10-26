@@ -1,5 +1,11 @@
 # 下一阶段路线与停机条件
 
+## WS-30 v13 的 46 格分析与下一门槛（2026-10-26）
+
+[工程节点报告](../research/ws30-v13-engineering-node-report-r1.md)已独立核验 46 格 raw，严格入口和回归通过。持久对象/累计 ACK/缓存连续获得支持；非初始 CC/SACK 及持久不同候选的动态覆盖仍需承接。先由主对话核验上述边界和 [seed 审计](../research/evidence/ws30-v13-seed-audit-r1.json)，再冻结修订计划及具体补验。
+
+正式 168 格保持关闭。若批准，按本源码已测 cap 8 估算约 7.13 小时构建运行，另留回传分析和修复；启动仍须新鲜资源与实际模型门槛。[W5 建议](../research/ws30-w5-baseline-comparability-and-pilot-r1.md)另冻结了未执行的 36 格持续/错峰混合 pilot，其与正式矩阵的顺序和授权由主对话决定。Gemma 等外部方法先完成忠实度审计，不以简化仿制品补表。
+
 ## WS-30 跨阶段包完成后的全文整合入口（2026-10-25）
 
 组成节点已获主对话核对，跨阶段数据与图表包完成：[综合报告](../research/ws30-v12-evidence-synthesis-r1.md)、[三份评审验收表](../research/ws30-v12-review-acceptance-r1.md)、[Handoff](../handoffs/2026-10-25-ws30-v12-cross-stage-package.md)。F1～F5、D1～D4 覆盖四组独立需求、八臂、九项组件对比、先占与组成、原生动态动作和逐输入风险；所有图点、单位、raw/ID 和统一区间可追溯。没有启动新远端实验。

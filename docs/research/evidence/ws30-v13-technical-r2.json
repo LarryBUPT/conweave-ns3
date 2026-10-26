@@ -1,0 +1,2944 @@
+{
+  "cross_checks": {
+    "H12_E_match": true,
+    "all_observation_and_tag_hashes_match": true,
+    "legacy_Q12_and_E_hashes_match": true
+  },
+  "model": {
+    "effort": "medium",
+    "model": "gpt-6-luna",
+    "turn_id": "01a174f0-66e5-7231-8261-a444c3af593c"
+  },
+  "rows": [
+    {
+      "arm": "E",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "70c970c63da906181ac8745f290528c4006ac9818645eafc40af150b140b1086",
+      "id": "20261026-060000-w30v13-r2-t01-e-o0",
+      "lifecycle": {},
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t01-e-o0",
+        "minimum_free_gib": 3060.4809074401855,
+        "minimum_mem_available_gib": 118.13203048706055,
+        "peak_load_1m": 0.96,
+        "peak_tree_rss_mib": 4545.05859375,
+        "samples": 40
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "E",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "70c970c63da906181ac8745f290528c4006ac9818645eafc40af150b140b1086",
+      "id": "20261026-060000-w30v13-r2-t02-e-o2",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 48200,
+          "full_rows": 48200,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 840
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 52719200,
+          "dropped": 0,
+          "enqueued": 52719200,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 309,
+            "fd_feedback_frames": 8416,
+            "fd_without_sack": 8416,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 22,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1152,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t02-e-o2",
+        "minimum_free_gib": 3053.7158164978027,
+        "minimum_mem_available_gib": 104.90935897827148,
+        "peak_load_1m": 7.17,
+        "peak_tree_rss_mib": 4544.76171875,
+        "samples": 37
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "Q12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "id": "20261026-060000-w30v13-r2-t03-q12-o0",
+      "lifecycle": {},
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t03-q12-o0",
+        "minimum_free_gib": 3053.706630706787,
+        "minimum_mem_available_gib": 104.91520690917969,
+        "peak_load_1m": 6.59,
+        "peak_tree_rss_mib": 4544.78125,
+        "samples": 38
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "Q12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "id": "20261026-060000-w30v13-r2-t04-q12-o2",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 48200,
+          "full_rows": 48200,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 840
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 52719200,
+          "dropped": 0,
+          "enqueued": 52719200,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 326,
+            "fd_feedback_frames": 8416,
+            "fd_without_sack": 8416,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 18,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1152,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t04-q12-o2",
+        "minimum_free_gib": 3053.7064933776855,
+        "minimum_mem_available_gib": 104.91925430297852,
+        "peak_load_1m": 6.23,
+        "peak_tree_rss_mib": 4544.82421875,
+        "samples": 38
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "R12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+      "id": "20261026-060000-w30v13-r2-t05-r12-o0",
+      "lifecycle": {},
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t05-r12-o0",
+        "minimum_free_gib": 3053.706497192383,
+        "minimum_mem_available_gib": 104.92401123046875,
+        "peak_load_1m": 6.05,
+        "peak_tree_rss_mib": 4544.890625,
+        "samples": 37
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "R12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+      "id": "20261026-060000-w30v13-r2-t06-r12-o2",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 48200,
+          "full_rows": 48200,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 840
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 52719200,
+          "dropped": 0,
+          "enqueued": 52719200,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 327,
+            "fd_feedback_frames": 8416,
+            "fd_without_sack": 8416,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 21,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1152,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t06-r12-o2",
+        "minimum_free_gib": 3046.9413566589355,
+        "minimum_mem_available_gib": 104.91205596923828,
+        "peak_load_1m": 7.27,
+        "peak_tree_rss_mib": 4544.92578125,
+        "samples": 37
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "U12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+      "id": "20261026-060000-w30v13-r2-t07-u12-o0",
+      "lifecycle": {},
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t07-u12-o0",
+        "minimum_free_gib": 3046.930244445801,
+        "minimum_mem_available_gib": 104.91884994506836,
+        "peak_load_1m": 6.77,
+        "peak_tree_rss_mib": 4544.90625,
+        "samples": 38
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "U12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+      "id": "20261026-060000-w30v13-r2-t08-u12-o2",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 125,
+          "data_hops": 56815,
+          "full_rows": 56815,
+          "port_changes": 1118,
+          "rejected": 0,
+          "switch_qps": 1145
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 62264620,
+          "dropped": 0,
+          "enqueued": 62264620,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 1731,
+            "fd_feedback_frames": 10127,
+            "fd_without_sack": 9791,
+            "retransmit_bytes": 1711000,
+            "retransmit_packets": 1711,
+            "rx_below_expected": 1711,
+            "rx_gap": 177,
+            "sack_feedback": 336,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 26,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1143,
+            "retransmit_bytes": 9000,
+            "retransmit_packets": 9,
+            "rx_below_expected": 0,
+            "rx_gap": 9,
+            "sack_feedback": 9,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 2,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 33,
+            "retransmit_bytes": 3000,
+            "retransmit_packets": 3,
+            "rx_below_expected": 0,
+            "rx_gap": 2,
+            "sack_feedback": 3,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t08-u12-o2",
+        "minimum_free_gib": 3046.930377960205,
+        "minimum_mem_available_gib": 104.90548706054688,
+        "peak_load_1m": 6.55,
+        "peak_tree_rss_mib": 4544.93359375,
+        "samples": 37
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "D",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "6fa24eba33f8d5b7a8e2330d3c44d47948007eda060ca8f6e1258838fd497c37",
+      "id": "20261026-060000-w30v13-r2-t09-d-o0",
+      "lifecycle": {},
+      "observation": {},
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t09-d-o0",
+        "minimum_free_gib": 3046.928134918213,
+        "minimum_mem_available_gib": 104.90946578979492,
+        "peak_load_1m": 6.55,
+        "peak_tree_rss_mib": 4544.57421875,
+        "samples": 38
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "D",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "6fa24eba33f8d5b7a8e2330d3c44d47948007eda060ca8f6e1258838fd497c37",
+      "id": "20261026-060000-w30v13-r2-t10-d-o2",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 449,
+          "data_hops": 64670,
+          "full_rows": 64670,
+          "port_changes": 5557,
+          "rejected": 0,
+          "switch_qps": 2549
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 70967960,
+          "dropped": 0,
+          "enqueued": 70967960,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 2857,
+            "fd_feedback_frames": 11672,
+            "fd_without_sack": 10604,
+            "retransmit_bytes": 3258000,
+            "retransmit_packets": 3258,
+            "rx_below_expected": 3256,
+            "rx_gap": 719,
+            "sack_feedback": 1068,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 42,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1128,
+            "retransmit_bytes": 24000,
+            "retransmit_packets": 24,
+            "rx_below_expected": 0,
+            "rx_gap": 24,
+            "sack_feedback": 24,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 4,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 24,
+            "retransmit_bytes": 12000,
+            "retransmit_packets": 12,
+            "rx_below_expected": 0,
+            "rx_gap": 4,
+            "sack_feedback": 12,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t10-d-o2",
+        "minimum_free_gib": 3040.160270690918,
+        "minimum_mem_available_gib": 104.91201782226562,
+        "peak_load_1m": 6.66,
+        "peak_tree_rss_mib": 4544.859375,
+        "samples": 37
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "Q12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "id": "20261026-060000-w30v13-r2-t11-q12-o1",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 48200,
+          "full_rows": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 840
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 52719200,
+          "dropped": 0,
+          "enqueued": 52719200,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 326,
+            "fd_feedback_frames": 8416,
+            "fd_without_sack": 8416,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 18,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1152,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t11-q12-o1",
+        "minimum_free_gib": 3040.152114868164,
+        "minimum_mem_available_gib": 104.91709899902344,
+        "peak_load_1m": 6.66,
+        "peak_tree_rss_mib": 4545.0546875,
+        "samples": 38
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "H12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "70c970c63da906181ac8745f290528c4006ac9818645eafc40af150b140b1086",
+      "id": "20261026-060000-w30v13-r2-t12-h12-o2",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 48200,
+          "full_rows": 48200,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 840
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 52719200,
+          "dropped": 0,
+          "enqueued": 52719200,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 309,
+            "fd_feedback_frames": 8416,
+            "fd_without_sack": 8416,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 22,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1152,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t12-h12-o2",
+        "minimum_free_gib": 3040.1521224975586,
+        "minimum_mem_available_gib": 104.9063491821289,
+        "peak_load_1m": 6.21,
+        "peak_tree_rss_mib": 4544.953125,
+        "samples": 37
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "Q12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "id": "20261026-060000-w30v13-r2-t13-q12-x1",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 48200,
+          "full_rows": 48200,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 840
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 52719200,
+          "dropped": 0,
+          "enqueued": 52719200,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 326,
+            "fd_feedback_frames": 8416,
+            "fd_without_sack": 8416,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 18,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1152,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t13-q12-x1",
+        "minimum_free_gib": 3040.1451568603516,
+        "minimum_mem_available_gib": 104.90773010253906,
+        "peak_load_1m": 5.95,
+        "peak_tree_rss_mib": 4544.85546875,
+        "samples": 38
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "Q12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+      "id": "20261026-060000-w30v13-r2-t14-q12-x2",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 48200,
+          "full_rows": 48200,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 840
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 52719200,
+          "dropped": 0,
+          "enqueued": 52719200,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 326,
+            "fd_feedback_frames": 8416,
+            "fd_without_sack": 8416,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 18,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1152,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t14-q12-x2",
+        "minimum_free_gib": 3033.366226196289,
+        "minimum_mem_available_gib": 104.89897918701172,
+        "peak_load_1m": 6.82,
+        "peak_tree_rss_mib": 4544.62890625,
+        "samples": 38
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "R12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+      "id": "20261026-060000-w30v13-r2-t15-r12-x1",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 48200,
+          "full_rows": 48200,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 840
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 52719200,
+          "dropped": 0,
+          "enqueued": 52719200,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 327,
+            "fd_feedback_frames": 8416,
+            "fd_without_sack": 8416,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 21,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1152,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t15-r12-x1",
+        "minimum_free_gib": 3033.3660888671875,
+        "minimum_mem_available_gib": 104.89091873168945,
+        "peak_load_1m": 6.51,
+        "peak_tree_rss_mib": 4544.4375,
+        "samples": 38
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "R12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+      "id": "20261026-060000-w30v13-r2-t16-r12-x2",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 0,
+          "data_hops": 48200,
+          "full_rows": 48200,
+          "port_changes": 0,
+          "rejected": 0,
+          "switch_qps": 840
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 52719200,
+          "dropped": 0,
+          "enqueued": 52719200,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 327,
+            "fd_feedback_frames": 8416,
+            "fd_without_sack": 8416,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 21,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1152,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t16-r12-x2",
+        "minimum_free_gib": 3033.3660926818848,
+        "minimum_mem_available_gib": 104.89281463623047,
+        "peak_load_1m": 6.51,
+        "peak_tree_rss_mib": 4545.015625,
+        "samples": 37
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "U12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+      "id": "20261026-060000-w30v13-r2-t17-u12-x1",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 125,
+          "data_hops": 56815,
+          "full_rows": 56815,
+          "port_changes": 1118,
+          "rejected": 0,
+          "switch_qps": 1145
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 62264620,
+          "dropped": 0,
+          "enqueued": 62264620,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 1731,
+            "fd_feedback_frames": 10127,
+            "fd_without_sack": 9791,
+            "retransmit_bytes": 1711000,
+            "retransmit_packets": 1711,
+            "rx_below_expected": 1711,
+            "rx_gap": 177,
+            "sack_feedback": 336,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 26,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1143,
+            "retransmit_bytes": 9000,
+            "retransmit_packets": 9,
+            "rx_below_expected": 0,
+            "rx_gap": 9,
+            "sack_feedback": 9,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 2,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 33,
+            "retransmit_bytes": 3000,
+            "retransmit_packets": 3,
+            "rx_below_expected": 0,
+            "rx_gap": 2,
+            "sack_feedback": 3,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t17-u12-x1",
+        "minimum_free_gib": 3033.3571128845215,
+        "minimum_mem_available_gib": 104.89559173583984,
+        "peak_load_1m": 6.22,
+        "peak_tree_rss_mib": 4544.96484375,
+        "samples": 38
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    },
+    {
+      "arm": "U12",
+      "cap": 4,
+      "completed_rows": 168,
+      "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+      "id": "20261026-060000-w30v13-r2-t18-u12-x2",
+      "lifecycle": {},
+      "observation": {
+        "path": {
+          "changed_qps": 125,
+          "data_hops": 56815,
+          "full_rows": 56815,
+          "port_changes": 1118,
+          "rejected": 0,
+          "switch_qps": 1145
+        },
+        "queue": {
+          "admission_dropped_bytes": 0,
+          "current": 0,
+          "dequeued": 62264620,
+          "dropped": 0,
+          "enqueued": 62264620,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "transport_by_tag": {
+          "0": {
+            "cnp_feedback": 0,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 36,
+            "retransmit_bytes": 0,
+            "retransmit_packets": 0,
+            "rx_below_expected": 0,
+            "rx_gap": 0,
+            "sack_feedback": 0,
+            "timeout": 0
+          },
+          "1": {
+            "cnp_feedback": 1731,
+            "fd_feedback_frames": 10127,
+            "fd_without_sack": 9791,
+            "retransmit_bytes": 1711000,
+            "retransmit_packets": 1711,
+            "rx_below_expected": 1711,
+            "rx_gap": 177,
+            "sack_feedback": 336,
+            "timeout": 0
+          },
+          "2": {
+            "cnp_feedback": 26,
+            "fd_feedback_frames": 1152,
+            "fd_without_sack": 1143,
+            "retransmit_bytes": 9000,
+            "retransmit_packets": 9,
+            "rx_below_expected": 0,
+            "rx_gap": 9,
+            "sack_feedback": 9,
+            "timeout": 0
+          },
+          "3": {
+            "cnp_feedback": 2,
+            "fd_feedback_frames": 36,
+            "fd_without_sack": 33,
+            "retransmit_bytes": 3000,
+            "retransmit_packets": 3,
+            "rx_below_expected": 0,
+            "rx_gap": 2,
+            "sack_feedback": 3,
+            "timeout": 0
+          }
+        }
+      },
+      "resource": {
+        "final_status": "SUCCEEDED",
+        "id": "20261026-060000-w30v13-r2-t18-u12-x2",
+        "minimum_free_gib": 3031.6585807800293,
+        "minimum_mem_available_gib": 118.11506652832031,
+        "peak_load_1m": 2.11,
+        "peak_tree_rss_mib": 4544.8671875,
+        "samples": 37
+      },
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+    }
+  ],
+  "runner": {
+    "cap": 4,
+    "contract": "029d81c72d415a79f01efc2b8731422a7348864a36fadf3706a6d669d69b6ebd",
+    "events": [
+      {
+        "cap": 4,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-060000-w30v13-r2-t01-e-o0"
+        ],
+        "utc": "2026-10-25T21:23:13.067769+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t01-e-o0",
+        "utc": "2026-10-25T21:23:31.235692+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3060.4809036254883,
+          "load_1m": 0.89,
+          "mem_available_gib": 122.53952407836914,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.05859375,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T21:26:33.035037+00:00",
+        "window": {
+          "minimum_free_gib": 3060.4809036254883,
+          "minimum_mem_available_gib": 118.13201904296875,
+          "peak_load_1m": 0.96,
+          "peak_tree_rss_mib": 4545.05859375
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t01-e-o0",
+        "utc": "2026-10-25T21:26:35.310128+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-25T21:26:35.311103+00:00",
+        "verified": 1
+      },
+      {
+        "cap": 4,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-060000-w30v13-r2-t02-e-o2",
+          "20261026-060000-w30v13-r2-t03-q12-o0",
+          "20261026-060000-w30v13-r2-t04-q12-o2",
+          "20261026-060000-w30v13-r2-t05-r12-o0"
+        ],
+        "utc": "2026-10-25T21:26:36.162185+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-060000-w30v13-r2-t02-e-o2",
+          "20261026-060000-w30v13-r2-t03-q12-o0",
+          "20261026-060000-w30v13-r2-t04-q12-o2",
+          "20261026-060000-w30v13-r2-t05-r12-o0"
+        ],
+        "utc": "2026-10-25T21:33:43.451259+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t02-e-o2",
+        "utc": "2026-10-25T21:33:48.870522+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t03-q12-o0",
+        "utc": "2026-10-25T21:33:52.733515+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t04-q12-o2",
+        "utc": "2026-10-25T21:33:56.647428+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t05-r12-o0",
+        "utc": "2026-10-25T21:34:00.476417+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3053.7126426696777,
+          "load_1m": 4.17,
+          "mem_available_gib": 109.30519104003906,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.890625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T21:36:52.422020+00:00",
+        "window": {
+          "minimum_free_gib": 3053.7126426696777,
+          "minimum_mem_available_gib": 104.91043853759766,
+          "peak_load_1m": 6.05,
+          "peak_tree_rss_mib": 4544.890625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3053.7064895629883,
+          "load_1m": 3.66,
+          "mem_available_gib": 122.5321273803711,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.890625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T21:37:02.955356+00:00",
+        "window": {
+          "minimum_free_gib": 3053.7064895629883,
+          "minimum_mem_available_gib": 109.86801528930664,
+          "peak_load_1m": 4.24,
+          "peak_tree_rss_mib": 4544.890625
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t02-e-o2",
+        "utc": "2026-10-25T21:37:06.427893+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t03-q12-o0",
+        "utc": "2026-10-25T21:37:08.610153+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t04-q12-o2",
+        "utc": "2026-10-25T21:37:11.999148+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t05-r12-o0",
+        "utc": "2026-10-25T21:37:14.153470+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-25T21:37:14.154446+00:00",
+        "verified": 5
+      },
+      {
+        "cap": 4,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-060000-w30v13-r2-t06-r12-o2",
+          "20261026-060000-w30v13-r2-t07-u12-o0",
+          "20261026-060000-w30v13-r2-t08-u12-o2",
+          "20261026-060000-w30v13-r2-t09-d-o0"
+        ],
+        "utc": "2026-10-25T21:37:14.981679+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-060000-w30v13-r2-t06-r12-o2",
+          "20261026-060000-w30v13-r2-t07-u12-o0",
+          "20261026-060000-w30v13-r2-t08-u12-o2",
+          "20261026-060000-w30v13-r2-t09-d-o0"
+        ],
+        "utc": "2026-10-25T21:44:19.912380+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t06-r12-o2",
+        "utc": "2026-10-25T21:44:23.850010+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t07-u12-o0",
+        "utc": "2026-10-25T21:44:27.216744+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t08-u12-o2",
+        "utc": "2026-10-25T21:44:31.150929+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t09-d-o0",
+        "utc": "2026-10-25T21:44:35.103484+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3046.932514190674,
+          "load_1m": 4.08,
+          "mem_available_gib": 109.30004501342773,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.93359375,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T21:47:27.028443+00:00",
+        "window": {
+          "minimum_free_gib": 3046.932514190674,
+          "minimum_mem_available_gib": 104.9158706665039,
+          "peak_load_1m": 6.26,
+          "peak_tree_rss_mib": 4544.93359375
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3046.92813873291,
+          "load_1m": 3.75,
+          "mem_available_gib": 122.52174758911133,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.93359375,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T21:47:37.524020+00:00",
+        "window": {
+          "minimum_free_gib": 3046.92813873291,
+          "minimum_mem_available_gib": 109.2995376586914,
+          "peak_load_1m": 4.08,
+          "peak_tree_rss_mib": 4544.93359375
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t06-r12-o2",
+        "utc": "2026-10-25T21:47:41.281663+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t07-u12-o0",
+        "utc": "2026-10-25T21:47:43.516839+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t08-u12-o2",
+        "utc": "2026-10-25T21:47:47.650736+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t09-d-o0",
+        "utc": "2026-10-25T21:47:49.965792+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-25T21:47:49.967777+00:00",
+        "verified": 9
+      },
+      {
+        "cap": 4,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-060000-w30v13-r2-t10-d-o2",
+          "20261026-060000-w30v13-r2-t11-q12-o1",
+          "20261026-060000-w30v13-r2-t12-h12-o2",
+          "20261026-060000-w30v13-r2-t13-q12-x1"
+        ],
+        "utc": "2026-10-25T21:47:50.798963+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-060000-w30v13-r2-t10-d-o2",
+          "20261026-060000-w30v13-r2-t11-q12-o1",
+          "20261026-060000-w30v13-r2-t12-h12-o2",
+          "20261026-060000-w30v13-r2-t13-q12-x1"
+        ],
+        "utc": "2026-10-25T21:54:51.746143+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t10-d-o2",
+        "utc": "2026-10-25T21:54:56.064048+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t11-q12-o1",
+        "utc": "2026-10-25T21:54:59.806836+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t12-h12-o2",
+        "utc": "2026-10-25T21:55:03.634266+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t13-q12-x1",
+        "utc": "2026-10-25T21:55:07.542526+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3040.15238571167,
+          "load_1m": 4.09,
+          "mem_available_gib": 109.8729019165039,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.0546875,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T21:57:59.449464+00:00",
+        "window": {
+          "minimum_free_gib": 3040.15238571167,
+          "minimum_mem_available_gib": 104.91453170776367,
+          "peak_load_1m": 5.95,
+          "peak_tree_rss_mib": 4545.0546875
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3040.1451568603516,
+          "load_1m": 3.54,
+          "mem_available_gib": 122.53264236450195,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.0546875,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T21:58:09.900022+00:00",
+        "window": {
+          "minimum_free_gib": 3040.1451568603516,
+          "minimum_mem_available_gib": 113.70495223999023,
+          "peak_load_1m": 4.09,
+          "peak_tree_rss_mib": 4545.0546875
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t10-d-o2",
+        "utc": "2026-10-25T21:58:14.022126+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t11-q12-o1",
+        "utc": "2026-10-25T21:58:16.215275+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t12-h12-o2",
+        "utc": "2026-10-25T21:58:19.842136+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t13-q12-x1",
+        "utc": "2026-10-25T21:58:23.529260+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-25T21:58:23.531215+00:00",
+        "verified": 13
+      },
+      {
+        "cap": 4,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-060000-w30v13-r2-t14-q12-x2",
+          "20261026-060000-w30v13-r2-t15-r12-x1",
+          "20261026-060000-w30v13-r2-t16-r12-x2",
+          "20261026-060000-w30v13-r2-t17-u12-x1"
+        ],
+        "utc": "2026-10-25T21:58:24.341838+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-060000-w30v13-r2-t14-q12-x2",
+          "20261026-060000-w30v13-r2-t15-r12-x1",
+          "20261026-060000-w30v13-r2-t16-r12-x2",
+          "20261026-060000-w30v13-r2-t17-u12-x1"
+        ],
+        "utc": "2026-10-25T22:05:28.183411+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t14-q12-x2",
+        "utc": "2026-10-25T22:05:32.525529+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t15-r12-x1",
+        "utc": "2026-10-25T22:05:36.257367+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t16-r12-x2",
+        "utc": "2026-10-25T22:05:40.085362+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t17-u12-x1",
+        "utc": "2026-10-25T22:05:43.880648+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3033.366226196289,
+          "load_1m": 4.05,
+          "mem_available_gib": 113.69308853149414,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.015625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T22:08:35.785178+00:00",
+        "window": {
+          "minimum_free_gib": 3033.366226196289,
+          "minimum_mem_available_gib": 104.90092849731445,
+          "peak_load_1m": 6.22,
+          "peak_tree_rss_mib": 4545.015625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3033.3571166992188,
+          "load_1m": 3.58,
+          "mem_available_gib": 122.51866912841797,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.015625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T22:08:46.264096+00:00",
+        "window": {
+          "minimum_free_gib": 3033.3571166992188,
+          "minimum_mem_available_gib": 113.695068359375,
+          "peak_load_1m": 4.05,
+          "peak_tree_rss_mib": 4545.015625
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t14-q12-x2",
+        "utc": "2026-10-25T22:08:49.582234+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t15-r12-x1",
+        "utc": "2026-10-25T22:08:53.020287+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t16-r12-x2",
+        "utc": "2026-10-25T22:08:56.410465+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t17-u12-x1",
+        "utc": "2026-10-25T22:08:59.858084+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-25T22:08:59.860565+00:00",
+        "verified": 17
+      },
+      {
+        "cap": 4,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-060000-w30v13-r2-t18-u12-x2"
+        ],
+        "utc": "2026-10-25T22:09:00.686191+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-060000-w30v13-r2-t18-u12-x2"
+        ],
+        "utc": "2026-10-25T22:14:59.788125+00:00"
+      },
+      {
+        "cap": 4,
+        "event": "started",
+        "id": "20261026-060000-w30v13-r2-t18-u12-x2",
+        "utc": "2026-10-25T22:15:04.020157+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 3031.658576965332,
+          "load_1m": 0.92,
+          "mem_available_gib": 122.52290344238281,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.8671875,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-25T22:18:05.713309+00:00",
+        "window": {
+          "minimum_free_gib": 3031.658576965332,
+          "minimum_mem_available_gib": 118.11681365966797,
+          "peak_load_1m": 2.11,
+          "peak_tree_rss_mib": 4544.8671875
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-060000-w30v13-r2-t18-u12-x2",
+        "utc": "2026-10-25T22:18:09.802739+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-25T22:18:09.804001+00:00",
+        "verified": 18
+      }
+    ],
+    "failures": {},
+    "pending": [],
+    "verified": {
+      "20261026-060000-w30v13-r2-t01-e-o0": {
+        "arm": "E",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "70c970c63da906181ac8745f290528c4006ac9818645eafc40af150b140b1086",
+        "id": "20261026-060000-w30v13-r2-t01-e-o0",
+        "lifecycle": {},
+        "observation": {},
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t01-e-o0",
+          "minimum_free_gib": 3060.4809074401855,
+          "minimum_mem_available_gib": 118.13203048706055,
+          "peak_load_1m": 0.96,
+          "peak_tree_rss_mib": 4545.05859375,
+          "samples": 40
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t02-e-o2": {
+        "arm": "E",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "70c970c63da906181ac8745f290528c4006ac9818645eafc40af150b140b1086",
+        "id": "20261026-060000-w30v13-r2-t02-e-o2",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 0,
+            "data_hops": 48200,
+            "full_rows": 48200,
+            "port_changes": 0,
+            "rejected": 0,
+            "switch_qps": 840
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 52719200,
+            "dropped": 0,
+            "enqueued": 52719200,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 309,
+              "fd_feedback_frames": 8416,
+              "fd_without_sack": 8416,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 22,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1152,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t02-e-o2",
+          "minimum_free_gib": 3053.7158164978027,
+          "minimum_mem_available_gib": 104.90935897827148,
+          "peak_load_1m": 7.17,
+          "peak_tree_rss_mib": 4544.76171875,
+          "samples": 37
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t03-q12-o0": {
+        "arm": "Q12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+        "id": "20261026-060000-w30v13-r2-t03-q12-o0",
+        "lifecycle": {},
+        "observation": {},
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t03-q12-o0",
+          "minimum_free_gib": 3053.706630706787,
+          "minimum_mem_available_gib": 104.91520690917969,
+          "peak_load_1m": 6.59,
+          "peak_tree_rss_mib": 4544.78125,
+          "samples": 38
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t04-q12-o2": {
+        "arm": "Q12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+        "id": "20261026-060000-w30v13-r2-t04-q12-o2",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 0,
+            "data_hops": 48200,
+            "full_rows": 48200,
+            "port_changes": 0,
+            "rejected": 0,
+            "switch_qps": 840
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 52719200,
+            "dropped": 0,
+            "enqueued": 52719200,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 326,
+              "fd_feedback_frames": 8416,
+              "fd_without_sack": 8416,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 18,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1152,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t04-q12-o2",
+          "minimum_free_gib": 3053.7064933776855,
+          "minimum_mem_available_gib": 104.91925430297852,
+          "peak_load_1m": 6.23,
+          "peak_tree_rss_mib": 4544.82421875,
+          "samples": 38
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t05-r12-o0": {
+        "arm": "R12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+        "id": "20261026-060000-w30v13-r2-t05-r12-o0",
+        "lifecycle": {},
+        "observation": {},
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t05-r12-o0",
+          "minimum_free_gib": 3053.706497192383,
+          "minimum_mem_available_gib": 104.92401123046875,
+          "peak_load_1m": 6.05,
+          "peak_tree_rss_mib": 4544.890625,
+          "samples": 37
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t06-r12-o2": {
+        "arm": "R12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+        "id": "20261026-060000-w30v13-r2-t06-r12-o2",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 0,
+            "data_hops": 48200,
+            "full_rows": 48200,
+            "port_changes": 0,
+            "rejected": 0,
+            "switch_qps": 840
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 52719200,
+            "dropped": 0,
+            "enqueued": 52719200,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 327,
+              "fd_feedback_frames": 8416,
+              "fd_without_sack": 8416,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 21,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1152,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t06-r12-o2",
+          "minimum_free_gib": 3046.9413566589355,
+          "minimum_mem_available_gib": 104.91205596923828,
+          "peak_load_1m": 7.27,
+          "peak_tree_rss_mib": 4544.92578125,
+          "samples": 37
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t07-u12-o0": {
+        "arm": "U12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+        "id": "20261026-060000-w30v13-r2-t07-u12-o0",
+        "lifecycle": {},
+        "observation": {},
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t07-u12-o0",
+          "minimum_free_gib": 3046.930244445801,
+          "minimum_mem_available_gib": 104.91884994506836,
+          "peak_load_1m": 6.77,
+          "peak_tree_rss_mib": 4544.90625,
+          "samples": 38
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t08-u12-o2": {
+        "arm": "U12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+        "id": "20261026-060000-w30v13-r2-t08-u12-o2",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 125,
+            "data_hops": 56815,
+            "full_rows": 56815,
+            "port_changes": 1118,
+            "rejected": 0,
+            "switch_qps": 1145
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 62264620,
+            "dropped": 0,
+            "enqueued": 62264620,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 1731,
+              "fd_feedback_frames": 10127,
+              "fd_without_sack": 9791,
+              "retransmit_bytes": 1711000,
+              "retransmit_packets": 1711,
+              "rx_below_expected": 1711,
+              "rx_gap": 177,
+              "sack_feedback": 336,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 26,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1143,
+              "retransmit_bytes": 9000,
+              "retransmit_packets": 9,
+              "rx_below_expected": 0,
+              "rx_gap": 9,
+              "sack_feedback": 9,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 2,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 33,
+              "retransmit_bytes": 3000,
+              "retransmit_packets": 3,
+              "rx_below_expected": 0,
+              "rx_gap": 2,
+              "sack_feedback": 3,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t08-u12-o2",
+          "minimum_free_gib": 3046.930377960205,
+          "minimum_mem_available_gib": 104.90548706054688,
+          "peak_load_1m": 6.55,
+          "peak_tree_rss_mib": 4544.93359375,
+          "samples": 37
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t09-d-o0": {
+        "arm": "D",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "6fa24eba33f8d5b7a8e2330d3c44d47948007eda060ca8f6e1258838fd497c37",
+        "id": "20261026-060000-w30v13-r2-t09-d-o0",
+        "lifecycle": {},
+        "observation": {},
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t09-d-o0",
+          "minimum_free_gib": 3046.928134918213,
+          "minimum_mem_available_gib": 104.90946578979492,
+          "peak_load_1m": 6.55,
+          "peak_tree_rss_mib": 4544.57421875,
+          "samples": 38
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t10-d-o2": {
+        "arm": "D",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "6fa24eba33f8d5b7a8e2330d3c44d47948007eda060ca8f6e1258838fd497c37",
+        "id": "20261026-060000-w30v13-r2-t10-d-o2",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 449,
+            "data_hops": 64670,
+            "full_rows": 64670,
+            "port_changes": 5557,
+            "rejected": 0,
+            "switch_qps": 2549
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 70967960,
+            "dropped": 0,
+            "enqueued": 70967960,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 2857,
+              "fd_feedback_frames": 11672,
+              "fd_without_sack": 10604,
+              "retransmit_bytes": 3258000,
+              "retransmit_packets": 3258,
+              "rx_below_expected": 3256,
+              "rx_gap": 719,
+              "sack_feedback": 1068,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 42,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1128,
+              "retransmit_bytes": 24000,
+              "retransmit_packets": 24,
+              "rx_below_expected": 0,
+              "rx_gap": 24,
+              "sack_feedback": 24,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 4,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 24,
+              "retransmit_bytes": 12000,
+              "retransmit_packets": 12,
+              "rx_below_expected": 0,
+              "rx_gap": 4,
+              "sack_feedback": 12,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t10-d-o2",
+          "minimum_free_gib": 3040.160270690918,
+          "minimum_mem_available_gib": 104.91201782226562,
+          "peak_load_1m": 6.66,
+          "peak_tree_rss_mib": 4544.859375,
+          "samples": 37
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t11-q12-o1": {
+        "arm": "Q12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+        "id": "20261026-060000-w30v13-r2-t11-q12-o1",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 0,
+            "data_hops": 48200,
+            "full_rows": 0,
+            "port_changes": 0,
+            "rejected": 0,
+            "switch_qps": 840
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 52719200,
+            "dropped": 0,
+            "enqueued": 52719200,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 326,
+              "fd_feedback_frames": 8416,
+              "fd_without_sack": 8416,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 18,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1152,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t11-q12-o1",
+          "minimum_free_gib": 3040.152114868164,
+          "minimum_mem_available_gib": 104.91709899902344,
+          "peak_load_1m": 6.66,
+          "peak_tree_rss_mib": 4545.0546875,
+          "samples": 38
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t12-h12-o2": {
+        "arm": "H12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "70c970c63da906181ac8745f290528c4006ac9818645eafc40af150b140b1086",
+        "id": "20261026-060000-w30v13-r2-t12-h12-o2",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 0,
+            "data_hops": 48200,
+            "full_rows": 48200,
+            "port_changes": 0,
+            "rejected": 0,
+            "switch_qps": 840
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 52719200,
+            "dropped": 0,
+            "enqueued": 52719200,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 309,
+              "fd_feedback_frames": 8416,
+              "fd_without_sack": 8416,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 22,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1152,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t12-h12-o2",
+          "minimum_free_gib": 3040.1521224975586,
+          "minimum_mem_available_gib": 104.9063491821289,
+          "peak_load_1m": 6.21,
+          "peak_tree_rss_mib": 4544.953125,
+          "samples": 37
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t13-q12-x1": {
+        "arm": "Q12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+        "id": "20261026-060000-w30v13-r2-t13-q12-x1",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 0,
+            "data_hops": 48200,
+            "full_rows": 48200,
+            "port_changes": 0,
+            "rejected": 0,
+            "switch_qps": 840
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 52719200,
+            "dropped": 0,
+            "enqueued": 52719200,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 326,
+              "fd_feedback_frames": 8416,
+              "fd_without_sack": 8416,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 18,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1152,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t13-q12-x1",
+          "minimum_free_gib": 3040.1451568603516,
+          "minimum_mem_available_gib": 104.90773010253906,
+          "peak_load_1m": 5.95,
+          "peak_tree_rss_mib": 4544.85546875,
+          "samples": 38
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t14-q12-x2": {
+        "arm": "Q12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "1f71d7e802ec1b334aff9c6708be5abc2420c6fa7c31e2b6e2f3fdb1232bb44e",
+        "id": "20261026-060000-w30v13-r2-t14-q12-x2",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 0,
+            "data_hops": 48200,
+            "full_rows": 48200,
+            "port_changes": 0,
+            "rejected": 0,
+            "switch_qps": 840
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 52719200,
+            "dropped": 0,
+            "enqueued": 52719200,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 326,
+              "fd_feedback_frames": 8416,
+              "fd_without_sack": 8416,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 18,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1152,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t14-q12-x2",
+          "minimum_free_gib": 3033.366226196289,
+          "minimum_mem_available_gib": 104.89897918701172,
+          "peak_load_1m": 6.82,
+          "peak_tree_rss_mib": 4544.62890625,
+          "samples": 38
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t15-r12-x1": {
+        "arm": "R12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+        "id": "20261026-060000-w30v13-r2-t15-r12-x1",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 0,
+            "data_hops": 48200,
+            "full_rows": 48200,
+            "port_changes": 0,
+            "rejected": 0,
+            "switch_qps": 840
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 52719200,
+            "dropped": 0,
+            "enqueued": 52719200,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 327,
+              "fd_feedback_frames": 8416,
+              "fd_without_sack": 8416,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 21,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1152,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t15-r12-x1",
+          "minimum_free_gib": 3033.3660888671875,
+          "minimum_mem_available_gib": 104.89091873168945,
+          "peak_load_1m": 6.51,
+          "peak_tree_rss_mib": 4544.4375,
+          "samples": 38
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t16-r12-x2": {
+        "arm": "R12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "e31016d245622d0f4f20b6cf4c5812d9370796af6037c880a37cff03543276b9",
+        "id": "20261026-060000-w30v13-r2-t16-r12-x2",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 0,
+            "data_hops": 48200,
+            "full_rows": 48200,
+            "port_changes": 0,
+            "rejected": 0,
+            "switch_qps": 840
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 52719200,
+            "dropped": 0,
+            "enqueued": 52719200,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 327,
+              "fd_feedback_frames": 8416,
+              "fd_without_sack": 8416,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 21,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1152,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t16-r12-x2",
+          "minimum_free_gib": 3033.3660926818848,
+          "minimum_mem_available_gib": 104.89281463623047,
+          "peak_load_1m": 6.51,
+          "peak_tree_rss_mib": 4545.015625,
+          "samples": 37
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t17-u12-x1": {
+        "arm": "U12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+        "id": "20261026-060000-w30v13-r2-t17-u12-x1",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 125,
+            "data_hops": 56815,
+            "full_rows": 56815,
+            "port_changes": 1118,
+            "rejected": 0,
+            "switch_qps": 1145
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 62264620,
+            "dropped": 0,
+            "enqueued": 62264620,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 1731,
+              "fd_feedback_frames": 10127,
+              "fd_without_sack": 9791,
+              "retransmit_bytes": 1711000,
+              "retransmit_packets": 1711,
+              "rx_below_expected": 1711,
+              "rx_gap": 177,
+              "sack_feedback": 336,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 26,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1143,
+              "retransmit_bytes": 9000,
+              "retransmit_packets": 9,
+              "rx_below_expected": 0,
+              "rx_gap": 9,
+              "sack_feedback": 9,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 2,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 33,
+              "retransmit_bytes": 3000,
+              "retransmit_packets": 3,
+              "rx_below_expected": 0,
+              "rx_gap": 2,
+              "sack_feedback": 3,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t17-u12-x1",
+          "minimum_free_gib": 3033.3571128845215,
+          "minimum_mem_available_gib": 104.89559173583984,
+          "peak_load_1m": 6.22,
+          "peak_tree_rss_mib": 4544.96484375,
+          "samples": 38
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      },
+      "20261026-060000-w30v13-r2-t18-u12-x2": {
+        "arm": "U12",
+        "cap": 4,
+        "completed_rows": 168,
+        "fct_sha256": "d81401bda6986c498e765308abad1e958172f42b0a3aba58cae0a9a3f00fd4f8",
+        "id": "20261026-060000-w30v13-r2-t18-u12-x2",
+        "lifecycle": {},
+        "observation": {
+          "path": {
+            "changed_qps": 125,
+            "data_hops": 56815,
+            "full_rows": 56815,
+            "port_changes": 1118,
+            "rejected": 0,
+            "switch_qps": 1145
+          },
+          "queue": {
+            "admission_dropped_bytes": 0,
+            "current": 0,
+            "dequeued": 62264620,
+            "dropped": 0,
+            "enqueued": 62264620,
+            "queue_rejected_bytes": 0,
+            "violations": 0
+          },
+          "transport_by_tag": {
+            "0": {
+              "cnp_feedback": 0,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 36,
+              "retransmit_bytes": 0,
+              "retransmit_packets": 0,
+              "rx_below_expected": 0,
+              "rx_gap": 0,
+              "sack_feedback": 0,
+              "timeout": 0
+            },
+            "1": {
+              "cnp_feedback": 1731,
+              "fd_feedback_frames": 10127,
+              "fd_without_sack": 9791,
+              "retransmit_bytes": 1711000,
+              "retransmit_packets": 1711,
+              "rx_below_expected": 1711,
+              "rx_gap": 177,
+              "sack_feedback": 336,
+              "timeout": 0
+            },
+            "2": {
+              "cnp_feedback": 26,
+              "fd_feedback_frames": 1152,
+              "fd_without_sack": 1143,
+              "retransmit_bytes": 9000,
+              "retransmit_packets": 9,
+              "rx_below_expected": 0,
+              "rx_gap": 9,
+              "sack_feedback": 9,
+              "timeout": 0
+            },
+            "3": {
+              "cnp_feedback": 2,
+              "fd_feedback_frames": 36,
+              "fd_without_sack": 33,
+              "retransmit_bytes": 3000,
+              "retransmit_packets": 3,
+              "rx_below_expected": 0,
+              "rx_gap": 2,
+              "sack_feedback": 3,
+              "timeout": 0
+            }
+          }
+        },
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-060000-w30v13-r2-t18-u12-x2",
+          "minimum_free_gib": 3031.6585807800293,
+          "minimum_mem_available_gib": 118.11506652832031,
+          "peak_load_1m": 2.11,
+          "peak_tree_rss_mib": 4544.8671875,
+          "samples": 37
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+      }
+    }
+  },
+  "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+}

@@ -1,0 +1,388 @@
+{
+  "status": "FROZEN PROPOSAL FOR MAIN-CHAT REVIEW; NOT EXECUTABLE",
+  "execution_enabled": false,
+  "experiment_ids_allocated": false,
+  "reference_simulation_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+  "future_observer_source_sha": null,
+  "new_source_and_trace_hash_freeze_required": true,
+  "purpose": "Measure algorithm action and both traffic outcomes during sustained bulk RDMA and staggered short-message rounds; synthetic workload breadth only.",
+  "methods": [
+    "fecmp",
+    "conga",
+    "letflow",
+    "conweave",
+    "drill",
+    "ws30v13-q12",
+    "ws30v13-r12",
+    "ws30v13-u12"
+  ],
+  "external_methods_excluded_pending_fidelity": [
+    "Gemma",
+    "SeqBalance",
+    "DiffFlow",
+    "SGLB"
+  ],
+  "topology": "topo_1280_400G_400G_OS1",
+  "common": {
+    "cc": "dcqcn",
+    "pfc": 0,
+    "irn": 1,
+    "bw_gbps": 400,
+    "buffer_cli": 9,
+    "simulation_seed": 1,
+    "simul_time_argument": 0.01,
+    "netload_argument": 10,
+    "explicit_trace": true,
+    "workload_tag_only_for_analysis": true
+  },
+  "ConWeave_parameters_us": {
+    "extra_reply_deadline": 4,
+    "path_pause": 16,
+    "extra_voq_flush": 16,
+    "default_voq_waiting": 300,
+    "tx_expiry": 1000
+  },
+  "demand": {
+    "generator_basis": "make_ws25_demand.py endpoint sampling with explicit time/size changes in a new generator",
+    "expert_hosts": 256,
+    "background_hosts": 64,
+    "moe_rounds": 8,
+    "moe_flows_per_round": 2048,
+    "moe_bytes_per_flow": 8192,
+    "moe_total_flows": 16384,
+    "moe_total_bytes": 134217728,
+    "moe_peers_per_source_per_round": 8,
+    "round_interval_ns": 100000,
+    "background_flows": 32,
+    "background_bytes_per_flow": 67108864,
+    "background_total_bytes": 2147483648,
+    "total_payload_bytes": 2281701376,
+    "background_minimum_solo_serialization_ns": 1342177.28,
+    "demand_start_ns": 2000000000,
+    "concurrent_foreground_offset_ns": 0,
+    "lead_foreground_offset_ns": 20000,
+    "background_pairs": "first 32 distinct directed background pairs from the fixed seeded generator",
+    "moe_partition": "each source keeps 64 distinct peers; partition a seeded peer permutation into eight disjoint groups of eight",
+    "qp_semantics": "each bulk flow is one continuously active QP; each short trace row is a fresh QP, not a persistent WQE API model",
+    "node_order": "stable order by (time, background before foreground, source, peer index), identical across methods"
+  },
+  "observations": {
+    "action": [
+      "native RTT_REPLY/CLEAR/NOTIFY counters",
+      "actual data port changes versus native reroute attempt count",
+      "bounded passive per-QP epoch/phase/INIT/TAIL/CLEAR/NOTIFY state-transition records",
+      "VOQ allocated/flushed/max packets and buffer age",
+      "feedback age and waiting cost",
+      "shared queue/identity/payload conservation",
+      "receiver gap/SACK/retransmission/timeout by tag"
+    ],
+    "performance": [
+      "all eight per-round complete-message max from each demand origin",
+      "complete job max including staggered waiting",
+      "all 32 background FCT plus linear P99/P50/max",
+      "individual paired flow FCT distribution and completion fraction"
+    ],
+    "notes": [
+      "32-background P99 has low tail resolution: publish all 32 values and max",
+      "two demand seeds are pilot replication, no confirmatory significance claim",
+      "zero native reroute/VOQ is an observed action outcome, not justification to change timeouts"
+    ]
+  },
+  "observer_qualification_cells": [
+    {
+      "design_id": "W5-r1-observer-technical168-o0",
+      "method": "conweave",
+      "fixture": "technical168",
+      "observe": 0,
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-observer-technical168-o1",
+      "method": "conweave",
+      "fixture": "technical168",
+      "observe": 1,
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-observer-sustained_prefix-o0",
+      "method": "conweave",
+      "fixture": "sustained_prefix",
+      "observe": 0,
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-observer-sustained_prefix-o1",
+      "method": "conweave",
+      "fixture": "sustained_prefix",
+      "observe": 1,
+      "simulation_seed": 1
+    }
+  ],
+  "comparison_cells": [
+    {
+      "design_id": "W5-r1-s20263101-concurrent-fecmp",
+      "demand_seed": 20263101,
+      "schedule": "concurrent",
+      "method": "fecmp",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-concurrent-conga",
+      "demand_seed": 20263101,
+      "schedule": "concurrent",
+      "method": "conga",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-concurrent-letflow",
+      "demand_seed": 20263101,
+      "schedule": "concurrent",
+      "method": "letflow",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-concurrent-conweave",
+      "demand_seed": 20263101,
+      "schedule": "concurrent",
+      "method": "conweave",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-concurrent-drill",
+      "demand_seed": 20263101,
+      "schedule": "concurrent",
+      "method": "drill",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-concurrent-ws30v13-q12",
+      "demand_seed": 20263101,
+      "schedule": "concurrent",
+      "method": "ws30v13-q12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-concurrent-ws30v13-r12",
+      "demand_seed": 20263101,
+      "schedule": "concurrent",
+      "method": "ws30v13-r12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-concurrent-ws30v13-u12",
+      "demand_seed": 20263101,
+      "schedule": "concurrent",
+      "method": "ws30v13-u12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-background_lead20us-fecmp",
+      "demand_seed": 20263101,
+      "schedule": "background_lead20us",
+      "method": "fecmp",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-background_lead20us-conga",
+      "demand_seed": 20263101,
+      "schedule": "background_lead20us",
+      "method": "conga",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-background_lead20us-letflow",
+      "demand_seed": 20263101,
+      "schedule": "background_lead20us",
+      "method": "letflow",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-background_lead20us-conweave",
+      "demand_seed": 20263101,
+      "schedule": "background_lead20us",
+      "method": "conweave",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-background_lead20us-drill",
+      "demand_seed": 20263101,
+      "schedule": "background_lead20us",
+      "method": "drill",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-background_lead20us-ws30v13-q12",
+      "demand_seed": 20263101,
+      "schedule": "background_lead20us",
+      "method": "ws30v13-q12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-background_lead20us-ws30v13-r12",
+      "demand_seed": 20263101,
+      "schedule": "background_lead20us",
+      "method": "ws30v13-r12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263101-background_lead20us-ws30v13-u12",
+      "demand_seed": 20263101,
+      "schedule": "background_lead20us",
+      "method": "ws30v13-u12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-concurrent-fecmp",
+      "demand_seed": 20263102,
+      "schedule": "concurrent",
+      "method": "fecmp",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-concurrent-conga",
+      "demand_seed": 20263102,
+      "schedule": "concurrent",
+      "method": "conga",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-concurrent-letflow",
+      "demand_seed": 20263102,
+      "schedule": "concurrent",
+      "method": "letflow",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-concurrent-conweave",
+      "demand_seed": 20263102,
+      "schedule": "concurrent",
+      "method": "conweave",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-concurrent-drill",
+      "demand_seed": 20263102,
+      "schedule": "concurrent",
+      "method": "drill",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-concurrent-ws30v13-q12",
+      "demand_seed": 20263102,
+      "schedule": "concurrent",
+      "method": "ws30v13-q12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-concurrent-ws30v13-r12",
+      "demand_seed": 20263102,
+      "schedule": "concurrent",
+      "method": "ws30v13-r12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-concurrent-ws30v13-u12",
+      "demand_seed": 20263102,
+      "schedule": "concurrent",
+      "method": "ws30v13-u12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-background_lead20us-fecmp",
+      "demand_seed": 20263102,
+      "schedule": "background_lead20us",
+      "method": "fecmp",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-background_lead20us-conga",
+      "demand_seed": 20263102,
+      "schedule": "background_lead20us",
+      "method": "conga",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-background_lead20us-letflow",
+      "demand_seed": 20263102,
+      "schedule": "background_lead20us",
+      "method": "letflow",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-background_lead20us-conweave",
+      "demand_seed": 20263102,
+      "schedule": "background_lead20us",
+      "method": "conweave",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-background_lead20us-drill",
+      "demand_seed": 20263102,
+      "schedule": "background_lead20us",
+      "method": "drill",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-background_lead20us-ws30v13-q12",
+      "demand_seed": 20263102,
+      "schedule": "background_lead20us",
+      "method": "ws30v13-q12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-background_lead20us-ws30v13-r12",
+      "demand_seed": 20263102,
+      "schedule": "background_lead20us",
+      "method": "ws30v13-r12",
+      "simulation_seed": 1
+    },
+    {
+      "design_id": "W5-r1-s20263102-background_lead20us-ws30v13-u12",
+      "demand_seed": 20263102,
+      "schedule": "background_lead20us",
+      "method": "ws30v13-u12",
+      "simulation_seed": 1
+    }
+  ],
+  "total_proposed_cells": 36,
+  "acceptance": [
+    "all input identities/payloads complete",
+    "observation off/on FCT hashes identical for both qualification inputs",
+    "data route changes correspond to native phase/TAIL handling",
+    "source implementations and native timers fixed before performance runs",
+    "all zero/negative outcomes preserved"
+  ],
+  "stop": [
+    "identity or byte loss",
+    "observer perturbation",
+    "unknown remote work or safety threshold violation",
+    "unbounded event logs",
+    "fidelity gap not declared"
+  ],
+  "budget": {
+    "remote_hours_range": [
+      2,
+      4
+    ],
+    "source_observer_and_generator_hours_range": [
+      1,
+      2
+    ],
+    "analysis_and_fetch_hours_range": [
+      1.5,
+      2
+    ],
+    "total_hours_range": [
+      4.5,
+      8
+    ],
+    "basis": "v13 measured cap8 383s/batch and about7min/4 isolated builds; proposed bytes are 1.3076923 times the resource pilot; this is a budget, not a measured prediction"
+  },
+  "formal_168_status": "still disabled; no scope extension implied",
+  "observer_qualification_spec": {
+    "technical168": "Existing immutable config/ws30_technical168.txt on the supported large topology",
+    "sustained_prefix": "Seed 20263101, all 32 background 64MiB QPs and first 128 short messages from foreground round 0; concurrent schedule",
+    "observer_limit_bytes": 67108864,
+    "passive_only": true
+  }
+}

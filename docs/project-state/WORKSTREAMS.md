@@ -1,10 +1,10 @@
 # 工作流台账
 
-更新：2026-10-25（WS-30 跨阶段数据/图表包完成，等待核对与全文整合）。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
+更新：2026-10-26（WS-30 v13 的 46 格运行和分析完成，科学覆盖缺口待核对）。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。WS-25 行保留 2026 年 10 月 4 日的历史批次快照；WS-27 记录的 WS-25 NO-GO 不构成对其旧判据的重新审计。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；v13 工程实现与冻结计划就绪，实际模型切换断点 | [工程断点](../research/ws30-v13-model-switch-checkpoint-r2.md)：严格无类别 Q12/R12/U12、三轮持久 QP 和元组控制已实现；固定源码 `2c9f3a5`，r2 计划与46个新ID资源门槛已冻结，隔离构建已启动；静态输入和历史函数核验通过 | 实际切 Luna / Medium 后连续完成技术18格、生命周期16格、pilot12格；终态回传后实际切回 Sol / Medium 分析验收，正式120＋48格保持关闭；未闭环 |
+| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；46 格运行与独立 raw 分析完成，科学覆盖缺口保留 | [节点报告](../research/ws30-v13-engineering-node-report-r1.md)：技术 18、生命周期 16、pilot 12 成功；202,020 条身份/字节核验；观测/tag/旧哈希通过。持久对象、累计 ACK 与缓存清理有证据；非初始 CC/SACK 和持久不同候选未动态覆盖 | 主对话核验后明确补验与正式 seed schema；cap 8 构建运行约 23.55 格/小时。正式 120＋48 格及 [W5 建议 36 格](../research/ws30-w5-baseline-comparability-and-pilot-r1.md)均关闭；未闭环 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |
