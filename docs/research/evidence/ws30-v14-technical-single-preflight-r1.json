@@ -1,0 +1,96 @@
+{
+  "created_utc": "2026-10-26T20:53:21.036660+00:00",
+  "actual_context": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "turn_id": "01a179fa-9ecd-7a70-95ab-f136276102c3"
+  },
+  "scope": "technical-single only; no build or simulation yet",
+  "cell": {
+    "arm": "E",
+    "background": 32,
+    "cap": 4,
+    "expected_tags": {
+      "0": 4,
+      "1": 32,
+      "2": 128,
+      "3": 4
+    },
+    "id": "20261026-120000-w30v14-t01-e-o0",
+    "input_flows": 168,
+    "lifecycle": 0,
+    "mode": "fecmp",
+    "observe": 0,
+    "role": "regression",
+    "run_order": 0,
+    "source_sha": "0673e4c3de34d83585dd40f6be7fbd3ed000a9ee",
+    "tag_transform": 0,
+    "topology": "topo_1280_400G_400G_OS1",
+    "topology_sha256": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+    "trace": "ws30_technical168.txt",
+    "trace_sha256": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb",
+    "simulation_seed": 1,
+    "demand_seed": null,
+    "life_profile": 0,
+    "simul_time": "0.01",
+    "regression_original_id": "20261026-060000-w30v13-r2-t01-e-o0"
+  },
+  "origin": "https://github.com/LarryBUPT/conweave-ns3.git",
+  "origin_branch_head": "a39b14958e2c3bcdc1cf5bb80cad609669640839",
+  "fixed_source_reachable_from_origin_branch": true,
+  "remote_cached_input_hashes": {
+    "config/topo_1280_400G_400G_OS1.txt": "74a6f7154ca10c3cd6dfd45046c4f8abf0ce27faa8ad11446b6a52920b83afba",
+    "config/ws30_technical168.txt": "64a470ba98ad86aa2f1178df1a0404c64d5bae95fe1ad87c8454a4eb4e4962eb"
+  },
+  "remote_inventory": {
+    "20261026-120000-w30v14-t01-e-o0": {
+      "results": false,
+      "runs": false
+    }
+  },
+  "remote_initial_state": {
+    "20261026-120000-w30v14-t01-e-o0": null
+  },
+  "resource": {
+    "workspace": "/home/fnl/lzy",
+    "host": "ns3host",
+    "cpu_logical": "40",
+    "load_1m": "0.08",
+    "active_simulation_pids": "",
+    "mem_available_gib": "122.49",
+    "simulation_max_process_rss_mib": "0.0",
+    "python": "3.5.2",
+    "docker_access": "no",
+    "free_gib": "2697.6",
+    "gcc": "/usr/bin/gcc",
+    "g++": "/usr/bin/g++",
+    "git": "/usr/bin/git",
+    "make": "/usr/bin/make",
+    "cmake": "/usr/bin/cmake",
+    "tmux": "/usr/bin/tmux",
+    "screen": "/usr/bin/screen",
+    "rsync": "/usr/bin/rsync",
+    "other_users": [],
+    "unexpected_simulation_pids": [],
+    "rss_mib": 0.0
+  },
+  "worker_sha256": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc",
+  "original_authorization_sha256": "7850eb7c9e937515b29ccdba6f5a888135aa324c98f74b3b13105d1433a48d27",
+  "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+  "schedule_sha256": "2999ccc3bcfbf73a099365428cdc2c42fb8dccba23f1d845911a7f521c043994",
+  "control_sha256": {
+    "scripts/run_ws30_v14.py": "c0f07d7c3586f38bf8a4a71dc17ee97ce8e37c3cec855a2f9f5c08d103f9c592",
+    "scripts/verify_ws30_v14_raw.py": "38c2f471479da2f5a9d437dfd92b15f1c7e6163ca115c3976bc01bde383e1dbc",
+    "scripts/remote_experiment.py": "5de584f0a91f77a3286b86831fef5b529e614c393cd8fcb67cb20bcea140ab3b",
+    "scripts/remote_worker.py": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc",
+    "scripts/run_ws30_stage3.py": "1f8f9192ea0dbef89eaaabc1f45a68ea26097d71fbd7a10162de9351cf385e58",
+    "scripts/run_ws30_v13.py": "d30dfd565568a83da665605bbd787ac1ee24c137136b76158bcec545c5372392",
+    "scripts/run_ws30_stage2.py": "e2f0d80288f0d44ecb8a849551159fe77738fec8e2e1c77d171ef3e42f6008fe",
+    "scripts/run_ws25_formal.py": "5bebe596708bedc04032980649ef29d3a945be2ff370f811aae85309ddefae9c",
+    "scripts/run_ws25_preflight.py": "1457e1af52db5c1d8d0c8f9cefbcba7ea668d4349456c997867d581bd99402b1",
+    "scripts/run_ws25_resource_pilot.py": "e153c91320e76d5b745c9a70fc771e04ecdfed22f726b91d2f6b3ad95f05f3f0",
+    "scripts/run_ws25_v1fix_calibration.py": "718fb070eac30831632a30a648ec9f774a394b62575a0c19bb21af4404c03ddd"
+  },
+  "new_builds": 0,
+  "new_simulations": 0
+}

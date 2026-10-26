@@ -1,0 +1,48 @@
+{
+  "approved": true,
+  "external_sync_approved": true,
+  "created_utc": "2026-10-26T20:54:50.688274+00:00",
+  "phases": [
+    "technical-single"
+  ],
+  "phase_caps": {
+    "technical-single": 1
+  },
+  "ids": [
+    "20261026-120000-w30v14-t01-e-o0"
+  ],
+  "fixed_source_sha": "0673e4c3de34d83585dd40f6be7fbd3ed000a9ee",
+  "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+  "schedule_sha256": "2999ccc3bcfbf73a099365428cdc2c42fb8dccba23f1d845911a7f521c043994",
+  "control_sha256": {
+    "scripts/run_ws30_v14.py": "c0f07d7c3586f38bf8a4a71dc17ee97ce8e37c3cec855a2f9f5c08d103f9c592",
+    "scripts/verify_ws30_v14_raw.py": "38c2f471479da2f5a9d437dfd92b15f1c7e6163ca115c3976bc01bde383e1dbc",
+    "scripts/remote_experiment.py": "5de584f0a91f77a3286b86831fef5b529e614c393cd8fcb67cb20bcea140ab3b",
+    "scripts/remote_worker.py": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc",
+    "scripts/run_ws30_stage3.py": "1f8f9192ea0dbef89eaaabc1f45a68ea26097d71fbd7a10162de9351cf385e58",
+    "scripts/run_ws30_v13.py": "d30dfd565568a83da665605bbd787ac1ee24c137136b76158bcec545c5372392",
+    "scripts/run_ws30_stage2.py": "e2f0d80288f0d44ecb8a849551159fe77738fec8e2e1c77d171ef3e42f6008fe",
+    "scripts/run_ws25_formal.py": "5bebe596708bedc04032980649ef29d3a945be2ff370f811aae85309ddefae9c",
+    "scripts/run_ws25_preflight.py": "1457e1af52db5c1d8d0c8f9cefbcba7ea668d4349456c997867d581bd99402b1",
+    "scripts/run_ws25_resource_pilot.py": "e153c91320e76d5b745c9a70fc771e04ecdfed22f726b91d2f6b3ad95f05f3f0",
+    "scripts/run_ws25_v1fix_calibration.py": "718fb070eac30831632a30a648ec9f774a394b62575a0c19bb21af4404c03ddd"
+  },
+  "entry_sha256": "19e45268c9051a1d673c8e01ccccce35894c005b636824cf475b2c84e409ddbc",
+  "original_authorization_sha256": "7850eb7c9e937515b29ccdba6f5a888135aa324c98f74b3b13105d1433a48d27",
+  "acceptance_evidence_sha256": {
+    "thesis/ws30-v13-formal-complete-main-verification.json": "98d4400ed40b94733a13d8612ffdf1b441f635e136795c347217d1a21ff6803a",
+    "thesis/ws30-v13-formal-stats-main-audit-r2.json": "0bc6457e321299565b7b2e0728373c9e70c4a5f84d28f96b349f25372928e8e5"
+  },
+  "supervision_model": "gpt-6-luna",
+  "supervision_effort": "medium",
+  "analysis_model": "gpt-6.1-sol",
+  "analysis_effort": "medium",
+  "authorization_evidence": {
+    "source_thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
+    "source_turn_id": "01a179f8-063a-73b1-9dd3-98350b9c9817",
+    "basis": "Standing user task delegates node acceptance and next-stage sequencing to the main integration task. Main task independently accepted all formal raw and explicitly released only technical-single, cap1, fixed 0673e4c; original formal authorization remains sealed.",
+    "scope": "Only 20261026-120000-w30v14-t01-e-o0. No technical-rest, lifecycle or W5 release.",
+    "human_standing_task_evidence": "Main task current user instructions require all review experiments, assign remote execution exclusively to this task, and require main-task original-evidence acceptance before next-stage decisions."
+  },
+  "failure_policy": "Preserve failed ID/raw; stop. No rerun, replacement or occupied-ID recovery through this entry."
+}
