@@ -1,0 +1,2029 @@
+{
+  "analysis_context": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol",
+    "turn_id": "01a178e4-c2d8-7211-bdf0-566f073c2153"
+  },
+  "authorization_sha256": "f974ba2a437beb2d1becd2bc746ea6cce81ded05261022b67a295cf571322533",
+  "created_utc": "2026-10-26T15:48:41.302656+00:00",
+  "local": {
+    "20261026-120000-w30v14-m-s20263034-d": {
+      "intent": {
+        "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+        "id": "20261026-120000-w30v14-m-s20263034-d",
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "state": "built"
+      },
+      "intent_sha256": "48ab0ce003d2958774a6bfdd6ab61ba409c852b3a5ca8ea20a14aa916ab2b192",
+      "inventory": [
+        "results\\ws30-v14-build-intents\\20261026-120000-w30v14-m-s20263034-d.json"
+      ]
+    },
+    "20261026-120000-w30v14-m-s20263034-u12": {
+      "intent": {
+        "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+        "id": "20261026-120000-w30v14-m-s20263034-u12",
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "state": "requested"
+      },
+      "intent_sha256": "7c8fe1443ccea87aadd9cc5199c1db109f23e63312edaad38d00e81657966824",
+      "inventory": [
+        "results\\ws30-v14-build-intents\\20261026-120000-w30v14-m-s20263034-u12.json"
+      ]
+    },
+    "20261026-120000-w30v14-m-s20263035-d": {
+      "intent": null,
+      "intent_sha256": null,
+      "inventory": []
+    },
+    "20261026-120000-w30v14-m-s20263035-e": {
+      "intent": {
+        "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+        "id": "20261026-120000-w30v14-m-s20263035-e",
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "state": "requested"
+      },
+      "intent_sha256": "e61cdda2c2dd64a443ff51c78ba5789a3a91d40576c1e1daadb49aed3ad5dd10",
+      "inventory": [
+        "results\\ws30-v14-build-intents\\20261026-120000-w30v14-m-s20263035-e.json"
+      ]
+    },
+    "20261026-120000-w30v14-m-s20263035-q12": {
+      "intent": {
+        "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+        "id": "20261026-120000-w30v14-m-s20263035-q12",
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "state": "requested"
+      },
+      "intent_sha256": "72a7eea0decb68b4bb09551b4499e1e6558dbc6e0d1dcd94d7fecd3d81518111",
+      "inventory": [
+        "results\\ws30-v14-build-intents\\20261026-120000-w30v14-m-s20263035-q12.json"
+      ]
+    },
+    "20261026-120000-w30v14-m-s20263035-r12": {
+      "intent": null,
+      "intent_sha256": null,
+      "inventory": []
+    },
+    "20261026-120000-w30v14-m-s20263035-u12": {
+      "intent": null,
+      "intent_sha256": null,
+      "inventory": []
+    },
+    "20261026-120000-w30v14-m-s20263036-e": {
+      "intent": null,
+      "intent_sha256": null,
+      "inventory": []
+    }
+  },
+  "original_state": {
+    "cap": 8,
+    "contract": "e423fa2e4ad315c7d6ba8b1cae9fafeb38f8d0be0cb40338e79c6079ec4bdbef",
+    "events": [
+      {
+        "authorization_sha256": "f974ba2a437beb2d1becd2bc746ea6cce81ded05261022b67a295cf571322533",
+        "event": "reviewed_resume_started",
+        "pid": 4928,
+        "plan_sha256": "a7ab77abb8e0222133968c98aa28c1e25e38ddacdaeb14eebcbe10ef97bc0648",
+        "retained_successes": 24,
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "utc": "2026-10-26T10:43:12.411440+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263026-u12",
+          "20261026-120000-w30v14-m-s20263026-d",
+          "20261026-120000-w30v14-m-s20263027-e",
+          "20261026-120000-w30v14-m-s20263027-q12",
+          "20261026-120000-w30v14-m-s20263027-r12",
+          "20261026-120000-w30v14-m-s20263027-u12",
+          "20261026-120000-w30v14-m-s20263027-d",
+          "20261026-120000-w30v14-m-s20263028-e"
+        ],
+        "utc": "2026-10-26T10:43:14.401169+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263026-u12",
+          "20261026-120000-w30v14-m-s20263026-d",
+          "20261026-120000-w30v14-m-s20263027-e",
+          "20261026-120000-w30v14-m-s20263027-q12"
+        ],
+        "utc": "2026-10-26T10:50:35.430821+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263027-r12",
+          "20261026-120000-w30v14-m-s20263027-u12",
+          "20261026-120000-w30v14-m-s20263027-d",
+          "20261026-120000-w30v14-m-s20263028-e"
+        ],
+        "utc": "2026-10-26T10:57:32.668094+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263026-u12",
+        "utc": "2026-10-26T10:57:39.632223+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263026-d",
+        "utc": "2026-10-26T10:57:45.966388+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263027-e",
+        "utc": "2026-10-26T10:57:52.146488+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263027-q12",
+        "utc": "2026-10-26T10:57:58.592524+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263027-r12",
+        "utc": "2026-10-26T10:58:04.751540+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263027-u12",
+        "utc": "2026-10-26T10:58:10.915343+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263027-d",
+        "utc": "2026-10-26T10:58:17.298728+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263028-e",
+        "utc": "2026-10-26T10:58:23.892797+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2922.7241706848145,
+          "load_1m": 7.99,
+          "mem_available_gib": 96.04039764404297,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.1484375,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:03:48.120083+00:00",
+        "window": {
+          "minimum_free_gib": 2922.7241706848145,
+          "minimum_mem_available_gib": 87.2166748046875,
+          "peak_load_1m": 8.16,
+          "peak_tree_rss_mib": 4545.1484375
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2922.7073097229004,
+          "load_1m": 7.6,
+          "mem_available_gib": 105.4229965209961,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.1484375,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:03:59.033607+00:00",
+        "window": {
+          "minimum_free_gib": 2922.7073097229004,
+          "minimum_mem_available_gib": 96.04716491699219,
+          "peak_load_1m": 7.99,
+          "peak_tree_rss_mib": 4545.1484375
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2922.6954612731934,
+          "load_1m": 6.89,
+          "mem_available_gib": 109.84361267089844,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.1484375,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:04:10.007516+00:00",
+        "window": {
+          "minimum_free_gib": 2922.6954612731934,
+          "minimum_mem_available_gib": 109.24831771850586,
+          "peak_load_1m": 7.6,
+          "peak_tree_rss_mib": 4545.1484375
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2922.689613342285,
+          "load_1m": 5.71,
+          "mem_available_gib": 122.51439666748047,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.1484375,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:04:20.922520+00:00",
+        "window": {
+          "minimum_free_gib": 2922.689613342285,
+          "minimum_mem_available_gib": 113.65497970581055,
+          "peak_load_1m": 6.89,
+          "peak_tree_rss_mib": 4545.1484375
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263026-u12",
+        "utc": "2026-10-26T11:04:26.078657+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263026-d",
+        "utc": "2026-10-26T11:04:31.434513+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263027-e",
+        "utc": "2026-10-26T11:04:37.174403+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263027-q12",
+        "utc": "2026-10-26T11:04:43.051750+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263027-r12",
+        "utc": "2026-10-26T11:04:48.543681+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263027-u12",
+        "utc": "2026-10-26T11:04:53.683839+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263027-d",
+        "utc": "2026-10-26T11:04:59.684620+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263028-e",
+        "utc": "2026-10-26T11:05:04.547714+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-26T11:05:04.549671+00:00",
+        "verified": 8
+      },
+      {
+        "cap": 8,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263028-q12",
+          "20261026-120000-w30v14-m-s20263028-r12",
+          "20261026-120000-w30v14-m-s20263028-u12",
+          "20261026-120000-w30v14-m-s20263028-d",
+          "20261026-120000-w30v14-m-s20263029-e",
+          "20261026-120000-w30v14-m-s20263029-q12",
+          "20261026-120000-w30v14-m-s20263029-r12",
+          "20261026-120000-w30v14-m-s20263029-u12"
+        ],
+        "utc": "2026-10-26T11:05:06.599765+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263028-q12",
+          "20261026-120000-w30v14-m-s20263028-r12",
+          "20261026-120000-w30v14-m-s20263028-u12",
+          "20261026-120000-w30v14-m-s20263028-d"
+        ],
+        "utc": "2026-10-26T11:12:08.406640+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263029-e",
+          "20261026-120000-w30v14-m-s20263029-q12",
+          "20261026-120000-w30v14-m-s20263029-r12",
+          "20261026-120000-w30v14-m-s20263029-u12"
+        ],
+        "utc": "2026-10-26T11:19:07.272120+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263028-q12",
+        "utc": "2026-10-26T11:19:14.489127+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263028-r12",
+        "utc": "2026-10-26T11:19:20.821415+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263028-u12",
+        "utc": "2026-10-26T11:19:27.183266+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263028-d",
+        "utc": "2026-10-26T11:19:33.840754+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263029-e",
+        "utc": "2026-10-26T11:19:40.247715+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263029-q12",
+        "utc": "2026-10-26T11:19:47.446700+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263029-r12",
+        "utc": "2026-10-26T11:19:54.329533+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263029-u12",
+        "utc": "2026-10-26T11:20:01.207770+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2909.08251953125,
+          "load_1m": 7.93,
+          "mem_available_gib": 91.63932800292969,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.0625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:25:15.383050+00:00",
+        "window": {
+          "minimum_free_gib": 2909.08251953125,
+          "minimum_mem_available_gib": 87.22981643676758,
+          "peak_load_1m": 8.09,
+          "peak_tree_rss_mib": 4545.0625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2909.0737800598145,
+          "load_1m": 7.71,
+          "mem_available_gib": 96.05347061157227,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.0625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:25:26.286724+00:00",
+        "window": {
+          "minimum_free_gib": 2909.0737800598145,
+          "minimum_mem_available_gib": 91.63776397705078,
+          "peak_load_1m": 7.93,
+          "peak_tree_rss_mib": 4545.0625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2909.0636978149414,
+          "load_1m": 7.31,
+          "mem_available_gib": 100.46557235717773,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.0625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:25:37.159210+00:00",
+        "window": {
+          "minimum_free_gib": 2909.0636978149414,
+          "minimum_mem_available_gib": 96.0550765991211,
+          "peak_load_1m": 7.73,
+          "peak_tree_rss_mib": 4545.0625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2909.0520057678223,
+          "load_1m": 6.64,
+          "mem_available_gib": 113.6960678100586,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.0625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:25:48.038922+00:00",
+        "window": {
+          "minimum_free_gib": 2909.0520057678223,
+          "minimum_mem_available_gib": 100.46588134765625,
+          "peak_load_1m": 7.31,
+          "peak_tree_rss_mib": 4545.0625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2909.0413856506348,
+          "load_1m": 5.93,
+          "mem_available_gib": 118.09965515136719,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.0625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:25:58.874187+00:00",
+        "window": {
+          "minimum_free_gib": 2909.0413856506348,
+          "minimum_mem_available_gib": 113.6946792602539,
+          "peak_load_1m": 6.64,
+          "peak_tree_rss_mib": 4545.0625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2909.040798187256,
+          "load_1m": 5.02,
+          "mem_available_gib": 122.51945877075195,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.0625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:26:09.705359+00:00",
+        "window": {
+          "minimum_free_gib": 2909.040798187256,
+          "minimum_mem_available_gib": 118.66701889038086,
+          "peak_load_1m": 5.93,
+          "peak_tree_rss_mib": 4545.0625
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263028-q12",
+        "utc": "2026-10-26T11:26:13.689746+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263028-r12",
+        "utc": "2026-10-26T11:26:17.902483+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263028-u12",
+        "utc": "2026-10-26T11:26:22.287447+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263028-d",
+        "utc": "2026-10-26T11:26:26.596775+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263029-e",
+        "utc": "2026-10-26T11:26:30.731809+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263029-q12",
+        "utc": "2026-10-26T11:26:34.969749+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263029-r12",
+        "utc": "2026-10-26T11:26:38.732858+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263029-u12",
+        "utc": "2026-10-26T11:26:43.599466+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-26T11:26:43.600969+00:00",
+        "verified": 16
+      },
+      {
+        "cap": 8,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263029-d",
+          "20261026-120000-w30v14-m-s20263030-e",
+          "20261026-120000-w30v14-m-s20263030-q12",
+          "20261026-120000-w30v14-m-s20263030-r12",
+          "20261026-120000-w30v14-m-s20263030-u12",
+          "20261026-120000-w30v14-m-s20263030-d",
+          "20261026-120000-w30v14-m-s20263031-e",
+          "20261026-120000-w30v14-m-s20263031-q12"
+        ],
+        "utc": "2026-10-26T11:26:45.503834+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263029-d",
+          "20261026-120000-w30v14-m-s20263030-e",
+          "20261026-120000-w30v14-m-s20263030-q12",
+          "20261026-120000-w30v14-m-s20263030-r12"
+        ],
+        "utc": "2026-10-26T11:33:40.236799+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263030-u12",
+          "20261026-120000-w30v14-m-s20263030-d",
+          "20261026-120000-w30v14-m-s20263031-e",
+          "20261026-120000-w30v14-m-s20263031-q12"
+        ],
+        "utc": "2026-10-26T11:40:42.639476+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263029-d",
+        "utc": "2026-10-26T11:40:50.795950+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263030-e",
+        "utc": "2026-10-26T11:40:57.910211+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263030-q12",
+        "utc": "2026-10-26T11:41:05.102608+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263030-r12",
+        "utc": "2026-10-26T11:41:12.386673+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263030-u12",
+        "utc": "2026-10-26T11:41:19.567502+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263030-d",
+        "utc": "2026-10-26T11:41:27.008158+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263031-e",
+        "utc": "2026-10-26T11:41:34.370902+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263031-q12",
+        "utc": "2026-10-26T11:41:41.765102+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2895.4424591064453,
+          "load_1m": 8.02,
+          "mem_available_gib": 91.64616012573242,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.11328125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:46:35.911454+00:00",
+        "window": {
+          "minimum_free_gib": 2895.4424591064453,
+          "minimum_mem_available_gib": 87.24041366577148,
+          "peak_load_1m": 8.08,
+          "peak_tree_rss_mib": 4545.11328125
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2895.435417175293,
+          "load_1m": 7.87,
+          "mem_available_gib": 96.0595817565918,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.11328125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:46:46.706984+00:00",
+        "window": {
+          "minimum_free_gib": 2895.435417175293,
+          "minimum_mem_available_gib": 91.64938735961914,
+          "peak_load_1m": 8.02,
+          "peak_tree_rss_mib": 4545.11328125
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2895.415454864502,
+          "load_1m": 6.98,
+          "mem_available_gib": 104.8779296875,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.11328125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:47:17.648090+00:00",
+        "window": {
+          "minimum_free_gib": 2895.415454864502,
+          "minimum_mem_available_gib": 96.06145858764648,
+          "peak_load_1m": 7.87,
+          "peak_tree_rss_mib": 4545.11328125
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2895.4023513793945,
+          "load_1m": 6.44,
+          "mem_available_gib": 109.29478073120117,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.11328125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:47:28.486260+00:00",
+        "window": {
+          "minimum_free_gib": 2895.4023513793945,
+          "minimum_mem_available_gib": 104.8784294128418,
+          "peak_load_1m": 6.98,
+          "peak_tree_rss_mib": 4545.11328125
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2895.3950424194336,
+          "load_1m": 5.68,
+          "mem_available_gib": 122.51792526245117,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4545.11328125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T11:47:39.339124+00:00",
+        "window": {
+          "minimum_free_gib": 2895.3950424194336,
+          "minimum_mem_available_gib": 109.2948989868164,
+          "peak_load_1m": 6.44,
+          "peak_tree_rss_mib": 4545.11328125
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263029-d",
+        "utc": "2026-10-26T11:47:43.779311+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263030-e",
+        "utc": "2026-10-26T11:47:47.569209+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263030-q12",
+        "utc": "2026-10-26T11:47:51.708530+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263030-r12",
+        "utc": "2026-10-26T11:47:55.608610+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263030-u12",
+        "utc": "2026-10-26T11:47:59.725803+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263030-d",
+        "utc": "2026-10-26T11:48:04.025782+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263031-e",
+        "utc": "2026-10-26T11:48:08.038131+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263031-q12",
+        "utc": "2026-10-26T11:48:12.116786+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-26T11:48:12.117766+00:00",
+        "verified": 24
+      },
+      {
+        "cap": 8,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263031-r12",
+          "20261026-120000-w30v14-m-s20263031-u12",
+          "20261026-120000-w30v14-m-s20263031-d",
+          "20261026-120000-w30v14-m-s20263032-e",
+          "20261026-120000-w30v14-m-s20263032-q12",
+          "20261026-120000-w30v14-m-s20263032-r12",
+          "20261026-120000-w30v14-m-s20263032-u12",
+          "20261026-120000-w30v14-m-s20263032-d"
+        ],
+        "utc": "2026-10-26T11:48:14.075813+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263031-r12",
+          "20261026-120000-w30v14-m-s20263031-u12",
+          "20261026-120000-w30v14-m-s20263031-d",
+          "20261026-120000-w30v14-m-s20263032-e"
+        ],
+        "utc": "2026-10-26T11:55:14.969218+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263032-q12",
+          "20261026-120000-w30v14-m-s20263032-r12",
+          "20261026-120000-w30v14-m-s20263032-u12",
+          "20261026-120000-w30v14-m-s20263032-d"
+        ],
+        "utc": "2026-10-26T12:02:11.942413+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263031-r12",
+        "utc": "2026-10-26T12:02:18.628076+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263031-u12",
+        "utc": "2026-10-26T12:02:24.651013+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263031-d",
+        "utc": "2026-10-26T12:02:30.781067+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263032-e",
+        "utc": "2026-10-26T12:02:36.898515+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263032-q12",
+        "utc": "2026-10-26T12:02:43.340699+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263032-r12",
+        "utc": "2026-10-26T12:02:49.698213+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263032-u12",
+        "utc": "2026-10-26T12:02:55.946671+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263032-d",
+        "utc": "2026-10-26T12:03:02.345510+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2881.799041748047,
+          "load_1m": 7.93,
+          "mem_available_gib": 91.62375259399414,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.9765625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T12:08:06.369803+00:00",
+        "window": {
+          "minimum_free_gib": 2881.799041748047,
+          "minimum_mem_available_gib": 87.21138763427734,
+          "peak_load_1m": 8.07,
+          "peak_tree_rss_mib": 4544.9765625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2881.7844886779785,
+          "load_1m": 7.73,
+          "mem_available_gib": 100.43351745605469,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.9765625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T12:08:27.296197+00:00",
+        "window": {
+          "minimum_free_gib": 2881.7844886779785,
+          "minimum_mem_available_gib": 91.623291015625,
+          "peak_load_1m": 7.93,
+          "peak_tree_rss_mib": 4544.9765625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2881.7771492004395,
+          "load_1m": 7.31,
+          "mem_available_gib": 104.85247802734375,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.9765625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T12:08:38.126742+00:00",
+        "window": {
+          "minimum_free_gib": 2881.7771492004395,
+          "minimum_mem_available_gib": 100.4417495727539,
+          "peak_load_1m": 7.73,
+          "peak_tree_rss_mib": 4544.9765625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2881.767593383789,
+          "load_1m": 6.41,
+          "mem_available_gib": 113.6858901977539,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.9765625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T12:08:48.944148+00:00",
+        "window": {
+          "minimum_free_gib": 2881.767593383789,
+          "minimum_mem_available_gib": 104.85396957397461,
+          "peak_load_1m": 7.31,
+          "peak_tree_rss_mib": 4544.9765625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2881.7636222839355,
+          "load_1m": 5.58,
+          "mem_available_gib": 118.10342788696289,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.9765625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T12:08:59.735086+00:00",
+        "window": {
+          "minimum_free_gib": 2881.7636222839355,
+          "minimum_mem_available_gib": 113.68573379516602,
+          "peak_load_1m": 6.41,
+          "peak_tree_rss_mib": 4544.9765625
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2881.760467529297,
+          "load_1m": 4.79,
+          "mem_available_gib": 122.5176010131836,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.9765625,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T12:09:10.513467+00:00",
+        "window": {
+          "minimum_free_gib": 2881.760467529297,
+          "minimum_mem_available_gib": 118.10396575927734,
+          "peak_load_1m": 5.58,
+          "peak_tree_rss_mib": 4544.9765625
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263031-r12",
+        "utc": "2026-10-26T12:09:14.942621+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263031-u12",
+        "utc": "2026-10-26T12:09:19.001219+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263031-d",
+        "utc": "2026-10-26T12:09:23.431324+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263032-e",
+        "utc": "2026-10-26T12:09:28.053809+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263032-q12",
+        "utc": "2026-10-26T12:09:33.511632+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263032-r12",
+        "utc": "2026-10-26T12:09:38.375482+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263032-u12",
+        "utc": "2026-10-26T12:09:42.876814+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263032-d",
+        "utc": "2026-10-26T12:09:47.008563+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-26T12:09:47.010065+00:00",
+        "verified": 32
+      },
+      {
+        "cap": 8,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263033-e",
+          "20261026-120000-w30v14-m-s20263033-q12",
+          "20261026-120000-w30v14-m-s20263033-r12",
+          "20261026-120000-w30v14-m-s20263033-u12",
+          "20261026-120000-w30v14-m-s20263033-d",
+          "20261026-120000-w30v14-m-s20263034-e",
+          "20261026-120000-w30v14-m-s20263034-q12",
+          "20261026-120000-w30v14-m-s20263034-r12"
+        ],
+        "utc": "2026-10-26T12:09:48.979970+00:00"
+      },
+      {
+        "event": "build_group_complete",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263033-e",
+          "20261026-120000-w30v14-m-s20263033-q12",
+          "20261026-120000-w30v14-m-s20263033-r12",
+          "20261026-120000-w30v14-m-s20263033-u12"
+        ],
+        "utc": "2026-10-26T12:16:53.198095+00:00"
+      },
+      {
+        "error": "Command '['ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes', '-o', 'ConnectTimeout=10', '-o', 'ConnectionAttempts=1', '-o', 'TCPKeepAlive=yes', '-o', 'ServerAliveInterval=15', '-o', 'ServerAliveCountMax=2', '-o', 'ClearAllForwardings=yes', 'fnl@10.112.14.167', 'python3 -c \\'import glob,os,json; ids=[\\'\"\\'\"\\'20261026-120000-w30v14-m-s20263034-e\\'\"\\'\"\\']; print(json.dumps([n for n in ids if any(os.path.getsize(p)>536870912 for p in glob.glob(\\'\"\\'\"\\'/home/fnl/lzy/runs/\\'\"\\'\"\\'+n+\\'\"\\'\"\\'/source/mix/output/*/config.log\\'\"\\'\"\\'))]))\\'']' returned non-zero exit status 255.",
+        "event": "controller_stopped",
+        "utc": "2026-10-26T12:23:58.129521+00:00"
+      },
+      {
+        "authorization_sha256": "f974ba2a437beb2d1becd2bc746ea6cce81ded05261022b67a295cf571322533",
+        "event": "reviewed_resume_started",
+        "pid": 50972,
+        "plan_sha256": "a7ab77abb8e0222133968c98aa28c1e25e38ddacdaeb14eebcbe10ef97bc0648",
+        "retained_successes": 24,
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+        "utc": "2026-10-26T13:01:50.072645+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263033-e",
+        "utc": "2026-10-26T13:02:04.142471+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263033-q12",
+        "utc": "2026-10-26T13:02:11.702491+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263033-r12",
+        "utc": "2026-10-26T13:02:18.390867+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263033-u12",
+        "utc": "2026-10-26T13:02:24.878750+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263033-d",
+        "utc": "2026-10-26T13:02:32.620187+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263034-e",
+        "utc": "2026-10-26T13:02:40.242023+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263034-q12",
+        "utc": "2026-10-26T13:02:47.661719+00:00"
+      },
+      {
+        "cap": 8,
+        "event": "started",
+        "id": "20261026-120000-w30v14-m-s20263034-r12",
+        "utc": "2026-10-26T13:02:54.422051+00:00"
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2868.1548767089844,
+          "load_1m": 7.74,
+          "mem_available_gib": 96.03438568115234,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.8828125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T13:08:08.599403+00:00",
+        "window": {
+          "minimum_free_gib": 2868.1548767089844,
+          "minimum_mem_available_gib": 87.20976638793945,
+          "peak_load_1m": 8.07,
+          "peak_tree_rss_mib": 4544.8828125
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2868.1389503479004,
+          "load_1m": 7.24,
+          "mem_available_gib": 100.44222259521484,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.8828125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T13:08:29.565131+00:00",
+        "window": {
+          "minimum_free_gib": 2868.1389503479004,
+          "minimum_mem_available_gib": 96.03351211547852,
+          "peak_load_1m": 7.74,
+          "peak_tree_rss_mib": 4544.8828125
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2868.1322631835938,
+          "load_1m": 6.82,
+          "mem_available_gib": 104.85609436035156,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.8828125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T13:08:40.512332+00:00",
+        "window": {
+          "minimum_free_gib": 2868.1322631835938,
+          "minimum_mem_available_gib": 100.44392013549805,
+          "peak_load_1m": 7.24,
+          "peak_tree_rss_mib": 4544.8828125
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2868.1195068359375,
+          "load_1m": 6.22,
+          "mem_available_gib": 118.0941162109375,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.8828125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T13:08:51.430429+00:00",
+        "window": {
+          "minimum_free_gib": 2868.1195068359375,
+          "minimum_mem_available_gib": 104.85783386230469,
+          "peak_load_1m": 6.82,
+          "peak_tree_rss_mib": 4544.8828125
+        }
+      },
+      {
+        "event": "worker_change_or_supervision",
+        "resource": {
+          "free_gib": 2868.1151733398438,
+          "load_1m": 5.05,
+          "mem_available_gib": 122.50590133666992,
+          "observed_worker_mapping": [],
+          "other_users": [],
+          "rss_mib": 4544.8828125,
+          "unexpected_simulation_pids": [],
+          "unexpected_simulation_processes": []
+        },
+        "utc": "2026-10-26T13:09:02.259877+00:00",
+        "window": {
+          "minimum_free_gib": 2868.1151733398438,
+          "minimum_mem_available_gib": 118.0937728881836,
+          "peak_load_1m": 5.89,
+          "peak_tree_rss_mib": 4544.8828125
+        }
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263033-e",
+        "utc": "2026-10-26T13:09:07.607949+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263033-q12",
+        "utc": "2026-10-26T13:09:12.653450+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263033-r12",
+        "utc": "2026-10-26T13:09:17.720420+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263033-u12",
+        "utc": "2026-10-26T13:09:24.420443+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263033-d",
+        "utc": "2026-10-26T13:09:31.461650+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263034-e",
+        "utc": "2026-10-26T13:09:36.261559+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263034-q12",
+        "utc": "2026-10-26T13:09:41.349486+00:00"
+      },
+      {
+        "event": "verified_fetched",
+        "id": "20261026-120000-w30v14-m-s20263034-r12",
+        "utc": "2026-10-26T13:09:45.839042+00:00"
+      },
+      {
+        "event": "batch_verified",
+        "utc": "2026-10-26T13:09:45.842551+00:00",
+        "verified": 40
+      },
+      {
+        "cap": 8,
+        "event": "batch_reserved",
+        "ids": [
+          "20261026-120000-w30v14-m-s20263034-u12",
+          "20261026-120000-w30v14-m-s20263034-d",
+          "20261026-120000-w30v14-m-s20263035-e",
+          "20261026-120000-w30v14-m-s20263035-q12",
+          "20261026-120000-w30v14-m-s20263035-r12",
+          "20261026-120000-w30v14-m-s20263035-u12",
+          "20261026-120000-w30v14-m-s20263035-d",
+          "20261026-120000-w30v14-m-s20263036-e"
+        ],
+        "utc": "2026-10-26T13:09:47.939830+00:00"
+      },
+      {
+        "error": "Command '['ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes', '-o', 'ConnectTimeout=10', '-o', 'ConnectionAttempts=1', '-o', 'TCPKeepAlive=yes', '-o', 'ServerAliveInterval=15', '-o', 'ServerAliveCountMax=2', '-o', 'ClearAllForwardings=yes', 'fnl@10.112.14.167', 'python3 -c \\'import glob,os,json; ids=[\\'\"\\'\"\\'20261026-120000-w30v14-m-s20263034-u12\\'\"\\'\"\\']; print(json.dumps([n for n in ids if any(os.path.getsize(p)>536870912 for p in glob.glob(\\'\"\\'\"\\'/home/fnl/lzy/runs/\\'\"\\'\"\\'+n+\\'\"\\'\"\\'/source/mix/output/*/config.log\\'\"\\'\"\\'))]))\\'']' timed out after 45 seconds",
+        "event": "controller_stopped",
+        "utc": "2026-10-26T13:47:53.928127+00:00"
+      }
+    ],
+    "failures": {},
+    "pending": [
+      "20261026-120000-w30v14-m-s20263034-u12",
+      "20261026-120000-w30v14-m-s20263034-d",
+      "20261026-120000-w30v14-m-s20263035-e",
+      "20261026-120000-w30v14-m-s20263035-q12",
+      "20261026-120000-w30v14-m-s20263035-r12",
+      "20261026-120000-w30v14-m-s20263035-u12",
+      "20261026-120000-w30v14-m-s20263035-d",
+      "20261026-120000-w30v14-m-s20263036-e"
+    ],
+    "verified": {
+      "20261026-120000-w30v14-m-s20263026-d": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "ecd746ee3266141b391898194a15c39a69aa58b26c5eb8f6c32cf907dbb041f4",
+        "id": "20261026-120000-w30v14-m-s20263026-d",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263026-d",
+          "minimum_free_gib": 2922.7253379821777,
+          "minimum_mem_available_gib": 87.21685791015625,
+          "peak_tree_rss_mib": 4545.0078125,
+          "samples": 73
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263026-u12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "bb74ef0a04d02ef59add52bb03ee0592fe19b16f92b25d6364448c8db394c047",
+        "id": "20261026-120000-w30v14-m-s20263026-u12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263026-u12",
+          "minimum_free_gib": 2922.7113456726074,
+          "minimum_mem_available_gib": 87.2169189453125,
+          "peak_tree_rss_mib": 4544.77734375,
+          "samples": 76
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263027-d": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "c12c5cdaebe9ba3fad965349f53c6170eb0a2fb47528a30532009d53d8396a83",
+        "id": "20261026-120000-w30v14-m-s20263027-d",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263027-d",
+          "minimum_free_gib": 2922.689613342285,
+          "minimum_mem_available_gib": 87.21678161621094,
+          "peak_tree_rss_mib": 4544.62109375,
+          "samples": 74
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263027-e": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "fb66aa423c02a3dd9232a8eced0cd3a9fda182b2b7a750fe3bb02a6e4127c1cf",
+        "id": "20261026-120000-w30v14-m-s20263027-e",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263027-e",
+          "minimum_free_gib": 2922.724220275879,
+          "minimum_mem_available_gib": 87.2170639038086,
+          "peak_tree_rss_mib": 4544.51171875,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263027-q12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "f9114d18c92536b1405eb4165f0e5a1a2748f0e6023160dcb9f2aeb0c5a7d7d8",
+        "id": "20261026-120000-w30v14-m-s20263027-q12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263027-q12",
+          "minimum_free_gib": 2922.707260131836,
+          "minimum_mem_available_gib": 87.21723556518555,
+          "peak_tree_rss_mib": 4545.0703125,
+          "samples": 73
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263027-r12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "e2f9e04a36df755bdf04fe9dc8bba145dc7a77d9055299647f0e43c4e21c9281",
+        "id": "20261026-120000-w30v14-m-s20263027-r12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263027-r12",
+          "minimum_free_gib": 2922.706230163574,
+          "minimum_mem_available_gib": 87.2169189453125,
+          "peak_tree_rss_mib": 4545.1484375,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263027-u12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "90c8b7dd39b8fb9d0fa1bb031022380c5d6581396b96dcb0b96f3f73e0e14aaa",
+        "id": "20261026-120000-w30v14-m-s20263027-u12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263027-u12",
+          "minimum_free_gib": 2922.690196990967,
+          "minimum_mem_available_gib": 87.21635818481445,
+          "peak_tree_rss_mib": 4545.109375,
+          "samples": 74
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263028-d": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "6b4a8f0005a5da0bf6123d5423b1875435883011e58ee05eac00180ab08da63c",
+        "id": "20261026-120000-w30v14-m-s20263028-d",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263028-d",
+          "minimum_free_gib": 2909.0801849365234,
+          "minimum_mem_available_gib": 87.22919464111328,
+          "peak_tree_rss_mib": 4544.765625,
+          "samples": 70
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263028-e": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "273302980428481d9555052038ea75d95d6bc7290ae38b8eea16a788aa42c10c",
+        "id": "20261026-120000-w30v14-m-s20263028-e",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263028-e",
+          "minimum_free_gib": 2922.690200805664,
+          "minimum_mem_available_gib": 87.21723556518555,
+          "peak_tree_rss_mib": 4544.51171875,
+          "samples": 71
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263028-q12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "d55a3c2c1c0e10cea1ac2ce2e7e5ce342a5bcabfca1b77ad9816e7e44a50f74f",
+        "id": "20261026-120000-w30v14-m-s20263028-q12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263028-q12",
+          "minimum_free_gib": 2909.0825729370117,
+          "minimum_mem_available_gib": 87.22931671142578,
+          "peak_tree_rss_mib": 4544.6796875,
+          "samples": 73
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263028-r12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "c1d82797b5065336bec8be1fa03f769b0f5bad698ac3259deb93a7fe418d5c23",
+        "id": "20261026-120000-w30v14-m-s20263028-r12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263028-r12",
+          "minimum_free_gib": 2909.0523681640625,
+          "minimum_mem_available_gib": 87.22865676879883,
+          "peak_tree_rss_mib": 4545.05859375,
+          "samples": 78
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263028-u12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "aa9c74f51e5ab3fd32d992cad61ae58a59fa059b075d501dff50b687083621b0",
+        "id": "20261026-120000-w30v14-m-s20263028-u12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263028-u12",
+          "minimum_free_gib": 2909.069797515869,
+          "minimum_mem_available_gib": 87.22907257080078,
+          "peak_tree_rss_mib": 4545.02734375,
+          "samples": 74
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263029-d": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "313bf7267c6993358288539e11ef9284de0728bafe353416f3063436f9e6343b",
+        "id": "20261026-120000-w30v14-m-s20263029-d",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263029-d",
+          "minimum_free_gib": 2895.4356231689453,
+          "minimum_mem_available_gib": 87.23975372314453,
+          "peak_tree_rss_mib": 4544.90234375,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263029-e": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "a956a3a1d0d9a7dac3d1b039572d300c71a61425bda15b6d08972c212789597f",
+        "id": "20261026-120000-w30v14-m-s20263029-e",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263029-e",
+          "minimum_free_gib": 2909.0408058166504,
+          "minimum_mem_available_gib": 87.2293701171875,
+          "peak_tree_rss_mib": 4544.88671875,
+          "samples": 77
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263029-q12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "62cb6b53bb4eb97a6013e1243c0137c80798cdf8f653100bf5c351182fb4f2d8",
+        "id": "20261026-120000-w30v14-m-s20263029-q12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263029-q12",
+          "minimum_free_gib": 2909.0558433532715,
+          "minimum_mem_available_gib": 87.22909164428711,
+          "peak_tree_rss_mib": 4545.0625,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263029-r12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "e43f15482fd9ea9f15a26141564ab83784f4a084df87d6c8f0bfc5bde5d8be7f",
+        "id": "20261026-120000-w30v14-m-s20263029-r12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263029-r12",
+          "minimum_free_gib": 2909.0534019470215,
+          "minimum_mem_available_gib": 87.22936630249023,
+          "peak_tree_rss_mib": 4544.87109375,
+          "samples": 71
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263029-u12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "4bb17721c18db195eee628a469fe1f5f3c8cbccb3873e0a7f15c3fb2b6f98eed",
+        "id": "20261026-120000-w30v14-m-s20263029-u12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263029-u12",
+          "minimum_free_gib": 2909.040802001953,
+          "minimum_mem_available_gib": 87.22914505004883,
+          "peak_tree_rss_mib": 4544.96484375,
+          "samples": 73
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263030-d": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "21968e6f15d274f9e517fe44d6c6941af9a8851d8a63b377efc90f8131c486c2",
+        "id": "20261026-120000-w30v14-m-s20263030-d",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263030-d",
+          "minimum_free_gib": 2895.40482711792,
+          "minimum_mem_available_gib": 87.24052047729492,
+          "peak_tree_rss_mib": 4545.11328125,
+          "samples": 73
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263030-e": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "4cada685b0d65f05f4683a27febb4af5280b87d8653285a6257e961d28a9f8c4",
+        "id": "20261026-120000-w30v14-m-s20263030-e",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263030-e",
+          "minimum_free_gib": 2895.4408798217773,
+          "minimum_mem_available_gib": 87.2402229309082,
+          "peak_tree_rss_mib": 4544.74609375,
+          "samples": 69
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263030-q12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "d69c76e590feb8cae11a920a39870af6ee6e1452eaec02f270fb3f20866d106a",
+        "id": "20261026-120000-w30v14-m-s20263030-q12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263030-q12",
+          "minimum_free_gib": 2895.396499633789,
+          "minimum_mem_available_gib": 87.23991012573242,
+          "peak_tree_rss_mib": 4544.77734375,
+          "samples": 79
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263030-r12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "90d2e9ae4c67bf1ced1ca53714df1e9035d78e3c6cfecceda401f3029c004076",
+        "id": "20261026-120000-w30v14-m-s20263030-r12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263030-r12",
+          "minimum_free_gib": 2895.4224243164062,
+          "minimum_mem_available_gib": 87.24024200439453,
+          "peak_tree_rss_mib": 4544.89453125,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263030-u12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "ce10875bb667e4a6b70f52d348ecfe88ba666a140aeedd1e175cc0bfe7f3c0b7",
+        "id": "20261026-120000-w30v14-m-s20263030-u12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263030-u12",
+          "minimum_free_gib": 2895.3950424194336,
+          "minimum_mem_available_gib": 87.23991012573242,
+          "peak_tree_rss_mib": 4545.0546875,
+          "samples": 77
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263031-d": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "119ee3e25c86c535f412efc3b7f6a622e5c438a5f6fa4d3a0394bdaf64dab463",
+        "id": "20261026-120000-w30v14-m-s20263031-d",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263031-d",
+          "minimum_free_gib": 2881.764678955078,
+          "minimum_mem_available_gib": 87.21126937866211,
+          "peak_tree_rss_mib": 4544.5546875,
+          "samples": 78
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263031-e": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "653045a27b16acaca1f3b111c3383083851b6ed17fc5aa9e9903fd51438546de",
+        "id": "20261026-120000-w30v14-m-s20263031-e",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263031-e",
+          "minimum_free_gib": 2895.413417816162,
+          "minimum_mem_available_gib": 87.23927688598633,
+          "peak_tree_rss_mib": 4544.76171875,
+          "samples": 70
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263031-q12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "4e89c92d49fab8f0ee9ac7121efb970fd31b5f772eda420e9937c0722c3707fe",
+        "id": "20261026-120000-w30v14-m-s20263031-q12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263031-q12",
+          "minimum_free_gib": 2895.3999099731445,
+          "minimum_mem_available_gib": 87.24011993408203,
+          "peak_tree_rss_mib": 4545.1015625,
+          "samples": 71
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263031-r12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "7b11a8e26ef1941c9c8c017ac13ecd31d391710bc5987be5bf184458f28a060b",
+        "id": "20261026-120000-w30v14-m-s20263031-r12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263031-r12",
+          "minimum_free_gib": 2881.7995986938477,
+          "minimum_mem_available_gib": 87.21055221557617,
+          "peak_tree_rss_mib": 4544.82421875,
+          "samples": 70
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263031-u12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "eeb349758c9442235e1c3ea6950461c9af3e315cfaec3e40b41013e751b755ea",
+        "id": "20261026-120000-w30v14-m-s20263031-u12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263031-u12",
+          "minimum_free_gib": 2881.7829399108887,
+          "minimum_mem_available_gib": 87.21088790893555,
+          "peak_tree_rss_mib": 4544.80859375,
+          "samples": 74
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263032-d": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "1a7ca4d70a956be320a16212e8c72d6bf2e18720ddc55bff4b9856612826d0e3",
+        "id": "20261026-120000-w30v14-m-s20263032-d",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263032-d",
+          "minimum_free_gib": 2881.760471343994,
+          "minimum_mem_available_gib": 87.21089935302734,
+          "peak_tree_rss_mib": 4544.9765625,
+          "samples": 74
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263032-e": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "fdee4bd7ff77f754d4a75fe349b73cc8ca67b97cceb8da85b54c9f0b2091d800",
+        "id": "20261026-120000-w30v14-m-s20263032-e",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263032-e",
+          "minimum_free_gib": 2881.7842903137207,
+          "minimum_mem_available_gib": 87.21089935302734,
+          "peak_tree_rss_mib": 4544.96484375,
+          "samples": 71
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263032-q12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "22d662383a3214f9f4d4c0773e240373ac2106fde60da5f08c1d574081b8a923",
+        "id": "20261026-120000-w30v14-m-s20263032-q12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263032-q12",
+          "minimum_free_gib": 2881.7765884399414,
+          "minimum_mem_available_gib": 87.21136093139648,
+          "peak_tree_rss_mib": 4544.578125,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263032-r12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "dd3a46abbd5ff12201a048cfd4a5076e8273180ecb6ebadb1d89179c5a24b966",
+        "id": "20261026-120000-w30v14-m-s20263032-r12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263032-r12",
+          "minimum_free_gib": 2881.769245147705,
+          "minimum_mem_available_gib": 87.2104263305664,
+          "peak_tree_rss_mib": 4544.58203125,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263032-u12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "fa5bd1c5290897c682d3c2da8b16508636d6e5a13becb826daa626bc5aab4134",
+        "id": "20261026-120000-w30v14-m-s20263032-u12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263032-u12",
+          "minimum_free_gib": 2881.766056060791,
+          "minimum_mem_available_gib": 87.2112808227539,
+          "peak_tree_rss_mib": 4544.875,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263033-d": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "d7396e0812202d21dae63854216d4ef0ff0eed4246099b5d12ea011207b6ede4",
+        "id": "20261026-120000-w30v14-m-s20263033-d",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263033-d",
+          "minimum_free_gib": 2868.1185150146484,
+          "minimum_mem_available_gib": 87.20926666259766,
+          "peak_tree_rss_mib": 4544.5703125,
+          "samples": 77
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263033-e": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "474fdfbd66fb035c7220489c9699a5dd796c19a013a034f068d5111c892c77cd",
+        "id": "20261026-120000-w30v14-m-s20263033-e",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263033-e",
+          "minimum_free_gib": 2868.1570930480957,
+          "minimum_mem_available_gib": 87.21049499511719,
+          "peak_tree_rss_mib": 4544.6875,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263033-q12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "022a52a749e8291a1d7f8d318d152e0f2bbb383a9296f8954735cdae76cb11ca",
+        "id": "20261026-120000-w30v14-m-s20263033-q12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263033-q12",
+          "minimum_free_gib": 2868.156482696533,
+          "minimum_mem_available_gib": 87.20922470092773,
+          "peak_tree_rss_mib": 4544.4921875,
+          "samples": 71
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263033-r12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "9597f005c06430c86dc99e57d5bb8dbb46a91fc0df15a21b2a9e24666c827f44",
+        "id": "20261026-120000-w30v14-m-s20263033-r12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263033-r12",
+          "minimum_free_gib": 2868.115177154541,
+          "minimum_mem_available_gib": 87.21106719970703,
+          "peak_tree_rss_mib": 4544.796875,
+          "samples": 81
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263033-u12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "a54cb50261ad17238c8a782aa4e7dfb29a01c2b2bb1f9f71e444c44f6f8aa18e",
+        "id": "20261026-120000-w30v14-m-s20263033-u12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263033-u12",
+          "minimum_free_gib": 2868.1361122131348,
+          "minimum_mem_available_gib": 87.20960235595703,
+          "peak_tree_rss_mib": 4544.734375,
+          "samples": 75
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263034-e": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "db610d55eadb6ca433ded7c2a1f8bb9aa46ba0cd13207c7332dccc0145345c15",
+        "id": "20261026-120000-w30v14-m-s20263034-e",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263034-e",
+          "minimum_free_gib": 2868.138702392578,
+          "minimum_mem_available_gib": 87.20953750610352,
+          "peak_tree_rss_mib": 4544.6328125,
+          "samples": 71
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263034-q12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "6bc7c52ed50fe9884fcebb8937ff8f171236d4aa2ea784cdee3c3c81bbceef9f",
+        "id": "20261026-120000-w30v14-m-s20263034-q12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263034-q12",
+          "minimum_free_gib": 2868.1209869384766,
+          "minimum_mem_available_gib": 87.20936965942383,
+          "peak_tree_rss_mib": 4544.75390625,
+          "samples": 73
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      },
+      "20261026-120000-w30v14-m-s20263034-r12": {
+        "cap": 8,
+        "completed_rows": 16576,
+        "fct_sha256": "878dac9cd484ae57f0edcf90e11e3acd58d3e2925aa4af155c0394a61686de9a",
+        "id": "20261026-120000-w30v14-m-s20263034-r12",
+        "resource": {
+          "final_status": "SUCCEEDED",
+          "id": "20261026-120000-w30v14-m-s20263034-r12",
+          "minimum_free_gib": 2868.1205291748047,
+          "minimum_mem_available_gib": 87.20998001098633,
+          "peak_tree_rss_mib": 4544.8828125,
+          "samples": 72
+        },
+        "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+      }
+    }
+  },
+  "original_state_sha256": "0980d7187e63937663a407dd85c163d19e88691272048d59de90fe4b600ccbf1",
+  "plan_sha256": "a7ab77abb8e0222133968c98aa28c1e25e38ddacdaeb14eebcbe10ef97bc0648",
+  "remote_probe": {
+    "data": {
+      "cells": {
+        "20261026-120000-w30v14-m-s20263034-d": {
+          "build_log_tail": "cxx: src/tap-bridge/model/tap-encode-decode.cc -> build/src/tap-bridge/model/tap-encode-decode.cc.4.o\n[1454/1454] cxxprogram: build/src/tap-bridge/model/tap-creator.cc.4.o build/src/tap-bridge/model/tap-encode-decode.cc.4.o -> build/src/tap-bridge/ns3.19-tap-creator-optimized\nWaf: Leaving directory `/home/fnl/lzy/runs/20261026-120000-w30v14-m-s20263034-d/source/build'\n'build' finished successfully (6m43.427s)\n\nModules built:\nantenna                   aodv                      applications             \nbridge                    buildings                 config-store             \ncore                      csma                      csma-layout              \ndsdv                      dsr                       emu                      \nenergy                    flow-monitor              internet                 \nlte                       mesh                      mobility                 \nmpi                       netanim (no Python)       network                  \nnix-vector-routing        olsr                      point-to-point           \npoint-to-point-layout     propagation               spectrum                 \nstats                     tap-bridge                test (no Python)         \ntools                     topology-read             uan                      \nvirtual-net-device        wifi                      wimax                    \n\nModules not built (see ns-3 tutorial for explanation):\nclick                     openflow                  visualizer               \n\n",
+          "metadata": {
+            "build_finished_utc": "2026-10-26T13:16:42Z",
+            "build_mode": "optimized",
+            "cpu_jobs": 2,
+            "created_utc": "2026-10-26T13:09:53Z",
+            "demand_seed": null,
+            "experiment_id": "20261026-120000-w30v14-m-s20263034-d",
+            "git_branch": "research/ws30-attribution-audit",
+            "git_commit": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+            "git_repository": "https://github.com/LarryBUPT/conweave-ns3.git",
+            "metadata_schema_version": 3,
+            "pid": 450669,
+            "seed": 1,
+            "server": "ns3host",
+            "simulation_seed": 1,
+            "status": "BUILT"
+          },
+          "raw_files": [],
+          "results": true,
+          "runs": true
+        },
+        "20261026-120000-w30v14-m-s20263034-u12": {
+          "build_log_tail": "x: src/tap-bridge/model/tap-encode-decode.cc -> build/src/tap-bridge/model/tap-encode-decode.cc.4.o\n[1454/1454] cxxprogram: build/src/tap-bridge/model/tap-creator.cc.4.o build/src/tap-bridge/model/tap-encode-decode.cc.4.o -> build/src/tap-bridge/ns3.19-tap-creator-optimized\nWaf: Leaving directory `/home/fnl/lzy/runs/20261026-120000-w30v14-m-s20263034-u12/source/build'\n'build' finished successfully (6m43.023s)\n\nModules built:\nantenna                   aodv                      applications             \nbridge                    buildings                 config-store             \ncore                      csma                      csma-layout              \ndsdv                      dsr                       emu                      \nenergy                    flow-monitor              internet                 \nlte                       mesh                      mobility                 \nmpi                       netanim (no Python)       network                  \nnix-vector-routing        olsr                      point-to-point           \npoint-to-point-layout     propagation               spectrum                 \nstats                     tap-bridge                test (no Python)         \ntools                     topology-read             uan                      \nvirtual-net-device        wifi                      wimax                    \n\nModules not built (see ns-3 tutorial for explanation):\nclick                     openflow                  visualizer               \n\n",
+          "metadata": {
+            "build_finished_utc": "2026-10-26T13:16:42Z",
+            "build_mode": "optimized",
+            "cpu_jobs": 2,
+            "created_utc": "2026-10-26T13:09:53Z",
+            "demand_seed": null,
+            "experiment_id": "20261026-120000-w30v14-m-s20263034-u12",
+            "git_branch": "research/ws30-attribution-audit",
+            "git_commit": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+            "git_repository": "https://github.com/LarryBUPT/conweave-ns3.git",
+            "metadata_schema_version": 3,
+            "pid": 450666,
+            "seed": 1,
+            "server": "ns3host",
+            "simulation_seed": 1,
+            "status": "BUILT"
+          },
+          "raw_files": [],
+          "results": true,
+          "runs": true
+        },
+        "20261026-120000-w30v14-m-s20263035-d": {
+          "build_log_tail": null,
+          "metadata": null,
+          "raw_files": [],
+          "results": false,
+          "runs": false
+        },
+        "20261026-120000-w30v14-m-s20263035-e": {
+          "build_log_tail": "cxx: src/tap-bridge/model/tap-encode-decode.cc -> build/src/tap-bridge/model/tap-encode-decode.cc.4.o\n[1454/1454] cxxprogram: build/src/tap-bridge/model/tap-creator.cc.4.o build/src/tap-bridge/model/tap-encode-decode.cc.4.o -> build/src/tap-bridge/ns3.19-tap-creator-optimized\nWaf: Leaving directory `/home/fnl/lzy/runs/20261026-120000-w30v14-m-s20263035-e/source/build'\n'build' finished successfully (6m45.930s)\n\nModules built:\nantenna                   aodv                      applications             \nbridge                    buildings                 config-store             \ncore                      csma                      csma-layout              \ndsdv                      dsr                       emu                      \nenergy                    flow-monitor              internet                 \nlte                       mesh                      mobility                 \nmpi                       netanim (no Python)       network                  \nnix-vector-routing        olsr                      point-to-point           \npoint-to-point-layout     propagation               spectrum                 \nstats                     tap-bridge                test (no Python)         \ntools                     topology-read             uan                      \nvirtual-net-device        wifi                      wimax                    \n\nModules not built (see ns-3 tutorial for explanation):\nclick                     openflow                  visualizer               \n\n",
+          "metadata": {
+            "build_finished_utc": "2026-10-26T13:16:45Z",
+            "build_mode": "optimized",
+            "cpu_jobs": 2,
+            "created_utc": "2026-10-26T13:09:53Z",
+            "demand_seed": null,
+            "experiment_id": "20261026-120000-w30v14-m-s20263035-e",
+            "git_branch": "research/ws30-attribution-audit",
+            "git_commit": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+            "git_repository": "https://github.com/LarryBUPT/conweave-ns3.git",
+            "metadata_schema_version": 3,
+            "pid": 450668,
+            "seed": 1,
+            "server": "ns3host",
+            "simulation_seed": 1,
+            "status": "BUILT"
+          },
+          "raw_files": [],
+          "results": true,
+          "runs": true
+        },
+        "20261026-120000-w30v14-m-s20263035-q12": {
+          "build_log_tail": "x: src/tap-bridge/model/tap-encode-decode.cc -> build/src/tap-bridge/model/tap-encode-decode.cc.4.o\n[1454/1454] cxxprogram: build/src/tap-bridge/model/tap-creator.cc.4.o build/src/tap-bridge/model/tap-encode-decode.cc.4.o -> build/src/tap-bridge/ns3.19-tap-creator-optimized\nWaf: Leaving directory `/home/fnl/lzy/runs/20261026-120000-w30v14-m-s20263035-q12/source/build'\n'build' finished successfully (6m43.200s)\n\nModules built:\nantenna                   aodv                      applications             \nbridge                    buildings                 config-store             \ncore                      csma                      csma-layout              \ndsdv                      dsr                       emu                      \nenergy                    flow-monitor              internet                 \nlte                       mesh                      mobility                 \nmpi                       netanim (no Python)       network                  \nnix-vector-routing        olsr                      point-to-point           \npoint-to-point-layout     propagation               spectrum                 \nstats                     tap-bridge                test (no Python)         \ntools                     topology-read             uan                      \nvirtual-net-device        wifi                      wimax                    \n\nModules not built (see ns-3 tutorial for explanation):\nclick                     openflow                  visualizer               \n\n",
+          "metadata": {
+            "build_finished_utc": "2026-10-26T13:16:42Z",
+            "build_mode": "optimized",
+            "cpu_jobs": 2,
+            "created_utc": "2026-10-26T13:09:53Z",
+            "demand_seed": null,
+            "experiment_id": "20261026-120000-w30v14-m-s20263035-q12",
+            "git_branch": "research/ws30-attribution-audit",
+            "git_commit": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+            "git_repository": "https://github.com/LarryBUPT/conweave-ns3.git",
+            "metadata_schema_version": 3,
+            "pid": 450667,
+            "seed": 1,
+            "server": "ns3host",
+            "simulation_seed": 1,
+            "status": "BUILT"
+          },
+          "raw_files": [],
+          "results": true,
+          "runs": true
+        },
+        "20261026-120000-w30v14-m-s20263035-r12": {
+          "build_log_tail": null,
+          "metadata": null,
+          "raw_files": [],
+          "results": false,
+          "runs": false
+        },
+        "20261026-120000-w30v14-m-s20263035-u12": {
+          "build_log_tail": null,
+          "metadata": null,
+          "raw_files": [],
+          "results": false,
+          "runs": false
+        },
+        "20261026-120000-w30v14-m-s20263036-e": {
+          "build_log_tail": null,
+          "metadata": null,
+          "raw_files": [],
+          "results": false,
+          "runs": false
+        }
+      },
+      "free_gib": 2861.353603363037,
+      "loadavg": "0.00 0.00 0.00 1/588 2496\n",
+      "mem_available_kb": "MemAvailable:   128476988 kB\n",
+      "processes": "root          1      0 systemd          0.0  4824\nroot          2      0 kthreadd         0.0     0\nroot          3      2 ksoftirqd/0      0.0     0\nroot          5      2 kworker/0:0H     0.0     0\nroot          6      2 kworker/u896:0   0.0     0\nroot          8      2 rcu_sched        0.0     0\nroot          9      2 rcu_bh           0.0     0\nroot         10      2 migration/0      0.0     0\nroot         11      2 watchdog/0       0.0     0\nroot         12      2 watchdog/1       0.0     0\nroot         13      2 migration/1      0.0     0\nroot         14      2 ksoftirqd/1      0.0     0\nroot         16      2 kworker/1:0H     0.0     0\nroot         18      2 watchdog/2       0.0     0\nroot         19      2 migration/2      0.0     0\nroot         20      2 ksoftirqd/2      0.0     0\nroot         22      2 kworker/2:0H     0.0     0\nroot         23      2 watchdog/3       0.0     0\nroot         24      2 migration/3      0.0     0\nroot         25      2 ksoftirqd/3      0.0     0\nroot         27      2 kworker/3:0H     0.0     0\nroot         28      2 watchdog/4       0.0     0\nroot         29      2 migration/4      0.0     0\nroot         30      2 ksoftirqd/4      0.0     0\nroot         32      2 kworker/4:0H     0.0     0\nroot         33      2 watchdog/5       0.0     0\nroot         34      2 migration/5      0.0     0\nroot         35      2 ksoftirqd/5      0.0     0\nroot         37      2 kworker/5:0H     0.0     0\nroot         38      2 watchdog/6       0.0     0\nroot         39      2 migration/6      0.0     0\nroot         40      2 ksoftirqd/6      0.0     0\nroot         42      2 kworker/6:0H     0.0     0\nroot         43      2 watchdog/7       0.0     0\nroot         44      2 migration/7      0.0     0\nroot         45      2 ksoftirqd/7      0.0     0\nroot         47      2 kworker/7:0H     0.0     0\nroot         48      2 watchdog/8       0.0     0\nroot         49      2 migration/8      0.0     0\nroot         50      2 ksoftirqd/8      0.0     0\nroot         52      2 kworker/8:0H     0.0     0\nroot         53      2 watchdog/9       0.0     0\nroot         54      2 migration/9      0.0     0\nroot         55      2 ksoftirqd/9      0.0     0\nroot         57      2 kworker/9:0H     0.0     0\nroot         58      2 watchdog/10      0.0     0\nroot         59      2 migration/10     0.0     0\nroot         60      2 ksoftirqd/10     0.0     0\nroot         62      2 kworker/10:0H    0.0     0\nroot         63      2 watchdog/11      0.0     0\nroot         64      2 migration/11     0.0     0\nroot         65      2 ksoftirqd/11     0.0     0\nroot         67      2 kworker/11:0H    0.0     0\nroot         68      2 watchdog/12      0.0     0\nroot         69      2 migration/12     0.0     0\nroot         70      2 ksoftirqd/12     0.0     0\nroot         72      2 kworker/12:0H    0.0     0\nroot         73      2 watchdog/13      0.0     0\nroot         74      2 migration/13     0.0     0\nroot         75      2 ksoftirqd/13     0.0     0\nroot         77      2 kworker/13:0H    0.0     0\nroot         78      2 watchdog/14      0.0     0\nroot         79      2 migration/14     0.0     0\nroot         80      2 ksoftirqd/14     0.0     0\nroot         82      2 kworker/14:0H    0.0     0\nroot         83      2 watchdog/15      0.0     0\nroot         84      2 migration/15     0.0     0\nroot         85      2 ksoftirqd/15     0.0     0\nroot         87      2 kworker/15:0H    0.0     0\nroot         88      2 watchdog/16      0.0     0\nroot         89      2 migration/16     0.0     0\nroot         90      2 ksoftirqd/16     0.0     0\nroot         92      2 kworker/16:0H    0.0     0\nroot         93      2 watchdog/17      0.0     0\nroot         94      2 migration/17     0.0     0\nroot         95      2 ksoftirqd/17     0.0     0\nroot         97      2 kworker/17:0H    0.0     0\nroot         98      2 watchdog/18      0.0     0\nroot         99      2 migration/18     0.0     0\nroot        100      2 ksoftirqd/18     0.0     0\nroot        102      2 kworker/18:0H    0.0     0\nroot        103      2 watchdog/19      0.0     0\nroot        104      2 migration/19     0.0     0\nroot        105      2 ksoftirqd/19     0.0     0\nroot        107      2 kworker/19:0H    0.0     0\nroot        108      2 watchdog/20      0.0     0\nroot        109      2 migration/20     0.0     0\nroot        110      2 ksoftirqd/20     0.0     0\nroot        112      2 kworker/20:0H    0.0     0\nroot        113      2 watchdog/21      0.0     0\nroot        114      2 migration/21     0.0     0\nroot        115      2 ksoftirqd/21     0.0     0\nroot        117      2 kworker/21:0H    0.0     0\nroot        118      2 watchdog/22      0.0     0\nroot        119      2 migration/22     0.0     0\nroot        120      2 ksoftirqd/22     0.0     0\nroot        122      2 kworker/22:0H    0.0     0\nroot        123      2 watchdog/23      0.0     0\nroot        124      2 migration/23     0.0     0\nroot        125      2 ksoftirqd/23     0.0     0\nroot        127      2 kworker/23:0H    0.0     0\nroot        128      2 watchdog/24      0.0     0\nroot        129      2 migration/24     0.0     0\nroot        130      2 ksoftirqd/24     0.0     0\nroot        132      2 kworker/24:0H    0.0     0\nroot        133      2 watchdog/25      0.0     0\nroot        134      2 migration/25     0.0     0\nroot        135      2 ksoftirqd/25     0.0     0\nroot        137      2 kworker/25:0H    0.0     0\nroot        138      2 watchdog/26      0.0     0\nroot        139      2 migration/26     0.0     0\nroot        140      2 ksoftirqd/26     0.0     0\nroot        142      2 kworker/26:0H    0.0     0\nroot        143      2 watchdog/27      0.0     0\nroot        144      2 migration/27     0.0     0\nroot        145      2 ksoftirqd/27     0.0     0\nroot        147      2 kworker/27:0H    0.0     0\nroot        148      2 watchdog/28      0.0     0\nroot        149      2 migration/28     0.0     0\nroot        150      2 ksoftirqd/28     0.0     0\nroot        152      2 kworker/28:0H    0.0     0\nroot        153      2 watchdog/29      0.0     0\nroot        154      2 migration/29     0.0     0\nroot        155      2 ksoftirqd/29     0.0     0\nroot        157      2 kworker/29:0H    0.0     0\nroot        158      2 watchdog/30      0.0     0\nroot        159      2 migration/30     0.0     0\nroot        160      2 ksoftirqd/30     0.0     0\nroot        162      2 kworker/30:0H    0.0     0\nroot        163      2 watchdog/31      0.0     0\nroot        164      2 migration/31     0.0     0\nroot        165      2 ksoftirqd/31     0.0     0\nroot        167      2 kworker/31:0H    0.0     0\nroot        168      2 watchdog/32      0.0     0\nroot        169      2 migration/32     0.0     0\nroot        170      2 ksoftirqd/32     0.0     0\nroot        172      2 kworker/32:0H    0.0     0\nroot        173      2 watchdog/33      0.0     0\nroot        174      2 migration/33     0.0     0\nroot        175      2 ksoftirqd/33     0.0     0\nroot        177      2 kworker/33:0H    0.0     0\nroot        178      2 watchdog/34      0.0     0\nroot        179      2 migration/34     0.0     0\nroot        180      2 ksoftirqd/34     0.0     0\nroot        182      2 kworker/34:0H    0.0     0\nroot        183      2 watchdog/35      0.0     0\nroot        184      2 migration/35     0.0     0\nroot        185      2 ksoftirqd/35     0.0     0\nroot        187      2 kworker/35:0H    0.0     0\nroot        188      2 watchdog/36      0.0     0\nroot        189      2 migration/36     0.0     0\nroot        190      2 ksoftirqd/36     0.0     0\nroot        192      2 kworker/36:0H    0.0     0\nroot        193      2 watchdog/37      0.0     0\nroot        194      2 migration/37     0.0     0\nroot        195      2 ksoftirqd/37     0.0     0\nroot        197      2 kworker/37:0H    0.0     0\nroot        198      2 watchdog/38      0.0     0\nroot        199      2 migration/38     0.0     0\nroot        200      2 ksoftirqd/38     0.0     0\nroot        202      2 kworker/38:0H    0.0     0\nroot        203      2 watchdog/39      0.0     0\nroot        204      2 migration/39     0.0     0\nroot        205      2 ksoftirqd/39     0.0     0\nroot        207      2 kworker/39:0H    0.0     0\nroot        208      2 kdevtmpfs        0.0     0\nroot        209      2 netns            0.0     0\nroot        210      2 perf             0.0     0\nroot        211      2 khungtaskd       0.0     0\nroot        212      2 writeback        0.0     0\nroot        213      2 ksmd             0.0     0\nroot        214      2 khugepaged       0.0     0\nroot        215      2 crypto           0.0     0\nroot        216      2 kintegrityd      0.0     0\nroot        217      2 bioset           0.0     0\nroot        218      2 kblockd          0.0     0\nroot        220      2 ata_sff          0.0     0\nroot        221      2 md               0.0     0\nroot        222      2 devfreq_wq       0.0     0\nroot        227      2 kswapd0          0.0     0\nroot        228      2 kswapd1          0.0     0\nroot        229      2 vmstat           0.0     0\nroot        230      2 fsnotify_mark    0.0     0\nroot        231      2 ecryptfs-kthrea  0.0     0\nroot        247      2 kthrotld         0.0     0\nroot        285      2 acpi_thermal_pm  0.0     0\nroot        286      2 bioset           0.0     0\nroot        287      2 bioset           0.0     0\nroot        288      2 bioset           0.0     0\nroot        289      2 bioset           0.0     0\nroot        290      2 bioset           0.0     0\nroot        291      2 bioset           0.0     0\nroot        292      2 bioset           0.0     0\nroot        293      2 bioset           0.0     0\nroot        300      2 ipv6_addrconf    0.0     0\nroot        313      2 deferwq          0.0     0\nroot        314      2 kworker/u896:1   0.0     0\nroot        315      2 charger_manager  0.0     0\nroot        353      2 scsi_eh_0        0.0     0\nroot        354      2 scsi_tmf_0       0.0     0\nroot        356      2 scsi_eh_1        0.0     0\nroot        357      2 scsi_tmf_1       0.0     0\nroot        360      2 scsi_eh_2        0.0     0\nroot        361      2 scsi_tmf_2       0.0     0\nroot        362      2 scsi_eh_3        0.0     0\nroot        363      2 scsi_tmf_3       0.0     0\nroot        378      2 scsi_eh_4        0.0     0\nroot        379      2 scsi_tmf_4       0.0     0\nroot        404      2 scsi_eh_5        0.0     0\nroot        405      2 scsi_tmf_5       0.0     0\nroot        431      2 scsi_eh_6        0.0     0\nroot        432      2 scsi_tmf_6       0.0     0\nroot        451      2 scsi_eh_7        0.0     0\nroot        452      2 scsi_tmf_7       0.0     0\nroot        453      2 scsi_eh_8        0.0     0\nroot        454      2 scsi_tmf_8       0.0     0\nroot        455      2 scsi_eh_9        0.0     0\nroot        456      2 scsi_tmf_9       0.0     0\nroot        457      2 scsi_eh_10       0.0     0\nroot        458      2 scsi_tmf_10      0.0     0\nroot        459      2 scsi_eh_11       0.0     0\nroot        460      2 scsi_tmf_11      0.0     0\nroot        461      2 scsi_eh_12       0.0     0\nroot        462      2 scsi_tmf_12      0.0     0\nroot        463      2 scsi_eh_13       0.0     0\nroot        464      2 scsi_tmf_13      0.0     0\nroot        465      2 scsi_eh_14       0.0     0\nroot        466      2 scsi_tmf_14      0.0     0\nroot        752      2 bioset           0.0     0\nroot       1009      2 bioset           0.0     0\nroot       1015      2 kworker/2:1H     0.0     0\nroot       1086      2 raid5wq          0.0     0\nroot       1111      2 kdmflush         0.0     0\nroot       1113      2 bioset           0.0     0\nroot       1122      2 kdmflush         0.0     0\nroot       1124      2 bioset           0.0     0\nroot       1137      2 bioset           0.0     0\nroot       1163      2 jbd2/dm-0-8      0.0     0\nroot       1164      2 ext4-rsv-conver  0.0     0\nroot       1222      2 kauditd          0.0     0\nroot       1227      2 kworker/27:1H    0.0     0\nroot       1235      1 systemd-journal  0.0 63284\nroot       1258      1 lvmetad          0.0   628\nroot       1295      2 iscsi_eh         0.0     0\nroot       1300      2 ib_addr          0.0     0\nroot       1303      2 ib_mcast         0.0     0\nroot       1304      1 systemd-udevd    0.0  4344\nroot       1305      2 ib_nl_sa_wq      0.0     0\nroot       1306      2 ib_cm            0.0     0\nroot       1307      2 iw_cm_wq         0.0     0\nroot       1309      2 rdma_cm          0.0     0\nroot       1424      2 irq/80-mei_me    0.0     0\nroot       1425      2 kworker/8:1H     0.0     0\nroot       1427      2 kworker/4:1H     0.0     0\nroot       1561      2 kvm-irqfd-clean  0.0     0\nroot       1586      2 edac-poller      0.0     0\nroot       1658      2 ext4-rsv-conver  0.0     0\nroot       1863      2 kworker/10:0     0.0     0\nsyslog     1884      1 rsyslogd         0.0  3856\nroot       1895      1 acpid            0.0   768\nroot       1896      1 cron             0.0  2344\nroot       1903      1 lxcfs            0.0  2544\ndaemon     1911      1 atd              0.0  1556\nroot       1916      1 accounts-daemon  0.0  5632\nroot       1923      1 systemd-logind   0.0  3500\nmessage+   1926      1 dbus-daemon      0.0  3120\nroot       1941      1 mdadm            0.0  1220\nroot       1953      2 kworker/24:1H    0.0     0\nroot       1954      1 polkitd          0.0  4364\nroot       1999      2 kworker/6:3      0.0     0\nroot       2024      2 kworker/0:1H     0.0     0\nroot       2025      2 kworker/18:1H    0.0     0\nroot       2054      1 dhclient         0.0  2824\nroot       2168      1 unattended-upgr  0.0  9868\nroot       2172      1 containerd       0.0 24920\nroot       2187      1 iscsid           0.0  1740\nroot       2188      1 iscsid           0.0  3660\nroot       2189      2 kworker/12:1     0.0     0\nroot       2220      2 kworker/12:2     0.0     0\nroot       2273      1 agetty           0.0  1344\nroot       2282      1 irqbalance       0.0  2336\n_chrony    2296      1 chronyd          0.0  2768\nroot       2316      2 kworker/0:2      0.0     0\nroot       2335      1 dockerd          0.0 43072\nroot       2392      2 kworker/9:0      0.0     0\nroot       2393      2 kworker/u897:0   0.0     0\nroot       2411      2 kworker/30:0     0.0     0\nroot       2414 277741 sshd             0.0  6808\nfnl        2493   2414 sshd             0.0  3328\nfnl        2494   2493 python3          0.0 12356\nfnl        2495   2494 ps               0.0  3280\nroot       2663      2 kworker/17:1H    0.0     0\nroot       2666      2 kworker/5:1H     0.0     0\nroot       2748      2 kworker/6:1H     0.0     0\nroot       2749      2 kworker/35:1H    0.0     0\nroot       2750      2 kworker/19:1H    0.0     0\nroot       2752      2 kworker/14:1H    0.0     0\nroot       2753      2 kworker/16:1H    0.0     0\nroot       2762      2 kworker/38:1H    0.0     0\nroot       2770      2 kworker/32:1H    0.0     0\nroot       2791      2 kworker/3:1H     0.0     0\nroot       2792      2 kworker/22:1H    0.0     0\nroot       2793      2 kworker/12:1H    0.0     0\nroot       2796      2 kworker/36:1H    0.0     0\nroot       2797      2 kworker/1:1H     0.0     0\nroot       2803      2 kworker/28:1H    0.0     0\nroot       2925      2 kworker/39:1H    0.0     0\nroot       3185      2 kworker/13:1H    0.0     0\nroot       3196      2 kworker/34:1H    0.0     0\nroot       3251      2 kworker/11:1H    0.0     0\nroot       3503      2 kworker/31:1H    0.0     0\nroot       3512      2 kworker/20:1H    0.0     0\nroot       3513      2 kworker/7:1H     0.0     0\nroot       3514      2 kworker/10:1H    0.0     0\nroot       3579      2 kworker/9:1H     0.0     0\nroot       3640      2 kworker/15:1H    0.0     0\nroot       3684      2 kworker/23:1H    0.0     0\nroot       4248      2 kworker/33:1H    0.0     0\nroot       4357      2 kworker/30:1H    0.0     0\nroot       7255      2 kworker/37:1H    0.0     0\nroot       7258      2 kworker/29:1H    0.0     0\nroot       7479      2 kworker/26:1H    0.0     0\nroot      10660      2 kworker/21:1H    0.0     0\nroot      23316      2 kworker/25:1H    0.0     0\nroot      31111      2 kworker/36:1     0.0     0\nroot     140050      2 kworker/36:3     0.0     0\nroot     153249      2 kworker/32:1     0.0     0\nroot     153534      2 kworker/37:1     0.0     0\nroot     154309      2 kworker/32:2     0.0     0\nroot     164261      2 kworker/39:0     0.0     0\nroot     179250      2 kworker/35:0     0.0     0\nfnl      215645      1 OpenDebugAD7     0.0 29448\nroot     218213      2 kworker/35:2     0.0     0\nroot     218779      2 kworker/23:1     0.0     0\nroot     218840      2 kworker/31:1     0.0     0\nroot     219451      2 kworker/25:1     0.0     0\nroot     240641      2 kworker/1:0      0.0     0\nroot     245892      2 kworker/24:0     0.0     0\nroot     254307      2 kworker/27:1     0.0     0\nroot     270208      2 kworker/u897:1   0.0     0\nroot     273036      2 kworker/39:1     0.0     0\nroot     277741      1 sshd             0.0  3996\nroot     282063      1 fail2ban-server  0.0 17184\nroot     297908      2 kworker/33:2     0.0     0\nfnl      302325      1 OpenDebugAD7     0.0 29408\nroot     305526      2 kworker/34:1     0.0     0\nroot     306583      2 kworker/31:2     0.0     0\nroot     331208      2 kworker/15:2     0.0     0\nroot     346422      2 kworker/29:0     0.0     0\nfnl      348833      1 OpenDebugAD7     0.0 29328\nroot     352260      2 kworker/3:2      0.0     0\nroot     357159      2 kworker/5:1      0.0     0\nroot     357564      2 kworker/19:0     0.0     0\nroot     357911      2 kworker/7:1      0.0     0\nroot     358568      2 kworker/11:0     0.0     0\nroot     358930      2 kworker/22:2     0.0     0\nroot     359366      2 kworker/17:1     0.0     0\nroot     361656      2 kworker/28:2     0.0     0\nroot     362882      2 kworker/24:2     0.0     0\nroot     362897      2 kworker/20:0     0.0     0\nroot     365085      2 kworker/19:3     0.0     0\nroot     370643      2 kworker/25:2     0.0     0\nroot     373363      2 kworker/22:1     0.0     0\nroot     375090      2 kworker/20:2     0.0     0\nroot     375274      2 kworker/9:2      0.0     0\nfnl      377959      1 hg               0.0 12004\nroot     381252      2 kworker/21:1     0.0     0\nroot     385237      2 kworker/38:1     0.0     0\nroot     386994      2 kworker/33:0     0.0     0\nroot     389184      2 kworker/23:0     0.0     0\nroot     391205      2 kworker/15:0     0.0     0\nroot     391523      2 kworker/38:2     0.0     0\nroot     392323      2 kworker/13:0     0.0     0\nroot     394442      2 kworker/u898:0   0.0     0\nroot     395546      2 kworker/37:0     0.0     0\nfnl      397391      1 OpenDebugAD7     0.0 29164\nroot     413503      2 kworker/30:1     0.0     0\nroot     414083      2 kworker/21:2     0.0     0\nfnl      415208      1 OpenDebugAD7     0.0 28668\nroot     417264      2 kworker/34:0     0.0     0\nroot     419176      2 kworker/8:0      0.0     0\nfnl      420873      1 systemd          0.0  3704\nfnl      420878 420873 (sd-pam)         0.0  1852\nroot     429585      2 kworker/u898:2   0.0     0\nroot     431833      2 kworker/17:0     0.0     0\nroot     441795      2 kworker/13:2     0.0     0\nroot     442176      2 kworker/16:0     0.0     0\nroot     442221      2 kworker/11:2     0.0     0\nroot     442436      2 kworker/27:0     0.0     0\nroot     442441      2 kworker/26:1     0.0     0\nroot     442868      2 kworker/14:0     0.0     0\nroot     442910      2 kworker/18:0     0.0     0\nroot     443248      2 kworker/4:1      0.0     0\nroot     444254      2 kworker/28:1     0.0     0\nroot     444823      2 kworker/1:2      0.0     0\nroot     444950      2 kworker/2:0      0.0     0\nroot     445473      2 kworker/2:1      0.0     0\nroot     448367      2 kworker/14:3     0.0     0\nroot     448539      2 kworker/18:3     0.0     0\nroot     448593      2 kworker/4:0      0.0     0\nroot     448778      2 kworker/8:2      0.0     0\nroot     448798      2 kworker/6:0      0.0     0\nroot     448882      2 kworker/0:1      0.0     0\nroot     448902      2 kworker/10:1     0.0     0\nroot     449486      2 kworker/3:1      0.0     0\nroot     449570      2 kworker/5:2      0.0     0\nroot     449737      2 kworker/26:3     0.0     0\nroot     449782      2 kworker/7:0      0.0     0\nroot     450121      2 kworker/16:2     0.0     0\nroot     451811      2 kworker/29:3     0.0     0\nfnl      457365      1 OpenDebugAD7     0.0 29292\n",
+      "who": "",
+      "worker_sha256": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc"
+    },
+    "returncode": 0,
+    "stderr": ""
+  },
+  "stderr_log": "Traceback (most recent call last):\n  File \"E:\\\ufffd\ufffd\\\ufffd\ufffd\u04b5\ufffd\ufffd\ufffd\ufffd\\workspace\\ws30-attribution-audit\\scripts\\resume_ws30_v14.py\", line 274, in <module>\n    main()\n  File \"E:\\\ufffd\ufffd\\\ufffd\ufffd\u04b5\ufffd\ufffd\ufffd\ufffd\\workspace\\ws30-attribution-audit\\scripts\\resume_ws30_v14.py\", line 270, in main\n    print(json.dumps(run(args.session_file)))\n                     ^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\\ufffd\ufffd\\\ufffd\ufffd\u04b5\ufffd\ufffd\ufffd\ufffd\\workspace\\ws30-attribution-audit\\scripts\\resume_ws30_v14.py\", line 250, in run\n    runner.run()\n  File \"E:\\\ufffd\ufffd\\\ufffd\ufffd\u04b5\ufffd\ufffd\ufffd\ufffd\\workspace\\ws30-attribution-audit\\scripts\\run_ws30_v14.py\", line 280, in run\n    return super().run()\n           ^^^^^^^^^^^^^\n  File \"E:\\\ufffd\ufffd\\\ufffd\ufffd\u04b5\ufffd\ufffd\ufffd\ufffd\\workspace\\ws30-attribution-audit\\scripts\\run_ws30_stage3.py\", line 409, in run\n    self.backend.gate();self.backend.build(missing[offset:offset+min(4,self.state['cap'])])\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\\ufffd\ufffd\\\ufffd\ufffd\u04b5\ufffd\ufffd\ufffd\ufffd\\workspace\\ws30-attribution-audit\\scripts\\run_ws30_v14.py\", line 231, in build\n    with ThreadPoolExecutor(max_workers=min(4,len(cells))) as pool:list(pool.map(one,cells))\n                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\_base.py\", line 619, in result_iterator\n    yield _result_or_cancel(fs.pop())\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\_base.py\", line 317, in _result_or_cancel\n    return fut.result(timeout)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\concurrent\\futures\\thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\\ufffd\ufffd\\\ufffd\ufffd\u04b5\ufffd\ufffd\ufffd\ufffd\\workspace\\ws30-attribution-audit\\scripts\\run_ws30_v14.py\", line 229, in one\n    require(self.snapshot([c])['states'][c['id']]['status']=='BUILT','Isolated build incomplete')\n            ^^^^^^^^^^^^^^^^^^\n  File \"E:\\\ufffd\ufffd\\\ufffd\ufffd\u04b5\ufffd\ufffd\ufffd\ufffd\\workspace\\ws30-attribution-audit\\scripts\\run_ws30_v14.py\", line 213, in snapshot\n    large=json.loads(subprocess.check_output(legacy.stage.remote.remote.ssh_base(cfg)+['python3 -c '+shlex.quote(code)],encoding='utf-8',errors='replace',timeout=45))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\subprocess.py\", line 466, in check_output\n    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\subprocess.py\", line 550, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\subprocess.py\", line 1209, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\subprocess.py\", line 1630, in _communicate\n    raise TimeoutExpired(self.args, orig_timeout)\nsubprocess.TimeoutExpired: Command '['ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes', '-o', 'ConnectTimeout=10', '-o', 'ConnectionAttempts=1', '-o', 'TCPKeepAlive=yes', '-o', 'ServerAliveInterval=15', '-o', 'ServerAliveCountMax=2', '-o', 'ClearAllForwardings=yes', 'fnl@10.112.14.167', 'python3 -c \\'import glob,os,json; ids=[\\'\"\\'\"\\'20261026-120000-w30v14-m-s20263034-u12\\'\"\\'\"\\']; print(json.dumps([n for n in ids if any(os.path.getsize(p)>536870912 for p in glob.glob(\\'\"\\'\"\\'/home/fnl/lzy/runs/\\'\"\\'\"\\'+n+\\'\"\\'\"\\'/source/mix/output/*/config.log\\'\"\\'\"\\'))]))\\'']' timed out after 45 seconds\n",
+  "stderr_sha256": "45e4ac83cbc69758ce25c72e68b349b2e0fce9e774f5c9773ea2e15e4252a857"
+}
