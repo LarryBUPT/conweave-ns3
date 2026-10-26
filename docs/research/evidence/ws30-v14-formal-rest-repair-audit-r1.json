@@ -1,0 +1,58 @@
+{
+  "actual_context": {
+    "effort": "medium",
+    "model": "gpt-6.1-sol",
+    "turn_id": "01a1779d-ab07-7410-a0d7-bce567185de1"
+  },
+  "approved": false,
+  "control_sha256": {
+    "scripts/remote_experiment.py": "cd06ae6c97e73f4c3b83bf3ff6655541161b94d4e8d0d799d8e8779c9283e824",
+    "scripts/remote_worker.py": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc",
+    "scripts/resume_ws30_v14.py": "136baa61047384d151f5f42c178b806a4a20727fa200cfed77f215b641073cf2",
+    "scripts/run_ws25_formal.py": "5bebe596708bedc04032980649ef29d3a945be2ff370f811aae85309ddefae9c",
+    "scripts/run_ws25_preflight.py": "1457e1af52db5c1d8d0c8f9cefbcba7ea668d4349456c997867d581bd99402b1",
+    "scripts/run_ws25_resource_pilot.py": "e153c91320e76d5b745c9a70fc771e04ecdfed22f726b91d2f6b3ad95f05f3f0",
+    "scripts/run_ws25_v1fix_calibration.py": "718fb070eac30831632a30a648ec9f774a394b62575a0c19bb21af4404c03ddd",
+    "scripts/run_ws30_stage2.py": "e2f0d80288f0d44ecb8a849551159fe77738fec8e2e1c77d171ef3e42f6008fe",
+    "scripts/run_ws30_stage3.py": "1f8f9192ea0dbef89eaaabc1f45a68ea26097d71fbd7a10162de9351cf385e58",
+    "scripts/run_ws30_v13.py": "d30dfd565568a83da665605bbd787ac1ee24c137136b76158bcec545c5372392",
+    "scripts/run_ws30_v14.py": "c0f07d7c3586f38bf8a4a71dc17ee97ce8e37c3cec855a2f9f5c08d103f9c592",
+    "scripts/verify_ws30_v14_raw.py": "38c2f471479da2f5a9d437dfd92b15f1c7e6163ca115c3976bc01bde383e1dbc"
+  },
+  "created_utc": "2026-10-26T10:03:08.892528+00:00",
+  "git_diff_check_exit": 0,
+  "kind": "WS-30 local controller-repair acceptance audit",
+  "limits": [
+    "No simulation was started; the 140-cell runtime path has local/fake-backend coverage only.",
+    "The original child-command nonzero-exit detail was lost by the old decoder failure.",
+    "Engineering 48, W5 36 and full performance analysis remain required."
+  ],
+  "new_builds": 0,
+  "new_resume_state_exists": false,
+  "new_simulations": 0,
+  "original_evidence_sha256": {
+    "docs/research/evidence/ws30-v14-execution-authorization.json": "7850eb7c9e937515b29ccdba6f5a888135aa324c98f74b3b13105d1433a48d27",
+    "results/ws30-v14-formal-first-execution-r1.json": "07d966b9adec97d0137687c2bf416919bad23f51f1528d033df55e137427f37a",
+    "results/ws30-v14-formal-rest-execution-r1.json": "0563036e7281555b56c0c0bee2795d6f32b08baf6bd9f08d5099e9278c3ab3ee",
+    "results/ws30-v14-formal-rest-recovery-r1.json": "79c803d14e33680d67b87f37b13dfc0fce73a9d15242868ae638e59fb04815ea"
+  },
+  "pending_gate_rejects_run": true,
+  "remaining_untouched_locally": 140,
+  "remote_actions_in_this_audit": 0,
+  "remote_observation_source": "docs\\research\\evidence\\ws30-v14-formal-rest-resume-plan-r1.json",
+  "resume_authorization_sha256": "db1331cfdb3eb1a56542c17e555d7b6b3ebc4e68fa385b5972017302a78ecbc1",
+  "resume_plan_sha256": "5f0a44c519f2cbb04c9996dfe1e07876444b1f88a8c3bd7faa023f15ab31a6b5",
+  "retained_fct_rows": 397824,
+  "retained_formal_rest_verified": 24,
+  "test_script_sha256": {
+    "scripts/test_ws30_v14_execution.py": "256ce7e66a5d2bd2ff28e10e6bf162e3d76d03908a49970d9cf7734eb597d154",
+    "scripts/test_ws30_v14_recovery.py": "26bc15a52e7eb7f516b847ff92871b52d76875405a47e616a2b291040a23c47f"
+  },
+  "tests": {
+    "errors": 0,
+    "failures": 0,
+    "log": "test_absent_approval_refuses_before_remote (test_ws30_v14_execution.GuardTests.test_absent_approval_refuses_before_remote) ... ok\ntest_actual_model_policy_accepts_medium_and_rejects_high (test_ws30_v14_execution.GuardTests.test_actual_model_policy_accepts_medium_and_rejects_high) ... ok\ntest_all_168_formal_commands_preserve_old_worker_argv (test_ws30_v14_execution.GuardTests.test_all_168_formal_commands_preserve_old_worker_argv) ... ok\ntest_changed_controller_refuses_before_model_or_remote (test_ws30_v14_execution.GuardTests.test_changed_controller_refuses_before_model_or_remote) ... ok\ntest_deployed_worker_bytes_must_match (test_ws30_v14_execution.GuardTests.test_deployed_worker_bytes_must_match) ... ok\ntest_explicit_seed_arguments_for_prefix_without_filename_seed (test_ws30_v14_execution.GuardTests.test_explicit_seed_arguments_for_prefix_without_filename_seed) ... ok\ntest_formal_independent_of_new_life_and_w5 (test_ws30_v14_execution.GuardTests.test_formal_independent_of_new_life_and_w5) ... ok\ntest_four_cell_batch_can_complete_without_extra_human_gate (test_ws30_v14_execution.GuardTests.test_four_cell_batch_can_complete_without_extra_human_gate) ... ok\ntest_gate_allows_owned_siblings_but_refuses_unknown_process (test_ws30_v14_execution.GuardTests.test_gate_allows_owned_siblings_but_refuses_unknown_process) ... ok\ntest_high_receipt_rejected_in_memory_without_creating_authorization (test_ws30_v14_execution.GuardTests.test_high_receipt_rejected_in_memory_without_creating_authorization) ... ok\ntest_lost_build_return_never_reissues_mutation (test_ws30_v14_execution.GuardTests.test_lost_build_return_never_reissues_mutation) ... ok\ntest_no_unauthorized_engineering_or_w5_results_exist (test_ws30_v14_execution.GuardTests.test_no_unauthorized_engineering_or_w5_results_exist) ... ok\ntest_old_parser_rejects_seed_leak_and_worker_rejects_profile_leak (test_ws30_v14_execution.GuardTests.test_old_parser_rejects_seed_leak_and_worker_rejects_profile_leak) ... ok\ntest_old_source_qualification_from_real_local_raw (test_ws30_v14_execution.GuardTests.test_old_source_qualification_from_real_local_raw) ... ok\ntest_remote_source_collision_stops_before_log_query (test_ws30_v14_execution.GuardTests.test_remote_source_collision_stops_before_log_query) ... ok\ntest_resume_contract_cannot_change (test_ws30_v14_execution.GuardTests.test_resume_contract_cannot_change) ... ok\ntest_retained_failure_cannot_resume_as_success (test_ws30_v14_execution.GuardTests.test_retained_failure_cannot_resume_as_success) ... ok\ntest_schedule_partitions_all_cells_and_sources (test_ws30_v14_execution.GuardTests.test_schedule_partitions_all_cells_and_sources) ... ok\ntest_validation_failure_persists_and_stops (test_ws30_v14_execution.GuardTests.test_validation_failure_persists_and_stops) ... ok\ntest_config_log_recovers_locally_and_idempotently (test_ws30_v14_recovery.LogTests.test_config_log_recovers_locally_and_idempotently) ... ok\ntest_existing_local_result_recovers_log_before_validation (test_ws30_v14_recovery.LogTests.test_existing_local_result_recovers_log_before_validation) ... ok\ntest_existing_mismatched_log_is_retained_and_rejected (test_ws30_v14_recovery.LogTests.test_existing_mismatched_log_is_retained_and_rejected) ... ok\ntest_interrupted_scp_never_publishes_partial_log (test_ws30_v14_recovery.LogTests.test_interrupted_scp_never_publishes_partial_log) ... ok\ntest_none_stdout_does_not_mask_nonzero_exit (test_ws30_v14_recovery.OutputTests.test_none_stdout_does_not_mask_nonzero_exit) ... ok\ntest_real_child_invalid_bytes_preserve_full_error (test_ws30_v14_recovery.OutputTests.test_real_child_invalid_bytes_preserve_full_error) ... ok\ntest_real_child_utf8_output_ignores_windows_code_page (test_ws30_v14_recovery.OutputTests.test_real_child_utf8_output_ignores_windows_code_page) ... ok\ntest_timeout_preserves_partial_bytes (test_ws30_v14_recovery.OutputTests.test_timeout_preserves_partial_bytes) ... ok\ntest_build_intent_or_staging_blocks_new_id (test_ws30_v14_recovery.ResumeTests.test_build_intent_or_staging_blocks_new_id) ... ok\ntest_metadata_absence_does_not_hide_orphan_remote_directory (test_ws30_v14_recovery.ResumeTests.test_metadata_absence_does_not_hide_orphan_remote_directory) ... ok\ntest_owned_terminal_resumption_does_not_rebuild_or_rerun (test_ws30_v14_recovery.ResumeTests.test_owned_terminal_resumption_does_not_rebuild_or_rerun) ... ok\ntest_partition_skips_exactly_24_and_preserves_frozen_140 (test_ws30_v14_recovery.ResumeTests.test_partition_skips_exactly_24_and_preserves_frozen_140) ... ok\ntest_pending_acceptance_stops_before_ssh_or_runner_writes (test_ws30_v14_recovery.ResumeTests.test_pending_acceptance_stops_before_ssh_or_runner_writes) ... ok\ntest_reconciliation_id_change_is_rejected (test_ws30_v14_recovery.ResumeTests.test_reconciliation_id_change_is_rejected) ... ok\n\n----------------------------------------------------------------------\nRan 33 tests in 11.627s\n\nOK\n",
+    "run": 33,
+    "skipped": 0
+  }
+}

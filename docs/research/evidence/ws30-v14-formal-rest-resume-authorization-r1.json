@@ -1,0 +1,38 @@
+{
+  "analysis_effort": "medium",
+  "analysis_model": "gpt-6.1-sol",
+  "approved": false,
+  "authorization_evidence": {
+    "original_authorization_sha256": "7850eb7c9e937515b29ccdba6f5a888135aa324c98f74b3b13105d1433a48d27",
+    "review_request_source_thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
+    "scope": "Prepare and locally test recovery; do not start 140 cells before main-chat acceptance."
+  },
+  "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+  "control_sha256": {
+    "scripts/remote_experiment.py": "cd06ae6c97e73f4c3b83bf3ff6655541161b94d4e8d0d799d8e8779c9283e824",
+    "scripts/remote_worker.py": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc",
+    "scripts/resume_ws30_v14.py": "136baa61047384d151f5f42c178b806a4a20727fa200cfed77f215b641073cf2",
+    "scripts/run_ws25_formal.py": "5bebe596708bedc04032980649ef29d3a945be2ff370f811aae85309ddefae9c",
+    "scripts/run_ws25_preflight.py": "1457e1af52db5c1d8d0c8f9cefbcba7ea668d4349456c997867d581bd99402b1",
+    "scripts/run_ws25_resource_pilot.py": "e153c91320e76d5b745c9a70fc771e04ecdfed22f726b91d2f6b3ad95f05f3f0",
+    "scripts/run_ws25_v1fix_calibration.py": "718fb070eac30831632a30a648ec9f774a394b62575a0c19bb21af4404c03ddd",
+    "scripts/run_ws30_stage2.py": "e2f0d80288f0d44ecb8a849551159fe77738fec8e2e1c77d171ef3e42f6008fe",
+    "scripts/run_ws30_stage3.py": "1f8f9192ea0dbef89eaaabc1f45a68ea26097d71fbd7a10162de9351cf385e58",
+    "scripts/run_ws30_v13.py": "d30dfd565568a83da665605bbd787ac1ee24c137136b76158bcec545c5372392",
+    "scripts/run_ws30_v14.py": "c0f07d7c3586f38bf8a4a71dc17ee97ce8e37c3cec855a2f9f5c08d103f9c592",
+    "scripts/verify_ws30_v14_raw.py": "38c2f471479da2f5a9d437dfd92b15f1c7e6163ca115c3976bc01bde383e1dbc"
+  },
+  "external_sync_approved": true,
+  "fixed_source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+  "main_chat_acceptance": null,
+  "phase_caps": {
+    "formal-rest": 8
+  },
+  "phases": [
+    "formal-rest"
+  ],
+  "resume_plan_sha256": "5f0a44c519f2cbb04c9996dfe1e07876444b1f88a8c3bd7faa023f15ab31a6b5",
+  "schedule_sha256": "2999ccc3bcfbf73a099365428cdc2c42fb8dccba23f1d845911a7f521c043994",
+  "supervision_effort": "medium",
+  "supervision_model": "gpt-6-luna"
+}

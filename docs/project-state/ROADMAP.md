@@ -1,5 +1,11 @@
 # 下一阶段路线与停机条件
 
+## WS-30 formal-rest 修复后的续跑入口（2026-10-26）
+
+[控制器修复](../research/ws30-v14-formal-rest-controller-repair-r1.md)及 34 项本地测试已完成。formal-first 4 格和 formal-rest 24 格已有 raw，正式合计 28/168；剩余 140 个 ID 在本地/远端路径均空。旧失败收据与 raw 不改，新续跑计划绑定独立状态、原源码和控制哈希，审批保持关闭。
+
+先由主对话验收修复及[续跑计划 r2](../research/evidence/ws30-v14-formal-rest-resume-plan-r2.json)，再实际切 Luna / Medium，经新鲜资源与碰撞检查运行原 140 格。终态回传并核验后切 GPT-6.1 Sol / Medium 分析。工程 48、W5 36 及全文整合仍必做，WS-30 ACTIVE。下方“正式未执行/无授权”记录已由本节点断点更新；修复阶段新增构建和仿真为 0。
+
 ## WS-30 v13 主稿引言与方法已修订（2026-10-26）
 
 [本地修订报告](../research/ws30-v13-manuscript-local-edit-report-r1.md)记录实际主稿修改：补需求揭盲与历史候选选择、旧联合 NO-GO、缓存回收边界；明确新建 QP 主体与两个同候选直接比较，新增用途限定的小规模技术验证。当前主稿哈希见[应用记录](../research/evidence/ws30-v13-manuscript-local-edit-r1/application.json)，下方“主稿未改”记录属于此前阶段。

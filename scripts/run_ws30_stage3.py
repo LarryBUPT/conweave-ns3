@@ -267,7 +267,7 @@ class Backend:
         request={'ids':ids,'known':known or {},'seconds':1800 if known else 0,'drain':drain}
         cfg=stage.remote.remote.config()
         command='python3 -c '+shlex.quote(REMOTE_WAIT)+' '+shlex.quote(json.dumps(request))
-        out=subprocess.check_output(stage.remote.remote.ssh_base(cfg)+[command],text=True,timeout=1870)
+        out=subprocess.check_output(stage.remote.remote.ssh_base(cfg)+[command],encoding='utf-8',errors='replace',timeout=1870)
         return json.loads(out)
 
     def gate(self):
@@ -307,7 +307,7 @@ class Backend:
               "print(sum('ws11_resource_watch.py '+name in r and 'python3 -c' not in r for r in rows)); "
               "print(int(os.path.exists(sample)))") % cell['id']
         out=subprocess.check_output(stage.remote.remote.ssh_base(stage.remote.remote.config())+
-                                    ['python3 -c '+shlex.quote(code)],text=True,timeout=45).splitlines()
+                                    ['python3 -c '+shlex.quote(code)],encoding='utf-8',errors='replace',timeout=45).splitlines()
         watchers,sample=map(int,out[-2:])
         assert watchers<=1,'Duplicate resource watcher'
         if not watchers:

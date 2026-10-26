@@ -1,5 +1,11 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 formal-rest 控制器修复待验收（2026-10-26）
+
+[修复报告](../research/ws30-v14-formal-rest-controller-repair-r1.md)定位了 Windows 输出解码异常及空 stdout 的二次报错，补上完整错误落盘和 raw 日志的本地恢复。实际 GPT-6.1 Sol / Medium；34 项本地测试通过。formal-first 4 格已验收，formal-rest 24 格、397,824 条 FCT 再次通过 raw 核验，正式累计 28/168。原失败收据与已保全 ID/raw 均封存；140 个剩余 ID 的本地和远端目录无占用。
+
+[续跑计划 r2](../research/evidence/ws30-v14-formal-rest-resume-plan-r2.json)保留原源码 `2c9f3a50bafad0740b461496ba24fa81941a9bc7`、输入、seed 和 cap 8；新审批 `approved: false`，等待主对话核验控制哈希后放行。新入口 `scripts/resume_ws30_v14.py` 绑定独立状态文件，新增构建和仿真为 0。工程 48、W5 36、剩余正式 140、双侧分析及全文整合仍待完成，WS-30 ACTIVE；见[交接](../handoffs/2026-10-26-ws30-formal-rest-recovery-prepared.md)。下方“尚未授权/新运行 0”是此前阶段记录。
+
 ## WS-30 v13 主稿引言与方法已修订（2026-10-26）
 
 [本地修订报告](../research/ws30-v13-manuscript-local-edit-report-r1.md)记录实际主稿修改：补需求揭盲与历史候选选择、旧联合 NO-GO、缓存回收边界；明确新建 QP 主体与两个同候选直接比较，新增用途限定的小规模技术验证。当前主稿哈希见[应用记录](../research/evidence/ws30-v13-manuscript-local-edit-r1/application.json)，下方“主稿未改”记录属于此前阶段。

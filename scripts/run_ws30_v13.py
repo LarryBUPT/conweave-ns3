@@ -153,7 +153,7 @@ class Backend(old.Backend):
               "print(sum('ws11_resource_watch.py '+name in r and 'python3 -c' not in r for r in rows)); "
               "print(int(os.path.exists(sample)))") % c['id']
         reply=subprocess.check_output(stage.remote.remote.ssh_base(stage.remote.remote.config())+
-            ['python3 -c '+shlex.quote(code)],text=True,timeout=45).splitlines()
+            ['python3 -c '+shlex.quote(code)],encoding='utf-8',errors='replace',timeout=45).splitlines()
         watchers,samples=map(int,reply[-2:]);assert watchers<=1,'Duplicate resource watcher'
         if not watchers:
             assert not samples,'Resource samples exist but watcher disappeared; preserve and inspect'

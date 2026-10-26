@@ -2,13 +2,16 @@
 """Run only the frozen 12-cell WS-25 correctness/resource preflight."""
 import concurrent.futures
 import datetime
+import hashlib
 import json
 import os
 import shlex
+import shutil
 import subprocess
 import sys
 import threading
 import time
+import uuid
 from pathlib import Path
 
 import verify_ws25_preflight as verifier
@@ -24,23 +27,65 @@ RECEIPTS = ROOT / "results" / "ws25-preflight-receipts-v2.jsonl"
 LOCK = threading.Lock()
 
 
+def file_sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def command_output(value):
+    # Keep subprocess pipes binary on Windows: a decoder failure in
+    # communicate()'s reader thread can otherwise leave stdout as None.
+    if value is None:
+        return b""
+    return value.encode("utf-8", errors="replace") if isinstance(value, str) else value
+
+
+def preserve_command_error(args, output, **details):
+    folder = ROOT / "results" / "controller-command-errors"
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / (datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%S") +
+                     "-" + uuid.uuid4().hex + ".log")
+    with path.open("xb") as stream:
+        stream.write(command_output(output))
+    receipt = dict(args=list(args), output=str(path.relative_to(ROOT)),
+                   output_sha256=hashlib.sha256(path.read_bytes()).hexdigest(), **details)
+    with path.with_suffix(".json").open("x", encoding="utf-8") as stream:
+        json.dump(receipt, stream, indent=2, sort_keys=True)
+    return path
+
+
 def command(*args):
     operation = args[0] if args else ""
     # Keep this wrapper longer than remote_experiment.worker_call's 1800 s
     # build/sync timeout. A shorter parent timeout kills only the controller
     # process on Windows and can leave its SSH child running in the background.
     timeout = 1900 if operation in ("build", "sync", "sync-bundle", "fetch") else 120
+    env = dict(os.environ, PYTHONIOENCODING="utf-8", PYTHONUTF8="1")
     try:
         result = subprocess.run([sys.executable, str(CONTROLLER)] + list(args), cwd=str(ROOT),
                                 stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                                universal_newlines=True, timeout=timeout)
+                                env=env, timeout=timeout)
     except subprocess.TimeoutExpired as error:
-        raise RuntimeError("controller timed out after %s seconds: %s" %
-                           (timeout, " ".join(args[:3]))) from error
+        path = preserve_command_error(args, error.output, timeout_seconds=timeout)
+        raise RuntimeError("controller timed out after %s seconds: %s; output retained: %s" %
+                           (timeout, " ".join(args[:3]), path)) from error
+    output = command_output(result.stdout)
+    message = output.decode("utf-8", errors="replace")
     if result.returncode:
-        raise RuntimeError("controller failed (%s): %s" %
-                           (" ".join(args[:3]), result.stdout[-1600:]))
-    return result.stdout
+        path = preserve_command_error(args, output, returncode=result.returncode,
+                                      output_missing=result.stdout is None)
+        raise RuntimeError("controller failed (%s), exit %s; output retained: %s: %s" %
+                           (" ".join(args[:3]), result.returncode, path, message[-1600:]))
+    # Native SSH/SCP diagnostics may use a local code page. Preserve those
+    # bytes, while only the diagnostic text receives replacement decoding.
+    try:
+        output.decode("utf-8")
+    except UnicodeDecodeError:
+        preserve_command_error(args, output, returncode=0, decoding="utf-8 replacement")
+    return message
 
 
 def status(experiment_id):
@@ -123,20 +168,54 @@ def wait_watch(experiment_id):
 
 
 def fetch_config_log(cell, metadata):
-    cfg = remote.config()
+    assert remote.ID_RE.fullmatch(cell["id"])
     raw_id = str(metadata["raw_directory"])
     assert raw_id.isdigit()
-    remote_path = "/home/fnl/lzy/runs/%s/source/mix/output/%s/config.log" % (cell["id"], raw_id)
-    code = "import os; p=%r; assert os.path.isfile(p) and not os.path.islink(p)" % remote_path
-    subprocess.check_call(remote.ssh_base(cfg) + ["python3 -c " + shlex.quote(code)],
-                          timeout=45)
-    destination = ROOT / "results" / cell["id"] / "logs" / "config.log"
-    if not destination.exists():
-        subprocess.check_call(["scp", "-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=yes",
-                               "-o", "ConnectTimeout=10", "-o", "ServerAliveInterval=15",
-                               "-o", "ServerAliveCountMax=2", "-o", "ClearAllForwardings=yes",
-                               cfg["REMOTE_USER"] + "@" + cfg["REMOTE_HOST"] + ":" + remote_path,
-                               str(destination)], timeout=600)
+    folder = ROOT / "results" / cell["id"]
+    destination = folder / "logs" / "config.log"
+    source = folder / "raw" / raw_id / "config.log"
+    assert destination.parent.resolve() == destination.parent and not destination.is_symlink()
+    assert source.parent.resolve() == source.parent and not source.is_symlink()
+    # Normal fetch already includes this immutable raw log. Recover the derived
+    # logs/ copy locally, including after interruption between fetch and verify.
+    if source.is_file():
+        digest = file_sha256(source)
+        if destination.exists():
+            assert file_sha256(destination) == digest, "Existing config.log differs; retained"
+            return
+    else:
+        cfg = remote.config()
+        remote_path = "/home/fnl/lzy/results/%s/raw/%s/config.log" % (cell["id"], raw_id)
+        code = ("import hashlib,os; p=%r; assert os.path.isfile(p) and os.path.realpath(p)==p; "
+                "print(hashlib.sha256(open(p,'rb').read()).hexdigest())") % remote_path
+        digest = subprocess.check_output(remote.ssh_base(cfg) + ["python3 -c " + shlex.quote(code)],
+                                         encoding="utf-8", errors="replace", timeout=45).strip()
+        assert len(digest) == 64 and all(c in "0123456789abcdef" for c in digest)
+        if destination.exists():
+            assert file_sha256(destination) == digest, "Existing config.log differs; retained"
+            return
+    staging = destination.with_name(".incoming-config-" + uuid.uuid4().hex + ".log")
+    if source.is_file():
+        with source.open("rb") as origin, staging.open("xb") as target:
+            shutil.copyfileobj(origin, target)
+    else:
+        args = ["scp", "-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=yes",
+                "-o", "ConnectTimeout=10", "-o", "ServerAliveInterval=15",
+                "-o", "ServerAliveCountMax=2", "-o", "ClearAllForwardings=yes",
+                cfg["REMOTE_USER"] + "@" + cfg["REMOTE_HOST"] + ":" + remote_path, str(staging)]
+        try:
+            result = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=600)
+        except subprocess.TimeoutExpired as error:
+            path = preserve_command_error(args, error.output, timeout_seconds=600, staging=str(staging))
+            raise RuntimeError("config.log transfer timed out; staging and output retained: " + str(path)) from error
+        if result.returncode:
+            path = preserve_command_error(args, result.stdout, returncode=result.returncode, staging=str(staging))
+            raise RuntimeError("config.log transfer failed; staging and output retained: " + str(path))
+    assert file_sha256(staging) == digest, "Transferred config.log hash mismatch; staging retained"
+    # Hard-link publication is atomic and refuses an existing destination on
+    # both Windows and POSIX. Remove only this call's new temporary name.
+    os.link(staging, destination)
+    staging.unlink()
 
 
 def run_cell(cell, cap, poll_seconds):

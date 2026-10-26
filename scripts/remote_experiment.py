@@ -79,7 +79,7 @@ def worker_call(cfg, *args):
         raise RuntimeError('Build command has an invalid experiment ID')
     expected_marker = 'build complete=' + experiment_id
     process = subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                               universal_newlines=True, bufsize=1)
+                               encoding='utf-8', errors='replace', bufsize=1)
     lines = queue.Queue()
 
     def read_output():
@@ -105,7 +105,13 @@ def worker_call(cfg, *args):
         if line is None:
             stream_closed = True
             break
-        sys.stdout.write(line)
+        try:
+            sys.stdout.write(line)
+        except UnicodeEncodeError:
+            # A parent console/log may still use an ANSI code page even though
+            # SSH was decoded as UTF-8. Keep diagnostics printable there too.
+            encoding = sys.stdout.encoding or 'ascii'
+            sys.stdout.write(line.encode(encoding, errors='backslashreplace').decode(encoding))
         sys.stdout.flush()
         if line.rstrip('\r\n') == expected_marker:
             marker_seen = True
@@ -178,7 +184,7 @@ def status_call(cfg, experiment_id):
         raise RuntimeError('Remote status query failed: ' + message[-1200:])
     except subprocess.TimeoutExpired as error:
         raise RuntimeError('Remote status query timed out after 45 seconds: ' + experiment_id) from error
-    sys.stdout.write(output.decode('utf-8'))
+    sys.stdout.write(output.decode('utf-8', errors='replace'))
 
 
 def git_output(repo, *args):

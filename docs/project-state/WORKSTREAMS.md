@@ -1,10 +1,10 @@
 # 工作流台账
 
-更新：2026-10-26（WS-30 的 26 条答复已写入实际回复；新增执行为 0）。状态只表示本行定义的范围，不把文字编辑扩展成科学验收。历史工作流结论保留各自证据与日期。
+更新：2026-10-26（WS-30 正式累计 28/168；控制器恢复完成本地验收，续跑待主对话验收）。状态只表示本行定义的范围，不把阶段修复扩展成科学验收。历史工作流结论保留各自证据与日期。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；实际回复和主稿引言/方法编辑完成，新运行 0 | [主稿修订](../research/ws30-v13-manuscript-local-edit-report-r1.md)：来源/选择史、缓存边界、同候选比较及小规模技术验证已写入；26 条回复保持原结构与引文 | 26 条最终状态 OPEN；工程 48＋正式 168＋W5 36、性能分析与全文整合仍待；等待外部授权/新 raw |
+| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；正式 28/168；控制器修复通过本地验收，140 格续跑待验收 | [修复报告](../research/ws30-v14-formal-rest-controller-repair-r1.md)：34 项测试通过；formal-rest 24 格、397,824 条 FCT 复验，剩余 140 个 ID 的本地/远端目录为空；新审批关闭 | 26 条最终状态 OPEN；先验收续跑计划，再完成正式 140＋工程 48＋W5 36、双侧分析和全文整合 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |

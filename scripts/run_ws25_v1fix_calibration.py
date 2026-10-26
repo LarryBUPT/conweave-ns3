@@ -195,7 +195,7 @@ def verify_remote_trace(cell):
     try:
         output = subprocess.check_output(base.remote.ssh_base(cfg) +
                                          ["python3 -c " + shlex.quote(code)],
-                                         universal_newlines=True, timeout=45).strip()
+                                         encoding='utf-8', errors='replace', timeout=45).strip()
     except subprocess.TimeoutExpired as error:
         raise RuntimeError("Remote trace check timed out after 45 seconds: " + cell["id"]) from error
     if output != cell["trace_sha256"]:

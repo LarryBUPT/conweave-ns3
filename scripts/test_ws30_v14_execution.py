@@ -93,8 +93,10 @@ class GuardTests(unittest.TestCase):
             self.assertIn('validation',r.read(runner.path)['failures'])
     def test_old_source_qualification_from_real_local_raw(self):
         rows=r.old_source_gate();self.assertEqual(len(rows),30)
-    def test_no_new_results_exist(self):
-        self.assertTrue(all(not (r.ROOT/'results'/c['id']).exists() for g in r.GROUPS for c in self.plan[g]))
+    def test_no_unauthorized_engineering_or_w5_results_exist(self):
+        # Formal-first/rest now have their own authorization and real results.
+        # The engineering and W5 phases remain closed at this recovery node.
+        self.assertTrue(all(not (r.ROOT/'results'/c['id']).exists() for g in r.GROUPS if g!='formal_disabled' for c in self.plan[g]))
     def test_deployed_worker_bytes_must_match(self):
         b=r.Backend([])
         with patch.object(r.legacy.stage.remote.remote,'config',return_value={}),patch.object(r.legacy.stage.remote.remote,'ssh_base',return_value=[]),patch.object(r.subprocess,'check_output',return_value='0'*64):

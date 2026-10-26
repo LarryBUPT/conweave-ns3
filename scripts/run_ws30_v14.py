@@ -114,9 +114,10 @@ def verify_common(c):
     require(match is not None,'Mode absent from fixed source')
     require(re.findall(r'^LB_MODE\s+(\S+)\s*$',config,re.M)==[match[1]],'Actual LB mode mismatch')
     require(m['build_mode']=='optimized' and m['cpu_jobs']==2 and m['concurrency_cap'] in (1,4,8) and m['concurrency_cap']<=c['cap'],'Build/cap mismatch')
+    raw=str(m['raw_directory']);require(raw.isdigit(),'Invalid raw directory')
+    require(legacy.stage.remote.file_sha256(folder/'logs/config.log')==legacy.stage.remote.file_sha256(folder/'raw'/raw/'config.log'),'Derived config.log differs from fetched raw')
     log=(folder/'logs/config.log').read_text(encoding='utf-8',errors='replace')
     require('overflow' not in log.lower(),'Observation overflow')
-    raw=str(m['raw_directory']);require(raw.isdigit(),'Invalid raw directory')
     fct=folder/'raw'/raw/(raw+'_out_fct.txt')
     if c['lifecycle']:
         out=life.verify_lifecycle(c)
@@ -191,7 +192,7 @@ class Backend:
         # Exact deployed bytes ensure both new CLI fields and schema3 are supported.
         code="import hashlib;print(hashlib.sha256(open('/home/fnl/lzy/.research-workflow/remote_worker.py','rb').read()).hexdigest())"
         cfg=legacy.stage.remote.remote.config()
-        actual=subprocess.check_output(legacy.stage.remote.remote.ssh_base(cfg)+['python3 -c '+shlex.quote(code)],text=True,timeout=45).strip()
+        actual=subprocess.check_output(legacy.stage.remote.remote.ssh_base(cfg)+['python3 -c '+shlex.quote(code)],encoding='utf-8',errors='replace',timeout=45).strip()
         require(actual==sha(ROOT/'scripts/remote_worker.py'),'Controller/worker mismatch: approved paired deployment required')
     def gate(self):
         self.compatible()
@@ -209,7 +210,7 @@ class Backend:
         # catches unbounded aggregate stdout without deleting or replacing logs.
         cfg=legacy.stage.remote.remote.config()
         code="import glob,os,json; ids=%r; print(json.dumps([n for n in ids if any(os.path.getsize(p)>536870912 for p in glob.glob('/home/fnl/lzy/runs/'+n+'/source/mix/output/*/config.log'))]))"%[c['id'] for c in cells]
-        large=json.loads(subprocess.check_output(legacy.stage.remote.remote.ssh_base(cfg)+['python3 -c '+shlex.quote(code)],text=True,timeout=45))
+        large=json.loads(subprocess.check_output(legacy.stage.remote.remote.ssh_base(cfg)+['python3 -c '+shlex.quote(code)],encoding='utf-8',errors='replace',timeout=45))
         require(not large,'Aggregate log >512 MiB; admissions stopped, workers/raw retained: '+repr(large))
         return out
     def build(self,cells):
@@ -232,7 +233,9 @@ class Backend:
         path=ROOT/'results'/c['id']
         require(not path.is_symlink(),'Local result symlink refused')
         return path.exists()
-    def verify(self,c):return verify_common(c)
+    def verify(self,c):
+        legacy.stage.remote.fetch_config_log(c,read(ROOT/'results'/c['id']/'metadata.json'))
+        return verify_common(c)
     def start(self,c,cap):
         self.compatible()
         require(not self.local(c),'Local ID already exists')
@@ -243,9 +246,9 @@ class Backend:
         cfg=legacy.stage.remote.remote.config()
         topo='/home/fnl/lzy/runs/'+c['id']+'/source/config/'+c['topology']+'.txt'
         code="import hashlib,os; p=%r; assert os.path.realpath(p)==p; print(hashlib.sha256(open(p,'rb').read()).hexdigest())"%topo
-        require(subprocess.check_output(legacy.stage.remote.remote.ssh_base(cfg)+['python3 -c '+shlex.quote(code)],text=True,timeout=45).strip()==c['topology_sha256'],'Remote topology mismatch before run')
+        require(subprocess.check_output(legacy.stage.remote.remote.ssh_base(cfg)+['python3 -c '+shlex.quote(code)],encoding='utf-8',errors='replace',timeout=45).strip()==c['topology_sha256'],'Remote topology mismatch before run')
         code=("import os,subprocess; n=%r; rows=subprocess.check_output(['ps','-eo','args','--no-headers']).decode().splitlines(); print(sum('ws11_resource_watch.py '+n in r and 'python3 -c' not in r for r in rows)); print(int(os.path.exists('/home/fnl/lzy/results/'+n+'/logs/resource-samples.jsonl')))")%c['id']
-        watcher,samples=map(int,subprocess.check_output(legacy.stage.remote.remote.ssh_base(cfg)+['python3 -c '+shlex.quote(code)],text=True,timeout=45).splitlines()[-2:])
+        watcher,samples=map(int,subprocess.check_output(legacy.stage.remote.remote.ssh_base(cfg)+['python3 -c '+shlex.quote(code)],encoding='utf-8',errors='replace',timeout=45).splitlines()[-2:])
         require(watcher<=1,'Duplicate resource watcher')
         if not watcher:require(not samples,'Watcher missing: preserve existing samples');legacy.stage.remote.start_watch(c['id'])
         args=['run',c['id'],'--lb',c['mode'],'--pfc','0','--irn','1','--bw','400','--buffer','9','--topo',c['topology'],'--flow-file',c['trace'],'--simul-time',c['simul_time'],'--netload','10','--max-concurrent',str(cap),'--ws30-observe',str(c['observe']),'--ws30-lifecycle',str(c['lifecycle']),'--ws30-life-profile',str(c['life_profile']),'--ws30-tag-transform',str(c['tag_transform']),'--simulation-seed',str(c['simulation_seed'])]
@@ -254,7 +257,6 @@ class Backend:
     def finish(self,c):
         legacy.stage.remote.wait_watch(c['id'])
         if not self.local(c):legacy.stage.remote.command('fetch',c['id'])
-        legacy.stage.remote.fetch_config_log(c,read(ROOT/'results'/c['id']/'metadata.json'))
         return self.verify(c)
     def preserve_failure(self,c):
         state=self.snapshot([c])['states'][c['id']]
