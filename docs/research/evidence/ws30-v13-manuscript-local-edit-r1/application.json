@@ -1,0 +1,121 @@
+{
+  "scope": "authorized local manuscript introduction/related work/methods/evaluation and bounded technical verification; no performance completion",
+  "actual_model": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium"
+  },
+  "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-working.md",
+  "before_sha256": "0a8d2067cd382b537801180f2f18a64701759855125eccc0d554a5b4f3d76b28",
+  "after_sha256": "9f93254221b15ae932b35b5eeb8edec75634e71865b36c95a4a1a244fc05b683",
+  "snapshot_sha256": "9f93254221b15ae932b35b5eeb8edec75634e71865b36c95a4a1a244fc05b683",
+  "patch_sha256": "22fa6e8d1d29081a838b13019266dd8f29f74877f6617f6dfc88177c50387c9e",
+  "protected_file_sha256_unchanged": {
+    "E:\\研\\毕业论文\\thesis\\classreserve-v12-reading.md": "7890848ba3c9caa6315dd32881d6d2724ab288cdc5c51fb8139693c23b0e863a",
+    "E:\\研\\毕业论文\\thesis\\ws30-v12-reproducibility-index.md": "2809645bc481835366abb31796a57140c597c31725e44445873d87a2af77c16a",
+    "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\v12-review.md": "97d1e188a601b60465ec57c54f0cf06ea4274994d52df05b8aaab4389d93766d",
+    "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\v12-review.md": "d45e6df59ca9a87d170ebe2002a53397cd8bee830d350bd9a6d3352bd03f67af",
+    "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\v12-review.md": "832db41266bd62b1ca07e1f5219f6a25bcadd79d2271ec6e9219556cad2a7b1c",
+    "E:/研/毕业论文/paper review/v12-review-rebuttal-remediation.md": "1a233f347091e0e959df4740b231c0999158d57f2d8b603028b00435405ab461"
+  },
+  "source_records": {
+    "docs/research/evidence/ws30-v13-engineering-raw-analysis-r2.json": "77262d2b3a92fe6b8cf331f4ea3a5014678322d4e6c0ea57fb6e8c9563017d02",
+    "docs/research/ws30-v13-engineering-node-report-r1.md": "38c40cf75ad961448161bfe449ac82f50f4d7dbcc2776d354d2e5a590ae477e7",
+    "docs/research/ws30-v13-analysis-and-figure-pipeline-r1.md": "5711627d92563a1902019dfbc8594eae90dac59f1fe7d79499e5090888e66c43",
+    "docs/research/evidence/ws30-v12-r1/D1-cohorts.csv": "99a0c51dcdfc119a6e437bffd6d0c309660b0cb31ae292fcfcd4dce0eef0b0c1",
+    "docs/research/ws30-v12-evidence-synthesis-r1.md": "22fb229ffff862e013064e07acaf77942ada8f3989087a89d30cb6a752f40941",
+    "docs/research/ws27-confirm-report.md": "3d7664da1bbe04cf29177d694631c7ae2eff0292dc445df70e6607d00b9eaad6",
+    "scripts/prepare_ws30_v13.py": "5d787063397ebb494a52b4788e532bc4869b91e7c4203b66a8e6ebb640e66870"
+  },
+  "raw_spot_checks": [
+    {
+      "role": "technical",
+      "id": "20261026-060000-w30v13-r2-t01-e-o0",
+      "verified": [
+        "metadata",
+        "config",
+        "fct",
+        "trace",
+        "topology"
+      ],
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+    },
+    {
+      "role": "lifecycle",
+      "id": "20261026-060000-w30v13-r2-l-w0-p-e",
+      "verified": [
+        "metadata",
+        "config",
+        "fct",
+        "trace",
+        "topology"
+      ],
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+    },
+    {
+      "role": "tuple-recreation",
+      "id": "20261026-060000-w30v13-r2-l-reuse3-e",
+      "verified": [
+        "metadata",
+        "config",
+        "fct",
+        "trace",
+        "topology"
+      ],
+      "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7"
+    }
+  ],
+  "checks": {
+    "reference_list_unchanged": true,
+    "equation_unchanged": true,
+    "no_internal_workstream_terms": true,
+    "no_unrun_performance_sections": true,
+    "two_cold_reads_completed": true,
+    "cold_read_findings_resolved_in_sections": [
+      "4.1",
+      "4.3",
+      "4.4",
+      "5.2"
+    ],
+    "all_26_reply_final_statuses_remain_OPEN": true
+  },
+  "pending_experiments": {
+    "engineering": 48,
+    "formal": 168,
+    "W5": 36
+  },
+  "remote_actions": 0,
+  "push_actions": 0,
+  "new_simulations": 0,
+  "runtime_authorization_created": false,
+  "audit_status": "PASS_FOR_LOCAL_MANUSCRIPT_EDIT_ONLY",
+  "reader_checks": [
+    {
+      "role": "concepts",
+      "first_read_findings": [
+        "4.1 release timing missing",
+        "4.3/5.2 six persistent conditions undefined",
+        "5.2 cache-count aggregation ambiguous"
+      ],
+      "repairs": [
+        "4.1 common release and event insertion order",
+        "4.3 two scenarios and timing; 5.2 two scenarios x three methods",
+        "5.2 per-switch per-round miss scope"
+      ],
+      "post_repair_review": "resolved; no new material comprehension ambiguity; not a second blind read"
+    },
+    {
+      "role": "flow",
+      "first_read_findings": [
+        "4.1 release timing missing",
+        "4.3/5.2 condition mapping missing",
+        "4.4 unsupported connective 据此"
+      ],
+      "repairs": [
+        "release relation clarified",
+        "condition mapping clarified",
+        "connective removed without inventing component results"
+      ],
+      "post_repair_review": "resolved; no new material ambiguity; not a second blind read"
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；26 条回复实际编辑完成，新运行 0 | [整合报告](../research/ws30-v13-reply-application-report-r1.md)：26 段答复更新，原编号和引文保留；5 条事实解释已写入；[r2 台账](../research/evidence/ws30-v13-review-response-status-r2.json)记录剩余项 | 主稿、v12、原评审未改；26 条最终状态均 OPEN。工程 48＋正式 168＋W5 36 仍待；等待实际授权/新 raw，依原门槛承接 |
+| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；实际回复和主稿引言/方法编辑完成，新运行 0 | [主稿修订](../research/ws30-v13-manuscript-local-edit-report-r1.md)：来源/选择史、缓存边界、同候选比较及小规模技术验证已写入；26 条回复保持原结构与引文 | 26 条最终状态 OPEN；工程 48＋正式 168＋W5 36、性能分析与全文整合仍待；等待外部授权/新 raw |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |
