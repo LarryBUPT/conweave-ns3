@@ -17,7 +17,7 @@ def body(s,marker):
     return re.sub(r'\s+','',s[start:i])
 def main():
     manifests=[generate(),generate()];assert manifests[0]==manifests[1]
-    for name in ('run.py','scripts/remote_experiment.py','scripts/remote_worker.py','scripts/make_ws30_v14_inputs.py','scripts/prepare_ws30_v14.py','scripts/verify_ws30_v14_raw.py'):
+    for name in ('run.py','scripts/remote_experiment.py','scripts/remote_worker.py','scripts/make_ws30_v14_inputs.py','scripts/prepare_ws30_v14.py','scripts/verify_ws30_v14_raw.py','scripts/run_ws30_v14.py'):
         ast.parse((ROOT/name).read_text())
     ast.parse((ROOT/'scripts/remote_worker.py').read_text(),feature_version=(3,5))
     sw='src/point-to-point/model/switch-node.cc'
@@ -34,6 +34,22 @@ def main():
     rdma=(ROOT/'src/point-to-point/model/rdma-hw.cc').read_text()
     state=body(rdma,'static void Ws30V14State')
     for bad in ('Schedule(','Cancel(','rand(','GetBytesLeft(','IsFinished('):assert bad not in state,bad
+    # Strip only known observation-only additions, then compare actual protocol
+    # functions. Generalized round constants retain the old profile's values.
+    stripped=rdma.replace('Ws30RoundBytes()','8192').replace('Ws30RoundIntervalNs()','100000')
+    stripped=re.sub(r'if \(Ws30V14Enabled\(\) && Ws30Level\(\) && qp->m_ws30Serial\) \{\s*\+\+qp->m_ws30(?:Sack|Recovery)Events;\s*Ws30V14State\([^;]+;\s*\}','',stripped)
+    stripped=re.sub(r'if \(Ws30V14Enabled\(\) && Ws30Level\(\) && qp->m_ws30Serial\) \+\+qp->m_ws30CnpEvents;','',stripped)
+    stripped=re.sub(r'if \(Ws30V14Enabled\(\) && Ws30Level\(\) && ch.sip==0x0b000001 && ch.dip==0x0b000301 &&\s*\(ecnbits \|\| cnp_check \|\| ch.udp.seq%8192==0\)\)\s*std::cout << "WS30V14_RX_STATE.*?std::endl;','',stripped,flags=re.S)
+    stripped=re.sub(r'if \(cnp \|\| ch.ack.irnNackSize \|\| \(Ws30V14Enabled\(\) && qp->irn.m_recovery\)\)\s*Ws30V14State\([^;]+;','',stripped)
+    stripped=re.sub(r'Ws30V14State\([^;]+;','',stripped[stripped.index('struct Ws25QpDiagnostic'):])
+    checked=[]
+    for marker in ('int RdmaHw::ReceiveUdp','int RdmaHw::ReceiveAck','void RdmaHw::PktSent','void RdmaHw::UpdateAlphaMlx','void RdmaHw::cnp_received_mlx','void RdmaHw::CheckRateDecreaseMlx'):
+        assert body(stripped,marker)==body(original('src/point-to-point/model/rdma-hw.cc'),marker),marker
+        checked.append(marker)
+    routing=(ROOT/sw).read_text().replace('Ws30RoundBytes()','8192')
+    routing=re.sub(r'auto observePair = .*?\n    \};','',routing,flags=re.S)
+    routing=routing.replace('{ observePair(hit->second); return hit->second.chosen; }','return hit->second.chosen;').replace('observePair(pair);','')
+    assert body(routing,'uint32_t SwitchNode::DoLbWs30V13(')==body(original(sw),'uint32_t SwitchNode::DoLbWs30V13(')
     assert [p for p in range(10000,10009) if len(set(pair(p)))==2]==[10003,10006,10008]
     assert pair(10001)==[2,2] # observed original fixture collision
     for seed in (20263101,20263102):
@@ -48,8 +64,11 @@ def main():
     names=['.gitattributes','run.py','scratch/network-load-balance.cc','scripts/remote_experiment.py','scripts/remote_worker.py','scripts/make_ws30_v14_inputs.py','scripts/prepare_ws30_v14.py','scripts/verify_ws30_v14_raw.py','scripts/audit_ws30_v14_static.py','src/point-to-point/model/ws30-cw-observer.h','src/point-to-point/model/ws30-v13-fixture.h','src/point-to-point/model/rdma-hw.cc','src/point-to-point/model/rdma-queue-pair.h','src/point-to-point/model/switch-node.cc','src/point-to-point/model/conweave-routing.cc','src/point-to-point/wscript']
     report['source_file_sha256']={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in names}
     report['remote_worker_python35_syntax']=True
+    report['transport_protocol_functions_equal_after_removing_hooks']=checked
+    report['strict_classless_routing_equal_after_removing_hooks']=True
     report['analysis_turn_context']={'model':'gpt-6.1-sol','effort':'medium','turn_id':'01a1758b-1da9-7c23-a858-775b233fe8c9'}
-    path=ROOT/'docs/research/evidence/ws30-v14-static-audit-r4.json'
+    report['execution_entrypoint_sha256']=hashlib.sha256((ROOT/'scripts/run_ws30_v14.py').read_bytes()).hexdigest()
+    path=ROOT/'docs/research/evidence/ws30-v14-static-audit-r5.json'
     data=json.dumps(report,indent=2)+'\n'
     if path.exists():assert json.loads(path.read_text())==report
     else:path.write_text(data,encoding='utf-8')

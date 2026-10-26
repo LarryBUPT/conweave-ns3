@@ -1,10 +1,10 @@
 # 工作流台账
 
-更新：2026-10-26（WS-30 v14 本地实现与执行前契约冻结；新增执行为 0）。状态只表示本行定义的范围，不把静态检查扩展成动态验证。历史工作流结论保留各自证据与日期。
+更新：2026-10-26（WS-30 v13 执行入口集成完成；内部修订 v14，新增执行为 0）。状态只表示本行定义的范围，不把静态检查扩展成动态验证。历史工作流结论保留各自证据与日期。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；v14 本地实现和契约冻结，动态验收待执行 | [本地节点报告](../research/ws30-v14-local-implementation-and-execution-contract-r1.md)：补验/W5 源码 `0673e4c`；不同候选、真实 CC/SACK 观测、被动 ConWeave 与确定性输入已实现；静态审计通过 | [契约](../research/evidence/ws30-v14-disabled-contract-r2.json)建议工程 48＋W5 36＋正式 168 格，全部关闭，新执行为 0；正式保留旧源 `2c9f3a5`。主对话承接同步授权、部署/构建、回归和动态覆盖；[交接](../handoffs/2026-10-26-ws30-v14-local-freeze.md)，未闭环 |
+| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；v13 交付的本地执行入口集成完成，新动态验收为 0 | [入口报告](../research/ws30-v13-execution-entrypoint-integration-r1.md)：内部 v14 修订；15 项离线测试、旧源技术/资源 30 格复验通过；逐格 SHA/seed、恢复和停止门槛已接入 | 工程 48＋W5 36＋正式 168 全关闭；新源单格/cap 4，正式旧源独立门槛后可 cap 8。同步授权、部署/构建、动态不干扰与真实覆盖待主对话放行；[交接](../handoffs/2026-10-26-ws30-v13-executor-integration.md)，未闭环 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |

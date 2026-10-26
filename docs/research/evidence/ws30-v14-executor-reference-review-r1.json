@@ -1,0 +1,65 @@
+{
+  "date_beijing": "2026-10-26",
+  "node": "v13 delivery executor integration; internal v14 revision",
+  "reused_fixed_version_review": "ws30-v14-reference-review-r1.json",
+  "original_review_sha256": "7f0fd715394743520c8f913fbc36e143c06d00a1c8ae467b616f9fddd998e3ec",
+  "files_rechecked": [
+    {
+      "path": "参考文献\\候选\\papers\\irn-2018\\analysis-technical.md",
+      "sha256": "1f63aadfecace66fba399d0e46c9a05790553b0fdfff26cacf4821679d6e3722",
+      "matches_previous": true
+    },
+    {
+      "path": "参考文献\\候选\\papers\\irn-2018\\verification.md",
+      "sha256": "6ab3498678100a032592d92a269655dd80b0c83eaacd09da835751c68110d592",
+      "matches_previous": true
+    },
+    {
+      "path": "参考文献\\候选\\papers\\conweave-2023\\analysis-technical.md",
+      "sha256": "fbbfc6d44ee03620d521f4b8506696332d237a91261961d28b610dfb60dfc8e4",
+      "matches_previous": true
+    },
+    {
+      "path": "参考文献\\候选\\papers\\conweave-2023\\verification.md",
+      "sha256": "84b256b8c15503da86f384f84b0b5d157d6866785a226298294e530460206ade",
+      "matches_previous": true
+    },
+    {
+      "path": "参考文献\\候选\\papers\\flowcut-2026\\analysis-technical.md",
+      "sha256": "cb6c8b128f88519004f12bb11497a49d019fab0e9c386bf0591a4899e255cc88",
+      "matches_previous": true
+    },
+    {
+      "path": "参考文献\\候选\\papers\\flowcut-2026\\verification.md",
+      "sha256": "eb93e690f74e282799e59f1204a5fcdcc754001fea1d67cd5853aed9a7d73789",
+      "matches_previous": true
+    },
+    {
+      "path": "参考文献\\候选\\papers\\seqbalance-2024\\analysis-technical.md",
+      "sha256": "1b1ffab4ffd79d1bbf3c5b70f89f1d4793053938b8097a34148fad18c8db9cbe",
+      "matches_previous": true
+    },
+    {
+      "path": "参考文献\\候选\\papers\\seqbalance-2024\\verification.md",
+      "sha256": "288da35fc28900eb3d40a8747431ef33cd0ceb23754a92f0844b8c9a4b8658fa",
+      "matches_previous": true
+    },
+    {
+      "path": "参考文献\\候选\\README.md",
+      "sha256": "505092e5cd98e27ca9a25e7becd3c6c70a93a729870277513270f8e35158d188",
+      "matches_previous": false
+    },
+    {
+      "path": "参考文献\\候选\\reading-log.md",
+      "sha256": "03df5b66ba27ea356529c65c37d62d616f3bb42007c8a345f2bf07c0b05fb0ec",
+      "matches_previous": false
+    }
+  ],
+  "specific_use": {
+    "IRN final": "Require real active-request SACK/recovery and drained acknowledged release boundaries; no NIC performance inference.",
+    "SeqBalance v1": "Keep fresh-QP formal performance separate from request/QP lifecycle coverage; no WQE/CQE or production-pool claims."
+  },
+  "conditions": "Actual local source and old-ID raw remain final evidence; new physical coverage/invariance must be run.",
+  "difference": "Executor scheduling and observation validation, no imported routing/recovery mechanism or reported gain.",
+  "index_change": "Candidate README/reading-log advanced to 2026-10-26 APS entry. Read the updated entry; no new mechanism admission or implementation is needed for executor integration."
+}

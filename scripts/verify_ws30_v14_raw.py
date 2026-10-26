@@ -22,7 +22,7 @@ def verify_lifecycle(c):
     assert meta['metadata_schema_version']==3 and meta['simulation_seed']==1 and meta['demand_seed']==c['demand_seed']
     assert meta['algorithm']==c['mode'] and meta['parameters']['ws30_observe']==c['observe'] and meta['parameters']['ws30_tag_transform']==0
     config=(folder/'config/config.txt').read_text()
-    assert re.search(r'^RANDOM_SEED\s+1\s*$',config,re.M)
+    assert re.findall(r'^RANDOM_SEED\s+(\S+)\s*$',config,re.M)==['1']
     assert re.search(r'^LB_MODE\s+%d\s*$'%{'E':0,'Q12':33,'U12':35}[c['arm']],config,re.M)
     assert meta['parameters']['ws30_lifecycle']==c['lifecycle'] and meta['parameters']['ws30_life_profile']==c['life_profile']
     assert meta['parameters']['pfc']==0 and meta['parameters']['irn']==1 and meta['parameters']['bw']==400 and meta['parameters']['buffer']==9
@@ -48,8 +48,9 @@ def verify_lifecycle(c):
     def rows(prefix):return [kv(l) for l in lines if l.startswith(prefix+' ')]
     states=rows('WS30V14_STATE'); persistent=c['lifecycle']==5
     rxstates=rows('WS30V14_RX_STATE')
-    creates=rows('WS30V13_CREATE'); done=rows('WS30V13_ROUND_DONE')
-    assert len(creates)==(1 if persistent else 3) and len(done)==3
+    creates=rows('WS30V13_CREATE'); done=rows('WS30V13_ROUND_DONE'); deletes=rows('WS30V13_DELETE')
+    assert len(creates)==len(deletes)==(1 if persistent else 3) and len(done)==3
+    assert {r['serial'] for r in creates}=={r['serial'] for r in deletes}
     size=262144 if c['life_profile']==2 else 8192
     assert [d['snd_una'] for d in done]==([size,2*size,3*size] if persistent else [size]*3)
     pairs=[r for r in rows('WS30V14_PAIR') if r['switch']==4]
@@ -57,6 +58,11 @@ def verify_lifecycle(c):
     sends=rows('WS30V13_FIRST_SEND');assert len(releases)==len(sends)==3
     assert [s['seq'] for s in sends]==([0,size,2*size] if persistent else [0,0,0])
     for r,s,d in zip(releases,sends,done):assert r['demand_ns']<=r['time_ns']<=s['time_ns']<=d['time_ns'] and r['demand_ns']==d['demand_ns']
+    assert [r['demand_ns']-releases[0]['demand_ns'] for r in releases]==[0,10000000 if c['life_profile']==2 else 100000,20000000 if c['life_profile']==2 else 200000]
+    if persistent:
+        assert [r['round'] for r in releases]==[0,1,2] and [r['round'] for r in done]==[0,1,2]
+        assert len({r['serial'] for r in releases+sends+done})==1
+        for j in (1,2):assert done[j-1]['time_ns']<=releases[j]['time_ns'] and releases[j]['snd_una']==j*size
     queue=rows('WS30_QUEUE')
     if c['observe']:assert len(queue)==1 and queue[0]['enqueued']==queue[0]['dequeued'] and all(queue[0][k]==0 for k in ('dropped','current','violations','admission_dropped_bytes','queue_rejected_bytes'))
     if c['observe']:
@@ -73,8 +79,13 @@ def verify_lifecycle(c):
                 hits=[p for p in pairs if p['time_ns']>=releases[j]['time_ns'] and (j==2 or p['time_ns']<releases[j+1]['time_ns'])]
                 assert hits,'Missing actual first packet pair'
                 first=min(hits,key=lambda p:p['time_ns']);assert first['first']!=first['second']
+                sport=[10003,10006,10008][j] if c['lifecycle']==6 else 10003
+                assert first['sport']==sport and first['dport']==100 and first['seq']==(j*size if persistent else 0)
+                assert (first['first'],first['second'])==((3,2) if sport==10008 else (2,3))
                 if c['life_profile']==1:assert first['q1']!=first['q2'],'Actual unequal queues not covered'
+                if first['miss'] or c['arm']=='U12':assert first['chosen']==(first['second'] if first['q2']<first['q1'] else first['first'])
                 rounds.append(first)
+            if c['life_profile']==1:assert len({p['second'] if p['q2']<p['q1'] else p['first'] for p in rounds})==2,'Real lower-queue direction never changed'
             assert [p['miss'] for p in rounds]==([1,0,0] if c['lifecycle'] in (5,7) else [1,1,1])
             if persistent or c['lifecycle'] in (7,8):assert len({(p['first'],p['second']) for p in rounds})==1
             if c['arm']=='Q12' and c['lifecycle'] in (5,7):assert len({p['chosen'] for p in rounds})==1
@@ -93,7 +104,7 @@ def verify_lifecycle(c):
                 assert any(s['ecn_bits'] for s in rxstates),'Real queue ECN not covered; CNP alone is ambiguous'
                 assert any(s['event']=='first_cnp' and s['cnp_events']>0 for s in states),'Real CNP not covered'
                 assert any(s['event']=='rate_decrease' and s['cnp_events']>0 and s['rate']<400000000000 for s in states),'Real CNP rate decrease not covered'
-                assert any(s['alpha']!=1 or s['rate']!=400000000000 or s['target']!=400000000000 for s in before),'Noninitial CC boundary not covered'
+                assert all(s['alpha']!=1 or s['rate']!=400000000000 or s['target']!=400000000000 for s in before),'Each CC boundary must retain noninitial state'
                 assert all(s['cnp_events']>0 for s in before)
                 if c['arm']=='U12':
                     assert any(s['seq']>s['expected_before'] and s['sack_bytes']>0 for s in rxstates),'Real receiver gap/SACK not covered'

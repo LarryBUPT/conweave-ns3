@@ -1,0 +1,47 @@
+{
+  "date_beijing": "2026-10-26",
+  "scope": "offline executor checks; no remote commands, no new native build or simulation",
+  "paper_target": "v13",
+  "internal_revision": "v14",
+  "tests": {
+    "returncode": 0,
+    "output": "...............\n----------------------------------------------------------------------\nRan 15 tests in 2.335s\n\nOK",
+    "test_file_sha256": "21f05c669d616633d3726e488d516321e9a7b7757ba9ff616165d470c5e2c6ec",
+    "synthetic_states": "negative/controller batch fixtures only; never native simulation evidence"
+  },
+  "static_audit_sha256": "e6b918bacb5968caecc7fee06e39343d747adca2260ff99a6024c4075d491290",
+  "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
+  "schedule_sha256": "2999ccc3bcfbf73a099365428cdc2c42fb8dccba23f1d845911a7f521c043994",
+  "control_sha256": {
+    "scripts/run_ws30_v14.py": "cc40d4428f5b1468396545422b9d18c4b937c0753172fcc5d1cbac0dae5dd2c8",
+    "scripts/verify_ws30_v14_raw.py": "38c2f471479da2f5a9d437dfd92b15f1c7e6163ca115c3976bc01bde383e1dbc",
+    "scripts/remote_experiment.py": "532dc8c7baa5710f9a36191aa0593cd4cbe04415262d4f39b79090fa0493f1c5",
+    "scripts/remote_worker.py": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc",
+    "scripts/run_ws30_stage3.py": "ce6ad24562312cbb207853b8aaa9808678a5a925c909b4908825e4a31cebf66c",
+    "scripts/run_ws30_v13.py": "a6881cd0dab007b92237c788d851706c08064fd90b5b3ca96a59857854a0e002",
+    "scripts/run_ws30_stage2.py": "e2f0d80288f0d44ecb8a849551159fe77738fec8e2e1c77d171ef3e42f6008fe",
+    "scripts/run_ws25_formal.py": "5bebe596708bedc04032980649ef29d3a945be2ff370f811aae85309ddefae9c",
+    "scripts/run_ws25_preflight.py": "1b27b8c44d0f8d884528101d960160ac15552ebae577ee4f7c05995b0834f9fb",
+    "scripts/run_ws25_resource_pilot.py": "67808953e2cd3f4669d7942fcba5d6054ccb96a9d3355b2257001f3822da4fe6",
+    "scripts/run_ws25_v1fix_calibration.py": "844b319c79e147016c9c8a333125bdda74747bd2f6824970c160fabb23ec8840"
+  },
+  "unauthorized_cli_refused_before_backend": true,
+  "actual_authorization_receipt_exists": false,
+  "old_source_reverified": {
+    "cells": 30,
+    "fct_rows": 201936,
+    "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+    "actual_config_seed": 1,
+    "cap4_cap8_FCT_identical_within_arm": true
+  },
+  "new_executed_cells": 0,
+  "remaining": [
+    "native build",
+    "actual controller/worker deployment handshake",
+    "fresh host and ID collision check",
+    "new-source single/cap4 resource qualification",
+    "dynamic observer invariance",
+    "actual pair/state trigger coverage",
+    "all new engineering/W5/formal results"
+  ]
+}

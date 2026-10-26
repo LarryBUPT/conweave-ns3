@@ -1,5 +1,11 @@
 # 下一阶段路线与停机条件
 
+## WS-30 v13 执行入口已集成，全部新运行关闭（2026-10-26）
+
+[入口报告](../research/ws30-v13-execution-entrypoint-integration-r1.md)记录内部 v14 工程修订；论文交付目标仍为 v13。执行器默认只读本地，逐格绑定 source、输入和两种 seed；没有实际授权文件时不访问远端。15 项离线测试通过，旧源技术/资源 30 格、201,936 条 FCT 及实际配置 seed 1 已复验。没有新增构建或仿真。
+
+[阶段表](../research/evidence/ws30-v14-executor-schedule-r1.json)保留工程 48、W5 36、正式 168 格。新源从单格/cap 4 开始，不继承旧源 cap 8；正式可在自身旧源技术/资源和新 schema 首批验收后独立推进，结论限定 fresh QP。新源生命周期、观测不干扰与真实覆盖仍为必做。WS-30 ACTIVE，外部同步授权、部署、原生构建及全部新动态验收待主对话放行；[交接](../handoffs/2026-10-26-ws30-v13-executor-integration.md)。
+
 ## WS-30 v14 的后续验收顺序（2026-10-26）
 
 [本地节点报告](../research/ws30-v14-local-implementation-and-execution-contract-r1.md)和[关闭执行的契约](../research/evidence/ws30-v14-disabled-contract-r2.json)已冻结新增工程 48 格与 W5 36 格；正式 168 格保留旧源。当前新执行数为 0，WS-30 ACTIVE。先由主对话接受范围并处理外部同步授权，再成对部署 controller/worker，核验新源隔离 optimized 构建、旧 18 格回归、生命周期 off/on 不干扰及真实队列/CC/SACK 条件。ConWeave 两对资格检查通过后，才进入 W5 比较。
