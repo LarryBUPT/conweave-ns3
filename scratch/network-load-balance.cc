@@ -348,7 +348,13 @@ void ScheduleFlowInputs(FILE *infile) {
         // dst port
         dport = dportNumber[dst];
         dportNumber[dst] = dportNumber[dst] + 1;
-        if (Ws30V13Life() >= 3 && flow_input.workload_tag == 2) {
+        if (Ws30V14Enabled() && flow_input.workload_tag == 2) {
+            if (src!=0 || dst!=3) NS_FATAL_ERROR("v14 probe requires host 0 to host 3");
+            // Lowest three source ports with distinct native hashed candidates at switch 4.
+            static uint32_t probeIndex=0;
+            const uint16_t ports[3]={10003,10006,10008};
+            sport=ports[Ws30V13Life()==2?probeIndex%3:0]; dport=100; ++probeIndex;
+        } else if (Ws30V13Life() >= 3 && flow_input.workload_tag == 2) {
             sport = 10000;
             dport = 100;
         }
@@ -1468,6 +1474,8 @@ int main(int argc, char *argv[]) {
         IntHeader::mode = 5;
 
     if (Ws30CompositionEnabled() || Ws30V13Life()) {
+        if (Ws30V14Enabled() && Ws30V14Profile()!=1 && Ws30V14Profile()!=2)
+            NS_FATAL_ERROR("v14 lifecycle needs explicit pair/state profile");
         if (cc_mode!=1 || enable_pfc || !enable_irn)
             NS_FATAL_ERROR("WS-30 composition requires DCQCN, PFC=0, IRN=1");
         // run.py's bw=400 map starts at 80 Gbps. Freeze the diagnostic
@@ -1760,6 +1768,11 @@ int main(int argc, char *argv[]) {
     topo2bdpMap[std::string("topo_1280_400G_400G_OS1")] = 30000;  // 600ns * 400Gbps / 8
     if (Ws30CompositionEnabled() || Ws30V13Life())
         topo2bdpMap[std::string("ws30_composition8")] = 42200;  // 8440ns * 40Gbps / 8
+
+    if (Ws30V14Enabled()) {
+        topo2bdpMap[std::string("ws30v14_pair8")]=42200;
+        topo2bdpMap[std::string("ws30v14_state8")]=42200;
+    }
 
     // topology_file
     bool found_topo2bdpMap = false;

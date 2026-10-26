@@ -10,6 +10,8 @@
 #include <climits>
 #include <cstdlib>
 #include <map>
+#include <iomanip>
+#include <sstream>
 
 #include "cn-header.h"
 #include "flow-stat-tag.h"
@@ -28,6 +30,37 @@
 #include "qbb-header.h"
 
 namespace ns3 {
+
+// Passive snapshots of real protocol state. No GetBytesLeft/IsFinished calls:
+// those helpers can consume SACK blocks in this simulator.
+static void Ws30V14State(const char *event, Ptr<RdmaQueuePair> q) {
+    if (!Ws30V14Enabled() || !Ws30Level() || !q->m_ws30Serial) return;
+    std::ostringstream o;
+    o << std::setprecision(17) << "WS30V14_STATE event=" << event
+      << " time_ns=" << Simulator::Now().GetNanoSeconds()
+      << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(q))
+      << " serial=" << q->m_ws30Serial << " flow_id=" << q->m_flow_id
+      << " rounds_done=" << q->m_ws30RoundDone << " released=" << q->m_ws30Released
+      << " snd_nxt=" << q->snd_nxt << " snd_una=" << q->snd_una
+      << " highest_ack=" << q->irn.m_highest_ack << " max_seq=" << q->irn.m_max_seq
+      << " sack_bytes=" << q->irn.m_sack.getSackBufferOverhead()
+      << " recovery=" << q->irn.m_recovery << " recovery_seq=" << q->irn.m_recovery_seq
+      << " rate=" << q->m_rate.GetBitRate() << " target=" << q->mlx.m_targetRate.GetBitRate()
+      << " alpha=" << q->mlx.m_alpha << " first_cnp=" << q->mlx.m_first_cnp
+      << " sack_events=" << q->m_ws30SackEvents << " cnp_events=" << q->m_ws30CnpEvents
+      << " recovery_events=" << q->m_ws30RecoveryEvents
+      << " alpha_timer=" << q->mlx.m_eventUpdateAlpha.GetUid()
+      << " alpha_running=" << q->mlx.m_eventUpdateAlpha.IsRunning()
+      << " decrease_timer=" << q->mlx.m_eventDecreaseRate.GetUid()
+      << " decrease_running=" << q->mlx.m_eventDecreaseRate.IsRunning()
+      << " rp_timer=" << q->mlx.m_rpTimer.GetUid()
+      << " rp_running=" << q->mlx.m_rpTimer.IsRunning()
+      << " rto_timer=" << q->m_retransmit.GetUid()
+      << " rto_running=" << q->m_retransmit.IsRunning();
+    static uint64_t bytes=0; bytes+=o.str().size()+1;
+    if (bytes>67108864ULL) NS_FATAL_ERROR("WS30V14 observation overflow");
+    std::cout << o.str() << std::endl;
+}
 
 struct Ws25QpDiagnostic {
     uint64_t rx_ooo_packets = 0, sack_feedback = 0, cnp_feedback = 0;
@@ -248,11 +281,11 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
         qp->m_ws30Serial = ++serial;
         qp->m_ws30Released = size;
         if (Ws30V13Life() == 1) {
-            if (size != 24576) NS_FATAL_ERROR("Persistent fixture requires three 8192-byte requests");
+            if (size != uint64_t(3)*Ws30RoundBytes()) NS_FATAL_ERROR("Persistent fixture requires three fixed-size requests");
             qp->m_ws30Persistent = true;
-            qp->m_ws30Released = 8192;
+            qp->m_ws30Released = Ws30RoundBytes();
             for (uint32_t r=1; r<3; ++r)
-                Simulator::Schedule(NanoSeconds(uint64_t(r)*100000), &RdmaHw::ReleaseWs30Round, this, qp, r);
+                Simulator::Schedule(NanoSeconds(uint64_t(r)*Ws30RoundIntervalNs()), &RdmaHw::ReleaseWs30Round, this, qp, r);
         }
         std::cout << "WS30V13_CREATE time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " serial=" << qp->m_ws30Serial << " flow_id=" << flow_id
@@ -296,6 +329,7 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
 
     // Notify Nic
     if (qp->m_ws30Serial) {
+        Ws30V14State("created",qp);
         std::cout << "WS30V13_RELEASE time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " serial=" << qp->m_ws30Serial << " round=0 demand_ns="
                   << qp->startTime.GetNanoSeconds() << " released=" << qp->m_ws30Released
@@ -305,13 +339,17 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
 }
 
 void RdmaHw::ReleaseWs30Round(Ptr<RdmaQueuePair> qp, uint32_t round) {
-    if (!qp->m_ws30Persistent || qp->m_ws30Released != uint64_t(round)*8192 ||
-        qp->m_ws30RoundDone != round || qp->snd_una != uint64_t(round)*8192)
+    if (!qp->m_ws30Persistent || qp->m_ws30Released != uint64_t(round)*Ws30RoundBytes() ||
+        qp->m_ws30RoundDone != round || qp->snd_una != uint64_t(round)*Ws30RoundBytes())
         NS_FATAL_ERROR("Persistent round released before prior request was acknowledged");
-    qp->m_ws30Released += 8192;
+    if (Ws30V14Enabled() && (qp->irn.m_sack.getSackBufferOverhead()!=0 || qp->irn.m_recovery))
+        NS_FATAL_ERROR("Completed prior request still has unresolved SACK/recovery state");
+    Ws30V14State("release_before",qp);
+    qp->m_ws30Released += Ws30RoundBytes();
+    Ws30V14State("release_after",qp);
     std::cout << "WS30V13_RELEASE time_ns=" << Simulator::Now().GetNanoSeconds()
               << " serial=" << qp->m_ws30Serial << " round=" << round
-              << " demand_ns=" << qp->startTime.GetNanoSeconds()+uint64_t(round)*100000
+              << " demand_ns=" << qp->startTime.GetNanoSeconds()+uint64_t(round)*Ws30RoundIntervalNs()
               << " released=" << qp->m_ws30Released << " snd_nxt=" << qp->snd_nxt
               << " snd_una=" << qp->snd_una << " rate=" << qp->m_rate.GetBitRate()
               << " alpha=" << qp->mlx.m_alpha << std::endl;
@@ -424,13 +462,22 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
     bool cnp_check = false;
     uint32_t expected_before = rxQp->ReceiverNextExpectedSeq;
-    if (Ws30V13Life() && ch.udp.seq%8192 == 0) {
+    if (Ws30V13Life() && ch.udp.seq%Ws30RoundBytes() == 0) {
         std::cout << "WS30V13_RX time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " flow_id=" << rxQp->m_flow_id
                   << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(rxQp))
                   << " seq=" << ch.udp.seq << " expected=" << expected_before << std::endl;
     }
     int x = ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
+    if (Ws30V14Enabled() && Ws30Level() && ch.sip==0x0b000001 && ch.dip==0x0b000301 &&
+        (ecnbits || cnp_check || ch.udp.seq%Ws30RoundBytes()==0))
+        std::cout << "WS30V14_RX_STATE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(rxQp))
+                  << " flow_id=" << rxQp->m_flow_id << " seq=" << ch.udp.seq
+                  << " expected_before=" << expected_before
+                  << " expected_after=" << rxQp->ReceiverNextExpectedSeq
+                  << " ecn_bits=" << unsigned(ecnbits) << " cnp_check=" << cnp_check
+                  << " sack_bytes=" << rxQp->m_irn_sack_.getSackBufferOverhead() << std::endl;
     if (Ws25DiagnosticEnabled() && rxQp->m_flow_id >= 0 && ch.udp.seq > expected_before)
         ++ws25_qp_diagnostics[rxQp->m_flow_id].rx_ooo_packets;
     if (Ws30Level() && rxQp->m_flow_id >= 0 && ch.udp.seq < expected_before)
@@ -604,6 +651,10 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
             if (ch.ack.irnNackSize != 0) {
                 // ch.ack.irnNack contains the seq triggered this NACK
                 qp->irn.m_sack.sack(ch.ack.irnNack, ch.ack.irnNackSize);
+                if (Ws30V14Enabled() && Ws30Level() && qp->m_ws30Serial) {
+                    ++qp->m_ws30SackEvents;
+                    Ws30V14State("sack_insert",qp);
+                }
             }
 
             uint32_t sack_seq, sack_len;
@@ -630,16 +681,17 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         if (qp->m_ws30Serial) {
             const uint32_t rounds = qp->m_ws30Persistent ? 3 : 1;
             while (qp->m_ws30RoundDone < rounds &&
-                   qp->snd_una >= uint64_t(qp->m_ws30RoundDone+1)*8192) {
+                   qp->snd_una >= uint64_t(qp->m_ws30RoundDone+1)*Ws30RoundBytes()) {
                 const uint32_t r = qp->m_ws30RoundDone++;
                 std::cout << "WS30V13_ROUND_DONE time_ns=" << Simulator::Now().GetNanoSeconds()
                           << " serial=" << qp->m_ws30Serial << " round=" << r
-                          << " demand_ns=" << qp->startTime.GetNanoSeconds()+uint64_t(r)*100000
-                          << " released_ns=" << qp->startTime.GetNanoSeconds()+uint64_t(r)*100000
+                          << " demand_ns=" << qp->startTime.GetNanoSeconds()+uint64_t(r)*Ws30RoundIntervalNs()
+                          << " released_ns=" << qp->startTime.GetNanoSeconds()+uint64_t(r)*Ws30RoundIntervalNs()
                           << " snd_nxt=" << qp->snd_nxt << " snd_una=" << qp->snd_una
                           << " rate=" << qp->m_rate.GetBitRate() << " alpha=" << qp->mlx.m_alpha
                           << " highest_ack=" << qp->irn.m_highest_ack
                           << " sack_bytes=" << qp->irn.m_sack.getSackBufferOverhead() << std::endl;
+                Ws30V14State("round_drained",qp);
             }
         }
         if (qp->IsFinished()) {
@@ -669,6 +721,10 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
                 qp->irn.m_recovery_seq = qp->snd_nxt;
                 RecoverQueue(qp);
                 qp->irn.m_recovery = true;
+                if (Ws30V14Enabled() && Ws30Level() && qp->m_ws30Serial) {
+                    ++qp->m_ws30RecoveryEvents;
+                    Ws30V14State("recovery_enter",qp);
+                }
             }
         } else {
             if (qp->irn.m_recovery) {
@@ -699,6 +755,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
 
     // handle cnp
     if (cnp) {
+        if (Ws30V14Enabled() && Ws30Level() && qp->m_ws30Serial) ++qp->m_ws30CnpEvents;
         if (m_cc_mode == 1) {  // mlx version
             cnp_received_mlx(qp);
         }
@@ -712,6 +769,8 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         HandleAckDctcp(qp, p, ch);
     }
     // ACK may advance the on-the-fly window, allowing more packets to send
+    if (cnp || ch.ack.irnNackSize || (Ws30V14Enabled() && qp->irn.m_recovery))
+        Ws30V14State("ack_after",qp);
     dev->TriggerTransmit();
     return 0;
 }
@@ -1034,7 +1093,7 @@ void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap)
         if (ch.l3Prot == 0x11) {  // UDP
             const uint32_t payload_size = pkt->GetSize() - ch.GetSerializedSize();
             if (qp->m_ws30Serial) {
-                const uint32_t r = qp->m_ws30Persistent ? ch.udp.seq/8192 : 0;
+                const uint32_t r = qp->m_ws30Persistent ? ch.udp.seq/Ws30RoundBytes() : 0;
                 if (!(qp->m_ws30FirstSentMask & (1U << r))) {
                     qp->m_ws30FirstSentMask |= 1U << r;
                     std::cout << "WS30V13_FIRST_SEND time_ns=" << Simulator::Now().GetNanoSeconds()
@@ -1161,6 +1220,7 @@ void RdmaHw::UpdateAlphaMlx(Ptr<RdmaQueuePair> q) {
 #endif
     q->mlx.m_alpha_cnp_arrived = false;  // clear the CNP_arrived bit
     ScheduleUpdateAlphaMlx(q);
+    Ws30V14State("alpha_update",q);
 }
 void RdmaHw::ScheduleUpdateAlphaMlx(Ptr<RdmaQueuePair> q) {
     q->mlx.m_eventUpdateAlpha = Simulator::Schedule(MicroSeconds(m_alpha_resume_interval),
@@ -1182,6 +1242,7 @@ void RdmaHw::cnp_received_mlx(Ptr<RdmaQueuePair> q) {
         q->mlx.m_targetRate = q->m_rate = m_rateOnFirstCNP * q->m_rate;
         q->mlx.m_first_cnp = false;
         if (Ws13BackgroundQp(q)) Ws13LogQp("rate_first_cnp", q);
+        Ws30V14State("first_cnp",q);
     }
 }
 
@@ -1202,6 +1263,7 @@ void RdmaHw::CheckRateDecreaseMlx(Ptr<RdmaQueuePair> q) {
         }
         q->m_rate = std::max(m_minRate, q->m_rate * (1 - q->mlx.m_alpha / 2));
         if (Ws13BackgroundQp(q)) Ws13LogQp("rate_decrease", q);
+        Ws30V14State("rate_decrease",q);
         // reset rate increase related things
         q->mlx.m_rpTimeStage = 0;
         q->mlx.m_decrease_cnp_arrived = false;

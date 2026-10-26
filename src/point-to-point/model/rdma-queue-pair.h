@@ -72,6 +72,8 @@ class RdmaQueuePair : public Object {
     bool m_ws30Persistent{false};
     uint64_t m_ws30Released{0}, m_ws30Serial{0};
     uint32_t m_ws30RoundDone{0}, m_ws30FirstSentMask{0};
+    // Observation history only; never used by transmission or recovery decisions.
+    uint64_t m_ws30SackEvents{0}, m_ws30CnpEvents{0}, m_ws30RecoveryEvents{0};
     uint32_t m_ws13_maxSentSeq{0};  // diagnostic high-water mark for retransmission events
     bool m_ws13FirstIrnAckLogged{false};  // keep one ordinary ACK per QP, not every packet ACK
     Time m_timeout;

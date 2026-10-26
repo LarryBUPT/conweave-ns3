@@ -277,7 +277,7 @@ def main():
 
     netload = args.netload
     if os.environ.get('WS30_COMPOSITION') == '1' or os.environ.get('WS30_LIFECYCLE','0') != '0':
-        if topo != 'ws30_composition8' or not args.flow_file:
+        if topo not in ('ws30_composition8','ws30v14_pair8','ws30v14_state8') or not args.flow_file:
             raise Exception('WS-30 composition requires its fixed topology and explicit trace')
         # The microfixture has fixed QPs, not generated offered load. Keep a
         # nominal divisor for the legacy printed hostload; it generates no input.

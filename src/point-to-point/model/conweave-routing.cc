@@ -19,6 +19,7 @@
  */
 
 #include "ns3/conweave-routing.h"
+#include "ws30-cw-observer.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -572,6 +573,7 @@ void ConWeaveRouting::RouteInput(Ptr<Packet> p, CustomHeader &ch) {
 
             /** PATH: update and get current path */
             /** NOTE: if new connection, set initial random path */
+            const uint32_t observedOldPath=txEntry._pathId;
             if (txEntry._pathId == CW_DEFAULT_32BIT) {
                 assert(tx_md.newConnection == true);
                 txEntry._pathId = tx_md.goodPath;
@@ -628,6 +630,9 @@ void ConWeaveRouting::RouteInput(Ptr<Packet> p, CustomHeader &ch) {
                 conweaveDataTag.SetFlagData(ConWeaveDataTag::DATA);
             }
             p->AddPacketTag(conweaveDataTag);
+            Ws30CwEvent("tx",m_switch_id,tx_md.pkt_flowkey,tx_md.epoch,tx_md.phase,
+                         conweaveDataTag.GetPathId(),conweaveDataTag.GetFlagData(),
+                         ch.udp.seq,now.GetNanoSeconds(),observedOldPath);
 
             uint32_t outDev =
                 GetOutPortFromPath(conweaveDataTag.GetPathId(), conweaveDataTag.GetHopCount());
@@ -928,8 +933,17 @@ void ConWeaveRouting::RouteInput(Ptr<Packet> p, CustomHeader &ch) {
                 /**
                  * ENQUEUE: enqueue the packet
                  */
+                if (conweaveDataTag.GetFlagData()!=ConWeaveDataTag::DATA)
+                    Ws30CwEvent("rx_mark",m_switch_id,rx_md.pkt_flowkey,rx_md.pkt_epoch,
+                                 rx_md.pkt_phase,conweaveDataTag.GetPathId(),
+                                 conweaveDataTag.GetFlagData(),ch.udp.seq,
+                                 conweaveDataTag.GetTimestampTx(),rx_md.flagEnqueue);
                 if (rx_md.flagEnqueue) {
                     m_voqMap[rx_md.pkt_flowkey].Enqueue(p);
+                    Ws30CwEvent("rx_buffer",m_switch_id,rx_md.pkt_flowkey,rx_md.pkt_epoch,
+                                 rx_md.pkt_phase,conweaveDataTag.GetPathId(),
+                                 conweaveDataTag.GetFlagData(),ch.udp.seq,
+                                 conweaveDataTag.GetTimestampTx(),m_voqMap[rx_md.pkt_flowkey].getQueueSize());
                     m_nOutOfOrderPkts++;
                     return;
                 }
@@ -948,6 +962,9 @@ void ConWeaveRouting::RouteInput(Ptr<Packet> p, CustomHeader &ch) {
                 tx_md.reply_epoch = conweaveReplyTag.GetEpoch();
                 tx_md.reply_phase = conweaveReplyTag.GetPhase();
                 auto &txEntry = m_conweaveTxTable[tx_md.pkt_flowkey];
+                Ws30CwEvent("reply_rx",m_switch_id,tx_md.pkt_flowkey,tx_md.reply_epoch,
+                             tx_md.reply_phase,txEntry._pathId,tx_md.reply_flag,0,0,
+                             uint64_t(txEntry._replyTimer.GetNanoSeconds()));
 
                 /**
                  * CHECK: Reply timeout check only when epoch&phase are matched
@@ -985,6 +1002,8 @@ void ConWeaveRouting::RouteInput(Ptr<Packet> p, CustomHeader &ch) {
                                 << "-------------------------------------->>> TAIL Replied!!");
                     }
                 }
+                Ws30CwEvent("reply_after",m_switch_id,tx_md.pkt_flowkey,txEntry._epoch,
+                             txEntry._phase,txEntry._pathId,tx_md.reply_flag,0,0,txEntry._stabilized);
                 return;  // drop this reply
             }
 
@@ -992,6 +1011,9 @@ void ConWeaveRouting::RouteInput(Ptr<Packet> p, CustomHeader &ch) {
                 if (foundConWeaveNotifyTag) {  // Received NOTIFY (from ECN)
                     conweaveTxMeta tx_md;
                     auto congestedPathId = conweaveNotifyTag.GetPathId();
+                    Ws30CwEvent("notify_rx",m_switch_id,
+                                 GetFlowKey(ch.dip,ch.sip,ch.udp.dport,ch.udp.sport),
+                                 0,0,congestedPathId,0,0,0,0);
                     auto &pathEntry =
                         m_conweavePathTable[DoHash((uint8_t *)&congestedPathId, 4, m_switch_id) %
                                             m_conweavePathTable.size()];
@@ -1104,6 +1126,7 @@ void ConWeaveRouting::CallbackByVOQFlush(uint64_t flowkey, uint32_t voqSize) {
 
     rxEntry._reordering = false;
     rxEntry._phase = 1;
+    Ws30CwEvent("flush",m_switch_id,flowkey,rxEntry._epoch,rxEntry._phase,0,0,0,0,voqSize);
 }
 
 void ConWeaveRouting::SetSwitchSendCallback(SwitchSendCallback switchSendCallback) {

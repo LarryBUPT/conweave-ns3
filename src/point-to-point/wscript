@@ -65,6 +65,7 @@ def build(bld):
 		'model/flow-stat-tag.h',
         'model/workload-tag.h',
         'model/ws30-v13-fixture.h',
+        'model/ws30-cw-observer.h',
 		'model/conga-routing.h',
         'model/letflow-routing.h',
         'model/conweave-routing.h',

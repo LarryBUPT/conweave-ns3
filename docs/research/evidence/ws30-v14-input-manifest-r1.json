@@ -1,0 +1,180 @@
+{
+  "files": [
+    {
+      "file": "ws30v14_pair8.txt",
+      "kind": "topology",
+      "sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a"
+    },
+    {
+      "file": "ws30v14_life_pair_persistent.txt",
+      "flows": 4,
+      "payload_bytes": 270336,
+      "policy": "persistent",
+      "profile": "pair",
+      "round_bytes": 8192,
+      "round_interval_ns": 100000,
+      "sha256": "a45d54fdb5a304af34de5468bfc9a457087486e8bd235cc980cf20843ce52f29",
+      "tags": {
+        "1": 3,
+        "2": 1
+      }
+    },
+    {
+      "file": "ws30v14_life_pair_fresh.txt",
+      "flows": 6,
+      "payload_bytes": 270336,
+      "policy": "fresh",
+      "profile": "pair",
+      "round_bytes": 8192,
+      "round_interval_ns": 100000,
+      "sha256": "5e2c565bc35bc3b35c827271fdee8e8b1f257907e33255b04ea6a8b548f032b8",
+      "tags": {
+        "1": 3,
+        "2": 3
+      }
+    },
+    {
+      "file": "ws30v14_life_pair_reuse.txt",
+      "flows": 6,
+      "payload_bytes": 270336,
+      "policy": "reuse",
+      "profile": "pair",
+      "round_bytes": 8192,
+      "round_interval_ns": 100000,
+      "sha256": "5e2c565bc35bc3b35c827271fdee8e8b1f257907e33255b04ea6a8b548f032b8",
+      "tags": {
+        "1": 3,
+        "2": 3
+      }
+    },
+    {
+      "file": "ws30v14_state8.txt",
+      "kind": "topology",
+      "sha256": "0f3ad1beb669de1ddb36ff7deb97aae6436240a1776602e60bc83943cd7d7d44"
+    },
+    {
+      "file": "ws30v14_life_state_persistent.txt",
+      "flows": 25,
+      "payload_bytes": 51118080,
+      "policy": "persistent",
+      "profile": "state",
+      "round_bytes": 262144,
+      "round_interval_ns": 10000000,
+      "sha256": "0bf5efe5d200f14c2df62b88388064158406d15f78701d5e2c9adbfcb4f8bf4e",
+      "tags": {
+        "1": 24,
+        "2": 1
+      }
+    },
+    {
+      "file": "ws30v14_life_state_fresh.txt",
+      "flows": 27,
+      "payload_bytes": 51118080,
+      "policy": "fresh",
+      "profile": "state",
+      "round_bytes": 262144,
+      "round_interval_ns": 10000000,
+      "sha256": "b49ef7e144ca1ab6daf910294e36e2fe763a96d4a144a5ae012ec20adb6492d2",
+      "tags": {
+        "1": 24,
+        "2": 3
+      }
+    },
+    {
+      "file": "ws30v14_life_state_reuse.txt",
+      "flows": 27,
+      "payload_bytes": 51118080,
+      "policy": "reuse",
+      "profile": "state",
+      "round_bytes": 262144,
+      "round_interval_ns": 10000000,
+      "sha256": "b49ef7e144ca1ab6daf910294e36e2fe763a96d4a144a5ae012ec20adb6492d2",
+      "tags": {
+        "1": 24,
+        "2": 3
+      }
+    },
+    {
+      "demand_seed": 20263101,
+      "file": "ws30w5_seed20263101_concurrent.txt",
+      "flows": 16416,
+      "payload_bytes": 2281701376,
+      "schedule": "concurrent",
+      "sha256": "9b8802f05448452da7d9a660aad7cc19a82b1789f53b9583be78d9a7814153bb",
+      "tags": {
+        "1": 32,
+        "2": 16384
+      }
+    },
+    {
+      "demand_seed": 20263101,
+      "file": "ws30w5_sustained_prefix.txt",
+      "flows": 160,
+      "payload_bytes": 2148532224,
+      "schedule": "concurrent-prefix",
+      "sha256": "bb668718a9a2b0171bfd9aabca2104d9f8e4384fbd9e73e65635be0ffc463b17",
+      "tags": {
+        "1": 32,
+        "2": 128
+      }
+    },
+    {
+      "demand_seed": 20263101,
+      "file": "ws30w5_seed20263101_lead20us.txt",
+      "flows": 16416,
+      "payload_bytes": 2281701376,
+      "schedule": "lead20us",
+      "sha256": "da60cccf81df435c6a6723462a9c69e93375cd6b9d169a89b6beac6a96b9db05",
+      "tags": {
+        "1": 32,
+        "2": 16384
+      }
+    },
+    {
+      "demand_seed": 20263102,
+      "file": "ws30w5_seed20263102_concurrent.txt",
+      "flows": 16416,
+      "payload_bytes": 2281701376,
+      "schedule": "concurrent",
+      "sha256": "45ae5e6c06664a68057bfe60c2a6f1fb48df5208132eede0f651108c929f6eae",
+      "tags": {
+        "1": 32,
+        "2": 16384
+      }
+    },
+    {
+      "demand_seed": 20263102,
+      "file": "ws30w5_seed20263102_lead20us.txt",
+      "flows": 16416,
+      "payload_bytes": 2281701376,
+      "schedule": "lead20us",
+      "sha256": "37745c25c0e7b764ac661dcfc8cfcc307714e6808a190965c2830d6c53a47fd1",
+      "tags": {
+        "1": 32,
+        "2": 16384
+      }
+    }
+  ],
+  "probe_pairs": {
+    "10003": [
+      2,
+      3
+    ],
+    "10006": [
+      2,
+      3
+    ],
+    "10008": [
+      3,
+      2
+    ]
+  },
+  "probe_ports": [
+    10003,
+    10006,
+    10008
+  ],
+  "schema_version": 3,
+  "selection": "Lowest three ports having distinct native candidates; no simulation or performance search",
+  "simulation_seed": 1
+}

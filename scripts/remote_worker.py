@@ -469,6 +469,7 @@ def build(experiment_id, sha, branch):
             'git_repository': output(['git', 'config', '--get', 'remote.origin.url'], cwd=code),
             'git_commit': sha, 'git_branch': branch, 'server': socket.gethostname(),
             'cpu_jobs': 2, 'build_mode': 'optimized', 'seed': 1,
+            'metadata_schema_version': 3, 'simulation_seed': 1, 'demand_seed': None,
             'pid': os.getpid()}
     save_metadata(base, data)
     log = inside(os.path.join(base, 'logs', 'build.log'))
@@ -587,6 +588,7 @@ def execute(experiment_id):
         simulation_env['WS30_OBSERVE'] = str(params.get('ws30_observe', 0))
         simulation_env['WS30_COMPOSITION'] = str(params.get('ws30_composition', 0))
         simulation_env['WS30_LIFECYCLE'] = str(params.get('ws30_lifecycle', 0))
+        simulation_env['WS30_LIFE_PROFILE'] = str(params.get('ws30_life_profile', 0))
         simulation_env['WS30_TAG_TRANSFORM'] = str(params.get('ws30_tag_transform', 0))
         if params.get('ws28_tail_diag'):
             simulation_env['WS28_TAIL_DIAG'] = '1'
@@ -609,6 +611,9 @@ def execute(experiment_id):
         for config in glob.glob(os.path.join(base, 'raw', '*', 'config.txt')):
             shutil.copy2(config, inside(os.path.join(base, 'config', 'config.txt')))
             config_text = open(config).read()
+            seed_lines=[line.split()[1] for line in config_text.splitlines() if line.startswith('RANDOM_SEED ')]
+            if seed_lines!=[str(data.get('simulation_seed',1))]:
+                raise RuntimeError('Actual configuration violates simulation seed contract')
             flow_lines = [line.split(None, 1)[1].strip() for line in config_text.splitlines()
                           if line.startswith('FLOW_FILE ')]
             if len(flow_lines) != 1:
@@ -707,6 +712,14 @@ def start(experiment_id, params, max_concurrent=1):
                         ws25_frozen_traces(other.get('git_commit'), other_source)):
                     raise RuntimeError('High capacity cannot mix with other workloads')
             high_capacity_admission(params, data, source, workers)
+        seed_match=re.search(r'_seed([0-9]+)_',params.get('flow_file') or '')
+        demand_seed=params.get('demand_seed')
+        if seed_match:
+            if demand_seed is not None and demand_seed!=int(seed_match.group(1)):
+                raise RuntimeError('Demand seed disagrees with immutable trace name')
+            demand_seed=int(seed_match.group(1))
+        data['simulation_seed']=params.get('simulation_seed',1)
+        data['demand_seed']=demand_seed
         data['parameters'] = params
         data['topology'] = params['topo']
         data['load'] = params['netload']
@@ -798,7 +811,10 @@ def main():
     run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws30-composition', type=int, choices=(0, 1), default=0)
-    run_cmd.add_argument('--ws30-lifecycle', type=int, choices=(0, 1, 2, 3, 4), default=0)
+    run_cmd.add_argument('--ws30-lifecycle', type=int, choices=(0, 1, 2, 3, 4, 5, 6, 7, 8), default=0)
+    run_cmd.add_argument('--simulation-seed', type=int, choices=(1,), default=1)
+    run_cmd.add_argument('--demand-seed', type=int, default=None)
+    run_cmd.add_argument('--ws30-life-profile', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-queue-front-diag', type=int, choices=(0, 1), default=0)
@@ -844,8 +860,14 @@ def main():
     elif args.command == 'build':
         build(args.id, args.sha, args.branch)
     elif args.command == 'run':
-        if args.ws30_lifecycle and (args.topo != 'ws30_composition8' or args.pfc != 0 or args.irn != 1 or args.lb not in ('fecmp','ws30v13-q12','ws30v13-u12') or not args.flow_file or not args.flow_file.startswith('ws30v13_life_')):
+        if args.ws30_lifecycle in (1,2,3,4) and (args.topo != 'ws30_composition8' or args.pfc != 0 or args.irn != 1 or args.lb not in ('fecmp','ws30v13-q12','ws30v13-u12') or not args.flow_file or not args.flow_file.startswith('ws30v13_life_')):
             raise RuntimeError('Lifecycle fixture requires its explicit trace, topology and admitted arms')
+        if args.ws30_lifecycle>=5:
+            expected_topo={1:'ws30v14_pair8',2:'ws30v14_state8'}.get(args.ws30_life_profile)
+            if not expected_topo or args.topo!=expected_topo or args.pfc!=0 or args.irn!=1 or args.lb not in ('fecmp','ws30v13-q12','ws30v13-u12') or not args.flow_file or not args.flow_file.startswith('ws30v14_life_'):
+                raise RuntimeError('v14 lifecycle requires its profile, fixed topology, trace and arms')
+        elif args.ws30_life_profile:
+            raise RuntimeError('v14 profile requires lifecycle mode 5..8')
         if args.ws30_tag_transform and args.lb not in ('ws30v13-q12','ws30v13-r12','ws30v13-u12'):
             raise RuntimeError('Tag transformation is restricted to v13 technical arms')
         if args.ws30_composition and (args.topo != 'ws30_composition8' or
@@ -923,9 +945,11 @@ def main():
                         'flow_file': flow_file, 'ws13_diag': args.ws13_diag,
                         'ws25_diag': args.ws25_diag,
                         'ws28_tail_diag': args.ws28_tail_diag,
+                        'simulation_seed': args.simulation_seed, 'demand_seed': args.demand_seed,
                         'ws30_observe': args.ws30_observe,
                         'ws30_composition': args.ws30_composition,
                         'ws30_lifecycle': args.ws30_lifecycle,
+                        'ws30_life_profile': args.ws30_life_profile,
                         'ws30_tag_transform': args.ws30_tag_transform,
                         'ws26_moe_hop_diag': args.ws26_moe_hop_diag,
                         'ws26_queue_front_diag': args.ws26_queue_front_diag,

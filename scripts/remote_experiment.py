@@ -345,7 +345,10 @@ def main():
     run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws30-composition', type=int, choices=(0, 1), default=0)
-    run_cmd.add_argument('--ws30-lifecycle', type=int, choices=(0, 1, 2, 3, 4), default=0)
+    run_cmd.add_argument('--ws30-lifecycle', type=int, choices=(0, 1, 2, 3, 4, 5, 6, 7, 8), default=0)
+    run_cmd.add_argument('--simulation-seed', type=int, choices=(1,), default=1)
+    run_cmd.add_argument('--demand-seed', type=int, default=None)
+    run_cmd.add_argument('--ws30-life-profile', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
@@ -478,9 +481,11 @@ def main():
             command.extend(['--ws25-diag', '1'])
         if args.ws28_tail_diag:
             command.extend(['--ws28-tail-diag', '1'])
+        command.extend(['--simulation-seed', str(args.simulation_seed)])
+        if args.demand_seed is not None: command.extend(['--demand-seed', str(args.demand_seed)])
         command.extend(['--ws30-observe', str(args.ws30_observe)])
         command.extend(['--ws30-composition', str(args.ws30_composition)])
-        command.extend(['--ws30-lifecycle', str(args.ws30_lifecycle), '--ws30-tag-transform', str(args.ws30_tag_transform)])
+        command.extend(['--ws30-life-profile', str(args.ws30_life_profile), '--ws30-lifecycle', str(args.ws30_lifecycle), '--ws30-tag-transform', str(args.ws30_tag_transform)])
         if args.factorial_pilot:
             command.append('--factorial-pilot')
         if args.factorial_drop_diag:

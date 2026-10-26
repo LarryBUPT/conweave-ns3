@@ -1344,13 +1344,24 @@ uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
     auto hit = m_ws30V13Pairs.find(key);
     const bool fresh = hit == m_ws30V13Pairs.end();
     if (fresh) ++m_ws30V13Misses; else ++m_ws30V13Hits;
-    if (Ws30V13Life() && ch.udp.seq%8192==0)
+    if (Ws30V13Life() && ch.udp.seq%Ws30RoundBytes()==0)
         std::cout << "WS30V13_CACHE time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " switch=" << m_id << " sip=" << ch.sip << " dip=" << ch.dip
                   << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
                   << " seq=" << ch.udp.seq << " miss=" << fresh
                   << " entries=" << m_ws30V13Pairs.size() << std::endl;
-    if (!fresh && Settings::lb_mode != 35) return hit->second.chosen;
+    auto observePair = [&](const Ws30Pair &pair) {
+        if (Ws30V14Enabled() && Ws30Level() && ch.sip==0x0b000001 &&
+            ch.dip==0x0b000301 && ch.udp.seq%Ws30RoundBytes()==0)
+            std::cout << "WS30V14_PAIR time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " switch=" << m_id << " sport=" << ch.udp.sport
+                      << " dport=" << ch.udp.dport << " seq=" << ch.udp.seq
+                      << " miss=" << fresh << " first=" << pair.first << " second=" << pair.second
+                      << " q1=" << CalculateInterfaceLoad(pair.first)
+                      << " q2=" << CalculateInterfaceLoad(pair.second)
+                      << " chosen=" << pair.chosen << std::endl;
+    };
+    if (!fresh && Settings::lb_mode != 35) { observePair(hit->second); return hit->second.chosen; }
     if (fresh) {
         const uint32_t bytes[3] = {ch.sip, ch.dip,
             uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16)};
@@ -1370,6 +1381,7 @@ uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
     if (Settings::lb_mode != 34) pair.chosen = b < a ? pair.second : pair.first;
     // Tag is deliberately absent from routing and choice records in these arms.
     if (fresh) Ws30Choice(m_id,ch,0,pair.first,pair.second,a,b,0,0,pair.chosen,p->GetSize());
+    observePair(pair);
     return pair.chosen;
 }
 

@@ -1,0 +1,220 @@
+{
+  "scope": "static only; no native compiler or simulation invoked",
+  "analysis_model": "gpt-6.1-sol / medium",
+  "source_baseline": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+  "native_historical_functions_equal": true,
+  "ConWeave_equal_after_removing_passive_hooks": true,
+  "observer_no_rng_events_packets": true,
+  "generator_repeat_bytes_equal": true,
+  "input_manifest": {
+    "schema_version": 3,
+    "simulation_seed": 1,
+    "probe_ports": [
+      10003,
+      10006,
+      10008
+    ],
+    "probe_pairs": {
+      "10003": [
+        2,
+        3
+      ],
+      "10006": [
+        2,
+        3
+      ],
+      "10008": [
+        3,
+        2
+      ]
+    },
+    "selection": "Lowest three ports having distinct native candidates; no simulation or performance search",
+    "files": [
+      {
+        "file": "ws30v14_pair8.txt",
+        "sha256": "f0056ea8065a28cd64d209471ca4f3c4a0db66f3af10a3eac3424c3c4fd9627a",
+        "kind": "topology"
+      },
+      {
+        "file": "ws30v14_life_pair_persistent.txt",
+        "sha256": "a45d54fdb5a304af34de5468bfc9a457087486e8bd235cc980cf20843ce52f29",
+        "flows": 4,
+        "payload_bytes": 270336,
+        "tags": {
+          "1": 3,
+          "2": 1
+        },
+        "profile": "pair",
+        "policy": "persistent",
+        "round_bytes": 8192,
+        "round_interval_ns": 100000
+      },
+      {
+        "file": "ws30v14_life_pair_fresh.txt",
+        "sha256": "5e2c565bc35bc3b35c827271fdee8e8b1f257907e33255b04ea6a8b548f032b8",
+        "flows": 6,
+        "payload_bytes": 270336,
+        "tags": {
+          "1": 3,
+          "2": 3
+        },
+        "profile": "pair",
+        "policy": "fresh",
+        "round_bytes": 8192,
+        "round_interval_ns": 100000
+      },
+      {
+        "file": "ws30v14_life_pair_reuse.txt",
+        "sha256": "5e2c565bc35bc3b35c827271fdee8e8b1f257907e33255b04ea6a8b548f032b8",
+        "flows": 6,
+        "payload_bytes": 270336,
+        "tags": {
+          "1": 3,
+          "2": 3
+        },
+        "profile": "pair",
+        "policy": "reuse",
+        "round_bytes": 8192,
+        "round_interval_ns": 100000
+      },
+      {
+        "file": "ws30v14_state8.txt",
+        "sha256": "0f3ad1beb669de1ddb36ff7deb97aae6436240a1776602e60bc83943cd7d7d44",
+        "kind": "topology"
+      },
+      {
+        "file": "ws30v14_life_state_persistent.txt",
+        "sha256": "0bf5efe5d200f14c2df62b88388064158406d15f78701d5e2c9adbfcb4f8bf4e",
+        "flows": 25,
+        "payload_bytes": 51118080,
+        "tags": {
+          "1": 24,
+          "2": 1
+        },
+        "profile": "state",
+        "policy": "persistent",
+        "round_bytes": 262144,
+        "round_interval_ns": 10000000
+      },
+      {
+        "file": "ws30v14_life_state_fresh.txt",
+        "sha256": "b49ef7e144ca1ab6daf910294e36e2fe763a96d4a144a5ae012ec20adb6492d2",
+        "flows": 27,
+        "payload_bytes": 51118080,
+        "tags": {
+          "1": 24,
+          "2": 3
+        },
+        "profile": "state",
+        "policy": "fresh",
+        "round_bytes": 262144,
+        "round_interval_ns": 10000000
+      },
+      {
+        "file": "ws30v14_life_state_reuse.txt",
+        "sha256": "b49ef7e144ca1ab6daf910294e36e2fe763a96d4a144a5ae012ec20adb6492d2",
+        "flows": 27,
+        "payload_bytes": 51118080,
+        "tags": {
+          "1": 24,
+          "2": 3
+        },
+        "profile": "state",
+        "policy": "reuse",
+        "round_bytes": 262144,
+        "round_interval_ns": 10000000
+      },
+      {
+        "file": "ws30w5_seed20263101_concurrent.txt",
+        "sha256": "9b8802f05448452da7d9a660aad7cc19a82b1789f53b9583be78d9a7814153bb",
+        "flows": 16416,
+        "payload_bytes": 2281701376,
+        "tags": {
+          "1": 32,
+          "2": 16384
+        },
+        "demand_seed": 20263101,
+        "schedule": "concurrent"
+      },
+      {
+        "file": "ws30w5_sustained_prefix.txt",
+        "sha256": "bb668718a9a2b0171bfd9aabca2104d9f8e4384fbd9e73e65635be0ffc463b17",
+        "flows": 160,
+        "payload_bytes": 2148532224,
+        "tags": {
+          "1": 32,
+          "2": 128
+        },
+        "demand_seed": 20263101,
+        "schedule": "concurrent-prefix"
+      },
+      {
+        "file": "ws30w5_seed20263101_lead20us.txt",
+        "sha256": "da60cccf81df435c6a6723462a9c69e93375cd6b9d169a89b6beac6a96b9db05",
+        "flows": 16416,
+        "payload_bytes": 2281701376,
+        "tags": {
+          "1": 32,
+          "2": 16384
+        },
+        "demand_seed": 20263101,
+        "schedule": "lead20us"
+      },
+      {
+        "file": "ws30w5_seed20263102_concurrent.txt",
+        "sha256": "45ae5e6c06664a68057bfe60c2a6f1fb48df5208132eede0f651108c929f6eae",
+        "flows": 16416,
+        "payload_bytes": 2281701376,
+        "tags": {
+          "1": 32,
+          "2": 16384
+        },
+        "demand_seed": 20263102,
+        "schedule": "concurrent"
+      },
+      {
+        "file": "ws30w5_seed20263102_lead20us.txt",
+        "sha256": "37745c25c0e7b764ac661dcfc8cfcc307714e6808a190965c2830d6c53a47fd1",
+        "flows": 16416,
+        "payload_bytes": 2281701376,
+        "tags": {
+          "1": 32,
+          "2": 16384
+        },
+        "demand_seed": 20263102,
+        "schedule": "lead20us"
+      }
+    ]
+  },
+  "pending": [
+    "native optimized build",
+    "all 18 regression cells",
+    "24 lifecycle and 6 observation controls",
+    "four ConWeave invariance cells",
+    "all W5 performance and formal cells"
+  ],
+  "source_file_sha256": {
+    ".gitattributes": "b968d1ffc1d889657b5647362579360ecae4044411aa1a57d2cb82f0e7e5aaf9",
+    "run.py": "b70282af7ab8703e67afec1e7ae47766bc9db81cb061fa8cb9a30e73378d5e13",
+    "scratch/network-load-balance.cc": "63129b7a33926d8367207b20d218d0e36e63d22cc553519d8847aadc3fb6066e",
+    "scripts/remote_experiment.py": "532dc8c7baa5710f9a36191aa0593cd4cbe04415262d4f39b79090fa0493f1c5",
+    "scripts/remote_worker.py": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc",
+    "scripts/make_ws30_v14_inputs.py": "39003448d66bee6f64695cdf1d0e0a476dc7d83322f20274f22ab2c1cb9ea4cb",
+    "scripts/prepare_ws30_v14.py": "217416988c7596a97ce4c3bf4820dbde4ec8ee08cc912ddcf67ed03fdad1ae2b",
+    "scripts/verify_ws30_v14_raw.py": "f724479b3e243200b546b0fb36308ae3dd44f0a3425ac20878c760f46b72b76b",
+    "scripts/audit_ws30_v14_static.py": "6359859e3cd8af57e89c01e78529b56cc90c06c50653dc213e9b6a7986788dbc",
+    "src/point-to-point/model/ws30-cw-observer.h": "a1a820744cf5e60e6b38d0e9ee71ac4c42ce46245cc9962a7c063da4c1b7e3d2",
+    "src/point-to-point/model/ws30-v13-fixture.h": "71d3af3936096f30fe70379089877bd742ed8b4ef8081eec5129490734247ca5",
+    "src/point-to-point/model/rdma-hw.cc": "a710deea0bcceab9af02acfb84afd9474f58f742c70b7e8baa241b500a4656ec",
+    "src/point-to-point/model/rdma-queue-pair.h": "803ad4db19626c9cc4b2c1dc692ec9945385d6651469b7d9d011d3fb9c8d5057",
+    "src/point-to-point/model/switch-node.cc": "dd18769b4cabf5111cbf44ae4cbd2fdd416a4bbbcf83d65c6d243147ad72028e",
+    "src/point-to-point/model/conweave-routing.cc": "73bd45ccf4e6e62da8ae7fd5d076ce0d0896f75c1002fe65f856bceaf74740a2",
+    "src/point-to-point/wscript": "95d222924e5af1d8746231896ce11d4db2ede1fa6771c48ac8a73ecb0f781890"
+  },
+  "remote_worker_python35_syntax": true,
+  "analysis_turn_context": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "turn_id": "01a1758b-1da9-7c23-a858-775b233fe8c9"
+  }
+}
