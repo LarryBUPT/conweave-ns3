@@ -1,5 +1,11 @@
 # 下一阶段路线与停机条件
 
+## WS-30 v13 模型门槛已纠正，正式 lane 准备待放行（2026-10-26）
+
+[修复报告](../research/ws30-v13-medium-model-formal-readiness-r1.md)将实际监督/分析门槛改为用户指定的 Luna Medium / GPT-6.1 Sol Medium，覆盖通用 High 默认；19 项离线测试与静态审计通过。正式 168 格的真实 controller/worker 参数解析及隔离命令构造逐格核对，与旧源 worker 的 run.py argv 一致，未执行 run.py。实际授权文件仍不存在，新运行为 0。
+
+主对话接受先 formal-first → formal-rest，再新源技术/生命周期和 W5 的拟议顺序；执行仍待外部同步授权和各自门槛。工程 48、W5 36、正式 168 及固定 SHA/输入不变，新源仍先单格/cap 4。[已有 46 格素材](../research/ws30-v13-existing46-paper-response-material-r1.md)已单独整理，不覆盖主稿。WS-30 ACTIVE，部署/构建、动态回归和真实覆盖仍待完成。
+
 ## WS-30 v13 执行入口已集成，全部新运行关闭（2026-10-26）
 
 [入口报告](../research/ws30-v13-execution-entrypoint-integration-r1.md)记录内部 v14 工程修订；论文交付目标仍为 v13。执行器默认只读本地，逐格绑定 source、输入和两种 seed；没有实际授权文件时不访问远端。15 项离线测试通过，旧源技术/资源 30 格、201,936 条 FCT 及实际配置 seed 1 已复验。没有新增构建或仿真。

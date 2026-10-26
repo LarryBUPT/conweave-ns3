@@ -5,7 +5,7 @@
   "contract_sha256": "266d9f6be946c107d4155743e6762ce718e9a85f470cb2ca0d2395f5bd544856",
   "schedule_sha256": "2999ccc3bcfbf73a099365428cdc2c42fb8dccba23f1d845911a7f521c043994",
   "control_sha256": {
-    "scripts/run_ws30_v14.py": "cc40d4428f5b1468396545422b9d18c4b937c0753172fcc5d1cbac0dae5dd2c8",
+    "scripts/run_ws30_v14.py": "a0bdd1a0304607592029d6cf7de5fada7959254573ada388ab2cc59741df3e11",
     "scripts/verify_ws30_v14_raw.py": "38c2f471479da2f5a9d437dfd92b15f1c7e6163ca115c3976bc01bde383e1dbc",
     "scripts/remote_experiment.py": "532dc8c7baa5710f9a36191aa0593cd4cbe04415262d4f39b79090fa0493f1c5",
     "scripts/remote_worker.py": "96c9c68fe99288477f0b55d792ad84ca7652878bd854285cf1bca69402bfa5fc",
@@ -20,6 +20,8 @@
   "phases": [],
   "phase_caps": {},
   "supervision_model": "gpt-6-luna",
-  "supervision_effort": "high",
-  "note": "Disabled example only. Never loaded by executor; no actual authorization receipt has been created."
+  "supervision_effort": "medium",
+  "note": "Disabled example only. Never loaded by executor; no actual authorization receipt has been created.",
+  "analysis_model": "gpt-6.1-sol",
+  "analysis_effort": "medium"
 }

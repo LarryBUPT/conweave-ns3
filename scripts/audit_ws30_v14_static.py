@@ -68,7 +68,12 @@ def main():
     report['strict_classless_routing_equal_after_removing_hooks']=True
     report['analysis_turn_context']={'model':'gpt-6.1-sol','effort':'medium','turn_id':'01a1758b-1da9-7c23-a858-775b233fe8c9'}
     report['execution_entrypoint_sha256']=hashlib.sha256((ROOT/'scripts/run_ws30_v14.py').read_bytes()).hexdigest()
-    path=ROOT/'docs/research/evidence/ws30-v14-static-audit-r5.json'
+    entry=ast.parse((ROOT/'scripts/run_ws30_v14.py').read_text(encoding='utf-8-sig'))
+    policy=ast.literal_eval(next(n.value for n in entry.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='MODEL_POLICY' for t in n.targets)))
+    assert policy=={'supervision':('gpt-6-luna','medium'),'analysis':('gpt-6.1-sol','medium')}
+    report['execution_model_policy']=policy
+    report.pop('analysis_turn_context',None) # Do not copy a historical turn ID into this new receipt.
+    path=ROOT/'docs/research/evidence/ws30-v14-static-audit-r6.json'
     data=json.dumps(report,indent=2)+'\n'
     if path.exists():assert json.loads(path.read_text())==report
     else:path.write_text(data,encoding='utf-8')

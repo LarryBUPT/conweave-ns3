@@ -24,6 +24,7 @@ SCHEDULE=EV/'ws30-v14-executor-schedule-r1.json'
 AUTH=EV/'ws30-v14-execution-authorization.json'
 GROUPS=('regression','lifecycle','lifecycle_observation_controls','ConWeave_observation_controls','W5','formal_disabled')
 CONTROLS=('scripts/run_ws30_v14.py','scripts/verify_ws30_v14_raw.py','scripts/remote_experiment.py','scripts/remote_worker.py','scripts/run_ws30_stage3.py','scripts/run_ws30_v13.py','scripts/run_ws30_stage2.py','scripts/run_ws25_formal.py','scripts/run_ws25_preflight.py','scripts/run_ws25_resource_pilot.py','scripts/run_ws25_v1fix_calibration.py')
+MODEL_POLICY={'supervision':('gpt-6-luna','medium'),'analysis':('gpt-6.1-sol','medium')}
 
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -78,6 +79,12 @@ def actual_model(path):
     require(context is not None,'Missing actual turn context')
     return context
 
+def require_model(session,role):
+    context=actual_model(session)
+    require((context['model'],context.get('effort'))==MODEL_POLICY[role],
+            'Actual '+role+' must be '+MODEL_POLICY[role][0]+' / Medium')
+    return context
+
 def authorize(phases,session):
     require(AUTH.exists(),'Execution closed: no main-chat authorization receipt; no remote access performed')
     gate=read(AUTH)
@@ -85,9 +92,9 @@ def authorize(phases,session):
     require(gate.get('contract_sha256')==sha(CONTRACT) and gate.get('schedule_sha256')==sha(SCHEDULE),'Authorization contract/schedule changed')
     require(gate.get('control_sha256')=={p:sha(ROOT/p) for p in CONTROLS},'Controller/worker/verifier version not approved')
     require(set(phases)<=set(gate.get('phases',[])),'Phase not authorized')
-    context=actual_model(session)
-    require((context['model'],context.get('effort'))==('gpt-6-luna','high'),'Actual supervision must be GPT-6 Luna / High')
-    require(gate.get('supervision_model')=='gpt-6-luna' and gate.get('supervision_effort')=='high','Receipt does not bind actual supervision policy')
+    require_model(session,'supervision')
+    require((gate.get('supervision_model'),gate.get('supervision_effort'))==MODEL_POLICY['supervision'],'Receipt does not bind actual supervision policy')
+    require((gate.get('analysis_model'),gate.get('analysis_effort'))==MODEL_POLICY['analysis'],'Receipt does not bind actual analysis policy')
     return gate
 
 def verify_common(c):
@@ -279,6 +286,7 @@ def main():
     if args.command=='inspect':
         print(json.dumps({'execution_enabled':False,'new_simulations':0,'phases':{k:{'count':len(v['ids']),'requires':v['requires'],'cap':v['maximum_cap'],'source':v['source_sha']} for k,v in sched['phases'].items()}}));return
     if args.command=='verify-local':
+        require_model(args.session_file,'analysis')
         ids=[i for name in phases for i in sched['phases'][name]['ids']] if phases else list(cells)
         rows=[verify_common(cells[i]) for i in ids if (ROOT/'results'/i).exists()]
         print(json.dumps({'verified_local':len(rows),'required':len(ids),'new_simulations':0}));return

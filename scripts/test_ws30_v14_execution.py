@@ -1,11 +1,43 @@
 """Offline negative tests only. Synthetic control states are not simulation evidence."""
 from contextlib import contextmanager
+import argparse
+import ast
+from contextlib import redirect_stderr
+import io
 import json
 from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
 import run_ws30_v14 as r
+import remote_worker as worker
+
+def command_from_worker(source,params):
+    """Evaluate only the real execute() argv construction, never execute()."""
+    fn=next(n for n in ast.parse(source).body if isinstance(n,ast.FunctionDef) and n.name=='execute')
+    first=next(i for i,n in enumerate(fn.body) if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='command' for t in n.targets))
+    end=next(i for i,n in enumerate(fn.body[first:],first) if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='log' for t in n.targets))
+    ns={'params':params,'sys':type('Runtime',(),{'executable':'python3'})}
+    exec(compile(ast.Module(body=fn.body[first:end],type_ignores=[]),'<argv only>','exec'),ns)
+    return ns['command']
+
+def parser_from_runpy(source):
+    # Omit main()'s directory creation and all statements after parse_args().
+    fn=next(n for n in ast.parse(source).body if isinstance(n,ast.FunctionDef) and n.name=='main')
+    first=next(i for i,n in enumerate(fn.body) if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='parser' for t in n.targets))
+    end=next(i for i,n in enumerate(fn.body) if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='args' for t in n.targets))
+    ns={'argparse':argparse}
+    exec(compile(ast.Module(body=fn.body[first:end],type_ignores=[]),'<old parser only>','exec'),ns)
+    return ns['parser']
+
+def environment_from_worker(source,params):
+    fn=next(n for n in ast.parse(source).body if isinstance(n,ast.FunctionDef) and n.name=='execute')
+    block=next(n for n in fn.body if isinstance(n,ast.Try)).body
+    first=next(i for i,n in enumerate(block) if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='simulation_env' for t in n.targets))
+    end=next(i for i,n in enumerate(block[first:],first) if isinstance(n,ast.Expr) and isinstance(n.value,ast.Call) and isinstance(n.value.func,ast.Name) and n.value.func.id=='run_checked')
+    ns={'params':params,'os':type('Environment',(),{'environ':{}})}
+    exec(compile(ast.Module(body=block[first:end],type_ignores=[]),'<environment only>','exec'),ns)
+    return ns['simulation_env']
 
 @contextmanager
 def scratch():
@@ -32,9 +64,9 @@ class GuardTests(unittest.TestCase):
         with scratch() as d,patch.object(r,'AUTH',Path(d)/'absent.json'),patch.object(r.legacy.stage.remote.remote,'config',side_effect=AssertionError('network forbidden')):
             with self.assertRaisesRegex(RuntimeError,'Execution closed'):r.authorize(['technical-single'],None)
     def test_changed_controller_refuses_before_model_or_remote(self):
-        with scratch() as d:
-            p=Path(d)/'negative-only.json';p.write_text(json.dumps({'approved':True,'external_sync_approved':True,'authorization_evidence':'synthetic unit test only','contract_sha256':r.sha(r.CONTRACT),'schedule_sha256':r.sha(r.SCHEDULE),'control_sha256':{}}))
-            with patch.object(r,'AUTH',p),self.assertRaisesRegex(RuntimeError,'version not approved'):r.authorize(['technical-single'],None)
+        from unittest.mock import Mock
+        gate={'approved':True,'external_sync_approved':True,'authorization_evidence':'in-memory negative test only','contract_sha256':r.sha(r.CONTRACT),'schedule_sha256':r.sha(r.SCHEDULE),'control_sha256':{}}
+        with patch.object(r,'AUTH',Mock(exists=lambda:True)),patch.object(r,'read',return_value=gate),self.assertRaisesRegex(RuntimeError,'version not approved'):r.authorize(['technical-single'],None)
     def test_resume_contract_cannot_change(self):
         with scratch() as d:
             p=Path(d)/'summary.json';p.write_text(json.dumps({'contract':'wrong','verified':{}}))
@@ -105,5 +137,66 @@ class GuardTests(unittest.TestCase):
             backend=Fake();state=r.Runner(cells,backend,Path(d)/'runner.json',cap=4).run()
             self.assertEqual(len(state['verified']),4)
             self.assertEqual(backend.started,[(c['id'],4) for c in cells])
+    def test_actual_model_policy_accepts_medium_and_rejects_high(self):
+        for role,(model,effort) in r.MODEL_POLICY.items():
+            with patch.object(r,'actual_model',return_value={'model':model,'effort':effort}):r.require_model(None,role)
+            with patch.object(r,'actual_model',return_value={'model':model,'effort':'high'}),self.assertRaisesRegex(RuntimeError,'Actual '+role):r.require_model(None,role)
+        with patch.object(r,'actual_model',return_value={'model':'gpt-6-sol','effort':'medium'}),self.assertRaisesRegex(RuntimeError,'Actual analysis'):r.require_model(None,'analysis')
+    def test_high_receipt_rejected_in_memory_without_creating_authorization(self):
+        from unittest.mock import Mock
+        gate={'approved':True,'external_sync_approved':True,'authorization_evidence':'in-memory negative test; not authorization','contract_sha256':r.sha(r.CONTRACT),'schedule_sha256':r.sha(r.SCHEDULE),'control_sha256':{f:r.sha(r.ROOT/f) for f in r.CONTROLS},'phases':['formal-first'],'supervision_model':'gpt-6-luna','supervision_effort':'high','analysis_model':'gpt-6.1-sol','analysis_effort':'medium'}
+        with patch.object(r,'AUTH',Mock(exists=lambda:True)),patch.object(r,'read',return_value=gate),patch.object(r,'actual_model',return_value={'model':'gpt-6-luna','effort':'medium'}):
+            with self.assertRaisesRegex(RuntimeError,'supervision policy'):r.authorize(['formal-first'],None)
+            gate['supervision_effort']='medium';r.authorize(['formal-first'],None)
+            gate['analysis_model']='gpt-6-sol'
+            with self.assertRaisesRegex(RuntimeError,'analysis policy'):r.authorize(['formal-first'],None)
+    def formal_rpc(self,c,cap):
+        b=r.Backend([c])
+        with patch.object(b,'compatible'),patch.object(b,'local',return_value=False),patch.object(b,'snapshot',return_value={'states':{c['id']:{'status':'BUILT','git_commit':c['source_sha']}}}),patch.object(r.legacy.stage.engine.calibration,'verify_remote_trace'),patch.object(r.legacy.stage.remote.remote,'config',return_value={}),patch.object(r.legacy.stage.remote.remote,'ssh_base',return_value=[]),patch.object(r.subprocess,'check_output',side_effect=[c['topology_sha256'],'0\n0']),patch.object(r.legacy.stage.remote,'start_watch'),patch.object(r.legacy.stage.remote,'command') as call:
+            b.start(c,cap);controller_argv=list(call.call_args.args)
+        controller=r.legacy.stage.remote.remote
+        with patch.object(controller.sys,'argv',['controller']+controller_argv),patch.object(controller,'config',return_value={}),patch.object(controller,'worker_call') as call:
+            controller.main();rpc=list(call.call_args.args[1:])
+        with patch.object(worker.sys,'argv',['worker']+rpc),patch.object(worker,'start') as call:
+            worker.main();params=call.call_args.args[1]
+        return controller_argv,rpc,params
+    def test_all_168_formal_commands_preserve_old_worker_argv(self):
+        import subprocess
+        old_worker=subprocess.check_output(['git','-c','safe.directory='+r.ROOT.as_posix(),'show',self.plan['formal_source_sha_preserved']+':scripts/remote_worker.py']).decode()
+        old_run=subprocess.check_output(['git','-c','safe.directory='+r.ROOT.as_posix(),'show',self.plan['formal_source_sha_preserved']+':run.py']).decode()
+        new_worker=(r.ROOT/'scripts/remote_worker.py').read_text()
+        parser=parser_from_runpy(old_run)
+        self.formal_commands=[]
+        for i,c in enumerate(self.plan['formal_disabled']):
+            controller,rpc,params=self.formal_rpc(c,4 if i<4 else 8)
+            actual=command_from_worker(new_worker,params)
+            self.assertEqual(actual,command_from_worker(old_worker,params))
+            parsed=parser.parse_args(actual[2:]);self.assertEqual(parsed.lb,c['mode'])
+            self.assertEqual(params['simulation_seed'],1);self.assertEqual(params['demand_seed'],c['demand_seed'])
+            self.assertEqual(params['ws30_lifecycle'],0);self.assertEqual(params['ws30_life_profile'],0)
+            environment=environment_from_worker(new_worker,params)
+            old_environment=environment_from_worker(old_worker,params)
+            self.assertEqual(environment.pop('WS30_LIFE_PROFILE'),'0')
+            self.assertEqual(environment,old_environment)
+            for flag in ('--simulation-seed','--demand-seed','--ws30-life-profile'):self.assertNotIn(flag,actual)
+            self.formal_commands.append({'id':c['id'],'source_sha':c['source_sha'],'controller':controller,'worker_rpc':rpc,'run_py_argv':actual,'simulation_seed':params['simulation_seed'],'demand_seed':params['demand_seed'],'old_environment_equal':True,'new_ignored_environment':{'WS30_LIFE_PROFILE':'0'}})
+        self.assertIn('RANDOM_SEED 1',old_run)
+        # Store the real argv derivations only in an ignored local audit draft.
+        folder=r.ROOT/'results/ws30-v14-local-history';folder.mkdir(parents=True,exist_ok=True)
+        (folder/'formal-command-audit-draft.json').write_text(json.dumps(self.formal_commands,indent=2)+'\n',encoding='utf-8')
+    def test_old_parser_rejects_seed_leak_and_worker_rejects_profile_leak(self):
+        import subprocess
+        old_run=subprocess.check_output(['git','-c','safe.directory='+r.ROOT.as_posix(),'show',self.plan['formal_source_sha_preserved']+':run.py']).decode()
+        parser=parser_from_runpy(old_run)
+        with redirect_stderr(io.StringIO()),self.assertRaises(SystemExit):parser.parse_args(['--simulation-seed','1'])
+        c=self.plan['formal_disabled'][0];_,rpc,_=self.formal_rpc(c,4)
+        rpc[rpc.index('--ws30-life-profile')+1]='1'
+        with patch.object(worker.sys,'argv',['worker']+rpc),patch.object(worker,'start') as start:
+            with self.assertRaisesRegex(RuntimeError,'profile requires lifecycle'):worker.main()
+            start.assert_not_called()
+        rpc[rpc.index('--ws30-life-profile')+1]='0';rpc[rpc.index('--simulation-seed')+1]='2'
+        with patch.object(worker.sys,'argv',['worker']+rpc),patch.object(worker,'start') as start,redirect_stderr(io.StringIO()):
+            with self.assertRaises(SystemExit):worker.main()
+            start.assert_not_called()
 
 if __name__=='__main__':unittest.main()

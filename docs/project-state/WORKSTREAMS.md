@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；v13 交付的本地执行入口集成完成，新动态验收为 0 | [入口报告](../research/ws30-v13-execution-entrypoint-integration-r1.md)：内部 v14 修订；15 项离线测试、旧源技术/资源 30 格复验通过；逐格 SHA/seed、恢复和停止门槛已接入 | 工程 48＋W5 36＋正式 168 全关闭；新源单格/cap 4，正式旧源独立门槛后可 cap 8。同步授权、部署/构建、动态不干扰与真实覆盖待主对话放行；[交接](../handoffs/2026-10-26-ws30-v13-executor-integration.md)，未闭环 |
+| WS-30 | 第一课题实验补正与归因审计 | ACTIVE；模型门槛与旧源正式命令兼容修复通过，新运行 0 | [准备报告](../research/ws30-v13-medium-model-formal-readiness-r1.md)：实际 Luna Medium 监督、GPT-6.1 Sol Medium 分析；19 项离线测试，168 格 argv/旧 parser 核对；已有 46 格素材独立整理 | 拟先 formal-first → formal-rest，再新源技术/生命周期与 W5；外部同步授权、部署/构建及真实验收均未完成。48＋36＋168 全关闭，新源先单格/cap 4 |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |

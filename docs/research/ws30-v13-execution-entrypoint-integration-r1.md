@@ -6,7 +6,7 @@
 
 [执行器](../../scripts/run_ws30_v14.py)默认执行 `inspect`，只读本地契约和 Git blob。`verify-local` 只验收已有本地结果。`run` 必须明确列出阶段，并取得主对话记录的范围与外部同步授权；没有实际授权文件时，在构造远端 backend 之前拒绝执行。本节点只提供[关闭的示例](evidence/ws30-v14-execution-authorization.example.json)，没有创建授权收据。
 
-授权绑定契约、阶段表、controller/worker、恢复/资源 helper 和验收器哈希，以及阶段与 cap。运行时还读取真实会话，要求 GPT-6 Luna / High 已生效。该检查不负责切换模型；完成后仍须实际切至 GPT-6 Sol / High 分析。当前本地实现回合继续为 GPT-6.1 Sol / Medium。
+授权绑定契约、阶段表、controller/worker、恢复/资源 helper 和验收器哈希，以及阶段与 cap。运行时还读取真实会话，要求 GPT-6 Luna / Medium 已生效。该检查不负责切换模型；完成后须实际切至 GPT-6.1 Sol / Medium 分析（按用户对 WS-30 的具体要求，覆盖通用工作流的 High 默认）。当前本地实现回合继续为 GPT-6.1 Sol / Medium。
 
 构建逐格显式传入 `source_sha`，不使用当前 HEAD 或可变全局 SOURCE；入口没有同步、部署、推送或登录重试路径。所需 SHA 必须已通过获准流程进入远端个人仓库缓存。启动前检查实际部署 worker 的逐字节哈希、BUILT 状态、源码 SHA、trace 和 topology 哈希，再显式传入模拟与需求 seed。worker schema 3 及实际 `RANDOM_SEED 1` 也纳入回传验收。
 
