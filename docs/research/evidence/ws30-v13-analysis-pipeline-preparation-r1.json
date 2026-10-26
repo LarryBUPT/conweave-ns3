@@ -1,0 +1,117 @@
+{
+  "scope": "local analysis/figure pipeline preparation; no remote access or experimental results generated",
+  "actual_analysis_context": {
+    "model": "gpt-6.1-sol",
+    "effort": "medium",
+    "turn_id": "01a175f8-d26f-79c2-8665-aabaca1322c5"
+  },
+  "contract_sha256": "a0473214febe99412d196fe5c9df2cc65fe03fbefb79433a2b37226d0f39efac",
+  "script_sha256": {
+    "scripts/analyze_ws30_v13_pending.py": "f57881b49dcdcf7437f6d6324cafedbb5d4730e59556b211bf09465d778a1791",
+    "scripts/plot_ws30_v13_pending.py": "11a15c78e10a0b1eb7e20782686bd41e2d8e649be63bacdb1ba2e30c4f482781"
+  },
+  "validation": {
+    "existing_raw_validation_only": [
+      {
+        "id": "20261026-060000-w30v13-r2-t02-e-o2",
+        "parse_only": true,
+        "rows": 168,
+        "identity_and_bytes_match": true,
+        "metrics_match_frozen_raw_analysis": true,
+        "not_an_independent_formal_sample": true
+      },
+      {
+        "id": "20261026-060000-w30v13-r2-t04-q12-o2",
+        "parse_only": true,
+        "rows": 168,
+        "identity_and_bytes_match": true,
+        "metrics_match_frozen_raw_analysis": true,
+        "not_an_independent_formal_sample": true
+      },
+      {
+        "id": "20261026-060000-w30v13-r2-t06-r12-o2",
+        "parse_only": true,
+        "rows": 168,
+        "identity_and_bytes_match": true,
+        "metrics_match_frozen_raw_analysis": true,
+        "not_an_independent_formal_sample": true
+      },
+      {
+        "id": "20261026-060000-w30v13-r2-t08-u12-o2",
+        "parse_only": true,
+        "rows": 168,
+        "identity_and_bytes_match": true,
+        "metrics_match_frozen_raw_analysis": true,
+        "not_an_independent_formal_sample": true
+      },
+      {
+        "id": "20261026-060000-w30v13-r2-t10-d-o2",
+        "parse_only": true,
+        "rows": 168,
+        "identity_and_bytes_match": true,
+        "metrics_match_frozen_raw_analysis": true,
+        "not_an_independent_formal_sample": true
+      }
+    ],
+    "tail_identity_arithmetic_validated_on_existing_raw_only": true,
+    "W5_trace_structure_only": {
+      "traces": 4,
+      "rounds": 8,
+      "messages_each": 2048,
+      "identity_and_bytes_across_timings_equal": true
+    },
+    "formal_results_generated": false,
+    "figures_generated": 0
+  },
+  "target_snapshot": {
+    "expected_performance_cells": 200,
+    "statuses": {
+      "MISSING": 200
+    },
+    "qualification_cells": 4,
+    "qualification_statuses": {
+      "MISSING": 4
+    },
+    "pair_status_counts": {
+      "PAIR_MEMBER_MISSING_OR_INVALID": 168,
+      "HISTORICAL_FCT_QUALIFICATION_PENDING": 48,
+      "OBSERVER_QUALIFICATION_PENDING": 44
+    },
+    "planned_and_actual_source_locators": 300,
+    "inferential_intervals_generated": 0,
+    "figures_generated": 0
+  },
+  "snapshot_file_sha256": {
+    "results\\ws30-v13-analysis\\parser-r2\\parser-validation.json": "036fac11c5d57f124fa472a781c2b7fd43655510dd969dc967608bdf65c10e85",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\all-background-pairs.csv": "40a5a524ad40e98d9390b3889552f38d9628e1164ddccfe3a3ee994aa6980eac",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\cache-state-entries.csv": "cab382e66d1c142a6ff5829cdbbdb70dc191c062d7d9a5dec16b99bfb54a58df",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\cell-metrics.json": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\cell-status.json": "fca9230304ae1140f4523c4edfc0771d146684f19181f8902448a5b6a4de2cb5",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\conweave-event-ages.csv": "be6f5f51f7d36248ac82ef0fbae898053f08f765be92b501bb4dd6e63d85bc4e",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\costs.json": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\fixed-ecmp-topk.csv": "2b865e73aa3d14bd01821f06ddf192d7dd66761df4e409599aaec2eed8d80491",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\pair-status.json": "8e98fda59f5744f0a1cd49c24516e4346a4e701e0ed4e5640212405dfb4a23cc",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\paired-endpoints.csv": "9a00a446d598234a73fe18bdd76ae545cc4dc4fcfe1928537a6b7a68894a9099",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\paired-flows.csv.gz": "c5b15e401a2fbcade49b475baed2a9e6f01b3c510ae86cf8999858d2598948e4",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\per-input-distributions.csv": "90bb8fbb522922b8091adba0ad4c7b729f0fb5f94f5f883e0aaf71df1e6a2ca9",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\qualification-status.json": "980f9767437fc8059e47e020b2075ba5dfdf6a4476673dc2d526011751724528",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\recovery-costs.csv": "2619b6814c0398e8b1a082a86ea085861a6cb226f1309b5731cc3def2bc5517e",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\round-pairs.csv": "00389037d40e12b2db6893fa0c8a7d112370bf099872adfb6cd4d9162863d20a",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\run-provenance.json": "7788c090fedbb730fc988737696379b722f4cbecb60a2c1662bbc2862901a42e",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\source-map.json": "3f5172e23263b7a8b1e8ec93cbc71faf54d36aea2f730bcc15e2786b4345fe8a",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\summary.json": "35ed19dddfc48b8adf929fd36393cf31c0eb29dab238c572b73390a816ada085",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\tail-decomposition.csv": "9a12f5d94664dca36514baa53c1b852072db77610549c6fb878874468b17480f",
+    "results\\ws30-v13-analysis\\empty-targets-r2\\timing-interactions.json": "f818864186d6085cb0e38c99193d6ec574b0593a2c533d35e228adf5f1c04db6",
+    "results\\ws30-v13-analysis\\empty-figures-r2\\figure-manifest.json": "d16ef892b502104777b3ea868af0cb8d52788128ca5fba981dda82ee19cc72c7"
+  },
+  "plot_runtime": "Python matplotlib 3.11.2 available; no data figures rendered",
+  "pending": [
+    "actual target raw",
+    "native observer qualification raw",
+    "historical all48 replay hash matches",
+    "rendered glyph/collision QA and final-size visual review on actual figures"
+  ],
+  "actual_authorization_receipt_exists": false,
+  "new_simulation_launches": 0,
+  "paper_release_ready": false
+}

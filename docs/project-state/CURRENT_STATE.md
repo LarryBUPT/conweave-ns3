@@ -1,5 +1,11 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 v13 分析与图表管线准备完成，新 raw 仍未到位（2026-10-26）
+
+[管线说明](../research/ws30-v13-analysis-and-figure-pipeline-r1.md)冻结需求级配对、原/新批尾、ECMP 固定 top-k、逐输入分布及状态/恢复口径。新建 QP 24 需求、两组历史各 24 需求、持续 pilot 2 需求分开，不把轮次或旧技术/pilot 当独立重复。五个旧技术格仅验证解析；200 个目标性能格和 4 个资格格均本地缺失，正式区间和图均为 0。
+
+实际 GPT-6.1 Sol Medium，未访问远端、推送、创建授权或仿真，主稿/回复未改。WS-30 ACTIVE；新 raw、资格、实际统计核验及最终尺寸图形 QA 仍待完成。正式优先的拟议顺序与原执行门槛不变。
+
 ## WS-30 v13 模型门槛已纠正，正式 lane 准备待放行（2026-10-26）
 
 [修复报告](../research/ws30-v13-medium-model-formal-readiness-r1.md)将实际监督/分析门槛改为用户指定的 Luna Medium / GPT-6.1 Sol Medium，覆盖通用 High 默认；19 项离线测试与静态审计通过。正式 168 格的真实 controller/worker 参数解析及隔离命令构造逐格核对，与旧源 worker 的 run.py argv 一致，未执行 run.py。实际授权文件仍不存在，新运行为 0。
