@@ -1,0 +1,67 @@
+{
+  "created_utc": "2026-10-26T20:46:07.198036+00:00",
+  "base_commit": "a39b14958e2c3bcdc1cf5bb80cad609669640839",
+  "scope": "formal168 raw verification and fixed analysis; WS30 ACTIVE",
+  "files": [
+    {
+      "path": "docs/handoffs/2026-10-27-ws30-formal-complete-analysis.md",
+      "sha256": "e824440d3a9d303a5aa6d7614e3b9642d5b1ed0adacb6533b02401524eb30a66",
+      "bytes": 3705
+    },
+    {
+      "path": "docs/research/evidence/ws30-v14-formal-completion-audit-r1.json",
+      "sha256": "276a8b3a9d71b09c4748892d409cc19ad79b51c76b3e7bfb306e5ce73d269826",
+      "bytes": 674158
+    },
+    {
+      "path": "docs/research/evidence/ws30-v14-formal-figure-qa-r1.json",
+      "sha256": "b52332dc6f1344f485d0c11e79bd06204ddfc4b0a5d9b7156b6a59ada563c5d9",
+      "bytes": 13079
+    },
+    {
+      "path": "docs/research/evidence/ws30-v14-formal-reference-review-r1.json",
+      "sha256": "5d19d06e2a527be0d7442688619fcf445b017abae7e122f1315f92e78cf6e616",
+      "bytes": 2150
+    },
+    {
+      "path": "docs/research/evidence/ws30-v14-formal-remote-terminal-audit-r1.json",
+      "sha256": "41c1e98bdb814a85bd0651869edec175eb893abbb46e336c568c472c7df9e778",
+      "bytes": 42520
+    },
+    {
+      "path": "docs/research/evidence/ws30-v14-formal-rest-repair-audit-r1.json",
+      "sha256": "be5e4a58078ab918a2cf7c7d6708b120c11b6f447ca7a6b31badbec0df2f5c30",
+      "bytes": 8313
+    },
+    {
+      "path": "docs/research/evidence/ws30-v14-formal-routing-and-topk-audit-r1.json",
+      "sha256": "1bb8be7a2d37a65b9416c488c95a46f279584abb2b967e0dcca6000f26d25b2c",
+      "bytes": 10218
+    },
+    {
+      "path": "docs/research/ws30-v14-formal-completion-report-r1.md",
+      "sha256": "56a6bd12fdfa55e09f3dd5a06bd06d511d490846c81a9531c3ed20b2d0e12708",
+      "bytes": 11417
+    },
+    {
+      "path": "scripts/analyze_ws30_v13_pending.py",
+      "sha256": "f57881b49dcdcf7437f6d6324cafedbb5d4730e59556b211bf09465d778a1791",
+      "bytes": 32103
+    },
+    {
+      "path": "scripts/audit_ws30_v14_formal_complete.py",
+      "sha256": "4a5684e72395202be4ab7d80617ad6bb0ccc152963afe33a1dfdc9f1ecb06796",
+      "bytes": 8237
+    },
+    {
+      "path": "scripts/plot_ws30_v13_pending.py",
+      "sha256": "11a15c78e10a0b1eb7e20782686bd41e2d8e649be63bacdb1ba2e30c4f482781",
+      "bytes": 12306
+    }
+  ],
+  "analysis_directory": "results/ws30-v14-formal-complete-analysis-r1",
+  "figure_directory": "results/ws30-v14-formal-complete-figures-r1",
+  "raw_results_not_in_git": true,
+  "heartbeat": "ws-30-formal-rest-r2 deleted after completion",
+  "node_code_validation": "Audit script executed successfully against all168 real raw; no simulation/controller controls edited."
+}

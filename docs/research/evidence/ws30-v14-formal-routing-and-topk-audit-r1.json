@@ -1,0 +1,383 @@
+{
+  "source_sha": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+  "source_file": "src/point-to-point/model/switch-node.cc",
+  "source_file_sha256": "3ebfc9a5b0ef5e3a2a4210daacc05433e33eee27d6dd6f6163092f55f7e18b09",
+  "function_sha256": {
+    "DoLbDrill": "2c6eaf7deb2d2e8ba127d826f853d2cadd49c0d07802794a221a2faa043b4bb4",
+    "DoLbWs30V13": "15f1e5dc07680471773977d511674dc0bd9189c364a98407b39dc9b56920a07b",
+    "DoLbWs30": "5f5e919d26a19d778a095cde1f167f80f9fb658ee9cb9833641b4ba7ffc31bed"
+  },
+  "DRILL_function_equals_historical_source": true,
+  "historical_source": "ee236f27920aa56b3dd562ed971e5abee9e1e659",
+  "strict_mode_key_bytes": 12,
+  "strict_pinning_modes": [
+    33,
+    34
+  ],
+  "strict_packet_mode": 35,
+  "DRILL_rule": "Two fresh randomly shuffled next hops per packet, plus possible previous best by destination IP; keep existing best on ties.",
+  "U16_limitation": "Historical 16-byte foreground/12-byte background fixed candidate pairs and tag admission; not matched to DRILL or strict U12.",
+  "matching_interpretation": "Q12/R12/U12 share fixed first-arrival candidate generation; current raw source and endpoints do not isolate the several DRILL differences.",
+  "fixed_ecmp_topk_demand_medians": [
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "Q12",
+      "reference": "E",
+      "k": 1,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -26.93427566000607
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "Q12",
+      "reference": "E",
+      "k": 4,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -24.897578185895835
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "Q12",
+      "reference": "E",
+      "k": 16,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -21.679742039148195
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "Q12",
+      "reference": "E",
+      "k": 64,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -19.378248184037947
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "Q12",
+      "reference": "E",
+      "k": 256,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -17.925885983746866
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "E",
+      "k": 1,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -28.406375001111343
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "E",
+      "k": 4,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -24.035613220945436
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "E",
+      "k": 16,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -24.510064653373888
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "E",
+      "k": 64,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -20.85371842209662
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "E",
+      "k": 256,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -18.37851935342126
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "E",
+      "k": 1,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -9.9987206629099
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "E",
+      "k": 4,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -12.488653116865844
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "E",
+      "k": 16,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -14.699952043670194
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "E",
+      "k": 64,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -13.285805216785281
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "E",
+      "k": 256,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -13.935004870741768
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "E",
+      "k": 1,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -31.01991747502584
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "E",
+      "k": 4,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -29.03980181922509
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "E",
+      "k": 16,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -26.531713400201177
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "E",
+      "k": 64,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -25.083104283864863
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "E",
+      "k": 256,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -21.958763962270602
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "Q12",
+      "k": 1,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -1.4946441400605748
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "Q12",
+      "k": 4,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": 1.921207431928393
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "Q12",
+      "k": 16,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -1.5745093573229896
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "Q12",
+      "k": 64,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -0.7070658073288494
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "R12",
+      "reference": "Q12",
+      "k": 256,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -0.3846005049104345
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "Q12",
+      "k": 1,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": 16.609736666365272
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "Q12",
+      "k": 4,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": 10.36566918489193
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "Q12",
+      "k": 16,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": 5.156061589191607
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "Q12",
+      "k": 64,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": 3.3643883185652976
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "U12",
+      "reference": "Q12",
+      "k": 256,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": 1.5582191332732032
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "Q12",
+      "k": 1,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -1.673217595608445
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "Q12",
+      "k": 4,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -1.591428681185586
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "Q12",
+      "k": 16,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -2.916024806574508
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "Q12",
+      "k": 64,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -4.5703209720330955
+    },
+    {
+      "cohort": "fresh-pairs",
+      "candidate": "D",
+      "reference": "Q12",
+      "k": 256,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -0.8799531792654192
+    },
+    {
+      "cohort": "historical-A",
+      "candidate": "D",
+      "reference": "E",
+      "k": 1,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -30.323575800574595
+    },
+    {
+      "cohort": "historical-A",
+      "candidate": "D",
+      "reference": "E",
+      "k": 4,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -27.9392982102956
+    },
+    {
+      "cohort": "historical-A",
+      "candidate": "D",
+      "reference": "E",
+      "k": 16,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -26.049665819101303
+    },
+    {
+      "cohort": "historical-A",
+      "candidate": "D",
+      "reference": "E",
+      "k": 64,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -24.447793486707504
+    },
+    {
+      "cohort": "historical-A",
+      "candidate": "D",
+      "reference": "E",
+      "k": 256,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -21.535697857697677
+    },
+    {
+      "cohort": "historical-B",
+      "candidate": "D",
+      "reference": "E",
+      "k": 1,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -28.62570896279587
+    },
+    {
+      "cohort": "historical-B",
+      "candidate": "D",
+      "reference": "E",
+      "k": 4,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -28.174086591646947
+    },
+    {
+      "cohort": "historical-B",
+      "candidate": "D",
+      "reference": "E",
+      "k": 16,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -26.91180407056506
+    },
+    {
+      "cohort": "historical-B",
+      "candidate": "D",
+      "reference": "E",
+      "k": 64,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -25.72859897263821
+    },
+    {
+      "cohort": "historical-B",
+      "candidate": "D",
+      "reference": "E",
+      "k": 256,
+      "n": 24,
+      "median_of_per_demand_median_change_pct": -22.745532452751956
+    }
+  ]
+}

@@ -1,5 +1,13 @@
 # ConWeave 毕业论文项目状态
 
+## WS-30 正式 168 格与双侧分析完成（2026-10-27）
+
+formal-rest r2 140/140 已核验、pending 0、实验失败 0。加上保留 24 格和 formal-first 4 格，正式合计 168/168。实际 GPT-6.1 Sol / Medium 重读 raw，匹配 2,784,768 条完成身份和 payload 字节；远端 168 份 FCT 与本地一致，48 份历史 DRILL 回放与原 FCT 一致。见[节点报告](../research/ws30-v14-formal-completion-report-r1.md)、[逐格证据](../research/evidence/ws30-v14-formal-completion-audit-r1.json)与[交接](../handoffs/2026-10-27-ws30-formal-complete-analysis.md)。
+
+新需求组 Q12/ECMP 的消息批和背景 P99 变化中位分别为 −4.87% 和 +0.97%；DRILL/ECMP 为 −14.93% 和 +8.31%；U12/Q12 为 +10.43% 和 +7.41%。完整名义区间、逐需求反向观测及范围限制见报告。60 张分析图已生成并核查，尚待稿件选图和整合。
+
+唯一 supervisor/r2 已正常退出，旧故障收据保留，完成后的定时监测已删除。工程 48 格、W5 36 格与论文最终验收继续为必做，WS-30 ACTIVE。以下“正式 28/168、续跑待验收”等内容为历史断点。
+
 ## WS-30 formal-rest 控制器修复待验收（2026-10-26）
 
 [修复报告](../research/ws30-v14-formal-rest-controller-repair-r1.md)定位了 Windows 输出解码异常及空 stdout 的二次报错，补上完整错误落盘和 raw 日志的本地恢复。实际 GPT-6.1 Sol / Medium；34 项本地测试通过。formal-first 4 格已验收，formal-rest 24 格、397,824 条 FCT 再次通过 raw 核验，正式累计 28/168。原失败收据与已保全 ID/raw 均封存；140 个剩余 ID 的本地和远端目录无占用。

@@ -1,0 +1,295 @@
+{
+  "figure_manifest_sha256": "d38016e6bb6468ddbb8f5d61aa2fc3c9769f475a2eb63e45891c6500a286ee6c",
+  "figure_count": 60,
+  "automatic_pdf_glyph_floor_pt": 5,
+  "automatic_glyph_and_collision_all_pass": true,
+  "visual_review": "All 60 plots inspected in 10 Python contact sheets; axes, legends, point directions, decomposition signs and missing-observer conventions reviewed; no clipping found.",
+  "contact_sheets": [
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-01.png",
+      "sha256": "7453bb89fde06059e234791c1dce78f63719ea4979a5a722587dfe1ca0bd6ee1"
+    },
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-02.png",
+      "sha256": "dd78c18a4855b8423cb75526ec4a47f2f92cf88658be921e581966f143cf2aae"
+    },
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-03.png",
+      "sha256": "9ff40d3c9579308834c42862741a99c16cfaab49cdf49fe8d205db1b1b550965"
+    },
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-04.png",
+      "sha256": "2c53d5b474ec662d036b882426a621c23a1241c9cabb363b1c8b6660d74a670b"
+    },
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-05.png",
+      "sha256": "5a155292e884e9c2f7c32f0a2f6fc6c12536d05b5e9faa0a6507216435655c9a"
+    },
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-06.png",
+      "sha256": "b7af2fe3b8347c6c84c5f96f654861ea2312e6e4446c99797aaa8e54d89ba99b"
+    },
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-07.png",
+      "sha256": "004509fdc4278dc9c4971a0f4d82faeb2d4fc900d10a9ef28f1bfba86df98dce"
+    },
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-08.png",
+      "sha256": "af00915ec8c138ebfc5bac5bd1f874ff71232cb657f44566e2da07c7eb347119"
+    },
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-09.png",
+      "sha256": "41248ab2a36afb9f69d576c26976ea3f63935dc99a1b69404673891bf8f8871a"
+    },
+    {
+      "path": "results\\ws30-v14-formal-complete-figures-r1\\visual-qa\\contact-10.png",
+      "sha256": "538ae5471dca6d0e3a14dc09c30b2b68766df649532c9bebd961c7de44555759"
+    }
+  ],
+  "alignment": "N/A: each exported scientific figure is single panel; contact sheets are QA previews only.",
+  "publication_integration": "Pending manuscript selection, layout and captions. Separate audit supersedes PENDING visual fields in immutable export manifest for analysis-bundle review only.",
+  "within_demand_interval": "10th to 90th percentile of identity-paired flow changes; not demand-level CI.",
+  "cache_limit": "Sum of per-switch peaks, not simultaneous total or byte memory.",
+  "figures": [
+    {
+      "name": "fresh-pairs-synchronous-d-vs-e-paired-tradeoff",
+      "pdf_sha256": "79a662989acda1054cfd4cd1fcd06785751cb440e68d07d5cb0718acd58be67c"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-e-tag1-within-demand",
+      "pdf_sha256": "847d2e70a18a12d958027fe97ac1bfa81fe93c465a3c552f55bda2c9df2b24f7"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-e-tag2-within-demand",
+      "pdf_sha256": "8ccecbed64f9aab011f08a08bc68a50750e2c71f6173f50464813a657119f247"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-e-tail-decomposition",
+      "pdf_sha256": "f33e143ac7705a4d1a87b7274365d1c96cab1d30a855e443da79891f4d748626"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-e-tag1-recovery",
+      "pdf_sha256": "400a2819e892248b0a1193ff14e1f03fa89f533e10122a569bb885d50999360f"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-e-tag2-recovery",
+      "pdf_sha256": "eb4a505c70954d39027af70627228ea66ce9dcf4739c8918958a7a46963eb394"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-q12-paired-tradeoff",
+      "pdf_sha256": "bc8d17ef5049722a4bb378b921111ca409ba6dd542f08bc187ebb3824544c435"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-q12-tag1-within-demand",
+      "pdf_sha256": "aeb3fde130d662b85bd7913606567dae8d018efccb256d1d10656bf79298e0ff"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-q12-tag2-within-demand",
+      "pdf_sha256": "3f0edd9a42e426419fa0a189a1744d42a9108c1a8bdcb2cb963fdc1c1ab7c80a"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-q12-tail-decomposition",
+      "pdf_sha256": "8a4d9936102e87c6d34d86b2017370383383b35a979eb241ad92f873e0d9b07a"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-q12-cache-entries",
+      "pdf_sha256": "7462851bc710eb66bf24162c47061e8ecd9bdbf15fcd1e37597d3b7cf06396ee"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-q12-tag1-recovery",
+      "pdf_sha256": "1867f042ad8cee057e5606650bee672437db1952c116e438c650a67f5a09d430"
+    },
+    {
+      "name": "fresh-pairs-synchronous-d-vs-q12-tag2-recovery",
+      "pdf_sha256": "c51d41a5a2e021126be176ee5e7a7c523690530578736dd44aab8fb2dfea5cd1"
+    },
+    {
+      "name": "fresh-pairs-synchronous-q12-vs-e-paired-tradeoff",
+      "pdf_sha256": "e64f035a70bebac752e02a71c8cf239050b756fa5450400572f82b1c13dbf7e9"
+    },
+    {
+      "name": "fresh-pairs-synchronous-q12-vs-e-tag1-within-demand",
+      "pdf_sha256": "e798c0924176b9c57865de1c36855c553f444b5b1b6dd44c1c2ab368ca4db7cb"
+    },
+    {
+      "name": "fresh-pairs-synchronous-q12-vs-e-tag2-within-demand",
+      "pdf_sha256": "24ef16a24a7c493e34b3c38052a0d39264ed18f9501fb8281a5e0069ae4db5b2"
+    },
+    {
+      "name": "fresh-pairs-synchronous-q12-vs-e-tail-decomposition",
+      "pdf_sha256": "4f09f6f6b621430222ee70b42ebbe09a8566a07de7bc45654bce58213b46fc1b"
+    },
+    {
+      "name": "fresh-pairs-synchronous-q12-vs-e-cache-entries",
+      "pdf_sha256": "3b7af5818dc91e255465a8557a550799bcf414cf9e4735d11201e5a7d9c53c7f"
+    },
+    {
+      "name": "fresh-pairs-synchronous-q12-vs-e-tag1-recovery",
+      "pdf_sha256": "db8cdab61df7330657eb109e66f9ddc365d4cdbb93938b9e1f5a89e9534c12d4"
+    },
+    {
+      "name": "fresh-pairs-synchronous-q12-vs-e-tag2-recovery",
+      "pdf_sha256": "269862ad29a6175badca099b72460cb28dfa4191f24e2fcb5c3b56c7267b997c"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-e-paired-tradeoff",
+      "pdf_sha256": "161c716b347de28507c4e1ffa449fd608f71334028d31c4c4d8d6634b1897d6d"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-e-tag1-within-demand",
+      "pdf_sha256": "a02d74ced93d382c18b6822fc1da3a851305127d73c4b288d9a6bc49e41e7962"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-e-tag2-within-demand",
+      "pdf_sha256": "d3dbdeae9ec023d0282ea695f0456fc14c5983f4ed9501393eb7449f33055368"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-e-tail-decomposition",
+      "pdf_sha256": "01c631b4729cadee3d82192940ce2463933f42af545c151b1a21b8bc7b3e8479"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-e-cache-entries",
+      "pdf_sha256": "9e5e8e1a7da47f9dd4a9fc10f9cd433dead39a59c4b142414eba10007e6f9f5f"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-e-tag1-recovery",
+      "pdf_sha256": "cc3f5e735ad2509261f761658f23878235e3ec58216c07c4ce95fe36157bd8aa"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-e-tag2-recovery",
+      "pdf_sha256": "28ee6299cfde7ffd92a82fbfbc1a399be5a3d5c9813a0ed26f7c8f6f11b21af8"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-q12-paired-tradeoff",
+      "pdf_sha256": "b8e4f72a2fcff5cac06a791f7c5588c4be45eb7950cf07d7bee29231f46ede65"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-q12-tag1-within-demand",
+      "pdf_sha256": "5d9caefd8adbd235f992a65062b20b000676f25417e540c4471868b4839d0435"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-q12-tag2-within-demand",
+      "pdf_sha256": "858658d9ee1b7bf8ba2c3bceb761584d9c3d62e6a01ea4110ba3ee12aa91f3e4"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-q12-tail-decomposition",
+      "pdf_sha256": "fc9afb8ccaacb7d520a8abe928a1ca9e3576e9c4afc641413e6126b666d9f178"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-q12-cache-entries",
+      "pdf_sha256": "04a2e473aaf946c357f66f77135516edf85e7bd001503fffa3b5733fe09c21bb"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-q12-tag1-recovery",
+      "pdf_sha256": "1d9a2e655d83175894450235ac4f507577e69de4848a84474cc86d2fcb349fd9"
+    },
+    {
+      "name": "fresh-pairs-synchronous-r12-vs-q12-tag2-recovery",
+      "pdf_sha256": "ef969f7f47aa25a289af567b1f867aaf76454069266663a4010a234660830eb8"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-e-paired-tradeoff",
+      "pdf_sha256": "6dc3a71dedefd6a60c0f96516a7469e80ba74b0f38bd142303b8f790ab1fdc67"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-e-tag1-within-demand",
+      "pdf_sha256": "2d05182e6097cc71ac349d4a3aaf88010b7a6043f1cd7a875d1d9318f925f7a6"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-e-tag2-within-demand",
+      "pdf_sha256": "56409430f6ec2ee0ae985f15f390f2709e91400a0d8e379b37bc9fe493972a81"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-e-tail-decomposition",
+      "pdf_sha256": "6bb018894eca48ba6356a5bbf47c49884df44572c7a62152c730b71c9bc1751f"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-e-cache-entries",
+      "pdf_sha256": "93493bad63380cfaef075b14e1d7e8f082b621504ff340d1892f7068ab3cfeed"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-e-tag1-recovery",
+      "pdf_sha256": "34c9415f759836173f063de6b0d8a20a7c59b053c6104c642b9f9dd84ded4fa8"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-e-tag2-recovery",
+      "pdf_sha256": "b758ec365408453a9a7230b2aaf17d7f0ebcfb74e9afae882f70d37f7568e839"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-q12-paired-tradeoff",
+      "pdf_sha256": "1c99f55d9c3dff048b79ab32f70a88120cd7508f62917ffb4b94b214ee2dcb6b"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-q12-tag1-within-demand",
+      "pdf_sha256": "9c4d5cbc3d8e36ac07860788b3c248b67998fe276a92519f50c2f42e52f57971"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-q12-tag2-within-demand",
+      "pdf_sha256": "a24b32e6c1d94a0e42e31337c467b5a9e0244f2eaa5946e119d14bd5d5d0cf1f"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-q12-tail-decomposition",
+      "pdf_sha256": "51ef8c02c5f894e897d79f3c9c19befa202735221b119ea625513326c4850d11"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-q12-cache-entries",
+      "pdf_sha256": "597bc8c14b6673c495c00a4335b545efc399f6fe39b8d08e86bc937c3b62e5c8"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-q12-tag1-recovery",
+      "pdf_sha256": "9dbb5ae41e048e9d3b8505cc18bb7acb337d44a580a71fc080d4373f16197675"
+    },
+    {
+      "name": "fresh-pairs-synchronous-u12-vs-q12-tag2-recovery",
+      "pdf_sha256": "fd7e80bda83570c2c083fb0e6c1b2ee49ea4b8326ddcfa21e4027e5c425f0055"
+    },
+    {
+      "name": "historical-A-synchronous-d-vs-e-paired-tradeoff",
+      "pdf_sha256": "1a33edff018b0f59f1b6669965c7f71839b8ca9e7b7aed11ead93b897f513292"
+    },
+    {
+      "name": "historical-A-synchronous-d-vs-e-tag1-within-demand",
+      "pdf_sha256": "aa15b42d73a7e53fb7af9bf047b5c5f397de6247bf287ec0e7d6b52d77af36a5"
+    },
+    {
+      "name": "historical-A-synchronous-d-vs-e-tag2-within-demand",
+      "pdf_sha256": "3d1ffeac522c165e1e5cc7ed278c7d285d74bd3fec851e0ae06f3b6bb0fbefea"
+    },
+    {
+      "name": "historical-A-synchronous-d-vs-e-tail-decomposition",
+      "pdf_sha256": "beebc1619e6147bfd26ed6ffcbc17bb162b2d3a1a5dac3d308c049a746036671"
+    },
+    {
+      "name": "historical-A-synchronous-d-vs-e-tag1-recovery",
+      "pdf_sha256": "19df9dfd760f39402b8ecb97d2bb9d0362b33bb7ead27a9562b869cadab8ca8f"
+    },
+    {
+      "name": "historical-A-synchronous-d-vs-e-tag2-recovery",
+      "pdf_sha256": "35086951f93939faa4a7cf31de6b05edac289ca32aedc2a4586d0f940d7528e0"
+    },
+    {
+      "name": "historical-B-synchronous-d-vs-e-paired-tradeoff",
+      "pdf_sha256": "5c2ec934e5091e5aaeec9a09030b42a952cfee95042fd9f5d52be2761e4a3a43"
+    },
+    {
+      "name": "historical-B-synchronous-d-vs-e-tag1-within-demand",
+      "pdf_sha256": "a47ffbc013d4608d1c55cfc336e3f4d89d8ca45ffa53de032ec3659f732ea74d"
+    },
+    {
+      "name": "historical-B-synchronous-d-vs-e-tag2-within-demand",
+      "pdf_sha256": "0a3bf0875bb0f0d9fa40bf2ae4ef18b7ca8badd37d125bcf2dfbb183d793e7bb"
+    },
+    {
+      "name": "historical-B-synchronous-d-vs-e-tail-decomposition",
+      "pdf_sha256": "f65af7e646fbcfb28d0cff8e3fae4ee00ae17651b9840f38c010bacf25a77387"
+    },
+    {
+      "name": "historical-B-synchronous-d-vs-e-tag1-recovery",
+      "pdf_sha256": "4fcb9ba626f465c98fa4905feb3459d6084cb3306a0d138ddd8548b57635c0d5"
+    },
+    {
+      "name": "historical-B-synchronous-d-vs-e-tag2-recovery",
+      "pdf_sha256": "5ebbf361eb7598423a7a5cddce2d3d497ce619d349b587c393b3955a4be185d7"
+    }
+  ]
+}

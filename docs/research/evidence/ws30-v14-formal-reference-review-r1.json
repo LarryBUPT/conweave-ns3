@@ -1,0 +1,45 @@
+{
+  "date_beijing": "2026-10-27",
+  "node": "completed formal matrix analysis",
+  "entry_points": [
+    "参考文献/候选/README.md",
+    "参考文献/候选/reading-log.md"
+  ],
+  "versions": {
+    "IRN": "SIGCOMM 2018 final; PDF SHA256 701650c375381808e4649f3370a48b5a0a5c9fa593ec32fa906c7130998cd8e2",
+    "SeqBalance": "arXiv:2407.09808v1; final 2025 text not compared"
+  },
+  "use": {
+    "IRN": "Separate gaps, feedback and actual retransmission bytes; retain payload denominators and both foreground/background endpoints.",
+    "SeqBalance": "Measure request completion from original demand; distinguish fixed-path QPs, request rounds and independent demands."
+  },
+  "conditions": "Fixed identity/byte conservation, same paired demands and measured raw counters.",
+  "differences": "No IRN protocol modification, WQE/CQE implementation or adopted SeqBalance mechanism. Engineering persistence and W5 remain unrun.",
+  "not_extrapolated": "No author performance, hardware capability, general SLO, commercial RNIC or training-step speedup inference. No new mechanism admission.",
+  "files": [
+    {
+      "path": "参考文献\\候选\\README.md",
+      "sha256": "505092e5cd98e27ca9a25e7becd3c6c70a93a729870277513270f8e35158d188"
+    },
+    {
+      "path": "参考文献\\候选\\reading-log.md",
+      "sha256": "03df5b66ba27ea356529c65c37d62d616f3bb42007c8a345f2bf07c0b05fb0ec"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\irn-2018\\analysis-technical.md",
+      "sha256": "1f63aadfecace66fba399d0e46c9a05790553b0fdfff26cacf4821679d6e3722"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\irn-2018\\verification.md",
+      "sha256": "6ab3498678100a032592d92a269655dd80b0c83eaacd09da835751c68110d592"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\seqbalance-2024\\analysis-technical.md",
+      "sha256": "1b1ffab4ffd79d1bbf3c5b70f89f1d4793053938b8097a34148fad18c8db9cbe"
+    },
+    {
+      "path": "参考文献\\候选\\papers\\seqbalance-2024\\verification.md",
+      "sha256": "288da35fc28900eb3d40a8747431ef33cd0ceb23754a92f0844b8c9a4b8658fa"
+    }
+  ]
+}

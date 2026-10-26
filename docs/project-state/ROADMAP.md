@@ -1,5 +1,11 @@
 # 下一阶段路线与停机条件
 
+## WS-30 正式节点已完成，承接工程与 W5（2026-10-27）
+
+[正式报告](../research/ws30-v14-formal-completion-report-r1.md)及[原始审计](../research/evidence/ws30-v14-formal-completion-audit-r1.json)确认正式 168/168 成功并完成双侧分析；定时监测已结束。先独立复核 4＋24＋140 的来源、三组直接配对、历史 FCT 回放和负向背景结果。
+
+后续仍须执行新源工程 48 格和 W5 36 格。工程按 technical-single/technical-rest、生命周期真实触发及观测不干扰门槛推进；ConWeave 四格资格通过后承接 W5 32 格性能 pilot。各阶段核对固定源码、输入、授权和新鲜资源，工程新源不继承旧源 cap 8 的准入。最后整合论文、图表及逐条回复。WS-30 ACTIVE，不以正式节点完成替代整体闭环。
+
 ## WS-30 formal-rest 修复后的续跑入口（2026-10-26）
 
 [控制器修复](../research/ws30-v14-formal-rest-controller-repair-r1.md)及 34 项本地测试已完成。formal-first 4 格和 formal-rest 24 格已有 raw，正式合计 28/168；剩余 140 个 ID 在本地/远端路径均空。旧失败收据与 raw 不改，新续跑计划绑定独立状态、原源码和控制哈希，审批保持关闭。
