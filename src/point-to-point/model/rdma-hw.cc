@@ -433,6 +433,8 @@ void RdmaHw::BeginWs30RxGeneration(uint32_t sip, uint32_t dip, uint16_t sport,
                   << " pg=" << pg << " flow_id=" << flow_id
                   << " expected=" << q->ReceiverNextExpectedSeq
                   << " sack_bytes=" << q->m_irn_sack_.getSackBufferOverhead()
+                  << " nack_timer=" << q->m_nackTimer.GetNanoSeconds()
+                  << " qcn_running=" << q->QcnTimerEvent.IsRunning()
                   << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(q)) << std::endl;
 }
 
@@ -446,6 +448,8 @@ bool RdmaHw::AcceptWs30DataGeneration(Ptr<Packet> p, const CustomHeader &ch) {
         std::cout << "WS30V15_DATA event=drop time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " uid=" << p->GetUid() << " packet_flow=" << incoming
                   << " current_flow=" << m_ws30RxGeneration.Current(key)
+                  << " current_active=" << m_ws30RxGeneration.Accept(key, m_ws30RxGeneration.Current(key))
+                  << " rx_present=" << m_rxQpMap.count(key)
                   << " sip=" << ch.sip << " dip=" << ch.dip << " sport=" << ch.udp.sport
                   << " dport=" << ch.udp.dport << " pg=" << ch.udp.pg << " seq=" << ch.udp.seq
                   << " payload=" << p->GetSize()-ch.GetSerializedSize() << std::endl;
