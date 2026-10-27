@@ -282,7 +282,8 @@ def main():
         # The microfixture has fixed QPs, not generated offered load. Keep a
         # nominal divisor for the legacy printed hostload; it generates no input.
         oversub = 1
-        topo2bdp[topo] = 42200  # same 8440ns x 40Gbps contract as the simulator
+        # Match the simulator's maximum over actual equal-hop route timings.
+        topo2bdp[topo] = 132200 if topo == 'ws30v14_state8' else 42200
     else:
         oversub = int(topo.replace("\n", "").split("OS")[-1].replace(".txt", ""))
     assert (int(args.netload) % oversub == 0)

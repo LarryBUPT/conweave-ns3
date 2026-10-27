@@ -806,6 +806,15 @@ void CalculateRoute(Ptr<Node> host) {
             }
             // if 'now' is on the shortest path from 'next' to 'host'.
             if (d + 1 == dis[next]) {
+                // The state fixture has unequal delays on equal-hop routes.
+                // Bound every such route, rather than keeping the first BFS
+                // discovery's timing. All other topologies retain legacy metrics.
+                if (Ws30V14Enabled() && topology_file == "config/ws30v14_state8.txt") {
+                    delay[next] = std::max(delay[next], delay[now] + it->second.delay);
+                    txDelay[next] = std::max(txDelay[next], txDelay[now] +
+                        packet_payload_size * 1000000000lu * 8 / it->second.bw);
+                    bw[next] = std::min(bw[next], std::min(bw[now], it->second.bw));
+                }
                 nextHop[next][host].push_back(now);
             }
         }
@@ -1593,6 +1602,13 @@ int main(int argc, char *argv[]) {
     QbbHelper qbb;
     Ipv4AddressHelper ipv4;
     std::vector<std::pair<uint32_t, uint32_t>> link_pairs;  // src, dst link pairs
+    const bool ws30StateTopology = topology_file == "config/ws30v14_state8.txt";
+    std::set<std::pair<uint32_t, uint32_t>> ws30StateEdges;
+    if (ws30StateTopology && (!Ws30V14Enabled() || Ws30V14Profile() != 2 ||
+        node_num != 8 || switch_num != 4 || link_num != 8 ||
+        (lb_mode != 0 && lb_mode != 33 && lb_mode != 35))) {
+        NS_FATAL_ERROR("WS-30 state topology requires the qualified profile-2 E/Q12/U12 fixture");
+    }
     for (uint32_t i = 0; i < link_num; i++) {
         uint32_t src, dst;
         std::string data_rate, link_delay;
@@ -1601,7 +1617,19 @@ int main(int argc, char *argv[]) {
 
         // The imported MoE topology has 10ns host links and 100ns fabric links.
         // pairRtt/pairBdp below use each link's actual QbbChannel delay.
-        if (topology_file != "config/topo_1280_400G_400G_OS1.txt")
+        if (ws30StateTopology) {
+            uint32_t a = std::min(src, dst), b = std::max(src, dst);
+            bool hostLink = a < 4 && b == a + 4;
+            bool fabricLink = (a == 4 && (b == 5 || b == 6)) ||
+                              ((a == 5 || a == 6) && b == 7);
+            bool slowLink = a == 4 && b == 5;
+            if ((!hostLink && !fabricLink) || error_rate != 0 ||
+                data_rate != (hostLink ? "400Gbps" : "40Gbps") ||
+                link_delay != (slowLink ? "10000ns" : "1000ns") ||
+                !ws30StateEdges.insert(std::make_pair(a, b)).second) {
+                NS_FATAL_ERROR("WS-30 state link violates the frozen heterogeneous fixture");
+            }
+        } else if (topology_file != "config/topo_1280_400G_400G_OS1.txt")
             assert(std::to_string(one_hop_delay) + "ns" == link_delay);
 
         link_pairs.push_back(std::make_pair(src, dst));
@@ -1771,7 +1799,8 @@ int main(int argc, char *argv[]) {
 
     if (Ws30V14Enabled()) {
         topo2bdpMap[std::string("ws30v14_pair8")]=42200;
-        topo2bdpMap[std::string("ws30v14_state8")]=42200;
+        // 2 * 13000 ns propagation + 440 ns serialization, at 40 Gbps.
+        topo2bdpMap[std::string("ws30v14_state8")]=132200;
     }
 
     // topology_file
@@ -1877,6 +1906,12 @@ int main(int argc, char *argv[]) {
             pairBdp[n.Get(j)][n.Get(i)] = bdp;
             pairRtt[n.Get(i)][n.Get(j)] = rtt;
             pairRtt[n.Get(j)][n.Get(i)] = rtt;
+
+            if (ws30StateTopology) {
+                fprintf(stderr, "WS30V14_ROUTE_METRIC src=%u dst=%u propagation_ns=%lu "
+                    "serialization_ns=%lu rtt_ns=%lu bottleneck_bps=%lu bdp_bytes=%lu\n",
+                    i, j, delay, txDelay, rtt, bw, bdp);
+            }
 
             if (bdp > maxBdp) maxBdp = bdp;
             if (rtt > maxRtt) maxRtt = rtt;
