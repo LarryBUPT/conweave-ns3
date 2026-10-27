@@ -425,6 +425,13 @@ void ScheduleFlowInputs(FILE *infile) {
             assert(false);
         }
 
+        if (Ws30V13Life() >= 3) {
+            // Explicit test-only endpoint creation for every request, independent
+            // of workload class or route label. Reverse tuple for receiver view.
+            Ptr<RdmaDriver> receiver = n.Get(dst)->GetObject<RdmaDriver>();
+            receiver->m_rdma->BeginWs30RxGeneration(serverAddress[dst].Get(), serverAddress[src].Get(),
+                                                   dport, sport, pg, flow_input.idx);
+        }
         RdmaClientHelper clientHelper(
             pg, serverAddress[src], serverAddress[dst], sport, dport, target_len,
             has_win ? (global_t == 1 ? maxBdp : pairBdp[n.Get(src)][n.Get(dst)]) : 0,
@@ -634,7 +641,8 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
     // XXX: remove rxQP from the receiver
     Ptr<Node> dstNode = n.Get(did);
     Ptr<RdmaDriver> rdma = dstNode->GetObject<RdmaDriver>();
-    rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->sport, q->dport, q->m_pg);
+    rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->sport, q->dport, q->m_pg,
+                            Ws30V13Life() >= 3 ? q->m_flow_id : -1);
     if (Ws30V13Life() == 4 && q->m_ws30Serial) {
         // Only after this request's cumulative ACK, with 100 us before reuse.
         // This is an explicit test intervention, not a timeout eviction policy.

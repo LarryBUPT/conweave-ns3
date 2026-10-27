@@ -11,6 +11,7 @@
 
 #include "qbb-net-device.h"
 #include "rdma-queue-pair.h"
+#include "ws30-endpoint-generation.h"
 
 namespace ns3 {
 
@@ -40,6 +41,7 @@ class RdmaHw : public Object {
     std::vector<RdmaInterfaceMgr> m_nic;  // list of running nic controlled by this RdmaHw
     std::unordered_map<uint64_t, Ptr<RdmaQueuePair>> m_qpMap;      // mapping from uint64_t to qp
     std::unordered_map<uint64_t, Ptr<RdmaRxQueuePair>> m_rxQpMap;  // mapping from uint64_t to rx qp
+    Ws30EndpointGeneration m_ws30RxGeneration;  // synthetic endpoint-recreation fixture only
     std::unordered_map<uint32_t, std::vector<int>>
         m_rtTable;  // map from ip address (u32) to possible ECMP port (index of dev)
 
@@ -75,7 +77,12 @@ class RdmaHw : public Object {
     Ptr<RdmaRxQueuePair> GetRxQp(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport,
                                  uint16_t pg, bool create);  // get a rxQp
     uint32_t GetNicIdxOfRxQp(Ptr<RdmaRxQueuePair> q);        // get the NIC index of the rxQp
-    void DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t pg);  // delete RxQP
+    void DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t pg,
+                    int32_t flow_id = -1);  // delete RxQP
+    void BeginWs30RxGeneration(uint32_t sip, uint32_t dip, uint16_t sport,
+                                uint16_t dport, uint16_t pg, int32_t flow_id);
+    bool AcceptWs30DataGeneration(Ptr<Packet> p, const CustomHeader &ch);
+    bool AcceptWs30AckGeneration(Ptr<Packet> p, Ptr<RdmaQueuePair> qp);
 
     int ReceiveUdp(Ptr<Packet> p, CustomHeader &ch);
     int ReceiveCnp(Ptr<Packet> p, CustomHeader &ch);

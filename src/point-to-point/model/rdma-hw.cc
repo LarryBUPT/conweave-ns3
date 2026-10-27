@@ -305,7 +305,7 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
     uint32_t nic_idx = GetNicIdxOfQp(qp);
     m_nic[nic_idx].qpGrp->AddQp(qp);
     uint64_t key = GetQpKey(dip.Get(), sport, dport, pg);
-    if (Ws30V13Life() >= 3 && workload_tag == 2) {
+    if (Ws30V13Life() >= 3) {
         if (m_qpMap.count(key)) NS_FATAL_ERROR("Tuple fixture attempted to replace a live QP");
         // Explicit test-only recreation after final ACK and receiver deletion.
         akashic_Qp.erase(key);
@@ -388,7 +388,10 @@ Ptr<RdmaRxQueuePair> RdmaHw::GetRxQp(uint32_t sip, uint32_t dip, uint16_t sport,
     if (it != m_rxQpMap.end()) return it->second;
 
     if (create) {
-        if (Ws30V13Life() >= 3) akashic_RxQp.erase(rxKey);
+        // Recreated endpoints are activated by the request scheduler, never by
+        // a delayed data packet after cumulative completion.
+        if (Ws30V13Life() >= 3 && !m_ws30RxGeneration.Accept(rxKey, m_ws30RxGeneration.Current(rxKey)))
+            return NULL;
         // create new rx qp
         Ptr<RdmaRxQueuePair> q = CreateObject<RdmaRxQueuePair>();
         // init the qp
@@ -414,8 +417,71 @@ uint32_t RdmaHw::GetNicIdxOfRxQp(Ptr<RdmaRxQueuePair> q) {
 }
 
 // Receiver's perspective?
-void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t pg) {
+void RdmaHw::BeginWs30RxGeneration(uint32_t sip, uint32_t dip, uint16_t sport,
+                                   uint16_t dport, uint16_t pg, int32_t flow_id) {
+    if (Ws30V13Life() < 3) NS_FATAL_ERROR("Endpoint generation outside synthetic recreation fixture");
+    const uint64_t key = GetRxQpKey(dip, dport, sport, pg);
+    if (m_rxQpMap.count(key) || !m_ws30RxGeneration.Begin(key, flow_id))
+        NS_FATAL_ERROR("Synthetic receive generation overlaps live or earlier incarnation");
+    akashic_RxQp.erase(key);
+    Ptr<RdmaRxQueuePair> q = GetRxQp(sip, dip, sport, dport, pg, true);
+    if (!q) NS_FATAL_ERROR("Explicit receive generation was not created");
+    q->m_flow_id = flow_id;
+    if (Ws30Level())
+        std::cout << "WS30V15_GENERATION event=begin time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " sip=" << dip << " dip=" << sip << " sport=" << dport << " dport=" << sport
+                  << " pg=" << pg << " flow_id=" << flow_id
+                  << " expected=" << q->ReceiverNextExpectedSeq
+                  << " sack_bytes=" << q->m_irn_sack_.getSackBufferOverhead()
+                  << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(q)) << std::endl;
+}
+
+bool RdmaHw::AcceptWs30DataGeneration(Ptr<Packet> p, const CustomHeader &ch) {
+    if (Ws30V13Life() < 3) return true;
+    FlowIDNUMTag fit;
+    const int32_t incoming = p->PeekPacketTag(fit) ? fit.GetId() : -1;
+    const uint64_t key = GetRxQpKey(ch.sip, ch.udp.sport, ch.udp.dport, ch.udp.pg);
+    const bool accepted = m_ws30RxGeneration.Accept(key, incoming);
+    if (!accepted && Ws30Level())
+        std::cout << "WS30V15_DATA event=drop time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " uid=" << p->GetUid() << " packet_flow=" << incoming
+                  << " current_flow=" << m_ws30RxGeneration.Current(key)
+                  << " sip=" << ch.sip << " dip=" << ch.dip << " sport=" << ch.udp.sport
+                  << " dport=" << ch.udp.dport << " pg=" << ch.udp.pg << " seq=" << ch.udp.seq
+                  << " payload=" << p->GetSize()-ch.GetSerializedSize() << std::endl;
+    return accepted;
+}
+
+bool RdmaHw::AcceptWs30AckGeneration(Ptr<Packet> p, Ptr<RdmaQueuePair> qp) {
+    if (Ws30V13Life() < 3) return true;
+    FlowIDNUMTag fit;
+    const int32_t incoming = p->PeekPacketTag(fit) ? fit.GetId() : -1;
+    const bool accepted = incoming >= 0 && incoming == qp->m_flow_id;
+    if (Ws30Level())
+        std::cout << "WS30V15_FEEDBACK event=" << (accepted ? "accept" : "drop")
+                  << " time_ns=" << Simulator::Now().GetNanoSeconds() << " uid=" << p->GetUid()
+                  << " packet_flow=" << incoming << " current_flow=" << qp->m_flow_id
+                  << " snd_una=" << qp->snd_una << " sack_bytes=" << qp->irn.m_sack.getSackBufferOverhead()
+                  << std::endl;
+    return accepted;
+}
+
+void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t pg, int32_t flow_id) {
     uint64_t key = GetRxQpKey(dip, dport, sport, pg);
+
+    if (Ws30V13Life() >= 3) {
+        auto it = m_rxQpMap.find(key);
+        if (it == m_rxQpMap.end() || it->second->m_flow_id != flow_id ||
+            !m_ws30RxGeneration.Close(key, flow_id))
+            NS_FATAL_ERROR("Synthetic receive completion has wrong generation");
+        it->second->QcnTimerEvent.Cancel();
+        if (Ws30Level())
+            std::cout << "WS30V15_GENERATION event=end time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " sip=" << dip << " sport=" << dport << " dport=" << sport << " pg=" << pg
+                      << " flow_id=" << flow_id << " expected=" << it->second->ReceiverNextExpectedSeq
+                      << " sack_bytes=" << it->second->m_irn_sack_.getSackBufferOverhead()
+                      << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(it->second)) << std::endl;
+    }
 
     // record to Akashic record
     NS_ASSERT(akashic_RxQp.find(key) == akashic_RxQp.end());  // should not be already existing
@@ -426,6 +492,7 @@ void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t p
 }
 
 int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
+    if (!AcceptWs30DataGeneration(p, ch)) return 1;
     uint8_t ecnbits = ch.GetIpv4EcnBits();
 
     uint32_t payload_size = p->GetSize() - ch.GetSerializedSize();
@@ -469,6 +536,20 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                   << " seq=" << ch.udp.seq << " expected=" << expected_before << std::endl;
     }
     int x = ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
+    if (Ws30V13Life() >= 3 && Ws30Level()) {
+        FlowIDNUMTag fit;
+        if (!p->PeekPacketTag(fit) || fit.GetId()!=rxQp->m_flow_id)
+            NS_FATAL_ERROR("Accepted receive identity differs from active generation");
+        std::cout << "WS30V15_DATA event=accept time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " uid=" << p->GetUid() << " packet_flow=" << fit.GetId()
+                  << " current_flow=" << rxQp->m_flow_id
+                  << " sip=" << ch.sip << " dip=" << ch.dip << " sport=" << ch.udp.sport
+                  << " dport=" << ch.udp.dport << " pg=" << ch.udp.pg << " seq=" << ch.udp.seq
+                  << " payload=" << payload_size << " expected_before=" << expected_before
+                  << " expected_after=" << rxQp->ReceiverNextExpectedSeq
+                  << " sack_bytes=" << rxQp->m_irn_sack_.getSackBufferOverhead()
+                  << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(rxQp)) << std::endl;
+    }
     if (Ws30V14Enabled() && Ws30Level() && ch.sip==0x0b000001 && ch.dip==0x0b000301 &&
         (ecnbits || cnp_check || ch.udp.seq%Ws30RoundBytes()==0))
         std::cout << "WS30V14_RX_STATE time_ns=" << Simulator::Now().GetNanoSeconds()
@@ -621,6 +702,8 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
             exit(1);
         }
     }
+
+    if (!AcceptWs30AckGeneration(p, qp)) return 1;
 
     if (Ws25DiagnosticEnabled()) {
         Ws25QpDiagnostic &s = ws25_qp_diagnostics[qp->m_flow_id];
