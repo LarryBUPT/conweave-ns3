@@ -113,7 +113,7 @@ KMAX_MAP {kmax_map}
 KMIN_MAP {kmin_map}
 PMAX_MAP {pmax_map}
 LOAD {load}
-RANDOM_SEED 1
+RANDOM_SEED {simulation_seed}
 """
 
 
@@ -248,6 +248,7 @@ def main():
     # parser.add_argument('--cwh_tx_expiry_time', dest='cwh_tx_expiry_time', action='store',
     #                     type=int, default=1000, help="timeout value of ConWeave Tx for CLEAR signal (default: 1000us)")
 
+    parser.add_argument('--simulation-seed', type=int, choices=(1, 2, 3), default=1)
     args = parser.parse_args()
 
     # make running ID of this config
@@ -499,7 +500,7 @@ def main():
         int_multi = 1
         ewma_gain = 0.00390625
 
-        config = config_template.format(id=config_ID, topo=topo, flow_file=flow_file,
+        config = config_template.format(simulation_seed=args.simulation_seed, id=config_ID, topo=topo, flow_file=flow_file,
                                         qlen_mon_start=qlen_mon_start, qlen_mon_end=qlen_mon_end, flowgen_start_time=flowgen_start_time,
                                         flowgen_stop_time=flowgen_stop_time, sw_monitoring_interval=sw_monitoring_interval,
                                         load=netload, buffer_size=buffer, lb_mode=lb_mode, cwh_tx_expiry_time=cwh_tx_expiry_time,
