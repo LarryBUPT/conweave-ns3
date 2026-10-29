@@ -1,6 +1,13 @@
 # ConWeave 毕业论文项目状态
 
-## 当前快照（2026-10-07）
+## WS-30 当前阶段（2026-10-29）
+
+WS-30 的 v14 完整 P0 已完成 52 次正式运行、861,312 条 FCT 和 92,878,667,776 B 的主独验、完整分析及三稿整合；原 892 次范围尚余 840 次，完整任务继续 ACTIVE。平局匹配 Q/T 的批次变化中位数为 −2.97%，19/24 更快，背景 P99 为 +0.57%；相对 DRILL 的背景保护继续按同需求直接比较解释。当前执行轮按用户要求在北京时间 18:00 前结束，旧监督自动化保持暂停，不自动延长实验。详见 [本轮九节交接](../handoffs/2026-10-29-ws30-v14-p0-supervisor-stage.md)。
+
+三稿、准确当前 PDF、主验和全部未完成入口见 `E:/研/毕业论文/thesis/ws30-paper-v14-current.json` 及 `ws30-paper-v14-supervisor-delivery-r1.md`。真实作者与 EDAS 元数据未知，当前稿不称全量完成或投稿就绪。下方较早快照保留其历史范围，不替代本条 WS-30 状态。
+
+
+## 历史快照（2026-10-07）
 
 WS-25 第一课题的七项预设 **ns-3 实验及小论文初稿验收已完成**，见[逐项审计](../research/ws25-first-paper-acceptance-audit.md)、[Handoff 77](../handoffs/2026-10-07-77-ws25-first-paper-prespecified-acceptance.md)与[执行清单](WS25_FIRST_PAPER_EXECUTION.md)。个人 fork `feature/ws25-first-paper@e501e773944a58ecc1bfc913f4d86d3f65a4431c` 的固定 v1 仿真 SHA `ce699dffe2845dc83e2171a1c309c6d96b96d2b3` 已完成 24 个未见需求 seed × 四背景档 × 六臂，共 **576/576** 个原 ID、36 批 raw 逐格验收；2026-10-07 重算的正式分析哈希保持一致。192 档相对 ECMP，MoE 合成批次中位变化 **−3.536%、20/24 改善**，背景 P99 FCT **−0.065%、13/24 改善**；共同主判据为确认性 **NO-GO**。v2 原版和唯一修正版 v2r1 各有 28/28 个独立探索格，均未过双侧筛选门，不能充当正式收益。第三候选名额未使用，理由见[准入审查](../research/ws25-third-candidate-decision.md)。[负结果初稿](../research/ws25-classreserve-v1-paper-draft.md)已形成，**尚未投稿**；目标会议版式、引用与投稿是后续里程碑。结果限于冻结合成需求与 ns-3 RDMA QP 模型，动态基线分支覆盖、物理队列因果及真实部署证据均有限。第二课题须待投稿后单独启动。副对话保持未归档，无在途 WS-25 矩阵。
 
