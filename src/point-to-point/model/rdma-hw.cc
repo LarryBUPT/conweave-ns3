@@ -1,4 +1,5 @@
 #include "rdma-hw.h"
+#include "paper-v14-observer.h"
 #include "ws30-v13-fixture.h"
 #include "ws30-observer.h"
 
@@ -540,6 +541,10 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                   << " seq=" << ch.udp.seq << " expected=" << expected_before << std::endl;
     }
     int x = ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
+    Pv14Count("rx_data",m_node->GetId(),rxQp->m_flow_id);
+    if (ecnbits) Pv14Count("rx_ecn",m_node->GetId(),rxQp->m_flow_id);
+    if (ch.udp.seq > expected_before) Pv14Count("rx_gap",m_node->GetId(),rxQp->m_flow_id);
+    if (ecnbits || cnp_check) Pv14Count(ecnbits ? (cnp_check ? "rx_signal_both" : "rx_signal_ecn_only") : "rx_signal_ooo_only",m_node->GetId(),rxQp->m_flow_id);
     if (Ws30V13Life() >= 3 && Ws30Level()) {
         FlowIDNUMTag fit;
         if (!p->PeekPacketTag(fit) || fit.GetId()!=rxQp->m_flow_id)
@@ -597,6 +602,7 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
             if (ecnbits) cnp_by_ecn++;
             if (cnp_check) cnp_by_ooo++;
             seqh.SetCnp();
+            Pv14Count(ecnbits ? (cnp_check ? "cnp_generated_both" : "cnp_generated_ecn_only") : "cnp_generated_ooo_only",m_node->GetId(),rxQp->m_flow_id);
         }
 
         Ptr<Packet> newp =
@@ -708,6 +714,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
     }
 
     if (!AcceptWs30AckGeneration(p, qp)) return 1;
+    if (cnp) Pv14Count("cnp_delivered",m_node->GetId(),qp->m_flow_id);
 
     if (Ws25DiagnosticEnabled()) {
         Ws25QpDiagnostic &s = ws25_qp_diagnostics[qp->m_flow_id];
@@ -738,6 +745,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
             if (ch.ack.irnNackSize != 0) {
                 // ch.ack.irnNack contains the seq triggered this NACK
                 qp->irn.m_sack.sack(ch.ack.irnNack, ch.ack.irnNackSize);
+                Pv14Count("sack_insert",m_node->GetId(),qp->m_flow_id);
                 if (Ws30V14Enabled() && Ws30Level() && qp->m_ws30Serial) {
                     ++qp->m_ws30SackEvents;
                     Ws30V14State("sack_insert",qp);
@@ -808,6 +816,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
                 qp->irn.m_recovery_seq = qp->snd_nxt;
                 RecoverQueue(qp);
                 qp->irn.m_recovery = true;
+                Pv14Count("recovery_enter",m_node->GetId(),qp->m_flow_id);
                 if (Ws30V14Enabled() && Ws30Level() && qp->m_ws30Serial) {
                     ++qp->m_ws30RecoveryEvents;
                     Ws30V14State("recovery_enter",qp);
@@ -1013,6 +1022,7 @@ void RdmaHw::RecoverQueue(Ptr<RdmaQueuePair> qp) {
 }
 
 void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
+    Pv14Count("qp_complete",m_node->GetId(),qp->m_flow_id);
     NS_ASSERT(!m_qpCompleteCallback.IsNull());
     if (Ws25DiagnosticEnabled()) {
         const Ws25QpDiagnostic &s = ws25_qp_diagnostics[qp->m_flow_id];
@@ -1190,6 +1200,11 @@ void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap)
                 if (qp->m_ws30Persistent && ch.udp.seq+payload_size>qp->m_ws30Released)
                     NS_FATAL_ERROR("Persistent fixture transmitted unreleased bytes");
             }
+            Pv14Count("tx_payload",m_node->GetId(),qp->m_flow_id,payload_size);
+            if (ch.udp.seq < qp->m_ws13_maxSentSeq) {
+                Pv14Count("retransmit_packets",m_node->GetId(),qp->m_flow_id);
+                Pv14Count("retransmit_bytes",m_node->GetId(),qp->m_flow_id,payload_size);
+            }
             if (Ws25DiagnosticEnabled() && ch.udp.seq < qp->m_ws13_maxSentSeq)
                 ++ws25_qp_diagnostics[qp->m_flow_id].repeated_sends;
             if (Ws30Level() && ch.udp.seq < qp->m_ws13_maxSentSeq)
@@ -1243,6 +1258,7 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
 
     if (Ws13BackgroundQp(qp)) Ws13LogQp("timeout", qp);
     if (Ws25DiagnosticEnabled()) ++ws25_qp_diagnostics[qp->m_flow_id].timeout_recovery;
+    Pv14Count("timeout_recovery",m_node->GetId(),qp->m_flow_id);
 
     std::cout << "WS08_TX_TIMEOUT time_ns=" << Simulator::Now().GetTimeStep()
               << " flow_id=" << qp->m_flow_id << " snd_una=" << qp->snd_una
@@ -1351,6 +1367,7 @@ void RdmaHw::CheckRateDecreaseMlx(Ptr<RdmaQueuePair> q) {
         q->m_rate = std::max(m_minRate, q->m_rate * (1 - q->mlx.m_alpha / 2));
         if (Ws13BackgroundQp(q)) Ws13LogQp("rate_decrease", q);
         Ws30V14State("rate_decrease",q);
+        Pv14Count("rate_decrease",m_node->GetId(),q->m_flow_id);
         // reset rate increase related things
         q->mlx.m_rpTimeStage = 0;
         q->mlx.m_decrease_cnp_arrived = false;

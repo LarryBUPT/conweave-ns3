@@ -1,4 +1,5 @@
 #include "switch-mmu.h"
+#include "paper-v14-observer.h"
 
 #include <fstream>
 #include <iostream>
@@ -396,17 +397,24 @@ uint32_t SwitchMmu::GetEgressSP(uint32_t port, uint32_t qIndex) {
 }
 
 bool SwitchMmu::ShouldSendCN(uint32_t ifindex, uint32_t qIndex) {
-    if (qIndex == 0)  // qidx=0 as highest priority
+    if (qIndex == 0) { // qidx=0 as highest priority
+        Pv14Count("ecn_priority_bypass",node_id,-1);
         return false;
+    }
 
     if (m_usedEgressQSharedBytes[ifindex][qIndex] > kmax[ifindex]) {
+        Pv14Count("ecn_above_max_mark",node_id,-1);
         return true;
     } else if (m_usedEgressQSharedBytes[ifindex][qIndex] > kmin[ifindex] &&
                kmin[ifindex] != kmax[ifindex]) {
         double p = 1.0 * (m_usedEgressQSharedBytes[ifindex][qIndex] - kmin[ifindex]) /
                    (kmax[ifindex] - kmin[ifindex]) * pmax[ifindex];
-        if (m_uniform_random_var.GetValue(0, 1) < p) return true;
+        const bool marked = m_uniform_random_var.GetValue(0, 1) < p;
+        Pv14Count("ecn_probability_draw",node_id,-1);
+        Pv14Count(marked ? "ecn_probability_mark" : "ecn_probability_no_mark",node_id,-1);
+        return marked;
     }
+    Pv14Count("ecn_below_min_no_mark",node_id,-1);
     return false;
 }
 

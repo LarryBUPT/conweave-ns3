@@ -1,4 +1,6 @@
 #include "switch-node.h"
+#include "paper-v14-policy.h"
+#include "paper-v14-observer.h"
 #include "ws30-observer.h"
 #include "ws30-v13-fixture.h"
 
@@ -1019,6 +1021,7 @@ SwitchNode::SwitchNode() {
     m_isToR = false;
     m_drill_candidate = 2;
     m_mmu = CreateObject<SwitchMmu>();
+    m_mmu->node_id = m_id; // observation identity; no routing input
     // Conga's Callback for switch functions
     m_mmu->m_congaRouting.SetSwitchSendCallback(MakeCallback(&SwitchNode::DoSwitchSend, this));
     m_mmu->m_congaRouting.SetSwitchSendToDevCallback(
@@ -1362,6 +1365,7 @@ uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
                       << " chosen=" << pair.chosen << std::endl;
     };
     if (!fresh && Settings::lb_mode != 35) { observePair(hit->second); return hit->second.chosen; }
+    bool pv14Bit = false;
     if (fresh) {
         const uint32_t bytes[3] = {ch.sip, ch.dip,
             uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16)};
@@ -1370,15 +1374,25 @@ uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
         pair.first = nexthops[EcmpHash(data,12,m_ecmpSeed) % nexthops.size()];
         pair.second = nexthops[EcmpHash(data,12,m_ecmpSeed ^ 0x9e3779b9U) % nexthops.size()];
         pair.chosen = pair.first;
+        if (Settings::lb_mode == 36) pv14Bit = EcmpHash(data,12,m_ecmpSeed ^ 0x85ebca6bU) & 1U;
         if (Settings::lb_mode == 34 && (EcmpHash(data,12,m_ecmpSeed ^ 0x85ebca6bU) & 1U))
             pair.chosen = pair.second;
         hit = m_ws30V13Pairs.insert(std::make_pair(key,pair)).first;
         m_ws30V13Peak = std::max<uint64_t>(m_ws30V13Peak,m_ws30V13Pairs.size());
     }
     Ws30Pair &pair = hit->second;
-    const uint64_t a = (Settings::lb_mode != 34 || Ws30Level()) ? CalculateInterfaceLoad(pair.first) : 0;
-    const uint64_t b = (Settings::lb_mode != 34 || Ws30Level()) ? CalculateInterfaceLoad(pair.second) : 0;
-    if (Settings::lb_mode != 34) pair.chosen = b < a ? pair.second : pair.first;
+    const uint64_t a = (Settings::lb_mode != 34 || Ws30Level() || Pv14Observe()) ? CalculateInterfaceLoad(pair.first) : 0;
+    const uint64_t b = (Settings::lb_mode != 34 || Ws30Level() || Pv14Observe()) ? CalculateInterfaceLoad(pair.second) : 0;
+    if (Settings::lb_mode == 36) {
+        pair.chosen = Pv14TieMatched(pair.first,pair.second,a,b,pv14Bit);
+    } else if (Settings::lb_mode == 37) {
+        std::vector<std::pair<uint32_t,uint64_t>> queues;
+        for (int port : nexthops) queues.push_back(std::make_pair(uint32_t(port),CalculateInterfaceLoad(port)));
+        pair.chosen = Pv14AllMinimum(pair.first,queues);
+        Pv14Candidates(m_id,ch.sip,ch.dip,ch.udp.sport,ch.udp.dport,queues);
+    } else if (Settings::lb_mode != 34) pair.chosen = b < a ? pair.second : pair.first;
+    if (fresh) Pv14Choice(m_id,ch.sip,ch.dip,ch.udp.sport,ch.udp.dport,
+                          nexthops.size(),pair.first,pair.second,a,b,pair.chosen);
     // Tag is deliberately absent from routing and choice records in these arms.
     if (fresh) Ws30Choice(m_id,ch,0,pair.first,pair.second,a,b,0,0,pair.chosen,p->GetSize());
     observePair(pair);
@@ -1391,7 +1405,7 @@ void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, u
 }
 
 void SwitchNode::WriteWs30V13State() const {
-    if (Settings::lb_mode<33 || Settings::lb_mode>35) return;
+    if (Settings::lb_mode<33 || Settings::lb_mode>37) return;
     std::cout << "WS30V13_STATE switch=" << m_id << " entries=" << m_ws30V13Pairs.size()
               << " peak=" << m_ws30V13Peak << " hits=" << m_ws30V13Hits
               << " misses=" << m_ws30V13Misses << std::endl;
@@ -1796,7 +1810,7 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbClassReserve(p, ch, nexthops);
         case 28: case 29: case 30: case 31: case 32:
             return DoLbWs30(p, ch, nexthops);
-        case 33: case 34: case 35:
+        case 33: case 34: case 35: case 36: case 37:
             return DoLbWs30V13(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);

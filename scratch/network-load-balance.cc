@@ -26,6 +26,7 @@
 #include <ns3/sim-setting.h>
 #include <ns3/switch-node.h>
 #include <ns3/ws30-cw-observer.h>
+#include <ns3/paper-v14-observer.h>
 #include <time.h>
 
 #include <fstream>
@@ -2280,6 +2281,7 @@ int main(int argc, char *argv[]) {
             entry.second->RecordWs21PortBoundary('B');
     Ws30CompositionInstall(n, flowgen_start_time);
     Simulator::Run();
+    Pv14Print();
     if (lb_mode == 9) Ws30CwPrint();
     Ws30CompositionFinish();
     for (uint32_t i=0; i<n.GetN(); ++i) {
