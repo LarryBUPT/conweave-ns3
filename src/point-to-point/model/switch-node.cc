@@ -278,7 +278,7 @@ static void FactorialAdmissionDrop(const char *reason, uint32_t switchId,
     auto source = Settings::hostIp2IdMap.find(ch.sip);
     auto destination = Settings::hostIp2IdMap.find(ch.dip);
     std::cout << "FACTORIAL_ADMISSION_DROP reason=" << reason
-              << " time_ns=" << Simulator::Now().GetTimeStep()
+              << " time_ns=" << Simulator::Now().GetNanoSeconds()
               << " switch=" << switchId
               << " src=" << (source == Settings::hostIp2IdMap.end() ? -1 : int(source->second))
               << " dst=" << (destination == Settings::hostIp2IdMap.end() ? -1 : int(destination->second))
@@ -1039,6 +1039,25 @@ SwitchNode::SwitchNode() {
 /**
  * @brief Load Balancing
  */
+void SwitchNode::Pv14ObserveStaticRoutes(FILE *full) const {
+    // Sort only a copied destination-key list. Stored next-hop order is untouched.
+    std::vector<uint32_t> destinations;
+    for(const auto &row:m_rtTable)destinations.push_back(row.first);
+    std::sort(destinations.begin(),destinations.end());
+    uint64_t hash=14695981039346656037ULL,ports=0;
+    auto word=[&](uint32_t value){for(unsigned i=0;i<4;++i){hash^=(value>>(8*i))&255U;hash*=1099511628211ULL;}};
+    word(m_id);word(m_ecmpSeed);word(uint32_t(destinations.size()));
+    for(uint32_t destination:destinations) {
+        const auto &ordered=m_rtTable.at(destination);
+        word(destination);word(uint32_t(ordered.size()));ports+=ordered.size();
+        if(full)fprintf(full,"route %u %u %u %zu",m_id,m_ecmpSeed,destination,ordered.size());
+        for(int port:ordered){word(uint32_t(port));if(full)fprintf(full," %u",uint32_t(port));}
+        if(full)fprintf(full,"\n");
+    }
+    printf("PV14_STATIC_ROUTE switch=%u seed=%u destinations=%zu port_entries=%lu fnv1a64=%016lx\n",
+           m_id,m_ecmpSeed,destinations.size(),ports,hash);
+}
+
 uint32_t SwitchNode::DoLbFlowECMP(Ptr<const Packet> p, const CustomHeader &ch,
                                   const std::vector<int> &nexthops) {
     // pick one next hop based on hash

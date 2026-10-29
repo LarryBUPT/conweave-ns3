@@ -287,7 +287,7 @@ void QbbHelper::GetTraceFromPacket(TraceFormat &tr, Ptr<QbbNetDevice> dev, Ptr<c
     tr.nodeType = dev->GetNode()->GetNodeType();
     tr.intf = dev->GetIfIndex();
     tr.qidx = qidx;
-    tr.time = Simulator::Now().GetTimeStep();
+    tr.time = Simulator::Now().GetNanoSeconds();
     tr.sip = hdr.sip;
     tr.dip = hdr.dip;
     tr.l3Prot = hdr.l3Prot;

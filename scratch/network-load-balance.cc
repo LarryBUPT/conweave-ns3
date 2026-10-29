@@ -28,10 +28,12 @@
 #include <ns3/ws30-cw-observer.h>
 #include <ns3/paper-v14-observer.h>
 #include <time.h>
+#include "paper-v14-time-resolution.h"
 
 #include <fstream>
 #include <iostream>
 #include <cmath>
+#include <cassert>
 #include <cstdlib>
 #include <limits>
 #include <map>
@@ -130,6 +132,7 @@ uint64_t irn_monitor_bucket = 100000;  // ns
 
 FILE *pfc_file = NULL;
 FILE *fct_output = NULL;
+FILE *fct_ticks_output = NULL;
 FILE *flow_input_stream = NULL;
 FILE *cnp_output = NULL;
 FILE *est_error_output = NULL;
@@ -654,10 +657,10 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
         }
     }
 
-    // fprintf(fout, "%lu QP complete\n", Simulator::Now().GetTimeStep());
+    // fprintf(fout, "%lu QP complete\n", Simulator::Now().GetNanoSeconds());
     fprintf(fout, "%u %u %u %u %lu %lu %lu %lu\n", Settings::ip_to_node_id(q->sip),
             Settings::ip_to_node_id(q->dip), q->sport, q->dport, q->m_size,
-            q->startTime.GetTimeStep(), (Simulator::Now() - q->startTime).GetTimeStep(),
+            q->startTime.GetNanoSeconds(), (Simulator::Now() - q->startTime).GetNanoSeconds(),
             standalone_fct);
     if (lb_mode == 20) {
         NS_ASSERT_MSG(q->m_flow_id >= 0 && uint32_t(q->m_flow_id) < ws18_flows.size(),
@@ -681,8 +684,14 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
     // for debugging
     NS_LOG_DEBUG("%u %u %u %u %lu %lu %lu %lu\n" %
                  (Settings::ip_to_node_id(q->sip), Settings::ip_to_node_id(q->dip), q->sport,
-                  q->dport, q->m_size, q->startTime.GetTimeStep(),
-                  (Simulator::Now() - q->startTime).GetTimeStep(), standalone_fct));
+                  q->dport, q->m_size, q->startTime.GetNanoSeconds(),
+                  (Simulator::Now() - q->startTime).GetNanoSeconds(), standalone_fct));
+    if (fct_ticks_output) {
+        fprintf(fct_ticks_output,"%u %u %u %u %lu %ld %ld %lu\n",
+            Settings::ip_to_node_id(q->sip),Settings::ip_to_node_id(q->dip),q->sport,q->dport,q->m_size,
+            q->startTime.GetTimeStep(),(Simulator::Now()-q->startTime).GetTimeStep(),standalone_fct);
+        fflush(fct_ticks_output);
+    }
     Settings::cnt_finished_flows++;
     fflush(fout);
 }
@@ -692,7 +701,7 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
  */
 void get_pfc(FILE *fout, Ptr<QbbNetDevice> dev, uint32_t type) {
     // time, nodeID, nodeType, Interface's Idx, 0:resume, 1:pause
-    fprintf(fout, "%lu %u %u %u %u\n", Simulator::Now().GetTimeStep(), dev->GetNode()->GetId(),
+    fprintf(fout, "%lu %u %u %u %u\n", Simulator::Now().GetNanoSeconds(), dev->GetNode()->GetId(),
             dev->GetNode()->GetNodeType(), dev->GetIfIndex(), type);
 }
 
@@ -729,8 +738,8 @@ void monitor_buffer(FILE *qlen_output, NodeContainer *n) {
             }
         }
     }
-    if (Simulator::Now().GetTimeStep() % qlen_dump_interval == 0) {
-        fprintf(qlen_output, "time: %lu\n", Simulator::Now().GetTimeStep());
+    if (Simulator::Now().GetNanoSeconds() % qlen_dump_interval == 0) {
+        fprintf(qlen_output, "time: %lu\n", Simulator::Now().GetNanoSeconds());
         for (auto &it0 : queue_result) {
             for (auto &it1 : it0.second) {
                 fprintf(qlen_output, "%u %u", it0.first, it1.first);
@@ -741,7 +750,7 @@ void monitor_buffer(FILE *qlen_output, NodeContainer *n) {
         }
         fflush(qlen_output);
     }
-    if (Simulator::Now().GetTimeStep() < qlen_mon_end)
+    if (Simulator::Now().GetNanoSeconds() < qlen_mon_end)
         Simulator::Schedule(NanoSeconds(qlen_mon_interval), &monitor_buffer, qlen_output, n);
 }
 #endif
@@ -819,7 +828,8 @@ void CalculateRoute(Ptr<Node> host) {
                 // The state fixture has unequal delays on equal-hop routes.
                 // Bound every such route, rather than keeping the first BFS
                 // discovery's timing. All other topologies retain legacy metrics.
-                if (Ws30V14Enabled() && topology_file == "config/ws30v14_state8.txt") {
+                if ((Ws30V14Enabled() && topology_file == "config/ws30v14_state8.txt") ||
+                    topology_file == "config/ws30v14_time8.txt") {
                     delay[next] = std::max(delay[next], delay[now] + it->second.delay);
                     txDelay[next] = std::max(txDelay[next], txDelay[now] +
                         packet_payload_size * 1000000000lu * 8 / it->second.bw);
@@ -1031,6 +1041,7 @@ uint64_t get_nic_rate(NodeContainer &n) {
 /************************************************************************/
 
 int main(int argc, char *argv[]) {
+    if (!Pv14InitializeResolution()) return 2;
     uint32_t *workload_cdf = nullptr;
     clock_t begint, endt;
     begint = clock();
@@ -1483,6 +1494,8 @@ int main(int argc, char *argv[]) {
     /**
      * @brief INT header setup
      */
+    if (Pv14SubNanosecond() && cc_mode != 1) {std::cerr<<"PV14_TIME_ERROR sub-ns supports CC_MODE1 only\n";return 2;}
+    if (!std::isfinite(flowgen_stop_time) || flowgen_stop_time < 0 || flowgen_stop_time+10.0 >= Pv14MaximumSeconds()) {std::cerr<<"PV14_TIME_ERROR stop exceeds clock range\n";return 2;}
     IntHop::multi = int_multi;
     // IntHeader::mode
     if (cc_mode == 7)  // timely, use ts
@@ -1613,6 +1626,10 @@ int main(int argc, char *argv[]) {
     Ipv4AddressHelper ipv4;
     std::vector<std::pair<uint32_t, uint32_t>> link_pairs;  // src, dst link pairs
     const bool ws30StateTopology = topology_file == "config/ws30v14_state8.txt";
+    const bool ws30TimeTopology = topology_file == "config/ws30v14_time8.txt";
+    if (ws30TimeTopology && (std::string(std::getenv("PAPER_V14_TIME_FIXTURE") ? std::getenv("PAPER_V14_TIME_FIXTURE") : "0") != "1" ||
+        node_num != 8 || switch_num != 4 || link_num != 8))
+        NS_FATAL_ERROR("Time topology requires explicit fixed eight-node qualification");
     std::set<std::pair<uint32_t, uint32_t>> ws30StateEdges;
     if (ws30StateTopology && (!Ws30V14Enabled() || Ws30V14Profile() != 2 ||
         node_num != 8 || switch_num != 4 || link_num != 8 ||
@@ -1625,7 +1642,7 @@ int main(int argc, char *argv[]) {
         double error_rate;
         topof >> src >> dst >> data_rate >> link_delay >> error_rate;
 
-        // The imported MoE topology has 10ns host links and 100ns fabric links.
+        // The MoE topology has 10ns host/ToR-aggregation and 100ns aggregation-core links.
         // pairRtt/pairBdp below use each link's actual QbbChannel delay.
         if (ws30StateTopology) {
             uint32_t a = std::min(src, dst), b = std::max(src, dst);
@@ -1639,6 +1656,14 @@ int main(int argc, char *argv[]) {
                 !ws30StateEdges.insert(std::make_pair(a, b)).second) {
                 NS_FATAL_ERROR("WS-30 state link violates the frozen heterogeneous fixture");
             }
+        } else if (ws30TimeTopology) {
+            const uint32_t a=std::min(src,dst), b=std::max(src,dst);
+            const bool hostLink=a<4 && b==a+4;
+            const bool fabricLink=(a==4 && (b==5 || b==6)) || ((a==5 || a==6) && b==7);
+            const bool fast=hostLink || (a==6 && b==7);
+            if ((!hostLink && !fabricLink) || error_rate!=0 || data_rate!="400Gbps" ||
+                link_delay!=(fast?"10ns":"100ns") || !ws30StateEdges.insert(std::make_pair(a,b)).second)
+                NS_FATAL_ERROR("Time link violates fixed 400G mixed-delay qualification");
         } else if (topology_file != "config/topo_1280_400G_400G_OS1.txt")
             assert(std::to_string(one_hop_delay) + "ns" == link_delay);
 
@@ -1684,14 +1709,14 @@ int main(int argc, char *argv[]) {
         nbr2if[snode][dnode].delay =
             DynamicCast<QbbChannel>(DynamicCast<QbbNetDevice>(d.Get(0))->GetChannel())
                 ->GetDelay()
-                .GetTimeStep();
+                .GetNanoSeconds();
         nbr2if[snode][dnode].bw = DynamicCast<QbbNetDevice>(d.Get(0))->GetDataRate().GetBitRate();
         nbr2if[dnode][snode].idx = DynamicCast<QbbNetDevice>(d.Get(1))->GetIfIndex();
         nbr2if[dnode][snode].up = true;
         nbr2if[dnode][snode].delay =
             DynamicCast<QbbChannel>(DynamicCast<QbbNetDevice>(d.Get(1))->GetChannel())
                 ->GetDelay()
-                .GetTimeStep();
+                .GetNanoSeconds();
         nbr2if[dnode][snode].bw = DynamicCast<QbbNetDevice>(d.Get(1))->GetDataRate().GetBitRate();
 
         // This is just to set up the connectivity between nodes. The IP addresses are useless
@@ -1745,7 +1770,7 @@ int main(int argc, char *argv[]) {
                 sw->m_mmu->ConfigEcn(j, rate2kmin[rate], rate2kmax[rate], rate2pmax[rate]);
                 // set pfc
                 uint64_t delay =
-                    DynamicCast<QbbChannel>(dev->GetChannel())->GetDelay().GetTimeStep();
+                    DynamicCast<QbbChannel>(dev->GetChannel())->GetDelay().GetNanoSeconds();
                 uint32_t headroom = rate * delay / 8 / 1000000000 * 2 + 2 * sw->m_mmu->MTU;
                 sw->m_mmu->ConfigHdrm(j, headroom);
             }
@@ -1759,6 +1784,9 @@ int main(int argc, char *argv[]) {
     }
 
     fct_output = fopen(fct_output_file.c_str(), "w");
+    fct_ticks_output = fopen((fct_output_file+".ticks").c_str(), "w");
+    if (!fct_output || !fct_ticks_output) {std::cerr<<"PV14_TIME_ERROR FCT output unavailable\n";return 2;}
+    fprintf(fct_ticks_output,"# schema=1 resolution=%s ticks_per_second=%lu columns=src,dst,sport,dport,bytes,origin_ticks,duration_ticks,standalone_ns\n",Pv14ResolutionName(),Pv14TicksPerSecond());
     if (lb_mode == 20) ws18_output = fopen(ws18_output_file.c_str(), "w");
     if (ws21_port_events) {
         ws21_port_output = fopen(ws21_port_output_file.c_str(), "w");
@@ -1812,6 +1840,8 @@ int main(int argc, char *argv[]) {
         // 2 * 13000 ns propagation + 440 ns serialization, at 40 Gbps.
         topo2bdpMap[std::string("ws30v14_state8")]=132200;
     }
+
+    if (ws30TimeTopology) topo2bdpMap[std::string("ws30v14_time8")]=26000;
 
     // topology_file
     bool found_topo2bdpMap = false;
@@ -1897,6 +1927,26 @@ int main(int argc, char *argv[]) {
      */
     CalculateRoutes(n);
     SetRoutingEntries();
+    const char *routeObserve=std::getenv("PAPER_V14_STATIC_ROUTES");
+    if(routeObserve && std::string(routeObserve)!="0") {
+        const std::string option(routeObserve);
+        if(option!="fingerprint" && option!="full") {std::cerr<<"PV14_TIME_ERROR static route option\n";return 2;}
+        FILE *full=nullptr;
+        if(option=="full") {
+            full=fopen((fct_output_file+".routes").c_str(),"w");
+            if(!full){std::cerr<<"PV14_TIME_ERROR static route output\n";return 2;}
+            fprintf(full,"# schema=1 ports=stored_order destinations=observer_sorted_copy\n");
+        }
+        printf("PV14_STATIC_RNG c_seed=%u ns3_seed=%u ns3_run=%lu key_bytes=12 pair_xor=0x9e3779b9 bit_xor=0x85ebca6b\n",
+               unsigned(random_seed),SeedManager::GetSeed(),SeedManager::GetRun());
+        uint32_t observed=0;
+        for(uint32_t i=0;i<n.GetN();++i) {
+            Ptr<SwitchNode> sw=DynamicCast<SwitchNode>(n.Get(i));
+            if(sw){sw->Pv14ObserveStaticRoutes(full);++observed;}
+        }
+        if(full){fprintf(full,"# complete=1 switches=%u\n",observed);fclose(full);}
+        printf("PV14_STATIC_ROUTES_COMPLETE switches=%u complete=1\n",observed);
+    }
 
     /**
      * @brief get BDP and delay
@@ -1917,10 +1967,10 @@ int main(int argc, char *argv[]) {
             pairRtt[n.Get(i)][n.Get(j)] = rtt;
             pairRtt[n.Get(j)][n.Get(i)] = rtt;
 
-            if (ws30StateTopology) {
-                fprintf(stderr, "WS30V14_ROUTE_METRIC src=%u dst=%u propagation_ns=%lu "
+            if (ws30StateTopology || ws30TimeTopology) {
+                fprintf(stderr, "%s src=%u dst=%u propagation_ns=%lu "
                     "serialization_ns=%lu rtt_ns=%lu bottleneck_bps=%lu bdp_bytes=%lu\n",
-                    i, j, delay, txDelay, rtt, bw, bdp);
+                    ws30TimeTopology?"PV14_TIME_ROUTE_METRIC":"WS30V14_ROUTE_METRIC", i, j, delay, txDelay, rtt, bw, bdp);
             }
 
             if (bdp > maxBdp) maxBdp = bdp;

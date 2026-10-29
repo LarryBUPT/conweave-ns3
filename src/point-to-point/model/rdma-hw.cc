@@ -573,7 +573,7 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
     if (Ws30Level() && rxQp->m_flow_id >= 0 && ch.udp.seq < expected_before)
         ++ws25_qp_diagnostics[rxQp->m_flow_id].rx_duplicate;
     if (x == 2 && !m_irn) {
-        std::cout << "WS08_RX_NACK time_ns=" << Simulator::Now().GetTimeStep()
+        std::cout << "WS08_RX_NACK time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " flow_id=" << rxQp->m_flow_id << " seq=" << ch.udp.seq
                   << " expected=" << expected_before << " size=" << payload_size << std::endl;
     }
@@ -829,7 +829,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         }
 
     } else if (ch.l3Prot == 0xFD) {  // NACK
-        std::cout << "WS08_TX_NACK time_ns=" << Simulator::Now().GetTimeStep()
+        std::cout << "WS08_TX_NACK time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " flow_id=" << qp->m_flow_id << " ack=" << seq
                   << " snd_una=" << qp->snd_una << " snd_nxt=" << qp->snd_nxt
                   << std::endl;
@@ -1244,14 +1244,14 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
                                            dev->GetLastResumeTime(qp->m_pg));
         if (delay > Time(0)) {
             std::cout << "WS23_IRN_PFC_TIMEOUT_DEFERRED time_ns="
-                      << Simulator::Now().GetTimeStep() << " flow_id=" << qp->m_flow_id
+                      << Simulator::Now().GetNanoSeconds() << " flow_id=" << qp->m_flow_id
                       << " paused=" << dev->IsPaused(qp->m_pg)
-                      << " delay_ns=" << delay.GetTimeStep() << std::endl;
+                      << " delay_ns=" << delay.GetNanoSeconds() << std::endl;
             qp->m_retransmit = Simulator::Schedule(delay, &RdmaHw::HandleTimeout, this, qp, rto);
             return;
         }
         std::cout << "WS23_IRN_PFC_TIMEOUT_RECOVERY time_ns="
-                  << Simulator::Now().GetTimeStep() << " flow_id=" << qp->m_flow_id
+                  << Simulator::Now().GetNanoSeconds() << " flow_id=" << qp->m_flow_id
                   << " snd_una=" << qp->snd_una << " snd_nxt=" << qp->snd_nxt
                   << " local_paused=" << dev->IsPaused(qp->m_pg) << std::endl;
     }
@@ -1260,9 +1260,9 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
     if (Ws25DiagnosticEnabled()) ++ws25_qp_diagnostics[qp->m_flow_id].timeout_recovery;
     Pv14Count("timeout_recovery",m_node->GetId(),qp->m_flow_id);
 
-    std::cout << "WS08_TX_TIMEOUT time_ns=" << Simulator::Now().GetTimeStep()
+    std::cout << "WS08_TX_TIMEOUT time_ns=" << Simulator::Now().GetNanoSeconds()
               << " flow_id=" << qp->m_flow_id << " snd_una=" << qp->snd_una
-              << " snd_nxt=" << qp->snd_nxt << " rto_ns=" << rto.GetTimeStep()
+              << " snd_nxt=" << qp->snd_nxt << " rto_ns=" << rto.GetNanoSeconds()
               << std::endl;
 
     if (acc_timeout_count.find(qp->m_flow_id) == acc_timeout_count.end())
@@ -1310,7 +1310,7 @@ void RdmaHw::UpdateAlphaMlx(Ptr<RdmaQueuePair> q) {
 #if PRINT_LOG
 // std::cout << Simulator::Now() << " alpha update:" << m_node->GetId() << ' ' << q->mlx.m_alpha <<
 // ' ' << (int)q->mlx.m_alpha_cnp_arrived << '\n'; printf("%lu alpha update: %08x %08x %u %u
-// %.6lf->", Simulator::Now().GetTimeStep(), q->sip.Get(), q->dip.Get(), q->sport, q->dport,
+// %.6lf->", Simulator::Now().GetNanoSeconds(), q->sip.Get(), q->dip.Get(), q->sport, q->dport,
 // q->mlx.m_alpha);
 #endif
     if (q->mlx.m_alpha_cnp_arrived) {                       // cnp -> increase
@@ -1353,7 +1353,7 @@ void RdmaHw::CheckRateDecreaseMlx(Ptr<RdmaQueuePair> q) {
     ScheduleDecreaseRateMlx(q, 0);
     if (q->mlx.m_decrease_cnp_arrived) {
 #if PRINT_LOG
-        printf("%lu rate dec: %08x %08x %u %u (%0.3lf %.3lf)->", Simulator::Now().GetTimeStep(),
+        printf("%lu rate dec: %08x %08x %u %u (%0.3lf %.3lf)->", Simulator::Now().GetNanoSeconds(),
                q->sip.Get(), q->dip.Get(), q->sport, q->dport,
                q->mlx.m_targetRate.GetBitRate() * 1e-9, q->m_rate.GetBitRate() * 1e-9);
 #endif
@@ -1405,7 +1405,7 @@ void RdmaHw::RateIncEventMlx(Ptr<RdmaQueuePair> q) {
 
 void RdmaHw::FastRecoveryMlx(Ptr<RdmaQueuePair> q) {
 #if PRINT_LOG
-    printf("%lu fast recovery: %08x %08x %u %u (%0.3lf %.3lf)->", Simulator::Now().GetTimeStep(),
+    printf("%lu fast recovery: %08x %08x %u %u (%0.3lf %.3lf)->", Simulator::Now().GetNanoSeconds(),
            q->sip.Get(), q->dip.Get(), q->sport, q->dport, q->mlx.m_targetRate.GetBitRate() * 1e-9,
            q->m_rate.GetBitRate() * 1e-9);
 #endif
@@ -1418,7 +1418,7 @@ void RdmaHw::FastRecoveryMlx(Ptr<RdmaQueuePair> q) {
 }
 void RdmaHw::ActiveIncreaseMlx(Ptr<RdmaQueuePair> q) {
 #if PRINT_LOG
-    printf("%lu active inc: %08x %08x %u %u (%0.3lf %.3lf)->", Simulator::Now().GetTimeStep(),
+    printf("%lu active inc: %08x %08x %u %u (%0.3lf %.3lf)->", Simulator::Now().GetNanoSeconds(),
            q->sip.Get(), q->dip.Get(), q->sport, q->dport, q->mlx.m_targetRate.GetBitRate() * 1e-9,
            q->m_rate.GetBitRate() * 1e-9);
 #endif
@@ -1437,7 +1437,7 @@ void RdmaHw::ActiveIncreaseMlx(Ptr<RdmaQueuePair> q) {
 }
 void RdmaHw::HyperIncreaseMlx(Ptr<RdmaQueuePair> q) {
 #if PRINT_LOG
-    printf("%lu hyper inc: %08x %08x %u %u (%0.3lf %.3lf)->", Simulator::Now().GetTimeStep(),
+    printf("%lu hyper inc: %08x %08x %u %u (%0.3lf %.3lf)->", Simulator::Now().GetNanoSeconds(),
            q->sip.Get(), q->dip.Get(), q->sport, q->dport, q->mlx.m_targetRate.GetBitRate() * 1e-9,
            q->m_rate.GetBitRate() * 1e-9);
 #endif
@@ -1479,7 +1479,7 @@ void RdmaHw::UpdateRateHp(Ptr<RdmaQueuePair> qp, Ptr<Packet> p, CustomHeader &ch
         for (uint32_t i = 0; i < ih.nhop; i++) qp->hp.hop[i] = ih.hop[i];
 #if PRINT_LOG
         if (print) {
-            printf("%lu %s %08x %08x %u %u [%u,%u,%u]", Simulator::Now().GetTimeStep(),
+            printf("%lu %s %08x %08x %u %u [%u,%u,%u]", Simulator::Now().GetNanoSeconds(),
                    fast_react ? "fast" : "update", qp->sip.Get(), qp->dip.Get(), qp->sport,
                    qp->dport, qp->hp.m_lastUpdateSeq, ch.ack.seq, next_seq);
             for (uint32_t i = 0; i < ih.nhop; i++)
@@ -1496,7 +1496,7 @@ void RdmaHw::UpdateRateHp(Ptr<RdmaQueuePair> qp, Ptr<Packet> p, CustomHeader &ch
             bool inStable = false;
 #if PRINT_LOG
             if (print)
-                printf("%lu %s %08x %08x %u %u [%u,%u,%u]", Simulator::Now().GetTimeStep(),
+                printf("%lu %s %08x %08x %u %u [%u,%u,%u]", Simulator::Now().GetNanoSeconds(),
                        fast_react ? "fast" : "update", qp->sip.Get(), qp->dip.Get(), qp->sport,
                        qp->dport, qp->hp.m_lastUpdateSeq, ch.ack.seq, next_seq);
 #endif
@@ -1659,7 +1659,7 @@ void RdmaHw::UpdateRateTimely(Ptr<RdmaQueuePair> qp, Ptr<Packet> p, CustomHeader
 #if PRINT_LOG
         if (print)
             printf("%lu node:%u rtt:%lu rttDiff:%.0lf gradient:%.3lf rate:%.3lf",
-                   Simulator::Now().GetTimeStep(), m_node->GetId(), rtt, rtt_diff, gradient,
+                   Simulator::Now().GetNanoSeconds(), m_node->GetId(), rtt, rtt_diff, gradient,
                    qp->tmly.m_curRate.GetBitRate() * 1e-9);
 #endif
         if (rtt < m_tmly_TLow) {
@@ -1720,7 +1720,7 @@ void RdmaHw::HandleAckDctcp(Ptr<RdmaQueuePair> qp, Ptr<Packet> p, CustomHeader &
     qp->dctcp.m_ecnCnt += (cnp > 0);
     if (ack_seq > qp->dctcp.m_lastUpdateSeq) {  // if full RTT feedback is ready, do alpha update
 #if PRINT_LOG
-        printf("%lu %s %08x %08x %u %u [%u,%u,%u] %.3lf->", Simulator::Now().GetTimeStep(), "alpha",
+        printf("%lu %s %08x %08x %u %u [%u,%u,%u] %.3lf->", Simulator::Now().GetNanoSeconds(), "alpha",
                qp->sip.Get(), qp->dip.Get(), qp->sport, qp->dport, qp->dctcp.m_lastUpdateSeq,
                ch.ack.seq, qp->snd_nxt, qp->dctcp.m_alpha);
 #endif
@@ -1751,7 +1751,7 @@ void RdmaHw::HandleAckDctcp(Ptr<RdmaQueuePair> qp, Ptr<Packet> p, CustomHeader &
     // check if need to reduce rate: ECN and not in CWR
     if (cnp && qp->dctcp.m_caState == 0) {
 #if PRINT_LOG
-        printf("%lu %s %08x %08x %u %u %.3lf->", Simulator::Now().GetTimeStep(), "rate",
+        printf("%lu %s %08x %08x %u %u %.3lf->", Simulator::Now().GetNanoSeconds(), "rate",
                qp->sip.Get(), qp->dip.Get(), qp->sport, qp->dport, qp->m_rate.GetBitRate() * 1e-9);
 #endif
         qp->m_rate = std::max(m_minRate, qp->m_rate * (1 - qp->dctcp.m_alpha / 2));

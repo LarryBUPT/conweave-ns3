@@ -134,8 +134,8 @@ int RdmaEgressQueue::GetNextQindex(bool paused[]) {
             }
         }
         if (!cond1 && cond2) {
-            if (m_qpGrp->Get((qIndex + m_rrlast) % fcount)->m_nextAvail.GetTimeStep() >
-                Simulator::Now().GetTimeStep()) {
+            if (m_qpGrp->Get((qIndex + m_rrlast) % fcount)->m_nextAvail >
+                Simulator::Now()) {
                 // not available now
             } else {
                 // blocked by PFC
@@ -144,8 +144,8 @@ int RdmaEgressQueue::GetNextQindex(bool paused[]) {
                     current_pause_time[flowid] = Simulator::Now();
             }
         } else if (cond1 && cond2) {
-            if (m_qpGrp->Get((qIndex + m_rrlast) % fcount)->m_nextAvail.GetTimeStep() >
-                Simulator::Now().GetTimeStep())  // not available now
+            if (m_qpGrp->Get((qIndex + m_rrlast) % fcount)->m_nextAvail >
+                Simulator::Now())  // not available now
                 continue;
             // Check if the flow has been blocked by PFC
             {
@@ -467,7 +467,7 @@ bool QbbNetDevice::SwitchSend(uint32_t qIndex, Ptr<Packet> packet, CustomHeader 
                 m_ifIndex, accepted ? 'E' : 'R');
         const char *dropDiag = std::getenv("IRN_PFC_DROP_DIAG");
         if (!accepted && dropDiag && dropDiag[0] == '1' && dropDiag[1] == '\0') {
-            std::cout << "FACTORIAL_QUEUE_REJECT time_ns=" << Simulator::Now().GetTimeStep()
+            std::cout << "FACTORIAL_QUEUE_REJECT time_ns=" << Simulator::Now().GetNanoSeconds()
                       << " node=" << m_node->GetId() << " dev=" << m_ifIndex
                       << " protocol=" << unsigned(ch.l3Prot)
                       << " seq=" << (ch.l3Prot == 0x11 ? ch.udp.seq : 0)

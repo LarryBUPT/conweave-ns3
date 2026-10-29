@@ -251,7 +251,9 @@ def main():
     #                     type=int, default=1000, help="timeout value of ConWeave Tx for CLEAR signal (default: 1000us)")
 
     parser.add_argument("--simulation-seed", type=int, choices=(1,2,3), default=1)
+    parser.add_argument("--time-resolution", choices=("ns","ps","fs"), default="ns")
     args = parser.parse_args()
+    os.environ["PAPER_V14_TIME_RESOLUTION"] = args.time_resolution
 
     # make running ID of this config
     # need to check directory exists or not

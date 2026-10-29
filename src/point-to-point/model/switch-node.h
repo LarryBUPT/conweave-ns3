@@ -151,6 +151,7 @@ class SwitchNode : public Node {
     static TypeId GetTypeId(void);
     SwitchNode();
     void SetEcmpSeed(uint32_t seed);
+    void Pv14ObserveStaticRoutes(FILE *full) const;
     void AddTableEntry(Ipv4Address &dstAddr, uint32_t intf_idx);
     void ClearTable();
     bool SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet, CustomHeader &ch);
