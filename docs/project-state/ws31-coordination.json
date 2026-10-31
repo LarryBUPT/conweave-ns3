@@ -75,5 +75,23 @@
   },
   "candidate_implementation_authorized": true,
   "validated_combined_baseline_established": false,
-  "execution_status_source": "docs/research/ws31/main/current-status.json"
+  "execution_status_source": "docs/research/ws31/main/current-status.json",
+  "last_verified_engineering_checkpoint": {
+    "date": "2026-11-01",
+    "handoff": "docs/handoffs/2026-11-01-ws31-first-implementation-and-build.md",
+    "verification": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/verification.json",
+    "cores_passed": [
+      "C1",
+      "C2",
+      "C3"
+    ],
+    "full_build_pass_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
+    "full_build_id": "20261101-060429-ws31-c123-build-r1",
+    "subsequent_source_under_validation": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "network_correctness_complete": false,
+    "independent_performance_complete": false,
+    "additional_baseline_decision": "Ofan v2 routing-algorithm port selected conditionally; Gemma HULA SeqBalance REPS deferred with source-based reasons",
+    "formal_Ofan_admission": "pending correctness and dynamic coverage",
+    "live_execution_status_source": "docs/research/ws31/main/current-status.json"
+  }
 }

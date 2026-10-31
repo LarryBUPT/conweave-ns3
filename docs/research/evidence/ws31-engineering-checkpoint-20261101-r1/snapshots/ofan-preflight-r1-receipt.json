@@ -1,0 +1,104 @@
+{
+  "workstream": "WS-31",
+  "scope": "integrated full build plus Ofan portable core and network-free C2 pending Stop/Dispose tests",
+  "status": "BUILDING",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "base_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
+  "branch": "feature/ws31-candidates",
+  "local_source": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "protocol_sha256": "f276725d42c1f12735009d55919f91298f634b06afefda528a55f3a3b9d8209d",
+  "worker_sha256": "3567a1cf95016e1ea093c32e0aeccaee6e3254c3b43fe1feaf690c8dfec4bed5",
+  "controller_sha256": "19f3067986094423c08842e46b37526e7d815bb4d6b6769224226e7ec562b3a2",
+  "worker_review": "Only ofan-v2 and ofan-rr allowed choices added; locks, resources and build unchanged",
+  "inputs": {
+    "config/ws31_correctness_r1.txt": {
+      "bytes": 2816,
+      "sha256": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+    },
+    "config/ws31_ofan_fat_r1.txt": {
+      "bytes": 851,
+      "sha256": "07c559baa157f6901c14e754c719c1d25fe24592a0506cba2861b77b10ea34a6"
+    },
+    "config/ws31_unknown_r1.txt": {
+      "bytes": 160,
+      "sha256": "0dc3245f6a534ab8f1bd2dfbc4ada4cceeb2e3c3b8e8b8875fdb4f7c71b89126"
+    },
+    "tests/ws31_ofan_test.cc": {
+      "bytes": 2062,
+      "sha256": "6fa4a30cb8dc2ec9875e61ca27693876a73242ca99d374549017fda29208d882"
+    },
+    "scratch/ws31-start-lifecycle-test.cc": {
+      "bytes": 1925,
+      "sha256": "66d2b4d0666a6c9c8aa699d00c7a54188f739f4f0a60ace92e79a7f1ede6f8ec"
+    },
+    "src/point-to-point/model/ws31-ofan.h": {
+      "bytes": 4982,
+      "sha256": "02598801653ca701c092a650ce222b6741687fd9e4053fda5a9390c1f3d54f28"
+    }
+  },
+  "acceptance": {
+    "git_and_worker": "PASS",
+    "fresh_resources": "PASS",
+    "deploy": "PASS",
+    "sync": "PASS",
+    "full_build": "PENDING",
+    "ofan_core_compile": "PENDING",
+    "ofan_core_run": "PENDING",
+    "lifecycle_stop": "PENDING",
+    "lifecycle_dispose": "PENDING",
+    "source_artifact_and_log_verification": "PENDING"
+  },
+  "commands": [
+    {
+      "operation": "deploy",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "deploy"
+      ],
+      "start_utc": "2026-10-31T22:15:40.037040+00:00",
+      "log": "ofan-preflight-r1-deploy.log",
+      "end_utc": "2026-10-31T22:15:40.433440+00:00",
+      "exit_code": 0
+    },
+    {
+      "operation": "sync",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "sync",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation"
+      ],
+      "start_utc": "2026-10-31T22:15:40.434444+00:00",
+      "log": "ofan-preflight-r1-sync.log",
+      "end_utc": "2026-10-31T22:15:44.089554+00:00",
+      "exit_code": 0
+    },
+    {
+      "operation": "build",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "build",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+        "--id",
+        "20261101-061544-ws31-ofan-preflight-r1",
+        "--source-sha",
+        "c4b6039beb47e667e6954b56ec770cb6038082fa"
+      ],
+      "start_utc": "2026-10-31T22:15:44.400237+00:00",
+      "log": "ofan-preflight-r1-build.log"
+    }
+  ],
+  "network_simulations_started": 0,
+  "c123_core_tests_repeated": 0,
+  "deployed_worker_sha256": "3567a1cf95016e1ea093c32e0aeccaee6e3254c3b43fe1feaf690c8dfec4bed5",
+  "experiment_id": "20261101-061544-ws31-ofan-preflight-r1",
+  "remote_result": "/home/fnl/lzy/results/20261101-061544-ws31-ofan-preflight-r1",
+  "remote_source": "/home/fnl/lzy/runs/20261101-061544-ws31-ofan-preflight-r1/source"
+}

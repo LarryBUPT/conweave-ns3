@@ -1,0 +1,20 @@
+{
+  "id": "20261031-220040-ws31-c3-core",
+  "source_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
+  "remote_directory": "/home/fnl/lzy/validations/20261031-220040-ws31-c3-core",
+  "inputs": [
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1"
+    },
+    {
+      "path": "tests/ws31_quota_test.cc",
+      "sha256": "af864ac328f8e1a24c2656e853ae52197c7e3838998042753ac807b68a5d4071"
+    }
+  ],
+  "command": "cd /home/fnl/lzy/validations/20261031-220040-ws31-c3-core && g++ -std=c++11 -O2 -Wall -Wextra -pedantic tests/ws31_quota_test.cc -o core-test && ./core-test",
+  "returncode": 0,
+  "scope": "Portable C3 admission core only; not ns-3 or performance",
+  "stdout": "WS31_QUOTA_TEST PASS activation/borrowing/residual/pinning/expiry/reset/controls\n",
+  "stderr": ""
+}

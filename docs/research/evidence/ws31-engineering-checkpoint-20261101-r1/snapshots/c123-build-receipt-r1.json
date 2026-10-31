@@ -1,0 +1,157 @@
+{
+  "workstream": "WS-31",
+  "scope": "C1/C2/C3 full ns-3 optimized -j2 build only; no simulations",
+  "status": "COMPLETE_FOR_FULL_BUILD_ONLY",
+  "source_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
+  "base_sha": "21faeb2d986b0a4d9d59edd9bf11a0d0de934007",
+  "branch": "feature/ws31-candidates",
+  "local_source": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "build_gate_sha256": "e7a07225bc94ee80d2c4c58440a4417a40484469b6611fe8474c63186233fa59",
+  "worker_sha256": "2042c693d2ff8b4207ab17255ad7476eadd8c82b75c0126c0100bba1fa082853",
+  "controller_sha256": "9b832268da85e54e0d61cda407827e2e68d10d87c1d3365d2384d2df243077bd",
+  "worker_diff_sha256": "91ba05326c75d4c873c83c0f0554bb792c4e4035984689678ab4f60447fedcb6",
+  "worker_review": "Only mode allowlists and existing tag transformation allowlist changed; build/resources/locks unchanged",
+  "preflight_file": "c123-build-preflight-r1.json",
+  "acceptance": {
+    "source_and_worker_review": "PASS",
+    "fresh_remote_resource_and_other_jobs_gate": "PASS",
+    "deploy": "PASS",
+    "sync": "PASS",
+    "full_build": "PASS",
+    "source_binary_logs_verification": "PASS"
+  },
+  "simulations_started": 0,
+  "core_tests_repeated": 0,
+  "commands": [
+    {
+      "operation": "deploy",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "deploy"
+      ],
+      "start_utc": "2026-10-31T22:04:07.560240+00:00",
+      "end_utc": "2026-10-31T22:04:07.986090+00:00",
+      "exit_code": 0,
+      "log": "c123-build-deploy-r1.log"
+    },
+    {
+      "operation": "sync",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "sync",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation"
+      ],
+      "start_utc": "2026-10-31T22:04:07.986090+00:00",
+      "end_utc": "2026-10-31T22:04:12.274188+00:00",
+      "exit_code": 0,
+      "log": "c123-build-sync-r1.log"
+    },
+    {
+      "operation": "build",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "build",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+        "--id",
+        "20261101-060429-ws31-c123-build-r1",
+        "--source-sha",
+        "bc4de1e943866f7630545ce5665cb3525084dda2"
+      ],
+      "start_utc": "2026-10-31T22:04:29.956304+00:00",
+      "log": "c123-build-controller-r1.log",
+      "end_utc": "2026-10-31T22:10:29.457878+00:00",
+      "exit_code": 0
+    }
+  ],
+  "deployed_worker_sha256": "2042c693d2ff8b4207ab17255ad7476eadd8c82b75c0126c0100bba1fa082853",
+  "experiment_id": "20261101-060429-ws31-c123-build-r1",
+  "build_start_utc": "2026-10-31T22:04:29.956304+00:00",
+  "remote_result": "/home/fnl/lzy/results/20261101-060429-ws31-c123-build-r1",
+  "remote_source": "/home/fnl/lzy/runs/20261101-060429-ws31-c123-build-r1/source",
+  "postflight_file": "c123-build-postflight-r1.json",
+  "source_hashes_verified": 23,
+  "build_log_sha256": "2a5b3bf76b3890fcb4e3bdfe6069ec9a501686d522b9847256b5fe85768494d5",
+  "build_log_bytes": 207999,
+  "build_finished_utc": "2026-10-31T22:10:29Z",
+  "verification_utc": "2026-10-31T22:10:38.650576+00:00",
+  "uncompleted_ws31_validation": [
+    "zero-control regression",
+    "tag interventions",
+    "C2 demand-origin timing and cancellation",
+    "C3 dynamic residual behavior",
+    "Ofan implementation and coverage",
+    "two-sided effect evaluation"
+  ],
+  "build_tasks_completed": 1460,
+  "waf_build_duration_seconds": 351.921,
+  "build_errors": 0,
+  "build_warnings": {
+    "count": 3,
+    "type": "-Wstrict-aliasing",
+    "target_file": "scratch/network-load-balance.cc",
+    "target_lines": [
+      2032,
+      2062,
+      2097
+    ],
+    "base_lines": [
+      2018,
+      2048,
+      2083
+    ],
+    "finding": "All three pathId type-pun expressions exist unchanged in fixed base; no warning suppression or source changes made"
+  },
+  "resource_observation_scope": "Fresh before/after snapshots only, not resource peak measurement",
+  "remote_source_status_after_build": "",
+  "review_scope": "Full build gate only; previous literature-admission review remains unchanged; no new performance or mechanism claim",
+  "evidence_files": {
+    "c123-build-preflight-r1.json": {
+      "sha256": "c91ad14347805d514df9adfa86ff09fd61b6004b3ec2cff6b7d3dd7ec773b000",
+      "bytes": 425
+    },
+    "c123-build-worker-diff-r1.patch": {
+      "sha256": "91ba05326c75d4c873c83c0f0554bb792c4e4035984689678ab4f60447fedcb6",
+      "bytes": 2787
+    },
+    "c123-build-deploy-r1.log": {
+      "sha256": "b066cace08dbcd3e431808ac7a780088c8c847502e8281d0db4e893cebedd942",
+      "bytes": 33
+    },
+    "c123-build-sync-r1.log": {
+      "sha256": "8d255dda187a391fb92000adabbf43c5ccd40acf8e2a1a3cd51ab448ef2dd819",
+      "bytes": 295
+    },
+    "c123-build-source-established-r1.json": {
+      "sha256": "b0b6899cb8a47f823e4a26463b0e167d9e16afc588fb26d37d526c8b6b7353c0",
+      "bytes": 689
+    },
+    "c123-build-controller-r1.log": {
+      "sha256": "350052c0e7a4dc228c34e246db467a21067c5f8d80ca2153436d03aa0fe70180",
+      "bytes": 102
+    },
+    "c123-build-postflight-r1.json": {
+      "sha256": "528012ad572745b605f4527f4dd64017b80f2d47cfcaef49b85eb36ca710cc80",
+      "bytes": 6972
+    },
+    "c123-build-remote-metadata-r1.json": {
+      "sha256": "31c50eac2f3ea90a95f5ffb4a5baebfad1cba0ef2756645b91a7cdc85f3b2a82",
+      "bytes": 519
+    },
+    "c123-build-remote-r1.log": {
+      "sha256": "2a5b3bf76b3890fcb4e3bdfe6069ec9a501686d522b9847256b5fe85768494d5",
+      "bytes": 207999
+    },
+    "c123-build-verify-r1.py": {
+      "sha256": "28d518c8dd508f381dcd297cc9386c1031f92044be8a83bd34125c84250ec442",
+      "bytes": 5183
+    }
+  }
+}

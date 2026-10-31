@@ -1,0 +1,148 @@
+{
+  "date": "2026-11-01",
+  "scope": "Integration local verification of engineering checkpoint; no remote access and no new tests run",
+  "portable_core_receipts": [
+    {
+      "source_sha": "4a1e1303b1452f473dca853b59cc5c22cfa632c2",
+      "id": "20261031-215216-ws31-c1-core",
+      "returncode": 0,
+      "scope": "Portable accounting correctness only; not ns-3 build or performance"
+    },
+    {
+      "source_sha": "4a9cafa24371a30510dab9f6f6480958068f6294",
+      "id": "20261031-215753-ws31-c2-core",
+      "returncode": 0,
+      "scope": "Portable C2 decision core only; not ns-3 or performance"
+    },
+    {
+      "source_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
+      "id": "20261031-220040-ws31-c3-core",
+      "returncode": 0,
+      "scope": "Portable C3 admission core only; not ns-3 or performance"
+    }
+  ],
+  "fixed_source_objects_independently_hashed": [
+    {
+      "commit": "4a1e1303b1452f473dca853b59cc5c22cfa632c2",
+      "path": "src/point-to-point/model/ws31-budget.h",
+      "sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c"
+    },
+    {
+      "commit": "4a1e1303b1452f473dca853b59cc5c22cfa632c2",
+      "path": "tests/ws31_budget_test.cc",
+      "sha256": "b3f933847436ec524e22d9caa1d2670eac3d6ac4ac07fff8776479b3b4cc0bcd"
+    },
+    {
+      "commit": "4a9cafa24371a30510dab9f6f6480958068f6294",
+      "path": "src/point-to-point/model/ws31-start.h",
+      "sha256": "352bdc460dd5649ad92c9f2134cdbafad1fab6e7f5fc8d2f1b1c8447e58aab18"
+    },
+    {
+      "commit": "4a9cafa24371a30510dab9f6f6480958068f6294",
+      "path": "tests/ws31_start_test.cc",
+      "sha256": "b63f0dccf5ef6d2f4934ca7d47dbea9fc1b6e9f57e620d5f6bfda3adfae73594"
+    },
+    {
+      "commit": "bc4de1e943866f7630545ce5665cb3525084dda2",
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1"
+    },
+    {
+      "commit": "bc4de1e943866f7630545ce5665cb3525084dda2",
+      "path": "tests/ws31_quota_test.cc",
+      "sha256": "af864ac328f8e1a24c2656e853ae52197c7e3838998042753ac807b68a5d4071"
+    }
+  ],
+  "full_build": {
+    "source_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
+    "id": "20261101-060429-ws31-c123-build-r1",
+    "tasks": 1460,
+    "duration_seconds": 351.921,
+    "full_success_log_locally_checked": true,
+    "raw_empty_according_to_accepted_receipt": true,
+    "main_reported_evidence_files_checked": 10,
+    "main_reported_source_objects_checked": 23,
+    "success_log_sha256_independently_matched": "2a5b3bf76b3890fcb4e3bdfe6069ec9a501686d522b9847256b5fe85768494d5"
+  },
+  "current_implementation_checkout": {
+    "path": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+    "head": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "clean": true
+  },
+  "Ofan_integrated_preflight_snapshot_checks": "BUILDING",
+  "latest_source_full_build_not_inferred_from_previous_source": true,
+  "current_status_lag_observed": "Source own current-status still says full build next and latest SHA bc4 at this snapshot, while accepted build is complete and actual checkout is c4; owner should update",
+  "network_correctness_complete": false,
+  "performance_complete": false,
+  "scientific_closure": false,
+  "sources": [
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c1-core-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/c1-core-validation-r1.json",
+      "sha256": "b0a6bb0e0375577bfdf39a017ec1859e1c13342a32536c3dced84580220e0703",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c2-core-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/c2-core-validation-r1.json",
+      "sha256": "14692e52391c25a89b8a40add7839e7849473bffae348b7933c5272928234867",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c3-core-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/c3-core-validation-r1.json",
+      "sha256": "0cfc04937c2f75f00d5e5327c99ebd6f2a9076217e1641eee4017e3f83e7f194",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c123-build-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/c123-build-main-acceptance-r1.json",
+      "sha256": "e5e16f54e0b2f69cef29d8ff71887b8e63792087f7379d49efae6352956ae69c",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c123-build-receipt-r1.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/c123-build-receipt-r1.json",
+      "sha256": "d25f0fff52f544d6341c937f80e6907dbf2d3918257e400c9cb029c109545feb",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c123-build-remote-metadata-r1.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/c123-build-remote-metadata-r1.json",
+      "sha256": "31c50eac2f3ea90a95f5ffb4a5baebfad1cba0ef2756645b91a7cdc85f3b2a82",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\implementation-plan-r1.md",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/implementation-plan-r1.md",
+      "sha256": "63ee3988f6625c65ca075f418fddfc2961fac365bd294a3c6b71eec5e758252e",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\correctness-protocol-r1.md",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/correctness-protocol-r1.md",
+      "sha256": "f276725d42c1f12735009d55919f91298f634b06afefda528a55f3a3b9d8209d",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\ofan-admission-decision-r1.md",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/ofan-admission-decision-r1.md",
+      "sha256": "e91b54925da14965160968c380424cd58effe8c00bf819755b9c783c6359e399",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\current-status.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/current-status.json",
+      "sha256": "2c0a67b47e41dd3eee341f3f0af46df43f9105f45b90c60f8a828480e037b4d3",
+      "source_matches_at_copy": true
+    },
+    {
+      "source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\ofan-preflight-r1-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/snapshots/ofan-preflight-r1-receipt.json",
+      "sha256": "10bdb100a76accf42247d1bf8174db0c30ab1a00631b0c5f82923da0190e6f32",
+      "source_matches_at_copy": true
+    }
+  ],
+  "local_links_checked": 5,
+  "missing_links": []
+}

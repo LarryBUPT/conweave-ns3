@@ -1,0 +1,20 @@
+{
+  "id": "20261031-215753-ws31-c2-core",
+  "source_sha": "4a9cafa24371a30510dab9f6f6480958068f6294",
+  "remote_directory": "/home/fnl/lzy/validations/20261031-215753-ws31-c2-core",
+  "inputs": [
+    {
+      "path": "src/point-to-point/model/ws31-start.h",
+      "sha256": "352bdc460dd5649ad92c9f2134cdbafad1fab6e7f5fc8d2f1b1c8447e58aab18"
+    },
+    {
+      "path": "tests/ws31_start_test.cc",
+      "sha256": "b63f0dccf5ef6d2f4934ca7d47dbea9fc1b6e9f57e620d5f6bfda3adfae73594"
+    }
+  ],
+  "command": "cd /home/fnl/lzy/validations/20261031-215753-ws31-c2-core && g++ -std=c++11 -O2 -Wall -Wextra -pedantic tests/ws31_start_test.cc -o core-test && ./core-test",
+  "returncode": 0,
+  "scope": "Portable C2 decision core only; not ns-3 or performance",
+  "stdout": "WS31_START_TEST PASS bounds/determinism/controls/fallback/demand-time\n",
+  "stderr": ""
+}

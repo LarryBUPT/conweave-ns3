@@ -1,0 +1,20 @@
+{
+  "id": "20261031-215216-ws31-c1-core",
+  "source_sha": "4a1e1303b1452f473dca853b59cc5c22cfa632c2",
+  "remote_directory": "/home/fnl/lzy/validations/20261031-215216-ws31-c1-core",
+  "inputs": [
+    {
+      "path": "src/point-to-point/model/ws31-budget.h",
+      "sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c"
+    },
+    {
+      "path": "tests/ws31_budget_test.cc",
+      "sha256": "b3f933847436ec524e22d9caa1d2670eac3d6ac4ac07fff8776479b3b4cc0bcd"
+    }
+  ],
+  "command": "cd /home/fnl/lzy/validations/20261031-215216-ws31-c1-core && g++ -std=c++11 -O2 -Wall -Wextra -pedantic tests/ws31_budget_test.cc -o core-test && ./core-test",
+  "returncode": 0,
+  "scope": "Portable accounting correctness only; not ns-3 build or performance",
+  "stdout": "WS31_BUDGET_TEST PASS duplicate/hole/overlap/expiry/capacity/reuse/framing/decay\n",
+  "stderr": ""
+}
