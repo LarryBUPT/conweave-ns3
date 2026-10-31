@@ -1,0 +1,52 @@
+{
+  "ws_number": 14,
+  "thread_id": "01a0e380-6362-71f0-a95b-9b14d8ce8765",
+  "title": "WS-14 单机制研究小样验证",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0e380-6362-71f0-a95b-9b14d8ce8765\",\"rolloutOrdinal\":530,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0e3c0-e221-7b43-9c76-68cfa4085f76",
+      "status": "completed",
+      "startedAt": 1790527464,
+      "completedAt": 1790527487,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "用自然语言去技术化说明实验结论、流程\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "这次实验想回答一个问题：**让交换机选路时多照顾正在排队的背景流，能否同时让 MoE 请求更快、背景长尾更短？**\n\n我们先写下判断规则，再用完全相同的流量比较五种选路方式。先跑没有背景流的检查，再跑背景流最多的一档，共 7 次模拟；所有流都完成了。没有背景流时，新方法与普通双候选的结果完全相同，说明差异确实来自“照顾背景排队”这一步。\n\n在最重的一档，新方法让背景流中最慢那部分的完成时间比普通双候选缩短约 **121 微秒**；但 MoE 这批请求全部完成的时间反而比普通双候选慢 **0.552 微秒**，比原始 ECMP 慢 **0.731 微秒**。原先几条慢流有所改善，最慢流却换成了别的背景流，出口等待也没有一致缩短。\n\n因此，新方法**没有达到事先要求的两边同时改善**。我们按约定停在小样阶段，没有继续跑中间负载或启动正式验证。这是一次模拟输入下的结果，不能据此判断真实业务是否“安全”；WS-10/11/12 原有结论也没有改变。细节和原始实验编号见 [实验报告](</E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws14-guardhash-single-mechanism-pilot-report.md>)。"
+        }
+      ]
+    },
+    {
+      "id": "01a0e39a-4385-7fd3-9abc-4d71395ec972",
+      "status": "completed",
+      "startedAt": 1790524933,
+      "completedAt": 1790527394,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "继续\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "WS-14 的 7 个极端格已核验完成，按预注册停止规则未运行 64/128 档。报告、机器摘要、Handoff 和状态台账已推送到 `feature/ws14-single-mechanism@735e0b3c`；远端无在途仿真，工作树干净。Sol High 最终收束已排队。"
+        }
+      ]
+    }
+  ]
+}

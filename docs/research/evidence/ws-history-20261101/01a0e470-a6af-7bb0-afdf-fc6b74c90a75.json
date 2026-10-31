@@ -1,0 +1,48 @@
+{
+  "ws_number": 18,
+  "thread_id": "01a0e470-a6af-7bb0-afdf-fc6b74c90a75",
+  "title": "WS-18 发送准入与路径联合最小原型",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0e470-a6af-7bb0-afdf-fc6b74c90a75\",\"rolloutOrdinal\":2403,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0e715-10aa-7152-a8a1-cb619dcaadcd",
+      "status": "completed",
+      "startedAt": 1790583312,
+      "completedAt": 1790583346,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "自然语言总结一遍任务流程、内容及结论\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "这项任务从 WS-17 的发现出发：去往同一目标主机的最后一条链路无法靠换上游路径扩容，而原有 FCT 又漏掉了发送端等待。我们因此在 WS-18 做了两个独立开关——发送准入和上游路径选择——并为每条流记录原始需求、实际放行、最终完成三个时刻。\n\n实现后，我们固定同一份 40 流输入、拓扑和传输参数，依次检查旧 `fecmp`、两个单开模式、全关模式和联合模式。排错过程中先修正了应用启动时刻，又发现首轮四臂的末四条需求各早了 1 ns。修复后以固定源码重新编译、运行五格，回传原始数据，并逐流核对输入身份、时刻、FCT、完成数、字节、等待和路径记录。\n\n最终五格均成功。四个 WS-18 模式各完成 40/40 流、33,849,344 B；准入模式确实产生等待，路径模式确实触发多路径选择，背景流没有被准入延后。新旧 `fecmp` 的 FCT 文件哈希完全一致。因此，**最小工程正确性已通过**。这份单 seed 合成输入还不能证明速度收益或背景安全；WS-19 的双侧小样和 WS-20 的正式效果矩阵仍需另立实验契约。[Handoff 19](<E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/handoffs/2026-09-28-19-ws18-minimal-prototype.md>)记录了完整过程和数据。"
+        }
+      ]
+    },
+    {
+      "id": "01a0e6f1-2b8f-70c1-8457-f92c4c763137",
+      "status": "completed",
+      "startedAt": 1790580960,
+      "completedAt": 1790581552,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "WS-18 的**最小工程正确性已通过**。首轮四臂的末四条需求各早 1 ns；修复后，旧 `fecmp` 与四臂在固定源码 `729d268…`、同一 trace 和拓扑下重跑，五格均成功，原始数据已回传。\n\n完整逐流校验通过：四臂各完成 40/40 流、33,849,344 B；需求、放行、完成时刻及 FCT 起点一致。准入和联合格各有 32 条 MoE 流等待，背景等待为零；路径和联合格均触发 36 条路径流。新旧 `fecmp` 的 FCT 文件哈希完全相同。实验 ID、raw ID 和逐格哈希见[机器摘要](<E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/evidence/ws18-correctness-summary.json>)，过程与边界见[Handoff 19](<E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/handoffs/2026-09-28-19-ws18-minimal-prototype.md>)。\n\n校验器修正和状态更新已推送至个人 fork，文档提交为 `9d7cd87…`，工作树干净。这组单 seed、40 流合成输入只证明工程正确性；机制收益与背景安全尚未验证，WS-19/20 效果矩阵仍关闭。"
+        }
+      ]
+    }
+  ]
+}

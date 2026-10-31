@@ -1,0 +1,52 @@
+{
+  "ws_number": 13,
+  "thread_id": "01a0e1ac-fe55-7a91-a2de-205722db854b",
+  "title": "WS-13 背景长尾诊断与证据化实验判据",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0e1ac-fe55-7a91-a2de-205722db854b\",\"rolloutOrdinal\":2951,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0e378-914e-7321-a123-5ad1d0502cd8",
+      "status": "completed",
+      "startedAt": 1790522724,
+      "completedAt": 1790522830,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "本轮的预期结论达到了吗，为WS-14的前置准备完成了吗，主要要实现什么，得到什么结论\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**本轮技术诊断达到了预期，但 WS-14 的前置门槛还没有全部满足。**四种 IRN/PFC 开关组合已经在相同输入下跑通。常规业务输入中，四格的 320 条流都完成了，但 PFC 一次也没有触发，因此这组结果无法说明 PFC 开关的实际效果。压力输入触发了 PFC，也发现了明确的失效链：两者都开启时，16 条流只有 13 条完成；另外 3 条流的关键数据包曾在交换机出口被丢弃，随后恢复超时被当前实现跳过。[四格实验报告](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws13-irn-pfc-factorial-pilot-report.md)\n\n这解决了“3 条流为什么没完成”和“四格能否直接比较”的问题，却**还不能解释原 WS-13 的 8 MiB 背景流长尾**。压力实验使用了不同的拓扑、缓冲和流大小，不能把它的丢包原因直接套到原业务场景。WS-14 所需的具体尾部机制、单一改动候选及事前停止条件也尚未冻结；用户目前没有可核验的业务 SLO，因此应展示连续的 MoE 收益与背景代价权衡，不能新设一条通用“安全线”。\n\n**WS-14 主要要做的是一次有针对性的单机制小样验证。**先依据原 WS-13 数据和必要的补充观测，确定一个可被实验推翻的尾部成因，再只实现对应的一项改动；在同一输入、共同的 PFC=0/IRN=1 条件下，与 ECMP、逐包哈希、普通双候选和 DRILL 比较。小样要先保证两类流全部完成、计数正确，再看目标背景尾流是否改善，以及 MoE 批次相对 ECMP 是否仍有收益；如果只是把延迟转嫁给背景流，就停止该候选。只有双侧结果清楚，才进入 WS-15 的独立输入正式验证。[WS-13 至 WS-15 计划](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/project-state/WS13_PLUS_PLAN.md)\n\n所以目前的结论是：**诊断完成，WS-14 可以继续做前置收敛，但尚不能宣布“准备完毕”或机制有效；既有预注册 no-go 也不因此改变。**"
+        }
+      ]
+    },
+    {
+      "id": "01a0e356-43b6-72c3-a6eb-535331a38906",
+      "status": "completed",
+      "startedAt": 1790520476,
+      "completedAt": 1790521468,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "3条流未完成是为什么，被丢包了吗\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**是，确认有数据包被丢弃。**我加了只记录、不改变转发行为的探针复跑；新旧 11 格的 FCT 原始文件逐字节相同，仍是 13/16 条流完成。\n\n探针记录了 161 次交换机**出口准入拒绝**。未完成的流 13、14、15 分别涉及 22、36、21 次；它们最后未确认的序号，都能在各自此前的丢包记录中找到。随后这三条流各触发一次超时，但当前代码在 **IRN 与 PFC 同开**时直接跳过超时恢复，流最终没有完成。\n\n所以这次的具体链路是：**出口丢包 → 数据未获确认 → 超时恢复被跳过**。PFC 确实触发了暂停，但没有阻止这些出口准入丢包。161 次是丢包事件数，可能包含同一序号的重复尝试，不能理解为 161 个不同包。证据和逐流序号见[丢包探针报告](<E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws13-irn-pfc-factorial-pilot-report.md>)。"
+        }
+      ]
+    }
+  ]
+}

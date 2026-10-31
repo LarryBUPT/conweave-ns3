@@ -1,0 +1,31 @@
+{
+  "ws_number": 22,
+  "thread_id": "01a0f124-3c54-7843-b183-57d2cbf0ea5c",
+  "title": "WS-22 重排预算与粒度机制审查",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0f124-3db3-78d1-b614-cb682f7094f8",
+      "status": "completed",
+      "startedAt": 1790752079,
+      "completedAt": 1790752914,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "## WS-22 本地审查结论：远程实验 no-go\n\n**上游有分流机会，但目前不足以启动重排预算仿真。** 1280 主机拓扑中，跨 ToR 流有八个等跳上游候选，固定目的主机的最后出口却只有一条。[WS-19 同输入原始格](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws19-admission-pilot-report.md)显示，整流路径臂在 ToR/192 场景改善了背景 P99，但没有证明把同一 QP 切成更小单位还能改善双侧结果；联合臂已按事前规则 no-go。WS-21 的反馈缓存尚未参与选路，其报文成本和时序变化也不能算路径收益。\n\n**现有接收路径不能直接承载拟议机制。** [ConWeaveVOQ](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/src/point-to-point/model/conweave-routing.cc:865)只在受控的相邻 phase 换路时缓存先到包；`Enqueue` 没有字节或队列数预算，现有 raw 主要是 ToR/目的地周期采样及全局计数，不能逐 QP 给出峰值占用或持有时间。[ConWeave 论文](https://cse.hkust.edu.hk/~kaichen/courses/spring24/comp7215/papers/conweave-sigcomm23.pdf)的一条 FIFO 队列依赖每流至多两条在途路径的设计前提，不能直接用于任意小段并行分流。当前 [run.py](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/run.py:355)也不接受 WS-19/21 所用 `topo_1280_400G_400G_OS1` 的 ConWeave 参数组合。\n\n[RNIC 源码](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/src/point-to-point/model/rdma-hw.cc:658)有序号检查、IRN SACK、超时和重传入口，但 `0xFD` 在 IRN 下也用于普通 ACK，不能按协议号计 NACK。现有 WS-13 探针只覆盖选定背景 QP；SACK 区间字节数也不等于真实 RNIC 缓冲占用。[WS-13 诊断](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws13-tail-diagnosis-and-experiment-contract.md)与 WS-21 长尾 raw 均不能补出全体 QP 的乱序、超时、重传及接收占用序列。\n\n**可证伪方向仍成立，粒度和值尚未确定。** 可比较整流、现有 flowlet、固定小段，以及“占用预算不足时停止新换路、让已在途段按正确传输语义排空”的预算机制；必须记录实际换路次数和预算退化次数。8 KiB MoE、8 MiB 背景是[当前生成器](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/scripts/make_ws17_demand.py:25)的合成类别，不是业务代表性证据。[Presto](https://pages.cs.wisc.edu/~keqhe/sigcomm2015/he2015sigcomm.pdf)的 64 KB flowcell 依赖 TCP/TSO/GRO；[ParaLet](https://caopeirui.github.io/paper/ParaLet_NAIC2024.pdf)针对少量大 RDMA 流。两者支持审查粒度与重排代价，均不能直接给本项目设小段大小或安全阈值。\n\n下一门槛是先在本地定义并验证逐 QP、非扰动的路径切换、乱序字节与深度、VOQ 持有字节与时间、IRN SACK、实际/受抑制超时、重传字节及完成状态计量；再证明候选路径在目标输入上有可绕开的拥塞。之后才能冻结同输入强对照、独立需求、双侧完成时间和完成率、资源与停止条件。没有可核验业务 SLO 时，不新增通用损害百分比。\n\n已从个人 fork 基线 `330596a2d22752e88deaba56e76d10164e8af186` 建立 `feature/ws22-reorder-budget`；工作树干净。本轮只读核验了源码、既有实验 ID 的代表性 raw 和论文原文，**未修改文件、未提交或推送、未运行远程实验**。旧技术 pilot 与正式 no-go 均不重判。"
+        }
+      ]
+    }
+  ]
+}

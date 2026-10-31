@@ -1,0 +1,53 @@
+{
+  "version": "queuepin-existing-evidence-r1",
+  "observed_date": "2026-11-01",
+  "state": "FROZEN_EXISTING_EVIDENCE_NOT_A_NEW_COMPARISON",
+  "manuscript": {
+    "title": "QueuePin: Queue-Guided Path Pinning for RDMA Bursts",
+    "content": "E:\\研\\毕业论文\\thesis\\queuepin-v13-figure-revision-r12\\icc-zh.md",
+    "english_source": "E:\\研\\毕业论文\\thesis\\queuepin-v13-figure-revision-r12\\ieee\\main.tex",
+    "pdf": "E:\\研\\毕业论文\\thesis\\queuepin-v13-figure-revision-r12\\queuepin-icc-authors-r12.pdf",
+    "pdf_sha256": "f16e2fa5e7873aa62acf6181c5f0eafc45a90dfd75d583fcc27dfed345563a0b",
+    "pages": 6
+  },
+  "source_anchors": [
+    {
+      "scope": "formal",
+      "commit": "2c9f3a50bafad0740b461496ba24fa81941a9bc7",
+      "local_git_object_verified": true
+    },
+    {
+      "scope": "endpoint_engineering",
+      "commit": "dedaae2304dca2f8830421e5763a088365c28137",
+      "local_git_object_verified": true
+    },
+    {
+      "scope": "sustained_W5",
+      "commit": "21faeb2d986b0a4d9d59edd9bf11a0d0de934007",
+      "local_git_object_verified": true
+    },
+    {
+      "scope": "initialization_carrier",
+      "commit": "333061c6a47ae411a4c5427ff2505adfc92e7980",
+      "local_git_object_verified": true
+    }
+  ],
+  "per_run_metadata_and_source_map_are_authoritative": true,
+  "reproducibility_index": "E:\\研\\毕业论文\\thesis\\ws30-v13-reproducibility-index.md",
+  "evidence_manifest": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\evidence\\ws-history-20261101\\coverage-and-source-manifest.json",
+  "new_combined_baseline": {
+    "name": "QueuePin + new category-aware mechanism",
+    "state": "PLANNED_NOT_ESTABLISHED",
+    "mechanism_selected": false,
+    "requires": [
+      "user candidate decision",
+      "implementation and correctness",
+      "controlled category-increment ablation",
+      "independent effects verification",
+      "frozen source/input/analysis/IDs"
+    ],
+    "WS29": "deferred until this baseline exists"
+  },
+  "no_new_simulation": true,
+  "legacy_v14_P0_included_in_submitted_manuscript": false
+}

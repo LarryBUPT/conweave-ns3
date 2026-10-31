@@ -1,0 +1,52 @@
+{
+  "ws_number": 3,
+  "thread_id": "01a0cb67-1645-77b1-89c2-7285ddd1e6d4",
+  "title": "对比mixhash与conweave",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0cb67-1645-77b1-89c2-7285ddd1e6d4\",\"rolloutOrdinal\":463,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0cd7b-0599-7aa2-9d34-6f4df2ef1c85",
+      "status": "completed",
+      "startedAt": 1790153786,
+      "completedAt": 1790153987,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "他的实验主要根据什么流构建，不在config/目录下的流文件怎么被使用的\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "结论：这个 fork 的主要改进实验以**预先生成的 MoE 小流＋大流背景负载**为输入，不是运行时根据 `AliStorage2019` CDF 临时生成。`hybrid.sh`、`inflex.sh`、`mixhash.sh`、`drill.sh` 都通过 `--flow_file` 指定 `config/` 下的四份文件，分别包含 0、64、128、192 条背景流；`ecmp.sh` 使用其中的 192 条背景流版本作对照。[实验脚本](E:/研/毕业论文/workspace/maplerime-conweave-ns3/hybrid.sh:136) · [生成脚本](E:/研/毕业论文/workspace/maplerime-conweave-ns3/config/gen_moe_flow_1280.py:21)\n\n这组流的实际设计是：每份都有 16,384 条 8 KB 的 MoE 流，再按档位加入 8 MB 背景流。MoE 流标记为 `tag=2`，背景流标记为 `tag=1`，都设为 2.0 秒开始。四档背景流采用递增保留的方式，便于比较背景流增加后的表现。文件名虽然含有 `8round`，但当前这批文件并没有八个不同的启动轮次，复现实验应以文件内容而非名称为准。[生成逻辑](E:/研/毕业论文/workspace/maplerime-conweave-ns3/config/gen_moe_flow_1280.py:58)\n\n实际加载链路是：\n\n`实验 .sh → run.py --flow_file 文件名 → mix/output/<实验ID>/config.txt 中的 FLOW_FILE config/文件名 → network-load-balance.cc 读取并调度流`\n\n`run.py` 对 `--flow_file` 默认加上 `config/` 前缀并检查文件是否存在；仿真程序随后读取配置里的 `FLOW_FILE`。因此，**放在别处的同名 `.txt` 不会因为存在就自动参与实验**。[run.py](E:/研/毕业论文/workspace/maplerime-conweave-ns3/run.py:240) · [仿真入口](E:/研/毕业论文/workspace/maplerime-conweave-ns3/scratch/network-load-balance.cc:1222)\n\n对于 `config/` 之外的文件，要区分两种用途：\n\n- [`traffic_gen/AliStorage2019.txt`](E:/研/毕业论文/workspace/maplerime-conweave-ns3/traffic_gen/AliStorage2019.txt) 是**流大小分布文件**，不是直接送入仿真的流清单。不传 `--flow_file` 时，`run.py` 才调用流量生成器，依据该 CDF 等参数生成 `config/` 下的输入文件；原有的 `autorun.sh` 走的是这条路径。[run.py](E:/研/毕业论文/workspace/maplerime-conweave-ns3/run.py:246) · [autorun.sh](E:/研/毕业论文/workspace/maplerime-conweave-ns3/autorun.sh:27)\n- `analysis_moe/` 下那四份与 `config/` 同名的流文件，**在当前主实验脚本中没有被引用**；我核对了同名的 64 背景流文件，两处内容也不相同，不能视作同一文件的副本。若要让其中一份进入仿真，须明确把路径传给 `run.py`（例如从仓库根目录使用 `--flow_file ../analysis_moe/文件名.txt`，使加前缀后的路径解析为 `config/../analysis_moe/文件名.txt`），或在自定义仿真配置中直接指定 `FLOW_FILE`。这属于手动选用，并非现有脚本的默认工作流。\n\n还有一个复现时容易误判的点：在上述预生成流实验中，`--netload 50` 和 `--fecmp_bg 64/128/192` **不会重新生成或改变流文件里的流数**；实际注入什么流由选中的 `.txt` 决定。`--fecmp_bg` 被写进运行配置，分析脚本也会读取它作为结果标签，但当前仿真输入仍以 `FLOW_FILE` 为准。[run.py](E:/研/毕业论文/workspace/maplerime-conweave-ns3/run.py:23) · [结果分析](E:/研/毕业论文/workspace/maplerime-conweave-ns3/analysis_moe/compare_results.py:74)"
+        }
+      ]
+    },
+    {
+      "id": "01a0cd74-7f06-7820-b7fd-4e1812431c60",
+      "status": "completed",
+      "startedAt": 1790153359,
+      "completedAt": 1790153655,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "对[https://github.com/maplerime/conweave-ns3](https://github.com/maplerime/conweave-ns3)这个仓库，相比于[https://github.com/conweave-project/conweave-ns3](https://github.com/conweave-project/conweave-ns3)，新增的流文件是怎么设计的，流文件有哪些，存储在哪个仓库文件夹中\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "相对[源仓库](https://github.com/conweave-project/conweave-ns3)，[maplerime fork](https://github.com/maplerime/conweave-ns3) 的主要变化是：把原有流量记录从五列扩展为可选的六列，增加 `tag`，并围绕 MoE 小流与背景大流制作了多组固定流量文件。对当前 `main` 的 Git 差异逐个核对后，找到 **30 个新增的流量输入文件**：`config/` 直属 22 个、`config/moe_same_load/` 4 个、`analysis_moe/` 4 个。\n\n## 流文件怎么设计\n\n```text\n第一行：流的总条数\n后续每行：源主机ID 目的主机ID PG 流大小(字节) 开始时间(秒) [tag]\n```\n\n例如：\n\n```text\n16448\n844 416 3 8388608 2.000000000 1\n0 8 3 8192 2.000000000 2\n```\n\n这里第一条是 8MB 背景流，第二条是 8KB MoE 流。`tag=1` 标记背景流，`tag=2` 标记 MoE 流；五列旧格式也能读取，缺少的 `tag` 默认为 `0`。第四列在代码里名为 `maxPacketCount`，但实际按**字节数**使用，并非包数，见[流文件读取与调度代码](E:/研/毕业论文/workspace/maplerime-conweave-ns3/scratch/network-load-balance.cc:206)。\n\n```mermaid\nflowchart LR\n    A[\"生成脚本或固定 trace\"] --> B[\"config 中的流文件\"]\n    B --> C[\"run.py 指定 --flow_file\"]\n    C --> D[\"仿真器读取时间、大小和 tag\"]\n    D --> E[\"按模式和 tag 选择负载均衡算法\"]\n```\n\n常规运行入口 `run.py --flow_file` 从 `config/` 查找文件；`traffic_gen/` 中的 AliStorage2019 等 CDF 是**流大小分布数据**，不是本次新增的流事件文件。[运行入口](E:/研/毕业论文/workspace/maplerime-conweave-ns3/run.py:239)\n\n## 新增文件清单\n\n| 位置 | 文件 | 实际设计 |\n|---|---|---|\n| [`config/`](E:/研/毕业论文/workspace/maplerime-conweave-ns3/config) | `moe_1280group_256to8_8round_8KB.txt` | 16,384 条、每条 8KB 的 MoE 流，六列，`tag=2` |\n| 同上 | `moe_1280group_256to8_8round_8KB_hybrid_64fecmp.txt`、`..._128fecmp.txt`、`..._192fecmp.txt` | 在 16,384 条 MoE 流上分别增加 64、128、192 条 8MB 背景流；背景 `tag=1`，MoE `tag=2` |\n| 同上 | `moe_1280group_256to8_8round_8KB_bg_conflict50_64fecmp.txt` | 名义上的“50% 冲突”版本；**文件内容与普通 `hybrid_64fecmp` 完全相同** |\n| 同上 | `L_2.00_CDF_AliStorage2019_N_320_T_1000ms_B_100_flow_tag.txt` | 基于 AliStorage2019 大小分布的 1,955,386 条流；六列但全部 `tag=0`，时间约 2～3 秒 |\n| [`config/moe_same_load/`](E:/研/毕业论文/workspace/maplerime-conweave-ns3/config/moe_same_load) | `moe_1280group_256to8_8round_8KB.txt`、`..._hybrid_64fecmp.txt`、`..._hybrid_128fecmp.txt`、`..._hybrid_192fecmp.txt` | 四个文件都固定为 **16,384 条 8KB MoE 流 + 192 条 8MB 背景流**；通过改变部分流的 `PG=0/2` 做历史版本的“同负载、不同分配”对照，均为五列、无 tag |\n| [`analysis_moe/`](E:/研/毕业论文/workspace/maplerime-conweave-ns3/analysis_moe) | `moe_1280group_256to8_8round_8KB.txt`、`..._hybrid_64fecmp.txt`、`..._hybrid_128fecmp.txt`、`..._hybrid_192fecmp.txt` | 另一组 MoE 实验快照：背景流在 2.000 秒启动，MoE 流在 2.001 秒启动；与 `config/` 下同名文件**不是相同内容** |\n\n此外，`config/` 还新增了 **16 个测试流文件**：\n\n- 规模和混合负载：`test_256group_8target.txt`、`test_256group_8target_2rounds.txt`、`test_16384_moE_64bg.txt`、`test_16flows.txt`、`test_8MB_flows.txt`。\n- 路径关系：`test_1024_crossrail.txt`、`test_1024_samerail.txt`、`test_crossrail_moe.txt`。两个 1024 流文件分别让源、目的主机的 `ID % 4` **不同**或**相同**，用于比较跨 rail 与同 rail。\n- 小规模功能检查：`test_8moe_one_source.txt`、`test_single_moe.txt`、`test_small_hybrid.txt`、`test_small_notag.txt`、`test_tag.txt`。\n- 旧机制测试：`test_inflex.txt`、`test_inflex_simple.txt`、`test_mode11_100flows.txt`。\n\n这些测试文件既有五列，也有六列，不能仅凭 `test_` 前缀判断其 tag 语义。\n\n## 使用前必须注意的三处不一致\n\n1. **“8round”文件名不等于八个时间轮次。** 当前 `config/moe_*.txt` 中的 MoE 流全部在 **2.0 秒**启动；[生成脚本](E:/研/毕业论文/workspace/maplerime-conweave-ns3/config/gen_moe_flow_1280.py:102)实际按“256 个源节点 × 每源 64 个目的节点”生成 16,384 条流。`analysis_moe/` 的同名系列才把 MoE 放在 2.001 秒，但也没有八个不同的启动时间。\n2. **“bg_conflict50”尚未实现冲突控制。** [生成脚本](E:/研/毕业论文/workspace/maplerime-conweave-ns3/config/gen_moe_flow_1280.py:16)读取了 `conflict_ratio`，却只将其用于提示和文件名；我比较了仓库中的文件内容，`bg_conflict50_64fecmp` 与普通 64 背景流版本逐字节相同。\n3. **两个测试文件不能直接按名称信任。** `test_8MB_flows.txt` 每条是七列，与当前五/六列读取格式不符；`test_mode11_100flows.txt` 首行写 100，实际有 128 条记录，仿真器只会按声明读取前 100 条。仓库根目录还有一个 `test_single_flow.txt`，但缺少“首行总流数”，不计入上述 30 个有效结构的候选输入文件。\n\n如果准备把这些文件用于复现实验，建议先选 [`config/moe_1280group_256to8_8round_8KB_hybrid_64fecmp.txt`](E:/研/毕业论文/workspace/maplerime-conweave-ns3/config/moe_1280group_256to8_8round_8KB_hybrid_64fecmp.txt) 理解六列混合负载，再根据实验目的决定是否需要真正加入时间轮次、固定总负载或哈希冲突控制。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # ConWeave 研究入口：Baseline Fidelity Check 与实验数据流审计
 
+2026 年 11 月 1 日导航更新：本文保留各历史源码、输入和阶段指标；当前 WS-30/v13 收束、WS-31 新类别感知研究及 WS-29 后置安排见 [当前状态](../project-state/CURRENT_STATE.md)、[WS 历史覆盖](../project-state/WS_HISTORY_COVERAGE.md)和 [WS-31 执行清单](../project-state/WS31_EXECUTION.md)。旧阶段的未执行矩阵不自动成为新任务义务，也不改写成已完成。
+
 记录日期：2026-09-23；后续状态同步：2026-09-26（WS-10 交接）。审计源码：个人 fork `LarryBUPT/conweave-ns3` 的 `a8d2db5f057172ce89730b4f6344c531e34a9302`。第 1–4 节仅核对当时的四个基线、运行输入和既有观测链路，不把最小运行结果解释为性能结论。后续工作流的证据与路线见第 5 节；它们不改写这组基线的固定 SHA、参数或原始结果。
 
 ## 1. 实验契约与可复现输入

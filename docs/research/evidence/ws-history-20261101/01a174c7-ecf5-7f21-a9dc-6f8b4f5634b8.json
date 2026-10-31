@@ -1,0 +1,57 @@
+{
+  "ws_number": 30,
+  "thread_id": "01a174c7-ecf5-7f21-a9dc-6f8b4f5634b8",
+  "title": "WS-30 v13：补充实验与证据复核",
+  "archived_at_inventory": false,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 3,
+    "nextCursor": "{\"requestedThreadId\":\"01a174c7-ecf5-7f21-a9dc-6f8b4f5634b8\",\"rolloutOrdinal\":30125,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest three returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a186cd-9738-7771-99b7-ae1a1bd1d8b8",
+      "status": "completed",
+      "startedAt": 1793262983,
+      "completedAt": 1793263008,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "已核对收据哈希并记录：P0 全 52 格完成主独立验收，正式进度为 52/892，余 840 格仍未完成。\n\n本阶段结束，不新增远端作业，不恢复旧入口。"
+        }
+      ]
+    },
+    {
+      "id": "01a186c2-5e92-7280-bb2b-ce5deba802ac",
+      "status": "completed",
+      "startedAt": 1793262247,
+      "completedAt": 1793262781,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "27 格已全部终态、完整回传并通过本地审计：446,912 条 FCT、49,257,906,176 字节，文件哈希与三波退出屏障均通过。\n\n[52 格原始数据索引](E:/研/毕业论文/workspace/ws30-attribution-audit/results/ws30-paper-v14-p0-full52-index-r1.json)已交主对话独立验收。未启动其他阶段；其余 840 格仍未完成，WS-30 保持 ACTIVE。"
+        }
+      ]
+    },
+    {
+      "id": "01a1866a-ea76-7400-b672-3a1ffde5b5d5",
+      "status": "completed",
+      "startedAt": 1793256516,
+      "completedAt": 1793260650,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "已核实：唯一控制器正常运行，首波 12 格无失败，内存和磁盘充足；旧证据保留，启动状态已交主对话。\n\n可以结束本次对话。实验尚未完成，退出 Codex 后不能保证本地心跳和结果回传继续运行。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "ws_number": 6,
+  "thread_id": "01a0d370-06c7-7c83-8812-926a57b8f80b",
+  "title": "WS-06 六列输入与 tag 通路",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0d370-07f8-75c2-bda1-4d3b3ff748e3",
+      "status": "completed",
+      "startedAt": 1790253729,
+      "completedAt": 1790259700,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "解析方法建议参考[https://github.com/maplerime/conweave-ns3](https://github.com/maplerime/conweave-ns3)\n"
+        },
+        {
+          "type": "userMessage",
+          "text": "现在是远程编译仿真还是本地编译仿真，远程github访问失败是否执行过login.sh\n"
+        },
+        {
+          "type": "userMessage",
+          "text": "本轮任务结束后，完整介绍本次任务全流程链路，做了什么，有什么成果，下一步应该做什么，有什么不足之处，用非技术化语言解释。\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "WS-06 已完成，并已提交、推送到个人 fork 的 `feature/ws06-flow-tags`。工作树干净。实现与输入资产的固定版本是 `dba99fa`；包含交接文档的分支最新提交是 `267af27`。\n\n### 这次是怎样完成的\n\n我先核对项目工作流、旧实验和源码，再参照 [maplerime 仓库](https://github.com/maplerime/conweave-ns3) 的五列、六列读取方式，在个人 fork 中建立新分支。现在可以明确指定一份已有的流量文件；旧五列记录会得到默认标签 `0`，新六列记录则保留文件中的标签。标签会随流量到达交换机的选路入口，并留下可核对的计数。**标签目前只是分类标记，不会改变四种原有选路方式，也不表示流量可以乱序。**\n\n代码在本机修改和提交，随后同步到服务器的独立实验目录，以固定版本编译、运行并回传原始结果。远端 GitHub 访问失败时，工作流曾静默运行一次 `login.sh` 并重试，之后改用 Git bundle 完成同一版本的同步；最后一次同步直接使用了 Git bundle。没有改动两份只读参考仓库或服务器既存工作树。\n\n### 得到了什么结果\n\n- **六列输入通路通过轻量验证：**32 主机小拓扑和导入的 1280 主机拓扑，都用四条小流完成了运行。两类标签各有 2 条流，交换机入口均看到了标签，缺失计数为 0，4 条流全部完成。\n- **旧输入回归通过：**ECMP、CONGA、LetFlow、ConWeave 各自运行了同一份旧五列输入，均有 19,388 条流完成。四份原始完成记录的文件指纹，分别与此前对应模式的实验**完全相同**。这证明在这组固定条件下，新增输入通路没有改变四个基线的完成流输出。\n- **修正了输入资产的可复核性：**发现 Windows 与 Linux 的换行处理会改变导入文件的字节指纹后，已让六份参考资产在两个环境中按原字节保存。最终 1280 拓扑实验回传的文件指纹与溯源表一致。\n\n运行中发现的小拓扑参数缺项、1280 拓扑的两种链路延迟、以及手填 BDP 与实际计算不符，都已按新提交、新实验 ID 逐项修复；失败记录仍单独保留。完整证据、实验 ID、固定版本和交接条件见 [WS-06 九段 Handoff](<E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/handoffs/2026-09-24-06-six-column-input-and-tags.md>)；拓扑参数的取值依据见 [ADR-005](<E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/decisions/ADR-005-imported-topology-bdp.md>)。\n\n### 还欠缺什么，下一步做什么\n\n本轮验证的是“文件能正确读入、标签能传到选路处、旧功能仍能正常运行”。**四份完整的大流量文件尚未全量运行，也没有得到性能优劣结论。**目前还不能按标签分别报告完成时间；导入拓扑上的 ConWeave 时序假设也需要在用于对照前另行核查。\n\n下一步先把本 Handoff 整合进项目状态台账。随后在 WS-07 明确两类流量各怎样选路、怎样处理乱序，并补齐分类结果记录；通过单类和混合的小测试后，再用总负载相同、可重复生成的输入研究是否存在跨类损害。只有该现象被可靠证实，才进入 WS-08 的新机制评估。"
+        }
+      ]
+    }
+  ]
+}

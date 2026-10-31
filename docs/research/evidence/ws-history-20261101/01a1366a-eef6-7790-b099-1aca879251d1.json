@@ -1,0 +1,65 @@
+{
+  "ws_number": 28,
+  "thread_id": "01a1366a-eef6-7790-b099-1aca879251d1",
+  "title": "WS-28 ClassReserve 机制解释与原生基线实验",
+  "archived_at_inventory": false,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 3,
+    "nextCursor": "{\"requestedThreadId\":\"01a1366a-eef6-7790-b099-1aca879251d1\",\"rolloutOrdinal\":11924,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest three returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a14059-f5bc-7673-943e-5609efd05188",
+      "status": "completed",
+      "startedAt": 1792081000,
+      "completedAt": 1792081165,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "继续跟踪WS-28情况\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "截至本次核对，**WS-28 没有未完成的预设任务**：本地工作树干净，个人 fork 的远端分支仍指向最终提交 `842b96e`，未发现新变化。[最终验收审计](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/research/ws28-final-acceptance-audit.md)记录了原生对照 144/144、正式消融 120/120、反例诊断 12/12 格通过。\n\n我已将原有的 WS-28 跟踪更新为**每天 9:00**核查提交和验收状态。状态不变时保持安静；出现实质变化、失败或需要你决定的事项时再通知。"
+        }
+      ]
+    },
+    {
+      "id": "01a1403f-cc27-7d90-b6e0-fd3810fa650b",
+      "status": "completed",
+      "startedAt": 1792079285,
+      "completedAt": 1792080409,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "继续进行\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "WS-28 的**预设 ns-3 合成验证任务已闭环**。原生对照 144/144 格、两因素消融 120/120 格、反例探针 12/12 格均通过原始数据验收。组件效应图、三个反例时序图、[正式分析](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/research/ws28-factorial-and-tail-analysis.md)和[逐项验收审计](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/research/ws28-final-acceptance-audit.md)已完成。\n\n四个消融臂相对同输入 ECMP 的 MoE 批时间中位数均降低，但各组件条件效应的 95% 区间都跨零；三个反例的下游排队证据也不足以作唯一因果归因。结论限于本次固定合成输入与传输配置。\n\n图表的源码、字号、对齐及 PDF 碰撞检查已通过。更新已提交为 `842b96e`，并推送到个人 fork 的 `feature/ws28-classreserve-explanation` 分支。"
+        }
+      ]
+    },
+    {
+      "id": "01a14026-9f54-7132-a4ff-b811783e546d",
+      "status": "completed",
+      "startedAt": 1792077635,
+      "completedAt": 1792077978,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "有。**WS-28 仍为 `ACTIVE`，尚未闭环**，但最新进度比项目状态文件中的快照更靠前。\n\n已完成的实验部分包括：原生基线对照、两种 P95 复算、两因素消融 **120/120 格**原始数据验收，以及三个劣化 seed 的 **12 格**探针开关诊断。消融的机器分析也已生成，见[执行收据](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/research/evidence/ws28-ablation-execution.json)和[分析结果](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/research/evidence/ws28-ablation-analysis.json)。\n\n**未竟任务主要是分析交付与闭环验收：**\n\n- 绘制并检查组件效应图、三个反例的逐跳时序图。\n- 写正式消融与反例报告，完整交代条件效应、交互、单 seed 背景越线和归因边界，并记录正式分析节点的文献借鉴复核。\n- 将报告、图、源码 SHA、实验 ID 和原始数据逐项对齐，更新[WS-28 验收协议](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/research/ws28-classreserve-explanation-protocol.md)、[项目状态](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/project-state/CURRENT_STATE.md)及交接记录。当前状态文件仍写“正式消融 0/120”，已落后于最新收据。\n- 完成成稿复核、Git 提交与个人 fork 推送，再判断是否满足全部预设验收项。\n\n因此，**不需要重跑已验收的 120 格来证明进度；也还不能把 WS-28 标为完成或归档**。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "workstream": "WS-31",
+  "created_date": "2026-11-01",
+  "project_id": "4e32290d-ff2c-4e0e-9f4f-96318021748e",
+  "project_label": "科研",
+  "status": "ACTIVE_FOR_EVIDENCE_AND_IDEA_DEVELOPMENT",
+  "integration": {
+    "thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
+    "host_id": "local",
+    "title": "ConWeave Research · Integration",
+    "owns": [
+      "history coverage audit",
+      "WS-30/v13 archive",
+      "canonical project state"
+    ]
+  },
+  "main": {
+    "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+    "host_id": "local",
+    "title": "WS-31 主对话：类别感知新机制构思与论证",
+    "project_membership_verified": true,
+    "write_directory": "docs/research/ws31/main",
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:1"
+  },
+  "independent": {
+    "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "host_id": "local",
+    "title": "WS-31 副对话：消融证据与文献独立复核",
+    "project_membership_verified": true,
+    "write_directory": "docs/research/ws31/independent",
+    "first_goal": "independent audit of category-increment and ablation failure evidence",
+    "last_cursor": null
+  },
+  "deferred_ws29": {
+    "main_thread_id": "01a1625a-d557-71c1-a90a-258c289ef43e",
+    "independent_thread_id": "01a1625b-90b4-75d1-b5a8-d0366a228d0e",
+    "state": "DEFERRED_RETAINED_UNARCHIVED",
+    "dependency": "validated QueuePin plus new category-aware mechanism baseline",
+    "read_or_wake_authorized_now": false
+  },
+  "heartbeat": {
+    "automation_id": "ws-31",
+    "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+    "interval_minutes": 30,
+    "status": "ACTIVE",
+    "scope": "A-H evidence and proposal development; stop dependent work at user candidate decision"
+  },
+  "remote_experiments_started": false,
+  "new_mechanism_selected": false,
+  "default_model_policy": "Created without model overrides; use actual turn context, not prompt assertions.",
+  "experiment_gate": "Research question, user candidate decision, implementation/correctness and frozen protocol before remote effects experiments.",
+  "notifications": "Report complete stages, material findings, failures or user decisions; keep unchanged state quiet."
+}

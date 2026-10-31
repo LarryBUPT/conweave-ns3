@@ -1,0 +1,1107 @@
+{
+  "observed_date": "2026-11-01",
+  "scope": "Project-memory coverage audit, not a new numerical/raw replication and not an exhaustive message-by-message reading",
+  "read_thread_count": 33,
+  "covered_workstream_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    30
+  ],
+  "deferred_metadata_only": [
+    29
+  ],
+  "coverage": [
+    {
+      "ws_number": 1,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0c990-07ce-7c21-99c0-94f4c3cb816f",
+          "title": "科研SKILL",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0c990-07ce-7c21-99c0-94f4c3cb816f.json",
+          "has_older_turns": false
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-01",
+          "name": "科研 Skill 导航",
+          "state": "COMPLETE",
+          "evidence": "[Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-24-01-research-skills-navigation.md"
+      ]
+    },
+    {
+      "ws_number": 2,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0ca49-1841-7952-bdaf-b16daa10f5d8",
+          "title": "Research Discovery",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0ca49-1841-7952-bdaf-b16daa10f5d8.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-02",
+          "name": "Research Discovery",
+          "state": "CHECKPOINTED",
+          "evidence": "[初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-24-02-research-discovery.md"
+      ]
+    },
+    {
+      "ws_number": 3,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0cb67-1645-77b1-89c2-7285ddd1e6d4",
+          "title": "对比mixhash与conweave",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0cb67-1645-77b1-89c2-7285ddd1e6d4.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-03",
+          "name": "ConWeave 与 maplerime 参考审计",
+          "state": "COMPLETE",
+          "evidence": "[Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-24-03-reference-repositories.md"
+      ]
+    },
+    {
+      "ws_number": 4,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0cd67-6078-7fc0-adad-fd68edfb1881",
+          "title": "搭建本地-远程工作链路",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0cd67-6078-7fc0-adad-fd68edfb1881.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-04",
+          "name": "本地—远程实验工作流",
+          "state": "COMPLETE FOR MINIMUM RUN",
+          "evidence": "[Handoff](../handoffs/2026-09-24-04-local-remote-workflow.md)；隔离编译/运行/回传和 smoke test，大规模资源上限未验证"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-24-04-local-remote-workflow.md"
+      ]
+    },
+    {
+      "ws_number": 5,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0ce38-9ddc-7f73-859a-4604fc0e4135",
+          "title": "Baseline Fidelity Check",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0ce38-9ddc-7f73-859a-4604fc0e4135.json",
+          "has_older_turns": false
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-05",
+          "name": "Baseline Fidelity Check",
+          "state": "COMPLETE FOR FIDELITY",
+          "evidence": "[Handoff](../handoffs/2026-09-24-05-baseline-fidelity.md)；四模式同输入最小运行与数据流审计，未做正式性能复现"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-24-05-baseline-fidelity.md"
+      ]
+    },
+    {
+      "ws_number": 6,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0d370-06c7-7c83-8812-926a57b8f80b",
+          "title": "WS-06 六列输入与 tag 通路",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0d370-06c7-7c83-8812-926a57b8f80b.json",
+          "has_older_turns": false
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-06",
+          "name": "六列输入与 tag 通路",
+          "state": "COMPLETE FOR INPUT COMPATIBILITY",
+          "evidence": "[Handoff](../handoffs/2026-09-24-06-six-column-input-and-tags.md)；显式 flow file、五/六列解析、tag 到源 ToR、四模式旧输入回归及四流六列轻量验证；该阶段未运行完整 MoE"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-24-06-six-column-input-and-tags.md"
+      ]
+    },
+    {
+      "ws_number": 7,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0d510-565c-7732-a794-ca2ee68323a3",
+          "title": "WS-07 双轨基线与 MixTax",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0d510-565c-7732-a794-ca2ee68323a3.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-07",
+          "name": "包/流双轨及 MixTax",
+          "state": "COMPLETE FOR MINIMUM DUAL-TRACK AND SINGLE-SEED PILOT",
+          "evidence": "[Handoff 08](../handoffs/2026-09-25-08-ws07-dual-track-mixtax.md)：独立 MoE 分组分析、`dualtrack`、单类/双类正确性、跨 ToR 多下一跳和 packet/flow × 背景 0/64 四格技术 pilot 已核验；无背景逐包批次约 4 ms，正式主实验尚未启动"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-25-08-ws07-dual-track-mixtax.md"
+      ]
+    },
+    {
+      "ws_number": 8,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0d8a3-143f-7f40-b9cc-8e21949f82c1",
+          "title": "WS-08 共同接收语义与机制门槛",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0d8a3-143f-7f40-b9cc-8e21949f82c1.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-08",
+          "name": "接收门槛诊断与共同 IRN pilot",
+          "state": "COMPLETE FOR PREFLIGHT AND SINGLE-SEED PILOT",
+          "evidence": "[Handoff 09](../handoffs/2026-09-25-09-ws08-receiver-gate.md)：四个 4 ms 尾流对应末段 RTO；共享 IRN 四格交互 `−0.053 µs`、背景 P99 差 0。**效果主张 no-go**；固定总字节 0/2/4 和五 seed 未仿真。WS-08 当时未实现 GuardHash，后续工程交付见 WS-09"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-25-09-ws08-receiver-gate.md"
+      ]
+    },
+    {
+      "ws_number": 9,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0d998-0930-77e1-a813-093956e8a84f",
+          "title": "WS-09 GuardHash 与 HarmGate 原型验证",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0d998-0930-77e1-a813-093956e8a84f.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-09",
+          "name": "GuardHash/HarmGate 最小原型与正确性",
+          "state": "COMPLETE FOR V0 ENGINEERING AND SINGLE-SEED TECHNICAL PILOT",
+          "evidence": "[Handoff 10](../handoffs/2026-09-26-10-ws09-guardhash-prototype.md)：`shortq2/guardhash/guardhashgate` 模式 13/14/15、真实出口 per-port/per-tag 计数、32 主机单/双类、1280 跨 ToR 四流、旧 `fecmp/dualtrack` 同源码回归和三格同 trace pilot 均核验；另有 16 流受控准入丢包探针。十格机器摘要见 [JSON](../research/ws09-validation-summary.json)，无正式收益主张"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-26-10-ws09-guardhash-prototype.md"
+      ]
+    },
+    {
+      "ws_number": 10,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0da7c-8d4d-7522-b1c9-1bfb967bd170",
+          "title": "WS-10 固定总字节与多 seed MixTax 复核",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0da7c-8d4d-7522-b1c9-1bfb967bd170.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-10",
+          "name": "固定总字节与多 seed 现象复核",
+          "state": "COMPLETE FOR PREREGISTERED FIVE-SEED PHENOMENON TEST; NO-GO",
+          "evidence": "[Handoff 11](../handoffs/2026-09-26-11-ws10-fixed-load-formal.md)、[正式报告](../research/ws10-fixed-load-formal-report.md)、[30 格摘要](../research/ws10-fixed-load-formal-summary.json)：pilot 6/6、正式 30/30；4 档仅 1/5 正向，归一化中位数 −1.3947%，背景安全通过，2 档非单调"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-26-11-ws10-fixed-load-formal.md"
+      ]
+    },
+    {
+      "ws_number": 11,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0de18-0f20-7201-ab7c-0a6c92c1b727",
+          "title": "WS-11 全量输入现象验证与条件性机制对照",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0de18-0f20-7201-ab7c-0a6c92c1b727.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-11",
+          "name": "全量输入现象验证；条件性强对照与效果判断",
+          "state": "COMPLETE FOR PREREGISTERED FULL-INPUT PHENOMENON TEST; COMPOSITE NO-GO",
+          "evidence": "[Handoff 12](../handoffs/2026-09-27-12-ws11-full-moe-formal.md)、[报告](../research/ws11-full-moe-formal-report.md)、[40 格摘要](../research/ws11-full-moe-formal-summary.json)：完整 16,384 条同步 MoE、原始 0/64/128/192 背景和四组行顺序置换，40/40 两类全完成；主 192 档交互 5/5 正向、中位数 +35.9057%，但原始组背景 P99 +6.6527% 越过 5% 安全线，故复合 no-go"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-27-12-ws11-full-moe-formal.md"
+      ]
+    },
+    {
+      "ws_number": 12,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0def1-82cd-7941-89a2-759e0072d8ef",
+          "title": "WS-12 多逐包策略对照与双侧证据整合",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0def1-82cd-7941-89a2-759e0072d8ef.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-12 对照",
+          "name": "全量 MoE 加背景的多逐包策略对照",
+          "state": "COMPLETE FOR PREREGISTERED 120-CELL COMPARISON; FOUR STRATEGIES NO-GO",
+          "evidence": "[Handoff 13](../handoffs/2026-09-27-13-ws12-packet-strategies-formal.md)、[正式报告](../research/ws12-packet-strategies-formal-report.md)、[120 格摘要](../research/ws12-packet-strategies-formal-summary.json)：16,384 条固定 MoE、0/64/128/192 追加背景、五顺序组 × 六模式；120/120 两类全完成，旧两模式 40/40 FCT 哈希同 WS-11。RR/随机/自适应/DRILL 主档相对哈希缩短中位数 16.116%/18.406%/21.056%/22.549%，但背景安全各有越线，复合判据全部 no-go"
+        },
+        {
+          "label": "WS-12 解释",
+          "name": "边界、成本与论文证据整合",
+          "state": "COMPLETE FOR THREE-STUDY EVIDENCE SYNTHESIS; MECHANISM CONDITIONAL",
+          "evidence": "[WS-10/11/12 解释性负结果](../research/ws12-ws10-ws11-negative-evidence.md)已并列整理三种研究问题、两类输入契约、绝对批次与背景交互、热点及背景长尾、不等信息策略与不可观测项；预注册实验结果均保留 no-go。未来机制实验须另立前瞻性场景、独立需求重复与双侧安全门槛"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-27-13-ws12-packet-strategies-formal.md"
+      ]
+    },
+    {
+      "ws_number": 13,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0e1ac-fe55-7a91-a2de-205722db854b",
+          "title": "WS-13 背景长尾诊断与证据化实验判据",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0e1ac-fe55-7a91-a2de-205722db854b.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-13",
+          "name": "背景长尾定位与新实验契约",
+          "state": "COMPLETE FOR DIAGNOSTIC AND IRN×PFC TECHNICAL PILOTS; NO BUSINESS SAFETY LINE",
+          "evidence": "[Handoff 14](../handoffs/2026-09-27-14-ws13-feedback-probes.md)、[诊断报告](../research/ws13-tail-diagnosis-and-experiment-contract.md)与[IRN×PFC 四格报告](../research/ws13-irn-pfc-factorial-pilot-report.md)：逐流配对、三条独立校准 trace 和修正反馈探针已核验；四格常规输入 PFC 未触发，压力输入双开格仅 13/16 完成。定向探针证实缺失的三流发生出口准入丢包，随后三次超时被抑制。用户暂无可核验业务 SLO，保留连续权衡"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-27-14-ws13-feedback-probes.md"
+      ]
+    },
+    {
+      "ws_number": 14,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0e380-6362-71f0-a95b-9b14d8ce8765",
+          "title": "WS-14 单机制研究小样验证",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0e380-6362-71f0-a95b-9b14d8ce8765.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-14",
+          "name": "单一针对性机制小样",
+          "state": "COMPLETE FOR PREREGISTERED EXTREME-CELL PILOT; STOPPED AT TWO-SIDED GATE",
+          "evidence": "[Handoff 15](../handoffs/2026-09-28-15-ws14-guardhash-single-mechanism-pilot.md)、[契约](../research/ws14-single-mechanism-prereg-v1.md)、[报告](../research/ws14-guardhash-single-mechanism-pilot-report.md)：7/7 格完成，0 背景普通双候选/GuardHash FCT 相同；192 档 GuardHash 背景 P99 优于普通双候选，但 MoE 批次不优于 ECMP，且最慢背景 QP 转移，按预注册规则停止"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-28-15-ws14-guardhash-single-mechanism-pilot.md"
+      ]
+    },
+    {
+      "ws_number": 15,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0e3c8-49d4-7053-9060-9360c34dfcc3",
+          "title": "WS-15 正式验证门槛复核与独立需求设计",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0e3c8-49d4-7053-9060-9360c34dfcc3.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-15",
+          "name": "独立需求正式验证与门槛复核",
+          "state": "COMPLETE FOR GATE REVIEW; FORMAL MATRIX NO-GO",
+          "evidence": "[门槛复核](../research/ws15-independent-demand-gate-review.md)与 [Handoff 16](../handoffs/2026-09-28-16-ws15-gate-review.md)：WS-14 七格原始复核、WS-13 三条独立需求校准重算通过；筛选 GuardHash 调权、DRILL 异质性、目的出口反馈与 IRN×PFC，尚无合格新单机制，未启动新仿真"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-28-16-ws15-gate-review.md"
+      ]
+    },
+    {
+      "ws_number": 16,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0e418-8af6-7430-af42-a15274aeac3c",
+          "title": "WS-16 论文证据与复现收束",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0e418-8af6-7430-af42-a15274aeac3c.json",
+          "has_older_turns": false
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-16",
+          "name": "论文证据与复现收束",
+          "state": "COMPLETE FOR EVIDENCE INDEX AND PAPER-SCOPE REVIEW; ADVISOR DECISION PENDING",
+          "evidence": "[总报告](../research/ws16-paper-evidence-and-reproduction.md)、[216 ID 索引](../research/evidence/ws16-experiment-index.csv)、[Handoff 17](../handoffs/2026-09-28-17-ws16-paper-evidence.md)：逐格 trace/拓扑/FCT SHA 核验，正式 no-go、诊断、pilot 与未运行门槛分开；开题原文与交换机侧原型的范围差异已列明"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-28-17-ws16-paper-evidence.md"
+      ]
+    },
+    {
+      "ws_number": 17,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0e44f-d286-72f3-95ae-b4f93dfe38d0",
+          "title": "WS-17 瓶颈可控性与独立需求审计",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0e44f-d286-72f3-95ae-b4f93dfe38d0.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-17",
+          "name": "瓶颈可控性与独立需求审计",
+          "state": "COMPLETE FOR LOCAL AUDIT; NO NEW EFFECT CLAIM",
+          "evidence": "[审计](../research/ws17-bottleneck-demand-audit.md)、[输入 manifest](../research/evidence/ws17-demand-manifest.json)、[Handoff 18](../handoffs/2026-09-28-18-ws17-bottleneck-demand.md)：目的主机唯一出口、跨 ToR 上游多最短路径；三独立 seed 的轮次/热点需求可重生，旧 FCT 源等待缺口已定位；旧原始 ID 复核通过，无新仿真"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-28-18-ws17-bottleneck-demand.md"
+      ]
+    },
+    {
+      "ws_number": 18,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0e470-a6af-7bb0-afdf-fc6b74c90a75",
+          "title": "WS-18 发送准入与路径联合最小原型",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0e470-a6af-7bb0-afdf-fc6b74c90a75.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-18",
+          "name": "发送准入与路径联合最小原型",
+          "state": "COMPLETE FOR MINIMUM ENGINEERING CORRECTNESS; NO EFFECT CLAIM",
+          "evidence": "[Handoff 19](../handoffs/2026-09-28-19-ws18-minimal-prototype.md)、[五格机器摘要](../research/evidence/ws18-correctness-summary.json)：首轮 1 ns 输入误差保留作诊断；修复源码 `729d268…` 的旧 `fecmp` 加四臂五格均 `SUCCEEDED` 并回传 raw，旧 FCT 哈希回归及逐流身份、需求、三时刻、完成/字节/等待、路径与背景校验通过；四臂各 40/40、33,849,344 B"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-28-19-ws18-minimal-prototype.md"
+      ]
+    },
+    {
+      "ws_number": 19,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0e6fe-4a68-70b2-bcbc-341bf5cfabff",
+          "title": "WS-19 双侧小样事前设计",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0e6fe-4a68-70b2-bcbc-341bf5cfabff.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-19",
+          "name": "双侧小样与因果拆分",
+          "state": "COMPLETE FOR EXPLORATORY PAIRED PILOT; WS-20 GATE NO-GO",
+          "evidence": "[事前协议 v1](../research/ws19-admission-pilot-prereg-v1.md)、[结果报告](../research/ws19-admission-pilot-report.md)、[48 格机器摘要](../research/evidence/ws19-pilot-analysis.json)、[Handoff 20](../handoffs/2026-09-28-20-ws19-admission-pilot.md)：三独立需求 seed × 两热点 × 无/有背景 × 四臂，诊断 pilot 通过；固定源码 `b52e66f…` 的 48/48 格 raw 与逐格完整性复核通过；ToR/192 联合臂的 MoE 轮均和背景 P99 三 seed 均高于 ECMP，30 项预设方向筛中 19 项失败"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-28-20-ws19-admission-pilot.md"
+      ]
+    },
+    {
+      "ws_number": 20,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0e844-49a7-71e2-bb7f-2d11db3fc192",
+          "title": "WS-20 准入路径联合机制反例复核与重开门槛",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0e844-49a7-71e2-bb7f-2d11db3fc192.json",
+          "has_older_turns": false
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-20",
+          "name": "反例复核与重开门槛设计",
+          "state": "COMPLETE FOR LOCAL COUNTEREXAMPLE AUDIT AND CONDITIONAL DESIGN; CONFIRMATORY MATRIX NO-GO",
+          "evidence": "[反例报告](../research/ws20-counterexample-gate-review.md)、[逐流/逐跳记录](../research/evidence/ws20-counterexample-audit.json)、[条件性设计 v0](../research/ws20-next-exploratory-design-v0.md)、[Handoff 21](../handoffs/2026-09-28-21-ws20-counterexample-review.md)：WS-19 ToR/192 十二格原始计时和背景逐跳日志静态复算；联合 24/24 轮慢于 ECMP、23/24 轮尾换流并有准入等待；背景 P99 三 seed 全受损，出口峰值同现但不足以因果归因；本阶段无新仿真"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-28-21-ws20-counterexample-review.md"
+      ]
+    },
+    {
+      "ws_number": 21,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0e859-cb07-7c20-a001-38f271ddd0bf",
+          "title": "WS-21 下游反馈机制可实现性与观测设计",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0e859-cb07-7c20-a001-38f271ddd0bf.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-21",
+          "name": "精简下游反馈与局部心跳权衡",
+          "state": "COMPLETE FOR COMPACT STATE COST MATRIX AND LOCAL HEARTBEAT TECHNICAL PILOT; EFFECT MATRIX NO-GO; RESIDUALS DEFERRED TO WS-25 REVIEW",
+          "evidence": "[STATE 长尾报告](../research/ws21-compact-longtail-interval-report.md)、[Handoff 36](../handoffs/2026-09-30-36-ws21-compact-interval-matrix.md)：off/5/10/20/40 µs 五格完成，5 µs 有 15 份过期，零过期且样本年龄 ≤20.000 µs 的本次最低成本档为 10 µs。[心跳报告](../research/ws21-local-heartbeat-pilot-report.md)、[Handoff 38](../handoffs/2026-09-30-38-ws21-local-heartbeat-pilot.md)：50/200/1000 µs 为 9,856/2,464/528 B 逐跳字节；200 µs 连续丢 HELLO/ACK 格各标未知并恢复"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-28-22-ws21-downstream-feedback.md",
+        "docs/handoffs/2026-09-28-23-ws21-feedback-design-review.md",
+        "docs/handoffs/2026-09-28-24-ws21-identity-diagnostic-build.md",
+        "docs/handoffs/2026-09-29-25-ws21-identity-port-pair.md",
+        "docs/handoffs/2026-09-29-26-ws21-long-tail-build-gate.md",
+        "docs/handoffs/2026-09-29-27-ws21-long-tail-diagnostic-pair.md",
+        "docs/handoffs/2026-09-29-28-ws21-real-feedback-path-contract.md",
+        "docs/handoffs/2026-09-29-29-ws21-feedback-wire-prototype.md",
+        "docs/handoffs/2026-09-29-30-ws21-feedback-build-test.md",
+        "docs/handoffs/2026-09-29-31-ws21-longtail-feedback-pair.md",
+        "docs/handoffs/2026-09-29-32-ws21-compact-control-preflight.md",
+        "docs/handoffs/2026-09-29-33-ws21-v2-unit-build-diagnostic.md",
+        "docs/handoffs/2026-09-29-34-ws21-v2-40flow-pair.md",
+        "docs/handoffs/2026-09-29-35-ws21-v2-sol-analysis.md",
+        "docs/handoffs/2026-09-30-36-ws21-compact-interval-matrix.md",
+        "docs/handoffs/2026-09-30-37-ws21-local-heartbeat-preflight.md",
+        "docs/handoffs/2026-09-30-38-ws21-local-heartbeat-pilot.md"
+      ]
+    },
+    {
+      "ws_number": 22,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0f124-3c54-7843-b183-57d2cbf0ea5c",
+          "title": "WS-22 重排预算与粒度机制审查",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0f124-3c54-7843-b183-57d2cbf0ea5c.json",
+          "has_older_turns": false
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-22",
+          "name": "重排预算与粒度机制",
+          "state": "COMPLETE FOR LOCAL MECHANISM/OBSERVABILITY AUDIT; REMOTE SIMULATION NO-GO",
+          "evidence": "[Handoff 40](../handoffs/2026-09-30-40-ws22-reorder-budget-gate.md)：上游路径机会存在，但共同最终出口唯一；VOQ 仅处理相邻 phase 换路且无字节预算；逐 QP 乱序、NACK/超时/重传和接收占用无法由现有原始指标恢复"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-30-39-ws22-reorder-budget-kickoff.md",
+        "docs/handoffs/2026-09-30-40-ws22-reorder-budget-gate.md"
+      ]
+    },
+    {
+      "ws_number": 23,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0f15f-58c7-7532-84bd-9acaaaa14525",
+          "title": "WS-23 IRN×PFC恢复契约与正确性修复",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0f15f-58c7-7532-84bd-9acaaaa14525.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-23",
+          "name": "IRN×PFC 恢复正确性与隔离探索",
+          "state": "COMPLETE FOR PRESET NS-3 SYNTHETIC CORRECTNESS AND ISOLATION EXPLORATION; EFFICACY NO-GO",
+          "evidence": "[最终清单](WS23_WS24_VALIDATION_PLAN.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)；固定矩阵 SHA `3db2685a…` 的 18/18 有效格从 raw 与资源收据重算，`exploratory_positive=false`；旧失败 ID 保留并排除"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md",
+        "docs/handoffs/2026-09-30-42-ws23-irn-pfc-recovery-contract.md",
+        "docs/handoffs/2026-09-30-43-ws23-build-unit-ws24-topology-gate.md",
+        "docs/handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md",
+        "docs/handoffs/2026-09-30-46-ws23-ws24-validation-reopen.md",
+        "docs/handoffs/2026-09-30-47-ws23-two-cell-preflight.md",
+        "docs/handoffs/2026-10-02-55-ws23-ws24-final-integration.md"
+      ]
+    },
+    {
+      "ws_number": 24,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0f1da-f1e2-7870-9361-24b4d626fd76",
+          "title": "WS-24 多 rail 输入与放置可表示性审计",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0f1da-f1e2-7870-9361-24b4d626fd76.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-24",
+          "name": "合成多 NIC、多 rail 与放置",
+          "state": "COMPLETE FOR PRESET NS-3 SYNTHETIC MULTI-RAIL × PLACEMENT VALIDATION",
+          "evidence": "[最终清单](WS23_WS24_VALIDATION_PLAN.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)；旧 A/B/C/D 14 格、同 SHA 单测及 12 个独立合成 job × 四臂 48/48 格验收；主效应中位 −19.667%，精确双侧 `p=0.00048828125`"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md",
+        "docs/handoffs/2026-09-30-43-ws23-build-unit-ws24-topology-gate.md",
+        "docs/handoffs/2026-09-30-44-ws24-multirail-representability.md",
+        "docs/handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md",
+        "docs/handoffs/2026-09-30-46-ws23-ws24-validation-reopen.md",
+        "docs/handoffs/2026-10-02-55-ws23-ws24-final-integration.md"
+      ]
+    },
+    {
+      "ws_number": 25,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a0fc98-726e-76e1-8f85-2fb5dbe8d0c4",
+          "title": "WS-25 第一课题类别感知混合负载均衡",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a0fc98-726e-76e1-8f85-2fb5dbe8d0c4.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-25",
+          "name": "第一课题类别感知包流混合负载均衡",
+          "state": "COMPLETE FOR PRESET NS-3 EXPERIMENT AND PAPER DRAFT; FORMAL NO-GO; NOT SUBMITTED",
+          "evidence": "[七项验收审计](../research/ws25-first-paper-acceptance-audit.md)、[Handoff 77](../handoffs/2026-10-07-77-ws25-first-paper-prespecified-acceptance.md)、[执行清单](WS25_FIRST_PAPER_EXECUTION.md)：固定 v1 SHA `ce699df…`，24 独立 seed × 四档 × 六臂，**576/576** 原 ID、36 批 raw 验收；192 档相对 ECMP 的 MoE 中位 −3.536%/20/24 改善、背景 P99 −0.065%/13/24 改善，双侧共同主判据 NO-GO。v2/v2r1 各 28/28 探索格亦未过筛；负结果初稿和复现图表已形成"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-09-30-41-ws23-ws24-gates-and-ws25.md",
+        "docs/handoffs/2026-09-30-45-ws23-ws24-closure-ws25.md",
+        "docs/handoffs/2026-10-02-56-ws25-first-paper-preflight.md",
+        "docs/handoffs/2026-10-02-57-ws25-first-paper-c2-preflight-stop.md",
+        "docs/handoffs/2026-10-03-58-ws25-first-paper-analysis-pause.md",
+        "docs/handoffs/2026-10-03-59-ws25-calibration-analysis-and-v3-handoff.md",
+        "docs/handoffs/2026-10-03-60-ws25-calibration-v3-complete.md",
+        "docs/handoffs/2026-10-03-61-ws25-v1fix-correctness-complete.md",
+        "docs/handoffs/2026-10-03-62-ws25-v1fix-analysis-and-calibration-plan.md",
+        "docs/handoffs/2026-10-03-63-ws25-calibration-r1-input-source-mismatch.md",
+        "docs/handoffs/2026-10-03-64-ws25-calibration-r2-sync-and-r3-freeze.md",
+        "docs/handoffs/2026-10-03-65-ws25-calibration-r3-first-block.md",
+        "docs/handoffs/2026-10-03-66-ws25-calibration-r3-progress-4-of-28.md",
+        "docs/handoffs/2026-10-03-67-ws25-calibration-r3-progress-6-of-28.md",
+        "docs/handoffs/2026-10-03-68-ws25-calibration-diag-cli-arg-fix.md",
+        "docs/handoffs/2026-10-04-69-ws25-capacity-and-lower-load-calibration.md",
+        "docs/handoffs/2026-10-04-70-ws25-lower-load-admission-repair.md",
+        "docs/handoffs/2026-10-04-71-ws25-lower-load-calibration-complete.md",
+        "docs/handoffs/2026-10-04-72-ws25-formal-build-ssh-recovery.md",
+        "docs/handoffs/2026-10-04-73-ws25-formal-ssh-timeout-recovery.md",
+        "docs/handoffs/2026-10-04-74-ws25-formal-fetch-resume-recovery.md",
+        "docs/handoffs/2026-10-06-75-ws25-v1-formal-analysis-checkpoint.md",
+        "docs/handoffs/2026-10-06-76-ws25-v1-tail-diagnostic-and-figure-package.md",
+        "docs/handoffs/2026-10-07-77-ws25-first-paper-prespecified-acceptance.md"
+      ]
+    },
+    {
+      "ws_number": 26,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a11567-0dc6-7e03-89cb-a9f9355e6c54",
+          "title": "WS-26 双侧负载均衡机制与验证",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a11567-0dc6-7e03-89cb-a9f9355e6c54.json",
+          "has_older_turns": true
+        },
+        {
+          "id": "01a11568-af40-7ba0-9814-8c462f6bf9e8",
+          "title": "WS-26 实验副对话：远端唯一 runner 与逐格验收",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a11568-af40-7ba0-9814-8c462f6bf9e8.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-26",
+          "name": "ClassReserve v3、ClassLane v4 与诊断",
+          "state": "PAUSED BY USER; INCOMPLETE; PILOTS NO-GO",
+          "evidence": "[历史补全](../handoffs/2026-11-01-ws26-ws28-history-reconciliation.md)：v3/v4 r2 高档筛选未通过；第三候选未准入；主/敏感性 576+576 格未完成，两个未跟踪计划草稿保留"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-11-01-ws26-ws28-history-reconciliation.md"
+      ]
+    },
+    {
+      "ws_number": 27,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a130f7-85d4-7d63-853f-a08cc29bd2e3",
+          "title": "WS-27 GuardHash、HarmGate 与 ClassReserve…",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a130f7-85d4-7d63-853f-a08cc29bd2e3.json",
+          "has_older_turns": true
+        },
+        {
+          "id": "01a13564-ba26-7272-afda-abdcf4aa6313",
+          "title": "WS-27 收束核验（续）",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a13564-ba26-7272-afda-abdcf4aa6313.json",
+          "has_older_turns": false
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-27",
+          "name": "三类别机制的独立比较",
+          "state": "COMPLETE FOR PRESET ENGINEERING AND COMPARISON",
+          "evidence": "[历史补全](../handoffs/2026-11-01-ws26-ws28-history-reconciliation.md)：正确性 7、资源 24、筛选 32、独立确认 384 格验收；三候选通过当轮背景中位工程约束，仍有单需求反例"
+        }
+      ],
+      "canonical_handoffs": []
+    },
+    {
+      "ws_number": 28,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a1366a-eef6-7790-b099-1aca879251d1",
+          "title": "WS-28 ClassReserve 机制解释与原生基线实验",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a1366a-eef6-7790-b099-1aca879251d1.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-28",
+          "name": "组件解释与原生基线",
+          "state": "COMPLETE FOR PRESET NS-3 EXPLANATION AND ABLATION",
+          "evidence": "[历史补全](../handoffs/2026-11-01-ws26-ws28-history-reconciliation.md)：原生六臂 144（新增 96）、正式组件消融 120、反例诊断 12 格验收；组件增量未被清晰识别"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-11-01-ws26-ws28-history-reconciliation.md"
+      ]
+    },
+    {
+      "ws_number": 29,
+      "thread_read": false,
+      "read_scope": "metadata only; user explicitly deferred WS-29 and prohibited reading/waking it",
+      "threads": [],
+      "canonical_state_rows": [
+        {
+          "label": "WS-29",
+          "name": "有成本、有时效的状态反馈研究",
+          "state": "DEFERRED; RETAIN BOTH THREADS UNARCHIVED",
+          "evidence": "[ADR-011](../decisions/ADR-011-ws30-closure-ws31-and-ws29-deferral.md)：保持历史编号，执行顺序后移；等待经过验证的 QueuePin＋新类别感知机制基线后再接续"
+        }
+      ],
+      "canonical_handoffs": []
+    },
+    {
+      "ws_number": 30,
+      "thread_read": true,
+      "read_scope": "latest returned turns plus relevant handoff/source documents",
+      "threads": [
+        {
+          "id": "01a16b16-9f14-74a0-9a4a-cc6eb7f28295",
+          "title": "WS-30｜ClassReserve 实验补正与证据分析",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a16b16-9f14-74a0-9a4a-cc6eb7f28295.json",
+          "has_older_turns": true
+        },
+        {
+          "id": "01a17207-8dab-75a0-bb6b-9e08535cf917",
+          "title": "分析文章与 WS-30 现状契合度",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a17207-8dab-75a0-bb6b-9e08535cf917.json",
+          "has_older_turns": false
+        },
+        {
+          "id": "01a174c7-ecf5-7f21-a9dc-6f8b4f5634b8",
+          "title": "WS-30 v13：补充实验与证据复核",
+          "evidence": "docs/research/evidence/ws-history-20261101/01a174c7-ecf5-7f21-a9dc-6f8b4f5634b8.json",
+          "has_older_turns": true
+        }
+      ],
+      "canonical_state_rows": [
+        {
+          "label": "WS-30",
+          "name": "ClassReserve 补正、QueuePin v13 与投稿前修订",
+          "state": "COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE",
+          "evidence": "[收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作"
+        }
+      ],
+      "canonical_handoffs": [
+        "docs/handoffs/2026-10-29-ws30-v14-p0-supervisor-stage.md",
+        "docs/handoffs/2026-11-01-ws30-v13-closure.md"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\ws30-v13-formal-complete-main-verification.json",
+      "relative_project_path": "thesis/ws30-v13-formal-complete-main-verification.json",
+      "bytes": 1168,
+      "sha256": "98d4400ed40b94733a13d8612ffdf1b441f635e136795c347217d1a21ff6803a"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\ws30-v13-formal-stats-main-audit-r2.json",
+      "relative_project_path": "thesis/ws30-v13-formal-stats-main-audit-r2.json",
+      "bytes": 888,
+      "sha256": "0bc6457e321299565b7b2e0728373c9e70c4a5f84d28f96b349f25372928e8e5"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\ws30-v13-endpoint-all48-main-verification.json",
+      "relative_project_path": "thesis/ws30-v13-endpoint-all48-main-verification.json",
+      "bytes": 827225,
+      "sha256": "31686c89d022ad8db554e3819a75eef8aaf88b371d17caf955297fe7523528f1"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\ws30-v13-w5-all36-main-verification-r1.json",
+      "relative_project_path": "thesis/ws30-v13-w5-all36-main-verification-r1.json",
+      "bytes": 248142,
+      "sha256": "543c81d175920227f63b04f6417f17fbd16f42d5c3627b6032d46d596c27f5c0"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\ws30-v13-rng-all48-raw-main-verification-r1.json",
+      "relative_project_path": "thesis/ws30-v13-rng-all48-raw-main-verification-r1.json",
+      "bytes": 321835,
+      "sha256": "ce011881bfba3aaad713ab73502710782f743195be6468c57a774778742f6399"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\ws30-v13-rng-full-node-main-audit-r1.json",
+      "relative_project_path": "thesis/ws30-v13-rng-full-node-main-audit-r1.json",
+      "bytes": 4599,
+      "sha256": "e0dd2512c4ef17fffbd9f926cdc3f4d21b25a2a5a771d74e3b03fda2407e71da"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\ws30-v13-review26-reconciliation-main-r1.json",
+      "relative_project_path": "thesis/ws30-v13-review26-reconciliation-main-r1.json",
+      "bytes": 42482,
+      "sha256": "2bfa6de84394237ee34c898eeee5646a63fb9f4b488e39746e0e481ee7feaecf"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\ws30-v13-reproducibility-index.md",
+      "relative_project_path": "thesis/ws30-v13-reproducibility-index.md",
+      "bytes": 10708,
+      "sha256": "a1cd14f06314b6643bbd6a3a18aa87c315c985c85acda9de1ba0709fbd2ebfd4"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\review-evidence\\20261029-v14\\p0-wave27-acceptance-main-r1.json",
+      "relative_project_path": "thesis/review-evidence/20261029-v14/p0-wave27-acceptance-main-r1.json",
+      "bytes": 3028,
+      "sha256": "b3785bdbbda08a6d62a73caf6468a40dabd94f319ba8fcf79f0cda5202e67c03"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws30-attribution-audit\\results\\ws30-paper-v14-p0-full52-index-r1.json",
+      "relative_project_path": "workspace/ws30-attribution-audit/results/ws30-paper-v14-p0-full52-index-r1.json",
+      "bytes": 31344,
+      "sha256": "007eda8ea33289a7c41353e643dbc1edcf0348dd1984e63d292228ad5f493dd0"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws30-attribution-audit\\docs\\research\\ws30-v12-evidence-synthesis-r1.md",
+      "relative_project_path": "workspace/ws30-attribution-audit/docs/research/ws30-v12-evidence-synthesis-r1.md",
+      "bytes": 22354,
+      "sha256": "22fb229ffff862e013064e07acaf77942ada8f3989087a89d30cb6a752f40941"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws30-attribution-audit\\docs\\research\\ws30-v12-scoped-recheck-r2.md",
+      "relative_project_path": "workspace/ws30-attribution-audit/docs/research/ws30-v12-scoped-recheck-r2.md",
+      "bytes": 9627,
+      "sha256": "6d16654aa942f8a8d4787ae95aecfedfea180d1fc4535479b09c5a3aa98bb807"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws26-classmix-validation\\docs\\handoffs\\2026-10-11-88-ws26-third-signal-admission-design.md",
+      "relative_project_path": "workspace/ws26-classmix-validation/docs/handoffs/2026-10-11-88-ws26-third-signal-admission-design.md",
+      "bytes": 3177,
+      "sha256": "732f2a3d7635ad54b3a8875f3a18fd553daae85cf103a1cafd4be966e9a622a4"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws26-classmix-validation\\docs\\research\\ws26-failure-cause-and-method-gate.md",
+      "relative_project_path": "workspace/ws26-classmix-validation/docs/research/ws26-failure-cause-and-method-gate.md",
+      "bytes": 7658,
+      "sha256": "c2ffb66245257a82f163ec95bd29d3e1167325da8d7a8cdbf8a759e6c6a6562e"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws26-classmix-validation\\docs\\research\\ws26-classlane4-pilot-r2-analysis.md",
+      "relative_project_path": "workspace/ws26-classmix-validation/docs/research/ws26-classlane4-pilot-r2-analysis.md",
+      "bytes": 4125,
+      "sha256": "76ea5d5e30c1da0ff5a28f82ae330fc8fbd4db2ebdeb3341bc661d457e654366"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws27-guardhash-compare\\docs\\handoffs\\2026-10-13-78-ws27-independent-confirmation.md",
+      "relative_project_path": "workspace/ws27-guardhash-compare/docs/handoffs/2026-10-13-78-ws27-independent-confirmation.md",
+      "bytes": 5358,
+      "sha256": "4c87a61766a9afe0f4dc5151f8d1ddbdb72fad134fa2f7e69e2a3a9d9a4e6218"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws27-guardhash-compare\\docs\\research\\evidence\\ws27-confirm-analysis.json",
+      "relative_project_path": "workspace/ws27-guardhash-compare/docs/research/evidence/ws27-confirm-analysis.json",
+      "bytes": 141418,
+      "sha256": "51bdd82a3a5b9f52f88dd037f5a1f9acde3ad46e29370f39d686a69850144038"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws28-classreserve-explanation\\docs\\research\\ws28-final-acceptance-audit.md",
+      "relative_project_path": "workspace/ws28-classreserve-explanation/docs/research/ws28-final-acceptance-audit.md",
+      "bytes": 3747,
+      "sha256": "4ae9258daba8342f9b1fcb76b283258b600c0a423f300c5872a23a71b9d18c18"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-figure-revision-r12\\icc-zh.md",
+      "relative_project_path": "thesis/queuepin-v13-figure-revision-r12/icc-zh.md",
+      "bytes": 29235,
+      "sha256": "ea8afe94147ccbc0f3f577b4d082d5d7a2ba857c557eb3153674222797281e9a"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-figure-revision-r12\\ieee\\main.tex",
+      "relative_project_path": "thesis/queuepin-v13-figure-revision-r12/ieee/main.tex",
+      "bytes": 33107,
+      "sha256": "1d3d0729710b469d085ca19b658faff0cf53c7bbf3374bfdc4d331765a27894b"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-figure-revision-r12\\queuepin-icc-authors-r12.pdf",
+      "relative_project_path": "thesis/queuepin-v13-figure-revision-r12/queuepin-icc-authors-r12.pdf",
+      "bytes": 241939,
+      "sha256": "f16e2fa5e7873aa62acf6181c5f0eafc45a90dfd75d583fcc27dfed345563a0b"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\thesis\\queuepin-v13-figure-revision-r12\\records\\r12-main-verification.json",
+      "relative_project_path": "thesis/queuepin-v13-figure-revision-r12/records/r12-main-verification.json",
+      "bytes": 2989,
+      "sha256": "1e73aceb68ca1a7dc8f971d7690df6779a29cb27fd6132f492bc6a1955f69a94"
+    }
+  ],
+  "existing_expected_hashes_match": true,
+  "v14": {
+    "planned": 892,
+    "accepted_P0": 52,
+    "not_executed": 840,
+    "modules": [
+      {
+        "module": "P1",
+        "runs": 360,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P2",
+        "runs": 72,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P3",
+        "runs": 32,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P4",
+        "runs": 24,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P5",
+        "runs": 32,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P6",
+        "runs": 64,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P7",
+        "runs": 32,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P8",
+        "runs": 16,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P9",
+        "runs": 48,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P10",
+        "runs": 120,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      },
+      {
+        "module": "P11",
+        "runs": 40,
+        "new_disposition": "not executed; removed from automatic WS-30 continuation by user-approved scope closure; only revisit under a separately justified new protocol"
+      }
+    ]
+  },
+  "git_observations": [
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3",
+      "head": {
+        "exit_code": 0,
+        "output": "06552c758a6e111a53d2f6772262dbc88ed73f35",
+        "stderr": ""
+      },
+      "branch": {
+        "exit_code": 0,
+        "output": "feature/ws23-ws24-evidence-integration",
+        "stderr": ""
+      },
+      "status": {
+        "exit_code": 0,
+        "output": "M docs/project-state/CONFLICTS.md\n M docs/project-state/CURRENT_STATE.md\n M docs/project-state/ROADMAP.md\n M docs/project-state/WORKSTREAMS.md\n?? docs/decisions/ADR-011-ws30-closure-ws31-and-ws29-deferral.md\n?? docs/handoffs/2026-11-01-ws26-ws28-history-reconciliation.md\n?? docs/handoffs/2026-11-01-ws30-v13-closure.md\n?? docs/project-state/WS31_EXECUTION.md\n?? docs/project-state/queuepin-baseline-manifest-r1.json\n?? docs/project-state/ws31-coordination.json\n?? docs/research/evidence/ws-history-20261101/\n?? docs/research/ws30-submission-followup.md\n?? docs/research/ws31/\n?? scripts/audit_ws_history_20261101.py",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws26-classmix-validation",
+      "head": {
+        "exit_code": 0,
+        "output": "f60c8002057a4ca65b5b31f8610acbb8549aa316",
+        "stderr": ""
+      },
+      "branch": {
+        "exit_code": 0,
+        "output": "feature/ws26-classmix-validation",
+        "stderr": ""
+      },
+      "status": {
+        "exit_code": 0,
+        "output": "?? docs/research/evidence/ws26-queue-front-seed97-plan.json\n?? scripts/make_ws26_queue_front_plan.py",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws27-guardhash-compare",
+      "head": {
+        "exit_code": 0,
+        "output": "19112eee446b03623204a412bada2e1429c1ba72",
+        "stderr": ""
+      },
+      "branch": {
+        "exit_code": 0,
+        "output": "feature/ws27-guardhash-comparison",
+        "stderr": ""
+      },
+      "status": {
+        "exit_code": 0,
+        "output": "",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws28-classreserve-explanation",
+      "head": {
+        "exit_code": 0,
+        "output": "842b96ebd9d2037fd5c7486a41b2f101ead013c9",
+        "stderr": ""
+      },
+      "branch": {
+        "exit_code": 0,
+        "output": "feature/ws28-classreserve-explanation",
+        "stderr": ""
+      },
+      "status": {
+        "exit_code": 0,
+        "output": "",
+        "stderr": ""
+      }
+    }
+  ],
+  "remote_access_performed": false,
+  "new_simulation_performed": false,
+  "ws29_body_read": false,
+  "ws29_archived": false
+}

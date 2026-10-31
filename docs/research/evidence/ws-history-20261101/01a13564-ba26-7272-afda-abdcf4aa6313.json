@@ -1,0 +1,31 @@
+{
+  "ws_number": 27,
+  "thread_id": "01a13564-ba26-7272-afda-abdcf4aa6313",
+  "title": "WS-27 收束核验（续）",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 3,
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "scope": "latest three returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a13564-bb2d-7131-a2fd-48f26a2e7bf0",
+      "status": "completed",
+      "startedAt": 1791897156,
+      "completedAt": 1791897773,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "WS-27 已完成交接和项目状态集成。复核从原始结果通过：正确性 **7/7 格**、资源阶梯 **24/24 格**、筛选 **32/32 格**、独立确认 **384/384 格**；无背景档 ClassReserve 与 GuardHash v2 的 FCT 哈希也为 **24/24 对相同**。\n\n192 档相对同输入 ECMP 的结果如下，负值表示 MoE 整批完成时间缩短：\n\n| 机制 | MoE 中位变化 | 改善 seed | 背景 P99 中位变化 |\n| --- | ---: | ---: | ---: |\n| ClassReserve v1 | −6.899% | 21/24 | +0.552% |\n| GuardHash v2 | −5.965% | 22/24 | +0.340% |\n| HarmGate v2 | −6.095% | 22/24 | +0.064% |\n\n三者均通过本轮背景 P99 **中位变化低于 +3%** 的工程判据，但各有 **6/24、6/24、7/24** 个 seed 单独越线。本轮没有预设三机制之间的显著性检验，也没有交换机实现成本或生产 SLO 证据，因此未自动选定论文主机制。效应区间和反例见[确认报告](E:/研/毕业论文/workspace/ws27-guardhash-compare/docs/research/ws27-confirm-report.md)，完整交接见[Handoff 78](E:/研/毕业论文/workspace/ws27-guardhash-compare/docs/handoffs/2026-10-13-78-ws27-independent-confirmation.md)。\n\n文档已提交并推送至个人 fork 的 `feature/ws27-guardhash-comparison`，本地与远端均为 `19112eee`，工作树干净。本轮未启动远端实验，未触碰 WS-26 工作树；WS-25 的原判定未重判。当前应用工具未提供可核验本任务实际模型配置的字段，因此我无法确认 Sol / Medium 是否实际生效。"
+        }
+      ]
+    }
+  ]
+}

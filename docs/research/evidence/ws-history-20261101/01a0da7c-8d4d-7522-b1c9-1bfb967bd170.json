@@ -1,0 +1,52 @@
+{
+  "ws_number": 10,
+  "thread_id": "01a0da7c-8d4d-7522-b1c9-1bfb967bd170",
+  "title": "WS-10 固定总字节与多 seed MixTax 复核",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0da7c-8d4d-7522-b1c9-1bfb967bd170\",\"rolloutOrdinal\":4331,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0de0a-aef0-7a11-9b76-2f4106b2c2ab",
+      "status": "completed",
+      "startedAt": 1790431637,
+      "completedAt": 1790431682,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "不考虑全量场景会不会可能导致一直进行no-go决策\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**有这个风险，你的担心是合理的。**WS-10 只测试了“256 条目标小流、最多 4 条背景大流、固定总字节”这一种场景；而现有完整输入是 **16,384 条同步小流，加 0/64/128/192 条大流**。规模和争用方式差很多。如果真实热点需要大量流同时竞争，始终只测 WS-10 这样的抽样场景，确实可能反复得到 no-go，漏掉全量场景中的现象。[流量静态画像](<E:/研/毕业论文/docs/research/12-screenshot-lessons-and-mechanism-selection.md>)、[WS-10 报告](<E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws10-fixed-load-formal-report.md>)\n\n但 **WS-10 的 no-go 不会自动延续到新场景**。它只是说：本轮预先指定的场景未达到继续门槛。全量输入若出现稳定损害，可以形成一项新的、独立的结果；若仍未出现，也应如实记录，不能不断换条件直到得到 go。\n\n从研究设计看，全量输入值得作为**下一项现象检查**，但要分清两个问题：\n\n- **现象是否存在：**在原始全量文件中，逐步加入背景大流，是否出现可重复的短流或大流损害？\n- **损害由什么引起：**原始文件“加背景”的同时也增加了总字节数。即使出现劣化，还需进一步区分混合流的路径冲突与单纯总负载增加，不能直接归因于包流混合。\n\n因此，我会把“考虑全量场景”视为对 WS-10 **适用范围的重要补充**，而不是推翻其 no-go 或直接跳到 WS-11。当前没有启动新仿真，也没有改动既定决策。"
+        }
+      ]
+    },
+    {
+      "id": "01a0de08-0f62-76a2-b769-cabd4391f007",
+      "status": "completed",
+      "startedAt": 1790431465,
+      "completedAt": 1790431566,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "no-go决策是什么？\n计入术语提问文档\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**no-go 决策**就是：事先约定的继续条件没有达到，因此不能按原计划进入依赖它的下一步。\n\n在 WS-10 中，主条件要求四条背景大流档位至少 **4/5 组**出现正向额外损害，且损害中位数至少 **5%**。实际只有 **1/5 组**为正，中位数为 **−1.3947%**，所以**这套场景的跨类损害现象判为 no-go**。这不表示 GuardHash/HarmGate 已被证明无效，也不判断其他流量场景。\n\n我已将解释作为 **TQ-004** 写入[术语提问文档](<E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/TERMINOLOGY_QA.md>)，并更新了其中过时的 WS-10 状态。提交 `6cc47c6` 已推送，工作树干净。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "ws_number": 7,
+  "thread_id": "01a0d510-565c-7732-a794-ca2ee68323a3",
+  "title": "WS-07 双轨基线与 MixTax",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0d510-565c-7732-a794-ca2ee68323a3\",\"rolloutOrdinal\":1745,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0d89d-8d3b-7d60-8368-249275e799a8",
+      "status": "completed",
+      "startedAt": 1790340599,
+      "completedAt": 1790340622,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "这个选路方法来源于哪里\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**没有一篇论文是这段选路规则的直接出处。**WS-07 把三样东西组合成了一个实验对照：\n\n1. **按流选路**直接沿用 ConWeave 仓库原有的 [ECMP 实现](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/src/point-to-point/model/switch-node.cc:80)。\n2. **让每个包可能选不同路径**，借鉴了逐包分流和参考仓库 MixHash 的思路；“按包与按流混用”也已有研究，例如 [FAMG](https://www.sciencedirect.com/science/article/pii/S0140366423002517)。\n3. **`tag=2` 用包序号参与哈希、`tag=1` 保持原 ECMP**，是 WS-07 为隔离实验变量写的[具体规则](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/src/point-to-point/model/switch-node.cc:107)。\n\n所以它的定位是**自行实现的简单实验基线**，不是原创的逐包选路思想，也不是直接复现 FAMG 或 MixHash。"
+        }
+      ]
+    },
+    {
+      "id": "01a0d84f-3d88-77d0-8433-b390370bfd16",
+      "status": "completed",
+      "startedAt": 1790335466,
+      "completedAt": 1790335544,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "逐包模式是自行设计还是根据已有经验设计，具体设计是什么\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**两者都有：思路来自已有方法，WS-07 的代码是为这次实验自行实现的。**它是一个用来观察问题的最小对照，不能当作新的正式算法成果。\n\n具体规则很简单：\n\n- **背景流（`tag=1`）**：沿用原来的 ECMP。对一条流做一次固定哈希，因此同一条流的包通常走同一条路径。\n- **MoE 流（`tag=2`）**：在原哈希输入中加入每个包的 UDP 序号，再从等价的下一跳中选一条。同一条流的不同包因此*可能*走不同路径；只有一条下一跳时就不会分流。\n- **ACK、NACK 等控制包**：继续走原来的分派。接收端、拥塞控制和重传逻辑没有随之改动。\n\n实际选择代码在 [switch-node.cc](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/src/point-to-point/model/switch-node.cc:107)。它是**固定哈希选路**：不看实时队列，也没有“挑两条较空路径”的逻辑。\n\n逐包分流和按流/按包混用都有已有研究，例如 [FAMG](https://www.sciencedirect.com/science/article/pii/S0140366423002517)。本轮参考了这类思路及项目中 MixHash 的哈希选路经验，但**没有照搬 MixHash 的接收端重排机制**。这也正是当前实验需要查清的地方：包走不同路径后可能乱序，而逐包模式即使没有背景流也出现了约 4 毫秒的长尾。"
+        }
+      ]
+    }
+  ]
+}

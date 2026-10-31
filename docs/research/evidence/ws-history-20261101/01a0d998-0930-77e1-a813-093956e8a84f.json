@@ -1,0 +1,47 @@
+{
+  "ws_number": 9,
+  "thread_id": "01a0d998-0930-77e1-a813-093956e8a84f",
+  "title": "WS-09 GuardHash 与 HarmGate 原型验证",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0d998-0930-77e1-a813-093956e8a84f\",\"rolloutOrdinal\":2027,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0da75-da0f-7be0-a05f-47344ac63600",
+      "status": "completed",
+      "startedAt": 1790371552,
+      "completedAt": 1790371589,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "继续中断的工作\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**WS-09 做的是把一个选路想法做成能运行的原型，并检查它有没有按设计工作。**它还不是证明这个方法能改善网络性能的正式实验。\n\n可以把它想成给数据包选路：普通方案看哪条路更空；GuardHash 还参考这条路上背景流量的占用；HarmGate 像一个开关，只有本地拥堵达到预设程度时，才启用这项额外判断。\n\n**过程**大致分四步：\n\n1. 先定好三种可比较的方案和开关规则，再写入仿真程序。\n2. 用小规模、混合流量和跨交换机的场景检查：数据能否送达、不同流量是否走对规则、旧方案是否仍正常。\n3. 让三种方案面对同一份流量，做一次小规模预试验。\n4. 额外制造拥堵和丢包，检查程序对进出队列的数据记录是否对得上。首次编译遇到的问题已修复，之后完成了这些检查。\n\n**结果**是：原型能运行，检查中的流量按预期完成，队列记录没有发现不平衡；HarmGate 在预试验中确实启动过，并非只写了一个没有生效的开关。但这次同输入比较只用了**一个随机流量样本**：三种方案的目标流量完成时间约为 **1.421、1.415、1.490 微秒**，开启 HarmGate 的方案在这次试验里反而稍慢，背景流量的所看指标相同。因此，**目前能说“做出来并通过了初步技术验证”，不能说“已经证明更快或更好”**。多份独立流量样本和正式对照仍未做；此前“尚无明确收益证据”的判断没有改变。\n\n记录见 [WS-09 交接说明](/E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/handoffs/2026-09-26-10-ws09-guardhash-prototype.md) 和 [逐项核验结果](/E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws09-validation-summary.json)。"
+        }
+      ]
+    },
+    {
+      "id": "01a0da09-b08e-7541-bb23-7a1a93b1d10f",
+      "status": "failed",
+      "startedAt": 1790364463,
+      "completedAt": 1790364481,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "用非技术化的方式告诉我，本轮WS-09做了什么，过程、结果分别是什么\n"
+        }
+      ]
+    }
+  ]
+}

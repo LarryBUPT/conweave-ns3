@@ -1,0 +1,56 @@
+{
+  "ws_number": 27,
+  "thread_id": "01a130f7-85d4-7d63-853f-a08cc29bd2e3",
+  "title": "WS-27 GuardHash、HarmGate 与 ClassReserve…",
+  "archived_at_inventory": false,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 3,
+    "nextCursor": "{\"requestedThreadId\":\"01a130f7-85d4-7d63-853f-a08cc29bd2e3\",\"rolloutOrdinal\":2076,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest three returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a13570-d951-7540-aa4f-f7435f9e6178",
+      "status": "completed",
+      "startedAt": 1791897950,
+      "completedAt": 1791897977,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "已核对 Handoff 78 和 WS-27 确认报告的标题与结论，接回 WS-27 原副对话；现停止工作。"
+        }
+      ]
+    },
+    {
+      "id": "01a1356e-4559-7f42-929b-6eddd4a6fbbd",
+      "status": "completed",
+      "startedAt": 1791897781,
+      "completedAt": 1791897929,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "WS-27 的预设比较已完成。我复核了确认报告、关键结果文件的 SHA-256，以及工作分支与个人 fork 同名分支的提交；两端均为 `19112ee`，工作树干净。正确性 7/7、资源阶梯 24/24、筛选 32/32、独立确认 384/384 格已验收。本次没有重跑实验或改动文件。\n\n192 档相对同输入 ECMP 的结果如下。负值表示 MoE 整批完成时间缩短：\n\n| 机制 | MoE 批完成时间中位变化 | 改善 seed | 背景 P99 中位变化 | 背景单 seed 超过 +3% |\n| --- | ---: | ---: | ---: | ---: |\n| ClassReserve v1 | −6.899% | 21/24 | +0.552% | 6/24 |\n| GuardHash v2 | −5.965% | 22/24 | +0.340% | 6/24 |\n| HarmGate v2 | −6.095% | 22/24 | +0.064% | 7/24 |\n\n三者都满足您指定的**背景 P99 跨 seed 中位变化严格小于 +3%**的判据。MoE 效应、自助区间和逐 seed 反例见[确认报告](E:/研/毕业论文/workspace/ws27-guardhash-compare/docs/research/ws27-confirm-report.md)；逐格索引见[机器摘要](E:/研/毕业论文/workspace/ws27-guardhash-compare/docs/research/evidence/ws27-confirm-analysis.json)。中位数通过不代表每个 seed 的背景流都安全，现有实验也未证明三种机制之间存在显著优劣。\n\nWS-27 的实验与报告范围已经闭环，项目状态已写入该工作分支的[当前状态入口](E:/研/毕业论文/workspace/ws27-guardhash-compare/docs/project-state/CURRENT_STATE.md)。按您此前的决定，我没有用改善幅度自动选论文主机制；这一步留给您依据效应、反例和实现代价研判。WS-26 保持暂停。"
+        }
+      ]
+    },
+    {
+      "id": "01a1316f-f02d-7802-b706-bdf3d72b9e24",
+      "status": "failed",
+      "startedAt": 1791830782,
+      "completedAt": 1791830793,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "继续推进任务\n"
+        }
+      ]
+    }
+  ]
+}

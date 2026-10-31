@@ -1,0 +1,51 @@
+{
+  "ws_number": 26,
+  "thread_id": "01a11568-af40-7ba0-9814-8c462f6bf9e8",
+  "title": "WS-26 实验副对话：远端唯一 runner 与逐格验收",
+  "archived_at_inventory": false,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 3,
+    "nextCursor": "{\"requestedThreadId\":\"01a11568-af40-7ba0-9814-8c462f6bf9e8\",\"rolloutOrdinal\":37347,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest three returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a130f7-1b6e-7231-9238-bf61073b455f",
+      "status": "completed",
+      "startedAt": 1791822863,
+      "completedAt": 1791822879,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "已停止。WS-27 尚无任何本地或远端操作、文件变更或实验 ID；WS-26 继续暂停，草稿保持原状。"
+        }
+      ]
+    },
+    {
+      "id": "01a1300b-055e-7813-957f-bd0363404e8c",
+      "status": "failed",
+      "startedAt": 1791807391,
+      "completedAt": 1791807393,
+      "items": []
+    },
+    {
+      "id": "01a12f5f-d2ed-7352-9fc4-76110a8eec56",
+      "status": "completed",
+      "startedAt": 1791796171,
+      "completedAt": 1791796365,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "已暂停 WS-26 工作。已推送的源码提交保持为 `f60c800`；本地生成的计划脚本和 JSON 尚未提交、复核或冻结，均已保留。未访问仿真远端，也未编译或运行仿真。"
+        }
+      ]
+    }
+  ]
+}

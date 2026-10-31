@@ -1,0 +1,52 @@
+{
+  "ws_number": 15,
+  "thread_id": "01a0e3c8-49d4-7053-9060-9360c34dfcc3",
+  "title": "WS-15 正式验证门槛复核与独立需求设计",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0e3c8-49d4-7053-9060-9360c34dfcc3\",\"rolloutOrdinal\":250,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0e413-71e8-7713-9634-e715567c7cf6",
+      "status": "completed",
+      "startedAt": 1790532874,
+      "completedAt": 1790532919,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "DRILL就是随机包喷洒吗\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "不完全是。**本项目里的 DRILL 会逐包做选路，也会随机抽样，但最终不一定选随机端口。**它先随机抽取最多两个可用下一跳，再把“上次为这个目的地址选出的较优端口”也纳入比较，读取这些端口的**本地出口队列长度**，选择队列最短的那个。实现见 [DoLbDrill](/E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/src/point-to-point/model/switch-node.cc:372)。\n\n所以可以区分为：\n\n- **均匀随机包喷洒**：每包随机选路，不看队列。\n- **本项目的 DRILL**：每包随机*抽候选*，再根据本地队列长度选路，并保留上次的较优端口。\n\n在这组 MoE 混合实验中，逐包 DRILL 用于 `tag=2` 的 MoE 数据包；背景流仍按流 ECMP。它也不是依据目的端排队反馈选路——读取的是当前交换机的本地出口队列。"
+        }
+      ]
+    },
+    {
+      "id": "01a0e40d-4233-7d72-8310-4383f6499402",
+      "status": "completed",
+      "startedAt": 1790532469,
+      "completedAt": 1790532669,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "MOE条件是什么，完整详讲解细\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "这里的 **MoE 条件**，准确说是 WS-14 在仿真前定下的一个继续实验门槛：\n\n> 在追加 **192 条背景流**的同一份输入上，GuardHash 必须让整批 MoE 流比**全流 ECMP**更早完成。否则停止扩展实验。\n\n它首先看的是**绝对完成时间的方向**：GuardHash 的 MoE 批次时间必须小于同档 ECMP。事前契约没有为这一步另设“至少快 5%”之类的幅度线；历史 WS-10/11/12 的 5% 判据不能搬来修改 WS-14 的规则。\n\n**“MoE 批次时间”怎么算？**输入中有 16,384 条标记为 `tag=2`、每条 8 KiB 的 MoE 流。分析脚本先用输入 trace 核对这些流是否全部完成；只有全部完成，才计算：\n\n\\[\n\\text{MoE 合成批次时间}\n= \\text{最后一条 MoE 流的完成时刻}\n- \\text{这批输入的最早开始时刻}\n\\]\n\n所以它看的是**整批的最后完成时刻**，不是平均 FCT，也不是 MoE 流的 P99 FCT。一条 MoE 流拖得很久，就会拉长这个数。它是为同步流量构造的 *合成批次指标*；输入没有真实的 MoE 计算轮次和依赖关系，不能把它直接称为真实任务的 job CCT。计算口径可见 [分析脚本](/E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/scripts/analyze_moe_tags.py:25)。\n\n**为什么一定和同档 ECMP 比？**WS-14 想检验的不是“GuardHash 比某个已经偏慢的逐包策略好一点”，而是：它在照顾背景长流时，能否仍给 MoE 带来相对基本按流选路方案的收益。因此 192 档的 ECMP 与 GuardHash 使用相同的流量 trace、拓扑、传输配置和仿真 seed，主要改变选路模式。普通双候选 `shortq2` 用来判断背景队列加权这一改动本身带来了什么；它不能替代 ECMP 作为 MoE 绝对收益门槛。DRILL 则是信息预算不同的强对照，单独报告。\n\n实际结果是：\n\n| 192 条背景流、同一输入 | MoE 合成批次时间 |\n| --- | ---: |\n| ECMP | 18.920 µs |\n| 普通双候选 `shortq2` | 19.099 µs |\n| GuardHash | 19.651 µs |\n| DRILL | 17.675 µs |\n\nGuardHash 比 ECMP **慢 0.731 µs**，约为 ECMP 批次时间的 **3.86%**；比普通双候选也慢 **0.552 µs**。尽管它把背景 P99 从普通双候选的 1552.660 µs 降到了 1431.183 µs，MoE 这一侧付出了代价，因此没有满足“同时照顾两侧”的事前要求。数据和停止决定见 [WS-14 报告](/E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws14-guardhash-single-mechanism-pilot-report.md)。\n\n还有两个容易混淆的点。第一，0 背景时 `shortq2` 和 GuardHash 的批次时间同为 **15.637 µs**、原始 FCT 文件哈希相同，这只是符合“没有背景队列时，加权项不起作用”的预期；**MoE 停止条件检查的是 192 档对同档 ECMP 的比较**。第二，WS-14 在 0 档没有运行 ECMP，因此不能凭这七格计算完整的“0 到 192 档、GuardHash 相对 ECMP 的交互收益”，也不能拿它替代上述绝对批次门槛。\n\n这项门槛只决定**是否值得继续补跑 64/128 档并筹划独立需求验证**。单输入小样显示 GuardHash 没过关；它没有估计跨需求的普遍效果，也不能单凭批次差解释具体是哪一次选路或排队造成了变慢。[事前契约](/E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws14-single-mechanism-prereg-v1.md)正是为了在看到结果后不改变继续条件。"
+        }
+      ]
+    }
+  ]
+}

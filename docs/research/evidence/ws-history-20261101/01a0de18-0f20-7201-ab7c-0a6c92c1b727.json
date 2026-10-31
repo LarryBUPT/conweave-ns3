@@ -1,0 +1,52 @@
+{
+  "ws_number": 11,
+  "thread_id": "01a0de18-0f20-7201-ab7c-0a6c92c1b727",
+  "title": "WS-11 全量输入现象验证与条件性机制对照",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0de18-0f20-7201-ab7c-0a6c92c1b727\",\"rolloutOrdinal\":3069,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0dee4-36a4-73b2-affb-9c5e95794ef1",
+      "status": "completed",
+      "startedAt": 1790445893,
+      "completedAt": 1790446085,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "不是说哈希代码有误，只是说尽量考虑增加对照组，然后上述没提到的DRILL逐包+逐流也加进来，可以照搬参考仓库的对照模式，自适应/随机/DRILL/...+ECMP。\n上述内容可做WS-12实现前的阶段性任务，当前先确认WS-11是否完成闭环。\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**WS-11 已在“预注册全量输入现象验证”范围内闭环。**我重新运行了独立核验脚本：40/40 个正式实验格通过，业务流和背景流均全部完成。192 背景档的业务流交互 5/5 为正，归一化中位数为 +35.9057%；但原始输入组的背景流 P99 恶化 6.6527%，超过事先规定的 5% 安全线，因此复合判据仍是 **no-go**。这不否定已观察到的业务流现象，也不打开 GuardHash/HarmGate 效果比较。[正式报告](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws11-full-moe-formal-report.md)与[交接记录](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/handoffs/2026-09-27-12-ws11-full-moe-formal.md)的结论一致。\n\n我已将你提出的对照范围记为 **WS-12 实现前的计划阶段**：全流 ECMP 基准，以及业务流逐包哈希、轮询、随机喷洒、自适应喷洒、DRILL，各组背景流均按流 ECMP。DRILL 函数在个人 fork 已有；随机和自适应规则可参考只读仓库适配；路径轮询需要新增。计划见[路线图](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/project-state/ROADMAP.md:12)，已提交并推送至个人 fork（`ef9c190`）。**这些新组目前尚未实现或运行**，也不会回填 WS-11 的判定。"
+        }
+      ]
+    },
+    {
+      "id": "01a0dedf-1484-7592-9f89-4c0e7b1f0c8b",
+      "status": "completed",
+      "startedAt": 1790445557,
+      "completedAt": 1790445703,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "暂时不考虑乱序的问题，对你上面提出的等价路径情况，尽量复用仓库内本身具有的逐包策略且都设立实验组。比如实验组1为哈希逐包+ECMP，实验组2为轮询逐包+ECMP，实验组3为随机喷洒+ECMP这样的对照。因为参考聊天记录文档，我记得之前讨论出mixhash方案的时候就做了这样的对照，个人理解你这单个对照可能会导致不应有的对照条件流失。考虑一下我说的内容是否合理。\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "你说得合理。我之前只用“逐包哈希 + 背景 ECMP”对照，只能回答**这一个逐包策略**在 WS-11 输入下的表现；不能据此推断“业务流逐包选路”整体都会造成同样的恶化。增加轮询和随机喷洒组，正好可以检查结果是否依赖我选的哈希规则。不过，WS-11 已按事前判据结束为 no-go；新对照应作为另立的实验，不能用结果回头改判 WS-11。\n\n我核对了两个仓库，三组的复用情况并不一样：\n\n| 组别 | 业务流 `tag=2` | 背景流 `tag=1` | 代码来源 |\n| --- | --- | --- | --- |\n| 基准组 | 按流 ECMP | 按流 ECMP | 个人 fork 已有 `fecmp` |\n| 实验组 1 | 逐包哈希 | 按流 ECMP | 个人 fork 已有 `dualtrack`；它使用仿真报文的 `udp.seq` 参与哈希 |\n| 实验组 2 | 逐包轮询 | 按流 ECMP | **目前未找到现成的路径轮询实现**，需要新增；参考仓库里的 `DequeueRR` 是队列服务轮询，不是路径轮询 |\n| 实验组 3 | 逐包均匀随机喷洒 | 按流 ECMP | 参考仓库已有 `hybrid-ss` 的选路函数，可复用其规则，但需适配个人 fork 的标签与分派方式 |\n\n参考聊天记录的判断也基本正确：当时确实加入了喷洒类对照；现存参考仓库能核实的是 `hybrid-ss` **随机喷洒 + ECMP**、`hybrid-as` **自适应喷洒 + ECMP**，以及 `hybrid` 的 **DRILL + ECMP**。我没有查到“逐包路径轮询 + ECMP”是当时已有的一组。[参考仓库分派代码](E:/研/毕业论文/workspace/maplerime-conweave-ns3/src/point-to-point/model/switch-node.cc:908)和[聊天记录复盘](E:/研/毕业论文/docs/research/11-screenshot-research-iteration-analysis.md:14)支持这个区分。参考仓库的 MixHash 又是另一种“计数器参与哈希、配目的端重排”的完整机制，不能直接当作这里的哈希组。\n\n建议按你提出的**基准组 + 三种逐包组**立对照：每组使用同一拓扑、同一批固定的 16,384 条业务流，同档追加相同的 0/64/128/192 条背景流，并保持传输设置、输入哈希和指标口径一致。轮询需事先固定计数器按什么范围维护；随机组需固定并记录独立随机种子，做多次重复。主要比较各策略从 0 档到有背景档的业务流整批完成时间变化，同时逐组报告背景流 P99 和完成率。这样既能回答“换一种逐包策略会不会降低恶化”，也能看到改善业务流是否转嫁了背景流代价。四次流量文件的顺序置换只能检验顺序敏感性，仍不能当作四个独立流量样本。\n\n还有一个关键边界：即使轮询或随机组表现更好，也只能说明**当前哈希实现并非唯一或最优的逐包基线**；不能仅凭这组结果认定哈希代码有错误。下一步应先固定轮询的状态范围、随机数流和重复方案，再实现两组并做小规模选路正确性检查，之后才运行全量比较。"
+        }
+      ]
+    }
+  ]
+}

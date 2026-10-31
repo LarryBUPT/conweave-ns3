@@ -1,0 +1,48 @@
+{
+  "ws_number": 20,
+  "thread_id": "01a0e844-49a7-71e2-bb7f-2d11db3fc192",
+  "title": "WS-20 准入路径联合机制反例复核与重开门槛",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0e855-b80a-7f92-aaf8-4a3c59120ad7",
+      "status": "completed",
+      "startedAt": 1790604326,
+      "completedAt": 1790604343,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "自然语言说明本轮流程、结论\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "本轮只分析了 WS-19 已完成的实验，没有启动新仿真。我从三个独立需求 seed 的 ToR 热点、192 条背景流场景中，按流 ID 重新核对了四臂的完成时间，并把决定每轮结束的 MoE 流、背景尾部流与逐跳排队记录对应起来；随后将结果写入报告、设计草案和 Handoff，提交到个人 fork。\n\n结果表明，联合臂的 24 轮 MoE 完成时间全部长于同输入 ECMP，其中 23 轮由不同的流决定轮尾。准入缩短了平均网络传输时间，却让轮尾流承担了等待。三个 seed 的背景 P99 也都升高；部分受损流同时出现更高的目的出口排队峰值，但现有记录无法证明排队就是尾部损害的唯一原因。\n\n因此，**原 WS-20 确认性矩阵继续 no-go**。如果继续研究，应先补齐不扰动结果的逐流时序观测，明确发送端实际可用的准入信号，再用新的独立需求和事前双侧规则设计探索小样。现有独立需求只有三个，也没有业务 SLO，不能把这次诊断写成普遍因果结论或业务安全结论。"
+        }
+      ]
+    },
+    {
+      "id": "01a0e844-4c44-7471-9e10-98bceca44a02",
+      "status": "completed",
+      "startedAt": 1790603185,
+      "completedAt": 1790603964,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "WS-20 的本地审查已完成，**原确认性矩阵仍为 NO-GO**。我从 WS-19 固定源码 `b52e66f…` 的 ToR/192 十二格原始数据重新按流和逐跳记录对齐：联合臂 24/24 轮慢于 ECMP，23/24 轮更换了决定轮尾的流，三个独立需求 seed 的背景 P99 也全部升高。轮尾存在准入等待；部分受损背景流的目的出口排队峰值更高，但现有日志不足以证明它是长尾损害的单一原因。独立需求仍只有 n=3，且没有可核验的业务 SLO。\n\n[反例报告](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws20-counterexample-gate-review.md)、[可重算记录](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/evidence/ws20-counterexample-audit.json)、[条件性设计草案](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws20-next-exploratory-design-v0.md)和[Handoff 21](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/handoffs/2026-09-28-21-ws20-counterexample-review.md)已提交并推送至个人 fork 的 `experiment/ws20-counterexample-review@cdb2d1b3`，工作树干净。草案建议先验证非扰动的逐 QP 时序观测与可实现的准入信号，再决定是否冻结新的双侧探索协议；指标选择参考 [ConWeave](https://cse.hkust.edu.hk/~kaichen/courses/spring24/comp7215/papers/conweave-sigcomm23.pdf) 和 [Homa 协议](https://github.com/PlatformLab/HomaModule/blob/main/protocol.md)，没有借用它们的改善幅度设业务阈值。本轮未启动远程仿真，也未产生新效果格。"
+        }
+      ]
+    }
+  ]
+}

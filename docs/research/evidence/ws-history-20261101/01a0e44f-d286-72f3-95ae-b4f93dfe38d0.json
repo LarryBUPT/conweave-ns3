@@ -1,0 +1,52 @@
+{
+  "ws_number": 17,
+  "thread_id": "01a0e44f-d286-72f3-95ae-b4f93dfe38d0",
+  "title": "WS-17 瓶颈可控性与独立需求审计",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0e44f-d286-72f3-95ae-b4f93dfe38d0\",\"rolloutOrdinal\":398,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0e46a-ab19-7a31-ac53-c0b7a0ba34da",
+      "status": "completed",
+      "startedAt": 1790538591,
+      "completedAt": 1790538623,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "这个任务结论对以后的任务有什么作用"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "WS-17 的作用是给后续任务划定**能控制什么、该怎样证明有效**。\n\n去往同一主机的上游有多条路，但最后进入主机的链路只有一条。因此 WS-18 可以研究“错峰发送”与“上游分路”如何配合，却不能假设单靠换路就能消除最终出口的拥塞。WS-18 还必须记录需求出现、实际放行和完成三个时刻；否则只是把等待移到发送端，却在结果里漏算了。\n\n这也规定了后续实验的门槛：用同一批输入分别比较原方案、仅错峰、仅分路和两者联合，同时检查 MoE 完成时间、背景流尾部及全部流的完成率。新输入已有可重生的种子和哈希，但**尚未运行新机制仿真**。所以目前只允许 WS-18 做最小实现与正确性验证；通过后才考虑 WS-19 小样，更不能直接声称 WS-20 的正式效果。\n\n具体门槛写在 [WS-17 交接](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/handoffs/2026-09-28-18-ws17-bottleneck-demand.md:15)和[后续任务计划](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/project-state/WS17_PLUS_PLAN.md)。"
+        }
+      ]
+    },
+    {
+      "id": "01a0e469-15a8-7b02-a2d7-6d7e90dd1ba2",
+      "status": "completed",
+      "startedAt": 1790538487,
+      "completedAt": 1790538548,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "自然语言反馈有记录吗，记录在哪"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "有。上一条自然语言反馈保存在本任务对话中；仓库里原先只有分散在九段交接中的说明，没有集中记录。我刚把“做了什么、旧数据支持什么、结论和限制”补到 [WS-17 Handoff 开头](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/handoffs/2026-09-28-18-ws17-bottleneck-demand.md:3)，并已推送到个人 fork，提交为 `47944fc117aaa9f202d4cd9b26cccb68feeba0de`。"
+        }
+      ]
+    }
+  ]
+}

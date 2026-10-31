@@ -1,0 +1,30 @@
+{
+  "status": "READY_FOR_ARCHIVE_AFTER_INTEGRATION",
+  "date": "2026-11-01",
+  "decision": "ADR-011-ws30-closure-ws31-and-ws29-deferral",
+  "scope": "Completed v13 evidence and delivery; unexecuted v14 expansions ended by user-approved scope change, not falsely marked complete",
+  "checks": {
+    "source_handoffs_read": true,
+    "v13_evidence_hashes_match": true,
+    "latest_pdf_hash_matches": true,
+    "P0_52_accepted": true,
+    "remaining_840_explicitly_not_executed": true,
+    "old_automation_paused": true,
+    "no_new_remote_access": true,
+    "pending_submission_items_assigned_to_integration": true,
+    "WS29_retained_and_not_read": true
+  },
+  "targets": [
+    {
+      "id": "01a16b16-9f14-74a0-9a4a-cc6eb7f28295",
+      "title": "WS-30｜ClassReserve 实验补正与证据分析",
+      "archive_performed": false
+    },
+    {
+      "id": "01a174c7-ecf5-7f21-a9dc-6f8b4f5634b8",
+      "title": "WS-30 v13：补充实验与证据复核",
+      "archive_performed": false
+    }
+  ],
+  "platform_confirmation_pending": true
+}

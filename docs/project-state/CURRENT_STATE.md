@@ -1,6 +1,18 @@
 # ConWeave 毕业论文项目状态
 
-## WS-30 当前阶段（2026-10-29）
+## 当前阶段（2026-11-01）
+
+用户已确认执行“历史归并 → WS-30/v13 归档 → WS-31 类别感知新机制构思 → 验证后建立新基线 → 后置接续 WS-29”。本次基线审计读取 33 份对话的最新两至三轮及相关交接，覆盖 WS-01～28 和 WS-30；WS-29 仅登记元数据，未读、未唤醒、未归档。详情见 [WS 覆盖表](WS_HISTORY_COVERAGE.md)与 [来源收据](../research/evidence/ws-history-20261101/coverage-and-source-manifest.json)，不把范围审计说成逐条穷尽全部历史消息或新一轮 raw 数值复验。
+
+WS-30/v13 已完成的实验和证据保持原样；旧 v14 P0 的 52 次保留为历史补充，未执行的 840 次按用户确认的新范围结束自动续作，不写成已完成，也不混入已投稿 v13。两个实验对话在交接、状态核对后归档，实际平台结果见 [归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)。旧 `ws-30-v13` 自动化保持 PAUSED。处置依据见 [ADR-011](../decisions/ADR-011-ws30-closure-ws31-and-ws29-deferral.md)和 [WS-30 收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)。
+
+QueuePin 最新本地稿为 `E:/研/毕业论文/thesis/queuepin-v13-figure-revision-r12/queuepin-icc-authors-r12.pdf`，六页，SHA-256 `f16e2fa5e7873aa62acf6181c5f0eafc45a90dfd75d583fcc27dfed345563a0b`；作者为 Zhenyu Luo、Shuo Wang（通讯作者）。EDAS 附件显示 ICC 2027 NGNI 论文 1571378157 已上传、Active (has manuscript)，题名及作者信息一致；本次未独立下载服务器 PDF 核字节，ORCID 状态也未在附件展示。相关待核及录用后手续由 Integration 投稿跟踪承接，不恢复旧实验。
+
+WS-31 主、副已在“科研”项目设立：[执行清单](WS31_EXECUTION.md)、[协调登记](ws31-coordination.json)。当前只做失败/消融与文献证据、争议地图、问题收敛、候选、模拟审稿、选题漏斗及带证据链的选题地图。最终候选由用户选择；无远程仿真。初始研究对照为已验证 QueuePin，只有新类别感知机制通过正确性和独立验证后，才形成“QueuePin＋新类别感知机制”基线。
+
+前序缺项已补：WS-26 为用户暂停、未完成且草稿保留；WS-27 预设 384 格独立确认等范围完成；WS-28 原生 144、组件 120、诊断 12 格范围完成。详见 [补全交接](../handoffs/2026-11-01-ws26-ws28-history-reconciliation.md)。WS-29 保留编号与主、副，等待新基线后再研究状态反馈增量，当前不读取或启动。下方日期段落均为历史快照，不恢复其中已过期的 ACTIVE、缺作者或旧截止日。
+
+## 历史快照（2026-10-29；v14 P0 阶段）
 
 WS-30 的 v14 完整 P0 已完成 52 次正式运行、861,312 条 FCT 和 92,878,667,776 B 的主独验、完整分析及三稿整合；原 892 次范围尚余 840 次，完整任务继续 ACTIVE。平局匹配 Q/T 的批次变化中位数为 −2.97%，19/24 更快，背景 P99 为 +0.57%；相对 DRILL 的背景保护继续按同需求直接比较解释。当前执行轮按用户要求在北京时间 18:00 前结束，旧监督自动化保持暂停，不自动延长实验。详见 [本轮九节交接](../handoffs/2026-10-29-ws30-v14-p0-supervisor-stage.md)。
 

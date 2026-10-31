@@ -1,0 +1,52 @@
+{
+  "ws_number": 2,
+  "thread_id": "01a0ca49-1841-7952-bdaf-b16daa10f5d8",
+  "title": "Research Discovery",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0ca49-1841-7952-bdaf-b16daa10f5d8\",\"rolloutOrdinal\":1728,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0cf22-8fdd-7e92-bf30-f951ee6830c4",
+      "status": "completed",
+      "startedAt": 1790181544,
+      "completedAt": 1790181692,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "输入和标签传递，mixhash是怎么做的\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "MixHash 的做法可以概括为：**流文件给每条流一个标签，创建 RDMA 流时把标签存进 QP，发包时写入报文头，交换机再从报文头读出来。**它不是只在仿真脚本里记录了一个分类。\n\n```mermaid\nflowchart LR\n    A[\"六列流文件<br/>最后一列是 tag\"] --> B[\"run.py<br/>选定现成流文件\"]\n    B --> C[\"scratch<br/>逐行读入 tag\"]\n    C --> D[\"RdmaClient → QP<br/>保存该流的 tag\"]\n    D --> E[\"发送端<br/>把 tag 写入每个数据包\"]\n    E --> F[\"交换机<br/>解析 tag 并选路\"]\n    F --> G[\"目的 ToR / 接收端<br/>按 tag 处理重排与 IRN\"]\n```\n\n以已经迁入的 `64fecmp` 文件为例，一行背景流是 `844 416 3 8388608 2.000000000 1`，一行 MoE 流是 `0 8 3 8192 2.000000000 2`。六列依次为源、目的、优先级组、字节数、开始时间、`tag`；这里的 `pg=3` 和 `tag=1/2` 是两个不同字段。\n\n沿源码看，关键有五跳：\n\n1. [run.py](E:/研/毕业论文/workspace/maplerime-conweave-ns3/run.py:164) 的 `--flow_file` 指定 `config/` 中已有文件，跳过自动生成；最终把文件名写进 `FLOW_FILE` 配置。\n2. [network-load-balance.cc](E:/研/毕业论文/workspace/maplerime-conweave-ns3/scratch/network-load-balance.cc:210) 按行尝试读取六列；旧五列文件的 `tag` 默认为 0。创建流时把标签传给 `RdmaClientHelper`。\n3. [rdma-client-helper.cc](E:/研/毕业论文/workspace/maplerime-conweave-ns3/src/applications/helper/rdma-client-helper.cc:31) 将它设为 Client 的 `Tag` 属性；[rdma-client.cc](E:/研/毕业论文/workspace/maplerime-conweave-ns3/src/applications/model/rdma-client.cc:148) 创建 QP 时继续传递。\n4. [rdma-hw.cc](E:/研/毕业论文/workspace/maplerime-conweave-ns3/src/point-to-point/model/rdma-hw.cc:779) 发每个包时，把 QP 的标签写入 `SeqTsHeader`；MixHash 模式还写入逐包计数器。这里的 `tag` 是**报文头中的 16 位字段**，不是只供 NS-3 内部使用的 `PacketTag`。\n5. 交换机先在 [qbb-net-device.cc](E:/研/毕业论文/workspace/maplerime-conweave-ns3/src/point-to-point/model/qbb-net-device.cc:366) 用 `CustomHeader` 解析报文，再由 [switch-node.cc](E:/研/毕业论文/workspace/maplerime-conweave-ns3/src/point-to-point/model/switch-node.cc:845) 使用 `ch.udp.tag`。\n\n有一个很重要的区分：**标签传到了交换机，不代表 MixHash 按标签采用了两套选路算法。**源码中 Hybrid 模式 10 才是 `tag=1` 走流级 ECMP、`tag=2` 走 DRILL；MixHash 模式 16 对两类**所有数据包**都采用“五元组＋逐包计数器”的哈希，控制包仍走普通 ECMP。[run.py 中关于 MixHash 的旧注释](E:/研/毕业论文/workspace/maplerime-conweave-ns3/run.py:117)与这个实际分支不一致，应以源码为准。标签在模式 16 还影响目的 ToR：`tag=2` 跳过 MixHash 重排缓存，而 `tag=1` 不跳过；IRN 的部分处理也按标签分支。因此直接整体移植 MixHash，会把选路和传输语义一起带过来。\n\n对我们的个人 fork，最小迁移顺序是：**现成文件选择 → 五/六列兼容读取 → Client/QP 保存标签 → 报文头写入和交换机解析 → 分别验证两类计数与旧五列回归**。目前只完成了流文件迁移，尚未实现这些输入代码。尤其要注意，参考仓库 [CustomHeader 的 UDP 头长度计算](E:/研/毕业论文/workspace/maplerime-conweave-ns3/src/network/utils/custom-header.cc:343) 静态看少计了新增计数器的 2 字节；移植时应单独核对头长度与包长，不能原样照搬。\n\n下一步可以先做两种选择：①只移植“输入与标签通路”，保持原有负载均衡不变并验证；②在此基础上再新增真正按标签区分包级/流级选路的模式。为保证论文归因，我建议按这个顺序分开提交和测试。"
+        }
+      ]
+    },
+    {
+      "id": "01a0cf01-2eba-7c41-bb3a-5a5696024f7e",
+      "status": "completed",
+      "startedAt": 1790179356,
+      "completedAt": 1790180214,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "我想做类似mixhash那样的仅负载均衡机制上的创新实现，并根据这个创新算法进行小论文发表，帮我找到其中的构思点，结合开题报告内容。\nmixhash仓库：[https://github.com/maplerime/conweave-ns3](https://github.com/maplerime/conweave-ns3)\n除此之外，本地-远程工作链路已经完成搭建，我希望将mixhash仓库中的流文件转移到fork仓库中，这是本论文的背景条件，即包流混合的流量特征流。\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "可以沿这条思路做小论文，但创新点不能只是“把包级和流级负载均衡放在一起”。[FAMG](https://www.sciencedirect.com/science/article/pii/S0140366423002517) 已研究按流量类别混用选路粒度，[APS](https://doi.org/10.1109/TCC.2020.2985037) 已研究混合流的路径隔离。更有价值的问题是：**逐包分散流量时，怎样避免伤害已经固定在某条路径上的流，同时不浪费空闲路径？**\n\n我筛出了三个值得继续验证的构思点：\n\n1. **GuardHash，首选。**问题是逐包流可能改善自身完成时间，却抬高固定流的尾部时延。机制是在 MixHash 风格的两个哈希候选路径中，仅当检测到固定流所在路径的排队风险上升时，避开该路径。它与普通“选短队列”的差异，必须通过同模型对照证明；否则很容易被认为是已有方法的组合。先测出这种跨类伤害是否真实存在，再比较两类流各自的完成时间、PFC 和链路利用率。\n\n2. **AnchorHash，备选。**只在背景长流开始时，从两个候选路径中选一个较少与 MoE 突发冲突的路径，之后保持不变。它贴合开题中“流级选路需要稳定”的逻辑，实现成本相对低；但“初次选择较空路径”并不新。只有显著胜过普通的初始最短队列选择，才值得独立展开。\n\n3. **BorrowHash，储备。**允许逐包流临时借用固定流的空闲路径；若固定流开始受影响，就暂停借用，空闲后再开放。它针对永久隔离浪费带宽的问题，但与 [APS](https://doi.org/10.1109/TCC.2020.2985037) 和 [FLB](https://www.usenix.org/conference/atc25/presentation/hu-jinbin) 的重合风险较高。盐值范围自适应的 PhaseSalt 也已列入报告，但目前更适合作为消融实验，而不是主论文方向。\n\n流量资产已经迁入并推送到个人 fork 的 [`feature/mixed-flow-traces`](https://github.com/LarryBUPT/conweave-ns3/tree/feature/mixed-flow-traces) 分支：四组 MoE/背景流文件、对应拓扑和生成脚本均与参考仓库完成 SHA-256 校验。没有修改只读的 MixHash 仓库，也没有运行性能实验。迁移说明见 [mixed-flow-trace-provenance.md](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/mixed-flow-trace-provenance.md)，完整构思、近邻风险和实验闭环见 [研究报告](E:/研/毕业论文/docs/research/11-mixhash-inspired-lb-only-discovery.md)。\n\n下一道实际门槛是输入兼容：个人 fork 目前按五列读流记录，新文件是带标签的六列，**已迁入但尚不能直接仿真**。此外，四组文件增加背景流时也增加了总流量，不能直接把跨文件性能差异解释成“混合比例的效果”。建议先完成六列输入与标签传递，再用同一轨迹验证跨类伤害；若这一现象不成立，就不应继续把 GuardHash 包装成独立机制论文。只有 NS-3 仿真的条件下，论文结论也应限定为仿真模型中的机制效果与适用边界，不能声称已验证真实网卡或交换芯片部署。"
+        }
+      ]
+    }
+  ]
+}

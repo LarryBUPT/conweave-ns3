@@ -1,10 +1,11 @@
 # 工作流台账
 
-更新：2026-10-07。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。
+更新：2026-11-01。状态只表示**本行定义的范围**，不把功能验证扩展成性能验证。每个工作流结束时产出 Handoff，再由集成工作流核对证据并更新本表。本次覆盖与读取边界见 [历史覆盖审计](WS_HISTORY_COVERAGE.md)；WS-29 后置保留，其历史正文未读取。
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-30 | QueuePin v14 补充与论文 | ACTIVE FOR REMAINING840; COMPLETE FOR P0 | [阶段交接](../handoffs/2026-10-29-ws30-v14-p0-supervisor-stage.md)：P0 52 次已主验、分析和三稿整合；余 840 次及资格未完成，作者/EDAS 未核。本轮 18:00 前结束，自动化暂停 | 主本地；唯一副远端；未归档，不自动启动下一模块 |
+| WS-31 | 类别感知新机制构思与提出 | ACTIVE FOR EVIDENCE AND IDEA DEVELOPMENT | [执行清单](WS31_EXECUTION.md)、[主副登记](ws31-coordination.json)：失败与消融证据、文献卡片、争议地图、问题/候选、模拟审稿、选题地图及提案；最终候选待用户决定 | 主、副各写独立目录；当前无远程实验，基线和归档由 Integration 维护 |
+| WS-30 | ClassReserve 补正、QueuePin v13 与投稿前修订 | COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE | [收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作 | 旧监督 PAUSED；两个实验对话按[归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)收束；投稿待核及返修留 Integration |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |
@@ -31,5 +32,9 @@
 | WS-23 | IRN×PFC 恢复正确性与隔离探索 | COMPLETE FOR PRESET NS-3 SYNTHETIC CORRECTNESS AND ISOLATION EXPLORATION; EFFICACY NO-GO | [最终清单](WS23_WS24_VALIDATION_PLAN.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)；固定矩阵 SHA `3db2685a…` 的 18/18 有效格从 raw 与资源收据重算，`exploratory_positive=false`；旧失败 ID 保留并排除 | 预设合成范围闭环。小拓扑三组合成需求未达到隔离效果正向判据；不得称真实业务收益或把 NO-GO 改写为论文正向结论 |
 | WS-24 | 合成多 NIC、多 rail 与放置 | COMPLETE FOR PRESET NS-3 SYNTHETIC MULTI-RAIL × PLACEMENT VALIDATION | [最终清单](WS23_WS24_VALIDATION_PLAN.md)、[Handoff 55](../handoffs/2026-10-02-55-ws23-ws24-final-integration.md)；旧 A/B/C/D 14 格、同 SHA 单测及 12 个独立合成 job × 四臂 48/48 格验收；主效应中位 −19.667%，精确双侧 `p=0.00048828125` | 用户限定仅 ns-3，真实主机/NIC 数据不作本任务条件。结果限固定合成需求生成器、拓扑与 ns-3 配置；不能直接充当包流混合新机制或真实部署收益 |
 | WS-25 | 第一课题类别感知包流混合负载均衡 | COMPLETE FOR PRESET NS-3 EXPERIMENT AND PAPER DRAFT; FORMAL NO-GO; NOT SUBMITTED | [七项验收审计](../research/ws25-first-paper-acceptance-audit.md)、[Handoff 77](../handoffs/2026-10-07-77-ws25-first-paper-prespecified-acceptance.md)、[执行清单](WS25_FIRST_PAPER_EXECUTION.md)：固定 v1 SHA `ce699df…`，24 独立 seed × 四档 × 六臂，**576/576** 原 ID、36 批 raw 验收；192 档相对 ECMP 的 MoE 中位 −3.536%/20/24 改善、背景 P99 −0.065%/13/24 改善，双侧共同主判据 NO-GO。v2/v2r1 各 28/28 探索格亦未过筛；负结果初稿和复现图表已形成 | 结论限合成需求与 ns-3 RDMA QP；动态分支、物理队列因果及真实部署证据有限。下一里程碑为目标会议版式、引用及投稿；投稿后才可启动第二课题并审查 WS-21 反馈余项。副对话不自动归档，不恢复旧原 ID |
+| WS-26 | ClassReserve v3、ClassLane v4 与诊断 | PAUSED BY USER; INCOMPLETE; PILOTS NO-GO | [历史补全](../handoffs/2026-11-01-ws26-ws28-history-reconciliation.md)：v3/v4 r2 高档筛选未通过；第三候选未准入；主/敏感性 576+576 格未完成，两个未跟踪计划草稿保留 | 不恢复旧入口；历史主对话已归档、副对话暂停；经验可供 WS-31 核对，不自动继承旧运行清单 |
+| WS-27 | 三类别机制的独立比较 | COMPLETE FOR PRESET ENGINEERING AND COMPARISON | [历史补全](../handoffs/2026-11-01-ws26-ws28-history-reconciliation.md)：正确性 7、资源 24、筛选 32、独立确认 384 格验收；三候选通过当轮背景中位工程约束，仍有单需求反例 | 不改判 WS-25；整体收益不能证明类别单独增量；原始分支与 Handoff 78 保留 |
+| WS-28 | 组件解释与原生基线 | COMPLETE FOR PRESET NS-3 EXPLANATION AND ABLATION | [历史补全](../handoffs/2026-11-01-ws26-ws28-history-reconciliation.md)：原生六臂 144（新增 96）、正式组件消融 120、反例诊断 12 格验收；组件增量未被清晰识别 | 消融定义与证据由 WS-31 据固定源码再审；不重复完成格 |
+| WS-29 | 有成本、有时效的状态反馈研究 | DEFERRED; RETAIN BOTH THREADS UNARCHIVED | [ADR-011](../decisions/ADR-011-ws30-closure-ws31-and-ws29-deferral.md)：保持历史编号，执行顺序后移；等待经过验证的 QueuePin＋新类别感知机制基线后再接续 | 当前不读取、不唤醒、不运行、不归档；仅按用户决定登记依赖，不据此重判旧技术状态 |
 
-`CHECKPOINTED` 表示研究资料已收口，但研究假设仍开放；各项 `COMPLETE FOR ...` 都只覆盖行内注明的核验范围，不等于论文性能实验完成。对话是否归档不改变工作流状态。
+`CHECKPOINTED` 表示研究资料已收口，但研究假设仍开放；各项 `COMPLETE FOR ...` 都只覆盖行内注明的核验范围，不等于论文性能实验完成。对话是否归档不改变科学结果。WS-25 行内早期“投稿后启动第二课题”的顺序由 ADR-011 更新为先完成新类别感知基线；其旧验收和 NO-GO 不变。

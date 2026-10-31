@@ -1,0 +1,52 @@
+{
+  "ws_number": 12,
+  "thread_id": "01a0def1-82cd-7941-89a2-759e0072d8ef",
+  "title": "WS-12 多逐包策略对照与双侧证据整合",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": "{\"requestedThreadId\":\"01a0def1-82cd-7941-89a2-759e0072d8ef\",\"rolloutOrdinal\":3329,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+    "hasMore": true
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0e19d-f58e-72f0-b455-0a196096cf58",
+      "status": "completed",
+      "startedAt": 1790491620,
+      "completedAt": 1790492007,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "给出收尾建议并确认WS-12任务是否闭环，若未闭环，继续未竟的工作内容\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**WS-12 现已按预定范围闭环。**我重新从原始数据核验了正式矩阵：120/120 格完成，旧模式与 WS-11 的 FCT 哈希 40/40 匹配；RR、随机、自适应和 DRILL 仍因背景 P99 越过预设 5% 线，全部判为复合 no-go。没有待补实验格。\n\n此前未完成的是论文解释性收尾。我已将 WS-10/11/12 的输入差异、MoE 收益、背景代价和结论边界并列写入[证据提纲](</E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws12-ws10-ws11-negative-evidence.md>)，更新了[项目状态](</E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/project-state/CURRENT_STATE.md>)并推送到个人 fork；提交为 `2c1fea5`，工作树干净。\n\n收尾建议是把三次 no-go 如实作为论文的**适用边界证据**，保留各自输入和判据，不合并成一个胜率。WS-12 的五组只是同一批流的顺序置换，不能据此推断独立业务需求下的普遍效果。若大论文仍需要正向机制收益，应另立并预注册新实验；WS-12 本身无需继续调参或补跑。"
+        }
+      ]
+    },
+    {
+      "id": "01a0e199-06de-7cb2-91b5-e7922763646b",
+      "status": "completed",
+      "startedAt": 1790491297,
+      "completedAt": 1790491489,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "&#x20;列举文献中P99的表现情况如何，相对全ECMP有优劣化吗，他们的科研链路是怎样的\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "**文献中的结果并非一律“新策略的 P99 优于全流 ECMP”。**有些论文在特定混合负载下显著改善尾部，也有论文先发现已有策略在 RDMA 场景中持平或更差，再以此提出新机制。关键是先看 P99 统计的是哪一类流、FCT 还是 FCT slowdown。\n\n| 论文 | 与全流 ECMP 相比 | 指标对象与条件 |\n| --- | --- | --- |\n| [Presto（SIGCOMM 2015）](https://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p465.pdf) | 小流 P99 FCT **降低 56%**；P99.9 降低 60% | 轨迹驱动的大小流混合负载；小流小于 100 KB。大流报告的是**平均吞吐**，比 ECMP 高逾 10%，不是大流 P99。在另一组 Shuffle 负载中，各方案小流 P99.9 的差距仅在 10% 内，说明收益依赖流量形态。 |\n| [HULA（SOSR 2016）](https://nkatta.github.io/papers/hula-sosr16.pdf) | Web-search 负载、60% 负载率时，P99 FCT 约为 ECMP 的 **1/10**；Data-mining 负载下约有 **1.53 倍**尾部性能优势 | 图 8 统计的是**所有流的 P99**，并在非对称拓扑下随负载作图；它不是单独的背景大流 P99。 |\n| [DRILL（SIGCOMM 2017）](https://pbg.cs.illinois.edu/papers/ghorbani17drill.pdf) | Stride、Bijection、Shuffle 三种混合负载中，小流尾部值分别为 ECMP 的 **0.04、0.08、0.68** | 表 1 的尾部指标是 **P99.99，不能写成 P99**。小流为 50 KB，另以 1 GB 大流的平均吞吐衡量大流；Shuffle 的改善较小，论文将其与末跳瓶颈联系起来。 |\n| [ConWeave（SIGCOMM 2023）](https://www.comp.nus.edu.sg/~lijl/papers/conweave-sigcomm23.pdf) | 论文先在 RDMA 硬件实验中观察到：所测既有动态策略相对 ECMP **持平或更差**；提出 ConWeave 后，在仿真报告的 50%/80% 负载中，其整体 P99 **FCT slowdown** 优于所比较的方案 | 这是最贴近本仓库传输环境的一篇，但其主图使用按流大小分组的 *FCT slowdown*，不能把报告的改善百分比直接当成本仓库背景大流的原始 P99 FCT 改善。 |\n\n这些论文的科研链路大体是：**找到 ECMP 在某类流量下的具体问题 → 提出针对该问题的选路机制 → 在同一负载下与全流 ECMP 对照 → 分开呈现小流尾部和大流性能 → 用不同负载或拓扑检验边界。**Presto 针对大流哈希碰撞，HULA 针对拥塞与非对称路径，DRILL 针对短时间尺度的队列选择；ConWeave 更进一步，先展示“已有改进方案在 RDMA 下未必胜过 ECMP”这一负结果，再论证其新机制。这里是在描述论文的研究动机；按你当前的要求，本仓库现阶段无需把接收端乱序列为诊断任务。\n\n对照 [本仓库 WS-12 报告](</E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws12-packet-strategies-formal-report.md:24>)，我们考察的是**同组、同背景档位的背景大流 P99 FCT**。例如原始 192 档，ECMP 为 1411.822 µs，逐包 hash 高 **6.653%**，DRILL 高约 **3.20%**。这与 Presto 的“小流 P99”、HULA 的“所有流 P99”、DRILL 的“小流 P99.99”以及 ConWeave 的“P99 slowdown”都不是同一个统计量，不能按百分比直接排名。WS-12 预设的 **5% 是本项目的背景保护判据，不是上述文献共同采用的标准**。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "ws_number": 16,
+  "thread_id": "01a0e418-8af6-7430-af42-a15274aeac3c",
+  "title": "WS-16 论文证据与复现收束",
+  "archived_at_inventory": true,
+  "status": {
+    "type": "notLoaded"
+  },
+  "page": {
+    "order": "newest_first",
+    "limit": 2,
+    "nextCursor": null,
+    "hasMore": false
+  },
+  "scope": "latest two returned turns and named final handoff; not an exhaustive transcript review",
+  "turns": [
+    {
+      "id": "01a0e42a-d159-7453-b7a6-d2d415f50818",
+      "status": "completed",
+      "startedAt": 1790534406,
+      "completedAt": 1790534458,
+      "items": [
+        {
+          "type": "userMessage",
+          "text": "用自然语言文字描述成果，论文形成题目，论文设计，流程，结论，实验数据如何支持\n"
+        },
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "据现有成果，论文题目建议定为**《基于 ns-3 的智算网络混合粒度负载均衡与双侧性能权衡研究》**。这个题目对应已经完成的工作：研究逐包选路对 MoE 流量的影响，同时检查共享网络中的背景流是否付出尾延迟代价。它比开题报告中“端侧协同机制”的表述更贴近实际实现；最终题目和创新点仍需导师确认。\n\n论文可以围绕一个问题展开：**一种选路策略即使改善了目标流量，能否同时保护背景流量？**实验在 ns-3 中使用预先写入流量 trace 的类别标签，让交换机对 MoE 数据选择逐包路径，对背景流保持逐流 ECMP。主要比较全流 ECMP、逐包哈希，以及 RR、随机、自适应和 DRILL 等策略。评价时同时报告 MoE 的*合成批次完成时间*、背景流 FCT 的 P99、两类流的完成率及必要的拥塞诊断；合成批次时间只是同启流中最后一条完成的时间，不是真实训练作业的 CCT。\n\n研究流程从四种原有模式的最小运行和数据流核验开始，随后完成标签通路与交换机选路原型、接收端超时诊断，再依照各自预注册的输入和判据进行三轮正式对照。**WS-10** 固定每格总字节，用五条独立生成的 trace 检验 0、2、4 条背景流；**WS-11** 改用完整的 16,384 条同启 MoE 流，并逐档追加背景；**WS-12** 在 WS-11 输入上比较六种选路模式。之后的 WS-13 用逐流数据定位长尾，WS-14 用单输入极端格检验 GuardHash，WS-15 则复核是否具备启动独立需求确认性实验的条件。各轮的输入和重复单位不同，论文中应分别叙述。\n\n实验支持的核心结论是一个**有条件的双侧负结果**。WS-10 的 30 个正式格全部完成，但主 4 背景档的交互仅在五条 trace 中有一条为正，归一化中位数为 −1.3947%，未达到事前现象门槛。WS-11 的 40 格也全部完成；主 192 档交互五组均为正、中位数为 +35.9057%，但原始输入组的背景 P99 从 1411.822 增至 1505.747 µs，恶化 6.6527%，超过该轮预注册的 5% 保护线，因此复合判据仍为 no-go。WS-12 的 120 格显示，四种新增策略在主档的 MoE 批次相对**既有逐包哈希**缩短中位数为 16.116% 至 22.549%；然而每种策略都有背景 P99 越线格，均未满足各自的双侧判据。这些数字说明目标流量的改善和背景流量的代价必须同时呈现，不能只摘取相对逐包哈希的收益；历史 5% 是本项目预注册门槛，并非通用业务 SLO。\n\n后续数据解释了结论的边界，但没有把负结果改判为机制成功。WS-13 在慢背景流经过的目的出口观察到微秒级排队及 CNP，属于相关性诊断；IRN 与 PFC 同开的压力格只完成 **13/16** 条流，不能参加正常性能排名。WS-14 的单输入小样中，GuardHash 虽使背景 P99 低于普通双候选，MoE 批次却比 ECMP 慢 0.731 µs，且最慢背景流发生转移，因此按事前规则停止。WS-15 没有运行新的确认性矩阵，“未测”不能写成零效应。\n\n论文的可复核性来自每个实验 ID 对应的固定源码、trace 与拓扑哈希、原始 FCT 文件及分析脚本，而非只依赖汇总表。现有[论文证据与复现报告](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws16-paper-evidence-and-reproduction.md)和[216 个实验 ID 索引](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/evidence/ws16-experiment-index.csv)可作为正文图表和附录的出处。论文应将已实现成果写为**带预置标签的 ns-3 交换机侧选路原型及其条件性性能权衡研究**；开题报告设想的端侧自动分类、INT/Δq 控制、协同接收重排、硬件部署和真实业务 SLO，目前都不能作为已验证成果。"
+        }
+      ]
+    },
+    {
+      "id": "01a0e418-8c80-7702-8055-775b787e645c",
+      "status": "completed",
+      "startedAt": 1790533209,
+      "completedAt": 1790533804,
+      "items": [
+        {
+          "type": "agentMessage",
+          "phase": "final_answer",
+          "text": "WS-16 的论文证据与复现材料已完成，提交并推送到个人 fork 的 `feature/ws16-paper-evidence` 分支，提交为 `8b2b815952963bd6a6705d173570084c3c9ec088`；本地与远端同 SHA，工作树干净。\n\n[证据总报告](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws16-paper-evidence-and-reproduction.md)分别陈述 WS-10/11/12 各自的正式 no-go、WS-13 诊断及压力 11 格仅 **13/16 完成**、WS-14 单输入停止结果，以及 WS-15 **未启动确认性矩阵**的门槛决定。[216 个实验 ID 索引](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/evidence/ws16-experiment-index.csv)逐格连接固定源码 SHA、trace/拓扑哈希、原始 FCT、分析脚本和图表入口；[索引脚本](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/scripts/build_ws16_evidence_index.py)可从本地原始目录重新核验。[九段 Handoff](E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/handoffs/2026-09-28-17-ws16-paper-evidence.md)和项目状态也已更新。\n\n正式矩阵、WS-14 七格、WS-13 校准及压力诊断的本地复核均通过。本轮没有启动新仿真，也没有重判历史 5% 判据。对照开题报告后，材料明确将现有成果界定为 **ns-3 交换机侧原型与条件性仿真结果**；端侧分类/降级、INT/Δq 控制、接收协同重排、硬件部署和真实业务 SLO 仍未验证。下一项决定是请导师确认论文题目与创新点是否按这一实际范围表述。"
+        }
+      ]
+    }
+  ]
+}
