@@ -797,7 +797,7 @@ def main():
     build_cmd.add_argument('--branch', required=True)
     run_cmd = sub.add_parser('run')
     run_cmd.add_argument('--id', required=True)
-    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'ws30-h16', 'ws30-r16', 'ws30-u16', 'ws30-q12', 'ws30-h12', 'ws30v13-q12', 'ws30v13-r12', 'ws30v13-u12', 'destspread', 'classreserve3', 'classlane4', 'classlane4-moe-only', 'classlane4-background-only', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'ws30-h16', 'ws30-r16', 'ws30-u16', 'ws30-q12', 'ws30-h12', 'ws30v13-q12', 'ws30v13-r12', 'ws30v13-u12', 'ws31-c1', 'ws31-c1-unified', 'ws31-c1-count', 'ws31-c1-history', 'ws31-c1-size', 'ws31-c1-zero', 'ws31-c1-unified-count', 'destspread', 'classreserve3', 'classlane4', 'classlane4-moe-only', 'classlane4-background-only', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
     run_cmd.add_argument('--simul-time', default='0.01')
     run_cmd.add_argument('--netload', type=int, default=10)
     run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12, 16, 18), default=1)
@@ -868,7 +868,7 @@ def main():
                 raise RuntimeError('v14 lifecycle requires its profile, fixed topology, trace and arms')
         elif args.ws30_life_profile:
             raise RuntimeError('v14 profile requires lifecycle mode 5..8')
-        if args.ws30_tag_transform and args.lb not in ('ws30v13-q12','ws30v13-r12','ws30v13-u12'):
+        if args.ws30_tag_transform and args.lb not in ('ws30v13-q12','ws30v13-r12','ws30v13-u12','ws31-c1','ws31-c1-unified','ws31-c1-count','ws31-c1-history','ws31-c1-size','ws31-c1-zero','ws31-c1-unified-count'):
             raise RuntimeError('Tag transformation is restricted to v13 technical arms')
         if args.ws30_composition and (args.topo != 'ws30_composition8' or
                 args.lb not in ('fecmp', 'cr-a0-b1', 'classreserve') or

@@ -11,6 +11,7 @@
 
 #include "qbb-net-device.h"
 #include "switch-mmu.h"
+#include "ws31-budget.h"
 
 namespace ns3 {
 
@@ -62,6 +63,12 @@ class SwitchNode : public Node {
     uint64_t m_ws30V13Hits{0}, m_ws30V13Misses{0}, m_ws30V13Peak{0};
     uint32_t DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
                          const std::vector<int> &nexthops);
+    std::map<ws31::Key,Ws30Pair> m_ws31Pairs;
+    ws31::BudgetLedger m_ws31Budget;
+    ws31::ObservedMemory m_ws31Observed;
+    uint64_t m_ws31Fresh{0}, m_ws31Hits{0};
+    uint32_t DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
+                        const std::vector<int> &nexthops);
     uint32_t DoLbWs30(Ptr<const Packet> p, const CustomHeader &ch,
                       const std::vector<int> &nexthops);
     uint32_t DoLbDestSpread(Ptr<const Packet> p, const CustomHeader &ch,

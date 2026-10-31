@@ -1387,14 +1387,99 @@ uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
 
 void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport) {
     const size_t erased = m_ws30V13Pairs.erase(std::make_tuple(sip,dip,sport,dport));
+    const ws31::Key key(sip,dip,sport,dport);
+    m_ws31Pairs.erase(key);
+    m_ws31Budget.Erase(key);
     std::cout << "WS30V13_CACHE_RESET switch=" << m_id << " erased=" << erased << std::endl;
 }
 
 void SwitchNode::WriteWs30V13State() const {
+    if (Settings::lb_mode>=36 && Settings::lb_mode<=42) {
+        std::cout << "WS31_C1_STATE switch=" << m_id << " entries=" << m_ws31Pairs.size()
+                  << " fresh=" << m_ws31Fresh << " hits=" << m_ws31Hits
+                  << " predictor_entries=" << m_ws31Budget.Size()
+                  << " predictor_peak=" << m_ws31Budget.peakEntries
+                  << " expired=" << m_ws31Budget.expired
+                  << " capacity_fallbacks=" << m_ws31Budget.capacityFallbacks
+                  << " range_fallbacks=" << m_ws31Budget.rangeFallbacks
+                  << " duplicates=" << m_ws31Budget.duplicatePackets
+                  << " unique_payload=" << m_ws31Budget.uniquePayload
+                  << " conserved=" << m_ws31Budget.Conserved()
+                  << " moe_payload=8192 bg_payload=65536 unified_payload=8192 ttl_ns=20000"
+                  << " max_entries=65536 max_ranges=32" << std::endl;
+    }
     if (Settings::lb_mode<33 || Settings::lb_mode>35) return;
     std::cout << "WS30V13_STATE switch=" << m_id << " entries=" << m_ws30V13Pairs.size()
               << " peak=" << m_ws30V13Peak << " hits=" << m_ws30V13Hits
               << " misses=" << m_ws30V13Misses << std::endl;
+}
+
+// C1 and controls: 36 category/progress, 37 pooled/progress, 38 category/count,
+// 39 observed-byte history, 40 size-template clone, 41 exact QueuePin, 42 pooled/count.
+uint32_t SwitchNode::DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
+                               const std::vector<int> &nexthops) {
+    if (Settings::lb_mode==41 || ch.l3Prot!=0x11 || !m_isToR ||
+        !m_isToR_hostIP.count(ch.sip)) return DoLbWs30V13(p,ch,nexthops);
+    const uint64_t now=Simulator::Now().GetNanoSeconds(), ttl=20000;
+    const ws31::Key key(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport);
+    m_ws31Budget.Expire(now);
+    auto hit=m_ws31Pairs.find(key);
+    const bool fresh=hit==m_ws31Pairs.end();
+    if (fresh) {
+        const uint32_t words[3]={ch.sip,ch.dip,
+            uint32_t(ch.udp.sport)|(uint32_t(ch.udp.dport)<<16)};
+        const uint8_t *data=reinterpret_cast<const uint8_t *>(words);
+        Ws30Pair pair;
+        pair.first=nexthops[EcmpHash(data,12,m_ecmpSeed)%nexthops.size()];
+        pair.second=nexthops[EcmpHash(data,12,m_ecmpSeed^0x9e3779b9U)%nexthops.size()];
+        const uint64_t q1=CalculateInterfaceLoad(pair.first), q2=CalculateInterfaceLoad(pair.second);
+        const bool history=Settings::lb_mode==39;
+        const uint64_t r1=history?m_ws31Observed.Value(pair.first,now,ttl):m_ws31Budget.Pressure(pair.first,now);
+        const uint64_t r2=history?m_ws31Observed.Value(pair.second,now,ttl):m_ws31Budget.Pressure(pair.second,now);
+        pair.chosen=ws31::Add(q2,r2)<ws31::Add(q1,r1)?pair.second:pair.first;
+        hit=m_ws31Pairs.insert(std::make_pair(key,pair)).first;
+        ++m_ws31Fresh;
+        uint32_t category=0;
+        if (Settings::lb_mode==36 || Settings::lb_mode==38) {
+            WorkloadTag tag;
+            if (p->PeekPacketTag(tag)) category=tag.GetValue();
+        } else if (Settings::lb_mode==40) {
+            // Declared simulator-visible size control. Main candidate never reads it.
+            FlowIDNUMTag tag;
+            if (p->PeekPacketTag(tag)) {
+                if (tag.GetFlowSize()==8192) category=2;
+                else if (tag.GetFlowSize()==8388608) category=1;
+            }
+        }
+        const uint64_t predicted=category==1?65536:8192;
+        CustomHeader full(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
+        full.brief=0; p->PeekHeader(full);
+        const uint32_t udpHeader=CustomHeader::GetUdpHeaderSize();
+        const uint32_t payload=full.udp.payload_size>=udpHeader?full.udp.payload_size-udpHeader:0;
+        if (!history && payload && p->GetSize()>=payload)
+            m_ws31Budget.Insert(key,pair.chosen,predicted,Settings::packet_payload,
+                                p->GetSize()-payload,now,ttl);
+        if (Ws30Level())
+            std::cout << "WS31_C1_CHOICE time_ns=" << now << " switch=" << m_id
+                      << " sip=" << ch.sip << " dip=" << ch.dip << " sport=" << ch.udp.sport
+                      << " dport=" << ch.udp.dport << " first=" << pair.first << " second=" << pair.second
+                      << " q1=" << q1 << " q2=" << q2 << " r1=" << r1 << " r2=" << r2
+                      << " category=" << category << " predicted=" << (history?0:predicted)
+                      << " chosen=" << pair.chosen << std::endl;
+    } else ++m_ws31Hits;
+    const uint32_t chosen=hit->second.chosen;
+    if (Settings::lb_mode==39) m_ws31Observed.Observe(chosen,p->GetSize(),now,ttl);
+    else {
+        // CustomHeader's normal fast parse deliberately skips the UDP length.
+        CustomHeader full(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
+        full.brief=0; p->PeekHeader(full);
+        const uint32_t header=CustomHeader::GetUdpHeaderSize();
+        const uint32_t payload=full.udp.payload_size>=header?full.udp.payload_size-header:0;
+        m_ws31Budget.Observe(key,ch.udp.seq,payload,now,
+                            Settings::lb_mode!=38 && Settings::lb_mode!=42);
+    }
+    NS_ASSERT_MSG(m_ws31Budget.Conserved(),"WS31 prediction accounting mismatch");
+    return chosen;
 }
 
 // WS-25 v2 diagnostic correction. A MoE QP uses the existing DRILL decision
@@ -1798,6 +1883,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbWs30(p, ch, nexthops);
         case 33: case 34: case 35:
             return DoLbWs30V13(p, ch, nexthops);
+        case 36: case 37: case 38: case 39: case 40: case 41: case 42:
+            return DoLbWs31C1(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
         case 23:
