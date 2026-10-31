@@ -1,0 +1,110 @@
+[
+  {
+    "thread_id": "01a11568-af40-7ba0-9814-8c462f6bf9e8",
+    "title": "WS-26 实验副对话：远端唯一 runner 与逐格验收",
+    "status": {
+      "type": "notLoaded"
+    },
+    "page": {
+      "order": "newest_first",
+      "limit": 2,
+      "nextCursor": "{\"requestedThreadId\":\"01a11568-af40-7ba0-9814-8c462f6bf9e8\",\"rolloutOrdinal\":37429,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+      "hasMore": true
+    },
+    "turns": [
+      {
+        "id": "01a130f7-1b6e-7231-9238-bf61073b455f",
+        "status": "completed",
+        "items": [
+          {
+            "type": "agentMessage",
+            "text": "已停止。WS-27 尚无任何本地或远端操作、文件变更或实验 ID；WS-26 继续暂停，草稿保持原状。"
+          }
+        ]
+      },
+      {
+        "id": "01a1300b-055e-7813-957f-bd0363404e8c",
+        "status": "failed",
+        "items": []
+      }
+    ]
+  },
+  {
+    "thread_id": "01a130f7-85d4-7d63-853f-a08cc29bd2e3",
+    "title": "WS-27 GuardHash、HarmGate 与 ClassReserve…",
+    "status": {
+      "type": "notLoaded"
+    },
+    "page": {
+      "order": "newest_first",
+      "limit": 2,
+      "nextCursor": "{\"requestedThreadId\":\"01a130f7-85d4-7d63-853f-a08cc29bd2e3\",\"rolloutOrdinal\":2095,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+      "hasMore": true
+    },
+    "turns": [
+      {
+        "id": "01a13570-d951-7540-aa4f-f7435f9e6178",
+        "status": "completed",
+        "items": [
+          {
+            "type": "agentMessage",
+            "text": "已核对 Handoff 78 和 WS-27 确认报告的标题与结论，接回 WS-27 原副对话；现停止工作。"
+          }
+        ]
+      },
+      {
+        "id": "01a1356e-4559-7f42-929b-6eddd4a6fbbd",
+        "status": "completed",
+        "items": [
+          {
+            "type": "agentMessage",
+            "text": "WS-27 的预设比较已完成。我复核了确认报告、关键结果文件的 SHA-256，以及工作分支与个人 fork 同名分支的提交；两端均为 `19112ee`，工作树干净。正确性 7/7、资源阶梯 24/24、筛选 32/32、独立确认 384/384 格已验收。本次没有重跑实验或改动文件。\n\n192 档相对同输入 ECMP 的结果如下。负值表示 MoE 整批完成时间缩短：\n\n| 机制 | MoE 批完成时间中位变化 | 改善 seed | 背景 P99 中位变化 | 背景单 seed 超过 +3% |\n| --- | ---: | ---: | ---: | ---: |\n| ClassReserve v1 | −6.899% | 21/24 | +0.552% | 6/24 |\n| GuardHash v2 | −5.965% | 22/24 | +0.340% | 6/24 |\n| HarmGate v2 | −6.095% | 22/24 | +0.064% | 7/24 |\n\n三者都满足您指定的**背景 P99 跨 seed 中位变化严格小于 +3%**的判据。MoE 效应、自助区间和逐 seed 反例见[确认报告](E:/研/毕业论文/workspace/ws27-guardhash-compare/docs/research/ws27-confirm-report.md)；逐格索引见[机器摘要](E:/研/毕业论文/workspace/ws27-guardhash-compare/docs/research/evidence/ws27-confirm-analysis.json)。中位数通过不代表每个 seed 的背景流都安全，现有实验也未证明三种机制之间存在显著优劣。\n\nWS-27 的实验与报告范围已经闭环，项目状态已写入该工作分支的[当前状态入口](E:/研/毕业论文/workspace/ws27-guardhash-compare/docs/project-state/CURRENT_STATE.md)。按您此前的决定，我没有用改善幅度自动选论文主机制；这一步留给您依据效应、反例和实现代价研判。WS-26 保持暂停。"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "thread_id": "01a1366a-eef6-7790-b099-1aca879251d1",
+    "title": "WS-28 ClassReserve 机制解释与原生基线实验",
+    "status": {
+      "type": "notLoaded"
+    },
+    "page": {
+      "order": "newest_first",
+      "limit": 2,
+      "nextCursor": "{\"requestedThreadId\":\"01a1366a-eef6-7790-b099-1aca879251d1\",\"rolloutOrdinal\":12169,\"includeAnchor\":false,\"scope\":{\"kind\":\"turns\"}}",
+      "hasMore": true
+    },
+    "turns": [
+      {
+        "id": "01a14059-f5bc-7673-943e-5609efd05188",
+        "status": "completed",
+        "items": [
+          {
+            "type": "userMessage",
+            "text": "继续跟踪WS-28情况\n"
+          },
+          {
+            "type": "agentMessage",
+            "text": "截至本次核对，**WS-28 没有未完成的预设任务**：本地工作树干净，个人 fork 的远端分支仍指向最终提交 `842b96e`，未发现新变化。[最终验收审计](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/research/ws28-final-acceptance-audit.md)记录了原生对照 144/144、正式消融 120/120、反例诊断 12/12 格通过。\n\n我已将原有的 WS-28 跟踪更新为**每天 9:00**核查提交和验收状态。状态不变时保持安静；出现实质变化、失败或需要你决定的事项时再通知。"
+          }
+        ]
+      },
+      {
+        "id": "01a1403f-cc27-7d90-b6e0-fd3810fa650b",
+        "status": "completed",
+        "items": [
+          {
+            "type": "userMessage",
+            "text": "继续进行\n"
+          },
+          {
+            "type": "agentMessage",
+            "text": "WS-28 的**预设 ns-3 合成验证任务已闭环**。原生对照 144/144 格、两因素消融 120/120 格、反例探针 12/12 格均通过原始数据验收。组件效应图、三个反例时序图、[正式分析](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/research/ws28-factorial-and-tail-analysis.md)和[逐项验收审计](/E:/研/毕业论文/workspace/ws28-classreserve-explanation/docs/research/ws28-final-acceptance-audit.md)已完成。\n\n四个消融臂相对同输入 ECMP 的 MoE 批时间中位数均降低，但各组件条件效应的 95% 区间都跨零；三个反例的下游排队证据也不足以作唯一因果归因。结论限于本次固定合成输入与传输配置。\n\n图表的源码、字号、对齐及 PDF 碰撞检查已通过。更新已提交为 `842b96e`，并推送到个人 fork 的 `feature/ws28-classreserve-explanation` 分支。"
+          }
+        ]
+      }
+    ]
+  }
+]

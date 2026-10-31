@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-01",
+  "scope": "Archive prerequisite checks; receipt counts and hashes, no new simulation or full raw recomputation",
+  "historical_source_hashes_unchanged": [
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws26-classmix-validation\\docs\\handoffs\\2026-10-11-88-ws26-third-signal-admission-design.md",
+      "relative_project_path": "workspace/ws26-classmix-validation/docs/handoffs/2026-10-11-88-ws26-third-signal-admission-design.md",
+      "bytes": 3177,
+      "sha256": "732f2a3d7635ad54b3a8875f3a18fd553daae85cf103a1cafd4be966e9a622a4"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws26-classmix-validation\\docs\\research\\ws26-failure-cause-and-method-gate.md",
+      "relative_project_path": "workspace/ws26-classmix-validation/docs/research/ws26-failure-cause-and-method-gate.md",
+      "bytes": 7658,
+      "sha256": "c2ffb66245257a82f163ec95bd29d3e1167325da8d7a8cdbf8a759e6c6a6562e"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws26-classmix-validation\\docs\\research\\ws26-classlane4-pilot-r2-analysis.md",
+      "relative_project_path": "workspace/ws26-classmix-validation/docs/research/ws26-classlane4-pilot-r2-analysis.md",
+      "bytes": 4125,
+      "sha256": "76ea5d5e30c1da0ff5a28f82ae330fc8fbd4db2ebdeb3341bc661d457e654366"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws27-guardhash-compare\\docs\\handoffs\\2026-10-13-78-ws27-independent-confirmation.md",
+      "relative_project_path": "workspace/ws27-guardhash-compare/docs/handoffs/2026-10-13-78-ws27-independent-confirmation.md",
+      "bytes": 5358,
+      "sha256": "4c87a61766a9afe0f4dc5151f8d1ddbdb72fad134fa2f7e69e2a3a9d9a4e6218"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws27-guardhash-compare\\docs\\research\\evidence\\ws27-confirm-analysis.json",
+      "relative_project_path": "workspace/ws27-guardhash-compare/docs/research/evidence/ws27-confirm-analysis.json",
+      "bytes": 141418,
+      "sha256": "51bdd82a3a5b9f52f88dd037f5a1f9acde3ad46e29370f39d686a69850144038"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws28-classreserve-explanation\\docs\\research\\ws28-final-acceptance-audit.md",
+      "relative_project_path": "workspace/ws28-classreserve-explanation/docs/research/ws28-final-acceptance-audit.md",
+      "bytes": 3747,
+      "sha256": "4ae9258daba8342f9b1fcb76b283258b600c0a423f300c5872a23a71b9d18c18"
+    }
+  ],
+  "count_checks": [
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws27-guardhash-compare\\docs\\research\\evidence\\ws27-confirm-analysis.json",
+      "sha256": "51bdd82a3a5b9f52f88dd037f5a1f9acde3ad46e29370f39d686a69850144038",
+      "count_field": "verified_cells",
+      "count": 384
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws28-classreserve-explanation\\docs\\research\\evidence\\ws28-native-analysis.json",
+      "sha256": "cf5b07573ad10445109b1e12cf3f8cfc4d36b5c463efc18732d0c8a0b6391a02",
+      "count_field": "verified_raw_cells",
+      "count": 144
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws28-classreserve-explanation\\docs\\research\\evidence\\ws28-ablation-analysis.json",
+      "sha256": "d9fac703d8c23e16bf3cf6556620d571efcdc023b328906d1d821590f0a1010f",
+      "count_field": "verified_cells",
+      "count": 120
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws28-classreserve-explanation\\docs\\research\\evidence\\ws28-tail-analysis.json",
+      "sha256": "908bc0e71d55bb4c388124f579700ee4844b60dcf0f700261e46449ac1910b3d",
+      "count_field": "analyzed_cells",
+      "count": 12
+    }
+  ],
+  "WS26_paused_drafts": [
+    {
+      "original": "E:\\研\\毕业论文\\workspace\\ws26-classmix-validation\\docs\\research\\evidence\\ws26-queue-front-seed97-plan.json",
+      "copy": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\evidence\\ws26-ws28-archive-20261101\\ws26-paused-drafts\\ws26-queue-front-seed97-plan.json",
+      "sha256": "72252da0bf741032be82103176874bfc0bf35b131f7fd16a36a1d7fad7c15abf",
+      "status": "unreviewed_unfrozen_unexecuted_draft",
+      "original_unchanged": true
+    },
+    {
+      "original": "E:\\研\\毕业论文\\workspace\\ws26-classmix-validation\\scripts\\make_ws26_queue_front_plan.py",
+      "copy": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\evidence\\ws26-ws28-archive-20261101\\ws26-paused-drafts\\make_ws26_queue_front_plan.py",
+      "sha256": "084fb3b25010e81e9ada48c42012a54b2a1a8a7b0c54898704563da6478285c1",
+      "status": "unreviewed_unfrozen_unexecuted_draft",
+      "original_unchanged": true
+    }
+  ],
+  "WS26_completion_claim": false,
+  "WS27_preset_complete": true,
+  "WS28_preset_complete": true,
+  "remote_access": false,
+  "WS29_body_read": false
+}

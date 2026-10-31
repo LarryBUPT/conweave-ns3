@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-01",
+  "status": "READY_FOR_ARCHIVE",
+  "user_instruction": "前序工作例如WS-26-28工作确认无误后，进行归档。",
+  "science_scope": {
+    "WS26": "paused and incomplete; historical checkpoint archive only",
+    "WS27": "complete for preset comparison",
+    "WS28": "complete for preset explanation and ablation"
+  },
+  "targets": [
+    {
+      "id": "01a11568-af40-7ba0-9814-8c462f6bf9e8",
+      "title": "WS-26 实验副对话：远端唯一 runner 与逐格验收",
+      "archive_performed": false
+    },
+    {
+      "id": "01a130f7-85d4-7d63-853f-a08cc29bd2e3",
+      "title": "WS-27 GuardHash、HarmGate 与 ClassReserve…",
+      "archive_performed": false
+    },
+    {
+      "id": "01a1366a-eef6-7790-b099-1aca879251d1",
+      "title": "WS-28 ClassReserve 机制解释与原生基线实验",
+      "archive_performed": false
+    }
+  ],
+  "keep_unarchived": [
+    "01a1625a-d557-71c1-a90a-258c289ef43e",
+    "01a1625b-90b4-75d1-b5a8-d0366a228d0e",
+    "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+    "01a19323-2201-7b23-a0f1-905c71496d38"
+  ],
+  "remote_access": false,
+  "drafts_preserved": true,
+  "platform_confirmation_pending": true
+}
