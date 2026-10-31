@@ -57,6 +57,7 @@
 #include "ns3/workload-tag.h"
 #include "ns3/ws30-v13-fixture.h"
 #include "ns3/ws31-start.h"
+#include "ns3/ws31-ofan.h"
 #include "ws30-composition-fixture.h"
 
 using namespace ns3;
@@ -988,6 +989,53 @@ void BuildWs21IngressMapping() {
               << " unreachable_pairs=" << unreachablePairs << std::endl;
 }
 
+void BuildWs31OfanGroups() {
+    std::set<uint32_t> switches;
+    for (uint32_t i=0; i<n.GetN(); ++i)
+        if (n.Get(i)->GetNodeType()==1) switches.insert(i);
+    uint64_t mappings=0, edgeMappings=0, aggregationMappings=0;
+    for (uint32_t h=0; h<n.GetN(); ++h) {
+        Ptr<Node> host=n.Get(h);
+        if (host->GetNodeType()!=0) continue;
+        const uint32_t ip=serverAddress.at(h).Get();
+        auto tor=Settings::hostIp2SwitchId.find(ip);
+        if (tor==Settings::hostIp2SwitchId.end()) NS_FATAL_ERROR("Ofan host lacks ToR mapping");
+        std::map<uint32_t,std::vector<uint32_t> > dag;
+        for (const auto &row : nextHop) {
+            if (row.first->GetNodeType()!=1) continue;
+            auto route=row.second.find(host);
+            if (route==row.second.end()) continue;
+            for (Ptr<Node> v : route->second) dag[row.first->GetId()].push_back(v->GetId());
+        }
+        std::map<uint32_t,uint32_t> groups;
+        try { groups=ws31::OfanMandatoryGroups(dag,h,switches); }
+        catch (const std::exception &e) { NS_FATAL_ERROR("Ofan grouping host=" << h << ": " << e.what()); }
+        for (const auto &g : groups) {
+            Ptr<SwitchNode> sw=DynamicCast<SwitchNode>(n.Get(g.first));
+            if (sw->m_isToR) {
+                if (g.second!=tor->second) NS_FATAL_ERROR("Ofan source edge mandatory group is not destination edge");
+                ++edgeMappings;
+            } else {
+                auto neighbors=nbr2if.find(n.Get(g.second));
+                if (neighbors==nbr2if.end() || !neighbors->second.count(n.Get(tor->second)))
+                    NS_FATAL_ERROR("Ofan aggregation mandatory group is not adjacent to destination edge");
+                ++aggregationMappings;
+            }
+            std::vector<uint32_t> ports; uint64_t rate=0;
+            for (uint32_t v : dag.at(g.first)) {
+                const uint32_t port=nbr2if.at(n.Get(g.first)).at(n.Get(v)).idx;
+                const uint64_t r=DynamicCast<QbbNetDevice>(sw->GetDevice(port))->GetDataRate().GetBitRate();
+                if (rate && rate!=r) NS_FATAL_ERROR("Ofan v2 static port requires equal-rate next hops");
+                rate=r; ports.push_back(port);
+            }
+            sw->AddWs31OfanDestination(ip,g.second,ports); ++mappings;
+        }
+    }
+    if (!mappings) NS_FATAL_ERROR("Ofan topology has no multipath destination groups");
+    std::cout << "WS31_OFAN_MAPPING mappings=" << mappings << " edge=" << edgeMappings
+              << " aggregation=" << aggregationMappings << " verified_mandatory=1" << std::endl;
+}
+
 void Ws23InjectPfc(Ptr<QbbNetDevice> switchPort, uint32_t hostId,
                    uint32_t pg, uint32_t type) {
     uint32_t pauseUs = switchPort->SendPfc(pg, type);
@@ -1000,6 +1048,7 @@ void Ws23InjectPfc(Ptr<QbbNetDevice> switchPort, uint32_t hostId,
  * @brief take down the link between a and b, and redo the routing
  */
 void TakeDownLink(NodeContainer n, Ptr<Node> a, Ptr<Node> b) {
+    if (Settings::lb_mode==51) NS_FATAL_ERROR("Ofan static equal-path port does not implement failures/IWRR");
     if (!nbr2if[a][b].up) return;
     // take down link between a and b
     nbr2if[a][b].up = nbr2if[b][a].up = false;
@@ -1955,9 +2004,9 @@ int main(int argc, char *argv[]) {
             sw->m_isToR = true;
             uint32_t hostIP = serverAddress[pair.first].Get();
             sw->m_isToR_hostIP.insert(hostIP);
-            if (ws21_identity) {
+            if (ws21_identity || lb_mode==51) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
-                SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
+                if (ws21_identity) SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
             if (ws21_port_events || ws21_heartbeat)
                 sw->AddWs21HostPort(nbr2if.at(probably_switch).at(probably_host).idx);
@@ -1968,6 +2017,7 @@ int main(int argc, char *argv[]) {
     }
 
     if (ws21_identity) BuildWs21IngressMapping();
+    if (lb_mode==51) BuildWs31OfanGroups();
 
     /* config load balancer's switches using ToR-to-ToR routing */
     if (lb_mode == 3 || lb_mode == 6 || lb_mode == 9) {  // Conga, Letflow, Conweave

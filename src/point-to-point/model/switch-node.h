@@ -13,6 +13,7 @@
 #include "switch-mmu.h"
 #include "ws31-budget.h"
 #include "ws31-quota.h"
+#include "ws31-ofan.h"
 
 namespace ns3 {
 
@@ -71,6 +72,12 @@ class SwitchNode : public Node {
     uint32_t DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
                         const std::vector<int> &nexthops);
     ws31::QuotaAdmission m_ws31Quota;
+    ws31::OfanScheduler m_ws31Ofan;
+    std::map<uint32_t,uint32_t> m_ws31OfanDestination;
+    std::map<uint32_t,std::vector<uint32_t> > m_ws31OfanGroupPorts;
+    uint64_t m_ws31OfanData=0, m_ws31OfanAck=0;
+    uint32_t DoLbWs31Ofan(Ptr<const Packet> p, const CustomHeader &ch,
+                          const std::vector<int> &nexthops);
     uint32_t DoLbWs31C3(Ptr<const Packet> p, const CustomHeader &ch,
                         const std::vector<int> &nexthops);
     uint32_t DoLbWs30(Ptr<const Packet> p, const CustomHeader &ch,
@@ -152,6 +159,8 @@ class SwitchNode : public Node {
                            const std::vector<int> &nexthops);  // dummy
 
    public:
+    void AddWs31OfanDestination(uint32_t dip, uint32_t mandatory,
+                                const std::vector<uint32_t> &ports);
     void ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport);
     void WriteWs30V13State();
     // Ptr<BroadcomNode> m_broadcom;

@@ -160,6 +160,7 @@ lb_modes = {
     "ws31-c3-fixed": 48,
     "ws31-c3-size": 49,
     "ws31-c3-zero": 50,
+    "ofan-v2": 51,
     "cr-a0-b0": 25,
     "cr-a1-b0": 26,
     "cr-a0-b1": 27,

@@ -14,6 +14,7 @@
 #include "ns3/ipv4.h"
 #include "ns3/letflow-routing.h"
 #include "ns3/packet.h"
+#include "ns3/rng-seed-manager.h"
 #include "ns3/pause-header.h"
 #include "ns3/settings.h"
 #include "ns3/uinteger.h"
@@ -1395,6 +1396,19 @@ void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, u
 }
 
 void SwitchNode::WriteWs30V13State() {
+    if (Settings::lb_mode==51) {
+        std::cout << "WS31_OFAN_STATE switch=" << m_id
+                  << " mapped_destinations=" << m_ws31OfanDestination.size()
+                  << " groups=" << m_ws31Ofan.Groups().size()
+                  << " rotated_data=" << m_ws31OfanData << " rotated_ack_nack=" << m_ws31OfanAck
+                  << " quantum_boundary_bytes=128 static_equal_paths=1 seed=" << RngSeedManager::GetSeed()
+                  << " run=" << RngSeedManager::GetRun() << std::endl;
+        if (Ws30Level()) for (const auto &g : m_ws31Ofan.Groups())
+            std::cout << "WS31_OFAN_GROUP switch=" << m_id << " mandatory=" << g.first.first
+                      << " quantum=" << g.first.second << " ports=" << g.second.order.size()
+                      << " packets=" << g.second.packets << " wire_bytes=" << g.second.wireBytes
+                      << " wraps=" << g.second.wraps << " cursor=" << g.second.cursor << std::endl;
+    }
     if (Settings::lb_mode>=47 && Settings::lb_mode<=50) {
         m_ws31Quota.Expire(Simulator::Now().GetNanoSeconds());
         std::cout << "WS31_C3_STATE switch=" << m_id << " entries=" << m_ws31Quota.Size()
@@ -1534,6 +1548,42 @@ uint32_t SwitchNode::DoLbWs31C3(Ptr<const Packet> p, const CustomHeader &ch,
                   << " owner=" << d.owner << " borrowed=" << d.borrowed
                   << " residual=" << d.residual << " wire_bytes=" << p->GetSize() << std::endl;
     return d.chosen;
+}
+
+void SwitchNode::AddWs31OfanDestination(uint32_t dip, uint32_t mandatory,
+                                       const std::vector<uint32_t> &ports) {
+    std::vector<uint32_t> canonical=ports;
+    std::sort(canonical.begin(),canonical.end());
+    if (canonical.size()<2 || std::adjacent_find(canonical.begin(),canonical.end())!=canonical.end())
+        NS_FATAL_ERROR("Ofan grouping needs distinct multiple uplinks");
+    auto g=m_ws31OfanGroupPorts.find(mandatory);
+    if (g!=m_ws31OfanGroupPorts.end() && g->second!=canonical)
+        NS_FATAL_ERROR("Ofan mandatory group has incompatible route sets");
+    m_ws31OfanGroupPorts[mandatory]=canonical;
+    auto d=m_ws31OfanDestination.find(dip);
+    if (d!=m_ws31OfanDestination.end() && d->second!=mandatory)
+        NS_FATAL_ERROR("Ofan destination grouping changed");
+    m_ws31OfanDestination[dip]=mandatory;
+}
+
+uint32_t SwitchNode::DoLbWs31Ofan(Ptr<const Packet> p, const CustomHeader &ch,
+                                 const std::vector<int> &nexthops) {
+    if (nexthops.size()==1) return nexthops[0];
+    auto group=m_ws31OfanDestination.find(ch.dip);
+    if (group==m_ws31OfanDestination.end()) NS_FATAL_ERROR("Ofan missing verified destination group");
+    const std::vector<uint32_t> ports(nexthops.begin(),nexthops.end());
+    const auto d=m_ws31Ofan.Select(group->second,p->GetSize(),ports,
+        (uint64_t(RngSeedManager::GetSeed())<<32) ^ (uint64_t(m_id)*0x9e3779b97f4a7c15ULL) ^
+        RngSeedManager::GetRun() ^ 0x4f46414eULL);
+    if (ch.l3Prot==0x11) ++m_ws31OfanData; else ++m_ws31OfanAck;
+    if (Ws30Level()==2 || (Ws30Level() && d.fresh))
+        std::cout << "WS31_OFAN_ROUTE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " sip=" << ch.sip << " dip=" << ch.dip
+                  << " protocol=" << unsigned(ch.l3Prot) << " wire_bytes=" << p->GetSize()
+                  << " mandatory=" << group->second << " quantum=" << d.quantum
+                  << " position=" << d.position << " fresh=" << d.fresh
+                  << " chosen=" << d.port << std::endl;
+    return d.port;
 }
 
 // WS-25 v2 diagnostic correction. A MoE QP uses the existing DRILL decision
@@ -1898,6 +1948,11 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
     bool control_pkt =
         (ch.l3Prot == 0xFF || ch.l3Prot == 0xFE || ch.l3Prot == 0xFD || ch.l3Prot == 0xFC ||
          ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL);
+
+    // Ofan's packet-size pointers must also schedule transport feedback.
+    // Link-local PFC and unrelated controls keep their common behavior.
+    if (Settings::lb_mode==51 && (ch.l3Prot==0x11 || ch.l3Prot==0xFC || ch.l3Prot==0xFD))
+        return DoLbWs31Ofan(p,ch,nexthops);
 
     if (Settings::lb_mode == 0 || control_pkt) {  // control packet (ACK, NACK, PFC, QCN)
         return DoLbFlowECMP(p, ch, nexthops);     // ECMP routing path decision (4-tuple)
