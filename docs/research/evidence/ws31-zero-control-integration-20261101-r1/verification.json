@@ -1,0 +1,248 @@
+{
+  "date": "2026-11-01",
+  "observed_utc": "2026-10-31T23:18:04.135062+00:00",
+  "scope": "Integration reconciliation of completed technical zero controls, one-input V0 arithmetic and frozen dynamic successor",
+  "raw_verification": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/raw-verification.json",
+  "raw_verification_sha256": "3c34ffa4c0669c982f8c158c708246001d3f17c618159708d8a6f8e3916e0fd5",
+  "raw_independent_checks": {
+    "unique_fixed_source_objects": 35,
+    "result_files": 100,
+    "support_files": 28
+  },
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/evidence/zero-control-pilot-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/evidence/zero-control-pilot-main-acceptance-r1.json",
+      "sha256": "f8230d14a6cb455478d77619b47092b12a7b0ac0679c6232ebd91af80b84119f",
+      "bytes": 1435
+    },
+    {
+      "source": "docs/research/ws31/main/zero-control-node3-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/zero-control-node3-handoff.md",
+      "sha256": "4456df9f445df396b76bcd945921fa31c2936a5105e06aca582a44833d20b026",
+      "bytes": 3680
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/zero-control-main-comparisons-r1.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/evidence/zero-control-main-comparisons-r1.json",
+      "sha256": "6c8d71c8c5baf1651239f2c6ed6448d2c77dd4250e9b338e600c990bdf86b0e9",
+      "bytes": 889
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/zero-control-main-reference-review-r1.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/evidence/zero-control-main-reference-review-r1.json",
+      "sha256": "b1fbf7514454514b0a5482e1b7e7e4f778dd91e28dde23f94fb5bfe425e1fd25",
+      "bytes": 1854
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/v0-technical-replay-r1.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/evidence/v0-technical-replay-r1.json",
+      "sha256": "63b81ca195046597ce5cb4ca0657819377b83be7f250d2932c70331bb7b907a4",
+      "bytes": 2380
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/v0-technical-replay-r1.csv",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/evidence/v0-technical-replay-r1.csv",
+      "sha256": "2ee3657bee24859b0a50b85a50770a98d8aafb09445eb2f9c2e03f5ba96c9fec",
+      "bytes": 37692
+    },
+    {
+      "source": "docs/research/ws31/main/v0-technical-replay-r1.md",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/v0-technical-replay-r1.md",
+      "sha256": "dba28023f000794f92adb3b60128c280fe2bcc49e94d3a185c091e58ae742841",
+      "bytes": 2478
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-tag-intervention-source-gap-r1.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/evidence/c2-tag-intervention-source-gap-r1.json",
+      "sha256": "a83a1a44e2590161f85838299a541e6f089b9437e5a867367dd1a3fc5a4e336d",
+      "bytes": 1708
+    },
+    {
+      "source": "docs/research/ws31/main/main-mode-dynamic-r1.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/main-mode-dynamic-r1.json",
+      "sha256": "8b4f97c9112bceea740ca792616a32f8d22e1c0ee88c5d62ada4cfe2c6dafd48",
+      "bytes": 4991
+    },
+    {
+      "source": "docs/research/ws31/main/main-mode-dynamic-r1.md",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/main-mode-dynamic-r1.md",
+      "sha256": "ae12826e68c5637f74b61658b57a1426d9c1e5d00b6da2e5b80aea2e5b93e4a7",
+      "bytes": 1907
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "0e756f9745fe563f8120da4413c02756fdac78efaca2538843e5fdc530b0e47e",
+      "bytes": 9530
+    },
+    {
+      "source": "docs/research/ws31/main/topic-map.md",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/topic-map.md",
+      "sha256": "7734b16f85f29521ce140a89c402c4c147ed9c21dd79fb3061b54b7be633fb9a",
+      "bytes": 3558
+    },
+    {
+      "source": "docs/research/ws31/main/topic-funnel.csv",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/topic-funnel.csv",
+      "sha256": "1d24cbc92d4189e276ac96e42fb71b94d07ef3b763a017850836e4958bd2a066",
+      "bytes": 4034
+    },
+    {
+      "source": "docs/research/ws31/independent/zero-control-pilot-r1-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/independent/zero-control-pilot-r1-receipt.json",
+      "sha256": "8c0d7078f7327e3a05350e306b95e4f921201c24240e0c448aadc454edcd8ed8",
+      "bytes": 57682
+    },
+    {
+      "source": "docs/research/ws31/independent/zero-control-pilot-r1-index.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/independent/zero-control-pilot-r1-index.json",
+      "sha256": "bdd7f842d359a0c2e8251069ee38dfa64dd031fca9d5a988ef4ae80a4ac50b72",
+      "bytes": 9801
+    },
+    {
+      "source": "docs/research/ws31/independent/zero-control-pilot-r1-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/independent/zero-control-pilot-r1-handoff.md",
+      "sha256": "acfbb37f21a4b4ec7c0d9253d4fb4d66b298a43a501911d4329fa63f53cdf30e",
+      "bytes": 4011
+    },
+    {
+      "source": "docs/research/ws31/independent/zero-control-pilot-r1-evidence/20261101-062753-ws31-zr1-q12/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/20261101-062753-ws31-zr1-q12/remote-manifest.json",
+      "sha256": "4520f7bda94b7f0dface3e6804966957bfda1980b1e224b44219f425203b5d36",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/zero-control-pilot-r1-evidence/20261101-062753-ws31-zr1-c1zero/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/20261101-062753-ws31-zr1-c1zero/remote-manifest.json",
+      "sha256": "0cb16601116e520ebc8980d988298b39cfdbf41214dc000676d60285c6fe183e",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/zero-control-pilot-r1-evidence/20261101-062753-ws31-zr1-c2zero/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/20261101-062753-ws31-zr1-c2zero/remote-manifest.json",
+      "sha256": "77395b4c01b4f9b3a6d76c338e0c84163741c2e989546a25f534e9163ac06ff5",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/zero-control-pilot-r1-evidence/20261101-062753-ws31-zr1-c3zero/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/20261101-062753-ws31-zr1-c3zero/remote-manifest.json",
+      "sha256": "eca3ba894cc77d363822a19ebc96b691826b7716d05b3c3c5175c51d2dda0ad6",
+      "bytes": 8049
+    }
+  ],
+  "V0": {
+    "CSV_rows_checked": 416,
+    "metrics_reaggregated": {
+      "class_progress": {
+        "observations": 196,
+        "absolute_error_sum": 23695368,
+        "mae_payload_bytes": 120894.73469387754,
+        "strict_rank_correct": 76,
+        "strict_truth_pairs": 83,
+        "under_bytes": 23695368,
+        "over_bytes": 0
+      },
+      "unified_progress": {
+        "observations": 196,
+        "absolute_error_sum": 39273440,
+        "mae_payload_bytes": 200374.693877551,
+        "strict_rank_correct": 34,
+        "strict_truth_pairs": 83,
+        "under_bytes": 39273440,
+        "over_bytes": 0
+      },
+      "class_count": {
+        "observations": 196,
+        "absolute_error_sum": 15974320,
+        "mae_payload_bytes": 81501.63265306123,
+        "strict_rank_correct": 74,
+        "strict_truth_pairs": 83,
+        "under_bytes": 15595472,
+        "over_bytes": 378848
+      },
+      "unified_count": {
+        "observations": 196,
+        "absolute_error_sum": 35045776,
+        "mae_payload_bytes": 178804.97959183675,
+        "strict_rank_correct": 47,
+        "strict_truth_pairs": 83,
+        "under_bytes": 34793664,
+        "over_bytes": 252112
+      }
+    },
+    "scope": "CSV metric arithmetic checked; underlying future-payload extraction and scientific V0 validation not independently repeated",
+    "counterpoint": "Class progress 76/83 vs class count 74/83 strict rankings, but MAE120894.73B vs81501.63B; no dominance or independent effect claim"
+  },
+  "reference_review": {
+    "paper": "IRN, Revisiting Network Support for RDMA, SIGCOMM2018 formal 15-page PDF",
+    "scope": "Reused fixed-node recovery/completion design context; version hashes checked, technical and verification notes re-read; no additional formal baseline",
+    "inputs": [
+      {
+        "path": "E:\\研\\毕业论文\\参考文献\\候选\\README.md",
+        "observed_sha256": "62e79fc8e732d648745c35729bbe2be229d58298f4f201e16b27928848188247",
+        "same_as_main_node": true
+      },
+      {
+        "path": "E:\\研\\毕业论文\\参考文献\\候选\\reading-log.md",
+        "observed_sha256": "6369cfb5965cbaf94f7e4bd3c99df7fcaf29a1bf2f02e86fa171f34182676822",
+        "same_as_main_node": true
+      },
+      {
+        "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\irn-2018\\paper.pdf",
+        "observed_sha256": "701650c375381808e4649f3370a48b5a0a5c9fa593ec32fa906c7130998cd8e2",
+        "same_as_main_node": true
+      },
+      {
+        "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\irn-2018\\analysis-technical.md",
+        "observed_sha256": "1f63aadfecace66fba399d0e46c9a05790553b0fdfff26cacf4821679d6e3722",
+        "same_as_main_node": true
+      },
+      {
+        "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\irn-2018\\verification.md",
+        "observed_sha256": "6ab3498678100a032592d92a269655dd80b0c83eaacd09da835751c68110d592",
+        "same_as_main_node": true
+      }
+    ],
+    "adopted": "Keep common endpoint recovery and congestion settings while verifying tuple/bytes/original demand and path separately",
+    "conditions": "All four cells same DCQCN/PFC0/IRN1 and fixed inputs; no within-QP route changes in this technical workload",
+    "difference": "WS31 changes first routing/start/quota; IRN is endpoint recovery and RDMA completion semantics",
+    "non_extrapolations": [
+      "Zero-control equality does not validate all IRN loss/reordering/WQE branches",
+      "No NIC hardware cost, general PFC removal benefit or real-job claim",
+      "No added formal baseline; paper citation does not bypass CCF A/B admission policy"
+    ]
+  },
+  "next_plan": {
+    "path": "docs/research/ws31/main/main-mode-dynamic-r1.json",
+    "cells": 3,
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "status": "Frozen and dispatched per main local status; execution not queried by Integration",
+    "max_parallel_builds": 3,
+    "max_total_compile_jobs": 6,
+    "simulations": "serial, only after all builds pass",
+    "fresh_resource_gate_required": true,
+    "no_root_resource_admission_claim": true
+  },
+  "C2_tag_intervention_gap": {
+    "evidence": "docs/research/ws31/main/evidence/c2-tag-intervention-source-gap-r1.json",
+    "scope": "Main source-audited future test-interface gap; default transform0 accepted zero cells and dynamic plan unaffected; wrong transformed runs0",
+    "required": "Resolve decision-visible label intervention before tag-ablation claims; main owns follow-up"
+  },
+  "coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:5",
+  "boundaries": {
+    "remote_access": false,
+    "new_or_repeated_network_runs": false,
+    "main_or_independent_owned_files_modified": false,
+    "formal_effects_validated": false,
+    "Ofan_admitted": false,
+    "combined_baseline_established": false
+  },
+  "validation": {
+    "json_files_valid": 16,
+    "new_markdown_links_valid": 9,
+    "frozen_snapshot_hashes_valid": 20,
+    "raw_receipt_hash_valid": true,
+    "no_scientific_scope_closed_by_technical_node": true
+  }
+}

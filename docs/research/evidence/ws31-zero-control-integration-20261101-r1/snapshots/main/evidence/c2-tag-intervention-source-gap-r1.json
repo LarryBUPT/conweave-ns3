@@ -1,0 +1,27 @@
+{
+  "type": "source-audited future validation-interface gap, not an executed-run failure",
+  "candidate": "C2",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "finding": "C2 StartDelay consumes application m_workload_tag, while WS30_TAG_TRANSFORM currently only alters packet WorkloadTag in RdmaHw::GetNxtPacket. The existing flag alone therefore does not intervene on C2 launch decisions.",
+  "effect_on_current_runs": "None: four accepted zero cells and current three main-mode plan all require transform=0. No transformed C2 result has been run or accepted.",
+  "required_resolution_before_tag_tests": "Unify C2 decision-visible policy label with remove/swap intervention while retaining original business tag for metrics, or freeze explicit input-tag controls and reject misleading flag usage. No category-ablation claim before this gate.",
+  "next_action": "Main fix decision-visible policy-tag handling after all current dynamic source copies pass local guards; new SHA/build and explicit tag correctness tests. Current fixed-c4 plan unchanged.",
+  "files": [
+    {
+      "path": "src/applications/model/rdma-client.cc",
+      "sha256": "6f0f3163795722fd68fa4c7cde1a447a90406ddd7adef835454ec5a931271780"
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "sha256": "4be7d02a76b7d216e0323534515dacd465227c928e494f031fc1119f6463ae9b"
+    },
+    {
+      "path": "src/point-to-point/model/ws30-v13-fixture.h",
+      "sha256": "71d3af3936096f30fe70379089877bd742ed8b4ef8081eec5129490734247ca5"
+    },
+    {
+      "path": "scripts/remote_worker.py",
+      "sha256": "3567a1cf95016e1ea093c32e0aeccaee6e3254c3b43fe1feaf690c8dfec4bed5"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "scope": "Main complete four-cell zero-control regression; positive modes and effects pending",
+  "reference": "20261101-062753-ws31-zr1-q12",
+  "accepted": [
+    {
+      "id": "20261101-062753-ws31-zr1-c1zero",
+      "full_fct_byte_identical": true,
+      "choice_and_route_ordered_hashes_equal": true,
+      "all_input_accounting_pass": true
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c2zero",
+      "full_fct_byte_identical": true,
+      "choice_and_route_ordered_hashes_equal": true,
+      "all_input_accounting_pass": true,
+      "c2_zero_time_rows": 104,
+      "c2_request_and_byte_state_balanced": true
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c3zero",
+      "full_fct_byte_identical": true,
+      "choice_and_route_ordered_hashes_equal": true,
+      "all_input_accounting_pass": true
+    }
+  ],
+  "complete_four_cell_stage": true
+}

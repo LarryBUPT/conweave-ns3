@@ -1,0 +1,72 @@
+{
+  "scope": "ONE TECHNICAL INPUT; payload information metrics only, not independent V0, calibration or effects",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "reference_id": "20261101-062753-ws31-zr1-q12",
+  "log_sha256": "300c728daa973ecae2ba825106f76ca007bf579665b62534ed6c717e3a580d5a",
+  "deadline_ns": 20000,
+  "class_templates_payload": {
+    "1": 65536,
+    "2_or_unknown": 8192
+  },
+  "decisions": {
+    "all": 104,
+    "distinct": 92,
+    "distinct_both_empty": 7
+  },
+  "metrics": {
+    "class_progress": {
+      "candidate_observations": 196,
+      "absolute_error_sum": 23695368,
+      "under_bytes": 23695368,
+      "over_bytes": 0,
+      "strict_truth_pairs": 83,
+      "strict_rank_correct": 76,
+      "predicted_ties": 13,
+      "truth_ties": 9,
+      "mae_payload_bytes": 120894.73469387754,
+      "strict_rank_accuracy": 0.9156626506024096
+    },
+    "unified_progress": {
+      "candidate_observations": 196,
+      "absolute_error_sum": 39273440,
+      "under_bytes": 39273440,
+      "over_bytes": 0,
+      "strict_truth_pairs": 83,
+      "strict_rank_correct": 34,
+      "predicted_ties": 19,
+      "truth_ties": 9,
+      "mae_payload_bytes": 200374.693877551,
+      "strict_rank_accuracy": 0.40963855421686746
+    },
+    "class_count": {
+      "candidate_observations": 196,
+      "absolute_error_sum": 15974320,
+      "under_bytes": 15595472,
+      "over_bytes": 378848,
+      "strict_truth_pairs": 83,
+      "strict_rank_correct": 74,
+      "predicted_ties": 15,
+      "truth_ties": 9,
+      "mae_payload_bytes": 81501.63265306123,
+      "strict_rank_accuracy": 0.891566265060241
+    },
+    "unified_count": {
+      "candidate_observations": 196,
+      "absolute_error_sum": 35045776,
+      "under_bytes": 34793664,
+      "over_bytes": 252112,
+      "strict_truth_pairs": 83,
+      "strict_rank_correct": 47,
+      "predicted_ties": 20,
+      "truth_ties": 9,
+      "mae_payload_bytes": 178804.97959183675,
+      "strict_rank_accuracy": 0.5662650602409639
+    }
+  },
+  "nonclaims": [
+    "No Q+R wire-byte action reproduction",
+    "Baseline path allocations held fixed; not counterfactual end-to-end outcomes",
+    "No template/TTL selection or formal success gate from this input",
+    "Packet parser currently requires contiguous first-seen segments per QP"
+  ]
+}

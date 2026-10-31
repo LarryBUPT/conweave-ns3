@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-01",
+  "scope": "Main acceptance of all four zero-control technical cells; not dynamic correctness or effects",
+  "status": "PASS_4_OF_4",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "ids": [
+    "20261101-062753-ws31-zr1-q12",
+    "20261101-062753-ws31-zr1-c1zero",
+    "20261101-062753-ws31-zr1-c2zero",
+    "20261101-062753-ws31-zr1-c3zero"
+  ],
+  "result_files_hash_checked": 100,
+  "support_files_hash_checked": 28,
+  "document_hash_checked": 10,
+  "source_hash_checks": 140,
+  "unique_fixed_source_objects": 35,
+  "flows_per_cell": 104,
+  "payload_bytes_per_cell": 201981952,
+  "total_completed_flow_records": 416,
+  "total_completed_payload_bytes": 807927808,
+  "common_fct_sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+  "common_ordered_hashes": {
+    "WS30_CHOICE": "abaa81171db56b88a46eb360a8b7cebff20cd7ba4d60a45ab4e2480896a8732b",
+    "WS30_ROUTE": "e0a013ec6cb24974fbcbb6bfdbe5ad3ea6786c64e55d6fe975e162898fbf34de"
+  },
+  "C2_zero_timing_rows": 104,
+  "failures": 0,
+  "no_dedicated_Ofan_work": true,
+  "resource_claim": "2-second sampled observations and snapshots only; no exact peak inference",
+  "remaining": [
+    "Positive C1/C2/C3 dynamic coverage",
+    "Matched controls and tags/unknown/lifecycle",
+    "Independent C1 V0 and two-sided effects/costs",
+    "CCF A/B-gated additional baseline decision"
+  ]
+}

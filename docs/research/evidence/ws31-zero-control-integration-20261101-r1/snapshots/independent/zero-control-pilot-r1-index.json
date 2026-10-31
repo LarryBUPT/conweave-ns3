@@ -1,0 +1,171 @@
+{
+  "scope": "Technical correctness/resource pilot only; no effects evidence, no additional baseline, no Ofan work",
+  "status": "COMPLETE_FOR_FOUR_ZERO_CONTROL_TECHNICAL_PILOT_ONLY",
+  "created_utc": "2026-10-31T23:03:20.495564+00:00",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "verified_result_files": 100,
+  "build_details": [
+    {
+      "id": "20261101-062753-ws31-zr1-q12",
+      "build_tasks": 1463,
+      "waf_build_duration": "5m52.966s",
+      "source_hashes_checked": 35,
+      "transferred_files_checked": 25,
+      "build_warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c1zero",
+      "build_tasks": 1463,
+      "waf_build_duration": "5m53.180s",
+      "source_hashes_checked": 35,
+      "transferred_files_checked": 25,
+      "build_warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c2zero",
+      "build_tasks": 1463,
+      "waf_build_duration": "5m53.930s",
+      "source_hashes_checked": 35,
+      "transferred_files_checked": 25,
+      "build_warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c3zero",
+      "build_tasks": 1463,
+      "waf_build_duration": "5m55.891s",
+      "source_hashes_checked": 35,
+      "transferred_files_checked": 25,
+      "build_warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    }
+  ],
+  "common_fct_sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+  "common_ordered_normalized_hashes": {
+    "choice": "abaa81171db56b88a46eb360a8b7cebff20cd7ba4d60a45ab4e2480896a8732b",
+    "route": "e0a013ec6cb24974fbcbb6bfdbe5ad3ea6786c64e55d6fe975e162898fbf34de",
+    "combined": "01c52e9667948a4f6538f03f85ce296a020d5c74a65929d1fe94202bc20c1c02"
+  },
+  "cells": [
+    {
+      "id": "20261101-062753-ws31-zr1-q12",
+      "lb": "ws30v13-q12",
+      "status": "PASS",
+      "result_directory": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results",
+      "binary_sha256": "8d5c75e86bded133401b0eced56c87fa481bb886e9749f128c1d5f7a60fba4ee",
+      "supporting_files": {
+        "remote-manifest.json": "4520f7bda94b7f0dface3e6804966957bfda1980b1e224b44219f425203b5d36",
+        "acceptance.json": "77f15339b1c94681f8533eab259038ddd5737f685ab969e3a2f65876b29ccae0",
+        "run-monitor.json": "0a9488b29073d4ca68db1eebef1e0699687f5b73dbdfc23c0e73972b2e89ae9f",
+        "all-input-verifier.log": "b04b8b603bb11a1293ea2e6d632217e7dc9958f723bd97d2481cd9f63b3339ed",
+        "resources-before-build.json": "e1c59cf4ba43c6ca6b3c011dd3b9af32a5f72e82d4da76f84977de688cdeafb0",
+        "resources-before-run.json": "610f97b7f14183299b9e86d7e8a23dddbb990a04bea63e7a9a72f45feee70443",
+        "resources-after-run.json": "764dcff45d7e8e17ed2f711083af42f930fa8f0b4ea7dc71bfa283b5dba104d8"
+      }
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c1zero",
+      "lb": "ws31-c1-zero",
+      "status": "PASS",
+      "result_directory": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-c1zero\\results",
+      "binary_sha256": "77a9272192d9b2411199d69636f0779b9dffbe820e80174aa69352013163ec38",
+      "supporting_files": {
+        "remote-manifest.json": "0cb16601116e520ebc8980d988298b39cfdbf41214dc000676d60285c6fe183e",
+        "acceptance.json": "81de8145bff203f4cf310f6734159c34c240cf741b75fff1c80cac4371d95eac",
+        "run-monitor.json": "a80d45718b6462cd601406f6220741cfe2aa3b40943d34395f777f40d5dc3db4",
+        "all-input-verifier.log": "2fc6b3b9df802a9648cbea156556ae75f70d864b51a57b2f09d3607157dbcd4d",
+        "resources-before-build.json": "5b0fbfd106b05bb2c9a6bab9fab966b9873f30a94270ae7386e7e87c589ce021",
+        "resources-before-run.json": "fa769ca7a86aa63c27786631525de20616c41b3469329a59c324d8b4af473118",
+        "resources-after-run.json": "a9d1a64b7d829658da001729d6b436733a66d6242eac4ecac6207493fe193268"
+      }
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c2zero",
+      "lb": "ws31-c2-zero",
+      "status": "PASS",
+      "result_directory": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-c2zero\\results",
+      "binary_sha256": "baa060690c020be67c9a61f15efef3c3e3e216756585ae220ef123a8251bb5fb",
+      "supporting_files": {
+        "remote-manifest.json": "77395b4c01b4f9b3a6d76c338e0c84163741c2e989546a25f534e9163ac06ff5",
+        "acceptance.json": "489720bd3dc06c44bae8b058c3c2a5793ca10e71203bca922a8c487b973ca63d",
+        "run-monitor.json": "e6512374cad62cf6f11f529507f369b16c66621a7c460dc4174328a631b90484",
+        "all-input-verifier.log": "099502bf062ee70b3cf32e46d686424f980c8ee78827a92aafde86b05d5c83f2",
+        "resources-before-build.json": "a738e7925adfaf6a999a77550eae14f91960d0b4b46dc4ac8a7b5a0db4de565e",
+        "resources-before-run.json": "135d263eae2fb2f6416399f83a66b6ab58706c6e1d79516924698b0f3342f02b",
+        "resources-after-run.json": "277aca06e9def63f36366f35ea2558b6f42bc3722dbf709b5cf4e367cf914875"
+      }
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c3zero",
+      "lb": "ws31-c3-zero",
+      "status": "PASS",
+      "result_directory": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-c3zero\\results",
+      "binary_sha256": "74b64be6b06e7c651687a1b1de82ffdcf69ab099ee4eff52b3d39a43b1d42a63",
+      "supporting_files": {
+        "remote-manifest.json": "eca3ba894cc77d363822a19ebc96b691826b7716d05b3c3c5175c51d2dda0ad6",
+        "acceptance.json": "7d87b653a56d32d60ffd237c5f3b38b213d8f167d3d006d346a4c478b02bd0b4",
+        "run-monitor.json": "0c0d6b880123768c7c4f649d8bc2938a66dd2ea00a0f534c3eac5fcdcb1507af",
+        "all-input-verifier.log": "2fc6b3b9df802a9648cbea156556ae75f70d864b51a57b2f09d3607157dbcd4d",
+        "resources-before-build.json": "c39c5f0aa4a9bd09021874aa6a31d44f478b667974398cefb2ab75bf8baab2a3",
+        "resources-before-run.json": "332e360a7c2065894b767bc9603dfdcc81487b94bcc573c05318fd46d8f2c228",
+        "resources-after-run.json": "d5f71f1f2df73d4c4b8adacef527d2915c7006deffe80537e24cd6ac25ac079e"
+      }
+    }
+  ],
+  "documents": {
+    "zero-control-pilot-r1-receipt.json": {
+      "bytes": 57682,
+      "sha256": "8c0d7078f7327e3a05350e306b95e4f921201c24240e0c448aadc454edcd8ed8"
+    },
+    "zero-control-pilot-r1-report.md": {
+      "bytes": 5503,
+      "sha256": "d1520c0e3f386b9dd1f41b0f3dd1373e3c8d51a94e91ea92e46eeb3fd4a07a76"
+    },
+    "zero-control-pilot-r1-handoff.md": {
+      "bytes": 4011,
+      "sha256": "acfbb37f21a4b4ec7c0d9253d4fb4d66b298a43a501911d4329fa63f53cdf30e"
+    },
+    "zero-control-pilot-r1-driver.py": {
+      "bytes": 18645,
+      "sha256": "77ca3d6d444464be5a26a292f3eafebb3995c2e04198791c9bb888d3ba2985a5"
+    },
+    "zero-control-pilot-r1-verifier.py": {
+      "bytes": 4364,
+      "sha256": "35bc985fc4089e847bda69f155e4d8d9f8d0cbb0199a53bb1c56086277bddfdf"
+    },
+    "zero-control-pilot-r1-frozen-plan.json": {
+      "bytes": 3497,
+      "sha256": "010500aea3b832cf884a54c62fda52374762f181189a399530482dfea639f714"
+    },
+    "zero-control-pilot-r1-frozen-plan.md": {
+      "bytes": 1760,
+      "sha256": "0819f81a9e0e2119ad682f3ef4d80bf5989b976a15faf835167e195045111cb8"
+    },
+    "zero-control-pilot-r1-reference-review.json": {
+      "bytes": 1973,
+      "sha256": "6758f2376a06e85127a4f8515d138ab0a59a0d899ce68494dc05438369bd1abd"
+    },
+    "zero-control-pilot-r1-c3-source-established.json": {
+      "bytes": 669,
+      "sha256": "a311b06c2d37695f86006e1ccf37addcc66e32535486546c68614467b0dbdb6d"
+    },
+    ".gitignore": {
+      "bytes": 33,
+      "sha256": "6259c9eb6d87201d826703cb8d67ed072d38d1f112774055e1c285f57ddc2f72"
+    }
+  }
+}
