@@ -38,6 +38,7 @@
 #include "ns3/settings.h"
 #include "ns3/ws31-start.h"
 #include "ns3/ws30-observer.h"
+#include "ns3/ws30-v13-fixture.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -148,7 +149,9 @@ void RdmaClient::StartApplication (void)
   if (ws31::StartMode(Settings::lb_mode)) {
     if (m_ws31Pending) NS_FATAL_ERROR("C2 request started twice while pending");
     m_ws31DemandNs = Simulator::Now().GetNanoSeconds();
-    const uint64_t delay = ws31::StartDelay(Settings::lb_mode,m_workload_tag,m_size,
+    const unsigned tagTransform = Ws30V13TagTransform();
+    const uint32_t policyTag = ws31::StartPolicyTag(m_workload_tag,tagTransform);
+    const uint64_t delay = ws31::StartDelay(Settings::lb_mode,policyTag,m_size,
                                            m_sip.Get(),m_dip.Get(),m_sport,m_dport);
     ws31::StartCounters &s = ws31::StartData();
     ++s.demanded; s.demandBytes += m_size;
@@ -156,7 +159,8 @@ void RdmaClient::StartApplication (void)
     if (Ws30Level())
       std::cout << "WS31_C2_DEMAND flow_id=" << m_flow_id << " demand_ns=" << m_ws31DemandNs
                 << " size=" << m_size << " tag=" << m_workload_tag
-                << " delay_ns=" << delay << std::endl;
+                << " delay_ns=" << delay << " policy_tag=" << policyTag
+                << " tag_transform=" << tagTransform << std::endl;
     if (delay) {
       m_ws31LaunchEvent = Simulator::Schedule(NanoSeconds(delay), &RdmaClient::StartRequest, this);
       return;

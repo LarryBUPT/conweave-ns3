@@ -7,6 +7,14 @@ namespace ns3 { namespace ws31 {
 
 inline bool StartMode(uint32_t mode) { return mode >= 43 && mode <= 46; }
 
+// Match the packet-label intervention without changing the business label
+// retained by the QP and completion metrics. Missing packet tags read as zero.
+inline uint32_t StartPolicyTag(uint32_t tag, unsigned transform) {
+    if (transform == 1) return 0;
+    if (transform == 2 && (tag == 1 || tag == 2)) return 3-tag;
+    return tag;
+}
+
 // Fixed, byte-order-independent tuple hash; consumes no simulator RNG draws.
 inline uint32_t StartHash(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport) {
     const uint32_t words[3] = {sip, dip, uint32_t(sport) | (uint32_t(dport) << 16)};
