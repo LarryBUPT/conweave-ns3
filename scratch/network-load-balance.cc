@@ -1048,7 +1048,8 @@ void Ws23InjectPfc(Ptr<QbbNetDevice> switchPort, uint32_t hostId,
  * @brief take down the link between a and b, and redo the routing
  */
 void TakeDownLink(NodeContainer n, Ptr<Node> a, Ptr<Node> b) {
-    if (Settings::lb_mode==51) NS_FATAL_ERROR("Ofan static equal-path port does not implement failures/IWRR");
+    if (Settings::lb_mode==51 || Settings::lb_mode==52)
+        NS_FATAL_ERROR("Ofan static equal-path port does not implement failures/IWRR");
     if (!nbr2if[a][b].up) return;
     // take down link between a and b
     nbr2if[a][b].up = nbr2if[b][a].up = false;
@@ -2004,7 +2005,7 @@ int main(int argc, char *argv[]) {
             sw->m_isToR = true;
             uint32_t hostIP = serverAddress[pair.first].Get();
             sw->m_isToR_hostIP.insert(hostIP);
-            if (ws21_identity || lb_mode==51) {
+            if (ws21_identity || lb_mode==51 || lb_mode==52) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
                 if (ws21_identity) SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
@@ -2017,7 +2018,7 @@ int main(int argc, char *argv[]) {
     }
 
     if (ws21_identity) BuildWs21IngressMapping();
-    if (lb_mode==51) BuildWs31OfanGroups();
+    if (lb_mode==51 || lb_mode==52) BuildWs31OfanGroups();
 
     /* config load balancer's switches using ToR-to-ToR routing */
     if (lb_mode == 3 || lb_mode == 6 || lb_mode == 9) {  // Conga, Letflow, Conweave

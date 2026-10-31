@@ -1396,13 +1396,14 @@ void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, u
 }
 
 void SwitchNode::WriteWs30V13State() {
-    if (Settings::lb_mode==51) {
+    if (Settings::lb_mode==51 || Settings::lb_mode==52) {
         std::cout << "WS31_OFAN_STATE switch=" << m_id
                   << " mapped_destinations=" << m_ws31OfanDestination.size()
                   << " groups=" << m_ws31Ofan.Groups().size()
                   << " rotated_data=" << m_ws31OfanData << " rotated_ack_nack=" << m_ws31OfanAck
                   << " quantum_boundary_bytes=128 static_equal_paths=1 seed=" << RngSeedManager::GetSeed()
-                  << " run=" << RngSeedManager::GetRun() << std::endl;
+                  << " run=" << RngSeedManager::GetRun()
+                  << " destination_aware=" << (Settings::lb_mode==51) << std::endl;
         if (Ws30Level()) for (const auto &g : m_ws31Ofan.Groups())
             std::cout << "WS31_OFAN_GROUP switch=" << m_id << " mandatory=" << g.first.first
                       << " quantum=" << g.first.second << " ports=" << g.second.order.size()
@@ -1411,6 +1412,7 @@ void SwitchNode::WriteWs30V13State() {
     }
     if (Settings::lb_mode>=47 && Settings::lb_mode<=50) {
         m_ws31Quota.Expire(Simulator::Now().GetNanoSeconds());
+        if (!m_ws31Quota.Conserved()) NS_FATAL_ERROR("WS31 quota activity accounting mismatch");
         std::cout << "WS31_C3_STATE switch=" << m_id << " entries=" << m_ws31Quota.Size()
                   << " fresh=" << m_ws31Quota.fresh << " hits=" << m_ws31Quota.hits
                   << " restricted=" << m_ws31Quota.restrictedAdmissions
@@ -1427,6 +1429,7 @@ void SwitchNode::WriteWs30V13State() {
                   << " activity_ns=20000 moe_lane_fraction=1/4 pinning=1" << std::endl;
     }
     if (Settings::lb_mode>=36 && Settings::lb_mode<=42) {
+        if (!m_ws31Budget.Conserved()) NS_FATAL_ERROR("WS31 prediction accounting mismatch");
         std::cout << "WS31_C1_STATE switch=" << m_id << " entries=" << m_ws31Pairs.size()
                   << " fresh=" << m_ws31Fresh << " hits=" << m_ws31Hits
                   << " predictor_entries=" << m_ws31Budget.Size()
@@ -1510,7 +1513,6 @@ uint32_t SwitchNode::DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
         m_ws31Budget.Observe(key,ch.udp.seq,payload,now,
                             Settings::lb_mode!=38 && Settings::lb_mode!=42);
     }
-    NS_ASSERT_MSG(m_ws31Budget.Conserved(),"WS31 prediction accounting mismatch");
     return chosen;
 }
 
@@ -1560,6 +1562,10 @@ void SwitchNode::AddWs31OfanDestination(uint32_t dip, uint32_t mandatory,
     if (g!=m_ws31OfanGroupPorts.end() && g->second!=canonical)
         NS_FATAL_ERROR("Ofan mandatory group has incompatible route sets");
     m_ws31OfanGroupPorts[mandatory]=canonical;
+    if (!m_ws31OfanRrGroups.count(canonical)) {
+        const uint32_t nextGroup=m_ws31OfanRrGroups.size()+1;
+        m_ws31OfanRrGroups.insert(std::make_pair(canonical,nextGroup));
+    }
     auto d=m_ws31OfanDestination.find(dip);
     if (d!=m_ws31OfanDestination.end() && d->second!=mandatory)
         NS_FATAL_ERROR("Ofan destination grouping changed");
@@ -1572,7 +1578,9 @@ uint32_t SwitchNode::DoLbWs31Ofan(Ptr<const Packet> p, const CustomHeader &ch,
     auto group=m_ws31OfanDestination.find(ch.dip);
     if (group==m_ws31OfanDestination.end()) NS_FATAL_ERROR("Ofan missing verified destination group");
     const std::vector<uint32_t> ports(nexthops.begin(),nexthops.end());
-    const auto d=m_ws31Ofan.Select(group->second,p->GetSize(),ports,
+    std::vector<uint32_t> canonical=ports; std::sort(canonical.begin(),canonical.end());
+    const uint32_t schedulerGroup=Settings::lb_mode==52 ? m_ws31OfanRrGroups.at(canonical) : group->second;
+    const auto d=m_ws31Ofan.Select(schedulerGroup,p->GetSize(),ports,
         (uint64_t(RngSeedManager::GetSeed())<<32) ^ (uint64_t(m_id)*0x9e3779b97f4a7c15ULL) ^
         RngSeedManager::GetRun() ^ 0x4f46414eULL);
     if (ch.l3Prot==0x11) ++m_ws31OfanData; else ++m_ws31OfanAck;
@@ -1581,6 +1589,7 @@ uint32_t SwitchNode::DoLbWs31Ofan(Ptr<const Packet> p, const CustomHeader &ch,
                   << " switch=" << m_id << " sip=" << ch.sip << " dip=" << ch.dip
                   << " protocol=" << unsigned(ch.l3Prot) << " wire_bytes=" << p->GetSize()
                   << " mandatory=" << group->second << " quantum=" << d.quantum
+                  << " scheduler_group=" << schedulerGroup
                   << " position=" << d.position << " fresh=" << d.fresh
                   << " chosen=" << d.port << std::endl;
     return d.port;
@@ -1951,7 +1960,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
 
     // Ofan's packet-size pointers must also schedule transport feedback.
     // Link-local PFC and unrelated controls keep their common behavior.
-    if (Settings::lb_mode==51 && (ch.l3Prot==0x11 || ch.l3Prot==0xFC || ch.l3Prot==0xFD))
+    if ((Settings::lb_mode==51 || Settings::lb_mode==52) &&
+        (ch.l3Prot==0x11 || ch.l3Prot==0xFC || ch.l3Prot==0xFD))
         return DoLbWs31Ofan(p,ch,nexthops);
 
     if (Settings::lb_mode == 0 || control_pkt) {  // control packet (ACK, NACK, PFC, QCN)

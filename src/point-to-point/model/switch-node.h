@@ -75,6 +75,7 @@ class SwitchNode : public Node {
     ws31::OfanScheduler m_ws31Ofan;
     std::map<uint32_t,uint32_t> m_ws31OfanDestination;
     std::map<uint32_t,std::vector<uint32_t> > m_ws31OfanGroupPorts;
+    std::map<std::vector<uint32_t>,uint32_t> m_ws31OfanRrGroups;
     uint64_t m_ws31OfanData=0, m_ws31OfanAck=0;
     uint32_t DoLbWs31Ofan(Ptr<const Packet> p, const CustomHeader &ch,
                           const std::vector<int> &nexthops);
