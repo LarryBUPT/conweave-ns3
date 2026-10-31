@@ -1,36 +1,80 @@
 {
   "date": "2026-11-01",
-  "status": "READY_FOR_ARCHIVE",
+  "status": "ARCHIVED_AND_PLATFORM_VERIFIED",
   "user_instruction": "前序工作例如WS-26-28工作确认无误后，进行归档。",
+  "pre_archive_commit": "9525cba",
   "science_scope": {
-    "WS26": "paused and incomplete; historical checkpoint archive only",
-    "WS27": "complete for preset comparison",
-    "WS28": "complete for preset explanation and ablation"
+    "WS26": "Paused and incomplete; historical checkpoint archived, no claim of full scientific closure",
+    "WS27": "Complete for preset comparison",
+    "WS28": "Complete for preset explanation and ablation"
   },
   "targets": [
     {
       "id": "01a11568-af40-7ba0-9814-8c462f6bf9e8",
       "title": "WS-26 实验副对话：远端唯一 runner 与逐格验收",
-      "archive_performed": false
+      "archive_performed": true,
+      "platform_response": [
+        "{\"threadId\":\"01a11568-af40-7ba0-9814-8c462f6bf9e8\",\"archived\":true}"
+      ],
+      "present_in_archived_list": true,
+      "absent_from_active_list": true
     },
     {
       "id": "01a130f7-85d4-7d63-853f-a08cc29bd2e3",
       "title": "WS-27 GuardHash、HarmGate 与 ClassReserve…",
-      "archive_performed": false
+      "archive_performed": true,
+      "platform_response": [
+        "{\"threadId\":\"01a130f7-85d4-7d63-853f-a08cc29bd2e3\",\"archived\":true}"
+      ],
+      "present_in_archived_list": true,
+      "absent_from_active_list": true
     },
     {
       "id": "01a1366a-eef6-7790-b099-1aca879251d1",
       "title": "WS-28 ClassReserve 机制解释与原生基线实验",
-      "archive_performed": false
+      "archive_performed": true,
+      "platform_response": [
+        "{\"threadId\":\"01a1366a-eef6-7790-b099-1aca879251d1\",\"archived\":true}"
+      ],
+      "present_in_archived_list": true,
+      "absent_from_active_list": true
+    }
+  ],
+  "previously_archived_retained": [
+    {
+      "id": "01a11567-0dc6-7e03-89cb-a9f9355e6c54",
+      "title": "WS-26 双侧负载均衡机制与验证",
+      "still_archived": true
+    },
+    {
+      "id": "01a13564-ba26-7272-afda-abdcf4aa6313",
+      "title": "WS-27 收束核验（续）",
+      "still_archived": true
     }
   ],
   "keep_unarchived": [
-    "01a1625a-d557-71c1-a90a-258c289ef43e",
-    "01a1625b-90b4-75d1-b5a8-d0366a228d0e",
-    "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
-    "01a19323-2201-7b23-a0f1-905c71496d38"
+    {
+      "id": "01a1625a-d557-71c1-a90a-258c289ef43e",
+      "title": "WS-29 主对话：状态反馈课题统筹与科研报告",
+      "retained_unarchived": true
+    },
+    {
+      "id": "01a1625b-90b4-75d1-b5a8-d0366a228d0e",
+      "title": "WS-29 实验副对话：反馈选路实现与数据分析",
+      "retained_unarchived": true
+    },
+    {
+      "id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "title": "WS-31 主对话：类别感知新机制构思与论证",
+      "retained_unarchived": true
+    },
+    {
+      "id": "01a19323-2201-7b23-a0f1-905c71496d38",
+      "title": "WS-31 副对话：消融证据与文献独立复核",
+      "retained_unarchived": true
+    }
   ],
   "remote_access": false,
   "drafts_preserved": true,
-  "platform_confirmation_pending": true
+  "platform_confirmation_pending": false
 }
