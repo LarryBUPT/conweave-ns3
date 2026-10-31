@@ -1390,10 +1390,28 @@ void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, u
     const ws31::Key key(sip,dip,sport,dport);
     m_ws31Pairs.erase(key);
     m_ws31Budget.Erase(key);
+    m_ws31Quota.Erase(key);
     std::cout << "WS30V13_CACHE_RESET switch=" << m_id << " erased=" << erased << std::endl;
 }
 
-void SwitchNode::WriteWs30V13State() const {
+void SwitchNode::WriteWs30V13State() {
+    if (Settings::lb_mode>=47 && Settings::lb_mode<=50) {
+        m_ws31Quota.Expire(Simulator::Now().GetNanoSeconds());
+        std::cout << "WS31_C3_STATE switch=" << m_id << " entries=" << m_ws31Quota.Size()
+                  << " fresh=" << m_ws31Quota.fresh << " hits=" << m_ws31Quota.hits
+                  << " restricted=" << m_ws31Quota.restrictedAdmissions
+                  << " borrowed=" << m_ws31Quota.borrowedAdmissions
+                  << " residual_packets=" << m_ws31Quota.residualPackets
+                  << " residual_wire_bytes=" << m_ws31Quota.residualWireBytes
+                  << " bg_activations=" << m_ws31Quota.activations[1]
+                  << " moe_activations=" << m_ws31Quota.activations[2]
+                  << " bg_borrowers_at_activation_sum=" << m_ws31Quota.borrowedAtActivation[1]
+                  << " moe_borrowers_at_activation_sum=" << m_ws31Quota.borrowedAtActivation[2]
+                  << " bg_borrowers_at_activation_max=" << m_ws31Quota.maxBorrowedAtActivation[1]
+                  << " moe_borrowers_at_activation_max=" << m_ws31Quota.maxBorrowedAtActivation[2]
+                  << " conserved=" << m_ws31Quota.Conserved()
+                  << " activity_ns=20000 moe_lane_fraction=1/4 pinning=1" << std::endl;
+    }
     if (Settings::lb_mode>=36 && Settings::lb_mode<=42) {
         std::cout << "WS31_C1_STATE switch=" << m_id << " entries=" << m_ws31Pairs.size()
                   << " fresh=" << m_ws31Fresh << " hits=" << m_ws31Hits
@@ -1480,6 +1498,42 @@ uint32_t SwitchNode::DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
     }
     NS_ASSERT_MSG(m_ws31Budget.Conserved(),"WS31 prediction accounting mismatch");
     return chosen;
+}
+
+// C3: 47 class soft quota, 48 class fixed quota, 49 size soft quota,
+// 50 exact QueuePin. No QP migration and no C1/C2 stacking.
+uint32_t SwitchNode::DoLbWs31C3(Ptr<const Packet> p, const CustomHeader &ch,
+                               const std::vector<int> &nexthops) {
+    if (Settings::lb_mode==50 || ch.l3Prot!=0x11 || !m_isToR ||
+        !m_isToR_hostIP.count(ch.sip)) return DoLbWs30V13(p,ch,nexthops);
+    uint32_t category=0;
+    if (Settings::lb_mode==49) {
+        FlowIDNUMTag size;
+        if (p->PeekPacketTag(size)) category=ws31::QuotaSizeClass(size.GetFlowSize());
+    } else {
+        WorkloadTag tag;
+        if (p->PeekPacketTag(tag)) category=ws31::QuotaClass(tag.GetValue());
+    }
+    const uint32_t words[3]={ch.sip,ch.dip,
+        uint32_t(ch.udp.sport)|(uint32_t(ch.udp.dport)<<16)};
+    const uint8_t *data=reinterpret_cast<const uint8_t *>(words);
+    const std::vector<uint32_t> ports(nexthops.begin(),nexthops.end());
+    const uint64_t now=Simulator::Now().GetNanoSeconds();
+    const auto d=m_ws31Quota.Admit(ws31::QuotaKey(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport),
+        category,ports,EcmpHash(data,12,m_ecmpSeed),EcmpHash(data,12,m_ecmpSeed^0x9e3779b9U),
+        now,p->GetSize(),Settings::lb_mode==48,
+        [this](uint32_t port) { return uint64_t(CalculateInterfaceLoad(port)); });
+    if (Ws30Level() && (d.fresh || (Ws30Level()==2 && d.residual)))
+        std::cout << "WS31_C3_ROUTE time_ns=" << now << " switch=" << m_id
+                  << " sip=" << ch.sip << " dip=" << ch.dip << " sport=" << ch.udp.sport
+                  << " dport=" << ch.udp.dport << " seq=" << ch.udp.seq
+                  << " category=" << d.category << " fresh=" << d.fresh
+                  << " eligible=" << d.eligible << " restricted=" << d.restricted
+                  << " first=" << d.first << " second=" << d.second
+                  << " q1=" << d.q1 << " q2=" << d.q2 << " chosen=" << d.chosen
+                  << " owner=" << d.owner << " borrowed=" << d.borrowed
+                  << " residual=" << d.residual << " wire_bytes=" << p->GetSize() << std::endl;
+    return d.chosen;
 }
 
 // WS-25 v2 diagnostic correction. A MoE QP uses the existing DRILL decision
@@ -1886,6 +1940,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbWs30V13(p, ch, nexthops);
         case 36: case 37: case 38: case 39: case 40: case 41: case 42:
             return DoLbWs31C1(p, ch, nexthops);
+        case 47: case 48: case 49: case 50:
+            return DoLbWs31C3(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
         case 23:
