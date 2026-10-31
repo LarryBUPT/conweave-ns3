@@ -4,7 +4,7 @@
 
 用户已确认执行“历史归并 → WS-30/v13 归档 → WS-31 类别感知新机制构思 → 验证后建立新基线 → 后置接续 WS-29”。本次基线审计读取 33 份对话的最新两至三轮及相关交接，覆盖 WS-01～28 和 WS-30；WS-29 仅登记元数据，未读、未唤醒、未归档。详情见 [WS 覆盖表](WS_HISTORY_COVERAGE.md)与 [来源收据](../research/evidence/ws-history-20261101/coverage-and-source-manifest.json)，不把范围审计说成逐条穷尽全部历史消息或新一轮 raw 数值复验。
 
-WS-30/v13 已完成的实验和证据保持原样；旧 v14 P0 的 52 次保留为历史补充，未执行的 840 次按用户确认的新范围结束自动续作，不写成已完成，也不混入已投稿 v13。两个实验对话在交接、状态核对后归档，实际平台结果见 [归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)。旧 `ws-30-v13` 自动化保持 PAUSED。处置依据见 [ADR-011](../decisions/ADR-011-ws30-closure-ws31-and-ws29-deferral.md)和 [WS-30 收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)。
+WS-30/v13 已完成的实验和证据保持原样；旧 v14 P0 的 52 次保留为历史补充，未执行的 840 次按用户确认的新范围结束自动续作，不写成已完成，也不混入已投稿 v13。两个实验对话已在交接、状态提交后归档，并在活动与归档目录分别复核，见 [归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)。旧 `ws-30-v13` 自动化保持 PAUSED。处置依据见 [ADR-011](../decisions/ADR-011-ws30-closure-ws31-and-ws29-deferral.md)和 [WS-30 收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)。
 
 QueuePin 最新本地稿为 `E:/研/毕业论文/thesis/queuepin-v13-figure-revision-r12/queuepin-icc-authors-r12.pdf`，六页，SHA-256 `f16e2fa5e7873aa62acf6181c5f0eafc45a90dfd75d583fcc27dfed345563a0b`；作者为 Zhenyu Luo、Shuo Wang（通讯作者）。EDAS 附件显示 ICC 2027 NGNI 论文 1571378157 已上传、Active (has manuscript)，题名及作者信息一致；本次未独立下载服务器 PDF 核字节，ORCID 状态也未在附件展示。相关待核及录用后手续由 Integration 投稿跟踪承接，不恢复旧实验。
 

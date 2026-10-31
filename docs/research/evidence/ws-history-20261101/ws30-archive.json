@@ -1,8 +1,9 @@
 {
-  "status": "READY_FOR_ARCHIVE_AFTER_INTEGRATION",
+  "status": "ARCHIVED_AFTER_VERIFIED_INTEGRATION",
   "date": "2026-11-01",
+  "integration_commit": "8cdf93c",
   "decision": "ADR-011-ws30-closure-ws31-and-ws29-deferral",
-  "scope": "Completed v13 evidence and delivery; unexecuted v14 expansions ended by user-approved scope change, not falsely marked complete",
+  "scope": "Completed v13 evidence and delivery; unexecuted v14 extensions ended by user-approved scope change, not falsely marked complete",
   "checks": {
     "source_handoffs_read": true,
     "v13_evidence_hashes_match": true,
@@ -18,13 +19,34 @@
     {
       "id": "01a16b16-9f14-74a0-9a4a-cc6eb7f28295",
       "title": "WS-30｜ClassReserve 实验补正与证据分析",
-      "archive_performed": false
+      "archive_performed": true,
+      "platform_response": [
+        "{\"threadId\":\"01a16b16-9f14-74a0-9a4a-cc6eb7f28295\",\"archived\":true}"
+      ],
+      "present_in_archived_list": true,
+      "absent_from_active_list": true
     },
     {
       "id": "01a174c7-ecf5-7f21-a9dc-6f8b4f5634b8",
       "title": "WS-30 v13：补充实验与证据复核",
-      "archive_performed": false
+      "archive_performed": true,
+      "platform_response": [
+        "{\"threadId\":\"01a174c7-ecf5-7f21-a9dc-6f8b4f5634b8\",\"archived\":true}"
+      ],
+      "present_in_archived_list": true,
+      "absent_from_active_list": true
     }
   ],
-  "platform_confirmation_pending": true
+  "WS29": {
+    "main_retained_unarchived": true,
+    "independent_retained_unarchived": true,
+    "body_read": false,
+    "woken": false
+  },
+  "WS31": {
+    "main": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+    "independent": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "both_project_membership_verified": true
+  },
+  "platform_confirmation_pending": false
 }

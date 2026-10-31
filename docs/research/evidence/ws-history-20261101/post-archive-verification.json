@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-01",
+  "archive_status": "ARCHIVED_AFTER_VERIFIED_INTEGRATION",
+  "archived_target_count": 2,
+  "WS29_retained_unarchived": true,
+  "WS29_body_read": false,
+  "WS31_project_membership_verified": true,
+  "automations": {
+    "ws-30-v13": {
+      "id": "ws-30-v13",
+      "status": "PAUSED",
+      "kind": "heartbeat",
+      "target_thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
+      "rrule": "FREQ=MINUTELY;INTERVAL=15"
+    },
+    "ws-31": {
+      "id": "ws-31",
+      "status": "ACTIVE",
+      "kind": "heartbeat",
+      "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "rrule": "FREQ=MINUTELY;INTERVAL=30"
+    }
+  },
+  "unchanged_scientific_evidence_files": 22,
+  "local_links_checked_after_archive": 129,
+  "missing_links": [],
+  "root_manuscript_pointer_sha256": "96d7c5b74406d95eb07d17a10b80101df3b76aba76ec249e5a20f13d05ff63e3",
+  "root_dataflow_navigation_sha256": "9051aa64f61651740241f23a1a4c2c0dbb0344b1c57332b1126133bb40732fd0",
+  "first_integration_commit": "8cdf93c",
+  "scope": "Integration closure complete; WS-31 research continues independently; combined new mechanism baseline not yet established"
+}

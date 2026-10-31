@@ -30,7 +30,7 @@ WS-31 当前范围是问题收敛、文献与失败证据整理、候选机制�
 
 两对话在同一“科研”项目创建，使用各自写入目录，避免交叉覆盖；不在共享 checkout 擅自切分支、提交或推送对方文件。主对话可读取副的结果，副不编辑主报告。独立工作确需新分支时先核对实际 Git 和占用；后续只有独占远程负责人按冻结协议执行实验。
 
-线程 ID、真实标题、项目 ID 和最近 cursor 记录在同目录 `ws31-coordination.json`。持续协调优先 compact `wait_threads`，携带最新 cursor；active 时不重复派发。每项结果必须写文件，阶段完成后产出交接，不能仅在聊天中声明完成。不得另建额外用户对话或子代理替代唯一主、副的职责。
+线程 ID、真实标题、项目 ID 及 Integration 观察的主对话 cursor 记录在同目录 `ws31-coordination.json`。WS-31 主对话观察唯一副的最新 cursor 写入自己目录的 `current-status.json`，不为记录 cursor 改写 Integration 所有的 registry。持续协调优先 compact `wait_threads`，携带最新 cursor；active 时不重复派发。每项结果必须写文件，阶段完成后产出交接，不能仅在聊天中声明完成。不得另建额外用户对话或子代理替代唯一主、副的职责。
 
 ## 4. 按截图落实的研究流程与交付
 

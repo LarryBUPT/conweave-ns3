@@ -5,7 +5,7 @@
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
 | WS-31 | 类别感知新机制构思与提出 | ACTIVE FOR EVIDENCE AND IDEA DEVELOPMENT | [执行清单](WS31_EXECUTION.md)、[主副登记](ws31-coordination.json)：失败与消融证据、文献卡片、争议地图、问题/候选、模拟审稿、选题地图及提案；最终候选待用户决定 | 主、副各写独立目录；当前无远程实验，基线和归档由 Integration 维护 |
-| WS-30 | ClassReserve 补正、QueuePin v13 与投稿前修订 | COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE | [收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作 | 旧监督 PAUSED；两个实验对话按[归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)收束；投稿待核及返修留 Integration |
+| WS-30 | ClassReserve 补正、QueuePin v13 与投稿前修订 | COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE | [收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作 | 旧监督 PAUSED；两个实验对话已归档并复核，见[归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)；投稿待核及返修留 Integration |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
 | WS-03 | ConWeave 与 maplerime 参考审计 | COMPLETE | [Handoff](../handoffs/2026-09-24-03-reference-repositories.md)；两份只读克隆、fork 演化报告 | 为 WS-02、WS-06 提供源码参照 |
