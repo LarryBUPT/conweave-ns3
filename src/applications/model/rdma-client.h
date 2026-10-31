@@ -67,6 +67,12 @@ private:
 
   virtual void StartApplication (void);
   virtual void StopApplication (void);
+  void StartRequest (void);
+  void CancelPendingRequest (void);
+
+  EventId m_ws31LaunchEvent;
+  uint64_t m_ws31DemandNs = 0;
+  bool m_ws31Pending = false;
 
   uint64_t m_size;
   uint16_t m_pg;

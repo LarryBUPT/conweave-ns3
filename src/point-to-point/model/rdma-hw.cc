@@ -266,9 +266,15 @@ Ptr<RdmaQueuePair> RdmaHw::GetQp(uint64_t key) {
 }
 void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Address dip,
                           uint16_t sport, uint16_t dport, uint32_t win, uint64_t baseRtt,
-                          int32_t flow_id, uint32_t workload_tag) {
+                          int32_t flow_id, uint32_t workload_tag, uint64_t demand_start_ns) {
     // create qp
     Ptr<RdmaQueuePair> qp = CreateObject<RdmaQueuePair>(pg, sip, dip, sport, dport);
+    if (demand_start_ns != uint64_t(-1)) {
+        const uint64_t now=Simulator::Now().GetNanoSeconds();
+        if (demand_start_ns>now) NS_FATAL_ERROR("QP demand time is in the future");
+        qp->startTime=NanoSeconds(demand_start_ns);
+        qp->m_ws31LaunchDelayNs=now-demand_start_ns;
+    }
     qp->SetSize(size);
     qp->SetWin(win);
     qp->SetBaseRtt(baseRtt);

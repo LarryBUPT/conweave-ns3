@@ -35,6 +35,9 @@
 #include "rdma-client.h"
 #include "ns3/seq-ts-header.h"
 #include <ns3/rdma-driver.h>
+#include "ns3/settings.h"
+#include "ns3/ws31-start.h"
+#include "ns3/ws30-observer.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -135,21 +138,74 @@ void RdmaClient::SetSize(uint64_t size){
 void RdmaClient::DoDispose (void)
 {
   NS_LOG_FUNCTION_NOARGS ();
+  CancelPendingRequest();
   Application::DoDispose ();
 }
 
 void RdmaClient::StartApplication (void)
 {
   NS_LOG_FUNCTION_NOARGS ();
+  if (ws31::StartMode(Settings::lb_mode)) {
+    if (m_ws31Pending) NS_FATAL_ERROR("C2 request started twice while pending");
+    m_ws31DemandNs = Simulator::Now().GetNanoSeconds();
+    const uint64_t delay = ws31::StartDelay(Settings::lb_mode,m_workload_tag,m_size,
+                                           m_sip.Get(),m_dip.Get(),m_sport,m_dport);
+    ws31::StartCounters &s = ws31::StartData();
+    ++s.demanded; s.demandBytes += m_size;
+    m_ws31Pending = true;
+    if (Ws30Level())
+      std::cout << "WS31_C2_DEMAND flow_id=" << m_flow_id << " demand_ns=" << m_ws31DemandNs
+                << " size=" << m_size << " tag=" << m_workload_tag
+                << " delay_ns=" << delay << std::endl;
+    if (delay) {
+      m_ws31LaunchEvent = Simulator::Schedule(NanoSeconds(delay), &RdmaClient::StartRequest, this);
+      return;
+    }
+  }
+  StartRequest();
+}
+
+void RdmaClient::StartRequest (void)
+{
+  uint64_t demand = uint64_t(-1);
+  if (ws31::StartMode(Settings::lb_mode)) {
+    if (!m_ws31Pending) NS_FATAL_ERROR("C2 request launched without pending demand");
+    m_ws31Pending = false;
+    demand = m_ws31DemandNs;
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    if (now < demand) NS_FATAL_ERROR("C2 launch precedes demand");
+    const uint64_t delay = now-demand;
+    if (delay>500) NS_FATAL_ERROR("C2 launch exceeds frozen delay bound");
+    ws31::StartCounters &s = ws31::StartData();
+    ++s.launched; s.launchBytes += m_size; s.waited += delay!=0;
+    s.delaySum += delay; if (delay>s.delayMax) s.delayMax=delay;
+    if (Ws30Level())
+      std::cout << "WS31_C2_LAUNCH flow_id=" << m_flow_id << " demand_ns=" << demand
+                << " launch_ns=" << now << " wait_ns=" << delay
+                << " size=" << m_size << std::endl;
+  }
   // get RDMA driver and add up queue pair
   Ptr<Node> node = GetNode();
   Ptr<RdmaDriver> rdma = node->GetObject<RdmaDriver>();
-  rdma->AddQueuePair(m_size, m_pg, m_sip, m_dip, m_sport, m_dport, m_win, m_baseRtt, m_flow_id, m_workload_tag);
+  rdma->AddQueuePair(m_size, m_pg, m_sip, m_dip, m_sport, m_dport, m_win, m_baseRtt, m_flow_id, m_workload_tag, demand);
+}
+
+void RdmaClient::CancelPendingRequest (void)
+{
+  if (!m_ws31Pending) return;
+  Simulator::Cancel(m_ws31LaunchEvent);
+  m_ws31Pending = false;
+  ws31::StartCounters &s = ws31::StartData();
+  ++s.cancelled; s.cancelBytes += m_size;
+  if (Ws30Level())
+    std::cout << "WS31_C2_CANCEL flow_id=" << m_flow_id << " demand_ns=" << m_ws31DemandNs
+              << " time_ns=" << Simulator::Now().GetNanoSeconds() << " size=" << m_size << std::endl;
 }
 
 void RdmaClient::StopApplication ()
 {
   NS_LOG_FUNCTION_NOARGS ();
+  CancelPendingRequest();
   // TODO stop the queue pair
 }
 

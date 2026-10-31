@@ -56,6 +56,7 @@
 #include "ns3/settings.h"
 #include "ns3/workload-tag.h"
 #include "ns3/ws30-v13-fixture.h"
+#include "ns3/ws31-start.h"
 #include "ws30-composition-fixture.h"
 
 using namespace ns3;
@@ -629,6 +630,19 @@ void conweave_history_print() {
  * @brief When one RDMA is finished, so does (1) QP, (2) RxQP, (3) write it on file fct.txt.
  */
 void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
+    if (ws31::StartMode(lb_mode)) {
+        const uint64_t demand=q->startTime.GetNanoSeconds();
+        const uint64_t finish=Simulator::Now().GetNanoSeconds();
+        if (finish<demand || finish-demand<q->m_ws31LaunchDelayNs)
+            NS_FATAL_ERROR("C2 completion precedes demand or launch");
+        ws31::StartCounters &s=ws31::StartData();
+        ++s.finished; s.finishBytes+=q->m_size;
+        if (Ws30Level())
+            std::cout << "WS31_C2_FINISH flow_id=" << q->m_flow_id
+                      << " demand_ns=" << demand << " launch_ns=" << demand+q->m_ws31LaunchDelayNs
+                      << " finish_ns=" << finish << " wait_ns=" << q->m_ws31LaunchDelayNs
+                      << " fct_ns=" << finish-demand << " size=" << q->m_size << std::endl;
+    }
     uint32_t sid = Settings::ip_to_node_id(q->sip), did = Settings::ip_to_node_id(q->dip);
     uint64_t base_rtt = pairRtt[n.Get(sid)][n.Get(did)];
     uint64_t b = pairBw[n.Get(sid)][n.Get(did)];
@@ -2280,6 +2294,20 @@ int main(int argc, char *argv[]) {
             entry.second->RecordWs21PortBoundary('B');
     Ws30CompositionInstall(n, flowgen_start_time);
     Simulator::Run();
+    if (ws31::StartMode(lb_mode)) {
+        const ws31::StartCounters &s=ws31::StartData();
+        if (s.launched+s.cancelled>s.demanded || s.finished>s.launched ||
+            s.launchBytes+s.cancelBytes>s.demandBytes || s.finishBytes>s.launchBytes)
+            NS_FATAL_ERROR("C2 request or byte accounting is inconsistent");
+        std::cout << "WS31_C2_STATE demanded=" << s.demanded << " launched=" << s.launched
+                  << " cancelled=" << s.cancelled << " finished=" << s.finished
+                  << " pending=" << s.demanded-s.launched-s.cancelled
+                  << " unfinished=" << s.launched-s.finished
+                  << " demand_bytes=" << s.demandBytes << " launch_bytes=" << s.launchBytes
+                  << " cancel_bytes=" << s.cancelBytes << " finish_bytes=" << s.finishBytes
+                  << " waited=" << s.waited << " delay_sum_ns=" << s.delaySum
+                  << " delay_max_ns=" << s.delayMax << " frozen_max_ns=500" << std::endl;
+    }
     if (lb_mode == 9) Ws30CwPrint();
     Ws30CompositionFinish();
     for (uint32_t i=0; i<n.GetN(); ++i) {

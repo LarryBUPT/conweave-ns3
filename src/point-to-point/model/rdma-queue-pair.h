@@ -54,6 +54,7 @@ class IrnSackManager {
 class RdmaQueuePair : public Object {
    public:
     Time startTime;
+    uint64_t m_ws31LaunchDelayNs = 0;
     Ipv4Address sip, dip;
     uint16_t sport, dport;
     uint64_t m_size;
