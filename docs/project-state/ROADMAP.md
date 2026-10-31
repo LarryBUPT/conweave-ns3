@@ -5,7 +5,7 @@
 本日后续归档已完成：WS-26 按暂停阶段交接归档，保持完整科学范围未完成；WS-27/28 按预设范围完成归档。两份 WS-26 未提交草稿、未运行矩阵及全部原证据保留。见[归档交接](../handoffs/2026-11-01-ws26-ws28-archive.md)；当前保留未归档的 WS 主、副为 WS-29 和 WS-31。
 
 1. Integration 完成 [历史覆盖审计](WS_HISTORY_COVERAGE.md)、[WS-30/v13 交接](../handoffs/2026-11-01-ws30-v13-closure.md)、稿件入口纠正及两个实验对话归档；所有旧成功/失败数据保留。v14 840 次未执行扩展依 [ADR-011](../decisions/ADR-011-ws30-closure-ws31-and-ws29-deferral.md)退出旧自动续作，不继承为新研究清单。
-2. WS-31 的失败/消融、论文、争议地图、候选、模拟审稿和选题地图提案阶段已交付。用户已[直接授权](../research/evidence/ws31-implementation-authorization-20261101/user-instruction.json)按 C1 → C2 → C3 顺序进行判断与实现，不再等待重复选题确认。后续[直接指令](../research/evidence/ws31-baseline-policy-20261101-r2/user-instruction.json)暂缓 Ofan；新增正式方法先核正式发表及 CCF A/B 资格，再由主判断成本、必要性、兼容性和忠实性。既有五个对照及 QueuePin 保留；Ofan/RR 代码及完成证据保留为未准入原型，只收尾承载 C1/C2/C3 的在途共同构建和 C2 非网络测试。
+2. WS-31 的提案阶段已交付，用户已[直接授权](../research/evidence/ws31-implementation-authorization-20261101/user-instruction.json)按 C1 → C2 → C3 顺序进行判断与实现。`c4b6039…` 共同构建及 C2 Stop/Dispose 非网络测试现已通过，详见[本轮验收](../handoffs/2026-11-01-ws31-c4-build-and-c2-lifecycle.md)；下一步按主冻结计划完成四格零控制技术 pilot，再验收后续动态正确性。Ofan/RR 保留为暂缓原型；新增正式方法先核正式发表及 CCF A/B 资格，再判断成本、必要性、兼容性和忠实性，既有五个对照与 QueuePin 保留。
 3. 以已验证 QueuePin 为类别增量对照，按新协议完成每候选隔离实现、正确性、消融、小样与独立验证，才冻结 QueuePin＋新类别感知机制基线。远端运行仍须先完成契约、独立计划和资源门；实验规模依据新问题事前确定，不为复用旧清单而追加。
 4. 原 WS-29 保持历史编号、主副未归档，执行顺序后移。待新基线完成后，另审原技术状态与接续方案，研究真实反馈带来的增量、时效及通信/恢复成本；当前不读取或唤醒。
 5. Integration 保留 ICC 初投稿后的状态跟踪。服务器 PDF 字节身份和 ORCID 未在附件核实；录用、返修、注册、版权及终稿按实际通知处理，不与新机制的科学验收混为一项。

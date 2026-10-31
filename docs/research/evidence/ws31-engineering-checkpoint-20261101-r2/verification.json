@@ -1,0 +1,483 @@
+{
+  "date": "2026-11-01",
+  "observed_utc": "2026-10-31T22:31:14.266531+00:00",
+  "scope": "Integration local independent audit of c4 full build, C2 non-network lifecycle and frozen four-zero-control plan",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "experiment_id": "20261101-061544-ws31-ofan-preflight-r1",
+  "branch": "feature/ws31-candidates",
+  "source_checks": [
+    {
+      "path": "config/ws31_correctness_r1.txt",
+      "sha256": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+      "bytes": 2816
+    },
+    {
+      "path": "src/point-to-point/wscript",
+      "sha256": "56f4debba8d111da9b69cc43e0e0b889a21bf13c00c522517c76aefd922ecda7",
+      "bytes": 2716
+    },
+    {
+      "path": "src/point-to-point/model/rdma-driver.h",
+      "sha256": "c0641c74a0010440948f6c797c6443dfec52fc150e1f03e6e4a74225536b895f",
+      "bytes": 1284
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.h",
+      "sha256": "67f357a59a7dd771bfc26d2827fb0884c4f61cd5031f58359a1226a424c19b24",
+      "bytes": 10314
+    },
+    {
+      "path": "src/applications/model/rdma-client.cc",
+      "sha256": "6f0f3163795722fd68fa4c7cde1a447a90406ddd7adef835454ec5a931271780",
+      "bytes": 7217
+    },
+    {
+      "path": "scripts/remote_experiment.py",
+      "sha256": "19f3067986094423c08842e46b37526e7d815bb4d6b6769224226e7ec562b3a2",
+      "bytes": 28163
+    },
+    {
+      "path": "scripts/verify_ws31_fct.py",
+      "sha256": "35bc985fc4089e847bda69f155e4d8d9f8d0cbb0199a53bb1c56086277bddfdf",
+      "bytes": 4364
+    },
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+      "bytes": 5714
+    },
+    {
+      "path": "scratch/ws31-start-lifecycle-test.cc",
+      "sha256": "66d2b4d0666a6c9c8aa699d00c7a54188f739f4f0a60ace92e79a7f1ede6f8ec",
+      "bytes": 1925
+    },
+    {
+      "path": "scripts/remote_worker.py",
+      "sha256": "3567a1cf95016e1ea093c32e0aeccaee6e3254c3b43fe1feaf690c8dfec4bed5",
+      "bytes": 55194
+    },
+    {
+      "path": "docs/research/ws31/main/ofan-admission-decision-r1.md",
+      "sha256": "e91b54925da14965160968c380424cd58effe8c00bf819755b9c783c6359e399",
+      "bytes": 3161
+    },
+    {
+      "path": "config/ws31_ofan_fat_r1.txt",
+      "sha256": "07c559baa157f6901c14e754c719c1d25fe24592a0506cba2861b77b10ea34a6",
+      "bytes": 851
+    },
+    {
+      "path": "scripts/ws31_correctness_inputs.py",
+      "sha256": "bf18552cbfd2cb19946a322414d752b553dd7e2893c7f7b3a16e0b5d2277a49f",
+      "bytes": 1856
+    },
+    {
+      "path": "src/point-to-point/model/ws31-ofan.h",
+      "sha256": "02598801653ca701c092a650ce222b6741687fd9e4053fda5a9390c1f3d54f28",
+      "bytes": 4982
+    },
+    {
+      "path": "config/ws31_unknown_r1.txt",
+      "sha256": "0dc3245f6a534ab8f1bd2dfbc4ada4cceeb2e3c3b8e8b8875fdb4f7c71b89126",
+      "bytes": 160
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.cc",
+      "sha256": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+      "bytes": 117655
+    },
+    {
+      "path": "docs/research/ws31/main/implementation-plan-r1.md",
+      "sha256": "efff72b87d73bc026e7f86078ea17e0dcf8ee8435f7c59de0d01c8804591af81",
+      "bytes": 5261
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.h",
+      "sha256": "13a3be27e5fbac2528612afa87172b4460e88c2c4ea73d356b9d428e655c9750",
+      "bytes": 8457
+    },
+    {
+      "path": "scratch/network-load-balance.cc",
+      "sha256": "17985d95a4582edfabdbac80131aef80d7d5eaac7100c637465f2ccde400502b",
+      "bytes": 112913
+    },
+    {
+      "path": "src/point-to-point/model/ws31-budget.h",
+      "sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+      "bytes": 6850
+    },
+    {
+      "path": "tests/ws31_start_test.cc",
+      "sha256": "b63f0dccf5ef6d2f4934ca7d47dbea9fc1b6e9f57e620d5f6bfda3adfae73594",
+      "bytes": 1329
+    },
+    {
+      "path": "docs/research/ws31/main/c2-implementation-contract-r1.md",
+      "sha256": "76e1d9f28f19218edb84772dd793007c32a3b6ce551d63fb07de6c7dd267747c",
+      "bytes": 3321
+    },
+    {
+      "path": "docs/research/ws31/main/correctness-protocol-r1.md",
+      "sha256": "f276725d42c1f12735009d55919f91298f634b06afefda528a55f3a3b9d8209d",
+      "bytes": 4673
+    },
+    {
+      "path": "docs/research/ws31/main/c3-implementation-contract-r1.md",
+      "sha256": "f726e7e2dcae8964601527c71f6edd5ba530f3389f61b1875ff204f7e0e8ae6e",
+      "bytes": 4081
+    },
+    {
+      "path": "tests/ws31_ofan_test.cc",
+      "sha256": "6fa4a30cb8dc2ec9875e61ca27693876a73242ca99d374549017fda29208d882",
+      "bytes": 2062
+    },
+    {
+      "path": "src/point-to-point/model/rdma-driver.cc",
+      "sha256": "b3704ee90cf4cebc8e81d8e22501e56224cfa03677ac845af6cf11c35d8beb34",
+      "bytes": 2157
+    },
+    {
+      "path": "tests/ws31_quota_test.cc",
+      "sha256": "af864ac328f8e1a24c2656e853ae52197c7e3838998042753ac807b68a5d4071",
+      "bytes": 2532
+    },
+    {
+      "path": "src/point-to-point/model/ws31-start.h",
+      "sha256": "352bdc460dd5649ad92c9f2134cdbafad1fab6e7f5fc8d2f1b1c8447e58aab18",
+      "bytes": 1608
+    },
+    {
+      "path": "src/point-to-point/model/rdma-queue-pair.h",
+      "sha256": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+      "bytes": 7871
+    },
+    {
+      "path": "run.py",
+      "sha256": "23aee55f74cd401fba0a685b23a9b04ea67ce295d8ec81b4615274b1e796fed8",
+      "bytes": 30306
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "sha256": "4be7d02a76b7d216e0323534515dacd465227c928e494f031fc1119f6463ae9b",
+      "bytes": 76872
+    },
+    {
+      "path": "tests/ws31_budget_test.cc",
+      "sha256": "b3f933847436ec524e22d9caa1d2670eac3d6ac4ac07fff8776479b3b4cc0bcd",
+      "bytes": 2287
+    },
+    {
+      "path": "src/applications/model/rdma-client.h",
+      "sha256": "49b1ff67bf0c2d30c06dc84f5952a312ff0a1725bfad578460efa2499576f458",
+      "bytes": 2161
+    }
+  ],
+  "evidence_checks": [
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-build-remote.log",
+      "sha256": "4526ba1e2cf91bf7ed9239fc00adde3a375804517d02bd1ff6e3ada067f355f1",
+      "bytes": 208360
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-build.log",
+      "sha256": "56ed89b050d313facb05f619fffaba66d4f7098e35161c44d4b2b148f7434bda",
+      "bytes": 110
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-c2-lifecycle-remote.log",
+      "sha256": "1b3a42f8efaec2de479e2f44d80a95d55882897f32f0585aa8abffd41bbf1cba",
+      "bytes": 301
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-deploy.log",
+      "sha256": "b066cace08dbcd3e431808ac7a780088c8c847502e8281d0db4e893cebedd942",
+      "bytes": 33
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-lifecycle-driver.py",
+      "sha256": "d4c35406e529fdfeab042cea8a2d5f8ba4055598d5881bc5f1e2f4ce7d3f0eb2",
+      "bytes": 6350
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-remote-metadata.json",
+      "sha256": "3e52fbb741e112684f21914e0e0527edd4cecf883240ebb63ab4a338eb8ac717",
+      "bytes": 523
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-remote-tests.json",
+      "sha256": "bc3dd41310dd4c095a317a5c0f96a8897f6eb78f066808a54f01c8ca53c01928",
+      "bytes": 6715
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-resources.json",
+      "sha256": "8458347679eeeec32d5c12604c81d10461c48c22a14a770465909b880839b98f",
+      "bytes": 402
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-scope-change.json",
+      "sha256": "7b5a736154957a557593f5ac4f570afd0c065c649c075f8925255ef98387f0ff",
+      "bytes": 1182
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-source-established.json",
+      "sha256": "f80e7c33e44e6467a48885fc179cdfa2a26ac432ca42c82fc3a1ef874e571299",
+      "bytes": 683
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-sync.log",
+      "sha256": "231704db49d75bc4f34e9b896a33b35e9d4b900280756474b26c6240f798924d",
+      "bytes": 186
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-test-driver.py",
+      "sha256": "a1d57e915ad2cdfa5859b63f3aa556401fa0076b779e0276829771d73f44695f",
+      "bytes": 6652
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-test-ssh.log",
+      "sha256": "f135e5200e0228fba63639658cb2cb48a1b09a79c0b24c6238a7f5e35e5ab213",
+      "bytes": 6173
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-tests.json",
+      "sha256": "b95a02be4aed6f15e49b0fb4bf39f537123ec8eccc621f5c134d339332259392",
+      "bytes": 6838
+    },
+    {
+      "path": "docs/research/ws31/independent/ofan-preflight-r1-worker.patch",
+      "sha256": "0ef973327d480762da23faa722badb4b8c8393c98297ddf7b988d5627bbd2e82",
+      "bytes": 2134
+    }
+  ],
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-receipt.json",
+      "sha256": "99941d4c8f1032ebdc06341ed72dcb590db155fc3855a24e4099a2e926720593",
+      "bytes": 8732
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-build-remote.log",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-build-remote.log",
+      "sha256": "4526ba1e2cf91bf7ed9239fc00adde3a375804517d02bd1ff6e3ada067f355f1",
+      "bytes": 208360
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-build.log",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-build.log",
+      "sha256": "56ed89b050d313facb05f619fffaba66d4f7098e35161c44d4b2b148f7434bda",
+      "bytes": 110
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-c2-lifecycle-remote.log",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-c2-lifecycle-remote.log",
+      "sha256": "1b3a42f8efaec2de479e2f44d80a95d55882897f32f0585aa8abffd41bbf1cba",
+      "bytes": 301
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-deploy.log",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-deploy.log",
+      "sha256": "b066cace08dbcd3e431808ac7a780088c8c847502e8281d0db4e893cebedd942",
+      "bytes": 33
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-lifecycle-driver.py",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-lifecycle-driver.py",
+      "sha256": "d4c35406e529fdfeab042cea8a2d5f8ba4055598d5881bc5f1e2f4ce7d3f0eb2",
+      "bytes": 6350
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-remote-metadata.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-remote-metadata.json",
+      "sha256": "3e52fbb741e112684f21914e0e0527edd4cecf883240ebb63ab4a338eb8ac717",
+      "bytes": 523
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-remote-tests.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-remote-tests.json",
+      "sha256": "bc3dd41310dd4c095a317a5c0f96a8897f6eb78f066808a54f01c8ca53c01928",
+      "bytes": 6715
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-resources.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-resources.json",
+      "sha256": "8458347679eeeec32d5c12604c81d10461c48c22a14a770465909b880839b98f",
+      "bytes": 402
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-scope-change.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-scope-change.json",
+      "sha256": "7b5a736154957a557593f5ac4f570afd0c065c649c075f8925255ef98387f0ff",
+      "bytes": 1182
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-source-established.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-source-established.json",
+      "sha256": "f80e7c33e44e6467a48885fc179cdfa2a26ac432ca42c82fc3a1ef874e571299",
+      "bytes": 683
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-sync.log",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-sync.log",
+      "sha256": "231704db49d75bc4f34e9b896a33b35e9d4b900280756474b26c6240f798924d",
+      "bytes": 186
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-test-driver.py",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-test-driver.py",
+      "sha256": "a1d57e915ad2cdfa5859b63f3aa556401fa0076b779e0276829771d73f44695f",
+      "bytes": 6652
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-test-ssh.log",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-test-ssh.log",
+      "sha256": "f135e5200e0228fba63639658cb2cb48a1b09a79c0b24c6238a7f5e35e5ab213",
+      "bytes": 6173
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-tests.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-tests.json",
+      "sha256": "b95a02be4aed6f15e49b0fb4bf39f537123ec8eccc621f5c134d339332259392",
+      "bytes": 6838
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-worker.patch",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-worker.patch",
+      "sha256": "0ef973327d480762da23faa722badb4b8c8393c98297ddf7b988d5627bbd2e82",
+      "bytes": 2134
+    },
+    {
+      "source": "docs/research/ws31/independent/ofan-preflight-r1-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/ofan-preflight-r1-handoff.md",
+      "sha256": "97b10bf5dbbe299716752def0eda47f7b5fb9f182333df4117dd3b1977ab9291",
+      "bytes": 5643
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c4-build-c2-lifecycle-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/c4-build-c2-lifecycle-main-acceptance-r1.json",
+      "sha256": "16b48ce3e112bfded67cda61db55133e2cd7ea63ea5799109a4541fe9685851b",
+      "bytes": 592
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/current-status.json",
+      "sha256": "8e2714e9174c5ede31167426825015a57a8e3661cd498ae286004d313ebfc342",
+      "bytes": 7425
+    },
+    {
+      "source": "docs/research/ws31/main/zero-control-pilot-r1.json",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/zero-control-pilot-r1.json",
+      "sha256": "010500aea3b832cf884a54c62fda52374762f181189a399530482dfea639f714",
+      "bytes": 3497
+    },
+    {
+      "source": "docs/research/ws31/main/zero-control-pilot-r1.md",
+      "snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/zero-control-pilot-r1.md",
+      "sha256": "0819f81a9e0e2119ad682f3ef4d80bf5989b976a15faf835167e195045111cb8",
+      "bytes": 1760
+    }
+  ],
+  "build": {
+    "metadata_status": "BUILT",
+    "mode": "optimized",
+    "jobs": 2,
+    "tasks": 1463,
+    "duration_seconds": 354.785,
+    "success_log_complete": true,
+    "strict_aliasing_warnings": 3,
+    "warnings_suppressed": false
+  },
+  "C2_nonnetwork": {
+    "stop_raw_pass": true,
+    "dispose_raw_pass": true,
+    "fixture_source_read": true,
+    "meaning": "Pending request cancelled once before launch; request and byte conservation checked; no RDMA driver, so this does not test network-enabled cancellation"
+  },
+  "checkpoint_network_raw": {
+    "source": "local copied remote tests receipt",
+    "directory_entries": [],
+    "network_simulations_started": 0
+  },
+  "next_plan": {
+    "source": "docs/research/ws31/main/zero-control-pilot-r1.json",
+    "observed_plan_status": "FROZEN_NOT_STARTED",
+    "dispatch_status": "Main local status and compact snapshot report dispatched; execution not checked by Integration",
+    "fixed_input_hashes_verified": 2,
+    "flow_count": 104,
+    "payload_bytes": 201981952,
+    "cells": [
+      {
+        "id": "20261101-062753-ws31-zr1-q12",
+        "lb": "ws30v13-q12",
+        "expected_equal_to": null
+      },
+      {
+        "id": "20261101-062753-ws31-zr1-c1zero",
+        "lb": "ws31-c1-zero",
+        "expected_equal_to": "20261101-062753-ws31-zr1-q12"
+      },
+      {
+        "id": "20261101-062753-ws31-zr1-c2zero",
+        "lb": "ws31-c2-zero",
+        "expected_equal_to": "20261101-062753-ws31-zr1-q12"
+      },
+      {
+        "id": "20261101-062753-ws31-zr1-c3zero",
+        "lb": "ws31-c3-zero",
+        "expected_equal_to": "20261101-062753-ws31-zr1-q12"
+      }
+    ],
+    "scope": "Technical zero regression only; no performance ranking or Ofan/RR"
+  },
+  "coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:4",
+  "Ofan": "Paused by user; unstarted dedicated tests cancelled; no baseline admission or technical failure inferred",
+  "boundary": {
+    "remote_access": false,
+    "test_or_simulation_rerun": false,
+    "main_or_independent_owned_files_modified": false,
+    "build_artifact_bytes_independently_downloaded": false,
+    "artifact_hashes": "Reported in copied remote receipt; Integration checked fixed source Git objects and local evidence files, not remote binary bytes",
+    "combined_baseline_validated": false
+  },
+  "remaining": [
+    "Four zero-control network regressions and main acceptance",
+    "Dynamic, label and network lifecycle correctness",
+    "C1 V0 prediction-information diagnosis",
+    "C3 borrowing/reactivation/residual coverage",
+    "Independent two-sided effects and costs"
+  ],
+  "reference_recheck": {
+    "scope": "Bounded relevance review for engineering acceptance, no new mechanism freeze or formal publication/CCF admission",
+    "sources": [
+      {
+        "path": "E:/研/毕业论文/参考文献/候选/README.md",
+        "sha256": "62e79fc8e732d648745c35729bbe2be229d58298f4f201e16b27928848188247"
+      },
+      {
+        "path": "E:/研/毕业论文/参考文献/候选/reading-log.md",
+        "sha256": "6369cfb5965cbaf94f7e4bd3c99df7fcaf29a1bf2f02e86fa171f34182676822"
+      },
+      {
+        "path": "E:/研/毕业论文/参考文献/候选/papers/aps-2020/analysis-technical.md",
+        "sha256": "0e8cf08aaa5cd1a4dd3d0a62e722869d594436ef027afe0cfa4be357f397290f"
+      },
+      {
+        "path": "E:/研/毕业论文/参考文献/候选/papers/aps-2020/verification.md",
+        "sha256": "4d6fd3a164c3b4d955d81aaa3d445d6feca0db6248436aa31d2d9d3891ad3226"
+      },
+      {
+        "path": "E:/研/毕业论文/参考文献/候选/papers/aps-2020/aps-2020-author-version.pdf",
+        "sha256": "853870827df309e3e7a7cd369e8efae564e7435dbed74a5db1609a9bc968868c"
+      }
+    ],
+    "paper_version": "APS fixed 14-page accepted author manuscript, DOI 10.1109/TCC.2020.2985037; prior full-reading record reused",
+    "finding": "Existing category/path-allocation and idle-borrowing reference remains design context; it supplies no evidence of fixed-source build or pending-event cancellation correctness. No new directly applicable design change identified in this engineering node.",
+    "limits": "APS NS2/TCP/DPDK effects cannot stand in for C123 ns3/RDMA network correctness or two-sided effects; this review does not add APS or Ofan as formal baseline"
+  },
+  "validation": {
+    "json_files_valid": 12,
+    "new_markdown_links_valid": 8,
+    "frozen_snapshot_hashes_valid": 21,
+    "git_diff_scope": "Only generated canonical documents and own new records; byte-preserved raw logs use -diff in local attributes"
+  }
+}

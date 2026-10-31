@@ -1,0 +1,23 @@
+{
+  "observed_utc": "2026-10-31T22:21:36.875778+00:00",
+  "source": "Verified direct human userMessage in main read_thread",
+  "source_thread": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "instruction": "Ofan deferred; additional baselines require verified CCF A/B conference or journal. Allow in-flight integrated build and C2 network-free Stop/Dispose tests only.",
+  "actual_stage": "Integrated build command in flight; prepared technical test driver not executed",
+  "cancelled_before_start": [
+    "Ofan portable core compilation",
+    "Ofan portable core execution",
+    "Ofan dynamic coverage",
+    "RR comparison"
+  ],
+  "allowed_remaining": [
+    "complete in-flight fixed-source integrated build",
+    "C2 network-free Stop/Dispose pending-cancellation test",
+    "evidence verification and handoff"
+  ],
+  "classification": "USER_SCOPE_CHANGE_NOT_CORRECTNESS_FAILURE",
+  "network_runs_started": 0,
+  "human_turn": "01a1940b-da42-7d93-ac39-164e1a614ffb",
+  "human_message": "01a1940c-3b71-7db2-bb38-0c11dedf679b",
+  "human_text": "Ofan的话暂缓考虑实现吧，优选CCF A/B类会议或期刊文章，非此条件的机制不加入到基线。"
+}

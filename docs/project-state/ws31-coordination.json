@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:3"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:4"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -80,22 +80,25 @@
   "execution_status_source": "docs/research/ws31/main/current-status.json",
   "last_verified_engineering_checkpoint": {
     "date": "2026-11-01",
-    "handoff": "docs/handoffs/2026-11-01-ws31-first-implementation-and-build.md",
-    "verification": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/verification.json",
+    "handoff": "docs/handoffs/2026-11-01-ws31-c4-build-and-c2-lifecycle.md",
+    "verification": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/verification.json",
     "cores_passed": [
       "C1",
       "C2",
       "C3"
     ],
-    "full_build_pass_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
-    "full_build_id": "20261101-060429-ws31-c123-build-r1",
-    "subsequent_source_under_validation": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "full_build_pass_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "full_build_id": "20261101-061544-ws31-ofan-preflight-r1",
+    "tasks": 1463,
+    "duration_seconds": 354.785,
+    "C2_nonnetwork_stop": "PASS",
+    "C2_nonnetwork_dispose": "PASS",
+    "integration_fixed_source_hashes": 33,
+    "integration_evidence_hashes": 15,
     "network_correctness_complete": false,
     "independent_performance_complete": false,
-    "additional_baseline_decision": "Ofan v2 routing-algorithm port selected conditionally; Gemma HULA SeqBalance REPS deferred with source-based reasons",
-    "formal_Ofan_admission": "pending correctness and dynamic coverage",
-    "live_execution_status_source": "docs/research/ws31/main/current-status.json",
-    "additional_baseline_decision_superseded_by": "baseline_admission_policy; original checkpoint retained as historical observation"
+    "Ofan": "PAUSED_BY_USER; no dedicated test or formal admission",
+    "live_execution_status_source": "docs/research/ws31/main/current-status.json"
   },
   "baseline_admission_policy": {
     "instruction_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
@@ -120,8 +123,41 @@
       "QueuePin"
     ],
     "additional_formally_admitted": [],
-    "shared_preflight_scope": "In-flight c4b6039 full build for C1/C2/C3 and C2 non-network Stop/Dispose only; unstarted Ofan checks cancelled by user scope change",
-    "historical_engineering_checkpoint": "Preserved in last_verified_engineering_checkpoint; its prior conditional Ofan decision is superseded by this policy",
+    "shared_preflight_scope": "c4b6039 shared full build and C2 non-network Stop/Dispose completed and accepted; no Ofan-specific tests started",
+    "historical_engineering_checkpoint": "Original conditional Ofan decision preserved in engineering_checkpoint_history and superseded by this policy",
     "live_main_policy": "docs/research/ws31/main/baseline-admission-policy-r2.md"
+  },
+  "engineering_checkpoint_history": [
+    {
+      "date": "2026-11-01",
+      "handoff": "docs/handoffs/2026-11-01-ws31-first-implementation-and-build.md",
+      "verification": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r1/verification.json",
+      "cores_passed": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "full_build_pass_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
+      "full_build_id": "20261101-060429-ws31-c123-build-r1",
+      "subsequent_source_under_validation": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+      "network_correctness_complete": false,
+      "independent_performance_complete": false,
+      "additional_baseline_decision": "Ofan v2 routing-algorithm port selected conditionally; Gemma HULA SeqBalance REPS deferred with source-based reasons",
+      "formal_Ofan_admission": "pending correctness and dynamic coverage",
+      "live_execution_status_source": "docs/research/ws31/main/current-status.json",
+      "additional_baseline_decision_superseded_by": "baseline_admission_policy; original checkpoint retained as historical observation"
+    }
+  ],
+  "next_registered_pilot": {
+    "plan": "docs/research/ws31/main/zero-control-pilot-r1.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/snapshots/zero-control-pilot-r1.json",
+    "status": "FROZEN_AND_DISPATCHED_NOT_INTEGRATION_ACCEPTED",
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "cells": 4,
+    "flow_count": 104,
+    "payload_bytes": 201981952,
+    "scope": "Technical QueuePin vs C1/C2/C3 zero-control regressions only",
+    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "root_remote_execution_status_checked": false
   }
 }

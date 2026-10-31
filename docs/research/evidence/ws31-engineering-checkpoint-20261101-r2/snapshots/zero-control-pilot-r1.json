@@ -1,0 +1,73 @@
+{
+  "workstream": "WS-31",
+  "stage": "four zero-control technical pilot r1",
+  "status": "FROZEN_NOT_STARTED",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "branch": "feature/ws31-candidates",
+  "prerequisite_main_acceptance": "evidence/c4-build-c2-lifecycle-main-acceptance-r1.json",
+  "inputs": {
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+  },
+  "flow_count": 104,
+  "payload_bytes": 201981952,
+  "cells": [
+    {
+      "id": "20261101-062753-ws31-zr1-q12",
+      "lb": "ws30v13-q12",
+      "expected_equal_to": null
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c1zero",
+      "lb": "ws31-c1-zero",
+      "expected_equal_to": "20261101-062753-ws31-zr1-q12"
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c2zero",
+      "lb": "ws31-c2-zero",
+      "expected_equal_to": "20261101-062753-ws31-zr1-q12"
+    },
+    {
+      "id": "20261101-062753-ws31-zr1-c3zero",
+      "lb": "ws31-c3-zero",
+      "expected_equal_to": "20261101-062753-ws31-zr1-q12"
+    }
+  ],
+  "common": {
+    "topo": "leaf_spine_128_100G_OS2",
+    "flow_file": "ws31_correctness_r1.txt",
+    "simul_time": "0.01",
+    "netload": 10,
+    "bw": 100,
+    "buffer": 9,
+    "pfc": 0,
+    "irn": 1,
+    "simulation_seed": 1,
+    "ws30_observe": 2,
+    "max_concurrent": 1
+  },
+  "execution": {
+    "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "build": "New per-cell guarded build, optimized -j2; fixed source SHA; serial by default",
+    "run": "Existing guarded remote_experiment run/start lock; do not bypass or reuse a successful ID",
+    "order": "Reference first, accept its all-input accounting before launching zero controls; one simulation at a time",
+    "resource_gate": "Fresh other-user/job and system audit before first build/run and material changes; keep existing worker thresholds; preserve sampled resource receipt, never call snapshots a peak"
+  },
+  "required_checks": [
+    "All 104 input tuples and 201981952 payload bytes complete exactly once; no windows or completion filtering",
+    "Original demand origins using common legacy ns3 double-to-Time conversion; verify_ws31_fct.py must pass",
+    "Zero controls byte-identical full FCT to reference",
+    "Normalized ordered WS30_CHOICE and WS30_ROUTE stream hashes identical; remove only uid field, preserve all times/identities/ports and choice values",
+    "No within-QP output-port changes; no WS30_OBSERVATION_OVERFLOW; full row budget 1000000",
+    "C2-zero launch wait=0 for every flow; demand/launch/finish observations agree with FCT; no pending/cancelled/unfinished or byte imbalance",
+    "Common config, fixed source and input hashes; all old special fixtures OFF; no Ofan/RR modes"
+  ],
+  "stop_conditions": [
+    "Build or execution failure",
+    "Unknown other-user job/resource pressure",
+    "Any missing/extra/duplicate flow, byte/time inconsistency, zero-control FCT/path mismatch or observation overflow"
+  ],
+  "scope": "Technical correctness/resource pilot only; no effects evidence, no additional baseline, no Ofan work",
+  "after_success": "Return local raw/logs/manifests and independent handoff; main acceptance before further dynamic modes",
+  "after_failure": "Preserve failed ID and raw/logs, stop remaining cells, main fixes with new SHA/ID"
+}

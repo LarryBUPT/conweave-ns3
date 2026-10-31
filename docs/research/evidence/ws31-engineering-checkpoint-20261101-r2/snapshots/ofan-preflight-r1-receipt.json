@@ -1,0 +1,217 @@
+{
+  "workstream": "WS-31",
+  "scope": "in-flight integrated full build and C2 network-free Stop/Dispose only; Ofan tests cancelled by user",
+  "status": "COMPLETE_FOR_REVISED_TECHNICAL_PREFLIGHT_ONLY",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "base_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
+  "branch": "feature/ws31-candidates",
+  "local_source": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "protocol_sha256": "f276725d42c1f12735009d55919f91298f634b06afefda528a55f3a3b9d8209d",
+  "worker_sha256": "3567a1cf95016e1ea093c32e0aeccaee6e3254c3b43fe1feaf690c8dfec4bed5",
+  "controller_sha256": "19f3067986094423c08842e46b37526e7d815bb4d6b6769224226e7ec562b3a2",
+  "worker_review": "Only ofan-v2 and ofan-rr allowed choices added; locks, resources and build unchanged",
+  "inputs": {
+    "config/ws31_correctness_r1.txt": {
+      "bytes": 2816,
+      "sha256": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+    },
+    "config/ws31_ofan_fat_r1.txt": {
+      "bytes": 851,
+      "sha256": "07c559baa157f6901c14e754c719c1d25fe24592a0506cba2861b77b10ea34a6"
+    },
+    "config/ws31_unknown_r1.txt": {
+      "bytes": 160,
+      "sha256": "0dc3245f6a534ab8f1bd2dfbc4ada4cceeb2e3c3b8e8b8875fdb4f7c71b89126"
+    },
+    "tests/ws31_ofan_test.cc": {
+      "bytes": 2062,
+      "sha256": "6fa4a30cb8dc2ec9875e61ca27693876a73242ca99d374549017fda29208d882"
+    },
+    "scratch/ws31-start-lifecycle-test.cc": {
+      "bytes": 1925,
+      "sha256": "66d2b4d0666a6c9c8aa699d00c7a54188f739f4f0a60ace92e79a7f1ede6f8ec"
+    },
+    "src/point-to-point/model/ws31-ofan.h": {
+      "bytes": 4982,
+      "sha256": "02598801653ca701c092a650ce222b6741687fd9e4053fda5a9390c1f3d54f28"
+    }
+  },
+  "acceptance": {
+    "git_and_worker": "PASS",
+    "fresh_resources": "PASS",
+    "deploy": "PASS",
+    "sync": "PASS",
+    "full_build": "PASS",
+    "ofan_core_compile": "CANCELLED_BY_USER_SCOPE_CHANGE",
+    "ofan_core_run": "CANCELLED_BY_USER_SCOPE_CHANGE",
+    "lifecycle_stop": "PASS",
+    "lifecycle_dispose": "PASS",
+    "source_artifact_and_log_verification": "PASS"
+  },
+  "commands": [
+    {
+      "operation": "deploy",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "deploy"
+      ],
+      "start_utc": "2026-10-31T22:15:40.037040+00:00",
+      "log": "ofan-preflight-r1-deploy.log",
+      "end_utc": "2026-10-31T22:15:40.433440+00:00",
+      "exit_code": 0
+    },
+    {
+      "operation": "sync",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "sync",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation"
+      ],
+      "start_utc": "2026-10-31T22:15:40.434444+00:00",
+      "log": "ofan-preflight-r1-sync.log",
+      "end_utc": "2026-10-31T22:15:44.089554+00:00",
+      "exit_code": 0
+    },
+    {
+      "operation": "build",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "build",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+        "--id",
+        "20261101-061544-ws31-ofan-preflight-r1",
+        "--source-sha",
+        "c4b6039beb47e667e6954b56ec770cb6038082fa"
+      ],
+      "start_utc": "2026-10-31T22:15:44.400237+00:00",
+      "log": "ofan-preflight-r1-build.log",
+      "end_utc": "2026-10-31T22:21:46.567411+00:00",
+      "exit_code": 0
+    }
+  ],
+  "network_simulations_started": 0,
+  "c123_core_tests_repeated": 0,
+  "deployed_worker_sha256": "3567a1cf95016e1ea093c32e0aeccaee6e3254c3b43fe1feaf690c8dfec4bed5",
+  "experiment_id": "20261101-061544-ws31-ofan-preflight-r1",
+  "remote_result": "/home/fnl/lzy/results/20261101-061544-ws31-ofan-preflight-r1",
+  "remote_source": "/home/fnl/lzy/runs/20261101-061544-ws31-ofan-preflight-r1/source",
+  "scope_change_receipt": "ofan-preflight-r1-scope-change.json",
+  "source_files_verified": 33,
+  "tests_receipt_file": "ofan-preflight-r1-tests.json",
+  "scope_authority": {
+    "file": "ofan-preflight-r1-scope-change.json",
+    "human_turn": "01a1940b-da42-7d93-ac39-164e1a614ffb",
+    "human_message": "01a1940c-3b71-7db2-bb38-0c11dedf679b"
+  },
+  "additional_baseline_policy": "Verified CCF A/B formal publication required; Ofan paused by user, not admitted",
+  "ofan_tests_executed": 0,
+  "rr_comparison_executed": 0,
+  "c2_nonnetwork_test_runs": 1,
+  "c2_pass_markers": [
+    "WS31_C2_LIFECYCLE PASS kind=stop",
+    "WS31_C2_LIFECYCLE PASS kind=dispose"
+  ],
+  "build_tasks_completed": 1463,
+  "build_duration_seconds": 354.785,
+  "remote_build_status": "BUILT",
+  "gpp_version": "g++ (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609",
+  "source_status_after": "",
+  "resource_observation_scope": "Fresh before/after snapshots, no peak measurement",
+  "inherited_warnings": {
+    "count": 3,
+    "type": "-Wstrict-aliasing",
+    "target_file": "scratch/network-load-balance.cc",
+    "target_lines": [
+      2083,
+      2113,
+      2148
+    ],
+    "previous_source_lines": [
+      2032,
+      2062,
+      2097
+    ],
+    "expression": "pathId = *((uint32_t *)path_ports);",
+    "code_change_or_suppression": false
+  },
+  "uncompleted_ws31_validation": [
+    "C123 zero-control network regression",
+    "C123 label and dynamic correctness",
+    "C2 demand-origin FCT and cancellation in network-enabled scenarios",
+    "C3 borrowing/reactivation/residual behavior",
+    "C1 V0 prediction-information diagnostics",
+    "independent two-sided effects/costs"
+  ],
+  "reference_review_scope": "Engineering build and lifecycle acceptance only; prior Ofan recommendation superseded by user policy, no new baseline or publication admission inferred",
+  "verified_utc": "2026-10-31T22:24:18.846363+00:00",
+  "evidence_files": {
+    "ofan-preflight-r1-build-remote.log": {
+      "bytes": 208360,
+      "sha256": "4526ba1e2cf91bf7ed9239fc00adde3a375804517d02bd1ff6e3ada067f355f1"
+    },
+    "ofan-preflight-r1-build.log": {
+      "bytes": 110,
+      "sha256": "56ed89b050d313facb05f619fffaba66d4f7098e35161c44d4b2b148f7434bda"
+    },
+    "ofan-preflight-r1-c2-lifecycle-remote.log": {
+      "bytes": 301,
+      "sha256": "1b3a42f8efaec2de479e2f44d80a95d55882897f32f0585aa8abffd41bbf1cba"
+    },
+    "ofan-preflight-r1-deploy.log": {
+      "bytes": 33,
+      "sha256": "b066cace08dbcd3e431808ac7a780088c8c847502e8281d0db4e893cebedd942"
+    },
+    "ofan-preflight-r1-lifecycle-driver.py": {
+      "bytes": 6350,
+      "sha256": "d4c35406e529fdfeab042cea8a2d5f8ba4055598d5881bc5f1e2f4ce7d3f0eb2"
+    },
+    "ofan-preflight-r1-remote-metadata.json": {
+      "bytes": 523,
+      "sha256": "3e52fbb741e112684f21914e0e0527edd4cecf883240ebb63ab4a338eb8ac717"
+    },
+    "ofan-preflight-r1-remote-tests.json": {
+      "bytes": 6715,
+      "sha256": "bc3dd41310dd4c095a317a5c0f96a8897f6eb78f066808a54f01c8ca53c01928"
+    },
+    "ofan-preflight-r1-resources.json": {
+      "bytes": 402,
+      "sha256": "8458347679eeeec32d5c12604c81d10461c48c22a14a770465909b880839b98f"
+    },
+    "ofan-preflight-r1-scope-change.json": {
+      "bytes": 1182,
+      "sha256": "7b5a736154957a557593f5ac4f570afd0c065c649c075f8925255ef98387f0ff"
+    },
+    "ofan-preflight-r1-source-established.json": {
+      "bytes": 683,
+      "sha256": "f80e7c33e44e6467a48885fc179cdfa2a26ac432ca42c82fc3a1ef874e571299"
+    },
+    "ofan-preflight-r1-sync.log": {
+      "bytes": 186,
+      "sha256": "231704db49d75bc4f34e9b896a33b35e9d4b900280756474b26c6240f798924d"
+    },
+    "ofan-preflight-r1-test-driver.py": {
+      "bytes": 6652,
+      "sha256": "a1d57e915ad2cdfa5859b63f3aa556401fa0076b779e0276829771d73f44695f"
+    },
+    "ofan-preflight-r1-test-ssh.log": {
+      "bytes": 6173,
+      "sha256": "f135e5200e0228fba63639658cb2cb48a1b09a79c0b24c6238a7f5e35e5ab213"
+    },
+    "ofan-preflight-r1-tests.json": {
+      "bytes": 6838,
+      "sha256": "b95a02be4aed6f15e49b0fb4bf39f537123ec8eccc621f5c134d339332259392"
+    },
+    "ofan-preflight-r1-worker.patch": {
+      "bytes": 2134,
+      "sha256": "0ef973327d480762da23faa722badb4b8c8393c98297ddf7b988d5627bbd2e82"
+    }
+  }
+}

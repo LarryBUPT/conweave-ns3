@@ -1,0 +1,130 @@
+{
+  "workstream": "WS-31",
+  "updated_date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "status": "ACTIVE_IMPLEMENTATION_C1_C2_C3",
+  "scope": "User authorized sequential C1/C2/C3 judgment and implementation plus discretionary additional baseline admission",
+  "write_root": "docs/research/ws31/main/",
+  "coordination_registry": "../../../project-state/ws31-coordination.json",
+  "coordination_state": "Sole independent dispatched fixed four-zero-control network pilot; no duplicate dispatch, no Ofan/RR",
+  "observed_checkout": {
+    "head": "06552c758a6e111a53d2f6772262dbc88ed73f35",
+    "branch": "feature/ws23-ws24-evidence-integration",
+    "observation_date": "2026-11-01",
+    "policy": "No branch switch, commit or shared-file edit",
+    "latest_observed_head": "5cb5555a1b26a0ca5bf3e4584ef25ce5b6570f90",
+    "latest_head_source": "Concurrent Integration commit; no main-thread branch switch or commit"
+  },
+  "actual_model_verification": {
+    "source": "this thread latest runtime turn_context",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "turn_id": "01a19322-9815-7133-b0d0-186c62dd3cd3",
+    "timestamp_utc": "2026-10-31T18:04:41.748Z",
+    "switch_claimed": false
+  },
+  "remote_experiments": "No network simulation yet; c4 shared full build and C2 non-network cancellation main accepted",
+  "stages": {
+    "A": "COMPLETE FOR R1 bounded source/raw audit; independent first goal accepted",
+    "B": "COMPLETE FOR R1 core paper set and bounded nearest-neighbor review; FAMG full algorithm unavailable and marked",
+    "C": "COMPLETE FOR R1 evidence-linked consensus/disagreement/open-question map",
+    "D": "COMPLETE FOR R1 questions/constraints/hypotheses/evidence table",
+    "E": "R1 complete; user authorized sequential C1/C2/C3 implementation",
+    "F": "R1 three explicitly main-authored simulated review reports written",
+    "G": "R1 funnel, evidence-linked topic map and literature radar written; no automation created",
+    "H": "R1 complete; old awaiting-choice restriction superseded by user implementation authorization",
+    "I": "REOPENED under user CCF A/B-only gate; Ofan paused; old baseline audit preserved; no additional method admitted",
+    "J": "C1-C3 first code/core and c4 full build complete; C2 Stop/Dispose PASS; network correctness pending; Ofan paused",
+    "K": "C123 correctness inputs and protocol frozen; Ofan/RR cells suspended by user; V0 and independent effects protocols pending",
+    "L": "c4 build and C2 cancellation accepted; four-zero-control network pilot dispatched, no effects yet",
+    "M": "NOT STARTED; no validated combined baseline"
+  },
+  "closure": "ACTIVE; all three implementations and required validation are tracked in implementation-plan-r1.md",
+  "main_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "independent_thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "independent_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:29",
+  "independent_second_goal": "ACTIVE C123 zero-control technical pilot, fixed four independent IDs; reference first",
+  "local_log_inspection": "One existing technical input: schema and descriptive opportunity only; not V0 predictive validation",
+  "remaining_actions": [
+    "Main-accept C123 four-zero-control network pilot, then dynamic/tag correctness",
+    "Execute C123 four-zero-control pilot and remaining dynamic/tag/lifecycle correctness with sole executor",
+    "Re-evaluate only necessary additional baselines with independently verified CCF A/B formal publication; Ofan paused",
+    "Complete C1 V0 prediction-information diagnostics and all three candidates independent two-sided effects/costs",
+    "Update topic map and contribution claims; final mechanism adoption to user"
+  ],
+  "heartbeat_monitor": {
+    "automation_id": "ws-31",
+    "status": "ACTIVE",
+    "source": "Integration registry after implementation authorization",
+    "interval_minutes": 30
+  },
+  "authorization": {
+    "date": "2026-11-01",
+    "order": [
+      "C1",
+      "C2",
+      "C3"
+    ],
+    "additional_baselines": "Assess necessity/fidelity/cost autonomously; Gemma first",
+    "supersedes": "Prior awaiting-user-candidate decision and proposal-only boundary"
+  },
+  "implementation": {
+    "root": "E:/研/毕业论文/workspace/ws31-candidates-implementation",
+    "branch": "feature/ws31-candidates",
+    "base_sha": "21faeb2d986b0a4d9d59edd9bf11a0d0de934007",
+    "C1": "Core and c4 full ns-3 build PASS; adapter correctness/V0/effects pending",
+    "C2": "Core, c4 full ns-3 build, Stop and Dispose cancellation PASS; demand FCT/network correctness and effects pending",
+    "C3": "Core and c4 full ns-3 build PASS; dynamic quota/borrowing/residual/effects pending",
+    "formal_effects": "NOT STARTED",
+    "latest_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "additional_baseline": "Ofan/RR prototype preserved but PAUSED_BY_USER, not formally admitted; further additions require verified CCF A/B publication plus fidelity/cost/necessity",
+    "pushed": "feature/ws31-candidates at c4b6039beb47e667e6954b56ec770cb6038082fa; personal fork only",
+    "latest_tree_observed": "clean after commit and push"
+  },
+  "updated_utc": "2026-10-31T22:28:35.313677+00:00",
+  "full_build_accepted": {
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "id": "20261101-061544-ws31-ofan-preflight-r1",
+    "tasks": 1463,
+    "duration_seconds": 354.785,
+    "scope": "Shared full build and C2 non-network cancellation only; Ofan tests cancelled; raw empty"
+  },
+  "active_preflight": {
+    "id": "20261101-061544-ws31-ofan-preflight-r1",
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "source_directory": "/home/fnl/lzy/runs/20261101-061544-ws31-ofan-preflight-r1/source",
+    "observed_status": "COMPLETE_REVISED_SCOPE_MAIN_ACCEPTED",
+    "executor": "sole registered independent",
+    "next": "Four-zero-control network pilot after new resource gate and independent IDs",
+    "user_scope_change": "Ofan paused; completed evidence retained; unstarted Ofan checks cancelled as scope change, not failure",
+    "scope_change_acknowledged": "Independent confirmed Ofan-specific tests not started and cancelled by user; shared build/C2 cancellation continue"
+  },
+  "last_heartbeat": {
+    "at_utc": "2026-10-31T22:18:26.638Z",
+    "observed": "Sole independent active; consolidated build pending; no failure or user action",
+    "action": "Saved latest compact cursor; no duplicate dispatch or remote poll"
+  },
+  "baseline_admission_policy": {
+    "source": "latest direct human instruction in main thread",
+    "date": "2026-11-01",
+    "required_for_additional_mechanisms": "Verified formal paper in CCF A/B conference or journal; unknown or non-A/B excluded",
+    "Ofan": "PAUSED_BY_USER; existing code is unadmitted prototype; no further dedicated validation",
+    "existing_kept": [
+      "DRILL",
+      "ConWeave",
+      "CONGA",
+      "ECMP",
+      "LetFlow",
+      "QueuePin"
+    ],
+    "additional_admitted": [],
+    "policy_file": "baseline-admission-policy-r2.md"
+  },
+  "active_pilot": {
+    "plan": "zero-control-pilot-r1.json",
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "status": "DISPATCHED_NOT_YET_STARTED",
+    "cells": 4,
+    "scope": "technical zero regressions only; Ofan/RR excluded"
+  }
+}
