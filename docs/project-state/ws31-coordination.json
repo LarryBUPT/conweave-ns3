@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:5"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:6"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -149,25 +149,28 @@
     }
   ],
   "next_registered_pilot": {
-    "plan": "docs/research/ws31/main/main-mode-dynamic-r1.json",
-    "fixed_snapshot": "docs/research/evidence/ws31-zero-control-integration-20261101-r1/snapshots/main/main-mode-dynamic-r1.json",
-    "status": "FROZEN_AND_DISPATCHED_NOT_INTEGRATION_ACCEPTED",
-    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
-    "cells": 3,
-    "flow_count": 104,
-    "payload_bytes": 201981952,
+    "plan": "docs/research/ws31/main/c2-label-validation-r1.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/c2-label-validation-r1.json",
+    "plan_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
+    "status": "CORRECTED_BEFORE_DISPATCH_AND_DISPATCHED_NOT_INTEGRATION_ACCEPTED",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "cells": 5,
     "order": [
-      "C1",
-      "C2",
-      "C3"
+      "default",
+      "remove",
+      "swap",
+      "unknown-q12",
+      "unknown-c2"
     ],
+    "modified_core_required": true,
+    "all_five_builds_before_runs": true,
     "max_parallel_builds": 3,
     "jobs_per_build": 2,
     "max_total_compile_jobs": 6,
     "simulation_concurrency": 1,
     "fresh_resource_gate_required": true,
     "root_remote_execution_status_checked": false,
-    "scope": "Initial dynamic technical coverage; matched controls tags lifecycle and effects remain",
+    "scope": "C2 fix/default and label/unknown correctness only; matched controls lifecycle independent V0 and effects remain",
     "executor": "01a19323-2201-7b23-a0f1-905c71496d38"
   },
   "last_verified_zero_control_checkpoint": {
@@ -205,8 +208,33 @@
   "C2_tag_intervention_gap": {
     "evidence": "docs/research/ws31/main/evidence/c2-tag-intervention-source-gap-r1.json",
     "owner": "WS31 main",
-    "status": "FIX_OR_EXPLICIT_INPUT_CONTROL_BEFORE_TAG_TESTS",
+    "status": "SOURCE_FIX_COMMITTED_PUSHED_RUNTIME_VALIDATION_PENDING",
     "current_transform0_runs_affected": false,
-    "wrong_transformed_runs_executed": 0
+    "wrong_transformed_runs_executed": 0,
+    "fix_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "fix_evidence": "docs/research/ws31/main/evidence/c2-policy-tag-source-fix-r1.json",
+    "validation_plan": "docs/research/ws31/main/c2-label-validation-r1.json"
+  },
+  "last_verified_dynamic_checkpoint": {
+    "date": "2026-11-01",
+    "handoff": "docs/handoffs/2026-11-01-ws31-dynamic-integration.md",
+    "verification": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/verification.json",
+    "raw_verification": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/raw-verification.json",
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "cells_passed": 3,
+    "completed_flow_records": 312,
+    "completed_payload_bytes": 605945856,
+    "root_result_file_hash_checks": 78,
+    "root_support_file_hash_checks": 39,
+    "root_C2_exact_waits": 104,
+    "unchanged_c4_source_map_reused": 35,
+    "C1_C3_detailed_replay_owner": "WS31 main",
+    "scope": "Initial dynamic technical coverage only; no independent effects"
+  },
+  "latest_implemented_source": {
+    "sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "purpose": "C2 decision-visible policy label fix",
+    "validation": "Static three-file object/diff audit only; executable build/default/tag runtime pending",
+    "last_network_validated_source": "c4b6039beb47e667e6954b56ec770cb6038082fa"
   }
 }

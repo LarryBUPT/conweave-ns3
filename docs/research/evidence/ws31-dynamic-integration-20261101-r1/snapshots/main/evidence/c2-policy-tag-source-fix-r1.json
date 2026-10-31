@@ -1,0 +1,34 @@
+{
+  "recorded_utc": "2026-10-31T23:25:09.555670+00:00",
+  "candidate": "C2",
+  "source_before": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "source_after": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "status": "SOURCE_FIX_COMMITTED_PUSHED; EXECUTABLE_AND_NETWORK_VALIDATION_PENDING",
+  "audit_kind": "Static source/object comparison only; no C++ binary or ns-3 test run by main",
+  "checks": {
+    "hash_delay_and_counter_implementation_byte_identical": true,
+    "request_launch_and_cancellation_unchanged": true,
+    "decision_uses_policy_tag": true,
+    "original_tag_still_passed_to_QP": true,
+    "demand_logs_keep_original_and_policy_tags": true,
+    "fixture_header_exported": true,
+    "changed_paths_exact": true,
+    "working_tree_clean": true,
+    "remote_origin_pushed": true,
+    "run_entry_unchanged": true
+  },
+  "source_sha256": {
+    "src/point-to-point/model/ws31-start.h": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba",
+    "src/applications/model/rdma-client.cc": "60ce7a6cd693188698ae3fc533790081fa6910a48d1c73eee43fb083f5b4689c",
+    "tests/ws31_start_test.cc": "5f523030e5050e44aa1128a242a9cf5ac7499027bc7da1b3bf4c99d903c4c4b1"
+  },
+  "default0_argument": "StartPolicyTag(tag,0) returns tag; hash/delay and launch paths are byte-identical. Actual default raw regression still required.",
+  "current_c4_goal": "Three isolated sources already established at c4; current frozen goal continues unchanged.",
+  "remaining": [
+    "Sole independent completes current c4 dynamic goal; main accepts raw or diagnoses failure",
+    "New fixed-SHA core and full build; default C2 regression versus accepted c4 main-mode raw",
+    "Removal/swap network tests check decision-visible eligibility and preserve original business identity, demand/FCT and byte ledger",
+    "Unknown-label coverage and matched unified/size/zero controls remain mandatory; no effects/admission claim"
+  ],
+  "unexecuted_ofan_work": 0
+}

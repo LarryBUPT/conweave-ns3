@@ -1,0 +1,10 @@
+{
+  "recorded_utc": "2026-10-31T23:38:35.452669+00:00",
+  "status": "PRE_DISPATCH_DOCUMENT_CORRECTION; NO_RUNS_STARTED",
+  "history_snapshot": "evidence/c2-label-validation-r1-pre-dispatch-history.json",
+  "history_sha256": "0cac37b4d9d9d18fd0f71a369c6b9f8753296e930b5cb7348b7f449469dd15e7",
+  "new_plan_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
+  "finding": "Inherited build_resources.after_builds named old C1/C2/C3 sequence; cells and execution.runs already specified correct five-cell order",
+  "correction": "Match after_builds to five C2 label/default/unknown cells and record latest compile-resource evidence",
+  "scope_or_criteria_changes": false
+}

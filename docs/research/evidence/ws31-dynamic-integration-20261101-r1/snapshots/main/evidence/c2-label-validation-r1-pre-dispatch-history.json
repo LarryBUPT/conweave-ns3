@@ -1,0 +1,144 @@
+{
+  "workstream": "WS-31",
+  "stage": "C2 decision-visible label fix technical acceptance r1",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "branch": "feature/ws31-candidates",
+  "prerequisite": "evidence/dynamic-main-modes-main-acceptance-r1.json",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "inputs": {
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+    "config/ws31_unknown_r1.txt": "0dc3245f6a534ab8f1bd2dfbc4ada4cceeb2e3c3b8e8b8875fdb4f7c71b89126"
+  },
+  "cells": [
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-default",
+      "order": 1,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_correctness_r1.txt",
+      "ws30_tag_transform": 0,
+      "flow_count": 104,
+      "payload_bytes": 201981952
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-remove",
+      "order": 2,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_correctness_r1.txt",
+      "ws30_tag_transform": 1,
+      "flow_count": 104,
+      "payload_bytes": 201981952
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-swap",
+      "order": 3,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_correctness_r1.txt",
+      "ws30_tag_transform": 2,
+      "flow_count": 104,
+      "payload_bytes": 201981952
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-q12",
+      "order": 4,
+      "lb": "ws30v13-q12",
+      "flow_file": "ws31_unknown_r1.txt",
+      "ws30_tag_transform": 0,
+      "flow_count": 6,
+      "payload_bytes": 28278
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-c2",
+      "order": 5,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_unknown_r1.txt",
+      "ws30_tag_transform": 0,
+      "flow_count": 6,
+      "payload_bytes": 28278
+    }
+  ],
+  "common": {
+    "topo": "leaf_spine_128_100G_OS2",
+    "simul_time": "0.01",
+    "netload": 10,
+    "bw": 100,
+    "buffer": 9,
+    "pfc": 0,
+    "irn": 1,
+    "simulation_seed": 1,
+    "ws30_observe": 2,
+    "max_concurrent": 1
+  },
+  "build_resources": {
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "rationale": "Four serial build/run resource snapshots healthy; each runtime tree sampled near230MiB, available memory near122GiB, load near2; compile budget6 below project20-core budget. New batch is a bounded compile-resource pilot, not an inference of exact peaks.",
+    "fresh_batch_admission": {
+      "no_other_user_or_unknown_project_jobs": true,
+      "min_available_gib": 64,
+      "min_disk_gib": 100,
+      "max_initial_load_1m": 4
+    },
+    "during_batch": "Record sampled load/memory/free disk at modest intervals; keep existing guarded worker checks; no simultaneous simulation. If unavailable/contended, fall back to one build, pause new work as required.",
+    "after_builds": "All builds must be successful and verified before serial simulation C1 then C2 then C3; existing max-concurrent=1 lock remains."
+  },
+  "core_test": {
+    "source": "tests/ws31_start_test.cc",
+    "only_modified_core": true,
+    "compiler": "existing g++5.4, -std=c++11 -O2 -Wall -Wextra -pedantic, assertions enabled, no -DNDEBUG",
+    "location": "first cell frozen source; binary/log under its independent evidence area",
+    "required": "Compile and execute with PASS including policy-tag; preserve command/source/binary/log digests. No new Ofan or repeated C1/C3 core work."
+  },
+  "execution": {
+    "builds": "Each cell new guarded build at exact source SHA, isolated source/raw; at most3 concurrent -j2, six compile tasks. All five builds and modified core accepted before any simulation. No build/simulation overlap.",
+    "runs": "Serial in fixed order; fresh resource/other-user/unknown-project gate before batch and each run; existing lock and safety thresholds retained.",
+    "active_target": "Do not dispatch until current c4 goal terminal and idle; plan is not itself a new concurrent goal."
+  },
+  "reference_ids": {
+    "c2_default": "20261101-071042-ws31-dyn-r1-c2",
+    "queuepin_zero": "20261101-062753-ws31-zr1-q12",
+    "unknown_q12": "20261101-074000-ws31-c2tag-r1-unknown-q12"
+  },
+  "required_common": [
+    "Exact source/input/topology/config and simulation seed; old fixtures/composition/lifecycle/faults off except explicit per-cell tag transform",
+    "All input identities, original business tags and payload bytes retained; all complete once; no extra/missing/duplicate records, no cancellation/pending/unfinished or byte imbalance",
+    "No per-QP port changes, rejection/drop, queue violation or observation overflow; preserve complete raw/metadata/log/resource receipts",
+    "C2 all DEMAND/LAUNCH/FINISH rows agree with raw FCT; demand<=launch<=finish, FCT includes source wait; per-tuple portable hash recomputed exactly",
+    "For each C2 DEMAND record tag is original input, policy_tag and tag_transform equal frozen intervention; transmitted ROUTE tag equals policy tag; never regroup business metrics by transformed label"
+  ],
+  "required_by_cell": {
+    "default": [
+      "At least one positive tag2 wait, every tag1 wait zero, <=500ns",
+      "Full FCT byte-identical and ordered WS30_CHOICE/ROUTE equal to accepted c4 C2 reference after removing only uid"
+    ],
+    "remove": [
+      "All policy tags and waits zero; packet tags absent decode to0",
+      "Full FCT byte-identical to accepted QueuePin zero reference; ordered CHOICE/ROUTE compare removing only uid and intentionally changed tag fields; retain/check tag0 separately"
+    ],
+    "swap": [
+      "Original tag1 gets hash wait, original tag2 wait0; unknown unchanged; at least one newly eligible positive wait",
+      "Original request counts/business bytes/demand times unchanged; no expected performance direction or default-FCT equality"
+    ],
+    "unknown-q12": [
+      "All6 requests/28278B complete; original0/7/99 packet tags remain; reference for unknown C2"
+    ],
+    "unknown-c2": [
+      "All6 policy tags equal original0/7/99, all wait0",
+      "Full FCT byte-identical and ordered CHOICE/ROUTE equal to new unknown QueuePin after removing only uid"
+    ]
+  },
+  "stop_conditions": [
+    "Any build/core/run/identity/time/bytes/path/accounting/hash/default-regression failure; preserve ID and stop remaining runs",
+    "Any required dynamic/label branch missing; report coverage gap before additional runs, no threshold retuning",
+    "Unknown other-user/project work or resource contention; pause new work or lower to one build per existing policy"
+  ],
+  "scope": "Technical fix acceptance only, no performance ranking, new baseline or Ofan/RR work",
+  "still_required_after": [
+    "All C1/C2/C3 matched controls not covered by these five cells",
+    "Remaining error/delayed-label and lifecycle/adapter boundary coverage",
+    "Independent C1 V0 and frozen two-sided candidate effects/state/cost protocols and necessary new experiments",
+    "User final mechanism adoption decision"
+  ]
+}

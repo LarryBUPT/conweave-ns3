@@ -1,0 +1,185 @@
+{
+  "scope": "Initial dynamic coverage only. No performance admission, Ofan/RR, extra baseline or changes to frozen defaults. Matched controls and tag/lifecycle tests remain required later.",
+  "status": "COMPLETE_FOR_THREE_MAIN_MODE_DYNAMIC_TECHNICAL_CHECKS_ONLY",
+  "created_utc": "2026-10-31T23:35:35.014881+00:00",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "verified_result_files": 78,
+  "source_objects_per_cell_per_phase": 35,
+  "full_tracked_git_tree_records": 4836,
+  "builds": [
+    {
+      "id": "20261101-071042-ws31-dyn-r1-c1",
+      "duration": "6m36.330s",
+      "build_finished_utc": "2026-10-31T23:27:52Z",
+      "started_utc": "2026-10-31T23:27:58Z",
+      "finished_utc": "2026-10-31T23:28:10Z",
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    },
+    {
+      "id": "20261101-071042-ws31-dyn-r1-c2",
+      "duration": "6m35.808s",
+      "build_finished_utc": "2026-10-31T23:27:52Z",
+      "started_utc": "2026-10-31T23:28:22Z",
+      "finished_utc": "2026-10-31T23:28:34Z",
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    },
+    {
+      "id": "20261101-071042-ws31-dyn-r1-c3",
+      "duration": "6m36.373s",
+      "build_finished_utc": "2026-10-31T23:27:52Z",
+      "started_utc": "2026-10-31T23:28:46Z",
+      "finished_utc": "2026-10-31T23:28:58Z",
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    }
+  ],
+  "all_builds_verified_before_any_run": true,
+  "remote_metadata_no_overlap": true,
+  "cells": [
+    {
+      "id": "20261101-071042-ws31-dyn-r1-c1",
+      "lb": "ws31-c1",
+      "status": "PASS",
+      "fct_sha256": "ffcf9fb5fc8871a70e054f118f552af77d06a0310ad473011f7c70b2399d4123",
+      "binary_sha256": "adcf563b81c741e4811a861fead495dbe7a66e80390fd69110e99f663d7e8a51",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c1\\results",
+      "supporting_files": {
+        "remote-manifest.json": "a1f5730c20ed13895b39364e166354a24094101b90c5ba93a78cd77689e37c77",
+        "acceptance.json": "a0456fb5be2ce543e7351d0885da49f9601c0b86274c6e5ae50531698ccc293d",
+        "dynamic-acceptance.json": "8cd15e8e68a359af2d9e8ad42d83006990e153bdf81719f22989a5dca553af65",
+        "run-monitor.json": "7df34e34d80f385d2100d3a2d536525eba9e3a24573dcd4fbd3bff2e0a3ccb9f",
+        "all-input-verifier.log": "1e5598c45919becb32fcb5834ed6d0a78caa29ae614e032e62261c842a90c5ad",
+        "resources-before-run.json": "0c71dae117d7640f4fbae8d1254f3d46fe5079181390c3e9e915bc6020eef863",
+        "resources-after-run.json": "106d8fb5134e255140e107d19bd3948f5952b02d269b67634a8cada38ebaab8f"
+      }
+    },
+    {
+      "id": "20261101-071042-ws31-dyn-r1-c2",
+      "lb": "ws31-c2",
+      "status": "PASS",
+      "fct_sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf",
+      "binary_sha256": "eed9995b63926431abf062d84397c71a9d857e23e835e383e079946d5a3edf30",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c2\\results",
+      "supporting_files": {
+        "remote-manifest.json": "7f6bcbfe5a897fa28f6c5140b968581e6dd23476b74b6cf7ecd47c1d3ab22c9e",
+        "acceptance.json": "1825078ff364d90071092d95d4859afb2d1c0015c0b745ff5b545cb53ef7a8c0",
+        "dynamic-acceptance.json": "54625dc54fea5a15fb9aa6e8a84adb00aedbcf0ed2ff30000d0f3093cab97210",
+        "run-monitor.json": "7d563f29598c8fa2ab30d8658d8433d4e550ce96cf0ee44b8c59e43014476203",
+        "all-input-verifier.log": "fa9ba38a029c025d030460198da707ba266e3cb58715827d02a802afa2d031ce",
+        "resources-before-run.json": "1f07238e126406760e495a0f50dbf062fce47b6fe93c44fddb1ba728406c78cf",
+        "resources-after-run.json": "ec3c9f290753c794ea4e070f7b4c75396f5a7375a6d91adaab1f96abe40c2e2e"
+      }
+    },
+    {
+      "id": "20261101-071042-ws31-dyn-r1-c3",
+      "lb": "ws31-c3",
+      "status": "PASS",
+      "fct_sha256": "9d18a19b0c7907564ec040574618338b427f414496d603177b5fcd03ed20563c",
+      "binary_sha256": "ec28d108b844a064bc4119425fe1fe598d7e63afaa37bf93b7a388031c18f683",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c3\\results",
+      "supporting_files": {
+        "remote-manifest.json": "1a033012dd3e6f0cd93581f49215ac421d310687b09b27bd267800e30675cb0e",
+        "acceptance.json": "78e11c85ecc9633d19e504e6dea68f0cdd1afe3a2d113c6f59dc5d5711f5f4d1",
+        "dynamic-acceptance.json": "0e833fa16d90c861e1877d06040c974e8f0eb5298d845cf5601fb85b4af7cb94",
+        "run-monitor.json": "c507dd457de4eab8f0c500c4864aeffff3f4604d351333712514aade0b9b6a2a",
+        "all-input-verifier.log": "1cadb3e0ca081a7c5775400f37ffc0c7beaf4de399bda6c076c52b2352cbfb27",
+        "resources-before-run.json": "00bc81091018f0ec38808a5c4b615834b22d5aa5c7e7d66ecf96d88762e75b16",
+        "resources-after-run.json": "3ad80b7f6a70a8accba1560dd30135270bdf9f9d40511769268a38c2fb1f8d32"
+      }
+    }
+  ],
+  "documents": {
+    "main-mode-dynamic-r1-receipt.json": {
+      "bytes": 139596,
+      "sha256": "b3bf0894187c6b2de30a9dc42d8188f35b2a3c74574ec5e1c3bfe5b569937d63"
+    },
+    "main-mode-dynamic-r1-report.md": {
+      "bytes": 6398,
+      "sha256": "f8debb282476e7e58405199590332c6b969858ec45a5f58662960f149d5b4283"
+    },
+    "main-mode-dynamic-r1-handoff.md": {
+      "bytes": 4947,
+      "sha256": "d64211d4af9ee0b4efa9202670fe9fefd55c61f4479d4e277782f26f8a63eb71"
+    },
+    "main-mode-dynamic-r1-driver.py": {
+      "bytes": 20024,
+      "sha256": "88924fa381dfba6f25b73a35d2d2eb6c63787c22e4242b95692d99dbd52d6443"
+    },
+    "main-mode-dynamic-r1-verifier.py": {
+      "bytes": 4364,
+      "sha256": "35bc985fc4089e847bda69f155e4d8d9f8d0cbb0199a53bb1c56086277bddfdf"
+    },
+    "main-mode-dynamic-r1-frozen-plan.json": {
+      "bytes": 4991,
+      "sha256": "8b4f97c9112bceea740ca792616a32f8d22e1c0ee88c5d62ada4cfe2c6dafd48"
+    },
+    "main-mode-dynamic-r1-frozen-plan.md": {
+      "bytes": 1907,
+      "sha256": "ae12826e68c5637f74b61658b57a1426d9c1e5d00b6da2e5b80aea2e5b93e4a7"
+    },
+    "main-mode-dynamic-r1-sources-established.json": {
+      "bytes": 2264,
+      "sha256": "444f3a5c17ee36586e8557520fdf1701e33b3dbef7a34f43f88f3568dab0a5af"
+    },
+    "main-mode-dynamic-r1-all-builds-verified.json": {
+      "bytes": 14312,
+      "sha256": "96769e89922a9a2d7d41c052ccb454e694b50a70ca81f4aba671a57f10674d85"
+    },
+    "main-mode-dynamic-r1-build-resources.json": {
+      "bytes": 426,
+      "sha256": "e9a3d963bfecb2971001b1104ff0008e9a8a5678604459d6717763ec427516d4"
+    },
+    "main-mode-dynamic-r1-source-git-tree.txt": {
+      "bytes": 467881,
+      "sha256": "65c9e44eab34dbe7cd72fc222f80954356ac3b9515f4950495c395df3c1c6576"
+    },
+    "main-mode-dynamic-r1-reference-review.json": {
+      "bytes": 2135,
+      "sha256": "17a613cd90328726c9d6dd04cc8e4752fbc95a496fd88bc399f81ff9a20ae2d0"
+    },
+    "main-mode-dynamic-r1-prior-ignore.txt": {
+      "bytes": 33,
+      "sha256": "6259c9eb6d87201d826703cb8d67ed072d38d1f112774055e1c285f57ddc2f72"
+    },
+    "main-mode-dynamic-r1-ignore-policy.txt": {
+      "bytes": 65,
+      "sha256": "016938db18e3501dae9f02b3c7c7f71347cee824890de04c588c514f29351f67"
+    }
+  },
+  "dependencies": {
+    "zero-control-pilot-r1-driver.py": {
+      "sha256": "77ca3d6d444464be5a26a292f3eafebb3995c2e04198791c9bb888d3ba2985a5",
+      "use": "Imported immutable transfer/common-verification functions only; old main not executed and no zero-control cell rerun"
+    }
+  },
+  "ignore_policy_history": {
+    "old_zero_node_sha256": "6259c9eb6d87201d826703cb8d67ed072d38d1f112774055e1c285f57ddc2f72",
+    "old_snapshot": "main-mode-dynamic-r1-prior-ignore.txt",
+    "new_snapshot": "main-mode-dynamic-r1-ignore-policy.txt",
+    "mutable_file": ".gitignore",
+    "reason": "Append-only new evidence-directory rule; historical results/receipts unchanged"
+  },
+  "writing_guide_read": {
+    "entry": "https://github.com/ruanyf/document-style-guide",
+    "chapters": [
+      "title",
+      "text",
+      "paragraph",
+      "number",
+      "marks",
+      "structure"
+    ],
+    "method": "README followed by all six original chapter pages"
+  }
+}

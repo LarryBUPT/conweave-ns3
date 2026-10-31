@@ -1,0 +1,203 @@
+{
+  "date": "2026-11-01",
+  "observed_utc": "2026-10-31T23:41:47.374832+00:00",
+  "scope": "Integration local checks of c4 dynamic technical node and static 506 label fix; no remote work",
+  "raw_verification": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/raw-verification.json",
+  "raw_verification_sha256": "b1612df95ed23f82387957931759e69d1871b14657d6cef3f3d91c9882486e8c",
+  "raw_scope": {
+    "result_files_hashed": 78,
+    "support_files_hashed": 39,
+    "complete_FCT_and_paths_checked": 3,
+    "C2_exact_waits_and_timing_checked": 104,
+    "fixed_c4_source_map_reused_from_prior_verified_node": 35,
+    "C1_C3_detailed_model_replays": "Main accepted; not rerun by Integration"
+  },
+  "main_additional_delivery_claims": {
+    "source": "docs/research/ws31/main/evidence/dynamic-delivery-main-acceptance-r1.json",
+    "documents": 14,
+    "dependencies": 1,
+    "support_files": 21,
+    "fixed_git_tree_entries": 4836,
+    "root_did_not_repeat_full_git_tree_comparison": true
+  },
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/evidence/dynamic-main-modes-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/evidence/dynamic-main-modes-main-acceptance-r1.json",
+      "sha256": "f7a23565f35ec6afd4755efd29a20b803de9647e6898774398923e2549ce96e7",
+      "bytes": 15463
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/dynamic-c1-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/evidence/dynamic-c1-main-acceptance-r1.json",
+      "sha256": "afa2f7d3c70d1346940d94ea50e73c39c561cf1f5cc70dd569efa58413240fda",
+      "bytes": 2236
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/dynamic-c2-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/evidence/dynamic-c2-main-acceptance-r1.json",
+      "sha256": "a03cc0ecbec8a45f9ca0d96fd89a7a983f71c97f21d28f745b1051a6e261f24d",
+      "bytes": 2469
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/dynamic-c3-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/evidence/dynamic-c3-main-acceptance-r1.json",
+      "sha256": "48f15669e6efba8f9b484ff46bde2153b425f4094073b9340830f4f49a6ef2f4",
+      "bytes": 2105
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/dynamic-delivery-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/evidence/dynamic-delivery-main-acceptance-r1.json",
+      "sha256": "121f9b6da7c33f48991f813a295e7769939bf1e68d9ebda47550d3de7ca4cc7e",
+      "bytes": 690
+    },
+    {
+      "source": "docs/research/ws31/main/dynamic-node4-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/dynamic-node4-handoff.md",
+      "sha256": "5a8db75f8e3350839d78c3ef72fb9c00b9d7b0a3e61e8ac21f2d5acd53f7d4cb",
+      "bytes": 4958
+    },
+    {
+      "source": "docs/research/ws31/main/dynamic-node4-reference-review-r1.md",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/dynamic-node4-reference-review-r1.md",
+      "sha256": "4582425bdedc75b2a7c1486661ebf7bdac7b23069d395d3d5b5b3d6a9a75bb60",
+      "bytes": 2231
+    },
+    {
+      "source": "docs/research/ws31/main/c2-policy-tag-fix-r1.md",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/c2-policy-tag-fix-r1.md",
+      "sha256": "e61a130125ca6b2ff270d3d02a92274200d98a089c8b6f747e273cf498110eab",
+      "bytes": 2398
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-policy-tag-source-fix-r1.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/evidence/c2-policy-tag-source-fix-r1.json",
+      "sha256": "f7fde011fee3b48396b272d31ca81201a94d3145e3aa6d2abecdc564ba09a0da",
+      "bytes": 1981
+    },
+    {
+      "source": "docs/research/ws31/main/c2-label-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/c2-label-validation-r1.json",
+      "sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
+      "bytes": 7358
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-validation-r1-pre-dispatch-history.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/evidence/c2-label-validation-r1-pre-dispatch-history.json",
+      "sha256": "0cac37b4d9d9d18fd0f71a369c6b9f8753296e930b5cb7348b7f449469dd15e7",
+      "bytes": 7229
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-plan-correction-r1.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/evidence/c2-label-plan-correction-r1.json",
+      "sha256": "5f1f778de8c35eb3a133b4a5d14e2fba5a3174b10b7750ff63e518ec59dadc8e",
+      "bytes": 702
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "ddb67ddc04a34d1fba8e7d5b45f6bd10ac37940bebb0cc54c2a8f5716c9152f4",
+      "bytes": 11981
+    },
+    {
+      "source": "docs/research/ws31/independent/main-mode-dynamic-r1-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/independent/main-mode-dynamic-r1-receipt.json",
+      "sha256": "b3bf0894187c6b2de30a9dc42d8188f35b2a3c74574ec5e1c3bfe5b569937d63",
+      "bytes": 139596
+    },
+    {
+      "source": "docs/research/ws31/independent/main-mode-dynamic-r1-index.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/independent/main-mode-dynamic-r1-index.json",
+      "sha256": "09da999d4ff0b8870472922036268e0ace11b4cad02fcf2a369f3a3d30a1102a",
+      "bytes": 9764
+    },
+    {
+      "source": "docs/research/ws31/independent/main-mode-dynamic-r1-evidence/20261101-071042-ws31-dyn-r1-c1/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/independent/main-mode-dynamic-r1-evidence/20261101-071042-ws31-dyn-r1-c1/remote-manifest.json",
+      "sha256": "a1f5730c20ed13895b39364e166354a24094101b90c5ba93a78cd77689e37c77",
+      "bytes": 8532
+    },
+    {
+      "source": "docs/research/ws31/independent/main-mode-dynamic-r1-evidence/20261101-071042-ws31-dyn-r1-c2/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/independent/main-mode-dynamic-r1-evidence/20261101-071042-ws31-dyn-r1-c2/remote-manifest.json",
+      "sha256": "7f6bcbfe5a897fa28f6c5140b968581e6dd23476b74b6cf7ecd47c1d3ab22c9e",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/main-mode-dynamic-r1-evidence/20261101-071042-ws31-dyn-r1-c3/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/independent/main-mode-dynamic-r1-evidence/20261101-071042-ws31-dyn-r1-c3/remote-manifest.json",
+      "sha256": "1a033012dd3e6f0cd93581f49215ac421d310687b09b27bd267800e30675cb0e",
+      "bytes": 8049
+    }
+  ],
+  "source_fix": {
+    "before": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "after": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "changed_paths": [
+      "src/applications/model/rdma-client.cc",
+      "src/point-to-point/model/ws31-start.h",
+      "tests/ws31_start_test.cc"
+    ],
+    "static_source_object_checks": [
+      {
+        "path": "src/point-to-point/model/ws31-start.h",
+        "sha256": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba"
+      },
+      {
+        "path": "src/applications/model/rdma-client.cc",
+        "sha256": "60ce7a6cd693188698ae3fc533790081fa6910a48d1c73eee43fb083f5b4689c"
+      },
+      {
+        "path": "tests/ws31_start_test.cc",
+        "sha256": "5f523030e5050e44aa1128a242a9cf5ac7499027bc7da1b3bf4c99d903c4c4b1"
+      }
+    ],
+    "patch": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/c2-label-fix.diff",
+    "personal_fork_tracking_ref_matched": true,
+    "runtime_validation": "PENDING; old c4 raw cannot validate 506"
+  },
+  "plan_correction": {
+    "old_sha256": "0cac37b4d9d9d18fd0f71a369c6b9f8753296e930b5cb7348b7f449469dd15e7",
+    "corrected_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
+    "cells_and_acceptance_criteria_unchanged": true,
+    "old_bytes_preserved": true,
+    "after_builds_sequence_corrected": true,
+    "status": "Corrected before dispatch; main reported sole independent terminal and idle before dispatching new target"
+  },
+  "next_plan": {
+    "path": "docs/research/ws31/main/c2-label-validation-r1.json",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "cells": 5,
+    "scope": "modified C2 core and all five builds, then serial default/remove/swap/unknown QueuePin/unknown C2 technical validation",
+    "status": "DISPATCHED per main status and coordination update; actual execution not queried by Integration",
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "new_resource_gate_required": true
+  },
+  "reference_review": {
+    "main_record": "docs/research/ws31/main/dynamic-node4-reference-review-r1.md",
+    "scope": "Main reviewed APS/CASSINI/sent-byte-decay neighbor; Integration retains that attribution, checks local APS fixed author manuscript identity and prior technical context",
+    "APS_fixed_pdf_sha256": "853870827df309e3e7a7cd369e8efae564e7435dbed74a5db1609a9bc968868c",
+    "no_new_baseline_admission": true,
+    "limits": "Related publication outcomes do not validate local technical behavior or independent effects; no claim of full CASSINI/SRv6 re-reading by Integration"
+  },
+  "coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:6",
+  "boundaries": {
+    "remote_access": false,
+    "new_or_repeated_simulations": false,
+    "main_or_independent_owned_files_modified": false,
+    "main_message_sent": "Plan order inconsistency reported before dispatch; root did not change owned plan",
+    "Ofan": "PAUSED_BY_USER",
+    "independent_effects_validated": false,
+    "combined_baseline_established": false
+  },
+  "validation": {
+    "json_files_valid": 18,
+    "new_markdown_links_valid": 9,
+    "frozen_snapshot_hashes_valid": 18,
+    "raw_receipt_hash_valid": true,
+    "final_delivery_index_hash_matches": true,
+    "validated_and_static_only_sources_kept_distinct": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "scope": "Main independent dynamic raw check; technical only",
+  "id": "20261101-071042-ws31-dyn-r1-c1",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "lb": "ws31-c1",
+  "flows": 104,
+  "payload_bytes": 201981952,
+  "all_demand_origins_match": true,
+  "c2_time_rows": 0,
+  "counts": {
+    "WS30_ROUTE": 606168,
+    "WS30_CHOICE": 208,
+    "WS30_QP": 104,
+    "WS30_QUEUE": 1,
+    "WS30_PATH": 1
+  },
+  "summaries": {
+    "WS30_QUEUE": {
+      "enqueued": "671412000",
+      "dequeued": "671412000",
+      "dropped": "0",
+      "current": "0",
+      "admission_dropped_bytes": "0",
+      "queue_rejected_bytes": "0",
+      "violations": "0"
+    },
+    "WS30_PATH": {
+      "switch_qps": "312",
+      "data_hops": "606168",
+      "changed_qps": "0",
+      "port_changes": "0",
+      "rejected": "0",
+      "full_rows": "606168"
+    }
+  },
+  "ordered_normalized_hashes": {
+    "WS30_CHOICE": "c6d7721db4e70da07a5eb203cdeb23b639e7577ebe221377153924e3b4201fd7",
+    "WS30_ROUTE": "357344c9f8d45ac51a55055c3ebe2daa8b0337c5248f5765fa7d4a0c6ef1ca13"
+  },
+  "fct_sha256": "ffcf9fb5fc8871a70e054f118f552af77d06a0310ad473011f7c70b2399d4123",
+  "log_sha256": "267460c2e9b6e97e6eab48b2069a8d44c25878323563d70a3990ad423e1ddbbd",
+  "source_payload_reconstruction": {
+    "rows": 202056,
+    "keys": 104,
+    "unique_payload_bytes": 201981952,
+    "all_match_input": true,
+    "first_tags": {
+      "1": 24,
+      "2": 80
+    }
+  },
+  "inputs": {
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+  },
+  "mechanism_replay": {
+    "source_arrivals": 202056,
+    "choices_pressure_score_replayed": 104,
+    "nonzero_pressure_choices": 94,
+    "unique_payload_deduction": 2239360,
+    "predictor_peak": 58,
+    "expiry_events": 0,
+    "conditional_reconstruction": "Fixed source, MTU1000 and source-switch framing48B, complete no-drop ordered trace; every reported R and choice replayed. Queue byte counters have a different framing domain."
+  },
+  "status": "PASS_FOR_INITIAL_DYNAMIC_TECHNICAL_SCOPE"
+}
