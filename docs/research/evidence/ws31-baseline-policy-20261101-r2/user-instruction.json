@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "source": "Codex read_thread of direct human instruction; retained text only, no reasoning or tool internals",
+  "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "turn_id": "01a1940b-da42-7d93-ac39-164e1a614ffb",
+  "user_instruction_verbatim": "Ofan的话暂缓考虑实现吧，优选CCF A/B类会议或期刊文章，非此条件的机制不加入到基线。\n",
+  "supersedes": "Prior discretionary conditional Ofan admission; sequential C1/C2/C3 authorization remains",
+  "interpretation": {
+    "ofan": "Paused by user; existing Ofan/RR code and completed receipts remain unadmitted prototypes",
+    "additional_mechanisms": "Must verify formal publication and actual venue/journal in official CCF A/B catalogue before formal baseline admission; then assess relevance, necessity, fidelity and cost",
+    "existing_baselines_retained": [
+      "DRILL",
+      "ConWeave",
+      "CONGA",
+      "ECMP",
+      "LetFlow"
+    ],
+    "category_increment_control": "QueuePin",
+    "additional_formally_admitted": [],
+    "in_flight_shared_build": "May complete for C1/C2/C3 engineering plus C2 non-network Stop/Dispose test; no new Ofan-specific test",
+    "remote_owner": "sole WS31 independent; Integration does not access remote"
+  },
+  "coordination_observation": {
+    "cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:3",
+    "main_turn_status": "completed",
+    "main_response": "已落实：Ofan 暂缓，现有代码保留为未准入原型，尚未启动的专门测试已取消。 新增基线只接受已核实发表于 CCF A/B 类会议或期刊的机制，再审查必要性、成本与实现忠实性。既有五个对照和 QueuePin 保留，C1→C2→C3 验证继续。",
+    "source_status_path": "docs/research/ws31/main/current-status.json",
+    "source_policy_path": "docs/research/ws31/main/baseline-admission-policy-r2.md",
+    "scope": "Instruction and local state reconciliation only; no new source/raw or publication-eligibility audit"
+  }
+}

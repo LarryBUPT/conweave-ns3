@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-01",
+  "observed_utc": "2026-10-31T22:25:05.428217+00:00",
+  "scope": "Direct-user policy reconciliation and existing automation update; not a new experimental or CCF-eligibility audit",
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-baseline-policy-20261101-r2/snapshots/current-status.json",
+      "sha256": "c5c3df0082abbd1feca7224fafe8a8dd7c2da4c50afb4fd4afbb8e35499d49f6",
+      "bytes": 7235
+    },
+    {
+      "source": "docs/research/ws31/main/baseline-admission-policy-r2.md",
+      "snapshot": "docs/research/evidence/ws31-baseline-policy-20261101-r2/snapshots/baseline-admission-policy-r2.md",
+      "sha256": "1be434e2a1f07dfb5428f7de7c17f2d123850d908fb26de366d635148dc877a6",
+      "bytes": 2243
+    }
+  ],
+  "coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:3",
+  "automation": {
+    "id": "ws-31",
+    "kind": "heartbeat",
+    "name": "WS-31 类别感知机制顺序实现与验证",
+    "status": "ACTIVE",
+    "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+    "rrule": "FREQ=MINUTELY;INTERVAL=30",
+    "toml_sha256": "faf96a955dc7e3824bab36c393b7d003a2b8cf549c4b6dbcd7ebcbdb69505cc7",
+    "prompt_sha256": "f769a799940bc258c08b2d6173e32e7d5a6caab86c7594f1caaf70dcee93502a",
+    "updated_via": "mcp__codex_app__automation_update",
+    "existing_automation_updated": true,
+    "duplicate_created": false
+  },
+  "history_archive": "docs/research/evidence/ws26-ws28-archive-20261101/archive-results.json",
+  "constraints": {
+    "remote_access": false,
+    "main_or_independent_owned_files_modified": false,
+    "old_receipts_modified": false,
+    "network_experiments_rerun": false,
+    "WS29_read_or_woken": false
+  },
+  "pending": [
+    "C1/C2/C3 end-to-end correctness, dynamic coverage and independent two-sided effects",
+    "qualification and necessity audit before any new external formal baseline",
+    "validated combined baseline not established"
+  ],
+  "validation": {
+    "json_files_valid": 5,
+    "new_markdown_links_valid": 8,
+    "source_snapshot_hashes_valid": 2,
+    "git_diff_check": "PASS with CRLF recognized as line endings for byte-preserved evidence; actual trailing spaces still checked",
+    "archive_platform_receipt": "ARCHIVED_AND_PLATFORM_VERIFIED; all three targets archived and absent from active list; WS26 remains paused and incomplete",
+    "source_snapshot_identity": "Observed local main policy and status; no remote state refresh"
+  }
+}

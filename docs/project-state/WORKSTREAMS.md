@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; PORTABLE CORES AND bc4de1e BUILD PASS; NETWORK AND EFFECTS PENDING | [阶段记录](../handoffs/2026-11-01-ws31-first-implementation-and-build.md)：三首版核心 PASS，bc4 构建通过；c4b6039 的 Ofan/RR 整合技术验收中。主选择 Ofan v2 算法移植，Gemma 等暂缓有来源理由 | 主隔离实现及本地独验；唯一副当前只做新整合构建/核心/取消夹具；Ofan 未正式准入，端到端、独立双侧效果及最终科学判断未完成 |
+| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; PORTABLE CORES AND bc4de1e BUILD PASS; NETWORK AND EFFECTS PENDING | [阶段记录](../handoffs/2026-11-01-ws31-first-implementation-and-build.md)：三首版核心 PASS，bc4 构建通过。后续[用户决定](../decisions/ADR-013-ws31-ccf-ab-baseline-gate-and-ofan-pause.md)暂缓 Ofan；新增正式对照须核正式发表及 CCF A/B 资格，既有五个对照和 QueuePin 保留 | 主隔离实现及本地独验；唯一副当前收尾 c4b6039 共同构建和 C2 非网络取消测试；Ofan/RR 原型保留但未准入。C1→C2→C3 继续，端到端、独立双侧效果及最终判断未完成 |
 | WS-30 | ClassReserve 补正、QueuePin v13 与投稿前修订 | COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE | [收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作 | 旧监督 PAUSED；两个实验对话已归档并复核，见[归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)；投稿待核及返修留 Integration |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
