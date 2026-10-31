@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-01",
+  "source": "Direct user message read from WS-31 main thread; not inferred solely from delegation",
+  "authorization": {
+    "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+    "turn_id": "01a193ea-2ccf-79d0-959c-d375143f95e4",
+    "text": "按C1、C2、C3的顺序进行提案判断并实现。正式基线考虑在DRILL、Conweave、CONGA、ECMP、LetFlow机制上补充实现已有值得实现进行对照的负载均衡机制，比如Gemma等，具体机制实现成本及必要性由你自行判决。\n"
+  },
+  "replaces": "proposal-only and waiting-for-candidate-decision gate",
+  "preserves": [
+    "scientific correctness and fixed protocol before effects experiments",
+    "independent result verification",
+    "old controllers and data preserved",
+    "WS29 deferred"
+  ]
+}

@@ -8,7 +8,7 @@ WS-30/v13 已完成的实验和证据保持原样；旧 v14 P0 的 52 次保留�
 
 QueuePin 最新本地稿为 `E:/研/毕业论文/thesis/queuepin-v13-figure-revision-r12/queuepin-icc-authors-r12.pdf`，六页，SHA-256 `f16e2fa5e7873aa62acf6181c5f0eafc45a90dfd75d583fcc27dfed345563a0b`；作者为 Zhenyu Luo、Shuo Wang（通讯作者）。EDAS 附件显示 ICC 2027 NGNI 论文 1571378157 已上传、Active (has manuscript)，题名及作者信息一致；本次未独立下载服务器 PDF 核字节，ORCID 状态也未在附件展示。相关待核及录用后手续由 Integration 投稿跟踪承接，不恢复旧实验。
 
-WS-31 主、副已在“科研”项目设立：[执行清单](WS31_EXECUTION.md)、[协调登记](ws31-coordination.json)。当前只做失败/消融与文献证据、争议地图、问题收敛、候选、模拟审稿、选题漏斗及带证据链的选题地图。最终候选由用户选择；无远程仿真。初始研究对照为已验证 QueuePin，只有新类别感知机制通过正确性和独立验证后，才形成“QueuePin＋新类别感知机制”基线。
+WS-31 主、副已在“科研”项目设立：[执行清单](WS31_EXECUTION.md)、[协调登记](ws31-coordination.json)。A～H 提案阶段已交付，用户随后直接授权按 C1 → C2 → C3 顺序进行判断与实现，并由主对话自主决定 Gemma 等额外负载均衡对照的实现必要性及成本，见[授权原文](../research/evidence/ws31-implementation-authorization-20261101/user-instruction.json)。旧“等待选题／只做提案”门槛已解除；当前按新协议推进实现和验证，不把授权等同于已有新 raw 或性能结论。初始对照为 QueuePin 及五个既有方法，只有新类别感知机制通过正确性和独立验证后，才形成“QueuePin＋新类别感知机制”基线。
 
 前序缺项已补，并按用户随后要求完成对话归档：WS-26 仍为用户暂停、完整科学范围未完成，两份草稿和未执行事项已另存交接；其主、副历史对话均在归档目录。WS-27 预设 384 格独立确认等范围完成，原对话与恢复续对话均已归档；WS-28 原生 144、组件 120、诊断 12 格范围完成，原对话已归档。详见 [归档交接](../handoffs/2026-11-01-ws26-ws28-archive.md)及[平台收据](../research/evidence/ws26-ws28-archive-20261101/archive-results.json)。WS-29 保留编号与主、副，等待新基线后再研究状态反馈增量，当前不读取或启动。下方日期段落均为历史快照，不恢复其中已过期的 ACTIVE、缺作者或旧截止日。
 

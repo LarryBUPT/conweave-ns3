@@ -3,7 +3,7 @@
   "created_date": "2026-11-01",
   "project_id": "4e32290d-ff2c-4e0e-9f4f-96318021748e",
   "project_label": "科研",
-  "status": "ACTIVE_FOR_EVIDENCE_AND_IDEA_DEVELOPMENT",
+  "status": "ACTIVE_FOR_C1_C2_C3_IMPLEMENTATION_AND_VALIDATION",
   "integration": {
     "thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
     "host_id": "local",
@@ -43,11 +43,37 @@
     "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
     "interval_minutes": 30,
     "status": "ACTIVE",
-    "scope": "A-H evidence and proposal development; stop dependent work at user candidate decision"
+    "scope": "Sequential C1 C2 C3 assessment, implementation and gated validation; proposal-only stage restriction superseded",
+    "prior_proposal_heartbeat": "deleted by WS31 main at proposal handoff; new scope heartbeat recreated under new user authorization"
   },
-  "remote_experiments_started": false,
   "new_mechanism_selected": false,
   "default_model_policy": "Created without model overrides; use actual turn context, not prompt assertions.",
-  "experiment_gate": "Research question, user candidate decision, implementation/correctness and frozen protocol before remote effects experiments.",
-  "notifications": "Report complete stages, material findings, failures or user decisions; keep unchanged state quiet."
+  "experiment_gate": "New implementation contract, correctness, frozen independent plan and resource gate; candidate implementation order already authorized by user.",
+  "notifications": "Report complete stages, material findings, failures or user decisions; keep unchanged state quiet.",
+  "scope_authorization": {
+    "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+    "turn_id": "01a193ea-2ccf-79d0-959c-d375143f95e4",
+    "evidence": "docs/research/evidence/ws31-implementation-authorization-20261101/user-instruction.json",
+    "implementation_order": [
+      "C1",
+      "C2",
+      "C3"
+    ],
+    "candidate_decision_received": true,
+    "existing_baselines": [
+      "DRILL",
+      "ConWeave",
+      "CONGA",
+      "ECMP",
+      "LetFlow"
+    ],
+    "category_increment_control": "QueuePin",
+    "additional_baselines_consider": [
+      "Gemma"
+    ],
+    "additional_baseline_cost_and_necessity_owner": "WS-31 main"
+  },
+  "candidate_implementation_authorized": true,
+  "validated_combined_baseline_established": false,
+  "execution_status_source": "docs/research/ws31/main/current-status.json"
 }
