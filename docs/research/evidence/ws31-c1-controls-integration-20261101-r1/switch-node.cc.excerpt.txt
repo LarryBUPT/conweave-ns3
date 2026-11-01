@@ -1,0 +1,38 @@
+source=50603927fc09a68d9f2e038129aaee3a3d021081:src/point-to-point/model/switch-node.cc:1429
+                  << " activity_ns=20000 moe_lane_fraction=1/4 pinning=1" << std::endl;
+    }
+    if (Settings::lb_mode>=36 && Settings::lb_mode<=42) {
+        if (!m_ws31Budget.Conserved()) NS_FATAL_ERROR("WS31 prediction accounting mismatch");
+        std::cout << "WS31_C1_STATE switch=" << m_id << " entries=" << m_ws31Pairs.size()
+                  << " fresh=" << m_ws31Fresh << " hits=" << m_ws31Hits
+                  << " predictor_entries=" << m_ws31Budget.Size()
+                  << " predictor_peak=" << m_ws31Budget.peakEntries
+                  << " expired=" << m_ws31Budget.expired
+                  << " capacity_fallbacks=" << m_ws31Budget.capacityFallbacks
+                  << " range_fallbacks=" << m_ws31Budget.rangeFallbacks
+                  << " duplicates=" << m_ws31Budget.duplicatePackets
+                  << " unique_payload=" << m_ws31Budget.uniquePayload
+                  << " conserved=" << m_ws31Budget.Conserved()
+                  << " moe_payload=8192 bg_payload=65536 unified_payload=8192 ttl_ns=20000"
+                  << " max_entries=65536 max_ranges=32" << std::endl;
+    }
+    if (Settings::lb_mode<33 || Settings::lb_mode>35) return;
+    std::cout << "WS30V13_STATE switch=" << m_id << " entries=" << m_ws30V13Pairs.size()
+              << " peak=" << m_ws30V13Peak << " hits=" << m_ws30V13Hits
+              << " misses=" << m_ws30V13Misses << std::endl;
+}
+
+// C1 and controls: 36 category/progress, 37 pooled/progress, 38 category/count,
+// 39 observed-byte history, 40 size-template clone, 41 exact QueuePin, 42 pooled/count.
+uint32_t SwitchNode::DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
+                               const std::vector<int> &nexthops) {
+    if (Settings::lb_mode==41 || ch.l3Prot!=0x11 || !m_isToR ||
+        !m_isToR_hostIP.count(ch.sip)) return DoLbWs30V13(p,ch,nexthops);
+    const uint64_t now=Simulator::Now().GetNanoSeconds(), ttl=20000;
+    const ws31::Key key(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport);
+    m_ws31Budget.Expire(now);
+    auto hit=m_ws31Pairs.find(key);
+    const bool fresh=hit==m_ws31Pairs.end();
+    if (fresh) {
+        const uint32_t words[3]={ch.sip,ch.dip,
+            uint32_t(ch.udp.sport)|(uint32_t(ch.udp.dport)<<16)};

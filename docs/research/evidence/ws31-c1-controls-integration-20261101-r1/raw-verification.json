@@ -1,0 +1,243 @@
+{
+  "scope": "Integration full accounting/path/observed-score and direct C1 counter checks; full R/history reconstruction remains main-attributed",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "result_files_hashed": 166,
+  "support_files_hashed": 85,
+  "fixed_35_source_map_matches_prior_verified_506": true,
+  "cells": {
+    "unified": {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unified",
+      "mode": "ws31-c1-unified",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "958668e05195f431afbf1ca98a98ebe1b3326d01888fa0df016e23e17c2689aa",
+      "route_hash_remove_uid": "356d9ed7dfc8f4e08eb09cddd793851ba79b4cd9e599f8d66bcddfbad0b68387",
+      "source_choice_hash_all_fields": "a5862c3e6ee4a7192590812b1f1176456eafb8657778107cdf330a68d14f9cfc",
+      "source_choice_hash_remove_category": "339d9f27858e66ea912db62e6dfdd3a7b27ab23ba58d5438e8e975d810f864d6",
+      "direct_score_decisions_checked": 104,
+      "observed": {
+        "positive_pressure_decisions": 87,
+        "unique_payload_counter": 871360,
+        "predictor_peak": 42,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 0
+      },
+      "main_full_model_replay": {
+        "source_arrivals_replayed": 202056,
+        "source_choices_and_scores_replayed": 104,
+        "candidate_pairs_equal_accepted_QueuePin": true,
+        "positive_pressure_decisions": 87,
+        "unique_payload_counter": 871360,
+        "predictor_peak": 42,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 0,
+        "count_no_interval_work": false,
+        "recursive_observed_wire_memory": false,
+        "conditions": "One sourceToR, MTU1000, source framing48B, no drops/rejection and sequential live-predictor intervals; queue byte domain is separate"
+      },
+      "full_model_attribution": "Main reconstructed R/ledger/history; Integration checks observed Q/R arithmetic and raw summaries, not a duplicate model reconstruction"
+    },
+    "count": {
+      "id": "20261101-083000-ws31-c1ctrl-r1-count",
+      "mode": "ws31-c1-count",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "be0a4e7e60b41960b4ccd796ebe0f0345146521882f61a9de6039cf755c7cfcc",
+      "route_hash_remove_uid": "afbbeb9197fbdaba214e75195898ac974d598167aa1ca87b8b0406bee133ed8e",
+      "source_choice_hash_all_fields": "79ec5bc440c33c6089da2fac75d32bb6d223867ad3bd923b8200c23f22f4f2e8",
+      "source_choice_hash_remove_category": "ef883046b9885ed8026696a888d3db16ec68e0d5b0187410575cb8d667f4da18",
+      "direct_score_decisions_checked": 104,
+      "observed": {
+        "positive_pressure_decisions": 95,
+        "unique_payload_counter": 0,
+        "predictor_peak": 80,
+        "expired_during_source_arrivals": 104,
+        "retained_predictor_entries_at_summary": 0
+      },
+      "main_full_model_replay": {
+        "source_arrivals_replayed": 202056,
+        "source_choices_and_scores_replayed": 104,
+        "candidate_pairs_equal_accepted_QueuePin": true,
+        "positive_pressure_decisions": 95,
+        "unique_payload_counter": 0,
+        "predictor_peak": 80,
+        "expired_during_source_arrivals": 104,
+        "retained_predictor_entries_at_summary": 0,
+        "count_no_interval_work": true,
+        "recursive_observed_wire_memory": false,
+        "conditions": "One sourceToR, MTU1000, source framing48B, no drops/rejection and sequential live-predictor intervals; queue byte domain is separate"
+      },
+      "full_model_attribution": "Main reconstructed R/ledger/history; Integration checks observed Q/R arithmetic and raw summaries, not a duplicate model reconstruction"
+    },
+    "history": {
+      "id": "20261101-083000-ws31-c1ctrl-r1-history",
+      "mode": "ws31-c1-history",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "a3c5a8dd846820f87798cc552e6d62ba7abdfa37583e196675d0faf0b1dd3fb4",
+      "route_hash_remove_uid": "0c2fe201930326869a6c929234840da9fe12fabffec55a30f81bf06259502946",
+      "source_choice_hash_all_fields": "424b3a497b070b3f9b9beb246536e97a885be14eb8f107acca7c1c9b05d3ce45",
+      "source_choice_hash_remove_category": "1d702cbbc1c5592120042cd169ede97e8b6e4ff0959630bad163cf32e7575a1a",
+      "direct_score_decisions_checked": 104,
+      "observed": {
+        "positive_pressure_decisions": 98,
+        "unique_payload_counter": 0,
+        "predictor_peak": 0,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 0
+      },
+      "main_full_model_replay": {
+        "source_arrivals_replayed": 202056,
+        "source_choices_and_scores_replayed": 104,
+        "candidate_pairs_equal_accepted_QueuePin": true,
+        "positive_pressure_decisions": 98,
+        "unique_payload_counter": 0,
+        "predictor_peak": 0,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 0,
+        "count_no_interval_work": false,
+        "recursive_observed_wire_memory": true,
+        "conditions": "One sourceToR, MTU1000, source framing48B, no drops/rejection and sequential live-predictor intervals; queue byte domain is separate"
+      },
+      "full_model_attribution": "Main reconstructed R/ledger/history; Integration checks observed Q/R arithmetic and raw summaries, not a duplicate model reconstruction"
+    },
+    "size": {
+      "id": "20261101-083000-ws31-c1ctrl-r1-size",
+      "mode": "ws31-c1-size",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "ffcf9fb5fc8871a70e054f118f552af77d06a0310ad473011f7c70b2399d4123",
+      "route_hash_remove_uid": "357344c9f8d45ac51a55055c3ebe2daa8b0337c5248f5765fa7d4a0c6ef1ca13",
+      "source_choice_hash_all_fields": "9cba96e4a36f8c8fd08a9ed9e9f0530849d9d1863f7cb1f1be9e7415a92288d0",
+      "source_choice_hash_remove_category": "3ed3717476fc256d347d69bd9af21439c32198e202e74cb023a65ba3d88b5cd1",
+      "direct_score_decisions_checked": 104,
+      "observed": {
+        "positive_pressure_decisions": 94,
+        "unique_payload_counter": 2239360,
+        "predictor_peak": 58,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 0
+      },
+      "main_full_model_replay": {
+        "source_arrivals_replayed": 202056,
+        "source_choices_and_scores_replayed": 104,
+        "candidate_pairs_equal_accepted_QueuePin": true,
+        "positive_pressure_decisions": 94,
+        "unique_payload_counter": 2239360,
+        "predictor_peak": 58,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 0,
+        "count_no_interval_work": false,
+        "recursive_observed_wire_memory": false,
+        "conditions": "One sourceToR, MTU1000, source framing48B, no drops/rejection and sequential live-predictor intervals; queue byte domain is separate"
+      },
+      "full_model_attribution": "Main reconstructed R/ledger/history; Integration checks observed Q/R arithmetic and raw summaries, not a duplicate model reconstruction"
+    },
+    "unified-count": {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unified-count",
+      "mode": "ws31-c1-unified-count",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "e879f212b3142c2be59e6d8915907b9e68e6a05499902e37f216d235d0461923",
+      "route_hash_remove_uid": "40fd4cfcd3e60054d0bb08cf1c218af6bc0aa294d313d7a10005bde1d2e741bf",
+      "source_choice_hash_all_fields": "3d36842fc10dae1e42aac426a1a752c5404581ff482aea1e901b71963f7c565c",
+      "source_choice_hash_remove_category": "92c95aaf31706a309ad2eb2858d25fc3fccd8f40c69a14deb84ff40ff8e4c137",
+      "direct_score_decisions_checked": 104,
+      "observed": {
+        "positive_pressure_decisions": 94,
+        "unique_payload_counter": 0,
+        "predictor_peak": 80,
+        "expired_during_source_arrivals": 104,
+        "retained_predictor_entries_at_summary": 0
+      },
+      "main_full_model_replay": {
+        "source_arrivals_replayed": 202056,
+        "source_choices_and_scores_replayed": 104,
+        "candidate_pairs_equal_accepted_QueuePin": true,
+        "positive_pressure_decisions": 94,
+        "unique_payload_counter": 0,
+        "predictor_peak": 80,
+        "expired_during_source_arrivals": 104,
+        "retained_predictor_entries_at_summary": 0,
+        "count_no_interval_work": true,
+        "recursive_observed_wire_memory": false,
+        "conditions": "One sourceToR, MTU1000, source framing48B, no drops/rejection and sequential live-predictor intervals; queue byte domain is separate"
+      },
+      "full_model_attribution": "Main reconstructed R/ledger/history; Integration checks observed Q/R arithmetic and raw summaries, not a duplicate model reconstruction"
+    },
+    "unknown-class": {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unknown-class",
+      "mode": "ws31-c1",
+      "flows": 6,
+      "payload_bytes": 28278,
+      "fct_sha256": "2587ed473f582bc6a809e98e90fa4222db617a03f2fc018f312e17c205f712f6",
+      "route_hash_remove_uid": "1dfc13a8eab4e679f5ccdf48ecb869fdec7e857c4cccfbff4158cf44f69f1ff3",
+      "source_choice_hash_all_fields": "be640d9f012831308c4576f61cd7a3938d4a7ab06b3918fb54aa2562f5481987",
+      "source_choice_hash_remove_category": "7286257003dd02012729991d213c68be906b41d75cca2f72e33943550d59449a",
+      "direct_score_decisions_checked": 6,
+      "observed": {
+        "positive_pressure_decisions": 2,
+        "unique_payload_counter": 28278,
+        "predictor_peak": 6,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 3
+      },
+      "main_full_model_replay": {
+        "source_arrivals_replayed": 33,
+        "source_choices_and_scores_replayed": 6,
+        "candidate_pairs_equal_accepted_QueuePin": true,
+        "positive_pressure_decisions": 2,
+        "unique_payload_counter": 28278,
+        "predictor_peak": 6,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 3,
+        "count_no_interval_work": false,
+        "recursive_observed_wire_memory": false,
+        "conditions": "One sourceToR, MTU1000, source framing48B, no drops/rejection and sequential live-predictor intervals; queue byte domain is separate"
+      },
+      "full_model_attribution": "Main reconstructed R/ledger/history; Integration checks observed Q/R arithmetic and raw summaries, not a duplicate model reconstruction"
+    },
+    "unknown-unified": {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unknown-unified",
+      "mode": "ws31-c1-unified",
+      "flows": 6,
+      "payload_bytes": 28278,
+      "fct_sha256": "2587ed473f582bc6a809e98e90fa4222db617a03f2fc018f312e17c205f712f6",
+      "route_hash_remove_uid": "1dfc13a8eab4e679f5ccdf48ecb869fdec7e857c4cccfbff4158cf44f69f1ff3",
+      "source_choice_hash_all_fields": "c72e0b641ccf5bad4a0cd30bb522e74a224bde6c70a28b96c1b846f3b10beddd",
+      "source_choice_hash_remove_category": "7286257003dd02012729991d213c68be906b41d75cca2f72e33943550d59449a",
+      "direct_score_decisions_checked": 6,
+      "observed": {
+        "positive_pressure_decisions": 2,
+        "unique_payload_counter": 28278,
+        "predictor_peak": 6,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 3
+      },
+      "main_full_model_replay": {
+        "source_arrivals_replayed": 33,
+        "source_choices_and_scores_replayed": 6,
+        "candidate_pairs_equal_accepted_QueuePin": true,
+        "positive_pressure_decisions": 2,
+        "unique_payload_counter": 28278,
+        "predictor_peak": 6,
+        "expired_during_source_arrivals": 0,
+        "retained_predictor_entries_at_summary": 3,
+        "count_no_interval_work": false,
+        "recursive_observed_wire_memory": false,
+        "conditions": "One sourceToR, MTU1000, source framing48B, no drops/rejection and sequential live-predictor intervals; queue byte domain is separate"
+      },
+      "full_model_attribution": "Main reconstructed R/ledger/history; Integration checks observed Q/R arithmetic and raw summaries, not a duplicate model reconstruction"
+    }
+  },
+  "completed_flow_records": 532,
+  "completed_payload_bytes": 1009966316,
+  "all_seven_builds_before_any_run": true,
+  "core_tests_repeated": 0,
+  "driver_terminal_receipt_utc": "2026-11-01T01:07:39.398914+00:00",
+  "history_predictor_zero_not_all_state_zero": true,
+  "count_modes_not_equal_computational_cost": true,
+  "unknown_retained_storage_not_forced_to_zero": true,
+  "remote_access": false,
+  "simulations_restarted_by_root": false
+}

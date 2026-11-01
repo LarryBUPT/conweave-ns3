@@ -1,0 +1,70 @@
+{
+  "scope": "Main independent C1 matched-control/unknown raw verification; technical only",
+  "id": "20261101-083000-ws31-c1ctrl-r1-unified",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "lb": "ws31-c1-unified",
+  "flows": 104,
+  "payload_bytes": 201981952,
+  "all_demand_origins_match": true,
+  "c2_time_rows": 0,
+  "counts": {
+    "WS30_ROUTE": 606168,
+    "WS30_CHOICE": 208,
+    "WS30_QP": 104,
+    "WS30_QUEUE": 1,
+    "WS30_PATH": 1
+  },
+  "summaries": {
+    "WS30_QUEUE": {
+      "enqueued": "671412000",
+      "dequeued": "671412000",
+      "dropped": "0",
+      "current": "0",
+      "admission_dropped_bytes": "0",
+      "queue_rejected_bytes": "0",
+      "violations": "0"
+    },
+    "WS30_PATH": {
+      "switch_qps": "312",
+      "data_hops": "606168",
+      "changed_qps": "0",
+      "port_changes": "0",
+      "rejected": "0",
+      "full_rows": "606168"
+    }
+  },
+  "ordered_normalized_hashes": {
+    "WS30_CHOICE": "a8f2aa21db1551dd87b82777b44a746b32587f7daa0c18bf994ca56bab67f2d4",
+    "WS30_ROUTE": "356d9ed7dfc8f4e08eb09cddd793851ba79b4cd9e599f8d66bcddfbad0b68387"
+  },
+  "fct_sha256": "958668e05195f431afbf1ca98a98ebe1b3326d01888fa0df016e23e17c2689aa",
+  "log_sha256": "e2d0fc0dce1d7dd1235ac5df5f5f666dd911e80028d88a3b3c96cd64aef6af04",
+  "source_payload_reconstruction": {
+    "rows": 202056,
+    "keys": 104,
+    "unique_payload_bytes": 201981952,
+    "all_match_input": true,
+    "first_tags": {
+      "1": 24,
+      "2": 80
+    }
+  },
+  "inputs": {
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2"
+  },
+  "mechanism_replay": {
+    "source_arrivals_replayed": 202056,
+    "source_choices_and_scores_replayed": 104,
+    "candidate_pairs_equal_accepted_QueuePin": true,
+    "positive_pressure_decisions": 87,
+    "unique_payload_counter": 871360,
+    "predictor_peak": 42,
+    "expired_during_source_arrivals": 0,
+    "retained_predictor_entries_at_summary": 0,
+    "count_no_interval_work": false,
+    "recursive_observed_wire_memory": false,
+    "conditions": "One sourceToR, MTU1000, source framing48B, no drops/rejection and sequential live-predictor intervals; queue byte domain is separate"
+  },
+  "status": "PASS_FOR_C1_CONTROL_TECHNICAL_SCOPE"
+}

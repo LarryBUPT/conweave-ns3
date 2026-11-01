@@ -93,7 +93,9 @@ Integration 已完成线程创建、项目归属核验与历史归档。WS-31 �
 
 `50603927fc09a68d9f2e038129aaee3a3d021081` 的 C2 标签修订已通过修改核心、五个完整构建和五格技术回归：default、remove、swap、unknown-q12、unknown-c2。合计 324 条完成记录、606,002,412 B；默认恢复 c4 C2，移除恢复 QueuePin，交换资格及未知回退正确。Integration 独核 120 份结果、59 份支持文件和全部标签／精确等待／计时／回归，见[最新交接](../handoffs/2026-11-01-ws31-c2-label-integration.md)。接口验收限于上述条件，独立效果仍待完成。
 
-主完成最终交付 QA 并确认唯一副终态、idle 后，已派发[原冻结 C1 七控制技术目标](../research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/c1-controls-validation-r1.json)，SHA-256 `115a840e86a8829d6e74923c077579963290514c9704b846efa366b086106297`。固定 506，顺序为统一、计数、历史、大小、统一计数、未知类别、未知统一；不重跑已验主模式、零控制和核心。新资源门通过后，最多三个并行 `-j2`、总编译任务六个，全部七构建通过才按七格顺序串行仿真。失败或必要分支缺失停余格，原 ID 和 raw 保留，不改参数寻求收益。
+C1 七控制／未知技术 raw 已主验并经 Integration 核对：532 条完成记录、1,009,966,316 B，166 份结果和 85 份支持文件。完整模型重放由主完成，Integration 另核请求账、路径、实际评分及原始状态计数，见[最新交接](../handoffs/2026-11-01-ws31-c1-controls-integration.md)。大小克隆恢复主模式，未知两格一致；进度／计数实际峰值为类别 58／80、统一 42／80，计数各有 104 次到期且不做区间扣减。历史预测表为 0 不表示全状态无成本；未知终态各保留 3 个部分预测条目，汇总不清理、下一源侧访问先清理。该语义已在 checker 执行前按固定源纠正，旧脚本保留，没有仿真改动。
+
+北京时间 09:07 的独立驱动收据已记录后台 7/7 完成，副前景 idle 时只继续同一目标的最终交付，未重启实验。当前唯一副 active 收尾，后继[固定 C2／C3 五控制计划](../research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/c23-controls-validation-r1.json)哈希为 `ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49`，尚未派发。最终交付通过且唯一副终态、idle 后，按 C2 统一、C2 大小、C3 固定、C3 大小、C3 未知顺序继续；新资源门后最多三个并行 `-j2`、六编译任务，五构建全通过再串行五格，不重跑已验核心、主模式或零控制。
 
 五格首次尝试的环境门暂停已由同目标 attempt2 恢复完成。原[异常记录](../research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/incident.md)、缓存核对和两个进程自然退出的收据保留，未重复 fetch、未终止未知作业、未放宽资源门。主 checker 首次误将 CHOICE 的固定 0 字段当作实际包标签；旧脚本与 schema 修正保留，ROUTE 标签按真实策略另核，仿真源码、raw 和验收判据均未改变。
 

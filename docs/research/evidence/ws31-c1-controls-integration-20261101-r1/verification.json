@@ -1,0 +1,254 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T01:37:03.426468+00:00",
+  "scope": "Integration C1 seven-control/unknown technical raw and observed-score checks; full model replay main-attributed",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "raw_verification": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/raw-verification.json",
+  "raw_verification_sha256": "c822eab3e2ee2a826d89e00cfd24ea7662f9e2293af4460d554c1c2c9548e421",
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/evidence/c1-controls-pilot-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-controls-pilot-main-acceptance-r1.json",
+      "sha256": "fd3bfd6ef20a4ad4fe2946414364f4e5724f9a3cb455e524fb3849cb8256a700",
+      "bytes": 33755
+    },
+    {
+      "source": "docs/research/ws31/main/c1-controls-node6-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/c1-controls-node6-handoff.md",
+      "sha256": "813343411ad8201a1edca3b8700a01cb2c6fab7904a52e92ba7009b60db579ed",
+      "bytes": 5248
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-controls-node6-reference-review-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-controls-node6-reference-review-r1.json",
+      "sha256": "59657f76135c7ead26b57f0b583789db883620ee60d2a388809cdb6b18fa4eaa",
+      "bytes": 991
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-controls-main-verifier-expiry-recheck-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-controls-main-verifier-expiry-recheck-r1.json",
+      "sha256": "200c70263fb841f3d11a4cbbbbb9842fdddc414b79cc2a0a9441dbbb7efab6a8",
+      "bytes": 1474
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-controls-main-verifier-pre-lazy-expiry-r1.py",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-controls-main-verifier-pre-lazy-expiry-r1.py",
+      "sha256": "624fa525733daff40b4df393d9b6426e966c80d3b31107a7addf933fbdb53b5f",
+      "bytes": 10570
+    },
+    {
+      "source": "docs/research/ws31/main/scripts/verify_c1_controls_raw_r1.py",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/scripts/verify_c1_controls_raw_r1.py",
+      "sha256": "186e69f5d535dbf8b63cc09dd63125c7cb5444373d44d0b1c186cfd43962d64f",
+      "bytes": 10864
+    },
+    {
+      "source": "docs/research/ws31/main/c23-controls-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/c23-controls-validation-r1.json",
+      "sha256": "ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49",
+      "bytes": 7276
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "362f7c8b70099cb78a89fb55257b739441c443f2928a554fd6360f7cb22bc57a",
+      "bytes": 14891
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-receipt.json",
+      "sha256": "8ecedac32235e25e147d14f273c199af93e26dfedc9aedb9d124e4d1529267dd",
+      "bytes": 469864
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-control-unified-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-control-unified-main-acceptance-r1.json",
+      "sha256": "12541742ab17a76b81ae4fac00b5451c1e195f419813aa3529ae96e7a845df87",
+      "bytes": 2431
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-control-count-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-control-count-main-acceptance-r1.json",
+      "sha256": "b13cb922eddf93d8e5897469a6160924032a8fca2c94364a6420fc0c45d56379",
+      "bytes": 2423
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-control-history-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-control-history-main-acceptance-r1.json",
+      "sha256": "46f8c94b3ef997942eb104171a30e25a30c3b234b381c63e945d01104584b36a",
+      "bytes": 2424
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-control-size-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-control-size-main-acceptance-r1.json",
+      "sha256": "e7dd4768c442e69e9d364d6d5ca0bdb08cd92dc08551fdfa7381e16ebb68a62f",
+      "bytes": 2650
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-control-unified-count-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-control-unified-count-main-acceptance-r1.json",
+      "sha256": "4829964e45e5f6738fc650ffc39c08ec495834a2ae75844707a9ae8e0b5612e7",
+      "bytes": 2439
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-control-unknown-class-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-control-unknown-class-main-acceptance-r1.json",
+      "sha256": "82e135f8c38d69ec2ae5f6b54efcaa3c2f7fa349f91c14929dbe89c9c35d87b5",
+      "bytes": 2390
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c1-control-unknown-unified-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/evidence/c1-control-unknown-unified-main-acceptance-r1.json",
+      "sha256": "0fb18a5b8edf74421e9ba86e76cbc56bfc42116f1b577857cfa8a3b564fb3b56",
+      "bytes": 2662
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-unified/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-unified/remote-manifest.json",
+      "sha256": "967bb4f85224f34a053c815fb2436481e536c99f35405a609f8be2fb80d89244",
+      "bytes": 8532
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-count/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-count/remote-manifest.json",
+      "sha256": "38afcc7774d9560c5867cdea8fe4c9a55cf2248ec8ba0e6f9fb65a5893640ace",
+      "bytes": 8021
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-history/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-history/remote-manifest.json",
+      "sha256": "a6e0ab25573b07fc4d0b1bd7aa91a971b8495516f1cc81294d2f439144ded719",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-size/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-size/remote-manifest.json",
+      "sha256": "0f7ebe0bcdd49cef1d4bba566c6823bf239a7425fc418aa09fd468300e11b993",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-unified-count/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-unified-count/remote-manifest.json",
+      "sha256": "c957da019b811c48e678a1398b74e4955ce4bbdb211d89c6ae85c4e1f7a13f08",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-unknown-class/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-unknown-class/remote-manifest.json",
+      "sha256": "cc403a32ba61dc9cae327f70008816983cd82c88257c3ab7a9aeab0d4e7e683a",
+      "bytes": 6969
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-unknown-unified/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-evidence/20261101-083000-ws31-c1ctrl-r1-unknown-unified/remote-manifest.json",
+      "sha256": "8e1da015f4da6b5a2413da93004c43aedbfb3e913668f799bebc4babbba37f61",
+      "bytes": 6969
+    }
+  ],
+  "root_checks": {
+    "result_files": 166,
+    "support_files": 85,
+    "complete_FCT_path_and_observed_score_cases": 7,
+    "advertised_Q_R_saturation_tie_first_decisions": 532,
+    "source_map_reused_from_prior_verified_506": 35,
+    "full_R_history_candidate_reconstruction": "Main, not independently repeated by Integration"
+  },
+  "state_costs": {
+    "class_progress_prior_main_peak": 58,
+    "class_count_peak": 80,
+    "unified_progress_peak": 42,
+    "unified_count_peak": 80,
+    "count_unique_payload_counters": 0,
+    "count_expiry_events_each": 104,
+    "history_predictor_peak": 0,
+    "history_not_state_free": true,
+    "unknown_retained_predictor_entries_each": 3,
+    "logical_expiry_vs_retained_storage": "Expire runs on next source access; summary does not purge. Retained storage is not usable expired pressure."
+  },
+  "source_expiry_recheck": {
+    "record": {
+      "recorded_utc": "2026-11-01T00:56:56.174293+00:00",
+      "status": "SOURCE_RECHECK_OF_MAIN_CHECKER_BEFORE_NEW_RAW_ACCEPTANCE",
+      "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+      "finding": "C1 PrintSummary validates conservation and reads Size without calling Expire; C3 summary explicitly expires, so C1 must not inherit that assumption. C1 expiry happens at next source decision/observation.",
+      "source_locators": [
+        "switch-node.cc C1 PrintSummary block1431-1446",
+        "switch-node.cc DoLbWs31C1 Expire at1460",
+        "ws31-budget.h Observe/Pressure/Insert expiry gates"
+      ],
+      "correction": "Match replayed expiry at actual source accesses; retained predictor entries at summary must equal residual model storage, not force0 or add fictitious final expiry",
+      "old_script_sha256": "624fa525733daff40b4df393d9b6426e966c80d3b31107a7addf933fbdb53b5f",
+      "new_script_sha256": "186e69f5d535dbf8b63cc09dd63125c7cb5444373d44d0b1c186cfd43962d64f",
+      "old_script_snapshot": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c1-controls-main-verifier-pre-lazy-expiry-r1.py",
+      "runtime_checker_failures_before_fix": 0,
+      "simulation_or_plan_changed": false,
+      "implication": "Final retained entries may already be beyond deadline in time; no new decision uses expired pressure because each next source access expires before lookup. Report retained storage and active-pressure semantics separately."
+    },
+    "fixed_source_excerpts": [
+      {
+        "path": "src/point-to-point/model/switch-node.cc",
+        "sha256": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+        "excerpt": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/switch-node.cc.excerpt.txt"
+      },
+      {
+        "path": "src/point-to-point/model/ws31-budget.h",
+        "sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+        "excerpt": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/ws31-budget.h.excerpt.txt"
+      }
+    ],
+    "old_and_new_checker_hashes_checked": true,
+    "runtime_checker_failures_before_fix": 0,
+    "simulation_source_plan_unchanged": true
+  },
+  "regression": {
+    "size": "FCT and ROUTE removeuid match prior c4 C1; complete dedicated source choices match",
+    "unknown": "Full FCT and ROUTE equal; dedicated decisions equal after removing category only",
+    "category_semantic_value": "Not established by label-size-bound technical input"
+  },
+  "foreground_background_coordination": {
+    "driver_terminal_receipt_utc": "2026-11-01T01:07:39.398914+00:00",
+    "network_runs_started": 7,
+    "core_tests_repeated": 0,
+    "main_observation": "Foreground idle at independent cursor58 despite background7/7 complete; same target continued final delivery only; cursor59 active",
+    "root_did_not_restart_any_work": true
+  },
+  "next_plan": {
+    "path": "docs/research/ws31/main/c23-controls-validation-r1.json",
+    "sha256": "ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49",
+    "cells": 5,
+    "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+    "observed_main_state": "FROZEN_NOT_DISPATCHED_WHILE_INDEPENDENT_ACTIVE",
+    "scope": "Technical matched controls/fallback only, no effects/calibration/new baseline; do not alter500ns/templates/activity/quota or add cells",
+    "gate": "After final delivery accepted and sole independent terminal+idle; fresh resources/ID/cache; <=3x-j2 then all5 builds before serial5 runs"
+  },
+  "reference_review": {
+    "source": "docs/research/ws31/main/evidence/c1-controls-node6-reference-review-r1.json",
+    "owner": "Main targeted reread of fixed SRv6v1 and TR sources",
+    "integration_scope": "Preserve version/differences/applicability record; independently check fixed-source expiry semantics; no publisher or CCF admission audit",
+    "new_baselines": []
+  },
+  "coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:9",
+  "boundaries": {
+    "remote_access": false,
+    "simulations_or_core_restarted": false,
+    "main_or_independent_owned_files_modified": false,
+    "Ofan_admitted": false,
+    "independent_V0_or_effects_validated": false,
+    "combined_baseline_established": false
+  },
+  "audit_code_sha256": "8f5f9ba281a54c3dfd701f4061b7ffcde2a6925dd02a8785b7a2535d722cf6d5",
+  "helper_dependency": {
+    "path": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/audit_local_raw.py",
+    "sha256": "f1f610145a615f837a254dcf99f43f04fbee05a1fb28da7b7d20e49804f33c2a",
+    "reused": "digest only"
+  },
+  "validation": {
+    "json_files_valid": 23,
+    "new_markdown_links_valid": 8,
+    "frozen_snapshot_hashes_valid": 23,
+    "raw_receipt_hash_valid": true,
+    "C1_cost_lazy_expiry_and_successor_scope_consistent": true,
+    "no_independent_effect_or_combined_baseline_claim": true
+  }
+}

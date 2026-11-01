@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:8"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:9"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -169,32 +169,29 @@
     }
   ],
   "next_registered_pilot": {
-    "plan": "docs/research/ws31/main/c1-controls-validation-r1.json",
-    "fixed_snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/c1-controls-validation-r1.json",
-    "plan_sha256": "115a840e86a8829d6e74923c077579963290514c9704b846efa366b086106297",
-    "status": "DISPATCHED_AFTER_PRIOR_FINAL_QA_TERMINAL_IDLE_NOT_INTEGRATION_ACCEPTED",
+    "plan": "docs/research/ws31/main/c23-controls-validation-r1.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/c23-controls-validation-r1.json",
+    "plan_sha256": "ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49",
+    "status": "FROZEN_NOT_DISPATCHED_WHILE_CURRENT_FINAL_DELIVERY_ACTIVE",
     "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
-    "cells": 7,
+    "cells": 5,
     "order": [
-      "unified",
-      "count",
-      "history",
-      "size",
-      "unified-count",
-      "unknown-class",
-      "unknown-unified"
+      "c2-unified",
+      "c2-size",
+      "c3-fixed",
+      "c3-size",
+      "c3-unknown"
     ],
-    "core_or_main_or_zero_reruns": false,
-    "all_seven_builds_before_serial_runs": true,
+    "no_core_or_main_or_zero_repeats": true,
+    "all_five_builds_before_serial_runs": true,
     "max_parallel_builds": 3,
     "jobs_per_build": 2,
     "max_total_compile_jobs": 6,
     "simulation_concurrency": 1,
-    "fresh_resource_gate_required": true,
+    "fresh_resource_ID_cache_gate_required": true,
     "root_remote_execution_status_checked": false,
-    "scope": "C1 matched-control and unknown technical coverage only; later C2/C3 controls, labels/lifecycle, independent V0 and effects remain",
-    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "main_observed_prior_independent_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:55"
+    "scope": "Remaining C2/C3 matched controls/fallback only; complete labels/lifecycle/independent V0 and effects remain",
+    "executor": "01a19323-2201-7b23-a0f1-905c71496d38"
   },
   "last_verified_zero_control_checkpoint": {
     "date": "2026-11-01",
@@ -259,18 +256,17 @@
   "latest_implemented_source": {
     "sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "purpose": "C2 decision-visible policy label fix",
-    "validation": "Modified C2 core, five builds and five label/default/unknown network technical cells accepted; broader controls, lifecycle and effects pending",
+    "validation": "C2 modified core/labels5 and C1 matched-control/unknown7 technical nodes accepted; full labels/lifecycle/independent V0/effects pending",
     "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
-      "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 modified core and five label/default/unknown technical cells"
+      "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 modified core/label5 plus C1 matched-control/unknown7 technical cases; full candidate validation incomplete"
     }
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "C2 five-cell technical interface acceptance with final delivery QA complete",
-    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
-    "record": "docs/handoffs/2026-11-01-ws31-c2-label-integration.md",
+    "kind": "C1 seven technical raw cases accepted; final delivery active",
+    "record": "docs/handoffs/2026-11-01-ws31-c1-controls-integration.md",
     "user_decision_required": false,
     "independent_effects_validated": false,
     "new_baseline_established": false
@@ -308,6 +304,54 @@
       "correctness_failure": false,
       "user_decision_required": false,
       "same_goal_conditional_recovery_authorized": true
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "C2 five-cell technical interface acceptance with final delivery QA complete",
+      "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+      "record": "docs/handoffs/2026-11-01-ws31-c2-label-integration.md",
+      "user_decision_required": false,
+      "independent_effects_validated": false,
+      "new_baseline_established": false
     }
-  ]
+  ],
+  "last_verified_C1_controls_checkpoint": {
+    "date": "2026-11-01",
+    "handoff": "docs/handoffs/2026-11-01-ws31-c1-controls-integration.md",
+    "verification": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/verification.json",
+    "raw_verification": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/raw-verification.json",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "cells_passed": 7,
+    "completed_flow_records": 532,
+    "completed_payload_bytes": 1009966316,
+    "root_result_file_checks": 166,
+    "root_support_file_checks": 85,
+    "root_advertised_Q_R_score_checks": 532,
+    "unchanged_source_map_matches_prior_verified_506": 35,
+    "full_R_history_replay_owner": "WS31 main",
+    "size_and_unknown_regressions_pass": true,
+    "cost_and_lazy_expiry_boundaries_preserved": true,
+    "final_delivery": "Sole independent active; not a new experiment goal",
+    "scope": "Technical matched controls and fallback only; no independent V0 or effects"
+  },
+  "C1_state_cost_boundary": {
+    "class_progress_peak": 58,
+    "class_count_peak": 80,
+    "unified_progress_peak": 42,
+    "unified_count_peak": 80,
+    "count_unique_payload": 0,
+    "count_expired_each": 104,
+    "history_predictor_peak": 0,
+    "history_not_state_free": true,
+    "unknown_terminal_retained_predictor_entries_each": 3,
+    "expiry": "On source access before lookup; summary only checks conservation and does not purge",
+    "checker_corrected_before_execution": true,
+    "runtime_checker_failures_before_correction": 0,
+    "not_equal_computational_cost": true
+  },
+  "foreground_background_coordination": {
+    "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
+    "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
+    "root_restarted_jobs": false
+  }
 }

@@ -1,0 +1,34 @@
+source=50603927fc09a68d9f2e038129aaee3a3d021081:src/point-to-point/model/ws31-budget.h:55
+        capacity = cap; maxRanges = ranges;
+    }
+    void Expire(uint64_t now) {
+        while (!deadlines.empty() && deadlines.begin()->first <= now) {
+            typename std::map<Key, Entry>::iterator it = entries.find(deadlines.begin()->second);
+            Remove(it); ++expired;
+        }
+    }
+    bool Insert(const Key &key, uint32_t port, uint64_t payload,
+                uint32_t mtu, uint32_t overhead, uint64_t now, uint64_t ttl) {
+        Expire(now);
+        // An existing tuple is never re-armed by a duplicate or retransmission.
+        if (entries.count(key)) return false;
+        if (!payload || !ttl) return false;
+        if (entries.size() >= capacity) { ++capacityFallbacks; return false; }
+        const uint64_t wire = Framed(payload, mtu, overhead);
+        if (wire > std::numeric_limits<uint64_t>::max() - totals[port]) {
+            ++capacityFallbacks; return false;
+        }
+        Entry entry;
+        entry.port = port; entry.remaining = payload;
+        entry.mtu = mtu; entry.overhead = overhead;
+        entry.deadline = deadlines.insert(std::make_pair(Add(now, ttl), key));
+        entries.insert(std::make_pair(key, entry));
+        totals[port] += wire;
+        peakEntries = std::max<uint64_t>(peakEntries, entries.size());
+        return true;
+    }
+    void Observe(const Key &key, uint64_t seq, uint32_t bytes, uint64_t now,
+                 bool deduct = true) {
+        Expire(now);
+        typename std::map<Key, Entry>::iterator it = entries.find(key);
+        if (it == entries.end() || !deduct || !bytes) return;

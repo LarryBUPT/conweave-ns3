@@ -1,0 +1,18 @@
+{
+  "recorded_utc": "2026-11-01T00:56:56.174293+00:00",
+  "status": "SOURCE_RECHECK_OF_MAIN_CHECKER_BEFORE_NEW_RAW_ACCEPTANCE",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "finding": "C1 PrintSummary validates conservation and reads Size without calling Expire; C3 summary explicitly expires, so C1 must not inherit that assumption. C1 expiry happens at next source decision/observation.",
+  "source_locators": [
+    "switch-node.cc C1 PrintSummary block1431-1446",
+    "switch-node.cc DoLbWs31C1 Expire at1460",
+    "ws31-budget.h Observe/Pressure/Insert expiry gates"
+  ],
+  "correction": "Match replayed expiry at actual source accesses; retained predictor entries at summary must equal residual model storage, not force0 or add fictitious final expiry",
+  "old_script_sha256": "624fa525733daff40b4df393d9b6426e966c80d3b31107a7addf933fbdb53b5f",
+  "new_script_sha256": "186e69f5d535dbf8b63cc09dd63125c7cb5444373d44d0b1c186cfd43962d64f",
+  "old_script_snapshot": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c1-controls-main-verifier-pre-lazy-expiry-r1.py",
+  "runtime_checker_failures_before_fix": 0,
+  "simulation_or_plan_changed": false,
+  "implication": "Final retained entries may already be beyond deadline in time; no new decision uses expired pressure because each next source access expires before lookup. Report retained storage and active-pressure semantics separately."
+}
