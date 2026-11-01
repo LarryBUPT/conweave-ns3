@@ -1,0 +1,50 @@
+{
+  "status": "PASS_STATIC_SOURCE_REVIEW_EXECUTION_PENDING",
+  "no_material_source_issue_found": true,
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "parent_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "changed_file_hashes": {
+    "scratch/ws31-start-boundary-test.cc": "ec0bbba5a708183a4c3416f2926275fd65bbf05f2b9f5fa16f63e9905717fc1a",
+    "scratch/ws31-switch-boundary-test.cc": "dbc3341286d4a1597ed167ac85d31bc84db3babcbdc2d0f4d6d3cea93310b59b",
+    "src/applications/model/rdma-client.cc": "aa2c84a883ef52c894d34598a0964afc69abbafc05dad5deabd9337169318101",
+    "src/applications/model/rdma-client.h": "96904f92ef4b81820a055143f97e61e34a84eb12e1732cf09e6d650d8ecffb8b",
+    "src/point-to-point/model/switch-node.h": "e2389625e2eb5fb9acd583eec996b4ba2a69427343d2e42e271780e6c1b5ebac"
+  },
+  "production_reversal_proof": {
+    "src/applications/model/rdma-client.cc": {
+      "parent_sha256": "61078c7032766549cde90a10f736298f7596c08615e23fd3f52bb029c07602c8",
+      "exact_parent_after_declared_extraction_reversal": true
+    },
+    "src/applications/model/rdma-client.h": {
+      "parent_sha256": "49b1ff67bf0c2d30c06dc84f5952a312ff0a1725bfad578460efa2499576f458",
+      "exact_parent_after_declared_extraction_reversal": true
+    },
+    "src/point-to-point/model/switch-node.h": {
+      "parent_sha256": "67f357a59a7dd771bfc26d2827fb0884c4f61cd5031f58359a1226a424c19b24",
+      "exact_parent_after_declared_extraction_reversal": true
+    }
+  },
+  "unchanged_adapter_cores_and_runner": [
+    "src/point-to-point/model/switch-node.cc",
+    "src/point-to-point/model/ws31-budget.h",
+    "src/point-to-point/model/ws31-start.h",
+    "src/point-to-point/model/ws31-quota.h",
+    "scripts/remote_worker.py",
+    "scripts/remote_experiment.py"
+  ],
+  "packet_review": "Real PPP14+IPv4 20+UDP8+SeqTs(6+INT timestamp8)=56B framing with IntHeader::mode1. Fork UdpHeader serializes start.GetSize(); full CustomHeader reads UDP length and subtracts22B UDP/seq/INT, yielding exact payload.",
+  "queue_review": "Eight actual QbbNetDevice objects with BEgressQueue, Node AddDevice port IDs used verbatim. Load reads actual GetQueue/GetNBytesTotal; queue priority3 accepts5000B below default capacity.",
+  "C1_review": "Five cases call actual DoLbWs31C1. Unique intervals0-100/300-400/50-350/400-500 yield100/200/400/500B; duplicates count once. Access at19999/20000/20001ns tests expiry and no rearm. Capacity1, maxRanges1 andseq0xfffffff0+32 exercise real fallbacks; reset calls production erasure of all3tables.",
+  "observer_review": "Budget Size/expired captured before diagnostic Pressure and checked unchanged after, so observer cannot silently perform missing production expiry. C3 Idle reads const Active/Conserved without expiry.",
+  "C3_review": "All queues initially0, selected first hash deliberately owner2 forclass1 borrowing. Laterlabel/missingtag uses cached class. Owner activation200ns, activity edges20199/20200/20201 and actual latecall20202ns exercise expiry/renewal. Reset removes entries/live borrower but retains historical counters, permits same tuple fresh admission.",
+  "C2_review": "CreateObject CompleteConstruct sets subclass TypeId and inherited attributes; protected virtual transport seam executes after original launch accounting and preserves default AddQueuePair args. SetNode avoids automatic Application scheduling. Start at10ns; controls before/same uidbothorders/after/zero; repeated Stop/Dispose preserve counters and zero fake QPs/completions.",
+  "optimization_checks": "All fixture predicates use NS_FATAL_ERROR, not std assert. Root Waf auto-discovers new scratch.cc binaries.",
+  "source_review_executions": 0,
+  "remote_actions": 0,
+  "planned_cases": {
+    "C1": 5,
+    "C2": 10,
+    "C3": 2
+  },
+  "scope": "Adapter boundaries only; endpoint generation/drain/reuse and default network regression not completed"
+}

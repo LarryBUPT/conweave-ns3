@@ -1,0 +1,11 @@
+{
+  "at_utc": "2026-11-01T07:01:57.938510+00:00",
+  "status": "PREPARED_CONDITIONAL_DEFAULT_LOG_VERIFIER_NOT_EXECUTED_ON_NEW_RUN",
+  "script_sha256": "f774b082ab7d287fc4418367b639c58bb248ebe1b5e84fc4e1da077b49b5b5eb",
+  "plan": "adapter-default-validation-r1.json",
+  "plan_sha256": "01665606c32d7422b92f4202d23e8e571500321631ca376b5924ed67f5e7eb68",
+  "prerequisite": "Actual17adapter cases/fullbuild/rawsource acceptance atsame1f and explicit newdispatch; not yet met",
+  "existing_functions_reused": "Previously audited all-input identity/path/byte replay and C2 exact hash/timing; newwrapper checks actual parsed CC/PFC/IRN/mode/seed/input and matching oldbytes",
+  "CXX_or_network_executions": 0,
+  "new_run_acceptance": false
+}

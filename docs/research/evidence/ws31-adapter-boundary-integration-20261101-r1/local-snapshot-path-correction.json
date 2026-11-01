@@ -1,0 +1,9 @@
+{
+  "status": "LOCAL_SNAPSHOT_PATH_LENGTH_CORRECTION",
+  "cause": "Windows path length exceeded while freezing resource-build-batch-summary.json into an overly long snapshot destination",
+  "experimental_evidence_failure": false,
+  "remote_actions": 0,
+  "successful_receipt_existed": false,
+  "previous_script_sha256": "c2dd8bb8fad3727f797c5d06e9d881a9be799ab9750f2d1dea2cbfff2b6fbcb1",
+  "correction": "Use short results/ and support/ snapshot roots. Preserve prior local script and already written partial snapshots; original result paths and bytes remain unchanged."
+}

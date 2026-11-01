@@ -1,0 +1,9 @@
+{
+  "status": "LOCAL_PRIOR_SNAPSHOT_COVERAGE_CORRECTION",
+  "cause": "Prior Integration froze 27 of the 28 r1 files; its omitted .gitignore was never part of that snapshot. The r2 before/after index includes all28.",
+  "experimental_evidence_mismatch": false,
+  "correction": "Verify all28 current hashes against frozen r2 before/after, compare27 byte-for-byte with prior root copies, explicitly report the omitted .gitignore instead of claiming28 prior root copies.",
+  "successful_receipt_existed": false,
+  "remote_actions": 0,
+  "previous_script_sha256": "15d64ab8775ed05390d3a6b53d3377c84ca212934c52628425f41c126513a4e6"
+}

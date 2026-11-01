@@ -1,0 +1,21 @@
+{
+  "at_utc": "2026-11-01T07:10:09.329947+00:00",
+  "status": "PASS_REAL_LOG_CORRUPTION_REJECTION",
+  "corrupt_examples_rejected": [
+    "C1 overlapping unique overcount",
+    "C1 expiry missed",
+    "C1 retired budget rearmed",
+    "C1 capacity fallback count missing",
+    "C3 later tag changed cached class",
+    "C3 late borrower ledger missing",
+    "C3 exact idle activity boundary wrong",
+    "C3 first reset claims wrong table size"
+  ],
+  "original_raw_unchanged": {
+    "c1": "1fcc1d188a521222474dbbad43b6ce3eb4d840899de115b5ebd7f0180a9cfec9",
+    "c3": "040f4ad22151701ba797540c12601ca42f80f66994c3379beffe94ef443992ad"
+  },
+  "new_simulator_or_fixture_executions": 0,
+  "scope": "Local main-verifier validation, not extra candidate experiments",
+  "local_selector_note": "Two legitimate C3 resets share20203ns; the corruption selects the first reset explicitly, not a unique-time assumption"
+}

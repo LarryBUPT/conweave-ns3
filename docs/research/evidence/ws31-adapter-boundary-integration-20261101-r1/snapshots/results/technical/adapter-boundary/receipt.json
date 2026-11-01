@@ -1,0 +1,332 @@
+{
+  "status": "PASS",
+  "env_whitelist": {
+    "WS30_LIFE_PROFILE": "0",
+    "LC_ALL": "C",
+    "LANG": "C",
+    "WS30_TAG_TRANSFORM": "0",
+    "WS30_LIFECYCLE": "0",
+    "PATH": "/usr/bin:/bin",
+    "WS30_COMPOSITION": "0",
+    "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build",
+    "WS31_LABEL_PROFILE": "0",
+    "WS30_OBSERVE": "2"
+  },
+  "steps": [
+    {
+      "log": "/home/fnl/lzy/results/20261101-150000-ws31-adapter-preflight-r2/logs/adapter-C1.log",
+      "candidate": "C1",
+      "log_bytes": 11347,
+      "cases": [
+        "c1-ranges",
+        "c1-expiry-reset",
+        "c1-capacity",
+        "c1-range-limit",
+        "c1-wrap"
+      ],
+      "pid": 300838,
+      "coverage_pass": true,
+      "start_utc": "2026-11-01T07:05:25.020539Z",
+      "exit_code": 0,
+      "wall_seconds": 0.11578929051756859,
+      "status": "PASS",
+      "env_whitelist": {
+        "WS30_LIFE_PROFILE": "0",
+        "LC_ALL": "C",
+        "LANG": "C",
+        "WS30_TAG_TRANSFORM": "0",
+        "WS30_LIFECYCLE": "0",
+        "PATH": "/usr/bin:/bin",
+        "WS30_COMPOSITION": "0",
+        "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build",
+        "WS31_LABEL_PROFILE": "0",
+        "WS30_OBSERVE": "2"
+      },
+      "end_utc": "2026-11-01T07:05:25.138116Z",
+      "children_maxrss_kib": 25220,
+      "cwd": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source",
+      "argv": [
+        "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-switch-boundary-test",
+        "--candidate=c1"
+      ],
+      "log_sha256": "1fcc1d188a521222474dbbad43b6ce3eb4d840899de115b5ebd7f0180a9cfec9"
+    },
+    {
+      "log": "/home/fnl/lzy/results/20261101-150000-ws31-adapter-preflight-r2/logs/adapter-C2.log",
+      "candidate": "C2",
+      "log_bytes": 5563,
+      "wall_seconds": 0.06523464620113373,
+      "children_maxrss_kib": 20396,
+      "start_utc": "2026-11-01T07:05:26.259576Z",
+      "exit_code": 0,
+      "pid": 300970,
+      "status": "PASS",
+      "env_whitelist": {
+        "WS30_LIFE_PROFILE": "0",
+        "LC_ALL": "C",
+        "LANG": "C",
+        "WS30_TAG_TRANSFORM": "0",
+        "WS30_LIFECYCLE": "0",
+        "PATH": "/usr/bin:/bin",
+        "WS30_COMPOSITION": "0",
+        "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build",
+        "WS31_LABEL_PROFILE": "0",
+        "WS30_OBSERVE": "2"
+      },
+      "end_utc": "2026-11-01T07:05:26.325626Z",
+      "coverage_pass": true,
+      "cwd": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source",
+      "case_lines": [
+        "WS31_C2_BOUNDARY PASS kind=stop phase=before demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=385 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=stop phase=same-control-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=9 control_uid=8 control_ns=386 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=stop phase=same-launch-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=386 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=stop phase=after demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=387 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=stop phase=zero demand_ns=10 wait_ns=0 sip=184549377 dip=184549633 sport=1 dport=100 tag=1 size=8192 launch_uid=0 control_uid=8 control_ns=10 launched=1 launch_ns=10 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=before demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=385 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=same-control-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=9 control_uid=8 control_ns=386 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=same-launch-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=386 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=after demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=387 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=zero demand_ns=10 wait_ns=0 sip=184549377 dip=184549633 sport=1 dport=100 tag=1 size=8192 launch_uid=0 control_uid=8 control_ns=10 launched=1 launch_ns=10 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=0 finished=0 pending=0 transport=fixture"
+      ],
+      "argv": [
+        "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-start-boundary-test"
+      ],
+      "log_sha256": "d7da5078dfcc8d38b8b1761a0599834f4f987935978fdd1848b9792f62f21e3f"
+    },
+    {
+      "log": "/home/fnl/lzy/results/20261101-150000-ws31-adapter-preflight-r2/logs/adapter-C3.log",
+      "candidate": "C3",
+      "log_bytes": 6763,
+      "cases": [
+        "c3-borrow-expiry-reset",
+        "c3-unknown-reset"
+      ],
+      "wall_seconds": 0.06512696295976639,
+      "children_maxrss_kib": 25028,
+      "pid": 301103,
+      "start_utc": "2026-11-01T07:05:27.569136Z",
+      "exit_code": 0,
+      "argv": [
+        "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-switch-boundary-test",
+        "--candidate=c3"
+      ],
+      "status": "PASS",
+      "env_whitelist": {
+        "WS30_LIFE_PROFILE": "0",
+        "LC_ALL": "C",
+        "LANG": "C",
+        "WS30_TAG_TRANSFORM": "0",
+        "WS30_LIFECYCLE": "0",
+        "PATH": "/usr/bin:/bin",
+        "WS30_COMPOSITION": "0",
+        "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build",
+        "WS31_LABEL_PROFILE": "0",
+        "WS30_OBSERVE": "2"
+      },
+      "end_utc": "2026-11-01T07:05:27.635050Z",
+      "coverage_pass": true,
+      "cwd": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source",
+      "log_sha256": "040f4ad22151701ba797540c12601ca42f80f66994c3379beffe94ef443992ad"
+    }
+  ],
+  "binaries": {
+    "ws31-switch-boundary-test": {
+      "artifact": "technical/adapter-boundary/artifacts/binaries/ws31-switch-boundary-test",
+      "sha256": "77b10bd74b5ea2149c2aebc0004fe55799920810b2d9cebf4244f713a803bea1",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-switch-boundary-test"
+    },
+    "ws31-start-boundary-test": {
+      "artifact": "technical/adapter-boundary/artifacts/binaries/ws31-start-boundary-test",
+      "sha256": "6bf6194b0642b7e3838ebfe7f374e0dd15fb3d729ae2c8e358524131c7843edb",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-start-boundary-test"
+    }
+  },
+  "ldd": {
+    "ws31-switch-boundary-test": "\tlinux-vdso.so.1 =>  (0x00007ffce8368000)\n\tlibns3.19-test-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-test-optimized.so (0x00007efd53c66000)\n\tlibns3.19-csma-layout-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-csma-layout-optimized.so (0x00007efd53a60000)\n\tlibns3.19-point-to-point-layout-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-point-to-point-layout-optimized.so (0x00007efd5384f000)\n\tlibns3.19-netanim-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-netanim-optimized.so (0x00007efd53621000)\n\tlibns3.19-lte-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-lte-optimized.so (0x00007efd532b4000)\n\tlibns3.19-spectrum-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-spectrum-optimized.so (0x00007efd53032000)\n\tlibns3.19-antenna-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-antenna-optimized.so (0x00007efd52e25000)\n\tlibns3.19-aodv-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-aodv-optimized.so (0x00007efd52bd8000)\n\tlibns3.19-dsdv-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-dsdv-optimized.so (0x00007efd529a9000)\n\tlibns3.19-dsr-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-dsr-optimized.so (0x00007efd52700000)\n\tlibns3.19-mesh-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-mesh-optimized.so (0x00007efd5244f000)\n\tlibns3.19-olsr-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-olsr-optimized.so (0x00007efd52210000)\n\tlibns3.19-csma-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-csma-optimized.so (0x00007efd51fdc000)\n\tlibns3.19-wimax-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-wimax-optimized.so (0x00007efd51c8c000)\n\tlibns3.19-applications-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-applications-optimized.so (0x00007efd519e7000)\n\tlibns3.19-point-to-point-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-point-to-point-optimized.so (0x00007efd516ce000)\n\tlibns3.19-virtual-net-device-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-virtual-net-device-optimized.so (0x00007efd514be000)\n\tlibns3.19-uan-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-uan-optimized.so (0x00007efd511d8000)\n\tlibns3.19-energy-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-energy-optimized.so (0x00007efd50f8f000)\n\tlibns3.19-flow-monitor-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-flow-monitor-optimized.so (0x00007efd50d6a000)\n\tlibns3.19-nix-vector-routing-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-nix-vector-routing-optimized.so (0x00007efd50b58000)\n\tlibns3.19-tap-bridge-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-tap-bridge-optimized.so (0x00007efd50936000)\n\tlibns3.19-internet-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-internet-optimized.so (0x00007efd504fb000)\n\tlibns3.19-bridge-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-bridge-optimized.so (0x00007efd502e7000)\n\tlibns3.19-mpi-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-mpi-optimized.so (0x00007efd500dd000)\n\tlibns3.19-wifi-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-wifi-optimized.so (0x00007efd4fd3b000)\n\tlibns3.19-buildings-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-buildings-optimized.so (0x00007efd4faff000)\n\tlibns3.19-propagation-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-propagation-optimized.so (0x00007efd4f8b7000)\n\tlibns3.19-mobility-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-mobility-optimized.so (0x00007efd4f629000)\n\tlibns3.19-config-store-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-config-store-optimized.so (0x00007efd4f413000)\n\tlibns3.19-tools-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-tools-optimized.so (0x00007efd4f201000)\n\tlibns3.19-stats-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-stats-optimized.so (0x00007efd4efe8000)\n\tlibns3.19-emu-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-emu-optimized.so (0x00007efd4edbb000)\n\tlibns3.19-topology-read-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-topology-read-optimized.so (0x00007efd4eba7000)\n\tlibns3.19-network-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-network-optimized.so (0x00007efd4e8b5000)\n\tlibns3.19-core-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-core-optimized.so (0x00007efd4e5cb000)\n\tlibrt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007efd4e3c3000)\n\tlibsqlite3.so.0 => /usr/lib/x86_64-linux-gnu/libsqlite3.so.0 (0x00007efd4e0ee000)\n\tlibstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007efd4dd6c000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007efd4da63000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007efd4d84d000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007efd4d630000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007efd4d266000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007efd4d062000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007efd53e68000)\n",
+    "ws31-start-boundary-test": "\tlinux-vdso.so.1 =>  (0x00007fff89f37000)\n\tlibns3.19-test-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-test-optimized.so (0x00007fbc42a2c000)\n\tlibns3.19-csma-layout-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-csma-layout-optimized.so (0x00007fbc42826000)\n\tlibns3.19-point-to-point-layout-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-point-to-point-layout-optimized.so (0x00007fbc42615000)\n\tlibns3.19-netanim-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-netanim-optimized.so (0x00007fbc423e7000)\n\tlibns3.19-lte-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-lte-optimized.so (0x00007fbc4207a000)\n\tlibns3.19-spectrum-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-spectrum-optimized.so (0x00007fbc41df8000)\n\tlibns3.19-antenna-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-antenna-optimized.so (0x00007fbc41beb000)\n\tlibns3.19-aodv-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-aodv-optimized.so (0x00007fbc4199e000)\n\tlibns3.19-dsdv-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-dsdv-optimized.so (0x00007fbc4176f000)\n\tlibns3.19-dsr-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-dsr-optimized.so (0x00007fbc414c6000)\n\tlibns3.19-mesh-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-mesh-optimized.so (0x00007fbc41215000)\n\tlibns3.19-olsr-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-olsr-optimized.so (0x00007fbc40fd6000)\n\tlibns3.19-csma-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-csma-optimized.so (0x00007fbc40da2000)\n\tlibns3.19-wimax-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-wimax-optimized.so (0x00007fbc40a52000)\n\tlibns3.19-applications-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-applications-optimized.so (0x00007fbc407ad000)\n\tlibns3.19-point-to-point-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-point-to-point-optimized.so (0x00007fbc40494000)\n\tlibns3.19-virtual-net-device-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-virtual-net-device-optimized.so (0x00007fbc40284000)\n\tlibns3.19-uan-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-uan-optimized.so (0x00007fbc3ff9e000)\n\tlibns3.19-energy-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-energy-optimized.so (0x00007fbc3fd55000)\n\tlibns3.19-flow-monitor-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-flow-monitor-optimized.so (0x00007fbc3fb30000)\n\tlibns3.19-nix-vector-routing-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-nix-vector-routing-optimized.so (0x00007fbc3f91e000)\n\tlibns3.19-tap-bridge-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-tap-bridge-optimized.so (0x00007fbc3f6fc000)\n\tlibns3.19-internet-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-internet-optimized.so (0x00007fbc3f2c1000)\n\tlibns3.19-bridge-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-bridge-optimized.so (0x00007fbc3f0ad000)\n\tlibns3.19-mpi-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-mpi-optimized.so (0x00007fbc3eea3000)\n\tlibns3.19-wifi-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-wifi-optimized.so (0x00007fbc3eb01000)\n\tlibns3.19-buildings-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-buildings-optimized.so (0x00007fbc3e8c5000)\n\tlibns3.19-propagation-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-propagation-optimized.so (0x00007fbc3e67d000)\n\tlibns3.19-mobility-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-mobility-optimized.so (0x00007fbc3e3ef000)\n\tlibns3.19-config-store-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-config-store-optimized.so (0x00007fbc3e1d9000)\n\tlibns3.19-tools-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-tools-optimized.so (0x00007fbc3dfc7000)\n\tlibns3.19-stats-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-stats-optimized.so (0x00007fbc3ddae000)\n\tlibns3.19-emu-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-emu-optimized.so (0x00007fbc3db81000)\n\tlibns3.19-topology-read-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-topology-read-optimized.so (0x00007fbc3d96d000)\n\tlibns3.19-network-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-network-optimized.so (0x00007fbc3d67b000)\n\tlibns3.19-core-optimized.so => /home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-core-optimized.so (0x00007fbc3d391000)\n\tlibrt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007fbc3d189000)\n\tlibsqlite3.so.0 => /usr/lib/x86_64-linux-gnu/libsqlite3.so.0 (0x00007fbc3ceb4000)\n\tlibstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fbc3cb32000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fbc3c829000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fbc3c613000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fbc3c3f6000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fbc3c02c000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fbc3be28000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fbc42c2e000)\n"
+  },
+  "removed_inheritance": "Constructed whitelist; no diagnostic/legacy/preload/log/global-value variables inherited",
+  "libraries": {
+    "libns3.19-dsdv-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-dsdv-optimized.so",
+      "sha256": "b5d7229f9f8c475056d9daf213195859faca50a87bab7f10665fb78de27cc84e",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-dsdv-optimized.so"
+    },
+    "libns3.19-wimax-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-wimax-optimized.so",
+      "sha256": "0233184aaf0b56321a171932004f2e5a936e466d236d90733abaa6c6e7057b06",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-wimax-optimized.so"
+    },
+    "libns3.19-lte-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-lte-optimized.so",
+      "sha256": "390d2d910a2363db09c8f28101da02a2386ee332622672edd6f7730b44100aa0",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-lte-optimized.so"
+    },
+    "libns3.19-nix-vector-routing-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-nix-vector-routing-optimized.so",
+      "sha256": "ccd9f546559dccf5b4ee9524667cec542ab4b3c2723474f8dae66cac4d939acf",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-nix-vector-routing-optimized.so"
+    },
+    "libns3.19-applications-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-applications-optimized.so",
+      "sha256": "ab8bef9fd2a618a98cb355cabbd679fa707d3dc580aa7b57a0a0cda8ba6b39f3",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-applications-optimized.so"
+    },
+    "libns3.19-buildings-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-buildings-optimized.so",
+      "sha256": "4cc7d9d07835afb365c577510715ffd0ce23e5be3a09053ef6f651cbdcbaef3f",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-buildings-optimized.so"
+    },
+    "libns3.19-bridge-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-bridge-optimized.so",
+      "sha256": "4f16531d5dc9d107c6378b05fbbe8ebbab2adae2d989420581a567affa91b700",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-bridge-optimized.so"
+    },
+    "libns3.19-tools-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-tools-optimized.so",
+      "sha256": "40b2b3cbe224d6895bad27942c3a2061c628d6e20887fc9740d985e948cfe694",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-tools-optimized.so"
+    },
+    "libns3.19-mobility-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-mobility-optimized.so",
+      "sha256": "f032e6e319473f20a58f68349801d1c916e9948d521b1e8ca8c81cf4ae841cb3",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-mobility-optimized.so"
+    },
+    "libns3.19-energy-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-energy-optimized.so",
+      "sha256": "18d34987d66f43259dcf45d8fe17bb41259c0c97bbf27698cc22476cbb192a87",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-energy-optimized.so"
+    },
+    "libns3.19-flow-monitor-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-flow-monitor-optimized.so",
+      "sha256": "c4ee54df65d8c074e92301c5267250314c8e0703fef7b2d90b3a92c83ccba8d5",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-flow-monitor-optimized.so"
+    },
+    "libns3.19-olsr-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-olsr-optimized.so",
+      "sha256": "98aad1060d86c982c949161b320f41b79e06063d896476e67f4c60a6e1dea326",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-olsr-optimized.so"
+    },
+    "libns3.19-test-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-test-optimized.so",
+      "sha256": "b312c0f74539e678a5280d9c15552bdd69f524e13677f804cb196c267f79b499",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-test-optimized.so"
+    },
+    "libns3.19-emu-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-emu-optimized.so",
+      "sha256": "26e24542142e20599b2989f858535f976f0a4c523cf30e6873529f6ea395f914",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-emu-optimized.so"
+    },
+    "libns3.19-point-to-point-layout-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-point-to-point-layout-optimized.so",
+      "sha256": "54a823475a4b34040d6292a6738a6652b23012ad162db04cd382127f37038f22",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-point-to-point-layout-optimized.so"
+    },
+    "libns3.19-csma-layout-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-csma-layout-optimized.so",
+      "sha256": "9b42c3a562c2bce894d362f39952cc3f478fea135eb9d19c0d8fc2163658bd50",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-csma-layout-optimized.so"
+    },
+    "libns3.19-antenna-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-antenna-optimized.so",
+      "sha256": "13221f8fa94c8712c4b2521fa7532c6bbbfc556a2dfa1d890489a19650adbdf8",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-antenna-optimized.so"
+    },
+    "libns3.19-internet-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-internet-optimized.so",
+      "sha256": "25707b5c8e0256dd7c6504b708dea379b2e3e6fe120430f4b4093c58994faa92",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-internet-optimized.so"
+    },
+    "libns3.19-virtual-net-device-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-virtual-net-device-optimized.so",
+      "sha256": "ff9c8d1228f6d6bc96310bcee7a0fb3a06786e97c0c30486174ddf678c0c85a6",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-virtual-net-device-optimized.so"
+    },
+    "libns3.19-core-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-core-optimized.so",
+      "sha256": "19d5b3f1c69f95c315937518f2dd602deef1073336b98e8467aea73bc8378f72",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-core-optimized.so"
+    },
+    "libns3.19-tap-bridge-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-tap-bridge-optimized.so",
+      "sha256": "a8cac6fb50f1716da439908f519561acd8c946b74b795210652d7674b099cbbf",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-tap-bridge-optimized.so"
+    },
+    "libns3.19-aodv-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-aodv-optimized.so",
+      "sha256": "6053a6cf360b1b733ac94ec5cd0e8f8c1656380f6336cd9c514d98e6c6bc3374",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-aodv-optimized.so"
+    },
+    "libns3.19-mpi-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-mpi-optimized.so",
+      "sha256": "3c1923af10bcd6c876627c74f11043f0cc77e64677db70dbc18b1bbe6aa846ea",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-mpi-optimized.so"
+    },
+    "libns3.19-stats-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-stats-optimized.so",
+      "sha256": "da6c37d1d459adcb65644959524e69755a9ab6434c9ec8ba753f8031532f323e",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-stats-optimized.so"
+    },
+    "libns3.19-spectrum-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-spectrum-optimized.so",
+      "sha256": "f233920b71a0b52c438d4f68ceb4180375a161e225a0263b9b2a5717fcd800e7",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-spectrum-optimized.so"
+    },
+    "libns3.19-uan-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-uan-optimized.so",
+      "sha256": "b4124339b549231446495a4d7eebc57f3e0b771eb3360806fa7392e7ce269837",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-uan-optimized.so"
+    },
+    "libns3.19-propagation-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-propagation-optimized.so",
+      "sha256": "58a4bc8d0282d613aa11b55a7ad0570c5e88808bfad9d823539c51a3960a1860",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-propagation-optimized.so"
+    },
+    "libns3.19-dsr-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-dsr-optimized.so",
+      "sha256": "0fe621a10f54a770fadf399609eba3ae701a01a1f2897740f7aaef57b21a8265",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-dsr-optimized.so"
+    },
+    "libns3.19-mesh-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-mesh-optimized.so",
+      "sha256": "3cf264ac5240edd99ebd37418d44e8b33fba53ddf525a2c8b4e3c6936f48f964",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-mesh-optimized.so"
+    },
+    "libns3.19-wifi-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-wifi-optimized.so",
+      "sha256": "b2f42a825bbe6b21a46b85161e58d11d9f9d92a1b67458fca94735f365134b36",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-wifi-optimized.so"
+    },
+    "libns3.19-point-to-point-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-point-to-point-optimized.so",
+      "sha256": "e172a346b8b94ea19cf90847f0198ec1435dc6d469f1af0876093aac485383d1",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-point-to-point-optimized.so"
+    },
+    "libns3.19-topology-read-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-topology-read-optimized.so",
+      "sha256": "16ff515692c5db823593ee104f17a99ef630870819c9cabf442716414c5f2a97",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-topology-read-optimized.so"
+    },
+    "libns3.19-netanim-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-netanim-optimized.so",
+      "sha256": "21e642c65b788ab973431c22ad63e01f6b1269f726d372fbbaa1344686e897ef",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-netanim-optimized.so"
+    },
+    "libns3.19-network-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-network-optimized.so",
+      "sha256": "03e5581b12c89c471c4111ee4b78a0cd600abf5fd13d3af91194276196b145e7",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-network-optimized.so"
+    },
+    "libns3.19-csma-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-csma-optimized.so",
+      "sha256": "de90886bae4fd8379b3e2ed3b19775d61d968cce873bf583b7506231ef311820",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-csma-optimized.so"
+    },
+    "libns3.19-config-store-optimized.so": {
+      "artifact": "technical/adapter-boundary/artifacts/libraries/libns3.19-config-store-optimized.so",
+      "sha256": "d6bf34133ba1a39bce24ad205aca3752e7716c8cdfe25866d872f82ac6c18224",
+      "source_path": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/libns3.19-config-store-optimized.so"
+    }
+  },
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e"
+}

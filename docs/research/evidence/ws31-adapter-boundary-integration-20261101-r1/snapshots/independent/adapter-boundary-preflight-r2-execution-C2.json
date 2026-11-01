@@ -1,0 +1,42 @@
+{
+  "wall_seconds": 0.06523464620113373,
+  "log": "/home/fnl/lzy/results/20261101-150000-ws31-adapter-preflight-r2/logs/adapter-C2.log",
+  "pid": 300970,
+  "log_bytes": 5563,
+  "env_whitelist": {
+    "PATH": "/usr/bin:/bin",
+    "WS30_LIFE_PROFILE": "0",
+    "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build",
+    "LANG": "C",
+    "WS31_LABEL_PROFILE": "0",
+    "WS30_LIFECYCLE": "0",
+    "WS30_OBSERVE": "2",
+    "LC_ALL": "C",
+    "WS30_COMPOSITION": "0",
+    "WS30_TAG_TRANSFORM": "0"
+  },
+  "start_utc": "2026-11-01T07:05:26.259576Z",
+  "end_utc": "2026-11-01T07:05:26.325626Z",
+  "argv": [
+    "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-start-boundary-test"
+  ],
+  "coverage_pass": true,
+  "candidate": "C2",
+  "children_maxrss_kib": 20396,
+  "cwd": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source",
+  "status": "PASS",
+  "log_sha256": "d7da5078dfcc8d38b8b1761a0599834f4f987935978fdd1848b9792f62f21e3f",
+  "exit_code": 0,
+  "case_lines": [
+    "WS31_C2_BOUNDARY PASS kind=stop phase=before demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=385 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+    "WS31_C2_BOUNDARY PASS kind=stop phase=same-control-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=9 control_uid=8 control_ns=386 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+    "WS31_C2_BOUNDARY PASS kind=stop phase=same-launch-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=386 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+    "WS31_C2_BOUNDARY PASS kind=stop phase=after demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=387 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+    "WS31_C2_BOUNDARY PASS kind=stop phase=zero demand_ns=10 wait_ns=0 sip=184549377 dip=184549633 sport=1 dport=100 tag=1 size=8192 launch_uid=0 control_uid=8 control_ns=10 launched=1 launch_ns=10 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=0 finished=0 pending=0 transport=fixture",
+    "WS31_C2_BOUNDARY PASS kind=dispose phase=before demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=385 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+    "WS31_C2_BOUNDARY PASS kind=dispose phase=same-control-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=9 control_uid=8 control_ns=386 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+    "WS31_C2_BOUNDARY PASS kind=dispose phase=same-launch-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=386 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+    "WS31_C2_BOUNDARY PASS kind=dispose phase=after demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=387 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+    "WS31_C2_BOUNDARY PASS kind=dispose phase=zero demand_ns=10 wait_ns=0 sip=184549377 dip=184549633 sport=1 dport=100 tag=1 size=8192 launch_uid=0 control_uid=8 control_ns=10 launched=1 launch_ns=10 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=0 finished=0 pending=0 transport=fixture"
+  ]
+}

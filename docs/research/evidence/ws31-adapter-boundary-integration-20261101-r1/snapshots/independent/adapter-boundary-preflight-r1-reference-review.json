@@ -1,0 +1,18 @@
+{
+  "sources": {
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\README.md": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\reading-log.md": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\papers\\diffflow-2016\\analysis-technical.md": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\papers\\diffflow-2016\\verification.md": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+  },
+  "version": "DiffFlow arXiv1604.05107v1,6pages; archived fixed technical/verification records",
+  "borrowing": "Make activation order and state removal explicit; rule installation claims do not establish cleanup or old-packet drain",
+  "applicability": "Source review distinguishes production timer/accounting and real switch adapter boundaries from transport substitution",
+  "difference": "This preflight inspects real ns3 packet/queue calls and event ordering; no SDN advertisement or spraying implemented",
+  "not_extrapolated": [
+    "No fixture execution result exists in this attempt",
+    "No endpoint cleanup/drain/generation proof",
+    "No performance or author result transferred"
+  ],
+  "priority": "Fixed1f917source and actual local/remote gate receipts"
+}

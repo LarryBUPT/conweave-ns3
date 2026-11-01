@@ -1,0 +1,18 @@
+{
+  "sources": {
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\README.md": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\reading-log.md": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\papers\\diffflow-2016\\analysis-technical.md": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\papers\\diffflow-2016\\verification.md": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+  },
+  "version": "DiffFlow arXiv1604.05107v1,6pages,archived technical/verification records",
+  "borrowing": "Check activation order, retained identity and explicit state removal; do not infer lifecycle from rule visibility alone",
+  "applicability": "Actual adapter packet/queue and timer tests distinguish lookup/retention/expiry/reset from true endpoint drain and reuse",
+  "difference": "DiffFlow advertises sampled long flows before spraying. Here isolated RDMA adapter fixtures use pinned paths and transport substitution only for C2 dispatch.",
+  "not_extrapolated": [
+    "No real endpoint generation/drain/reuse acceptance",
+    "No default network regression after DispatchRequest extraction",
+    "No author efficacy, classifier error rate or combined baseline claim"
+  ],
+  "priority": "Fixed1f917source and original r2 fixture logs"
+}

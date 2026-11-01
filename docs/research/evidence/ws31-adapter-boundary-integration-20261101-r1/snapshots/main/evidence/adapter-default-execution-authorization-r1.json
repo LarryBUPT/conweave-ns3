@@ -1,0 +1,15 @@
+{
+  "at_utc": "2026-11-01T07:12:34.833440+00:00",
+  "status": "CONDITIONAL_PLAN_PREREQUISITES_MET_MAIN_DISPATCH_AUTHORIZED",
+  "plan": "adapter-default-validation-r1.json",
+  "plan_sha256": "01665606c32d7422b92f4202d23e8e571500321631ca376b5924ed67f5e7eb68",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "main_preflight_acceptance": "evidence/adapter-boundary-preflight-main-acceptance-r2.json",
+  "main_preflight_acceptance_sha256": "89edd0f668b292b9a92d426855f88ff969082ebd52c52da2c86fdc630afbc544",
+  "source_entry_env_release": "Independent explicit release at2026-11-01T07:05:47.573711+00:00; 3fixture calls terminal",
+  "sole_executor_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:90",
+  "prior_driver_PID43152": "Absent in local Win32_Process atpre-dispatch audit",
+  "scope": "Two newfixedsource default compatibility cells Q12thenC2, contingent fresh gates; oldreference/core/fixture reruns0",
+  "guard": "Hold fixed clean source and mainentry/env compatible until new2sourcecopies andguardedcalls explicitly released",
+  "user_authorization": "Existing explicit sequential implementation/verification authorization; no newbaseline adoption"
+}

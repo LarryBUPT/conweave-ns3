@@ -1,0 +1,100 @@
+{
+  "at_utc": "2026-11-01T07:10:29.239870+00:00",
+  "status": "MAIN_ACCEPTED_ONE_FULL_BUILD_AND_17_ADAPTER_CASES_AND_DELIVERY",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "id": "20261101-150000-ws31-adapter-preflight-r2",
+  "plan_sha256": "e09f0883fe8839f5e77ee2797ebbf75aeb88e0fa9959b7b7ddf84b5acb328061",
+  "index_sha256": "9b103d83c461e4c93138e1a0d7650b1d21150b85503949168ae81064a3bd4f8b",
+  "QA_sha256": "513898a3ae98b08013ddf385b81a9400586c9852cbb6f7fbc174a4607f68c8fa",
+  "files_hashed": {
+    "documents": 33,
+    "dependencies": 4,
+    "original_r1_files": 28
+  },
+  "support_files_hashed": 15,
+  "result_files_hashed": 47,
+  "reference_files_hashed": 4,
+  "fixed_git_objects": 42,
+  "git_tree_entries": 4843,
+  "build_tasks": 1468,
+  "build_duration": "5m59.118s",
+  "fixture_processes": 3,
+  "cases": 17,
+  "real_QPs": 0,
+  "network_runs": 0,
+  "core_repeats": 0,
+  "binary_artifacts": 2,
+  "resolved_ns3_library_artifacts": 36,
+  "raw_acceptances": [
+    {
+      "candidate": "C1",
+      "main_receipt_sha256": "41ab7a930bb87585a86996407c0a7eecdd0be6488926ee64f9a19f32aaaddb7d",
+      "replay": {
+        "cases": 5,
+        "actual_packets_replayed": 20,
+        "production_first_choices": 8,
+        "production_resets": 3,
+        "real_queue_fill_bytes": 5000,
+        "packet_framing_overhead": 56,
+        "status": "MAIN_PASS_ADAPTER_FIXTURE_RAW_REPLAY",
+        "candidate": "c1",
+        "log_sha256": "1fcc1d188a521222474dbbad43b6ce3eb4d840899de115b5ebd7f0180a9cfec9",
+        "scope": "Actual adapter operations with test packets/transport seam; not real endpoint lifecycle or network efficacy"
+      }
+    },
+    {
+      "candidate": "C2",
+      "main_receipt_sha256": "c59314cbf48c84e96dfaaa328ea3ffb3a75da1bc40cb5d9117bd756eefe923ed",
+      "replay": {
+        "cases": 10,
+        "actual_event_uid_orders": 4,
+        "cancelled": 4,
+        "transport_dispatches": 6,
+        "demand_requests": 10,
+        "demand_bytes": 81920,
+        "real_QPs": 0,
+        "finished": 0,
+        "fixed_sport": 1,
+        "positive_wait_ns": 376,
+        "status": "MAIN_PASS_ADAPTER_FIXTURE_RAW_REPLAY",
+        "candidate": "c2",
+        "log_sha256": "d7da5078dfcc8d38b8b1761a0599834f4f987935978fdd1848b9792f62f21e3f",
+        "scope": "Actual adapter operations with test packets/transport seam; not real endpoint lifecycle or network efficacy"
+      }
+    },
+    {
+      "candidate": "C3",
+      "main_receipt_sha256": "2f085e8dc0983576e36168f067de07d68b663733341c2e470a7e03e0090cd9ae",
+      "replay": {
+        "cases": 2,
+        "actual_packets_replayed": 9,
+        "production_resets": 3,
+        "pure_idle_boundaries": 3,
+        "fixed_borrower_sport": 6,
+        "residual_packets": 1,
+        "residual_wire_bytes": 156,
+        "endpoint_generations": 0,
+        "packet_framing_overhead": 56,
+        "status": "MAIN_PASS_ADAPTER_FIXTURE_RAW_REPLAY",
+        "candidate": "c3",
+        "log_sha256": "040f4ad22151701ba797540c12601ca42f80f66994c3379beffe94ef443992ad",
+        "scope": "Actual adapter operations with test packets/transport seam; not real endpoint lifecycle or network efficacy"
+      }
+    }
+  ],
+  "resources": {
+    "max_sampled_load_1m": 2.0,
+    "max_sampled_build_tree_rss_kib": 790664,
+    "max_sampled_building_metadata_count": 1,
+    "unknown_project_seen": false,
+    "interval_seconds": 5,
+    "max_sampled_cc1plus_count": 2,
+    "min_sampled_free_gib": 2296.350440979004,
+    "min_sampled_available_gib": 121.80601501464844,
+    "claim": "sampled maxima/minima, not exact peaks",
+    "other_user_seen": false,
+    "sample_count": 74
+  },
+  "stopped_r1_evidence_preserved": true,
+  "scope": "Production adapter fixture boundaries only; real endpoint lifecycle/default network compatibility/independent V0 and effects/cost remain"
+}

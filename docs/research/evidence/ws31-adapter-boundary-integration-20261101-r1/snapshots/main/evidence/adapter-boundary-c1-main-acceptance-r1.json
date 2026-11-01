@@ -1,0 +1,12 @@
+{
+  "cases": 5,
+  "actual_packets_replayed": 20,
+  "production_first_choices": 8,
+  "production_resets": 3,
+  "real_queue_fill_bytes": 5000,
+  "packet_framing_overhead": 56,
+  "status": "MAIN_PASS_ADAPTER_FIXTURE_RAW_REPLAY",
+  "candidate": "c1",
+  "log_sha256": "1fcc1d188a521222474dbbad43b6ce3eb4d840899de115b5ebd7f0180a9cfec9",
+  "scope": "Actual adapter operations with test packets/transport seam; not real endpoint lifecycle or network efficacy"
+}

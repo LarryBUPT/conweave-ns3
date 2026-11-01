@@ -1,0 +1,15 @@
+{
+  "cases": 2,
+  "actual_packets_replayed": 9,
+  "production_resets": 3,
+  "pure_idle_boundaries": 3,
+  "fixed_borrower_sport": 6,
+  "residual_packets": 1,
+  "residual_wire_bytes": 156,
+  "endpoint_generations": 0,
+  "packet_framing_overhead": 56,
+  "status": "MAIN_PASS_ADAPTER_FIXTURE_RAW_REPLAY",
+  "candidate": "c3",
+  "log_sha256": "040f4ad22151701ba797540c12601ca42f80f66994c3379beffe94ef443992ad",
+  "scope": "Actual adapter operations with test packets/transport seam; not real endpoint lifecycle or network efficacy"
+}

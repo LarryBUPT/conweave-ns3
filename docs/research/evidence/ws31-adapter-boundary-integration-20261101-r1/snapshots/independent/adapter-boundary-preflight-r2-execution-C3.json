@@ -1,0 +1,35 @@
+{
+  "log": "/home/fnl/lzy/results/20261101-150000-ws31-adapter-preflight-r2/logs/adapter-C3.log",
+  "candidate": "C3",
+  "log_bytes": 6763,
+  "cases": [
+    "c3-borrow-expiry-reset",
+    "c3-unknown-reset"
+  ],
+  "wall_seconds": 0.06512696295976639,
+  "children_maxrss_kib": 25028,
+  "pid": 301103,
+  "start_utc": "2026-11-01T07:05:27.569136Z",
+  "exit_code": 0,
+  "argv": [
+    "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-switch-boundary-test",
+    "--candidate=c3"
+  ],
+  "status": "PASS",
+  "env_whitelist": {
+    "WS30_LIFE_PROFILE": "0",
+    "LC_ALL": "C",
+    "LANG": "C",
+    "WS30_TAG_TRANSFORM": "0",
+    "WS30_LIFECYCLE": "0",
+    "PATH": "/usr/bin:/bin",
+    "WS30_COMPOSITION": "0",
+    "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build",
+    "WS31_LABEL_PROFILE": "0",
+    "WS30_OBSERVE": "2"
+  },
+  "end_utc": "2026-11-01T07:05:27.635050Z",
+  "coverage_pass": true,
+  "cwd": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source",
+  "log_sha256": "040f4ad22151701ba797540c12601ca42f80f66994c3379beffe94ef443992ad"
+}

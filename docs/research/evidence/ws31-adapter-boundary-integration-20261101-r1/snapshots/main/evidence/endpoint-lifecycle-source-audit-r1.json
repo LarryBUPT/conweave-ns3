@@ -1,0 +1,28 @@
+{
+  "at_utc": "2026-11-01T06:38:37.246205+00:00",
+  "status": "LOCAL_SOURCE_AUDIT_ONLY_FUTURE_ENDPOINT_IMPLEMENTATION_REQUIRED",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "files_git_LF_sha256": {
+    "src/point-to-point/model/rdma-hw.cc": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+    "src/point-to-point/model/rdma-hw.h": "13a3be27e5fbac2528612afa87172b4460e88c2c4ea73d356b9d428e655c9750",
+    "src/point-to-point/model/rdma-queue-pair.cc": "c7f06fa16c6bef60e2671ded84daa3009ed3312a7bfc55f8afbec7d28c004d20",
+    "src/point-to-point/model/rdma-queue-pair.h": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+    "src/point-to-point/model/qbb-net-device.cc": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+    "src/point-to-point/model/qbb-net-device.h": "23b554721189e7767706fe386d76760eaee895b421caf7069d24003e39a7bd07",
+    "src/point-to-point/model/point-to-point-net-device.h": "ad777bc39a417b17edb73203f811c8546ce0bed3ad7fbd2311354768ea04a0e1",
+    "scratch/network-load-balance.cc": "c3204664608548c7dfd95d1f0873792e15bfaddf6f4c63e189457fdb358499fa"
+  },
+  "confirmed": [
+    "QpComplete callback precedes Tx map erasure",
+    "Tx and Rx completion histories remain separate from live maps",
+    "NIC queue group retains finished QP references/bitmap",
+    "queue emptiness alone does not certify current serialization/channel propagation drain",
+    "normal WS31 label profiles do not activate legacy generation protection"
+  ],
+  "new_remote_actions": 0,
+  "implementation_changes": 0,
+  "old_controller_reads_or_activation": 0,
+  "WS29_reads_or_wakes": 0,
+  "endpoint_generation_or_drain_acceptance": false,
+  "next": "Freeze newWS31 endpoint interfaces/ledger and refusal negative case after adapter preflight, without legacy lifecycle mode"
+}

@@ -1,0 +1,31 @@
+WS31_C2_DEMAND flow_id=0 demand_ns=10 size=8192 tag=2 delay_ns=376 policy_tag=2 tag_transform=0
+WS31_C2_CANCEL flow_id=0 demand_ns=10 time_ns=385 size=8192
+WS31_C2_BOUNDARY PASS kind=stop phase=before demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=385 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture
+WS31_C2_DEMAND flow_id=1 demand_ns=10 size=8192 tag=2 delay_ns=376 policy_tag=2 tag_transform=0
+WS31_C2_CANCEL flow_id=1 demand_ns=10 time_ns=386 size=8192
+WS31_C2_BOUNDARY PASS kind=stop phase=same-control-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=9 control_uid=8 control_ns=386 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture
+WS31_C2_DEMAND flow_id=2 demand_ns=10 size=8192 tag=2 delay_ns=376 policy_tag=2 tag_transform=0
+WS31_C2_LAUNCH flow_id=2 demand_ns=10 launch_ns=386 wait_ns=376 size=8192
+WS31_C2_BOUNDARY PASS kind=stop phase=same-launch-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=386 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture
+WS31_C2_DEMAND flow_id=3 demand_ns=10 size=8192 tag=2 delay_ns=376 policy_tag=2 tag_transform=0
+WS31_C2_LAUNCH flow_id=3 demand_ns=10 launch_ns=386 wait_ns=376 size=8192
+WS31_C2_BOUNDARY PASS kind=stop phase=after demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=387 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture
+WS31_C2_DEMAND flow_id=4 demand_ns=10 size=8192 tag=1 delay_ns=0 policy_tag=1 tag_transform=0
+WS31_C2_LAUNCH flow_id=4 demand_ns=10 launch_ns=10 wait_ns=0 size=8192
+WS31_C2_BOUNDARY PASS kind=stop phase=zero demand_ns=10 wait_ns=0 sip=184549377 dip=184549633 sport=1 dport=100 tag=1 size=8192 launch_uid=0 control_uid=8 control_ns=10 launched=1 launch_ns=10 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=0 finished=0 pending=0 transport=fixture
+WS31_C2_DEMAND flow_id=5 demand_ns=10 size=8192 tag=2 delay_ns=376 policy_tag=2 tag_transform=0
+WS31_C2_CANCEL flow_id=5 demand_ns=10 time_ns=385 size=8192
+WS31_C2_BOUNDARY PASS kind=dispose phase=before demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=385 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture
+WS31_C2_DEMAND flow_id=6 demand_ns=10 size=8192 tag=2 delay_ns=376 policy_tag=2 tag_transform=0
+WS31_C2_CANCEL flow_id=6 demand_ns=10 time_ns=386 size=8192
+WS31_C2_BOUNDARY PASS kind=dispose phase=same-control-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=9 control_uid=8 control_ns=386 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture
+WS31_C2_DEMAND flow_id=7 demand_ns=10 size=8192 tag=2 delay_ns=376 policy_tag=2 tag_transform=0
+WS31_C2_LAUNCH flow_id=7 demand_ns=10 launch_ns=386 wait_ns=376 size=8192
+WS31_C2_BOUNDARY PASS kind=dispose phase=same-launch-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=386 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture
+WS31_C2_DEMAND flow_id=8 demand_ns=10 size=8192 tag=2 delay_ns=376 policy_tag=2 tag_transform=0
+WS31_C2_LAUNCH flow_id=8 demand_ns=10 launch_ns=386 wait_ns=376 size=8192
+WS31_C2_BOUNDARY PASS kind=dispose phase=after demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=387 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture
+WS31_C2_DEMAND flow_id=9 demand_ns=10 size=8192 tag=1 delay_ns=0 policy_tag=1 tag_transform=0
+WS31_C2_LAUNCH flow_id=9 demand_ns=10 launch_ns=10 wait_ns=0 size=8192
+WS31_C2_BOUNDARY PASS kind=dispose phase=zero demand_ns=10 wait_ns=0 sip=184549377 dip=184549633 sport=1 dport=100 tag=1 size=8192 launch_uid=0 control_uid=8 control_ns=10 launched=1 launch_ns=10 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=0 finished=0 pending=0 transport=fixture
+WS31_C2_BOUNDARY_SUMMARY PASS cases=10 network_runs=0 completions=0

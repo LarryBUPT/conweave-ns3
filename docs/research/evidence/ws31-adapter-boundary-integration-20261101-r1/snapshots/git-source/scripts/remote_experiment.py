@@ -1,0 +1,550 @@
+#!/usr/bin/env python3
+"""Local controller for the workspace-only ConWeave worker."""
+import argparse
+import datetime
+import os
+import queue
+import re
+import shlex
+import shutil
+import subprocess
+import sys
+import threading
+import time
+
+PROJECT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+ENV_FILE = os.path.join(PROJECT, '.project', 'remote.env')
+WORKER = os.path.join(PROJECT, 'scripts', 'remote_worker.py')
+ID_RE = re.compile(r'^[0-9]{8}-[0-9]{6}-[a-z0-9][a-z0-9-]{0,40}$')
+FORK_RE = re.compile(r'^https://github[.]com/LarryBUPT/[A-Za-z0-9_.-]+(?:[.]git)?$')
+
+
+def config():
+    if not os.path.isfile(ENV_FILE):
+        raise RuntimeError('Copy .project/remote.env.example to .project/remote.env')
+    values = {}
+    with open(ENV_FILE) as handle:
+        for line in handle:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if '=' not in line:
+                raise RuntimeError('Invalid remote.env line')
+            key, value = line.split('=', 1)
+            if key not in ('REMOTE_HOST', 'REMOTE_USER', 'REMOTE_ROOT') or not value:
+                raise RuntimeError('Unexpected or empty remote.env setting')
+            values[key] = value
+    if set(values) != set(('REMOTE_HOST', 'REMOTE_USER', 'REMOTE_ROOT')):
+        raise RuntimeError('remote.env needs host, user, and root')
+    if values['REMOTE_ROOT'] != '/home/fnl/lzy':
+        raise RuntimeError('Remote root must be /home/fnl/lzy')
+    for name in ('REMOTE_HOST', 'REMOTE_USER'):
+        if not re.match(r'^[A-Za-z0-9._-]+$', values[name]):
+            raise RuntimeError('Invalid SSH host or user')
+    return values
+
+
+def ssh_base(cfg):
+    return ['ssh', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
+            '-o', 'ConnectTimeout=10', '-o', 'ConnectionAttempts=1',
+            '-o', 'TCPKeepAlive=yes', '-o', 'ServerAliveInterval=15',
+            '-o', 'ServerAliveCountMax=2', '-o', 'ClearAllForwardings=yes',
+            cfg['REMOTE_USER'] + '@' + cfg['REMOTE_HOST']]
+
+
+def worker_call(cfg, *args):
+    remote = '/home/fnl/lzy/.research-workflow/remote_worker.py'
+    remote_command = ' '.join(shlex.quote(part) for part in ['python3', remote] + list(args))
+    operation = args[0] if args else ''
+    timeout = {
+        'build': 1800, 'sync': 1800, 'sync-bundle': 1800,
+        'status': 45, 'audit': 45, 'fetch-check': 60,
+        'run': 60, 'transfer-smoke': 120,
+    }.get(operation, 60)
+    argv = ssh_base(cfg) + [remote_command]
+    if operation != 'build':
+        subprocess.check_call(argv, timeout=timeout)
+        return
+
+    # The remote worker can persist BUILT metadata and print its completion
+    # marker while the SSH channel remains open indefinitely. Treat that
+    # marker as the build result, close only the local SSH client, and let the
+    # caller confirm metadata and input hashes through the normal status path.
+    try:
+        build_id_index = args.index('--id') + 1
+        experiment_id = args[build_id_index]
+    except (ValueError, IndexError):
+        raise RuntimeError('Build command is missing a valid experiment ID')
+    if not ID_RE.match(experiment_id):
+        raise RuntimeError('Build command has an invalid experiment ID')
+    expected_marker = 'build complete=' + experiment_id
+    process = subprocess.Popen(argv, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                               encoding='utf-8', errors='replace', bufsize=1)
+    lines = queue.Queue()
+
+    def read_output():
+        try:
+            for line in process.stdout:
+                lines.put(line)
+        finally:
+            lines.put(None)
+
+    reader = threading.Thread(target=read_output, name='ssh-build-output-reader')
+    reader.daemon = True
+    reader.start()
+    deadline = time.monotonic() + timeout
+    marker_seen = False
+    stream_closed = False
+    while not stream_closed and time.monotonic() < deadline:
+        try:
+            line = lines.get(timeout=min(0.2, max(0.01, deadline - time.monotonic())))
+        except queue.Empty:
+            if process.poll() is not None and lines.empty():
+                break
+            continue
+        if line is None:
+            stream_closed = True
+            break
+        try:
+            sys.stdout.write(line)
+        except UnicodeEncodeError:
+            # A parent console/log may still use an ANSI code page even though
+            # SSH was decoded as UTF-8. Keep diagnostics printable there too.
+            encoding = sys.stdout.encoding or 'ascii'
+            sys.stdout.write(line.encode(encoding, errors='backslashreplace').decode(encoding))
+        sys.stdout.flush()
+        if line.rstrip('\r\n') == expected_marker:
+            marker_seen = True
+            break
+
+    if marker_seen:
+        try:
+            process.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            process.terminate()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait()
+        reader.join(timeout=1)
+        return
+
+    timed_out = time.monotonic() >= deadline and process.poll() is None
+    if process.poll() is None:
+        process.terminate()
+        try:
+            process.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            process.wait()
+    reader.join(timeout=1)
+    if timed_out:
+        raise subprocess.TimeoutExpired(argv, timeout)
+    if process.returncode:
+        raise subprocess.CalledProcessError(process.returncode, argv)
+    raise RuntimeError('Remote build exited without completion marker: ' + experiment_id)
+
+
+def status_call(cfg, experiment_id):
+    if not ID_RE.match(experiment_id):
+        raise RuntimeError('Invalid experiment ID')
+    code = ("import json,os\n"
+            "root='/home/fnl/lzy'\n"
+            "i=%r\n"
+            "base=root+'/results/'+i\n"
+            "meta=base+'/metadata.json'\n"
+            "assert os.path.realpath(root)==root and os.path.isdir(root)\n"
+            "if not os.path.exists(base) or not os.path.isfile(meta):\n"
+            "    print('REMOTE_METADATA_MISSING:'+i)\n"
+            "    raise SystemExit(3)\n"
+            "assert os.path.isdir(base) and not os.path.islink(base) and os.path.realpath(base)==base\n"
+            "assert not os.path.islink(meta) and os.path.realpath(meta)==meta\n"
+            "data=json.load(open(meta))\n"
+            "print(json.dumps(data,indent=2,sort_keys=True))\n"
+            "if data.get('status')=='RUNNING':\n"
+            "    pid=data.get('pid')\n"
+            "    alive=False\n"
+            "    if isinstance(pid,int):\n"
+            "        try:\n"
+            "            os.kill(pid,0)\n"
+            "            alive=True\n"
+            "        except OSError:\n"
+            "            alive=False\n"
+            "    print('process_alive='+str(alive))\n"
+            "    if not alive: print('effective_status=INTERRUPTED; inspect worker.log')\n") % experiment_id
+    try:
+        output = subprocess.check_output(ssh_base(cfg) +
+                                         ['python3 -c ' + shlex.quote(code)],
+                                         stderr=subprocess.STDOUT, timeout=45)
+    except subprocess.CalledProcessError as error:
+        message = error.output.decode('utf-8', errors='replace')
+        if 'REMOTE_METADATA_MISSING:' in message:
+            raise RuntimeError('REMOTE_METADATA_MISSING: ' + experiment_id)
+        raise RuntimeError('Remote status query failed: ' + message[-1200:])
+    except subprocess.TimeoutExpired as error:
+        raise RuntimeError('Remote status query timed out after 45 seconds: ' + experiment_id) from error
+    sys.stdout.write(output.decode('utf-8', errors='replace'))
+
+
+def git_output(repo, *args):
+    return subprocess.check_output(['git', '-C', repo] + list(args),
+                                   stderr=subprocess.STDOUT).decode('utf-8').strip()
+
+
+def local_fork(repo, require_pushed=False):
+    repo = os.path.realpath(repo)
+    if not os.path.isdir(repo):
+        raise RuntimeError('Local fork checkout does not exist')
+    origin = git_output(repo, 'config', '--get', 'remote.origin.url')
+    if not FORK_RE.match(origin):
+        raise RuntimeError('origin must be a LarryBUPT GitHub repository')
+    branch = git_output(repo, 'symbolic-ref', '--short', 'HEAD')
+    if not re.match(r'^(feature|experiment|idea|research)/[A-Za-z0-9._/-]+$', branch):
+        raise RuntimeError('Use a personal feature/, experiment/, idea/, or research/ branch')
+    sha = git_output(repo, 'rev-parse', 'HEAD')
+    if git_output(repo, 'status', '--porcelain'):
+        raise RuntimeError('Local checkout has uncommitted changes')
+    for name in ('upstream', 'reference-maplerime'):
+        try:
+            push_url = git_output(repo, 'remote', 'get-url', '--push', name)
+        except subprocess.CalledProcessError:
+            raise RuntimeError('Missing protected reference remote: ' + name)
+        if push_url != 'no-push://read-only-reference':
+            raise RuntimeError('Reference remote lacks push protection: ' + name)
+    if require_pushed:
+        refs = git_output(repo, 'ls-remote', '--heads', 'origin', branch)
+        if not refs or refs.split()[0] != sha:
+            raise RuntimeError('Current commit is not yet on the personal fork branch')
+    return repo, origin, branch, sha
+
+
+def protect_fork(repo):
+    repo = os.path.realpath(repo)
+    origin = git_output(repo, 'config', '--get', 'remote.origin.url')
+    if not FORK_RE.match(origin):
+        raise RuntimeError('origin must be a LarryBUPT GitHub repository')
+    for name, url in (('upstream', 'https://github.com/conweave-project/conweave-ns3.git'),
+                      ('reference-maplerime', 'https://github.com/maplerime/conweave-ns3.git')):
+        try:
+            old_url = git_output(repo, 'config', '--get', 'remote.' + name + '.url')
+        except subprocess.CalledProcessError:
+            old_url = None
+        if old_url and old_url != url:
+            raise RuntimeError('Unexpected URL for ' + name)
+        if not old_url:
+            subprocess.check_call(['git', '-C', repo, 'remote', 'add', name, url])
+        subprocess.check_call(['git', '-C', repo, 'config', '--local',
+                               'remote.' + name + '.pushurl', 'no-push://read-only-reference'])
+    subprocess.check_call(['git', '-C', repo, 'config', '--local', 'push.default', 'nothing'])
+    hook = os.path.join(repo, '.githooks', 'pre-push')
+    if os.path.isfile(hook):
+        subprocess.check_call(['git', '-C', repo, 'config', '--local',
+                               'core.hooksPath', '.githooks'])
+    print(git_output(repo, 'remote', '-v'))
+
+
+def deploy(cfg):
+    # stdin contains only this repository's worker source, never credentials.
+    bootstrap = (
+        'import os,stat,sys,tempfile; '
+        'root="/home/fnl/lzy"; '
+        'assert os.path.realpath(root)==root and os.path.isdir(root); '
+        'folder=root+"/.research-workflow"; '
+        'assert not os.path.islink(folder); '
+        'os.makedirs(folder,exist_ok=True); '
+        'assert os.path.realpath(folder)==folder; '
+        'target=folder+"/remote_worker.py"; '
+        'assert not os.path.islink(target); '
+        'assert not os.path.exists(target) or stat.S_ISREG(os.stat(target).st_mode); '
+        'fd,tmp=tempfile.mkstemp(prefix="worker-",dir=folder); '
+        'stream=os.fdopen(fd,"wb"); '
+        'stream.write(sys.stdin.buffer.read()); stream.close(); '
+        'os.chmod(tmp,0o600); os.replace(tmp,target); '
+        'print("worker deployed inside workspace")')
+    with open(WORKER, 'rb') as source:
+        body = source.read()
+    command = 'python3 -c ' + shlex.quote(bootstrap)
+    subprocess.run(ssh_base(cfg) + [command], input=body, check=True)
+
+
+def fetch(cfg, experiment_id):
+    if not ID_RE.match(experiment_id):
+        raise RuntimeError('Invalid experiment ID')
+    worker_call(cfg, 'fetch-check', experiment_id)
+    root = os.path.realpath(os.path.join(PROJECT, 'results'))
+    os.makedirs(root, exist_ok=True)
+    if not root.startswith(os.path.realpath(PROJECT) + os.sep):
+        raise RuntimeError('Local result path escapes project')
+    target = os.path.join(root, experiment_id)
+    if os.path.lexists(target):
+        raise RuntimeError('Local result already exists; refusing overwrite')
+    incoming = os.path.join(root, '.incoming-' + experiment_id + '-' + str(os.getpid()))
+    if os.path.lexists(incoming):
+        raise RuntimeError('Transfer staging path already exists')
+    remote = cfg['REMOTE_USER'] + '@' + cfg['REMOTE_HOST'] + ':/home/fnl/lzy/results/' + experiment_id
+    subprocess.check_call(['scp', '-r', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
+                           '-o', 'ConnectTimeout=10', '-o', 'ServerAliveInterval=15',
+                           '-o', 'ServerAliveCountMax=2', remote, incoming], timeout=1800)
+    if not os.path.isfile(os.path.join(incoming, 'metadata.json')):
+        raise RuntimeError('Transfer incomplete; staging directory retained: ' + incoming)
+    os.rename(incoming, target)
+    print('Local results: ' + target)
+
+
+def sync_by_bundle(cfg, repo, origin, branch, sha):
+    """Use Git history over SSH when the server cannot reach GitHub."""
+    results_root = os.path.realpath(os.path.join(PROJECT, 'results'))
+    if not results_root.startswith(PROJECT + os.sep):
+        raise RuntimeError('Local results path escapes project')
+    bundle_dir = os.path.join(results_root, '.sync-bundles')
+    os.makedirs(bundle_dir, exist_ok=True)
+    bundle_name = 'sync-' + sha + '-' + str(os.getpid()) + '.bundle'
+    bundle = os.path.join(bundle_dir, bundle_name)
+    if os.path.lexists(bundle):
+        raise RuntimeError('Git bundle staging path already exists')
+    subprocess.check_call(['git', '-C', repo, 'bundle', 'create', bundle,
+                           'refs/heads/' + branch])
+    # The destination is under the already verified workspace tool directory.
+    remote_path = '/home/fnl/lzy/.research-workflow/' + bundle_name
+    check = ('test ! -e ' + shlex.quote(remote_path) +
+             ' && test "$(readlink -f /home/fnl/lzy)" = /home/fnl/lzy' +
+             ' && test "$(readlink -f /home/fnl/lzy/.research-workflow)" = /home/fnl/lzy/.research-workflow')
+    subprocess.check_call(ssh_base(cfg) + [check])
+    destination = cfg['REMOTE_USER'] + '@' + cfg['REMOTE_HOST'] + ':' + remote_path
+    subprocess.check_call(['scp', '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
+                           bundle, destination])
+    worker_call(cfg, 'sync-bundle', '--repo', origin, '--sha', sha,
+                '--branch', branch, '--bundle-name', bundle_name)
+    print('Source synchronized through workspace Git bundle')
+
+
+def validate_ws31_label_params(params):
+    profile = params.get('ws31_label_profile', 0)
+    if profile not in (0, 1, 2, 3):
+        raise RuntimeError('WS31 label profile must be 0..3')
+    if not profile:
+        return
+    modes = ('ws31-c1', 'ws31-c1-unified', 'ws31-c1-count', 'ws31-c1-history',
+             'ws31-c1-size', 'ws31-c1-zero', 'ws31-c1-unified-count',
+             'ws31-c2', 'ws31-c2-unified', 'ws31-c2-size', 'ws31-c2-zero',
+             'ws31-c3', 'ws31-c3-fixed', 'ws31-c3-size', 'ws31-c3-zero')
+    conflicts = ('ws30_tag_transform', 'ws30_composition', 'ws30_lifecycle',
+                 'ws30_life_profile', 'ws21_heartbeat_fault_mode', 'factorial_pilot',
+                 'factorial_formal', 'factorial_drop_diag', 'ws13_diag', 'ws25_diag',
+                 'ws28_tail_diag', 'ws26_moe_hop_diag', 'ws26_queue_front_diag',
+                 'ws26_time_probe', 'ws26_seed97_time_diag')
+    if (params.get('lb') not in modes or params.get('ws30_observe') != 2 or
+            params.get('pfc') != 0 or params.get('irn') != 1 or
+            params.get('topo') != 'leaf_spine_128_100G_OS2' or
+            not str(params.get('flow_file') or '').startswith('ws31_') or
+            any(params.get(k, 0) for k in conflicts) or
+            params.get('ws23_pfc_probe_host', -1) >= 0):
+        raise RuntimeError('WS31 label fixture requires explicit isolated WS31 trace/mode/full observation')
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    sub = parser.add_subparsers(dest='command')
+    for name in ('deploy', 'check'):
+        sub.add_parser(name)
+    for name in ('push', 'sync', 'sync-bundle', 'build'):
+        item = sub.add_parser(name)
+        item.add_argument('--repo-local', required=True)
+        if name == 'build':
+            item.add_argument('--id')
+            item.add_argument('--label', default='baseline')
+            item.add_argument('--source-sha', help='previously synced ancestor commit for recovery')
+    protect_cmd = sub.add_parser('protect-fork')
+    protect_cmd.add_argument('--repo-local', required=True)
+    run_cmd = sub.add_parser('run')
+    run_cmd.add_argument('id')
+    run_cmd.add_argument('--lb', choices=['fecmp', 'drill', 'conga', 'letflow', 'conweave', 'dualtrack', 'shortq2', 'guardhash', 'guardhashgate', 'packet-rr', 'packet-random', 'packet-adaptive', 'packet-drill', 'ws18', 'classreserve', 'cr-a0-b0', 'cr-a1-b0', 'cr-a0-b1', 'cr-a1-b1', 'ws30-h16', 'ws30-r16', 'ws30-u16', 'ws30-q12', 'ws30-h12', 'ws30v13-q12', 'ws30v13-r12', 'ws30v13-u12', 'ws31-c1', 'ws31-c1-unified', 'ws31-c1-count', 'ws31-c1-history', 'ws31-c1-size', 'ws31-c1-zero', 'ws31-c1-unified-count', 'ws31-c2', 'ws31-c2-unified', 'ws31-c2-size', 'ws31-c2-zero', 'ws31-c3', 'ws31-c3-fixed', 'ws31-c3-size', 'ws31-c3-zero', 'ofan-v2', 'ofan-rr', 'destspread', 'guardhash-v2', 'harmgate-v2'], default='fecmp')
+    run_cmd.add_argument('--simul-time', default='0.01')
+    run_cmd.add_argument('--netload', type=int, default=10)
+    run_cmd.add_argument('--max-concurrent', type=int, choices=(1, 2, 4, 8, 12, 16, 18), default=1,
+                         help='admission cap after WS-11 resource pilot; default remains one')
+    run_cmd.add_argument('--bw', type=int, choices=[100, 400], default=100)
+    run_cmd.add_argument('--buffer', type=int, choices=range(1, 10), default=9,
+                         help='switch buffer size in MiB (1-9; default: 9)')
+    run_cmd.add_argument('--topo', default='leaf_spine_128_100G_OS2')
+    run_cmd.add_argument('--cdf', default='AliStorage2019')
+    run_cmd.add_argument('--flow-file', help='existing tracked config/*.txt trace')
+    run_cmd.add_argument('--ws13-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ws30-composition', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws30-lifecycle', type=int, choices=(0, 1, 2, 3, 4, 5, 6, 7, 8), default=0)
+    run_cmd.add_argument('--simulation-seed', type=int, choices=(1,), default=1)
+    run_cmd.add_argument('--demand-seed', type=int, default=None)
+    run_cmd.add_argument('--ws30-life-profile', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ws31-label-profile', type=int, choices=(0, 1, 2, 3), default=0)
+    run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
+    run_cmd.add_argument('--ws21-identity', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws21-feedback', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws21-feedback-interval-ns', type=int, default=10000)
+    run_cmd.add_argument('--ws21-heartbeat', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws21-heartbeat-interval-ns', type=int, default=200000)
+    run_cmd.add_argument('--ws21-heartbeat-fault-mode', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-tor', type=int, default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-port', type=int, default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-start-ns', type=int, default=0)
+    run_cmd.add_argument('--ws21-heartbeat-fault-end-ns', type=int, default=0)
+    run_cmd.add_argument('--ws21-port-events', type=int, choices=(0, 1), default=0)
+    run_cmd.add_argument('--ws21-port-max-bytes', type=int, default=268435456)
+    run_cmd.add_argument('--pfc', type=int, choices=[0, 1], default=1)
+    run_cmd.add_argument('--irn', type=int, choices=[0, 1], default=0)
+    run_cmd.add_argument('--factorial-pilot', action='store_true',
+                         help='allow exploratory IRN/PFC 00 and 11 configurations')
+    run_cmd.add_argument('--factorial-drop-diag', action='store_true',
+                         help='log packet drops in a factorial pilot')
+    run_cmd.add_argument('--ws23-pfc-probe-host', type=int, default=-1)
+    run_cmd.add_argument('--ws23-pfc-probe-pg', type=int, default=3)
+    run_cmd.add_argument('--ws23-pfc-probe-start-ns', type=int, default=0)
+    run_cmd.add_argument('--ws23-pfc-probe-end-ns', type=int, default=0)
+    run_cmd.add_argument('--ws23-pause-time-us', type=int, default=5)
+    for name in ('status', 'fetch', 'transfer-smoke'):
+        item = sub.add_parser(name)
+        item.add_argument('id')
+    args = parser.parse_args()
+    cfg = config()
+    if args.command == 'deploy':
+        deploy(cfg)
+    elif args.command == 'check':
+        worker_call(cfg, 'audit')
+    elif args.command == 'protect-fork':
+        protect_fork(args.repo_local)
+    elif args.command in ('push', 'sync', 'sync-bundle', 'build'):
+        repo, origin, branch, sha = local_fork(args.repo_local,
+                                               require_pushed=args.command != 'push')
+        if args.command == 'build' and args.source_sha:
+            if not re.fullmatch(r'[0-9a-f]{40}', args.source_sha):
+                raise RuntimeError('Build source SHA must be a full commit hash')
+            ancestor = subprocess.run(['git', '-C', repo, 'merge-base', '--is-ancestor',
+                                       args.source_sha, sha])
+            if ancestor.returncode:
+                raise RuntimeError('Build source SHA is not an ancestor of pushed HEAD')
+            sha = args.source_sha
+        if args.command == 'push':
+            subprocess.check_call(['git', '-C', repo, 'push', 'origin',
+                                   'HEAD:refs/heads/' + branch])
+        elif args.command == 'sync':
+            try:
+                worker_call(cfg, 'sync', '--repo', origin, '--sha', sha)
+            except subprocess.CalledProcessError:
+                print('Server GitHub fetch failed; using Git bundle over SSH.', file=sys.stderr)
+                sync_by_bundle(cfg, repo, origin, branch, sha)
+        elif args.command == 'sync-bundle':
+            sync_by_bundle(cfg, repo, origin, branch, sha)
+        else:
+            label = re.sub(r'[^a-z0-9-]', '-', args.label.lower()).strip('-')
+            experiment_id = args.id or datetime.datetime.now().strftime('%Y%m%d-%H%M%S-') + label
+            if not ID_RE.match(experiment_id):
+                raise RuntimeError('Invalid experiment ID')
+            worker_call(cfg, 'build', '--id', experiment_id, '--sha', sha, '--branch', branch)
+            print('Experiment ID: ' + experiment_id)
+    elif args.command == 'run':
+        validate_ws31_label_params(vars(args))
+        if args.pfc + args.irn != 1 and not args.factorial_pilot:
+            parser.error('Exactly one of --pfc and --irn must be enabled')
+        if args.factorial_drop_diag and not args.factorial_pilot:
+            parser.error('--factorial-drop-diag requires --factorial-pilot')
+        if args.ws23_pfc_probe_host >= 0 and (
+                not args.factorial_pilot or (args.irn, args.pfc) != (1, 1) or
+                args.lb != 'fecmp' or not 0 <= args.ws23_pfc_probe_pg < 8 or
+                not 0 < args.ws23_pfc_probe_start_ns < args.ws23_pfc_probe_end_ns or
+                args.ws23_pfc_probe_end_ns >= int(float(args.simul_time) * 1e9) or
+                not 1 <= args.ws23_pause_time_us <= 65535):
+            parser.error('Invalid WS-23 PFC probe contract')
+        if args.ws23_pfc_probe_host < 0 and (
+                args.ws23_pfc_probe_pg != 3 or args.ws23_pfc_probe_start_ns or
+                args.ws23_pfc_probe_end_ns or args.ws23_pause_time_us != 5):
+            parser.error('WS-23 PFC probe options need a host')
+        if (args.ws18_admission or args.ws18_path) and args.lb != 'ws18':
+            parser.error('WS-18 switches require --lb ws18')
+        if args.ws21_identity and args.lb != 'ws18':
+            parser.error('WS-21 identity diagnostic requires --lb ws18')
+        if args.ws21_feedback and (args.lb != 'ws18' or not args.ws21_identity):
+            parser.error('WS-21 feedback requires --lb ws18 and --ws21-identity 1')
+        if not 1000 <= args.ws21_feedback_interval_ns <= 60000:
+            parser.error('WS-21 feedback interval must be 1000..60000 ns')
+        if args.ws21_heartbeat and args.lb != 'ws18':
+            parser.error('WS-21 heartbeat requires --lb ws18')
+        if not 50000 <= args.ws21_heartbeat_interval_ns <= 1000000:
+            parser.error('WS-21 heartbeat interval must be 50000..1000000 ns')
+        if args.ws21_heartbeat_fault_mode and (
+                not args.ws21_heartbeat or args.ws21_heartbeat_fault_port < 0 or
+                args.ws21_heartbeat_fault_end_ns <= args.ws21_heartbeat_fault_start_ns):
+            parser.error('WS-21 heartbeat fault needs enabled heartbeat and a time window')
+        if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
+            parser.error('WS-21 port events require ws18 and a byte cap >= 1024')
+        command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
+                    '--netload', str(args.netload), '--bw', str(args.bw),
+                    '--max-concurrent', str(args.max_concurrent),
+                    '--buffer', str(args.buffer),
+                    '--topo', args.topo, '--cdf', args.cdf,
+                    '--pfc', str(args.pfc), '--irn', str(args.irn)]
+        if args.lb == 'ws18':
+            command.extend(['--ws18-admission', str(args.ws18_admission),
+                            '--ws18-path', str(args.ws18_path),
+                            '--ws18-admission-rate-gbps', str(args.ws18_admission_rate_gbps)])
+            command.extend(['--ws21-identity', str(args.ws21_identity)])
+            command.extend(['--ws21-feedback', str(args.ws21_feedback)])
+            command.extend(['--ws21-feedback-interval-ns',
+                            str(args.ws21_feedback_interval_ns)])
+            command.extend(['--ws21-heartbeat', str(args.ws21_heartbeat),
+                            '--ws21-heartbeat-interval-ns', str(args.ws21_heartbeat_interval_ns),
+                            '--ws21-heartbeat-fault-mode', str(args.ws21_heartbeat_fault_mode),
+                            '--ws21-heartbeat-fault-tor', str(args.ws21_heartbeat_fault_tor),
+                            '--ws21-heartbeat-fault-port', str(args.ws21_heartbeat_fault_port),
+                            '--ws21-heartbeat-fault-start-ns', str(args.ws21_heartbeat_fault_start_ns),
+                            '--ws21-heartbeat-fault-end-ns', str(args.ws21_heartbeat_fault_end_ns)])
+            command.extend(['--ws21-port-events', str(args.ws21_port_events),
+                            '--ws21-port-max-bytes', str(args.ws21_port_max_bytes)])
+        if args.flow_file:
+            command.extend(['--flow-file', args.flow_file])
+        if args.ws13_diag:
+            command.extend(['--ws13-diag', '1'])
+        if args.ws25_diag:
+            command.extend(['--ws25-diag', '1'])
+        if args.ws28_tail_diag:
+            command.extend(['--ws28-tail-diag', '1'])
+        command.extend(['--simulation-seed', str(args.simulation_seed)])
+        if args.demand_seed is not None: command.extend(['--demand-seed', str(args.demand_seed)])
+        command.extend(['--ws30-observe', str(args.ws30_observe)])
+        command.extend(['--ws31-label-profile', str(args.ws31_label_profile)])
+        command.extend(['--ws30-composition', str(args.ws30_composition)])
+        command.extend(['--ws30-life-profile', str(args.ws30_life_profile), '--ws30-lifecycle', str(args.ws30_lifecycle), '--ws30-tag-transform', str(args.ws30_tag_transform)])
+        if args.factorial_pilot:
+            command.append('--factorial-pilot')
+        if args.factorial_drop_diag:
+            command.append('--factorial-drop-diag')
+        if args.ws23_pfc_probe_host >= 0:
+            command.extend(['--ws23-pfc-probe-host', str(args.ws23_pfc_probe_host),
+                            '--ws23-pfc-probe-pg', str(args.ws23_pfc_probe_pg),
+                            '--ws23-pfc-probe-start-ns', str(args.ws23_pfc_probe_start_ns),
+                            '--ws23-pfc-probe-end-ns', str(args.ws23_pfc_probe_end_ns),
+                            '--ws23-pause-time-us', str(args.ws23_pause_time_us)])
+        worker_call(cfg, *command)
+    elif args.command == 'status':
+        status_call(cfg, args.id)
+    elif args.command == 'fetch':
+        fetch(cfg, args.id)
+    elif args.command == 'transfer-smoke':
+        worker_call(cfg, 'transfer-smoke', args.id)
+    else:
+        parser.print_help()
+        return 2
+    return 0
+
+
+if __name__ == '__main__':
+    try:
+        sys.exit(main())
+    except Exception as error:
+        print('ERROR: ' + str(error), file=sys.stderr)
+        sys.exit(1)

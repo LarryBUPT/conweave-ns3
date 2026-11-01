@@ -1,0 +1,36 @@
+{
+  "status": "PASS_ONE_FULL_BUILD_AND_17_NEW_ADAPTER_CASES",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "build_tasks": 1468,
+  "build_duration": [
+    "5m59.118s"
+  ],
+  "fixture_cases": {
+    "C1": 5,
+    "C2": 10,
+    "C3": 2
+  },
+  "fixture_commands": 3,
+  "source_map_objects": 42,
+  "source_tree_entries": 4843,
+  "result_files_checked": 47,
+  "test_binaries": 2,
+  "dynamic_libraries": 36,
+  "network_raw_empty": true,
+  "actual_switch_packet_calls": 29,
+  "C2_demand_events": 10,
+  "C2_launch_events": 6,
+  "C2_cancel_events": 4,
+  "C2_real_QPs": 0,
+  "C2_finished": 0,
+  "original_r1_files_unchanged": 28,
+  "sync": 0,
+  "deploy": 0,
+  "core": 0,
+  "network": 0,
+  "guards_released": true,
+  "source_head_observed": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "source_status_observed": "",
+  "main_raw_acceptance": "PENDING separate main raw replay",
+  "new_remote_actions_by_finalizer": 0
+}

@@ -1,0 +1,176 @@
+{
+  "status": "COMPLETE_FOR_ONE_BUILD_AND_NEW_17_ADAPTER_BOUNDARY_CASES_ONLY",
+  "scope": "Fresh process/cache/resource recovery after stopped-before-build gate; unchanged scientific source and cases",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "cells": [
+    {
+      "id": "20261101-150000-ws31-adapter-preflight-r2",
+      "status": "PASS",
+      "source_hashes_verified": 42,
+      "transferred_files_verified": 47,
+      "binary_sha256": "596ce81a31d55837e5d30950a1f281dd8dd6aed06681eb3c552259208aeaed21"
+    }
+  ],
+  "commands": [
+    {
+      "cell": "20261101-150000-ws31-adapter-preflight-r2",
+      "operation": "guarded-build",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "build",
+        "--repo-local",
+        "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation",
+        "--id",
+        "20261101-150000-ws31-adapter-preflight-r2",
+        "--source-sha",
+        "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e"
+      ],
+      "start_utc": "2026-11-01T06:59:09.854772+00:00",
+      "log": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\adapter-boundary-preflight-r2-evidence\\20261101-150000-ws31-adapter-preflight-r2\\guarded-build.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T07:05:16.374020+00:00"
+    }
+  ],
+  "plan_sha256": "e09f0883fe8839f5e77ee2797ebbf75aeb88e0fa9959b7b7ddf84b5acb328061",
+  "driver_pid": 43152,
+  "network_runs_started": 0,
+  "build_commands": 1,
+  "fixture_commands": 3,
+  "core_commands": 0,
+  "sync_commands": 0,
+  "deploy_commands": 0,
+  "updated_utc": "2026-11-01T07:05:47.574711+00:00",
+  "deployed_worker_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+  "build_resources": {
+    "max_sampled_load_1m": 2.0,
+    "max_sampled_build_tree_rss_kib": 790664,
+    "max_sampled_building_metadata_count": 1,
+    "unknown_project_seen": false,
+    "interval_seconds": 5,
+    "max_sampled_cc1plus_count": 2,
+    "min_sampled_free_gib": 2296.350440979004,
+    "min_sampled_available_gib": 121.80601501464844,
+    "claim": "sampled maxima/minima, not exact peaks",
+    "other_user_seen": false,
+    "sample_count": 74
+  },
+  "executions": [
+    {
+      "candidate": "C1",
+      "cwd": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source",
+      "coverage_pass": true,
+      "env_whitelist": {
+        "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build",
+        "WS30_TAG_TRANSFORM": "0",
+        "PATH": "/usr/bin:/bin",
+        "WS31_LABEL_PROFILE": "0",
+        "LANG": "C",
+        "WS30_OBSERVE": "2",
+        "WS30_LIFECYCLE": "0",
+        "WS30_COMPOSITION": "0",
+        "LC_ALL": "C",
+        "WS30_LIFE_PROFILE": "0"
+      },
+      "cases": [
+        "c1-ranges",
+        "c1-expiry-reset",
+        "c1-capacity",
+        "c1-range-limit",
+        "c1-wrap"
+      ],
+      "log_bytes": 11347,
+      "children_maxrss_kib": 25220,
+      "argv": [
+        "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-switch-boundary-test",
+        "--candidate=c1"
+      ],
+      "log_sha256": "1fcc1d188a521222474dbbad43b6ce3eb4d840899de115b5ebd7f0180a9cfec9",
+      "wall_seconds": 0.11578929051756859,
+      "exit_code": 0,
+      "status": "PASS",
+      "end_utc": "2026-11-01T07:05:25.138116Z",
+      "start_utc": "2026-11-01T07:05:25.020539Z",
+      "pid": 300838,
+      "log": "/home/fnl/lzy/results/20261101-150000-ws31-adapter-preflight-r2/logs/adapter-C1.log"
+    },
+    {
+      "wall_seconds": 0.06523464620113373,
+      "log": "/home/fnl/lzy/results/20261101-150000-ws31-adapter-preflight-r2/logs/adapter-C2.log",
+      "pid": 300970,
+      "log_bytes": 5563,
+      "env_whitelist": {
+        "PATH": "/usr/bin:/bin",
+        "WS30_LIFE_PROFILE": "0",
+        "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build",
+        "LANG": "C",
+        "WS31_LABEL_PROFILE": "0",
+        "WS30_LIFECYCLE": "0",
+        "WS30_OBSERVE": "2",
+        "LC_ALL": "C",
+        "WS30_COMPOSITION": "0",
+        "WS30_TAG_TRANSFORM": "0"
+      },
+      "start_utc": "2026-11-01T07:05:26.259576Z",
+      "end_utc": "2026-11-01T07:05:26.325626Z",
+      "argv": [
+        "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-start-boundary-test"
+      ],
+      "coverage_pass": true,
+      "candidate": "C2",
+      "children_maxrss_kib": 20396,
+      "cwd": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source",
+      "status": "PASS",
+      "log_sha256": "d7da5078dfcc8d38b8b1761a0599834f4f987935978fdd1848b9792f62f21e3f",
+      "exit_code": 0,
+      "case_lines": [
+        "WS31_C2_BOUNDARY PASS kind=stop phase=before demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=385 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=stop phase=same-control-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=9 control_uid=8 control_ns=386 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=stop phase=same-launch-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=386 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=stop phase=after demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=387 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=stop phase=zero demand_ns=10 wait_ns=0 sip=184549377 dip=184549633 sport=1 dport=100 tag=1 size=8192 launch_uid=0 control_uid=8 control_ns=10 launched=1 launch_ns=10 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=before demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=385 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=same-control-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=9 control_uid=8 control_ns=386 launched=0 launch_ns=0 dispatch_demand_ns=0 calls=0 demanded=1 demand_bytes=8192 launch_bytes=0 cancel_bytes=8192 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=1 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=same-launch-first demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=386 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=after demand_ns=10 wait_ns=376 sip=184549377 dip=184549633 sport=1 dport=100 tag=2 size=8192 launch_uid=8 control_uid=9 control_ns=387 launched=1 launch_ns=386 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=1 delay_sum_ns=376 delay_max_ns=376 cancelled=0 finished=0 pending=0 transport=fixture",
+        "WS31_C2_BOUNDARY PASS kind=dispose phase=zero demand_ns=10 wait_ns=0 sip=184549377 dip=184549633 sport=1 dport=100 tag=1 size=8192 launch_uid=0 control_uid=8 control_ns=10 launched=1 launch_ns=10 dispatch_demand_ns=10 calls=1 demanded=1 demand_bytes=8192 launch_bytes=8192 cancel_bytes=0 waited=0 delay_sum_ns=0 delay_max_ns=0 cancelled=0 finished=0 pending=0 transport=fixture"
+      ]
+    },
+    {
+      "log": "/home/fnl/lzy/results/20261101-150000-ws31-adapter-preflight-r2/logs/adapter-C3.log",
+      "candidate": "C3",
+      "log_bytes": 6763,
+      "cases": [
+        "c3-borrow-expiry-reset",
+        "c3-unknown-reset"
+      ],
+      "wall_seconds": 0.06512696295976639,
+      "children_maxrss_kib": 25028,
+      "pid": 301103,
+      "start_utc": "2026-11-01T07:05:27.569136Z",
+      "exit_code": 0,
+      "argv": [
+        "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build/scratch/ws31-switch-boundary-test",
+        "--candidate=c3"
+      ],
+      "status": "PASS",
+      "env_whitelist": {
+        "WS30_LIFE_PROFILE": "0",
+        "LC_ALL": "C",
+        "LANG": "C",
+        "WS30_TAG_TRANSFORM": "0",
+        "WS30_LIFECYCLE": "0",
+        "PATH": "/usr/bin:/bin",
+        "WS30_COMPOSITION": "0",
+        "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source/build",
+        "WS31_LABEL_PROFILE": "0",
+        "WS30_OBSERVE": "2"
+      },
+      "end_utc": "2026-11-01T07:05:27.635050Z",
+      "coverage_pass": true,
+      "cwd": "/home/fnl/lzy/runs/20261101-150000-ws31-adapter-preflight-r2/source",
+      "log_sha256": "040f4ad22151701ba797540c12601ca42f80f66994c3379beffe94ef443992ad"
+    }
+  ]
+}

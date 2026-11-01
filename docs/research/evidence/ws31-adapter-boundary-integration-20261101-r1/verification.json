@@ -1,0 +1,79 @@
+{
+  "at_utc": "2026-11-01T07:21:58.097871+00:00",
+  "status": "PASS_LOCAL_PROVENANCE_ARTIFACTS_EXPLICIT_RAW_BOUNDARIES_AND_NEXT_GATE",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "last_network_accepted_source": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "id": "20261101-150000-ws31-adapter-preflight-r2",
+  "index_sha256": "9b103d83c461e4c93138e1a0d7650b1d21150b85503949168ae81064a3bd4f8b",
+  "QA_sha256": "513898a3ae98b08013ddf385b81a9400586c9852cbb6f7fbc174a4607f68c8fa",
+  "main_acceptance_sha256": "89edd0f668b292b9a92d426855f88ff969082ebd52c52da2c86fdc630afbc544",
+  "files_hashed": {
+    "documents": 33,
+    "dependencies": 4,
+    "original_r1_files": 28,
+    "support_files": 15,
+    "result_files": 47,
+    "reference_files": 4
+  },
+  "fixed_git_objects": 42,
+  "fixed_tree_entries": 4843,
+  "original_r1_compared_with_root_snapshots": 27,
+  "original_r1_not_in_previous_root_snapshot": [
+    "adapter-boundary-preflight-r1-evidence\\.gitignore"
+  ],
+  "build_tasks": 1468,
+  "build_duration": "5m59.118s",
+  "build_count": 1,
+  "ELF_binaries_hashed": 2,
+  "resolved_ns3_libraries_hashed": 36,
+  "library_mapping_scope": "Recorded ldd with whitelisted LD_LIBRARY_PATH, not kernel runtime mapping capture",
+  "large_artifacts_git_policy": "38 ELF files hashed in original local result store; not duplicated into Git",
+  "resource_samples": 74,
+  "raw_boundary_checks": {
+    "C1_packets": 20,
+    "C1_first_choices": 8,
+    "C1_resets": 3,
+    "real_queue_fill_B": 5000,
+    "C2_conditions": 10,
+    "C2_demand_B": 81920,
+    "C2_cancels": 4,
+    "C2_dispatch_substitutes": 6,
+    "C2_wait_ns_independently_calculated": 376,
+    "C2_equal_time_uid_orders": 4,
+    "C3_packets": 9,
+    "C3_resets": 3,
+    "C3_idle_boundaries": 3,
+    "C3_residual_packets": 1,
+    "C3_residual_wire_B": 156,
+    "framing_overhead_B": 56,
+    "packet_QP_and_endpoint_generation_scope": "Switch test packets plus C2 transport substitute; no real QP/generation acceptance"
+  },
+  "full_C1_C3_model_replay_owner": "WS31 main, with unchanged preflight verifier hashes; not rerun by Integration",
+  "eight_corruption_rejections_owner": "WS31 main; raw-copy tests, receipts/identities verified by Integration",
+  "r2_sync_deploy_old_core_network": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "r1_failure_and_unknown_PID_kept": true,
+  "preflight_guard_released": true,
+  "next_default_plan_sha256": "01665606c32d7422b92f4202d23e8e571500321631ca376b5924ed67f5e7eb68",
+  "next_default_ids": [
+    "20261101-153000-ws31-adapterdef-r1-q12",
+    "20261101-153000-ws31-adapterdef-r1-c2"
+  ],
+  "next_execution_outcomes_accepted": false,
+  "next_source_entry_env_guard": "Hold per separate main dispatch until explicit release",
+  "network_technical_cells_accepted_cumulative": 41,
+  "new_combined_baseline": false,
+  "Integration_remote_actions_builds_fixtures": 0,
+  "manifest_entries": 200,
+  "frozen_snapshots": 162,
+  "remaining": [
+    "New-source Q12/C2 default compatibility",
+    "Real endpoint exit/drain/generation/tuple reuse",
+    "Independent C1 V0",
+    "All three candidates' business/background effects and state/runtime costs"
+  ]
+}

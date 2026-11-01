@@ -1,0 +1,27 @@
+{
+  "at_utc": "2026-11-01T07:05:43.961936+00:00",
+  "status": "SOURCE_GROUNDED_ENDPOINT_DESIGN_ONLY",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "report": "endpoint-lifecycle-design-r1.md",
+  "files_git_LF_sha256": {
+    "src/point-to-point/model/rdma-hw.cc": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+    "src/point-to-point/model/qbb-channel.cc": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1",
+    "src/point-to-point/model/qbb-net-device.h": "23b554721189e7767706fe386d76760eaee895b421caf7069d24003e39a7bd07",
+    "src/point-to-point/model/rdma-queue-pair.h": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d"
+  },
+  "facts": [
+    "Data path attaches FlowIDNUMTag unconditionally",
+    "ACK/NACK construction copies existing FlowIDNUMTag unconditionally",
+    "QbbChannel schedules Receive using same Ptr<Packet> after serialization plus propagation",
+    "Completion callback precedes Tx map erasure"
+  ],
+  "inferences_and_decisions": [
+    "Use per-transmission tokens rather than UID-set occupancy",
+    "Close channel token after Receive returns to avoid premature drain certificate inside ACK callback",
+    "Refusal with held unsent test copy is not proof of native stale-packet receive isolation"
+  ],
+  "source_edits": 0,
+  "remote_actions": 0,
+  "CXX_or_network_runs": 0,
+  "proof_of_endpoint_cleanup_or_drain": false
+}
