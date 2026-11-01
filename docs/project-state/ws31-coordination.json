@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:6"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:7"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -152,7 +152,7 @@
     "plan": "docs/research/ws31/main/c2-label-validation-r1.json",
     "fixed_snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/c2-label-validation-r1.json",
     "plan_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
-    "status": "CORRECTED_BEFORE_DISPATCH_AND_DISPATCHED_NOT_INTEGRATION_ACCEPTED",
+    "status": "ATTEMPT1_PREFLIGHT_ENVIRONMENT_GATE_STOP; SAME_ACTIVE_GOAL_CONDITIONAL_RECOVERY_AUTHORIZED",
     "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "cells": 5,
     "order": [
@@ -171,7 +171,15 @@
     "fresh_resource_gate_required": true,
     "root_remote_execution_status_checked": false,
     "scope": "C2 fix/default and label/unknown correctness only; matched controls lifecycle independent V0 and effects remain",
-    "executor": "01a19323-2201-7b23-a0f1-905c71496d38"
+    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "pause_evidence": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/verification.json",
+    "attempt1_counts": {
+      "core_started": false,
+      "builds_started": 0,
+      "network_runs_started": 0,
+      "five_cells_not_started_in_receipt": true
+    },
+    "attempt2": "Preserve attempt1 and separate attempt2 logs; reconfirm IDs/live processes/cache identity and full resource/unknown-job gate; no repeat network fetch; gate failure stops without automatic retry; execution not observed by Integration"
   },
   "last_verified_zero_control_checkpoint": {
     "date": "2026-11-01",
@@ -236,5 +244,21 @@
     "purpose": "C2 decision-visible policy label fix",
     "validation": "Static three-file object/diff audit only; executable build/default/tag runtime pending",
     "last_network_validated_source": "c4b6039beb47e667e6954b56ec770cb6038082fa"
+  },
+  "last_material_event": {
+    "date": "2026-11-01",
+    "kind": "preflight environment/unknown-job gate stop before execution",
+    "incident": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/incident.md",
+    "main_review": "docs/research/ws31/main/evidence/c2-label-preflight-pause-main-review-r1.json",
+    "saved_unknown_pids": [
+      196056,
+      196096
+    ],
+    "later_saved_audit_utc": "2026-10-31T23:56:32.029763Z",
+    "later_saved_audit_both_absent": true,
+    "new_gate_pass_not_inferred": true,
+    "correctness_failure": false,
+    "user_decision_required": false,
+    "same_goal_conditional_recovery_authorized": true
   }
 }

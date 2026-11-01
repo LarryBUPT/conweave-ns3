@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T00:00:14.747609+00:00",
+  "classification": "Pre-execution environment/resource-gate stop; not an observed C2 correctness failure",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "plan_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
+  "snapshots": [
+    {
+      "snapshot": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/snapshots/0-c2-label-validation-r1-receipt.json",
+      "preserved_main_source": "docs/research/ws31/main/evidence/c2-label-preflight-pause-r1/0-c2-label-validation-r1-receipt.json",
+      "original_source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-receipt.json",
+      "sha256": "d9590a6e7b8efc76164623c8872fecba130255b1cfcb83a79edd36917105a409",
+      "bytes": 5538
+    },
+    {
+      "snapshot": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/snapshots/1-c2-label-validation-r1-sync-process-audit.json",
+      "preserved_main_source": "docs/research/ws31/main/evidence/c2-label-preflight-pause-r1/1-c2-label-validation-r1-sync-process-audit.json",
+      "original_source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-sync-process-audit.json",
+      "sha256": "cb60219e3a052e3199ba29483d73c350cdcf004b933f9930303a2a090030abf5",
+      "bytes": 200
+    },
+    {
+      "snapshot": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/snapshots/2-c2-label-validation-r1-driver-error.log",
+      "preserved_main_source": "docs/research/ws31/main/evidence/c2-label-preflight-pause-r1/2-c2-label-validation-r1-driver-error.log",
+      "original_source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-driver-error.log",
+      "sha256": "fcf5e5b6628cde9c7432852b6555eb9fcbff76ffecde2c0650a3f1ec8da5f33f",
+      "bytes": 812
+    },
+    {
+      "snapshot": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/snapshots/3-resources-before-build-wave.json",
+      "preserved_main_source": "docs/research/ws31/main/evidence/c2-label-preflight-pause-r1/3-resources-before-build-wave.json",
+      "original_source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\20261101-074000-ws31-c2tag-r1-default\\resources-before-build-wave.json",
+      "sha256": "225633ddc0c97771a68a18510b51b19e129f9144b68ef62a8de9ec65f00a94e5",
+      "bytes": 580
+    },
+    {
+      "snapshot": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/snapshots/4-guarded-sync.log",
+      "preserved_main_source": "docs/research/ws31/main/evidence/c2-label-preflight-pause-r1/4-guarded-sync.log",
+      "original_source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\20261101-074000-ws31-c2tag-r1-default\\guarded-sync.log",
+      "sha256": "4951eaa8a44b4015d12a1f389f98361f2e7f8b0e58f1e078d194c4272a77303f",
+      "bytes": 133
+    },
+    {
+      "snapshot": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/snapshots/5-guarded-sync-bundle.log",
+      "preserved_main_source": "docs/research/ws31/main/evidence/c2-label-preflight-pause-r1/5-guarded-sync-bundle.log",
+      "original_source": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\20261101-074000-ws31-c2tag-r1-default\\guarded-sync-bundle.log",
+      "sha256": "c75ea32afa5ee78006432e9425171ea09f36134a9ae68862befbdb4ce193dd0b",
+      "bytes": 320
+    },
+    {
+      "snapshot": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/snapshots/main-review.json",
+      "preserved_main_source": "docs/research/ws31/main/evidence/c2-label-preflight-pause-main-review-r1.json",
+      "sha256": "a1688cfda242dc0677412a489fc17fdde2c85c6791a25e1c9c2ad5c9fa593d34",
+      "bytes": 3140
+    },
+    {
+      "snapshot": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/snapshots/main-status.json",
+      "preserved_main_source": "docs/research/ws31/main/current-status.json",
+      "sha256": "990453d5713f26f8494cfa9f9a1b1cbff7abe149e7a075314594f625b1999980",
+      "bytes": 12608
+    }
+  ],
+  "local_checks": {
+    "preserved_evidence_hashes": 6,
+    "five_cells_not_started_in_receipt": true,
+    "network_runs_started": 0,
+    "core_status": "NOT_STARTED",
+    "build_waves": 0,
+    "sync_exit": 1,
+    "bundle_exit": 0,
+    "gate_pass": false,
+    "unknown_pids": [
+      196056,
+      196096
+    ],
+    "later_saved_process_audit": "2026-10-31T23:56:32.029763Z",
+    "both_later_absent": true
+  },
+  "remote_ID_existence": {
+    "main_report": "Five remote IDs not created",
+    "integration_boundary": "No direct remote check; sole executor must reconfirm all five ID/run/result paths before resume"
+  },
+  "recovery": {
+    "same_active_goal": true,
+    "authorization_source": "WS31 main conditional recovery message and saved review",
+    "conditions": [
+      "Preserve attempt1 raw evidence and separate attempt2 status/logs",
+      "Reconfirm no five runs/results IDs or live driver/monitor exist",
+      "Verify already synced cache realpath/personal origin/clean/exact commit/fork ref; do not redo network fetch merely to reproduce timeout",
+      "Keep original local pushed/clean, remote guarded build/source/ID/resource gates; no shared worker/controller changes",
+      "Fresh full other-user/unknown-job/resource gate passes; then original five IDs/order/source/input/criteria only",
+      "If gate fails again stop/preserve/report without automatic retry or killing unknown work"
+    ],
+    "scope_and_criteria_unchanged": true,
+    "new_resource_gate_pass_not_claimed_by_root": true,
+    "actual_attempt2_execution_not_observed": true
+  },
+  "coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:7",
+  "boundaries": {
+    "remote_access": false,
+    "process_kill": false,
+    "worker_or_controller_change": false,
+    "additional_goal_or_executor_created": false,
+    "main_or_independent_owned_files_modified": false,
+    "network_simulation_or_core_build_run_by_root": false,
+    "506_runtime_acceptance_pending": true,
+    "c4_acceptance_unchanged": true,
+    "new_scientific_node_completed": false,
+    "reference_review": "Not repeated for an unfinished preflight interruption"
+  },
+  "validation": {
+    "json_files_valid": 7,
+    "new_markdown_links_valid": 5,
+    "frozen_snapshot_hashes_valid": 8,
+    "active_workstream_and_unchanged_five_cell_plan": true,
+    "no_506_runtime_acceptance_inferred": true
+  }
+}

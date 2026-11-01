@@ -1,0 +1,113 @@
+{
+  "scope": "Technical fix acceptance only, no performance ranking, new baseline or Ofan/RR work",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "status": "STOPPED_ON_FAILURE",
+  "cells": [
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-default",
+      "order": 1,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_correctness_r1.txt",
+      "ws30_tag_transform": 0,
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "status": "NOT_STARTED_NOT_RUN_DUE_TO_FAILURE"
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-remove",
+      "order": 2,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_correctness_r1.txt",
+      "ws30_tag_transform": 1,
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "status": "NOT_STARTED_NOT_RUN_DUE_TO_FAILURE"
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-swap",
+      "order": 3,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_correctness_r1.txt",
+      "ws30_tag_transform": 2,
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "status": "NOT_STARTED_NOT_RUN_DUE_TO_FAILURE"
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-q12",
+      "order": 4,
+      "lb": "ws30v13-q12",
+      "flow_file": "ws31_unknown_r1.txt",
+      "ws30_tag_transform": 0,
+      "flow_count": 6,
+      "payload_bytes": 28278,
+      "status": "NOT_STARTED_NOT_RUN_DUE_TO_FAILURE"
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-c2",
+      "order": 5,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_unknown_r1.txt",
+      "ws30_tag_transform": 0,
+      "flow_count": 6,
+      "payload_bytes": 28278,
+      "status": "NOT_STARTED_NOT_RUN_DUE_TO_FAILURE"
+    }
+  ],
+  "network_runs_started": 0,
+  "commands": [
+    {
+      "cell": "20261101-074000-ws31-c2tag-r1-default",
+      "operation": "guarded-sync",
+      "argv": [
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=10",
+        "-o",
+        "ConnectionAttempts=1",
+        "-o",
+        "TCPKeepAlive=yes",
+        "-o",
+        "ServerAliveInterval=15",
+        "-o",
+        "ServerAliveCountMax=2",
+        "-o",
+        "ClearAllForwardings=yes",
+        "fnl@10.112.14.167",
+        "python3 /home/fnl/lzy/.research-workflow/remote_worker.py sync --repo https://github.com/LarryBUPT/conweave-ns3.git --sha 50603927fc09a68d9f2e038129aaee3a3d021081"
+      ],
+      "start_utc": "2026-10-31T23:52:03.049414+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\20261101-074000-ws31-c2tag-r1-default\\guarded-sync.log",
+      "exit_code": 1,
+      "end_utc": "2026-10-31T23:53:33.607494+00:00"
+    },
+    {
+      "cell": "20261101-074000-ws31-c2tag-r1-default",
+      "operation": "guarded-sync-bundle",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "-c",
+        "import sys,importlib.util;sys.dont_write_bytecode=True;s=importlib.util.spec_from_file_location('m','E:\\\\研\\\\毕业论文\\\\workspace\\\\ws31-candidates-implementation\\\\scripts\\\\remote_experiment.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);r,o,b,h=m.local_fork('E:\\\\研\\\\毕业论文\\\\workspace\\\\ws31-candidates-implementation',require_pushed=True);assert h=='50603927fc09a68d9f2e038129aaee3a3d021081';m.PROJECT='E:\\\\研\\\\毕业论文\\\\workspace\\\\LarryBUPT-conweave-ns3\\\\docs\\\\research\\\\ws31\\\\independent\\\\c2-label-validation-r1-evidence';m.sync_by_bundle(m.config(),r,o,b,h)"
+      ],
+      "start_utc": "2026-10-31T23:53:33.608495+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\20261101-074000-ws31-c2tag-r1-default\\guarded-sync-bundle.log",
+      "exit_code": 0,
+      "end_utc": "2026-10-31T23:53:41.666568+00:00"
+    }
+  ],
+  "core_status": "NOT_STARTED",
+  "resource_scope": "5-second samples for one five-build batch; 2-second run samples; snapshots, not exact peaks",
+  "plan_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
+  "updated_utc": "2026-10-31T23:55:12.192281+00:00",
+  "deployed_worker_sha256": "3567a1cf95016e1ea093c32e0aeccaee6e3254c3b43fe1feaf690c8dfec4bed5",
+  "parallel_builds_admitted": 3,
+  "max_compile_jobs_admitted": 6,
+  "build_waves": [],
+  "error": "Other-user/unknown-job/resource gate failed: resources-before-build-wave",
+  "traceback": "Traceback (most recent call last):\n  File \"E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-driver.py\", line 372, in <module>\n    main()\n  File \"E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-driver.py\", line 306, in main\n    fresh = d.fresh(b.state[\"cells\"][cursor], \"resources-before-build-wave\")\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-driver.py\", line 80, in fresh\n    raise RuntimeError(\"Other-user/unknown-job/resource gate failed: \" + name)\nRuntimeError: Other-user/unknown-job/resource gate failed: resources-before-build-wave\n"
+}

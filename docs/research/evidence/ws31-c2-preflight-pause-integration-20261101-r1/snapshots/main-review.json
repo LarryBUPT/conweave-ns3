@@ -1,0 +1,33 @@
+{
+  "observed_utc": "2026-10-31T23:57:56.437305+00:00",
+  "state": "PREFLIGHT_RESOURCE_GATE_STOP; DRIVER_ABORTED_BEFORE_CORE_BUILD_RUN; SAME_GOAL_RECOVERY_AUTHORIZED_CONDITIONALLY",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "plan_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
+  "network_runs_started": 0,
+  "core_started": false,
+  "builds_started": 0,
+  "unknown_processes_at_stop": [
+    196056,
+    196096
+  ],
+  "later_process_audit": "Both naturally absent at23:56:32Z; no kill performed or authorized, original ownership not inferred",
+  "bundle_sync": "SUCCEEDED exact5060392; initial GitHub fetch timed out after prescribed retry",
+  "source_evidence_sha256": {
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-receipt.json": "d9590a6e7b8efc76164623c8872fecba130255b1cfcb83a79edd36917105a409",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-sync-process-audit.json": "cb60219e3a052e3199ba29483d73c350cdcf004b933f9930303a2a090030abf5",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-driver-error.log": "fcf5e5b6628cde9c7432852b6555eb9fcbff76ffecde2c0650a3f1ec8da5f33f",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\20261101-074000-ws31-c2tag-r1-default\\resources-before-build-wave.json": "225633ddc0c97771a68a18510b51b19e129f9144b68ef62a8de9ec65f00a94e5",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\20261101-074000-ws31-c2tag-r1-default\\guarded-sync.log": "4951eaa8a44b4015d12a1f389f98361f2e7f8b0e58f1e078d194c4272a77303f",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\20261101-074000-ws31-c2tag-r1-default\\guarded-sync-bundle.log": "c75ea32afa5ee78006432e9425171ea09f36134a9ae68862befbdb4ce193dd0b"
+  },
+  "preserved_snapshots": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c2-label-preflight-pause-r1",
+  "recovery_conditions": [
+    "Preserve attempt1 raw evidence and separate attempt2 status/logs",
+    "Reconfirm no five runs/results IDs or live driver/monitor exist",
+    "Verify already synced cache realpath/personal origin/clean/exact commit/fork ref; do not redo network fetch merely to reproduce timeout",
+    "Keep original local pushed/clean, remote guarded build/source/ID/resource gates; no shared worker/controller changes",
+    "Fresh full other-user/unknown-job/resource gate passes; then original five IDs/order/source/input/criteria only",
+    "If gate fails again stop/preserve/report without automatic retry or killing unknown work"
+  ],
+  "scientific_interpretation": "No new-source executable or network result exists; not a C2 correctness failure; required verification remains ACTIVE"
+}

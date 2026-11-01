@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "E:\研\毕业论文\workspace\LarryBUPT-conweave-ns3\docs\research\ws31\independent\c2-label-validation-r1-driver.py", line 372, in <module>
+    main()
+  File "E:\研\毕业论文\workspace\LarryBUPT-conweave-ns3\docs\research\ws31\independent\c2-label-validation-r1-driver.py", line 306, in main
+    fresh = d.fresh(b.state["cells"][cursor], "resources-before-build-wave")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\研\毕业论文\workspace\LarryBUPT-conweave-ns3\docs\research\ws31\independent\main-mode-dynamic-r1-driver.py", line 80, in fresh
+    raise RuntimeError("Other-user/unknown-job/resource gate failed: " + name)
+RuntimeError: Other-user/unknown-job/resource gate failed: resources-before-build-wave
