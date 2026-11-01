@@ -1,0 +1,99 @@
+{
+  "workstream": "WS-31",
+  "stage": "New label source default-off three-mode technical regressions",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "branch": "feature/ws31-candidates",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "prerequisite": "evidence/label-fixture-preflight-main-acceptance-r2.json",
+  "flow_count": 104,
+  "payload_bytes": 201981952,
+  "inputs": {
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+  },
+  "common": {
+    "topo": "leaf_spine_128_100G_OS2",
+    "flow_file": "ws31_correctness_r1.txt",
+    "simul_time": "0.01",
+    "netload": 10,
+    "bw": 100,
+    "buffer": 9,
+    "pfc": 0,
+    "irn": 1,
+    "simulation_seed": 1,
+    "ws30_observe": 2,
+    "max_concurrent": 1,
+    "ws31_label_profile": 0
+  },
+  "cells": [
+    {
+      "id": "20261101-124500-ws31-labeldef-r1-c1",
+      "order": 1,
+      "lb": "ws31-c1",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws31_label_profile": 0,
+      "reference_id": "20261101-071042-ws31-dyn-r1-c1",
+      "reference_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa"
+    },
+    {
+      "id": "20261101-124500-ws31-labeldef-r1-c2",
+      "order": 2,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws31_label_profile": 0,
+      "reference_id": "20261101-074000-ws31-c2tag-r1-default",
+      "reference_sha": "50603927fc09a68d9f2e038129aaee3a3d021081"
+    },
+    {
+      "id": "20261101-124500-ws31-labeldef-r1-c3",
+      "order": 3,
+      "lb": "ws31-c3",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws31_label_profile": 0,
+      "reference_id": "20261101-071042-ws31-dyn-r1-c3",
+      "reference_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa"
+    }
+  ],
+  "build_resources": {
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "min_available_gib": 64,
+    "min_disk_gib": 100,
+    "max_initial_load_1m": 4,
+    "no_other_user_or_unknown_project_jobs": true,
+    "rationale": "Earlier fixed-code3build pilot6cc1plus; new2ed preflight1build2cc1plus accepted. Reuse cap3 only after fresh resources; sampled historical resources are not live gates."
+  },
+  "execution": "Prior target terminal/idle; verify2ed synced cache/personalorigin/ref/tree/clean/newIDs/resources. Reuse verified cache and deployedworker if bytes/canonicalSHA match; all3 newisolated optimized-j2 builds before serialC1,C2,C3. No core/preflight/reference reruns.",
+  "required": [
+    "All104 original identities and201981952B complete once; original demand origins preserved; queue accounting/drop/rejection/path-pinning gates",
+    "Metadata profile0; all actualROUTE labels original; no WS31_LABEL_* observations; oldcomposition/lifecycle/tagtransform/faults off",
+    "FullFCT bytes and orderedCHOICE/ROUTE removeuid only equal fixed reference; actual tag field retained",
+    "Exact dedicated C1scores/states,C2demand/launch/finish/states,C3route/states equal references; main independent mechanism replay",
+    "Record newsource/whole tree/input/config/build/binary/raw/resource and support hashes; sample resources; no build/simulation overlap"
+  ],
+  "stop_conditions": [
+    "Any source/build/run/identity/demand/bytes/queue/path/defaultFCT/event/hash failure stops allremainingcells; preserveID and evidence; main repairs withnewSHA/newID",
+    "Unknownjobs,otheruserwork or resourcepressure pauses newwork; no processkilling/guardbypass",
+    "Any missing required event is a coveragegap, not a performance result; no tuning"
+  ],
+  "prohibited": [
+    "No labelprofiles1/2/3 until separately frozen input/plan",
+    "No oldcore,oldC2cancel,Ofan/RR or reference rerun",
+    "No knownsuccessfulID overwrite,oldcontrollers or matrices"
+  ],
+  "scope": "Default-off network compatibility only; no independent effects/newbaseline or adapter lifecycle acceptance",
+  "main_verifier": "scripts/verify_label_default_raw_r1.py",
+  "remaining": [
+    "Frozen small input with actual early+late packet coverage and actualpartialerror cohorts forprofiles1/2/3",
+    "SwitchNode/RdmaClient lifecycle andexception adapters",
+    "IndependentC1V0 andtwo-sided effects/state/runtime-cost protocols and validation"
+  ]
+}

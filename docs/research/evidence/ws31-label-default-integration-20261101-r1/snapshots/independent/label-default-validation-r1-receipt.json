@@ -1,0 +1,5790 @@
+{
+  "scope": "Default-off network compatibility only; no independent effects/newbaseline or adapter lifecycle acceptance",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "status": "COMPLETE_FOR_THREE_DEFAULT_OFF_NETWORK_REGRESSIONS_ONLY",
+  "cells": [
+    {
+      "id": "20261101-124500-ws31-labeldef-r1-c1",
+      "order": 1,
+      "lb": "ws31-c1",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws31_label_profile": 0,
+      "reference_id": "20261101-071042-ws31-dyn-r1-c1",
+      "reference_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+      "status": "PASS",
+      "ws30_tag_transform": 0,
+      "resource_samples": {
+        "sample_count": 7,
+        "min_sampled_available_gib": 122.32831573486328,
+        "max_sampled_worker_tree_rss_kib": 235372,
+        "claim": "sampled observations only, not exact resource peaks",
+        "sample_path": "/home/fnl/lzy/results/20261101-124500-ws31-labeldef-r1-c1/logs/resource-run-samples.jsonl",
+        "sampling_interval_seconds": 2,
+        "max_sampled_load_1m": 5.74
+      },
+      "source_hashes_verified": 38,
+      "transferred_files_verified": 27,
+      "binary_sha256": "5a404c007597ab2f275f0d65bfbc8ee259478f507cd6e7c1c9af8375a978f4d6",
+      "acceptance": {
+        "status": "PASS",
+        "name": "c1",
+        "all_input_verifier": {
+          "flows": 104,
+          "payload_bytes": 201981952,
+          "all_completed": true,
+          "all_demand_origins_match": true,
+          "c2_timing_rows_checked": 0,
+          "trace_sha256": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+          "fct_sha256": "ffcf9fb5fc8871a70e054f118f552af77d06a0310ad473011f7c70b2399d4123"
+        },
+        "ordered_hashes": {
+          "choice": "c6d7721db4e70da07a5eb203cdeb23b639e7577ebe221377153924e3b4201fd7",
+          "route": "357344c9f8d45ac51a55055c3ebe2daa8b0337c5248f5765fa7d4a0c6ef1ca13",
+          "combined": "239f9084f57289b896b427dde0a956419a6b5705c8d41b17bbe269ee9b34170a",
+          "choice_without_tag": "36c996c9bfa64ad9331f8f859a37be4d8b78c5692ba742806a7e5930e53dd500",
+          "route_without_tag": "f92b9e4540ee7c93cda9f51fea63ef7f89eb090ce2b8bda994c29a0a09abb796",
+          "combined_without_tag": "f20a84aed60d3509918f05d6d45bd0275995af99503adf24985b5f5eb7c177e5"
+        },
+        "observation_counts": {
+          "choice": 208,
+          "route": 606168
+        },
+        "path": {
+          "switch_qps": 312,
+          "data_hops": 606168,
+          "changed_qps": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "full_rows": 606168
+        },
+        "queue": {
+          "enqueued": 671412000,
+          "dequeued": 671412000,
+          "dropped": 0,
+          "current": 0,
+          "admission_dropped_bytes": 0,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "timing": [],
+        "c2_state": [],
+        "packet_tags_per_input_tuple": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              15,
+              79,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              0,
+              64,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              71,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              78,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              85,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              92,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              67,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              74,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              81,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              88,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              95,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              70,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              77,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              84,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              91,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              66,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              80,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              73,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              94,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              87,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              69,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              83,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              76,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              65,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              90,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              72,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              86,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              79,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              68,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              93,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              75,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              89,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              64,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              82,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              78,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              71,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              85,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              67,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              92,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              81,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              74,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              88,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              70,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              95,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              84,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              77,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              91,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              73,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              66,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              80,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              87,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              94,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              69,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              76,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              83,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              90,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              65,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              72,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              79,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              86,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              93,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              68,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              75,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              82,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              89,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              80,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              1,
+              81,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              2,
+              82,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              3,
+              83,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              4,
+              84,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              7,
+              87,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              5,
+              85,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              6,
+              86,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              8,
+              88,
+              10005,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              95,
+              10005,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              70,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              77,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              66,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              73,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              91,
+              10005,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              74,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              64,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              71,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              78,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              85,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              92,
+              10006,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              81,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              84,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              67,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          }
+        ],
+        "original_business_counts": {
+          "1": 24,
+          "2": 80
+        },
+        "original_business_bytes": {
+          "1": 201326592,
+          "2": 655360
+        },
+        "pair_reference_fct": null,
+        "label_normalization": "remove only uid; remove cell additionally removes intentionally changed tag for comparison and independently requires packet tag0"
+      },
+      "regression": {
+        "status": "PASS_DEFAULT_OFF_COMPATIBILITY_ONLY",
+        "reference_id": "20261101-071042-ws31-dyn-r1-c1",
+        "reference_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+        "full_fct_equal": true,
+        "ordered_choice_route_remove_uid_only_equal": true,
+        "tag_field_retained_and_original_truth_checked": true,
+        "dedicated_all_events_and_states": {
+          "sha256": "daf929f4c24280bfe40cd33095a0e7531dae42b5d7d2474810f9836bc6cd0622",
+          "event_counts": {
+            "WS31_C1_CHOICE": 104,
+            "WS31_C1_STATE": 16
+          },
+          "no_active_label_observations": true
+        },
+        "metadata_profile": 0,
+        "no_active_label_observations": true
+      }
+    },
+    {
+      "id": "20261101-124500-ws31-labeldef-r1-c2",
+      "order": 2,
+      "lb": "ws31-c2",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws31_label_profile": 0,
+      "reference_id": "20261101-074000-ws31-c2tag-r1-default",
+      "reference_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+      "status": "PASS",
+      "ws30_tag_transform": 0,
+      "resource_samples": {
+        "max_sampled_worker_tree_rss_kib": 235112,
+        "min_sampled_available_gib": 122.32759475708008,
+        "sample_count": 8,
+        "sample_path": "/home/fnl/lzy/results/20261101-124500-ws31-labeldef-r1-c2/logs/resource-run-samples.jsonl",
+        "max_sampled_load_1m": 3.96,
+        "sampling_interval_seconds": 2,
+        "claim": "sampled observations only, not exact resource peaks"
+      },
+      "source_hashes_verified": 38,
+      "transferred_files_verified": 25,
+      "binary_sha256": "66f4ee1ae0feca4c25c6c183432cc7fc4d0914eaa2a7860da062138f6d0567bc",
+      "acceptance": {
+        "status": "PASS",
+        "name": "c2",
+        "all_input_verifier": {
+          "flows": 104,
+          "payload_bytes": 201981952,
+          "all_completed": true,
+          "all_demand_origins_match": true,
+          "c2_timing_rows_checked": 104,
+          "trace_sha256": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+          "fct_sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf"
+        },
+        "ordered_hashes": {
+          "choice": "db851f248b3cac3b04391d2e406726a0da730e969fef7834ce458cb237600ec5",
+          "route": "e71095603c738b4a6cf9bf5cf3e35c49ab58f905b8e21143e91c8d343f661275",
+          "combined": "73d3a45da2fe72fded0baf2014b24e32ef5f9d7820ba6a7142f0b148c4e88968",
+          "choice_without_tag": "4aa2097dd21ce81b046cfc4c4986c20ad0efe720ee096ca54afd72d1c4de7818",
+          "route_without_tag": "a77cec7e7f0c89a40188558c9f8218ef87d5e61663024243db7ae66f2c486022",
+          "combined_without_tag": "ce6a275f5d340f06128e5e45bd371fc087865da093cf1fde536c509f116027a9"
+        },
+        "observation_counts": {
+          "choice": 312,
+          "route": 606168
+        },
+        "path": {
+          "switch_qps": 312,
+          "data_hops": 606168,
+          "changed_qps": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "full_rows": 606168
+        },
+        "queue": {
+          "enqueued": 671412000,
+          "dequeued": 671412000,
+          "dropped": 0,
+          "current": 0,
+          "admission_dropped_bytes": 0,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "timing": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "flow_id": 0,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2009778720,
+            "size": 8388608
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "flow_id": 1,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2010056719,
+            "size": 8388608
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "flow_id": 2,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2007857616,
+            "size": 8388608
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "flow_id": 3,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2008756285,
+            "size": 8388608
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "flow_id": 4,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2008515736,
+            "size": 8388608
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "flow_id": 5,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2006403070,
+            "size": 8388608
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "flow_id": 6,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2006582081,
+            "size": 8388608
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "flow_id": 7,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2008596393,
+            "size": 8388608
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "flow_id": 8,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2008618192,
+            "size": 8388608
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "flow_id": 9,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2006646563,
+            "size": 8388608
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "flow_id": 10,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2008487066,
+            "size": 8388608
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "flow_id": 11,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2008237078,
+            "size": 8388608
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "flow_id": 12,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2006575774,
+            "size": 8388608
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "flow_id": 13,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2006484665,
+            "size": 8388608
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "flow_id": 14,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2007544791,
+            "size": 8388608
+          },
+          {
+            "key": [
+              15,
+              79,
+              10000,
+              100
+            ],
+            "flow_id": 15,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2004999999,
+            "launch_ns": 2004999999,
+            "finish_ns": 2007733383,
+            "size": 8388608
+          },
+          {
+            "key": [
+              0,
+              64,
+              10001,
+              101
+            ],
+            "flow_id": 16,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 295,
+            "demand_ns": 2005000499,
+            "launch_ns": 2005000794,
+            "finish_ns": 2005014776,
+            "size": 8192
+          },
+          {
+            "key": [
+              1,
+              71,
+              10001,
+              101
+            ],
+            "flow_id": 17,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 232,
+            "demand_ns": 2005000550,
+            "launch_ns": 2005000782,
+            "finish_ns": 2005010690,
+            "size": 8192
+          },
+          {
+            "key": [
+              2,
+              78,
+              10001,
+              101
+            ],
+            "flow_id": 18,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 196,
+            "demand_ns": 2005000599,
+            "launch_ns": 2005000795,
+            "finish_ns": 2005014444,
+            "size": 8192
+          },
+          {
+            "key": [
+              3,
+              85,
+              10001,
+              100
+            ],
+            "flow_id": 19,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 472,
+            "demand_ns": 2005000649,
+            "launch_ns": 2005001121,
+            "finish_ns": 2005015312,
+            "size": 8192
+          },
+          {
+            "key": [
+              4,
+              92,
+              10001,
+              100
+            ],
+            "flow_id": 20,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 337,
+            "demand_ns": 2005000700,
+            "launch_ns": 2005001037,
+            "finish_ns": 2005014297,
+            "size": 8192
+          },
+          {
+            "key": [
+              5,
+              67,
+              10001,
+              101
+            ],
+            "flow_id": 21,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 449,
+            "demand_ns": 2005000750,
+            "launch_ns": 2005001199,
+            "finish_ns": 2005012056,
+            "size": 8192
+          },
+          {
+            "key": [
+              6,
+              74,
+              10001,
+              101
+            ],
+            "flow_id": 22,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 454,
+            "demand_ns": 2005000799,
+            "launch_ns": 2005001253,
+            "finish_ns": 2005015478,
+            "size": 8192
+          },
+          {
+            "key": [
+              7,
+              81,
+              10001,
+              100
+            ],
+            "flow_id": 23,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 428,
+            "demand_ns": 2005000850,
+            "launch_ns": 2005001278,
+            "finish_ns": 2005015874,
+            "size": 8192
+          },
+          {
+            "key": [
+              8,
+              88,
+              10001,
+              100
+            ],
+            "flow_id": 24,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 238,
+            "demand_ns": 2005000900,
+            "launch_ns": 2005001138,
+            "finish_ns": 2005014980,
+            "size": 8192
+          },
+          {
+            "key": [
+              9,
+              95,
+              10001,
+              100
+            ],
+            "flow_id": 25,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 16,
+            "demand_ns": 2005000949,
+            "launch_ns": 2005000965,
+            "finish_ns": 2005014048,
+            "size": 8192
+          },
+          {
+            "key": [
+              10,
+              70,
+              10001,
+              101
+            ],
+            "flow_id": 26,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 181,
+            "demand_ns": 2005001000,
+            "launch_ns": 2005001181,
+            "finish_ns": 2005014731,
+            "size": 8192
+          },
+          {
+            "key": [
+              11,
+              77,
+              10001,
+              101
+            ],
+            "flow_id": 27,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 151,
+            "demand_ns": 2005001050,
+            "launch_ns": 2005001201,
+            "finish_ns": 2005014610,
+            "size": 8192
+          },
+          {
+            "key": [
+              12,
+              84,
+              10001,
+              100
+            ],
+            "flow_id": 28,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 278,
+            "demand_ns": 2005001099,
+            "launch_ns": 2005001377,
+            "finish_ns": 2005015810,
+            "size": 8192
+          },
+          {
+            "key": [
+              13,
+              91,
+              10001,
+              100
+            ],
+            "flow_id": 29,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 293,
+            "demand_ns": 2005001150,
+            "launch_ns": 2005001443,
+            "finish_ns": 2005014418,
+            "size": 8192
+          },
+          {
+            "key": [
+              14,
+              66,
+              10001,
+              101
+            ],
+            "flow_id": 30,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 34,
+            "demand_ns": 2005001200,
+            "launch_ns": 2005001234,
+            "finish_ns": 2005013467,
+            "size": 8192
+          },
+          {
+            "key": [
+              15,
+              73,
+              10001,
+              101
+            ],
+            "flow_id": 31,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 302,
+            "demand_ns": 2005001249,
+            "launch_ns": 2005001551,
+            "finish_ns": 2005015938,
+            "size": 8192
+          },
+          {
+            "key": [
+              0,
+              80,
+              10002,
+              100
+            ],
+            "flow_id": 32,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 138,
+            "demand_ns": 2005001299,
+            "launch_ns": 2005001437,
+            "finish_ns": 2005015931,
+            "size": 8192
+          },
+          {
+            "key": [
+              1,
+              87,
+              10002,
+              100
+            ],
+            "flow_id": 33,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 442,
+            "demand_ns": 2005001350,
+            "launch_ns": 2005001792,
+            "finish_ns": 2005013512,
+            "size": 8192
+          },
+          {
+            "key": [
+              2,
+              94,
+              10002,
+              100
+            ],
+            "flow_id": 34,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 59,
+            "demand_ns": 2005001399,
+            "launch_ns": 2005001458,
+            "finish_ns": 2005016576,
+            "size": 8192
+          },
+          {
+            "key": [
+              3,
+              69,
+              10002,
+              101
+            ],
+            "flow_id": 35,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 497,
+            "demand_ns": 2005001449,
+            "launch_ns": 2005001946,
+            "finish_ns": 2005017761,
+            "size": 8192
+          },
+          {
+            "key": [
+              4,
+              76,
+              10002,
+              101
+            ],
+            "flow_id": 36,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 56,
+            "demand_ns": 2005001500,
+            "launch_ns": 2005001556,
+            "finish_ns": 2005017010,
+            "size": 8192
+          },
+          {
+            "key": [
+              5,
+              83,
+              10002,
+              100
+            ],
+            "flow_id": 37,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 82,
+            "demand_ns": 2005001549,
+            "launch_ns": 2005001631,
+            "finish_ns": 2005017323,
+            "size": 8192
+          },
+          {
+            "key": [
+              6,
+              90,
+              10002,
+              100
+            ],
+            "flow_id": 38,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 297,
+            "demand_ns": 2005001599,
+            "launch_ns": 2005001896,
+            "finish_ns": 2005013939,
+            "size": 8192
+          },
+          {
+            "key": [
+              7,
+              65,
+              10002,
+              101
+            ],
+            "flow_id": 39,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 227,
+            "demand_ns": 2005001650,
+            "launch_ns": 2005001877,
+            "finish_ns": 2005017885,
+            "size": 8192
+          },
+          {
+            "key": [
+              8,
+              72,
+              10002,
+              101
+            ],
+            "flow_id": 40,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 154,
+            "demand_ns": 2005001700,
+            "launch_ns": 2005001854,
+            "finish_ns": 2005017508,
+            "size": 8192
+          },
+          {
+            "key": [
+              9,
+              79,
+              10002,
+              101
+            ],
+            "flow_id": 41,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 413,
+            "demand_ns": 2005001749,
+            "launch_ns": 2005002162,
+            "finish_ns": 2005017648,
+            "size": 8192
+          },
+          {
+            "key": [
+              10,
+              86,
+              10002,
+              100
+            ],
+            "flow_id": 42,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 131,
+            "demand_ns": 2005001800,
+            "launch_ns": 2005001931,
+            "finish_ns": 2005017629,
+            "size": 8192
+          },
+          {
+            "key": [
+              11,
+              93,
+              10002,
+              100
+            ],
+            "flow_id": 43,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 323,
+            "demand_ns": 2005001850,
+            "launch_ns": 2005002173,
+            "finish_ns": 2005015893,
+            "size": 8192
+          },
+          {
+            "key": [
+              12,
+              68,
+              10002,
+              101
+            ],
+            "flow_id": 44,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 195,
+            "demand_ns": 2005001899,
+            "launch_ns": 2005002094,
+            "finish_ns": 2005017387,
+            "size": 8192
+          },
+          {
+            "key": [
+              13,
+              75,
+              10002,
+              101
+            ],
+            "flow_id": 45,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 395,
+            "demand_ns": 2005001950,
+            "launch_ns": 2005002345,
+            "finish_ns": 2005018134,
+            "size": 8192
+          },
+          {
+            "key": [
+              14,
+              82,
+              10002,
+              100
+            ],
+            "flow_id": 46,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 214,
+            "demand_ns": 2005002000,
+            "launch_ns": 2005002214,
+            "finish_ns": 2005017546,
+            "size": 8192
+          },
+          {
+            "key": [
+              15,
+              89,
+              10002,
+              100
+            ],
+            "flow_id": 47,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 297,
+            "demand_ns": 2005002049,
+            "launch_ns": 2005002346,
+            "finish_ns": 2005017655,
+            "size": 8192
+          },
+          {
+            "key": [
+              0,
+              64,
+              10003,
+              102
+            ],
+            "flow_id": 48,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 125,
+            "demand_ns": 2005002100,
+            "launch_ns": 2005002225,
+            "finish_ns": 2005016455,
+            "size": 8192
+          },
+          {
+            "key": [
+              1,
+              71,
+              10003,
+              102
+            ],
+            "flow_id": 49,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 114,
+            "demand_ns": 2005002150,
+            "launch_ns": 2005002264,
+            "finish_ns": 2005018165,
+            "size": 8192
+          },
+          {
+            "key": [
+              2,
+              78,
+              10003,
+              102
+            ],
+            "flow_id": 50,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 195,
+            "demand_ns": 2005002199,
+            "launch_ns": 2005002394,
+            "finish_ns": 2005014591,
+            "size": 8192
+          },
+          {
+            "key": [
+              3,
+              85,
+              10003,
+              101
+            ],
+            "flow_id": 51,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 53,
+            "demand_ns": 2005002249,
+            "launch_ns": 2005002302,
+            "finish_ns": 2005018376,
+            "size": 8192
+          },
+          {
+            "key": [
+              4,
+              92,
+              10003,
+              101
+            ],
+            "flow_id": 52,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 18,
+            "demand_ns": 2005002300,
+            "launch_ns": 2005002318,
+            "finish_ns": 2005018964,
+            "size": 8192
+          },
+          {
+            "key": [
+              5,
+              67,
+              10003,
+              102
+            ],
+            "flow_id": 53,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 273,
+            "demand_ns": 2005002349,
+            "launch_ns": 2005002622,
+            "finish_ns": 2005018765,
+            "size": 8192
+          },
+          {
+            "key": [
+              6,
+              74,
+              10003,
+              102
+            ],
+            "flow_id": 54,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 34,
+            "demand_ns": 2005002399,
+            "launch_ns": 2005002433,
+            "finish_ns": 2005017802,
+            "size": 8192
+          },
+          {
+            "key": [
+              7,
+              81,
+              10003,
+              101
+            ],
+            "flow_id": 55,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 48,
+            "demand_ns": 2005002450,
+            "launch_ns": 2005002498,
+            "finish_ns": 2005019033,
+            "size": 8192
+          },
+          {
+            "key": [
+              8,
+              88,
+              10003,
+              101
+            ],
+            "flow_id": 56,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 338,
+            "demand_ns": 2005002499,
+            "launch_ns": 2005002837,
+            "finish_ns": 2005019014,
+            "size": 8192
+          },
+          {
+            "key": [
+              9,
+              95,
+              10003,
+              101
+            ],
+            "flow_id": 57,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 107,
+            "demand_ns": 2005002549,
+            "launch_ns": 2005002656,
+            "finish_ns": 2005019002,
+            "size": 8192
+          },
+          {
+            "key": [
+              10,
+              70,
+              10003,
+              102
+            ],
+            "flow_id": 58,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 240,
+            "demand_ns": 2005002600,
+            "launch_ns": 2005002840,
+            "finish_ns": 2005018753,
+            "size": 8192
+          },
+          {
+            "key": [
+              11,
+              77,
+              10003,
+              102
+            ],
+            "flow_id": 59,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 440,
+            "demand_ns": 2005002650,
+            "launch_ns": 2005003090,
+            "finish_ns": 2005016007,
+            "size": 8192
+          },
+          {
+            "key": [
+              12,
+              84,
+              10003,
+              101
+            ],
+            "flow_id": 60,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 348,
+            "demand_ns": 2005002699,
+            "launch_ns": 2005003047,
+            "finish_ns": 2005019021,
+            "size": 8192
+          },
+          {
+            "key": [
+              13,
+              91,
+              10003,
+              101
+            ],
+            "flow_id": 61,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 445,
+            "demand_ns": 2005002750,
+            "launch_ns": 2005003195,
+            "finish_ns": 2005019998,
+            "size": 8192
+          },
+          {
+            "key": [
+              14,
+              66,
+              10003,
+              102
+            ],
+            "flow_id": 62,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 239,
+            "demand_ns": 2005002800,
+            "launch_ns": 2005003039,
+            "finish_ns": 2005015803,
+            "size": 8192
+          },
+          {
+            "key": [
+              15,
+              73,
+              10003,
+              102
+            ],
+            "flow_id": 63,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 44,
+            "demand_ns": 2005002849,
+            "launch_ns": 2005002893,
+            "finish_ns": 2005020266,
+            "size": 8192
+          },
+          {
+            "key": [
+              0,
+              80,
+              10004,
+              101
+            ],
+            "flow_id": 64,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 387,
+            "demand_ns": 2005002900,
+            "launch_ns": 2005003287,
+            "finish_ns": 2005019685,
+            "size": 8192
+          },
+          {
+            "key": [
+              1,
+              87,
+              10004,
+              101
+            ],
+            "flow_id": 65,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 336,
+            "demand_ns": 2005002950,
+            "launch_ns": 2005003286,
+            "finish_ns": 2005019123,
+            "size": 8192
+          },
+          {
+            "key": [
+              2,
+              94,
+              10004,
+              101
+            ],
+            "flow_id": 66,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 141,
+            "demand_ns": 2005002999,
+            "launch_ns": 2005003140,
+            "finish_ns": 2005019078,
+            "size": 8192
+          },
+          {
+            "key": [
+              3,
+              69,
+              10004,
+              102
+            ],
+            "flow_id": 67,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 52,
+            "demand_ns": 2005003050,
+            "launch_ns": 2005003102,
+            "finish_ns": 2005015822,
+            "size": 8192
+          },
+          {
+            "key": [
+              4,
+              76,
+              10004,
+              102
+            ],
+            "flow_id": 68,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 307,
+            "demand_ns": 2005003100,
+            "launch_ns": 2005003407,
+            "finish_ns": 2005019218,
+            "size": 8192
+          },
+          {
+            "key": [
+              5,
+              83,
+              10004,
+              101
+            ],
+            "flow_id": 69,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 284,
+            "demand_ns": 2005003149,
+            "launch_ns": 2005003433,
+            "finish_ns": 2005019704,
+            "size": 8192
+          },
+          {
+            "key": [
+              6,
+              90,
+              10004,
+              101
+            ],
+            "flow_id": 70,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 386,
+            "demand_ns": 2005003199,
+            "launch_ns": 2005003585,
+            "finish_ns": 2005019889,
+            "size": 8192
+          },
+          {
+            "key": [
+              7,
+              65,
+              10004,
+              102
+            ],
+            "flow_id": 71,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 31,
+            "demand_ns": 2005003250,
+            "launch_ns": 2005003281,
+            "finish_ns": 2005018900,
+            "size": 8192
+          },
+          {
+            "key": [
+              8,
+              72,
+              10004,
+              102
+            ],
+            "flow_id": 72,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 365,
+            "demand_ns": 2005003299,
+            "launch_ns": 2005003664,
+            "finish_ns": 2005016059,
+            "size": 8192
+          },
+          {
+            "key": [
+              9,
+              79,
+              10004,
+              102
+            ],
+            "flow_id": 73,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 166,
+            "demand_ns": 2005003349,
+            "launch_ns": 2005003515,
+            "finish_ns": 2005020206,
+            "size": 8192
+          },
+          {
+            "key": [
+              10,
+              86,
+              10004,
+              101
+            ],
+            "flow_id": 74,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 115,
+            "demand_ns": 2005003400,
+            "launch_ns": 2005003515,
+            "finish_ns": 2005016135,
+            "size": 8192
+          },
+          {
+            "key": [
+              11,
+              93,
+              10004,
+              101
+            ],
+            "flow_id": 75,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 11,
+            "demand_ns": 2005003449,
+            "launch_ns": 2005003460,
+            "finish_ns": 2005020010,
+            "size": 8192
+          },
+          {
+            "key": [
+              12,
+              68,
+              10004,
+              102
+            ],
+            "flow_id": 76,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 326,
+            "demand_ns": 2005003499,
+            "launch_ns": 2005003825,
+            "finish_ns": 2005020968,
+            "size": 8192
+          },
+          {
+            "key": [
+              13,
+              75,
+              10004,
+              102
+            ],
+            "flow_id": 77,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 119,
+            "demand_ns": 2005003550,
+            "launch_ns": 2005003669,
+            "finish_ns": 2005020987,
+            "size": 8192
+          },
+          {
+            "key": [
+              14,
+              82,
+              10004,
+              101
+            ],
+            "flow_id": 78,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 345,
+            "demand_ns": 2005003600,
+            "launch_ns": 2005003945,
+            "finish_ns": 2005020515,
+            "size": 8192
+          },
+          {
+            "key": [
+              15,
+              89,
+              10004,
+              101
+            ],
+            "flow_id": 79,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 6,
+            "demand_ns": 2005003649,
+            "launch_ns": 2005003655,
+            "finish_ns": 2005020923,
+            "size": 8192
+          },
+          {
+            "key": [
+              0,
+              80,
+              10005,
+              102
+            ],
+            "flow_id": 80,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2005034999,
+            "launch_ns": 2005034999,
+            "finish_ns": 2006371343,
+            "size": 8388608
+          },
+          {
+            "key": [
+              1,
+              81,
+              10005,
+              102
+            ],
+            "flow_id": 81,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2005034999,
+            "launch_ns": 2005034999,
+            "finish_ns": 2007499767,
+            "size": 8388608
+          },
+          {
+            "key": [
+              2,
+              82,
+              10005,
+              102
+            ],
+            "flow_id": 82,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2005034999,
+            "launch_ns": 2005034999,
+            "finish_ns": 2010386125,
+            "size": 8388608
+          },
+          {
+            "key": [
+              3,
+              83,
+              10005,
+              102
+            ],
+            "flow_id": 83,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2005034999,
+            "launch_ns": 2005034999,
+            "finish_ns": 2010427482,
+            "size": 8388608
+          },
+          {
+            "key": [
+              4,
+              84,
+              10005,
+              102
+            ],
+            "flow_id": 84,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2005034999,
+            "launch_ns": 2005034999,
+            "finish_ns": 2010043894,
+            "size": 8388608
+          },
+          {
+            "key": [
+              5,
+              85,
+              10005,
+              102
+            ],
+            "flow_id": 85,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2005034999,
+            "launch_ns": 2005034999,
+            "finish_ns": 2006417263,
+            "size": 8388608
+          },
+          {
+            "key": [
+              6,
+              86,
+              10005,
+              102
+            ],
+            "flow_id": 86,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2005034999,
+            "launch_ns": 2005034999,
+            "finish_ns": 2009989405,
+            "size": 8388608
+          },
+          {
+            "key": [
+              7,
+              87,
+              10005,
+              102
+            ],
+            "flow_id": 87,
+            "business_tag": 1,
+            "policy_tag": 1,
+            "tag_transform": 0,
+            "wait_ns": 0,
+            "demand_ns": 2005034999,
+            "launch_ns": 2005034999,
+            "finish_ns": 2007364880,
+            "size": 8388608
+          },
+          {
+            "key": [
+              0,
+              64,
+              10006,
+              103
+            ],
+            "flow_id": 88,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 10,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040010,
+            "finish_ns": 2005056293,
+            "size": 8192
+          },
+          {
+            "key": [
+              1,
+              71,
+              10006,
+              103
+            ],
+            "flow_id": 89,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 274,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040274,
+            "finish_ns": 2005057225,
+            "size": 8192
+          },
+          {
+            "key": [
+              2,
+              78,
+              10006,
+              103
+            ],
+            "flow_id": 90,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 32,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040032,
+            "finish_ns": 2005060201,
+            "size": 8192
+          },
+          {
+            "key": [
+              3,
+              85,
+              10006,
+              103
+            ],
+            "flow_id": 91,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 302,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040302,
+            "finish_ns": 2005060626,
+            "size": 8192
+          },
+          {
+            "key": [
+              4,
+              92,
+              10006,
+              102
+            ],
+            "flow_id": 92,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 107,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040107,
+            "finish_ns": 2005060699,
+            "size": 8192
+          },
+          {
+            "key": [
+              5,
+              67,
+              10006,
+              103
+            ],
+            "flow_id": 93,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 448,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040448,
+            "finish_ns": 2005061714,
+            "size": 8192
+          },
+          {
+            "key": [
+              6,
+              74,
+              10006,
+              103
+            ],
+            "flow_id": 94,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 205,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040205,
+            "finish_ns": 2005064256,
+            "size": 8192
+          },
+          {
+            "key": [
+              7,
+              81,
+              10006,
+              103
+            ],
+            "flow_id": 95,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 122,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040122,
+            "finish_ns": 2005050274,
+            "size": 8192
+          },
+          {
+            "key": [
+              8,
+              88,
+              10005,
+              102
+            ],
+            "flow_id": 96,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 163,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040163,
+            "finish_ns": 2005049674,
+            "size": 8192
+          },
+          {
+            "key": [
+              9,
+              95,
+              10005,
+              102
+            ],
+            "flow_id": 97,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 404,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040404,
+            "finish_ns": 2005061012,
+            "size": 8192
+          },
+          {
+            "key": [
+              10,
+              70,
+              10005,
+              103
+            ],
+            "flow_id": 98,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 10,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040010,
+            "finish_ns": 2005065883,
+            "size": 8192
+          },
+          {
+            "key": [
+              11,
+              77,
+              10005,
+              103
+            ],
+            "flow_id": 99,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 95,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040095,
+            "finish_ns": 2005055183,
+            "size": 8192
+          },
+          {
+            "key": [
+              12,
+              84,
+              10005,
+              103
+            ],
+            "flow_id": 100,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 385,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040385,
+            "finish_ns": 2005063170,
+            "size": 8192
+          },
+          {
+            "key": [
+              13,
+              91,
+              10005,
+              102
+            ],
+            "flow_id": 101,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 150,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040150,
+            "finish_ns": 2005059420,
+            "size": 8192
+          },
+          {
+            "key": [
+              14,
+              66,
+              10005,
+              103
+            ],
+            "flow_id": 102,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 155,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040155,
+            "finish_ns": 2005059759,
+            "size": 8192
+          },
+          {
+            "key": [
+              15,
+              73,
+              10005,
+              103
+            ],
+            "flow_id": 103,
+            "business_tag": 2,
+            "policy_tag": 2,
+            "tag_transform": 0,
+            "wait_ns": 426,
+            "demand_ns": 2005040000,
+            "launch_ns": 2005040426,
+            "finish_ns": 2005059767,
+            "size": 8192
+          }
+        ],
+        "c2_state": [
+          {
+            "demanded": 104,
+            "launched": 104,
+            "cancelled": 0,
+            "finished": 104,
+            "pending": 0,
+            "unfinished": 0,
+            "demand_bytes": 201981952,
+            "launch_bytes": 201981952,
+            "cancel_bytes": 0,
+            "finish_bytes": 201981952,
+            "waited": 80,
+            "delay_sum_ns": 18002,
+            "delay_max_ns": 497,
+            "frozen_max_ns": 500
+          }
+        ],
+        "packet_tags_per_input_tuple": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              15,
+              79,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              0,
+              64,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              71,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              78,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              95,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              92,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              85,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              88,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              67,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              70,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              77,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              66,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              74,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              81,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              84,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              91,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              80,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              94,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              73,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              76,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              83,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              87,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              90,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              65,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              72,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              86,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              69,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              68,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              79,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              93,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              82,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              64,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              78,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              85,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              75,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              71,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              92,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              74,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              89,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              95,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              67,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              81,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              88,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              70,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              73,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              77,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              66,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              84,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              94,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              69,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              91,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              76,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              65,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              87,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              80,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              93,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              86,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              75,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              83,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              89,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              79,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              72,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              90,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              82,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              68,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              80,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              1,
+              81,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              2,
+              82,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              3,
+              83,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              4,
+              84,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              7,
+              87,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              5,
+              85,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              6,
+              86,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              10,
+              70,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              64,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              78,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              77,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              92,
+              10006,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              81,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              91,
+              10005,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              66,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              88,
+              10005,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              74,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              71,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              85,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              95,
+              10005,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              73,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              67,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              84,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          }
+        ],
+        "original_business_counts": {
+          "1": 24,
+          "2": 80
+        },
+        "original_business_bytes": {
+          "1": 201326592,
+          "2": 655360
+        },
+        "pair_reference_fct": null,
+        "label_normalization": "remove only uid; remove cell additionally removes intentionally changed tag for comparison and independently requires packet tag0"
+      },
+      "regression": {
+        "status": "PASS_DEFAULT_OFF_COMPATIBILITY_ONLY",
+        "reference_id": "20261101-074000-ws31-c2tag-r1-default",
+        "reference_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+        "full_fct_equal": true,
+        "ordered_choice_route_remove_uid_only_equal": true,
+        "tag_field_retained_and_original_truth_checked": true,
+        "dedicated_all_events_and_states": {
+          "sha256": "498728b528f84e4278b274c6328321885044f978c8821e5c958d1a8a405de94f",
+          "event_counts": {
+            "WS31_C2_DEMAND": 104,
+            "WS31_C2_LAUNCH": 104,
+            "WS31_C2_FINISH": 104,
+            "WS31_C2_STATE": 1
+          },
+          "no_active_label_observations": true
+        },
+        "metadata_profile": 0,
+        "no_active_label_observations": true
+      }
+    },
+    {
+      "id": "20261101-124500-ws31-labeldef-r1-c3",
+      "order": 3,
+      "lb": "ws31-c3",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws31_label_profile": 0,
+      "reference_id": "20261101-071042-ws31-dyn-r1-c3",
+      "reference_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+      "status": "PASS",
+      "ws30_tag_transform": 0,
+      "resource_samples": {
+        "sample_path": "/home/fnl/lzy/results/20261101-124500-ws31-labeldef-r1-c3/logs/resource-run-samples.jsonl",
+        "min_sampled_available_gib": 122.33005905151367,
+        "max_sampled_worker_tree_rss_kib": 235288,
+        "max_sampled_load_1m": 2.67,
+        "sample_count": 7,
+        "sampling_interval_seconds": 2,
+        "claim": "sampled observations only, not exact resource peaks"
+      },
+      "source_hashes_verified": 38,
+      "transferred_files_verified": 25,
+      "binary_sha256": "1eb35e33bb2d1d0250f84766271d8fea0df66870bbd3aa06455bcccacf5b0d15",
+      "acceptance": {
+        "status": "PASS",
+        "name": "c3",
+        "all_input_verifier": {
+          "flows": 104,
+          "payload_bytes": 201981952,
+          "all_completed": true,
+          "all_demand_origins_match": true,
+          "c2_timing_rows_checked": 0,
+          "trace_sha256": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+          "fct_sha256": "9d18a19b0c7907564ec040574618338b427f414496d603177b5fcd03ed20563c"
+        },
+        "ordered_hashes": {
+          "choice": "ef366e74a8da308fc7554e7ae54705dd292ca8c0a8bc8527486797a4fd86f6b9",
+          "route": "c8c2687ed93cdf25c5fa1702789a3cd44ee82ab803b54a735723b0c046b2ae7c",
+          "combined": "24682aeb3f9218978e6fa7fe65e62297d45ed20d8f398bc10233dfbe6fcdc3a6",
+          "choice_without_tag": "88fb3cca222103f1a92f1f2205135a32558a6fdcffda29cf3acea8dbaec44fee",
+          "route_without_tag": "83151581c0a8a376056a995c1b6f2dd9357a0b8c20142664e9879f40604b7195",
+          "combined_without_tag": "b0a7946a978494af4e996f763921c951329972ff1ad2ac00d3b5986a2c4ffb0b"
+        },
+        "observation_counts": {
+          "choice": 208,
+          "route": 606168
+        },
+        "path": {
+          "switch_qps": 312,
+          "data_hops": 606168,
+          "changed_qps": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "full_rows": 606168
+        },
+        "queue": {
+          "enqueued": 671412000,
+          "dequeued": 671412000,
+          "dropped": 0,
+          "current": 0,
+          "admission_dropped_bytes": 0,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "timing": [],
+        "c2_state": [],
+        "packet_tags_per_input_tuple": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              15,
+              79,
+              10000,
+              100
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              0,
+              64,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              71,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              78,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              85,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              92,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              67,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              74,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              81,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              88,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              95,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              70,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              77,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              84,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              91,
+              10001,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              66,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              80,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              73,
+              10001,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              94,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              87,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              69,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              83,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              76,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              65,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              90,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              72,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              86,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              79,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              68,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              93,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              75,
+              10002,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              89,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              64,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              82,
+              10002,
+              100
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              78,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              71,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              85,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              67,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              92,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              81,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              74,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              88,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              70,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              95,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              84,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              77,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              91,
+              10003,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              73,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              66,
+              10003,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              80,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              87,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              94,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              69,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              76,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              83,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              90,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              65,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              8,
+              72,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              79,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              86,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              93,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              68,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              75,
+              10004,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              82,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              89,
+              10004,
+              101
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              80,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              2,
+              82,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              3,
+              83,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              4,
+              84,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              5,
+              85,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              7,
+              87,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              6,
+              86,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              1,
+              81,
+              10005,
+              102
+            ],
+            "tags": [
+              1
+            ]
+          },
+          {
+            "key": [
+              8,
+              88,
+              10005,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              10,
+              70,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              11,
+              77,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              13,
+              91,
+              10005,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              14,
+              66,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              12,
+              84,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              9,
+              95,
+              10005,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              0,
+              64,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              2,
+              78,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              3,
+              85,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              4,
+              92,
+              10006,
+              102
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              5,
+              67,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              15,
+              73,
+              10005,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              7,
+              81,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              6,
+              74,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          },
+          {
+            "key": [
+              1,
+              71,
+              10006,
+              103
+            ],
+            "tags": [
+              2
+            ]
+          }
+        ],
+        "original_business_counts": {
+          "1": 24,
+          "2": 80
+        },
+        "original_business_bytes": {
+          "1": 201326592,
+          "2": 655360
+        },
+        "pair_reference_fct": null,
+        "label_normalization": "remove only uid; remove cell additionally removes intentionally changed tag for comparison and independently requires packet tag0"
+      },
+      "regression": {
+        "status": "PASS_DEFAULT_OFF_COMPATIBILITY_ONLY",
+        "reference_id": "20261101-071042-ws31-dyn-r1-c3",
+        "reference_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+        "full_fct_equal": true,
+        "ordered_choice_route_remove_uid_only_equal": true,
+        "tag_field_retained_and_original_truth_checked": true,
+        "dedicated_all_events_and_states": {
+          "sha256": "f2452c52289e1a38d3cc610ac03f3dbd1bd94ad4cd21acfe9dfd97372228a353",
+          "event_counts": {
+            "WS31_C3_ROUTE": 650,
+            "WS31_C3_STATE": 16
+          },
+          "no_active_label_observations": true
+        },
+        "metadata_profile": 0,
+        "no_active_label_observations": true
+      }
+    }
+  ],
+  "commands": [
+    {
+      "cell": "20261101-124500-ws31-labeldef-r1-c1",
+      "operation": "guarded-build",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "build",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+        "--id",
+        "20261101-124500-ws31-labeldef-r1-c1",
+        "--source-sha",
+        "2ed7d342d0713a5667f43c7730ca5bc5a6a67150"
+      ],
+      "start_utc": "2026-11-01T04:34:14.632481+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c1\\guarded-build.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:41:11.356168+00:00"
+    },
+    {
+      "cell": "20261101-124500-ws31-labeldef-r1-c2",
+      "operation": "guarded-build",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "build",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+        "--id",
+        "20261101-124500-ws31-labeldef-r1-c2",
+        "--source-sha",
+        "2ed7d342d0713a5667f43c7730ca5bc5a6a67150"
+      ],
+      "start_utc": "2026-11-01T04:34:14.633481+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c2\\guarded-build.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:41:10.384687+00:00"
+    },
+    {
+      "cell": "20261101-124500-ws31-labeldef-r1-c3",
+      "operation": "guarded-build",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "build",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+        "--id",
+        "20261101-124500-ws31-labeldef-r1-c3",
+        "--source-sha",
+        "2ed7d342d0713a5667f43c7730ca5bc5a6a67150"
+      ],
+      "start_utc": "2026-11-01T04:34:14.634481+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c3\\guarded-build.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:41:10.331418+00:00"
+    },
+    {
+      "cell": "20261101-124500-ws31-labeldef-r1-c1",
+      "operation": "guarded-run",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "run",
+        "20261101-124500-ws31-labeldef-r1-c1",
+        "--lb",
+        "ws31-c1",
+        "--ws30-tag-transform",
+        "0",
+        "--topo",
+        "leaf_spine_128_100G_OS2",
+        "--flow-file",
+        "ws31_correctness_r1.txt",
+        "--simul-time",
+        "0.01",
+        "--netload",
+        "10",
+        "--bw",
+        "100",
+        "--buffer",
+        "9",
+        "--pfc",
+        "0",
+        "--irn",
+        "1",
+        "--simulation-seed",
+        "1",
+        "--ws30-observe",
+        "2",
+        "--max-concurrent",
+        "1",
+        "--ws31-label-profile",
+        "0"
+      ],
+      "start_utc": "2026-11-01T04:41:15.896017+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c1\\guarded-run.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:41:16.573575+00:00"
+    },
+    {
+      "cell": "20261101-124500-ws31-labeldef-r1-c1",
+      "operation": "all-input-verifier",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-verifier.py",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c1\\results\\config\\traffic_trace.txt",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c1\\results\\raw\\760193802\\760193802_out_fct.txt",
+        "--log",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c1\\results\\raw\\760193802\\config.log"
+      ],
+      "start_utc": "2026-11-01T04:41:37.810493+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c1\\all-input-verifier.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:41:37.994750+00:00"
+    },
+    {
+      "cell": "20261101-124500-ws31-labeldef-r1-c2",
+      "operation": "guarded-run",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "run",
+        "20261101-124500-ws31-labeldef-r1-c2",
+        "--lb",
+        "ws31-c2",
+        "--ws30-tag-transform",
+        "0",
+        "--topo",
+        "leaf_spine_128_100G_OS2",
+        "--flow-file",
+        "ws31_correctness_r1.txt",
+        "--simul-time",
+        "0.01",
+        "--netload",
+        "10",
+        "--bw",
+        "100",
+        "--buffer",
+        "9",
+        "--pfc",
+        "0",
+        "--irn",
+        "1",
+        "--simulation-seed",
+        "1",
+        "--ws30-observe",
+        "2",
+        "--max-concurrent",
+        "1",
+        "--ws31-label-profile",
+        "0"
+      ],
+      "start_utc": "2026-11-01T04:41:42.754426+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c2\\guarded-run.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:41:43.439819+00:00"
+    },
+    {
+      "cell": "20261101-124500-ws31-labeldef-r1-c2",
+      "operation": "all-input-verifier",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-verifier.py",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c2\\results\\config\\traffic_trace.txt",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c2\\results\\raw\\490023905\\490023905_out_fct.txt",
+        "--log",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c2\\results\\raw\\490023905\\config.log"
+      ],
+      "start_utc": "2026-11-01T04:42:06.405995+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c2\\all-input-verifier.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:42:06.601055+00:00"
+    },
+    {
+      "cell": "20261101-124500-ws31-labeldef-r1-c3",
+      "operation": "guarded-run",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "run",
+        "20261101-124500-ws31-labeldef-r1-c3",
+        "--lb",
+        "ws31-c3",
+        "--ws30-tag-transform",
+        "0",
+        "--topo",
+        "leaf_spine_128_100G_OS2",
+        "--flow-file",
+        "ws31_correctness_r1.txt",
+        "--simul-time",
+        "0.01",
+        "--netload",
+        "10",
+        "--bw",
+        "100",
+        "--buffer",
+        "9",
+        "--pfc",
+        "0",
+        "--irn",
+        "1",
+        "--simulation-seed",
+        "1",
+        "--ws30-observe",
+        "2",
+        "--max-concurrent",
+        "1",
+        "--ws31-label-profile",
+        "0"
+      ],
+      "start_utc": "2026-11-01T04:42:11.377232+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c3\\guarded-run.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:42:12.074708+00:00"
+    },
+    {
+      "cell": "20261101-124500-ws31-labeldef-r1-c3",
+      "operation": "all-input-verifier",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-verifier.py",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c3\\results\\config\\traffic_trace.txt",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c3\\results\\raw\\954442770\\954442770_out_fct.txt",
+        "--log",
+        "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c3\\results\\raw\\954442770\\config.log"
+      ],
+      "start_utc": "2026-11-01T04:42:33.618659+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c3\\all-input-verifier.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:42:33.806409+00:00"
+    }
+  ],
+  "network_runs_started": 3,
+  "core_tests_executed": 0,
+  "sync_commands": 0,
+  "deploy_commands": 0,
+  "plan_sha256": "a81e95af15bba097c8ce900348c260a58c8b2a10416b204380c217331f1d7b4e",
+  "updated_utc": "2026-11-01T04:42:38.429381+00:00",
+  "deployed_worker_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+  "build_parallelism": 3,
+  "max_compile_jobs": 6,
+  "build_resource_samples": {
+    "other_user_seen": false,
+    "sample_count": 83,
+    "min_sampled_available_gib": 120.9086685180664,
+    "max_sampled_building_metadata_count": 3,
+    "interval_seconds": 5,
+    "max_sampled_build_tree_rss_kib": 1837652,
+    "unknown_project_seen": false,
+    "max_sampled_load_1m": 6.23,
+    "max_sampled_cc1plus_count": 6,
+    "claim": "sampled maxima/minima, not exact peaks",
+    "min_sampled_free_gib": 2317.8415565490723
+  },
+  "all_builds_verified_before_runs": true,
+  "entry_env_guard": "RELEASED all3 guarded run calls started"
+}

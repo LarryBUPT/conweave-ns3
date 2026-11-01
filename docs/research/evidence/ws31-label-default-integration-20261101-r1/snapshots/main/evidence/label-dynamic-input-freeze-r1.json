@@ -1,0 +1,156 @@
+{
+  "recorded_utc": "2026-11-01T04:58:12.730163+00:00",
+  "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "parent_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "changes": [
+    "config/ws31_labels_r1.txt",
+    "scripts/ws31_label_inputs.py"
+  ],
+  "unchanged_already_accepted_source_map_objects": 38,
+  "engineering_gate": "Inherited only for exactly unchanged code objects; fresh isolated builds required for each new network ID, no oldcore repeats",
+  "manifest": {
+    "scope": "Synthetic label correctness only; no error-rate or efficacy claim",
+    "file": "ws31_labels_r1.txt",
+    "sha256": "c4aba985af44a88304ae3e1abe42dbadb7c84c01d0c11ada0ab996d58cd3225a",
+    "flows": 15,
+    "payload_bytes": 245760,
+    "cohorts": [
+      {
+        "src": 0,
+        "dst": 64,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 1,
+        "dst": 65,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 0,
+        "swapped": true
+      },
+      {
+        "src": 2,
+        "dst": 66,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 3,
+        "dst": 67,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 2,
+        "swapped": false
+      },
+      {
+        "src": 4,
+        "dst": 68,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 2,
+        "swapped": false
+      },
+      {
+        "src": 5,
+        "dst": 69,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 2,
+        "swapped": false
+      },
+      {
+        "src": 6,
+        "dst": 70,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 7,
+        "dst": 71,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 0,
+        "swapped": true
+      },
+      {
+        "src": 8,
+        "dst": 72,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 3,
+        "swapped": false
+      },
+      {
+        "src": 9,
+        "dst": 73,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 10,
+        "dst": 74,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 3,
+        "swapped": false
+      },
+      {
+        "src": 11,
+        "dst": 75,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 3,
+        "swapped": false
+      },
+      {
+        "src": 12,
+        "dst": 76,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 0,
+        "bucket": 2,
+        "swapped": false
+      },
+      {
+        "src": 13,
+        "dst": 77,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 7,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 14,
+        "dst": 78,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 99,
+        "bucket": 1,
+        "swapped": false
+      }
+    ]
+  },
+  "scope": "Small synthetic label correctness input; same size across business labels, no efficacy or realerrorrate claim"
+}

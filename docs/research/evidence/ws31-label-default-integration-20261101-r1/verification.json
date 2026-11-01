@@ -1,0 +1,311 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T05:04:45.733215+00:00",
+  "scope": "Integration node10 default-off network compatibility and successor identity only; full models main-owned; no efficacy or adoption",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/label-default-node10-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/main/label-default-node10-handoff.md",
+      "sha256": "cf87130d3b1f3699cb397c353f720747b89b2ccf052145e636eb9d43e167f2a2",
+      "bytes": 3227
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-default-pilot-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/main/evidence/label-default-pilot-main-acceptance-r1.json",
+      "sha256": "eb0d5a608d9b8489c38becb18bfaae0f82198fcecaa5b3f29036ad9271ad45f0",
+      "bytes": 10459
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-default-node10-reference-review-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/main/evidence/label-default-node10-reference-review-r1.json",
+      "sha256": "64ead8fae97db2413358b8dd1bb1ddaf64e541ee3456dc2389026e18e7737941",
+      "bytes": 1059
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-input-freeze-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/main/evidence/label-dynamic-input-freeze-r1.json",
+      "sha256": "11114aee81886b7cf9f9d7f4d1653c5c6f9f7018d7b1121c33022d8f3a1ec993",
+      "bytes": 3637
+    },
+    {
+      "source": "docs/research/ws31/main/label-dynamic-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/main/label-dynamic-validation-r1.json",
+      "sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+      "bytes": 12348
+    },
+    {
+      "source": "docs/research/ws31/main/label-dynamic-validation-r1.md",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/main/label-dynamic-validation-r1.md",
+      "sha256": "174cb70ddcf8ef7db88b950fe95f620565da2078072a5b5ad26eff2ba1a24486",
+      "bytes": 3919
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "4e4c61c381cb7b259659bdf30bb8a401a60ae15fe34cca7a42b5c7aeb29fa58c",
+      "bytes": 21167
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-index.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-index.json",
+      "sha256": "4f991f2b513831d186b263fca8cef74d1bac9baa2e195d6aba0aa4cd04773577",
+      "bytes": 49534
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-qa.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-qa.json",
+      "sha256": "8df13be9aac36ef7d444d3e96a168696cd4e915e9b3b109f4412fc21ee8310b8",
+      "bytes": 573
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-all-builds-verified.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-all-builds-verified.json",
+      "sha256": "5ebe6ede6e2407682889cc9178e104c0068483eaf7b78bface51f7cd696c8820",
+      "bytes": 15353
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-build-resources.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-build-resources.json",
+      "sha256": "3e362f9cfe1a2d0e71f7f34a50a3f2f5b54fa76ff3d0be51681a46d25621cd96",
+      "bytes": 427
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-cache-worker-gate.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-cache-worker-gate.json",
+      "sha256": "71fb213b090528e976e1e7fea76db28bd826e66ad43e654f4fe1b7546c37a01f",
+      "bytes": 537
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-controller.log",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-controller.log",
+      "sha256": "2cf41df512c2d19fa6ba148308931ee2c839d07f60a877962f91dbd44ee3c097",
+      "bytes": 1320
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-driver.py",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-driver.py",
+      "sha256": "6f83720487efa3128935952c9877a9d5ce8905038b7d09d66f696849f6ca6c4b",
+      "bytes": 10365
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-finalize.py",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-finalize.py",
+      "sha256": "adc67b43b069956bdf9d7fb408ee7b5a0620e7f5bd7f6d24fed8ba2aa5f76ca2",
+      "bytes": 19541
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-frozen-plan.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-frozen-plan.json",
+      "sha256": "a81e95af15bba097c8ce900348c260a58c8b2a10416b204380c217331f1d7b4e",
+      "bytes": 4664
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-frozen-plan.md",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-frozen-plan.md",
+      "sha256": "c0be5b2974d2d6dd5f07f549a77f986f093b141e382d7a49d4ad228bc33ddd31",
+      "bytes": 1935
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-guards-released.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-guards-released.json",
+      "sha256": "5034f1e862078238f315cffb8714db80cc77837b09fb25f77aad595bcddb2609",
+      "bytes": 137
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-handoff.md",
+      "sha256": "a83885c016a8ee4b8ab7bdc8f4bc345d943d4827b2801c2cc47563f1bf7dfa1a",
+      "bytes": 2897
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-integrity.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-integrity.json",
+      "sha256": "2b0b2553552bc5ea2967c22d8a361fe750174aee0bc70f487af38d788336402c",
+      "bytes": 710
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-local-process-gate.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-local-process-gate.json",
+      "sha256": "076cdbeb1aeece0259c212316ccc663d2d9f2b2617b4401c777f388cedca20c2",
+      "bytes": 60
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-phase-order.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-phase-order.json",
+      "sha256": "f7466f28dfde4cd09ff1d23f1f2c9ec98aacc10fe75fad9b6fb0947a97cc7724",
+      "bytes": 7076
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-preparation.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-preparation.json",
+      "sha256": "890129bc7c7eddd3b2f00f34401b1f8fa7b3b20391b8335c165cd62e9b74401a",
+      "bytes": 1094
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-receipt.json",
+      "sha256": "6673f54f4ee717e20a751627769ca7ceff68b790fc596dadb075db4b3ff46544",
+      "bytes": 132007
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-reference-integrity-after.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-reference-integrity-after.json",
+      "sha256": "49f4d7e50f9e1b4882b293b8967735a9e018958e95bc3f27db892771f0680206",
+      "bytes": 2585
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-reference-integrity-before.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-reference-integrity-before.json",
+      "sha256": "49f4d7e50f9e1b4882b293b8967735a9e018958e95bc3f27db892771f0680206",
+      "bytes": 2585
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-reference-review.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-reference-review.json",
+      "sha256": "7154552556fb2a719af58ed14dce05a51117424d5e3111271fd7d1be85410ed5",
+      "bytes": 1734
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-report.md",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-report.md",
+      "sha256": "069f0f1337e38cccdb043daf2b761e98720ed2f8cfb924de43082a244f2e8f2f",
+      "bytes": 3539
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-source-git-tree.txt",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-source-git-tree.txt",
+      "sha256": "f701f5ea9f97b8e50443cef137975c43a86081bf02eb53a0ea9680049b47d080",
+      "bytes": 468143
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-sources-established.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-sources-established.json",
+      "sha256": "8dfaef866022c693399d5e6d60f255161963750d0a636039dbe069b9a824b03f",
+      "bytes": 15997
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-verifier.py",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-verifier.py",
+      "sha256": "35bc985fc4089e847bda69f155e4d8d9f8d0cbb0199a53bb1c56086277bddfdf",
+      "bytes": 4364
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-evidence/20261101-124500-ws31-labeldef-r1-c1/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-evidence/20261101-124500-ws31-labeldef-r1-c1/remote-manifest.json",
+      "sha256": "1cf66c8ebf87d6e5351fc9c654f4af6354e956dc0eddee2e48a1e5346308b384",
+      "bytes": 8707
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-evidence/20261101-124500-ws31-labeldef-r1-c2/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-evidence/20261101-124500-ws31-labeldef-r1-c2/remote-manifest.json",
+      "sha256": "40f38b4ff4ed610a52d87196b1d6ac12fc8e624cf4bb81750e4db7506b8d9723",
+      "bytes": 8380
+    },
+    {
+      "source": "docs/research/ws31/independent/label-default-validation-r1-evidence/20261101-124500-ws31-labeldef-r1-c3/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/independent/label-default-validation-r1-evidence/20261101-124500-ws31-labeldef-r1-c3/remote-manifest.json",
+      "sha256": "8d26842a2129614995758de51c66223d774753d0fb331818b0d3fcc0e0c53569",
+      "bytes": 8380
+    },
+    {
+      "source_git": "1ec5eedc24cd863a289b7493e8b3865c70592ab5:config/ws31_labels_r1.txt",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/source-additions/config/ws31_labels_r1.txt",
+      "sha256": "c4aba985af44a88304ae3e1abe42dbadb7c84c01d0c11ada0ab996d58cd3225a",
+      "bytes": 414
+    },
+    {
+      "source_git": "1ec5eedc24cd863a289b7493e8b3865c70592ab5:scripts/ws31_label_inputs.py",
+      "snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/source-additions/scripts/ws31_label_inputs.py",
+      "sha256": "20bcad2f0f3e8011dfdd9e440ed0a33c6ec1f1a817647cc2af3457e1943fb336",
+      "bytes": 1996
+    }
+  ],
+  "raw_verification": "docs/research/evidence/ws31-label-default-integration-20261101-r1/raw-verification.json",
+  "raw_verification_sha256": "a4c7a645863c60a9d3a9fd35dde66a4a8e1dd8f02ff45c2f5b004d744baff5cc",
+  "audit_code_sha256": "e2e968de4febed9ff8a492d324b5ccb989303d6ec8a26131de3ba35b2a56b45b",
+  "root_checks": {
+    "files_hashed": {
+      "documents": 22,
+      "dependencies": 3,
+      "references": 9,
+      "results": 77,
+      "supports": 32
+    },
+    "completed_records": 312,
+    "completed_payload_bytes": 605945856,
+    "source_maps_matched_to_prior_verified_38": 114,
+    "whole_FCT_and_uid_only_common_dedicated_event_regressions": true,
+    "original_identity_demand_timing_actual_labels_pinning_accounting": true,
+    "direct_C1_score_and_state_summary_C2_wait_totals_C3_admission_residual": true,
+    "full_prediction_exact_wait_activity_ownership_model_replay": "WS31 main; not repeated by Integration",
+    "fixed_2ed_tree4839": "Prior node9 Integration verification retained; not repeated here"
+  },
+  "final_delivery": {
+    "index_sha256": "4f991f2b513831d186b263fca8cef74d1bac9baa2e195d6aba0aa4cd04773577",
+    "QA_sha256": "8df13be9aac36ef7d444d3e96a168696cd4e915e9b3b109f4412fc21ee8310b8",
+    "matches_main_and_actual_files": true
+  },
+  "latest_network_validated_source": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "technical_network_cells_accepted_cumulative": 31,
+  "next_input_source": {
+    "sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+    "parent": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "diff_only_new_input_and_generator": true,
+    "fixed_code_objects_equal_and_hashed_at_new_source": 38,
+    "requests": 15,
+    "payload_bytes": 245760,
+    "all_flow_bytes": 16384,
+    "old_business_identity_separate_from_injected_labels": true,
+    "cohort_specification": "Known classes each1wrong/5correct; unknown0/7/99 unchanged; fixed planned wrong cohort2of15, not real error rate",
+    "actual_early_late_UID_presence_coverage_accepted": false,
+    "personal_origin_tracking_and_clean_branch_checked": true
+  },
+  "next_goal": {
+    "plan": "label-dynamic-validation-r1.json",
+    "human_plan": "label-dynamic-validation-r1.md",
+    "plan_sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+    "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+    "cells": 10,
+    "status": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:74",
+    "scope": "15request smalllabelcorrectness, Q12 thenC1/C2/C3 profiles1/2/3;not adapter lifecycle/effects",
+    "guard": "Hold sourceclean until10copies,entry/env compatible untilguardedrun callsreleased",
+    "main_verifier": "PENDING_SEPARATE_PREPARATION_NEXT_TURN",
+    "active_turn_id": "01a1957a-882e-7dc1-b0d6-aa510e323849"
+  },
+  "next_plan_sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+  "main_coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:16",
+  "reference_review": {
+    "main_source": "main/evidence/label-default-node10-reference-review-r1.json",
+    "independent_source": "independent/label-default-validation-r1-reference-review.json",
+    "version": "DiffFlow arXiv1604.05107v1,6pages,III-A",
+    "scope": "Carry same-conversation targeted candidate/classification/verification reading; check this node source and applicability, not a fresh full-paper or publication audit",
+    "borrow": "Separate true business identity, label availability and actual activation point",
+    "difference": "SDN advertisement and post-install spraying versus local first-QP cached route/policy",
+    "not_extrapolated": "Default0 replay does not establish classification quality, dynamic coverage, lifecycle, costs or paper efficacy",
+    "new_baselines": []
+  },
+  "boundaries": {
+    "remote_actions_by_Integration": false,
+    "old_experiments_or_cores_repeated": false,
+    "dynamic_ten_accepted_by_Integration": false,
+    "full_adapter_lifecycle_accepted": false,
+    "independent_V0_effects_costs_accepted": false,
+    "Ofan_admitted": false,
+    "WS29_accessed": false,
+    "new_combined_baseline_established": false,
+    "WS31_archived": false
+  },
+  "validation": {
+    "JSON_files_valid": 27,
+    "frozen_snapshots_valid": 36,
+    "handoff_sections": 9,
+    "handoff_links_valid": 3,
+    "added_state_links_valid": 6,
+    "raw_receipt_and_audit_hashes_valid": true,
+    "31_accepted_2ed_network_vs_1ec_input_pending_consistent": true,
+    "style_review": "Actually read ruanyf README/six chapters retained; checked hierarchy, spacing, paragraph focus, numeric forms, punctuation and structure"
+  }
+}

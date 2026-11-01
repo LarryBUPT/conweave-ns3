@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:15"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:16"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -169,34 +169,50 @@
     }
   ],
   "next_registered_pilot": {
-    "kind": "DEFAULT_PROFILE0_THREE_MODE_NETWORK_REGRESSION_ONLY",
+    "kind": "SMALL_DYNAMIC_LABEL_CORRECTNESS_Q12_PLUS_NINE",
     "status": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE",
-    "plan": "docs/research/ws31/main/label-default-validation-r1.json",
-    "fixed_snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/main/label-default-validation-r1.json",
-    "plan_sha256": "a81e95af15bba097c8ce900348c260a58c8b2a10416b204380c217331f1d7b4e",
-    "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
-    "cells": 3,
+    "plan": "docs/research/ws31/main/label-dynamic-validation-r1.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/main/label-dynamic-validation-r1.json",
+    "plan_sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+    "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+    "parent_code_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "cells": 10,
     "ids": [
-      "20261101-124500-ws31-labeldef-r1-c1",
-      "20261101-124500-ws31-labeldef-r1-c2",
-      "20261101-124500-ws31-labeldef-r1-c3"
+      "20261101-131000-ws31-labeldyn-r1-q12",
+      "20261101-131000-ws31-labeldyn-r1-c1-p1",
+      "20261101-131000-ws31-labeldyn-r1-c1-p2",
+      "20261101-131000-ws31-labeldyn-r1-c1-p3",
+      "20261101-131000-ws31-labeldyn-r1-c2-p1",
+      "20261101-131000-ws31-labeldyn-r1-c2-p2",
+      "20261101-131000-ws31-labeldyn-r1-c2-p3",
+      "20261101-131000-ws31-labeldyn-r1-c3-p1",
+      "20261101-131000-ws31-labeldyn-r1-c3-p2",
+      "20261101-131000-ws31-labeldyn-r1-c3-p3"
     ],
+    "requests_per_cell": 15,
+    "payload_bytes_per_cell": 245760,
     "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:72",
-    "active_turn_id": "01a1955d-03bb-7651-9b1f-5b32811b94fd",
-    "profile": 0,
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:74",
+    "active_turn_id": "01a1957a-882e-7dc1-b0d6-aa510e323849",
+    "source_and_offline_UID_time_presence_checker_gate_before_simulation": true,
+    "main_separate_replay_preparation": "PENDING_SEPARATE_PREPARATION_NEXT_TURN",
     "max_parallel_builds": 3,
     "jobs_per_build": 2,
     "max_total_compile_jobs": 6,
+    "build_waves": [
+      3,
+      3,
+      3,
+      1
+    ],
+    "all_ten_builds_before_serial_runs": true,
     "simulation_concurrency": 1,
-    "all_three_builds_before_serial_runs": true,
     "fresh_ID_job_cache_resource_gates": true,
-    "old_references_read_only": true,
-    "core_preflight_reference_Ofan_repeats": false,
-    "dynamic_profiles_1_2_3_authorized": false,
-    "adapter_lifecycle_authorized_by_this_target": false,
-    "result_accepted_by_Integration": false,
-    "source_edit_hold": "Exclusive clean source/entry/env until three isolated sources and guarded runs release"
+    "old_core_preflight_default_reference_Ofan_repeats": false,
+    "actual_early_late_each_request_and_partial_cohort_coverage_required": true,
+    "adapter_lifecycle_or_effect_validation_by_this_target": false,
+    "results_accepted_by_Integration": false,
+    "source_edit_hold": "Keep clean through10 source copies and entry/env compatible until guarded runs release"
   },
   "last_verified_zero_control_checkpoint": {
     "date": "2026-11-01",
@@ -259,24 +275,24 @@
     "scope": "Initial dynamic technical coverage only; no independent effects"
   },
   "latest_implemented_source": {
-    "sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
-    "purpose": "Isolated label visibility fixture and actual C++ transport/input/fault/diagnostic G1 guard repair",
-    "validation": "Full optimized build1464/newlabelcore compile+run/assertions and five localmock methods accepted; default0 network/dynamiclabels/adapter/independentV0/effects pending",
-    "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+    "purpose": "Only new bounded label input and generator;38 accepted code objects unchanged",
+    "validation": "Code-object identity matches accepted2ed; newinput actual UID/time/presence/dynamic correctness not yet accepted",
+    "parent_code_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "last_network_validated_source": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
-      "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete"
+      "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete",
+      "2ed7d342d0713a5667f43c7730ca5bc5a6a67150": "C1/C2/C3 default-profile0 full FCT/common+dedicated-event compatibility only"
     },
-    "build_core_mock_verification": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/verification.json",
-    "new_network_approval_scope": "Only frozen default0 three-mode regressions; not yet network-accepted"
+    "new_network_approval_scope": "Only frozen15request dynamic-label ten technical target; no lifecycle/efficacy adoption"
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "Label preflight full build/newcore/mock accepted; default0 three-mode target dispatched",
-    "record": "docs/handoffs/2026-11-01-ws31-label-preflight-integration.md",
-    "verification": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/verification.json",
+    "kind": "Default0 three-mode network regression accepted; small dynamic-label ten target dispatched",
+    "record": "docs/handoffs/2026-11-01-ws31-label-default-integration.md",
+    "verification": "docs/research/evidence/ws31-label-default-integration-20261101-r1/verification.json",
     "user_decision_required": false,
-    "new_network_acceptance": false,
     "independent_effects_validated": false,
     "new_baseline_established": false
   },
@@ -366,6 +382,16 @@
       "new_build_or_CXX_acceptance": false,
       "independent_effects_validated": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "Label preflight full build/newcore/mock accepted; default0 three-mode target dispatched",
+      "record": "docs/handoffs/2026-11-01-ws31-label-preflight-integration.md",
+      "verification": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/verification.json",
+      "user_decision_required": false,
+      "new_network_acceptance": false,
+      "independent_effects_validated": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -407,7 +433,7 @@
     "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
     "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
     "root_restarted_jobs": false,
-    "phase_update": "New label preflight complete; constraints released and sole independent terminal+idlecursor72 before dispatch of default0 three-mode target. Fresh gates/all builds before serial runs; no core/preflight/reference repeats."
+    "phase_update": "Default0 three target complete and guards released; sole independent terminal+idlecursor74 before dynamic10 dispatch. Offline checker/resource gates and all10 builds before serial runs; no duplicate dispatch."
   },
   "last_verified_C23_controls_checkpoint": {
     "date": "2026-11-01",
@@ -437,34 +463,8 @@
     "independent_effects_validated": false
   },
   "last_completed_registered_pilot": {
-    "plan": "docs/research/ws31/main/c13-label-validation-r1.json",
-    "fixed_snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/c13-label-validation-r1.json",
-    "plan_sha256": "3803bafb5f5a95527018e014777e3e9d514ab5c7cd400647d82371a8d4e06685",
-    "status": "COMPLETE_RAW_AND_FINAL_DELIVERY_MAIN_ACCEPTED_AND_INTEGRATION_VERIFIED",
-    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
-    "cells": 4,
-    "order": [
-      "c1-remove",
-      "c1-swap",
-      "c3-remove",
-      "c3-swap"
-    ],
-    "no_core_main_zero_Ofan_repeats": true,
-    "all_four_builds_before_serial_runs": true,
-    "max_parallel_builds": 3,
-    "jobs_per_build": 2,
-    "max_total_compile_jobs": 6,
-    "simulation_concurrency": 1,
-    "fresh_resource_ID_cache_gate_required": true,
-    "root_remote_execution_status_checked": false,
-    "scope": "C1/C3 explicit label intervention only; full errors/delays/lifecycle/independent V0/effects remain",
-    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "main_observed_prior_independent_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:62",
-    "integration_verification": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/verification.json"
-  },
-  "next_registered_goal": {
     "kind": "DEFAULT_PROFILE0_THREE_MODE_NETWORK_REGRESSION_ONLY",
-    "status": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE",
+    "status": "COMPLETE_3_OF_3_RAW_AND_FINAL_MAIN_ACCEPTED_AND_INTEGRATION_VERIFIED",
     "plan": "docs/research/ws31/main/label-default-validation-r1.json",
     "fixed_snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/main/label-default-validation-r1.json",
     "plan_sha256": "a81e95af15bba097c8ce900348c260a58c8b2a10416b204380c217331f1d7b4e",
@@ -490,7 +490,54 @@
     "dynamic_profiles_1_2_3_authorized": false,
     "adapter_lifecycle_authorized_by_this_target": false,
     "result_accepted_by_Integration": false,
-    "source_edit_hold": "Exclusive clean source/entry/env until three isolated sources and guarded runs release"
+    "source_edit_hold": "Exclusive clean source/entry/env until three isolated sources and guarded runs release",
+    "verification": "docs/research/evidence/ws31-label-default-integration-20261101-r1/verification.json"
+  },
+  "next_registered_goal": {
+    "kind": "SMALL_DYNAMIC_LABEL_CORRECTNESS_Q12_PLUS_NINE",
+    "status": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE",
+    "plan": "docs/research/ws31/main/label-dynamic-validation-r1.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-label-default-integration-20261101-r1/snapshots/main/label-dynamic-validation-r1.json",
+    "plan_sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+    "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+    "parent_code_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "cells": 10,
+    "ids": [
+      "20261101-131000-ws31-labeldyn-r1-q12",
+      "20261101-131000-ws31-labeldyn-r1-c1-p1",
+      "20261101-131000-ws31-labeldyn-r1-c1-p2",
+      "20261101-131000-ws31-labeldyn-r1-c1-p3",
+      "20261101-131000-ws31-labeldyn-r1-c2-p1",
+      "20261101-131000-ws31-labeldyn-r1-c2-p2",
+      "20261101-131000-ws31-labeldyn-r1-c2-p3",
+      "20261101-131000-ws31-labeldyn-r1-c3-p1",
+      "20261101-131000-ws31-labeldyn-r1-c3-p2",
+      "20261101-131000-ws31-labeldyn-r1-c3-p3"
+    ],
+    "requests_per_cell": 15,
+    "payload_bytes_per_cell": 245760,
+    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:74",
+    "active_turn_id": "01a1957a-882e-7dc1-b0d6-aa510e323849",
+    "source_and_offline_UID_time_presence_checker_gate_before_simulation": true,
+    "main_separate_replay_preparation": "PENDING_SEPARATE_PREPARATION_NEXT_TURN",
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "build_waves": [
+      3,
+      3,
+      3,
+      1
+    ],
+    "all_ten_builds_before_serial_runs": true,
+    "simulation_concurrency": 1,
+    "fresh_ID_job_cache_resource_gates": true,
+    "old_core_preflight_default_reference_Ofan_repeats": false,
+    "actual_early_late_each_request_and_partial_cohort_coverage_required": true,
+    "adapter_lifecycle_or_effect_validation_by_this_target": false,
+    "results_accepted_by_Integration": false,
+    "source_edit_hold": "Keep clean through10 source copies and entry/env compatible until guarded runs release"
   },
   "last_verified_C13_labels_checkpoint": {
     "date": "2026-11-01",
@@ -528,16 +575,17 @@
     "scope": "Technical label intervention and original identity; no independent effects"
   },
   "technical_cells_accepted_cumulative": {
-    "total": 28,
+    "total": 31,
     "stages": {
       "c4_zero": 4,
       "c4_main": 3,
       "506_C2_labels": 5,
       "506_C1_controls": 7,
       "506_C23_controls": 5,
-      "506_C13_labels": 4
+      "506_C13_labels": 4,
+      "2ed_default0": 3
     },
-    "scope": "Per-node technical conditions only; not 28 independent workload samples or efficacy tests"
+    "scope": "Per-node technical coverage, not31 independent workloads or efficacy samples"
   },
   "last_completed_local_review": {
     "name": "label-lifecycle-boundary-review-r1",
@@ -558,6 +606,19 @@
         "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
         "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete"
       }
+    },
+    {
+      "sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+      "purpose": "Isolated label visibility fixture and actual C++ transport/input/fault/diagnostic G1 guard repair",
+      "validation": "Full build/newcore/mock and default0 three-mode network regression accepted; dynamic labels/lifecycle/independentV0/effects pending",
+      "last_network_validated_source": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+      "network_validation_scopes": {
+        "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
+        "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete",
+        "2ed7d342d0713a5667f43c7730ca5bc5a6a67150": "C1/C2/C3 default-profile0 full FCT/common+dedicated-event compatibility only"
+      },
+      "build_core_mock_verification": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/verification.json",
+      "new_network_approval_scope": "Only frozen default0 three-mode regressions; not yet network-accepted"
     }
   ],
   "label_fixture_G1_checkpoint": {
@@ -642,5 +703,35 @@
     "deployed_raw_vs_fixed_git_LF_checked": true,
     "network_runs": 0,
     "scope": "Engineering preflight only; no default0 network/dynamiclabel/lifecycle/efficacy acceptance"
+  },
+  "last_verified_label_default_checkpoint": {
+    "date": "2026-11-01",
+    "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "cells_passed": 3,
+    "completed_records": 312,
+    "completed_payload_bytes": 605945856,
+    "handoff": "docs/handoffs/2026-11-01-ws31-label-default-integration.md",
+    "verification": "docs/research/evidence/ws31-label-default-integration-20261101-r1/verification.json",
+    "raw_verification": "docs/research/evidence/ws31-label-default-integration-20261101-r1/raw-verification.json",
+    "index_sha256": "4f991f2b513831d186b263fca8cef74d1bac9baa2e195d6aba0aa4cd04773577",
+    "QA_sha256": "8df13be9aac36ef7d444d3e96a168696cd4e915e9b3b109f4412fc21ee8310b8",
+    "root_checks": {
+      "files_hashed": {
+        "documents": 22,
+        "dependencies": 3,
+        "references": 9,
+        "results": 77,
+        "supports": 32
+      },
+      "completed_records": 312,
+      "completed_payload_bytes": 605945856,
+      "source_maps_matched_to_prior_verified_38": 114,
+      "whole_FCT_and_uid_only_common_dedicated_event_regressions": true,
+      "original_identity_demand_timing_actual_labels_pinning_accounting": true,
+      "direct_C1_score_and_state_summary_C2_wait_totals_C3_admission_residual": true,
+      "full_prediction_exact_wait_activity_ownership_model_replay": "WS31 main; not repeated by Integration",
+      "fixed_2ed_tree4839": "Prior node9 Integration verification retained; not repeated here"
+    },
+    "scope": "Default0 technical compatibility only; full models remain main-owned"
   }
 }

@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; REPAIRED LABEL PREFLIGHT ACCEPTED; DEFAULT0 THREE DISPATCHED | [第九节点](../handoffs/2026-11-01-ws31-label-preflight-integration.md)：Integration 核 28 文档／2 依赖／12 支持／9 结果／38 Git 对象／4,839 树项；1,464 构建任务、新核心和五项 mock 通过，网络 0。旧 G1 停止及原 28 格网络验收保留 | 唯一副同源三格默认关闭回归，最多三个 `-j2` 构建全部完成后串行，旧参考只读、核心不重跑。最后网络已验源仍 506；动态标签、适配器、独立 V0／双侧效果和成本未完成，Ofan 暂缓，无新组合基线 |
+| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; DEFAULT0 THREE ACCEPTED; DYNAMIC LABEL TEN DISPATCHED | [第十节点](../handoffs/2026-11-01-ws31-label-default-integration.md)：312 记录／605,945,856 B，累计 31 格技术覆盖；Integration 核 77 结果／32 支持／22 文档／3 依赖／9 参考及完整 FCT、有序公共／专属事件回归。主保留完整机制重放身份 | 网络已验源 2ed；后继 1ec 仅加 15 请求输入和生成器，38 代码对象相同。唯一副先独审／离线 checker 门，再十构建后串行 Q12＋九格。适配器、独立 V0／双侧效果及成本未完成，Ofan 暂缓，无新组合基线 |
 | WS-30 | ClassReserve 补正、QueuePin v13 与投稿前修订 | COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE | [收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作 | 旧监督 PAUSED；两个实验对话已归档并复核，见[归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)；投稿待核及返修留 Integration |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |

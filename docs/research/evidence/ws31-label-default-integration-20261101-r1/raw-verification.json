@@ -1,0 +1,106 @@
+{
+  "scope": "Integration full accounting/original demand timing/actual labels/pinning, direct scores/wait totals/counters and full uid-only common+dedicated event regression; full C1/C2/C3 mechanism models main-owned",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "files_hashed": {
+    "documents": 22,
+    "dependencies": 3,
+    "references": 9,
+    "results": 77,
+    "supports": 32
+  },
+  "source_maps_compared_to_prior_verified": 114,
+  "unique_source_objects": 38,
+  "completed_records": 312,
+  "completed_payload_bytes": 605945856,
+  "cells": {
+    "ws31-c1": {
+      "id": "20261101-124500-ws31-labeldef-r1-c1",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "ffcf9fb5fc8871a70e054f118f552af77d06a0310ad473011f7c70b2399d4123",
+      "ordered_uid_only_hashes": {
+        "WS30_CHOICE": "c6d7721db4e70da07a5eb203cdeb23b639e7577ebe221377153924e3b4201fd7",
+        "WS30_ROUTE": "357344c9f8d45ac51a55055c3ebe2daa8b0337c5248f5765fa7d4a0c6ef1ca13",
+        "WS31_C1_CHOICE": "9cba96e4a36f8c8fd08a9ed9e9f0530849d9d1863f7cb1f1be9e7415a92288d0",
+        "WS31_C1_STATE": "d717cf25d640f449f58b281ae12abaeefaa822ff5c14d021e52d4db50821912c",
+        "WS31_C2_DEMAND": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_LAUNCH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_FINISH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_STATE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C3_ROUTE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C3_STATE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "reference": "20261101-071042-ws31-dyn-r1-c1",
+      "reference_source": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+      "whole_FCT_and_all_dedicated_events_equal": true,
+      "active_label_observations": 0
+    },
+    "ws31-c2": {
+      "id": "20261101-124500-ws31-labeldef-r1-c2",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf",
+      "ordered_uid_only_hashes": {
+        "WS30_CHOICE": "db851f248b3cac3b04391d2e406726a0da730e969fef7834ce458cb237600ec5",
+        "WS30_ROUTE": "e71095603c738b4a6cf9bf5cf3e35c49ab58f905b8e21143e91c8d343f661275",
+        "WS31_C1_CHOICE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C1_STATE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_DEMAND": "b9cc8516fda513525e4c8de7a7be4d235b8961855a9fe1d1c16ff8a655268fe8",
+        "WS31_C2_LAUNCH": "994db53f831104542890f06fd7f4ed1b44db826bfc2062dd17ff4306cc085d48",
+        "WS31_C2_FINISH": "2c1035fdd2c22f19282e923ea1f1a9439f7225f77b0fee9a4da7f63d6092949e",
+        "WS31_C2_STATE": "5a201e3a605d0d2d92a6aa8dc8921c151f8aea5df2ebf99616db0b0742890d33",
+        "WS31_C3_ROUTE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C3_STATE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "reference": "20261101-074000-ws31-c2tag-r1-default",
+      "reference_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
+      "whole_FCT_and_all_dedicated_events_equal": true,
+      "active_label_observations": 0
+    },
+    "ws31-c3": {
+      "id": "20261101-124500-ws31-labeldef-r1-c3",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "9d18a19b0c7907564ec040574618338b427f414496d603177b5fcd03ed20563c",
+      "ordered_uid_only_hashes": {
+        "WS30_CHOICE": "ef366e74a8da308fc7554e7ae54705dd292ca8c0a8bc8527486797a4fd86f6b9",
+        "WS30_ROUTE": "c8c2687ed93cdf25c5fa1702789a3cd44ee82ab803b54a735723b0c046b2ae7c",
+        "WS31_C1_CHOICE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C1_STATE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_DEMAND": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_LAUNCH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_FINISH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_STATE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C3_ROUTE": "43a0c7d636db75cdaec6daf79624d452dfba2344ac072ddac8ee4941544f23c6",
+        "WS31_C3_STATE": "25298a397d66cb70590f730ab12582d345bdadb13182dd689d8791eb8469ab2d"
+      },
+      "reference": "20261101-071042-ws31-dyn-r1-c3",
+      "reference_source": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+      "whole_FCT_and_all_dedicated_events_equal": true,
+      "active_label_observations": 0
+    }
+  },
+  "all_three_builds_before_serial_runs": true,
+  "new_input_source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "new_input_changes_only": [
+    "config/ws31_labels_r1.txt",
+    "scripts/ws31_label_inputs.py"
+  ],
+  "new_input_source_objects_equal_prior_38": true,
+  "new_input": {
+    "requests": 15,
+    "bytes": 245760,
+    "all_payload_sizes": 16384,
+    "business_tag_counts": {
+      "1": 6,
+      "2": 6,
+      "0": 1,
+      "7": 1,
+      "99": 1
+    }
+  },
+  "new_input_real_packet_timing_coverage": "Not accepted; dynamic target must establish from actual constructions/UID/presence",
+  "remote_actions": false,
+  "old_runs_or_cores_repeated": false,
+  "new_combined_baseline_or_effects_accepted": false
+}

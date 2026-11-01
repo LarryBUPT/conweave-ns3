@@ -1,0 +1,334 @@
+{
+  "workstream": "WS-31",
+  "stage": "Small explicit delayed/changed/partial-error label technical validation",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "parent_code_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "branch": "feature/ws31-candidates",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "prerequisites": [
+    "evidence/label-default-pilot-main-acceptance-r1.json",
+    "evidence/label-fixture-preflight-main-acceptance-r2.json",
+    "evidence/label-dynamic-input-freeze-r1.json"
+  ],
+  "code_equivalence": "Onlynewinput andgenerator added;38previouslyverifiedsourceobjects unchanged; inheritedexactcode core/default gates do not imply newinput/dynamic correctness",
+  "inputs": {
+    "config/ws31_labels_r1.txt": "c4aba985af44a88304ae3e1abe42dbadb7c84c01d0c11ada0ab996d58cd3225a",
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2"
+  },
+  "common": {
+    "topo": "leaf_spine_128_100G_OS2",
+    "simul_time": "0.01",
+    "netload": 10,
+    "bw": 100,
+    "buffer": 9,
+    "pfc": 0,
+    "irn": 1,
+    "simulation_seed": 1,
+    "ws30_observe": 2,
+    "max_concurrent": 1
+  },
+  "cells": [
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-q12",
+      "order": 0,
+      "lb": "ws30v13-q12",
+      "ws31_label_profile": 0,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c1-p1",
+      "order": 1,
+      "lb": "ws31-c1",
+      "ws31_label_profile": 1,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c1-p2",
+      "order": 2,
+      "lb": "ws31-c1",
+      "ws31_label_profile": 2,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c1-p3",
+      "order": 3,
+      "lb": "ws31-c1",
+      "ws31_label_profile": 3,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c2-p1",
+      "order": 4,
+      "lb": "ws31-c2",
+      "ws31_label_profile": 1,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c2-p2",
+      "order": 5,
+      "lb": "ws31-c2",
+      "ws31_label_profile": 2,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c2-p3",
+      "order": 6,
+      "lb": "ws31-c2",
+      "ws31_label_profile": 3,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c3-p1",
+      "order": 7,
+      "lb": "ws31-c3",
+      "ws31_label_profile": 1,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c3-p2",
+      "order": 8,
+      "lb": "ws31-c3",
+      "ws31_label_profile": 2,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c3-p3",
+      "order": 9,
+      "lb": "ws31-c3",
+      "ws31_label_profile": 3,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0
+    }
+  ],
+  "cohorts": [
+    {
+      "src": 0,
+      "dst": 64,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 1,
+      "bucket": 1,
+      "swapped": false
+    },
+    {
+      "src": 1,
+      "dst": 65,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 1,
+      "bucket": 0,
+      "swapped": true
+    },
+    {
+      "src": 2,
+      "dst": 66,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 1,
+      "bucket": 1,
+      "swapped": false
+    },
+    {
+      "src": 3,
+      "dst": 67,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 1,
+      "bucket": 2,
+      "swapped": false
+    },
+    {
+      "src": 4,
+      "dst": 68,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 1,
+      "bucket": 2,
+      "swapped": false
+    },
+    {
+      "src": 5,
+      "dst": 69,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 1,
+      "bucket": 2,
+      "swapped": false
+    },
+    {
+      "src": 6,
+      "dst": 70,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 2,
+      "bucket": 1,
+      "swapped": false
+    },
+    {
+      "src": 7,
+      "dst": 71,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 2,
+      "bucket": 0,
+      "swapped": true
+    },
+    {
+      "src": 8,
+      "dst": 72,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 2,
+      "bucket": 3,
+      "swapped": false
+    },
+    {
+      "src": 9,
+      "dst": 73,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 2,
+      "bucket": 1,
+      "swapped": false
+    },
+    {
+      "src": 10,
+      "dst": 74,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 2,
+      "bucket": 3,
+      "swapped": false
+    },
+    {
+      "src": 11,
+      "dst": 75,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 2,
+      "bucket": 3,
+      "swapped": false
+    },
+    {
+      "src": 12,
+      "dst": 76,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 0,
+      "bucket": 2,
+      "swapped": false
+    },
+    {
+      "src": 13,
+      "dst": 77,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 7,
+      "bucket": 1,
+      "swapped": false
+    },
+    {
+      "src": 14,
+      "dst": 78,
+      "sport": 10000,
+      "dport": 100,
+      "original_tag": 99,
+      "bucket": 1,
+      "swapped": false
+    }
+  ],
+  "profile_definition": {
+    "1": "Demand/packet visibility absentpresent0/value0 for elapsed<500ns; original tagpresent1 thereafter",
+    "2": "Originalpresent1 before500ns; known1/2swap afterwards, unknown0/7/99 unchanged",
+    "3": "Atdemand andallpacket constructions, knownclasses swap iff StartHash(tuple)&3==0; fixedbyteorder/salt inr3; no true-label/size decisions",
+    "0": "Existingdefault unchanged; newQ12 reference only"
+  },
+  "coverage_gate": [
+    "All15 requests in eachprofile1/2 cell must have first actualconstruction elapsed<500ns AND a laterconstruction elapsed>=500ns; otherwise coveragegap stops remainingcells. Do not infer fromlaunch/demand/NIC independence",
+    "Allprofile1 source firstactualpacket missing andpolicy0; explicitlypresent0 late label0 distinct fromabsentearly0",
+    "Profile2 originalknownclasses show earlyoriginal thenlateswapped actualpackets; firstcachedpolicy retained",
+    "Profile3 actualerrorcohorts exactlysrc1/original1 andsrc7/original2; allotherknowncorrect and0/7/99preserved; eachclass has1wrong/5correct; notexact25%"
+  ],
+  "common_acceptance": [
+    "All15originalbusinessidentities and245760B complete once, originaldemand/time/byte/queue/no-drop/no-reject/pinning verified; nevergroupbusinessmetrics byinjectedlabels",
+    "Generation0 only, flow_id uniquelyjoinsoriginaltrace; everyWS31_LABEL_PACKET(uid,tuple,seq,payload,original,demand,time,present,value,profile) independentlychecked",
+    "Join every acceptedWS30_ROUTE andWS31_LABEL_ROUTE toactualconstructionUID; exacttuple/seq/label/presence, no missing/extra side observations and allthreehops; retransmissions matched perconstructionUID, not mergedbyseq",
+    "Oldtransform/composition/lifecycle/lifeprofile/faults off. No mutation ofQPbusinesslabel ororiginaltrace. Profile metadata exact"
+  ],
+  "C1": [
+    "EveryfirstsourceCHOICE category equals actualfirstpacketvalue (includingunknown7/99); template65536onlycategory1 else8192",
+    "Exact Q+R strictless/tiefirst candidates/hash, insert onceonfirstQP, lazyexpiry/access, uniqueintervaldeduction, fixedroute; changedlaterlabels never rearmbudget orreclassify it",
+    "Statecounter/peak/retainedentries checkedagainstactualreplay; summarymustnotpurge; unknown/progress storage retained legitimately whenremainingtemplate exceedsactualpayload; no forcezeroterminal",
+    "Require somepressure/uniquededuction ineachnonzero fixture; preserveactualstate/countervalues withoutbenefitthreshold"
+  ],
+  "C2": [
+    "Demandvisibility atelapsed0 sampledonce; exactStartHash wait onlypolicy2, max500ns, originaldemandFCT includeswait; norefreshedwait whenlaterlabelarrives/changes",
+    "Profile1 all15immediate, exactFCT andorderedroutes(onlyuid/tagremoved)restore newQ12reference; actualtags/presence independentlychecked",
+    "Profile2 knownoriginal2sixwaits sum1588ns/max413ns; original1/unknownimmediate",
+    "Profile3 wrongoriginal1src1wait282ns; wrongoriginal2src7immediate;5correctoriginal2waits; total6positivewaits/sum1457ns/max409ns; unknownimmediate"
+  ],
+  "C3": [
+    "Firstpolicyclass is1/2only ifactualfirstpacketvalue1/2 else0; cachedpolicy governs lateractivity/ownership, no migrationevenafterinjectedlabelchange",
+    "Exactactivity20000ns/newadmissionrestriction/eligiblecandidatehash/Q/tiefirst/borrower/residual replay; reportactualcounter zeros/positives, no favorable-effect rule",
+    "Profile1 policy0all15, knownactivity/restriction/borrowing/residualall0; fullFCT andorderedroutesonlyuid/tagremovedrestore newQ12; sourcefirstprojection matchesQ12",
+    "Profiles2/3 bothknownpolicyclasses andsome restrictednewadmission present, unknown0; preserveoriginalbusinessgroups"
+  ],
+  "build_resources": {
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "min_available_gib": 64,
+    "min_disk_gib": 100,
+    "max_initial_load_1m": 4,
+    "no_other_user_or_unknown_project_jobs": true,
+    "rationale": "Reuse admittedcap3/sixcompiletasks onlyafterfreshgate; newdefault3buildsample min120.909GiB/maxload6.23, not livegate"
+  },
+  "pre_execution_gate": "Independent audit fixedsource/codeequivalence/inputcohorts andprepare offline UID/time/presence/replay checker before anysimulation; no criterion changes. Capture allpreflightchecks; ifnewmaterialsource/checkerschema issue stopfor mainreview",
+  "execution": "Afterpriortargetterminal/idle, newcache/fork/ref/tree/clean/ID/job/resourcegates; syncnewinputSHAwithworkflowfallback, keepalreadyverifieddeployedworkerunchanged whencompatible. New10isolatedoptimized-j2 builds,waves3+3+3+1; all10buildsverifiedbeforeserialQ12,C1p1/p2/p3,C2p1/p2/p3,C3p1/p2/p3. No cores/default/reference reruns",
+  "stop_conditions": [
+    "Any source/build/run/UID/presence/time/identity/byte/queue/path/state/replay/referencefailure stops allremainingcells, keepID/raw; mainrepair thennewSHA/ID",
+    "Any requiredactualearly/late/class/partialerrorbranch missing stops ascoveragegap, keep evidence; neverchange500ns/hash/templates/quota toobtain desiredoutcome",
+    "Unknownjobs/resourcepressure pause newwork,no processkilling or guardbypass"
+  ],
+  "prohibited": [
+    "No oldcore/preflight/default0largeinput repeats",
+    "No Ofan/RR/lifecycle controllers/old matrices or successfulIDoverwrite",
+    "No interpretingtechnicalerrorrate/statecounts asrealclassificationquality/performancebaseline"
+  ],
+  "scope": "Synthetic labelcausality/correctness only, not fulladapterlifecycle or independentefficacy",
+  "remaining": [
+    "CompleteSwitchNode/RdmaClient exceptional/lifecyclefixtures includingcleanup/generation/drain andsame-timeevents",
+    "IndependentC1V0 andallcandidate two-sidedbusinessbatch/background/state/runtime-cost protocols+validation",
+    "Finaladoptionbyuser"
+  ]
+}
