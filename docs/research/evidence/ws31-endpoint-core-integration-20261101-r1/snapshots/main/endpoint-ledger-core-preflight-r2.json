@@ -1,0 +1,104 @@
+{
+  "workstream": "WS-31",
+  "stage": "New portable endpoint evidence core review/compile/run only",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "parent_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "branch": "feature/ws31-candidates",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:95",
+  "id": "20261101-163000-ws31-endpoint-core-r2",
+  "contract": "endpoint-lifecycle-design-r2.md",
+  "main_source_audit": "evidence/endpoint-ledger-core-source-audit-r2.json",
+  "prior_review_acceptance": "evidence/endpoint-ledger-local-review-main-acceptance-r1.json",
+  "source_changes_sha256": {
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+    "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+  },
+  "source_tree_entries": 4845,
+  "tree_sha256": "3da8acbcc1809389aac24adc1936d22874821077e40ddd397723fa7d977e0e64",
+  "resource_gate": {
+    "no_other_user_or_unknown_project_jobs": true,
+    "min_available_gib": 64,
+    "min_disk_gib": 100,
+    "max_initial_load_1m": 4,
+    "parallel_compiles": 1,
+    "compiler_processes": 1,
+    "network_simulation_concurrency": 0
+  },
+  "authorized_sync_commands": 1,
+  "authorized_deploy_commands": 0,
+  "full_ns3_builds": 0,
+  "new_core_compile_commands": 1,
+  "new_core_run_commands": 1,
+  "network_runs": 0,
+  "compile": {
+    "working_directory": "isolated fixed source root",
+    "argv": [
+      "g++",
+      "-std=c++11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-pedantic",
+      "-DNDEBUG",
+      "tests/ws31_endpoint_ledger_test.cc",
+      "-o",
+      "<new-ID-results>/artifacts/ws31_endpoint_ledger_test"
+    ],
+    "binary_outside_source": true,
+    "expected_exit_code": 0,
+    "standard_assert_disabled": true,
+    "test_checks_use_exceptions": true
+  },
+  "run": {
+    "argv": [
+      "<new-ID-results>/artifacts/ws31_endpoint_ledger_test"
+    ],
+    "expected_exit_code": 0,
+    "expected_stdout": "WS31_ENDPOINT_LEDGER PASS requests=2 completed_generations=2 closed_tokens=6 real_endpoint_snapshots=0 network_runs=0\n",
+    "expected_stderr": ""
+  },
+  "review_required": [
+    "Verify new source exact diff and all R1/R3/R4 core guards; R2 policy is retain/append, no production Clear fix claimed",
+    "No baseline/runtime file changes or includes/Waf registration; core is standalone only",
+    "Review exact C++11 compatibility, test chronology/alias formulas and identity checks; no main/source edits by independent",
+    "Do not infer measured field coverage from ALL mask or manually supplied snapshots; actual adapters still pending"
+  ],
+  "steps": [
+    "Preserve original local-review outputs and original WIP evidence. Static review first; material defect stops before remote action. Check actual local clean fixed SHA/personal origin/push and fulltree.",
+    "Freshly inspect all project and other-user processes including Git HTTP helpers and ancestry; confirm prior default driver22440 absent and no independent persisted active driver. Unknown ownership stops, no process signals.",
+    "New ID must be absent in both runs and results and local destination. Inspect cache origin/ref/tree and actual resources. One guarded sync permitted only after fresh no-job gate, under existing workflow fallback; no worker deployment.",
+    "After fresh gate, create one isolated new-ID source copy from exact pushed SHA, record complete Git tree/source extraction and checksums; never alter existing run source/results or canonical working tree. No Waf/configure/build/run.py call.",
+    "One standalone g++ compile with exact argv into new-ID artifacts, compiler/system/runtime library versions and hashes recorded. Stop on nonzero compile; retain stderr and source.",
+    "Run only the new binary once; retain exact command, environment, exit, stdout, stderr, binary fingerprint and resource receipts. Do not repeat accepted old cores, fixtures or network cells.",
+    "Fetch to a new destination without overwrite. Final source/command/compiler/binary/log/resources index, QA and nine-section handoff; explicit guards release after all calls terminal. No execution claims before raw checked."
+  ],
+  "expected_coverage": [
+    "two generations fully launched/ACK-complete/retired/drained/cleared in portable core",
+    "packed TX/RX alias and PG-only switch-domain alias refused before request creation",
+    "same UID on same link, downstream link, and held copy counted by distinct serial",
+    "wrong link/parallel interface/UID/serial/owner/kind/reason and twice-close refused without token mutation",
+    "false valid observation advances clock; incomplete/stale/wrong-flow/wrong-generation/wrong-tuple snapshot refused",
+    "device timers/pending payload/physical queue/ACK queue/serialization/retained unfinished QP and revived RX refuse drain",
+    "transport completion history and all switch tables checked before cleanup; final reuse requires fresh old-generation snapshot",
+    "old history and original demand/launch/finish preserved; held unsent copy discard is not native stale receive isolation"
+  ],
+  "source_guard": "Hold exclusive checkout clean and plan/entry/env compatible until source establishment and all core calls terminal explicitly released",
+  "failure_policy": "Any material source/gate/compiler/runtime/provenance failure stops remaining actions; retain exact failed bytes/ID; no auto-repair, new criteria or rerun",
+  "prohibited": [
+    "No full ns3 build, old core/adapter/cancellation tests or network/run.py/waf --run",
+    "No Ofan/RR dedicated work or WS29/old controllers/matrices",
+    "No modifying source/main/criteria, old successful IDs or original review outputs",
+    "No claim that portable checks prove real endpoint cleanup/drain/same-tuple network completion or efficacy",
+    "No unknown process termination, system changes, existing destination overwrite or implicit guard release"
+  ],
+  "remaining_after": [
+    "Actual NS3 endpoint/device/queue/timer snapshot adapters and conditional tag-presence checks",
+    "Default-off original-event channel tokens closed after Receive returns",
+    "Retain completed QPs and append with stale-finished-bit real branch coverage; real histories/switch cleanup receipts",
+    "New actual-context G1 and positive/refusal two-generation network fixtures under separately frozen source/IDs/resources",
+    "IndependentC1V0 and all three two-sided effects/state/runtime-cost validation",
+    "CCF A/B-only necessary baseline decisions; Ofan paused; final adoption by user"
+  ]
+}

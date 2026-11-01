@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "at_utc": "2026-11-01T07:48:39.047183+00:00",
+  "status": "PASS_DELIVERY_INTEGRITY_ONLY_NO_CODE_TEST_EXECUTED",
+  "plan_sha256": "b64176ae0491ad33aa4ee1c25f2c0c0b2a0ae20dbb43fa596e47535f285ac5df",
+  "parent_head": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "before": {
+    "head": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "status": [
+      "?? src/point-to-point/model/ws31-endpoint-ledger.h",
+      "?? tests/ws31_endpoint_ledger_test.cc"
+    ],
+    "wip_sha256": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+      "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+    }
+  },
+  "after": {
+    "head": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "status": [
+      "?? src/point-to-point/model/ws31-endpoint-ledger.h",
+      "?? tests/ws31_endpoint_ledger_test.cc"
+    ],
+    "wip_sha256": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+      "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+    }
+  },
+  "guards_unchanged": true,
+  "source_provenance_all_match_head_after_crlf_normalization": true,
+  "artifact_sha256": {
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-report.md": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-review.json": "aa54af2b05c870e356e32e53d855c0a4175d4e00b38a314d39cad35a84cad12c"
+  },
+  "checks": {
+    "json_utf8_parse": true,
+    "report_utf8_no_replacement_character": true,
+    "document_links_checked": 36,
+    "linked_source_lines_exist": true,
+    "write_prefix_only": true,
+    "no_existing_output_overwritten": true,
+    "chinese_style_original_read": "README and six chapters read earlier in this conversation, retained in continuation summary",
+    "final_style_review": "heading hierarchy, Chinese/Latin spacing, punctuation, number/time units and paragraph structure checked",
+    "review_claims_are_static": true,
+    "real_endpoint_proof_claimed": false,
+    "unit_test_pass_claimed": false,
+    "literature_node_review_included": true
+  },
+  "links": [
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/main/endpoint-ledger-local-review-r1.json",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-local-review-r1-review.json",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-ledger.h:64",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-ledger.h:81",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-ledger.h:86",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/tests/ws31_endpoint_ledger_test.cc:50",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-ledger.h:14",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:254",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:382",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-budget.h:16",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-quota.h:13",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-queue-pair.cc:220",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-queue-pair.h:239",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/qbb-net-device.cc:116",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-ledger.h:16",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-ledger.h:117",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-ledger.h:67",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:1052",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/scratch/network-load-balance.cc:658",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:389",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:366",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:480",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-ledger.h:101",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/tests/ws31_endpoint_ledger_test.cc:27",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/qbb-net-device.cc:169",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/qbb-channel.cc:100",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/qbb-net-device.cc:380",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/qbb-net-device.cc:517",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-queue-pair.h:88",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:1148",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:621",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/tests/ws31_endpoint_ledger_test.cc:69",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/\u53c2\u8003\u6587\u732e/\u5019\u9009/README.md",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/\u53c2\u8003\u6587\u732e/\u5019\u9009/reading-log.md",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/\u53c2\u8003\u6587\u732e/\u5019\u9009/papers/diffflow-2016/analysis-technical.md",
+      "exists": true,
+      "line_valid": true
+    },
+    {
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/\u53c2\u8003\u6587\u732e/\u5019\u9009/papers/diffflow-2016/verification.md",
+      "exists": true,
+      "line_valid": true
+    }
+  ],
+  "execution_counts": {
+    "compile": 0,
+    "unit_tests": 0,
+    "core_runs": 0,
+    "fixture_runs": 0,
+    "network_runs": 0,
+    "remote_actions": 0,
+    "sync_deploy": 0
+  },
+  "no_source_edits": true,
+  "known_limits": [
+    "No compilation or tests executed; no runtime correctness verdict",
+    "Portable snapshots remain trusted until real adapters are implemented",
+    "Network validation and second-generation completion remain outstanding"
+  ],
+  "qa_self_hash": "omitted to avoid self-referential hash"
+}

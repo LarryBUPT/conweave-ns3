@@ -1,0 +1,28 @@
+{
+  "workstream": "WS-31",
+  "scope": "Local read-only review of portable endpoint evidence core and actual adapter design; no remote/compile/test/run",
+  "parent_head": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "files": {
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+    "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+  },
+  "main_design": "endpoint-lifecycle-design-r1.md",
+  "main_source_audit": "evidence/endpoint-lifecycle-source-audit-r1.json",
+  "main_wip_audit": "evidence/endpoint-ledger-wip-source-audit-r1.json",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "questions": [
+    "Do exact request/generation ownership and transition guards preserve original demand and old history?",
+    "Can token close/duplicate/sameUID/distinctlink or premature cleanup falsify drain/conservation?",
+    "Which trusted snapshot obligations need concrete NS3 source fields and callback ordering?",
+    "Does unit code test only the portable evidence core, avoiding claims of actual endpoint cleanup or stale-packet receive protection?",
+    "Identify smallest required fixes and integration interfaces without oldcontrollers or changing candidate policy."
+  ],
+  "prohibited": [
+    "No source/main edits by independent",
+    "No remote/sync/deploy/build/g++/waf/core/fixture/network work",
+    "No Ofan/WS29/oldcontrollers/matrices",
+    "No treating trusted boolean snapshots as real measuredendpoint proof"
+  ],
+  "write_prefix": "endpoint-ledger-local-review-r1",
+  "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:92"
+}

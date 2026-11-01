@@ -1,0 +1,25 @@
+{
+  "at_utc": "2026-11-01T07:55:59.457786+00:00",
+  "status": "MAIN_ACCEPTED_STATIC_REVIEW_WITH_REQUIRED_REPAIRS",
+  "parent_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "plan_sha256": "b64176ae0491ad33aa4ee1c25f2c0c0b2a0ae20dbb43fa596e47535f285ac5df",
+  "review_sha256": "aa54af2b05c870e356e32e53d855c0a4175d4e00b38a314d39cad35a84cad12c",
+  "report_sha256": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa",
+  "QA_sha256": "bc2a8f6c30d18c48cc04502c98fc64ad0786a73b457694004bf76ad28f90bcfe",
+  "git_source_objects_checked": 11,
+  "wip_preserved": {
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+    "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+  },
+  "findings_accepted": [
+    "R1 actual packed transport key and switch fourtuple ownership guard",
+    "R2 retain completed old QPs and append; never Clear/reuse stale finished bits",
+    "R3 bound measured snapshots and final reuse recheck; transport histories explicit",
+    "R4 expected token close kind and reason",
+    "Full second generation portable test and refusal observation clock",
+    "ACK/NACK tag copy is conditional, not unconditional"
+  ],
+  "runtime_proof": false,
+  "new_compile_test_or_network_runs": 0,
+  "guard": "Prior read-only goal terminal and idle95; original reviewed WIP archived before repairs"
+}

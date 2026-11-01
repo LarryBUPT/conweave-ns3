@@ -1,0 +1,22 @@
+{
+  "at_utc": "2026-11-01T08:01:56.474731+00:00",
+  "status": "FIXED_PUSHED_PORTABLE_CORE_ONLY_NOT_COMPILED",
+  "source_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "parent_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "branch": "feature/ws31-candidates",
+  "source_changes_sha256": {
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+    "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+  },
+  "source_tree_entries": 4845,
+  "tree_sha256": "3da8acbcc1809389aac24adc1936d22874821077e40ddd397723fa7d977e0e64",
+  "tracked_tree_clean": true,
+  "origin_tracking_ref_matches": true,
+  "source_diff_exactly_two_new_files": true,
+  "ns3_runtime_source_changes": 0,
+  "Waf_registration_or_includes": 0,
+  "prior_review": "endpoint-ledger-local-review-main-acceptance-r1.json",
+  "original_WIP_preserved": "endpoint-ledger-wip-r1-preserved/",
+  "new_compiles_or_runs": 0,
+  "scope": "Portable contract and manually supplied snapshot tests only; no live endpoint snapshot or true two-generation network proof"
+}

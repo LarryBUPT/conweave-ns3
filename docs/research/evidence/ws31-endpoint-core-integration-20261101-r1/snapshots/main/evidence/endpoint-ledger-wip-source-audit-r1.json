@@ -1,0 +1,27 @@
+{
+  "at_utc": "2026-11-01T07:33:04.005015+00:00",
+  "status": "PORTABLE_ENDPOINT_EVIDENCE_CORE_WIP_WRITTEN_NOT_COMPILED_OR_CONNECTED",
+  "parent_head": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "files_working_bytes_sha256": {
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+    "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+  },
+  "scope": "State/order/token-conservation core only; EndpointSnapshot fields are trusted arguments until real adapters provide measured values",
+  "implemented": [
+    "Unique flow_id/generation ownership and old history retained",
+    "Demand/launch/exact ACK/endpoint-retire/drain/switch-clear order",
+    "Distinct per-transmission channel and held-copy tokens even same UID",
+    "Snapshot refusal for timers/maps/queues/current serialization/retained activeQP",
+    "No tuple reuse before certifieddrain and observed switch cleanup"
+  ],
+  "not_implemented": [
+    "NS3 packet/channel token hooks and post-Receive closure",
+    "Actual endpoint/map/timer/queue read-only snapshot adapters",
+    "New default-off fixture parser/runner gate and G1 context validation",
+    "Real endpoint positive/negative network fixture and mainraw replay"
+  ],
+  "CXX_compile_or_run": 0,
+  "new_network_runs": 0,
+  "default_1f_evidence_inherited": false,
+  "source_state": "Two untracked files in exclusive clone; no commit/push or newsource freeze"
+}

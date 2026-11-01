@@ -1,0 +1,28 @@
+{
+  "at_utc": "2026-11-01T07:39:33.058212+00:00",
+  "status": "LOCAL_SOURCE_INTERFACE_OBLIGATIONS_ONLY",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "report": "endpoint-snapshot-interface-audit-r1.md",
+  "report_sha256": "3ab976cab5caca4c634827745ea1c0823761b177cb712141c648872b2defcf2f",
+  "files_git_LF_sha256": {
+    "src/point-to-point/model/rdma-hw.h": "13a3be27e5fbac2528612afa87172b4460e88c2c4ea73d356b9d428e655c9750",
+    "src/point-to-point/model/rdma-hw.cc": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+    "src/point-to-point/model/rdma-queue-pair.h": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+    "src/point-to-point/model/qbb-net-device.h": "23b554721189e7767706fe386d76760eaee895b421caf7069d24003e39a7bd07",
+    "src/point-to-point/model/qbb-net-device.cc": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+    "src/point-to-point/model/point-to-point-net-device.h": "ad777bc39a417b17edb73203f811c8546ce0bed3ad7fbd2311354768ea04a0e1",
+    "src/point-to-point/model/qbb-channel.cc": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1",
+    "src/network/utils/broadcom-egress-queue.h": "672058dbd8fa6ef99cb5be3df5a7e01d7809fd32f9bf0b4fef7d08c865a2b3a6"
+  },
+  "reviewed_wip_hashes_unchanged": true,
+  "key_findings": [
+    "Device pacing and resume events need separate observation beyond QP events",
+    "GetNextQindex mutates finished bits and pause statistics; forbidden in pure snapshot",
+    "Retained QPs require IsFinishedConst plus recorded existing finished bits",
+    "QP remaining payload is not a constructed packet physical queue",
+    "Packed transport lookup keys require full tuple/flow identity verification"
+  ],
+  "source_edits": 0,
+  "compile_or_test_or_remote_or_network_actions": 0,
+  "scope": "Concrete snapshot interface requirements; no actual drain proof or new source acceptance"
+}

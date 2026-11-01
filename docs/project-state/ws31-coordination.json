@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:20"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:21"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -258,11 +258,11 @@
     "scope": "Initial dynamic technical coverage only; no independent effects"
   },
   "latest_implemented_source": {
-    "sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
-    "parent_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
-    "purpose": "Five-file production adapter seams/narrow probes and17 planned boundary fixture cases",
-    "validation": "1f onebuild/17adapter conditions plus2new defaultdispatch network compatibility cells accepted; fullFCT/ordered public+C2 events recover c4/2ed references. No endpoint or efficacy acceptance.",
-    "mutable_worktree_status": "HEAD1F_TRACKED_CLEAN_PLUS_TWO_UNTRACKED_ENDPOINT_WIP_AT_NODE13_OBSERVATION",
+    "sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+    "parent_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "purpose": "Two added portable endpoint evidence core/test files; actual NS3 runtime unchanged",
+    "validation": "Local static review/source/provenance only. Standalone compile/run dispatched, outcomes not Integration accepted. No endpoint/network/runtime inheritance.",
+    "mutable_worktree_status": "CLEAN_FIXED_COMMITTED20BC_AT_NODE14_OBSERVATION",
     "last_network_validated_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
@@ -271,15 +271,15 @@
       "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy",
       "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e": "Q12andC2 default dispatch full FCT/orderedCHOICE_ROUTE and dedicatedC2 events with exact104 waits; only two technical cells at unchanged input, not endpoint lifecycle or efficacy"
     },
-    "new_network_approval_scope": "None current; previous default2 completed with guards explicitly released. Next only local readonly review of untracked endpoint evidence core."
+    "new_network_approval_scope": "None; standalone core preflight only. FullNS3build/deploy/network not authorized."
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "NODE13 two default-dispatch network cells mainaccepted and independently verified; endpoint2WIP local readonly review only",
-    "record": "docs/handoffs/2026-11-01-ws31-adapter-default-integration.md",
-    "verification": "docs/research/evidence/ws31-adapter-default-integration-20261101-r1/verification.json",
+    "kind": "NODE14 static endpoint review accepted, originalWIP preserved; standalone core20bc fixed and gated preflight dispatched",
+    "record": "docs/handoffs/2026-11-01-ws31-endpoint-core-integration.md",
+    "verification": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/verification.json",
     "user_decision_required": false,
-    "new_network_acceptance": true,
+    "new_network_acceptance": false,
     "network_technical_total": 43,
     "new_baseline_established": false
   },
@@ -418,6 +418,16 @@
       "new_build_fixture_acceptance": true,
       "new_network_acceptance": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "NODE13 two default-dispatch network cells mainaccepted and independently verified; endpoint2WIP local readonly review only",
+      "record": "docs/handoffs/2026-11-01-ws31-adapter-default-integration.md",
+      "verification": "docs/research/evidence/ws31-adapter-default-integration-20261101-r1/verification.json",
+      "user_decision_required": false,
+      "new_network_acceptance": true,
+      "network_technical_total": 43,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -459,7 +469,7 @@
     "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
     "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
     "root_restarted_jobs": false,
-    "phase_update": "Default2 complete; both buildsbefore serialQ12/C2, guards explicitly released at07:24:38Z. Main checked driver22440absence andindependentidle92 before local readonly endpoint review; reportedcursor93active, Integration main snapshotactive20. No duplicate dispatch or remote takeover."
+    "phase_update": "Original readonly review terminal/idle95 with unchangedWIP and zero executions. Main repaired/fixed/pushed20bc and dispatched one standalone core preflight, reported independentactive96. Integration mainidle21; source/entry guard held until explicit terminal release, no duplicate dispatch or remote takeover."
   },
   "last_verified_C23_controls_checkpoint": {
     "date": "2026-11-01",
@@ -522,24 +532,29 @@
     "completed_payload_bytes": 403963904
   },
   "next_registered_goal": {
-    "kind": "ENDPOINT_LEDGER_PORTABLE_CORE_LOCAL_READONLY_REVIEW",
-    "status": "MAIN_DISPATCHED_ONCE_CURSOR93_ACTIVE_REPORTED_NO_DUPLICATE",
-    "plan": "docs/research/ws31/main/endpoint-ledger-local-review-r1.json",
-    "fixed_snapshot": "docs/research/evidence/ws31-adapter-default-integration-20261101-r1/snapshots/main/endpoint-ledger-local-review-r1.json",
-    "plan_sha256": "b64176ae0491ad33aa4ee1c25f2c0c0b2a0ae20dbb43fa596e47535f285ac5df",
-    "parent_head": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "kind": "PORTABLE_ENDPOINT_CORE_STATIC_REVIEW_THEN_GATED_COMPILE_RUN",
+    "status": "MAIN_DISPATCHED_ONCE_REPORTED_ACTIVE96_OUTCOMES_NOT_INTEGRATION_ACCEPTED",
+    "plan": "docs/research/ws31/main/endpoint-ledger-core-preflight-r2.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/endpoint-ledger-core-preflight-r2.json",
+    "plan_sha256": "57ee56f60e6406dfaeab8e317910423e53fdb87e46982be6bf730dd4823fae47",
+    "source_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+    "parent_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "id": "20261101-163000-ws31-endpoint-core-r2",
     "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:92",
-    "reported_review_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:93",
-    "remote_compile_test_or_network_authorized": false,
-    "source_editing_by_independent_authorized": false,
-    "source_files": {
-      "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
-      "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
-    },
-    "trusted_snapshot_booleans_not_measurements": true,
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:95",
+    "reported_current_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:96",
+    "source_review_before_remote_actions": true,
+    "fresh_process_cache_resource_ID_gates_required": true,
+    "authorized_sync_commands": 1,
+    "new_core_compile_max": 1,
+    "new_core_run_max": 1,
+    "full_NS3_builds": 0,
+    "deploy": 0,
+    "network_runs": 0,
+    "old_core_fixture_repeats_authorized": false,
+    "compile_standard": "C++11 -DNDEBUG with runtime exception checks",
+    "source_entry_guard": "Main holds clean exclusive source and compatible entry until explicit terminal release",
     "outcomes_accepted_by_Integration": false,
-    "implementation_owner": "WS31 main; untracked WIP may be revised after this snapshot",
     "no_duplicate_sole_independent_dispatch": true
   },
   "last_verified_C13_labels_checkpoint": {
@@ -593,13 +608,23 @@
     "scope": "Per-node technical coverage, repeated small inputs are not independent workloads or efficacy samples"
   },
   "last_completed_local_review": {
-    "name": "label-lifecycle-boundary-review-r1",
-    "status": "MAIN_ACCEPTED_WITH_REQUIRED_REVISIONS",
-    "QA_sha256": "547d58506a3fb49444f4e5b0a72da74129470ffdc08b5aaaaf056f205f80ee52",
-    "main_fixed_objects_reviewed": 26,
-    "matrix_rows": 22,
-    "integration_scope": "QA identity and matrix row count; full source/call-chain review remains main-owned",
-    "verification": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/verification.json"
+    "name": "endpoint-ledger-local-review-r1",
+    "status": "MAIN_ACCEPTED_STATIC_REVIEW_WITH_REQUIRED_REPAIRS_INTEGRATION_PROVENANCE_CHECKED",
+    "review_sha256": "aa54af2b05c870e356e32e53d855c0a4175d4e00b38a314d39cad35a84cad12c",
+    "report_sha256": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa",
+    "QA_sha256": "bc2a8f6c30d18c48cc04502c98fc64ad0786a73b457694004bf76ad28f90bcfe",
+    "main_acceptance_sha256": "211d1c95ff024465a42a15f04cda70f9a61e3a31c208218515bf583e9ff04ebc",
+    "fixed_source_objects": 11,
+    "findings": [
+      "R1",
+      "R2",
+      "R3",
+      "R4"
+    ],
+    "executions": 0,
+    "original_WIP_preserved_and_hashmatched": 2,
+    "verification": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/verification.json",
+    "integration_scope": "Provenance and concrete source findings plus new guard/test anchors; no runtime or full model validation"
   },
   "implemented_source_history": [
     {
@@ -639,6 +664,24 @@
       },
       "new_network_approval_scope": "Original dynamic10 completed; no successor frozen plan",
       "mutable_worktree_status": "DIRTY_MAIN_OWNED_ADAPTER_WIP_NOT_VALIDATED"
+    },
+    {
+      "superseded_at_node14": {
+        "sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+        "parent_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+        "purpose": "Five-file production adapter seams/narrow probes and17 planned boundary fixture cases",
+        "validation": "1f onebuild/17adapter conditions plus2new defaultdispatch network compatibility cells accepted; fullFCT/ordered public+C2 events recover c4/2ed references. No endpoint or efficacy acceptance.",
+        "mutable_worktree_status": "HEAD1F_TRACKED_CLEAN_PLUS_TWO_UNTRACKED_ENDPOINT_WIP_AT_NODE13_OBSERVATION",
+        "last_network_validated_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+        "network_validation_scopes": {
+          "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
+          "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete",
+          "2ed7d342d0713a5667f43c7730ca5bc5a6a67150": "C1/C2/C3 default-profile0 full FCT/common+dedicated-event compatibility only",
+          "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy",
+          "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e": "Q12andC2 default dispatch full FCT/orderedCHOICE_ROUTE and dedicatedC2 events with exact104 waits; only two technical cells at unchanged input, not endpoint lifecycle or efficacy"
+        },
+        "new_network_approval_scope": "None current; previous default2 completed with guards explicitly released. Next only local readonly review of untracked endpoint evidence core."
+      }
     }
   ],
   "label_fixture_G1_checkpoint": {
@@ -982,7 +1025,7 @@
     "source_entry_env_guard": "HELD, carried into r2",
     "source_copy_established": false
   },
-  "integration_observed_utc": "2026-11-01T07:43:39.360035+00:00",
+  "integration_observed_utc": "2026-11-01T08:10:19.967228+00:00",
   "last_completed_registered_preflight_history": [
     {
       "kind": "SOURCE_REVIEW_THEN_SINGLE_BUILD_NEW_CORE_AND_MOCK_ONLY",
@@ -1067,25 +1110,40 @@
     "preflight_guards_explicitly_released": true
   },
   "endpoint_lifecycle_design_checkpoint": {
-    "state": "TWO_UNTRACKED_PORTABLE_CORE_TEST_WIP_NOT_COMPILED_OR_CONNECTED",
-    "design": "docs/research/evidence/ws31-adapter-boundary-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r1.md",
-    "source_audit": "docs/research/evidence/ws31-adapter-boundary-integration-20261101-r1/snapshots/main/endpoint-lifecycle-source-audit-r1.md",
-    "requires": [
-      "actual endpoint retirement and event/channel/queue drain certificate",
-      "explicit tuple generation/reuse and rejection validation",
-      "new fixed source, independent protocol and fresh IDs"
-    ],
-    "new_endpoint_validation": false,
-    "WIP_receipt": "docs/research/evidence/ws31-adapter-default-integration-20261101-r1/snapshots/main/evidence/endpoint-ledger-wip-source-audit-r1.json",
-    "WIP_current_hashes_at_node13_audit": {
-      "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
-      "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+    "state": "CORE20BC_FIXED_STATIC_REVIEW_ACCEPTED_COMPILE_RUN_PENDING_REAL_ADAPTERS_UNIMPLEMENTED",
+    "design": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r2.md",
+    "original_WIP_preserved_and_matched": true,
+    "review": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/evidence/endpoint-ledger-local-review-main-acceptance-r1.json",
+    "source_audit": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/evidence/endpoint-ledger-core-source-audit-r2.json",
+    "source_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+    "source_changes": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
     },
-    "WIP_matches_main_earlier_snapshot": true,
-    "WIP_inherits_1f_default_acceptance": false,
-    "trusted_EndpointSnapshot_is_not_measured_NS3_state": true,
-    "compile_or_runtime_or_endpoint_validation_accepted": false,
-    "next_local_review": "docs/research/evidence/ws31-adapter-default-integration-20261101-r1/snapshots/main/endpoint-ledger-local-review-r1.json"
+    "tree_entries": 4845,
+    "tree_sha256": "3da8acbcc1809389aac24adc1936d22874821077e40ddd397723fa7d977e0e64",
+    "no_Waf_or_production_inclusion": true,
+    "source_findings": {
+      "Clear_only_clears_vector": true,
+      "finished_bitmap_initialized_in_constructor": true,
+      "scheduler_checks_old_finished_bit_before_new_QP": true,
+      "packed_key_alias_vector_verified": true,
+      "ACK_NACK_identity_copy_conditional": true,
+      "completion_callback_precedes_TX_map_delete": true
+    },
+    "old_finished_bitmap_policy": "Retain finished old QPs and append; no baseline Clear modification. Actual branch needs new NS3 fixture.",
+    "ACK_identity_copy": "Conditional on incoming FlowIDNUMTag presence; old unconditional wording corrected by r2 contract, old records preserved",
+    "trusted_EndpointSnapshot_is_not_real_measurement": true,
+    "core_compile_run_accepted": false,
+    "network_or_real_endpoint_accepted": false,
+    "requires": [
+      "Actual NS3 endpoint/device/queue/timer snapshot adapters and conditional tag-presence checks",
+      "Default-off original-event channel tokens closed after Receive returns",
+      "Retain completed QPs and append with stale-finished-bit real branch coverage; real histories/switch cleanup receipts",
+      "New actual-context G1 and positive/refusal two-generation network fixtures under separately frozen source/IDs/resources",
+      "IndependentC1V0 and all three two-sided effects/state/runtime-cost validation",
+      "CCF A/B-only necessary baseline decisions; Ofan paused; final adoption by user"
+    ]
   },
   "completed_registered_pilot_history": [
     {
@@ -1183,6 +1241,78 @@
         "new fixed source, independent protocol and fresh IDs"
       ],
       "new_endpoint_validation": false
+    },
+    {
+      "state": "TWO_UNTRACKED_PORTABLE_CORE_TEST_WIP_NOT_COMPILED_OR_CONNECTED",
+      "design": "docs/research/evidence/ws31-adapter-boundary-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r1.md",
+      "source_audit": "docs/research/evidence/ws31-adapter-boundary-integration-20261101-r1/snapshots/main/endpoint-lifecycle-source-audit-r1.md",
+      "requires": [
+        "actual endpoint retirement and event/channel/queue drain certificate",
+        "explicit tuple generation/reuse and rejection validation",
+        "new fixed source, independent protocol and fresh IDs"
+      ],
+      "new_endpoint_validation": false,
+      "WIP_receipt": "docs/research/evidence/ws31-adapter-default-integration-20261101-r1/snapshots/main/evidence/endpoint-ledger-wip-source-audit-r1.json",
+      "WIP_current_hashes_at_node13_audit": {
+        "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+        "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+      },
+      "WIP_matches_main_earlier_snapshot": true,
+      "WIP_inherits_1f_default_acceptance": false,
+      "trusted_EndpointSnapshot_is_not_measured_NS3_state": true,
+      "compile_or_runtime_or_endpoint_validation_accepted": false,
+      "next_local_review": "docs/research/evidence/ws31-adapter-default-integration-20261101-r1/snapshots/main/endpoint-ledger-local-review-r1.json"
     }
-  ]
+  ],
+  "local_review_history": [
+    {
+      "name": "label-lifecycle-boundary-review-r1",
+      "status": "MAIN_ACCEPTED_WITH_REQUIRED_REVISIONS",
+      "QA_sha256": "547d58506a3fb49444f4e5b0a72da74129470ffdc08b5aaaaf056f205f80ee52",
+      "main_fixed_objects_reviewed": 26,
+      "matrix_rows": 22,
+      "integration_scope": "QA identity and matrix row count; full source/call-chain review remains main-owned",
+      "verification": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/verification.json"
+    }
+  ],
+  "completed_registered_local_goal_history": [
+    {
+      "kind": "ENDPOINT_LEDGER_PORTABLE_CORE_LOCAL_READONLY_REVIEW",
+      "status": "COMPLETE_STATIC_REVIEW_MAIN_ACCEPTED_INTEGRATION_VERIFIED",
+      "plan": "docs/research/ws31/main/endpoint-ledger-local-review-r1.json",
+      "fixed_snapshot": "docs/research/evidence/ws31-adapter-default-integration-20261101-r1/snapshots/main/endpoint-ledger-local-review-r1.json",
+      "plan_sha256": "b64176ae0491ad33aa4ee1c25f2c0c0b2a0ae20dbb43fa596e47535f285ac5df",
+      "parent_head": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+      "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+      "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:92",
+      "reported_review_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:93",
+      "remote_compile_test_or_network_authorized": false,
+      "source_editing_by_independent_authorized": false,
+      "source_files": {
+        "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+        "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+      },
+      "trusted_snapshot_booleans_not_measurements": true,
+      "outcomes_accepted_by_Integration": true,
+      "implementation_owner": "WS31 main; untracked WIP may be revised after this snapshot",
+      "no_duplicate_sole_independent_dispatch": true,
+      "verification": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/verification.json",
+      "terminal_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:95"
+    }
+  ],
+  "last_verified_endpoint_static_checkpoint": {
+    "record": "docs/handoffs/2026-11-01-ws31-endpoint-core-integration.md",
+    "verification": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/verification.json",
+    "source_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+    "parent_network_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "reviewed_fixed_objects": 11,
+    "original_WIP_preserved": 2,
+    "source_files_added": 2,
+    "tree_entries": 4845,
+    "no_production_changes": true,
+    "core_preflight_plan_sha256": "57ee56f60e6406dfaeab8e317910423e53fdb87e46982be6bf730dd4823fae47",
+    "runtime_acceptance": false,
+    "network_total_unchanged": 43,
+    "nonnetwork_adapter_conditions_unchanged": 17
+  }
 }

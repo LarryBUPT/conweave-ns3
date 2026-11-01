@@ -1,0 +1,122 @@
+{
+  "at_utc": "2026-11-01T08:07:53.981566+00:00",
+  "status": "PASS_STATIC_REVIEW_PROVENANCE_PRESERVED_WIP_FIXED_CORE_AND_PREFLIGHT_SCOPE",
+  "review_sha256": "aa54af2b05c870e356e32e53d855c0a4175d4e00b38a314d39cad35a84cad12c",
+  "report_sha256": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa",
+  "QA_sha256": "bc2a8f6c30d18c48cc04502c98fc64ad0786a73b457694004bf76ad28f90bcfe",
+  "main_acceptance_sha256": "211d1c95ff024465a42a15f04cda70f9a61e3a31c208218515bf583e9ff04ebc",
+  "reviewed_source_objects": [
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "fixed_git_sha256": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+      "working_sha256": "5febf8c568905993177b34cef56c82db01e7a764fcb877d0a5bb0c097742c2bf"
+    },
+    {
+      "path": "src/point-to-point/model/rdma-queue-pair.h",
+      "fixed_git_sha256": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+      "working_sha256": "e97ab209034ff59b11255a2385672cbae6516bbf162329f6625b6edb69d54e8f"
+    },
+    {
+      "path": "src/point-to-point/model/rdma-queue-pair.cc",
+      "fixed_git_sha256": "c7f06fa16c6bef60e2671ded84daa3009ed3312a7bfc55f8afbec7d28c004d20",
+      "working_sha256": "d9b664f1fe925455fbc71f62fbd6b17d02bab6fa66bcba8388b871db69bf3a7b"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-net-device.h",
+      "fixed_git_sha256": "23b554721189e7767706fe386d76760eaee895b421caf7069d24003e39a7bd07",
+      "working_sha256": "c5ecff9f1c0ef4e5fa8521993ce94c880a2db322cb3dd67fa3ba9bff5982afe8"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-net-device.cc",
+      "fixed_git_sha256": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+      "working_sha256": "7585e780426b4d058945f4df33227900e2bf80a19717c5f07dba410ead65bf10"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "fixed_git_sha256": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1",
+      "working_sha256": "9083a20148a436fb63df78a6e6540f113bcdd1580df31eba7fa7906145317202"
+    },
+    {
+      "path": "src/point-to-point/model/point-to-point-net-device.h",
+      "fixed_git_sha256": "ad777bc39a417b17edb73203f811c8546ce0bed3ad7fbd2311354768ea04a0e1",
+      "working_sha256": "1e600278e227e67b2df8dc81c4a3f15b1718f46e076859e5b299ca1156c12eb7"
+    },
+    {
+      "path": "src/network/utils/broadcom-egress-queue.h",
+      "fixed_git_sha256": "672058dbd8fa6ef99cb5be3df5a7e01d7809fd32f9bf0b4fef7d08c865a2b3a6",
+      "working_sha256": "22979cc972c806bf0d68b584d2a8504dc2ca114f9570d14da28ed6e17eae82dc"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-budget.h",
+      "fixed_git_sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+      "working_sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "fixed_git_sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+      "working_sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1"
+    },
+    {
+      "path": "scratch/network-load-balance.cc",
+      "fixed_git_sha256": "c3204664608548c7dfd95d1f0873792e15bfaddf6f4c63e189457fdb358499fa",
+      "working_sha256": "e4ebc86c4d403071ec873b856a85f037a099f1bf1d82ba6b7fbfc775fb6bed4f"
+    }
+  ],
+  "original_WIP_matches_node13_and_before_after_review": true,
+  "preserved_WIP_files": 2,
+  "accepted_findings": [
+    "R1",
+    "R2",
+    "R3",
+    "R4"
+  ],
+  "source_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "parent_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "new_source_files": {
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+    "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+  },
+  "fixed_tree_entries": 4845,
+  "tree_sha256": "3da8acbcc1809389aac24adc1936d22874821077e40ddd397723fa7d977e0e64",
+  "clean_checkout_and_personal_origin_tracking": true,
+  "production_runtime_changes": 0,
+  "Waf_or_production_inclusion": 0,
+  "root_independent_static_findings": {
+    "Clear_only_clears_vector": true,
+    "finished_bitmap_initialized_in_constructor": true,
+    "scheduler_checks_old_finished_bit_before_new_QP": true,
+    "packed_key_alias_vector_verified": true,
+    "ACK_NACK_identity_copy_conditional": true,
+    "completion_callback_precedes_TX_map_delete": true
+  },
+  "repair_static_anchor_scope": "New core guard/test anchors inspected; no compiled or runtime behavior accepted",
+  "retain_old_finished_QP_and_append_policy": "New contract only; production bitmap branch still needs real NS3 fixture",
+  "next_preflight_plan_sha256": "57ee56f60e6406dfaeab8e317910423e53fdb87e46982be6bf730dd4823fae47",
+  "next_id": "20261101-163000-ws31-endpoint-core-r2",
+  "next_sync_compile_core_maxima": [
+    1,
+    1,
+    1
+  ],
+  "next_full_NS3_build_deploy_network": [
+    0,
+    0,
+    0
+  ],
+  "source_entry_guard": "Main holds clean exclusive source and compatible entry until explicit terminal release",
+  "next_preflight_outcome_accepted": false,
+  "last_network_accepted_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "network_technical_total": 43,
+  "nonnetwork_adapter_conditions": 17,
+  "new_combined_baseline": false,
+  "Integration_compiles_tests_simulation_remote_actions": 0,
+  "manifest_entries": 21,
+  "remaining": [
+    "Actual NS3 endpoint/device/queue/timer snapshot adapters and conditional tag-presence checks",
+    "Default-off original-event channel tokens closed after Receive returns",
+    "Retain completed QPs and append with stale-finished-bit real branch coverage; real histories/switch cleanup receipts",
+    "New actual-context G1 and positive/refusal two-generation network fixtures under separately frozen source/IDs/resources",
+    "IndependentC1V0 and all three two-sided effects/state/runtime-cost validation",
+    "CCF A/B-only necessary baseline decisions; Ofan paused; final adoption by user"
+  ]
+}
