@@ -1,0 +1,24 @@
+{
+  "at_utc": "2026-11-01T06:36:14.568412+00:00",
+  "status": "MAIN_ADAPTER_VERIFIER_PREPARED_C2_SYNTHETIC_AND_NEGATIVES_PASS",
+  "sha256": {
+    "scripts/verify_adapter_boundary_raw_r1.py": "7b333972626cff37582d1613d56b105df043377b8b9020afc2ac2caf6d401216",
+    "scripts/check_adapter_c2_verifier_r1.py": "fd0da6e22b21f8d50a34039effaad7e8de1f17d6cad55aa23ce7420b74f38ef4",
+    "scripts/verify_c13_label_raw_r1.py": "a7ed823ef63d9b93b43175f89a864d40b23167be3028def359aa5aace08e7525",
+    "scripts/verify_c2_label_raw_r1.py": "9c9dc9b575bd60223279e8d1ab8e7fde46bed815b9fa6fcfec1194126dca1932",
+    "scripts/verify_c1_controls_raw_r1.py": "186e69f5d535dbf8b63cc09dd63125c7cb5444373d44d0b1c186cfd43962d64f",
+    "scripts/verify_c23_controls_raw_r1.py": "287d9a7119f0f3236720d3e12e5ce190f72db1196b99133c68f4ea8e6f49d224",
+    "scripts/verify_dynamic_raw_r1.py": "4587f947a93698e03957272782a965d2dd283d0b8fa534ca677166b6048d8425"
+  },
+  "C2_positive_synthetic_cases": 10,
+  "C2_corrupt_examples_rejected": 10,
+  "literal_vectors": {
+    "C2_sport1_wait_ns": 376,
+    "C3_first_class1_borrower_sport": 6,
+    "framing_bytes": 56
+  },
+  "independent_scientific_models": "C1 ranges/expiry/fallback/pinning and C3 cached category/activity/lazy lease/reset models implemented; real log replay pending",
+  "network_experiments": 0,
+  "CXX_execution": 0,
+  "claim": "Verifier preparation only, not actual adapter correctness or performance"
+}

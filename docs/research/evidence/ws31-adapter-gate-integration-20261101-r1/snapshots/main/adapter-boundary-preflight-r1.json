@@ -1,0 +1,111 @@
+{
+  "workstream": "WS-31",
+  "stage": "Source review then one build and new adapter boundary fixtures only",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "parent_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "branch": "feature/ws31-candidates",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "id": "20261101-143000-ws31-adapter-preflight-r1",
+  "contract": "adapter-lifecycle-contract-r1.md",
+  "human_plan": "adapter-boundary-preflight-r1.md",
+  "main_source_audit": "evidence/adapter-boundary-source-audit-r1.json",
+  "source_changes_sha256": {
+    "scratch/ws31-start-boundary-test.cc": "ec0bbba5a708183a4c3416f2926275fd65bbf05f2b9f5fa16f63e9905717fc1a",
+    "scratch/ws31-switch-boundary-test.cc": "dbc3341286d4a1597ed167ac85d31bc84db3babcbdc2d0f4d6d3cea93310b59b",
+    "src/applications/model/rdma-client.cc": "aa2c84a883ef52c894d34598a0964afc69abbafc05dad5deabd9337169318101",
+    "src/applications/model/rdma-client.h": "96904f92ef4b81820a055143f97e61e34a84eb12e1732cf09e6d650d8ecffb8b",
+    "src/point-to-point/model/switch-node.h": "e2389625e2eb5fb9acd583eec996b4ba2a69427343d2e42e271780e6c1b5ebac"
+  },
+  "source_tree_entries": 4843,
+  "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:84",
+  "resource_gate": {
+    "no_other_user_or_unknown_project_jobs": true,
+    "min_available_gib": 64,
+    "min_disk_gib": 100,
+    "max_initial_load_1m": 4,
+    "parallel_builds": 1,
+    "jobs_per_build": 2,
+    "network_simulation_concurrency": 0
+  },
+  "environment": {
+    "WS30_OBSERVE": "2",
+    "WS31_LABEL_PROFILE": "0",
+    "WS30_TAG_TRANSFORM": "0",
+    "WS30_LIFECYCLE": "0",
+    "WS30_LIFE_PROFILE": "0",
+    "WS30_COMPOSITION": "0"
+  },
+  "ordered_executions": [
+    {
+      "candidate": "C1",
+      "relative_binary": "build/scratch/ws31-switch-boundary-test",
+      "args": [
+        "--candidate=c1"
+      ],
+      "expected_cases": [
+        "c1-ranges",
+        "c1-expiry-reset",
+        "c1-capacity",
+        "c1-range-limit",
+        "c1-wrap"
+      ],
+      "case_count": 5
+    },
+    {
+      "candidate": "C2",
+      "relative_binary": "build/scratch/ws31-start-boundary-test",
+      "args": [],
+      "case_count": 10,
+      "kinds": [
+        "stop",
+        "dispose"
+      ],
+      "phases": [
+        "before",
+        "same-control-first",
+        "same-launch-first",
+        "after",
+        "zero"
+      ],
+      "real_QPs": 0,
+      "finished": 0
+    },
+    {
+      "candidate": "C3",
+      "relative_binary": "build/scratch/ws31-switch-boundary-test",
+      "args": [
+        "--candidate=c3"
+      ],
+      "expected_cases": [
+        "c3-borrow-expiry-reset",
+        "c3-unknown-reset"
+      ],
+      "case_count": 2
+    }
+  ],
+  "steps": [
+    "Independently review parent diff and complete fixtures; validate actual packet/header/queue wiring, production method calls, C2 transport extraction, same-time event uid order and observable counters. Stop before remote actions on material issue.",
+    "Confirm prior driver PID40264 absent/terminal and sole foreground idle; new clean fixed personal fork/ref and newID/worker/cache/resource gates; no remote actions if source review fails.",
+    "Guarded sync with workflow fallback only as needed; worker code unchanged from previously accepted deployment, verify actual hash and avoid unnecessary deploy.",
+    "Exactly one fresh isolated optimized full build with-j2; capture actual task count/duration and source/binary/library hashes. No core runs.",
+    "Direct binary execution in C1,C2,C3 order with sanitized frozen env and isolated build LD_LIBRARY_PATH. No waf --run/rebuild; require each command exit0, actual case coverage, complete logs. Any failure stops remaining commands.",
+    "Fetch to new independent-owned path and verify source/raw/command/binary/dynamic library manifest. Preserve index, QA and nine-section handoff; release main source/runner/env constraints explicitly after all required guarded calls terminal."
+  ],
+  "source_guard": "Keep exclusive source clean and runner/env compatible until source established and all guarded preflight commands explicitly released",
+  "prohibited": [
+    "No run.py/remote_experiment run/network traffic",
+    "No old core or legacy cancellation tests",
+    "No Ofan/RR dedicated work",
+    "No WS29/old WS26-30 controllers/old matrix/840 continuation",
+    "No edits to main source or criteria by independent",
+    "No existingID overwrite, deletion, process killing, system changes",
+    "No endpoint generation/drain/reuse or performance completion claim from these fixture tests"
+  ],
+  "remaining_after": [
+    "Main independent acceptance from complete raw logs",
+    "Necessary new-source C2/default network regressions under separate plan",
+    "Real endpoint lifecycle/drain/generation/reuse contract and implementation",
+    "Independent C1V0 and all three two-sided business-batch/background/state/runtime-cost validation"
+  ]
+}

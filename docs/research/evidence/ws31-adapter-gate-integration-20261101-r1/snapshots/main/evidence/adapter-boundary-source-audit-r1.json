@@ -1,0 +1,35 @@
+{
+  "at_utc": "2026-11-01T06:29:35.374724+00:00",
+  "status": "FIXED_SOURCE_STATIC_AUDIT_PASS_BUILD_AND_EXECUTION_PENDING",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "parent_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "branch": "feature/ws31-candidates",
+  "files_git_LF_sha256": {
+    "scratch/ws31-start-boundary-test.cc": "ec0bbba5a708183a4c3416f2926275fd65bbf05f2b9f5fa16f63e9905717fc1a",
+    "scratch/ws31-switch-boundary-test.cc": "dbc3341286d4a1597ed167ac85d31bc84db3babcbdc2d0f4d6d3cea93310b59b",
+    "src/applications/model/rdma-client.cc": "aa2c84a883ef52c894d34598a0964afc69abbafc05dad5deabd9337169318101",
+    "src/applications/model/rdma-client.h": "96904f92ef4b81820a055143f97e61e34a84eb12e1732cf09e6d650d8ecffb8b",
+    "src/point-to-point/model/switch-node.h": "e2389625e2eb5fb9acd583eec996b4ba2a69427343d2e42e271780e6c1b5ebac"
+  },
+  "source_tree_entries": 4843,
+  "production_diff": "RdmaClient transport method extraction restores exact parent when removed; headers only declare protected seam/narrow friends; switch adapter .cc and all three portable cores unchanged",
+  "cases_planned": {
+    "C1": 5,
+    "C2": 10,
+    "C3": 2
+  },
+  "execution_order": [
+    "switch-boundary --candidate=c1",
+    "start-boundary",
+    "switch-boundary --candidate=c3"
+  ],
+  "real_packet_and_egress_queue": true,
+  "CXX_builds": 0,
+  "fixture_executions": 0,
+  "network_runs": 0,
+  "core_repeats": 0,
+  "endpoint_generations": 0,
+  "prior_background_driver_PID40264": "Absent by local Win32_Process check before commit",
+  "pre_dispatch_foreground_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:84 terminal idle",
+  "guard": "Independent prior explicit entry/env release accepted"
+}

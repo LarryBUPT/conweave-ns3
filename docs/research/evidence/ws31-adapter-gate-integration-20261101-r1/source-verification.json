@@ -1,0 +1,36 @@
+{
+  "status": "PASS_STOP_PROVENANCE_AND_UNCHANGED_RECOVERY_PLAN",
+  "fixed_adapter_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "last_network_validated_source": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "files_hashed": {
+    "documents": 22,
+    "dependencies": 2,
+    "support_files": 3,
+    "reference_files": 4
+  },
+  "fixed_Git_objects_hashed": 42,
+  "fixed_tree_entries": 4843,
+  "new_source_files": 5,
+  "RdmaClient_extraction_reversal_matches_parent": true,
+  "clean_exclusive_checkout_and_personal_origin_tracking_verified": true,
+  "prior_sync": 1,
+  "prior_build_fixture_core_network_deploy": 0,
+  "source_copy_established": false,
+  "unknown_PID": 297502,
+  "gate_utc": "2026-11-01T06:42:04.334661Z",
+  "PID_later_absence_utc": "2026-11-01T06:44:24.066161Z",
+  "ownership": "UNKNOWN; no ancestry, neither own-sync nor another-user attribution",
+  "process_signals": 0,
+  "r2_plan_sha256": "e09f0883fe8839f5e77ee2797ebbf75aeb88e0fa9959b7b7ddf84b5acb328061",
+  "r2_id": "20261101-150000-ws31-adapter-preflight-r2",
+  "r2_sync_deploy_cache_mutation_authorized": false,
+  "r2_fixture_counts_planned": [
+    5,
+    10,
+    2
+  ],
+  "r2_outcomes_accepted_here": false,
+  "source_entry_env_guard": "R1 held guard continues through gated r2; no silent release",
+  "network_acceptance_unchanged": 41,
+  "Integration_remote_actions_tests_or_experiments": false
+}

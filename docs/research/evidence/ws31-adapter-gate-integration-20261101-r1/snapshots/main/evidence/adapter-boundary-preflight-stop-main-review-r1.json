@@ -1,0 +1,31 @@
+{
+  "at_utc": "2026-11-01T06:55:06.967871+00:00",
+  "status": "MAIN_ACCEPTED_STOPPED_RESOURCE_GATE_EVIDENCE_NO_BUILD_OR_TEST_ACCEPTANCE",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "index_sha256": "d43d530b4fb22463f93117c66bc5f5f680fb7f6218f58bd8c81d52820d95ebfa",
+  "QA_sha256": "38790471b87f3fb759fd9cdb88dfecd7f659c25373c43446f0f32bd001c83e7c",
+  "files_hashed": {
+    "documents": 22,
+    "dependencies": 2
+  },
+  "support_files_hashed": 3,
+  "reference_files_hashed": 4,
+  "fixed_git_objects": 42,
+  "git_tree_entries": 4843,
+  "unknown_PID": 297502,
+  "identity": "git-remote-http in expected cache; ancestry unavailable by diagnosis, no claim of own-sync or other-user ownership",
+  "gate_sample_utc": "2026-11-01T06:42:04.334661Z",
+  "PID_absence_observed_utc": "2026-11-01T06:44:24.066161Z",
+  "successful_guarded_sync": 1,
+  "builds": 0,
+  "fixtures": 0,
+  "network": 0,
+  "cores": 0,
+  "deploy": 0,
+  "signals_sent": 0,
+  "remote_ID": "20261101-143000-ws31-adapter-preflight-r1",
+  "ID_last_cache_gate_absent": true,
+  "source_copy_established": false,
+  "source_entry_env_guard": "Still held pending fresh gated recovery",
+  "next": "New r2 ID and new driver/receipts; preserve stopped r1 bytes; use cached exact SHA only after fresh full process/cache/ref/worker/resource gates"
+}

@@ -1,0 +1,341 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T07:03:51.001289+00:00",
+  "scope": "Integration fixed adapter-source/stop provenance and fresh gated r2 identity only; no build/test/network result acceptance",
+  "fixed_adapter_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "last_network_validated_source": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "cumulative_network_technical_cells_unchanged": 41,
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/adapter-preflight-gate-stop-handoff-r1.md",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/adapter-preflight-gate-stop-handoff-r1.md",
+      "sha256": "fd223d0ffef87c00b29d1ba6f89622bf90873e8fd04be532c0b0e6291e4e7906",
+      "bytes": 4125
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/adapter-boundary-preflight-stop-main-review-r1.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/evidence/adapter-boundary-preflight-stop-main-review-r1.json",
+      "sha256": "77e2bbb02a4ca3df9838ad8c46fec61e848ac41c945864a6b6b66c2e351cd97a",
+      "bytes": 1344
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/adapter-boundary-source-audit-r1.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/evidence/adapter-boundary-source-audit-r1.json",
+      "sha256": "e2a2f27bf58861129f61b5b209f37fd91583d03086b40c694c7d6c120c8c11f6",
+      "bytes": 1751
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/adapter-boundary-main-verifier-preparation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/evidence/adapter-boundary-main-verifier-preparation-r1.json",
+      "sha256": "3521d9411d3ecddf07ce73a3392548e86a4cd92d8981dacb02689423e8efd4c2",
+      "bytes": 1455
+    },
+    {
+      "source": "docs/research/ws31/main/adapter-boundary-preflight-r1.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/adapter-boundary-preflight-r1.json",
+      "sha256": "28fc60860857cb6fe3029c72d62b1a50b0d0e053d9d2927d7655e57afb483926",
+      "bytes": 5101
+    },
+    {
+      "source": "docs/research/ws31/main/adapter-boundary-preflight-r2.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/adapter-boundary-preflight-r2.json",
+      "sha256": "e09f0883fe8839f5e77ee2797ebbf75aeb88e0fa9959b7b7ddf84b5acb328061",
+      "bytes": 5990
+    },
+    {
+      "source": "docs/research/ws31/main/adapter-boundary-preflight-r2.md",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/adapter-boundary-preflight-r2.md",
+      "sha256": "f38e7f86f2c7d6a9cfac00092d54ee298a1572b2bda0f33e97267b9a825b7358",
+      "bytes": 2632
+    },
+    {
+      "source": "docs/research/ws31/main/adapter-lifecycle-contract-r1.md",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/adapter-lifecycle-contract-r1.md",
+      "sha256": "0905e5e1a7931face27f7705117e15a4d7cf7048fd84c5fb9050987f8a496100",
+      "bytes": 6339
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "60f08e1dde3f4d7fe863d195996af693b4dd87ca522d447367178f84d63b7053",
+      "bytes": 28820
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-index.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-index.json",
+      "sha256": "d43d530b4fb22463f93117c66bc5f5f680fb7f6218f58bd8c81d52820d95ebfa",
+      "bytes": 10972
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-qa.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-qa.json",
+      "sha256": "38790471b87f3fb759fd9cdb88dfecd7f659c25373c43446f0f32bd001c83e7c",
+      "bytes": 510
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-cache-after-sync.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-cache-after-sync.json",
+      "sha256": "2b28af32ca56a87c33ac0adf5186d0f8b7031372e1ecc9970c0abd8867749600",
+      "bytes": 981
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-cache-before-sync.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-cache-before-sync.json",
+      "sha256": "352e831a006b412dfb4efae9f0faa43c69a8cc373919586f41af0b1bd83214ca",
+      "bytes": 944
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-controller.log",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-controller.log",
+      "sha256": "17b8b639852d34798fcfe4c195e582af14b9b2bcd324bbe06aac706fdd345d0a",
+      "bytes": 1181
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-driver-error.log",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-driver-error.log",
+      "sha256": "d0837d8bd629ba5ef32deeb6795b9efc5a659c238398834c846cdb9e375e874b",
+      "bytes": 1031
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-driver.py",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-driver.py",
+      "sha256": "cdf42fa2760fdef5cac50c25f28145a209eba600b57aca94ebe58929d8c997bf",
+      "bytes": 12931
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-finalize.py",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-finalize.py",
+      "sha256": "9308c02631ce706e26c682a890970250da61fd543dce8e6e508c628b17be491b",
+      "bytes": 12475
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-frozen-contract.md",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-frozen-contract.md",
+      "sha256": "0905e5e1a7931face27f7705117e15a4d7cf7048fd84c5fb9050987f8a496100",
+      "bytes": 6339
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-frozen-plan.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-frozen-plan.json",
+      "sha256": "28fc60860857cb6fe3029c72d62b1a50b0d0e053d9d2927d7655e57afb483926",
+      "bytes": 5101
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-frozen-plan.md",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-frozen-plan.md",
+      "sha256": "eda62b4f6deb6207229390fa7e4efb9d86abc0aace9ef866cf2b1db97b828a7a",
+      "bytes": 4830
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-handoff.md",
+      "sha256": "f8979b28cefe13803d4eda36b9562340c6f2aee5b180330f56d7e8d29c245c6c",
+      "bytes": 2163
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-integrity.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-integrity.json",
+      "sha256": "8e05bd252198c82c1aebc1940af66d1b3765b993628081f5ca951d6ff965f38a",
+      "bytes": 1143
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-local-process-gate.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-local-process-gate.json",
+      "sha256": "4c36b45a51fedee10f66bfbb7eadb478eda621dd3cfcb3e74c8a2c18373526eb",
+      "bytes": 60
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-prepare.py",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-prepare.py",
+      "sha256": "8fd334c51b6ccda60f2b0fc351b2c0824484d79b9b360ce12a25ec9c8bc75409",
+      "bytes": 5692
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-process-diagnosis.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-process-diagnosis.json",
+      "sha256": "246139e8109279fffb4ade336efa731cd3c19c76911b0733f282ce558ad191ff",
+      "bytes": 176
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-process-diagnosis.py",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-process-diagnosis.py",
+      "sha256": "f1579b1974cbf7fd0979b0c29f96bdbb7af654f50ea6630a680b9ea4e2ed9d2c",
+      "bytes": 1658
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-receipt.json",
+      "sha256": "01b94f9456734b577d2256024eeeeeaa8accffdda94c7336ce1929c67b4c59a2",
+      "bytes": 2761
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-reference-review.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-reference-review.json",
+      "sha256": "741415d17d9e83f0320ea33ac6465dad0b01446c665a0594eb54921f528e7041",
+      "bytes": 1532
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-report.md",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-report.md",
+      "sha256": "c357c13f0dd00093949d0bc0f02d3248f2c12d142cf12c30cd889a5ba88d1b78",
+      "bytes": 3960
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-source-diff.patch",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-source-diff.patch",
+      "sha256": "32b9a803fb66c3160208d617631288933e34ff3a163f697aba1c9b3c499ab56d",
+      "bytes": 27104
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-source-git-tree.txt",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-source-git-tree.txt",
+      "sha256": "7de9a257ea0bad86e1a6431afef9b6154db52c9c8a261e0c904f706b4696621b",
+      "bytes": 468483
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-source-review.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-source-review.json",
+      "sha256": "f2c4a21773c9ff050c7e5f0cda59695363720ad35840684edbcf5ffc385d4628",
+      "bytes": 3927
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-verify.py",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-verify.py",
+      "sha256": "8866cfdd60dced2addd05337821409edccdbbb9b068349f90ff010b4f17cf0f9",
+      "bytes": 6916
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-evidence/20261101-143000-ws31-adapter-preflight-r1/guarded-sync.log",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-evidence/20261101-143000-ws31-adapter-preflight-r1/guarded-sync.log",
+      "sha256": "7688c29f0f0d138b80270a0a528f33f90a2a5bd29ce97a027b290da2161531a0",
+      "bytes": 509
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-evidence/20261101-143000-ws31-adapter-preflight-r1/resources-before-build.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-evidence/20261101-143000-ws31-adapter-preflight-r1/resources-before-build.json",
+      "sha256": "4e7056ece86946fb05265411a54a8d20dffcd855603c91a408a4e0d8a627742d",
+      "bytes": 461
+    },
+    {
+      "source": "docs/research/ws31/independent/adapter-boundary-preflight-r1-evidence/20261101-143000-ws31-adapter-preflight-r1/resources-initial.json",
+      "snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/independent/adapter-boundary-preflight-r1-evidence/20261101-143000-ws31-adapter-preflight-r1/resources-initial.json",
+      "sha256": "53d46d509002a6309d9845941d62024318929292bbcaf1646cd42d583b75d8c7",
+      "bytes": 335
+    }
+  ],
+  "source_verification": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/source-verification.json",
+  "source_verification_sha256": "d56763af3b32a3a4fd9d85a7a3901e39dbd8e9a43d59b833725e959099bba991",
+  "audit_code_sha256": "37450bff2a9c27d607315febabc15f0ae82965213d928cb816994df618545946",
+  "root_checks": {
+    "files_hashed": {
+      "documents": 22,
+      "dependencies": 2,
+      "support_files": 3,
+      "reference_files": 4
+    },
+    "fixed_Git_objects": 42,
+    "fixed_tree_entries": 4843,
+    "changed_files": 5,
+    "RdmaClient_extraction_exact_parent_reversal": true,
+    "implementation_clean_personal_fork_tracking": true,
+    "static_fixture_review_owner": "Independent; Integration checks source and review identity, no fixture execution"
+  },
+  "prior_attempt": {
+    "id": "20261101-143000-ws31-adapter-preflight-r1",
+    "index_sha256": "d43d530b4fb22463f93117c66bc5f5f680fb7f6218f58bd8c81d52820d95ebfa",
+    "QA_sha256": "38790471b87f3fb759fd9cdb88dfecd7f659c25373c43446f0f32bd001c83e7c",
+    "sync": 1,
+    "build_fixture_core_network_deploy": 0,
+    "source_copy_established": false,
+    "old_ID_absent_only_at_last_cache_gate": true,
+    "driver42736_absent_before_r2": "Main reported local process check; no live ancestry inferred here"
+  },
+  "unknown_process": {
+    "pid": 297502,
+    "comm": "git-remote-http",
+    "cwd": "/home/fnl/lzy/code/conweave-ns3",
+    "gate_sample_utc": "2026-11-01T06:42:04.334661Z",
+    "later_absence_utc": "2026-11-01T06:44:24.066161Z",
+    "ancestry_not_available": true,
+    "ownership": "UNKNOWN, neither own-sync nor other-user attribution",
+    "signals_sent": 0,
+    "historical_absence_not_a_fresh_gate": true
+  },
+  "next_goal": {
+    "plan": "adapter-boundary-preflight-r2.json",
+    "plan_sha256": "e09f0883fe8839f5e77ee2797ebbf75aeb88e0fa9959b7b7ddf84b5acb328061",
+    "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "id": "20261101-150000-ws31-adapter-preflight-r2",
+    "status": "DISPATCHED_SOLE_INDEPENDENT_NEW_GATES_REQUIRED",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:87",
+    "source_guard": "R1 held source/entry/env guard carried forward until explicit recovery release",
+    "sync_authorized": 0,
+    "deploy_authorized": 0,
+    "network_authorized": 0,
+    "cases_planned": 17,
+    "source_or_criteria_changed": false
+  },
+  "next_plan_sha256": "e09f0883fe8839f5e77ee2797ebbf75aeb88e0fa9959b7b7ddf84b5acb328061",
+  "next_id": "20261101-150000-ws31-adapter-preflight-r2",
+  "r2_scope": {
+    "fresh_all_process_cache_ref_tree_worker_ID_resources_required": true,
+    "sync": 0,
+    "deploy": 0,
+    "cache_mutation": 0,
+    "builds_if_gate_passes": 1,
+    "build_jobs": 2,
+    "ordered_fixture_cases": [
+      5,
+      10,
+      2
+    ],
+    "network": 0,
+    "old_core": 0,
+    "outcomes_accepted_by_Integration": false,
+    "held_source_entry_env_constraints_continue": true
+  },
+  "coordination": {
+    "main_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:18",
+    "pre_dispatch_sole_independent_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:87",
+    "dispatch": "Once by main; active target not repeated",
+    "direct_independent_query_or_wakeup_by_Integration": false,
+    "main_adapter_key_used_instead_of_historical_dynamic_planned_next_goal": true
+  },
+  "local_checker_history": {
+    "path": "support-schema-correction.json",
+    "scope": "Integration draft assumed bare support hash; actual entries include bytes/sha256; corrected before successful receipt, no source/old evidence edits"
+  },
+  "reference_review": {
+    "source": "independent/adapter-boundary-preflight-r1-reference-review.json",
+    "version": "DiffFlow arXiv1604.05107v1 archived technical/verification records",
+    "scope": "Node applicability reviewed against same-conversation targeted reading and four source identities; no new full-PDF/publication audit",
+    "borrow": "Activation order and explicit removal do not establish endpoint cleanup/drain by themselves",
+    "difference": "Real ns3 adapter packet/queue/timer boundaries, not SDN advertisement or spraying",
+    "gate_evidence": "Actual preserved process/cache observations, not literature inference",
+    "new_baselines": []
+  },
+  "boundaries": {
+    "uncommitted_1ec_C2_WIP_superseded_by_fixed_clean1f": true,
+    "new_source_default_network_complete": false,
+    "real_endpoint_drain_generation_reuse_complete": false,
+    "independent_V0_effects_costs_complete": false,
+    "Ofan_admitted": false,
+    "WS29_accessed": false,
+    "remote_or_fixture_execution_by_Integration": false,
+    "new_combined_baseline": false,
+    "WS31_archived": false,
+    "adapter_17_cases_independently_accepted": false,
+    "r2_actual_runtime_status_not_queried_by_Integration": true
+  },
+  "validation": {
+    "JSON_files_valid": 23,
+    "frozen_snapshots_valid": 36,
+    "handoff_sections": 9,
+    "handoff_links_valid": 3,
+    "added_state_links_valid": 8,
+    "receipt_audit_and_local_schema_history_hashes_valid": true,
+    "fixed1f_vs_network1ec41_and_no_sync_deploy_cache_network_r2_consistent": true,
+    "style_review": "Actually read ruanyf README/six chapters retained; checked hierarchy, spacing, paragraphs, numeric forms, punctuation and document structure"
+  }
+}

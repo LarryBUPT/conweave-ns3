@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:17"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:18"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -169,9 +169,33 @@
     }
   ],
   "next_registered_pilot": {
-    "status": "NO_NEW_FROZEN_EXECUTION_PLAN",
-    "new_execution_authorized": false,
-    "last_network_validated_source": "1ec5eedc24cd863a289b7493e8b3865c70592ab5"
+    "kind": "ADAPTER_ENGINEERING_PREFLIGHT_FRESH_GATES_NO_SYNC",
+    "status": "DISPATCHED_SOLE_INDEPENDENT_NEW_GATES_REQUIRED",
+    "plan": "docs/research/ws31/main/adapter-boundary-preflight-r2.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/adapter-boundary-preflight-r2.json",
+    "plan_sha256": "e09f0883fe8839f5e77ee2797ebbf75aeb88e0fa9959b7b7ddf84b5acb328061",
+    "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "id": "20261101-150000-ws31-adapter-preflight-r2",
+    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:87",
+    "fresh_all_process_cache_ref_tree_worker_ID_resources": true,
+    "authorized_sync_commands": 0,
+    "authorized_deploy_commands": 0,
+    "authorized_cache_mutations": 0,
+    "max_builds": 1,
+    "jobs_per_build": 2,
+    "ordered_fixture_cases": [
+      5,
+      10,
+      2
+    ],
+    "network_authorized": false,
+    "old_core_or_legacy_controller_repeats_authorized": false,
+    "outcomes_accepted_by_Integration": false,
+    "held_source_entry_env_constraints_continue": true,
+    "new_ID_required": true,
+    "unknown_PID_cannot_be_attributed_without_ancestry": true,
+    "source_guard": "R1 held clean source/entry/env constraints carried into r2 until explicit terminal release"
   },
   "last_verified_zero_control_checkpoint": {
     "date": "2026-11-01",
@@ -234,10 +258,11 @@
     "scope": "Initial dynamic technical coverage only; no independent effects"
   },
   "latest_implemented_source": {
-    "sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
-    "purpose": "Only new bounded label input and generator;38 accepted code objects unchanged",
-    "validation": "Fixed1ec dynamic-label10 raw and r3 recovery delivery accepted, including actual UID/time/presence and first policy; working-tree adapter WIP explicitly excluded",
-    "parent_code_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "parent_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+    "purpose": "Five-file production adapter seams/narrow probes and17 planned boundary fixture cases",
+    "validation": "Static source review/provenance passed; r1 stopped before build after one sync; no build/fixture/core/network result accepted",
+    "mutable_worktree_status": "CLEAN_FIXED_COMMITTED_1F_AT_OBSERVATION",
     "last_network_validated_source": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
@@ -245,16 +270,16 @@
       "2ed7d342d0713a5667f43c7730ca5bc5a6a67150": "C1/C2/C3 default-profile0 full FCT/common+dedicated-event compatibility only",
       "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy"
     },
-    "new_network_approval_scope": "Original dynamic10 completed; no successor frozen plan",
-    "mutable_worktree_status": "DIRTY_MAIN_OWNED_ADAPTER_WIP_NOT_VALIDATED"
+    "new_network_approval_scope": "None; r2 permits gated engineering build/fixtures only"
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "Dynamic label ten and r3 recovery delivery verified; adapter C2 uncompiled WIP recorded",
-    "record": "docs/handoffs/2026-11-01-ws31-label-dynamic-integration.md",
-    "verification": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/verification.json",
+    "kind": "Fixed adapter1f static review confirmed; r1 stopped before build at unknown-process gate; fresh r2 dispatched",
+    "record": "docs/handoffs/2026-11-01-ws31-adapter-gate-integration.md",
+    "verification": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/verification.json",
     "user_decision_required": false,
-    "independent_effects_validated": false,
+    "scientific_source_failure": false,
+    "new_build_fixture_or_network_acceptance": false,
     "new_baseline_established": false
   },
   "last_verified_C2_label_checkpoint": {
@@ -362,6 +387,15 @@
       "user_decision_required": false,
       "independent_effects_validated": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "Dynamic label ten and r3 recovery delivery verified; adapter C2 uncompiled WIP recorded",
+      "record": "docs/handoffs/2026-11-01-ws31-label-dynamic-integration.md",
+      "verification": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/verification.json",
+      "user_decision_required": false,
+      "independent_effects_validated": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -403,7 +437,7 @@
     "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
     "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
     "root_restarted_jobs": false,
-    "phase_update": "Dynamic10/recovery complete and both entry/env calls explicitly released; main reports sole independent finishing current accepted target, no new dispatch. Main may develop local uncompiled adapter WIP; fixed1ec acceptance excludes mutable worktree."
+    "phase_update": "Adapter1f committed clean; r1 prior driver terminal and sole independent idlecursor87 before fresh r2 dispatch. One successful sync then before-build unknown cache GitHTTP stop; ancestry unknown despite later absence. Source/entry/env guard held into r2, no duplicate dispatch/sync/deploy/cache mutation."
   },
   "last_verified_C23_controls_checkpoint": {
     "date": "2026-11-01",
@@ -480,14 +514,33 @@
     "verification": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/verification.json"
   },
   "next_registered_goal": {
-    "kind": "CURRENT_TARGET_FINALIZATION_NO_NEW_DISPATCH",
-    "accepted_target": "label-dynamic-validation-r1 with recovery-r2",
-    "raw_and_r3_delivery_accepted": true,
-    "executor_state": "Main reported sole independent still active/finalizing; stopped modifying current package; no new target dispatched",
-    "entry_env_guard": "RELEASED explicitly after both recovery calls terminal",
-    "new_target_requires": "Prior executor terminal/idle and independently frozen next plan; do not wake active executor",
-    "new_core_build_or_network_plan_frozen": false,
-    "integration_direct_independent_query": false
+    "kind": "ADAPTER_ENGINEERING_PREFLIGHT_FRESH_GATES_NO_SYNC",
+    "status": "DISPATCHED_SOLE_INDEPENDENT_NEW_GATES_REQUIRED",
+    "plan": "docs/research/ws31/main/adapter-boundary-preflight-r2.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/snapshots/main/adapter-boundary-preflight-r2.json",
+    "plan_sha256": "e09f0883fe8839f5e77ee2797ebbf75aeb88e0fa9959b7b7ddf84b5acb328061",
+    "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "id": "20261101-150000-ws31-adapter-preflight-r2",
+    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:87",
+    "fresh_all_process_cache_ref_tree_worker_ID_resources": true,
+    "authorized_sync_commands": 0,
+    "authorized_deploy_commands": 0,
+    "authorized_cache_mutations": 0,
+    "max_builds": 1,
+    "jobs_per_build": 2,
+    "ordered_fixture_cases": [
+      5,
+      10,
+      2
+    ],
+    "network_authorized": false,
+    "old_core_or_legacy_controller_repeats_authorized": false,
+    "outcomes_accepted_by_Integration": false,
+    "held_source_entry_env_constraints_continue": true,
+    "new_ID_required": true,
+    "unknown_PID_cannot_be_attributed_without_ancestry": true,
+    "source_guard": "R1 held clean source/entry/env constraints carried into r2 until explicit terminal release"
   },
   "last_verified_C13_labels_checkpoint": {
     "date": "2026-11-01",
@@ -570,6 +623,21 @@
       },
       "build_core_mock_verification": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/verification.json",
       "new_network_approval_scope": "Only frozen default0 three-mode regressions; not yet network-accepted"
+    },
+    {
+      "sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "purpose": "Only new bounded label input and generator;38 accepted code objects unchanged",
+      "validation": "Fixed1ec dynamic-label10 raw and r3 recovery delivery accepted, including actual UID/time/presence and first policy; working-tree adapter WIP explicitly excluded",
+      "parent_code_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+      "last_network_validated_source": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "network_validation_scopes": {
+        "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
+        "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete",
+        "2ed7d342d0713a5667f43c7730ca5bc5a6a67150": "C1/C2/C3 default-profile0 full FCT/common+dedicated-event compatibility only",
+        "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy"
+      },
+      "new_network_approval_scope": "Original dynamic10 completed; no successor frozen plan",
+      "mutable_worktree_status": "DIRTY_MAIN_OWNED_ADAPTER_WIP_NOT_VALIDATED"
     }
   ],
   "label_fixture_G1_checkpoint": {
@@ -752,44 +820,113 @@
     "raw_cells_source_parameters_resources_unchanged": true
   },
   "adapter_work_in_progress": {
-    "contract": "docs/research/ws31/main/adapter-lifecycle-contract-r1.md",
-    "contract_snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/adapter-lifecycle-contract-r1.md",
-    "owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
-    "state": "C2 event-boundary fixture and protected DispatchRequest extraction implemented but uncommitted/uncompiled/unexecuted",
-    "observation": {
-      "implementation_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
-      "observed_HEAD": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
-      "observed_git_status": "M src/applications/model/rdma-client.cc\n M src/applications/model/rdma-client.h\n?? scratch/ws31-start-boundary-test.cc",
-      "C2_file_hashes": {
-        "src/applications/model/rdma-client.cc": {
-          "observed_sha256": "36f3a50762904696aa53865d8872b0db617315bfe66fa3ae0885d1ddc1eb1a26",
-          "matches_main_WIP_source_audit": true
-        },
-        "src/applications/model/rdma-client.h": {
-          "observed_sha256": "a57bf706592f854ba5cb4d97bd882814608ff763b0ed385bc917440baa12b38f",
-          "matches_main_WIP_source_audit": true
-        },
-        "scratch/ws31-start-boundary-test.cc": {
-          "observed_sha256": "5d3efad9b7ad9969a563b74901fb89951f191320ef3ff7e52a1f02607ceb2c2f",
-          "matches_main_WIP_source_audit": true
-        }
-      },
-      "tracked_C2_diff_sha256": "b3b77bcb6d247adcd1c26d049f46f7325041e49834648b24e20fac9c6158a98a",
-      "source_audit_owner": "Main; source extraction and10event cases uncompiled/unexecuted",
-      "fixed1ec_acceptance_does_not_cover_WIP": true,
-      "new_frozen_SHA_or_engineering_or_network_plan": false,
-      "main_may_continue_editing_after_this_snapshot": true
+    "state": "FIXED_COMMITTED_CLEAN1F_STATIC_PASS_EXECUTION_PENDING",
+    "supersedes": "Historical uncommitted C2 WIP at1ec; old observation retained in adapter_implementation_history",
+    "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "parent_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+    "changed_files": 5,
+    "worktree_clean_at_observation": true,
+    "uncommitted_changes": false,
+    "source_pushed_personal_origin_tracking": true,
+    "planned_cases": {
+      "C1": 5,
+      "C2": 10,
+      "C3": 2
     },
-    "new_frozen_SHA": false,
-    "new_engineering_or_network_plan": false,
-    "prior1ec_acceptance_inherited": false,
+    "static_review_owner": "Independent; Integration source/reversal/provenance checks only",
+    "source_and_stop_verification": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/verification.json",
+    "contract": "docs/research/ws31/main/adapter-lifecycle-contract-r1.md",
     "remaining": [
-      "C1/C3 thin adapters using real devices/queues and cleanup/exception accounting",
-      "Independent source review and fresh fixed-source engineering preflight",
-      "Default regression needed for extracted C2 production dispatch path",
-      "Real endpoint exit/drain/cleanup/generation tuple reuse protocol and validation",
-      "Independent C1 V0 and business/background effects/state/runtime costs"
+      "Fresh r2 gates, one full build and actual17fixture cases",
+      "Main independent raw-log acceptance",
+      "Necessary new-source default network regressions",
+      "Real endpoint exit/drain/cleanup/generation/tuple reuse",
+      "Independent C1 V0 and all-candidate two-sided effects/state/runtime costs"
     ],
-    "sole_independent_new_dispatch": false
+    "verified_fixture_cases_accepted": 0,
+    "r2_actual_execution_status_not_queried_by_Integration": true
+  },
+  "adapter_implementation_history": [
+    {
+      "contract": "docs/research/ws31/main/adapter-lifecycle-contract-r1.md",
+      "contract_snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/adapter-lifecycle-contract-r1.md",
+      "owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "state": "C2 event-boundary fixture and protected DispatchRequest extraction implemented but uncommitted/uncompiled/unexecuted",
+      "observation": {
+        "implementation_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+        "observed_HEAD": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+        "observed_git_status": "M src/applications/model/rdma-client.cc\n M src/applications/model/rdma-client.h\n?? scratch/ws31-start-boundary-test.cc",
+        "C2_file_hashes": {
+          "src/applications/model/rdma-client.cc": {
+            "observed_sha256": "36f3a50762904696aa53865d8872b0db617315bfe66fa3ae0885d1ddc1eb1a26",
+            "matches_main_WIP_source_audit": true
+          },
+          "src/applications/model/rdma-client.h": {
+            "observed_sha256": "a57bf706592f854ba5cb4d97bd882814608ff763b0ed385bc917440baa12b38f",
+            "matches_main_WIP_source_audit": true
+          },
+          "scratch/ws31-start-boundary-test.cc": {
+            "observed_sha256": "5d3efad9b7ad9969a563b74901fb89951f191320ef3ff7e52a1f02607ceb2c2f",
+            "matches_main_WIP_source_audit": true
+          }
+        },
+        "tracked_C2_diff_sha256": "b3b77bcb6d247adcd1c26d049f46f7325041e49834648b24e20fac9c6158a98a",
+        "source_audit_owner": "Main; source extraction and10event cases uncompiled/unexecuted",
+        "fixed1ec_acceptance_does_not_cover_WIP": true,
+        "new_frozen_SHA_or_engineering_or_network_plan": false,
+        "main_may_continue_editing_after_this_snapshot": true
+      },
+      "new_frozen_SHA": false,
+      "new_engineering_or_network_plan": false,
+      "prior1ec_acceptance_inherited": false,
+      "remaining": [
+        "C1/C3 thin adapters using real devices/queues and cleanup/exception accounting",
+        "Independent source review and fresh fixed-source engineering preflight",
+        "Default regression needed for extracted C2 production dispatch path",
+        "Real endpoint exit/drain/cleanup/generation tuple reuse protocol and validation",
+        "Independent C1 V0 and business/background effects/state/runtime costs"
+      ],
+      "sole_independent_new_dispatch": false
+    }
+  ],
+  "last_stopped_adapter_preflight_checkpoint": {
+    "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "id": "20261101-143000-ws31-adapter-preflight-r1",
+    "verification": "docs/research/evidence/ws31-adapter-gate-integration-20261101-r1/verification.json",
+    "index_sha256": "d43d530b4fb22463f93117c66bc5f5f680fb7f6218f58bd8c81d52820d95ebfa",
+    "QA_sha256": "38790471b87f3fb759fd9cdb88dfecd7f659c25373c43446f0f32bd001c83e7c",
+    "root_checks": {
+      "files_hashed": {
+        "documents": 22,
+        "dependencies": 2,
+        "support_files": 3,
+        "reference_files": 4
+      },
+      "fixed_Git_objects": 42,
+      "fixed_tree_entries": 4843,
+      "changed_files": 5,
+      "RdmaClient_extraction_exact_parent_reversal": true,
+      "implementation_clean_personal_fork_tracking": true,
+      "static_fixture_review_owner": "Independent; Integration checks source and review identity, no fixture execution"
+    },
+    "sync": 1,
+    "builds": 0,
+    "fixtures": 0,
+    "core": 0,
+    "network": 0,
+    "deploy": 0,
+    "unknown_process": {
+      "pid": 297502,
+      "comm": "git-remote-http",
+      "cwd": "/home/fnl/lzy/code/conweave-ns3",
+      "gate_sample_utc": "2026-11-01T06:42:04.334661Z",
+      "later_absence_utc": "2026-11-01T06:44:24.066161Z",
+      "ancestry_not_available": true,
+      "ownership": "UNKNOWN, neither own-sync nor other-user attribution",
+      "signals_sent": 0,
+      "historical_absence_not_a_fresh_gate": true
+    },
+    "source_entry_env_guard": "HELD, carried into r2",
+    "source_copy_established": false
   }
 }

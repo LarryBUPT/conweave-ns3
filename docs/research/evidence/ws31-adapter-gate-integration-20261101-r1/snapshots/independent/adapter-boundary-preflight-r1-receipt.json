@@ -1,0 +1,41 @@
+{
+  "status": "STOPPED_ADAPTER_PREFLIGHT_ON_FAILURE",
+  "scope": "Source review then one build and new adapter boundary fixtures only",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "cells": [
+    {
+      "id": "20261101-143000-ws31-adapter-preflight-r1",
+      "status": "STOPPED_NOT_PASSED"
+    }
+  ],
+  "commands": [
+    {
+      "cell": "20261101-143000-ws31-adapter-preflight-r1",
+      "operation": "guarded-sync",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "sync",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation"
+      ],
+      "start_utc": "2026-11-01T06:40:22.284042+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\adapter-boundary-preflight-r1-evidence\\20261101-143000-ws31-adapter-preflight-r1\\guarded-sync.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T06:42:02.756591+00:00"
+    }
+  ],
+  "plan_sha256": "28fc60860857cb6fe3029c72d62b1a50b0d0e053d9d2927d7655e57afb483926",
+  "driver_pid": 42736,
+  "network_runs_started": 0,
+  "build_commands": 0,
+  "fixture_commands": 0,
+  "core_commands": 0,
+  "sync_commands": 1,
+  "deploy_commands": 0,
+  "updated_utc": "2026-11-01T06:42:03.591708+00:00",
+  "deployed_worker_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+  "error": "Other-user/unknown-job/resource gate failed: resources-before-build",
+  "traceback": "Traceback (most recent call last):\n  File \"E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\adapter-boundary-preflight-r1-driver.py\", line 147, in <module>\n    try:main()\n        ^^^^^^\n  File \"E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\adapter-boundary-preflight-r1-driver.py\", line 126, in main\n    resource('resources-before-build',True);b.state['build_commands']=1;d.save();error=None\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\adapter-boundary-preflight-r1-driver.py\", line 20, in resource\n    r=d.fresh(CELL,name)\n      ^^^^^^^^^^^^^^^^^^\n  File \"E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-driver.py\", line 80, in fresh\n    raise RuntimeError(\"Other-user/unknown-job/resource gate failed: \" + name)\nRuntimeError: Other-user/unknown-job/resource gate failed: resources-before-build\n"
+}

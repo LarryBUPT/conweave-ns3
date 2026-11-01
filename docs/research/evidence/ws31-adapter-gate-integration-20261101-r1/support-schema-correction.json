@@ -1,0 +1,7 @@
+{
+  "scope": "Integration draft checker only; source and old receipts unchanged",
+  "old_checker_sha256": "3afbeb9a9c1dee7f261d8c0fa42880202fe2f48cec7617ad3d15d50c5c9a5514",
+  "issue": "Support entries include byte-count and sha256 objects, not bare hashes",
+  "correction": "Read actual support info.sha256 and bytes",
+  "source_or_experiment_changes": 0
+}
