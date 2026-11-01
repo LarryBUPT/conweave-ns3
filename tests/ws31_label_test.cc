@@ -38,14 +38,36 @@ int main() {
     rejected=false;
     try { LabelAt(1,1,1000,1000,1,2,3,4,1); } catch (const std::invalid_argument &) { rejected=true; }
     assert(rejected);
-    ValidateLabelProfile(1,36,0,0,0,0,2);
-    ValidateLabelProfile(0,0,2,1,4,0,0);
+    const LabelRunContext context(0,1,1,"config/leaf_spine_128_100G_OS2.txt",
+                                  "config/ws31_correctness_r1.txt",false,false);
+    ValidateLabelProfile(1,36,0,0,0,0,2,context);
+    ValidateLabelProfile(0,0,2,1,4,0,0,context);
     for (unsigned kind=0;kind<7;++kind) {
         rejected=false;
         try { ValidateLabelProfile(kind==6?4:1,kind==0?35:43,kind==1,kind==2,
-                                   kind==3,kind==4,kind==5?1:2); }
+                                   kind==3,kind==4,kind==5?1:2,context); }
         catch (const std::invalid_argument &) { rejected=true; }
         assert(rejected);
     }
-    std::cout << "WS31_LABEL_TEST PASS visibility/boundary/presence/unknown/hash/conflicts" << std::endl;
+    for (unsigned kind=0;kind<10;++kind) {
+        LabelRunContext invalid=context;
+        if (kind==0) invalid.pfc=1;
+        if (kind==1) invalid.irn=0;
+        if (kind==2) invalid.irn=2;
+        if (kind==3) invalid.ccMode=3;
+        if (kind==4) invalid.topology="config/ws30_composition8.txt";
+        if (kind==5) invalid.flow="config/old.txt";
+        if (kind==6) invalid.flow="config/ws31_bad/escape.txt";
+        if (kind==7) invalid.flow="config/ws31_bad.txt/../trace.txt";
+        if (kind==8) invalid.fault=true;
+        if (kind==9) invalid.diagnostic=true;
+        rejected=false;
+        try { ValidateLabelProfile(1,36,0,0,0,0,2,invalid); }
+        catch (const std::invalid_argument &) { rejected=true; }
+        assert(rejected);
+        ValidateLabelProfile(0,36,0,0,0,0,2,invalid); // profile0 keeps legacy eligibility.
+    }
+    assert(!LabelDiagnosticValue(nullptr) && !LabelDiagnosticValue("") && !LabelDiagnosticValue("0"));
+    assert(LabelDiagnosticValue("1") && LabelDiagnosticValue("2") && LabelDiagnosticValue("bad"));
+    std::cout << "WS31_LABEL_TEST PASS visibility/boundary/presence/unknown/hash/conflicts/context" << std::endl;
 }

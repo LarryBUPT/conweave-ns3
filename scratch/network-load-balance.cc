@@ -1516,6 +1516,17 @@ int main(int argc, char *argv[]) {
 
     /******************* READING CONFIG FILE IS DONE ***********************/
 
+    // Check the actual parsed configuration, even when invoking this binary
+    // directly rather than through the guarded Python launcher.
+    ws31::ValidateLabelProfile(ws31::LabelProfile(),lb_mode,Ws30V13TagTransform(),
+        Ws30V13Env("WS30_COMPOSITION"),Ws30V13Env("WS30_LIFECYCLE"),
+        Ws30V13Env("WS30_LIFE_PROFILE"),Ws30Level(),
+        ws31::LabelRunContext(enable_pfc,enable_irn,cc_mode,topology_file,flow_file,
+            ws21_heartbeat_fault_mode || ws23_pfc_probe_host>=0 || link_down_time ||
+                error_rate_per_link!=0.0,
+            ws18_admission || ws18_path || ws21_identity || ws21_feedback ||
+                ws21_heartbeat || ws21_port_events || ws31::LabelDiagnosticEnvironment()));
+
     /**
      * Activate ns3 logging
      */
@@ -1601,9 +1612,6 @@ int main(int argc, char *argv[]) {
     Settings::host_num = node_num - switch_num;
     Settings::switch_num = switch_num;
     Settings::lb_mode = lb_mode;
-    ws31::ValidateLabelProfile(ws31::LabelProfile(),lb_mode,Ws30V13TagTransform(),
-        Ws30V13Env("WS30_COMPOSITION"),Ws30V13Env("WS30_LIFECYCLE"),
-        Ws30V13Env("WS30_LIFE_PROFILE"),Ws30Level());
     SwitchNode::ConfigureGuardHash(guardhash_lambda, guardhash_tau_bytes,
                                    harm_gate_on_bytes, harm_gate_off_bytes);
     NS_ASSERT_MSG(lb_mode != 20 || (ws18_admission_rate_gbps > 0 && !ws18_output_file.empty()),

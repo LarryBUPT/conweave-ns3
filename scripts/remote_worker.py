@@ -785,6 +785,11 @@ def ws31_label_environment(params, inherited):
     validate_ws31_label_params(params)
     result = inherited.copy()
     result['WS31_LABEL_PROFILE'] = str(params.get('ws31_label_profile', 0))
+    if params.get('ws31_label_profile', 0):
+        for key in ('WS13_DIAG', 'WS25_DIAG', 'WS28_TAIL_DIAG', 'IRN_PFC_DROP_DIAG',
+                    'WS23_RECOVERY_DIAG', 'WS26_MOE_HOP_DIAG', 'WS26_QUEUE_FRONT_DIAG',
+                    'WS26_TIME_PROBE', 'WS26_SEED97_TIME_DIAG'):
+            result.pop(key, None)
     return result
 
 

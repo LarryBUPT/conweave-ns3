@@ -69,6 +69,19 @@ class LabelRunner(unittest.TestCase):
         self.assertEqual(worker.ws31_label_environment({}, inherited)['WS31_LABEL_PROFILE'], '0')
         self.assertEqual(inherited['WS31_LABEL_PROFILE'], '3')
 
+    def test_active_profile_clears_disabled_inherited_diagnostics(self):
+        params = {'ws31_label_profile': 1, 'lb': 'ws31-c1', 'ws30_observe': 2,
+                  'pfc': 0, 'irn': 1, 'topo': 'leaf_spine_128_100G_OS2',
+                  'flow_file': 'ws31_correctness_r1.txt'}
+        inherited = {'WS25_DIAG': '1', 'IRN_PFC_DROP_DIAG': '1', 'KEEP': 'yes'}
+        env = worker.ws31_label_environment(params, inherited)
+        self.assertNotIn('WS25_DIAG', env)
+        self.assertNotIn('IRN_PFC_DROP_DIAG', env)
+        self.assertEqual(env['KEEP'], 'yes')
+        self.assertEqual(inherited['WS25_DIAG'], '1')
+        with self.assertRaises(RuntimeError):
+            worker.ws31_label_environment(dict(params, ws25_diag=1), inherited)
+
     def test_worker_python35_syntax(self):
         ast.parse((ROOT/'scripts/remote_worker.py').read_text(encoding='utf-8'), feature_version=(3, 5))
 
