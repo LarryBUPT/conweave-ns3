@@ -1,0 +1,21 @@
+{
+  "at_utc": "2026-11-01T12:45:46.898154+00:00",
+  "status": "MAIN_ACCEPTED_COMPLETE_STATIC_REVIEW_WITH_FOUR_P1_ONE_P2_REPAIRS_REQUIRED",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "review_sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+  "QA_sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
+  "report_sha256": "c3572092a097e1aa2f757a4dc7b9447c9256864f3310ac49a7db533c27a04381",
+  "evidence_index_sha256": "cdade4187c9d6fe50bcde6d74f57b3d2803578649651a84f31aaf1929f08c7d3",
+  "evidence_items_verified": 36,
+  "fixed_parent_file_copies_verified": 22,
+  "exact_source_anchors_verified": 55,
+  "WIP_unchanged": 5,
+  "counts": {
+    "P1": 4,
+    "P2": 1
+  },
+  "all_execution_counts_zero": true,
+  "guard_released": true,
+  "observed_terminal_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:3",
+  "scope": "Review evidence accepted; implementation repairs and all dynamic/production validation still required"
+}

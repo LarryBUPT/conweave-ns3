@@ -1,0 +1,516 @@
+{
+  "at_utc": "2026-11-01T13:04:53.410051+00:00",
+  "status": "PASS_EXACT_STAGED_SCOPE_AND_RAW_BYTE_IDENTITY",
+  "staged_files_before_self": 90,
+  "evidence_files_before_self": 84,
+  "forced_known_missing": [],
+  "scope": "five canonical states, one handoff, new Integration evidence only",
+  "source_main_independent_or_scientific_files_staged": false,
+  "receipt_self_excluded": true,
+  "files": [
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/.gitattributes",
+      "bytes": 97,
+      "sha256": "245f8ffe8bbf457cbe3decddf03a899e907e063300f10754888b339bb1076d0a",
+      "git_blob": "d95ed0b6685d1ef421a1db7bef325799219d063c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/audit_local_evidence.py",
+      "bytes": 14730,
+      "sha256": "ce90661ebca86d241002edc8c6f294de05f18e5e06f7c7f1c29c95a5ee54b9ff",
+      "git_blob": "8bb238d1d59a88826c724244c1ab51048e677065"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/check_delivery.py",
+      "bytes": 3996,
+      "sha256": "e3997be0dc773b02d3a580db941be2a9738d8b34776a6099ae258b184ca09666",
+      "git_blob": "2377096daad77124ec0827ef76e2b6b43063581b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/delivery-qa.json",
+      "bytes": 11594,
+      "sha256": "1fc01d2f3bb79e9837f7d8af0e2cf28b132c9dac90a0c424bb6c2350b75c56fa",
+      "git_blob": "c35682ff813c420efefc4febca833b0b70f024f1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/fixed-extra/scheduler.h",
+      "bytes": 4006,
+      "sha256": "5ba1bdff9015000b6919087dce3dc83ab4e26d166c99d1cddee85c566dfc6ccb",
+      "git_blob": "a66fa341f89bec23db02dbbaa868de1569dc1941"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/independent/endpoint-channel-local-review-r1-final-audit.py",
+      "bytes": 25311,
+      "sha256": "3bbca5377f689059ad7ee85db018733d633b679b66ca5990ec5d3f4c1d3a0fd9",
+      "git_blob": "c37940b7769e817709ef8e0bfa2dac820835b703"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/independent/endpoint-channel-local-review-r1-final-evidence-index.json",
+      "bytes": 15602,
+      "sha256": "cdade4187c9d6fe50bcde6d74f57b3d2803578649651a84f31aaf1929f08c7d3",
+      "git_blob": "bb0a5534e71ceb67f7fdd7161b7640042701a360"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/independent/endpoint-channel-local-review-r1-final-guards-released.json",
+      "bytes": 1772,
+      "sha256": "19f45db3ac67fb4621246c858245a1be267b838041f2a04de599be0f3ba9add9",
+      "git_blob": "8ce7132eb3540a7091a8a96cf2637b1b20d4bcf5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/independent/endpoint-channel-local-review-r1-final-handoff.md",
+      "bytes": 5523,
+      "sha256": "a56cf991ef48be548bdca711454f88b01c48fde7f3699ec59f48d5295543523d",
+      "git_blob": "a8c00328d643e8dbf9f7bccc298f6950bc33cc13"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/independent/endpoint-channel-local-review-r1-final-qa.json",
+      "bytes": 4382,
+      "sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
+      "git_blob": "e0559f25b5bd54570ddc76763d762d3c3ce48c01"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/independent/endpoint-channel-local-review-r1-final-report.md",
+      "bytes": 17773,
+      "sha256": "c3572092a097e1aa2f757a4dc7b9447c9256864f3310ac49a7db533c27a04381",
+      "git_blob": "386f1bf9479aa9ce64a0fb8eb93f8bac8cd5facf"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/independent/endpoint-channel-local-review-r1-final-review.json",
+      "bytes": 29737,
+      "sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+      "git_blob": "ca74c544cc5cc9457f2736f3a7dc54c4f69184fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/00-qbb-channel.h",
+      "bytes": 4856,
+      "sha256": "fd2830eadfb0b6b43e4798b39b14f0af270f64ce886bbce8f0fa5a838f0e9421",
+      "git_blob": "1348081b19960be7a684d1400a88618d996cb885"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/01-qbb-channel.cc",
+      "bytes": 4063,
+      "sha256": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1",
+      "git_blob": "3354e70db29f7087239d616ffbdcc266af164715"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/02-flow-id-num-tag.h",
+      "bytes": 808,
+      "sha256": "41394125ead04a92f735627dfd9c9e9f49a37ac62687eb4210e56629008ec89f",
+      "git_blob": "ad7225f8acfd7ca1bd16e031ce2f4cc77fabfbfe"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/03-event-impl.cc",
+      "bytes": 1337,
+      "sha256": "73fbdc5714834aaedbe045e1c09530d298766e11b55f1dc1cbb170e8fa1c0738",
+      "git_blob": "b759ad05c660a0bcbdfe593693c8f4db15efc751"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/04-point-to-point-net-device.cc",
+      "bytes": 17785,
+      "sha256": "7aaf76b89a1e76bf23b58b759fed09ac7c0261b5d1b598d14681871bc14f4013",
+      "git_blob": "5828dfd90bc563a9471e4f916e82252f0a59882d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/05-rdma-hw.cc",
+      "bytes": 77720,
+      "sha256": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+      "git_blob": "0a171097e402cc1182394c7b0d09f2ba3e0f72ec"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/06-point-to-point-net-device.h",
+      "bytes": 14947,
+      "sha256": "ad777bc39a417b17edb73203f811c8546ce0bed3ad7fbd2311354768ea04a0e1",
+      "git_blob": "46afafa8d7fbbfa70a5375e84bf60ee8122709b7"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/07-README.md",
+      "bytes": 32337,
+      "sha256": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f",
+      "git_blob": "e994f6c36627b71741de1699af291bfbfcbee489"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/08-reading-log.md",
+      "bytes": 130321,
+      "sha256": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d",
+      "git_blob": "989da6438cf79eca535936c35dddecac28e11a2c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/09-analysis-technical.md",
+      "bytes": 16637,
+      "sha256": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+      "git_blob": "67ee675475902c7a97dcb94e14735c997eca756f"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/10-verification.md",
+      "bytes": 9075,
+      "sha256": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e",
+      "git_blob": "ddbde05a1604f5b3fe3830fd3c1a5cebce97c792"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/11-analysis-technical.md",
+      "bytes": 14135,
+      "sha256": "cb6c8b128f88519004f12bb11497a49d019fab0e9c386bf0591a4899e255cc88",
+      "git_blob": "db4c0542b3ccb047085b1fec0e5ee229e91580fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/12-verification.md",
+      "bytes": 5623,
+      "sha256": "eb93e690f74e282799e59f1204a5fcdcc754001fea1d67cd5853aed9a7d73789",
+      "git_blob": "d08ce09ed10fbd47bdb64be0377c6a9bf03cc448"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/13-qbb-channel.h",
+      "bytes": 5705,
+      "sha256": "d24eb5bd2e10f9a17376263c217f7d77c10e2a1f89fae24859fcbae40eb4391b",
+      "git_blob": "33386d6325cea98f37b3a3300a74e54fd6091240"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/14-qbb-channel.cc",
+      "bytes": 5940,
+      "sha256": "66b25afb1f68ac014553679b87940fcb29a5820a5ab51b68e3a953ee4f1ac039",
+      "git_blob": "2fb7048fdb1f5b930cef7421f5dd3cdf1289ba56"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/15-ws31-endpoint-channel.h",
+      "bytes": 7884,
+      "sha256": "0ee28c59fe7297a1f78b0543fb6672921d4ebd0521a8e50855541a93aca8c999",
+      "git_blob": "42f1d524ab2dde8666a5e15ce1ef2aa615747431"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/16-flow-id-num-tag.h",
+      "bytes": 945,
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "git_blob": "80d6c47ad1f2cb59bdea22cf0c259d3f2ae5d20c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/17-ws31-endpoint-channel-test.cc",
+      "bytes": 8615,
+      "sha256": "01334598e621e407ac38e58d532011e7dfa3af68157021fc4b234a600f228ba4",
+      "git_blob": "b2a0fab5037723ec1639ff9b171b8cc9ccf30265"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/18-endpoint-channel-local-review-r1.json",
+      "bytes": 3403,
+      "sha256": "5e73c6e98844c393dc63f6e2a1d141d6116af2466b8426156d6378da2c85d20d",
+      "git_blob": "5860b4778803cf6d3415c224b4ad7b5027a5ea54"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/19-endpoint-channel-contract-r1.md",
+      "bytes": 5163,
+      "sha256": "267844db96f9cba258bf4e0f9fd44f504bebd0300b238f98dec8cc8c9630bba4",
+      "git_blob": "4e2779ff4140d59617e59f326a487158c87a9d99"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/20-endpoint-channel-wip-source-audit-r1.json",
+      "bytes": 2980,
+      "sha256": "103c443d1c42ff96357d378571e6dcca821ca1625899a2654b48709c782eff43",
+      "git_blob": "8be10fde091ec18dff50a14b88b03760e9e1e115"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/21-simulator.h",
+      "bytes": 44722,
+      "sha256": "bbd76551e7da0ed1efc89f147d9d73af2becf93386c7510888b0eb07316ecda3",
+      "git_blob": "9e4b04959bc95495bda92a8cc19565f28256154a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/22-simulator.cc",
+      "bytes": 8045,
+      "sha256": "37108f15d04210066c45d66d57534f528c9f8d0e0b1ea303d011ff46c9b42de1",
+      "git_blob": "3e9646921f330ff6bd699eea96127ae94ad15555"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/23-make-event.h",
+      "bytes": 11382,
+      "sha256": "59dada1e851b4c7d0eca508ffd96274d762d565f335655a101d42ea09e890465",
+      "git_blob": "66b50c6cf63f09f227458e5fc8aad33496e5d0ea"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/24-type-traits.h",
+      "bytes": 15549,
+      "sha256": "2d864a36eddd257d3de04c2da8dec3dc12266ca4dea76636923888efaeadb5be",
+      "git_blob": "3ced4b63e583d6664b5112481c8e10ee64b24b80"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/25-default-simulator-impl.cc",
+      "bytes": 10417,
+      "sha256": "4be8807edf01758e322707a51c1329303f54fb482723c3d7c32fb7e88dbddf90",
+      "git_blob": "3823f1485c280eab458c6cbf6c75f2e07f41d8af"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/26-object.h",
+      "bytes": 14706,
+      "sha256": "b70b6189232d4c69d7814a5320286b40b027bd0f3bd8a7d4e9f460c0e790cf2a",
+      "git_blob": "ea966edbd2a438024d1aa630453a7f4854f98342"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/27-object.cc",
+      "bytes": 11533,
+      "sha256": "2714cb52b2ecda25da8cacfc23a9cbfa88d832b84f4489483e6c8c6adc17da4d",
+      "git_blob": "d1bb52856893e0c4b50681d2773c90b0314928ba"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/28-packet.cc",
+      "bytes": 24133,
+      "sha256": "cd9067c043d5664d41a33a26a9f9971699d0d65c4cb44558abb17674c7bb0cb1",
+      "git_blob": "8701bb167635b9e01508ae32b40a4f252a66d987"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/29-packet-tag-list.cc",
+      "bytes": 4393,
+      "sha256": "c591b66654ec19b015ea73893978b06f9ddac9ac85b65d0d7ef231e722fab2c5",
+      "git_blob": "c311a0f8107e96ac04c979b8d9548a99a1b4e760"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/30-flow-id-num-tag.cc",
+      "bytes": 1338,
+      "sha256": "df97d94de8347b47e185ac0e14a2782ffe3d336345170281216cdc1ec03f82ce",
+      "git_blob": "15dbd804540355e984e7a19082c532115e16e6e1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/31-qbb-net-device.h",
+      "bytes": 7283,
+      "sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+      "git_blob": "8b649b24fd831af40a67c4d229b9eae27719e4cb"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/32-qbb-net-device.cc",
+      "bytes": 24342,
+      "sha256": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+      "git_blob": "5ec636e196d536d40c563bc0719315aaeb037b77"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/33-qbb-remote-channel.h",
+      "bytes": 1381,
+      "sha256": "ed8dbf4e41cc5e7366b07fcc7396a1f42ed31979a0cce1a03176a361fe1bc590",
+      "git_blob": "edabe693f85baf42bff34e6bff97c34a71a5b4d9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/34-qbb-remote-channel.cc",
+      "bytes": 2058,
+      "sha256": "729d83611051788e24971f9586489a98006df8aff5019a49e1a6df516ad409b3",
+      "git_blob": "87ecfd4c8b2925c0dacedd5102908ae0276f1b66"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/indexed/35-ws31-endpoint-ledger.h",
+      "bytes": 11658,
+      "sha256": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "git_blob": "f3d0fff5bebaa52bb8f28948277f50198fc6fe6b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/literature/00-README.md",
+      "bytes": 32337,
+      "sha256": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f",
+      "git_blob": "e994f6c36627b71741de1699af291bfbfcbee489"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/literature/01-reading-log.md",
+      "bytes": 130321,
+      "sha256": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d",
+      "git_blob": "989da6438cf79eca535936c35dddecac28e11a2c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/literature/02-analysis-technical.md",
+      "bytes": 16637,
+      "sha256": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+      "git_blob": "67ee675475902c7a97dcb94e14735c997eca756f"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/literature/03-verification.md",
+      "bytes": 9075,
+      "sha256": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e",
+      "git_blob": "ddbde05a1604f5b3fe3830fd3c1a5cebce97c792"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/literature/04-analysis-technical.md",
+      "bytes": 14135,
+      "sha256": "cb6c8b128f88519004f12bb11497a49d019fab0e9c386bf0591a4899e255cc88",
+      "git_blob": "db4c0542b3ccb047085b1fec0e5ee229e91580fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/literature/05-verification.md",
+      "bytes": 5623,
+      "sha256": "eb93e690f74e282799e59f1204a5fcdcc754001fea1d67cd5853aed9a7d73789",
+      "git_blob": "d08ce09ed10fbd47bdb64be0377c6a9bf03cc448"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/README.md",
+      "bytes": 7552,
+      "sha256": "79ecc0899860a55c645b225e97f40583c561df95aed8281fa5372d28dce86b1f",
+      "git_blob": "fe96897a177f7ae36b37cddbd95c3e16e91fcd89"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/current-status.json",
+      "bytes": 35374,
+      "sha256": "861457a9b4e14f29e6f9a64d2938db49c743112a9a219cc99bab790028adc612",
+      "git_blob": "ca3a2595f0b8058347639204a055a22046a41764"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-contract-r1.md",
+      "bytes": 5163,
+      "sha256": "267844db96f9cba258bf4e0f9fd44f504bebd0300b238f98dec8cc8c9630bba4",
+      "git_blob": "4e2779ff4140d59617e59f326a487158c87a9d99"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-contract-r2.md",
+      "bytes": 4117,
+      "sha256": "bd0ba6e0d5b225fa3f093561481cb6da3ebc841fe70701d2fd4476dbfe8eba66",
+      "git_blob": "287e9987d714b3f60e4eb79c7b358d76edfafbf2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-integration-design-r1.md",
+      "bytes": 6229,
+      "sha256": "c017ff09e1e6c6ba3c44b7e1672dc64e0815d9b10951cbb792863898241f1a54",
+      "git_blob": "96cde161550247366eaaf9b2da2805012db497a9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-local-review-r1.json",
+      "bytes": 3403,
+      "sha256": "5e73c6e98844c393dc63f6e2a1d141d6116af2466b8426156d6378da2c85d20d",
+      "git_blob": "5860b4778803cf6d3415c224b4ad7b5027a5ea54"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-local-review-r2.json",
+      "bytes": 3051,
+      "sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+      "git_blob": "f2d752269b9f123b125127e70d25d3627a0c9060"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-node18-handoff.md",
+      "bytes": 5216,
+      "sha256": "552c92aa776dade16d739b4e06ab6233f7b94add3a44cb0e5c1ac584b42c6871",
+      "git_blob": "7305e8d61df6938505d5845937c3c61c0eda2bdf"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-repair-design-r1.md",
+      "bytes": 4479,
+      "sha256": "ff5ac7814f930c2b7eec9920ecac8e06b125d864bff2d78327e53601c5c9ad1d",
+      "git_blob": "5c76385f7ba52fb99e39a254ee885e8fbbd114d8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/evidence/endpoint-channel-local-review-main-acceptance-r1.json",
+      "bytes": 1006,
+      "sha256": "8784a6f561df91109e192bdbdb72d57aee2725791d366719561ae9df1207e87d",
+      "git_blob": "82f6dcce3e20a28308b4d13ecbbd112108f18d46"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/evidence/endpoint-channel-node18-main-QA-r1.json",
+      "bytes": 2889,
+      "sha256": "67a3bde6a31e2ca07c6b1296ccf48d67167db33f718ee6abd2f70946c5d2c129",
+      "git_blob": "a328053dcbe1094ab4b2b1f8fcb661c1cac96af9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/evidence/endpoint-channel-node18-reference-review-r1.json",
+      "bytes": 2107,
+      "sha256": "8b4110881d077d69a03bcfd8dccf94c403f643a9a985e1d40e53dd78424295d6",
+      "git_blob": "758dcc11fc9327b6ed4ec934917785472f4a44c2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/evidence/endpoint-channel-wip-source-audit-r2.json",
+      "bytes": 2409,
+      "sha256": "549c6448a8c1cf39bab939456d8e7ef7b03bd456c7fa132e006ee5d211f30ec4",
+      "git_blob": "d2689b43b9cf4c995cafedd6a61fc442a26334c9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/topic-map.md",
+      "bytes": 6047,
+      "sha256": "382971b4a2f341c34cb704cd469a4e220075f11e4516d67f5e31b17a71018582",
+      "git_blob": "60d55834dbf603a8e6ff979005f384e77e70dcd3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/original/endpoint-channel-local-review-r1-checkpoint-handoff.md",
+      "bytes": 5551,
+      "sha256": "566115b2f9e1686ac501206b4dc03924d97eb85e79b8e92be3a2c6cb2fda2f5b",
+      "git_blob": "60450a3b9d93a08c1afd5dd2a3563f60891d6b52"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/original/endpoint-channel-local-review-r1-checkpoint-qa.json",
+      "bytes": 1544,
+      "sha256": "df7c5445ff0d50cf454c7feb8f6c44baa8f4f59c4ff1f3db3e353cbbc18f6071",
+      "git_blob": "5e95aedb310fdc538d7c77c6fb7995bfa14ac3f5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/original/endpoint-channel-local-review-r1-checkpoint.json",
+      "bytes": 16835,
+      "sha256": "a7f03112ac87a43207d8ccd45f116ec6fde1fa55f844f183641f606221aeb7cc",
+      "git_blob": "6aadc12adb3848f46f79e0590e09ebb6455d6df8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/original/endpoint-channel-local-review-r1-guards-released.json",
+      "bytes": 855,
+      "sha256": "49b0db657df331cebf3a592ff3ec78505362e960d74bb53c9d11f5b17039f880",
+      "git_blob": "9c9d089b9075159c7d3a962a5c37ed10e00b00ba"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r1-wip/flow-id-num-tag.h",
+      "bytes": 945,
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "git_blob": "80d6c47ad1f2cb59bdea22cf0c259d3f2ae5d20c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r1-wip/qbb-channel.cc",
+      "bytes": 5940,
+      "sha256": "66b25afb1f68ac014553679b87940fcb29a5820a5ab51b68e3a953ee4f1ac039",
+      "git_blob": "2fb7048fdb1f5b930cef7421f5dd3cdf1289ba56"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r1-wip/qbb-channel.h",
+      "bytes": 5705,
+      "sha256": "d24eb5bd2e10f9a17376263c217f7d77c10e2a1f89fae24859fcbae40eb4391b",
+      "git_blob": "33386d6325cea98f37b3a3300a74e54fd6091240"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r1-wip/ws31-endpoint-channel-test.cc",
+      "bytes": 8615,
+      "sha256": "01334598e621e407ac38e58d532011e7dfa3af68157021fc4b234a600f228ba4",
+      "git_blob": "b2a0fab5037723ec1639ff9b171b8cc9ccf30265"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r1-wip/ws31-endpoint-channel.h",
+      "bytes": 7884,
+      "sha256": "0ee28c59fe7297a1f78b0543fb6672921d4ebd0521a8e50855541a93aca8c999",
+      "git_blob": "42f1d524ab2dde8666a5e15ce1ef2aa615747431"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r2-wip/flow-id-num-tag.h",
+      "bytes": 945,
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "git_blob": "80d6c47ad1f2cb59bdea22cf0c259d3f2ae5d20c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r2-wip/qbb-channel.cc",
+      "bytes": 6781,
+      "sha256": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+      "git_blob": "61788fd82fcd7625abcb0015de62ee9e613b179b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r2-wip/qbb-channel.h",
+      "bytes": 5846,
+      "sha256": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+      "git_blob": "5900978556de21004f34d1037b2d6adbeabccdb3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r2-wip/ws31-endpoint-channel-test.cc",
+      "bytes": 16384,
+      "sha256": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698",
+      "git_blob": "47ae46320c1f30a629709be5595a96cbc7ca17ff"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r2-wip/ws31-endpoint-channel.h",
+      "bytes": 11607,
+      "sha256": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "git_blob": "1152413800936fceca2c2215fa1bcfee3e6174e8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/source-manifest.json",
+      "bytes": 31265,
+      "sha256": "24ec0ba9f55fa88a2c12fc5b8af6adb5b342055bee6b49c5e1f19d4fb8731cc4",
+      "git_blob": "0d45d32bf33b76de20bf2ad15cd5730293572b90"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
+      "bytes": 4352,
+      "sha256": "ff40a83a00bb1c3cead78f90ca3800e109d510a576da24e5c5bccec17a40aac6",
+      "git_blob": "a7e58a5f917b10b0e7fa5503fd2d0777328d6187"
+    }
+  ]
+}

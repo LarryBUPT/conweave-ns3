@@ -1,0 +1,38 @@
+{
+  "at_utc": "2026-11-01T10:29:15.337123+00:00",
+  "status": "FROZEN_UNCOMPILED_CHANNEL_WIP_FOR_LOCAL_READONLY_REVIEW",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "d24eb5bd2e10f9a17376263c217f7d77c10e2a1f89fae24859fcbae40eb4391b",
+    "src/point-to-point/model/qbb-channel.cc": "66b25afb1f68ac014553679b87940fcb29a5820a5ab51b68e3a953ee4f1ac039",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "0ee28c59fe7297a1f78b0543fb6672921d4ebd0521a8e50855541a93aca8c999",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "01334598e621e407ac38e58d532011e7dfa3af68157021fc4b234a600f228ba4"
+  },
+  "fixed_parent_git_LF_sha256": {
+    "src/core/model/simulator.h": "bbd76551e7da0ed1efc89f147d9d73af2becf93386c7510888b0eb07316ecda3",
+    "src/core/model/make-event.h": "59dada1e851b4c7d0eca508ffd96274d762d565f335655a101d42ea09e890465",
+    "src/point-to-point/model/qbb-net-device.h": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+    "src/point-to-point/model/qbb-net-device.cc": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+    "src/point-to-point/model/qbb-remote-channel.h": "ed8dbf4e41cc5e7366b07fcc7396a1f42ed31979a0cce1a03176a361fe1bc590",
+    "src/point-to-point/model/qbb-remote-channel.cc": "729d83611051788e24971f9586489a98006df8aff5019a49e1a6df516ad409b3",
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+    "src/network/model/packet.h": "66b4b558968430f4b54bd7259c8d1c1242a94db2d49fe52b8c4d68aa38e04167",
+    "src/network/model/channel.h": "3e03b63b49774de43d1a161d3b743d3a4ed40b874fb221d0cf128b58a5f1cc14",
+    "src/point-to-point/wscript": "be74564c38eddaa31fa8540cb8bd324b841539919d72f03a8c4a7a134f90fbd9",
+    "src/network/wscript": "24d9e896399d679283b6e8ac562aa15f38053f888d2a6b40542e96483210ce66"
+  },
+  "production_cc_removing_observer_branch_and_static_wrapper_restores_parent_exactly": true,
+  "channel_header_removing_observer_members_and_includes_restores_parent_exactly": true,
+  "flow_tag_header_only_include_guard_body_identical": true,
+  "new_scratch_receive": "Substituted virtual Receive only; no production NIC/switch/transport path or endpoint completion",
+  "old_core_and_probe_modified": false,
+  "local_cpp_builds_or_tests": 0,
+  "remote_calls": 0,
+  "new_network_runs": 0,
+  "prior_guards_explicitly_released": true,
+  "independent_pre_dispatch_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:107",
+  "source_state": "uncommitted/unpushed WIP only; exactly5 paths including2untracked",
+  "remaining": "switch/complete callback/history/G1 and true2generation network plus V0/effects/cost remain required"
+}

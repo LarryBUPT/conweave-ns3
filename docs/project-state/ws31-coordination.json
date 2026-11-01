@@ -20,7 +20,8 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:24"
+    "last_cursor": "30516c1d-6c65-4481-bd73-77602ce15c3a:1",
+    "last_observed_status": "idle; cursorReset after completed node18"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -30,7 +31,8 @@
     "write_directory": "docs/research/ws31/independent",
     "first_goal": "independent audit of category-increment and ablation failure evidence",
     "last_cursor": null,
-    "last_reported_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:107"
+    "last_reported_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:4",
+    "last_reported_state": "active; sole r2 local read-only review, reported by main; not directly polled by Integration"
   },
   "deferred_ws29": {
     "main_thread_id": "01a1625a-d557-71c1-a90a-258c289ef43e",
@@ -263,7 +265,7 @@
     "parent_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
     "purpose": "Actual-object endpoint probe with binding/coverage guards and one new scratch object fixture; Qbb header only comment/two friends",
     "validation": "One1470task optimized-j2 fullbuild and one controlled actual-object fixture accepted at8cd.62rawrows/8double-read groups/16refusals,31Readcalls/17successfulreturns. Mask127/noeventexecution/no natural network completion. FullGitpath and36project ELF byte provenance verified.",
-    "mutable_worktree_status": "CLEAN_FIXED8CD_NO_NEW_WIP_AT_NODE17_OBSERVATION",
+    "mutable_worktree_status": "NODE18_FIVE_FILE_R2_WIP_THREE_TRACKED_TWO_UNTRACKED_UNCOMPILED_UNCOMMITTED",
     "last_network_validated_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
@@ -272,14 +274,22 @@
       "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy",
       "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e": "Q12andC2 default dispatch full FCT/orderedCHOICE_ROUTE and dedicatedC2 events with exact104 waits; only two technical cells at unchanged input, not endpoint lifecycle or efficacy"
     },
-    "new_network_approval_scope": "None; all objectpreflight guards explicitly released. Main channel/switch/callback/history/G1 implementation next, no frozen new execution plan."
+    "new_network_approval_scope": "None; sole r2 static read-only review active. Old 8cd runtime acceptance does not cover new WIP.",
+    "current_WIP_hashes": {
+      "src/point-to-point/model/qbb-channel.h": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+      "src/point-to-point/model/qbb-channel.cc": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+      "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "scratch/ws31-endpoint-channel-test.cc": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698"
+    },
+    "current_WIP_source_audit": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/evidence/endpoint-channel-wip-source-audit-r2.json"
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "NODE17 actual-object8cd fullbuild/fixture accepted with full source/binary/library/raw provenance; guards released and next main implementation only",
-    "record": "docs/handoffs/2026-11-01-ws31-endpoint-object-acceptance.md",
-    "verification": "docs/research/evidence/ws31-endpoint-object-acceptance-20261101-r1/verification.json",
-    "new_engineering_runtime_acceptance": true,
+    "kind": "NODE18 channel r1 complete static review accepted; r2 five-file uncompiled WIP under sole read-only review",
+    "record": "docs/handoffs/2026-11-01-ws31-endpoint-channel-integration.md",
+    "verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
+    "new_engineering_runtime_acceptance": false,
     "new_network_acceptance": false,
     "network_technical_total": 43,
     "user_decision_required": false,
@@ -461,6 +471,17 @@
       "network_technical_total": 43,
       "user_decision_required": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "NODE17 actual-object8cd fullbuild/fixture accepted with full source/binary/library/raw provenance; guards released and next main implementation only",
+      "record": "docs/handoffs/2026-11-01-ws31-endpoint-object-acceptance.md",
+      "verification": "docs/research/evidence/ws31-endpoint-object-acceptance-20261101-r1/verification.json",
+      "new_engineering_runtime_acceptance": true,
+      "new_network_acceptance": false,
+      "network_technical_total": 43,
+      "user_decision_required": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -565,26 +586,37 @@
     "completed_payload_bytes": 403963904
   },
   "next_registered_goal": {
-    "kind": "MAIN_CHANNEL_SWITCH_CALLBACK_HISTORY_G1_IMPLEMENTATION",
-    "status": "NEXT_MAIN_LOCAL_IMPLEMENTATION_NO_NEW_FROZEN_SOURCE_OR_EXECUTION_PLAN",
-    "owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
-    "design": "docs/research/ws31/main/endpoint-channel-integration-design-r1.md",
-    "fixed_design_snapshot": "docs/research/evidence/ws31-endpoint-object-acceptance-20261101-r1/snapshots/main/endpoint-channel-integration-design-r1.md",
-    "last_accepted_source": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
-    "current_new_WIP": false,
-    "independent_last_reported_state": "completed/idle107",
-    "no_persistent_driver": true,
+    "kind": "ENDPOINT_CHANNEL_R2_LOCAL_READONLY_REVIEW",
+    "status": "ACTIVE_SOLE_INDEPENDENT_MAIN_REPORTED_CURSOR4",
+    "owner": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "plan": "docs/research/ws31/main/endpoint-channel-local-review-r2.json",
+    "fixed_plan_snapshot": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-local-review-r2.json",
+    "plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+    "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+    "files_working_sha256": {
+      "src/point-to-point/model/qbb-channel.h": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+      "src/point-to-point/model/qbb-channel.cc": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+      "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "scratch/ws31-endpoint-channel-test.cc": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698"
+    },
+    "preserved_WIP": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r2-wip/",
+    "reported_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:4",
+    "pre_dispatch_idle_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:3",
+    "current_new_WIP": true,
     "remote_build_fixture_network_execution_authorized": false,
-    "old_successful_ID_or_core_or_object_fixture_repeats_authorized": false,
-    "next_source_review_and_fresh_independent_plan_required": true,
-    "implementation_order_already_authorized": "C1 then C2 then C3; no renewed candidate permission gate",
-    "requirements": [
-      "Actual switch coverage and defaultoffchannel originaleventtoken/postReceiveclose",
-      "SavedRXcapture before completiondeletion, actualhistorycleanup and retainold/append networkbranch",
-      "ActualcontextG1/two-generationnetworkpositive/refusal underseparatefrozenplan",
-      "IndependentC1V0 and allthree business/background/state/runtime-cost validation; CCFAB-only additionalbaseline gate; Ofanpaused; finaladoptionuser"
-    ],
-    "no_duplicate_sole_independent_dispatch": true
+    "source_or_main_edits_by_independent_authorized": false,
+    "new_commit_or_push_authorized_by_review_plan": false,
+    "source_guard": "Exactly five r2 files frozen until sole read-only review returns",
+    "outcomes_accepted_by_Integration": false,
+    "no_duplicate_sole_independent_dispatch": true,
+    "requirements_after_review": [
+      "Main accepts review and fixes necessary issues before freezing a new source",
+      "Actual switch pure-read, completion callback savedRX, history cleanup and actual parsed G1",
+      "All production identity producers before U16 serialization; explicit shared PFC/CNP/ACK/NACK/retransmission coverage",
+      "Real two-generation network positive/refusal cases under new independent plan and resource gates",
+      "Independent C1 V0; three-candidate matched ablation; business/background effects and state/runtime costs"
+    ]
   },
   "last_verified_C13_labels_checkpoint": {
     "date": "2026-11-01",
@@ -637,24 +669,46 @@
     "scope": "Per-node technical coverage, repeated small inputs are not independent workloads or efficacy samples"
   },
   "last_completed_local_review": {
-    "name": "endpoint-probe-local-review-r1",
-    "status": "MAIN_ACCEPTED_PROBE_STATIC_REVIEW_REPAIRS_REQUIRED_INTEGRATION_VERIFIED",
-    "review_sha256": "e401fcc8f2c4b2954224d228d4891b07280d4341f03b09ae9e987753d6cb5ff9",
-    "report_sha256": "f35beedb11fbb40e2c07121d8156360e1c88f968ebb871090d4fe1910103ce30",
-    "QA_sha256": "8df86482836a2f4850dace134930eba9df20bfdac6be0610574a2c3c62d865b5",
-    "main_acceptance_sha256": "565dc4c6b54b860eb1133d07641f76f23705a82fb89d403f4ec7d0da6e3822b8",
-    "fixed_parent_source_paths": 25,
-    "prior_artifacts": 8,
-    "original_WIP_preserved": 2,
+    "name": "endpoint-channel-local-review-r1",
+    "status": "COMPLETE_STATIC_REVIEW_MAIN_ACCEPTED_INTEGRATION_PROVENANCE_VERIFIED_FIX_REQUIRED",
+    "review_sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+    "QA_sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
+    "indexed_evidence": 36,
+    "fixed_parent_source_copies": 22,
+    "additional_fixed_parent_fingerprints": 1,
+    "exact_source_anchors": 55,
+    "original_WIP_preserved": 5,
     "findings": [
-      "P1",
-      "P2",
-      "P3"
+      {
+        "id": "C1",
+        "severity": "P1",
+        "title": "TypeId equality does not prove exact C++ dynamic channel type"
+      },
+      {
+        "id": "C2",
+        "severity": "P1",
+        "title": "U16 tag serialization aliases signed and high int32 flow identities"
+      },
+      {
+        "id": "C3",
+        "severity": "P1",
+        "title": "New Tagged helper serializes uninitialized flow_size"
+      },
+      {
+        "id": "C4",
+        "severity": "P2",
+        "title": "Rethrow through old simulator event loop skips current event Unref"
+      },
+      {
+        "id": "C5",
+        "severity": "P1",
+        "title": "Postmutation failures can leave partial accounting without terminal failure latching"
+      }
     ],
-    "runtime_failures_observed": false,
-    "all_executions": 0,
-    "verification": "docs/research/evidence/ws31-endpoint-object-integration-20261101-r1/verification.json",
-    "integration_scope": "Source/provenance/preservation plus repair/test anchors; new independent source and runtime purity pending"
+    "execution_counts_all_zero": true,
+    "guard_released": "2026-11-01T12:34:40.443287+00:00",
+    "verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
+    "integration_scope": "Review provenance, original source anchors, frozen bytes and written repair order; no new runtime or default compatibility approval"
   },
   "implemented_source_history": [
     {
@@ -1078,7 +1132,7 @@
     "source_entry_env_guard": "HELD, carried into r2",
     "source_copy_established": false
   },
-  "integration_observed_utc": "2026-11-01T10:13:36.274051+00:00",
+  "integration_observed_utc": "2026-11-01T13:01:03.623481+00:00",
   "last_completed_registered_preflight_history": [
     {
       "kind": "SOURCE_REVIEW_THEN_SINGLE_BUILD_NEW_CORE_AND_MOCK_ONLY",
@@ -1245,7 +1299,7 @@
     "preflight_guards_explicitly_released": true
   },
   "endpoint_lifecycle_design_checkpoint": {
-    "state": "ACTUAL_OBJECT8CD_ENGINEERING_ACCEPTED_CHANNEL_SWITCH_CALLBACK_HISTORY_G1_NEXT",
+    "state": "CHANNEL_R1_STATIC_REVIEW_ACCEPTED_R2_WIP_UNDER_REVIEW_ACTUAL_SWITCH_CALLBACK_HISTORY_G1_PENDING",
     "design": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r2.md",
     "original_WIP_preserved_and_matched": true,
     "review": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/evidence/endpoint-ledger-local-review-main-acceptance-r1.json",
@@ -1330,7 +1384,16 @@
       },
       "probe_WIP_changes": "qbb-net-device.h narrowfriend/comment and untrackedws31-endpoint-probe.h"
     },
-    "current_new_WIP": false
+    "current_new_WIP": true,
+    "channel_WIP_written_not_compiled": true,
+    "channel_r1_review_verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
+    "channel_r2_contract": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-contract-r2.md",
+    "channel_r2_plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+    "channel_r2_readonly_review_main_reported_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:4",
+    "channel_G1_and_all_production_identity_integrated": false,
+    "channel_shared_control_coverage_accepted": false,
+    "channel_default_usage_marker_cost_pending": true,
+    "scope_of_tree_entries_and_tree_sha256": "Historical 20bc portable-core freeze; object 8cd full tree is in last_verified_endpoint_object_checkpoint"
   },
   "completed_registered_pilot_history": [
     {
@@ -1638,6 +1701,26 @@
       "original_WIP_preserved_and_hashmatched": 2,
       "verification": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/verification.json",
       "integration_scope": "Provenance and concrete source findings plus new guard/test anchors; no runtime or full model validation"
+    },
+    {
+      "name": "endpoint-probe-local-review-r1",
+      "status": "MAIN_ACCEPTED_PROBE_STATIC_REVIEW_REPAIRS_REQUIRED_INTEGRATION_VERIFIED",
+      "review_sha256": "e401fcc8f2c4b2954224d228d4891b07280d4341f03b09ae9e987753d6cb5ff9",
+      "report_sha256": "f35beedb11fbb40e2c07121d8156360e1c88f968ebb871090d4fe1910103ce30",
+      "QA_sha256": "8df86482836a2f4850dace134930eba9df20bfdac6be0610574a2c3c62d865b5",
+      "main_acceptance_sha256": "565dc4c6b54b860eb1133d07641f76f23705a82fb89d403f4ec7d0da6e3822b8",
+      "fixed_parent_source_paths": 25,
+      "prior_artifacts": 8,
+      "original_WIP_preserved": 2,
+      "findings": [
+        "P1",
+        "P2",
+        "P3"
+      ],
+      "runtime_failures_observed": false,
+      "all_executions": 0,
+      "verification": "docs/research/evidence/ws31-endpoint-object-integration-20261101-r1/verification.json",
+      "integration_scope": "Source/provenance/preservation plus repair/test anchors; new independent source and runtime purity pending"
     }
   ],
   "completed_registered_local_goal_history": [
@@ -1803,5 +1886,68 @@
     "future_execution_authority": false,
     "network_total_unchanged": 43,
     "nonnetwork_adapter_conditions_unchanged": 17
+  },
+  "registered_goal_history": [
+    {
+      "kind": "MAIN_CHANNEL_SWITCH_CALLBACK_HISTORY_G1_IMPLEMENTATION",
+      "status": "NEXT_MAIN_LOCAL_IMPLEMENTATION_NO_NEW_FROZEN_SOURCE_OR_EXECUTION_PLAN",
+      "owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "design": "docs/research/ws31/main/endpoint-channel-integration-design-r1.md",
+      "fixed_design_snapshot": "docs/research/evidence/ws31-endpoint-object-acceptance-20261101-r1/snapshots/main/endpoint-channel-integration-design-r1.md",
+      "last_accepted_source": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+      "current_new_WIP": false,
+      "independent_last_reported_state": "completed/idle107",
+      "no_persistent_driver": true,
+      "remote_build_fixture_network_execution_authorized": false,
+      "old_successful_ID_or_core_or_object_fixture_repeats_authorized": false,
+      "next_source_review_and_fresh_independent_plan_required": true,
+      "implementation_order_already_authorized": "C1 then C2 then C3; no renewed candidate permission gate",
+      "requirements": [
+        "Actual switch coverage and defaultoffchannel originaleventtoken/postReceiveclose",
+        "SavedRXcapture before completiondeletion, actualhistorycleanup and retainold/append networkbranch",
+        "ActualcontextG1/two-generationnetworkpositive/refusal underseparatefrozenplan",
+        "IndependentC1V0 and allthree business/background/state/runtime-cost validation; CCFAB-only additionalbaseline gate; Ofanpaused; finaladoptionuser"
+      ],
+      "no_duplicate_sole_independent_dispatch": true,
+      "superseded_at_node18": "Channel WIP now authored and reviewed once; switch/callback/history/G1 implementation remains incomplete"
+    }
+  ],
+  "last_verified_endpoint_channel_static_checkpoint": {
+    "record": "docs/handoffs/2026-11-01-ws31-endpoint-channel-integration.md",
+    "verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
+    "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+    "review_sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+    "QA_sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
+    "indexed_evidence": 36,
+    "fixed_parent_copies": 22,
+    "additional_fixed_parent_fingerprints": 1,
+    "exact_source_anchors": 55,
+    "r1_WIP_preserved": 5,
+    "r2_current_and_frozen_WIP": 5,
+    "r1_to_r2_changed_files": [
+      "src/point-to-point/model/qbb-channel.h",
+      "src/point-to-point/model/qbb-channel.cc",
+      "src/point-to-point/model/ws31-endpoint-channel.h",
+      "scratch/ws31-endpoint-channel-test.cc"
+    ],
+    "deletion_restoration_checks": {
+      "r1": 3,
+      "r2": 3
+    },
+    "snapshots": 78,
+    "finding_counts": {
+      "P1": 4,
+      "P2": 1
+    },
+    "r1_guard_released": "2026-11-01T12:34:40.443287+00:00",
+    "r2_plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+    "r2_review_main_reported_active": true,
+    "runtime_accepted": false,
+    "G1_and_all_production_identity_integrated": false,
+    "already_truncated_external_identity_aliases_detectable": false,
+    "network_total_unchanged": 43,
+    "nonnetwork_adapter_conditions_unchanged": 17,
+    "new_baseline_admission": false,
+    "Flowcut_current_title_CCF_qualification": "UNKNOWN_REFERENCE_ONLY"
   }
 }

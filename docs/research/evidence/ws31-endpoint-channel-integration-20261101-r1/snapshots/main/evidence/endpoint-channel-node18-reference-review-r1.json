@@ -1,0 +1,43 @@
+{
+  "at_utc": "2026-11-01T12:54:44.120224+00:00",
+  "scope": "Targeted main local record reread at completed staticreview node; no paper replication/new official CCF verification",
+  "sources": [
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\README.md",
+      "sha256": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\reading-log.md",
+      "sha256": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\diffflow-2016\\analysis-technical.md",
+      "sha256": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\diffflow-2016\\verification.md",
+      "sha256": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\flowcut-2026\\analysis-technical.md",
+      "sha256": "cb6c8b128f88519004f12bb11497a49d019fab0e9c386bf0591a4899e255cc88"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\flowcut-2026\\verification.md",
+      "sha256": "eb93e690f74e282799e59f1204a5fcdcc754001fea1d67cd5853aed9a7d73789"
+    }
+  ],
+  "versions": [
+    "DiffFlow arXiv:1604.05107v1",
+    "Flowcut arXiv:2506.21406v2"
+  ],
+  "borrowed": "Explicit prerequisites/control activation and accounting closure plus drain cost",
+  "conditions": "Complete identity/protocol scope, measured state, separate ordering and efficacy evidence",
+  "differences": "Receive-event return versus Flowcut ACK-byte closure; RDMA QP/batch/background versus DiffFlow sampled spraying/simplified transport",
+  "not_supported": [
+    "actual NS3 endpoint drain/generation reuse",
+    "complete object/event reclamation",
+    "dual-workload gains or algorithm runtime cost"
+  ],
+  "baseline_admission": "None; local Flowcut current-title CCF qualification unresolved, reference only"
+}

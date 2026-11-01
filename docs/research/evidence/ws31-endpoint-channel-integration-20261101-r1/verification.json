@@ -1,0 +1,105 @@
+{
+  "at_utc": "2026-11-01T13:01:03.623481+00:00",
+  "status": "PASS_PROVENANCE_R1_REVIEW_ACCEPTED_R2_WRITTEN_NOT_RUNTIME_APPROVED",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "r1_review_sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+  "r1_QA_sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
+  "indexed_evidence": 36,
+  "fixed_parent_copies": 22,
+  "additional_fixed_parent_fingerprints": 1,
+  "source_anchors": 55,
+  "r1_frozen_WIP": 5,
+  "r2_current_and_frozen_WIP": 5,
+  "r1_to_r2_changed_files": [
+    "src/point-to-point/model/qbb-channel.h",
+    "src/point-to-point/model/qbb-channel.cc",
+    "src/point-to-point/model/ws31-endpoint-channel.h",
+    "scratch/ws31-endpoint-channel-test.cc"
+  ],
+  "tag_class_and_serialization_body_unchanged": true,
+  "deletion_restoration_checks": {
+    "r1": 3,
+    "r2": 3
+  },
+  "finding_counts": {
+    "P1": 4,
+    "P2": 1
+  },
+  "findings": [
+    {
+      "id": "C1",
+      "severity": "P1",
+      "title": "TypeId equality does not prove exact C++ dynamic channel type"
+    },
+    {
+      "id": "C2",
+      "severity": "P1",
+      "title": "U16 tag serialization aliases signed and high int32 flow identities"
+    },
+    {
+      "id": "C3",
+      "severity": "P1",
+      "title": "New Tagged helper serializes uninitialized flow_size"
+    },
+    {
+      "id": "C4",
+      "severity": "P2",
+      "title": "Rethrow through old simulator event loop skips current event Unref"
+    },
+    {
+      "id": "C5",
+      "severity": "P1",
+      "title": "Postmutation failures can leave partial accounting without terminal failure latching"
+    }
+  ],
+  "r1_review_guard_released": "2026-11-01T12:34:40.443287+00:00",
+  "r2_plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+  "r2_working_hashes": {
+    "src/point-to-point/model/qbb-channel.h": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+    "src/point-to-point/model/qbb-channel.cc": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698"
+  },
+  "r2_guard": "Five frozen files under sole independent read-only review; no execution authority",
+  "repair_check_scope": "Written source anchors and mutation order only; not a complete new semantic review or compilation",
+  "G1_and_all_production_identity_producers_integrated": false,
+  "already_truncated_external_identity_aliases_detectable": false,
+  "fault_injections": "Controlled transaction-boundary throws; actual animation trace; all unexecuted",
+  "runtime_or_default_compatibility_or_cost_accepted": false,
+  "literature_records_verified": 6,
+  "new_baseline_admission": false,
+  "Flowcut_current_title_CCF_qualification": "UNRESOLVED_REFERENCE_ONLY",
+  "implementation_git_status": [
+    " M src/network/model/flow-id-num-tag.h",
+    " M src/point-to-point/model/qbb-channel.cc",
+    " M src/point-to-point/model/qbb-channel.h",
+    "?? scratch/ws31-endpoint-channel-test.cc",
+    "?? src/point-to-point/model/ws31-endpoint-channel.h"
+  ],
+  "new_frozen_commit": false,
+  "network_total_unchanged": 43,
+  "nonnetwork_adapter_conditions_unchanged": 17,
+  "integration_execution_counts": {
+    "remote": 0,
+    "compile": 0,
+    "cpp_test": 0,
+    "network": 0,
+    "old_raw_recomputation": 0
+  },
+  "remaining_mandatory": [
+    "C1-C5 decisions/fixes and new frozen source",
+    "actual parsed G1",
+    "real switch read-only observation",
+    "completion callback and savedRX",
+    "history release",
+    "two-generation production network positive/negative cases",
+    "independent V0",
+    "three-candidate matched ablation",
+    "business/background two-sided effects",
+    "state/runtime costs"
+  ],
+  "main_observed_cursor": "30516c1d-6c65-4481-bd73-77602ce15c3a:1",
+  "independent_main_reported_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:4",
+  "independent_directly_polled_or_redispatched": false
+}

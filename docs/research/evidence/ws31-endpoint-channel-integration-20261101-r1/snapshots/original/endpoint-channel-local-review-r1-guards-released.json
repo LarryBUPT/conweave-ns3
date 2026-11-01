@@ -1,0 +1,14 @@
+{
+  "at_utc": "2026-11-01T10:45:53.505301+00:00",
+  "status": "EXPLICITLY_RELEASED_USER_SHUTDOWN_CHECKPOINT_REVIEW_INCOMPLETE",
+  "scope": "only five frozen WIP paths for endpoint-channel-local-review-r1",
+  "read_only_source_guard": "released",
+  "broader_source_entry_environment_guards": "not acquired by this local-only target",
+  "execution_authority": false,
+  "remote_compile_test_network_calls": 0,
+  "owned_background_work": false,
+  "all_local_read_write_calls_terminal_at_return": true,
+  "review_complete": false,
+  "resume_guard": "Verify current plan, parent HEAD and five file hashes; use new frozen plan if any change; continue local review only",
+  "checkpoint": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint.json"
+}

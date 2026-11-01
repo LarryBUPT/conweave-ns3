@@ -1,0 +1,36 @@
+{
+  "workstream": "WS-31",
+  "scope": "Read-only review of repaired uncompiled channel WIP and substituted Receive fixture; no execution",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+    "src/point-to-point/model/qbb-channel.cc": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698"
+  },
+  "preserved_WIP": "evidence/endpoint-channel-wip-r2-preserved/",
+  "source_audit": "evidence/endpoint-channel-wip-source-audit-r2.json",
+  "contract": "endpoint-channel-contract-r2.md",
+  "prior_review": "../independent/endpoint-channel-local-review-r1-final-review.json",
+  "prior_main_acceptance": "evidence/endpoint-channel-local-review-main-acceptance-r1.json",
+  "pre_dispatch_idle_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:3",
+  "questions": [
+    "C1 exacttypeid plus inheritedTypeId overriding completechannel rejection; actual old C++/RTTI compatibility",
+    "C2/C3 EncodeIdentity pre-serialization0..65535 bounds andinitializedflow_size, legalboundaryroundtrip/negativehighaliasdemonstration, registrationuniqueness; explicitly keep actualG1/allproductionproducers unresolved",
+    "C4 eventinternalcatch preserves originalexception andopen token,Stop returns to ProcessOneEventUnref; Runoutsidefailurequery, no fake closure or wholeteardownclaim",
+    "C5 Enter/history/open, schedule andrealanimationfailure latches; Bind allallocatingstage precedesnoexceptcommit; no normalFinish/rebind afterpartialfailure; premutationrefusalsremainrecoverable",
+    "I1 reject every usedchannel/defaultpreexistingevent andusedrebind; defaultmarkerwrite is realcost, originalPkt/context/delay/traceorder unchanged nominally",
+    "Independently trace all newsubstitutedReceive cases, owner-loss lifetime, faultinjectionscope vs actualallocator/scheduler; identify minimal necessary repairs, no productionReceive/network acceptance",
+    "Record all remaining switch/callback/history/G1/sharedcontrol/twogeneration/V0/matchedablation/effects/cost obligations; sourcecode not measured evidence"
+  ],
+  "write_prefix": "endpoint-channel-local-review-r2",
+  "prohibited": [
+    "No SSH/remote/sync/deploy/compile/test/fixture/network",
+    "No source/main edit, commit/push, oldacceptedrepeat",
+    "No Ofan/WS29/oldcontroller/matrix work or baselineadmission"
+  ],
+  "source_guard": "Keep exactly5reviewedR2WIPfiles unchanged untilreviewreturned; no executionauthority",
+  "at_utc": "2026-11-01T12:53:10.805905+00:00"
+}

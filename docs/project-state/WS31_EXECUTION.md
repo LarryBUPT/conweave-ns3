@@ -163,7 +163,15 @@ Integration 核 170 项索引文件、109 项 raw、13 项旧文件，以及完�
 
 两处副侧辅助 checker 的工作字节等于 Git LF、仅 stdout 含 Waf argv 假设失败均保留；修正分别核 CRLF 等价和同时读取原 stdout／stderr，无科学重试、源码或判据变化。全部调用终态后于 09:47:46 UTC 显式释放源码／入口／环境约束，副 completed／idle107、无持久驱动或新执行授权。固定实现树干净 8cd，本节点无新科学源修改；网络仍为 43 格，另 17 例适配器及两个工程预检分列。
 
-主下一步按[接线设计](../research/evidence/ws31-endpoint-object-acceptance-20261101-r1/snapshots/main/endpoint-channel-integration-design-r1.md)实现默认关闭的原事件 channel token、接收返回后闭合、真实交换机纯读、完成回调 RX 捕获和历史清理，再冻结新源、实际上下文 G1 及两代网络正反例。该文当前只是设计，不构成新执行授权。独立 V0、三候选匹配消融、业务／背景双侧效果和状态／运行成本仍必做，副 idle 不重复派发旧格。
+主按接线设计编写的 channel 首版已完成静态审查，形成[第十八节点](../handoffs/2026-11-01-ws31-endpoint-channel-integration.md)。Integration 核 36 项证据、22 份固定父源副本、额外 scheduler 指纹、55 个原版本锚点及五份原 WIP；旧检查点／QA／释放收据均保留。首版发现四项 P1、一项 P2：TypeId 不等于精确动态类型，U16 编码可造成身份别名，新 helper 未初始化大小，事件外抛跳过旧模拟器 Unref，以及部分记账／调度／动画／Bind 失败未锁存。该节点接收的是完整审查，首版代码不获执行批准。
+
+首版约束于 12:34:40 UTC 释放、副 idle3 后，主在同五文件写 r2：精确 typeid，编码前 0～65535 范围及大小初始化，事件内保存异常／Stop／正常返回和 Run 外报告，部分变更失败锁存，Bind 预分配后无抛出提交，已发送 channel 拒绝晚绑定。五份当前字节与新封存一致；相对 r1 四份改变，tag 头仍仅有同一 include guard，基线 tag 类体／编码体未改。r1、r2 各三项删除恢复检查通过，只证明改动范围，不证明默认兼容或零成本；默认路径新增使用标记写入。
+
+r2 身份范围仅约束受控新编码器／登记；实际 G1 和全部生产构包入口未接入，已被截断的外来身份不能靠 Peek 恢复。部分故障为指定变更边界处的受控抛出，不是分配器耗尽或调度器插入失败；动画故障通过真实 trace 回调编写。夹具仍替代 Receive，没有进入生产 NIC／交换机／RDMA 接收，全部尚未执行。
+
+实现 HEAD 与个人 origin tracking 仍为 8cd，三份 tracked 修改和两份新增未提交。唯一副按[新只读计划](../research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-local-review-r2.json)审 r2，主报告 active4；计划 SHA-256 为 `6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0`，五文件冻结，远端／构建／测试授权均为 0。Integration 只观察主 idle 新 cursor `30516c1d-6c65-4481-bd73-77602ce15c3a:1`，不直查或重复唤醒副。
+
+主接收 r2 复核后处理必要问题，继续真实交换机纯读、完成回调 RX 捕获、历史清理、实际 G1、全生产者身份与共享 PFC／CNP／ACK/NACK／重传覆盖，再冻结新源和真实两代网络正反例。独立 V0、三候选匹配消融、业务／背景双侧效果和状态／运行成本仍必做，不重跑旧格。本节点重读 DiffFlow v1／Flowcut v2 的技术与核验记录，分别借鉴控制生效条件与在途闭合／排空成本；Receive 返回不是 ACK 字节闭合。Flowcut 现刊名 CCF 资格仍未知，不准入正式基线。
 
 真实端点／定时器／队列快照、Receive 返回后的原交付 token 闭合、条件标签存在性检查、实际上下文 G1 及两代网络正例／拒绝例仍须实现和独立验证。EndpointSnapshot 仍为待适配器提供的参数，手工字段覆盖不当作测量，held copy 丢弃不当作原生旧包接收隔离。generation=0 或固定等待时长均不代替排空证明。独立 V0、双侧效果及状态／运行成本继续必做。
 

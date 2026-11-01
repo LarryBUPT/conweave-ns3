@@ -1,0 +1,246 @@
+{
+  "at_utc": "2026-11-01T10:43:50.180551+00:00",
+  "status": "CHECKPOINT_INCOMPLETE_USER_REQUESTED_CODEX_SHUTDOWN",
+  "source_chat": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "parent_chat": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "user_request": "Preserve current node/content before closing Codex; do not continue execution",
+  "active_target": "endpoint-channel-local-review-r1",
+  "plan": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\endpoint-channel-local-review-r1.json",
+    "sha256": "5e73c6e98844c393dc63f6e2a1d141d6116af2466b8426156d6378da2c85d20d"
+  },
+  "head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "Git_status": [
+    " M src/network/model/flow-id-num-tag.h",
+    " M src/point-to-point/model/qbb-channel.cc",
+    " M src/point-to-point/model/qbb-channel.h",
+    "?? scratch/ws31-endpoint-channel-test.cc",
+    "?? src/point-to-point/model/ws31-endpoint-channel.h"
+  ],
+  "five_WIP_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "d24eb5bd2e10f9a17376263c217f7d77c10e2a1f89fae24859fcbae40eb4391b",
+    "src/point-to-point/model/qbb-channel.cc": "66b25afb1f68ac014553679b87940fcb29a5820a5ab51b68e3a953ee4f1ac039",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "0ee28c59fe7297a1f78b0543fb6672921d4ebd0521a8e50855541a93aca8c999",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "01334598e621e407ac38e58d532011e7dfa3af68157021fc4b234a600f228ba4"
+  },
+  "execution_counts": {
+    "remote": 0,
+    "compile": 0,
+    "test_fixture": 0,
+    "network": 0,
+    "commit_push": 0,
+    "source_main_edits": 0
+  },
+  "completed": [
+    "workflow/plan/contract/source-audit read",
+    "all five WIP read and byte hashes verified",
+    "normal two-forward and nested-reverse chronology statically traced",
+    "old five-argument scheduling, virtual Receive, value-copy traits and shared ownership inspected",
+    "current findings and open questions recorded; no final review verdict"
+  ],
+  "findings_confirmed_in_source_not_executed": [
+    {
+      "id": "C1",
+      "priority": "P1",
+      "title": "TypeId equality does not reject all overriding C++ channel subclasses",
+      "anchors": [
+        "ws31-endpoint-channel.h:112",
+        "src/core/model/object.h:415",
+        "src/core/model/object.cc:76"
+      ],
+      "reason": "CreateObject<T> assigns T::GetTypeId; unregistered derived type inherits QbbChannel GetTypeId and can override virtual TransmitStart, bypassing wrapper while passing Bind",
+      "minimum_fix": "Check exact C++ dynamic type or equally strong setup provenance; add unregistered overriding-subclass rejection case"
+    },
+    {
+      "id": "C2",
+      "priority": "P1",
+      "title": "FlowIDNUMTag serializes ID as U16 despite int32 API; signed and high IDs alias",
+      "anchors": [
+        "src/network/model/flow-id-num-tag.cc:FlowIDNUMTag::Serialize/Deserialize",
+        "ws31-endpoint-channel.h:62",
+        "scratch/ws31-endpoint-channel-test.cc:50"
+      ],
+      "reason": "SetId(-1) decodes as65535;65536 decodes as0. Existing negative-tag case can reject only because65535 is unregistered. Unknown65536 can be misattributed to registered0. Needs exact PacketTagList serialization anchors on resume",
+      "minimum_fix": "Freeze and enforce representable input identity domain in G1/encoder/registration, or separately design full-width observer identity; preserve baseline tag-body scope unless newly authorized"
+    },
+    {
+      "id": "C3",
+      "priority": "P1",
+      "title": "Tagged helper serializes uninitialized flow_size",
+      "anchors": [
+        "scratch/ws31-endpoint-channel-test.cc:50",
+        "src/network/model/flow-id-num-tag.cc:12",
+        "src/network/model/flow-id-num-tag.cc:Serialize"
+      ],
+      "reason": "FlowIDNUMTag ctor initializes only flow_stat; Tagged sets only ID, while AddPacketTag serializes flow_size",
+      "minimum_fix": "Initialize SetFlowSize before AddPacketTag in new fixture; do not silently alter baseline body"
+    }
+  ],
+  "pending_analysis": [
+    {
+      "topic": "Exception escaping simulator event",
+      "fact": "DefaultSimulatorImpl::ProcessOneEvent invokes event then Unref without RAII; Receive exception rethrow skips Unref, current event is already removed from scheduler. Destroy does not recover that event",
+      "remaining": "Decide severity and minimum one-shot negative-process/error-handling contract; do not claim fixture must crash, it may print PASS while leaking event-held channel/ledger references"
+    },
+    {
+      "topic": "Exception atomicity before delivery",
+      "fact": "ledger Enter precedes history/open allocations; TransmitStart increments pending before scheduling; only Deliver try latches failed. Allocation/scheduling/animation exceptions may leave partial accounting",
+      "remaining": "Separate recoverable pre-mutation validation refusals from post-mutation failure latching; keep current expected missing-tag refusals recoverable"
+    },
+    {
+      "topic": "Bind after preexisting default events",
+      "fact": "pending counts only observed events; Bind cannot see a default direct Receive already scheduled before binding",
+      "remaining": "Freeze setup-before-any-transmission/G1 obligation or add evidence admission guard; distinguish integration precondition from current substituted-fixture bug"
+    },
+    {
+      "topic": "Lifetime/cycles/owner",
+      "fact": "State does not own channels/devices; callbacks own State/ledger; events own channel/destination/packet and leave copy. Early owner destruction prevents normal Finish; baseline device/channel cycles and simulator exception leak may retain state afterDestroy",
+      "remaining": "Complete source-based lifecycle analysis and owner/rebind tests; no premature drain or automatic cleanup claim"
+    },
+    {
+      "topic": "Default path/include guards/remaining scope",
+      "remaining": "Independently reproduce exact-parent restoration for cc/header/tag guard, verify guard collision and baseline tag body, finish missing production Receive/shared-control/G1 and minimal test recommendations; write final review JSON/report/QA"
+    }
+  ],
+  "static_normal_fixture_trace": "default at13ns; observed two forward events at13ns, first schedules reverse at16ns: inside receives pending2,2,1; first nested enqueue reaches3; distinct serials1,2,3 close13,13,16. Not executed.",
+  "read_only_guard": {
+    "status": "EXPLICITLY_RELEASED_FOR_USER_SHUTDOWN_AFTER_BYTE_CHECK",
+    "scope": "only these five reviewed WIP paths",
+    "no_broader_execution_authority": true,
+    "resume_requires": "re-read workflow; verify plan/current HEAD and five WIP hashes against this checkpoint; if main changed them, request/use new frozen plan and review the new bytes; do not run old planned fixture"
+  },
+  "preserved_files": [
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\WIP\\src\\point-to-point\\model\\qbb-channel.h",
+      "sha256": "d24eb5bd2e10f9a17376263c217f7d77c10e2a1f89fae24859fcbae40eb4391b",
+      "role": "original frozen working bytes"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\WIP\\src\\point-to-point\\model\\qbb-channel.cc",
+      "sha256": "66b25afb1f68ac014553679b87940fcb29a5820a5ab51b68e3a953ee4f1ac039",
+      "role": "original frozen working bytes"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\WIP\\src\\point-to-point\\model\\ws31-endpoint-channel.h",
+      "sha256": "0ee28c59fe7297a1f78b0543fb6672921d4ebd0521a8e50855541a93aca8c999",
+      "role": "original frozen working bytes"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\WIP\\src\\network\\model\\flow-id-num-tag.h",
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "role": "original frozen working bytes"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\WIP\\scratch\\ws31-endpoint-channel-test.cc",
+      "sha256": "01334598e621e407ac38e58d532011e7dfa3af68157021fc4b234a600f228ba4",
+      "role": "original frozen working bytes"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\main-materials\\endpoint-channel-local-review-r1.json",
+      "sha256": "5e73c6e98844c393dc63f6e2a1d141d6116af2466b8426156d6378da2c85d20d",
+      "role": "main material snapshot"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\main-materials\\endpoint-channel-contract-r1.md",
+      "sha256": "267844db96f9cba258bf4e0f9fd44f504bebd0300b238f98dec8cc8c9630bba4",
+      "role": "main material snapshot"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\main-materials\\evidence\\endpoint-channel-wip-source-audit-r1.json",
+      "sha256": "103c443d1c42ff96357d378571e6dcca821ca1625899a2654b48709c782eff43",
+      "role": "main material snapshot"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\core\\model\\simulator.h",
+      "sha256": "bbd76551e7da0ed1efc89f147d9d73af2becf93386c7510888b0eb07316ecda3",
+      "role": "fixed parent Git blob",
+      "Git_blob": "9e4b04959bc95495bda92a8cc19565f28256154a"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\core\\model\\simulator.cc",
+      "sha256": "37108f15d04210066c45d66d57534f528c9f8d0e0b1ea303d011ff46c9b42de1",
+      "role": "fixed parent Git blob",
+      "Git_blob": "3e9646921f330ff6bd699eea96127ae94ad15555"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\core\\model\\make-event.h",
+      "sha256": "59dada1e851b4c7d0eca508ffd96274d762d565f335655a101d42ea09e890465",
+      "role": "fixed parent Git blob",
+      "Git_blob": "66b50c6cf63f09f227458e5fc8aad33496e5d0ea"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\core\\model\\type-traits.h",
+      "sha256": "2d864a36eddd257d3de04c2da8dec3dc12266ca4dea76636923888efaeadb5be",
+      "role": "fixed parent Git blob",
+      "Git_blob": "3ced4b63e583d6664b5112481c8e10ee64b24b80"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\core\\model\\default-simulator-impl.cc",
+      "sha256": "4be8807edf01758e322707a51c1329303f54fb482723c3d7c32fb7e88dbddf90",
+      "role": "fixed parent Git blob",
+      "Git_blob": "3823f1485c280eab458c6cbf6c75f2e07f41d8af"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\core\\model\\object.h",
+      "sha256": "b70b6189232d4c69d7814a5320286b40b027bd0f3bd8a7d4e9f460c0e790cf2a",
+      "role": "fixed parent Git blob",
+      "Git_blob": "ea966edbd2a438024d1aa630453a7f4854f98342"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\core\\model\\object.cc",
+      "sha256": "2714cb52b2ecda25da8cacfc23a9cbfa88d832b84f4489483e6c8c6adc17da4d",
+      "role": "fixed parent Git blob",
+      "Git_blob": "d1bb52856893e0c4b50681d2773c90b0314928ba"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\network\\model\\packet.cc",
+      "sha256": "cd9067c043d5664d41a33a26a9f9971699d0d65c4cb44558abb17674c7bb0cb1",
+      "role": "fixed parent Git blob",
+      "Git_blob": "8701bb167635b9e01508ae32b40a4f252a66d987"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\network\\model\\packet-tag-list.cc",
+      "sha256": "c591b66654ec19b015ea73893978b06f9ddac9ac85b65d0d7ef231e722fab2c5",
+      "role": "fixed parent Git blob",
+      "Git_blob": "c311a0f8107e96ac04c979b8d9548a99a1b4e760"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\network\\model\\flow-id-num-tag.cc",
+      "sha256": "df97d94de8347b47e185ac0e14a2782ffe3d336345170281216cdc1ec03f82ce",
+      "role": "fixed parent Git blob",
+      "Git_blob": "15dbd804540355e984e7a19082c532115e16e6e1"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\point-to-point\\model\\qbb-net-device.h",
+      "sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+      "role": "fixed parent Git blob",
+      "Git_blob": "8b649b24fd831af40a67c4d229b9eae27719e4cb"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\point-to-point\\model\\qbb-net-device.cc",
+      "sha256": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+      "role": "fixed parent Git blob",
+      "Git_blob": "5ec636e196d536d40c563bc0719315aaeb037b77"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\point-to-point\\model\\qbb-remote-channel.h",
+      "sha256": "ed8dbf4e41cc5e7366b07fcc7396a1f42ed31979a0cce1a03176a361fe1bc590",
+      "role": "fixed parent Git blob",
+      "Git_blob": "edabe693f85baf42bff34e6bff97c34a71a5b4d9"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\point-to-point\\model\\qbb-remote-channel.cc",
+      "sha256": "729d83611051788e24971f9586489a98006df8aff5019a49e1a6df516ad409b3",
+      "role": "fixed parent Git blob",
+      "Git_blob": "87ecfd4c8b2925c0dacedd5102908ae0276f1b66"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-checkpoint-evidence\\fixed-parent\\src\\point-to-point\\model\\ws31-endpoint-ledger.h",
+      "sha256": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "role": "fixed parent Git blob",
+      "Git_blob": "f3d0fff5bebaa52bb8f28948277f50198fc6fe6b"
+    }
+  ],
+  "resume_next_step": "Use checkpoint handoff, inspect PacketTagList Add/Peek serialization to finish C2/C3 anchors; complete exception/lifetime/default restoration analysis; deliver final static review and QA only. No execution authorized."
+}

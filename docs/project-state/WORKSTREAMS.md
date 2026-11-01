@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; OBJECT8CD BUILD/FIXTURE ACCEPTED; CHANNEL/SWITCH IMPLEMENTATION NEXT | [第十七节点](../handoffs/2026-11-01-ws31-endpoint-object-acceptance.md)：核 170 索引／109 raw／13 旧文件、完整 4,847 源路径／284,719,415 B、实际 ELF／36 工程库。八组双读、十六拒绝、31 Read／17 成功返回，mask127、网络完成 0。43 格网络／17 适配器及核心预检另计 | 副 idle107、所有约束显式释放，无持久驱动／新执行授权；源干净 8cd，无新 WIP。主先实现真实 switch／channel／完成回调／history，再冻 G1／两代网络正反例；V0／匹配消融／双侧效果／成本未完，Ofan 暂缓，无新基线 |
+| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; CHANNEL R1 STATIC REVIEW ACCEPTED; R2 WIP UNDER READONLY REVIEW | [第十八节点](../handoffs/2026-11-01-ws31-endpoint-channel-integration.md)：核 36 证据、22 父源副本、55 锚点及新旧各五文件；首版四 P1／一 P2，修订字节已封存，未编译／执行。既验 43 网络／17 适配器、20bc 核心及 8cd 对象夹具分列 | HEAD 仍 8cd、五份 WIP 未提交；唯一副 active4 只读审 r2，远端／构建／测试授权 0。主接收审查后继续实际 switch／回调／history／G1、生产身份与共享控制、真实两代网络正反例；V0／匹配消融／双侧效果／成本未完，Ofan 暂缓，无新基线 |
 | WS-30 | ClassReserve 补正、QueuePin v13 与投稿前修订 | COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE | [收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作 | 旧监督 PAUSED；两个实验对话已归档并复核，见[归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)；投稿待核及返修留 Integration |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |

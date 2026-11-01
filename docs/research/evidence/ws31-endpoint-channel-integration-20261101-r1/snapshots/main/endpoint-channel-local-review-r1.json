@@ -1,0 +1,39 @@
+{
+  "workstream": "WS-31",
+  "scope": "Local read-only review of uncommitted channel adapter and substituted Receive fixture; zero execution or remote authority",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "d24eb5bd2e10f9a17376263c217f7d77c10e2a1f89fae24859fcbae40eb4391b",
+    "src/point-to-point/model/qbb-channel.cc": "66b25afb1f68ac014553679b87940fcb29a5820a5ab51b68e3a953ee4f1ac039",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "0ee28c59fe7297a1f78b0543fb6672921d4ebd0521a8e50855541a93aca8c999",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "01334598e621e407ac38e58d532011e7dfa3af68157021fc4b234a600f228ba4"
+  },
+  "preserved_WIP": "evidence/endpoint-channel-wip-r1-preserved/",
+  "main_source_audit": "evidence/endpoint-channel-wip-source-audit-r1.json",
+  "contract": "endpoint-channel-contract-r1.md",
+  "prior_main_acceptance": "evidence/endpoint-object-delivery-main-acceptance-r1.json",
+  "prior_guards": "../independent/endpoint-probe-object-preflight-r1-guards-released.json",
+  "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:107",
+  "questions": [
+    "Independently check exact5file WIP/parent delta and default branch restoring original delivery; flow tag guard must preserve complete original body/API",
+    "Check old NS3 static5parameter ScheduleWithContext/MakeEvent, std::function argument copies, Ptr lifetime and existing virtual Receive dispatch; verify no extra event or wrong delay/context/packet/animation order",
+    "Trace Enter/Receive/nestedforward/Leave/pending and exceptions; no UID lookup closure, no early Finish, failed channel never certifies drain; check owner/session loss, reference cycles, shared ledger lifetime and exception atomicity",
+    "Check perflow registration/generation, directed link and destinationcontext identity; missing/invalid/unknown tags failclosed; distinguish packet/flow identity from fullprotocol proof and future sharedcontrol coverage",
+    "Audit scratch substitutedReceive fixture expectations and exception handling under actual oldsimulator source; report exact needed fixes and minimal additional tests for productionReceive/network integration",
+    "Confirm G1/switch/completecallback/history/network/twogeneration/V0/effects/cost still missing; do not interpret headercode or mockedReceive as complete endpoint measurement"
+  ],
+  "prohibited": [
+    "No SSH/remote/sync/deploy/build/compiler/test/fixture/network execution",
+    "No scientific source/main edits, no commit/push, no old accepted test/core/reference repeat",
+    "No Ofan/WS29/oldcontroller/matrix work; no new baseline admission"
+  ],
+  "write_prefix": "endpoint-channel-local-review-r1",
+  "source_guard": "Only these5 WIP paths frozen until returnedreview; no broader remote/sourcefreeze and no execution authority",
+  "outputs": [
+    "Review JSON with precise findings/severity/source anchors and mandatory next actions",
+    "Human report and QA/handoff with original5WIP and relevantfixedparent source fingerprints; preserve prior evidence"
+  ],
+  "at_utc": "2026-11-01T10:30:30.266437+00:00"
+}
