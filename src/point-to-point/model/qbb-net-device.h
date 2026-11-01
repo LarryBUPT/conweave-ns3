@@ -74,6 +74,9 @@ public:
  */
 class QbbNetDevice : public PointToPointNetDevice 
 {
+  // Read-only WS-31 endpoint evidence adapter; never called by normal routing.
+  friend class Ws31EndpointProbe;
+  friend class Ws31EndpointSnapshotFixture;
 public:
   static const uint32_t qCnt = 8;	// Number of queues/priorities used
   static const uint32_t pCnt = 257;	// Number of ports used
