@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:11"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:13"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -169,29 +169,9 @@
     }
   ],
   "next_registered_pilot": {
-    "plan": "docs/research/ws31/main/c13-label-validation-r1.json",
-    "fixed_snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/c13-label-validation-r1.json",
-    "plan_sha256": "3803bafb5f5a95527018e014777e3e9d514ab5c7cd400647d82371a8d4e06685",
-    "status": "DISPATCHED_AFTER_PRIOR_FINAL_QA_TERMINAL_IDLE_NOT_INTEGRATION_ACCEPTED",
-    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
-    "cells": 4,
-    "order": [
-      "c1-remove",
-      "c1-swap",
-      "c3-remove",
-      "c3-swap"
-    ],
-    "no_core_main_zero_Ofan_repeats": true,
-    "all_four_builds_before_serial_runs": true,
-    "max_parallel_builds": 3,
-    "jobs_per_build": 2,
-    "max_total_compile_jobs": 6,
-    "simulation_concurrency": 1,
-    "fresh_resource_ID_cache_gate_required": true,
-    "root_remote_execution_status_checked": false,
-    "scope": "C1/C3 explicit label intervention only; full errors/delays/lifecycle/independent V0/effects remain",
-    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "main_observed_prior_independent_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:62"
+    "status": "NONE_AUTHORIZED_PENDING_LOCAL_BOUNDARY_REVIEW_AND_NEW_FROZEN_PLAN",
+    "last_accepted_target": "C1/C3 four-label technical checks",
+    "network_execution_authorized": false
   },
   "last_verified_zero_control_checkpoint": {
     "date": "2026-11-01",
@@ -256,17 +236,18 @@
   "latest_implemented_source": {
     "sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "purpose": "C2 decision-visible policy label fix",
-    "validation": "C2 labels5, C1 matched7 and C23 matched5 technical nodes accepted; full labels/lifecycle/independent V0/effects pending",
+    "validation": "C2 labels5, C1 controls7, C23 controls5 and C13 labels4 accepted; remaining labels/lifecycle/independent V0/effects pending",
     "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
-      "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5 technical cases; full candidate validation incomplete"
+      "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete"
     }
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "C23 five controls and final QA accepted; C13 four-label target dispatched",
-    "record": "docs/handoffs/2026-11-01-ws31-c23-controls-integration.md",
+    "kind": "C13 four-label technical raw and final delivery verified; next local boundary review only",
+    "record": "docs/handoffs/2026-11-01-ws31-c13-label-integration.md",
+    "verification": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/verification.json",
     "user_decision_required": false,
     "independent_effects_validated": false,
     "new_baseline_established": false
@@ -330,6 +311,14 @@
       "new_raw_calculation_by_root": false,
       "user_decision_required": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "C23 five controls and final QA accepted; C13 four-label target dispatched",
+      "record": "docs/handoffs/2026-11-01-ws31-c23-controls-integration.md",
+      "user_decision_required": false,
+      "independent_effects_validated": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -371,7 +360,7 @@
     "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
     "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
     "root_restarted_jobs": false,
-    "phase_update": "C23 five controls and final QA complete; C13 four-label target dispatched after prior terminal+idle. Earlier C1 cursor58-60 observations retained as history."
+    "phase_update": "C13 four-label target terminal and constraints released; sole independent idlecursor66 before local boundary review turn. No new remote plan or duplicate experiment dispatch."
   },
   "last_verified_C23_controls_checkpoint": {
     "date": "2026-11-01",
@@ -399,5 +388,95 @@
     "status": "Technical size-clone equivalence on current label-size-bound input",
     "independent_semantic_value_established": false,
     "independent_effects_validated": false
+  },
+  "last_completed_registered_pilot": {
+    "plan": "docs/research/ws31/main/c13-label-validation-r1.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/c13-label-validation-r1.json",
+    "plan_sha256": "3803bafb5f5a95527018e014777e3e9d514ab5c7cd400647d82371a8d4e06685",
+    "status": "COMPLETE_RAW_AND_FINAL_DELIVERY_MAIN_ACCEPTED_AND_INTEGRATION_VERIFIED",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "cells": 4,
+    "order": [
+      "c1-remove",
+      "c1-swap",
+      "c3-remove",
+      "c3-swap"
+    ],
+    "no_core_main_zero_Ofan_repeats": true,
+    "all_four_builds_before_serial_runs": true,
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "simulation_concurrency": 1,
+    "fresh_resource_ID_cache_gate_required": true,
+    "root_remote_execution_status_checked": false,
+    "scope": "C1/C3 explicit label intervention only; full errors/delays/lifecycle/independent V0/effects remain",
+    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "main_observed_prior_independent_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:62",
+    "integration_verification": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/verification.json"
+  },
+  "next_registered_goal": {
+    "kind": "LOCAL_CONTRACT_REVIEW_ONLY",
+    "status": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE_PER_MAIN",
+    "contract": "docs/research/ws31/main/label-lifecycle-boundary-contract-r1.md",
+    "fixed_snapshot": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/snapshots/main/label-lifecycle-boundary-contract-r1.md",
+    "contract_sha256": "b1e4585b61de674cddd1081dbe55a5bc8f90223c361947f63e12199c4376ce94",
+    "observed_source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:66",
+    "active_turn_id": "01a1950a-92a6-7041-9bba-6d4685d502a7",
+    "output_prefix": "docs/research/ws31/independent/label-lifecycle-boundary-review-r1",
+    "new_network_plan_frozen": false,
+    "remote_build_run_core_actions_authorized": false,
+    "source_or_input_or_new_ID_frozen": false,
+    "integration_queried_independent": false,
+    "scope": "Delayed/partial-error labels and complete adapter-lifecycle gap review; preserve current source and all raw"
+  },
+  "last_verified_C13_labels_checkpoint": {
+    "date": "2026-11-01",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "cells_passed": 4,
+    "completed_records": 416,
+    "completed_payload_bytes": 807927808,
+    "handoff": "docs/handoffs/2026-11-01-ws31-c13-label-integration.md",
+    "verification": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/verification.json",
+    "raw_verification": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/raw-verification.json",
+    "root_checks": {
+      "files_hashed": {
+        "documents": 28,
+        "dependencies": 5,
+        "references": 4,
+        "results": 103,
+        "supports": 43
+      },
+      "flows": 416,
+      "payload_bytes": 807927808,
+      "original_identity_demand_time_and_transformed_tags": true,
+      "persistent_paths": true,
+      "direct_C1_template_score_decisions_and_state_summaries": true,
+      "direct_C3_admission_residual_counters_and_summaries": true,
+      "removal_FCT_and_ROUTE_regressions": true,
+      "source_maps_compared_to_prior_verified_506": {
+        "unique_objects": 35,
+        "per_cell_entries": 140,
+        "new_git_blob_or_tree_audit": false
+      }
+    },
+    "full_C1_ledger_and_C3_activity_model_owner": "WS31 main",
+    "final_index_sha256": "7541d5907de262ccd8f72d083f458156b3ab7bc35402c0bfe71b13bf5f12ab77",
+    "final_QA_sha256": "fab7ea972e949c291ddb0f15a012f05b09b3aa9cafe5983cc0ae461f79352b0d",
+    "scope": "Technical label intervention and original identity; no independent effects"
+  },
+  "technical_cells_accepted_cumulative": {
+    "total": 28,
+    "stages": {
+      "c4_zero": 4,
+      "c4_main": 3,
+      "506_C2_labels": 5,
+      "506_C1_controls": 7,
+      "506_C23_controls": 5,
+      "506_C13_labels": 4
+    },
+    "scope": "Per-node technical conditions only; not 28 independent workload samples or efficacy tests"
   }
 }

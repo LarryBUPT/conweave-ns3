@@ -1,0 +1,177 @@
+{
+  "scope": "Integration accounting/original timing/transformed labels/persistent paths/direct score and admission/residual checks; full C1 ledger and C3 activity/ownership models remain main-owned",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "files_hashed": {
+    "documents": 28,
+    "dependencies": 5,
+    "references": 4,
+    "results": 103,
+    "supports": 43
+  },
+  "unchanged_source_map_compared_to_prior_verified_506": 35,
+  "cells": {
+    "c1-remove": {
+      "id": "20261101-104000-ws31-c13tag-r1-c1-remove",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "original_business_tags": {
+        "1": 24,
+        "2": 80
+      },
+      "packet_tags": {
+        "0": 606168
+      },
+      "policy_categories": {
+        "0": 104
+      },
+      "fct_sha256": "958668e05195f431afbf1ca98a98ebe1b3326d01888fa0df016e23e17c2689aa",
+      "ordered_hashes": {
+        "WS30_CHOICE": "a8f2aa21db1551dd87b82777b44a746b32587f7daa0c18bf994ca56bab67f2d4",
+        "WS30_ROUTE": "72b0156754a86c5738595b0ab8ae1ec39b04cf336f7553e2f9006270641311cf",
+        "ROUTE_without_tag": "36726444ca19d7c49f5fdd808fb2bd33d95348a2914223e2ad30dbb3c990da35",
+        "C1_without_category": "339d9f27858e66ea912db62e6dfdd3a7b27ab23ba58d5438e8e975d810f864d6"
+      },
+      "observations": {
+        "WS31_C1_CHOICE": 104,
+        "WS30_ROUTE": 606168,
+        "WS30_CHOICE": 208,
+        "WS30_QP": 104,
+        "WS31_C1_STATE": 16,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1,
+        "WS30_CHOICES": 3
+      },
+      "direct_checks": {
+        "positive_pressure_decisions": 87,
+        "observed_peak": 42,
+        "observed_expired": 0,
+        "observed_unique_deduction": 871360
+      }
+    },
+    "c1-swap": {
+      "id": "20261101-104000-ws31-c13tag-r1-c1-swap",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "original_business_tags": {
+        "1": 24,
+        "2": 80
+      },
+      "packet_tags": {
+        "2": 604008,
+        "1": 2160
+      },
+      "policy_categories": {
+        "2": 24,
+        "1": 80
+      },
+      "fct_sha256": "ea60d428e3ffe2f09330d346fd6c7bac853e4e0f4d8e9dd1520f1bf78064781f",
+      "ordered_hashes": {
+        "WS30_CHOICE": "f17bcf5c39ad0a1dda70a374bb3d12323646a5090711cace0666b826c3c7aff1",
+        "WS30_ROUTE": "8b0c558db4ccc4ee7ae768ca8e60223c4471ab4d327593b5d05e2005d19f33d0",
+        "ROUTE_without_tag": "80711b16df04157b283c829931d76b415197af5640def4c32709c38a6306005b",
+        "C1_without_category": "c3d0d9aca1fc3debeca3eb7e124f1a53d838babf623029e5f1b2373c6ff7bfa0"
+      },
+      "observations": {
+        "WS31_C1_CHOICE": 104,
+        "WS30_ROUTE": 606168,
+        "WS30_CHOICE": 208,
+        "WS30_QP": 104,
+        "WS31_C1_STATE": 16,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1,
+        "WS30_CHOICES": 3
+      },
+      "direct_checks": {
+        "positive_pressure_decisions": 89,
+        "observed_peak": 64,
+        "observed_expired": 80,
+        "observed_unique_deduction": 871360
+      }
+    },
+    "c3-remove": {
+      "id": "20261101-104000-ws31-c13tag-r1-c3-remove",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "original_business_tags": {
+        "1": 24,
+        "2": 80
+      },
+      "packet_tags": {
+        "0": 606168
+      },
+      "policy_categories": {
+        "0": 104
+      },
+      "fct_sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+      "ordered_hashes": {
+        "WS30_CHOICE": "3fc37d5cd66b8277b5fcef23bb9e69a31343067e4efd3c37dcce9f0cd53af8b1",
+        "WS30_ROUTE": "4b6ac805c0198c79f5367524149a9c9b425a3f81e328796b76dd53ebd576bbba",
+        "ROUTE_without_tag": "623d63f66a6372d993ecc43d86d1bf6591cc1749da78b6835b92a4edce469c35",
+        "C1_without_category": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observations": {
+        "WS31_C3_ROUTE": 104,
+        "WS30_ROUTE": 606168,
+        "WS30_CHOICE": 208,
+        "WS30_QP": 104,
+        "WS31_C3_STATE": 16,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1,
+        "WS30_CHOICES": 3
+      },
+      "direct_checks": {
+        "fresh": 104,
+        "restricted": 0,
+        "borrowed": 0
+      }
+    },
+    "c3-swap": {
+      "id": "20261101-104000-ws31-c13tag-r1-c3-swap",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "original_business_tags": {
+        "1": 24,
+        "2": 80
+      },
+      "packet_tags": {
+        "2": 604008,
+        "1": 2160
+      },
+      "policy_categories": {
+        "2": 24,
+        "1": 80
+      },
+      "fct_sha256": "758f91afbc341f7759d15a78e5ace61c51015ee467aa7831ea56648c97f2aad8",
+      "ordered_hashes": {
+        "WS30_CHOICE": "b32681efa7f050ca128bf19ddb9cb4a7ced07c731e9319361fa37821d8057d57",
+        "WS30_ROUTE": "762a65a7f337f96ad2c3dfd0d247a1a6137a6a123be06559ef0cf27aae7c8957",
+        "ROUTE_without_tag": "2d3bfe57cb7dc441d19a5d1c62da031766c4a679110e4cef41752d69e457098f",
+        "C1_without_category": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "observations": {
+        "WS31_C3_ROUTE": 3254,
+        "WS30_ROUTE": 606168,
+        "WS30_CHOICE": 208,
+        "WS30_QP": 104,
+        "WS31_C3_STATE": 16,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1,
+        "WS30_CHOICES": 3
+      },
+      "direct_checks": {
+        "fresh": 104,
+        "restricted": 80,
+        "borrowed": 20,
+        "residual_packets": 3150,
+        "residual_wire_bytes": 3301200
+      }
+    }
+  },
+  "flow_records": 416,
+  "payload_bytes": 807927808,
+  "all_four_builds_before_serial_runs": true,
+  "removal_fct_and_route_regressions": true,
+  "remote_actions": false,
+  "new_or_repeated_network_runs": false,
+  "independent_effects_or_new_baseline": false
+}
