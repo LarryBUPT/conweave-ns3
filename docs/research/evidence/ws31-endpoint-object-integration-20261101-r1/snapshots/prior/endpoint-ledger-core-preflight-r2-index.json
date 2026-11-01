@@ -1,0 +1,844 @@
+{
+  "schema_version": 1,
+  "at_utc": "2026-11-01T08:23:19.158114+00:00",
+  "status": "PASS_FOR_PORTABLE_CORE_PREFLIGHT_ONLY",
+  "id": "20261101-163000-ws31-endpoint-core-r2",
+  "source_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "parent_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "branch": "feature/ws31-candidates",
+  "plan": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\endpoint-ledger-core-preflight-r2.json",
+    "sha256": "57ee56f60e6406dfaeab8e317910423e53fdb87e46982be6bf730dd4823fae47"
+  },
+  "source": {
+    "tree_entries": 4845,
+    "tree_sha256": "3da8acbcc1809389aac24adc1936d22874821077e40ddd397723fa7d977e0e64",
+    "source_files_manifest_sha256": "792f1d494ee88aa5239bbc95fb8939e3669195ac90d3ad2ed86b26d326894105",
+    "verified_source_bytes": 284683832,
+    "input_sha256": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+    },
+    "isolated_source": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "actual_remote_cache_head_unchanged": "236a801a00e35de9078635e04acae2f701c21ded",
+    "local_worktree_clean_before_after": true,
+    "all_remote_source_file_hashes_unchanged": true
+  },
+  "static_review": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\local-static-review.json",
+  "commands": {
+    "sync": {
+      "argv": [
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=10",
+        "-o",
+        "ConnectionAttempts=1",
+        "-o",
+        "ServerAliveInterval=15",
+        "-o",
+        "ServerAliveCountMax=2",
+        "-o",
+        "ClearAllForwardings=yes",
+        "fnl@10.112.14.167",
+        "python3 /home/fnl/lzy/.research-workflow/remote_worker.py sync --repo https://github.com/LarryBUPT/conweave-ns3.git --sha 20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da"
+      ],
+      "start_utc": "2026-11-01T08:11:50.560313+00:00",
+      "authorized_sync_command_number": 1,
+      "deploy_count": 0,
+      "completion": "terminal",
+      "exit": 0,
+      "end_utc": "2026-11-01T08:11:54.236936+00:00"
+    },
+    "source_establishment": {
+      "argv": [
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=10",
+        "-o",
+        "ServerAliveInterval=15",
+        "-o",
+        "ServerAliveCountMax=2",
+        "-o",
+        "ClearAllForwardings=yes",
+        "fnl@10.112.14.167",
+        "python3 -"
+      ],
+      "stdin_script": "remote-source-establish.py",
+      "stdin_sha256": "fceda4130f6737c59f390c48fc2b092c4c34468540a0a4e454cce0a69ce4fb4f",
+      "start_utc": "2026-11-01T08:14:26.311204+00:00",
+      "exit": 0,
+      "end_utc": "2026-11-01T08:14:29.855647+00:00"
+    },
+    "compile": {
+      "argv": [
+        "g++",
+        "-std=c++11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-pedantic",
+        "-DNDEBUG",
+        "tests/ws31_endpoint_ledger_test.cc",
+        "-o",
+        "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/artifacts/ws31_endpoint_ledger_test"
+      ],
+      "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+      "end_utc": "2026-11-01T08:15:57Z",
+      "environment": {
+        "HOME": "/home/fnl",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "LOGNAME": "fnl",
+        "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "PWD": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+        "TMPDIR": "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/tmp",
+        "TZ": "UTC",
+        "USER": "fnl"
+      },
+      "exit": 0,
+      "pid": 307587,
+      "resources_after": {
+        "at_utc": "2026-11-01T08:15:57Z",
+        "disk_available_gib": 2291.8097381591797,
+        "load": [
+          0.06,
+          0.03,
+          0.04
+        ],
+        "mem_available_gib": 122.51193618774414
+      },
+      "resources_before": {
+        "at_utc": "2026-11-01T08:15:56Z",
+        "disk_available_gib": 2291.8097915649414,
+        "load": [
+          0.06,
+          0.03,
+          0.04
+        ],
+        "mem_available_gib": 122.51194763183594
+      },
+      "rusage": {
+        "involuntary_context_switches": 9,
+        "major_faults": 0,
+        "max_rss_kib": 122944,
+        "minor_faults": 36710,
+        "system_seconds": 0.08399999999999999,
+        "user_seconds": 0.9279999999999999,
+        "voluntary_context_switches": 13
+      },
+      "start_utc": "2026-11-01T08:15:56Z",
+      "stderr": "logs/compile.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "logs/compile.stdout",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "wait_status": 0
+    },
+    "run": {
+      "argv": [
+        "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/artifacts/ws31_endpoint_ledger_test"
+      ],
+      "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+      "end_utc": "2026-11-01T08:15:57Z",
+      "environment": {
+        "HOME": "/home/fnl",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "LOGNAME": "fnl",
+        "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "PWD": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+        "TMPDIR": "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/tmp",
+        "TZ": "UTC",
+        "USER": "fnl"
+      },
+      "exit": 0,
+      "pid": 307592,
+      "resources_after": {
+        "at_utc": "2026-11-01T08:15:57Z",
+        "disk_available_gib": 2291.8097229003906,
+        "load": [
+          0.06,
+          0.03,
+          0.04
+        ],
+        "mem_available_gib": 122.51193618774414
+      },
+      "resources_before": {
+        "at_utc": "2026-11-01T08:15:57Z",
+        "disk_available_gib": 2291.809730529785,
+        "load": [
+          0.06,
+          0.03,
+          0.04
+        ],
+        "mem_available_gib": 122.51193618774414
+      },
+      "rusage": {
+        "involuntary_context_switches": 1,
+        "major_faults": 0,
+        "max_rss_kib": 10232,
+        "minor_faults": 134,
+        "system_seconds": 0.0,
+        "user_seconds": 0.0,
+        "voluntary_context_switches": 1
+      },
+      "start_utc": "2026-11-01T08:15:57Z",
+      "stderr": "logs/run.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "logs/run.stdout",
+      "stdout_sha256": "b5e1d7b575291ab4394c75bb08d0ee78c420bc49f4a1c6452e2702c679cc0a75",
+      "wait_status": 0
+    },
+    "fetch": {
+      "argv": [
+        "scp",
+        "-r",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=10",
+        "fnl@10.112.14.167:/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2",
+        "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results"
+      ],
+      "exit": 0,
+      "new_destination_absent_before": true,
+      "end_utc": "2026-11-01T08:17:38.666315+00:00"
+    }
+  },
+  "counts": {
+    "sync": 1,
+    "deploy": 0,
+    "full_ns3_build": 0,
+    "new_core_compile": 1,
+    "new_core_run": 1,
+    "network_run": 0,
+    "old_core_or_fixture_rerun": 0
+  },
+  "binary": {
+    "bytes": 50520,
+    "invocation_path": "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/artifacts/ws31_endpoint_ledger_test",
+    "resolved_path": "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/artifacts/ws31_endpoint_ledger_test",
+    "sha256": "15ed3dd0a023e59da058535e29797d7c67787912a619203ad2ee96e108dac86b"
+  },
+  "compiler": {
+    "bytes": 919832,
+    "invocation_path": "/usr/bin/g++",
+    "resolved_path": "/usr/bin/g++-5",
+    "sha256": "a98ee2dd501beee05b3d10d5acd6deb3a75471c5be2b5c92a94f9fd24808ff62"
+  },
+  "compiler_version": "g++ (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609\nCopyright (C) 2015 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "toolchain": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\toolchain.json",
+  "runtime_libraries": [
+    {
+      "bytes": 1566440,
+      "invocation_path": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+      "resolved_path": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21",
+      "sha256": "5bb102af724c5974df826f7322cd972f7e9b6b9bdd469232f8dc7b0cb1086085"
+    },
+    {
+      "bytes": 89696,
+      "invocation_path": "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "resolved_path": "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "sha256": "c77f8044b4f8ae7166e5b0968204a4624529bfc4f42f29180ba62eccbb8ce8b5"
+    },
+    {
+      "bytes": 1868984,
+      "invocation_path": "/lib/x86_64-linux-gnu/libc.so.6",
+      "resolved_path": "/lib/x86_64-linux-gnu/libc-2.23.so",
+      "sha256": "926ee3653de7b71c8567061f3a4dfbc2ea91b6df2b49a05f11351fe1addf20cf"
+    },
+    {
+      "bytes": 1088952,
+      "invocation_path": "/lib/x86_64-linux-gnu/libm.so.6",
+      "resolved_path": "/lib/x86_64-linux-gnu/libm-2.23.so",
+      "sha256": "2d5265db67e91ccafe79ecc36196923a4ea5672fc0fcce86cad6e06942911b05"
+    },
+    {
+      "bytes": 162632,
+      "invocation_path": "/lib64/ld-linux-x86-64.so.2",
+      "resolved_path": "/lib/x86_64-linux-gnu/ld-2.23.so",
+      "sha256": "bda7f01fd4270e84a0f56bb7f4432c5f35793f1bd688d52aa6ac0038506b0875"
+    }
+  ],
+  "exact_environment": {
+    "HOME": "/home/fnl",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "LOGNAME": "fnl",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "TMPDIR": "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/tmp",
+    "TZ": "UTC",
+    "USER": "fnl"
+  },
+  "result": {
+    "compile_exit": 0,
+    "run_exit": 0,
+    "exact_stdout": "WS31_ENDPOINT_LEDGER PASS requests=2 completed_generations=2 closed_tokens=6 real_endpoint_snapshots=0 network_runs=0\n",
+    "stderr": "",
+    "standard_assert_disabled": true,
+    "portable_completed_generations": 2,
+    "closed_tokens": 6,
+    "real_endpoint_snapshots": 0,
+    "network_runs": 0,
+    "production_finished_bitmap_tested": false
+  },
+  "resources": {
+    "before_sync": {
+      "load": [
+        0.0,
+        0.0,
+        0.04
+      ],
+      "mem_available_gib": 122.51765060424805,
+      "disk_available_gib": 2292.0901985168457
+    },
+    "before_compile": {
+      "at_utc": "2026-11-01T08:15:56Z",
+      "disk_available_gib": 2291.8097915649414,
+      "load": [
+        0.06,
+        0.03,
+        0.04
+      ],
+      "mem_available_gib": 122.51194763183594
+    },
+    "after_compile": {
+      "at_utc": "2026-11-01T08:15:57Z",
+      "disk_available_gib": 2291.8097381591797,
+      "load": [
+        0.06,
+        0.03,
+        0.04
+      ],
+      "mem_available_gib": 122.51193618774414
+    },
+    "after_run": {
+      "at_utc": "2026-11-01T08:15:57Z",
+      "disk_available_gib": 2291.8097229003906,
+      "load": [
+        0.06,
+        0.03,
+        0.04
+      ],
+      "mem_available_gib": 122.51193618774414
+    },
+    "final": {
+      "load": [
+        0.01,
+        0.02,
+        0.03
+      ],
+      "mem_available_gib": 122.51714706420898,
+      "disk_available_gib": 2291.809581756592
+    },
+    "compile_rusage": {
+      "involuntary_context_switches": 9,
+      "major_faults": 0,
+      "max_rss_kib": 122944,
+      "minor_faults": 36710,
+      "system_seconds": 0.08399999999999999,
+      "user_seconds": 0.9279999999999999,
+      "voluntary_context_switches": 13
+    },
+    "run_rusage": {
+      "involuntary_context_switches": 1,
+      "major_faults": 0,
+      "max_rss_kib": 10232,
+      "minor_faults": 134,
+      "system_seconds": 0.0,
+      "user_seconds": 0.0,
+      "voluntary_context_switches": 1
+    },
+    "scope": "discrete admission/system samples and wait4 child usage, not algorithm cost or continuous system maxima"
+  },
+  "raw_fetch": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results",
+    "manifest_sha256": "3af97e8061b9cb5edda321521b3d343fcb4228699a1e9ee6ca5594531d7127b9",
+    "verified_files": 41
+  },
+  "old_artifacts_preserved": {
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-qa.json": "bc2a8f6c30d18c48cc04502c98fc64ad0786a73b457694004bf76ad28f90bcfe",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-report.md": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-review.json": "aa54af2b05c870e356e32e53d855c0a4175d4e00b38a314d39cad35a84cad12c",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-ledger-wip-r1-preserved\\ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-ledger-wip-r1-preserved\\ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+  },
+  "guards": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-guards-released.json",
+    "status": "EXPLICITLY_RELEASED_AFTER_TERMINAL_CALLS_AND_FETCH_INTEGRITY"
+  },
+  "reference_review": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-reference-review.json",
+  "report": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+  "handoff": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-handoff.md",
+  "remaining_required": [
+    "Actual NS3 endpoint/device/queue/timer snapshot adapters and conditional tag-presence checks",
+    "Default-off original-event channel tokens closed after Receive returns",
+    "Retain completed QPs and append with stale-finished-bit real branch coverage; real histories/switch cleanup receipts",
+    "New actual-context G1 and positive/refusal two-generation network fixtures under separately frozen source/IDs/resources",
+    "IndependentC1V0 and all three two-sided effects/state/runtime-cost validation",
+    "CCF A/B-only necessary baseline decisions; Ofan paused; final adoption by user"
+  ],
+  "artifacts": [
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-guards-released.json",
+      "bytes": 1286,
+      "sha256": "c683329580d2b1cd7dd2918cb5655f5c60e79363d45e1168d83f4a29389a4917"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-handoff.md",
+      "bytes": 5606,
+      "sha256": "94a94a0b96a7363cb1ab328423557a24c2312ecc1a4d4ac3248faf2f8ac17f63"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\after-fetch-command.json",
+      "bytes": 418,
+      "sha256": "e575f8baa3c908931d11ec15e47dae72c59806569904beb57484d326d723bbd5"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\after-fetch-gate.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\after-fetch-gate.stdout.json",
+      "bytes": 98483,
+      "sha256": "50c8d5eefcf0aca2340d59acb916dcca7cdedb5052a889fbb2bbbbf95e5b2ab3"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\before-sync-gate-review.json",
+      "bytes": 1199,
+      "sha256": "17c91c1588949f98e9e0b400c70daba9d773023711d431bd8402f715221f39d3"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\before-sync-gate.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\before-sync-gate.stdout.json",
+      "bytes": 97739,
+      "sha256": "a90663dff895a564c67d0c31951e67cd37e00d8e0cdbdf29ac0f4dc65d82c87b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\compile-run-local-process.json",
+      "bytes": 67,
+      "sha256": "656f337d536fa0d4960506c412daa0a4807e5c22ccbe424bc820f324279ca634"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\compile-run-ssh-command.json",
+      "bytes": 630,
+      "sha256": "bae9c7a80b9f99708359ebc6078c1d7dd9403b2d4cb61cb8a7a6463d3fd0cfca"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\compile-run.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\compile-run.stdout.json",
+      "bytes": 1641,
+      "sha256": "86c687aa458d93a08f2ad0e09fe385f8f3a540d27854434d3e9d3aad40340b48"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\fetch-command.json",
+      "bytes": 523,
+      "sha256": "b227ce4d0e2141c9f55e9fb13d949c5c1d7225eb9f948e8b179d3a99c0dc4c42"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\fetch.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\fetch.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\fetched-integrity.json",
+      "bytes": 581,
+      "sha256": "710f656816171be0d9c0d570ea565b426da0f743d3ae0c196aad64091ce76e76"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\frozen-source\\src\\point-to-point\\model\\ws31-endpoint-ledger.h",
+      "bytes": 11658,
+      "sha256": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\frozen-source\\tests\\ws31_endpoint_ledger_test.cc",
+      "bytes": 9980,
+      "sha256": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\local-processes-after.json",
+      "bytes": 962,
+      "sha256": "fd99eb3d70ca32ad7b8cc79a6e8e496bb630e1316da22a3196e7862baf459dbb"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\local-processes.json",
+      "bytes": 1815,
+      "sha256": "223de5da0c213122d4f79345e45034b3becb2b5cb9a9b7bbe0088ae2fbc382a9"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\local-source-diff.patch",
+      "bytes": 22449,
+      "sha256": "c283f9c41c2e5e25649248f5a8ed1aac9ed6ee9b66e11ba93e88ad4051da5612"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\local-source-tree.txt",
+      "bytes": 468672,
+      "sha256": "3da8acbcc1809389aac24adc1936d22874821077e40ddd397723fa7d977e0e64"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\local-static-review.json",
+      "bytes": 4317,
+      "sha256": "851453617dd7be25510ec1763e231d0e502bf5ef58246eb8e298f64c9ae18ec1"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\pushed-ref.json",
+      "bytes": 335,
+      "sha256": "74387a5a804d8fdb8b5b13abc883f45a91e1d6cae18389d8303fcf6b71b51d33"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\pushed-ref.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\pushed-ref.stdout.txt",
+      "bytes": 76,
+      "sha256": "f686966fd5260495afb8b0e8887aa91055a7789c83c47baf7c84ccd38c8a0dcf"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-after-fetch-check.py",
+      "bytes": 4856,
+      "sha256": "b05ff216eb58dec38729e2440cedf138f7ed4fef239d852468198af1214b8de2"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-core-compile-run.py",
+      "bytes": 11368,
+      "sha256": "f18c421e52f8518f6932498497113f7b0392caf8bcb93f51ceb2bf4f3b905b3c"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-final-fetch-check-command.json",
+      "bytes": 388,
+      "sha256": "7661299ab63e5fae729dd6170ce4f4d53798a4c83c7ff13a1a4a9d0b8b2bf285"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-final-fetch-check.py",
+      "bytes": 5866,
+      "sha256": "2e5ff023a5d36ebd291954d8f45b0c9b37722fd123ce5bcd814a1c22c75bcf52"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-final-fetch-check.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-final-fetch-check.stdout.json",
+      "bytes": 3258,
+      "sha256": "e7202f0426b73206df56fb288f083ef7a7273c792eb58c8250a8492ab57cbe3f"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-gate-command.json",
+      "bytes": 507,
+      "sha256": "ced4b6f50a1311a22c191326e188889829ad53260e34b1998b0c96b96caec751"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-gate.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-gate.stdout.json",
+      "bytes": 97048,
+      "sha256": "fece2b22943194b3f9a0d712d5ab504fcb3dcfde16a690e5a56d4248c5ccbf4b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-readonly-gate.py",
+      "bytes": 2861,
+      "sha256": "86def887d6c34e7dc8fa91e4f13b537b6a7a412d6b2fbbcb902de69e81218272"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\artifacts\\ws31_endpoint_ledger_test",
+      "bytes": 50520,
+      "sha256": "15ed3dd0a023e59da058535e29797d7c67787912a619203ad2ee96e108dac86b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\assembler-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\assembler-version.stdout",
+      "bytes": 329,
+      "sha256": "1f0f62fbe04ec2bac6a1ae4bd7c82851d7bdac468189a7ad529992040225d525"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\binary-ldd.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\binary-ldd.stdout",
+      "bytes": 382,
+      "sha256": "47f5e3084761fabb0ecddba72d4687f2d3ea4b1b974c3310bc9f22b5a59ab292"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\checkout.stderr",
+      "bytes": 559,
+      "sha256": "6f361d910c9a9305e26f5fdc2b009a1f7fbe10c3b602bfbc782f00d7c01fce8d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\checkout.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\clone.stderr",
+      "bytes": 88,
+      "sha256": "3c792c638ff434e451d522d5d7cfa22b9a88a32c583aec5bc881900a4c541e61"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\clone.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compile.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compiler-cc1plus.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compiler-cc1plus.stdout",
+      "bytes": 40,
+      "sha256": "8e9a37942d2409f2227955efe222919fccd922de919bc23a564a2b9331964efd"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compiler-stdlib.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compiler-stdlib.stdout",
+      "bytes": 73,
+      "sha256": "2b35a17e20d6dbe8483d58592d420a31ef7e2e52871854c8aa28df49128ebb30"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compiler-target.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compiler-target.stdout",
+      "bytes": 17,
+      "sha256": "08cababdf891ccbf96eb376f1e84f279f70302fb13d84e5f98637becdfc6d989"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compiler-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\compiler-version.stdout",
+      "bytes": 254,
+      "sha256": "fcfb9ab05d71b825f45bf95cf07f94160b2f47361d15b98053fe8ea05c43a058"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\linker-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\linker-version.stdout",
+      "bytes": 283,
+      "sha256": "8d791cbed5b7951b6633eaff1be4f79aa5f1df1b917ea02bf79178aba58218f5"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\run.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\run.stdout",
+      "bytes": 118,
+      "sha256": "b5e1d7b575291ab4394c75bb08d0ee78c420bc49f4a1c6452e2702c679cc0a75"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\source-origin.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\logs\\source-origin.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\metadata.json",
+      "bytes": 1725,
+      "sha256": "502f9b0de0560966607eb7b26c8bcd8c80fbc34d279e7edcd2edf07799385463"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\after-run-gate.json",
+      "bytes": 126803,
+      "sha256": "39d8cee42539f6e5b76036be393172ac1a27b8a445e4bfd8988f3bf5dadcee9b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\before-compile-gate.json",
+      "bytes": 126505,
+      "sha256": "a651de0dc30800102aea0f576d4e420b905f9c09df881d5c235520cf11d60d73"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\before-source-gate.json",
+      "bytes": 125911,
+      "sha256": "7b459ea4d47f4f9fb98418c9db16fe590c6ac30dc3946642243d096c5130625c"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\binary-before-run.json",
+      "bytes": 339,
+      "sha256": "f14244250ae62a3794a40a10c2dda46ad30f0390448d770c4833f6c25fb99078"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\compile-result.json",
+      "bytes": 1778,
+      "sha256": "ee38b401470f148f82d515d6aa99c9580c3bfc67943f279cdb25ac0615419d82"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\compile-started.json",
+      "bytes": 1050,
+      "sha256": "c769f274305a11dfb46859b7903c09dcbfc7c4ccedea48c248ddceecc8807d14"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\exact-compile-run-environment.json",
+      "bytes": 339,
+      "sha256": "c5757a3b49c860dd4321b6e9c74e5addb7a10e0f6da075a88cac9f8c9576db87"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\run-result.json",
+      "bytes": 1581,
+      "sha256": "8ba765239362f2a5eea899926c5422118fb1c07b7f01cc73c6206908fe6d72da"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\run-started.json",
+      "bytes": 888,
+      "sha256": "ac0287eb5f682a174bdeb2f83720c233a4a9e518414a5d9426f7f71cd4b3dd01"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\runtime-libraries.json",
+      "bytes": 1164,
+      "sha256": "638f279c9478317a6e60ddf03a1472ec0f4716aeaa6228b3ab188be8c6c85efe"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\source-establishment-commands.json",
+      "bytes": 984,
+      "sha256": "ae6be00bc0d8fd700aa164602904b471c087fe4a6715dcd6c3ed3b8b0674c0e0"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\source-files.json",
+      "bytes": 1211324,
+      "sha256": "792f1d494ee88aa5239bbc95fb8939e3669195ac90d3ad2ed86b26d326894105"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\source-tree.txt",
+      "bytes": 468672,
+      "sha256": "3da8acbcc1809389aac24adc1936d22874821077e40ddd397723fa7d977e0e64"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\toolchain-query-commands.json",
+      "bytes": 2300,
+      "sha256": "d1072287fc532c167f010da0f660a55671a07e8c3a62a28af93a8f6374a6380b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\provenance\\toolchain.json",
+      "bytes": 1802,
+      "sha256": "a88e64a54bbdc070e36bf30532ebc5228bb3e8f13d74fc1b99112770cc8ba2c2"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-results\\receipt-manifest.json",
+      "bytes": 6182,
+      "sha256": "3af97e8061b9cb5edda321521b3d343fcb4228699a1e9ee6ca5594531d7127b9"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\remote-source-establish.py",
+      "bytes": 7831,
+      "sha256": "fceda4130f6737c59f390c48fc2b092c4c34468540a0a4e454cce0a69ce4fb4f"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\source-establish-command.json",
+      "bytes": 572,
+      "sha256": "50fc8ce8ec153f89ddd4c60e58d3ae1ac65101f56c152223f8d46790c97fdef0"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\source-establish.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\source-establish.stdout.json",
+      "bytes": 825,
+      "sha256": "699e389467f8864d7855ac0b7099e2ecd643d207ac786953983fdde8db6af2c5"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\sync-command.json",
+      "bytes": 720,
+      "sha256": "82466f9a0a97d1b99bb6afa0292efab46ac362fdbb943663e265a6292d771731"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\sync-local-process.json",
+      "bytes": 123,
+      "sha256": "d50888e0b345556386f177d6c6dfb4316899ca44076eb169e0e5a193b15bce1d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\sync.stderr.txt",
+      "bytes": 235,
+      "sha256": "8707ffe7f70ce8011cf20793d6c5440675a480c2b202fb8b18b9965dd1c74614"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\sync.stdout.txt",
+      "bytes": 60,
+      "sha256": "37029bab1d0b9d052b81fbe4896033b79f2e962048c5f4db28ac1669bdde3cab"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\worker-provenance.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\worker-provenance.stdout.json",
+      "bytes": 303,
+      "sha256": "762d96071e2531c637de8cb5b5e851286a9e70d7378b17718f134ec942c8077f"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-reference-review.json",
+      "bytes": 1831,
+      "sha256": "c6e02380835501271f6b5e4c468502cbba84cbcadb14709fd4ca46fbc2fa9971"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "bytes": 11251,
+      "sha256": "fec062c8bdfec45395a43ed36415738e24366d6d33986b7635356035e9379aca"
+    }
+  ],
+  "manifest_excludes": "index and QA themselves to avoid cyclic hashes"
+}

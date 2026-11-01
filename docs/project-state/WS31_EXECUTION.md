@@ -149,7 +149,13 @@ Integration 核 90 项索引文件、41 项 raw、5 项原审查／WIP、4 参�
 
 核心约束于 08:19:32 UTC 显式释放，副 idle98、无持久驱动后主继续实际对象探针 WIP。固定 HEAD 仍为 20bc，已验核心两输入不变，`qbb-net-device.h` 仅加 friend／注释，新增 `ws31-endpoint-probe.h` 未跟踪。GetBytesLeft 在 IRN 分支可能推进 snd_nxt 并 discard SACK，GetNBytes 委托该方法；WIP 避开这些可变读取，按字段计算保守待发送量，并与物理队列字节分开。
 
-新探针没有编译、Waf 注册、生产包含或实际调用；其覆盖位明确不含 SWITCH_STATE，不能认证完整 ALL。主在 idle98 后派[本地只读计划](../research/evidence/ws31-endpoint-preflight-integration-20261101-r1/snapshots/main/endpoint-probe-local-review-r1.json)，哈希 `fd8e63b3692967d6f938d409945ee9dad12b5401772c2a07e9b56062c51482ee`，无远端或执行授权，被审两文件保持字节。实际对象只读纯度与编译可用性、交换机／channel／完成回调接线、历史与 QP 追加策略及 G1／网络正反例仍待验，active 不重复派发。
+主在 idle98 后派[本地只读计划](../research/evidence/ws31-endpoint-preflight-integration-20261101-r1/snapshots/main/endpoint-probe-local-review-r1.json)，哈希 `fd8e63b3692967d6f938d409945ee9dad12b5401772c2a07e9b56062c51482ee`。该审查现已 completed／idle102，编译、对象夹具、网络及远端均为 0；Integration 核 25 个固定源路径、8 项先前文件、三份审查输出、两份原 WIP 和已验核心。旧草稿已留存，原审查字节不改，见[第十六节点](../handoffs/2026-11-01-ws31-endpoint-object-integration.md)。
+
+首版保存 TX 不在枚举组时可能漏计完成／pending，属于静态覆盖反例，未执行，也未越过 mask127 的完整认证门。P1 修订实际 setup driver／HW／Node／NIC／队列／组绑定，Read 复核，保存 TX 单独入账并要求在所选实际组恰好一次。P2 冻结 Node／设备／接口／物理队列，只排除 loopback，拒绝未知数据设备、缺队列、共享组／队列和重复 QP；loopback 组须为空。P3 在 live map 空 Ptr 解引用前拒绝。GetObject 只在纯度区间前的 setup 捕获；Read 仍避开可变 getter。
+
+新源 `8cd1ba69469bf80143d5c89edc17fa72611018e8` 已固定并推送，父源 20bc，恰三文件／4,847 树项：新 probe、新 `scratch/ws31-endpoint-object-test.cc`，以及 Qbb 头的注释和两个 friend。生产 cc、对象数据成员、虚函数与原核心两输入均不改，独占树干净。[对象契约](../research/evidence/ws31-endpoint-object-integration-20261101-r1/snapshots/main/endpoint-probe-object-contract-r1.md)规定八组同刻双读、十四组 Read 拒绝和两项额外拒绝；计划 31 次 Read 含故意失败调用，不能写成 31 份成功快照。完整协议字符串／SACK／槽位／位图逐字节比较，展示哈希不代替比较。对象状态手工设置，不调用 Simulator::Run，mask 仍为 127，没有自然完成或完整 ALL 证书。
+
+主在 idle102 后另派[对象预检](../research/evidence/ws31-endpoint-object-integration-20261101-r1/snapshots/main/endpoint-probe-object-preflight-r1.json)，哈希 `d91892f73bc6a6b45c0541f2c588ba59ba3fd3694ec75a75e35be5265dd5b255`，新 ID `20261101-173000-ws31-endpoint-object-r1`。先独立审源，再过新进程／缓存／worker／资源／ID 门；至多一次同步、一次 optimized `-j2` 全构建和一次新对象夹具直接调用，无部署、网络、旧核心／适配器／参考重跑。当前结果待验，源码／入口／环境约束保持至明确释放，active 不重复派发。真实 switch／channel／完成回调／history／G1／两代网络正反例及独立 V0／双侧效果成本继续必做。
 
 真实端点／定时器／队列快照、Receive 返回后的原交付 token 闭合、条件标签存在性检查、实际上下文 G1 及两代网络正例／拒绝例仍须实现和独立验证。EndpointSnapshot 仍为待适配器提供的参数，手工字段覆盖不当作测量，held copy 丢弃不当作原生旧包接收隔离。generation=0 或固定等待时长均不代替排空证明。独立 V0、双侧效果及状态／运行成本继续必做。
 

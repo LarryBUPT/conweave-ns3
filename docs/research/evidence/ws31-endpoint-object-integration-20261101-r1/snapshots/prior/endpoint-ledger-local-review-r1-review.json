@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "at_utc": "2026-11-01T07:48:38.945539+00:00",
+  "status": "LOCAL_STATIC_REVIEW_COMPLETE_REAL_ENDPOINT_ACCEPTANCE_NOT_READY",
+  "workstream": "WS-31",
+  "parent_chat": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "plan": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\endpoint-ledger-local-review-r1.json",
+    "sha256": "b64176ae0491ad33aa4ee1c25f2c0c0b2a0ae20dbb43fa596e47535f285ac5df"
+  },
+  "source_root": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation",
+  "before": {
+    "head": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "status": [
+      "?? src/point-to-point/model/ws31-endpoint-ledger.h",
+      "?? tests/ws31_endpoint_ledger_test.cc"
+    ],
+    "wip_sha256": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+      "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+    }
+  },
+  "after": {
+    "head": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+    "status": [
+      "?? src/point-to-point/model/ws31-endpoint-ledger.h",
+      "?? tests/ws31_endpoint_ledger_test.cc"
+    ],
+    "wip_sha256": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+      "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+    }
+  },
+  "scope": "local static source review only",
+  "provenance": [
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\rdma-hw.cc",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "5febf8c568905993177b34cef56c82db01e7a764fcb877d0a5bb0c097742c2bf",
+      "git_blob": "0a171097e402cc1182394c7b0d09f2ba3e0f72ec",
+      "head_blob_sha256": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\rdma-queue-pair.h",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "e97ab209034ff59b11255a2385672cbae6516bbf162329f6625b6edb69d54e8f",
+      "git_blob": "046e396738da830991728af55d2fe7b796c35f33",
+      "head_blob_sha256": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\rdma-queue-pair.cc",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "d9b664f1fe925455fbc71f62fbd6b17d02bab6fa66bcba8388b871db69bf3a7b",
+      "git_blob": "acf4e542092298e98b914834ccaf8a18a2dbd5e8",
+      "head_blob_sha256": "c7f06fa16c6bef60e2671ded84daa3009ed3312a7bfc55f8afbec7d28c004d20",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\qbb-net-device.h",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "c5ecff9f1c0ef4e5fa8521993ce94c880a2db322cb3dd67fa3ba9bff5982afe8",
+      "git_blob": "a6e3d250a83bc0c8ff76c9aaa082faf35a6d1d15",
+      "head_blob_sha256": "23b554721189e7767706fe386d76760eaee895b421caf7069d24003e39a7bd07",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\qbb-net-device.cc",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "7585e780426b4d058945f4df33227900e2bf80a19717c5f07dba410ead65bf10",
+      "git_blob": "5ec636e196d536d40c563bc0719315aaeb037b77",
+      "head_blob_sha256": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\qbb-channel.cc",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "9083a20148a436fb63df78a6e6540f113bcdd1580df31eba7fa7906145317202",
+      "git_blob": "3354e70db29f7087239d616ffbdcc266af164715",
+      "head_blob_sha256": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\point-to-point-net-device.h",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "1e600278e227e67b2df8dc81c4a3f15b1718f46e076859e5b299ca1156c12eb7",
+      "git_blob": "46afafa8d7fbbfa70a5375e84bf60ee8122709b7",
+      "head_blob_sha256": "ad777bc39a417b17edb73203f811c8546ce0bed3ad7fbd2311354768ea04a0e1",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\network\\utils\\broadcom-egress-queue.h",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "22979cc972c806bf0d68b584d2a8504dc2ca114f9570d14da28ed6e17eae82dc",
+      "git_blob": "b2ada9951980f31012460d43222a9976083f8703",
+      "head_blob_sha256": "672058dbd8fa6ef99cb5be3df5a7e01d7809fd32f9bf0b4fef7d08c865a2b3a6",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\ws31-budget.h",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+      "git_blob": "6ab6410f4f74b7a623cb7c45d989b5c8227cdcc6",
+      "head_blob_sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\ws31-quota.h",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+      "git_blob": "64ae3d803093c61a51bd3c7f61545af31623944e",
+      "head_blob_sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+      "working_equals_head_after_crlf_normalization": true
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\scratch\\network-load-balance.cc",
+      "line_numbers": "one-based working-tree UTF-8 text",
+      "working_sha256": "e4ebc86c4d403071ec873b856a85f037a099f1bf1d82ba6b7fbfc775fb6bed4f",
+      "git_blob": "817d8d79c3f1a8abd370684a54171c17d6d1346f",
+      "head_blob_sha256": "c3204664608548c7dfd95d1f0873792e15bfaddf6f4c63e189457fdb358499fa",
+      "working_equals_head_after_crlf_normalization": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "R1",
+      "priority": "P1",
+      "classification": "integration_requirement",
+      "title": "Guard actual packed endpoint and switch keys before side effects",
+      "core_lines": [
+        14,
+        64,
+        67
+      ],
+      "source_anchors": [
+        [
+          "src/point-to-point/model/rdma-hw.cc",
+          254
+        ],
+        [
+          "src/point-to-point/model/rdma-hw.cc",
+          382
+        ],
+        [
+          "src/point-to-point/model/ws31-budget.h",
+          16
+        ],
+        [
+          "src/point-to-point/model/ws31-quota.h",
+          13
+        ]
+      ],
+      "static_example": "same hosts, sport=1000, pg=3, dport=100 versus 103: distinct EndpointKey, same TX and RX packed keys",
+      "minimum_action": "Validate owner flow_id/generation in physical namespaces or reject aliasing fixture inputs before mutation; no baseline key redesign required"
+    },
+    {
+      "id": "R2",
+      "priority": "P1",
+      "classification": "confirmed_source_behavior_conditional_integration_failure",
+      "title": "Do not Clear and reuse a group with stale finished bits",
+      "source_anchors": [
+        [
+          "src/point-to-point/model/rdma-queue-pair.cc",
+          220
+        ],
+        [
+          "src/point-to-point/model/rdma-queue-pair.cc",
+          228
+        ],
+        [
+          "src/point-to-point/model/rdma-queue-pair.cc",
+          234
+        ],
+        [
+          "src/point-to-point/model/qbb-net-device.cc",
+          124
+        ]
+      ],
+      "condition": "old slot was marked finished, vector cleared, new QP occupies same slot",
+      "minimum_action": "Retain finished old QPs and append, or controlled complete reset/rebuild with safe references and indices; never clear unrelated active QPs",
+      "required_test": "second generation actually transmits and completes with old finished bit set"
+    },
+    {
+      "id": "R3",
+      "priority": "P1",
+      "classification": "integration_requirement_already_trusted_snapshot_boundary",
+      "title": "Bind measured snapshots and transport-history cleanup to generation and final reuse",
+      "core_lines": [
+        16,
+        67,
+        117,
+        129
+      ],
+      "source_anchors": [
+        [
+          "src/point-to-point/model/rdma-hw.cc",
+          1052
+        ],
+        [
+          "scratch/network-load-balance.cc",
+          658
+        ],
+        [
+          "src/point-to-point/model/rdma-hw.cc",
+          389
+        ],
+        [
+          "src/point-to-point/model/rdma-hw.cc",
+          366
+        ],
+        [
+          "src/point-to-point/model/rdma-hw.cc",
+          480
+        ]
+      ],
+      "minimum_action": "Save old object references; measure after full Receive returns; bind all measurements to identity/time/device scope; fail closed on revived maps; record owned akashic cleanup after drain; recheck immediately before creation",
+      "explicit_nonfinding": "Trusted boolean snapshots are acknowledged WIP scope, not independently a newly discovered core bug; retained TX history does not unconditionally block ACK because live map is checked first"
+    },
+    {
+      "id": "R4",
+      "priority": "P2",
+      "classification": "recommended_interface_hardening",
+      "title": "Make channel versus held close ownership explicit",
+      "core_lines": [
+        101,
+        105,
+        109
+      ],
+      "minimum_action": "Typed handles or expected-kind close APIs and explicit release/discard/transfer outcomes; exact serial carried by original callback",
+      "limitation": "Correct exact serial wiring is sufficient for present identity checks; no observed misclosure or executed exploit"
+    }
+  ],
+  "contract_notes": {
+    "demand": "Begin requires new demand >= prior cleanup; preserve this restricted fixture contract or add separate admission time for preexisting demand",
+    "clock": "monotonic successful mutations per Entry; false snapshot observations do not advance lastNs",
+    "snapshot": "trusted caller arguments, no actual measurements in current unit code",
+    "generation": "unique never-reused flow_id resolves immutable generation; old ledger history retained",
+    "token": "serial identifies each Enter even for same UID and directed link",
+    "ack_tag": "sender adds missing FlowIDNUMTag; ACK/NACK copies only if incoming tag exists",
+    "second_generation": "registered only, not launched or completed",
+    "cancellation": "completion-only fixture; no cancellation terminal state"
+  },
+  "minimum_adapter_responsibilities": [
+    "physical key ownership",
+    "saved TX/RX references and map observation",
+    "QP event observation",
+    "retained group and finished bitmap strategy",
+    "all scoped physical and ACK queues",
+    "serialization/pacing/PFC state",
+    "per-transmission original-event handle and post-Receive close",
+    "transport history and switch cleanup receipts",
+    "final reuse recheck"
+  ],
+  "test_priorities": [
+    "full second generation including stale finished bit",
+    "multiple tuples, aliases and other active group QPs",
+    "wrong UID/unknown serial/same-link copies/typed close",
+    "late receive revival/stale snapshot/final gate",
+    "real callbacks, Receive exits, tags and default-off invariance"
+  ],
+  "executions": {
+    "compile": 0,
+    "unit_tests": 0,
+    "core_runs": 0,
+    "fixture_runs": 0,
+    "network_runs": 0,
+    "remote_actions": 0,
+    "sync_deploy": 0
+  },
+  "writes": {
+    "implementation_source": 0,
+    "main_documents": 0,
+    "scripts": 0,
+    "only_allowed_outputs": [
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-report.md",
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-review.json",
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-qa.json"
+    ]
+  },
+  "literature_review": {
+    "version": "arXiv:1604.05107v1",
+    "scope": "existing local technical and verification records, no new literature search or replication",
+    "borrowed": "explicit ordering and activation receipts",
+    "applicability": "test lifecycle ordering only",
+    "difference": "DiffFlow classification and spraying versus RDMA endpoint generation evidence",
+    "not_extrapolated": [
+      "rule reclamation correctness",
+      "RDMA correctness",
+      "MoE/background performance"
+    ]
+  },
+  "report": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-report.md",
+  "report_sha256": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa"
+}

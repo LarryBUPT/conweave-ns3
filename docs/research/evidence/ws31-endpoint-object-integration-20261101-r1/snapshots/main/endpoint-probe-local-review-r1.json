@@ -1,0 +1,30 @@
+{
+  "workstream": "WS-31",
+  "scope": "Local read-only review of uncompiled actual NS3 endpoint snapshot probe; no execution/remote/source edits",
+  "parent_head": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "source_root": "E:/研/毕业论文/workspace/ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-net-device.h": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+    "src/point-to-point/model/ws31-endpoint-probe.h": "708149f395414868b15a98f5cf56e1d8cd8b75d158649393ee36990ce258a75f"
+  },
+  "source_audit": "evidence/endpoint-probe-wip-source-audit-r1.json",
+  "core_acceptance": "evidence/endpoint-ledger-core-preflight-main-acceptance-r2.json",
+  "contract": "endpoint-lifecycle-design-r2.md",
+  "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:98",
+  "prior_guards": "../independent/endpoint-ledger-core-preflight-r2-guards-released.json",
+  "questions": [
+    "Check oldNS3 Ptr/operator access, inheritedprotectedfriendaccess, objectidentity/reversedRX/actualpackedkeys and originaltiming against actual20bc source",
+    "Check observer purity of all called methods; GetBytesLeft/GetNBytes/IsFinished/GetNextQindex must not mutate state through probe",
+    "Check NodeList/device/queue/retainedgroup/timer scope and default-zero/duplicate/missing-object pitfalls; distinguish conservative pendingpayload from physical queue",
+    "Confirm observedFields lacksSWITCH_STATE and cannot certify alone; identify obligations for actual switch/channel/heldcopies/G1 and real endpoints",
+    "Identify minimal compile/purity/objectfixture coverage and necessary repairs without claiming runtime proof"
+  ],
+  "prohibited": [
+    "No remote/SSH/sync/deploy/build/compiler/core/fixture/network execution",
+    "No edits to main/scientific source or accepted core20bc",
+    "No Ofan/WS29/oldcontroller/matrix work",
+    "No treating actual-object getter code as measured output or ALLcertificate"
+  ],
+  "write_prefix": "endpoint-probe-local-review-r1",
+  "source_guard": "Keep these two reviewed WIP files unchanged until review returned; no newsource freeze or remoteauthority"
+}

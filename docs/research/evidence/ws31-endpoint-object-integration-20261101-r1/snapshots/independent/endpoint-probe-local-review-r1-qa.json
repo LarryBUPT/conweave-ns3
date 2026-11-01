@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "at_utc": "2026-11-01T08:53:23.341352+00:00",
+  "status": "PASS_STATIC_REVIEW_DELIVERY_INTEGRITY_ONLY",
+  "before": {
+    "head": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+    "status": [
+      " M src/point-to-point/model/qbb-net-device.h",
+      "?? src/point-to-point/model/ws31-endpoint-probe.h"
+    ],
+    "wip_sha256": {
+      "src/point-to-point/model/qbb-net-device.h": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+      "src/point-to-point/model/ws31-endpoint-probe.h": "708149f395414868b15a98f5cf56e1d8cd8b75d158649393ee36990ce258a75f"
+    },
+    "accepted_core_sha256": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+    },
+    "plan_sha256": "fd8e63b3692967d6f938d409945ee9dad12b5401772c2a07e9b56062c51482ee"
+  },
+  "after": {
+    "head": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+    "status": [
+      " M src/point-to-point/model/qbb-net-device.h",
+      "?? src/point-to-point/model/ws31-endpoint-probe.h"
+    ],
+    "wip_sha256": {
+      "src/point-to-point/model/qbb-net-device.h": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+      "src/point-to-point/model/ws31-endpoint-probe.h": "708149f395414868b15a98f5cf56e1d8cd8b75d158649393ee36990ce258a75f"
+    },
+    "accepted_core_sha256": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+    },
+    "plan_sha256": "fd8e63b3692967d6f938d409945ee9dad12b5401772c2a07e9b56062c51482ee"
+  },
+  "wip_head_core_plan_unchanged": true,
+  "source_provenance_count": 25,
+  "fixed_sources_verified_except_expected_friend": true,
+  "only_tracked_diff_comment_and_friend": true,
+  "prior_artifacts_unchanged": 8,
+  "artifact_sha256": {
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-report.md": "f35beedb11fbb40e2c07121d8156360e1c88f968ebb871090d4fe1910103ce30",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-review.json": "e401fcc8f2c4b2954224d228d4891b07280d4341f03b09ae9e987753d6cb5ff9"
+  },
+  "checks": {
+    "json_utf8_parse": true,
+    "report_no_replacement_chars": true,
+    "links_and_source_lines_checked": 33,
+    "all_required_review_questions_covered": true,
+    "CXX_or_runtime_pass_claimed": false,
+    "actual_measurements_claimed": false,
+    "mask127_boundary_explicit": true,
+    "static_counterexamples_not_executed": true,
+    "literature_node_review_included": true,
+    "Chinese_original_rules_read": "README and six chapters read earlier in the same conversation",
+    "final_style_review": "heading/spacing/paragraph/number/punctuation/structure checked",
+    "only_allowed_prefix_outputs": true
+  },
+  "execution_counts": {
+    "compile": 0,
+    "core": 0,
+    "object_fixture": 0,
+    "network": 0,
+    "remote": 0,
+    "sync_deploy": 0
+  },
+  "new_source_freeze_or_execution_authority": false,
+  "links": [
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/main/endpoint-probe-local-review-r1.json",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/core/model/ptr.h:104",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/core/model/ptr.h:279",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/qbb-net-device.h:78",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-probe.h:118",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:268",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:511",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:389",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-probe.h:113",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-probe.h:118",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-probe.h:143",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-probe.h:165",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-driver.cc:33",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-hw.cc:225",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/core/model/object.cc:145",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-probe.h:76",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-probe.h:151",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-probe.h:173",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/helper/qbb-helper.cc:217",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/ws31-endpoint-probe.h:133",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-queue-pair.cc:96",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-queue-pair.cc:166",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-queue-pair.h:169",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/point-to-point/model/rdma-queue-pair.h:239",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/network/utils/broadcom-egress-queue.cc:232",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/network/utils/queue.cc:136",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/core/model/event-id.cc:59",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/ws31-candidates-implementation/src/core/model/default-simulator-impl.cc:387",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/\u53c2\u8003\u6587\u732e/\u5019\u9009/README.md",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/\u53c2\u8003\u6587\u732e/\u5019\u9009/reading-log.md",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/\u53c2\u8003\u6587\u732e/\u5019\u9009/papers/diffflow-2016/analysis-technical.md",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/\u53c2\u8003\u6587\u732e/\u5019\u9009/papers/diffflow-2016/verification.md",
+    "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-local-review-r1-review.json"
+  ],
+  "qa_self_hash": "not embedded"
+}

@@ -1,0 +1,52 @@
+{
+  "at_utc": "2026-11-01T09:10:17.642100+00:00",
+  "status": "FIXED_PUSHED_PROBE_AND_OBJECT_FIXTURE_NOT_COMPILED",
+  "source_sha": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "parent_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "branch": "feature/ws31-candidates",
+  "source_changes_sha256": {
+    "scratch/ws31-endpoint-object-test.cc": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5",
+    "src/point-to-point/model/qbb-net-device.h": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+    "src/point-to-point/model/ws31-endpoint-probe.h": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892"
+  },
+  "source_tree_entries": 4847,
+  "tree_sha256": "8096510b5b068ef31269f88d836112a6e53b2b351984694bc796a0a4a4c05855",
+  "tracked_header_only_comment_and_two_friends": true,
+  "accepted_core_inputs_unchanged": true,
+  "normal_cases": [
+    "complete-unmarked",
+    "complete-marked",
+    "irn-two-sack-blocks",
+    "retain-old-append-new",
+    "completion-history-present",
+    "live-rx",
+    "physical-and-ack-queues",
+    "events-and-serialization"
+  ],
+  "read_refusal_cases": [
+    "missing-saved-qp",
+    "duplicate-qp-slot",
+    "device-group-binding",
+    "hardware-group-binding",
+    "missing-physical-queue",
+    "empty-live-tx",
+    "empty-live-rx",
+    "wrong-saved-flow",
+    "wrong-reversed-rx",
+    "wrong-original-clock",
+    "paused-device",
+    "down-device",
+    "changed-shared-queue",
+    "changed-device-scope"
+  ],
+  "other_refusals": [
+    "incomplete-mask",
+    "unknown-non-qbb"
+  ],
+  "expected_read_calls": 31,
+  "expected_refusals": 16,
+  "Simulator_Run_calls": 0,
+  "source_clean_origin_tracking_matches": true,
+  "compile_or_fixture_or_network_runs": 0,
+  "scope": "ActualNS3objectswithmanuallyassignedstates; new purity/coveragefixture only, no natural transport or network proof"
+}

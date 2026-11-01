@@ -1,0 +1,25 @@
+{
+  "at_utc": "2026-11-01T08:55:53.309297+00:00",
+  "status": "MAIN_ACCEPTED_PROBE_STATIC_REVIEW_REPAIRS_REQUIRED",
+  "parent_head": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "plan_sha256": "fd8e63b3692967d6f938d409945ee9dad12b5401772c2a07e9b56062c51482ee",
+  "review_sha256": "e401fcc8f2c4b2954224d228d4891b07280d4341f03b09ae9e987753d6cb5ff9",
+  "report_sha256": "f35beedb11fbb40e2c07121d8156360e1c88f968ebb871090d4fe1910103ce30",
+  "QA_sha256": "8df86482836a2f4850dace134930eba9df20bfdac6be0610574a2c3c62d865b5",
+  "fixed_source_paths_verified": 25,
+  "prior_artifacts_verified": 8,
+  "original_wip_preserved": {
+    "src/point-to-point/model/qbb-net-device.h": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+    "src/point-to-point/model/ws31-endpoint-probe.h": "708149f395414868b15a98f5cf56e1d8cd8b75d158649393ee36990ce258a75f"
+  },
+  "source_guard": "Localreadonlygoal completed andidle102; originalreviewWIP copied before repair",
+  "accepted_findings": [
+    "P1 savedTX must be independently accounted and present inactual frozen HW/NIC/group binding",
+    "P2 freeze Node/device/interface/loopback scope and reject sharedqueue/group/duplicateQP; physicalqueue required",
+    "P3 reject null live map values before dereference",
+    "DoGetObject can modify aggregate cache; bind actualdrivers/HW insetup beforepurity interval",
+    "Currentevent IsRunning false doesnotprovecallbackreturned; postReceive token remainsmandatory"
+  ],
+  "new_compile_or_test_or_network": 0,
+  "runtime_proof": false
+}

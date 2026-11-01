@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "at_utc": "2026-11-01T08:53:23.220689+00:00",
+  "status": "LOCAL_STATIC_REVIEW_COMPLETE_REQUIRED_COVERAGE_REPAIRS",
+  "scope": "local reads/static reasoning/document output only",
+  "plan": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\endpoint-probe-local-review-r1.json",
+    "sha256": "fd8e63b3692967d6f938d409945ee9dad12b5401772c2a07e9b56062c51482ee"
+  },
+  "before": {
+    "head": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+    "status": [
+      " M src/point-to-point/model/qbb-net-device.h",
+      "?? src/point-to-point/model/ws31-endpoint-probe.h"
+    ],
+    "wip_sha256": {
+      "src/point-to-point/model/qbb-net-device.h": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+      "src/point-to-point/model/ws31-endpoint-probe.h": "708149f395414868b15a98f5cf56e1d8cd8b75d158649393ee36990ce258a75f"
+    },
+    "accepted_core_sha256": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+    },
+    "plan_sha256": "fd8e63b3692967d6f938d409945ee9dad12b5401772c2a07e9b56062c51482ee"
+  },
+  "after": {
+    "head": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+    "status": [
+      " M src/point-to-point/model/qbb-net-device.h",
+      "?? src/point-to-point/model/ws31-endpoint-probe.h"
+    ],
+    "wip_sha256": {
+      "src/point-to-point/model/qbb-net-device.h": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+      "src/point-to-point/model/ws31-endpoint-probe.h": "708149f395414868b15a98f5cf56e1d8cd8b75d158649393ee36990ce258a75f"
+    },
+    "accepted_core_sha256": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+    },
+    "plan_sha256": "fd8e63b3692967d6f938d409945ee9dad12b5401772c2a07e9b56062c51482ee"
+  },
+  "source_provenance": [
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\core\\model\\ptr.h",
+      "git_blob": "e60c59f5b52f662419c77e46bcc4fb037d3fb5bb",
+      "head_blob_sha256": "7700b31866bae5ffb97c556afcb24b2e84030022571daa0f7e51546b7ab9bd55",
+      "working_sha256": "6c2634ac88f01bc77d4144c96adbe384800aed80e5d9cdfa0fa413c32c43caa4",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\core\\model\\event-id.cc",
+      "git_blob": "65b66a91863078668b588d8af27dfb3cf3df0270",
+      "head_blob_sha256": "75ddbf4d202088ed9581e42c4ebc8365b12ecd37ac4f83d9bd3b0f1d79250d35",
+      "working_sha256": "26a8fcba768abbaf7213109b45be4dd1c48922214dbfcaf806adbe0bc7dd02fd",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\core\\model\\simulator.cc",
+      "git_blob": "3e9646921f330ff6bd699eea96127ae94ad15555",
+      "head_blob_sha256": "37108f15d04210066c45d66d57534f528c9f8d0e0b1ea303d011ff46c9b42de1",
+      "working_sha256": "758d4279c5ca3e9ea1b9f41a74a606cf39ff8e648a4a9180da4abfb0dd2b2f83",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\core\\model\\default-simulator-impl.cc",
+      "git_blob": "3823f1485c280eab458c6cbf6c75f2e07f41d8af",
+      "head_blob_sha256": "4be8807edf01758e322707a51c1329303f54fb482723c3d7c32fb7e88dbddf90",
+      "working_sha256": "510b574e8569c33e5b4b531804dd39f012335cd820b56fca1c065cf5a6c113c0",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\core\\model\\object.h",
+      "git_blob": "ea966edbd2a438024d1aa630453a7f4854f98342",
+      "head_blob_sha256": "b70b6189232d4c69d7814a5320286b40b027bd0f3bd8a7d4e9f460c0e790cf2a",
+      "working_sha256": "b0e0a3dc2a475be1414cd7a60d7d91dd5e22f4da8c4821b6c5f7ac66f0b5b55f",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\core\\model\\object.cc",
+      "git_blob": "d1bb52856893e0c4b50681d2773c90b0314928ba",
+      "head_blob_sha256": "2714cb52b2ecda25da8cacfc23a9cbfa88d832b84f4489483e6c8c6adc17da4d",
+      "working_sha256": "ca71a8de1520778132df69847c62312b8324716c070084d1f73ee023a478d866",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\network\\model\\node-list.cc",
+      "git_blob": "7b972dead7929643422293dd7d0512632a393ad5",
+      "head_blob_sha256": "dfff1651230f6898e5f03a9d26e0b8b242b45f431e7a582f50a39457806836cc",
+      "working_sha256": "cee3198b37c4c3388c7b65b9763602b0ee8946595194fd862a025507054dfaef",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\network\\model\\node.cc",
+      "git_blob": "304273649885822decbc5ff122442b8896e28436",
+      "head_blob_sha256": "349267ec7a0415f6bc42f37eb6146927ebf25c935c15081f68f0d1668d401b63",
+      "working_sha256": "d9ae00bd9e05d13ca405a61ac77bc82b0d2d8db6f7494ecf836c57ad9a4e20c6",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\network\\model\\packet.h",
+      "git_blob": "b17f75e4ce956edaff921a92ad5a8fd326a1f7d3",
+      "head_blob_sha256": "66b4b558968430f4b54bd7259c8d1c1242a94db2d49fe52b8c4d68aa38e04167",
+      "working_sha256": "e943d81be5e1945927259c20d27fe03063bd094c4bd5527799e1781409a75bd1",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\network\\model\\packet.cc",
+      "git_blob": "8701bb167635b9e01508ae32b40a4f252a66d987",
+      "head_blob_sha256": "cd9067c043d5664d41a33a26a9f9971699d0d65c4cb44558abb17674c7bb0cb1",
+      "working_sha256": "38333a5f9a1f716f983b784524a335205efc51452de68423e44f14243b62f62a",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\network\\utils\\queue.cc",
+      "git_blob": "d3801e41369d9c6bb88d671c6aea72b539d66bb3",
+      "head_blob_sha256": "0b822c2382299181e0c0c88f535971e90851829bed424b3c7eead5f86c4cefe0",
+      "working_sha256": "ace74a549d75466aa2049016d6fc26a5ad319a41240a3b7fed2509bf31caf642",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\network\\utils\\broadcom-egress-queue.cc",
+      "git_blob": "483b71cc5af0c0fbbee7b1d529ca99f7e3cd5ca2",
+      "head_blob_sha256": "cbdd1624162b6a75ff952e2dbf3801c46c5426f6fbbd9533683f793a3e294cc8",
+      "working_sha256": "c57b0a3624ed493ed7b1f900f071a1f1578f9a1c65a88a5e4a18d3ed11525345",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\rdma-hw.h",
+      "git_blob": "c5e681905b82da4e3d3639b3e112430d8d7ef746",
+      "head_blob_sha256": "13a3be27e5fbac2528612afa87172b4460e88c2c4ea73d356b9d428e655c9750",
+      "working_sha256": "5fabc6721f9eeb2b09e5e5b3dc740bbc16173da66abeaeb15530dea9bfc53c53",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\rdma-hw.cc",
+      "git_blob": "0a171097e402cc1182394c7b0d09f2ba3e0f72ec",
+      "head_blob_sha256": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+      "working_sha256": "5febf8c568905993177b34cef56c82db01e7a764fcb877d0a5bb0c097742c2bf",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\rdma-driver.h",
+      "git_blob": "717df7a5fd550189a756ae6b59b1ecc57e7e0184",
+      "head_blob_sha256": "c0641c74a0010440948f6c797c6443dfec52fc150e1f03e6e4a74225536b895f",
+      "working_sha256": "6b1de3ad4d4a6b4d069aea1aad6b71e4b9f3f7f36bd43387730b3f00d8ff39b7",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\rdma-driver.cc",
+      "git_blob": "8084842cdbec506da2f4b87e112a7f45287adc93",
+      "head_blob_sha256": "b3704ee90cf4cebc8e81d8e22501e56224cfa03677ac845af6cf11c35d8beb34",
+      "working_sha256": "a202c6a4e6b3b26dadedbb795684500d82e8573441a674535b6c1f3685656c48",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\rdma-queue-pair.h",
+      "git_blob": "046e396738da830991728af55d2fe7b796c35f33",
+      "head_blob_sha256": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+      "working_sha256": "e97ab209034ff59b11255a2385672cbae6516bbf162329f6625b6edb69d54e8f",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\rdma-queue-pair.cc",
+      "git_blob": "acf4e542092298e98b914834ccaf8a18a2dbd5e8",
+      "head_blob_sha256": "c7f06fa16c6bef60e2671ded84daa3009ed3312a7bfc55f8afbec7d28c004d20",
+      "working_sha256": "d9b664f1fe925455fbc71f62fbd6b17d02bab6fa66bcba8388b871db69bf3a7b",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\qbb-net-device.h",
+      "git_blob": "a6e3d250a83bc0c8ff76c9aaa082faf35a6d1d15",
+      "head_blob_sha256": "23b554721189e7767706fe386d76760eaee895b421caf7069d24003e39a7bd07",
+      "working_sha256": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+      "working_equals_head_after_crlf_normalization": false,
+      "exception": "only expected comment and friend declaration"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\qbb-net-device.cc",
+      "git_blob": "5ec636e196d536d40c563bc0719315aaeb037b77",
+      "head_blob_sha256": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+      "working_sha256": "7585e780426b4d058945f4df33227900e2bf80a19717c5f07dba410ead65bf10",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\point-to-point-net-device.h",
+      "git_blob": "46afafa8d7fbbfa70a5375e84bf60ee8122709b7",
+      "head_blob_sha256": "ad777bc39a417b17edb73203f811c8546ce0bed3ad7fbd2311354768ea04a0e1",
+      "working_sha256": "1e600278e227e67b2df8dc81c4a3f15b1718f46e076859e5b299ca1156c12eb7",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\point-to-point-net-device.cc",
+      "git_blob": "5828dfd90bc563a9471e4f916e82252f0a59882d",
+      "head_blob_sha256": "7aaf76b89a1e76bf23b58b759fed09ac7c0261b5d1b598d14681871bc14f4013",
+      "working_sha256": "c1ba9ebe552b306f8c993833fc4c7f3c79b5d157ecbbe4c5d77d661204a2e3e9",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\helper\\qbb-helper.cc",
+      "git_blob": "a51b1695a42873de3d767c3dadeb9426fe8c2f1d",
+      "head_blob_sha256": "df4a666079bc5f4ed1d9c5320154ed9db33f158838ab46e15b49a814d877e085",
+      "working_sha256": "71ee6e2e24e08b2f779202677d5f0b2835eaf98d2d4df2ce0a724e0961f99dfe",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\ws31-endpoint-ledger.h",
+      "git_blob": "f3d0fff5bebaa52bb8f28948277f50198fc6fe6b",
+      "head_blob_sha256": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "working_sha256": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\scratch\\network-load-balance.cc",
+      "git_blob": "817d8d79c3f1a8abd370684a54171c17d6d1346f",
+      "head_blob_sha256": "c3204664608548c7dfd95d1f0873792e15bfaddf6f4c63e189457fdb358499fa",
+      "working_sha256": "e4ebc86c4d403071ec873b856a85f037a099f1bf1d82ba6b7fbfc775fb6bed4f",
+      "working_equals_head_after_crlf_normalization": true,
+      "exception": null
+    }
+  ],
+  "tracked_header_patch": "diff --git a/src/point-to-point/model/qbb-net-device.h b/src/point-to-point/model/qbb-net-device.h\nindex a6e3d25..318f380 100644\n--- a/src/point-to-point/model/qbb-net-device.h\n+++ b/src/point-to-point/model/qbb-net-device.h\n@@ -74,6 +74,8 @@ public:\n  */\n class QbbNetDevice : public PointToPointNetDevice \n {\n+  // Read-only WS-31 endpoint evidence adapter; never called by normal routing.\n+  friend class Ws31EndpointProbe;\n public:\n   static const uint32_t qCnt = 8;\t// Number of queues/priorities used\n   static const uint32_t pCnt = 257;\t// Number of ports used\n",
+  "findings": [
+    {
+      "id": "P1",
+      "priority": "P1",
+      "classification": "required_coverage_guard_before_complete_adapter_acceptance",
+      "lines": [
+        118,
+        143,
+        165,
+        173
+      ],
+      "title": "Require actual saved-TX coverage and bound NIC/group ownership",
+      "fact": "Saved TX metadata/timers are read, but completed/pending participate only if pointer appears in enumerated groups; no required savedTx membership check",
+      "static_counterexample_not_executed": "valid saved metadata, incomplete saved TX with pending bytes, absent maps and empty/wrong bound groups, zero events/queues: snapshot.Quiet may be true while mask127 still blocks ledger acceptance",
+      "minimum_fix": "Bind actual setup HW/NIC/group; require savedTx membership under retain/append policy; independently include savedTx in unique completion/pending/event aggregation; reject missing coverage",
+      "runtime_failure_observed": false
+    },
+    {
+      "id": "P2",
+      "priority": "P2",
+      "classification": "required_scope_and_counter_contract",
+      "lines": [
+        76,
+        151,
+        159,
+        165,
+        173
+      ],
+      "title": "Freeze device coverage, missing queue policy and duplicate/shared counting",
+      "fact": "NodeList scans every Qbb in process, skips nonQbb, endpoint seen means any Qbb on node; host may lack physical queue; pending/retained sums repeat per reference",
+      "minimum_fix": "Record expected and observed device/NIC/queue/group identities, explicit loopback exclusions, standard fixture queue presence, unique-object or explicit no-sharing policy; keep slot-level finished bits",
+      "safety_note": "Nonnegative duplicate sums overcount conservatively; no observed false drain is claimed"
+    },
+    {
+      "id": "P3",
+      "priority": "P2",
+      "classification": "malformed_object_fixture_hardening",
+      "lines": [
+        133,
+        136,
+        137,
+        139,
+        148
+      ],
+      "title": "Reject null live-map Ptr before dereference",
+      "fact": "Key presence is checked, mapped Ptr validity is not",
+      "minimum_fix": "Need on live TX/RX values before flow/timer reads; retain live pointer identity and reject or diagnose wrong owner",
+      "normal_source_invariant": "Production insertions inspected use valid objects; no real null insertion failure observed"
+    }
+  ],
+  "verified_notes": {
+    "compile": "No confirmed C++11/old Ptr/friend blocker found by static inspection; no compilation performed",
+    "friend": "Read-only is implementation discipline, not enforced by friend declaration",
+    "RX": "reversed full identity and GetRxQpKey(sip,sport,dport,pg) match fixed source",
+    "purity": "No inspected probe path calls GetBytesLeft/IsFinished/GetNextQindex/GetObject; active-context field/getter reads do not change protocol state",
+    "pending": "conservative limit-minus-snd_nxt bound; not physical queue or exact retransmission occupancy",
+    "timers": "EventId IsExpired treats currently executing event as expired; checkpoint after callback unwind still required",
+    "context": "initialize NodeList/Simulator before fingerprint; no observation after Destroy",
+    "dynamic_refusal": "down/paused throws fail closed; freeze fatal-invalid-scope versus valid nonquiet-observation policy",
+    "mask": "127 deliberately lacks SWITCH_STATE; default zeros are not a complete certificate",
+    "measurement": "written real object access code, not measured output",
+    "next_object_fixture": "real NS3 types with deliberately arranged fields measures getter purity only, not natural transport completion"
+  },
+  "minimum_next_tests": [
+    "actual C++11 NS3 include and link",
+    "real object fixture initialized before fingerprint",
+    "IRN front block equals snd_nxt, full SACK state unchanged after repeated read",
+    "finished-bit and retained/append slot distinction",
+    "savedTx missing, HW/NIC/group misbinding, missing scope, sharing and null live Ptr",
+    "active queue/event/current-packet/history/revived RX observations and refusal purity",
+    "same-time repeated reads and protocol/scheduler fingerprints",
+    "mask127 rejects core ALL certification; no switch/channel/G1 inheritance"
+  ],
+  "prior_artifacts_sha256": {
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-report.md": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-review.json": "aa54af2b05c870e356e32e53d855c0a4175d4e00b38a314d39cad35a84cad12c",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-qa.json": "bc2a8f6c30d18c48cc04502c98fc64ad0786a73b457694004bf76ad28f90bcfe",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md": "fec062c8bdfec45395a43ed36415738e24366d6d33986b7635356035e9379aca",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-index.json": "5c8fd34433da0d8d5d317f5c2d4b545e8e2a6657834af67b856a7d778a194b68",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-qa.json": "16a64faf700cfecdd14e6a10a4cfd90698cc7b3c2094f2af1394f76ce81e7ce4",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-handoff.md": "94a94a0b96a7363cb1ab328423557a24c2312ecc1a4d4ac3248faf2f8ac17f63",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-guards-released.json": "c683329580d2b1cd7dd2918cb5655f5c60e79363d45e1168d83f4a29389a4917"
+  },
+  "reference_review": {
+    "version": "arXiv:1604.05107v1",
+    "inputs": [
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\README.md",
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\reading-log.md",
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\papers\\diffflow-2016\\analysis-technical.md",
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\papers\\diffflow-2016\\verification.md"
+    ],
+    "borrowed": "prerequisite ordering",
+    "applicability": "scope and evidence gates",
+    "difference": "RDMA object/event observation versus sampled classification/spraying",
+    "not_extrapolated": [
+      "resource reclamation protocol",
+      "actual endpoint drain correctness",
+      "business performance"
+    ]
+  },
+  "execution_counts": {
+    "compile": 0,
+    "core": 0,
+    "object_fixture": 0,
+    "network": 0,
+    "remote": 0,
+    "sync_deploy": 0
+  },
+  "writes": {
+    "implementation": 0,
+    "main": 0,
+    "accepted_core": 0,
+    "scripts": 0,
+    "only_outputs": [
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-report.md",
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-review.json",
+      "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-qa.json"
+    ]
+  },
+  "future_execution_authority": false,
+  "remaining_owner": "main chat; actual switch/channel/G1/network and effects/cost obligations remain required",
+  "report": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-report.md",
+  "report_sha256": "f35beedb11fbb40e2c07121d8156360e1c88f968ebb871090d4fe1910103ce30"
+}
