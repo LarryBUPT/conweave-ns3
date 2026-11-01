@@ -1,0 +1,20 @@
+{
+  "at_utc": "2026-11-01T06:12:41.316715+00:00",
+  "status": "PASS_DELIVERY_ENCODING_RESEAL_ONLY",
+  "cause": "Main temporary reader omitted UTF8 and reported a false escape error. Independent had already made an ASCII compatibility reseal before correction arrived; it stopped editing after notification.",
+  "original_index_sha256": "5835f2e2c95ca6ebe0bae5273a1355250f70b094a719e2a6952ade801ad59165",
+  "original_QA_sha256": "d680bc0ecd0587af9a91871de49907b2ef98dc8e08ed1e16bfaf11d23370a449",
+  "original_bytes_retained_in_independent": "label-dynamic-recovery-r2-index-utf8-original.bin and -qa-utf8-original.bin; both hashes independently checked",
+  "latest_index_sha256": "4e4ab46b7d138903509296faa6d518be86051a7036fa07c77e008ac5760eda13",
+  "latest_QA_sha256": "fb3c6bf26191d3bea951ce0b84a76aa4483ac262619a04fa5ed04679c9f1e09a",
+  "decoded_index_only_changed_fields": [
+    "documents",
+    "created_utc"
+  ],
+  "cell_raw_source_plan_dependencies_original_files_resources_identical": true,
+  "new_documents": 26,
+  "results": 193,
+  "support": 83,
+  "network_or_build_repeats": 0,
+  "latest_main_acceptance": "label-dynamic-pilot-main-acceptance-r3.json"
+}

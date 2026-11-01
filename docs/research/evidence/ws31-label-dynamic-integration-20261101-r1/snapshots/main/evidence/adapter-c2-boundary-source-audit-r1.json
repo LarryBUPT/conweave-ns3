@@ -1,0 +1,19 @@
+{
+  "at_utc": "2026-11-01T06:06:20.630500+00:00",
+  "status": "WIP_IMPLEMENTED_SOURCE_EXTRACTION_AUDITED_NOT_COMPILED",
+  "parent_source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "files": {
+    "src/applications/model/rdma-client.cc": "36f3a50762904696aa53865d8872b0db617315bfe66fa3ae0885d1ddc1eb1a26",
+    "src/applications/model/rdma-client.h": "a57bf706592f854ba5cb4d97bd882814608ff763b0ed385bc917440baa12b38f",
+    "scratch/ws31-start-boundary-test.cc": "5d3efad9b7ad9969a563b74901fb89951f191320ef3ff7e52a1f02607ceb2c2f"
+  },
+  "production_cc_only_change": "Extract existing complete driver lookup/AddQueuePair body into protected virtual DispatchRequest; removing the extraction exactly restores parent LF code",
+  "header_only_change": "Protected virtual declaration and narrow friend, exact parent restoration checked",
+  "fixture_cases": 10,
+  "scope": "Actual production timer/cancellation plus substituted transport dispatch; no real QP or completion",
+  "full_adapter_lifecycle_complete": false,
+  "CXX_build_or_execution": 0,
+  "network_runs": 0,
+  "source_state": "Exclusive clone WIP, not pushed or dispatched; C1/C3 adapter and endpoint generation/drain/reuse still required",
+  "prior_runner_env_guard": "Independent explicit RELEASED at2026-11-01T06:02:28.226528+00:00 before edits"
+}

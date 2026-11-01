@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "examples": [
+    {
+      "name": "C3 altered normalized ROUTE hash",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "C3 altered first source projection",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "name": "C2 altered full combined hash",
+      "status": "REJECTED_AS_REQUIRED"
+    }
+  ],
+  "data_mutation": "In-memory copies only; original raw unchanged",
+  "new_simulations": 0
+}

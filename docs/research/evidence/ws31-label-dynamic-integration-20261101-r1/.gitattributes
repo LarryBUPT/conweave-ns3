@@ -1,0 +1,6 @@
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+snapshots/**/*.log -diff
+*.patch -diff
+snapshots/**/*.patch -diff
+*.bin -diff
+snapshots/**/*.bin -diff

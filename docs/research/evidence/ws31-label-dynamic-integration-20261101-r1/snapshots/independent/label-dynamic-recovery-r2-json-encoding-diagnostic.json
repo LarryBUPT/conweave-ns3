@@ -1,0 +1,35 @@
+{
+  "status": "ROOT_CAUSE_VERIFIED_AND_ASCII_SERIALIZATION_APPLIED",
+  "default_locale": "cp936",
+  "default_decode_error": "JSONDecodeError('Invalid \\\\escape: line 44 column 30 (char 1781)')",
+  "original_line44_utf8": "      \"results_path\": \"E:\\\\\u7814\\\\\u6bd5\u4e1a\u8bba\u6587\\\\workspace\\\\LarryBUPT-conweave-ns3\\\\docs\\\\research\\\\ws31\\\\independent\\\\label-dynamic-validation-r1-evidence\\\\20261101-131000-ws31-labeldyn-r1-q12\\\\results\",",
+  "original_line44_hex": "20202020202022726573756c74735f70617468223a2022453a5c5ce7a0945c5ce6af95e4b89ae8aebae696875c5c776f726b73706163655c5c4c61727279425550542d636f6e77656176652d6e73335c5c646f63735c5c72657365617263685c5c777333315c5c696e646570656e64656e745c5c6c6162656c2d64796e616d69632d76616c69646174696f6e2d72312d65766964656e63655c5c32303236313130312d3133313030302d777333312d6c6162656c64796e2d72312d7131325c5c726573756c7473222c",
+  "cause": "Correct UTF8 bytes decoded as CP936 can consume the first of two backslashes after a Chinese UTF8 sequence",
+  "archives": [
+    {
+      "file": "label-dynamic-recovery-r2-index.json",
+      "original_sha256": "5835f2e2c95ca6ebe0bae5273a1355250f70b094a719e2a6952ade801ad59165",
+      "archive": "label-dynamic-recovery-r2-index-utf8-original.bin",
+      "actual_bytes_json_loads": "PASS"
+    },
+    {
+      "file": "label-dynamic-recovery-r2-qa.json",
+      "original_sha256": "d680bc0ecd0587af9a91871de49907b2ef98dc8e08ed1e16bfaf11d23370a449",
+      "archive": "label-dynamic-recovery-r2-qa-utf8-original.bin",
+      "actual_bytes_json_loads": "PASS"
+    },
+    {
+      "file": "label-dynamic-recovery-r2-receipt.json",
+      "original_sha256": "9f49b9975960abb3f5e4ed5a28f376dc7d9968b3dfdf9b2a13d85a047773c71a",
+      "archive": "label-dynamic-recovery-r2-receipt-utf8-original.bin",
+      "actual_bytes_json_loads": "PASS"
+    }
+  ],
+  "converted_new_recovery_json": [
+    "label-dynamic-recovery-r2-index.json",
+    "label-dynamic-recovery-r2-phase-order.json",
+    "label-dynamic-recovery-r2-receipt.json",
+    "label-dynamic-recovery-r2-reference-review.json"
+  ],
+  "original_r1_changes": 0
+}

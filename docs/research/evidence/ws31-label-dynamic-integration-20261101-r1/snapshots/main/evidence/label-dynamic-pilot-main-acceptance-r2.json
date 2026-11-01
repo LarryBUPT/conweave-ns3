@@ -1,0 +1,237 @@
+{
+  "recorded_utc": "2026-11-01T06:09:02.455228+00:00",
+  "status": "MAIN_ACCEPTED_ALL10_DYNAMIC_LABEL_RAW_AND_RECOVERY_DELIVERY",
+  "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "original_plan_sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+  "recovery_plan_sha256": "d1dce31271e4756e4c90084bc01006e9c4a670de830d24414260a71faacd9599",
+  "index_sha256": "5835f2e2c95ca6ebe0bae5273a1355250f70b094a719e2a6952ade801ad59165",
+  "QA_sha256": "d680bc0ecd0587af9a91871de49907b2ef98dc8e08ed1e16bfaf11d23370a449",
+  "delivery_files_hashed": {
+    "documents": 22,
+    "dependencies": 6,
+    "original_r1_files": 268
+  },
+  "result_files_hashed": 193,
+  "support_files_hashed": 83,
+  "reference_files_hashed": 4,
+  "source_map_entries": 400,
+  "unique_git_objects_verified": 40,
+  "git_tree_entries": 4841,
+  "accepted_cells": 10,
+  "completed_records": 150,
+  "completed_payload_bytes": 2457600,
+  "new_recovery_runs": 2,
+  "accepted_simulations_repeated": 0,
+  "cells": [
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-q12",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-q12-main-acceptance-r1.json",
+      "main_receipt_sha256": "17dd8e6072ec862069284a22929364d3fe86a054b72b5b8208de845e05ebb433",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {}
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c1-p1",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-c1-p1-main-acceptance-r1.json",
+      "main_receipt_sha256": "0d9aa5cb322446d9c6ffb2794f034fb0dc0bdd52ae3253f88494877f742b3a3e",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {
+        "source_arrivals": 255,
+        "choices_scores_checked": 15,
+        "positive_pressure_decisions": 9,
+        "unique_payload": 135000,
+        "duplicate_packets_while_prediction_live": 0,
+        "peak": 15,
+        "expired": 0,
+        "retained_predictor_entries": 0,
+        "first_categories": {
+          "0": 15
+        },
+        "summary_purge_assumed": false
+      }
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c1-p2",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-c1-p2-main-acceptance-r1.json",
+      "main_receipt_sha256": "1db604a8456c4245f68248b030ef850acb60de9fa15a2f4c37bffa5609a5a9e8",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {
+        "source_arrivals": 255,
+        "choices_scores_checked": 15,
+        "positive_pressure_decisions": 9,
+        "unique_payload": 179304,
+        "duplicate_packets_while_prediction_live": 0,
+        "peak": 15,
+        "expired": 0,
+        "retained_predictor_entries": 6,
+        "first_categories": {
+          "1": 6,
+          "2": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1
+        },
+        "summary_purge_assumed": false
+      }
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c1-p3",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-c1-p3-main-acceptance-r1.json",
+      "main_receipt_sha256": "ebb6f8a81a384370304a204f1c8dbd195078979ffdcb26fc91216f608cd80990",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {
+        "source_arrivals": 255,
+        "choices_scores_checked": 15,
+        "positive_pressure_decisions": 9,
+        "unique_payload": 179304,
+        "duplicate_packets_while_prediction_live": 0,
+        "peak": 15,
+        "expired": 0,
+        "retained_predictor_entries": 6,
+        "first_categories": {
+          "1": 6,
+          "2": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1
+        },
+        "summary_purge_assumed": false
+      }
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c2-p1",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-c2-p1-main-acceptance-r1.json",
+      "main_receipt_sha256": "a8a69354dd64bb07648daba541cea9278f415fe41fef9bdbef0edd37c7675fa2",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {
+        "exact_hash_timing_checked": 15,
+        "positive_waits": 0,
+        "wait_sum_ns": 0,
+        "wait_max_ns": 0,
+        "positive_waits_by_original_business_tag": {
+          "1": 0,
+          "2": 0,
+          "0": 0,
+          "7": 0,
+          "99": 0
+        }
+      }
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c2-p2",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-c2-p2-main-acceptance-r1.json",
+      "main_receipt_sha256": "c7aa3a91b449213023dee7e8b341365976caf8258166abc84e94ae773f9b4397",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {
+        "exact_hash_timing_checked": 15,
+        "positive_waits": 6,
+        "wait_sum_ns": 1588,
+        "wait_max_ns": 413,
+        "positive_waits_by_original_business_tag": {
+          "1": 0,
+          "2": 6,
+          "0": 0,
+          "7": 0,
+          "99": 0
+        }
+      }
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c2-p3",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-c2-p3-main-acceptance-r1.json",
+      "main_receipt_sha256": "5b820bda077d8d671a68dc8e4d5731e9ac9dc1069fb68e210a8e3ec165326cb9",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {
+        "exact_hash_timing_checked": 15,
+        "positive_waits": 6,
+        "wait_sum_ns": 1457,
+        "wait_max_ns": 409,
+        "positive_waits_by_original_business_tag": {
+          "1": 1,
+          "2": 5,
+          "0": 0,
+          "7": 0,
+          "99": 0
+        }
+      }
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c3-p1",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-c3-p1-main-acceptance-r1.json",
+      "main_receipt_sha256": "99f61d304ac343759fb77801358dbe5fd4ba4578e36c3094e74e03fda6a493fe",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {
+        "source_arrivals_replayed": 255,
+        "source_route_entries": 15,
+        "dedicated_events_replayed": 15,
+        "restricted": 0,
+        "borrowed": 0,
+        "residual_packets": 0,
+        "residual_wire_bytes": 0,
+        "policy_categories": {
+          "0": 15
+        },
+        "tag1_activations": 0,
+        "tag2_activations": 0,
+        "tag2_borrowers_at_activation_sum": 0
+      }
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c3-p2",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-c3-p2-main-acceptance-r1.json",
+      "main_receipt_sha256": "a2dd835913963a2b43ba918ec57b73c1c4c41a9908f7972ddd31104f4215665a",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {
+        "source_arrivals_replayed": 255,
+        "source_route_entries": 15,
+        "dedicated_events_replayed": 31,
+        "restricted": 6,
+        "borrowed": 1,
+        "residual_packets": 16,
+        "residual_wire_bytes": 16152,
+        "policy_categories": {
+          "1": 6,
+          "2": 6,
+          "0": 3
+        },
+        "tag1_activations": 1,
+        "tag2_activations": 1,
+        "tag2_borrowers_at_activation_sum": 1
+      }
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c3-p3",
+      "main_receipt": "docs\\research\\ws31\\main\\evidence\\label-dynamic-c3-p3-main-acceptance-r1.json",
+      "main_receipt_sha256": "42da95113299c53241d5148878c68584b4e3adb336f0571e11ebc5174115dde3",
+      "flows": 15,
+      "payload_bytes": 245760,
+      "mechanism_replay": {
+        "source_arrivals_replayed": 255,
+        "source_route_entries": 15,
+        "dedicated_events_replayed": 15,
+        "restricted": 11,
+        "borrowed": 0,
+        "residual_packets": 0,
+        "residual_wire_bytes": 0,
+        "policy_categories": {
+          "1": 6,
+          "2": 6,
+          "0": 3
+        },
+        "tag1_activations": 1,
+        "tag2_activations": 1,
+        "tag2_borrowers_at_activation_sum": 0
+      }
+    }
+  ],
+  "scope": "Synthetic label correctness; full adapter lifecycle, independent V0 and two-sided effects/cost remain"
+}

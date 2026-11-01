@@ -1,0 +1,49 @@
+{
+  "workstream": "WS-31",
+  "stage": "Preservedcheckerfix andresumeonlytwoBUILT-unrunC3cells",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "branch": "feature/ws31-candidates",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "original_plan": "label-dynamic-validation-r1.json",
+  "original_plan_sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+  "main_incident_acceptance": "evidence/label-dynamic-first8-main-acceptance-r1.json",
+  "accepted_completed_ids": [
+    "20261101-131000-ws31-labeldyn-r1-q12",
+    "20261101-131000-ws31-labeldyn-r1-c1-p1",
+    "20261101-131000-ws31-labeldyn-r1-c1-p2",
+    "20261101-131000-ws31-labeldyn-r1-c1-p3",
+    "20261101-131000-ws31-labeldyn-r1-c2-p1",
+    "20261101-131000-ws31-labeldyn-r1-c2-p2",
+    "20261101-131000-ws31-labeldyn-r1-c2-p3",
+    "20261101-131000-ws31-labeldyn-r1-c3-p1"
+  ],
+  "only_pending_ids": [
+    "20261101-131000-ws31-labeldyn-r1-c3-p2",
+    "20261101-131000-ws31-labeldyn-r1-c3-p3"
+  ],
+  "parameters_inputs_and_criteria": "Unchanged fromoriginalfrozenr1, including500ns/all15actualearlylate/UIDpresence/state rules",
+  "before_any_new_run": [
+    "Preserve originalchecker/driver/finalizer/stopindex/QA/logs byte-for-byte; newcorrectedchecker filename andsha plusdiff",
+    "ForC3profile1, replaceonlyoverconstraint genericCHOICEtotal/combinedhash equivalence withoriginalfrozenFCT/ROUTEand15sourcefirstprojection checks; requireC3commonCHOICE30+dedicatedfresh15 andQ12common45 separately, no missingdecision ignored. KeepC2fullCHOICEchecks. Addoffline negativeexamples ofROUTE/sourceprojection mismatch",
+    "RecheckexistingC3p1rawoffline into newreceipt, no simulation/build/core rerun; requirefullfixedcontract andidentity/UID/presence/replay; clarifyoriginalraw_preservedflag withoutchanginghistoricalindex",
+    "Prior driver foreground/background mustbeterminal; freshgate cache/fork/ref/clean/deployedworker/IDs/jobs/resources; eachpendingremoteIDmuststillbeBUILT, neverstarted, exactsource/input/binary andhashmap; ifstatusnotBUILT stop, do notreset/overwrite. Preserveallcommands andsourcecopies"
+  ],
+  "execution": [
+    "No sync/deploy/build/core orrerunofprior8. Existing10buildsalreadyverified, priorrecipe/sourceunchanged",
+    "RunonlyoriginalC3p2thenC3p3 serially, usingoriginalplanfullparameters afterfreshsimulationresourcegate; no buildoverlap. Fetchtofreshrecovery-owned resultpaths, neveroverwriteoriginalbuild/stoppedrawsnapshots",
+    "Validateeachfully; anyrun/coverage/schema/identity/UID/ledger/route/resourcefailure stops remainingnewwork, preservesallIDs andevidence",
+    "Finalnewrecoveryindexlinksoriginal8unchangedraw/checkers andnewtwoactualraw; fixedsource40objects/tree andreferencehashes; originalstopdeliveryremainsimmutable, separatefull10completionreceipt/QA/handoff"
+  ],
+  "resource_gate": {
+    "no_other_user_or_unknown_project_jobs": true,
+    "min_available_gib": 64,
+    "min_disk_gib": 100,
+    "max_initial_load_1m": 4,
+    "simulation_concurrency": 1,
+    "new_builds": 0
+  },
+  "entry_env_guard": "Keepmainrunner/env compatible untiltworemainingguardedcallsstarted; releaseexplicitlyafterterminal; no silentreleasefromalgorithmcopycompletion",
+  "reason_no_new_experimentIDs_or_SHA": "Theonlydefect isofflinecheckerschema; 8actualcompletedIDsneverrerun, 2pendingIDsbuiltbutneverstarted mayrunonce underunchangedfrozencontract. No simulation source/parameter/input repair occurred",
+  "scope": "Resumeincompletefixedtechnicaltarget, notnewcandidate/effectthreshold orbaselineadoption"
+}

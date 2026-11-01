@@ -1,0 +1,2374 @@
+{
+  "status": "COMPLETE_FOR_ORIGINAL_TEN_DYNAMIC_LABEL_CELLS_WITH_EIGHT_OFFLINE_PLUS_TWO_NEW_RUNS",
+  "scope": "Resumeincompletefixedtechnicaltarget, notnewcandidate/effectthreshold orbaselineadoption",
+  "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "plan_sha256": "d1dce31271e4756e4c90084bc01006e9c4a670de830d24414260a71faacd9599",
+  "original_plan_sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+  "cells": [
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c3-p2",
+      "order": 8,
+      "lb": "ws31-c3",
+      "ws31_label_profile": 2,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0,
+      "status": "PASS",
+      "resource_samples": {
+        "min_sampled_available_gib": 122.4752426147461,
+        "max_sampled_worker_tree_rss_kib": 64788,
+        "claim": "sampled observations only, not exact resource peaks",
+        "max_sampled_load_1m": 0.08,
+        "sample_count": 2,
+        "sampling_interval_seconds": 2,
+        "sample_path": "/home/fnl/lzy/results/20261101-131000-ws31-labeldyn-r1-c3-p2/logs/resource-run-samples.jsonl"
+      },
+      "source_hashes_verified": 40,
+      "transferred_files_verified": 19,
+      "binary_sha256": "09b7b794e249c4fa24f2a1b06b212715b56b4f73965c2fba782c6b3185a5da4e",
+      "acceptance": {
+        "status": "PASS",
+        "scope": "Synthetic dynamic label correctness only",
+        "identity": {
+          "flows": 15,
+          "payload_bytes": 245760,
+          "all_completed": true,
+          "all_demand_origins_match": true,
+          "c2_timing_rows_checked": 0,
+          "trace_sha256": "c4aba985af44a88304ae3e1abe42dbadb7c84c01d0c11ada0ab996d58cd3225a",
+          "fct_sha256": "f1aec9c7ce7d8653dc51bc5a3e87806c1de2192d1acdfee4cd2f6a569eced601"
+        },
+        "profile": 2,
+        "packet_constructions": 255,
+        "accepted_route_rows": 765,
+        "label_route_rows": 765,
+        "three_hops_each_uid": true,
+        "coverage": [
+          {
+            "flow": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 0,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 1,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 0,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 2,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 3,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 2,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 4,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 2,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 5,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 2,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 6,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 7,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 0,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 8,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 3,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 9,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 10,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 3,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 11,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 3,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original": 0,
+            "first_uid": 12,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                0,
+                1
+              ]
+            ],
+            "bucket": 2,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original": 7,
+            "first_uid": 13,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                7,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original": 99,
+            "first_uid": 14,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                99,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          }
+        ],
+        "first_policy_per_original_request": [
+          {
+            "flow": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original": 0,
+            "actual_first_value": 0
+          },
+          {
+            "flow": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original": 7,
+            "actual_first_value": 7
+          },
+          {
+            "flow": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original": 99,
+            "actual_first_value": 99
+          }
+        ],
+        "ordered": {
+          "hashes": {
+            "choice": "8693e035625837100c940a4ff50398a77871369f2b8adfaed8e13befc396f5f6",
+            "route": "738a68486b55f3c726f3e6505e37a533f18c7d576b321c05621783c4b94c990f",
+            "combined": "c770fcb483e1991e093993e57554a13299a67124e65b81484473e81ff63a7437",
+            "choice_without_tag": "889bf1cc2ddd331999580f8ed228f15658bed01e83429fa6df5ae92e53c88633",
+            "route_without_tag": "b90b59bffb71ee4652afe8f3302c14a77d175694449c7a8ab30e9b81b3a94865",
+            "combined_without_tag": "32070b31633806adc1606b92ada1c1bd9f9811809047274fc8b3a7b8197d9513"
+          },
+          "counts": {
+            "route": 765,
+            "choice": 30
+          }
+        },
+        "queue": {
+          "enqueued": 819900,
+          "dequeued": 819900,
+          "dropped": 0,
+          "current": 0,
+          "admission_dropped_bytes": 0,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "path": {
+          "switch_qps": 45,
+          "data_hops": 765,
+          "changed_qps": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "full_rows": 765
+        },
+        "mechanism": {
+          "status": "PASS",
+          "kind": "C3 full source-arrival quota/activity replay",
+          "states": [
+            {
+              "switch": 128,
+              "entries": 15,
+              "fresh": 15,
+              "hits": 240,
+              "restricted": 6,
+              "borrowed": 1,
+              "residual_packets": 16,
+              "residual_wire_bytes": 16152,
+              "bg_activations": 1,
+              "moe_activations": 1,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 1,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 1,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 129,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 130,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 131,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 132,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 133,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 134,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 135,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 136,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 137,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 138,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 139,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 140,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 141,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 142,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 143,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            }
+          ],
+          "dedicated_rows": 31,
+          "dedicated_sha256": "2556686b86ae2d92e08524d0ffa01ce3e40c75b0ffca77b1fc71974a24229d78",
+          "source_first": [
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184549377,
+              "dip": 184565761,
+              "sport": 10000,
+              "dport": 100,
+              "first": 19,
+              "second": 23,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 19
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184549633,
+              "dip": 184566017,
+              "sport": 10000,
+              "dport": 100,
+              "first": 19,
+              "second": 24,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 19
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184549889,
+              "dip": 184566273,
+              "sport": 10000,
+              "dport": 100,
+              "first": 17,
+              "second": 23,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 17
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184550145,
+              "dip": 184566529,
+              "sport": 10000,
+              "dport": 100,
+              "first": 24,
+              "second": 24,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 24
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184550401,
+              "dip": 184566785,
+              "sport": 10000,
+              "dport": 100,
+              "first": 20,
+              "second": 18,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 20
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184550657,
+              "dip": 184567041,
+              "sport": 10000,
+              "dport": 100,
+              "first": 22,
+              "second": 22,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 22
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184550913,
+              "dip": 184567297,
+              "sport": 10000,
+              "dport": 100,
+              "first": 17,
+              "second": 18,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 17
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184551169,
+              "dip": 184567553,
+              "sport": 10000,
+              "dport": 100,
+              "first": 18,
+              "second": 18,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 18
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184551425,
+              "dip": 184567809,
+              "sport": 10000,
+              "dport": 100,
+              "first": 18,
+              "second": 18,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 18
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184551681,
+              "dip": 184568065,
+              "sport": 10000,
+              "dport": 100,
+              "first": 17,
+              "second": 18,
+              "q1": 1048,
+              "q2": 1048,
+              "chosen": 17
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184551937,
+              "dip": 184568321,
+              "sport": 10000,
+              "dport": 100,
+              "first": 18,
+              "second": 17,
+              "q1": 1048,
+              "q2": 2096,
+              "chosen": 18
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184552193,
+              "dip": 184568577,
+              "sport": 10000,
+              "dport": 100,
+              "first": 18,
+              "second": 18,
+              "q1": 2096,
+              "q2": 2096,
+              "chosen": 18
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184552449,
+              "dip": 184568833,
+              "sport": 10000,
+              "dport": 100,
+              "first": 21,
+              "second": 18,
+              "q1": 0,
+              "q2": 3144,
+              "chosen": 21
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184552705,
+              "dip": 184569089,
+              "sport": 10000,
+              "dport": 100,
+              "first": 20,
+              "second": 23,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 20
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184552961,
+              "dip": 184569345,
+              "sport": 10000,
+              "dport": 100,
+              "first": 24,
+              "second": 17,
+              "q1": 0,
+              "q2": 2096,
+              "chosen": 24
+            }
+          ],
+          "source_arrivals_replayed": 255,
+          "source_unique_payload_bytes": 245760,
+          "queue_load_scope": "Observed dedicated first-admission Q checked by comparisons where prescribed; candidate hashes/eligibility/tie-first/activity/borrowing/residual independently replayed",
+          "lazy_state_scope": "Expire before each packet; summary expires live leases but retains pinned entries; counters and conserved ledger verified"
+        },
+        "new_q12_regression": false,
+        "generation": 0,
+        "original_business_counts": {
+          "1": 6,
+          "2": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1
+        }
+      }
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c3-p3",
+      "order": 9,
+      "lb": "ws31-c3",
+      "ws31_label_profile": 3,
+      "flow_file": "ws31_labels_r1.txt",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "ws30_tag_transform": 0,
+      "status": "PASS",
+      "resource_samples": {
+        "sampling_interval_seconds": 2,
+        "min_sampled_available_gib": 122.45960235595703,
+        "sample_path": "/home/fnl/lzy/results/20261101-131000-ws31-labeldyn-r1-c3-p3/logs/resource-run-samples.jsonl",
+        "max_sampled_worker_tree_rss_kib": 81128,
+        "max_sampled_load_1m": 0.07,
+        "claim": "sampled observations only, not exact resource peaks",
+        "sample_count": 2
+      },
+      "source_hashes_verified": 40,
+      "transferred_files_verified": 19,
+      "binary_sha256": "fdeb4622e17c0c4d7750fd9a43a32389175a40d59dac6c13084a59b47ae0d11e",
+      "acceptance": {
+        "status": "PASS",
+        "scope": "Synthetic dynamic label correctness only",
+        "identity": {
+          "flows": 15,
+          "payload_bytes": 245760,
+          "all_completed": true,
+          "all_demand_origins_match": true,
+          "c2_timing_rows_checked": 0,
+          "trace_sha256": "c4aba985af44a88304ae3e1abe42dbadb7c84c01d0c11ada0ab996d58cd3225a",
+          "fct_sha256": "112123383f2388529f3f2eb6dc8a0ed21c1e8caffa8aa89d0e4cbd521d8d08dd"
+        },
+        "profile": 3,
+        "packet_constructions": 255,
+        "accepted_route_rows": 765,
+        "label_route_rows": 765,
+        "three_hops_each_uid": true,
+        "coverage": [
+          {
+            "flow": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 0,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 1,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 0,
+            "wrong_known_cohort": true
+          },
+          {
+            "flow": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 2,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 3,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ]
+            ],
+            "bucket": 2,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 4,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ]
+            ],
+            "bucket": 2,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original": 1,
+            "first_uid": 5,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ]
+            ],
+            "bucket": 2,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 6,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 7,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                1,
+                1
+              ]
+            ],
+            "bucket": 0,
+            "wrong_known_cohort": true
+          },
+          {
+            "flow": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 8,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 3,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 9,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 10,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 3,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original": 2,
+            "first_uid": 11,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                2,
+                1
+              ]
+            ],
+            "bucket": 3,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original": 0,
+            "first_uid": 12,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                0,
+                1
+              ]
+            ],
+            "bucket": 2,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original": 7,
+            "first_uid": 13,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                7,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          },
+          {
+            "flow": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original": 99,
+            "first_uid": 14,
+            "first_construct_elapsed_ns": 0,
+            "early_count": 7,
+            "late_count": 10,
+            "constructed": 17,
+            "unique_sequences": 17,
+            "observed_value_presence": [
+              [
+                99,
+                1
+              ]
+            ],
+            "bucket": 1,
+            "wrong_known_cohort": false
+          }
+        ],
+        "first_policy_per_original_request": [
+          {
+            "flow": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original": 1,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 1
+          },
+          {
+            "flow": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original": 2,
+            "actual_first_value": 2
+          },
+          {
+            "flow": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original": 0,
+            "actual_first_value": 0
+          },
+          {
+            "flow": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original": 7,
+            "actual_first_value": 7
+          },
+          {
+            "flow": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original": 99,
+            "actual_first_value": 99
+          }
+        ],
+        "ordered": {
+          "hashes": {
+            "choice": "842dc60ce91655f22710c0e39bd64d62a6e11caa13cefe21126ff61b5c5458d1",
+            "route": "75275058b5a09e852c3b52a296fc8cc699db37d089aa80a26dbb6bda9f25d6de",
+            "combined": "01cfb1a3c60428cee7f69ae721c96b8a5531cb4b11a60a0179f0f95aef338521",
+            "choice_without_tag": "7aab837bae78cdeda1c4d1d606e92caced4721c3349d08a02f5ead529429e386",
+            "route_without_tag": "cc0febd079ce9b0031ebe982584fd8c67f9fa40d5a8192b6979384b84338e65a",
+            "combined_without_tag": "a065e6d0548ca8eba63f8dcd68f98c3acaa56d47661c58908a047597fe5ee370"
+          },
+          "counts": {
+            "route": 765,
+            "choice": 30
+          }
+        },
+        "queue": {
+          "enqueued": 819900,
+          "dequeued": 819900,
+          "dropped": 0,
+          "current": 0,
+          "admission_dropped_bytes": 0,
+          "queue_rejected_bytes": 0,
+          "violations": 0
+        },
+        "path": {
+          "switch_qps": 45,
+          "data_hops": 765,
+          "changed_qps": 0,
+          "port_changes": 0,
+          "rejected": 0,
+          "full_rows": 765
+        },
+        "mechanism": {
+          "status": "PASS",
+          "kind": "C3 full source-arrival quota/activity replay",
+          "states": [
+            {
+              "switch": 128,
+              "entries": 15,
+              "fresh": 15,
+              "hits": 240,
+              "restricted": 11,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 1,
+              "moe_activations": 1,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 129,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 130,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 131,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 132,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 133,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 134,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 135,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 136,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 137,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 138,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 139,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 140,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 141,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 142,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            },
+            {
+              "switch": 143,
+              "entries": 0,
+              "fresh": 0,
+              "hits": 0,
+              "restricted": 0,
+              "borrowed": 0,
+              "residual_packets": 0,
+              "residual_wire_bytes": 0,
+              "bg_activations": 0,
+              "moe_activations": 0,
+              "bg_borrowers_at_activation_sum": 0,
+              "moe_borrowers_at_activation_sum": 0,
+              "bg_borrowers_at_activation_max": 0,
+              "moe_borrowers_at_activation_max": 0,
+              "conserved": 1,
+              "activity_ns": 20000,
+              "moe_lane_fraction": "1/4",
+              "pinning": 1
+            }
+          ],
+          "dedicated_rows": 15,
+          "dedicated_sha256": "b04cdca9bc78e7004dde16105eeb8f190f3dd64447b1ae3b649832ae4764d134",
+          "source_first": [
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184549377,
+              "dip": 184565761,
+              "sport": 10000,
+              "dport": 100,
+              "first": 19,
+              "second": 23,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 19
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184549633,
+              "dip": 184566017,
+              "sport": 10000,
+              "dport": 100,
+              "first": 17,
+              "second": 18,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 17
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184549889,
+              "dip": 184566273,
+              "sport": 10000,
+              "dport": 100,
+              "first": 19,
+              "second": 23,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 19
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184550145,
+              "dip": 184566529,
+              "sport": 10000,
+              "dport": 100,
+              "first": 22,
+              "second": 22,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 22
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184550401,
+              "dip": 184566785,
+              "sport": 10000,
+              "dport": 100,
+              "first": 22,
+              "second": 24,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 22
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184550657,
+              "dip": 184567041,
+              "sport": 10000,
+              "dport": 100,
+              "first": 22,
+              "second": 22,
+              "q1": 1048,
+              "q2": 1048,
+              "chosen": 22
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184550913,
+              "dip": 184567297,
+              "sport": 10000,
+              "dport": 100,
+              "first": 17,
+              "second": 18,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 17
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184551169,
+              "dip": 184567553,
+              "sport": 10000,
+              "dport": 100,
+              "first": 20,
+              "second": 22,
+              "q1": 0,
+              "q2": 2096,
+              "chosen": 20
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184551425,
+              "dip": 184567809,
+              "sport": 10000,
+              "dport": 100,
+              "first": 18,
+              "second": 18,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 18
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184551681,
+              "dip": 184568065,
+              "sport": 10000,
+              "dport": 100,
+              "first": 17,
+              "second": 18,
+              "q1": 1048,
+              "q2": 0,
+              "chosen": 18
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184551937,
+              "dip": 184568321,
+              "sport": 10000,
+              "dport": 100,
+              "first": 18,
+              "second": 17,
+              "q1": 1048,
+              "q2": 1048,
+              "chosen": 18
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184552193,
+              "dip": 184568577,
+              "sport": 10000,
+              "dport": 100,
+              "first": 18,
+              "second": 18,
+              "q1": 2096,
+              "q2": 2096,
+              "chosen": 18
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184552449,
+              "dip": 184568833,
+              "sport": 10000,
+              "dport": 100,
+              "first": 21,
+              "second": 18,
+              "q1": 0,
+              "q2": 3144,
+              "chosen": 21
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184552705,
+              "dip": 184569089,
+              "sport": 10000,
+              "dport": 100,
+              "first": 20,
+              "second": 23,
+              "q1": 0,
+              "q2": 0,
+              "chosen": 20
+            },
+            {
+              "time_ns": 2005001082,
+              "switch": 128,
+              "sip": 184552961,
+              "dip": 184569345,
+              "sport": 10000,
+              "dport": 100,
+              "first": 24,
+              "second": 17,
+              "q1": 0,
+              "q2": 1048,
+              "chosen": 24
+            }
+          ],
+          "source_arrivals_replayed": 255,
+          "source_unique_payload_bytes": 245760,
+          "queue_load_scope": "Observed dedicated first-admission Q checked by comparisons where prescribed; candidate hashes/eligibility/tie-first/activity/borrowing/residual independently replayed",
+          "lazy_state_scope": "Expire before each packet; summary expires live leases but retains pinned entries; counters and conserved ledger verified"
+        },
+        "new_q12_regression": false,
+        "generation": 0,
+        "original_business_counts": {
+          "1": 6,
+          "2": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1
+        }
+      }
+    }
+  ],
+  "commands": [
+    {
+      "cell": "20261101-131000-ws31-labeldyn-r1-c3-p2",
+      "operation": "guarded-run",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "run",
+        "20261101-131000-ws31-labeldyn-r1-c3-p2",
+        "--lb",
+        "ws31-c3",
+        "--flow-file",
+        "ws31_labels_r1.txt",
+        "--ws30-tag-transform",
+        "0",
+        "--ws31-label-profile",
+        "2",
+        "--topo",
+        "leaf_spine_128_100G_OS2",
+        "--simul-time",
+        "0.01",
+        "--netload",
+        "10",
+        "--bw",
+        "100",
+        "--buffer",
+        "9",
+        "--pfc",
+        "0",
+        "--irn",
+        "1",
+        "--simulation-seed",
+        "1",
+        "--ws30-observe",
+        "2",
+        "--max-concurrent",
+        "1"
+      ],
+      "start_utc": "2026-11-01T06:02:16.065570+00:00",
+      "log": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-dynamic-recovery-r2-evidence\\20261101-131000-ws31-labeldyn-r1-c3-p2\\guarded-run.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T06:02:16.714532+00:00"
+    },
+    {
+      "cell": "20261101-131000-ws31-labeldyn-r1-c3-p3",
+      "operation": "guarded-run",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "run",
+        "20261101-131000-ws31-labeldyn-r1-c3-p3",
+        "--lb",
+        "ws31-c3",
+        "--flow-file",
+        "ws31_labels_r1.txt",
+        "--ws30-tag-transform",
+        "0",
+        "--ws31-label-profile",
+        "3",
+        "--topo",
+        "leaf_spine_128_100G_OS2",
+        "--simul-time",
+        "0.01",
+        "--netload",
+        "10",
+        "--bw",
+        "100",
+        "--buffer",
+        "9",
+        "--pfc",
+        "0",
+        "--irn",
+        "1",
+        "--simulation-seed",
+        "1",
+        "--ws30-observe",
+        "2",
+        "--max-concurrent",
+        "1"
+      ],
+      "start_utc": "2026-11-01T06:02:22.179972+00:00",
+      "log": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-dynamic-recovery-r2-evidence\\20261101-131000-ws31-labeldyn-r1-c3-p3\\guarded-run.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T06:02:22.938770+00:00"
+    }
+  ],
+  "network_runs_started": 2,
+  "core_tests_executed": 0,
+  "build_commands": 0,
+  "sync_commands": 0,
+  "deploy_commands": 0,
+  "prior_eight_simulation_repeats": 0,
+  "driver_pid": 40264,
+  "started_utc": "2026-11-01T06:02:13.300781+00:00",
+  "model_switch": "No switch performed or claimed; no switching interface available",
+  "updated_utc": "2026-11-01T06:02:28.226528+00:00",
+  "deployed_worker_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139"
+}

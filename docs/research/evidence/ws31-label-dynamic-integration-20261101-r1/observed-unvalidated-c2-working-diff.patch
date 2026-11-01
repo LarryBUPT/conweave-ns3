@@ -1,0 +1,33 @@
+diff --git a/src/applications/model/rdma-client.cc b/src/applications/model/rdma-client.cc
+index 1c644b7..589152d 100644
+--- a/src/applications/model/rdma-client.cc
++++ b/src/applications/model/rdma-client.cc
+@@ -197,6 +197,11 @@ void RdmaClient::StartRequest (void)
+                 << " launch_ns=" << now << " wait_ns=" << delay
+                 << " size=" << m_size << std::endl;
+   }
++  DispatchRequest(demand);
++}
++
++void RdmaClient::DispatchRequest (uint64_t demand)
++{
+   // get RDMA driver and add up queue pair
+   Ptr<Node> node = GetNode();
+   Ptr<RdmaDriver> rdma = node->GetObject<RdmaDriver>();
+diff --git a/src/applications/model/rdma-client.h b/src/applications/model/rdma-client.h
+index 6b01ac0..0b18627 100644
+--- a/src/applications/model/rdma-client.h
++++ b/src/applications/model/rdma-client.h
+@@ -62,8 +62,12 @@ public:
+ 
+ protected:
+   virtual void DoDispose (void);
++  // Transport seam for the standalone event-boundary fixture. Production
++  // dispatch retains the same driver call after demand/launch accounting.
++  virtual void DispatchRequest (uint64_t demandStartNs);
+ 
+ private:
++  friend class Ws31StartBoundaryProbe;
+ 
+   virtual void StartApplication (void);
+   virtual void StopApplication (void);

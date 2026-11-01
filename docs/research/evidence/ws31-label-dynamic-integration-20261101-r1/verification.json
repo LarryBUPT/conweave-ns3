@@ -1,0 +1,520 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T06:19:06.335885+00:00",
+  "scope": "Integration node11 fixed1ec dynamic-label technical raw/recovery/reseal; separate mutable adapter WIP",
+  "fixed_accepted_source": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/label-dynamic-node11-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/label-dynamic-node11-handoff.md",
+      "sha256": "3f2a2fb6da78f82d4d1aaee21826e7817e0caac76f6b25ab2e85ca57bc644a9e",
+      "bytes": 6796
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-pilot-main-acceptance-r2.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-pilot-main-acceptance-r2.json",
+      "sha256": "a8049bdcd2899eced021038a38bbe88894df0bac9c702cada473da9612b902f8",
+      "bytes": 8319
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-pilot-main-acceptance-r3.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-pilot-main-acceptance-r3.json",
+      "sha256": "69a4a9b6d1307b03e3e831521646eb42da7bc4542ae49a63c421e271cbea9c69",
+      "bytes": 8319
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-reseal-main-audit-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-reseal-main-audit-r1.json",
+      "sha256": "3a3fd0e47f2967a7faa2852961d5c0d704c22c041f177b786ad4764e82b8346e",
+      "bytes": 1185
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-first8-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-first8-main-acceptance-r1.json",
+      "sha256": "dd3b7ec24873f2f68b23884c3483b468c527c46d28b7b0e89fb807d48575f775",
+      "bytes": 59495
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/adapter-c2-boundary-source-audit-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/adapter-c2-boundary-source-audit-r1.json",
+      "sha256": "9b0c4f76d2192da3319445918a3847bf6f877d652d122c9f6edf2176a48c20e6",
+      "bytes": 1331
+    },
+    {
+      "source": "docs/research/ws31/main/adapter-lifecycle-contract-r1.md",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/adapter-lifecycle-contract-r1.md",
+      "sha256": "0905e5e1a7931face27f7705117e15a4d7cf7048fd84c5fb9050987f8a496100",
+      "bytes": 6339
+    },
+    {
+      "source": "docs/research/ws31/main/label-dynamic-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/label-dynamic-validation-r1.json",
+      "sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+      "bytes": 12348
+    },
+    {
+      "source": "docs/research/ws31/main/label-dynamic-recovery-r2.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/label-dynamic-recovery-r2.json",
+      "sha256": "d1dce31271e4756e4c90084bc01006e9c4a670de830d24414260a71faacd9599",
+      "bytes": 3658
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "f4578a6f9aba13018adda64197fe1ff6ddf6a46cfba5cb30600c1c6e164baf4a",
+      "bytes": 26527
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-index.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-index.json",
+      "sha256": "4e4ab46b7d138903509296faa6d518be86051a7036fa07c77e008ac5760eda13",
+      "bytes": 406944
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-qa.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-qa.json",
+      "sha256": "fb3c6bf26191d3bea951ce0b84a76aa4483ac262619a04fa5ed04679c9f1e09a",
+      "bytes": 843
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-checker.py",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-checker.py",
+      "sha256": "2c2d2e42b2003ada7209e4bd3f139d04f5829af379a4b6688ce02a004395f118",
+      "bytes": 16182
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-index.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-index.json",
+      "sha256": "f0df25a481b353aac8c5d2ca2f5972da43b3d5d203a87d71e25468508601ad25",
+      "bytes": 328237
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-qa.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-qa.json",
+      "sha256": "6a1d280dcb0804365e6565b7afd90d8a90df50276f4f7e681bc8b0c715cee922",
+      "bytes": 509
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-stopped-c3-p1-diagnostic.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-stopped-c3-p1-diagnostic.json",
+      "sha256": "bd6f62419eaac829eb291a5686924408281d302b16b6c3c5c59414cf976f3ba3",
+      "bytes": 15108
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-source-git-tree.txt",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-source-git-tree.txt",
+      "sha256": "47a9947d79e9891364d3b83cf06ecdeba1b5c10ae707ef47eda13053dff1c1be",
+      "bytes": 468304
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-calls-established.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-calls-established.json",
+      "sha256": "75b922332ade1a07d7ba98d91f99f4397d61d1112cb5c48010c2862e9a1dbd1b",
+      "bytes": 169
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-checker.patch",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-checker.patch",
+      "sha256": "8c29103b90914399842455222c5de3e7f2b6269594b5586bc16496f2efb6887a",
+      "bytes": 2616
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-checker.py",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-checker.py",
+      "sha256": "6ce22a20fe87e8ce6e90c9ef4e7d3da7a97cc4eeaf742d1201bcc13da2b5ba7c",
+      "bytes": 17172
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-controller.log",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-controller.log",
+      "sha256": "ad112eaf5ad4d9fd212369d0877117536fcfb96dded825a777fcfa6ac4959e1a",
+      "bytes": 796
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-decision-schema.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-decision-schema.json",
+      "sha256": "994471b6af28352c34387ba206f2c60ec7f8c7e4d4a5758e47d53e150eeb0e17",
+      "bytes": 518
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-driver.py",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-driver.py",
+      "sha256": "bdb39723c152963db7f33b6bee8440d237d5cc04a8c506e4eab74b3f7e591088",
+      "bytes": 9027
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-finalize.py",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-finalize.py",
+      "sha256": "31470d476a5dce74e83a65760ea46d6dc8ed000e1d314dd768922ac422cb6276",
+      "bytes": 22856
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-frozen-plan.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-frozen-plan.json",
+      "sha256": "d1dce31271e4756e4c90084bc01006e9c4a670de830d24414260a71faacd9599",
+      "bytes": 3658
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-guards-released.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-guards-released.json",
+      "sha256": "6a1d8ee39f13950685bcfff73fb891f08a2698df35898d633debe872310555ad",
+      "bytes": 286
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-handoff.md",
+      "sha256": "a32a56631597ee56e1df5099d86d754d4cd8c47797a7908eb2755529eaf576db",
+      "bytes": 3211
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-index-utf8-original.bin",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-index-utf8-original.bin",
+      "sha256": "5835f2e2c95ca6ebe0bae5273a1355250f70b094a719e2a6952ade801ad59165",
+      "bytes": 405881
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-integrity.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-integrity.json",
+      "sha256": "94adf924da2946647db48725ff819a206e8cba8133a7a3f5b536136a32e03909",
+      "bytes": 1243
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-json-encoding-diagnostic.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-json-encoding-diagnostic.json",
+      "sha256": "949ae082a1b317c0d2e36e9acc508169069712138be4e30d1619a88be18cc1e4",
+      "bytes": 2146
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-local-process-gate.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-local-process-gate.json",
+      "sha256": "b3ff82a3124ab2fbc278ec51fb34c04dbb86c0523f6309d0e2a1b4888d71b7c7",
+      "bytes": 88
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-offline-eight-acceptance.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-offline-eight-acceptance.json",
+      "sha256": "64078b9fe360d00b1ca052b11a18cd5004b675371386516c4a0d4692fc561157",
+      "bytes": 4938
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-offline-negative-examples.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-offline-negative-examples.json",
+      "sha256": "33a0614960c4b02fd3ec1e4046de621dcb02fbc7b564098c7080e64700f3d7f2",
+      "bytes": 459
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-original-r1-integrity-after.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-original-r1-integrity-after.json",
+      "sha256": "5abf7eef5a94bd7766dd75f7acbd3517182af86035f68d6db9a1cf09e2d66c0a",
+      "bytes": 58130
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-original-r1-integrity-before.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-original-r1-integrity-before.json",
+      "sha256": "5abf7eef5a94bd7766dd75f7acbd3517182af86035f68d6db9a1cf09e2d66c0a",
+      "bytes": 58130
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-pending-built-source-cache-gate.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-pending-built-source-cache-gate.json",
+      "sha256": "b6590bad1d6d904b1cc40891a30b41b0d656a32853b4526519f383b7215966f6",
+      "bytes": 12199
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-phase-order.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-phase-order.json",
+      "sha256": "2620d305fcc911fa3e437b9a53c004eecf039ce369b1a77936277e26bae9ed2c",
+      "bytes": 3421
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-prepare.py",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-prepare.py",
+      "sha256": "84eeeba761852ff8677b1f8a13de4dc1939b2e10631e5a8dd82dbb1d671eb599",
+      "bytes": 6808
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-qa-utf8-original.bin",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-qa-utf8-original.bin",
+      "sha256": "d680bc0ecd0587af9a91871de49907b2ef98dc8e08ed1e16bfaf11d23370a449",
+      "bytes": 766
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-receipt-utf8-original.bin",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-receipt-utf8-original.bin",
+      "sha256": "9f49b9975960abb3f5e4ed5a28f376dc7d9968b3dfdf9b2a13d85a047773c71a",
+      "bytes": 69313
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-receipt.json",
+      "sha256": "42add5a47766afcbff6e184b943eb089d2d20b95fb79917aa8572c712b488058",
+      "bytes": 69373
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-reference-review.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-reference-review.json",
+      "sha256": "d74ed92052e14281bf4d6a68ca5f9ee087188206c4228613142b19848df79406",
+      "bytes": 1730
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-report.md",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-report.md",
+      "sha256": "591f84bd62ece4f9c464e5f6eb6f236e917095397d5b2226575599a6322c2a89",
+      "bytes": 6028
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-q12-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-q12-main-acceptance-r1.json",
+      "sha256": "17dd8e6072ec862069284a22929364d3fe86a054b72b5b8208de845e05ebb433",
+      "bytes": 1556
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-c1-p1-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-c1-p1-main-acceptance-r1.json",
+      "sha256": "0d9aa5cb322446d9c6ffb2794f034fb0dc0bdd52ae3253f88494877f742b3a3e",
+      "bytes": 5736
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-c1-p2-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-c1-p2-main-acceptance-r1.json",
+      "sha256": "1db604a8456c4245f68248b030ef850acb60de9fa15a2f4c37bffa5609a5a9e8",
+      "bytes": 5855
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-c1-p3-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-c1-p3-main-acceptance-r1.json",
+      "sha256": "ebb6f8a81a384370304a204f1c8dbd195078979ffdcb26fc91216f608cd80990",
+      "bytes": 8594
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-c2-p1-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-c2-p1-main-acceptance-r1.json",
+      "sha256": "a8a69354dd64bb07648daba541cea9278f415fe41fef9bdbef0edd37c7675fa2",
+      "bytes": 5953
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-c2-p2-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-c2-p2-main-acceptance-r1.json",
+      "sha256": "c7aa3a91b449213023dee7e8b341365976caf8258166abc84e94ae773f9b4397",
+      "bytes": 5815
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-c2-p3-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-c2-p3-main-acceptance-r1.json",
+      "sha256": "5b820bda077d8d671a68dc8e4d5731e9ac9dc1069fb68e210a8e3ec165326cb9",
+      "bytes": 8554
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-c3-p1-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-c3-p1-main-acceptance-r1.json",
+      "sha256": "99f61d304ac343759fb77801358dbe5fd4ba4578e36c3094e74e03fda6a493fe",
+      "bytes": 5965
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-c3-p2-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-c3-p2-main-acceptance-r1.json",
+      "sha256": "a2dd835913963a2b43ba918ec57b73c1c4c41a9908f7972ddd31104f4215665a",
+      "bytes": 5844
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-dynamic-c3-p3-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/main/evidence/label-dynamic-c3-p3-main-acceptance-r1.json",
+      "sha256": "42da95113299c53241d5148878c68584b4e3adb336f0571e11ebc5174115dde3",
+      "bytes": 8579
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-q12/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-q12/remote-manifest.json",
+      "sha256": "ae9c2c667f1da97606179bfd6b71f777805c4b078a00be9d76fe16867f0b0fe3",
+      "bytes": 7991
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c1-p1/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c1-p1/remote-manifest.json",
+      "sha256": "a5b624814dcc76cb1788b1145516e35a322eb5aad97a79054ae13f95414c8ed2",
+      "bytes": 7508
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c1-p2/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c1-p2/remote-manifest.json",
+      "sha256": "9463e4d72a166dd8d62af49d874d64735795d29bc1c9967ee81195f3e1ca0bac",
+      "bytes": 7508
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c1-p3/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c1-p3/remote-manifest.json",
+      "sha256": "36a9f8c674b7aeb683fa0752c53fa51af34282a9df71b31d123b8d563717a124",
+      "bytes": 7508
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c2-p1/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c2-p1/remote-manifest.json",
+      "sha256": "69f9314c7434b6a840fdf208575df6406a740a5473ceb4b53d05dd6e2292bbb8",
+      "bytes": 7508
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c2-p2/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c2-p2/remote-manifest.json",
+      "sha256": "69d9c117afee8224fd1d0b640d162038e22e1b019ce13d678bfaa31357de9d63",
+      "bytes": 7492
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c2-p3/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c2-p3/remote-manifest.json",
+      "sha256": "78659f0baf9f8c3ba3f88d02aa6da5cec76f98edc2a66a787d9964ab133e89b6",
+      "bytes": 7508
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c3-p1/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-validation-r1-evidence/20261101-131000-ws31-labeldyn-r1-c3-p1/remote-manifest.json",
+      "sha256": "1f1aa0a2a8f3d92d6c66c57bf5574ccc786e39b389cdee65d27eb8802c3d7338",
+      "bytes": 7508
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-evidence/20261101-131000-ws31-labeldyn-r1-c3-p2/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-evidence/20261101-131000-ws31-labeldyn-r1-c3-p2/remote-manifest.json",
+      "sha256": "1f4f79e29d8f5c74b146df3c6acbfa9413100b8992e146a3d2eb8807a17c0cb0",
+      "bytes": 7508
+    },
+    {
+      "source": "docs/research/ws31/independent/label-dynamic-recovery-r2-evidence/20261101-131000-ws31-labeldyn-r1-c3-p3/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/snapshots/independent/label-dynamic-recovery-r2-evidence/20261101-131000-ws31-labeldyn-r1-c3-p3/remote-manifest.json",
+      "sha256": "3431eb12b861965f71e2c0bef4daeed3705d1be466c17128a2428c2d023151ae",
+      "bytes": 7508
+    }
+  ],
+  "raw_verification": "docs/research/evidence/ws31-label-dynamic-integration-20261101-r1/raw-verification.json",
+  "raw_verification_sha256": "cd046fbe10da31c984c2737af889cbffb388d8cdd9a79c1923656ff5cab1f7ff",
+  "audit_code_sha256": "a8d8fa99c41b87ec29b2d365b217677e033e2967442451832b9b84108b4ef5fd",
+  "root_checks": {
+    "files_hashed": {
+      "documents": 26,
+      "dependencies": 6,
+      "original_r1_files": 268,
+      "reference_files": 4,
+      "results": 193,
+      "supports": 83
+    },
+    "fixed_Git_objects": 40,
+    "source_map_entries": 400,
+    "fixed_tree_entries": 4841,
+    "totals": {
+      "records": 150,
+      "payload_bytes": 2457600,
+      "constructed": 2295,
+      "routes": 7650,
+      "label_routes": 6885,
+      "early_late": 90
+    },
+    "all_actual_UID_construction_hop_presence_and_timing_checked": true,
+    "full_FCT_and_mode_appropriate_reference_projection_checked": true,
+    "C2_exact_hash_waits_checked": 45,
+    "C1_first_policy_score_state_summary_and_C3_first_policy_counters_checked": true,
+    "full_budget_activity_ownership_replay_owner": "WS31 main; not repeated by Integration"
+  },
+  "checker_recovery": {
+    "exact_original_frozen_criteria_retained": true,
+    "only_function_and_paired_reference_block_differ_from_original_checker": true,
+    "C3_generic30_plus_specialized15_vs_Q12_generic45_independently_checked": true,
+    "C2_full_generic_choice_check_retained": true,
+    "three_negative_examples_receipt_retained": true,
+    "recovery_network_runs": 2,
+    "prior_eight_reruns": 0,
+    "new_build_core_sync_deploy": 0,
+    "original_r1_files_unchanged": 268,
+    "historical_raw_preserved_flag_not_rewritten": true,
+    "entry_env_guard_released_explicitly": true
+  },
+  "reseal": {
+    "current_main_acceptance": "label-dynamic-pilot-main-acceptance-r3.json",
+    "current_index_sha256": "4e4ab46b7d138903509296faa6d518be86051a7036fa07c77e008ac5760eda13",
+    "current_QA_sha256": "fb3c6bf26191d3bea951ce0b84a76aa4483ac262619a04fa5ed04679c9f1e09a",
+    "original_UTF8_index_sha256": "5835f2e2c95ca6ebe0bae5273a1355250f70b094a719e2a6952ade801ad59165",
+    "original_UTF8_QA_sha256": "d680bc0ecd0587af9a91871de49907b2ef98dc8e08ed1e16bfaf11d23370a449",
+    "archive_hashes_checked": true,
+    "decoded_index_only_changed": [
+      "documents",
+      "created_utc"
+    ],
+    "cause": "Main temporary defaultCP936 reader produced false JSON escape error; executor created ASCII compatibility packaging with oldUTF8 bytes retained; no experiment/raw/source issue",
+    "raw_cells_source_parameters_resources_unchanged": true
+  },
+  "latest_network_validated_source": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "cumulative_technical_network_cells": 41,
+  "adapter_WIP_observation": {
+    "implementation_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+    "observed_HEAD": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+    "observed_git_status": "M src/applications/model/rdma-client.cc\n M src/applications/model/rdma-client.h\n?? scratch/ws31-start-boundary-test.cc",
+    "C2_file_hashes": {
+      "src/applications/model/rdma-client.cc": {
+        "observed_sha256": "36f3a50762904696aa53865d8872b0db617315bfe66fa3ae0885d1ddc1eb1a26",
+        "matches_main_WIP_source_audit": true
+      },
+      "src/applications/model/rdma-client.h": {
+        "observed_sha256": "a57bf706592f854ba5cb4d97bd882814608ff763b0ed385bc917440baa12b38f",
+        "matches_main_WIP_source_audit": true
+      },
+      "scratch/ws31-start-boundary-test.cc": {
+        "observed_sha256": "5d3efad9b7ad9969a563b74901fb89951f191320ef3ff7e52a1f02607ceb2c2f",
+        "matches_main_WIP_source_audit": true
+      }
+    },
+    "tracked_C2_diff_sha256": "b3b77bcb6d247adcd1c26d049f46f7325041e49834648b24e20fac9c6158a98a",
+    "source_audit_owner": "Main; source extraction and10event cases uncompiled/unexecuted",
+    "fixed1ec_acceptance_does_not_cover_WIP": true,
+    "new_frozen_SHA_or_engineering_or_network_plan": false,
+    "main_may_continue_editing_after_this_snapshot": true
+  },
+  "coordination": {
+    "main_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:17",
+    "main_observed_active": true,
+    "main_status_current_target": {
+      "plan": "label-dynamic-recovery-r2.json",
+      "plan_sha256": "d1dce31271e4756e4c90084bc01006e9c4a670de830d24414260a71faacd9599",
+      "original_plan": "label-dynamic-validation-r1.json",
+      "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "status": "COMPLETE_ALL10_RECOVERY_MAIN_ACCEPTED; no successor dispatched",
+      "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:77",
+      "scope": "Offlinecorrectedchecker andresumeonly2BUILT-unrunC3cells underoriginalfrozencriteria",
+      "main_verifier": "scripts/verify_label_dynamic_raw_r1.py",
+      "accepted_completed_cells": 10,
+      "pending_cells": 0,
+      "guard": "RELEASED explicit after both remaining calls terminal",
+      "active_turn_id": "01a195af-4497-7c63-a1de-faa1114a7ba2",
+      "main_acceptance": "evidence/label-dynamic-pilot-main-acceptance-r3.json"
+    },
+    "sole_independent": "Reported still finalizing current recovery target; no new dispatch",
+    "direct_independent_query_or_wakeup_by_Integration": false
+  },
+  "reference_review": {
+    "source": "independent/label-dynamic-recovery-r2-reference-review.json",
+    "version": "DiffFlow arXiv1604.05107v1,III-A technical/verification archive",
+    "reading_scope": "Same-conversation targeted candidate, classification dataflow and verification reading; review node-specific applicability, not a new full-PDF or publication audit",
+    "borrow": "Separate classifier availability, activation order and original business truth; check lifecycle cleanup separately",
+    "difference": "SDN rule advertisement/spraying versus actual per-packet UID/presence and fixed first-QP policy under RDMA",
+    "not_extrapolated": "No paper efficacy, real classification accuracy/cost or complete lifecycle/adoption conclusion",
+    "new_baselines": []
+  },
+  "boundaries": {
+    "Integration_remote_actions_or_reruns": false,
+    "complete_adapter_or_real_endpoint_drain_reuse": false,
+    "independent_V0_two_sided_effects_or_costs": false,
+    "Ofan_admitted": false,
+    "WS29_accessed": false,
+    "new_combined_baseline": false,
+    "WS31_archived": false
+  },
+  "validation": {
+    "JSON_files_valid": 51,
+    "UTF8_archived_metadata_valid": 3,
+    "frozen_snapshots_valid": 63,
+    "archived_receipt_decoded_equivalent": true,
+    "handoff_sections": 9,
+    "handoff_links_valid": 3,
+    "added_state_links_valid": 7,
+    "raw_receipt_audit_and_WIP_diff_hashes_valid": true,
+    "fixed1ec41_acceptance_vs_unvalidated_WIP_and_no_new_dispatch_consistent": true,
+    "style_review": "Actually read ruanyf README/six chapters retained; hierarchy, spacing, paragraphs, numeric forms, punctuation and document structure checked"
+  }
+}

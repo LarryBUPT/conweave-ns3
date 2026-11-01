@@ -1,0 +1,2247 @@
+{
+  "recorded_utc": "2026-11-01T05:56:14.344698+00:00",
+  "status": "MAIN_ACCEPTED_FIRST_EIGHT_RAW_WITH_INDEPENDENT_CHECKER_SCHEMA_INCIDENT_CONFIRMED",
+  "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "original_plan_sha256": "4dcc993e24db3093f3b7ae5acd0b1dfd1f581fa22455924dccb16fdba4960a90",
+  "original_stop_index_sha256": "f0df25a481b353aac8c5d2ca2f5972da43b3d5d203a87d71e25468508601ad25",
+  "original_QA_sha256": "6a1d280dcb0804365e6565b7afd90d8a90df50276f4f7e681bc8b0c715cee922",
+  "delivery_documents_hashed": 31,
+  "dependencies_hashed": 6,
+  "result_files_hashed": 155,
+  "support_files_hashed": 79,
+  "source_map_entries_checked": 400,
+  "unique_git_objects_verified": 40,
+  "git_tree_entries": 4841,
+  "accepted_cells": 8,
+  "completed_records": 120,
+  "completed_payload_bytes": 1966080,
+  "cells": [
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-q12",
+      "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "lb": "ws30v13-q12",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "original_business_tags": {
+        "1": 6,
+        "2": 6,
+        "0": 1,
+        "7": 1,
+        "99": 1
+      },
+      "packet_tag_data_hops": {
+        "1": 306,
+        "2": 306,
+        "0": 51,
+        "7": 51,
+        "99": 51
+      },
+      "transform": 0,
+      "queue_summary": {
+        "enqueued": 819900,
+        "dequeued": 819900,
+        "dropped": 0,
+        "current": 0,
+        "admission_dropped_bytes": 0,
+        "queue_rejected_bytes": 0,
+        "violations": 0
+      },
+      "path_summary": {
+        "switch_qps": 45,
+        "data_hops": 765,
+        "changed_qps": 0,
+        "port_changes": 0,
+        "rejected": 0,
+        "full_rows": 765
+      },
+      "observation_counts": {
+        "WS30_CHOICE": 45,
+        "WS30_ROUTE": 765,
+        "WS30_QP": 15,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1
+      },
+      "fct_sha256": "77d6cd99e0058017f68e30a15e3fb2948cfd256a2031fc6cdd462cfe913dfe11",
+      "log_sha256": "0572a338c3757f3c0c85438e0b804a86e865737e93f73703a6873151656a3d30",
+      "ordered_hashes_remove_uid_only": {
+        "WS30_CHOICE": "b9290217d43cfde7654f4f804a7ea3973b7135de94fdceff44eb393085b7d1ae",
+        "WS30_ROUTE": "c7731e668d3cc7ef556c74ef0684d91e789ab3289b44e2cfe9c43b323e4155b9"
+      },
+      "label_visibility_replay": {
+        "profile": 0
+      },
+      "status": "PASS_SMALL_DYNAMIC_LABEL_TECHNICAL_SCOPE",
+      "scope": "Raw UID/clock/presence/firstpolicy correctness only; no adapter lifecycle or independent efficacy/cost conclusion"
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c1-p1",
+      "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "lb": "ws31-c1",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "original_business_tags": {
+        "1": 6,
+        "2": 6,
+        "0": 1,
+        "7": 1,
+        "99": 1
+      },
+      "packet_tag_data_hops": {
+        "0": 345,
+        "1": 180,
+        "2": 180,
+        "7": 30,
+        "99": 30
+      },
+      "transform": 0,
+      "queue_summary": {
+        "enqueued": 819900,
+        "dequeued": 819900,
+        "dropped": 0,
+        "current": 0,
+        "admission_dropped_bytes": 0,
+        "queue_rejected_bytes": 0,
+        "violations": 0
+      },
+      "path_summary": {
+        "switch_qps": 45,
+        "data_hops": 765,
+        "changed_qps": 0,
+        "port_changes": 0,
+        "rejected": 0,
+        "full_rows": 765
+      },
+      "observation_counts": {
+        "WS30_ROUTE": 765,
+        "WS30_CHOICE": 30,
+        "WS30_QP": 15,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1
+      },
+      "fct_sha256": "6979fa42d671b385f58a509fb423b26514c3716f6ed0989d49a1d24341e8b811",
+      "log_sha256": "86d66e5dcdde69480a83cfd53de32e53b7eeadd7e8a48950a7255612ab14a88e",
+      "ordered_hashes_remove_uid_only": {
+        "WS30_CHOICE": "28ee1365921dd4ed29d93be3a807bc2adf9cce972191e68fbececb2345dffeb8",
+        "WS30_ROUTE": "384ea79a36d88a7b08c04c7d267efdea23818ffd7a126e4ee9d430f550daea6f"
+      },
+      "mechanism_replay": {
+        "source_arrivals": 255,
+        "choices_scores_checked": 15,
+        "positive_pressure_decisions": 9,
+        "unique_payload": 135000,
+        "duplicate_packets_while_prediction_live": 0,
+        "peak": 15,
+        "expired": 0,
+        "retained_predictor_entries": 0,
+        "first_categories": {
+          "0": 15
+        },
+        "summary_purge_assumed": false
+      },
+      "label_visibility_replay": {
+        "profile": 1,
+        "constructions_checked": 255,
+        "actual_hop_presence_and_UID_joins": 765,
+        "coverage": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original_tag": 0,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original_tag": 7,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original_tag": 99,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          }
+        ],
+        "first_visible_categories": {
+          "0": 15
+        },
+        "actual_error_cohorts": []
+      },
+      "status": "PASS_SMALL_DYNAMIC_LABEL_TECHNICAL_SCOPE",
+      "scope": "Raw UID/clock/presence/firstpolicy correctness only; no adapter lifecycle or independent efficacy/cost conclusion"
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c1-p2",
+      "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "lb": "ws31-c1",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "original_business_tags": {
+        "1": 6,
+        "2": 6,
+        "0": 1,
+        "7": 1,
+        "99": 1
+      },
+      "packet_tag_data_hops": {
+        "1": 306,
+        "2": 306,
+        "0": 51,
+        "7": 51,
+        "99": 51
+      },
+      "transform": 0,
+      "queue_summary": {
+        "enqueued": 819900,
+        "dequeued": 819900,
+        "dropped": 0,
+        "current": 0,
+        "admission_dropped_bytes": 0,
+        "queue_rejected_bytes": 0,
+        "violations": 0
+      },
+      "path_summary": {
+        "switch_qps": 45,
+        "data_hops": 765,
+        "changed_qps": 0,
+        "port_changes": 0,
+        "rejected": 0,
+        "full_rows": 765
+      },
+      "observation_counts": {
+        "WS30_ROUTE": 765,
+        "WS30_CHOICE": 30,
+        "WS30_QP": 15,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1
+      },
+      "fct_sha256": "6979fa42d671b385f58a509fb423b26514c3716f6ed0989d49a1d24341e8b811",
+      "log_sha256": "8533080641e165faf19155807ab36113d17d7ece74652a4f23668dc55485f37c",
+      "ordered_hashes_remove_uid_only": {
+        "WS30_CHOICE": "28ee1365921dd4ed29d93be3a807bc2adf9cce972191e68fbececb2345dffeb8",
+        "WS30_ROUTE": "8211377e4a80d13a7f69b69d66dceae0892439d44736acc92dea69bad33dfd89"
+      },
+      "mechanism_replay": {
+        "source_arrivals": 255,
+        "choices_scores_checked": 15,
+        "positive_pressure_decisions": 9,
+        "unique_payload": 179304,
+        "duplicate_packets_while_prediction_live": 0,
+        "peak": 15,
+        "expired": 0,
+        "retained_predictor_entries": 6,
+        "first_categories": {
+          "1": 6,
+          "2": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1
+        },
+        "summary_purge_assumed": false
+      },
+      "label_visibility_replay": {
+        "profile": 2,
+        "constructions_checked": 255,
+        "actual_hop_presence_and_UID_joins": 765,
+        "coverage": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original_tag": 0,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original_tag": 7,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original_tag": 99,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          }
+        ],
+        "first_visible_categories": {
+          "1": 6,
+          "2": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1
+        },
+        "actual_error_cohorts": []
+      },
+      "status": "PASS_SMALL_DYNAMIC_LABEL_TECHNICAL_SCOPE",
+      "scope": "Raw UID/clock/presence/firstpolicy correctness only; no adapter lifecycle or independent efficacy/cost conclusion"
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c1-p3",
+      "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "lb": "ws31-c1",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "original_business_tags": {
+        "1": 6,
+        "2": 6,
+        "0": 1,
+        "7": 1,
+        "99": 1
+      },
+      "packet_tag_data_hops": {
+        "1": 306,
+        "2": 306,
+        "0": 51,
+        "7": 51,
+        "99": 51
+      },
+      "transform": 0,
+      "queue_summary": {
+        "enqueued": 819900,
+        "dequeued": 819900,
+        "dropped": 0,
+        "current": 0,
+        "admission_dropped_bytes": 0,
+        "queue_rejected_bytes": 0,
+        "violations": 0
+      },
+      "path_summary": {
+        "switch_qps": 45,
+        "data_hops": 765,
+        "changed_qps": 0,
+        "port_changes": 0,
+        "rejected": 0,
+        "full_rows": 765
+      },
+      "observation_counts": {
+        "WS30_ROUTE": 765,
+        "WS30_CHOICE": 30,
+        "WS30_QP": 15,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1
+      },
+      "fct_sha256": "bef11960a10f2241c36459782c25b176ded3e89ba33bd855d51c7772a9148b7f",
+      "log_sha256": "e008c7743bb73a5eed29ba4a9d1d8b8e319dc0a85e431b2685857276953a1f8d",
+      "ordered_hashes_remove_uid_only": {
+        "WS30_CHOICE": "92d17477ec553d9ffb1fcbe7efbe0592e7c8f237ff73d9114716c0313f40403d",
+        "WS30_ROUTE": "430ca27187e0819c197fc8d5e9b08dd2941fb79173519a8f500a32c42e7634f1"
+      },
+      "mechanism_replay": {
+        "source_arrivals": 255,
+        "choices_scores_checked": 15,
+        "positive_pressure_decisions": 9,
+        "unique_payload": 179304,
+        "duplicate_packets_while_prediction_live": 0,
+        "peak": 15,
+        "expired": 0,
+        "retained_predictor_entries": 6,
+        "first_categories": {
+          "1": 6,
+          "2": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1
+        },
+        "summary_purge_assumed": false
+      },
+      "label_visibility_replay": {
+        "profile": 3,
+        "constructions_checked": 255,
+        "actual_hop_presence_and_UID_joins": 765,
+        "coverage": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original_tag": 0,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original_tag": 7,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original_tag": 99,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          }
+        ],
+        "first_visible_categories": {
+          "1": 6,
+          "2": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1
+        },
+        "actual_error_cohorts": [
+          {
+            "src": 0,
+            "dst": 64,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 1,
+            "dst": 65,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 0,
+            "swapped": true
+          },
+          {
+            "src": 2,
+            "dst": 66,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 3,
+            "dst": 67,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 2,
+            "swapped": false
+          },
+          {
+            "src": 4,
+            "dst": 68,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 2,
+            "swapped": false
+          },
+          {
+            "src": 5,
+            "dst": 69,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 2,
+            "swapped": false
+          },
+          {
+            "src": 6,
+            "dst": 70,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 7,
+            "dst": 71,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 0,
+            "swapped": true
+          },
+          {
+            "src": 8,
+            "dst": 72,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 3,
+            "swapped": false
+          },
+          {
+            "src": 9,
+            "dst": 73,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 10,
+            "dst": 74,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 3,
+            "swapped": false
+          },
+          {
+            "src": 11,
+            "dst": 75,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 3,
+            "swapped": false
+          },
+          {
+            "src": 12,
+            "dst": 76,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 0,
+            "bucket": 2,
+            "swapped": false
+          },
+          {
+            "src": 13,
+            "dst": 77,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 7,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 14,
+            "dst": 78,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 99,
+            "bucket": 1,
+            "swapped": false
+          }
+        ]
+      },
+      "status": "PASS_SMALL_DYNAMIC_LABEL_TECHNICAL_SCOPE",
+      "scope": "Raw UID/clock/presence/firstpolicy correctness only; no adapter lifecycle or independent efficacy/cost conclusion"
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c2-p1",
+      "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "lb": "ws31-c2",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "original_business_tags": {
+        "1": 6,
+        "2": 6,
+        "0": 1,
+        "7": 1,
+        "99": 1
+      },
+      "packet_tag_data_hops": {
+        "0": 345,
+        "1": 180,
+        "2": 180,
+        "7": 30,
+        "99": 30
+      },
+      "transform": 0,
+      "queue_summary": {
+        "enqueued": 819900,
+        "dequeued": 819900,
+        "dropped": 0,
+        "current": 0,
+        "admission_dropped_bytes": 0,
+        "queue_rejected_bytes": 0,
+        "violations": 0
+      },
+      "path_summary": {
+        "switch_qps": 45,
+        "data_hops": 765,
+        "changed_qps": 0,
+        "port_changes": 0,
+        "rejected": 0,
+        "full_rows": 765
+      },
+      "observation_counts": {
+        "WS31_C2_DEMAND": 15,
+        "WS31_C2_LAUNCH": 15,
+        "WS30_CHOICE": 45,
+        "WS30_ROUTE": 765,
+        "WS30_QP": 15,
+        "WS31_C2_FINISH": 15,
+        "WS31_C2_STATE": 1,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1
+      },
+      "fct_sha256": "77d6cd99e0058017f68e30a15e3fb2948cfd256a2031fc6cdd462cfe913dfe11",
+      "log_sha256": "51fd25c93b4ccf6372d9a4501655b13531dea6eb4375fc0af42669dc635d6bb7",
+      "ordered_hashes_remove_uid_only": {
+        "WS30_CHOICE": "b9290217d43cfde7654f4f804a7ea3973b7135de94fdceff44eb393085b7d1ae",
+        "WS30_ROUTE": "4560c91988a6c700dc645dedc24454f1310a0618997f1d56668aea4ccce1da1b"
+      },
+      "mechanism_replay": {
+        "exact_hash_timing_checked": 15,
+        "positive_waits": 0,
+        "wait_sum_ns": 0,
+        "wait_max_ns": 0,
+        "positive_waits_by_original_business_tag": {
+          "1": 0,
+          "2": 0,
+          "0": 0,
+          "7": 0,
+          "99": 0
+        }
+      },
+      "regression": {
+        "reference_id": "20261101-131000-ws31-labeldyn-r1-q12",
+        "full_fct_equal": true,
+        "ordered_ROUTE_equal": true,
+        "removed_ROUTE_fields": [
+          "uid",
+          "tag"
+        ]
+      },
+      "label_visibility_replay": {
+        "profile": 1,
+        "constructions_checked": 255,
+        "actual_hop_presence_and_UID_joins": 765,
+        "coverage": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original_tag": 0,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original_tag": 7,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original_tag": 99,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          }
+        ],
+        "first_visible_categories": {
+          "0": 15
+        },
+        "actual_error_cohorts": []
+      },
+      "status": "PASS_SMALL_DYNAMIC_LABEL_TECHNICAL_SCOPE",
+      "scope": "Raw UID/clock/presence/firstpolicy correctness only; no adapter lifecycle or independent efficacy/cost conclusion"
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c2-p2",
+      "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "lb": "ws31-c2",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "original_business_tags": {
+        "1": 6,
+        "2": 6,
+        "0": 1,
+        "7": 1,
+        "99": 1
+      },
+      "packet_tag_data_hops": {
+        "1": 369,
+        "0": 51,
+        "7": 51,
+        "99": 51,
+        "2": 243
+      },
+      "transform": 0,
+      "queue_summary": {
+        "enqueued": 819900,
+        "dequeued": 819900,
+        "dropped": 0,
+        "current": 0,
+        "admission_dropped_bytes": 0,
+        "queue_rejected_bytes": 0,
+        "violations": 0
+      },
+      "path_summary": {
+        "switch_qps": 45,
+        "data_hops": 765,
+        "changed_qps": 0,
+        "port_changes": 0,
+        "rejected": 0,
+        "full_rows": 765
+      },
+      "observation_counts": {
+        "WS31_C2_DEMAND": 15,
+        "WS31_C2_LAUNCH": 15,
+        "WS30_CHOICE": 45,
+        "WS30_ROUTE": 765,
+        "WS30_QP": 15,
+        "WS31_C2_FINISH": 15,
+        "WS31_C2_STATE": 1,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1
+      },
+      "fct_sha256": "e507033542af939cab16e65f8067f19f63335a2efa973919d23d40ea82f78f03",
+      "log_sha256": "b223eb91d6f02f97692fb921c5d5282520ec8ab7183670da9e911424f7535eaa",
+      "ordered_hashes_remove_uid_only": {
+        "WS30_CHOICE": "6b77bb2546d6ce0301fcfe9cdc56ee10bfd012490f737e72f8bb28c35ec277b8",
+        "WS30_ROUTE": "9d5d3c256526ec1bc24de965be3e68ae632bc2d2b0ca7876b0bb800e6a0b7c2d"
+      },
+      "mechanism_replay": {
+        "exact_hash_timing_checked": 15,
+        "positive_waits": 6,
+        "wait_sum_ns": 1588,
+        "wait_max_ns": 413,
+        "positive_waits_by_original_business_tag": {
+          "1": 0,
+          "2": 6,
+          "0": 0,
+          "7": 0,
+          "99": 0
+        }
+      },
+      "label_visibility_replay": {
+        "profile": 2,
+        "constructions_checked": 255,
+        "actual_hop_presence_and_UID_joins": 765,
+        "coverage": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original_tag": 0,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original_tag": 7,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original_tag": 99,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 121,
+            "early_constructions": 5,
+            "late_constructions": 12
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 134,
+            "early_constructions": 5,
+            "late_constructions": 12
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 220,
+            "early_constructions": 4,
+            "late_constructions": 13
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 291,
+            "early_constructions": 3,
+            "late_constructions": 14
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 409,
+            "early_constructions": 2,
+            "late_constructions": 15
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 413,
+            "early_constructions": 2,
+            "late_constructions": 15
+          }
+        ],
+        "first_visible_categories": {
+          "1": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1,
+          "2": 6
+        },
+        "actual_error_cohorts": []
+      },
+      "status": "PASS_SMALL_DYNAMIC_LABEL_TECHNICAL_SCOPE",
+      "scope": "Raw UID/clock/presence/firstpolicy correctness only; no adapter lifecycle or independent efficacy/cost conclusion"
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c2-p3",
+      "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "lb": "ws31-c2",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "original_business_tags": {
+        "1": 6,
+        "2": 6,
+        "0": 1,
+        "7": 1,
+        "99": 1
+      },
+      "packet_tag_data_hops": {
+        "1": 306,
+        "0": 51,
+        "7": 51,
+        "99": 51,
+        "2": 306
+      },
+      "transform": 0,
+      "queue_summary": {
+        "enqueued": 819900,
+        "dequeued": 819900,
+        "dropped": 0,
+        "current": 0,
+        "admission_dropped_bytes": 0,
+        "queue_rejected_bytes": 0,
+        "violations": 0
+      },
+      "path_summary": {
+        "switch_qps": 45,
+        "data_hops": 765,
+        "changed_qps": 0,
+        "port_changes": 0,
+        "rejected": 0,
+        "full_rows": 765
+      },
+      "observation_counts": {
+        "WS31_C2_DEMAND": 15,
+        "WS31_C2_LAUNCH": 15,
+        "WS30_CHOICE": 45,
+        "WS30_ROUTE": 765,
+        "WS30_QP": 15,
+        "WS31_C2_FINISH": 15,
+        "WS31_C2_STATE": 1,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1
+      },
+      "fct_sha256": "3e6848b4a70377684f22f6fa2d9f9cfd8d755750f200031598e772ac41146285",
+      "log_sha256": "cc5e55217c8d89b69b5d7f6bb4bf459b655a0d4590f3b19af2642c36359896c0",
+      "ordered_hashes_remove_uid_only": {
+        "WS30_CHOICE": "30c18ede473ca2277546bbbc15b0b68b7aeccd456e0a24a985230f2c33c0a12c",
+        "WS30_ROUTE": "e6a38debc42f43008c4a1ddb8fb245636c22599d19a67e1723bcb6c41877686a"
+      },
+      "mechanism_replay": {
+        "exact_hash_timing_checked": 15,
+        "positive_waits": 6,
+        "wait_sum_ns": 1457,
+        "wait_max_ns": 409,
+        "positive_waits_by_original_business_tag": {
+          "1": 1,
+          "2": 5,
+          "0": 0,
+          "7": 0,
+          "99": 0
+        }
+      },
+      "label_visibility_replay": {
+        "profile": 3,
+        "constructions_checked": 255,
+        "actual_hop_presence_and_UID_joins": 765,
+        "coverage": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original_tag": 0,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original_tag": 7,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original_tag": 99,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 121,
+            "early_constructions": 5,
+            "late_constructions": 12
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 134,
+            "early_constructions": 5,
+            "late_constructions": 12
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 220,
+            "early_constructions": 4,
+            "late_constructions": 13
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 282,
+            "early_constructions": 3,
+            "late_constructions": 14
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 291,
+            "early_constructions": 3,
+            "late_constructions": 14
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 409,
+            "early_constructions": 2,
+            "late_constructions": 15
+          }
+        ],
+        "first_visible_categories": {
+          "1": 6,
+          "0": 1,
+          "7": 1,
+          "99": 1,
+          "2": 6
+        },
+        "actual_error_cohorts": [
+          {
+            "src": 0,
+            "dst": 64,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 1,
+            "dst": 65,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 0,
+            "swapped": true
+          },
+          {
+            "src": 2,
+            "dst": 66,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 3,
+            "dst": 67,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 2,
+            "swapped": false
+          },
+          {
+            "src": 4,
+            "dst": 68,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 2,
+            "swapped": false
+          },
+          {
+            "src": 5,
+            "dst": 69,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 1,
+            "bucket": 2,
+            "swapped": false
+          },
+          {
+            "src": 6,
+            "dst": 70,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 7,
+            "dst": 71,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 0,
+            "swapped": true
+          },
+          {
+            "src": 8,
+            "dst": 72,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 3,
+            "swapped": false
+          },
+          {
+            "src": 9,
+            "dst": 73,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 10,
+            "dst": 74,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 3,
+            "swapped": false
+          },
+          {
+            "src": 11,
+            "dst": 75,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 2,
+            "bucket": 3,
+            "swapped": false
+          },
+          {
+            "src": 12,
+            "dst": 76,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 0,
+            "bucket": 2,
+            "swapped": false
+          },
+          {
+            "src": 13,
+            "dst": 77,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 7,
+            "bucket": 1,
+            "swapped": false
+          },
+          {
+            "src": 14,
+            "dst": 78,
+            "sport": 10000,
+            "dport": 100,
+            "original_tag": 99,
+            "bucket": 1,
+            "swapped": false
+          }
+        ]
+      },
+      "status": "PASS_SMALL_DYNAMIC_LABEL_TECHNICAL_SCOPE",
+      "scope": "Raw UID/clock/presence/firstpolicy correctness only; no adapter lifecycle or independent efficacy/cost conclusion"
+    },
+    {
+      "id": "20261101-131000-ws31-labeldyn-r1-c3-p1",
+      "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+      "lb": "ws31-c3",
+      "flow_count": 15,
+      "payload_bytes": 245760,
+      "original_business_tags": {
+        "1": 6,
+        "2": 6,
+        "0": 1,
+        "7": 1,
+        "99": 1
+      },
+      "packet_tag_data_hops": {
+        "0": 345,
+        "1": 180,
+        "2": 180,
+        "7": 30,
+        "99": 30
+      },
+      "transform": 0,
+      "queue_summary": {
+        "enqueued": 819900,
+        "dequeued": 819900,
+        "dropped": 0,
+        "current": 0,
+        "admission_dropped_bytes": 0,
+        "queue_rejected_bytes": 0,
+        "violations": 0
+      },
+      "path_summary": {
+        "switch_qps": 45,
+        "data_hops": 765,
+        "changed_qps": 0,
+        "port_changes": 0,
+        "rejected": 0,
+        "full_rows": 765
+      },
+      "observation_counts": {
+        "WS30_ROUTE": 765,
+        "WS30_CHOICE": 30,
+        "WS30_QP": 15,
+        "WS30_QUEUE": 1,
+        "WS30_PATH": 1
+      },
+      "fct_sha256": "77d6cd99e0058017f68e30a15e3fb2948cfd256a2031fc6cdd462cfe913dfe11",
+      "log_sha256": "2cb17ab356a59e577ccfd025cda63c9f33858af1debdde4f1b034784e62ef76c",
+      "ordered_hashes_remove_uid_only": {
+        "WS30_CHOICE": "64d206d231b8fb7fd5d3501755e85890c214903aa02a9e8767437cc9e919d467",
+        "WS30_ROUTE": "4560c91988a6c700dc645dedc24454f1310a0618997f1d56668aea4ccce1da1b"
+      },
+      "mechanism_replay": {
+        "source_arrivals_replayed": 255,
+        "source_route_entries": 15,
+        "dedicated_events_replayed": 15,
+        "restricted": 0,
+        "borrowed": 0,
+        "residual_packets": 0,
+        "residual_wire_bytes": 0,
+        "policy_categories": {
+          "0": 15
+        },
+        "tag1_activations": 0,
+        "tag2_activations": 0,
+        "tag2_borrowers_at_activation_sum": 0
+      },
+      "regression": {
+        "reference_id": "20261101-131000-ws31-labeldyn-r1-q12",
+        "full_fct_equal": true,
+        "ordered_ROUTE_equal": true,
+        "removed_ROUTE_fields": [
+          "uid",
+          "tag"
+        ]
+      },
+      "label_visibility_replay": {
+        "profile": 1,
+        "constructions_checked": 255,
+        "actual_hop_presence_and_UID_joins": 765,
+        "coverage": [
+          {
+            "key": [
+              0,
+              64,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              1,
+              65,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              2,
+              66,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              3,
+              67,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              4,
+              68,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              5,
+              69,
+              10000,
+              100
+            ],
+            "original_tag": 1,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              6,
+              70,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              7,
+              71,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              8,
+              72,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              9,
+              73,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              10,
+              74,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              11,
+              75,
+              10000,
+              100
+            ],
+            "original_tag": 2,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              12,
+              76,
+              10000,
+              100
+            ],
+            "original_tag": 0,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              13,
+              77,
+              10000,
+              100
+            ],
+            "original_tag": 7,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          },
+          {
+            "key": [
+              14,
+              78,
+              10000,
+              100
+            ],
+            "original_tag": 99,
+            "first_elapsed_ns": 0,
+            "early_constructions": 7,
+            "late_constructions": 10
+          }
+        ],
+        "first_visible_categories": {
+          "0": 15
+        },
+        "actual_error_cohorts": []
+      },
+      "status": "PASS_SMALL_DYNAMIC_LABEL_TECHNICAL_SCOPE",
+      "scope": "Raw UID/clock/presence/firstpolicy correctness only; no adapter lifecycle or independent efficacy/cost conclusion"
+    }
+  ],
+  "remaining_built_unrun": [
+    "20261101-131000-ws31-labeldyn-r1-c3-p2",
+    "20261101-131000-ws31-labeldyn-r1-c3-p3"
+  ],
+  "incident": {
+    "type": "Independent offline checker overconstrained commonCHOICE count/hash across different source logging schemas",
+    "original_checker": "../independent/label-dynamic-validation-r1-checker.py",
+    "lines": [
+      173,
+      174,
+      175
+    ],
+    "actual_common_choice_counts": {
+      "C3p1": 30,
+      "QueuePin": 45
+    },
+    "missing_in_common_schema": "15source decisions represented byWS31_C3_ROUTE, notgenericCHOICE",
+    "frozen_requirement": "FullFCT, orderedROUTE uid/tag-normalized, andsourcefirstdecisionprojection, plusallUID/presence/replayconditions",
+    "main_verifier_prepared_before_incident_and_unchanged": true,
+    "main_raw_result": "C3p1 passesfullfrozencontract; knownactivity/restriction/borrow/residual all0, sourceprojection andFCT/ROUTEequalQ12",
+    "simulation_source_or_raw_changed": false,
+    "network_failure_established": false,
+    "extra_field_note": "Oldindexraw_preserved=false forunacceptedC3p1 isstatus-derived; actual complete raw locallypresent/hashed/independentlyaccepted. Preserve historicalflag andclarify correctedreceipt."
+  },
+  "scope": "Partial8/10technicalacceptance only; no goalclosure, no independent effects or adapter lifecycle",
+  "all_per_cell_files_hashed": 234,
+  "artifact_classification": "155pathsunderresults plus79othercellfiles; includes pendingBUILT-onlysnapshots. All234 indexedcellfiles verified; historic index161/73 grouping retained separately.",
+  "background_driver_terminal_check": {
+    "process_id": 40172,
+    "present": false,
+    "checked_utc": "2026-11-01T05:56:54.0399604Z",
+    "method": "LocalWin32_Process exactPID read-only; no process termination"
+  }
+}

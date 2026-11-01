@@ -1,0 +1,402 @@
+{
+  "id": "20261101-131000-ws31-labeldyn-r1-c2-p3",
+  "source_sha": "1ec5eedc24cd863a289b7493e8b3865c70592ab5",
+  "lb": "ws31-c2",
+  "flow_count": 15,
+  "payload_bytes": 245760,
+  "original_business_tags": {
+    "1": 6,
+    "2": 6,
+    "0": 1,
+    "7": 1,
+    "99": 1
+  },
+  "packet_tag_data_hops": {
+    "1": 306,
+    "0": 51,
+    "7": 51,
+    "99": 51,
+    "2": 306
+  },
+  "transform": 0,
+  "queue_summary": {
+    "enqueued": 819900,
+    "dequeued": 819900,
+    "dropped": 0,
+    "current": 0,
+    "admission_dropped_bytes": 0,
+    "queue_rejected_bytes": 0,
+    "violations": 0
+  },
+  "path_summary": {
+    "switch_qps": 45,
+    "data_hops": 765,
+    "changed_qps": 0,
+    "port_changes": 0,
+    "rejected": 0,
+    "full_rows": 765
+  },
+  "observation_counts": {
+    "WS31_C2_DEMAND": 15,
+    "WS31_C2_LAUNCH": 15,
+    "WS30_CHOICE": 45,
+    "WS30_ROUTE": 765,
+    "WS30_QP": 15,
+    "WS31_C2_FINISH": 15,
+    "WS31_C2_STATE": 1,
+    "WS30_QUEUE": 1,
+    "WS30_PATH": 1
+  },
+  "fct_sha256": "3e6848b4a70377684f22f6fa2d9f9cfd8d755750f200031598e772ac41146285",
+  "log_sha256": "cc5e55217c8d89b69b5d7f6bb4bf459b655a0d4590f3b19af2642c36359896c0",
+  "ordered_hashes_remove_uid_only": {
+    "WS30_CHOICE": "30c18ede473ca2277546bbbc15b0b68b7aeccd456e0a24a985230f2c33c0a12c",
+    "WS30_ROUTE": "e6a38debc42f43008c4a1ddb8fb245636c22599d19a67e1723bcb6c41877686a"
+  },
+  "mechanism_replay": {
+    "exact_hash_timing_checked": 15,
+    "positive_waits": 6,
+    "wait_sum_ns": 1457,
+    "wait_max_ns": 409,
+    "positive_waits_by_original_business_tag": {
+      "1": 1,
+      "2": 5,
+      "0": 0,
+      "7": 0,
+      "99": 0
+    }
+  },
+  "label_visibility_replay": {
+    "profile": 3,
+    "constructions_checked": 255,
+    "actual_hop_presence_and_UID_joins": 765,
+    "coverage": [
+      {
+        "key": [
+          0,
+          64,
+          10000,
+          100
+        ],
+        "original_tag": 1,
+        "first_elapsed_ns": 0,
+        "early_constructions": 7,
+        "late_constructions": 10
+      },
+      {
+        "key": [
+          2,
+          66,
+          10000,
+          100
+        ],
+        "original_tag": 1,
+        "first_elapsed_ns": 0,
+        "early_constructions": 7,
+        "late_constructions": 10
+      },
+      {
+        "key": [
+          3,
+          67,
+          10000,
+          100
+        ],
+        "original_tag": 1,
+        "first_elapsed_ns": 0,
+        "early_constructions": 7,
+        "late_constructions": 10
+      },
+      {
+        "key": [
+          4,
+          68,
+          10000,
+          100
+        ],
+        "original_tag": 1,
+        "first_elapsed_ns": 0,
+        "early_constructions": 7,
+        "late_constructions": 10
+      },
+      {
+        "key": [
+          5,
+          69,
+          10000,
+          100
+        ],
+        "original_tag": 1,
+        "first_elapsed_ns": 0,
+        "early_constructions": 7,
+        "late_constructions": 10
+      },
+      {
+        "key": [
+          7,
+          71,
+          10000,
+          100
+        ],
+        "original_tag": 2,
+        "first_elapsed_ns": 0,
+        "early_constructions": 7,
+        "late_constructions": 10
+      },
+      {
+        "key": [
+          12,
+          76,
+          10000,
+          100
+        ],
+        "original_tag": 0,
+        "first_elapsed_ns": 0,
+        "early_constructions": 7,
+        "late_constructions": 10
+      },
+      {
+        "key": [
+          13,
+          77,
+          10000,
+          100
+        ],
+        "original_tag": 7,
+        "first_elapsed_ns": 0,
+        "early_constructions": 7,
+        "late_constructions": 10
+      },
+      {
+        "key": [
+          14,
+          78,
+          10000,
+          100
+        ],
+        "original_tag": 99,
+        "first_elapsed_ns": 0,
+        "early_constructions": 7,
+        "late_constructions": 10
+      },
+      {
+        "key": [
+          8,
+          72,
+          10000,
+          100
+        ],
+        "original_tag": 2,
+        "first_elapsed_ns": 121,
+        "early_constructions": 5,
+        "late_constructions": 12
+      },
+      {
+        "key": [
+          11,
+          75,
+          10000,
+          100
+        ],
+        "original_tag": 2,
+        "first_elapsed_ns": 134,
+        "early_constructions": 5,
+        "late_constructions": 12
+      },
+      {
+        "key": [
+          9,
+          73,
+          10000,
+          100
+        ],
+        "original_tag": 2,
+        "first_elapsed_ns": 220,
+        "early_constructions": 4,
+        "late_constructions": 13
+      },
+      {
+        "key": [
+          1,
+          65,
+          10000,
+          100
+        ],
+        "original_tag": 1,
+        "first_elapsed_ns": 282,
+        "early_constructions": 3,
+        "late_constructions": 14
+      },
+      {
+        "key": [
+          10,
+          74,
+          10000,
+          100
+        ],
+        "original_tag": 2,
+        "first_elapsed_ns": 291,
+        "early_constructions": 3,
+        "late_constructions": 14
+      },
+      {
+        "key": [
+          6,
+          70,
+          10000,
+          100
+        ],
+        "original_tag": 2,
+        "first_elapsed_ns": 409,
+        "early_constructions": 2,
+        "late_constructions": 15
+      }
+    ],
+    "first_visible_categories": {
+      "1": 6,
+      "0": 1,
+      "7": 1,
+      "99": 1,
+      "2": 6
+    },
+    "actual_error_cohorts": [
+      {
+        "src": 0,
+        "dst": 64,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 1,
+        "dst": 65,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 0,
+        "swapped": true
+      },
+      {
+        "src": 2,
+        "dst": 66,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 3,
+        "dst": 67,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 2,
+        "swapped": false
+      },
+      {
+        "src": 4,
+        "dst": 68,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 2,
+        "swapped": false
+      },
+      {
+        "src": 5,
+        "dst": 69,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 1,
+        "bucket": 2,
+        "swapped": false
+      },
+      {
+        "src": 6,
+        "dst": 70,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 7,
+        "dst": 71,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 0,
+        "swapped": true
+      },
+      {
+        "src": 8,
+        "dst": 72,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 3,
+        "swapped": false
+      },
+      {
+        "src": 9,
+        "dst": 73,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 10,
+        "dst": 74,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 3,
+        "swapped": false
+      },
+      {
+        "src": 11,
+        "dst": 75,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 2,
+        "bucket": 3,
+        "swapped": false
+      },
+      {
+        "src": 12,
+        "dst": 76,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 0,
+        "bucket": 2,
+        "swapped": false
+      },
+      {
+        "src": 13,
+        "dst": 77,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 7,
+        "bucket": 1,
+        "swapped": false
+      },
+      {
+        "src": 14,
+        "dst": 78,
+        "sport": 10000,
+        "dport": 100,
+        "original_tag": 99,
+        "bucket": 1,
+        "swapped": false
+      }
+    ]
+  },
+  "status": "PASS_SMALL_DYNAMIC_LABEL_TECHNICAL_SCOPE",
+  "scope": "Raw UID/clock/presence/firstpolicy correctness only; no adapter lifecycle or independent efficacy/cost conclusion"
+}
