@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:9"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:10"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -170,9 +170,9 @@
   ],
   "next_registered_pilot": {
     "plan": "docs/research/ws31/main/c23-controls-validation-r1.json",
-    "fixed_snapshot": "docs/research/evidence/ws31-c1-controls-integration-20261101-r1/snapshots/main/c23-controls-validation-r1.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/snapshots/main/c23-controls-validation-r1.json",
     "plan_sha256": "ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49",
-    "status": "FROZEN_NOT_DISPATCHED_WHILE_CURRENT_FINAL_DELIVERY_ACTIVE",
+    "status": "DISPATCHED_AFTER_C1_FINAL_QA_AND_PRIOR_TERMINAL_IDLE_NOT_INTEGRATION_ACCEPTED",
     "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "cells": 5,
     "order": [
@@ -191,7 +191,9 @@
     "fresh_resource_ID_cache_gate_required": true,
     "root_remote_execution_status_checked": false,
     "scope": "Remaining C2/C3 matched controls/fallback only; complete labels/lifecycle/independent V0 and effects remain",
-    "executor": "01a19323-2201-7b23-a0f1-905c71496d38"
+    "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+    "main_observed_prior_independent_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:60",
+    "dispatch_reconciliation": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/verification.json"
   },
   "last_verified_zero_control_checkpoint": {
     "date": "2026-11-01",
@@ -265,10 +267,11 @@
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "C1 seven technical raw cases accepted; final delivery active",
-    "record": "docs/handoffs/2026-11-01-ws31-c1-controls-integration.md",
+    "kind": "C1 final delivery accepted and C23 five controls dispatched",
+    "verification": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/verification.json",
+    "raw_acceptance_unchanged": true,
+    "new_raw_calculation_by_root": false,
     "user_decision_required": false,
-    "independent_effects_validated": false,
     "new_baseline_established": false
   },
   "last_verified_C2_label_checkpoint": {
@@ -313,6 +316,14 @@
       "user_decision_required": false,
       "independent_effects_validated": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "C1 seven technical raw cases accepted; final delivery active",
+      "record": "docs/handoffs/2026-11-01-ws31-c1-controls-integration.md",
+      "user_decision_required": false,
+      "independent_effects_validated": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -331,8 +342,9 @@
     "full_R_history_replay_owner": "WS31 main",
     "size_and_unknown_regressions_pass": true,
     "cost_and_lazy_expiry_boundaries_preserved": true,
-    "final_delivery": "Sole independent active; not a new experiment goal",
-    "scope": "Technical matched controls and fallback only; no independent V0 or effects"
+    "final_delivery": "COMPLETE: main final QA; Integration verified final index/QA identities and unchanged raw acceptance linkage",
+    "scope": "Technical matched controls and fallback only; no independent V0 or effects",
+    "final_delivery_verification": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/verification.json"
   },
   "C1_state_cost_boundary": {
     "class_progress_peak": 58,
@@ -352,6 +364,7 @@
   "foreground_background_coordination": {
     "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
     "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
-    "root_restarted_jobs": false
+    "root_restarted_jobs": false,
+    "phase_update": "C1 final QA complete; next five-control target dispatched after terminal+idle. Earlier cursor58/59 observation retained as history."
   }
 }

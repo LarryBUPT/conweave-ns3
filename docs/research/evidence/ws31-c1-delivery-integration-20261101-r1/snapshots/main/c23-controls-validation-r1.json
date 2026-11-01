@@ -1,0 +1,131 @@
+{
+  "workstream": "WS-31",
+  "stage": "C2 and C3 remaining matched-control/unknown technical checks r1",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "branch": "feature/ws31-candidates",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "prerequisite": "evidence/c1-controls-pilot-main-acceptance-r1.json",
+  "inputs": {
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+    "config/ws31_unknown_r1.txt": "0dc3245f6a534ab8f1bd2dfbc4ada4cceeb2e3c3b8e8b8875fdb4f7c71b89126"
+  },
+  "cells": [
+    {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c2-unified",
+      "order": 1,
+      "lb": "ws31-c2-unified",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c2-size",
+      "order": 2,
+      "lb": "ws31-c2-size",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c3-fixed",
+      "order": 3,
+      "lb": "ws31-c3-fixed",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c3-size",
+      "order": 4,
+      "lb": "ws31-c3-size",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c3-unknown",
+      "order": 5,
+      "lb": "ws31-c3",
+      "flow_file": "ws31_unknown_r1.txt",
+      "flow_count": 6,
+      "payload_bytes": 28278,
+      "ws30_tag_transform": 0
+    }
+  ],
+  "common": {
+    "topo": "leaf_spine_128_100G_OS2",
+    "simul_time": "0.01",
+    "netload": 10,
+    "bw": 100,
+    "buffer": 9,
+    "pfc": 0,
+    "irn": 1,
+    "simulation_seed": 1,
+    "ws30_observe": 2,
+    "max_concurrent": 1
+  },
+  "build_resources": {
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "rationale": "Previous c4 three-build pilot: all3 isolated optimized -j2 builds completed before serial simulation, max6 sampled cc1plus, min120.956GiB available memory, max6.14 sampled load; no other-user/unknown-project work. Reuse cap3/six compile tasks only after fresh gate; samples are not exact peaks.",
+    "fresh_batch_admission": {
+      "no_other_user_or_unknown_project_jobs": true,
+      "min_available_gib": 64,
+      "min_disk_gib": 100,
+      "max_initial_load_1m": 4
+    },
+    "during_batch": "Record sampled load/memory/free disk at modest intervals; keep existing guarded worker checks; no simultaneous simulation. If unavailable/contended, fall back to one build, pause new work as required.",
+    "after_builds": "All five independent builds accepted before serial simulation in cells order c2-unified, c2-size, c3-fixed, c3-size, c3-unknown; no build/simulation overlap."
+  },
+  "core_tests": "None repeated: no algorithm source change. Guarded new isolated full build per new ID only. No Ofan/RR work.",
+  "source_cache": "Audit exact already synced506 personal origin/ref/tree/clean and uncreated IDs; reuse only after full gates; prescribed sync/bundle only if needed, preserving all attempts and no unknown-job bypass.",
+  "execution": "Wait currentC1 goal terminal and idle; fresh source/ID/jobs/resources gate, <=3 parallel guarded optimized -j2 builds/6 compile tasks in3+2 waves; all5 accepted before serial fixed5 runs.",
+  "required_common": [
+    "Exact fixed source/input/topology/config/seed; special composition/lifecycle/tag transforms/faults alloff",
+    "All identities and payload bytes complete once; rawFCT original demand, no completion-window filtering",
+    "No drop/reject/queue violation/within-QP port changes/observation overflow; preserve full source/input/binary/raw/config/meta/log/resource records",
+    "C2 original business tag, policy_tag and packet-tag identities retained; recompute each tuple hash and demand/launch/finish/FCT; request/byte ledgers balanced",
+    "C3 source first admissions and all borrowed residuals replayed using20000ns activity, firstceil(N/4) ownership, original pinned routes; label0/7/99 maps policy0 without changing packet/business label"
+  ],
+  "required_by_cell": {
+    "c2-unified": [
+      "All104 requests eligible for frozen hash delay0..500ns regardless tag/size; positive waits in originaltag1 andtag2, exact tuple values and original-demand FCT. Existing input known all104 tuple hashes nonzero; no performance direction claim."
+    ],
+    "c2-size": [
+      "Only8192B requests eligible; complete FCT and orderedCHOICE/ROUTE removeuid identical to new506 C2 default reference; per-flow waits and original-demand timing identical. Label-size binding, not independent semantic evidence."
+    ],
+    "c3-fixed": [
+      "Known categories always restricted to their own ports even when other class inactive;104 source route entries, positive restrictions, borrowed_admissions=0 and residual_packets/wire_bytes=0; each new candidate and chosen port belongs to own set; existing routes retained."
+    ],
+    "c3-size": [
+      "Main input size-class mapping equals known labels; fullFCT and orderedROUTE removeuid identical to acceptedc4 C3; all dedicated WS31_C3_ROUTE fields/order and per-switch summary counters equal, including borrowed residuals and activations."
+    ],
+    "c3-unknown": [
+      "Original0/7/99 remain packet/business labels; policycategory0, no restricted/borrowed/residual or knownclass activation; all6 complete. FullFCT and orderedROUTE removeuid equal new506 unknownQ12 reference; source first candidate/queue/chosen/time/tuple projection matches Q12."
+    ]
+  },
+  "references": {
+    "c2-size": "20261101-074000-ws31-c2tag-r1-default",
+    "c3-size": "20261101-071042-ws31-dyn-r1-c3",
+    "c3-unknown": "20261101-074000-ws31-c2tag-r1-unknown-q12"
+  },
+  "stop_conditions": [
+    "Any build/core/run/identity/time/bytes/path/accounting/hash/default-regression failure; preserve ID and stop remaining runs",
+    "Any required dynamic/label branch missing; report coverage gap before additional runs, no threshold retuning",
+    "Unknown other-user/project work or resource contention; pause new work or lower to one build per existing policy"
+  ],
+  "scope": "Technical matched controls/fallback only, no effects/calibration/new baseline; do not alter500ns/templates/activity/quota or add cells",
+  "still_required_after": [
+    "C1/C3 remove/swap and remaining error/delayed-label conditions",
+    "Complete adapter lifecycle and exceptional budget/quota branches with preserved correctness receipts",
+    "Independent C1V0 and frozen two-sided business-batch/background/state/runtime-cost validation for all candidates",
+    "User final adoption; no new combined baseline before validation"
+  ]
+}

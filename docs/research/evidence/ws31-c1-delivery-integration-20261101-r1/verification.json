@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T01:57:35.695869+00:00",
+  "scope": "Final C1 delivery identity and C23 dispatch reconciliation only; no raw rerun/recalculation",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/evidence/c1-controls-delivery-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/snapshots/main/evidence/c1-controls-delivery-main-acceptance-r1.json",
+      "sha256": "f735a7bb5e7b645552fc5f136cd5113a119c33eef56ba72adc5e20bd7a38595f",
+      "bytes": 600
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-index.json",
+      "snapshot": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-index.json",
+      "sha256": "00355c8f25452a06355efa1b90252834e8a847e9b186060c9d4863f0a1583825",
+      "bytes": 33212
+    },
+    {
+      "source": "docs/research/ws31/independent/c1-controls-validation-r1-delivery-qa.json",
+      "snapshot": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/snapshots/independent/c1-controls-validation-r1-delivery-qa.json",
+      "sha256": "fe00ca29bb86776f408bc59450df0bd879097047c8d4e036491cb8f13ca39ddd",
+      "bytes": 560
+    },
+    {
+      "source": "docs/research/ws31/main/c23-controls-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/snapshots/main/c23-controls-validation-r1.json",
+      "sha256": "ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49",
+      "bytes": 7276
+    },
+    {
+      "source": "docs/research/ws31/main/c23-controls-validation-r1.md",
+      "snapshot": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/snapshots/main/c23-controls-validation-r1.md",
+      "sha256": "0c7b242626b4615863895e5496f41de19adf9f87fa975181b1c16b5856747f93",
+      "bytes": 2546
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "0900ab18f5fde0b6f3c7220647a1e731004af8eff334afde6308e56705a77bd9",
+      "bytes": 15163
+    }
+  ],
+  "index_sha256": "00355c8f25452a06355efa1b90252834e8a847e9b186060c9d4863f0a1583825",
+  "QA_sha256": "fe00ca29bb86776f408bc59450df0bd879097047c8d4e036491cb8f13ca39ddd",
+  "unchanged_accepted_C1_raw_receipt_sha256": "fd3bfd6ef20a4ad4fe2946414364f4e5724f9a3cb455e524fb3849cb8256a700",
+  "main_final_delivery_checks": {
+    "documents_hashed": 18,
+    "dependencies_hashed": 3,
+    "support_files_hashed": 74,
+    "reference_files_hashed": 2,
+    "full_git_tree_entries_matched": 4836
+  },
+  "attribution": "Full final document/reference/tree QA by main; Integration checked index/QA identities and linkage to its unchanged frozen accepted raw receipt",
+  "next_goal": {
+    "plan": "docs/research/ws31/main/c23-controls-validation-r1.json",
+    "sha256": "ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49",
+    "cells": 5,
+    "status": "DISPATCHED per main coordination message after unique independent terminal+idle cursor60",
+    "order": [
+      "ws31-c2-unified",
+      "ws31-c2-size",
+      "ws31-c3-fixed",
+      "ws31-c3-size",
+      "ws31-c3"
+    ],
+    "no_source_or_criteria_change": true,
+    "source_cores_or_old_main_zero_runs_repeated": false,
+    "all_five_builds_before_serial_runs": true,
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "fresh_resource_gate_required": true,
+    "actual_remote_progress_not_checked_by_root": true
+  },
+  "main_status_at_capture": {
+    "planned_next_goal": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE",
+    "active_controls_C1": "COMPLETE_7_OF_7_RAW_AND_FINAL_DELIVERY_MAIN_ACCEPTED",
+    "interpretation": "Direct dispatch notice and captured current-status both confirm C1 final QA complete and successor dispatched; root does not edit main-owned status."
+  },
+  "coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:10",
+  "boundaries": {
+    "remote_access": false,
+    "new_goal_or_duplicate_dispatch_by_root": false,
+    "old_raw_or_receipts_modified": false,
+    "new_V0_effect_or_combined_baseline_claim": false,
+    "reference_review": "Final QA identity update only; no new scientific node or extra literature rereview"
+  },
+  "validation": {
+    "json_files_valid": 7,
+    "new_links_valid": 8,
+    "snapshot_hashes_valid": 6,
+    "final_delivery_and_dispatched_successor_consistent": true,
+    "no_raw_or_scope_change": true
+  }
+}

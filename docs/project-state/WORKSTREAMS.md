@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; C1 SEVEN TECHNICAL RAW CELLS ACCEPTED; FINAL DELIVERY ACTIVE | [最新交接](../handoffs/2026-11-01-ws31-c1-controls-integration.md)：532 记录／1,009,966,316 B；Integration 核 166 结果、85 支持及请求／路径／实际评分，大小及未知回归通过。实际状态峰值不等、惰性清理及未知终态 3 条存储保留 | 后台已完成、仅同目标交付收尾，不能按前景 idle 重启实验。C2／C3 五格冻结待派发；完整标签生命周期、独立 V0／效果未完成。Ofan 暂缓，无新组合基线 |
+| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; C1 FINAL DELIVERY ACCEPTED; C23 FIVE CONTROLS DISPATCHED | [最新交接](../handoffs/2026-11-01-ws31-c1-controls-integration.md)：532 记录／1,009,966,316 B；Integration 核 166 结果、85 支持及请求／路径／实际评分，大小及未知回归通过。实际状态峰值不等、惰性清理及未知终态 3 条存储保留 | C1 最终交付 QA 已通过，确认前目标终态／idle 后已派 C2／C3 五格，见[更新](../research/evidence/ws31-c1-delivery-integration-20261101-r1/update.md)；完整标签生命周期、独立 V0／效果未完成。Ofan 暂缓，无新组合基线 |
 | WS-30 | ClassReserve 补正、QueuePin v13 与投稿前修订 | COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE | [收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作 | 旧监督 PAUSED；两个实验对话已归档并复核，见[归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)；投稿待核及返修留 Integration |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |

@@ -1,0 +1,581 @@
+{
+  "status": "COMPLETE_FOR_C1_MATCHED_CONTROLS_AND_UNKNOWN_TECHNICAL_SCOPE_ONLY",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "plan_sha256": "115a840e86a8829d6e74923c077579963290514c9704b846efa366b086106297",
+  "verification": {
+    "status": "PASS",
+    "cells": 7,
+    "failures": 0,
+    "result_file_hash_checks": 166,
+    "unique_fixed_source_objects_checked": 35,
+    "source_map_equal_before_build_and_after_run": true,
+    "source_tree_entries": 4836,
+    "completed_records": 532,
+    "completed_payload_bytes": 1009966316,
+    "size_fct_route_complete_score_match": true,
+    "unknown_fct_route_category_normalized_score_match": true,
+    "new_builds_runs_core_tests_by_finalizer": 0,
+    "raw_replay_scope": "Rechecked all FCT identities/origins, all result hashes and paired ordered streams; full pressure/history arithmetic replay remains original saved driver plus separate main verifier",
+    "source_git_status": "",
+    "source_branch": "feature/ws31-candidates",
+    "source_head": "50603927fc09a68d9f2e038129aaee3a3d021081"
+  },
+  "cells": [
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unified",
+      "name": "unified",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c1-controls-validation-r1-evidence\\20261101-083000-ws31-c1ctrl-r1-unified\\results",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "result_files_verified": 28,
+      "binary_sha256": "f605c0cfafaa8a6ef8688fde75ef9a3063b9fb95ce7c8e24bbff8b80b51d0e27",
+      "fct_sha256": "958668e05195f431afbf1ca98a98ebe1b3326d01888fa0df016e23e17c2689aa",
+      "route": {
+        "rows": 606168,
+        "sha256": "356d9ed7dfc8f4e08eb09cddd793851ba79b4cd9e599f8d66bcddfbad0b68387"
+      },
+      "score": {
+        "rows": 104,
+        "sha256": "a5862c3e6ee4a7192590812b1f1176456eafb8657778107cdf330a68d14f9cfc"
+      },
+      "score_without_category": {
+        "rows": 104,
+        "sha256": "339d9f27858e66ea912db62e6dfdd3a7b27ab23ba58d5438e8e975d810f864d6"
+      },
+      "control_replay": {
+        "mode": "ws31-c1-unified",
+        "status": "PASS",
+        "source_arrivals_replayed": 202056,
+        "source_unique_payload_bytes": 201981952,
+        "source_observed_packet_bytes_48B_framing": 211680640,
+        "nonzero_pressure_decisions": 87,
+        "dedicated_score_rows": 104,
+        "dedicated_score_sha256": "a5862c3e6ee4a7192590812b1f1176456eafb8657778107cdf330a68d14f9cfc",
+        "dedicated_score_without_category_sha256": "339d9f27858e66ea912db62e6dfdd3a7b27ab23ba58d5438e8e975d810f864d6",
+        "secondary_QueuePin_choices_checked": 208,
+        "predictor_peak_max": 42,
+        "predictor_expired_sum": 0,
+        "unique_payload_counter_replayed": 871360,
+        "final_predictor_entries": 0,
+        "history_observations": 0,
+        "history_value_queries_replayed": 0,
+        "history_port_states": 0,
+        "progress_interval_work_skipped": false,
+        "reconstruction_scope": "Fixed506, MTU1000, source switch framing48B, no-drop ordered source trace; Q uses reported dedicated measurements, R and chosen independently replayed",
+        "cost_claim": "Different interval work/state peaks retained; no equal arithmetic or end-to-end runtime cost claim"
+      },
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ],
+      "build_duration": [
+        "6m36.308s"
+      ],
+      "supporting_files": {
+        "acceptance.json": "5ea67261846565ed883611867ac0594f52079652cf389433570a4db7d66eadc2",
+        "all-input-verifier.log": "9b0f18bc0fe36bbe80d72496f0932f703a9650739075f7adf4a7f0fc2434def7",
+        "control-replay.json": "aac5f149bc5e29958787b3f246e272f326b17890892c384bfe09285518bf17b0",
+        "guarded-build.log": "7d9eb63307e47af8b64b19ddb53c5ef8e3276c7b30fb3586e16ebfed05cf66fd",
+        "guarded-run.log": "eeb9c90906827efc8d353f50959f8daf35e7edcc8eedd5821344b7cb70f6ac90",
+        "remote-manifest.json": "967bb4f85224f34a053c815fb2436481e536c99f35405a609f8be2fb80d89244",
+        "resources-after-run.json": "8ca112223c07817f5a7d292a135c9b933a888b47742fcd5916316bbe2ad65015",
+        "resources-batch-before.json": "58f7591679b70c9c871e268dc17551319679b12a56a308f3d815d4dffd5cbc3a",
+        "resources-before-build-wave.json": "f4b36e1ef4183e21af12a1d47723b918214c8c19cab0e57f8c442bae9ef05a9b",
+        "resources-before-run.json": "4bc6fac0469f3809328e536cd7023e97e0f87006b4d822561cec501ab1cfa021",
+        "run-monitor.json": "2eb6e7f579544820f508e30fbda131431bb7f9fc55c298877f66152be14220e0",
+        "transfer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-count",
+      "name": "count",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c1-controls-validation-r1-evidence\\20261101-083000-ws31-c1ctrl-r1-count\\results",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "result_files_verified": 25,
+      "binary_sha256": "679c73bb946ab2a99efc3f765eb3ed15ec4841d667dbc0401fce4b46588fdeb7",
+      "fct_sha256": "be0a4e7e60b41960b4ccd796ebe0f0345146521882f61a9de6039cf755c7cfcc",
+      "route": {
+        "rows": 606168,
+        "sha256": "afbbeb9197fbdaba214e75195898ac974d598167aa1ca87b8b0406bee133ed8e"
+      },
+      "score": {
+        "rows": 104,
+        "sha256": "79ec5bc440c33c6089da2fac75d32bb6d223867ad3bd923b8200c23f22f4f2e8"
+      },
+      "score_without_category": {
+        "rows": 104,
+        "sha256": "ef883046b9885ed8026696a888d3db16ec68e0d5b0187410575cb8d667f4da18"
+      },
+      "control_replay": {
+        "mode": "ws31-c1-count",
+        "status": "PASS",
+        "source_arrivals_replayed": 202056,
+        "source_unique_payload_bytes": 201981952,
+        "source_observed_packet_bytes_48B_framing": 211680640,
+        "nonzero_pressure_decisions": 95,
+        "dedicated_score_rows": 104,
+        "dedicated_score_sha256": "79ec5bc440c33c6089da2fac75d32bb6d223867ad3bd923b8200c23f22f4f2e8",
+        "dedicated_score_without_category_sha256": "ef883046b9885ed8026696a888d3db16ec68e0d5b0187410575cb8d667f4da18",
+        "secondary_QueuePin_choices_checked": 208,
+        "predictor_peak_max": 80,
+        "predictor_expired_sum": 104,
+        "unique_payload_counter_replayed": 0,
+        "final_predictor_entries": 0,
+        "history_observations": 0,
+        "history_value_queries_replayed": 0,
+        "history_port_states": 0,
+        "progress_interval_work_skipped": true,
+        "reconstruction_scope": "Fixed506, MTU1000, source switch framing48B, no-drop ordered source trace; Q uses reported dedicated measurements, R and chosen independently replayed",
+        "cost_claim": "Different interval work/state peaks retained; no equal arithmetic or end-to-end runtime cost claim"
+      },
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ],
+      "build_duration": [
+        "6m37.584s"
+      ],
+      "supporting_files": {
+        "acceptance.json": "4b875bd99823edfd55b99bf7123111134c3104a04654a35d971b86ccd33d3ee4",
+        "all-input-verifier.log": "4e1528a168cb7f7a869618e119e76882d158bf1b83e99279ffc3983ba941b031",
+        "control-replay.json": "9ae1b2be4d24e1fb3194de1cff66d8b831dd106df3907bc0a177716e64653b67",
+        "guarded-build.log": "494a8638cda13957266b01c50163b04dcfce0532bc82b9f4832c7415b0c756fb",
+        "guarded-run.log": "1e943d173b375f10448db76d62ecfddb55b8907828b18b3a84065bb0abe70788",
+        "remote-manifest.json": "38afcc7774d9560c5867cdea8fe4c9a55cf2248ec8ba0e6f9fb65a5893640ace",
+        "resources-after-run.json": "2d334fa165e0cd664883d80ef255c839ab5ef9fe326b8c7a62e7728c847c2688",
+        "resources-before-run.json": "74ae5c99662e56b74f06d000ae4c579f03cdbb8ba71960cfaf3dee6634c4a14a",
+        "run-monitor.json": "d8c71630b93d228f3f6e7c83b80526d6714ccf2ff3f943e37d6ca30de92a19b5",
+        "transfer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-history",
+      "name": "history",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c1-controls-validation-r1-evidence\\20261101-083000-ws31-c1ctrl-r1-history\\results",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "result_files_verified": 25,
+      "binary_sha256": "965ea873bf7512f03f2fc356f274a354c5e88517b65a14dc7f99f47761b7744d",
+      "fct_sha256": "a3c5a8dd846820f87798cc552e6d62ba7abdfa37583e196675d0faf0b1dd3fb4",
+      "route": {
+        "rows": 606168,
+        "sha256": "0c2fe201930326869a6c929234840da9fe12fabffec55a30f81bf06259502946"
+      },
+      "score": {
+        "rows": 104,
+        "sha256": "424b3a497b070b3f9b9beb246536e97a885be14eb8f107acca7c1c9b05d3ce45"
+      },
+      "score_without_category": {
+        "rows": 104,
+        "sha256": "1d702cbbc1c5592120042cd169ede97e8b6e4ff0959630bad163cf32e7575a1a"
+      },
+      "control_replay": {
+        "mode": "ws31-c1-history",
+        "status": "PASS",
+        "source_arrivals_replayed": 202056,
+        "source_unique_payload_bytes": 201981952,
+        "source_observed_packet_bytes_48B_framing": 211680640,
+        "nonzero_pressure_decisions": 98,
+        "dedicated_score_rows": 104,
+        "dedicated_score_sha256": "424b3a497b070b3f9b9beb246536e97a885be14eb8f107acca7c1c9b05d3ce45",
+        "dedicated_score_without_category_sha256": "1d702cbbc1c5592120042cd169ede97e8b6e4ff0959630bad163cf32e7575a1a",
+        "secondary_QueuePin_choices_checked": 208,
+        "predictor_peak_max": 0,
+        "predictor_expired_sum": 0,
+        "unique_payload_counter_replayed": 0,
+        "final_predictor_entries": 0,
+        "history_observations": 202056,
+        "history_value_queries_replayed": 202264,
+        "history_port_states": 8,
+        "progress_interval_work_skipped": false,
+        "reconstruction_scope": "Fixed506, MTU1000, source switch framing48B, no-drop ordered source trace; Q uses reported dedicated measurements, R and chosen independently replayed",
+        "cost_claim": "Different interval work/state peaks retained; no equal arithmetic or end-to-end runtime cost claim"
+      },
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ],
+      "build_duration": [
+        "6m35.805s"
+      ],
+      "supporting_files": {
+        "acceptance.json": "bfb04afe0182f98cf6ba01337697930320d0700d4a4999d6dde84c929c493ec2",
+        "all-input-verifier.log": "6c13e2c50d9141610d183b150fbefb8efe397e9b3855ff85f5a4fbaebc75d0d4",
+        "control-replay.json": "e571e620c5a49d788e7bfd319c82c6d21f02b143690d3f1b1c52d2d8941b1c86",
+        "guarded-build.log": "ebd8dfc6b8264a852767ad67da21e5c4b28d4f4316965341ff274c9353c83ffb",
+        "guarded-run.log": "cd5ae04f22bc8e48fbafec808489519e91bb000ad1a0c7c421a921538dd71078",
+        "remote-manifest.json": "a6e0ab25573b07fc4d0b1bd7aa91a971b8495516f1cc81294d2f439144ded719",
+        "resources-after-run.json": "4eb5f0940c106caa500a22a0bcb9dde81c4eb01cdfe6dfe44a2ff462ba4dec18",
+        "resources-before-run.json": "8cbf59d24f464261c298604e118675d1d3123dde4f92b7c2f1e381646988db29",
+        "run-monitor.json": "89dd3a4e3e362978c7a2ab54a257c05266bd0aae5f810bb9f805ffd3511434c0",
+        "transfer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-size",
+      "name": "size",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c1-controls-validation-r1-evidence\\20261101-083000-ws31-c1ctrl-r1-size\\results",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "result_files_verified": 25,
+      "binary_sha256": "9259451812eb14b0c4fc6001a9a4605a952218942ff9595cfc266f79931e0417",
+      "fct_sha256": "ffcf9fb5fc8871a70e054f118f552af77d06a0310ad473011f7c70b2399d4123",
+      "route": {
+        "rows": 606168,
+        "sha256": "357344c9f8d45ac51a55055c3ebe2daa8b0337c5248f5765fa7d4a0c6ef1ca13"
+      },
+      "score": {
+        "rows": 104,
+        "sha256": "9cba96e4a36f8c8fd08a9ed9e9f0530849d9d1863f7cb1f1be9e7415a92288d0"
+      },
+      "score_without_category": {
+        "rows": 104,
+        "sha256": "3ed3717476fc256d347d69bd9af21439c32198e202e74cb023a65ba3d88b5cd1"
+      },
+      "control_replay": {
+        "mode": "ws31-c1-size",
+        "status": "PASS",
+        "source_arrivals_replayed": 202056,
+        "source_unique_payload_bytes": 201981952,
+        "source_observed_packet_bytes_48B_framing": 211680640,
+        "nonzero_pressure_decisions": 94,
+        "dedicated_score_rows": 104,
+        "dedicated_score_sha256": "9cba96e4a36f8c8fd08a9ed9e9f0530849d9d1863f7cb1f1be9e7415a92288d0",
+        "dedicated_score_without_category_sha256": "3ed3717476fc256d347d69bd9af21439c32198e202e74cb023a65ba3d88b5cd1",
+        "secondary_QueuePin_choices_checked": 208,
+        "predictor_peak_max": 58,
+        "predictor_expired_sum": 0,
+        "unique_payload_counter_replayed": 2239360,
+        "final_predictor_entries": 0,
+        "history_observations": 0,
+        "history_value_queries_replayed": 0,
+        "history_port_states": 0,
+        "progress_interval_work_skipped": false,
+        "reconstruction_scope": "Fixed506, MTU1000, source switch framing48B, no-drop ordered source trace; Q uses reported dedicated measurements, R and chosen independently replayed",
+        "cost_claim": "Different interval work/state peaks retained; no equal arithmetic or end-to-end runtime cost claim",
+        "paired_regression": "PASS; full FCT/ordered ROUTE and prescribed complete dedicated score stream"
+      },
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ],
+      "build_duration": [
+        "6m41.776s"
+      ],
+      "supporting_files": {
+        "acceptance.json": "565f18b6f99cb87ed74e093716900f52e917379ad7ca1d5e0fd21e31235ec1f4",
+        "all-input-verifier.log": "1e5598c45919becb32fcb5834ed6d0a78caa29ae614e032e62261c842a90c5ad",
+        "control-replay.json": "a3ca36388bba94d64e161bd842bf58c2d05b99984cc37e76d21076cd44a4bb82",
+        "guarded-build.log": "fea03fc62806e948df5f8893da3eb142023d01640d600f74ec098c2dc1eb8df8",
+        "guarded-run.log": "ab5fcd01ab2748ea02c1e784dd928605b84e2aeaefef3f68cf955b702a23c60c",
+        "remote-manifest.json": "0f7ebe0bcdd49cef1d4bba566c6823bf239a7425fc418aa09fd468300e11b993",
+        "resources-after-run.json": "5c8979c4939aaf6306730929cc15dca39b12d12ca2a9335da05d1103686a77a0",
+        "resources-before-build-wave.json": "131f7ba217c2132904f4b490004bf3d473f9b1d73ab4a5429d9e062aef735c27",
+        "resources-before-run.json": "f915d1b5cffab158f931df59d411d0f109051a558b1a5d64564fd32c686c4551",
+        "run-monitor.json": "5783f7fdab112f88f90389fb83738f450bb052bd18bea190dfa1221b23207db8",
+        "transfer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unified-count",
+      "name": "unified-count",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c1-controls-validation-r1-evidence\\20261101-083000-ws31-c1ctrl-r1-unified-count\\results",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "result_files_verified": 25,
+      "binary_sha256": "c0d20cb5c620f696d08a1d629946dcb97dd54b1f57b9b0d630f6bc35f8016dd9",
+      "fct_sha256": "e879f212b3142c2be59e6d8915907b9e68e6a05499902e37f216d235d0461923",
+      "route": {
+        "rows": 606168,
+        "sha256": "40fd4cfcd3e60054d0bb08cf1c218af6bc0aa294d313d7a10005bde1d2e741bf"
+      },
+      "score": {
+        "rows": 104,
+        "sha256": "3d36842fc10dae1e42aac426a1a752c5404581ff482aea1e901b71963f7c565c"
+      },
+      "score_without_category": {
+        "rows": 104,
+        "sha256": "92c95aaf31706a309ad2eb2858d25fc3fccd8f40c69a14deb84ff40ff8e4c137"
+      },
+      "control_replay": {
+        "mode": "ws31-c1-unified-count",
+        "status": "PASS",
+        "source_arrivals_replayed": 202056,
+        "source_unique_payload_bytes": 201981952,
+        "source_observed_packet_bytes_48B_framing": 211680640,
+        "nonzero_pressure_decisions": 94,
+        "dedicated_score_rows": 104,
+        "dedicated_score_sha256": "3d36842fc10dae1e42aac426a1a752c5404581ff482aea1e901b71963f7c565c",
+        "dedicated_score_without_category_sha256": "92c95aaf31706a309ad2eb2858d25fc3fccd8f40c69a14deb84ff40ff8e4c137",
+        "secondary_QueuePin_choices_checked": 208,
+        "predictor_peak_max": 80,
+        "predictor_expired_sum": 104,
+        "unique_payload_counter_replayed": 0,
+        "final_predictor_entries": 0,
+        "history_observations": 0,
+        "history_value_queries_replayed": 0,
+        "history_port_states": 0,
+        "progress_interval_work_skipped": true,
+        "reconstruction_scope": "Fixed506, MTU1000, source switch framing48B, no-drop ordered source trace; Q uses reported dedicated measurements, R and chosen independently replayed",
+        "cost_claim": "Different interval work/state peaks retained; no equal arithmetic or end-to-end runtime cost claim"
+      },
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ],
+      "build_duration": [
+        "6m41.190s"
+      ],
+      "supporting_files": {
+        "acceptance.json": "b1b71d5708ca8c2115b59ba91a61c9f8b48154426ac7a5129445cb08df2407cd",
+        "all-input-verifier.log": "3970b23d32175cbf8bd59ccb879a4668f23dce8985acc17eed4e48921fcc3e3d",
+        "control-replay.json": "c1d7ad5cc22d623f4c6010d24ad101ac51b13a83e1135c851d3895d87ff3279e",
+        "guarded-build.log": "a62f3e1fabb799ec070accde6e5521edee6c5d36f86fe3025cd3a4850ea864d6",
+        "guarded-run.log": "7bc75f97d9ceeea5e79506fceca6ec08e3936ab26f2c564b664a748fe83c1d88",
+        "remote-manifest.json": "c957da019b811c48e678a1398b74e4955ce4bbdb211d89c6ae85c4e1f7a13f08",
+        "resources-after-run.json": "13c55d7a735622126a42c05273ef493f0f2467a9df23a23395aa73f929a383e1",
+        "resources-before-run.json": "264741c81c0ccc8d1463a25da3a67203d7ac358843063b6539ecf83ddb62a120",
+        "run-monitor.json": "1d8a3a287da3172ec6aa65b43e5d5aaccd92f09325049697c97ac4dfaef9f970",
+        "transfer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unknown-class",
+      "name": "unknown-class",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c1-controls-validation-r1-evidence\\20261101-083000-ws31-c1ctrl-r1-unknown-class\\results",
+      "flows": 6,
+      "payload_bytes": 28278,
+      "result_files_verified": 19,
+      "binary_sha256": "9ae0a9574f63e468f1b6d71e0bc76c5e675e9ebc3cddcfb117a2609dc803afee",
+      "fct_sha256": "2587ed473f582bc6a809e98e90fa4222db617a03f2fc018f312e17c205f712f6",
+      "route": {
+        "rows": 99,
+        "sha256": "1dfc13a8eab4e679f5ccdf48ecb869fdec7e857c4cccfbff4158cf44f69f1ff3"
+      },
+      "score": {
+        "rows": 6,
+        "sha256": "be640d9f012831308c4576f61cd7a3938d4a7ab06b3918fb54aa2562f5481987"
+      },
+      "score_without_category": {
+        "rows": 6,
+        "sha256": "7286257003dd02012729991d213c68be906b41d75cca2f72e33943550d59449a"
+      },
+      "control_replay": {
+        "mode": "ws31-c1",
+        "status": "PASS",
+        "source_arrivals_replayed": 33,
+        "source_unique_payload_bytes": 28278,
+        "source_observed_packet_bytes_48B_framing": 29862,
+        "nonzero_pressure_decisions": 2,
+        "dedicated_score_rows": 6,
+        "dedicated_score_sha256": "be640d9f012831308c4576f61cd7a3938d4a7ab06b3918fb54aa2562f5481987",
+        "dedicated_score_without_category_sha256": "7286257003dd02012729991d213c68be906b41d75cca2f72e33943550d59449a",
+        "secondary_QueuePin_choices_checked": 12,
+        "predictor_peak_max": 6,
+        "predictor_expired_sum": 0,
+        "unique_payload_counter_replayed": 28278,
+        "final_predictor_entries": 3,
+        "history_observations": 0,
+        "history_value_queries_replayed": 0,
+        "history_port_states": 0,
+        "progress_interval_work_skipped": false,
+        "reconstruction_scope": "Fixed506, MTU1000, source switch framing48B, no-drop ordered source trace; Q uses reported dedicated measurements, R and chosen independently replayed",
+        "cost_claim": "Different interval work/state peaks retained; no equal arithmetic or end-to-end runtime cost claim"
+      },
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ],
+      "build_duration": [
+        "6m40.880s"
+      ],
+      "supporting_files": {
+        "acceptance.json": "fdcaf245a12d4c4fa556a87c1907125c0c38bdff04e37654a089b075a0a6485c",
+        "all-input-verifier.log": "343fa2f7d29bbc24fdf8833852e0c5e1737b9cb408197d2940052c02e549e4b5",
+        "control-replay.json": "95fd706730bc201366ad94d2488d8def455e9fb7bfbaa68e346fa8062d63a693",
+        "guarded-build.log": "c37ae8345fb3f7f22d213e5c1691d7844b4541caed6e05aa5c8e4a7d91969c6e",
+        "guarded-run.log": "b88a9a60916049b1726058d545a547052521e4acada8b839e9530e3d9a926051",
+        "remote-manifest.json": "cc403a32ba61dc9cae327f70008816983cd82c88257c3ab7a9aeab0d4e7e683a",
+        "resources-after-run.json": "ba510c192b4a88e7ab2f92867ba8a6f4813c73179d44991ea74503513e2ded7f",
+        "resources-before-run.json": "913d94380b2900d51509daf84b56764f54f3b3e88a8aef0cdc0dd61d6bb3b612",
+        "run-monitor.json": "a204df7cf9974c73cee3d66518b4bb9ad491c99987e42a93337d1eb580dd86bf",
+        "transfer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unknown-unified",
+      "name": "unknown-unified",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c1-controls-validation-r1-evidence\\20261101-083000-ws31-c1ctrl-r1-unknown-unified\\results",
+      "flows": 6,
+      "payload_bytes": 28278,
+      "result_files_verified": 19,
+      "binary_sha256": "e15eb5ed909beed65afa2702c3b8a2189ba80c341b536a084db3bbcf964fcf31",
+      "fct_sha256": "2587ed473f582bc6a809e98e90fa4222db617a03f2fc018f312e17c205f712f6",
+      "route": {
+        "rows": 99,
+        "sha256": "1dfc13a8eab4e679f5ccdf48ecb869fdec7e857c4cccfbff4158cf44f69f1ff3"
+      },
+      "score": {
+        "rows": 6,
+        "sha256": "c72e0b641ccf5bad4a0cd30bb522e74a224bde6c70a28b96c1b846f3b10beddd"
+      },
+      "score_without_category": {
+        "rows": 6,
+        "sha256": "7286257003dd02012729991d213c68be906b41d75cca2f72e33943550d59449a"
+      },
+      "control_replay": {
+        "mode": "ws31-c1-unified",
+        "status": "PASS",
+        "source_arrivals_replayed": 33,
+        "source_unique_payload_bytes": 28278,
+        "source_observed_packet_bytes_48B_framing": 29862,
+        "nonzero_pressure_decisions": 2,
+        "dedicated_score_rows": 6,
+        "dedicated_score_sha256": "c72e0b641ccf5bad4a0cd30bb522e74a224bde6c70a28b96c1b846f3b10beddd",
+        "dedicated_score_without_category_sha256": "7286257003dd02012729991d213c68be906b41d75cca2f72e33943550d59449a",
+        "secondary_QueuePin_choices_checked": 12,
+        "predictor_peak_max": 6,
+        "predictor_expired_sum": 0,
+        "unique_payload_counter_replayed": 28278,
+        "final_predictor_entries": 3,
+        "history_observations": 0,
+        "history_value_queries_replayed": 0,
+        "history_port_states": 0,
+        "progress_interval_work_skipped": false,
+        "reconstruction_scope": "Fixed506, MTU1000, source switch framing48B, no-drop ordered source trace; Q uses reported dedicated measurements, R and chosen independently replayed",
+        "cost_claim": "Different interval work/state peaks retained; no equal arithmetic or end-to-end runtime cost claim",
+        "paired_regression": "PASS; full FCT/ordered ROUTE and prescribed complete dedicated score stream"
+      },
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ],
+      "build_duration": [
+        "5m54.295s"
+      ],
+      "supporting_files": {
+        "acceptance.json": "a4e1d1ab6921d6123001d592a8140709b5b8cd87af515af4dc2faa02dd80ac70",
+        "all-input-verifier.log": "343fa2f7d29bbc24fdf8833852e0c5e1737b9cb408197d2940052c02e549e4b5",
+        "control-replay.json": "daff5d0ee34bb07bfc88ff14f3a4007ff57ea3c6bdfe6d784d1c1e8d2b6a663a",
+        "guarded-build.log": "9d181dc8c60be13d08d9f35561bf4fcc4c788053cd4a7d7dd3196a38662fcd75",
+        "guarded-run.log": "4506e5b2d38db332dae002236d969353e5287bc265053c653fd11250a42af402",
+        "remote-manifest.json": "8e1da015f4da6b5a2413da93004c43aedbfb3e913668f799bebc4babbba37f61",
+        "resources-after-run.json": "7e89cecf74c94355fbaa465a751ca15475721eab666ff7e7dbc82a871baef377",
+        "resources-before-build-wave.json": "f42e4c5fdaf82b903569def2b1c59253904277c688d9ed5de391cb5174831eec",
+        "resources-before-run.json": "3893748c604f2fc03479fd5ebe12c1708bea31fab418b0644ed904340188db93",
+        "run-monitor.json": "b3b1965d8f85790f5767bacde37d4b80a445fdce9884803252b0718cece4d742",
+        "transfer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "documents": {
+    "c1-controls-validation-r1-all-builds-verified.json": {
+      "bytes": 33530,
+      "sha256": "36f577dfb453100fcf2ba18d004325acd15b25aca7ca2f4757b5946b9119feef"
+    },
+    "c1-controls-validation-r1-build-resources.json": {
+      "bytes": 429,
+      "sha256": "63ed5133a3cfc7f2904ee4d5764dcca465bccdbd9a462e70e79d7085e1120a02"
+    },
+    "c1-controls-validation-r1-cache-prerequisite.json": {
+      "bytes": 464,
+      "sha256": "4bede34eef08231c142f2b210b4ea37842fabaf852d0074e2e60ea4832d9f665"
+    },
+    "c1-controls-validation-r1-driver.py": {
+      "bytes": 18751,
+      "sha256": "eb73a2835ae6f8875ccecebbe5e45c6c8025fd61586d4f12bf348636014ba1bc"
+    },
+    "c1-controls-validation-r1-finalize.py": {
+      "bytes": 20003,
+      "sha256": "3a5a7d52a1ca0abd207161723d10c07e5e53452ab4add3ba10f8761e8eccdd6e"
+    },
+    "c1-controls-validation-r1-frozen-plan.json": {
+      "bytes": 7933,
+      "sha256": "115a840e86a8829d6e74923c077579963290514c9704b846efa366b086106297"
+    },
+    "c1-controls-validation-r1-frozen-plan.md": {
+      "bytes": 2909,
+      "sha256": "c98ab759a38322089225859b51518a1fc8954ffcc5718b90df73c653b47872d9"
+    },
+    "c1-controls-validation-r1-handoff.md": {
+      "bytes": 3206,
+      "sha256": "8c4848bcaac376cfd73a69615ed4b225cc8b3a4db838b5974a21f1a531684764"
+    },
+    "c1-controls-validation-r1-integrity.json": {
+      "bytes": 803,
+      "sha256": "85a4bb55af7359bf8e688ed79ce059da88fca45b85f051c8273ca81c6bafefd8"
+    },
+    "c1-controls-validation-r1-phase-order.json": {
+      "bytes": 16517,
+      "sha256": "468145ab1e0b67741f62b570ad6e9c5c4b1993dca672c7afd9ca68cb48b7d4d6"
+    },
+    "c1-controls-validation-r1-prior-ignore.txt": {
+      "bytes": 99,
+      "sha256": "2dc50db3e09cb8dd2e82dcfb948052103e1647bff6cd783f73f704f6219b9349"
+    },
+    "c1-controls-validation-r1-receipt.json": {
+      "bytes": 469864,
+      "sha256": "8ecedac32235e25e147d14f273c199af93e26dfedc9aedb9d124e4d1529267dd"
+    },
+    "c1-controls-validation-r1-reference-candidate-precheck.json": {
+      "bytes": 651,
+      "sha256": "9ba448378ae0644e37fa2a252fa0b89af4e545c28220d30af57e711758cf0423"
+    },
+    "c1-controls-validation-r1-reference-review.json": {
+      "bytes": 1890,
+      "sha256": "ea477482fe2cf783563a5761eb67d59859f8d34bf59e28fc8e8d319e630daef5"
+    },
+    "c1-controls-validation-r1-report.md": {
+      "bytes": 4222,
+      "sha256": "e86dd3d21d73aa6df6049e8126d1887176b0f6c795654e62c6059feb695fb222"
+    },
+    "c1-controls-validation-r1-source-audit.json": {
+      "bytes": 2252,
+      "sha256": "a16a107818e488deffe2a115c389a3bd8a57732f4a5ec91eef7ee4b5657ab023"
+    },
+    "c1-controls-validation-r1-source-git-tree.txt": {
+      "bytes": 467881,
+      "sha256": "4a099c8adbb23f483f31af1d5f6d803e067e1b34d25627b1828bc458eb92ccfa"
+    },
+    "c1-controls-validation-r1-verifier.py": {
+      "bytes": 4364,
+      "sha256": "35bc985fc4089e847bda69f155e4d8d9f8d0cbb0199a53bb1c56086277bddfdf"
+    }
+  },
+  "dependencies": {
+    "main-mode-dynamic-r1-driver.py": "88924fa381dfba6f25b73a35d2d2eb6c63787c22e4242b95692d99dbd52d6443",
+    "zero-control-pilot-r1-driver.py": "77ca3d6d444464be5a26a292f3eafebb3995c2e04198791c9bb888d3ba2985a5",
+    "c2-label-validation-r1-attempt2-driver.py": "8ebceb21f9228d9d6a4ab1de8f92ee04599df5b96f7113e3eaf8038806678c4a"
+  },
+  "references": {
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c1\\results\\raw\\946242401\\946242401_out_fct.txt": {
+      "bytes": 4570,
+      "sha256": "ffcf9fb5fc8871a70e054f118f552af77d06a0310ad473011f7c70b2399d4123"
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c1\\results\\raw\\946242401\\config.log": {
+      "bytes": 77128938,
+      "sha256": "267460c2e9b6e97e6eab48b2069a8d44c25878323563d70a3990ad423e1ddbbd"
+    }
+  },
+  "main_acceptance": {
+    "status": "MAIN_ACCEPTED_C1_SEVEN_CONTROL_UNKNOWN_TECHNICAL_CELLS",
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c1-controls-pilot-main-acceptance-r1.json",
+    "sha256": "fd3bfd6ef20a4ad4fe2946414364f4e5724f9a3cb455e524fb3849cb8256a700"
+  },
+  "created_utc": "2026-11-01T01:29:05.656865+00:00"
+}
