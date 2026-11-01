@@ -1,0 +1,84 @@
+{
+  "scope": "Main independent C2/C3 matched-control raw replay; technical only",
+  "id": "20261101-094000-ws31-c23ctrl-r1-c2-unified",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "lb": "ws31-c2-unified",
+  "flows": 104,
+  "payload_bytes": 201981952,
+  "all_demand_origins_match": true,
+  "c2_time_rows": 104,
+  "counts": {
+    "WS30_CHOICE": 312,
+    "WS30_ROUTE": 606168,
+    "WS30_QP": 104,
+    "WS31_C2_FINISH": 104,
+    "WS31_C2_STATE": 1,
+    "WS30_QUEUE": 1,
+    "WS30_PATH": 1
+  },
+  "summaries": {
+    "WS31_C2_STATE": {
+      "demanded": "104",
+      "launched": "104",
+      "cancelled": "0",
+      "finished": "104",
+      "pending": "0",
+      "unfinished": "0",
+      "demand_bytes": "201981952",
+      "launch_bytes": "201981952",
+      "cancel_bytes": "0",
+      "finish_bytes": "201981952",
+      "waited": "104",
+      "delay_sum_ns": "23773",
+      "delay_max_ns": "497",
+      "frozen_max_ns": "500"
+    },
+    "WS30_QUEUE": {
+      "enqueued": "671412000",
+      "dequeued": "671412000",
+      "dropped": "0",
+      "current": "0",
+      "admission_dropped_bytes": "0",
+      "queue_rejected_bytes": "0",
+      "violations": "0"
+    },
+    "WS30_PATH": {
+      "switch_qps": "312",
+      "data_hops": "606168",
+      "changed_qps": "0",
+      "port_changes": "0",
+      "rejected": "0",
+      "full_rows": "606168"
+    }
+  },
+  "ordered_normalized_hashes": {
+    "WS30_CHOICE": "5a7d8aee0053507cefde4f8ac01affc9ec6a95cc7d1c80eba39fc93382686a55",
+    "WS30_ROUTE": "b2c6bcc33218abd46d68d8be8d023516c545f768d8b0dca6f6ae7d2c0c8cabc4"
+  },
+  "fct_sha256": "adfbb33a152a774c6e7aee374b0b64ed089db68ebc9042de2e0499e6e6f490ff",
+  "log_sha256": "45afa8c1d9c970579a7ca63a426c4b3ae498ce488b3992e1a678abfee9d878cc",
+  "source_payload_reconstruction": {
+    "rows": 202056,
+    "keys": 104,
+    "unique_payload_bytes": 201981952,
+    "all_match_input": true,
+    "first_tags": {
+      "1": 24,
+      "2": 80
+    }
+  },
+  "inputs": {
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+  },
+  "control_replay": {
+    "requests_exact_hash_timing_replayed": 104,
+    "positive_waits": 104,
+    "wait_sum_ns": 23773,
+    "wait_max_ns": 497,
+    "positive_waits_by_original_tag": {
+      "1": 24,
+      "2": 80
+    }
+  },
+  "status": "PASS_C2_C3_CONTROL_TECHNICAL_SCOPE"
+}

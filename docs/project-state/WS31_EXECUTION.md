@@ -95,7 +95,9 @@ Integration 已完成线程创建、项目归属核验与历史归档。WS-31 �
 
 C1 七控制／未知技术 raw 已主验并经 Integration 核对：532 条完成记录、1,009,966,316 B，166 份结果和 85 份支持文件。完整模型重放由主完成，Integration 另核请求账、路径、实际评分及原始状态计数，见[最新交接](../handoffs/2026-11-01-ws31-c1-controls-integration.md)。大小克隆恢复主模式，未知两格一致；进度／计数实际峰值为类别 58／80、统一 42／80，计数各有 104 次到期且不做区间扣减。历史预测表为 0 不表示全状态无成本；未知终态各保留 3 个部分预测条目，汇总不清理、下一源侧访问先清理。该语义已在 checker 执行前按固定源纠正，旧脚本保留，没有仿真改动。
 
-北京时间 09:07 的收据已记录后台 7/7 完成，副前景 idle 时只继续同一目标最终交付，未重启实验。最终交付 QA 现已通过，Integration 已核最终索引、QA 与旧 raw 主验引用哈希，见[同日更新](../research/evidence/ws31-c1-delivery-integration-20261101-r1/update.md)。主确认唯一副前目标终态、idle 后，已派发原[固定 C2／C3 五控制计划](../research/evidence/ws31-c1-delivery-integration-20261101-r1/snapshots/main/c23-controls-validation-r1.json)，哈希 `ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49`。源码、输入和判据未变；新资源门后最多三个并行 `-j2`、六编译任务，3＋2 波五构建全部通过后，按 C2 统一、C2 大小、C3 固定、C3 大小、C3 未知顺序串行仿真。
+C1 后台七格及最终交付已通过，原 idle 与后台终态区分保留；随后 C2／C3 五格控制也已主验并核最终交付。合计 422 条完成记录、807,956,086 B；Integration 核 122 结果、80 支持及直接等待／事件／回归，完整 C3 活动／归属模型保留主验身份，见[最新交接](../handoffs/2026-11-01-ws31-c23-controls-integration.md)。C2 统一全部 104 次等待、大小恢复默认；C3 固定无借用残留、大小恢复主模式、未知恢复 QueuePin。三候选大小克隆的等价仅限本技术输入，不认定类别语义独立增量。
+
+主已确认唯一副前目标终态、idle，并派发[原 C1／C3 四格移除／交换目标](../research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/c13-label-validation-r1.json)，哈希 `3803bafb5f5a95527018e014777e3e9d514ab5c7cd400647d82371a8d4e06685`，源码仍为 5060392。原业务身份与需求时间保持，实际策略／包标签另核；新资源门后最多三个并行 `-j2`、六编译任务，3＋1 波四构建全通过后串行 C1 移除、C1 交换、C3 移除、C3 交换。失败或覆盖缺口停余格、保留原 ID，不改模板／阈值寻求收益，不重跑旧核心、主模式、零控制或 Ofan。
 
 五格首次尝试的环境门暂停已由同目标 attempt2 恢复完成。原[异常记录](../research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/incident.md)、缓存核对和两个进程自然退出的收据保留，未重复 fetch、未终止未知作业、未放宽资源门。主 checker 首次误将 CHOICE 的固定 0 字段当作实际包标签；旧脚本与 schema 修正保留，ROUTE 标签按真实策略另核，仿真源码、raw 和验收判据均未改变。
 

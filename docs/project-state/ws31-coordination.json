@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:10"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:11"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -169,31 +169,29 @@
     }
   ],
   "next_registered_pilot": {
-    "plan": "docs/research/ws31/main/c23-controls-validation-r1.json",
-    "fixed_snapshot": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/snapshots/main/c23-controls-validation-r1.json",
-    "plan_sha256": "ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49",
-    "status": "DISPATCHED_AFTER_C1_FINAL_QA_AND_PRIOR_TERMINAL_IDLE_NOT_INTEGRATION_ACCEPTED",
+    "plan": "docs/research/ws31/main/c13-label-validation-r1.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/c13-label-validation-r1.json",
+    "plan_sha256": "3803bafb5f5a95527018e014777e3e9d514ab5c7cd400647d82371a8d4e06685",
+    "status": "DISPATCHED_AFTER_PRIOR_FINAL_QA_TERMINAL_IDLE_NOT_INTEGRATION_ACCEPTED",
     "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
-    "cells": 5,
+    "cells": 4,
     "order": [
-      "c2-unified",
-      "c2-size",
-      "c3-fixed",
-      "c3-size",
-      "c3-unknown"
+      "c1-remove",
+      "c1-swap",
+      "c3-remove",
+      "c3-swap"
     ],
-    "no_core_or_main_or_zero_repeats": true,
-    "all_five_builds_before_serial_runs": true,
+    "no_core_main_zero_Ofan_repeats": true,
+    "all_four_builds_before_serial_runs": true,
     "max_parallel_builds": 3,
     "jobs_per_build": 2,
     "max_total_compile_jobs": 6,
     "simulation_concurrency": 1,
     "fresh_resource_ID_cache_gate_required": true,
     "root_remote_execution_status_checked": false,
-    "scope": "Remaining C2/C3 matched controls/fallback only; complete labels/lifecycle/independent V0 and effects remain",
+    "scope": "C1/C3 explicit label intervention only; full errors/delays/lifecycle/independent V0/effects remain",
     "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "main_observed_prior_independent_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:60",
-    "dispatch_reconciliation": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/verification.json"
+    "main_observed_prior_independent_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:62"
   },
   "last_verified_zero_control_checkpoint": {
     "date": "2026-11-01",
@@ -258,20 +256,19 @@
   "latest_implemented_source": {
     "sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "purpose": "C2 decision-visible policy label fix",
-    "validation": "C2 modified core/labels5 and C1 matched-control/unknown7 technical nodes accepted; full labels/lifecycle/independent V0/effects pending",
+    "validation": "C2 labels5, C1 matched7 and C23 matched5 technical nodes accepted; full labels/lifecycle/independent V0/effects pending",
     "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
-      "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 modified core/label5 plus C1 matched-control/unknown7 technical cases; full candidate validation incomplete"
+      "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5 technical cases; full candidate validation incomplete"
     }
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "C1 final delivery accepted and C23 five controls dispatched",
-    "verification": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/verification.json",
-    "raw_acceptance_unchanged": true,
-    "new_raw_calculation_by_root": false,
+    "kind": "C23 five controls and final QA accepted; C13 four-label target dispatched",
+    "record": "docs/handoffs/2026-11-01-ws31-c23-controls-integration.md",
     "user_decision_required": false,
+    "independent_effects_validated": false,
     "new_baseline_established": false
   },
   "last_verified_C2_label_checkpoint": {
@@ -324,6 +321,15 @@
       "user_decision_required": false,
       "independent_effects_validated": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "C1 final delivery accepted and C23 five controls dispatched",
+      "verification": "docs/research/evidence/ws31-c1-delivery-integration-20261101-r1/verification.json",
+      "raw_acceptance_unchanged": true,
+      "new_raw_calculation_by_root": false,
+      "user_decision_required": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -365,6 +371,33 @@
     "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
     "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
     "root_restarted_jobs": false,
-    "phase_update": "C1 final QA complete; next five-control target dispatched after terminal+idle. Earlier cursor58/59 observation retained as history."
+    "phase_update": "C23 five controls and final QA complete; C13 four-label target dispatched after prior terminal+idle. Earlier C1 cursor58-60 observations retained as history."
+  },
+  "last_verified_C23_controls_checkpoint": {
+    "date": "2026-11-01",
+    "handoff": "docs/handoffs/2026-11-01-ws31-c23-controls-integration.md",
+    "verification": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/verification.json",
+    "raw_verification": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/raw-verification.json",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "cells_passed": 5,
+    "completed_flow_records": 422,
+    "completed_payload_bytes": 807956086,
+    "root_result_file_checks": 122,
+    "root_support_file_checks": 80,
+    "root_C2_exact_waits": 208,
+    "unchanged_source_map_matches_prior_verified_506": 35,
+    "full_C3_activity_ownership_replay_owner": "WS31 main",
+    "final_delivery": "Main QA accepted; root verified index/QA identities and main-owned raw link",
+    "scope": "Technical controls and fallback only; no independent V0 or effects"
+  },
+  "size_clone_boundary": {
+    "candidates": [
+      "C1",
+      "C2",
+      "C3"
+    ],
+    "status": "Technical size-clone equivalence on current label-size-bound input",
+    "independent_semantic_value_established": false,
+    "independent_effects_validated": false
   }
 }

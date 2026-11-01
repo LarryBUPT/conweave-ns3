@@ -1,0 +1,225 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T02:37:49.037141+00:00",
+  "scope": "Integration C23 five technical controls raw and final delivery reconciliation",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "raw_verification": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/raw-verification.json",
+  "raw_verification_sha256": "9912b15930ef05a6a51ed5e0ad70d2ed26a28f5ae98230b3d1c3e86989554430",
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/evidence/c23-controls-pilot-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/evidence/c23-controls-pilot-main-acceptance-r1.json",
+      "sha256": "2325a88329e9988a0d1967426b7a32ba986b5fcc6ab4da91043bf2ecace76476",
+      "bytes": 26946
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c23-controls-delivery-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/evidence/c23-controls-delivery-main-acceptance-r1.json",
+      "sha256": "47fdc5aa6b74c77144577c6c69417c2881d044b8e1d8449c97dcc66eae71b236",
+      "bytes": 605
+    },
+    {
+      "source": "docs/research/ws31/main/c23-controls-node7-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/c23-controls-node7-handoff.md",
+      "sha256": "2386c6acc23a4a9b5c6058e78accdeb8764c355f11d422376fb4e941cb9a7774",
+      "bytes": 4485
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c23-controls-node7-reference-review-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/evidence/c23-controls-node7-reference-review-r1.json",
+      "sha256": "b0a6bde4e351b1d23ea57acbad38e36d6ed4599edcdb3d324311bc5ccacbb3c0",
+      "bytes": 1985
+    },
+    {
+      "source": "docs/research/ws31/main/c13-label-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/c13-label-validation-r1.json",
+      "sha256": "3803bafb5f5a95527018e014777e3e9d514ab5c7cd400647d82371a8d4e06685",
+      "bytes": 6821
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "99b7012b4dc74e25655c364c23239428b32bf101584f859494084b84edea0e6c",
+      "bytes": 16947
+    },
+    {
+      "source": "docs/research/ws31/independent/c23-controls-validation-r1-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/independent/c23-controls-validation-r1-receipt.json",
+      "sha256": "d654a4b2c09a3afd36aa8068c927d598bfffd1da08f2029fbcb9ac682ba0e161",
+      "bytes": 409437
+    },
+    {
+      "source": "docs/research/ws31/independent/c23-controls-validation-r1-index.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/independent/c23-controls-validation-r1-index.json",
+      "sha256": "791aa065df33683ac08cb5e4d06005e894c204ae8adb31098a613295b621caa3",
+      "bytes": 57517
+    },
+    {
+      "source": "docs/research/ws31/independent/c23-controls-validation-r1-delivery-qa.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/independent/c23-controls-validation-r1-delivery-qa.json",
+      "sha256": "f17f1d4ee78c17cce88e0e56ed82f5eda68b18bbec1108a1f65598337ef51367",
+      "bytes": 474
+    },
+    {
+      "source": "docs/research/ws31/main/c13-label-validation-r1.md",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/c13-label-validation-r1.md",
+      "sha256": "1fa815763d8bf47ec875b8082a0a465249421031c8cd285e513e36c09592a5a3",
+      "bytes": 2384
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c23-control-c2-unified-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/evidence/c23-control-c2-unified-main-acceptance-r1.json",
+      "sha256": "90af12aeae364e1db16c4fd385699377b7a9eb6ab49e435115dff067008c1277",
+      "bytes": 2431
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c23-control-c2-size-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/evidence/c23-control-c2-size-main-acceptance-r1.json",
+      "sha256": "89c97ecffccaac00e98834754e31d4ab1718135d6dbdeb19bb9fd7aef489c6f9",
+      "bytes": 2628
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c23-control-c3-fixed-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/evidence/c23-control-c3-fixed-main-acceptance-r1.json",
+      "sha256": "6a278a94b23efa2d5f9a2bc75e630d6a87b73d760d137a087a365e716126b94b",
+      "bytes": 2016
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c23-control-c3-size-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/evidence/c23-control-c3-size-main-acceptance-r1.json",
+      "sha256": "798cf896ef2c73d117d0f967d302c04a4ee560b5e40424c590d775dc280edda0",
+      "bytes": 2219
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c23-control-c3-unknown-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/main/evidence/c23-control-c3-unknown-main-acceptance-r1.json",
+      "sha256": "45c50d72444cf57b23d2d840082f54937c5e5aaf78abd05a331a8b5d64e6f10e",
+      "bytes": 2182
+    },
+    {
+      "source": "docs/research/ws31/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c2-unified/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c2-unified/remote-manifest.json",
+      "sha256": "286e7d92da8744cc6c70e13e97188dccfb7121c4058af84b3a68048135f59703",
+      "bytes": 8532
+    },
+    {
+      "source": "docs/research/ws31/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c2-size/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c2-size/remote-manifest.json",
+      "sha256": "9581ee1c00a01b28229e61fbe4390557a5cc6f9f2dba79e67d20db0733027180",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c3-fixed/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c3-fixed/remote-manifest.json",
+      "sha256": "8e3c005791f5b3921787fc8c22a52275ee2cebbecdff973ca0a99fcd986eaf03",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c3-size/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c3-size/remote-manifest.json",
+      "sha256": "23db9ff9baffa910cf9d63208011efb6403dca17eadac4eaf18d99011462ecfd",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c3-unknown/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c23-controls-integration-20261101-r1/snapshots/independent/c23-controls-validation-r1-evidence/20261101-094000-ws31-c23ctrl-r1-c3-unknown/remote-manifest.json",
+      "sha256": "4ab0ee526cdeb8c2b74c1ba2fbec36cfd9043c64fd759022fffea70c9fc98df7",
+      "bytes": 6969
+    }
+  ],
+  "root_checks": {
+    "result_files": 122,
+    "support_files": 80,
+    "source_map_reused_from_prior_verified_506": 35,
+    "C2_exact_wait_rows": 208,
+    "complete_accounting_path_cases": 5,
+    "C3_observed_admission_residual_counters_and_summaries_checked": true,
+    "full_C3_activity_ownership_source_replay": "Main; not independently repeated by Integration"
+  },
+  "outcomes": {
+    "flow_records": 422,
+    "payload_bytes": 807956086,
+    "C2_unified": {
+      "positive": 104,
+      "sum_ns": 23773,
+      "max_ns": 497
+    },
+    "C2_size": "Full FCT/CHOICE/ROUTE and DEMAND/LAUNCH/FINISH match default;80positive waits18002ns",
+    "C3_fixed": "104restricted;0borrowed/0residual",
+    "C3_size": "80restricted/4borrowed/546residual packets572208B; main FCT/ROUTE/dedicated events and summaries match",
+    "C3_unknown": "6 policy0; no restriction/borrow/residual; main replay confirms no known-class activity; full FCT/ROUTE match unknown QueuePin",
+    "size_clone_boundary": "C1,C2,C3 size controls technically equivalent on current label-size-bound input; no semantic independent-value or effect conclusion"
+  },
+  "final_delivery": {
+    "index_sha256": "791aa065df33683ac08cb5e4d06005e894c204ae8adb31098a613295b621caa3",
+    "QA_sha256": "f17f1d4ee78c17cce88e0e56ed82f5eda68b18bbec1108a1f65598337ef51367",
+    "root_verified_identities": true,
+    "main_final_checks": {
+      "documents_hashed": 25,
+      "dependencies_hashed": 4,
+      "per_cell_support_files_hashed": 53,
+      "reference_files_hashed": 6,
+      "fixed_git_tree_entries": 4836
+    },
+    "attribution": "Full document/reference/tree final QA by main; Integration snapshots and verifies index/QA identity",
+    "main_raw_acceptance_linkage": {
+      "owner": "main final delivery receipt, not independent index",
+      "path": "evidence/c23-controls-pilot-main-acceptance-r1.json",
+      "sha256": "2325a88329e9988a0d1967426b7a32ba986b5fcc6ab4da91043bf2ecace76476",
+      "matches_frozen_raw_acceptance": true
+    },
+    "independent_index_main_boundary": "SEPARATE_MAIN_VERIFICATION_REQUIRED; independent control checks do not pre-empt main",
+    "QA_index_linkage_checked": true
+  },
+  "reference_review": {
+    "source": "docs/research/ws31/main/evidence/c23-controls-node7-reference-review-r1.json",
+    "owner": "Main targeted APS accepted-manuscript borrowing/activity and CASSINI time-shift conditions",
+    "integration_scope": "Retain sources/conditions/differences without independent full-paper or publication/CCF re-verification",
+    "new_baselines": []
+  },
+  "next_plan": {
+    "path": "docs/research/ws31/main/c13-label-validation-r1.json",
+    "sha256": "3803bafb5f5a95527018e014777e3e9d514ab5c7cd400647d82371a8d4e06685",
+    "cells": 4,
+    "status": "DISPATCHED per main coordination after sole-independent terminal+idle cursor62",
+    "main_file_observation": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE",
+    "order": [
+      "ws31-c1:1",
+      "ws31-c1:2",
+      "ws31-c3:1",
+      "ws31-c3:2"
+    ],
+    "source_or_criteria_changes": false,
+    "core_main_zero_Ofan_repeats": false,
+    "all_four_builds_before_serial_runs": true,
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "fresh_resource_gate_required": true,
+    "root_actual_remote_execution_status_checked": false
+  },
+  "coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:11",
+  "boundaries": {
+    "remote_access": false,
+    "simulations_or_core_restarted": false,
+    "main_or_independent_owned_files_modified": false,
+    "Ofan_admitted": false,
+    "independent_V0_or_effects_validated": false,
+    "combined_baseline_established": false
+  },
+  "audit_code_sha256": "f0422b1560afeffe8fb559c546df1b6c0fca4326203ae800c1cd01666844736f",
+  "helper_dependency": {
+    "path": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/audit_local_raw.py",
+    "sha256": "f1f610145a615f837a254dcf99f43f04fbee05a1fb28da7b7d20e49804f33c2a",
+    "reused": "digest and fixed StartHash only"
+  },
+  "validation": {
+    "json_files_valid": 21,
+    "new_links_valid": 8,
+    "frozen_snapshot_hashes_valid": 20,
+    "raw_receipt_hash_valid": true,
+    "C23_acceptance_and_C13_successor_scope_consistent": true,
+    "no_semantic_value_or_effects_or_new_baseline_claim": true
+  }
+}

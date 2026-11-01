@@ -1,0 +1,263 @@
+{
+  "workstream": "WS-31",
+  "updated_date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "status": "ACTIVE_IMPLEMENTATION_C1_C2_C3",
+  "scope": "User authorized sequential C1/C2/C3 judgment and implementation plus discretionary additional baseline admission",
+  "write_root": "docs/research/ws31/main/",
+  "coordination_registry": "../../../project-state/ws31-coordination.json",
+  "coordination_state": "C2/C3 five-control raw and final delivery main accepted; sole independent C1/C3 four label cells active atcursor64; no redispatch",
+  "observed_checkout": {
+    "head": "06552c758a6e111a53d2f6772262dbc88ed73f35",
+    "branch": "feature/ws23-ws24-evidence-integration",
+    "observation_date": "2026-11-01",
+    "policy": "No branch switch, commit or shared-file edit",
+    "latest_observed_head": "751c5cce9101b90043c605fcd9beb0347970b401",
+    "latest_head_source": "Concurrent Integration commit; no main-thread branch switch or commit"
+  },
+  "actual_model_verification": {
+    "source": "this thread latest runtime turn_context",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "turn_id": "01a19322-9815-7133-b0d0-186c62dd3cd3",
+    "timestamp_utc": "2026-10-31T18:04:41.748Z",
+    "switch_claimed": false
+  },
+  "remote_experiments": "24 technical cells main accepted (4zero+3dynamic+5C2label+7C1control+5C23control); C13 four-cell goal active; no independent effects or new baseline",
+  "stages": {
+    "A": "COMPLETE FOR R1 bounded source/raw audit; independent first goal accepted",
+    "B": "COMPLETE FOR R1 core paper set and bounded nearest-neighbor review; FAMG full algorithm unavailable and marked",
+    "C": "COMPLETE FOR R1 evidence-linked consensus/disagreement/open-question map",
+    "D": "COMPLETE FOR R1 questions/constraints/hypotheses/evidence table",
+    "E": "R1 complete; user authorized sequential C1/C2/C3 implementation",
+    "F": "R1 three explicitly main-authored simulated review reports written",
+    "G": "R1 funnel, evidence-linked topic map and literature radar written; no automation created",
+    "H": "R1 complete; old awaiting-choice restriction superseded by user implementation authorization",
+    "I": "REOPENED under user CCF A/B-only gate; Ofan paused; old baseline audit preserved; no additional method admitted",
+    "J": "All three initial mechanisms, matched controls and unknown fallback accepted; C1/C3 removal/swap active; remaining error/delayed labels and adapter lifecycle pending",
+    "K": "C1/C3 four-cell transformed-label frozen plan active; independentV0 and two-sided effects/cost protocols pending",
+    "L": "24 technical cells main accepted; C13 four label cells active; complete labels/lifecycle and independent effects remain",
+    "M": "NOT STARTED; no validated combined baseline"
+  },
+  "closure": "ACTIVE; all three implementations and required validation are tracked in implementation-plan-r1.md",
+  "main_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "independent_thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "independent_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:64",
+  "independent_second_goal": "ACTIVE C1 remove/swap then C3 remove/swap at506; no core/main/zero/Ofan repeats",
+  "local_log_inspection": "One existing technical input: schema and descriptive opportunity only; not V0 predictive validation",
+  "remaining_actions": [
+    "Complete active C1/C3 four-cell removal/swap raw and final-delivery main acceptance; no repeated dispatch",
+    "Freeze controlled error/delayed-label availability and complete adapter lifecycle/exception fixtures before new source/IDs",
+    "Complete independent C1V0 and all three candidates two-sided business-batch/background/state/runtime-cost protocols and validation",
+    "Re-evaluate only necessary additional baselines under verified CCF A/B publication gate; Ofan paused",
+    "Update topic map/contributions and retain user final adoption decision"
+  ],
+  "heartbeat_monitor": {
+    "automation_id": "ws-31",
+    "status": "ACTIVE",
+    "source": "Integration registry after implementation authorization",
+    "interval_minutes": 30
+  },
+  "authorization": {
+    "date": "2026-11-01",
+    "order": [
+      "C1",
+      "C2",
+      "C3"
+    ],
+    "additional_baselines": "Assess necessity/fidelity/cost autonomously; Gemma first",
+    "supersedes": "Prior awaiting-user-candidate decision and proposal-only boundary"
+  },
+  "implementation": {
+    "root": "E:/研/毕业论文/workspace/ws31-candidates-implementation",
+    "branch": "feature/ws31-candidates",
+    "base_sha": "21faeb2d986b0a4d9d59edd9bf11a0d0de934007",
+    "C1": "Initial core/build/zero/dynamic and seven matched-control/unknown raw replay main accepted; actual count/progress state/cost difference and lazy expiry retained; remaining labels/lifecycle/independentV0/effects pending",
+    "C2": "506 core/build/default/remove/swap/unknown and unified/size technical controls main accepted; original-demand/business labels preserved; full label/timing boundaries and independent effects remain",
+    "C3": "Core/build/zero/dynamic plus fixed/size/unknown technical replay main accepted; removal/swap active; complete adapter lifecycle and independent effects remain",
+    "formal_effects": "NOT STARTED",
+    "latest_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "additional_baseline": "Ofan/RR prototype preserved but PAUSED_BY_USER, not formally admitted; further additions require verified CCF A/B publication plus fidelity/cost/necessity",
+    "pushed": "feature/ws31-candidates at 50603927fc09a68d9f2e038129aaee3a3d021081; personal fork only",
+    "latest_tree_observed": "clean after C2 policy-tag commit/push; remote run entry and local remote.env unchanged",
+    "latest_network_validated_sha": "50603927fc09a68d9f2e038129aaee3a3d021081"
+  },
+  "updated_utc": "2026-11-01T02:37:26.458900+00:00",
+  "full_build_accepted": {
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "id": "20261101-061544-ws31-ofan-preflight-r1",
+    "tasks": 1463,
+    "duration_seconds": 354.785,
+    "scope": "Shared full build and C2 non-network cancellation only; Ofan tests cancelled; raw empty"
+  },
+  "active_preflight": {
+    "id": "20261101-061544-ws31-ofan-preflight-r1",
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "source_directory": "/home/fnl/lzy/runs/20261101-061544-ws31-ofan-preflight-r1/source",
+    "observed_status": "COMPLETE_REVISED_SCOPE_MAIN_ACCEPTED",
+    "executor": "sole registered independent",
+    "next": "Four-zero-control network pilot after new resource gate and independent IDs",
+    "user_scope_change": "Ofan paused; completed evidence retained; unstarted Ofan checks cancelled as scope change, not failure",
+    "scope_change_acknowledged": "Independent confirmed Ofan-specific tests not started and cancelled by user; shared build/C2 cancellation continue"
+  },
+  "last_heartbeat": {
+    "at_utc": "2026-11-01T02:23:29.186Z",
+    "observed": "Prior node7 accepted; latest compactcursor64 active sameC13 goal; no repeated dispatch",
+    "action": "Prepare separate transformed-label main replay and synchronize main-owned state/docs; no remote action or implementation change",
+    "notification": "DONT_NOTIFY; prior node complete already recorded/notified, active C13 healthy"
+  },
+  "baseline_admission_policy": {
+    "source": "latest direct human instruction in main thread",
+    "date": "2026-11-01",
+    "required_for_additional_mechanisms": "Verified formal paper in CCF A/B conference or journal; unknown or non-A/B excluded",
+    "Ofan": "PAUSED_BY_USER; existing code is unadmitted prototype; no further dedicated validation",
+    "existing_kept": [
+      "DRILL",
+      "ConWeave",
+      "CONGA",
+      "ECMP",
+      "LetFlow",
+      "QueuePin"
+    ],
+    "additional_admitted": [],
+    "policy_file": "baseline-admission-policy-r2.md"
+  },
+  "active_pilot": {
+    "plan": "zero-control-pilot-r1.json",
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "status": "COMPLETE_4_OF_4_MAIN_ACCEPTED",
+    "cells": 4,
+    "scope": "technical zero regressions only; Ofan/RR excluded",
+    "completed_main_accepted": 4,
+    "reference_receipt": "evidence/zero-control-q12-main-acceptance-r1.json",
+    "reference_scope": "104 flows/201981952 bytes, 606168 data hops, zero drops/rejections/port changes; technical only",
+    "partial_comparisons": "evidence/zero-control-main-comparisons-r1.json",
+    "local_control_entry_constraint": "RELEASED after final guarded run; new goal clean-source gate applies",
+    "main_acceptance": "evidence/zero-control-pilot-main-acceptance-r1.json"
+  },
+  "V0_protocol": {
+    "file": "c1-v0-protocol-r1.md",
+    "source_audit": "evidence/c1-v0-protocol-source-audit-r1.json",
+    "status": "TECHNICAL_ONE_INPUT_REPLAY_COMPLETE; independent V0 pending",
+    "role": "Prepare conditional reuse of complete zero-pilot logs without duplicate simulation; independent demand protocol still required",
+    "technical_data_gate": "Q12 fixed-source payload reconstruction passed for 202056 source arrivals/104 keys, exact unique bytes; complete no-drop log reusable for technical metrics only",
+    "technical_report": "v0-technical-replay-r1.md",
+    "technical_counterpoint": "Class progress rank 76/83 vs count 74/83, but MAE120894.73 vs81501.63B; no claim progress dominates, no parameter retuning",
+    "new_remote_runs": 0
+  },
+  "active_dynamic": {
+    "plan": "main-mode-dynamic-r1.json",
+    "status": "COMPLETE_3_OF_3_MAIN_ACCEPTED_AND_INDEPENDENT_HANDOFF_COMPLETE",
+    "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "cells": 3,
+    "max_compile_jobs": 6,
+    "simulation_concurrency": 1,
+    "scope": "initial positive mechanism coverage only; matched controls/tags/independent effects remain",
+    "source_established_evidence": "../independent/main-mode-dynamic-r1-sources-established.json",
+    "local_algorithm_edit_guard": "RELEASED: all guarded c4 run calls started; control entry/env guard also released by independent",
+    "main_acceptance": "evidence/dynamic-main-modes-main-acceptance-r1.json",
+    "node_handoff": "dynamic-node4-handoff.md",
+    "delivery_acceptance": "evidence/dynamic-delivery-main-acceptance-r1.json"
+  },
+  "validation_interface_gap": {
+    "file": "evidence/c2-tag-intervention-source-gap-r1.json",
+    "status": "FIX_MAIN_ACCEPTED_AT5060392_FOR_DEFAULT_REMOVE_SWAP_UNKNOWN_TECHNICAL_SCOPE",
+    "current_default_runs_affected": false,
+    "wrong_transformed_runs_executed": 0,
+    "fix_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "source_receipt": "evidence/c2-policy-tag-source-fix-r1.json",
+    "note": "c4 packet transform did not affect launch decisions; no transformed run executed; current fixed-c4 transform0 goal valid",
+    "next_dispatch": "Completed; keep original source-gap audit historical, broader error/delayed-label and matched controls remain",
+    "runtime_acceptance": "evidence/c2-label-pilot-main-acceptance-r1.json"
+  },
+  "dynamic_successor": {
+    "plan": "c2-label-validation-r1.json",
+    "status": "COMPLETE_5_OF_5_MAIN_ACCEPTED_AND_FINAL_HANDOFF_ACCEPTED",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "cells": 5,
+    "scope": "C2 modified core/new builds/default regression/remove/swap/unknown fallback, technical only",
+    "next": "Complete; original pause evidence historical, further controls carried by next goal",
+    "plan_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:45",
+    "active_turn_id": "01a19454-b7ec-7883-abe9-8252f1d7201f",
+    "source_edit_guard": "RELEASED all5 guarded run calls ended; no source edit required now",
+    "main_raw_verifier": "scripts/verify_c2_label_raw_r1.py",
+    "verifier_preparation_receipt": "evidence/c2-label-main-verifier-preparation-r1.json",
+    "pause_review": "evidence/c2-label-preflight-pause-main-review-r1.json",
+    "recovery_check": "evidence/c2-label-attempt2-recovery-main-check-r1.json",
+    "active_receipt": "../independent/c2-label-validation-r1-attempt2-receipt.json",
+    "source_established_evidence": "../independent/c2-label-validation-r1-attempt2-sources-established.json",
+    "source_established_sha256": "d35f895d56737d352a98155641cb5cc34cba6b2b7946f2489effa606beb1540e",
+    "main_acceptance": "evidence/c2-label-pilot-main-acceptance-r1.json",
+    "node_handoff": "c2-label-node5-handoff.md",
+    "delivery_acceptance": "evidence/c2-label-delivery-main-acceptance-r2.json"
+  },
+  "last_material_event": {
+    "kind": "C2/C3 five matched controls technical raw and final delivery main accepted",
+    "evidence": "evidence/c23-controls-pilot-main-acceptance-r1.json",
+    "report": "c23-controls-node7-handoff.md",
+    "user_decision_required": false,
+    "performance_acceptance": false
+  },
+  "planned_next_goal": {
+    "plan": "c13-label-validation-r1.json",
+    "plan_sha256": "3803bafb5f5a95527018e014777e3e9d514ab5c7cd400647d82371a8d4e06685",
+    "cells": 4,
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "status": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE",
+    "scope": "C1 remove/swap then C3 remove/swap; original business truth retained; technical only",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:62",
+    "active_turn_id": "01a194f2-bf82-7b12-a2e4-19b64a1012cd",
+    "human_plan": "c13-label-validation-r1.md",
+    "source_edit_guard": "Hold exclusive source clean until4 source copies established; keep remote_experiment.py/remote.env unchanged until guarded calls started and explicit release",
+    "main_raw_verifier": "scripts/verify_c13_label_raw_r1.py",
+    "verifier_preparation": "evidence/c13-label-main-verifier-preparation-r1.json",
+    "observed_local_receipt": {
+      "path": "../independent/c13-label-validation-r1-receipt.json",
+      "observed_utc": "2026-11-01T02:37:26.458900+00:00",
+      "sha256": "1fd71a08b507d1e535058047de895dc298221d80677878fcb8e143d1857a0579",
+      "status": "ACTIVE",
+      "cells": {
+        "20261101-104000-ws31-c13tag-r1-c1-remove": "BUILDING",
+        "20261101-104000-ws31-c13tag-r1-c1-swap": "BUILDING",
+        "20261101-104000-ws31-c13tag-r1-c3-remove": "BUILDING",
+        "20261101-104000-ws31-c13tag-r1-c3-swap": "NOT_STARTED"
+      },
+      "implication": "Three guarded builds active, fourth not started; no duplicate dispatch or source edits; do not infer foreground idle stops driver"
+    }
+  },
+  "active_controls_C1": {
+    "plan": "c1-controls-validation-r1.json",
+    "plan_sha256": "115a840e86a8829d6e74923c077579963290514c9704b846efa366b086106297",
+    "cells": 7,
+    "status": "COMPLETE_7_OF_7_RAW_AND_FINAL_DELIVERY_MAIN_ACCEPTED",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "scope": "C1 main-input unified/count/history/size/unified-count and two unknown-class/unified technical cells; no main/zero reruns or effects",
+    "source_audit": "evidence/c1-controls-source-audit-r1.json",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:55",
+    "human_plan": "c1-controls-validation-r1.md",
+    "source_edit_guard": "All7 build/run commands ended and verified; no future guarded calls in this goal",
+    "main_raw_verifier": "scripts/verify_c1_controls_raw_r1.py",
+    "verifier_preparation": "evidence/c1-controls-main-verifier-preparation-r1.json",
+    "verifier_expiry_recheck": "evidence/c1-controls-main-verifier-expiry-recheck-r1.json",
+    "main_acceptance": "evidence/c1-controls-pilot-main-acceptance-r1.json",
+    "node_handoff": "c1-controls-node6-handoff.md",
+    "next": "Complete technical node; broader labels/lifecycle/independentV0/effects carried forward",
+    "delivery_acceptance": "evidence/c1-controls-delivery-main-acceptance-r1.json"
+  },
+  "active_controls_C23": {
+    "plan": "c23-controls-validation-r1.json",
+    "plan_sha256": "ce4e1a10d141355f94bcceca11e9eed7a9cc4bdd7ef1522f4644ce8520c96e49",
+    "cells": 5,
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "status": "COMPLETE_5_OF_5_RAW_AND_FINAL_DELIVERY_MAIN_ACCEPTED",
+    "scope": "C2 unified/size then C3 fixed/size/unknown technical controls; not effects or repeats",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:60",
+    "human_plan": "c23-controls-validation-r1.md",
+    "source_edit_guard": "Released; prior goal terminal+idle atcursor62 before C13 dispatch",
+    "main_acceptance": "evidence/c23-controls-pilot-main-acceptance-r1.json",
+    "delivery_acceptance": "evidence/c23-controls-delivery-main-acceptance-r1.json",
+    "node_handoff": "c23-controls-node7-handoff.md",
+    "main_raw_verifier": "scripts/verify_c23_controls_raw_r1.py"
+  }
+}

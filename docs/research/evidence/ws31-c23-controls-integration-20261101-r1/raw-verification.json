@@ -1,0 +1,177 @@
+{
+  "scope": "Integration complete accounting/path/C2 exact waits and observed C3 admission/residual counters; full C3 activity model main-attributed",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "result_files_hashed": 122,
+  "support_files_hashed": 80,
+  "source_map_reused_from_prior_verified_506": 35,
+  "cells": {
+    "c2-unified": {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c2-unified",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "adfbb33a152a774c6e7aee374b0b64ed089db68ebc9042de2e0499e6e6f490ff",
+      "ordered_hashes": {
+        "WS30_CHOICE": "5a7d8aee0053507cefde4f8ac01affc9ec6a95cc7d1c80eba39fc93382686a55",
+        "WS30_ROUTE": "b2c6bcc33218abd46d68d8be8d023516c545f768d8b0dca6f6ae7d2c0c8cabc4",
+        "WS31_C2_DEMAND": "0a40906791fc3cd1bcf7d619e1fda440ece166fe4c70728845549b60a07a7ddb",
+        "WS31_C2_LAUNCH": "40635ad3bcb980661ace15d4e2d30c50381d55717347e771dce92bb47605aa44",
+        "WS31_C2_FINISH": "646ad6d0064e22b19949b277ca8e32405dffe2e8f74d2491a40b68f89d773c87",
+        "WS31_C3_ROUTE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C3_STATE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "direct_checks": {
+        "exact_hash_waits": 104,
+        "positive": 104,
+        "sum_ns": 23773,
+        "max_ns": 497
+      },
+      "main_control_replay": {
+        "requests_exact_hash_timing_replayed": 104,
+        "positive_waits": 104,
+        "wait_sum_ns": 23773,
+        "wait_max_ns": 497,
+        "positive_waits_by_original_tag": {
+          "1": 24,
+          "2": 80
+        }
+      }
+    },
+    "c2-size": {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c2-size",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf",
+      "ordered_hashes": {
+        "WS30_CHOICE": "db851f248b3cac3b04391d2e406726a0da730e969fef7834ce458cb237600ec5",
+        "WS30_ROUTE": "e71095603c738b4a6cf9bf5cf3e35c49ab58f905b8e21143e91c8d343f661275",
+        "WS31_C2_DEMAND": "b9cc8516fda513525e4c8de7a7be4d235b8961855a9fe1d1c16ff8a655268fe8",
+        "WS31_C2_LAUNCH": "994db53f831104542890f06fd7f4ed1b44db826bfc2062dd17ff4306cc085d48",
+        "WS31_C2_FINISH": "2c1035fdd2c22f19282e923ea1f1a9439f7225f77b0fee9a4da7f63d6092949e",
+        "WS31_C3_ROUTE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C3_STATE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "direct_checks": {
+        "exact_hash_waits": 104,
+        "positive": 80,
+        "sum_ns": 18002,
+        "max_ns": 497
+      },
+      "main_control_replay": {
+        "requests_exact_hash_timing_replayed": 104,
+        "positive_waits": 80,
+        "wait_sum_ns": 18002,
+        "wait_max_ns": 497,
+        "positive_waits_by_original_tag": {
+          "1": 0,
+          "2": 80
+        }
+      }
+    },
+    "c3-fixed": {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c3-fixed",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "9e4d3e97823903893b9bd4ce20e2969529f8bdf52469776c555217d20c6d92be",
+      "ordered_hashes": {
+        "WS30_CHOICE": "f03866790676a1824f738e8ff857717024de65633c2eea34c396ed3a445db657",
+        "WS30_ROUTE": "8ec8d71670672c3331be8955b55a8d63064658a2f6620ce6e5f571cd88f12bc1",
+        "WS31_C2_DEMAND": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_LAUNCH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_FINISH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C3_ROUTE": "540f4a07e11948790eb5c56964d10bc6687cbca1db2c6fa12cd2a7fa67eac3b4",
+        "WS31_C3_STATE": "f83716c029f229e4f9beb258435e8aed246cdae7dbbfc38dc7d955c01eb3f5bf"
+      },
+      "direct_checks": {
+        "fresh": 104,
+        "restricted": 104,
+        "borrowed": 0,
+        "full_activity_and_ownership_reconstruction": "main-attributed; not independently rerun by Integration"
+      },
+      "main_control_replay": {
+        "source_arrivals_replayed": 202056,
+        "source_route_entries": 104,
+        "dedicated_events_replayed": 104,
+        "restricted": 104,
+        "borrowed": 0,
+        "residual_packets": 0,
+        "residual_wire_bytes": 0,
+        "tag2_activations": 2,
+        "tag2_borrowers_at_activation_sum": 0
+      }
+    },
+    "c3-size": {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c3-size",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "9d18a19b0c7907564ec040574618338b427f414496d603177b5fcd03ed20563c",
+      "ordered_hashes": {
+        "WS30_CHOICE": "ef366e74a8da308fc7554e7ae54705dd292ca8c0a8bc8527486797a4fd86f6b9",
+        "WS30_ROUTE": "c8c2687ed93cdf25c5fa1702789a3cd44ee82ab803b54a735723b0c046b2ae7c",
+        "WS31_C2_DEMAND": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_LAUNCH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_FINISH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C3_ROUTE": "43a0c7d636db75cdaec6daf79624d452dfba2344ac072ddac8ee4941544f23c6",
+        "WS31_C3_STATE": "25298a397d66cb70590f730ab12582d345bdadb13182dd689d8791eb8469ab2d"
+      },
+      "direct_checks": {
+        "fresh": 104,
+        "restricted": 80,
+        "borrowed": 4,
+        "residual_packets": 546,
+        "residual_wire_bytes": 572208,
+        "full_activity_and_ownership_reconstruction": "main-attributed; not independently rerun by Integration"
+      },
+      "main_control_replay": {
+        "source_arrivals_replayed": 202056,
+        "source_route_entries": 104,
+        "dedicated_events_replayed": 650,
+        "restricted": 80,
+        "borrowed": 4,
+        "residual_packets": 546,
+        "residual_wire_bytes": 572208,
+        "tag2_activations": 2,
+        "tag2_borrowers_at_activation_sum": 7
+      }
+    },
+    "c3-unknown": {
+      "id": "20261101-094000-ws31-c23ctrl-r1-c3-unknown",
+      "flows": 6,
+      "payload_bytes": 28278,
+      "fct_sha256": "73c06eefabea64948fee03f7305ab0e89c455bf4dbc8df4374d6962565a5cf12",
+      "ordered_hashes": {
+        "WS30_CHOICE": "eee7bb7b2c4674a4e01d1c1f29aa6ac304fd2a582b96d4a7defe07eadedb975e",
+        "WS30_ROUTE": "b5db993ce565b24bd2c6fc6a82ddf4932ef02b5d4b2e79115f8ba1de5ee0568d",
+        "WS31_C2_DEMAND": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_LAUNCH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_FINISH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C3_ROUTE": "813ea21a309fd9b0e35db61e6bb81536dba4f1b54bcb201d7921893d79c3dece",
+        "WS31_C3_STATE": "b77af4dfcc62d4d60cbce85b6f6b5dd1d9686720de3bd235e80ef25b74f9a02c"
+      },
+      "direct_checks": {
+        "fresh": 6,
+        "restricted": 0,
+        "borrowed": 0,
+        "full_activity_and_ownership_reconstruction": "main-attributed; not independently rerun by Integration"
+      },
+      "main_control_replay": {
+        "source_arrivals_replayed": 33,
+        "source_route_entries": 6,
+        "dedicated_events_replayed": 6,
+        "restricted": 0,
+        "borrowed": 0,
+        "residual_packets": 0,
+        "residual_wire_bytes": 0,
+        "tag2_activations": 0,
+        "tag2_borrowers_at_activation_sum": 0
+      }
+    }
+  },
+  "completed_flow_records": 422,
+  "completed_payload_bytes": 807956086,
+  "all_five_builds_before_runs": true,
+  "size_and_unknown_regressions_pass": true,
+  "old_reference_logs_read_only_for_new_auxiliary_regression": true,
+  "remote_access": false,
+  "new_or_repeated_network_runs": false,
+  "independent_effects_validated": false
+}

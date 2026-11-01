@@ -1,0 +1,73 @@
+{
+  "scope": "Main independent C2/C3 matched-control raw replay; technical only",
+  "id": "20261101-094000-ws31-c23ctrl-r1-c3-size",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "lb": "ws31-c3-size",
+  "flows": 104,
+  "payload_bytes": 201981952,
+  "all_demand_origins_match": true,
+  "c2_time_rows": 0,
+  "counts": {
+    "WS30_ROUTE": 606168,
+    "WS30_CHOICE": 208,
+    "WS30_QP": 104,
+    "WS30_QUEUE": 1,
+    "WS30_PATH": 1
+  },
+  "summaries": {
+    "WS30_QUEUE": {
+      "enqueued": "671412000",
+      "dequeued": "671412000",
+      "dropped": "0",
+      "current": "0",
+      "admission_dropped_bytes": "0",
+      "queue_rejected_bytes": "0",
+      "violations": "0"
+    },
+    "WS30_PATH": {
+      "switch_qps": "312",
+      "data_hops": "606168",
+      "changed_qps": "0",
+      "port_changes": "0",
+      "rejected": "0",
+      "full_rows": "606168"
+    }
+  },
+  "ordered_normalized_hashes": {
+    "WS30_CHOICE": "ef366e74a8da308fc7554e7ae54705dd292ca8c0a8bc8527486797a4fd86f6b9",
+    "WS30_ROUTE": "c8c2687ed93cdf25c5fa1702789a3cd44ee82ab803b54a735723b0c046b2ae7c"
+  },
+  "fct_sha256": "9d18a19b0c7907564ec040574618338b427f414496d603177b5fcd03ed20563c",
+  "log_sha256": "4ab13802c946f2438efdbf2a95563232e1e4d32e89ad3fab6dbb5f9d17553ded",
+  "source_payload_reconstruction": {
+    "rows": 202056,
+    "keys": 104,
+    "unique_payload_bytes": 201981952,
+    "all_match_input": true,
+    "first_tags": {
+      "1": 24,
+      "2": 80
+    }
+  },
+  "inputs": {
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+  },
+  "control_replay": {
+    "source_arrivals_replayed": 202056,
+    "source_route_entries": 104,
+    "dedicated_events_replayed": 650,
+    "restricted": 80,
+    "borrowed": 4,
+    "residual_packets": 546,
+    "residual_wire_bytes": 572208,
+    "tag2_activations": 2,
+    "tag2_borrowers_at_activation_sum": 7
+  },
+  "regression": {
+    "reference_id": "20261101-071042-ws31-dyn-r1-c3",
+    "full_fct_equal": true,
+    "ordered_ROUTE_remove_uid_equal": true,
+    "required_auxiliary_events_equal": true
+  },
+  "status": "PASS_C2_C3_CONTROL_TECHNICAL_SCOPE"
+}

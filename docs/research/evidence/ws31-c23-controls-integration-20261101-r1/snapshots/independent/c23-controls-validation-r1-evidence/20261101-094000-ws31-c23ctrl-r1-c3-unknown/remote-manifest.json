@@ -1,0 +1,119 @@
+{
+  "source_head": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "binary_sha256": "9bc3cb7093212870bfa617f1f2da91ff01f4d2f553809a70b6ad82d6a934e860",
+  "files": {
+    "logs/resource-run-summary.json": {
+      "bytes": 3124,
+      "sha256": "25aba65bd528f18f619b6022c0ed89cba1d1cb8836dfd2901c0c908375324135"
+    },
+    "raw/997633708/997633708_out_pfc.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "metadata.txt": {
+      "bytes": 2223,
+      "sha256": "4ef2defb17edfdd3539d15f286b476af47a1192ea10ee9cdb4e13a1dda8135f9"
+    },
+    "config/topology.txt": {
+      "bytes": 4994,
+      "sha256": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2"
+    },
+    "logs/resource-run-samples.jsonl": {
+      "bytes": 446,
+      "sha256": "c228ccd937d9ba404aba8ecb8caacb3b37079f77041119d42ae55c06d5ff032e"
+    },
+    "raw/997633708/997633708_in.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/simulation.log": {
+      "bytes": 843,
+      "sha256": "7f4d3333140e4c4c2644a511917e8e9d3cc4e1061d57f6e3c9646d4d9a7ed4fa"
+    },
+    "logs/worker.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/build.log": {
+      "bytes": 208346,
+      "sha256": "29595e5fac78382b365a468541c09ec6daf8fd232888a20bcad06c429708d3f1"
+    },
+    "raw/997633708/997633708_out_fct_summary.txt": {
+      "bytes": 69,
+      "sha256": "1b0684023feeafae5c709545d7f326463e40c3d1c5fe0f49dbed81b5827d246b"
+    },
+    "raw/997633708/config.txt": {
+      "bytes": 2585,
+      "sha256": "53e3d4c5dce63dba0ef768dc3b7e5896802e4aef6f81cc24909cc28c0457a5c6"
+    },
+    "raw/997633708/997633708_out_fct.txt": {
+      "bytes": 246,
+      "sha256": "73c06eefabea64948fee03f7305ab0e89c455bf4dbc8df4374d6962565a5cf12"
+    },
+    "raw/997633708/config.log": {
+      "bytes": 25582,
+      "sha256": "fb8efafd733ac93267ce1a45036637bf4e333d5c8fa29c6731b9d1c879a3bb2e"
+    },
+    "raw/997633708/997633708_out_cnp.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "metadata.json": {
+      "bytes": 2589,
+      "sha256": "c59b6bdd67cc1f504e5359ec1a6ccf2d8e87781f97b0c1f3492531275fbaaa80"
+    },
+    "raw/997633708/997633708_out_conn.txt": {
+      "bytes": 1186542,
+      "sha256": "4881c0a0d576731f57dedfb4a378de2c790f22236c60776b4d4380072fbd05a5"
+    },
+    "config/config.txt": {
+      "bytes": 2585,
+      "sha256": "53e3d4c5dce63dba0ef768dc3b7e5896802e4aef6f81cc24909cc28c0457a5c6"
+    },
+    "config/traffic_trace.txt": {
+      "bytes": 160,
+      "sha256": "0dc3245f6a534ab8f1bd2dfbc4ada4cceeb2e3c3b8e8b8875fdb4f7c71b89126"
+    },
+    "raw/997633708/997633708_out_uplink.txt": {
+      "bytes": 654340,
+      "sha256": "e31b911777412f83c787d5b83548a2acdcf8088c214b3149865fdd5eb6eae7d5"
+    }
+  },
+  "source_hashes": {
+    "scripts/remote_worker.py": "3567a1cf95016e1ea093c32e0aeccaee6e3254c3b43fe1feaf690c8dfec4bed5",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+    "tests/ws31_budget_test.cc": "b3f933847436ec524e22d9caa1d2670eac3d6ac4ac07fff8776479b3b4cc0bcd",
+    "src/applications/model/rdma-client.h": "49b1ff67bf0c2d30c06dc84f5952a312ff0a1725bfad578460efa2499576f458",
+    "src/point-to-point/model/rdma-queue-pair.h": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+    "src/point-to-point/model/ws31-ofan.h": "02598801653ca701c092a650ce222b6741687fd9e4053fda5a9390c1f3d54f28",
+    "src/point-to-point/model/rdma-hw.cc": "4be7d02a76b7d216e0323534515dacd465227c928e494f031fc1119f6463ae9b",
+    "src/applications/model/rdma-client.cc": "60ce7a6cd693188698ae3fc533790081fa6910a48d1c73eee43fb083f5b4689c",
+    "src/point-to-point/model/ws31-start.h": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba",
+    "src/point-to-point/model/rdma-driver.cc": "b3704ee90cf4cebc8e81d8e22501e56224cfa03677ac845af6cf11c35d8beb34",
+    "src/point-to-point/model/rdma-driver.h": "c0641c74a0010440948f6c797c6443dfec52fc150e1f03e6e4a74225536b895f",
+    "config/ws31_ofan_fat_r1.txt": "07c559baa157f6901c14e754c719c1d25fe24592a0506cba2861b77b10ea34a6",
+    "scripts/ws31_correctness_inputs.py": "bf18552cbfd2cb19946a322414d752b553dd7e2893c7f7b3a16e0b5d2277a49f",
+    "docs/research/ws31/main/correctness-protocol-r1.md": "f276725d42c1f12735009d55919f91298f634b06afefda528a55f3a3b9d8209d",
+    "scripts/verify_ws31_fct.py": "35bc985fc4089e847bda69f155e4d8d9f8d0cbb0199a53bb1c56086277bddfdf",
+    "docs/research/ws31/main/implementation-plan-r1.md": "efff72b87d73bc026e7f86078ea17e0dcf8ee8435f7c59de0d01c8804591af81",
+    "config/ws31_unknown_r1.txt": "0dc3245f6a534ab8f1bd2dfbc4ada4cceeb2e3c3b8e8b8875fdb4f7c71b89126",
+    "src/point-to-point/model/ws31-quota.h": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+    "src/point-to-point/model/ws30-observer.h": "26b117b02d147b9874dc9b13d5eb8c3a6a46d694c928da889cab36077c271dbf",
+    "scratch/network-load-balance.cc": "17985d95a4582edfabdbac80131aef80d7d5eaac7100c637465f2ccde400502b",
+    "docs/research/ws31/main/c2-implementation-contract-r1.md": "76e1d9f28f19218edb84772dd793007c32a3b6ce551d63fb07de6c7dd267747c",
+    "tests/ws31_start_test.cc": "5f523030e5050e44aa1128a242a9cf5ac7499027bc7da1b3bf4c99d903c4c4b1",
+    "tests/ws31_quota_test.cc": "af864ac328f8e1a24c2656e853ae52197c7e3838998042753ac807b68a5d4071",
+    "scripts/remote_experiment.py": "19f3067986094423c08842e46b37526e7d815bb4d6b6769224226e7ec562b3a2",
+    "scratch/ws31-start-lifecycle-test.cc": "66d2b4d0666a6c9c8aa699d00c7a54188f739f4f0a60ace92e79a7f1ede6f8ec",
+    "src/point-to-point/model/rdma-hw.h": "13a3be27e5fbac2528612afa87172b4460e88c2c4ea73d356b9d428e655c9750",
+    "src/point-to-point/model/switch-node.h": "67f357a59a7dd771bfc26d2827fb0884c4f61cd5031f58359a1226a424c19b24",
+    "src/point-to-point/wscript": "56f4debba8d111da9b69cc43e0e0b889a21bf13c00c522517c76aefd922ecda7",
+    "tests/ws31_ofan_test.cc": "6fa4a30cb8dc2ec9875e61ca27693876a73242ca99d374549017fda29208d882",
+    "docs/research/ws31/main/c3-implementation-contract-r1.md": "f726e7e2dcae8964601527c71f6edd5ba530f3389f61b1875ff204f7e0e8ae6e",
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "docs/research/ws31/main/ofan-admission-decision-r1.md": "e91b54925da14965160968c380424cd58effe8c00bf819755b9c783c6359e399",
+    "src/point-to-point/model/ws31-budget.h": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+    "src/point-to-point/model/switch-node.cc": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+    "run.py": "23aee55f74cd401fba0a685b23a9b04ea67ce295d8ec81b4615274b1e796fed8"
+  }
+}
