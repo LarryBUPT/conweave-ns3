@@ -1,0 +1,42 @@
+{
+  "stdout": "WS31_LABEL_TEST PASS visibility/boundary/presence/unknown/hash/conflicts/context\n",
+  "steps": [
+    {
+      "name": "ws31-label-core-compile",
+      "cwd": "/home/fnl/lzy/runs/20261101-121000-ws31-label-preflight-r2/source",
+      "argv": [
+        "g++",
+        "-std=c++11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-pedantic",
+        "-UNDEBUG",
+        "tests/ws31_label_test.cc",
+        "-o",
+        "/home/fnl/lzy/results/20261101-121000-ws31-label-preflight-r2/technical/ws31-label/core-test"
+      ],
+      "exit_code": 0,
+      "log": "/home/fnl/lzy/results/20261101-121000-ws31-label-preflight-r2/logs/ws31-label-core-compile.log"
+    },
+    {
+      "name": "ws31-label-core-run",
+      "cwd": "/home/fnl/lzy/runs/20261101-121000-ws31-label-preflight-r2/source",
+      "argv": [
+        "/home/fnl/lzy/results/20261101-121000-ws31-label-preflight-r2/technical/ws31-label/core-test"
+      ],
+      "exit_code": 0,
+      "log": "/home/fnl/lzy/results/20261101-121000-ws31-label-preflight-r2/logs/ws31-label-core-run.log"
+    }
+  ],
+  "assertions_enabled_symbol": "__assert_fail",
+  "compiler_version": "g++ (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609",
+  "binary_sha256": "a324c0c19352bd8a966a7d46a8bd981cf307665d705081c2d1d7e8bce345080b",
+  "binary": "/home/fnl/lzy/results/20261101-121000-ws31-label-preflight-r2/technical/ws31-label/core-test",
+  "source_hashes": {
+    "src/point-to-point/model/ws31-start.h": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba",
+    "src/point-to-point/model/ws31-label-fixture.h": "87fec3866c35751c8153c29c9bb0d534dc9a3fdc5945db1abc25e3192fc552d7",
+    "tests/ws31_label_test.cc": "d4ea5ab6e9b5c581eaba58ab62b237a72ddf45dea8db82cc78b7c1b77cc6c681"
+  },
+  "status": "PASS"
+}

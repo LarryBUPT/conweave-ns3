@@ -105,9 +105,13 @@ C1 移除恢复统一控制；交换有 89 次非零压力、预测峰值 64、8
 
 标签夹具首源 4605fa3 的 r1 预检在源码门 G1 停止。Python 已有传输与诊断检查，C++ 入口却未接收实际配置，静态反例可绕过隔离门。r1 的同步／部署／远端审计／构建／新增核心／mock／网络计数均为 0；远端 ID 未检查，执行约束随停止释放。见[G1 交接](../handoffs/2026-11-01-ws31-label-g1-repair.md)，旧源、ID 和失败收据保留。
 
-主修复后的源为 `2ed7d342d0713a5667f43c7730ca5bc5a6a67150`。C++ 在实际配置解析后检查传输、输入和旧故障／诊断上下文，新增拒绝例；worker 在启用夹具时清理禁用诊断的继承环境。主报告五项本地 mock 通过，Integration 未重跑这些测试；完整构建与新增 C++ 核心仍待验收。
+主修复后的源为 `2ed7d342d0713a5667f43c7730ca5bc5a6a67150`。C++ 在实际配置解析后检查传输、输入和旧故障／诊断上下文，新增拒绝例；worker 在启用夹具时清理禁用诊断的继承环境。其工程预检现已主验并经 Integration 本地核对，见[第九节点](../handoffs/2026-11-01-ws31-label-preflight-integration.md)：28 文档、2 依赖、12 支持、9 结果、38 个 Git 对象及 4,839 项树均匹配。
 
-唯一副前目标 cursor 70 终态、idle 且释放约束后，主派发[修订二预检计划](../research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/label-fixture-preflight-r2.json)。ID 为 `20261101-121000-ws31-label-preflight-r2`，计划哈希为 `7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b`。按[修订三契约](../research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/label-lifecycle-boundary-contract-r3.md)先独立审源，再经新 ID／作业／资源门，执行一次隔离 `-j2` 完整构建及新增核心／mock。禁止网络、旧核心、Ofan 或旧控制器运行。新源默认回归和标签网络输入／计划另行冻结，最后网络已验源仍为 5060392。
+该预检 ID 为 `20261101-121000-ws31-label-preflight-r2`，完整构建 1,464 项、352.659 秒；新增标签核心编译／运行各一次，使用 `-UNDEBUG`，二进制含断言符号，五项 mock 通过。网络运行 0，raw 无产物，旧核心未重跑。实际部署原字节与固定 Git 的 LF 代码分别核对；旧 CRLF 假设失败 checker 及原日志保留，未改源、重测或重编译。该结果只完成工程门，默认网络行为仍待验。
+
+主确认唯一副 cursor 72 终态、idle 且约束释放后，已派发[默认关闭三格计划](../research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/main/label-default-validation-r1.json)，哈希 `a81e95af15bba097c8ce900348c260a58c8b2a10416b204380c217331f1d7b4e`。新 ID 前缀为 `20261101-124500-ws31-labeldef-r1-`，依次为 c1、c2、c3；共同 profile 为 0。最多三个 `-j2`、六编译任务，新资源门后全部三构建完成再串行仿真。完整 FCT、有序 CHOICE／ROUTE 仅去 uid、专属事件及原身份／计时均须恢复固定旧参考；参考只读，核心不重跑。
+
+本轮派发不含 profiles 1／2／3、适配器生命周期或效果。新源默认回归结果尚待主验，最后网络已验源仍为 5060392。后继动态标签须另冻实际首包前后覆盖及错误桶分组，禁止借用旧控制器继续运行。
 
 五格首次尝试的环境门暂停已由同目标 attempt2 恢复完成。原[异常记录](../research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/incident.md)、缓存核对和两个进程自然退出的收据保留，未重复 fetch、未终止未知作业、未放宽资源门。主 checker 首次误将 CHOICE 的固定 0 字段当作实际包标签；旧脚本与 schema 修正保留，ROUTE 标签按真实策略另核，仿真源码、raw 和验收判据均未改变。
 

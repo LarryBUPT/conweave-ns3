@@ -1,0 +1,55 @@
+{
+  "workstream": "WS-31",
+  "stage": "Label fixture source review and new C++ preflight only",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "branch": "feature/ws31-candidates",
+  "parent_sha": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "contract": "label-lifecycle-boundary-contract-r3.md",
+  "id": "20261101-121000-ws31-label-preflight-r2",
+  "source_changes_sha256": {
+    "scratch/network-load-balance.cc": "c3204664608548c7dfd95d1f0873792e15bfaddf6f4c63e189457fdb358499fa",
+    "scripts/remote_worker.py": "096695c22597b30ecd24ad3ed69284f851b26743f9be4c810bafee82d90ff569",
+    "src/point-to-point/model/ws31-label-fixture.h": "87fec3866c35751c8153c29c9bb0d534dc9a3fdc5945db1abc25e3192fc552d7",
+    "tests/ws31_label_runner_test.py": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+    "tests/ws31_label_test.cc": "d4ea5ab6e9b5c581eaba58ab62b237a72ddf45dea8db82cc78b7c1b77cc6c681"
+  },
+  "resource_gate": {
+    "no_other_user_or_unknown_project_jobs": true,
+    "min_available_gib": 64,
+    "min_disk_gib": 100,
+    "max_initial_load_1m": 4,
+    "parallel_builds": 1,
+    "jobs_per_build": 2,
+    "simulation_concurrency": 0
+  },
+  "steps": [
+    "Review new G1 diff and complete label fixture independently; stop before remote action for material issue; validate actual parsed C++ configuration and diagnostics, not only worker args",
+    "Verify personal origin/pushed branch, clean exclusive checkout and latest SHA; new ID must not exist; read actual background/prior target receipts",
+    "Use guarded sync under workflow fallback, install updated workspace worker only with no active/unknown jobs and record deployment hash; no system changes",
+    "Run exactly one new guarded isolated optimized full build atfixedSHA with-j2; no network run command",
+    "After full build, compile only new tests/ws31_label_test.cc in the isolated source using g++ -std=c++11 -O2 -Wall -Wextra -pedantic -UNDEBUG; place binary/log outside source tree in this newID workspace; run once and record command/exit/stdout/binary/source hashes",
+    "Run new Python local runner test with remote entry points mocked; no oldcore or acceptednetwork reruns",
+    "Finalize source map, whole Git tree, build/core/local tests, resources and nine-section handoff; preserve all failures and stop remaining execution"
+  ],
+  "prohibited": [
+    "No network simulation, run.py or remote_experiment run",
+    "No Ofan/RR dedicated work",
+    "No C1/C2/C3 oldcore or C2 legacy cancellation repeats",
+    "No lifecycle/controller revival, no existingID overwrite or process killing",
+    "No claim build/core completes label network regression or adapter lifecycle or effects"
+  ],
+  "failure_policy": "Any source,gate,build or newcore failure stops preflight; retain ID and exact source/log for main repair; do not repair main source or alter criteria",
+  "remaining_after": [
+    "New-source default0 network regressions against accepted references",
+    "Frozen small input and profiles1/2/3 network label coverage",
+    "SwitchNode and RdmaClient lifecycle/exception adapter fixtures",
+    "IndependentC1V0 and two-sided effects/state/runtime-cost validation"
+  ],
+  "mechanism_base_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "supersedes": "r1 stopped atsource review G1 before any remote action; all old receipts retained",
+  "required_source_review": "Verify G1 actual parsed C++ PFC/IRN/CC/topology/input/fault/diagnostic context and rejection tests, plus default0 and prior clock/presence/uid invariants; compare both4605 repair delta and506 mechanism base; no contract narrowing",
+  "previous_ID": "20261101-114500-ws31-label-preflight-r1",
+  "previous_ID_state": "Not created/checked remotely by prior goal; do not reuse or claim absent"
+}

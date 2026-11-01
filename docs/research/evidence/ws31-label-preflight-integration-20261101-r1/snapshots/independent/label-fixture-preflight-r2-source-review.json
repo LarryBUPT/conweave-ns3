@@ -1,0 +1,73 @@
+{
+  "status": "PASS_FOR_FROZEN_BUILD_AND_NEW_CORE_PREFLIGHT_SOURCE_GATE_ONLY",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "parent_sha": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+  "mechanism_base_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "plan_sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b",
+  "repair_diff_objects": {
+    "scratch/network-load-balance.cc": {
+      "sha256": "c3204664608548c7dfd95d1f0873792e15bfaddf6f4c63e189457fdb358499fa",
+      "blob": "817d8d79c3f1a8abd370684a54171c17d6d1346f",
+      "bytes": 113678
+    },
+    "scripts/remote_worker.py": {
+      "sha256": "096695c22597b30ecd24ad3ed69284f851b26743f9be4c810bafee82d90ff569",
+      "blob": "f502bb6dc1d593e244229161b99898c03f9b9ae6",
+      "bytes": 57447
+    },
+    "src/point-to-point/model/ws31-label-fixture.h": {
+      "sha256": "87fec3866c35751c8153c29c9bb0d534dc9a3fdc5945db1abc25e3192fc552d7",
+      "blob": "38ba11c8a4849a01125c78574d1980c011554b87",
+      "bytes": 3780
+    },
+    "tests/ws31_label_runner_test.py": {
+      "sha256": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+      "blob": "1f35ad18aaacabf707fee320fc96f6d7cdb51870",
+      "bytes": 4422
+    },
+    "tests/ws31_label_test.cc": {
+      "sha256": "d4ea5ab6e9b5c581eaba58ab62b237a72ddf45dea8db82cc78b7c1b77cc6c681",
+      "blob": "26d5e2221539b86a4c7dd5ab037acea418dff51a",
+      "bytes": 3704
+    }
+  },
+  "complete_label_diff_from506": {
+    "scratch/network-load-balance.cc": "c3204664608548c7dfd95d1f0873792e15bfaddf6f4c63e189457fdb358499fa",
+    "scripts/remote_experiment.py": "ddece27d0fef1d06c5b031567723074165a0cfbed0839cb067ed0f6adcba26c4",
+    "scripts/remote_worker.py": "096695c22597b30ecd24ad3ed69284f851b26743f9be4c810bafee82d90ff569",
+    "src/applications/model/rdma-client.cc": "61078c7032766549cde90a10f736298f7596c08615e23fd3f52bb029c07602c8",
+    "src/point-to-point/model/rdma-hw.cc": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+    "src/point-to-point/model/ws30-observer.h": "74ffc38379b22ad16053e1644698702d392aca646a760381a841dcca3a1b6a3d",
+    "src/point-to-point/model/ws31-label-fixture.h": "87fec3866c35751c8153c29c9bb0d534dc9a3fdc5945db1abc25e3192fc552d7",
+    "src/point-to-point/wscript": "be74564c38eddaa31fa8540cb8bd324b841539919d72f03a8c4a7a134f90fbd9",
+    "tests/ws31_label_runner_test.py": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+    "tests/ws31_label_test.cc": "d4ea5ab6e9b5c581eaba58ab62b237a72ddf45dea8db82cc78b7c1b77cc6c681"
+  },
+  "unchanged_mechanism_objects": {
+    "src/point-to-point/model/switch-node.cc": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+    "src/point-to-point/model/ws31-budget.h": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+    "src/point-to-point/model/ws31-quota.h": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+    "src/point-to-point/model/ws31-start.h": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba",
+    "src/point-to-point/model/rdma-queue-pair.h": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+    "run.py": "23aee55f74cd401fba0a685b23a9b04ea67ce295d8ec81b4615274b1e796fed8"
+  },
+  "G1_repair": {
+    "actual_context": "scratch1521..1528 uses parsedPFC/IRN/CC/topology/flow and fault/diagnostic environment",
+    "guard_before_seed": "validation1521 before srand1539 and SeedManager1540",
+    "negative_cases": "newcore10 context cases plus7 oldmode/conflict cases; not yet executed by independent",
+    "profile0": "early return preserves legacy eligibility despite invalid new context",
+    "environment": "activeprofile strips disabled9 diagnostic env names; C++ reads direct env independently"
+  },
+  "label_invariants": {
+    "clock": "original-demand plus actual construction time;500ns unchanged",
+    "presence": "absent0 and presentoriginal separate",
+    "hash": "existing StartHash and bucket0 unchanged",
+    "truth": "m_workload_tag unchanged",
+    "uid": "generation0 only, construction and per-hop actual presence logs join byuid",
+    "network": "not validated by source review"
+  },
+  "no_material_source_issue_found": true,
+  "source_edits": 0,
+  "execution_permission": "Only frozen singleoptimized-j2 build, new labelcore and Python mock after fresh gates",
+  "recorded_utc": "2026-11-01T04:01:22.556982+00:00"
+}

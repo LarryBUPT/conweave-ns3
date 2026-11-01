@@ -1,0 +1,340 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T04:32:12.698705+00:00",
+  "scope": "Integration node9 engineering preflight build/newcore/mock/provenance only; no network or effect acceptance",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/label-preflight-node9-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/main/label-preflight-node9-handoff.md",
+      "sha256": "aeee5dbed399e209ae9d4f5faa0c1d31394f153fa5acb4c8a6d1de4ae4fea36c",
+      "bytes": 2584
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-fixture-preflight-main-acceptance-r2.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/main/evidence/label-fixture-preflight-main-acceptance-r2.json",
+      "sha256": "6900efc635faa7d09da7f6865b6a6e8ea24ff3fa691b647d0b7598971cb62614",
+      "bytes": 1120
+    },
+    {
+      "source": "docs/research/ws31/main/label-default-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/main/label-default-validation-r1.json",
+      "sha256": "a81e95af15bba097c8ce900348c260a58c8b2a10416b204380c217331f1d7b4e",
+      "bytes": 4664
+    },
+    {
+      "source": "docs/research/ws31/main/label-default-validation-r1.md",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/main/label-default-validation-r1.md",
+      "sha256": "c0be5b2974d2d6dd5f07f549a77f986f093b141e382d7a49d4ad228bc33ddd31",
+      "bytes": 1935
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "100502d08101bc5a6c71860eaeaaa4688195d61c7c14dcc9a24cb517ff041461",
+      "bytes": 20410
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-index.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-index.json",
+      "sha256": "36306f3a7edfcba855c724330cdd2f53145ffa8dfa35ee1c64c34ca5957e122d",
+      "bytes": 14529
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-qa.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-qa.json",
+      "sha256": "d0341ddf1d5caa7d2ee6dc4505243f9e69b24b1bc39fb578b2368f43b254b7ff",
+      "bytes": 539
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-all-builds-verified.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-all-builds-verified.json",
+      "sha256": "5a3f75ffb6686a21c1d02419e096115cd69dc4565ba78ed232746de87978a9d3",
+      "bytes": 5129
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-build-resources.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-build-resources.json",
+      "sha256": "cf224eb979dac9cb0f2bc9a83b7a3c728afc29dc7be53027003b629157320c99",
+      "bytes": 425
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-cache-after-deploy.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-cache-after-deploy.json",
+      "sha256": "343e9b17563e5809221084b9888b081d565e4dd4ce459c058e4bc2e4fd9e0deb",
+      "bytes": 502
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-cache-after-sync.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-cache-after-sync.json",
+      "sha256": "44833d4c3a41e92baff553ead7029d69adbd8c871c47b3f6bd45812854d3b82b",
+      "bytes": 502
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-cache-before-sync.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-cache-before-sync.json",
+      "sha256": "e1218b03dd07d759844f78c0396602d73557e9273adb0e53a489db9837831226",
+      "bytes": 465
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-contract-r3-snapshot.md",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-contract-r3-snapshot.md",
+      "sha256": "39a25aaaa6feacaef39108753fab927a14705d83a1f94932542f7095a3b2e0be",
+      "bytes": 7976
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-controller.log",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-controller.log",
+      "sha256": "6272001a6ff00a4f1b9cf2589d173b9246004fbf952bea9eb8496d275195db59",
+      "bytes": 235
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-core-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-core-receipt.json",
+      "sha256": "d88c83021ff4c21cbab5c5175b2354cb07d319ec58c0e9d5408bceb98250a25a",
+      "bytes": 1822
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-driver.py",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-driver.py",
+      "sha256": "2b6d6a36d29c0de6370f3c37079f2bfd631d33975c8ad36193e245d79fada9fd",
+      "bytes": 10457
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-finalize-before-newline-correction.py",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-finalize-before-newline-correction.py",
+      "sha256": "925d1b3066edad43f814f37965d56294e6011ccee6446272821e33b5b7536c1e",
+      "bytes": 14799
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-finalize.py",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-finalize.py",
+      "sha256": "fdbb7fbd33cef14051a1eb1f17ce0c8292fa2c12b0d901f80e901d654bce8786",
+      "bytes": 15980
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-frozen-plan.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-frozen-plan.json",
+      "sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b",
+      "bytes": 3938
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-full-label.diff.patch",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-full-label.diff.patch",
+      "sha256": "7701d3d1e05abf9ecd3d1f5a6273c743024faa218a88a29dc2980ef7ffc93c69",
+      "bytes": 29297
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-G1-repair.diff.patch",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-G1-repair.diff.patch",
+      "sha256": "a048f36bbb09ae3f3d06aa2273dd4752d31b14eb9a5e11833b97dd1e997436e1",
+      "bytes": 9015
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-guards-released.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-guards-released.json",
+      "sha256": "a1926d6deaf3dce76c77e940bc5ba6c6df780666e72cdbeea7ac7af610e14fcd",
+      "bytes": 134
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-handoff.md",
+      "sha256": "fde3f3442c00bf1d2eb77c5503f4cb96648453ccc448bb38babe471c586dd72d",
+      "bytes": 2997
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-integrity.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-integrity.json",
+      "sha256": "dc1650bb8846c6205b3e14272a5e1249b208a9ddf2e98a6745f9fb9ec3233eb5",
+      "bytes": 1306
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-local-mock-log-integrity.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-local-mock-log-integrity.json",
+      "sha256": "5e545fc9614fc33a1970a4d538c0ca0b69019f2e8bd83133365db7f7f7d8825d",
+      "bytes": 408
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-local-mock-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-local-mock-receipt.json",
+      "sha256": "3ff78054b99d4ba40405091fa461317fb07bb81456edf9420db1ed73d10065fe",
+      "bytes": 564
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-local-process-gate.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-local-process-gate.json",
+      "sha256": "4c36b45a51fedee10f66bfbb7eadb478eda621dd3cfcb3e74c8a2c18373526eb",
+      "bytes": 60
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-local-source-canonical-equivalence.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-local-source-canonical-equivalence.json",
+      "sha256": "c61fbf6cbae3e1909edcbaf1318238028a148f1ebead56c2d681f3446851b916",
+      "bytes": 1287
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-newline-checker-correction.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-newline-checker-correction.json",
+      "sha256": "3548b1a20d3cffa378614827ae53c44a008fe6330370f2c078ec87875eb618a9",
+      "bytes": 1617
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-receipt.json",
+      "sha256": "3389e92c7bfe34517385f67882223bc0b44fb655961268397af90936171099a4",
+      "bytes": 4750
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-reference-review.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-reference-review.json",
+      "sha256": "02cd28b193c13a2593e1454a6cf34696e600296009a94bec9eab01b7bec39885",
+      "bytes": 1257
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-report.md",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-report.md",
+      "sha256": "f29206027c85e874c689533694bca740e22b4a98c84828cd9a5c0d75f57cbcdb",
+      "bytes": 3498
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-source-git-tree.txt",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-source-git-tree.txt",
+      "sha256": "f701f5ea9f97b8e50443cef137975c43a86081bf02eb53a0ea9680049b47d080",
+      "bytes": 468143
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-source-review.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-source-review.json",
+      "sha256": "260d437fad31823b570f1692346f978e4845ca5ead86d8280ffd641243bf9e11",
+      "bytes": 4476
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-sources-established.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-sources-established.json",
+      "sha256": "5dfcd01b5027ac6c51d175006c470180480eaf367b225b07b37c8f3269f48149",
+      "bytes": 5501
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/remote-manifest.json",
+      "sha256": "d55cebfb89460f90e7df943037a4caac9040059bfe0886a36767305caa5b693a",
+      "bytes": 5801
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/python-local-runner-mock.log",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/python-local-runner-mock.log",
+      "sha256": "c8f6b81d89632f83721955e1bc900db2196c97c46dbc88cdbbf9b7f2182af002",
+      "bytes": 678
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/results/metadata.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/results/metadata.json",
+      "sha256": "71cba84ff46847a8f561c3d643c3f09180db1d19e218bf101199140ade0e59aa",
+      "bytes": 524
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/results/logs/build.log",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/results/logs/build.log",
+      "sha256": "74953668e462291b701de7dbb2078e57ff711df6d801b1c76f0b779e2b906752",
+      "bytes": 208492
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/results/logs/ws31-label-core-run.log",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/results/logs/ws31-label-core-run.log",
+      "sha256": "b6964b463b12e3f78d6d9b7079b5ddc159162766854be8988ec8b191c2fb30b2",
+      "bytes": 81
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/results/technical/ws31-label/receipt.json",
+      "snapshot": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r2-evidence/20261101-121000-ws31-label-preflight-r2/results/technical/ws31-label/receipt.json",
+      "sha256": "53be0ee0ffa8281e4b834fefe030340bed53972a03e3df51a4fd906bbe4fd0ee",
+      "bytes": 1779
+    }
+  ],
+  "delivery_verification": "docs/research/evidence/ws31-label-preflight-integration-20261101-r1/delivery-verification.json",
+  "delivery_verification_sha256": "7a46a6bf253696d59371bfda1dbc01863bbf29de5b1c8bcd0f810d169215f7a5",
+  "audit_code_sha256": "d018a961fe56b2df7fc8da93645ad5b1f30cf55ce6e7367fa257b22c2f626b26",
+  "root_checks": {
+    "files_hashed": {
+      "documents": 28,
+      "dependencies": 2,
+      "supporting_files": 12,
+      "result_files": 9
+    },
+    "fixed_git_blobs": 38,
+    "whole_git_tree_entries": 4839,
+    "build_tasks": 1464,
+    "build_duration_seconds": 352.659,
+    "new_core_compile": 1,
+    "new_core_run": 1,
+    "assertions_and_core_binary_checked": true,
+    "local_mock_methods": 5,
+    "network_runs": 0,
+    "raw_empty": true,
+    "source_code_and_raw_log_byte_domains_separately_checked": true,
+    "tests_or_builds_repeated_by_Integration": false
+  },
+  "final_delivery": {
+    "index_sha256": "36306f3a7edfcba855c724330cdd2f53145ffa8dfa35ee1c64c34ca5957e122d",
+    "QA_sha256": "d0341ddf1d5caa7d2ee6dc4505243f9e69b24b1bc39fb578b2368f43b254b7ff",
+    "matches_actual_files_and_main_acceptance": true
+  },
+  "newline_boundary": {
+    "worker_raw_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+    "worker_fixed_git_LF_sha256": "096695c22597b30ecd24ad3ed69284f851b26743f9be4c810bafee82d90ff569",
+    "worker_raw_matches_preserved_deployment_audit": true,
+    "remote_deployment_requeried_by_Integration": false,
+    "mock_receipt_hash_basis": "UTF8 text after universal newline decoding; raw log bytes separately checked",
+    "historical_checker_preserved": true,
+    "source_log_test_or_build_rewritten_or_repeated": false
+  },
+  "previous_G1_stop": "Preserved r1 zero-action scope and unchecked remote oldID; fixed source now passes engineering gate only",
+  "next_goal": {
+    "plan": "label-default-validation-r1.json",
+    "human_plan": "label-default-validation-r1.md",
+    "plan_sha256": "a81e95af15bba097c8ce900348c260a58c8b2a10416b204380c217331f1d7b4e",
+    "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "cells": 3,
+    "status": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:72",
+    "scope": "Default0compatibility C1/C2/C3 only; no dynamiclabels/core/Ofan",
+    "main_verifier": "scripts/verify_label_default_raw_r1.py",
+    "guard": "Keep exclusive source clean and runner/env compatible until3sources/guardedruns release",
+    "active_turn_id": "01a1955d-03bb-7651-9b1f-5b32811b94fd"
+  },
+  "next_plan_sha256": "a81e95af15bba097c8ce900348c260a58c8b2a10416b204380c217331f1d7b4e",
+  "main_coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:15",
+  "network_cells_accepted_cumulative_unchanged": 28,
+  "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "reference_review": {
+    "source": "independent/label-fixture-preflight-r2-reference-review.json",
+    "scope": "Retain node DiffFlow technical/verification review; earlier same-conversation candidate entry and classification passage read, verification identity/scope inspected here; no new full-PDF or publication audit",
+    "fixed_version": "DiffFlow arXiv1604.05107v1,6pages",
+    "borrow": "Keep original identity distinct from label availability and measure actual activation point",
+    "difference": "SDN classification advertisement and packet spraying differ from test-only label visibility under pinned RDMA QP routes",
+    "not_extrapolated": "Paper efficacy cannot prove network labels/default0, lifecycle, costs or baseline eligibility",
+    "new_baselines": []
+  },
+  "boundaries": {
+    "default0_three_network_cells_only_dispatched_not_accepted_here": true,
+    "dynamic_profiles1_2_3_authorized": false,
+    "adapter_lifecycle_completed": false,
+    "independent_V0_or_effects_costs_completed": false,
+    "Ofan_admitted": false,
+    "WS29_accessed": false,
+    "remote_actions_by_Integration": false,
+    "combined_baseline_established": false,
+    "WS31_archived": false
+  },
+  "validation": {
+    "json_files_valid": 29,
+    "frozen_snapshots_valid": 41,
+    "handoff_sections": 9,
+    "handoff_links_valid": 3,
+    "added_state_links_valid": 6,
+    "receipt_and_audit_hashes_valid": true,
+    "default0_three_only_and_prior28_last_network506_consistent": true,
+    "style_review": "Reviewed against actually read ruanyf README and six chapters: hierarchy, spacing, paragraph focus, numeric forms, punctuation and structure"
+  }
+}

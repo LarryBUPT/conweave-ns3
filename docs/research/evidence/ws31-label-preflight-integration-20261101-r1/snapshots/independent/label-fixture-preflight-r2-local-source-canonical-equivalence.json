@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "files": {
+    "tests/ws31_label_runner_test.py": {
+      "raw_sha256": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+      "canonical_git_lf_sha256": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+      "crlf_count": 0,
+      "only_newline_difference": true
+    },
+    "scripts/remote_experiment.py": {
+      "raw_sha256": "52003e6a808d5dec50cd97ded55defff617bdbf581c16c9a15368815e0daa6bc",
+      "canonical_git_lf_sha256": "ddece27d0fef1d06c5b031567723074165a0cfbed0839cb067ed0f6adcba26c4",
+      "crlf_count": 550,
+      "only_newline_difference": true
+    },
+    "scripts/remote_worker.py": {
+      "raw_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+      "canonical_git_lf_sha256": "096695c22597b30ecd24ad3ed69284f851b26743f9be4c810bafee82d90ff569",
+      "crlf_count": 1045,
+      "only_newline_difference": true
+    }
+  },
+  "deployed_worker_raw_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+  "earlier_checker_history": "label-fixture-preflight-r2-newline-checker-correction.json",
+  "source_test_log_or_binary_changes": false,
+  "repeated_builds_or_tests": 0
+}

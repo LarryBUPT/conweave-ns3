@@ -1,0 +1,103 @@
+{
+  "scope": "Label fixture source review and new C++ preflight only",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "plan_sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b",
+  "status": "COMPLETE_FOR_SINGLE_FULL_BUILD_NEW_LABEL_CORE_AND_LOCAL_MOCK_ONLY",
+  "cells": [
+    {
+      "id": "20261101-121000-ws31-label-preflight-r2",
+      "status": "PASS",
+      "source_hashes_verified": 38,
+      "transferred_files_verified": 9,
+      "binary_sha256": "d6d130c5da8103fdfe370ad5abe0156deae4d0cc58a34595546f11f3997e8710"
+    }
+  ],
+  "commands": [
+    {
+      "cell": "20261101-121000-ws31-label-preflight-r2",
+      "operation": "guarded-sync",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "sync",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation"
+      ],
+      "start_utc": "2026-11-01T04:04:08.042670+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-fixture-preflight-r2-evidence\\20261101-121000-ws31-label-preflight-r2\\guarded-sync.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:04:12.979484+00:00"
+    },
+    {
+      "cell": "20261101-121000-ws31-label-preflight-r2",
+      "operation": "guarded-worker-deploy",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "deploy"
+      ],
+      "start_utc": "2026-11-01T04:04:13.833048+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-fixture-preflight-r2-evidence\\20261101-121000-ws31-label-preflight-r2\\guarded-worker-deploy.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:04:14.231575+00:00"
+    },
+    {
+      "cell": "20261101-121000-ws31-label-preflight-r2",
+      "operation": "guarded-build",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\scripts\\remote_experiment.py",
+        "build",
+        "--repo-local",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+        "--id",
+        "20261101-121000-ws31-label-preflight-r2",
+        "--source-sha",
+        "2ed7d342d0713a5667f43c7730ca5bc5a6a67150"
+      ],
+      "start_utc": "2026-11-01T04:04:15.056431+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-fixture-preflight-r2-evidence\\20261101-121000-ws31-label-preflight-r2\\guarded-build.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:10:15.015326+00:00"
+    },
+    {
+      "cell": "20261101-121000-ws31-label-preflight-r2",
+      "operation": "python-local-runner-mock",
+      "argv": [
+        "C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-B",
+        "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\tests\\ws31_label_runner_test.py"
+      ],
+      "start_utc": "2026-11-01T04:10:19.415518+00:00",
+      "log": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-fixture-preflight-r2-evidence\\20261101-121000-ws31-label-preflight-r2\\python-local-runner-mock.log",
+      "exit_code": 0,
+      "end_utc": "2026-11-01T04:10:19.727697+00:00"
+    }
+  ],
+  "network_runs_started": 0,
+  "old_core_tests_repeated": 0,
+  "new_build_commands": 1,
+  "new_cpp_core_commands": 2,
+  "python_mock_commands": 1,
+  "updated_utc": "2026-11-01T04:10:21.739668+00:00",
+  "sync_executed": true,
+  "deployed_worker_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+  "build_resource_samples": {
+    "sample_count": 72,
+    "max_sampled_load_1m": 2.22,
+    "claim": "sampled maxima/minima, not exact peaks",
+    "max_sampled_cc1plus_count": 2,
+    "min_sampled_free_gib": 2323.6090812683105,
+    "max_sampled_building_metadata_count": 1,
+    "max_sampled_build_tree_rss_kib": 682748,
+    "interval_seconds": 5,
+    "other_user_seen": false,
+    "min_sampled_available_gib": 121.915771484375,
+    "unknown_project_seen": false
+  },
+  "new_cpp_core_status": "PASS",
+  "compatibility_guard": "RELEASED all preflight commands terminal; source copy verified"
+}

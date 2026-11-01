@@ -1,0 +1,30 @@
+{
+  "status": "CHECKER_ASSUMPTION_CORRECTED_WITH_HISTORY_PRESERVED",
+  "old_finalizer": "label-fixture-preflight-r2-finalize-before-newline-correction.py",
+  "old_finalizer_sha256": "925d1b3066edad43f814f37965d56294e6011ccee6446272821e33b5b7536c1e",
+  "failure": "Line52 compared local Windows raw bytes to canonical Git blob; failed on controller CRLF",
+  "source_equivalence": {
+    "tests/ws31_label_runner_test.py": {
+      "recorded_raw_sha256": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+      "git_object_lf_sha256": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+      "working_copy_crlf_count": 0,
+      "only_crlf_to_lf_difference": true
+    },
+    "scripts/remote_experiment.py": {
+      "recorded_raw_sha256": "52003e6a808d5dec50cd97ded55defff617bdbf581c16c9a15368815e0daa6bc",
+      "git_object_lf_sha256": "ddece27d0fef1d06c5b031567723074165a0cfbed0839cb067ed0f6adcba26c4",
+      "working_copy_crlf_count": 550,
+      "only_crlf_to_lf_difference": true
+    },
+    "scripts/remote_worker.py": {
+      "recorded_raw_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+      "git_object_lf_sha256": "096695c22597b30ecd24ad3ed69284f851b26743f9be4c810bafee82d90ff569",
+      "working_copy_crlf_count": 1045,
+      "only_crlf_to_lf_difference": true
+    }
+  },
+  "source_or_raw_test_logs_modified": false,
+  "builds_or_tests_repeated": 0,
+  "worker_deployment": "Original deployed bytes preserved; compare raw checkout hash and canonical LF code separately",
+  "at_utc": "2026-11-01T04:14:42.504713+00:00"
+}

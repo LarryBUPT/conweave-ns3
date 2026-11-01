@@ -1,0 +1,46 @@
+{
+  "status": "PASS_LOCAL_BUILD_CORE_MOCK_AND_PROVENANCE_RECONCILIATION",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "files_hashed": {
+    "documents": 28,
+    "dependencies": 2,
+    "supporting_files": 12,
+    "result_files": 9
+  },
+  "git_blobs_hashed": 38,
+  "git_tree_entries_compared": 4839,
+  "build_tasks": 1464,
+  "build_duration_seconds": 352.659,
+  "new_core_compile": 1,
+  "new_core_run": 1,
+  "core_binary_hash_and_assertion_symbol_valid": true,
+  "python_mock_methods": 5,
+  "network_runs": 0,
+  "network_raw_empty": true,
+  "byte_domains": {
+    "tests/ws31_label_runner_test.py": {
+      "raw_sha256": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+      "fixed_git_lf_sha256": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+      "crlf_count": 0
+    },
+    "scripts/remote_experiment.py": {
+      "raw_sha256": "52003e6a808d5dec50cd97ded55defff617bdbf581c16c9a15368815e0daa6bc",
+      "fixed_git_lf_sha256": "ddece27d0fef1d06c5b031567723074165a0cfbed0839cb067ed0f6adcba26c4",
+      "crlf_count": 550
+    },
+    "scripts/remote_worker.py": {
+      "raw_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+      "fixed_git_lf_sha256": "096695c22597b30ecd24ad3ed69284f851b26743f9be4c810bafee82d90ff569",
+      "crlf_count": 1045
+    }
+  },
+  "mock_log_raw_sha256": "c8f6b81d89632f83721955e1bc900db2196c97c46dbc88cdbbf9b7f2182af002",
+  "mock_receipt_text_hash_basis": "UTF8 after universal newline decoding",
+  "deployed_worker_scope": "Local raw bytes match preserved deployment-audit hash; no independent remote access",
+  "historical_checker_preserved": true,
+  "tests_builds_or_network_reexecuted_by_Integration": false,
+  "next_default_profile0_plan_identity_valid": true,
+  "next_plan_status": "DISPATCHED, results not accepted here",
+  "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "dynamic_labels_lifecycle_or_effects_accepted": false
+}

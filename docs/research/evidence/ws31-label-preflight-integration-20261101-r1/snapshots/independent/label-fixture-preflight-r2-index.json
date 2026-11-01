@@ -1,0 +1,266 @@
+{
+  "status": "COMPLETE_FOR_SINGLE_FULL_BUILD_NEW_LABEL_CORE_AND_LOCAL_MOCK_ONLY",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "plan_sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b",
+  "id": "20261101-121000-ws31-label-preflight-r2",
+  "verification": {
+    "status": "PASS",
+    "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "result_files": 9,
+    "fixed_source_map_objects": 38,
+    "whole_tree_entries": 4839,
+    "build_metadata_status": "BUILT",
+    "build_tasks": 1464,
+    "build_duration": [
+      "5m52.659s"
+    ],
+    "build_warnings": [
+      "../scratch/network-load-balance.cc:2095:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+      "../scratch/network-load-balance.cc:2125:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+      "../scratch/network-load-balance.cc:2160:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+    ],
+    "simulation_binary_sha256": "d6d130c5da8103fdfe370ad5abe0156deae4d0cc58a34595546f11f3997e8710",
+    "new_core_compile": 1,
+    "new_core_run": 1,
+    "new_core_assertions": "-UNDEBUG and __assert_fail",
+    "local_mock_invocations": 1,
+    "local_mock_methods": 5,
+    "network_runs": 0,
+    "old_cores": 0,
+    "network_raw_empty": true,
+    "source_copy_complete": true,
+    "compatibility_guards_released": true,
+    "main_algorithm_edits_by_independent": 0,
+    "checkout": {
+      "head": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+      "status": ""
+    }
+  },
+  "documents": {
+    "label-fixture-preflight-r2-all-builds-verified.json": {
+      "bytes": 5129,
+      "sha256": "5a3f75ffb6686a21c1d02419e096115cd69dc4565ba78ed232746de87978a9d3"
+    },
+    "label-fixture-preflight-r2-build-resources.json": {
+      "bytes": 425,
+      "sha256": "cf224eb979dac9cb0f2bc9a83b7a3c728afc29dc7be53027003b629157320c99"
+    },
+    "label-fixture-preflight-r2-cache-after-deploy.json": {
+      "bytes": 502,
+      "sha256": "343e9b17563e5809221084b9888b081d565e4dd4ce459c058e4bc2e4fd9e0deb"
+    },
+    "label-fixture-preflight-r2-cache-after-sync.json": {
+      "bytes": 502,
+      "sha256": "44833d4c3a41e92baff553ead7029d69adbd8c871c47b3f6bd45812854d3b82b"
+    },
+    "label-fixture-preflight-r2-cache-before-sync.json": {
+      "bytes": 465,
+      "sha256": "e1218b03dd07d759844f78c0396602d73557e9273adb0e53a489db9837831226"
+    },
+    "label-fixture-preflight-r2-contract-r3-snapshot.md": {
+      "bytes": 7976,
+      "sha256": "39a25aaaa6feacaef39108753fab927a14705d83a1f94932542f7095a3b2e0be"
+    },
+    "label-fixture-preflight-r2-controller.log": {
+      "bytes": 235,
+      "sha256": "6272001a6ff00a4f1b9cf2589d173b9246004fbf952bea9eb8496d275195db59"
+    },
+    "label-fixture-preflight-r2-core-receipt.json": {
+      "bytes": 1822,
+      "sha256": "d88c83021ff4c21cbab5c5175b2354cb07d319ec58c0e9d5408bceb98250a25a"
+    },
+    "label-fixture-preflight-r2-driver.py": {
+      "bytes": 10457,
+      "sha256": "2b6d6a36d29c0de6370f3c37079f2bfd631d33975c8ad36193e245d79fada9fd"
+    },
+    "label-fixture-preflight-r2-finalize-before-newline-correction.py": {
+      "bytes": 14799,
+      "sha256": "925d1b3066edad43f814f37965d56294e6011ccee6446272821e33b5b7536c1e"
+    },
+    "label-fixture-preflight-r2-finalize.py": {
+      "bytes": 15980,
+      "sha256": "fdbb7fbd33cef14051a1eb1f17ce0c8292fa2c12b0d901f80e901d654bce8786"
+    },
+    "label-fixture-preflight-r2-frozen-plan.json": {
+      "bytes": 3938,
+      "sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b"
+    },
+    "label-fixture-preflight-r2-full-label.diff.patch": {
+      "bytes": 29297,
+      "sha256": "7701d3d1e05abf9ecd3d1f5a6273c743024faa218a88a29dc2980ef7ffc93c69"
+    },
+    "label-fixture-preflight-r2-G1-repair.diff.patch": {
+      "bytes": 9015,
+      "sha256": "a048f36bbb09ae3f3d06aa2273dd4752d31b14eb9a5e11833b97dd1e997436e1"
+    },
+    "label-fixture-preflight-r2-guards-released.json": {
+      "bytes": 134,
+      "sha256": "a1926d6deaf3dce76c77e940bc5ba6c6df780666e72cdbeea7ac7af610e14fcd"
+    },
+    "label-fixture-preflight-r2-handoff.md": {
+      "bytes": 2997,
+      "sha256": "fde3f3442c00bf1d2eb77c5503f4cb96648453ccc448bb38babe471c586dd72d"
+    },
+    "label-fixture-preflight-r2-integrity.json": {
+      "bytes": 1306,
+      "sha256": "dc1650bb8846c6205b3e14272a5e1249b208a9ddf2e98a6745f9fb9ec3233eb5"
+    },
+    "label-fixture-preflight-r2-local-mock-log-integrity.json": {
+      "bytes": 408,
+      "sha256": "5e545fc9614fc33a1970a4d538c0ca0b69019f2e8bd83133365db7f7f7d8825d"
+    },
+    "label-fixture-preflight-r2-local-mock-receipt.json": {
+      "bytes": 564,
+      "sha256": "3ff78054b99d4ba40405091fa461317fb07bb81456edf9420db1ed73d10065fe"
+    },
+    "label-fixture-preflight-r2-local-process-gate.json": {
+      "bytes": 60,
+      "sha256": "4c36b45a51fedee10f66bfbb7eadb478eda621dd3cfcb3e74c8a2c18373526eb"
+    },
+    "label-fixture-preflight-r2-local-source-canonical-equivalence.json": {
+      "bytes": 1287,
+      "sha256": "c61fbf6cbae3e1909edcbaf1318238028a148f1ebead56c2d681f3446851b916"
+    },
+    "label-fixture-preflight-r2-newline-checker-correction.json": {
+      "bytes": 1617,
+      "sha256": "3548b1a20d3cffa378614827ae53c44a008fe6330370f2c078ec87875eb618a9"
+    },
+    "label-fixture-preflight-r2-receipt.json": {
+      "bytes": 4750,
+      "sha256": "3389e92c7bfe34517385f67882223bc0b44fb655961268397af90936171099a4"
+    },
+    "label-fixture-preflight-r2-reference-review.json": {
+      "bytes": 1257,
+      "sha256": "02cd28b193c13a2593e1454a6cf34696e600296009a94bec9eab01b7bec39885"
+    },
+    "label-fixture-preflight-r2-report.md": {
+      "bytes": 3498,
+      "sha256": "f29206027c85e874c689533694bca740e22b4a98c84828cd9a5c0d75f57cbcdb"
+    },
+    "label-fixture-preflight-r2-source-git-tree.txt": {
+      "bytes": 468143,
+      "sha256": "f701f5ea9f97b8e50443cef137975c43a86081bf02eb53a0ea9680049b47d080"
+    },
+    "label-fixture-preflight-r2-source-review.json": {
+      "bytes": 4476,
+      "sha256": "260d437fad31823b570f1692346f978e4845ca5ead86d8280ffd641243bf9e11"
+    },
+    "label-fixture-preflight-r2-sources-established.json": {
+      "bytes": 5501,
+      "sha256": "5dfcd01b5027ac6c51d175006c470180480eaf367b225b07b37c8f3269f48149"
+    }
+  },
+  "supporting_files": {
+    "guarded-build.log": "b5b6d276690a0d9b993f7f1b5e9fdd3c93e81b224eab073ba9763c3283dbdf48",
+    "guarded-sync.log": "b27473bdfbb102cf6098d78acf14a844567870fad950ff78114323327881c2c0",
+    "guarded-worker-deploy.log": "b066cace08dbcd3e431808ac7a780088c8c847502e8281d0db4e893cebedd942",
+    "python-local-runner-mock.log": "c8f6b81d89632f83721955e1bc900db2196c97c46dbc88cdbbf9b7f2182af002",
+    "remote-manifest.json": "d55cebfb89460f90e7df943037a4caac9040059bfe0886a36767305caa5b693a",
+    "resources-after-core.json": "8b3b31ff8fb07df6bd2c3483e13b2ff85e8d00f334c888084ce0a8775e89725d",
+    "resources-before-build.json": "0a74d6083d59595ffedce85572af3d64f9edf6027ed8f9365e22a2fdd2d68278",
+    "resources-before-core.json": "25afece15e48db4f9f960bfcfded2b0a8da53c0186c35bfd512af795359a09bc",
+    "resources-before-deploy.json": "c26d47e72c40651306d4c158440e7ffd74fba732a43867fba48da3286a5738be",
+    "resources-before-sync.json": "1e065d070e950a39e9e171c2aa6af021d73a87c13736fafb6966bc35afdd2bf4",
+    "resources-final.json": "14a6fafd7f66a354c9d06e0413cc0adfe4dc8f875cd54f614413691951325876",
+    "transfer.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "result_files": {
+    "metadata.txt": {
+      "sha256": "39d7cbb4f28c441eefbb5119666a241fa02f766b33133f4d946e22d41243510e",
+      "bytes": 429
+    },
+    "logs/build.log": {
+      "sha256": "74953668e462291b701de7dbb2078e57ff711df6d801b1c76f0b779e2b906752",
+      "bytes": 208492
+    },
+    "logs/ws31-label-core-run.log": {
+      "sha256": "b6964b463b12e3f78d6d9b7079b5ddc159162766854be8988ec8b191c2fb30b2",
+      "bytes": 81
+    },
+    "technical/ws31-label/core-test": {
+      "sha256": "a324c0c19352bd8a966a7d46a8bd981cf307665d705081c2d1d7e8bce345080b",
+      "bytes": 19712
+    },
+    "logs/resource-build-batch-summary.json": {
+      "sha256": "e79ecaa01b618e9f528fbb9fe5334cee1899caf5541693212432cf95cb12b0a7",
+      "bytes": 411
+    },
+    "logs/ws31-label-core-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "technical/ws31-label/receipt.json": {
+      "sha256": "53be0ee0ffa8281e4b834fefe030340bed53972a03e3df51a4fd906bbe4fd0ee",
+      "bytes": 1779
+    },
+    "logs/resource-build-batch-samples.jsonl": {
+      "sha256": "962e7d070da8c5dca4050015a995500d2fc14fac31a1525413d26a7b8bbd037d",
+      "bytes": 20366
+    },
+    "metadata.json": {
+      "sha256": "71cba84ff46847a8f561c3d643c3f09180db1d19e218bf101199140ade0e59aa",
+      "bytes": 524
+    }
+  },
+  "result_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-fixture-preflight-r2-evidence\\20261101-121000-ws31-label-preflight-r2\\results",
+  "source_map": {
+    "tests/ws31_label_test.cc": "d4ea5ab6e9b5c581eaba58ab62b237a72ddf45dea8db82cc78b7c1b77cc6c681",
+    "tests/ws31_budget_test.cc": "b3f933847436ec524e22d9caa1d2670eac3d6ac4ac07fff8776479b3b4cc0bcd",
+    "src/point-to-point/model/switch-node.h": "67f357a59a7dd771bfc26d2827fb0884c4f61cd5031f58359a1226a424c19b24",
+    "docs/research/ws31/main/c2-implementation-contract-r1.md": "76e1d9f28f19218edb84772dd793007c32a3b6ce551d63fb07de6c7dd267747c",
+    "docs/research/ws31/main/correctness-protocol-r1.md": "f276725d42c1f12735009d55919f91298f634b06afefda528a55f3a3b9d8209d",
+    "src/point-to-point/model/switch-node.cc": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+    "scripts/ws31_correctness_inputs.py": "bf18552cbfd2cb19946a322414d752b553dd7e2893c7f7b3a16e0b5d2277a49f",
+    "config/ws31_ofan_fat_r1.txt": "07c559baa157f6901c14e754c719c1d25fe24592a0506cba2861b77b10ea34a6",
+    "docs/research/ws31/main/c3-implementation-contract-r1.md": "f726e7e2dcae8964601527c71f6edd5ba530f3389f61b1875ff204f7e0e8ae6e",
+    "scratch/network-load-balance.cc": "c3204664608548c7dfd95d1f0873792e15bfaddf6f4c63e189457fdb358499fa",
+    "docs/research/ws31/main/ofan-admission-decision-r1.md": "e91b54925da14965160968c380424cd58effe8c00bf819755b9c783c6359e399",
+    "src/point-to-point/model/rdma-driver.cc": "b3704ee90cf4cebc8e81d8e22501e56224cfa03677ac845af6cf11c35d8beb34",
+    "src/point-to-point/model/rdma-hw.h": "13a3be27e5fbac2528612afa87172b4460e88c2c4ea73d356b9d428e655c9750",
+    "tests/ws31_start_test.cc": "5f523030e5050e44aa1128a242a9cf5ac7499027bc7da1b3bf4c99d903c4c4b1",
+    "run.py": "23aee55f74cd401fba0a685b23a9b04ea67ce295d8ec81b4615274b1e796fed8",
+    "src/applications/model/rdma-client.cc": "61078c7032766549cde90a10f736298f7596c08615e23fd3f52bb029c07602c8",
+    "src/applications/model/rdma-client.h": "49b1ff67bf0c2d30c06dc84f5952a312ff0a1725bfad578460efa2499576f458",
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "src/point-to-point/model/ws31-budget.h": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+    "src/point-to-point/model/rdma-hw.cc": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+    "scratch/ws31-start-lifecycle-test.cc": "66d2b4d0666a6c9c8aa699d00c7a54188f739f4f0a60ace92e79a7f1ede6f8ec",
+    "src/point-to-point/model/rdma-driver.h": "c0641c74a0010440948f6c797c6443dfec52fc150e1f03e6e4a74225536b895f",
+    "tests/ws31_ofan_test.cc": "6fa4a30cb8dc2ec9875e61ca27693876a73242ca99d374549017fda29208d882",
+    "tests/ws31_quota_test.cc": "af864ac328f8e1a24c2656e853ae52197c7e3838998042753ac807b68a5d4071",
+    "scripts/verify_ws31_fct.py": "35bc985fc4089e847bda69f155e4d8d9f8d0cbb0199a53bb1c56086277bddfdf",
+    "tests/ws31_label_runner_test.py": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+    "config/ws31_unknown_r1.txt": "0dc3245f6a534ab8f1bd2dfbc4ada4cceeb2e3c3b8e8b8875fdb4f7c71b89126",
+    "src/point-to-point/model/ws31-quota.h": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+    "docs/research/ws31/main/implementation-plan-r1.md": "efff72b87d73bc026e7f86078ea17e0dcf8ee8435f7c59de0d01c8804591af81",
+    "src/point-to-point/model/rdma-queue-pair.h": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+    "src/point-to-point/model/ws30-observer.h": "74ffc38379b22ad16053e1644698702d392aca646a760381a841dcca3a1b6a3d",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+    "src/point-to-point/model/ws31-start.h": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba",
+    "scripts/remote_worker.py": "096695c22597b30ecd24ad3ed69284f851b26743f9be4c810bafee82d90ff569",
+    "src/point-to-point/model/ws31-label-fixture.h": "87fec3866c35751c8153c29c9bb0d534dc9a3fdc5945db1abc25e3192fc552d7",
+    "src/point-to-point/model/ws31-ofan.h": "02598801653ca701c092a650ce222b6741687fd9e4053fda5a9390c1f3d54f28",
+    "scripts/remote_experiment.py": "ddece27d0fef1d06c5b031567723074165a0cfbed0839cb067ed0f6adcba26c4",
+    "src/point-to-point/wscript": "be74564c38eddaa31fa8540cb8bd324b841539919d72f03a8c4a7a134f90fbd9"
+  },
+  "deployed_worker_sha256": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139",
+  "resources": {
+    "sample_count": 72,
+    "max_sampled_load_1m": 2.22,
+    "claim": "sampled maxima/minima, not exact peaks",
+    "max_sampled_cc1plus_count": 2,
+    "min_sampled_free_gib": 2323.6090812683105,
+    "max_sampled_building_metadata_count": 1,
+    "max_sampled_build_tree_rss_kib": 682748,
+    "interval_seconds": 5,
+    "other_user_seen": false,
+    "min_sampled_available_gib": 121.915771484375,
+    "unknown_project_seen": false
+  },
+  "dependencies": {
+    "main-mode-dynamic-r1-driver.py": "88924fa381dfba6f25b73a35d2d2eb6c63787c22e4242b95692d99dbd52d6443",
+    "zero-control-pilot-r1-driver.py": "77ca3d6d444464be5a26a292f3eafebb3995c2e04198791c9bb888d3ba2985a5"
+  },
+  "main_acceptance": "Independent preflight delivery; main review separate",
+  "created_utc": "2026-11-01T04:15:18.568935+00:00"
+}

@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "result_files": 9,
+  "fixed_source_map_objects": 38,
+  "whole_tree_entries": 4839,
+  "build_metadata_status": "BUILT",
+  "build_tasks": 1464,
+  "build_duration": [
+    "5m52.659s"
+  ],
+  "build_warnings": [
+    "../scratch/network-load-balance.cc:2095:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+    "../scratch/network-load-balance.cc:2125:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+    "../scratch/network-load-balance.cc:2160:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+  ],
+  "simulation_binary_sha256": "d6d130c5da8103fdfe370ad5abe0156deae4d0cc58a34595546f11f3997e8710",
+  "new_core_compile": 1,
+  "new_core_run": 1,
+  "new_core_assertions": "-UNDEBUG and __assert_fail",
+  "local_mock_invocations": 1,
+  "local_mock_methods": 5,
+  "network_runs": 0,
+  "old_cores": 0,
+  "network_raw_empty": true,
+  "source_copy_complete": true,
+  "compatibility_guards_released": true,
+  "main_algorithm_edits_by_independent": 0,
+  "checkout": {
+    "head": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "status": ""
+  }
+}

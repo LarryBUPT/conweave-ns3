@@ -1,0 +1,570 @@
+diff --git a/scratch/network-load-balance.cc b/scratch/network-load-balance.cc
+index 0456ead..817d8d7 100644
+--- a/scratch/network-load-balance.cc
++++ b/scratch/network-load-balance.cc
+@@ -57,6 +57,7 @@
+ #include "ns3/workload-tag.h"
+ #include "ns3/ws30-v13-fixture.h"
+ #include "ns3/ws31-start.h"
++#include "ns3/ws31-label-fixture.h"
+ #include "ns3/ws31-ofan.h"
+ #include "ws30-composition-fixture.h"
+ 
+@@ -1515,6 +1516,17 @@ int main(int argc, char *argv[]) {
+ 
+     /******************* READING CONFIG FILE IS DONE ***********************/
+ 
++    // Check the actual parsed configuration, even when invoking this binary
++    // directly rather than through the guarded Python launcher.
++    ws31::ValidateLabelProfile(ws31::LabelProfile(),lb_mode,Ws30V13TagTransform(),
++        Ws30V13Env("WS30_COMPOSITION"),Ws30V13Env("WS30_LIFECYCLE"),
++        Ws30V13Env("WS30_LIFE_PROFILE"),Ws30Level(),
++        ws31::LabelRunContext(enable_pfc,enable_irn,cc_mode,topology_file,flow_file,
++            ws21_heartbeat_fault_mode || ws23_pfc_probe_host>=0 || link_down_time ||
++                error_rate_per_link!=0.0,
++            ws18_admission || ws18_path || ws21_identity || ws21_feedback ||
++                ws21_heartbeat || ws21_port_events || ws31::LabelDiagnosticEnvironment()));
++
+     /**
+      * Activate ns3 logging
+      */
+diff --git a/scripts/remote_experiment.py b/scripts/remote_experiment.py
+index db8fdd7..ef571ed 100644
+--- a/scripts/remote_experiment.py
++++ b/scripts/remote_experiment.py
+@@ -319,6 +319,30 @@ def sync_by_bundle(cfg, repo, origin, branch, sha):
+     print('Source synchronized through workspace Git bundle')
+ 
+ 
++def validate_ws31_label_params(params):
++    profile = params.get('ws31_label_profile', 0)
++    if profile not in (0, 1, 2, 3):
++        raise RuntimeError('WS31 label profile must be 0..3')
++    if not profile:
++        return
++    modes = ('ws31-c1', 'ws31-c1-unified', 'ws31-c1-count', 'ws31-c1-history',
++             'ws31-c1-size', 'ws31-c1-zero', 'ws31-c1-unified-count',
++             'ws31-c2', 'ws31-c2-unified', 'ws31-c2-size', 'ws31-c2-zero',
++             'ws31-c3', 'ws31-c3-fixed', 'ws31-c3-size', 'ws31-c3-zero')
++    conflicts = ('ws30_tag_transform', 'ws30_composition', 'ws30_lifecycle',
++                 'ws30_life_profile', 'ws21_heartbeat_fault_mode', 'factorial_pilot',
++                 'factorial_formal', 'factorial_drop_diag', 'ws13_diag', 'ws25_diag',
++                 'ws28_tail_diag', 'ws26_moe_hop_diag', 'ws26_queue_front_diag',
++                 'ws26_time_probe', 'ws26_seed97_time_diag')
++    if (params.get('lb') not in modes or params.get('ws30_observe') != 2 or
++            params.get('pfc') != 0 or params.get('irn') != 1 or
++            params.get('topo') != 'leaf_spine_128_100G_OS2' or
++            not str(params.get('flow_file') or '').startswith('ws31_') or
++            any(params.get(k, 0) for k in conflicts) or
++            params.get('ws23_pfc_probe_host', -1) >= 0):
++        raise RuntimeError('WS31 label fixture requires explicit isolated WS31 trace/mode/full observation')
++
++
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     sub = parser.add_subparsers(dest='command')
+@@ -356,6 +380,7 @@ def main():
+     run_cmd.add_argument('--demand-seed', type=int, default=None)
+     run_cmd.add_argument('--ws30-life-profile', type=int, choices=(0, 1, 2), default=0)
+     run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
++    run_cmd.add_argument('--ws31-label-profile', type=int, choices=(0, 1, 2, 3), default=0)
+     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
+     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
+     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
+@@ -423,6 +448,7 @@ def main():
+             worker_call(cfg, 'build', '--id', experiment_id, '--sha', sha, '--branch', branch)
+             print('Experiment ID: ' + experiment_id)
+     elif args.command == 'run':
++        validate_ws31_label_params(vars(args))
+         if args.pfc + args.irn != 1 and not args.factorial_pilot:
+             parser.error('Exactly one of --pfc and --irn must be enabled')
+         if args.factorial_drop_diag and not args.factorial_pilot:
+@@ -490,6 +516,7 @@ def main():
+         command.extend(['--simulation-seed', str(args.simulation_seed)])
+         if args.demand_seed is not None: command.extend(['--demand-seed', str(args.demand_seed)])
+         command.extend(['--ws30-observe', str(args.ws30_observe)])
++        command.extend(['--ws31-label-profile', str(args.ws31_label_profile)])
+         command.extend(['--ws30-composition', str(args.ws30_composition)])
+         command.extend(['--ws30-life-profile', str(args.ws30_life_profile), '--ws30-lifecycle', str(args.ws30_lifecycle), '--ws30-tag-transform', str(args.ws30_tag_transform)])
+         if args.factorial_pilot:
+diff --git a/scripts/remote_worker.py b/scripts/remote_worker.py
+index 4402bcf..f502bb6 100644
+--- a/scripts/remote_worker.py
++++ b/scripts/remote_worker.py
+@@ -510,6 +510,7 @@ def execute(experiment_id):
+         raise RuntimeError('Launcher did not record worker PID')
+     data = load_metadata(base)
+     params = data['parameters']
++    validate_ws31_label_params(params)
+     command = [sys.executable, 'run.py', '--lb', params['lb'], '--pfc', str(params['pfc']),
+                '--irn', str(params['irn']), '--simul_time', params['simul_time'],
+                '--netload', str(params['netload']), '--bw', str(params['bw']),
+@@ -584,7 +585,7 @@ def execute(experiment_id):
+         if os.path.lexists(output_dir):
+             raise RuntimeError('Expected a fresh, empty output path')
+         os.symlink(inside(os.path.join(base, 'raw')), output_dir)
+-        simulation_env = os.environ.copy()
++        simulation_env = ws31_label_environment(params, os.environ)
+         simulation_env['WS30_OBSERVE'] = str(params.get('ws30_observe', 0))
+         simulation_env['WS30_COMPOSITION'] = str(params.get('ws30_composition', 0))
+         simulation_env['WS30_LIFECYCLE'] = str(params.get('ws30_lifecycle', 0))
+@@ -682,6 +683,7 @@ def execute(experiment_id):
+ 
+ 
+ def start(experiment_id, params, max_concurrent=1):
++    validate_ws31_label_params(params)
+     resources_ok()
+     if max_concurrent not in (1, 2, 4, 8, 12, 16, 18):
+         raise RuntimeError('Unsupported concurrency cap')
+@@ -779,6 +781,42 @@ def transfer_smoke(experiment_id):
+     print('transfer-test=' + experiment_id)
+ 
+ 
++def ws31_label_environment(params, inherited):
++    validate_ws31_label_params(params)
++    result = inherited.copy()
++    result['WS31_LABEL_PROFILE'] = str(params.get('ws31_label_profile', 0))
++    if params.get('ws31_label_profile', 0):
++        for key in ('WS13_DIAG', 'WS25_DIAG', 'WS28_TAIL_DIAG', 'IRN_PFC_DROP_DIAG',
++                    'WS23_RECOVERY_DIAG', 'WS26_MOE_HOP_DIAG', 'WS26_QUEUE_FRONT_DIAG',
++                    'WS26_TIME_PROBE', 'WS26_SEED97_TIME_DIAG'):
++            result.pop(key, None)
++    return result
++
++
++def validate_ws31_label_params(params):
++    profile = params.get('ws31_label_profile', 0)
++    if profile not in (0, 1, 2, 3):
++        raise RuntimeError('WS31 label profile must be 0..3')
++    if not profile:
++        return
++    modes = ('ws31-c1', 'ws31-c1-unified', 'ws31-c1-count', 'ws31-c1-history',
++             'ws31-c1-size', 'ws31-c1-zero', 'ws31-c1-unified-count',
++             'ws31-c2', 'ws31-c2-unified', 'ws31-c2-size', 'ws31-c2-zero',
++             'ws31-c3', 'ws31-c3-fixed', 'ws31-c3-size', 'ws31-c3-zero')
++    conflicts = ('ws30_tag_transform', 'ws30_composition', 'ws30_lifecycle',
++                 'ws30_life_profile', 'ws21_heartbeat_fault_mode', 'factorial_pilot',
++                 'factorial_formal', 'factorial_drop_diag', 'ws13_diag', 'ws25_diag',
++                 'ws28_tail_diag', 'ws26_moe_hop_diag', 'ws26_queue_front_diag',
++                 'ws26_time_probe', 'ws26_seed97_time_diag')
++    if (params.get('lb') not in modes or params.get('ws30_observe') != 2 or
++            params.get('pfc') != 0 or params.get('irn') != 1 or
++            params.get('topo') != 'leaf_spine_128_100G_OS2' or
++            not str(params.get('flow_file') or '').startswith('ws31_') or
++            any(params.get(k, 0) for k in conflicts) or
++            params.get('ws23_pfc_probe_host', -1) >= 0):
++        raise RuntimeError('WS31 label fixture requires explicit isolated WS31 trace/mode/full observation')
++
++
+ def main():
+     parser = argparse.ArgumentParser()
+     sub = parser.add_subparsers(dest='command')
+@@ -816,6 +854,7 @@ def main():
+     run_cmd.add_argument('--demand-seed', type=int, default=None)
+     run_cmd.add_argument('--ws30-life-profile', type=int, choices=(0, 1, 2), default=0)
+     run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
++    run_cmd.add_argument('--ws31-label-profile', type=int, choices=(0, 1, 2, 3), default=0)
+     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
+     run_cmd.add_argument('--ws26-queue-front-diag', type=int, choices=(0, 1), default=0)
+     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
+@@ -860,6 +899,7 @@ def main():
+     elif args.command == 'build':
+         build(args.id, args.sha, args.branch)
+     elif args.command == 'run':
++        validate_ws31_label_params(vars(args))
+         if args.ws30_lifecycle in (1,2,3,4) and (args.topo != 'ws30_composition8' or args.pfc != 0 or args.irn != 1 or args.lb not in ('fecmp','ws30v13-q12','ws30v13-u12') or not args.flow_file or not args.flow_file.startswith('ws30v13_life_')):
+             raise RuntimeError('Lifecycle fixture requires its explicit trace, topology and admitted arms')
+         if args.ws30_lifecycle>=5:
+@@ -951,6 +991,7 @@ def main():
+                         'ws30_lifecycle': args.ws30_lifecycle,
+                         'ws30_life_profile': args.ws30_life_profile,
+                         'ws30_tag_transform': args.ws30_tag_transform,
++                        'ws31_label_profile': args.ws31_label_profile,
+                         'ws26_moe_hop_diag': args.ws26_moe_hop_diag,
+                         'ws26_queue_front_diag': args.ws26_queue_front_diag,
+                         'ws26_time_probe': args.ws26_time_probe,
+diff --git a/src/applications/model/rdma-client.cc b/src/applications/model/rdma-client.cc
+index 3970d1d..1c644b7 100644
+--- a/src/applications/model/rdma-client.cc
++++ b/src/applications/model/rdma-client.cc
+@@ -37,6 +37,7 @@
+ #include <ns3/rdma-driver.h>
+ #include "ns3/settings.h"
+ #include "ns3/ws31-start.h"
++#include "ns3/ws31-label-fixture.h"
+ #include "ns3/ws30-observer.h"
+ #include "ns3/ws30-v13-fixture.h"
+ #include <stdlib.h>
+@@ -150,7 +151,10 @@ void RdmaClient::StartApplication (void)
+     if (m_ws31Pending) NS_FATAL_ERROR("C2 request started twice while pending");
+     m_ws31DemandNs = Simulator::Now().GetNanoSeconds();
+     const unsigned tagTransform = Ws30V13TagTransform();
+-    const uint32_t policyTag = ws31::StartPolicyTag(m_workload_tag,tagTransform);
++    const unsigned labelProfile = ws31::LabelProfile();
++    const ws31::VisibleLabel visible = ws31::LabelAt(labelProfile,m_workload_tag,
++        m_ws31DemandNs,m_ws31DemandNs,m_sip.Get(),m_dip.Get(),m_sport,m_dport,tagTransform);
++    const uint32_t policyTag = visible.value;
+     const uint64_t delay = ws31::StartDelay(Settings::lb_mode,policyTag,m_size,
+                                            m_sip.Get(),m_dip.Get(),m_sport,m_dport);
+     ws31::StartCounters &s = ws31::StartData();
+@@ -161,6 +165,11 @@ void RdmaClient::StartApplication (void)
+                 << " size=" << m_size << " tag=" << m_workload_tag
+                 << " delay_ns=" << delay << " policy_tag=" << policyTag
+                 << " tag_transform=" << tagTransform << std::endl;
++    if (labelProfile && Ws30Level())
++      std::cout << "WS31_LABEL_DEMAND flow_id=" << m_flow_id << " generation=0"
++                << " demand_ns=" << m_ws31DemandNs << " profile=" << labelProfile
++                << " original=" << m_workload_tag << " visible=" << visible.value
++                << " present=" << visible.present << std::endl;
+     if (delay) {
+       m_ws31LaunchEvent = Simulator::Schedule(NanoSeconds(delay), &RdmaClient::StartRequest, this);
+       return;
+diff --git a/src/point-to-point/model/rdma-hw.cc b/src/point-to-point/model/rdma-hw.cc
+index a0a4831..0a17109 100644
+--- a/src/point-to-point/model/rdma-hw.cc
++++ b/src/point-to-point/model/rdma-hw.cc
+@@ -1,6 +1,7 @@
+ #include "rdma-hw.h"
+ #include "ws30-v13-fixture.h"
+ #include "ws30-observer.h"
++#include "ws31-label-fixture.h"
+ 
+ #include <ns3/ipv4-header.h>
+ #include <ns3/seq-ts-header.h>
+@@ -1101,10 +1102,21 @@ Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) {
+ 
+     Ptr<Packet> p = Create<Packet>(payload_size);
+     WorkloadTag label;
+-    label.SetValue(qp->m_workload_tag);
+-    if (Ws30V13TagTransform() == 2 && (qp->m_workload_tag == 1 || qp->m_workload_tag == 2))
+-        label.SetValue(3-qp->m_workload_tag);
+-    if (Ws30V13TagTransform() != 1) p->AddPacketTag(label);
++    const unsigned labelProfile=ws31::LabelProfile();
++    const ws31::VisibleLabel visible=ws31::LabelAt(labelProfile,qp->m_workload_tag,
++        qp->startTime.GetNanoSeconds(),Simulator::Now().GetNanoSeconds(),
++        qp->sip.Get(),qp->dip.Get(),qp->sport,qp->dport,Ws30V13TagTransform());
++    label.SetValue(visible.value);
++    if (visible.present) p->AddPacketTag(label);
++    if (labelProfile && Ws30Level())
++        std::cout << "WS31_LABEL_PACKET time_ns=" << Simulator::Now().GetNanoSeconds()
++                  << " demand_ns=" << qp->startTime.GetNanoSeconds()
++                  << " uid=" << p->GetUid() << " flow_id=" << qp->m_flow_id
++                  << " generation=0 sip=" << qp->sip.Get() << " dip=" << qp->dip.Get()
++                  << " sport=" << qp->sport << " dport=" << qp->dport
++                  << " seq=" << seq << " payload=" << payload_size
++                  << " profile=" << labelProfile << " original=" << qp->m_workload_tag
++                  << " visible=" << visible.value << " present=" << visible.present << std::endl;
+     // add SeqTsHeader
+     SeqTsHeader seqTs;
+     seqTs.SetSeq(seq);
+diff --git a/src/point-to-point/model/ws30-observer.h b/src/point-to-point/model/ws30-observer.h
+index 7b77729..dd2402a 100644
+--- a/src/point-to-point/model/ws30-observer.h
++++ b/src/point-to-point/model/ws30-observer.h
+@@ -9,6 +9,7 @@
+ #include "ns3/packet.h"
+ #include "ns3/simulator.h"
+ #include "ns3/workload-tag.h"
++#include "ws31-label-fixture.h"
+ 
+ namespace ns3 {
+ // Environment-only observation: no events, packets, RNG draws or routing writes.
+@@ -81,12 +82,20 @@ inline void Ws30Route(uint32_t sw, Ptr<const Packet> p, const CustomHeader &ch,
+     if (Ws30Level()==2) {
+         if (++d.routeRows>1000000) { std::cerr << "WS30_OBSERVATION_OVERFLOW\n"; std::abort(); }
+         WorkloadTag tag;
+-        const uint32_t label=p->PeekPacketTag(tag)?tag.GetValue():0;
++        const bool present=p->PeekPacketTag(tag);
++        const uint32_t label=present?tag.GetValue():0;
+         std::cout << "WS30_ROUTE time_ns=" << Simulator::Now().GetNanoSeconds()
+                   << " switch=" << sw << " sip=" << ch.sip << " dip=" << ch.dip
+                   << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
+                   << " seq=" << ch.udp.seq << " tag=" << label << " port=" << port
+                   << " uid=" << p->GetUid() << std::endl;
++        if (ws31::LabelProfile())
++            std::cout << "WS31_LABEL_ROUTE time_ns=" << Simulator::Now().GetNanoSeconds()
++                      << " switch=" << sw << " uid=" << p->GetUid()
++                      << " sip=" << ch.sip << " dip=" << ch.dip
++                      << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
++                      << " seq=" << ch.udp.seq << " visible=" << label
++                      << " present=" << present << " port=" << port << std::endl;
+     }
+ }
+ inline void Ws30Print() {
+diff --git a/src/point-to-point/model/ws31-label-fixture.h b/src/point-to-point/model/ws31-label-fixture.h
+new file mode 100644
+index 0000000..38ba11c
+--- /dev/null
++++ b/src/point-to-point/model/ws31-label-fixture.h
+@@ -0,0 +1,84 @@
++#ifndef WS31_LABEL_FIXTURE_H
++#define WS31_LABEL_FIXTURE_H
++
++#include <cstdint>
++#include <cstdlib>
++#include <stdexcept>
++#include <string>
++#include "ws31-start.h"
++
++namespace ns3 { namespace ws31 {
++
++// Test-only visibility; the QP's business label and demand origin never change.
++struct VisibleLabel {
++    uint32_t value;
++    bool present;
++    VisibleLabel(uint32_t v, bool p) : value(v), present(p) {}
++};
++
++inline unsigned ParseLabelProfile(const char *value) {
++    if (!value || !*value) return 0;
++    if (value[0]>='0' && value[0]<='3' && value[1]=='\0')
++        return unsigned(value[0]-'0');
++    throw std::invalid_argument("WS31_LABEL_PROFILE must be a single digit 0..3");
++}
++inline unsigned LabelProfile() {
++    static const unsigned profile=ParseLabelProfile(std::getenv("WS31_LABEL_PROFILE"));
++    return profile;
++}
++struct LabelRunContext {
++    int pfc, irn;
++    uint32_t ccMode;
++    std::string topology, flow;
++    bool fault, diagnostic;
++    LabelRunContext(int p, int i, uint32_t cc, const std::string &topo,
++                    const std::string &trace, bool f, bool d)
++        : pfc(p), irn(i), ccMode(cc), topology(topo), flow(trace), fault(f), diagnostic(d) {}
++};
++inline bool LabelDiagnosticValue(const char *value) {
++    return value && *value && std::string(value)!="0";
++}
++inline bool LabelDiagnosticEnvironment() {
++    const char *keys[]={"WS13_DIAG","WS25_DIAG","WS28_TAIL_DIAG","IRN_PFC_DROP_DIAG",
++        "WS23_RECOVERY_DIAG","WS26_MOE_HOP_DIAG","WS26_QUEUE_FRONT_DIAG",
++        "WS26_TIME_PROBE","WS26_SEED97_TIME_DIAG"};
++    for (const char *key : keys)
++        if (LabelDiagnosticValue(std::getenv(key))) return true;
++    return false;
++}
++inline void ValidateLabelProfile(unsigned profile, uint32_t mode, unsigned transform,
++                                 unsigned composition, unsigned lifecycle,
++                                 unsigned lifeProfile, unsigned observe,
++                                 const LabelRunContext &context) {
++    if (profile>3) throw std::invalid_argument("Unknown WS31 label profile");
++    if (!profile) return;
++    const std::string prefix="config/ws31_";
++    const bool trace=context.flow.compare(0,prefix.size(),prefix)==0 &&
++        context.flow.size()>prefix.size()+4 &&
++        context.flow.compare(context.flow.size()-4,4,".txt")==0 &&
++        context.flow.find_first_not_of("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_.-",
++                                        7)==std::string::npos;
++    if (mode<36 || mode>50 || transform || composition || lifecycle || lifeProfile ||
++        observe!=2 || context.pfc!=0 || context.irn!=1 || context.ccMode!=1 ||
++        context.topology!="config/leaf_spine_128_100G_OS2.txt" || !trace ||
++        context.fault || context.diagnostic)
++        throw std::invalid_argument("WS31 label fixture requires isolated WS31 mode and full observation");
++}
++
++inline VisibleLabel LabelAt(unsigned profile, uint32_t original, uint64_t demand,
++                             uint64_t now, uint32_t sip, uint32_t dip,
++                             uint16_t sport, uint16_t dport, unsigned transform=0) {
++    if (profile>3 || (profile && transform))
++        throw std::invalid_argument("Invalid or conflicting WS31 label intervention");
++    if (!profile)
++        return VisibleLabel(StartPolicyTag(original,transform), transform!=1);
++    if (now<demand) throw std::invalid_argument("Label sample precedes original demand");
++    const uint64_t elapsed=now-demand;
++    if (profile==1 && elapsed<500) return VisibleLabel(0,false);
++    const bool swap=(profile==2 && elapsed>=500) ||
++                    (profile==3 && (StartHash(sip,dip,sport,dport)&3U)==0);
++    return VisibleLabel(swap && (original==1 || original==2) ? 3-original : original,true);
++}
++
++}} // namespace ns3::ws31
++#endif
+diff --git a/src/point-to-point/wscript b/src/point-to-point/wscript
+index 546f36d..91974c5 100644
+--- a/src/point-to-point/wscript
++++ b/src/point-to-point/wscript
+@@ -66,6 +66,7 @@ def build(bld):
+         'model/workload-tag.h',
+         'model/ws31-budget.h',
+         'model/ws31-start.h',
++        'model/ws31-label-fixture.h',
+         'model/ws31-quota.h',
+         'model/ws31-ofan.h',
+         'model/ws30-v13-fixture.h',
+diff --git a/tests/ws31_label_runner_test.py b/tests/ws31_label_runner_test.py
+new file mode 100644
+index 0000000..1f35ad1
+--- /dev/null
++++ b/tests/ws31_label_runner_test.py
+@@ -0,0 +1,90 @@
++"""Local process-boundary checks; all remote entry points are replaced by mocks."""
++import ast
++import importlib.util
++from pathlib import Path
++import sys
++import unittest
++from unittest.mock import patch
++
++sys.dont_write_bytecode = True
++ROOT = Path(__file__).resolve().parents[1]
++
++
++def module(name, file):
++    spec = importlib.util.spec_from_file_location(name, ROOT/'scripts'/file)
++    result = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(result)
++    return result
++
++
++controller = module('label_controller', 'remote_experiment.py')
++worker = module('label_worker', 'remote_worker.py')
++BASE = ['run', '20261101-114500-ws31-label-test', '--lb', 'ws31-c1',
++        '--flow-file', 'ws31_correctness_r1.txt', '--ws30-observe', '2',
++        '--pfc', '0', '--irn', '1']
++
++
++class LabelRunner(unittest.TestCase):
++    def test_controller_worker_cli_metadata(self):
++        for profile in range(4):
++            with patch.object(sys, 'argv', ['controller']+BASE+['--ws31-label-profile', str(profile)]), \
++                    patch.object(controller, 'config', return_value={}), \
++                    patch.object(controller, 'worker_call') as call:
++                self.assertEqual(controller.main(), 0)
++            args = list(call.call_args.args[1:])
++            self.assertEqual(args[:3], ['run', '--id', BASE[1]])
++            # Local controller emits worker's positional ID as --id; worker's
++            # run parser has always consumed that option.
++            with patch.object(sys, 'argv', ['worker']+args), patch.object(worker, 'start') as start:
++                worker.main()
++            params = start.call_args.args[1]
++            self.assertEqual(params['ws31_label_profile'], profile)
++            self.assertEqual(params['flow_file'], 'ws31_correctness_r1.txt')
++            self.assertEqual(params['ws30_tag_transform'], 0)
++            env = worker.ws31_label_environment(params, {'WS31_LABEL_PROFILE': '3', 'KEEP': 'value'})
++            self.assertEqual(env['WS31_LABEL_PROFILE'], str(profile))
++            self.assertEqual(env['KEEP'], 'value')
++
++    def test_conflicts_rejected_before_dispatch(self):
++        invalid = [('--lb', 'fecmp'), ('--ws30-tag-transform', '1'),
++                   ('--ws30-composition', '1'), ('--ws30-lifecycle', '4'),
++                   ('--ws30-life-profile', '1'), ('--ws30-observe', '1'),
++                   ('--pfc', '1'), ('--irn', '0'), ('--flow-file', 'old.txt'),
++                   ('--topo', 'ws30_composition8'), ('--ws23-pfc-probe-host', '1'),
++                   ('--ws25-diag', '1')]
++        for key, value in invalid:
++            args=BASE+['--ws31-label-profile', '1', key, value]
++            for obj, argv in ((controller, args), (worker, ['run', '--id']+args[1:])):
++                with patch.object(sys, 'argv', ['test']+argv), \
++                        patch.object(controller, 'config', return_value={}), \
++                        patch.object(controller, 'worker_call') as call, \
++                        patch.object(worker, 'start') as start:
++                    with self.assertRaises(RuntimeError):
++                        obj.main()
++                    call.assert_not_called()
++                    start.assert_not_called()
++
++    def test_inherited_profile_cleared_for_old_metadata(self):
++        inherited={'WS31_LABEL_PROFILE': '3'}
++        self.assertEqual(worker.ws31_label_environment({}, inherited)['WS31_LABEL_PROFILE'], '0')
++        self.assertEqual(inherited['WS31_LABEL_PROFILE'], '3')
++
++    def test_active_profile_clears_disabled_inherited_diagnostics(self):
++        params = {'ws31_label_profile': 1, 'lb': 'ws31-c1', 'ws30_observe': 2,
++                  'pfc': 0, 'irn': 1, 'topo': 'leaf_spine_128_100G_OS2',
++                  'flow_file': 'ws31_correctness_r1.txt'}
++        inherited = {'WS25_DIAG': '1', 'IRN_PFC_DROP_DIAG': '1', 'KEEP': 'yes'}
++        env = worker.ws31_label_environment(params, inherited)
++        self.assertNotIn('WS25_DIAG', env)
++        self.assertNotIn('IRN_PFC_DROP_DIAG', env)
++        self.assertEqual(env['KEEP'], 'yes')
++        self.assertEqual(inherited['WS25_DIAG'], '1')
++        with self.assertRaises(RuntimeError):
++            worker.ws31_label_environment(dict(params, ws25_diag=1), inherited)
++
++    def test_worker_python35_syntax(self):
++        ast.parse((ROOT/'scripts/remote_worker.py').read_text(encoding='utf-8'), feature_version=(3, 5))
++
++
++if __name__ == '__main__':
++    unittest.main(verbosity=2)
+diff --git a/tests/ws31_label_test.cc b/tests/ws31_label_test.cc
+new file mode 100644
+index 0000000..26d5e22
+--- /dev/null
++++ b/tests/ws31_label_test.cc
+@@ -0,0 +1,73 @@
++#include "../src/point-to-point/model/ws31-label-fixture.h"
++#include <cassert>
++#include <iostream>
++using namespace ns3::ws31;
++
++int main() {
++    assert(ParseLabelProfile(nullptr)==0 && ParseLabelProfile("0")==0);
++    assert(ParseLabelProfile("3")==3);
++    for (const char *s : {"4","-1","01","1x"," 1"}) {
++        bool rejected=false;
++        try { ParseLabelProfile(s); } catch (const std::invalid_argument &) { rejected=true; }
++        assert(rejected);
++    }
++    for (uint32_t tag : {0U,1U,2U,7U,99U}) {
++        const auto normal=LabelAt(0,tag,1000,1000,1,2,3,4);
++        assert(normal.present && normal.value==tag);
++        const auto removed=LabelAt(0,tag,1000,1000,1,2,3,4,1);
++        assert(!removed.present && removed.value==0);
++        const auto swapped=LabelAt(0,tag,1000,1000,1,2,3,4,2);
++        assert(swapped.present && swapped.value==((tag==1 || tag==2)?3-tag:tag));
++        const auto before=LabelAt(1,tag,1000,1499,1,2,3,4);
++        const auto at=LabelAt(1,tag,1000,1500,1,2,3,4);
++        assert(!before.present && before.value==0 && at.present && at.value==tag);
++        assert(LabelAt(2,tag,1000,1499,1,2,3,4).value==tag);
++        assert(LabelAt(2,tag,1000,1500,1,2,3,4).value==swapped.value);
++    }
++    unsigned wrong=0, correct=0;
++    for (unsigned port=1;port<=64;++port) {
++        const auto a=LabelAt(3,1,1000,1000,0x0b000001,0x0b004001,port,100);
++        const auto b=LabelAt(3,1,9000,9999,0x0b000001,0x0b004001,port,100);
++        assert(a.present && b.present && a.value==b.value);
++        if (a.value==2) ++wrong; else { assert(a.value==1); ++correct; }
++    }
++    assert(wrong && correct); // A bucket does not promise an exact25% small sample.
++    bool rejected=false;
++    try { LabelAt(1,1,1000,999,1,2,3,4); } catch (const std::invalid_argument &) { rejected=true; }
++    assert(rejected);
++    rejected=false;
++    try { LabelAt(1,1,1000,1000,1,2,3,4,1); } catch (const std::invalid_argument &) { rejected=true; }
++    assert(rejected);
++    const LabelRunContext context(0,1,1,"config/leaf_spine_128_100G_OS2.txt",
++                                  "config/ws31_correctness_r1.txt",false,false);
++    ValidateLabelProfile(1,36,0,0,0,0,2,context);
++    ValidateLabelProfile(0,0,2,1,4,0,0,context);
++    for (unsigned kind=0;kind<7;++kind) {
++        rejected=false;
++        try { ValidateLabelProfile(kind==6?4:1,kind==0?35:43,kind==1,kind==2,
++                                   kind==3,kind==4,kind==5?1:2,context); }
++        catch (const std::invalid_argument &) { rejected=true; }
++        assert(rejected);
++    }
++    for (unsigned kind=0;kind<10;++kind) {
++        LabelRunContext invalid=context;
++        if (kind==0) invalid.pfc=1;
++        if (kind==1) invalid.irn=0;
++        if (kind==2) invalid.irn=2;
++        if (kind==3) invalid.ccMode=3;
++        if (kind==4) invalid.topology="config/ws30_composition8.txt";
++        if (kind==5) invalid.flow="config/old.txt";
++        if (kind==6) invalid.flow="config/ws31_bad/escape.txt";
++        if (kind==7) invalid.flow="config/ws31_bad.txt/../trace.txt";
++        if (kind==8) invalid.fault=true;
++        if (kind==9) invalid.diagnostic=true;
++        rejected=false;
++        try { ValidateLabelProfile(1,36,0,0,0,0,2,invalid); }
++        catch (const std::invalid_argument &) { rejected=true; }
++        assert(rejected);
++        ValidateLabelProfile(0,36,0,0,0,0,2,invalid); // profile0 keeps legacy eligibility.
++    }
++    assert(!LabelDiagnosticValue(nullptr) && !LabelDiagnosticValue("") && !LabelDiagnosticValue("0"));
++    assert(LabelDiagnosticValue("1") && LabelDiagnosticValue("2") && LabelDiagnosticValue("bad"));
++    std::cout << "WS31_LABEL_TEST PASS visibility/boundary/presence/unknown/hash/conflicts/context" << std::endl;
++}

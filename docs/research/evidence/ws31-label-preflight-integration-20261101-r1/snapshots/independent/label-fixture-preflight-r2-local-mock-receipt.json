@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "methods": 5,
+  "command": "python -B tests/ws31_label_runner_test.py",
+  "remote_entry_points": "mocked",
+  "log_sha256": "2d95ca87d8a7e670fbc4cf72471e2eec6ef6eca91d5ab83413832e4d48522d03",
+  "source_hashes": {
+    "tests/ws31_label_runner_test.py": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+    "scripts/remote_experiment.py": "52003e6a808d5dec50cd97ded55defff617bdbf581c16c9a15368815e0daa6bc",
+    "scripts/remote_worker.py": "9afc66b0c2e6888504c879327a1d36e9cec26fe1ecbfec2cfd69ba2fdc954139"
+  }
+}

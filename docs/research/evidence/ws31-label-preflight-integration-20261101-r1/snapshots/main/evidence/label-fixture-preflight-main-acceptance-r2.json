@@ -1,0 +1,26 @@
+{
+  "recorded_utc": "2026-11-01T04:25:46.985139+00:00",
+  "status": "MAIN_ACCEPTED_LABEL_PREFLIGHT_BUILD_NEW_CORE_AND_MOCK_ONLY",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "id": "20261101-121000-ws31-label-preflight-r2",
+  "index_sha256": "36306f3a7edfcba855c724330cdd2f53145ffa8dfa35ee1c64c34ca5957e122d",
+  "QA_sha256": "d0341ddf1d5caa7d2ee6dc4505243f9e69b24b1bc39fb578b2368f43b254b7ff",
+  "files_hashed": {
+    "documents": 28,
+    "dependencies": 2,
+    "supporting_files": 12,
+    "result_files": 9
+  },
+  "fixed_git_objects_hashed": 38,
+  "git_tree_entries": 4839,
+  "build_tasks": 1464,
+  "build_duration_seconds": 352.659,
+  "new_core_compile": 1,
+  "new_core_run": 1,
+  "core_assertions_enabled": true,
+  "local_python_mock_methods": 5,
+  "network_runs": 0,
+  "raw_empty": true,
+  "newline_boundary": "Raw deployed/local bytes preserved; normalized CRLF-to-LF equals fixed Git; historical checker correction verified; no tests repeated",
+  "scope": "Engineering gate only; default0 network regression/dynamiclabels/adapter lifecycle/independentV0/effects remain"
+}
