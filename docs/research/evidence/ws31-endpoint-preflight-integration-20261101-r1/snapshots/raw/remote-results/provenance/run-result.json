@@ -1,0 +1,55 @@
+{
+  "argv": [
+    "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/artifacts/ws31_endpoint_ledger_test"
+  ],
+  "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+  "end_utc": "2026-11-01T08:15:57Z",
+  "environment": {
+    "HOME": "/home/fnl",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "LOGNAME": "fnl",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "TMPDIR": "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/tmp",
+    "TZ": "UTC",
+    "USER": "fnl"
+  },
+  "exit": 0,
+  "pid": 307592,
+  "resources_after": {
+    "at_utc": "2026-11-01T08:15:57Z",
+    "disk_available_gib": 2291.8097229003906,
+    "load": [
+      0.06,
+      0.03,
+      0.04
+    ],
+    "mem_available_gib": 122.51193618774414
+  },
+  "resources_before": {
+    "at_utc": "2026-11-01T08:15:57Z",
+    "disk_available_gib": 2291.809730529785,
+    "load": [
+      0.06,
+      0.03,
+      0.04
+    ],
+    "mem_available_gib": 122.51193618774414
+  },
+  "rusage": {
+    "involuntary_context_switches": 1,
+    "major_faults": 0,
+    "max_rss_kib": 10232,
+    "minor_faults": 134,
+    "system_seconds": 0.0,
+    "user_seconds": 0.0,
+    "voluntary_context_switches": 1
+  },
+  "start_utc": "2026-11-01T08:15:57Z",
+  "stderr": "logs/run.stderr",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout": "logs/run.stdout",
+  "stdout_sha256": "b5e1d7b575291ab4394c75bb08d0ee78c420bc49f4a1c6452e2702c679cc0a75",
+  "wait_status": 0
+}

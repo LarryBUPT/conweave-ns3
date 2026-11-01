@@ -1,0 +1,37 @@
+[
+  {
+    "pid": 1504,
+    "ppid": 1316,
+    "name": "wininit.exe",
+    "created": "2026-10-31T22:32:13.432377+08:00",
+    "command": null
+  },
+  {
+    "pid": 1628,
+    "ppid": 1504,
+    "name": "services.exe",
+    "created": "2026-10-31T22:32:13.720012+08:00",
+    "command": null
+  },
+  {
+    "pid": 2348,
+    "ppid": 1628,
+    "name": "svchost.exe",
+    "created": "2026-10-31T22:32:14.206319+08:00",
+    "command": "C:\\Windows\\system32\\svchost.exe -k netsvcs -p -s Schedule"
+  },
+  {
+    "pid": 10176,
+    "ppid": 2348,
+    "name": "pythonw.exe",
+    "created": "2026-10-31T22:32:16.200285+08:00",
+    "command": "\"E:\\ElectricBillMonitor\\.venv\\Scripts\\pythonw.exe\" app.py"
+  },
+  {
+    "pid": 5528,
+    "ppid": 10176,
+    "name": "pythonw.exe",
+    "created": "2026-10-31T22:32:16.67814+08:00",
+    "command": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\pythonw.exe\" app.py"
+  }
+]

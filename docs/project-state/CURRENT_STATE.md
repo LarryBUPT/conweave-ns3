@@ -26,7 +26,9 @@ r1 同步成功一次后，因未知缓存 Git HTTP PID 297502 停止于构建�
 
 端点静态审查及修订已形成[第十四节点](../handoffs/2026-11-01-ws31-endpoint-core-integration.md)。Integration 核 11 个固定对象、原审查三份输出和两份旧 WIP 字节；另核源码发现：队列组 Clear 只清向量、不清 finished 位，旧索引已置位时可跳过重用索引的新 QP。后续真实夹具改用保留已完成旧 QP、追加新 QP，不修改基线 Clear；生产位图分支仍待实际覆盖。TX／RX packed key 别名、交换机四元组不含 PG 和 ACK／NACK 有标签才复制也已核对，旧设计“无条件复制”仅由新契约纠正，旧记录不回写。
 
-账本及两代测试源码已修订、固定并推送为 `20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da`，父源 1f。差异恰为两个新增文件，4,845 项树，独占树干净，未在 Waf 或生产路径引用；新源编译／运行结果待验，不继承 1f 的端点能力证明。主在副 idle95 后另派单目标核心预检：先独立审源和新门，至多一次同步、一次独立 g++ 编译及一次运行；全量 NS-3 构建、部署、网络和旧测试重跑均不授权。源码／入口约束保持，Integration 观察主 idle cursor 21；副 active96 为主交接状态，不重复派发。真实快照、token 接线及两代网络正反例仍未完成，EndpointSnapshot 仍是待适配器提供的参数。
+固定 `20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da` 的独立核心预检现已主验并经 Integration 核对，见[第十五节点](../handoffs/2026-11-01-ws31-endpoint-preflight-integration.md)。一次同步、一次 C++11／-DNDEBUG 编译、一次运行，手工两代账本及 6 token 完成，真实端点快照和网络均为 0。核 90 项索引文件、41 项 raw、5 项旧文件、4 参考及全部 4,845 条 Git 文件路径／284,683,832 B；路径数不称唯一对象数。50,520 B ELF、精确 argv／stdout／stderr／退出码均匹配。五项库仍仅为 ldd 解析与远端哈希收据。全 NS-3 构建、部署、网络和旧测试重跑均为 0。
+
+旧核心约束已于 08:19:32 UTC 明确释放，副 idle98、无持久驱动后，主写入实际对象快照探针 WIP：`ws31-endpoint-probe.h` 未跟踪，`qbb-net-device.h` 仅加窄 friend／注释，HEAD 仍为 20bc，已验核心两输入不变。新源码发现 GetBytesLeft 在 IRN 下可能推进 snd_nxt 并丢弃 SACK，RdmaEgressQueue::GetNBytes 又委托它；探针改读保守字段，待发送载荷与物理队列分列。新代码未编译、接入或调用，不当作测量；覆盖位故意缺 SWITCH_STATE，不能认证 ALL。唯一副当前只读审查这两文件，无远端或执行授权，字节保持；Integration 观察主 idle cursor 22，副 active99 为主交接状态，不重复派发。真实快照纯度、交换机／channel／G1 与两代网络正反例仍未完成。
 
 此前大小克隆仅在原标签与大小绑定的输入中等价，成本差异／惰性清理及单输入 V0 两侧观察继续保留。动态标签、适配器及默认兼容通过限于各自小输入与测试条件，不估计真实分类质量或效果。Ofan 暂缓；真实端点退出／排空／跨代复用、独立 V0 和双侧效果／成本仍待完成。新组合基线尚未形成。
 

@@ -1,0 +1,45 @@
+[
+  {
+    "argv": [
+      "git",
+      "clone",
+      "--shared",
+      "--no-checkout",
+      "/home/fnl/lzy/code/conweave-ns3",
+      "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source"
+    ],
+    "cwd": null,
+    "exit": 0,
+    "stderr": "logs/clone.stderr",
+    "stdout": "logs/clone.stdout"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+      "remote",
+      "set-url",
+      "origin",
+      "https://github.com/LarryBUPT/conweave-ns3.git"
+    ],
+    "cwd": null,
+    "exit": 0,
+    "stderr": "logs/source-origin.stderr",
+    "stdout": "logs/source-origin.stdout"
+  },
+  {
+    "argv": [
+      "git",
+      "-C",
+      "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+      "checkout",
+      "--detach",
+      "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da"
+    ],
+    "cwd": null,
+    "exit": 0,
+    "stderr": "logs/checkout.stderr",
+    "stdout": "logs/checkout.stdout"
+  }
+]

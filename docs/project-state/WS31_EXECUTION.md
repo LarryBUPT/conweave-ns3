@@ -141,9 +141,15 @@ Integration 核对 33 文档、4 依赖、28 原文件、15 支持、47 结果�
 
 R1～R4 的处理已形成[新契约](../research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r2.md)。实际 TX／RX packed key 可别名，C1／C3 四元组不含 PG；最小夹具须事先拒绝跨完整 tuple 的资源别名。Clear 只清向量、不清 finished 位；若旧索引已置位，调度器会在读取新 QP 前跳过它。采用保留已完成旧 QP、追加新 QP 的策略，不改基线键或 Clear，真实旧位图分支仍须网络夹具覆盖。ACK／NACK 只在入包有 FlowIDNUMTag 时复制；旧设计“无条件”的事实错误由新契约纠正，旧材料按原字节保留。
 
-修订后的 `ws31-endpoint-ledger.h` 和 `ws31_endpoint_ledger_test.cc` 已固定、推送为 `20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da`，父源 1f，恰两个新增文件／4,845 树项。独占树干净，没有 Waf 注册或生产路径包含。新核心增加实际资源归属、快照身份／代次／字段／时刻、false 观察时钟、四字段链路、类型化闭合原因、历史及最终复用复查；两代测试为手工快照源码，编译／运行待验，不是网络证据。
+修订后的 `ws31-endpoint-ledger.h` 和 `ws31_endpoint_ledger_test.cc` 已固定、推送为 `20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da`，父源 1f，恰两个新增文件／4,845 树项，无 Waf 注册或生产路径包含。新核心增加实际资源归属、快照身份／代次／字段／时刻、false 观察时钟、四字段链路、类型化闭合原因、历史及最终复用复查；两代手工快照的独立编译／运行现已通过主验及 Integration 本地核对，不是网络证据。
 
-主在唯一副 idle95 后派[核心预检 r2](../research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/endpoint-ledger-core-preflight-r2.json)，哈希 `57ee56f60e6406dfaeab8e317910423e53fdb87e46982be6bf730dd4823fae47`，新 ID `20261101-163000-ws31-endpoint-core-r2`。先独立审源，再过新进程／缓存／资源／ID 门；至多一次 sync、一次独立 g++ 编译及一次运行，使用 C++11、-DNDEBUG 和运行时异常检查。全量 NS-3 构建、部署、网络及旧核心／夹具重跑均为 0 授权。源码与入口约束保持至明确终态释放，active 不重复派发。
+主在唯一副 idle95 后派[核心预检 r2](../research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/endpoint-ledger-core-preflight-r2.json)，哈希 `57ee56f60e6406dfaeab8e317910423e53fdb87e46982be6bf730dd4823fae47`，ID `20261101-163000-ws31-endpoint-core-r2`。实际经独立审源和新门完成一次 sync、一次 g++ 编译及一次运行，C++11／-O2／-Wall／-Wextra／-pedantic／-DNDEBUG，异常检查开启；退出码 0、编译无警告、运行 stderr 空，精确 stdout 为两代手工账本／6 token／真实快照 0／网络 0。全量 NS-3 构建、部署、网络及旧测试重跑均为 0，见[第十五节点](../handoffs/2026-11-01-ws31-endpoint-preflight-integration.md)。
+
+Integration 核 90 项索引文件、41 项 raw、5 项原审查／WIP、4 参考，以及 4,845 条 Git 文件路径的 blob／大小／SHA-256，合计 284,683,832 B；路径数不写成唯一对象数。50,520 B ELF 的 SHA-256 为 `15ed3dd0a023e59da058535e29797d7c67787912a619203ad2ee96e108dac86b`。五项运行库按保存的 ldd 解析和远端哈希收据核对，不声称本地库字节重算或 /proc/maps 实采。主初版 checker 仅文献根路径解析失败，原脚本与修正记录保留；只改绝对根路径及一个等价表达式，无源码／raw／判据改动或二进制重跑。
+
+核心约束于 08:19:32 UTC 显式释放，副 idle98、无持久驱动后主继续实际对象探针 WIP。固定 HEAD 仍为 20bc，已验核心两输入不变，`qbb-net-device.h` 仅加 friend／注释，新增 `ws31-endpoint-probe.h` 未跟踪。GetBytesLeft 在 IRN 分支可能推进 snd_nxt 并 discard SACK，GetNBytes 委托该方法；WIP 避开这些可变读取，按字段计算保守待发送量，并与物理队列字节分开。
+
+新探针没有编译、Waf 注册、生产包含或实际调用；其覆盖位明确不含 SWITCH_STATE，不能认证完整 ALL。主在 idle98 后派[本地只读计划](../research/evidence/ws31-endpoint-preflight-integration-20261101-r1/snapshots/main/endpoint-probe-local-review-r1.json)，哈希 `fd8e63b3692967d6f938d409945ee9dad12b5401772c2a07e9b56062c51482ee`，无远端或执行授权，被审两文件保持字节。实际对象只读纯度与编译可用性、交换机／channel／完成回调接线、历史与 QP 追加策略及 G1／网络正反例仍待验，active 不重复派发。
 
 真实端点／定时器／队列快照、Receive 返回后的原交付 token 闭合、条件标签存在性检查、实际上下文 G1 及两代网络正例／拒绝例仍须实现和独立验证。EndpointSnapshot 仍为待适配器提供的参数，手工字段覆盖不当作测量，held copy 丢弃不当作原生旧包接收隔离。generation=0 或固定等待时长均不代替排空证明。独立 V0、双侧效果及状态／运行成本继续必做。
 

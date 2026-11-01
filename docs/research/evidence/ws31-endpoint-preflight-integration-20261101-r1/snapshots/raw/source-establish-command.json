@@ -1,0 +1,24 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "ServerAliveInterval=15",
+    "-o",
+    "ServerAliveCountMax=2",
+    "-o",
+    "ClearAllForwardings=yes",
+    "fnl@10.112.14.167",
+    "python3 -"
+  ],
+  "stdin_script": "remote-source-establish.py",
+  "stdin_sha256": "fceda4130f6737c59f390c48fc2b092c4c34468540a0a4e454cce0a69ce4fb4f",
+  "start_utc": "2026-11-01T08:14:26.311204+00:00",
+  "exit": 0,
+  "end_utc": "2026-11-01T08:14:29.855647+00:00"
+}

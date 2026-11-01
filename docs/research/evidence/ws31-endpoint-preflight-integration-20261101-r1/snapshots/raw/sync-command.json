@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "ConnectionAttempts=1",
+    "-o",
+    "ServerAliveInterval=15",
+    "-o",
+    "ServerAliveCountMax=2",
+    "-o",
+    "ClearAllForwardings=yes",
+    "fnl@10.112.14.167",
+    "python3 /home/fnl/lzy/.research-workflow/remote_worker.py sync --repo https://github.com/LarryBUPT/conweave-ns3.git --sha 20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da"
+  ],
+  "start_utc": "2026-11-01T08:11:50.560313+00:00",
+  "authorized_sync_command_number": 1,
+  "deploy_count": 0,
+  "completion": "terminal",
+  "exit": 0,
+  "end_utc": "2026-11-01T08:11:54.236936+00:00"
+}

@@ -1,0 +1,26 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "ServerAliveInterval=15",
+    "-o",
+    "ServerAliveCountMax=2",
+    "-o",
+    "ClearAllForwardings=yes",
+    "fnl@10.112.14.167",
+    "python3 -"
+  ],
+  "stdin_script": "remote-core-compile-run.py",
+  "stdin_sha256": "f18c421e52f8518f6932498497113f7b0392caf8bcb93f51ceb2bf4f3b905b3c",
+  "start_utc": "2026-11-01T08:15:54.560138+00:00",
+  "compile_authorization": 1,
+  "run_authorization": 1,
+  "exit": 0,
+  "end_utc": "2026-11-01T08:15:57.274478+00:00"
+}

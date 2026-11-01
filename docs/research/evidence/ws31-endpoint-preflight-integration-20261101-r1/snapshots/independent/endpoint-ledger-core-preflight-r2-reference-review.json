@@ -1,0 +1,34 @@
+{
+  "at_utc": "2026-11-01T08:23:19.048999+00:00",
+  "node": "portable endpoint core r2 static review and single compile/run",
+  "source_records": [
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\README.md",
+      "sha256": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\reading-log.md",
+      "sha256": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\papers\\diffflow-2016\\analysis-technical.md",
+      "sha256": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\\u53c2\u8003\u6587\u732e\\\u5019\u9009\\papers\\diffflow-2016\\verification.md",
+      "sha256": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+    }
+  ],
+  "paper_version": "arXiv:1604.05107v1, 6 pages",
+  "borrowed": "explicit prerequisite ordering before activation, applied to completed/retired/drained/cleared/reused evidence",
+  "applicability": "testing lifecycle ordering and evidence boundaries",
+  "difference": "DiffFlow uses sampled long-flow classification and spraying; this core records fixed RDMA request identities and resource ownership",
+  "not_extrapolated": [
+    "rule install confirmation or reclamation correctness",
+    "actual RDMA endpoint/drain correctness",
+    "MoE completion or background P99 benefits",
+    "new candidate or baseline admission"
+  ],
+  "new_full_paper_read_or_experiment": false,
+  "result": "no new mechanism; keep actual source and exact-ID raw results as primary evidence"
+}

@@ -1,0 +1,42 @@
+{
+  "at_utc": "2026-11-01T08:11:50.559310+00:00",
+  "status": "PASS_FRESH_NO_JOB_RESOURCE_ID_CACHE_GATE",
+  "unknown_processes": [],
+  "self_ancestry": [
+    1,
+    277741,
+    307313,
+    307351,
+    307352
+  ],
+  "known_nonproject_sleeping_pids": [
+    215645,
+    302325,
+    348833,
+    377959,
+    397391,
+    415208,
+    420873,
+    420878,
+    457365
+  ],
+  "historical_receipt": "adapter-default-validation-r1-processes-initial.json",
+  "classification": "known long-lived sleeping debugger/hg processes outside lzy, same uid/parent/cwd and no project workload; system daemons and current SSH ancestry excluded",
+  "old_driver22440_absent": true,
+  "resource": {
+    "load": [
+      0.0,
+      0.0,
+      0.04
+    ],
+    "mem_available_gib": 122.51765060424805,
+    "disk_available_gib": 2292.0901985168457
+  },
+  "new_id_absent": {
+    "results": true,
+    "runs": true
+  },
+  "local_destination": "prefix raw exists only for gate receipts; fetched result destination remote-results not yet created",
+  "worker_provenance": "verified canonical LF content against fixed commit; no deployment",
+  "pushed_ref": "verified git ls-remote before sync"
+}

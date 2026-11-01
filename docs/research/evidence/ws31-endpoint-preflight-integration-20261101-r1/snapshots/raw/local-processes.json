@@ -1,0 +1,26 @@
+[
+  {
+    "pid": 10176,
+    "ppid": 2348,
+    "name": "pythonw.exe",
+    "created": "2026-10-31T22:32:16.200285+08:00",
+    "owner": "DESKTOP-PRKG0PR\\Administrator",
+    "command": "\"E:\\ElectricBillMonitor\\.venv\\Scripts\\pythonw.exe\" app.py"
+  },
+  {
+    "pid": 5528,
+    "ppid": 10176,
+    "name": "pythonw.exe",
+    "created": "2026-10-31T22:32:16.67814+08:00",
+    "owner": "DESKTOP-PRKG0PR\\Administrator",
+    "command": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\pythonw.exe\" app.py"
+  },
+  {
+    "pid": 46540,
+    "ppid": 32680,
+    "name": "pwsh.exe",
+    "created": "2026-11-01T16:06:39.463759+08:00",
+    "owner": "DESKTOP-PRKG0PR\\Administrator",
+    "command": "\"C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe\" -Command \"try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}\n$items=Get-CimInstance Win32_Process; $selected=$items | Where-Object { $_.Name -match '^(python|pythonw|ssh|scp|git|git-remote-https|g\\+\\+|cc1plus|waf)(\\.exe)?$' -or $_.CommandLine -match 'remote_experiment|ws31.*driver|endpoint.*driver' }; $records=foreach ($proc in $selected) { $owner=Invoke-CimMethod -InputObject $proc -MethodName GetOwner -ErrorAction SilentlyContinue; [pscustomobject]@{ pid=$proc.ProcessId; ppid=$proc.ParentProcessId; name=$proc.Name; created=$proc.CreationDate; owner=($owner.Domain+'\\'+$owner.User); command=$proc.CommandLine } }; $records | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath 'E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-raw\\local-processes.json' -Encoding UTF8; $records | Select-Object pid,ppid,name,owner,command | Format-List\""
+  }
+]

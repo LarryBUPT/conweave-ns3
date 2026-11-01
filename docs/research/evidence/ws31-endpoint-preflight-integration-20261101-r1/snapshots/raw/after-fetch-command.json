@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "ClearAllForwardings=yes",
+    "fnl@10.112.14.167",
+    "python3 -"
+  ],
+  "stdin_script": "remote-after-fetch-check.py",
+  "stdin_sha256": "b05ff216eb58dec38729e2440cedf138f7ed4fef239d852468198af1214b8de2",
+  "exit": 0,
+  "SSH_call_terminal": true
+}

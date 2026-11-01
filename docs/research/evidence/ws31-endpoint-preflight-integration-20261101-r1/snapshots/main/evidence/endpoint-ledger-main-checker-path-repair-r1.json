@@ -1,0 +1,10 @@
+{
+  "at_utc": "2026-11-01T08:26:20.714227+00:00",
+  "kind": "LOCAL_MAIN_CHECKER_RELATIVE_REPO_PATH_RESOLUTION_ERROR",
+  "preserved_script_sha256": "c527ee98a1ac2d13010fc96bb99deccad8038cd488935f3dc781c02ed11e1a98",
+  "location": "literature source path resolution after artifact/source/raw verification",
+  "cause": "CLI repo argument was relative; parent.parent remained relative instead of project root",
+  "repair": "Resolve repo and source to absolute paths at entry",
+  "CXX_compile_or_run_or_network_repeats": 0,
+  "source_or_raw_change": false
+}

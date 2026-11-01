@@ -1,0 +1,60 @@
+{
+  "at_utc": "2026-11-01T08:06:39.407509+00:00",
+  "status": "STATIC_REVIEW_PASS_FOR_SINGLE_PORTABLE_CORE_COMPILE_RUN",
+  "plan_sha256": "57ee56f60e6406dfaeab8e317910423e53fdb87e46982be6bf730dd4823fae47",
+  "head": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "parent": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "branch": "feature/ws31-candidates",
+  "local_status": "clean",
+  "origin": "https://github.com/LarryBUPT/conweave-ns3.git",
+  "origin_tracking_ref": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "pushed_ref_network_verification": "pending fresh gate",
+  "tree_entries": 4845,
+  "tree_sha256": "3da8acbcc1809389aac24adc1936d22874821077e40ddd397723fa7d977e0e64",
+  "files": {
+    "src/point-to-point/model/ws31-endpoint-ledger.h": {
+      "working_sha256": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "git_blob": "f3d0fff5bebaa52bb8f28948277f50198fc6fe6b",
+      "working_bytes_equal_git_blob": true
+    },
+    "tests/ws31_endpoint_ledger_test.cc": {
+      "working_sha256": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49",
+      "git_blob": "5cc0f1ae00034e9e3bbb12ff9aa1955eb6d3ad10",
+      "working_bytes_equal_git_blob": true
+    }
+  },
+  "diff_name_status": [
+    "A\tsrc/point-to-point/model/ws31-endpoint-ledger.h",
+    "A\ttests/ws31_endpoint_ledger_test.cc"
+  ],
+  "include_search": [
+    "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da:tests/ws31_endpoint_ledger_test.cc:1:#include \"../src/point-to-point/model/ws31-endpoint-ledger.h\""
+  ],
+  "review": {
+    "R1": "node+packed TX/RX and route domain owner guards precede registry mutation; cross-tuple aliases permanently refused",
+    "R2": "retain completed QP and append is explicit future wiring policy; production Clear unchanged and not tested here",
+    "R3": "identity/ALL/time/owner-bound snapshots; true and valid false state checks update lastNs; history/switch/final reuse gates present",
+    "R4": "four-field directed link, exact serial, UID, flow_id, expected kind and legal close reason checked before mutation",
+    "CXX11": "namespace, member defaults, lambda, nullptr, tuple, member pointers and range-for are C++11 compatible by static inspection; no compiler result yet",
+    "test_chronology": "nondecreasing successful/evidence observations; rejected calls do not mutate tokens; two complete portable generations; five plus one tokens closed",
+    "alias_formula": "RX mirror correctly maps original destination port into high16 OR pg and original source port into low16",
+    "evidence_boundary": "manually supplied ALL mocks measure no NS3 state; PASS string not an execution result",
+    "material_defects": [],
+    "nonblocking_limits": [
+      "single controlled tuple and completion-only contract",
+      "resources supplied by trusted adapter, not independently recomputed by core",
+      "actual retain/append finished-bit path and post-Receive wiring remain pending"
+    ]
+  },
+  "original_artifacts_sha256": {
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-qa.json": "bc2a8f6c30d18c48cc04502c98fc64ad0786a73b457694004bf76ad28f90bcfe",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-report.md": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-review.json": "aa54af2b05c870e356e32e53d855c0a4175d4e00b38a314d39cad35a84cad12c",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-ledger-wip-r1-preserved\\ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-ledger-wip-r1-preserved\\ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+  },
+  "compile_count": 0,
+  "run_count": 0,
+  "remote_actions": 0,
+  "guard_state": "held until explicit terminal release"
+}

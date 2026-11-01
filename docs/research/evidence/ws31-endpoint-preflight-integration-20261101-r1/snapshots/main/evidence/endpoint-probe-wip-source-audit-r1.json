@@ -1,0 +1,35 @@
+{
+  "at_utc": "2026-11-01T08:31:12.895841+00:00",
+  "status": "ACTUAL_OBJECT_READONLY_SNAPSHOT_ADAPTER_WIP_WRITTEN_UNCOMPILED",
+  "parent_head": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-net-device.h": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+    "src/point-to-point/model/ws31-endpoint-probe.h": "708149f395414868b15a98f5cf56e1d8cd8b75d158649393ee36990ce258a75f"
+  },
+  "tracked_header_diff_only_friend": true,
+  "accepted_core_two_files_unchanged": true,
+  "scope": "New explicit probe reads real NS3 object fields only when called; no runtime include/Waf registration or fixture invocation; not measured evidence",
+  "implemented": [
+    "SavedTX/RXidentityandoriginaldemand/launchchecks using actual productionpackedkeys",
+    "Live maps plus saved/live QP event observation",
+    "Enumerateall NodeList Qbbdevices, physical/ACKqueues,current serialization,pacing/resume events",
+    "RetainedQPidentity/finishedbit and IsFinishedConst reads; conservative pending payload from fields, no mutable GetBytesLeft",
+    "Completionhistory presence observed; switchcoverage bitdeliberately unset"
+  ],
+  "new_source_finding": {
+    "source": "src/point-to-point/model/rdma-queue-pair.cc:96",
+    "fact": "GetBytesLeft under IRN may advance snd_nxt and discard SACK entries; RdmaEgressQueue::GetNBytes delegates to it",
+    "decision": "Never call those getters in read-only snapshot; read limit/snd_nxt conservatively and retain separate completion checks",
+    "scientific_runtime_failure_observed": false
+  },
+  "still_required": [
+    "Independent static review and actual compilation/object-purity fixture",
+    "Actual switchstatecoverage before any ALLsnapshot cancertify",
+    "Defaultoff original-eventchannel tokens andpostReceiveclose",
+    "SavedRXcapture beforecallbackdeletion,realhistory/switchcleanup,retainoldQP/append branch",
+    "ActualcontextG1/two-generationnetworkpositive/refusalandperformance"
+  ],
+  "compile_or_test_or_network_executions": 0,
+  "Waf_or_runtime_includes_added": 0,
+  "core20bc_validation_inherited": false
+}

@@ -1,0 +1,79 @@
+[
+  {
+    "argv": [
+      "g++",
+      "--version"
+    ],
+    "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "environment": "provenance/exact-compile-run-environment.json",
+    "exit": 0,
+    "stderr": "logs/compiler-version.stderr",
+    "stdout": "logs/compiler-version.stdout"
+  },
+  {
+    "argv": [
+      "g++",
+      "-dumpmachine"
+    ],
+    "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "environment": "provenance/exact-compile-run-environment.json",
+    "exit": 0,
+    "stderr": "logs/compiler-target.stderr",
+    "stdout": "logs/compiler-target.stdout"
+  },
+  {
+    "argv": [
+      "g++",
+      "-print-prog-name=cc1plus"
+    ],
+    "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "environment": "provenance/exact-compile-run-environment.json",
+    "exit": 0,
+    "stderr": "logs/compiler-cc1plus.stderr",
+    "stdout": "logs/compiler-cc1plus.stdout"
+  },
+  {
+    "argv": [
+      "g++",
+      "-print-file-name=libstdc++.so.6"
+    ],
+    "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "environment": "provenance/exact-compile-run-environment.json",
+    "exit": 0,
+    "stderr": "logs/compiler-stdlib.stderr",
+    "stdout": "logs/compiler-stdlib.stdout"
+  },
+  {
+    "argv": [
+      "ld",
+      "--version"
+    ],
+    "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "environment": "provenance/exact-compile-run-environment.json",
+    "exit": 0,
+    "stderr": "logs/linker-version.stderr",
+    "stdout": "logs/linker-version.stdout"
+  },
+  {
+    "argv": [
+      "as",
+      "--version"
+    ],
+    "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "environment": "provenance/exact-compile-run-environment.json",
+    "exit": 0,
+    "stderr": "logs/assembler-version.stderr",
+    "stdout": "logs/assembler-version.stdout"
+  },
+  {
+    "argv": [
+      "ldd",
+      "/home/fnl/lzy/results/20261101-163000-ws31-endpoint-core-r2/artifacts/ws31_endpoint_ledger_test"
+    ],
+    "cwd": "/home/fnl/lzy/runs/20261101-163000-ws31-endpoint-core-r2/source",
+    "environment": "provenance/exact-compile-run-environment.json",
+    "exit": 0,
+    "stderr": "logs/binary-ldd.stderr",
+    "stdout": "logs/binary-ldd.stdout"
+  }
+]
