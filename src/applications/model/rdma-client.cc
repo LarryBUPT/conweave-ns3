@@ -197,6 +197,11 @@ void RdmaClient::StartRequest (void)
                 << " launch_ns=" << now << " wait_ns=" << delay
                 << " size=" << m_size << std::endl;
   }
+  DispatchRequest(demand);
+}
+
+void RdmaClient::DispatchRequest (uint64_t demand)
+{
   // get RDMA driver and add up queue pair
   Ptr<Node> node = GetNode();
   Ptr<RdmaDriver> rdma = node->GetObject<RdmaDriver>();

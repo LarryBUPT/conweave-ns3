@@ -62,8 +62,12 @@ public:
 
 protected:
   virtual void DoDispose (void);
+  // Transport seam for the standalone event-boundary fixture. Production
+  // dispatch retains the same driver call after demand/launch accounting.
+  virtual void DispatchRequest (uint64_t demandStartNs);
 
 private:
+  friend class Ws31StartBoundaryProbe;
 
   virtual void StartApplication (void);
   virtual void StopApplication (void);
