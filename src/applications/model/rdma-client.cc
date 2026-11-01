@@ -37,6 +37,7 @@
 #include <ns3/rdma-driver.h>
 #include "ns3/settings.h"
 #include "ns3/ws31-start.h"
+#include "ns3/ws31-label-fixture.h"
 #include "ns3/ws30-observer.h"
 #include "ns3/ws30-v13-fixture.h"
 #include <stdlib.h>
@@ -150,7 +151,10 @@ void RdmaClient::StartApplication (void)
     if (m_ws31Pending) NS_FATAL_ERROR("C2 request started twice while pending");
     m_ws31DemandNs = Simulator::Now().GetNanoSeconds();
     const unsigned tagTransform = Ws30V13TagTransform();
-    const uint32_t policyTag = ws31::StartPolicyTag(m_workload_tag,tagTransform);
+    const unsigned labelProfile = ws31::LabelProfile();
+    const ws31::VisibleLabel visible = ws31::LabelAt(labelProfile,m_workload_tag,
+        m_ws31DemandNs,m_ws31DemandNs,m_sip.Get(),m_dip.Get(),m_sport,m_dport,tagTransform);
+    const uint32_t policyTag = visible.value;
     const uint64_t delay = ws31::StartDelay(Settings::lb_mode,policyTag,m_size,
                                            m_sip.Get(),m_dip.Get(),m_sport,m_dport);
     ws31::StartCounters &s = ws31::StartData();
@@ -161,6 +165,11 @@ void RdmaClient::StartApplication (void)
                 << " size=" << m_size << " tag=" << m_workload_tag
                 << " delay_ns=" << delay << " policy_tag=" << policyTag
                 << " tag_transform=" << tagTransform << std::endl;
+    if (labelProfile && Ws30Level())
+      std::cout << "WS31_LABEL_DEMAND flow_id=" << m_flow_id << " generation=0"
+                << " demand_ns=" << m_ws31DemandNs << " profile=" << labelProfile
+                << " original=" << m_workload_tag << " visible=" << visible.value
+                << " present=" << visible.present << std::endl;
     if (delay) {
       m_ws31LaunchEvent = Simulator::Schedule(NanoSeconds(delay), &RdmaClient::StartRequest, this);
       return;

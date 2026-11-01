@@ -510,6 +510,7 @@ def execute(experiment_id):
         raise RuntimeError('Launcher did not record worker PID')
     data = load_metadata(base)
     params = data['parameters']
+    validate_ws31_label_params(params)
     command = [sys.executable, 'run.py', '--lb', params['lb'], '--pfc', str(params['pfc']),
                '--irn', str(params['irn']), '--simul_time', params['simul_time'],
                '--netload', str(params['netload']), '--bw', str(params['bw']),
@@ -584,7 +585,7 @@ def execute(experiment_id):
         if os.path.lexists(output_dir):
             raise RuntimeError('Expected a fresh, empty output path')
         os.symlink(inside(os.path.join(base, 'raw')), output_dir)
-        simulation_env = os.environ.copy()
+        simulation_env = ws31_label_environment(params, os.environ)
         simulation_env['WS30_OBSERVE'] = str(params.get('ws30_observe', 0))
         simulation_env['WS30_COMPOSITION'] = str(params.get('ws30_composition', 0))
         simulation_env['WS30_LIFECYCLE'] = str(params.get('ws30_lifecycle', 0))
@@ -682,6 +683,7 @@ def execute(experiment_id):
 
 
 def start(experiment_id, params, max_concurrent=1):
+    validate_ws31_label_params(params)
     resources_ok()
     if max_concurrent not in (1, 2, 4, 8, 12, 16, 18):
         raise RuntimeError('Unsupported concurrency cap')
@@ -779,6 +781,37 @@ def transfer_smoke(experiment_id):
     print('transfer-test=' + experiment_id)
 
 
+def ws31_label_environment(params, inherited):
+    validate_ws31_label_params(params)
+    result = inherited.copy()
+    result['WS31_LABEL_PROFILE'] = str(params.get('ws31_label_profile', 0))
+    return result
+
+
+def validate_ws31_label_params(params):
+    profile = params.get('ws31_label_profile', 0)
+    if profile not in (0, 1, 2, 3):
+        raise RuntimeError('WS31 label profile must be 0..3')
+    if not profile:
+        return
+    modes = ('ws31-c1', 'ws31-c1-unified', 'ws31-c1-count', 'ws31-c1-history',
+             'ws31-c1-size', 'ws31-c1-zero', 'ws31-c1-unified-count',
+             'ws31-c2', 'ws31-c2-unified', 'ws31-c2-size', 'ws31-c2-zero',
+             'ws31-c3', 'ws31-c3-fixed', 'ws31-c3-size', 'ws31-c3-zero')
+    conflicts = ('ws30_tag_transform', 'ws30_composition', 'ws30_lifecycle',
+                 'ws30_life_profile', 'ws21_heartbeat_fault_mode', 'factorial_pilot',
+                 'factorial_formal', 'factorial_drop_diag', 'ws13_diag', 'ws25_diag',
+                 'ws28_tail_diag', 'ws26_moe_hop_diag', 'ws26_queue_front_diag',
+                 'ws26_time_probe', 'ws26_seed97_time_diag')
+    if (params.get('lb') not in modes or params.get('ws30_observe') != 2 or
+            params.get('pfc') != 0 or params.get('irn') != 1 or
+            params.get('topo') != 'leaf_spine_128_100G_OS2' or
+            not str(params.get('flow_file') or '').startswith('ws31_') or
+            any(params.get(k, 0) for k in conflicts) or
+            params.get('ws23_pfc_probe_host', -1) >= 0):
+        raise RuntimeError('WS31 label fixture requires explicit isolated WS31 trace/mode/full observation')
+
+
 def main():
     parser = argparse.ArgumentParser()
     sub = parser.add_subparsers(dest='command')
@@ -816,6 +849,7 @@ def main():
     run_cmd.add_argument('--demand-seed', type=int, default=None)
     run_cmd.add_argument('--ws30-life-profile', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ws31-label-profile', type=int, choices=(0, 1, 2, 3), default=0)
     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-queue-front-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
@@ -860,6 +894,7 @@ def main():
     elif args.command == 'build':
         build(args.id, args.sha, args.branch)
     elif args.command == 'run':
+        validate_ws31_label_params(vars(args))
         if args.ws30_lifecycle in (1,2,3,4) and (args.topo != 'ws30_composition8' or args.pfc != 0 or args.irn != 1 or args.lb not in ('fecmp','ws30v13-q12','ws30v13-u12') or not args.flow_file or not args.flow_file.startswith('ws30v13_life_')):
             raise RuntimeError('Lifecycle fixture requires its explicit trace, topology and admitted arms')
         if args.ws30_lifecycle>=5:
@@ -951,6 +986,7 @@ def main():
                         'ws30_lifecycle': args.ws30_lifecycle,
                         'ws30_life_profile': args.ws30_life_profile,
                         'ws30_tag_transform': args.ws30_tag_transform,
+                        'ws31_label_profile': args.ws31_label_profile,
                         'ws26_moe_hop_diag': args.ws26_moe_hop_diag,
                         'ws26_queue_front_diag': args.ws26_queue_front_diag,
                         'ws26_time_probe': args.ws26_time_probe,

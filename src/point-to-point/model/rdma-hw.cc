@@ -1,6 +1,7 @@
 #include "rdma-hw.h"
 #include "ws30-v13-fixture.h"
 #include "ws30-observer.h"
+#include "ws31-label-fixture.h"
 
 #include <ns3/ipv4-header.h>
 #include <ns3/seq-ts-header.h>
@@ -1101,10 +1102,21 @@ Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) {
 
     Ptr<Packet> p = Create<Packet>(payload_size);
     WorkloadTag label;
-    label.SetValue(qp->m_workload_tag);
-    if (Ws30V13TagTransform() == 2 && (qp->m_workload_tag == 1 || qp->m_workload_tag == 2))
-        label.SetValue(3-qp->m_workload_tag);
-    if (Ws30V13TagTransform() != 1) p->AddPacketTag(label);
+    const unsigned labelProfile=ws31::LabelProfile();
+    const ws31::VisibleLabel visible=ws31::LabelAt(labelProfile,qp->m_workload_tag,
+        qp->startTime.GetNanoSeconds(),Simulator::Now().GetNanoSeconds(),
+        qp->sip.Get(),qp->dip.Get(),qp->sport,qp->dport,Ws30V13TagTransform());
+    label.SetValue(visible.value);
+    if (visible.present) p->AddPacketTag(label);
+    if (labelProfile && Ws30Level())
+        std::cout << "WS31_LABEL_PACKET time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " demand_ns=" << qp->startTime.GetNanoSeconds()
+                  << " uid=" << p->GetUid() << " flow_id=" << qp->m_flow_id
+                  << " generation=0 sip=" << qp->sip.Get() << " dip=" << qp->dip.Get()
+                  << " sport=" << qp->sport << " dport=" << qp->dport
+                  << " seq=" << seq << " payload=" << payload_size
+                  << " profile=" << labelProfile << " original=" << qp->m_workload_tag
+                  << " visible=" << visible.value << " present=" << visible.present << std::endl;
     // add SeqTsHeader
     SeqTsHeader seqTs;
     seqTs.SetSeq(seq);

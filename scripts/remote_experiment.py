@@ -319,6 +319,30 @@ def sync_by_bundle(cfg, repo, origin, branch, sha):
     print('Source synchronized through workspace Git bundle')
 
 
+def validate_ws31_label_params(params):
+    profile = params.get('ws31_label_profile', 0)
+    if profile not in (0, 1, 2, 3):
+        raise RuntimeError('WS31 label profile must be 0..3')
+    if not profile:
+        return
+    modes = ('ws31-c1', 'ws31-c1-unified', 'ws31-c1-count', 'ws31-c1-history',
+             'ws31-c1-size', 'ws31-c1-zero', 'ws31-c1-unified-count',
+             'ws31-c2', 'ws31-c2-unified', 'ws31-c2-size', 'ws31-c2-zero',
+             'ws31-c3', 'ws31-c3-fixed', 'ws31-c3-size', 'ws31-c3-zero')
+    conflicts = ('ws30_tag_transform', 'ws30_composition', 'ws30_lifecycle',
+                 'ws30_life_profile', 'ws21_heartbeat_fault_mode', 'factorial_pilot',
+                 'factorial_formal', 'factorial_drop_diag', 'ws13_diag', 'ws25_diag',
+                 'ws28_tail_diag', 'ws26_moe_hop_diag', 'ws26_queue_front_diag',
+                 'ws26_time_probe', 'ws26_seed97_time_diag')
+    if (params.get('lb') not in modes or params.get('ws30_observe') != 2 or
+            params.get('pfc') != 0 or params.get('irn') != 1 or
+            params.get('topo') != 'leaf_spine_128_100G_OS2' or
+            not str(params.get('flow_file') or '').startswith('ws31_') or
+            any(params.get(k, 0) for k in conflicts) or
+            params.get('ws23_pfc_probe_host', -1) >= 0):
+        raise RuntimeError('WS31 label fixture requires explicit isolated WS31 trace/mode/full observation')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command')
@@ -356,6 +380,7 @@ def main():
     run_cmd.add_argument('--demand-seed', type=int, default=None)
     run_cmd.add_argument('--ws30-life-profile', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ws31-label-profile', type=int, choices=(0, 1, 2, 3), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -423,6 +448,7 @@ def main():
             worker_call(cfg, 'build', '--id', experiment_id, '--sha', sha, '--branch', branch)
             print('Experiment ID: ' + experiment_id)
     elif args.command == 'run':
+        validate_ws31_label_params(vars(args))
         if args.pfc + args.irn != 1 and not args.factorial_pilot:
             parser.error('Exactly one of --pfc and --irn must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
@@ -490,6 +516,7 @@ def main():
         command.extend(['--simulation-seed', str(args.simulation_seed)])
         if args.demand_seed is not None: command.extend(['--demand-seed', str(args.demand_seed)])
         command.extend(['--ws30-observe', str(args.ws30_observe)])
+        command.extend(['--ws31-label-profile', str(args.ws31_label_profile)])
         command.extend(['--ws30-composition', str(args.ws30_composition)])
         command.extend(['--ws30-life-profile', str(args.ws30_life_profile), '--ws30-lifecycle', str(args.ws30_lifecycle), '--ws30-tag-transform', str(args.ws30_tag_transform)])
         if args.factorial_pilot:

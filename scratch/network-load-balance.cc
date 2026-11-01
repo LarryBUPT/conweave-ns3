@@ -57,6 +57,7 @@
 #include "ns3/workload-tag.h"
 #include "ns3/ws30-v13-fixture.h"
 #include "ns3/ws31-start.h"
+#include "ns3/ws31-label-fixture.h"
 #include "ns3/ws31-ofan.h"
 #include "ws30-composition-fixture.h"
 
@@ -1600,6 +1601,9 @@ int main(int argc, char *argv[]) {
     Settings::host_num = node_num - switch_num;
     Settings::switch_num = switch_num;
     Settings::lb_mode = lb_mode;
+    ws31::ValidateLabelProfile(ws31::LabelProfile(),lb_mode,Ws30V13TagTransform(),
+        Ws30V13Env("WS30_COMPOSITION"),Ws30V13Env("WS30_LIFECYCLE"),
+        Ws30V13Env("WS30_LIFE_PROFILE"),Ws30Level());
     SwitchNode::ConfigureGuardHash(guardhash_lambda, guardhash_tau_bytes,
                                    harm_gate_on_bytes, harm_gate_off_bytes);
     NS_ASSERT_MSG(lb_mode != 20 || (ws18_admission_rate_gbps > 0 && !ws18_output_file.empty()),

@@ -9,6 +9,7 @@
 #include "ns3/packet.h"
 #include "ns3/simulator.h"
 #include "ns3/workload-tag.h"
+#include "ws31-label-fixture.h"
 
 namespace ns3 {
 // Environment-only observation: no events, packets, RNG draws or routing writes.
@@ -81,12 +82,20 @@ inline void Ws30Route(uint32_t sw, Ptr<const Packet> p, const CustomHeader &ch,
     if (Ws30Level()==2) {
         if (++d.routeRows>1000000) { std::cerr << "WS30_OBSERVATION_OVERFLOW\n"; std::abort(); }
         WorkloadTag tag;
-        const uint32_t label=p->PeekPacketTag(tag)?tag.GetValue():0;
+        const bool present=p->PeekPacketTag(tag);
+        const uint32_t label=present?tag.GetValue():0;
         std::cout << "WS30_ROUTE time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " switch=" << sw << " sip=" << ch.sip << " dip=" << ch.dip
                   << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
                   << " seq=" << ch.udp.seq << " tag=" << label << " port=" << port
                   << " uid=" << p->GetUid() << std::endl;
+        if (ws31::LabelProfile())
+            std::cout << "WS31_LABEL_ROUTE time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " switch=" << sw << " uid=" << p->GetUid()
+                      << " sip=" << ch.sip << " dip=" << ch.dip
+                      << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
+                      << " seq=" << ch.udp.seq << " visible=" << label
+                      << " present=" << present << " port=" << port << std::endl;
     }
 }
 inline void Ws30Print() {
