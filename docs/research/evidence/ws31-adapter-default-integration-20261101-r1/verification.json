@@ -1,0 +1,147 @@
+{
+  "at_utc": "2026-11-01T07:41:12.952501+00:00",
+  "status": "PASS_NEW_DEFAULT_FCT_EVENTS_ORIGINAL_TIMING_EXACT_WAITS_AND_PROVENANCE",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "index_sha256": "0708039efabeabc4f06c9b42871ac96e9162b514f3e59b6b2026ee61d3d9caef",
+  "QA_sha256": "b119d3c636388b057a30a96060fc5deaf535f8ada0f27f76c64cbdfad9b9f1b9",
+  "main_acceptance_sha256": "24e8c1a3cf247f1c91fdeed18d38379ce631137ecfe4f296a0a8ec60560648e9",
+  "files_hashed": {
+    "documents": 26,
+    "dependencies": 5,
+    "immutable_reference_files": 12,
+    "literature_sources": 4,
+    "support_files": 22,
+    "result_files": 52
+  },
+  "source_map_entries": 84,
+  "unique_git_objects": 42,
+  "fixed_tree_entries": 4843,
+  "source_objects_match_node12": true,
+  "completed_records": 208,
+  "completed_payload_bytes": 403963904,
+  "cells": [
+    {
+      "id": "20261101-153000-ws31-adapterdef-r1-q12",
+      "lb": "ws30v13-q12",
+      "reference_id": "20261101-062753-ws31-zr1-q12",
+      "reference_source": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+      "whole_FCT_equal": true,
+      "ordered_events_remove_uid_only_equal": [
+        "WS30_CHOICE",
+        "WS30_ROUTE",
+        "WS31_C2_DEMAND",
+        "WS31_C2_LAUNCH",
+        "WS31_C2_FINISH",
+        "WS31_C2_STATE"
+      ],
+      "ordered_event_counts": {
+        "WS30_CHOICE": 312,
+        "WS30_ROUTE": 606168,
+        "WS31_C2_DEMAND": 0,
+        "WS31_C2_LAUNCH": 0,
+        "WS31_C2_FINISH": 0,
+        "WS31_C2_STATE": 0
+      },
+      "ordered_event_hashes": {
+        "WS30_CHOICE": "abaa81171db56b88a46eb360a8b7cebff20cd7ba4d60a45ab4e2480896a8732b",
+        "WS30_ROUTE": "e0a013ec6cb24974fbcbb6bfdbe5ad3ea6786c64e55d6fe975e162898fbf34de",
+        "WS31_C2_DEMAND": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_LAUNCH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_FINISH": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "WS31_C2_STATE": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "exact_C2_waits_recomputed": 0,
+      "C2_wait_summary": null
+    },
+    {
+      "id": "20261101-153000-ws31-adapterdef-r1-c2",
+      "lb": "ws31-c2",
+      "reference_id": "20261101-124500-ws31-labeldef-r1-c2",
+      "reference_source": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf",
+      "whole_FCT_equal": true,
+      "ordered_events_remove_uid_only_equal": [
+        "WS30_CHOICE",
+        "WS30_ROUTE",
+        "WS31_C2_DEMAND",
+        "WS31_C2_LAUNCH",
+        "WS31_C2_FINISH",
+        "WS31_C2_STATE"
+      ],
+      "ordered_event_counts": {
+        "WS30_CHOICE": 312,
+        "WS30_ROUTE": 606168,
+        "WS31_C2_DEMAND": 104,
+        "WS31_C2_LAUNCH": 104,
+        "WS31_C2_FINISH": 104,
+        "WS31_C2_STATE": 1
+      },
+      "ordered_event_hashes": {
+        "WS30_CHOICE": "db851f248b3cac3b04391d2e406726a0da730e969fef7834ce458cb237600ec5",
+        "WS30_ROUTE": "e71095603c738b4a6cf9bf5cf3e35c49ab58f905b8e21143e91c8d343f661275",
+        "WS31_C2_DEMAND": "b9cc8516fda513525e4c8de7a7be4d235b8961855a9fe1d1c16ff8a655268fe8",
+        "WS31_C2_LAUNCH": "994db53f831104542890f06fd7f4ed1b44db826bfc2062dd17ff4306cc085d48",
+        "WS31_C2_FINISH": "2c1035fdd2c22f19282e923ea1f1a9439f7225f77b0fee9a4da7f63d6092949e",
+        "WS31_C2_STATE": "5a201e3a605d0d2d92a6aa8dc8921c151f8aea5df2ebf99616db0b0742890d33"
+      },
+      "exact_C2_waits_recomputed": 104,
+      "C2_wait_summary": {
+        "positive": 80,
+        "sum_ns": 18002,
+        "max_ns": 497
+      }
+    }
+  ],
+  "two_builds_before_serial_Q12_C2": true,
+  "each_build_tasks": 1468,
+  "resources": {
+    "interval_seconds": 5,
+    "min_sampled_available_gib": 121.4033432006836,
+    "claim": "sampled maxima/minima, not exact peaks",
+    "max_sampled_building_metadata_count": 2,
+    "max_sampled_cc1plus_count": 4,
+    "min_sampled_free_gib": 2292.2412452697754,
+    "unknown_project_seen": false,
+    "max_sampled_load_1m": 4.07,
+    "max_sampled_build_tree_rss_kib": 1264176,
+    "other_user_seen": false,
+    "sample_count": 79
+  },
+  "sync_deploy_old_core_fixture_reference_repeats": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "all_default_guards_explicitly_released": {
+    "status": "RELEASED",
+    "fixed_source_copies": 2,
+    "network_calls_terminal": 2,
+    "at_utc": "2026-11-01T07:24:38.557908+00:00"
+  },
+  "worktree_untracked_WIP_observed": {
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+    "tests/ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+  },
+  "WIP_matches_main_earlier_snapshot": true,
+  "WIP_inherits_1f_acceptance": false,
+  "endpoint_execution_or_generation_proof": false,
+  "main_packet_payload_reconstruction_owner": "WS31 main; Integration checks complete FCT identity/bytes/timing, actual labels/pinning/direct queue choices and whole ordered reference equality",
+  "new_network_technical_cells": 2,
+  "cumulative_network_technical_cells": 43,
+  "nonnetwork_adapter_conditions_separate": 17,
+  "new_independent_efficacy_or_combined_baseline": false,
+  "Integration_remote_build_fixture_simulator_or_main_verifier_execution": 0,
+  "large_raw_store_policy": "All indexed files hashed; files over500000B remain at original local paths, with hashes in source-manifest",
+  "remaining": [
+    "Actual endpoint retirement/drain/generation/tuple reuse implementation and validation",
+    "Independent C1 V0",
+    "Three candidates business/background effects and state/runtime costs"
+  ]
+}

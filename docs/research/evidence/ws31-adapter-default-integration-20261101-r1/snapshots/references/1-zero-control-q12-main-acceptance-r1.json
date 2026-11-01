@@ -1,0 +1,56 @@
+{
+  "scope": "Main independent zero-control raw check; technical only",
+  "id": "20261101-062753-ws31-zr1-q12",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "lb": "ws30v13-q12",
+  "flows": 104,
+  "payload_bytes": 201981952,
+  "all_demand_origins_match": true,
+  "c2_zero_time_rows": 0,
+  "counts": {
+    "WS30_CHOICE": 312,
+    "WS30_ROUTE": 606168,
+    "WS30_QP": 104,
+    "WS30_QUEUE": 1,
+    "WS30_PATH": 1
+  },
+  "summaries": {
+    "WS30_QUEUE": {
+      "enqueued": "671412000",
+      "dequeued": "671412000",
+      "dropped": "0",
+      "current": "0",
+      "admission_dropped_bytes": "0",
+      "queue_rejected_bytes": "0",
+      "violations": "0"
+    },
+    "WS30_PATH": {
+      "switch_qps": "312",
+      "data_hops": "606168",
+      "changed_qps": "0",
+      "port_changes": "0",
+      "rejected": "0",
+      "full_rows": "606168"
+    }
+  },
+  "ordered_normalized_hashes": {
+    "WS30_CHOICE": "abaa81171db56b88a46eb360a8b7cebff20cd7ba4d60a45ab4e2480896a8732b",
+    "WS30_ROUTE": "e0a013ec6cb24974fbcbb6bfdbe5ad3ea6786c64e55d6fe975e162898fbf34de"
+  },
+  "fct_sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+  "log_sha256": "300c728daa973ecae2ba825106f76ca007bf579665b62534ed6c717e3a580d5a",
+  "source_payload_reconstruction": {
+    "rows": 202056,
+    "keys": 104,
+    "unique_payload_bytes": 201981952,
+    "all_match_input": true,
+    "first_tags": {
+      "1": 24,
+      "2": 80
+    }
+  },
+  "inputs": {
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+  }
+}

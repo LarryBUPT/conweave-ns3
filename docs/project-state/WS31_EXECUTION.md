@@ -131,12 +131,16 @@ r1 的源码／入口／环境约束曾延续到 r2，实际三调用终态后�
 
 Integration 核对 33 文档、4 依赖、28 原文件、15 支持、47 结果、4 参考、42 个 Git 对象及 4,843 项树；两个二进制和 36 库按实际字节验收。库路径来自白名单环境中的 ldd 解析，不称为内核运行时映射采样。74 次资源采样最多两个编译器，最低可用内存约 121.81 GiB。原 r1 28 文件哈希保持；其中 27 份另与旧 Integration 快照逐字比较，原快照未收录的 .gitignore 按前后索引核验。大型 ELF 留原本地结果目录，Git 保存哈希与来源索引。
 
-主核旧驱动 43152 退出和唯一副 idle cursor 90 后，另派[默认回归计划](../research/evidence/ws31-adapter-boundary-integration-20261101-r1/snapshots/main/adapter-default-validation-r1.json)，哈希 `01665606c32d7422b92f4202d23e8e571500321631ca376b5924ed67f5e7eb68`。新 ID 为 `20261101-153000-ws31-adapterdef-r1-q12` 和 `20261101-153000-ws31-adapterdef-r1-c2`。先完整新门、两个隔离构建最多共 4 个编译任务，随后串行 Q12 → C2；参考、17 例和旧核心均不重跑。解禁收据与主验／旧约束释放有哈希关联，新源码／入口／环境约束保持；本次尚未验新网络结果。
+主核旧驱动 43152 退出和唯一副 idle cursor 90 后，另派[默认回归计划](../research/evidence/ws31-adapter-boundary-integration-20261101-r1/snapshots/main/adapter-default-validation-r1.json)，哈希 `01665606c32d7422b92f4202d23e8e571500321631ca376b5924ed67f5e7eb68`。新 ID 为 `20261101-153000-ws31-adapterdef-r1-q12` 和 `20261101-153000-ws31-adapterdef-r1-c2`。实际先过新门、两个隔离构建最多共 4 个编译任务，随后串行 Q12 → C2；参考、17 例和旧核心均不重跑。两格现已主验并经 Integration 独立核对，见[第十三节点](../handoffs/2026-11-01-ws31-adapter-default-integration.md)。
 
-真实端点退出、旧包及 ACK／重传事件排空、交换机清理和同四元组第二代完成仅有[设计草案](../research/evidence/ws31-adapter-boundary-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r1.md)，仍须实现及新协议验证。generation=0 或固定等待时长均不代替跨代排空证明。独立 V0、双侧效果及状态／运行成本继续必做。
+两格完成 208 请求、403,963,904 B，完整 FCT 分别恢复 c4 Q12／2ed C2 参考，仅去 uid 的有序 CHOICE／ROUTE 及 C2 全部 DEMAND／LAUNCH／FINISH／STATE 一致，原需求起点与实际标签不变。Integration 按固定四元组哈希复算 104 次等待，80 次为正、总 18,002 ns、最大 497 ns；逐交换机固定路径和队列字节账一致。源码映射 84 项对应 42 个唯一对象，与第十二节点已验对象相同。核 26 文档、5 依赖、12 未变参考、52 结果、22 支持及 4 文献来源；完整逐包载荷重构保留主验身份。
+
+两次完整构建都为 1,468 项，结束后才串行两次网络；同步、部署、核心、夹具和参考重跑均为 0。79 次构建资源采样最多四个编译前端、最高负载 4.07、最低可用内存约 121.40 GiB。网络调用终态后于 07:24:38 UTC 明确释放约束；主核驱动 22440 不存在及副 idle92 后，另派本地只读端点核心审查，无远端或构建授权。
+
+真实端点退出、旧包及 ACK／重传事件排空、交换机清理和同四元组第二代完成已有[设计草案](../research/evidence/ws31-adapter-boundary-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r1.md)及两个未跟踪 WIP：`ws31-endpoint-ledger.h`、`ws31_endpoint_ledger_test.cc`。两者尚未编译、提交或接入 NS-3，EndpointSnapshot 为待真实适配器提供的参数，不能当作测量。固定 HEAD 仍为 1f，WIP 不继承其通过范围；实际状态接口、接收返回后的 token 闭合、独立新源预检与最小网络正反例继续必做。generation=0 或固定等待时长均不代替排空证明。独立 V0、双侧效果及状态／运行成本继续必做。
 
 五格首次尝试的环境门暂停已由同目标 attempt2 恢复完成。原[异常记录](../research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/incident.md)、缓存核对和两个进程自然退出的收据保留，未重复 fetch、未终止未知作业、未放宽资源门。主 checker 首次误将 CHOICE 的固定 0 字段当作实际包标签；旧脚本与 schema 修正保留，ROUTE 标签按真实策略另核，仿真源码、raw 和验收判据均未改变。
 
 单输入 V0 技术重放中，类别扣减的排序为 76/83，高于类别不扣减的 74/83，但载荷 MAE 为 120,894.73 B，高于 81,501.63 B；两侧同时保留，不据此挑选参数或宣布预测胜出。C2 决策标签接口已在 506 的五格条件下实际验收；其余错误／延迟标签及完整生命周期边界仍有明确后继。
 
-首版历史断点及当时的主状态滞后说明保留在[旧工程阶段记录](../handoffs/2026-11-01-ws31-first-implementation-and-build.md)。当前已验 41 格的范围按各节点保留；17 例适配器另计工程条件，本小输入技术覆盖不作为真实分类质量或效果。新源默认网络、端点排空复用、独立 V0、业务／背景双侧效果及状态／运行成本仍待完成。新组合基线尚未形成，WS-31 继续 ACTIVE。
+首版历史断点及当时的主状态滞后说明保留在[旧工程阶段记录](../handoffs/2026-11-01-ws31-first-implementation-and-build.md)。当前已验 43 格的范围按各节点保留；17 例适配器另计工程条件，本小输入技术覆盖不作为真实分类质量或效果。端点排空复用、独立 V0、业务／背景双侧效果及状态／运行成本仍待完成。新组合基线尚未形成，WS-31 继续 ACTIVE。

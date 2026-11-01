@@ -1,0 +1,12 @@
+Using existing flow trace: config/ws31_correctness_r1.txt
+All NIC bandwidth is 100Gbps
+The new directory is created  - /home/fnl/lzy/runs/20261101-153000-ws31-adapterdef-r1-c2/source/mix/output/16470063/
+Config filename:/home/fnl/lzy/runs/20261101-153000-ws31-adapterdef-r1-c2/source/mix/output/16470063/config.txt
+1BDP = 104000
+Running simulation...
+./waf --run 'scratch/network-load-balance /home/fnl/lzy/runs/20261101-153000-ws31-adapterdef-r1-c2/source/mix/output/16470063/config.txt' > /home/fnl/lzy/runs/20261101-153000-ws31-adapterdef-r1-c2/source/mix/output/16470063/config.log 2>&1
+Analyzing output FCT...
+python3 fctAnalysis.py -id 16470063 -dir /home/fnl/lzy/runs/20261101-153000-ws31-adapterdef-r1-c2/source -bdp 104000 -sT 2005000000 -fT 2059999999 > /dev/null 2>&1
+
+
+============== Done ============== 

@@ -1,0 +1,20 @@
+{
+  "status": "PASS_DEFAULT_DISPATCH_COMPATIBILITY",
+  "reference_id": "20261101-124500-ws31-labeldef-r1-c2",
+  "reference_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "full_fct_bytes_equal": true,
+  "ordered_choice_route_equal_remove_uid_only": true,
+  "actual_packet_tag_retained_and_original_checked": true,
+  "dedicated_events": {
+    "sha256": "498728b528f84e4278b274c6328321885044f978c8821e5c958d1a8a405de94f",
+    "event_counts": {
+      "WS31_C2_DEMAND": 104,
+      "WS31_C2_LAUNCH": 104,
+      "WS31_C2_FINISH": 104,
+      "WS31_C2_STATE": 1
+    }
+  },
+  "profile": 0,
+  "all_required_old_interventions_off": true,
+  "no_label_or_adapter_fixture_observations": true
+}

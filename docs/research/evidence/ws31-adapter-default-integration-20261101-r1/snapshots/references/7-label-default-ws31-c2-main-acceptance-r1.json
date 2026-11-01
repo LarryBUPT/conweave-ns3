@@ -1,0 +1,95 @@
+{
+  "scope": "Default-off technical compatibility only; dynamic labels, adapter lifecycle and effects remain",
+  "id": "20261101-124500-ws31-labeldef-r1-c2",
+  "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "lb": "ws31-c2",
+  "flows": 104,
+  "payload_bytes": 201981952,
+  "all_demand_origins_match": true,
+  "c2_time_rows": 104,
+  "counts": {
+    "WS30_CHOICE": 312,
+    "WS30_ROUTE": 606168,
+    "WS30_QP": 104,
+    "WS31_C2_FINISH": 104,
+    "WS31_C2_STATE": 1,
+    "WS30_QUEUE": 1,
+    "WS30_PATH": 1
+  },
+  "summaries": {
+    "WS31_C2_STATE": {
+      "demanded": "104",
+      "launched": "104",
+      "cancelled": "0",
+      "finished": "104",
+      "pending": "0",
+      "unfinished": "0",
+      "demand_bytes": "201981952",
+      "launch_bytes": "201981952",
+      "cancel_bytes": "0",
+      "finish_bytes": "201981952",
+      "waited": "80",
+      "delay_sum_ns": "18002",
+      "delay_max_ns": "497",
+      "frozen_max_ns": "500"
+    },
+    "WS30_QUEUE": {
+      "enqueued": "671412000",
+      "dequeued": "671412000",
+      "dropped": "0",
+      "current": "0",
+      "admission_dropped_bytes": "0",
+      "queue_rejected_bytes": "0",
+      "violations": "0"
+    },
+    "WS30_PATH": {
+      "switch_qps": "312",
+      "data_hops": "606168",
+      "changed_qps": "0",
+      "port_changes": "0",
+      "rejected": "0",
+      "full_rows": "606168"
+    }
+  },
+  "ordered_normalized_hashes": {
+    "WS30_CHOICE": "db851f248b3cac3b04391d2e406726a0da730e969fef7834ce458cb237600ec5",
+    "WS30_ROUTE": "e71095603c738b4a6cf9bf5cf3e35c49ab58f905b8e21143e91c8d343f661275"
+  },
+  "fct_sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf",
+  "log_sha256": "88c1dec5d7f73eecf2a9dc5700225cc46f9ae94c76312b1d568ac175979ffd86",
+  "source_payload_reconstruction": {
+    "rows": 202056,
+    "keys": 104,
+    "unique_payload_bytes": 201981952,
+    "all_match_input": true,
+    "first_tags": {
+      "1": 24,
+      "2": 80
+    }
+  },
+  "inputs": {
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+  },
+  "mechanism_replay": {
+    "demand_launch_finish_rows_each": 104,
+    "exact_hash_waits_verified": 104,
+    "positive_waits": 80,
+    "delay_sum_ns": 18002,
+    "delay_max_ns": 497
+  },
+  "regression": {
+    "reference_id": "20261101-074000-ws31-c2tag-r1-default",
+    "reference_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "full_fct_equal": true,
+    "ordered_CHOICE_ROUTE_remove_uid_only_equal": true,
+    "dedicated_events_equal": [
+      "WS31_C2_DEMAND",
+      "WS31_C2_LAUNCH",
+      "WS31_C2_FINISH",
+      "WS31_C2_STATE"
+    ],
+    "active_label_logs_absent": true
+  },
+  "status": "PASS_NEW_LABEL_SOURCE_DEFAULT_OFF_NETWORK_REGRESSION"
+}

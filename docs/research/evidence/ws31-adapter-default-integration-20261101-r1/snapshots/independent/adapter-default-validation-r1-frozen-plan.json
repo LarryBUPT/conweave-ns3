@@ -1,0 +1,101 @@
+{
+  "workstream": "WS-31",
+  "stage": "Conditional new1f default dispatch network compatibility, not dispatched",
+  "status_at_freeze": "FROZEN_CONDITIONAL_NO_NETWORK_EXECUTION_AUTHORIZATION",
+  "source_sha": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+  "branch": "feature/ws31-candidates",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "human_plan": "adapter-default-validation-r1.md",
+  "prerequisites": [
+    "All17 actualadapter cases and fullbuild/raw/source delivery MAIN_ACCEPTED atsame1f SHA",
+    "Explicit current preflight source/entry/env guard release",
+    "Unique independent foreground and background terminal+idle before newmain dispatch",
+    "Fresh source/cache/worker/newIDs/process/resources gates; no defaultnetwork execution authorized by this document alone"
+  ],
+  "invalidated_by_any_source_SHA_change": true,
+  "flow_count": 104,
+  "payload_bytes": 201981952,
+  "inputs": {
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30"
+  },
+  "common": {
+    "topo": "leaf_spine_128_100G_OS2",
+    "flow_file": "ws31_correctness_r1.txt",
+    "simul_time": "0.01",
+    "netload": 10,
+    "bw": 100,
+    "buffer": 9,
+    "pfc": 0,
+    "irn": 1,
+    "simulation_seed": 1,
+    "ws30_observe": 2,
+    "max_concurrent": 1,
+    "ws31_label_profile": 0
+  },
+  "cells": [
+    {
+      "id": "20261101-153000-ws31-adapterdef-r1-q12",
+      "order": 1,
+      "lb": "ws30v13-q12",
+      "lb_mode": 33,
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws31_label_profile": 0,
+      "reference_id": "20261101-062753-ws31-zr1-q12",
+      "reference_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+      "reference_receipt": "evidence/zero-control-q12-main-acceptance-r1.json",
+      "reference_receipt_sha256": "0d8f81aca432cfc23e6e8e704251d4a8540754c70b8fe37f6f7d14e5155ab261",
+      "reference_results": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results",
+      "reference_fct_sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+      "reference_log_sha256": "300c728daa973ecae2ba825106f76ca007bf579665b62534ed6c717e3a580d5a"
+    },
+    {
+      "id": "20261101-153000-ws31-adapterdef-r1-c2",
+      "order": 2,
+      "lb": "ws31-c2",
+      "lb_mode": 43,
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws31_label_profile": 0,
+      "reference_id": "20261101-124500-ws31-labeldef-r1-c2",
+      "reference_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+      "reference_receipt": "evidence/label-default-ws31-c2-main-acceptance-r1.json",
+      "reference_receipt_sha256": "4435021cb976a38030fc56ad9e5ea994d6962de820718de9c802fed717768258",
+      "reference_results": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\label-default-validation-r1-evidence\\20261101-124500-ws31-labeldef-r1-c2\\results",
+      "reference_fct_sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf",
+      "reference_log_sha256": "88c1dec5d7f73eecf2a9dc5700225cc46f9ae94c76312b1d568ac175979ffd86"
+    }
+  ],
+  "build_resources": {
+    "max_parallel_builds": 2,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 4,
+    "min_available_gib": 64,
+    "min_disk_gib": 100,
+    "max_initial_load_1m": 4,
+    "no_other_user_or_unknown_project_jobs": true
+  },
+  "execution": "Onlyafterseparatemain dispatch:two newisolated builds atfixedSHA thenserialQ12/C2; no build/simulation overlap; references neverrerun; no oldcores/Ofan/controllers",
+  "required": [
+    "All104originalrequests/201981952B complete exactlyonce, original demand origins and all actual labels retained",
+    "No WS31_LABEL or adapterfixture observations while flags off; old interventions/faults disabled",
+    "FullFCT byteequal and orderedCHOICE/ROUTE removeuidonly equal eachfixedreference",
+    "C2 dedicatedDEMAND/LAUNCH/FINISH/STATE exactequal reference plusindependent actualhash/timing replay",
+    "Queue byte conservation, no drops/rejections/withinQP portchanges/observationoverflow",
+    "Complete fixedsource/object/tree/build/binary/config/raw/resource provenance and no known ID overwrites"
+  ],
+  "stop_conditions": [
+    "Any source/build/run/input/identity/time/byte/path/FCT/event mismatch stops allremaining",
+    "Unknownjobs,otheruserwork or resourcepressure stops newwork; no killing or guardbypass",
+    "SourceSHA change invalidates entireconditionalplan, no metadata edits or retrospective substitutions"
+  ],
+  "remaining": [
+    "Realendpoint exit/drain/generation/reuse contract/implementation/newIDvalidation",
+    "IndependentC1V0",
+    "Allthree candidates two-sidedbusiness-batch/background/state/runtime-cost validation"
+  ],
+  "scope": "Technical default dispatch compatibility only, noteffect or baselineadoption"
+}

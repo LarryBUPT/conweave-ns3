@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; ADAPTER1F BUILD AND 17 CASES ACCEPTED; DEFAULT2 DISPATCHED | [第十二节点](../handoffs/2026-11-01-ws31-adapter-boundary-integration.md)：1f 全构建 1,468 项及 C1／C2／C3 的 5／10／2 例已验；Integration 核 33 文档／4 依赖／28 旧文件／15 支持／47 结果／4 参考及实际二进制／库。网络仍为 41 格／最新已验源 1ec | 约束释放、副 idle90 后另派 Q12→C2 默认两格，先新门、两构建至多共 4 个编译任务、后串行；新约束保持，结果待验。端点排空复用、独立 V0／双侧效果／成本未完；未知 PID 原记录保留，Ofan 暂缓，无新基线 |
+| WS-31 | 类别感知新机制的顺序判断、实现与验证 | ACTIVE; ADAPTER17 AND DEFAULT2 ACCEPTED; ENDPOINT WIP LOCAL REVIEW | [第十三节点](../handoffs/2026-11-01-ws31-adapter-default-integration.md)：固定 1f 默认 Q12／C2 完成 208 请求／403,963,904 B，FCT／有序事件及精确等待恢复参考；Integration 核 26 文档／5 依赖／12 参考／52 结果／22 支持／4 文献来源。累计 43 格网络，另 17 例非网络适配器 | 两构建后串行两网络，约束明确释放；副 idle92 后仅本地只读审查。端点两个 WIP 未编译／接线／验收；真实排空复用、独立 V0／双侧效果／成本未完，Ofan 暂缓，无新基线 |
 | WS-30 | ClassReserve 补正、QueuePin v13 与投稿前修订 | COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE | [收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作 | 旧监督 PAUSED；两个实验对话已归档并复核，见[归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)；投稿待核及返修留 Integration |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |
