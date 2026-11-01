@@ -1,0 +1,39 @@
+{
+  "recorded_utc": "2026-11-01T03:56:05.607278+00:00",
+  "status": "G1_SOURCE_GATE_CONFIRMED_REPAIR_IMPLEMENTED_CPP_VALIDATION_PENDING",
+  "stopped_source_sha": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+  "stopped_delivery_index_sha256": "ade014bbf53554cabb1f503753635ba49b62671f36ebc516b50471231cd5f2bf",
+  "stopped_documents_hashed": 7,
+  "stopped_changed_source_blobs_hashed": 10,
+  "prior_execution": {
+    "sync": 0,
+    "deploy": 0,
+    "remote_audits": 0,
+    "builds": 0,
+    "new_cpp_core": 0,
+    "python_mock_test": 0,
+    "network_runs": 0,
+    "old_core": 0,
+    "source_edits": 0
+  },
+  "prior_ID_state": "Not created or checked remotely by this preflight; no remote existence claim",
+  "new_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "repair_files_sha256": {
+    "scratch/network-load-balance.cc": "c3204664608548c7dfd95d1f0873792e15bfaddf6f4c63e189457fdb358499fa",
+    "scripts/remote_worker.py": "096695c22597b30ecd24ad3ed69284f851b26743f9be4c810bafee82d90ff569",
+    "src/point-to-point/model/ws31-label-fixture.h": "87fec3866c35751c8153c29c9bb0d534dc9a3fdc5945db1abc25e3192fc552d7",
+    "tests/ws31_label_runner_test.py": "f85508e1bea4016b4832e7cb007e0ab8c09e705baef540bd11e3917a0423ba07",
+    "tests/ws31_label_test.cc": "d4ea5ab6e9b5c581eaba58ab62b237a72ddf45dea8db82cc78b7c1b77cc6c681"
+  },
+  "repair": "Actual parsed C++ transport/CC/topology/input/fault/diagnostic context validated before initialization; newcore negative cases; enabledfixture clears inherited disabled diagnostics; default0 unchanged",
+  "local_tests": {
+    "python_process_test_methods": 5,
+    "status": "PASS",
+    "remote_calls_in_tests": 0,
+    "cpp_tests_executed_by_main": 0
+  },
+  "new_plan": "label-fixture-preflight-r2.json",
+  "new_plan_sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b",
+  "network_regressions_and_adapter_lifecycle": "NOT_COMPLETE",
+  "user_decision_required": false
+}

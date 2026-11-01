@@ -1,0 +1,16 @@
+{
+  "recorded_utc": "2026-11-01T03:27:01.769856+00:00",
+  "status": "MAIN_ACCEPTED_BOUNDED_SOURCE_REVIEW_WITH_REQUIRED_REVISIONS",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "QA_sha256": "547d58506a3fb49444f4e5b0a72da74129470ffdc08b5aaaaf056f205f80ee52",
+  "fixed_git_source_files_hashed": 26,
+  "matrix_rows": 22,
+  "required_revisions": [
+    "Actual first construction time decides first policy; early+late packet coverage is a separate input gate",
+    "Missing versus explicit0 observed separately",
+    "Freeze StartHash byte order/salt/bucket; report actual selected cohorts without exact25% promise",
+    "Keep C2 event order and adapter reset/generation/drain scope unfinished"
+  ],
+  "old_core_repeated": false,
+  "scope": "Local source/design review only, not build/network/effects acceptance"
+}

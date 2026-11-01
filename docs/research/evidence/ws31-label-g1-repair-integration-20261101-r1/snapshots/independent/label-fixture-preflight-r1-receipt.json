@@ -1,0 +1,203 @@
+{
+  "status": "STOPPED_ON_MATERIAL_SOURCE_REVIEW_ISSUE",
+  "source_sha": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+  "parent_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "plan_sha256": "73a2c400edb72bcc1331de467832eaca99101eba255bab5484dd5d74562022bb",
+  "experiment_id": "20261101-114500-ws31-label-preflight-r1",
+  "source_changes": {
+    "scratch/network-load-balance.cc": {
+      "sha256": "979fb36fc283f71dd9191f791ab6f3fefc6be67b1e58a37e7dfa42ad078ca528",
+      "git_blob": "7d0184bdcc62c8aa21d693778c29ced00736fa73",
+      "bytes": 113155,
+      "lines": 2414
+    },
+    "scripts/remote_experiment.py": {
+      "sha256": "ddece27d0fef1d06c5b031567723074165a0cfbed0839cb067ed0f6adcba26c4",
+      "git_blob": "ef571ed3970a5e9a9a1cd42dc59c29a2acf89dad",
+      "bytes": 29793,
+      "lines": 550
+    },
+    "scripts/remote_worker.py": {
+      "sha256": "f0c68d9528838a1dbc471d201173c30de5b3a9ca9ed06332d79b62816e858424",
+      "git_blob": "ec93dfb72b0709864416a534c33590ae47cb2a9c",
+      "bytes": 57131,
+      "lines": 1040
+    },
+    "src/applications/model/rdma-client.cc": {
+      "sha256": "61078c7032766549cde90a10f736298f7596c08615e23fd3f52bb029c07602c8",
+      "git_blob": "1c644b73822ca0cc86c249e29824e421e15943e7",
+      "bytes": 8045,
+      "lines": 225
+    },
+    "src/point-to-point/model/rdma-hw.cc": {
+      "sha256": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+      "git_blob": "0a171097e402cc1182394c7b0d09f2ba3e0f72ec",
+      "bytes": 77720,
+      "lines": 1771
+    },
+    "src/point-to-point/model/ws30-observer.h": {
+      "sha256": "74ffc38379b22ad16053e1644698702d392aca646a760381a841dcca3a1b6a3d",
+      "git_blob": "dd2402a214702aefec80fd6860dad1613d02da01",
+      "bytes": 5885,
+      "lines": 123
+    },
+    "src/point-to-point/model/ws31-label-fixture.h": {
+      "sha256": "11550887bf5231f3fbb6fa4b8b960f47a5ff689f4970e398bf4ad20bbe2bb713",
+      "git_blob": "68abbe1aecd619c81ecaeec49435b80c7996ba90",
+      "bytes": 2275,
+      "lines": 53
+    },
+    "src/point-to-point/wscript": {
+      "sha256": "be74564c38eddaa31fa8540cb8bd324b841539919d72f03a8c4a7a134f90fbd9",
+      "git_blob": "91974c5fe103448b2ef1b1f3ba6b3404cf744ce1",
+      "bytes": 2754,
+      "lines": 88
+    },
+    "tests/ws31_label_runner_test.py": {
+      "sha256": "870d48eb2d6a117a7703fcf3c4742947ecce4d60ad18cdbd4dfec9869d5115a6",
+      "git_blob": "499c82910a551d61ef1513f96d3524c689b1c6a4",
+      "bytes": 3676,
+      "lines": 77
+    },
+    "tests/ws31_label_test.cc": {
+      "sha256": "8c1a78fe17f6355892a406669363962c8aaa806c7bfeedc24d7e035af21062dc",
+      "git_blob": "4174f707fd63776c94c3448d12f9bfc3cf42f5ed",
+      "bytes": 2462,
+      "lines": 51
+    }
+  },
+  "algorithm_and_other_scope_unchanged": {
+    "src/point-to-point/model/switch-node.cc": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+    "src/point-to-point/model/ws31-budget.h": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+    "src/point-to-point/model/ws31-quota.h": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+    "src/point-to-point/model/ws31-start.h": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba",
+    "src/point-to-point/model/rdma-queue-pair.h": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+    "run.py": "23aee55f74cd401fba0a685b23a9b04ea67ce295d8ec81b4615274b1e796fed8"
+  },
+  "whole_git_tree": {
+    "path": "label-fixture-preflight-r1-source-git-tree.txt",
+    "sha256": "c36279e6e2c7062bc3f5125d2729c0b4e427b6dd786edcd72d7a7eec8f92adfb",
+    "entries": 4839,
+    "tree_object": "f0010a1d31863d7286bb012c5063bdb29a75dbe8"
+  },
+  "findings": [
+    {
+      "id": "G1",
+      "severity": "MUST_FIX_BEFORE_PREFLIGHT",
+      "title": "C++ label entry does not independently enforce frozen transmission/diagnostic isolation",
+      "sources": [
+        {
+          "file": "src/point-to-point/model/ws31-label-fixture.h",
+          "lines": [
+            28,
+            34
+          ]
+        },
+        {
+          "file": "scratch/network-load-balance.cc",
+          "lines": [
+            1604,
+            1606
+          ]
+        },
+        {
+          "file": "scripts/remote_worker.py",
+          "lines": [
+            791,
+            812
+          ]
+        },
+        {
+          "file": "tests/ws31_label_test.cc",
+          "lines": [
+            41,
+            48
+          ]
+        }
+      ],
+      "counterexample_by_inspection": {
+        "environment": {
+          "WS31_LABEL_PROFILE": "1",
+          "WS30_OBSERVE": "2",
+          "WS25_DIAG": "1"
+        },
+        "mode": 36,
+        "old_transform_composition_lifecycle_life_profile": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "ValidateLabelProfile_arguments": [
+          1,
+          36,
+          0,
+          0,
+          0,
+          0,
+          2
+        ],
+        "predicate_result": "false: no rejection by this C++ label gate",
+        "worker_result": "ws25_diag=1 rejected by Python label validator",
+        "evidence_kind": "Static source reasoning only; not executed"
+      },
+      "additional_missing_context": [
+        "ENABLE_PFC=0",
+        "ENABLE_IRN=1",
+        "allowed topology/explicit ws31 input or equivalent frozen eligibility context",
+        "old fault/diagnostic flags"
+      ],
+      "impact": "C++ direct entry can retain profile with a combination the revised isolation contract rejects; Python guarded entry already has checks. New core conflict tests do not cover omitted context.",
+      "required_repair": "Pass actual parsed C++ transport/input/fault context to the fixture guard or equivalent startup validation; add direct negative new-core cases; retain profile0 behavior and500ns/hash/algorithm rules. Do not silently narrow contract to worker-only validation."
+    }
+  ],
+  "reviewed_source_checks": {
+    "profile0_legacy_transform": "Source matches StartPolicyTag and tag presence; network regression remains required",
+    "profile1_2_clock_and_presence": "Uses original demand and current construction time; absent/0 separate; first-generation coverage predicate deferred to network input",
+    "profile3_bucket": "Existing StartHash low-byte words, bucket0; unknown classes preserved",
+    "business_truth": "qp m_workload_tag unchanged",
+    "generation_and_uid": "generation0 explicit; construction uid joins per-hop actual present/value; no lifecycle claim",
+    "C1_C3_algorithms": "Unchanged fixed source blobs",
+    "CLI_worker_env": "Argument propagation, validation, metadata and explicit inherited-profile reset read; mock not executed"
+  },
+  "execution": {
+    "sync": 0,
+    "deploy": 0,
+    "remote_audits": 0,
+    "builds": 0,
+    "new_cpp_core": 0,
+    "python_mock_test": 0,
+    "network_runs": 0,
+    "old_core": 0,
+    "source_edits": 0
+  },
+  "resources": {
+    "status": "NOT_AUDITED_SOURCE_REVIEW_GATE_FAILED_BEFORE_REMOTE_ACTION",
+    "no_idle_or_health_claim": true
+  },
+  "id_state": "Not created or checked remotely by this preflight; no remote existence claim",
+  "guards": {
+    "source_copy_performed": false,
+    "remote_or_test_commands_in_flight": false,
+    "this_target_compatibility_hold": "RELEASED_ON_STOP; main may repair source; this is not source-copy completion"
+  },
+  "next": "Main repair at new fixed SHA and freeze successor plan before any execution; no self repair/resume",
+  "checkout_observed": {
+    "head": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+    "branch": "feature/ws31-candidates",
+    "status": ""
+  },
+  "recorded_utc": "2026-11-01T03:35:02.034906+00:00",
+  "reference_review": {
+    "sources": {
+      "E:\\研\\毕业论文\\参考文献\\候选\\README.md": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f",
+      "E:\\研\\毕业论文\\参考文献\\候选\\reading-log.md": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d",
+      "E:\\研\\毕业论文\\参考文献\\候选\\papers\\diffflow-2016\\analysis-technical.md": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+      "E:\\研\\毕业论文\\参考文献\\候选\\papers\\diffflow-2016\\verification.md": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+    },
+    "fixed_version": "DiffFlow arXiv1604.05107v1; archive analysis and verification",
+    "specific_borrowing": "Signal visibility vs original identity remains relevant to labels; no new mechanism borrowing from this execution-gate mismatch",
+    "difference_and_limit": "This finding is static validation parity in the fixed simulator and runner, not an author paper mechanism/result; no new admission or effect inference"
+  },
+  "contract_snapshot_sha256": "c4bc49eb9b275a2b6eea4a890c81539894516d77ed9567883dbc4bd4f7b9ae34"
+}

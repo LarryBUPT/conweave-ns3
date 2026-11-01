@@ -1,0 +1,200 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T04:01:02.290338+00:00",
+  "scope": "Integration records stopped source gate and fixed preflight successor; no remote/build/core/mock/network execution",
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/evidence/label-fixture-G1-repair-main-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/evidence/label-fixture-G1-repair-main-r1.json",
+      "sha256": "ef8479ac94470d9b0d9688bdcd7fd5b1b0e55a7e4018bf25ef9fadc34bbcf3ab",
+      "bytes": 1969
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-fixture-source-implementation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/evidence/label-fixture-source-implementation-r1.json",
+      "sha256": "ae0ee48ee05d7afd8f096a881808430f2fc2af4ce1c4addf888b437c820f7033",
+      "bytes": 2093
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/label-lifecycle-review-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/evidence/label-lifecycle-review-main-acceptance-r1.json",
+      "sha256": "9f5933613546e2da134e4d6b9c4ff49a9ca4643bed372be47e505b9b5569f639",
+      "bytes": 842
+    },
+    {
+      "source": "docs/research/ws31/main/label-fixture-preflight-r1.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/label-fixture-preflight-r1.json",
+      "sha256": "73a2c400edb72bcc1331de467832eaca99101eba255bab5484dd5d74562022bb",
+      "bytes": 3933
+    },
+    {
+      "source": "docs/research/ws31/main/label-fixture-preflight-r2.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/label-fixture-preflight-r2.json",
+      "sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b",
+      "bytes": 3938
+    },
+    {
+      "source": "docs/research/ws31/main/label-lifecycle-boundary-contract-r3.md",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/label-lifecycle-boundary-contract-r3.md",
+      "sha256": "39a25aaaa6feacaef39108753fab927a14705d83a1f94932542f7095a3b2e0be",
+      "bytes": 7976
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "f22676ba1a95ba9db31e4630e3cea6c2e1373e8eaffcf12ab1bf90785fe6414b",
+      "bytes": 19427
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r1-index.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r1-index.json",
+      "sha256": "ade014bbf53554cabb1f503753635ba49b62671f36ebc516b50471231cd5f2bf",
+      "bytes": 5895
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r1-qa.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r1-qa.json",
+      "sha256": "a6c3464e85caf1d96675638bbf3d76b81c5d1cdc41468a3f2211fbd9f9800ca4",
+      "bytes": 979
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r1-contract-r2-snapshot.md",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r1-contract-r2-snapshot.md",
+      "sha256": "c4bc49eb9b275a2b6eea4a890c81539894516d77ed9567883dbc4bd4f7b9ae34",
+      "bytes": 6962
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r1-fixed-source-diff.patch",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r1-fixed-source-diff.patch",
+      "sha256": "a2264a0affd651e3bb6aa600ac24a388c2a166b26a76de4e12b7db75f31516c7",
+      "bytes": 25128
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r1-frozen-plan.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r1-frozen-plan.json",
+      "sha256": "73a2c400edb72bcc1331de467832eaca99101eba255bab5484dd5d74562022bb",
+      "bytes": 3933
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r1-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r1-handoff.md",
+      "sha256": "40bfc40f14cc4b8261c3c8ec60185947e2c0d412f131fff71b802541eb1ca02c",
+      "bytes": 3363
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r1-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r1-receipt.json",
+      "sha256": "df3e1deced5e8162f94411fbe6ba4f2d6a02a9e81a7683d2e2538c511ec0ac74",
+      "bytes": 8981
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r1-source-git-tree.txt",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r1-source-git-tree.txt",
+      "sha256": "c36279e6e2c7062bc3f5125d2729c0b4e427b6dd786edcd72d7a7eec8f92adfb",
+      "bytes": 468143
+    },
+    {
+      "source": "docs/research/ws31/independent/label-fixture-preflight-r1-source-review.md",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-fixture-preflight-r1-source-review.md",
+      "sha256": "cb28621eac9a3dfb3e6593c7976ead9fdffc7fd35dca646378ed2bb0d642e8c7",
+      "bytes": 4146
+    },
+    {
+      "source": "docs/research/ws31/independent/label-lifecycle-boundary-review-r1.qa.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-lifecycle-boundary-review-r1.qa.json",
+      "sha256": "547d58506a3fb49444f4e5b0a72da74129470ffdc08b5aaaaf056f205f80ee52",
+      "bytes": 855
+    },
+    {
+      "source": "docs/research/ws31/independent/label-lifecycle-boundary-review-r1.matrix.csv",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-lifecycle-boundary-review-r1.matrix.csv",
+      "sha256": "690faf1c3dc23a4e332bcf4651ddbe6cb32313724b68d2dde007e38a8ccd4460",
+      "bytes": 10710
+    },
+    {
+      "source": "docs/research/ws31/independent/label-lifecycle-boundary-review-r1.sources.json",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-lifecycle-boundary-review-r1.sources.json",
+      "sha256": "81f694ccedf6742ecbf815a4f7ad1fbeeeb038bf80c0f02e57935281aeb82a23",
+      "bytes": 16761
+    },
+    {
+      "source": "docs/research/ws31/independent/label-lifecycle-boundary-review-r1.md",
+      "snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/independent/label-lifecycle-boundary-review-r1.md",
+      "sha256": "2eedfa09889c46d8b8baa35c189a5b21d6b1e2e31b4dce0a044905d18128b70d",
+      "bytes": 10303
+    }
+  ],
+  "source_verification": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/source-verification.json",
+  "source_verification_sha256": "464a0fb1ff901efb292a12a614d4a9ef59d74d1fe44ac742019172840fae9a1c",
+  "audit_code_sha256": "4fabfaf747470512326e46035e38d848e94b027c140828dea6d37e8dddd0876c",
+  "fixed_repair_diff_sha256": "a048f36bbb09ae3f3d06aa2273dd4752d31b14eb9a5e11833b97dd1e997436e1",
+  "root_checks": {
+    "stopped_documents": 7,
+    "stopped_source_blobs": 10,
+    "unchanged_algorithm_scope_blobs_across_506_4605_2ed": 6,
+    "repair_source_blobs": 5,
+    "precursor_review_QA_identity": true,
+    "precursor_coverage_matrix_rows": 22,
+    "precursor_full26_source_review_owner": "WS31 main",
+    "prior_execution_totals_zero": true,
+    "prior_ID_remote_absence_claimed": false,
+    "cpp_context_and_rejection_cases_statically_read": true,
+    "mock_tests_reexecuted_by_Integration": false,
+    "main_reported_5_mock_tests_passed": true,
+    "isolated_source_checkout_read_only_clean_at_observation": true
+  },
+  "source_lineage": {
+    "last_network_validated": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "label_fixture_G1_stopped": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+    "G1_repair_implemented": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "new_source_CXX_and_network_acceptance": "PENDING"
+  },
+  "next_goal": {
+    "plan": "label-fixture-preflight-r2.json",
+    "plan_sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b",
+    "contract": "label-lifecycle-boundary-contract-r3.md",
+    "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "id": "20261101-121000-ws31-label-preflight-r2",
+    "status": "DISPATCHED_SOLE_INDEPENDENT_REVIEW_BUILD_CORE_ONLY",
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:70",
+    "scope": "IndependentG1/source review then one optimized-j2 build/newlabelcore/localmock; no network",
+    "guard": "Keep exclusive source clean and entry/env compatible untilpreflight releases"
+  },
+  "main_coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:14",
+  "technical_cells_accepted_cumulative_unchanged": 28,
+  "reference_review": {
+    "read_sources_sha256": {
+      "E:\\研\\毕业论文\\参考文献\\候选\\README.md": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f",
+      "E:\\研\\毕业论文\\参考文献\\候选\\reading-log.md": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d",
+      "E:\\研\\毕业论文\\参考文献\\候选\\papers\\diffflow-2016\\analysis-technical.md": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84"
+    },
+    "read_scope": "Candidate entry, DiffFlow reading-log entry and technical dataflow/classification passage; not a fresh full-paper or publication/CCF audit",
+    "fixed_version": "DiffFlow arXiv1604.05107v1,6pages",
+    "borrow": "Account for classification availability separately from rule/application timing and end-to-end cost",
+    "conditions_and_difference": "DiffFlow sampled long-flow identity is advertised via SDN before packet spraying; this fixture intervenes on labels at original demand/construction times under fixed RDMA QP routes",
+    "not_extrapolated": "No DiffFlow performance/CCF/baseline-admission claim; execution gate repair is supported by fixed source, not paper outcomes",
+    "new_mechanisms_or_baselines": []
+  },
+  "boundaries": {
+    "old_receipts_and_IDs_preserved": true,
+    "r2_remote_result_independently_accepted_here": false,
+    "new_network_run_authorized": false,
+    "adapter_lifecycle_complete": false,
+    "independent_V0_effects_costs_complete": false,
+    "old_controllers_or_core_or_Ofan_restarted": false,
+    "WS29_accessed": false,
+    "combined_baseline_established": false,
+    "WS31_archived": false
+  },
+  "validation": {
+    "json_files_valid": 15,
+    "frozen_snapshots_valid": 20,
+    "handoff_sections": 9,
+    "handoff_links_valid": 4,
+    "added_state_links_valid": 7,
+    "source_receipt_audit_and_diff_hashes_valid": true,
+    "implemented_vs_network_validated_sources_and_no_network_permission_consistent": true,
+    "style_review": "Reviewed against actually read ruanyf README and six chapters; hierarchy, spacing, paragraphs, numbers, punctuation and structure checked"
+  }
+}

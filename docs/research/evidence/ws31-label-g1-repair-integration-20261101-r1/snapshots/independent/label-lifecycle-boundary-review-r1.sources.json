@@ -1,0 +1,389 @@
+{
+  "status": "COMPLETE_FOR_LOCAL_INDEPENDENT_SOURCE_REVIEW_ONLY",
+  "verdict": "FEASIBLE_AFTER_CONTRACT_REVISION_AND_NEW_FIXTURE_IMPLEMENTATION; NOT_EXECUTION_AUTHORIZATION",
+  "fixed_source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "fixed_source_tree": "79f4ba929ce09e56ab9e5a896dc61b91c2623894",
+  "contract": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\label-lifecycle-boundary-contract-r1.md",
+    "sha256": "b1e4585b61de674cddd1081dbe55a5bc8f90223c361947f63e12199c4376ce94",
+    "bytes": 4534
+  },
+  "source_files": {
+    "src/point-to-point/model/ws31-budget.h": {
+      "sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+      "git_blob": "6ab6410f4f74b7a623cb7c45d989b5c8227cdcc6",
+      "bytes": 6850,
+      "line_count": 159
+    },
+    "src/point-to-point/model/ws31-quota.h": {
+      "sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+      "git_blob": "64ae3d803093c61a51bd3c7f61545af31623944e",
+      "bytes": 5714,
+      "line_count": 129
+    },
+    "src/point-to-point/model/ws31-start.h": {
+      "sha256": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba",
+      "git_blob": "29e1a219bd859a273c581f6d8a56d68e28bb7a61",
+      "bytes": 1947,
+      "line_count": 47
+    },
+    "src/point-to-point/model/switch-node.cc": {
+      "sha256": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+      "git_blob": "c6f2b0ae68aeabf25f49112d23faef2509230c84",
+      "bytes": 117655,
+      "line_count": 2425
+    },
+    "src/point-to-point/model/switch-node.h": {
+      "sha256": "67f357a59a7dd771bfc26d2827fb0884c4f61cd5031f58359a1226a424c19b24",
+      "git_blob": "aabd202da4ff328cc57ed10065cb94508daac822",
+      "bytes": 10314,
+      "line_count": 207
+    },
+    "src/point-to-point/model/rdma-hw.cc": {
+      "sha256": "4be7d02a76b7d216e0323534515dacd465227c928e494f031fc1119f6463ae9b",
+      "git_blob": "a0a483198bd8252804489686eb5f130960eee406",
+      "bytes": 76872,
+      "line_count": 1759
+    },
+    "src/point-to-point/model/rdma-queue-pair.h": {
+      "sha256": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+      "git_blob": "046e396738da830991728af55d2fe7b796c35f33",
+      "bytes": 7871,
+      "line_count": 252
+    },
+    "src/point-to-point/model/rdma-queue-pair.cc": {
+      "sha256": "c7f06fa16c6bef60e2671ded84daa3009ed3312a7bfc55f8afbec7d28c004d20",
+      "git_blob": "acf4e542092298e98b914834ccaf8a18a2dbd5e8",
+      "bytes": 11568,
+      "line_count": 392
+    },
+    "src/applications/model/rdma-client.cc": {
+      "sha256": "60ce7a6cd693188698ae3fc533790081fa6910a48d1c73eee43fb083f5b4689c",
+      "git_blob": "3970d1d12e86e6aa92d20e482b6e559945e5f830",
+      "bytes": 7469,
+      "line_count": 216
+    },
+    "src/applications/model/rdma-client.h": {
+      "sha256": "49b1ff67bf0c2d30c06dc84f5952a312ff0a1725bfad578460efa2499576f458",
+      "git_blob": "6b01ac01d1c1aa3ec4820ced15428377d757cba1",
+      "bytes": 2161,
+      "line_count": 90
+    },
+    "src/point-to-point/model/rdma-driver.cc": {
+      "sha256": "b3704ee90cf4cebc8e81d8e22501e56224cfa03677ac845af6cf11c35d8beb34",
+      "git_blob": "8084842cdbec506da2f4b87e112a7f45287adc93",
+      "bytes": 2157,
+      "line_count": 71
+    },
+    "src/point-to-point/model/rdma-driver.h": {
+      "sha256": "c0641c74a0010440948f6c797c6443dfec52fc150e1f03e6e4a74225536b895f",
+      "git_blob": "717df7a5fd550189a756ae6b59b1ecc57e7e0184",
+      "bytes": 1284,
+      "line_count": 48
+    },
+    "src/point-to-point/model/qbb-net-device.cc": {
+      "sha256": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+      "git_blob": "5ec636e196d536d40c563bc0719315aaeb037b77",
+      "bytes": 24342,
+      "line_count": 592
+    },
+    "src/point-to-point/model/qbb-channel.cc": {
+      "sha256": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1",
+      "git_blob": "3354e70db29f7087239d616ffbdcc266af164715",
+      "bytes": 4063,
+      "line_count": 164
+    },
+    "src/network/model/packet.cc": {
+      "sha256": "cd9067c043d5664d41a33a26a9f9971699d0d65c4cb44558abb17674c7bb0cb1",
+      "git_blob": "8701bb167635b9e01508ae32b40a4f252a66d987",
+      "bytes": 24133,
+      "line_count": 912
+    },
+    "src/network/model/application.cc": {
+      "sha256": "481f4de3ae1052f337b95da2e09038c23057c8cd2c5912639acea51d0751dcae",
+      "git_blob": "bf4d8cdcc1148a49891d62852fc20f2b96ac87c4",
+      "bytes": 2868,
+      "line_count": 119
+    },
+    "src/core/model/scheduler.h": {
+      "sha256": "5ba1bdff9015000b6919087dce3dc83ab4e26d166c99d1cddee85c566dfc6ccb",
+      "git_blob": "a66fa341f89bec23db02dbbaa868de1569dc1941",
+      "bytes": 4006,
+      "line_count": 159
+    },
+    "src/core/model/default-simulator-impl.cc": {
+      "sha256": "4be8807edf01758e322707a51c1329303f54fb482723c3d7c32fb7e88dbddf90",
+      "git_blob": "3823f1485c280eab458c6cbf6c75f2e07f41d8af",
+      "bytes": 10417,
+      "line_count": 434
+    },
+    "src/point-to-point/model/ws30-observer.h": {
+      "sha256": "26b117b02d147b9874dc9b13d5eb8c3a6a46d694c928da889cab36077c271dbf",
+      "git_blob": "7b777290c4e260abb78e4a758224b4f80c8928d3",
+      "bytes": 5328,
+      "line_count": 114
+    },
+    "scratch/network-load-balance.cc": {
+      "sha256": "17985d95a4582edfabdbac80131aef80d7d5eaac7100c637465f2ccde400502b",
+      "git_blob": "0456ead1a18da0038858980aa47560875eb98daf",
+      "bytes": 112913,
+      "line_count": 2410
+    },
+    "scratch/ws31-start-lifecycle-test.cc": {
+      "sha256": "66d2b4d0666a6c9c8aa699d00c7a54188f739f4f0a60ace92e79a7f1ede6f8ec",
+      "git_blob": "6c07ebc3d8a955855aaebf61dce7cd5dab0ebf41",
+      "bytes": 1925,
+      "line_count": 38
+    },
+    "tests/ws31_budget_test.cc": {
+      "sha256": "b3f933847436ec524e22d9caa1d2670eac3d6ac4ac07fff8776479b3b4cc0bcd",
+      "git_blob": "9ff40650f4075596ed939bc92e4fde30710c6c50",
+      "bytes": 2287,
+      "line_count": 49
+    },
+    "tests/ws31_quota_test.cc": {
+      "sha256": "af864ac328f8e1a24c2656e853ae52197c7e3838998042753ac807b68a5d4071",
+      "git_blob": "ed585d7042b82bb7844f754c46d5526c5e375dea",
+      "bytes": 2532,
+      "line_count": 44
+    },
+    "tests/ws31_start_test.cc": {
+      "sha256": "5f523030e5050e44aa1128a242a9cf5ac7499027bc7da1b3bf4c99d903c4c4b1",
+      "git_blob": "bfed6b38eebc1ae53b5479dcd336b2cd22f8dd66",
+      "bytes": 2721,
+      "line_count": 51
+    },
+    "scripts/remote_experiment.py": {
+      "sha256": "19f3067986094423c08842e46b37526e7d815bb4d6b6769224226e7ec562b3a2",
+      "git_blob": "db8fdd7b842128c93a77ef153d1672fa27628385",
+      "bytes": 28163,
+      "line_count": 523
+    },
+    "scripts/remote_worker.py": {
+      "sha256": "3567a1cf95016e1ea093c32e0aeccaee6e3254c3b43fe1feaf690c8dfec4bed5",
+      "git_blob": "4402bcfbb15eb8c2b2883c8f17eb8e80bde1f4f6",
+      "bytes": 55194,
+      "line_count": 1004
+    }
+  },
+  "line_anchors": [
+    {
+      "file": "src/point-to-point/model/rdma-hw.cc",
+      "line": 1092,
+      "fixed_line": "Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) {"
+    },
+    {
+      "file": "src/point-to-point/model/qbb-channel.cc",
+      "line": 102,
+      "fixed_line": "  Simulator::ScheduleWithContext (m_link[wire].m_dst->GetNode ()->GetId (),"
+    },
+    {
+      "file": "src/point-to-point/model/rdma-hw.cc",
+      "line": 1103,
+      "fixed_line": "    WorkloadTag label;"
+    },
+    {
+      "file": "src/point-to-point/model/ws30-observer.h",
+      "line": 83,
+      "fixed_line": "        WorkloadTag tag;"
+    },
+    {
+      "file": "src/applications/model/rdma-client.cc",
+      "line": 149,
+      "fixed_line": "  if (ws31::StartMode(Settings::lb_mode)) {"
+    },
+    {
+      "file": "src/applications/model/rdma-client.cc",
+      "line": 172,
+      "fixed_line": "void RdmaClient::StartRequest (void)"
+    },
+    {
+      "file": "src/point-to-point/model/rdma-hw.cc",
+      "line": 267,
+      "fixed_line": "void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Address dip,"
+    },
+    {
+      "file": "src/point-to-point/model/switch-node.cc",
+      "line": 1460,
+      "fixed_line": "    m_ws31Budget.Expire(now);"
+    },
+    {
+      "file": "src/point-to-point/model/ws31-quota.h",
+      "line": 62,
+      "fixed_line": "        category=isNew ? QuotaClass(category) : it->second.d.category;"
+    },
+    {
+      "file": "src/point-to-point/model/rdma-hw.cc",
+      "line": 1102,
+      "fixed_line": "    Ptr<Packet> p = Create<Packet>(payload_size);"
+    },
+    {
+      "file": "src/point-to-point/model/rdma-hw.cc",
+      "line": 1016,
+      "fixed_line": "void RdmaHw::RecoverQueue(Ptr<RdmaQueuePair> qp) {"
+    },
+    {
+      "file": "src/network/model/packet.cc",
+      "line": 145,
+      "fixed_line": "  : m_buffer (o.m_buffer),"
+    },
+    {
+      "file": "src/core/model/scheduler.h",
+      "line": 111,
+      "fixed_line": "inline bool operator < (const Scheduler::EventKey &a, const Scheduler::EventKey &b)"
+    },
+    {
+      "file": "src/network/model/application.cc",
+      "line": 86,
+      "fixed_line": "Application::DoStart (void)"
+    },
+    {
+      "file": "src/applications/model/rdma-client.cc",
+      "line": 197,
+      "fixed_line": "void RdmaClient::CancelPendingRequest (void)"
+    },
+    {
+      "file": "src/applications/model/rdma-client.cc",
+      "line": 209,
+      "fixed_line": "void RdmaClient::StopApplication ()"
+    },
+    {
+      "file": "scratch/ws31-start-lifecycle-test.cc",
+      "line": 18,
+      "fixed_line": "        ws31::StartData()=ws31::StartCounters();"
+    },
+    {
+      "file": "src/point-to-point/model/rdma-driver.h",
+      "line": 36,
+      "fixed_line": "\tvoid AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address _sip, Ipv4Address _dip, uint16_t _sport, uint16_t _dport, uint32_t win, uint64_t baseRtt, int32_t flow_id, uint32_t workload_tag = 0, uint64_t demand_start_ns = uint64_t(-1));"
+    },
+    {
+      "file": "src/point-to-point/model/switch-node.cc",
+      "line": 1389,
+      "fixed_line": "void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport) {"
+    },
+    {
+      "file": "scratch/network-load-balance.cc",
+      "line": 662,
+      "fixed_line": "    if (Ws30V13Life() == 4 && q->m_ws30Serial) {"
+    },
+    {
+      "file": "src/point-to-point/model/rdma-hw.cc",
+      "line": 365,
+      "fixed_line": "void RdmaHw::DeleteQueuePair(Ptr<RdmaQueuePair> qp) {"
+    },
+    {
+      "file": "src/point-to-point/model/ws30-observer.h",
+      "line": 76,
+      "fixed_line": "    auto key=std::make_tuple(sw,ch.sip,ch.dip,ch.udp.sport,ch.udp.dport);"
+    }
+  ],
+  "historical_evidence_files": {
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c1-core-validation-r1.json": {
+      "sha256": "b0a6bb0e0375577bfdf39a017ec1859e1c13342a32536c3dced84580220e0703",
+      "bytes": 901
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c3-core-validation-r1.json": {
+      "sha256": "0cfc04937c2f75f00d5e5327c99ebd6f2a9076217e1641eee4017e3f83e7f194",
+      "bytes": 887
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-attempt2-core-receipt.json": {
+      "sha256": "44d4c9191e0f0d38e341008311f3cddffbe5905130de4be8735d70b326d01752",
+      "bytes": 1543
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c4-build-c2-lifecycle-main-acceptance-r1.json": {
+      "sha256": "16b48ce3e112bfded67cda61db55133e2cd7ea63ea5799109a4541fe9685851b",
+      "bytes": 592
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c1-controls-pilot-main-acceptance-r1.json": {
+      "sha256": "fd3bfd6ef20a4ad4fe2946414364f4e5724f9a3cb455e524fb3849cb8256a700",
+      "bytes": 33755
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c23-controls-pilot-main-acceptance-r1.json": {
+      "sha256": "2325a88329e9988a0d1967426b7a32ba986b5fcc6ab4da91043bf2ecace76476",
+      "bytes": 26946
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\c13-label-pilot-main-acceptance-r1.json": {
+      "sha256": "77901e743b2444fbf2373349b22fbf8a8127efb20421a5bbb4c3892df1153cd1",
+      "bytes": 10414
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c13-label-validation-r1-verifier.py": {
+      "sha256": "35bc985fc4089e847bda69f155e4d8d9f8d0cbb0199a53bb1c56086277bddfdf",
+      "bytes": 4364
+    }
+  },
+  "old_core_source_compatibility": {
+    "c1-core-validation-r1.json": {
+      "historical_source_sha": "4a1e1303b1452f473dca853b59cc5c22cfa632c2",
+      "fixed506_file_hashes_equal": true,
+      "historical_returncode": 0,
+      "reexecuted": false
+    },
+    "c3-core-validation-r1.json": {
+      "historical_source_sha": "bc4de1e943866f7630545ce5665cb3525084dda2",
+      "fixed506_file_hashes_equal": true,
+      "historical_returncode": 0,
+      "reexecuted": false
+    },
+    "C2_modified_core": {
+      "fixed506_hashes_equal": true,
+      "historic_steps_pass": true,
+      "assertions_enabled_symbol": "__assert_fail",
+      "reexecuted": false
+    }
+  },
+  "C2_cancellation_compatibility_c4_to506": {
+    "DoDispose": {
+      "unchanged_from_tested_c4": true,
+      "sha256": "c6ef41316e80f0c5bbefc1fd71f1dfb47bfafb51f2dd8e869e48927e2907ca09"
+    },
+    "CancelPendingRequest": {
+      "unchanged_from_tested_c4": true,
+      "sha256": "ab3c216d1594ec75528c9ace23f5dce9eab00790a3d7bbd5dc26ed3529d1a885"
+    },
+    "StopApplication": {
+      "unchanged_from_tested_c4": true,
+      "sha256": "c227665042b90f592447b2bcdd5e729368d180bdfae7d2c0eb2113268cca0fc6"
+    }
+  },
+  "C2_prior_adapter_fixture_unchanged_c4_to506": true,
+  "coverage_matrix_rows": 22,
+  "source_checkout_observation": {
+    "head": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "branch": "feature/ws31-candidates",
+    "status": ""
+  },
+  "node_reference_review": {
+    "sources": {
+      "E:\\研\\毕业论文\\参考文献\\候选\\README.md": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f",
+      "E:\\研\\毕业论文\\参考文献\\候选\\reading-log.md": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d",
+      "E:\\研\\毕业论文\\参考文献\\候选\\papers\\diffflow-2016\\analysis-technical.md": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+      "E:\\研\\毕业论文\\参考文献\\候选\\papers\\diffflow-2016\\verification.md": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e"
+    },
+    "version": "DiffFlow arXiv1604.05107v1, fixed6-page archive technical/verification records",
+    "borrowed": "Distinguish classifier-visible signal, business identity and activation delay",
+    "difference": "This review concerns ns3 RNIC generation, cached QP policy and explicit lifecycle reset; no paper result establishes these simulator semantics",
+    "no_new_baseline_admission": true
+  },
+  "actions": {
+    "remote_calls": 0,
+    "builds": 0,
+    "core_tests": 0,
+    "network_simulations": 0,
+    "implementation_source_edits": 0,
+    "new_candidate_mechanisms": 0
+  },
+  "deliverables": {
+    "label-lifecycle-boundary-review-r1.md": "2eedfa09889c46d8b8baa35c189a5b21d6b1e2e31b4dce0a044905d18128b70d",
+    "label-lifecycle-boundary-review-r1.matrix.csv": "690faf1c3dc23a4e332bcf4651ddbe6cb32313724b68d2dde007e38a8ccd4460"
+  },
+  "observed_utc": "2026-11-01T03:15:11.028071+00:00",
+  "mandatory_contract_revisions": [
+    "Guarantee or condition first generation before500ns; require later crossing",
+    "Separate absent label from explicit0; demand-time decision vs generation-time tag; uid correlation for retransmission",
+    "Freeze hash/salt/bucket and actual subset counts; approximate bucket share differs from exact quarter",
+    "Specify both same-time event uid orders, synchronous zero-wait and launched-QP semantics",
+    "Provide independent explicit cache/endpoint cleanup, drain/generation boundary and per-generation path/FCT accounting",
+    "New config default0 and full provenance; reject transform/old lifecycle/composition/fault coexistence in allowed WS31 modes"
+  ]
+}

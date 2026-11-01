@@ -1,0 +1,46 @@
+{
+  "status": "PASS_LOCAL_PROVENANCE_AND_STATIC_REPAIR_RECONCILIATION",
+  "stopped_source": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+  "new_implemented_source": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+  "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "stopped_index_sha256": "ade014bbf53554cabb1f503753635ba49b62671f36ebc516b50471231cd5f2bf",
+  "stopped_documents_hashed": 7,
+  "stopped_git_blobs_hashed": 10,
+  "unchanged_blobs_compared_across_three_sources": 6,
+  "repair_git_blobs_hashed": 5,
+  "old_whole_tree_identity": {
+    "entries": 4839,
+    "owner": "Independent audit; Integration checked frozen tree file identity only"
+  },
+  "prior_execution": {
+    "sync": 0,
+    "deploy": 0,
+    "remote_audits": 0,
+    "builds": 0,
+    "new_cpp_core": 0,
+    "python_mock_test": 0,
+    "network_runs": 0,
+    "old_core": 0,
+    "source_edits": 0
+  },
+  "prior_ID_remote_state": "Not created or checked remotely by this preflight; no remote existence claim",
+  "repair_scope": "Actual parsed C++ context, early guard, rejection cases and enabled-profile diagnostic environment cleanup are present in fixed source; no C++ execution by Integration",
+  "python_mock": {
+    "main_reported_methods_passed": 5,
+    "test_methods_present_in_fixed_source": [
+      "test_controller_worker_cli_metadata",
+      "test_conflicts_rejected_before_dispatch",
+      "test_inherited_profile_cleared_for_old_metadata",
+      "test_active_profile_clears_disabled_inherited_diagnostics",
+      "test_worker_python35_syntax"
+    ],
+    "repeated_by_Integration": false
+  },
+  "new_plan_sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b",
+  "new_ID": "20261101-121000-ws31-label-preflight-r2",
+  "new_preflight_result": "DISPATCHED; source/build/new-core/mock outcome not accepted here",
+  "source_checkout_read_only": true,
+  "remote_actions": false,
+  "network_runs_or_old_core_replays": false,
+  "new_network_or_lifecycle_or_efficacy_acceptance": false
+}

@@ -101,7 +101,13 @@ C1／C3 四格移除／交换现已通过主验及 Integration 本地核对，�
 
 C1 移除恢复统一控制；交换有 89 次非零压力、预测峰值 64、80 次到期。C3 移除恢复 QueuePin；交换有 80 次限制、20 次借用，保留 3,150 个残留包／3,301,200 B。所有交换结果继续按原业务身份分组，不将标签变化当作业务变化，也不将技术计数当作独立收益。
 
-主确认四格终态、执行约束释放及唯一副 cursor 66 为 idle 后，仅派发[标签与生命周期本地方案审查](../research/evidence/ws31-c13-label-integration-20261101-r1/snapshots/main/label-lifecycle-boundary-contract-r1.md)。拟检查延迟可得、后续改变、部分错误，以及 C1 重复／清理、C2 事件顺序、C3 重建与路径保持。500 ns 与四分之一请求是待审技术夹具设置，不作真实分类时延或错误率。先审真实调用链和已有覆盖，再冻结最小实现与计划；当前没有新输入哈希、源码 SHA、实验 ID 或网络许可，禁止借用旧控制器继续运行。
+四格之后的本地边界审查已由主接收，26 个固定源对象及 22 项覆盖矩阵的完整审查保留主验身份。Integration 核对其 QA 身份与矩阵行数。修订要求区分构包时刻和源首包决策，分别观测缺失与显式 0，并记录固定哈希桶的实际命中数；小输入不保证恰有四分之一错误。500 ns 仅为技术边界，不代表真实分类时延。generation=0、清理／重建及 C2 同刻事件顺序仍属未完成的适配器验证。
+
+标签夹具首源 4605fa3 的 r1 预检在源码门 G1 停止。Python 已有传输与诊断检查，C++ 入口却未接收实际配置，静态反例可绕过隔离门。r1 的同步／部署／远端审计／构建／新增核心／mock／网络计数均为 0；远端 ID 未检查，执行约束随停止释放。见[G1 交接](../handoffs/2026-11-01-ws31-label-g1-repair.md)，旧源、ID 和失败收据保留。
+
+主修复后的源为 `2ed7d342d0713a5667f43c7730ca5bc5a6a67150`。C++ 在实际配置解析后检查传输、输入和旧故障／诊断上下文，新增拒绝例；worker 在启用夹具时清理禁用诊断的继承环境。主报告五项本地 mock 通过，Integration 未重跑这些测试；完整构建与新增 C++ 核心仍待验收。
+
+唯一副前目标 cursor 70 终态、idle 且释放约束后，主派发[修订二预检计划](../research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/label-fixture-preflight-r2.json)。ID 为 `20261101-121000-ws31-label-preflight-r2`，计划哈希为 `7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b`。按[修订三契约](../research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/label-lifecycle-boundary-contract-r3.md)先独立审源，再经新 ID／作业／资源门，执行一次隔离 `-j2` 完整构建及新增核心／mock。禁止网络、旧核心、Ofan 或旧控制器运行。新源默认回归和标签网络输入／计划另行冻结，最后网络已验源仍为 5060392。
 
 五格首次尝试的环境门暂停已由同目标 attempt2 恢复完成。原[异常记录](../research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/incident.md)、缓存核对和两个进程自然退出的收据保留，未重复 fetch、未终止未知作业、未放宽资源门。主 checker 首次误将 CHOICE 的固定 0 字段当作实际包标签；旧脚本与 schema 修正保留，ROUTE 标签按真实策略另核，仿真源码、raw 和验收判据均未改变。
 

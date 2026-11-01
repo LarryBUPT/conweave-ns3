@@ -1,0 +1,55 @@
+{
+  "workstream": "WS-31",
+  "stage": "Label fixture source review and new C++ preflight only",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+  "branch": "feature/ws31-candidates",
+  "parent_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "contract": "label-lifecycle-boundary-contract-r2.md",
+  "id": "20261101-114500-ws31-label-preflight-r1",
+  "source_changes_sha256": {
+    "scratch/network-load-balance.cc": "979fb36fc283f71dd9191f791ab6f3fefc6be67b1e58a37e7dfa42ad078ca528",
+    "scripts/remote_experiment.py": "ddece27d0fef1d06c5b031567723074165a0cfbed0839cb067ed0f6adcba26c4",
+    "scripts/remote_worker.py": "f0c68d9528838a1dbc471d201173c30de5b3a9ca9ed06332d79b62816e858424",
+    "src/applications/model/rdma-client.cc": "61078c7032766549cde90a10f736298f7596c08615e23fd3f52bb029c07602c8",
+    "src/point-to-point/model/rdma-hw.cc": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+    "src/point-to-point/model/ws30-observer.h": "74ffc38379b22ad16053e1644698702d392aca646a760381a841dcca3a1b6a3d",
+    "src/point-to-point/model/ws31-label-fixture.h": "11550887bf5231f3fbb6fa4b8b960f47a5ff689f4970e398bf4ad20bbe2bb713",
+    "src/point-to-point/wscript": "be74564c38eddaa31fa8540cb8bd324b841539919d72f03a8c4a7a134f90fbd9",
+    "tests/ws31_label_runner_test.py": "870d48eb2d6a117a7703fcf3c4742947ecce4d60ad18cdbd4dfec9869d5115a6",
+    "tests/ws31_label_test.cc": "8c1a78fe17f6355892a406669363962c8aaa806c7bfeedc24d7e035af21062dc"
+  },
+  "resource_gate": {
+    "no_other_user_or_unknown_project_jobs": true,
+    "min_available_gib": 64,
+    "min_disk_gib": 100,
+    "max_initial_load_1m": 4,
+    "parallel_builds": 1,
+    "jobs_per_build": 2,
+    "simulation_concurrency": 0
+  },
+  "steps": [
+    "Review new diff independently against506, especially first-construction semantics, present vs0, uid source matching, process option/env propagation and default0 compatibility; stop before execution for material source issue",
+    "Verify personal origin/pushed branch, clean exclusive checkout and latest SHA; new ID must not exist; read actual background/prior target receipts",
+    "Use guarded sync under workflow fallback, install updated workspace worker only with no active/unknown jobs and record deployment hash; no system changes",
+    "Run exactly one new guarded isolated optimized full build atfixedSHA with-j2; no network run command",
+    "After full build, compile only new tests/ws31_label_test.cc in the isolated source using g++ -std=c++11 -O2 -Wall -Wextra -pedantic -UNDEBUG; place binary/log outside source tree in this newID workspace; run once and record command/exit/stdout/binary/source hashes",
+    "Run new Python local runner test with remote entry points mocked; no oldcore or acceptednetwork reruns",
+    "Finalize source map, whole Git tree, build/core/local tests, resources and nine-section handoff; preserve all failures and stop remaining execution"
+  ],
+  "prohibited": [
+    "No network simulation, run.py or remote_experiment run",
+    "No Ofan/RR dedicated work",
+    "No C1/C2/C3 oldcore or C2 legacy cancellation repeats",
+    "No lifecycle/controller revival, no existingID overwrite or process killing",
+    "No claim build/core completes label network regression or adapter lifecycle or effects"
+  ],
+  "failure_policy": "Any source,gate,build or newcore failure stops preflight; retain ID and exact source/log for main repair; do not repair main source or alter criteria",
+  "remaining_after": [
+    "New-source default0 network regressions against accepted references",
+    "Frozen small input and profiles1/2/3 network label coverage",
+    "SwitchNode and RdmaClient lifecycle/exception adapter fixtures",
+    "IndependentC1V0 and two-sided effects/state/runtime-cost validation"
+  ]
+}

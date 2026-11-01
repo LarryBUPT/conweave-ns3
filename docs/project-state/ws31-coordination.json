@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:13"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:14"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -169,9 +169,9 @@
     }
   ],
   "next_registered_pilot": {
-    "status": "NONE_AUTHORIZED_PENDING_LOCAL_BOUNDARY_REVIEW_AND_NEW_FROZEN_PLAN",
-    "last_accepted_target": "C1/C3 four-label technical checks",
-    "network_execution_authorized": false
+    "status": "NONE_NETWORK_AUTHORIZED_NEW_PREFLIGHT_ONLY",
+    "network_execution_authorized": false,
+    "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081"
   },
   "last_verified_zero_control_checkpoint": {
     "date": "2026-11-01",
@@ -234,21 +234,23 @@
     "scope": "Initial dynamic technical coverage only; no independent effects"
   },
   "latest_implemented_source": {
-    "sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
-    "purpose": "C2 decision-visible policy label fix",
-    "validation": "C2 labels5, C1 controls7, C23 controls5 and C13 labels4 accepted; remaining labels/lifecycle/independent V0/effects pending",
+    "sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "purpose": "Isolated label visibility fixture and actual C++ transport/input/fault/diagnostic G1 guard repair",
+    "validation": "Static repair/provenance reconciled; main reports five Python mock tests PASS; full build/new CXX/network validation pending",
     "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
       "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete"
-    }
+    },
+    "no_new_network_approval": true
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "C13 four-label technical raw and final delivery verified; next local boundary review only",
-    "record": "docs/handoffs/2026-11-01-ws31-c13-label-integration.md",
-    "verification": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/verification.json",
+    "kind": "Label fixture source gate G1 stopped before remote; fixed successor preflight dispatched",
+    "record": "docs/handoffs/2026-11-01-ws31-label-g1-repair.md",
+    "verification": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/verification.json",
     "user_decision_required": false,
+    "new_build_or_CXX_acceptance": false,
     "independent_effects_validated": false,
     "new_baseline_established": false
   },
@@ -319,6 +321,15 @@
       "user_decision_required": false,
       "independent_effects_validated": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "C13 four-label technical raw and final delivery verified; next local boundary review only",
+      "record": "docs/handoffs/2026-11-01-ws31-c13-label-integration.md",
+      "verification": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/verification.json",
+      "user_decision_required": false,
+      "independent_effects_validated": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -360,7 +371,7 @@
     "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
     "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
     "root_restarted_jobs": false,
-    "phase_update": "C13 four-label target terminal and constraints released; sole independent idlecursor66 before local boundary review turn. No new remote plan or duplicate experiment dispatch."
+    "phase_update": "Prior label preflight stopped at G1 source review with no remote/tests; constraints released and sole independent idlecursor70 before repaired r2 dispatch. New preflight owns source/entry/env hold; no duplicate dispatch."
   },
   "last_verified_C23_controls_checkpoint": {
     "date": "2026-11-01",
@@ -416,21 +427,25 @@
     "integration_verification": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/verification.json"
   },
   "next_registered_goal": {
-    "kind": "LOCAL_CONTRACT_REVIEW_ONLY",
-    "status": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE_PER_MAIN",
-    "contract": "docs/research/ws31/main/label-lifecycle-boundary-contract-r1.md",
-    "fixed_snapshot": "docs/research/evidence/ws31-c13-label-integration-20261101-r1/snapshots/main/label-lifecycle-boundary-contract-r1.md",
-    "contract_sha256": "b1e4585b61de674cddd1081dbe55a5bc8f90223c361947f63e12199c4376ce94",
-    "observed_source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "kind": "SOURCE_REVIEW_THEN_SINGLE_BUILD_NEW_CORE_AND_MOCK_ONLY",
+    "status": "DISPATCHED_SOLE_INDEPENDENT_REVIEW_BUILD_CORE_ONLY",
+    "plan": "docs/research/ws31/main/label-fixture-preflight-r2.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/snapshots/main/label-fixture-preflight-r2.json",
+    "plan_sha256": "7defac33294806d0369febbc79932e10263ac10112162642d0327eeb01366e3b",
+    "source_sha": "2ed7d342d0713a5667f43c7730ca5bc5a6a67150",
+    "id": "20261101-121000-ws31-label-preflight-r2",
+    "contract": "docs/research/ws31/main/label-lifecycle-boundary-contract-r3.md",
     "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:66",
-    "active_turn_id": "01a1950a-92a6-7041-9bba-6d4685d502a7",
-    "output_prefix": "docs/research/ws31/independent/label-lifecycle-boundary-review-r1",
-    "new_network_plan_frozen": false,
-    "remote_build_run_core_actions_authorized": false,
-    "source_or_input_or_new_ID_frozen": false,
-    "integration_queried_independent": false,
-    "scope": "Delayed/partial-error labels and complete adapter-lifecycle gap review; preserve current source and all raw"
+    "pre_dispatch_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:70",
+    "source_review_before_remote_actions": true,
+    "max_parallel_builds": 1,
+    "jobs_per_build": 2,
+    "new_core_and_mock_only": true,
+    "simulation_concurrency": 0,
+    "network_execution_authorized": false,
+    "old_core_Ofan_legacy_controller_repeats_authorized": false,
+    "r2_execution_outcome_accepted_by_Integration": false,
+    "source_edit_hold": "Sole independent owns clean source/entry/env compatibility until preflight releases"
   },
   "last_verified_C13_labels_checkpoint": {
     "date": "2026-11-01",
@@ -478,5 +493,53 @@
       "506_C13_labels": 4
     },
     "scope": "Per-node technical conditions only; not 28 independent workload samples or efficacy tests"
+  },
+  "last_completed_local_review": {
+    "name": "label-lifecycle-boundary-review-r1",
+    "status": "MAIN_ACCEPTED_WITH_REQUIRED_REVISIONS",
+    "QA_sha256": "547d58506a3fb49444f4e5b0a72da74129470ffdc08b5aaaaf056f205f80ee52",
+    "main_fixed_objects_reviewed": 26,
+    "matrix_rows": 22,
+    "integration_scope": "QA identity and matrix row count; full source/call-chain review remains main-owned",
+    "verification": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/verification.json"
+  },
+  "implemented_source_history": [
+    {
+      "sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+      "purpose": "C2 decision-visible policy label fix",
+      "validation": "C2 labels5, C1 controls7, C23 controls5 and C13 labels4 accepted; remaining labels/lifecycle/independent V0/effects pending",
+      "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
+      "network_validation_scopes": {
+        "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
+        "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete"
+      }
+    }
+  ],
+  "label_fixture_G1_checkpoint": {
+    "status": "STOP_CONFIRMED_REPAIR_IMPLEMENTED_SUCCESSOR_RESULT_PENDING",
+    "verification": "docs/research/evidence/ws31-label-g1-repair-integration-20261101-r1/verification.json",
+    "stopped_source": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+    "stopped_ID": "20261101-114500-ws31-label-preflight-r1",
+    "stopped_index_sha256": "ade014bbf53554cabb1f503753635ba49b62671f36ebc516b50471231cd5f2bf",
+    "r1_execution_totals": {
+      "sync": 0,
+      "deploy": 0,
+      "remote_audits": 0,
+      "builds": 0,
+      "new_cpp_core": 0,
+      "python_mock_test": 0,
+      "network_runs": 0,
+      "old_core": 0,
+      "source_edits": 0
+    },
+    "stopped_ID_remote_existence": "NOT_CHECKED; no absence claim",
+    "root_stopped_documents_hashed": 7,
+    "root_stopped_source_blobs": 10,
+    "root_repair_source_blobs": 5,
+    "root_cross_source_unchanged_blobs": 6,
+    "CXX_build_or_core_executed_by_Integration": false,
+    "main_reported_local_mock_passed": 5,
+    "technical_network_cells_accepted_unchanged": 28,
+    "new_network_regression_accepted": false
   }
 }

@@ -1,0 +1,27 @@
+{
+  "status": "PASS_FOR_SOURCE_STOP_DELIVERY",
+  "index_sha256": "ade014bbf53554cabb1f503753635ba49b62671f36ebc516b50471231cd5f2bf",
+  "documents_rechecked": 7,
+  "source_changes_verified": 10,
+  "unchanged_scope_blobs": 6,
+  "whole_tree_entries": 4839,
+  "report_fixed_source_anchors_checked": 5,
+  "relative_links_checked": 5,
+  "handoff_sections": 9,
+  "execution_totals": {
+    "sync": 0,
+    "deploy": 0,
+    "remote_audits": 0,
+    "builds": 0,
+    "new_cpp_core": 0,
+    "python_mock_test": 0,
+    "network_runs": 0,
+    "old_core": 0,
+    "source_edits": 0
+  },
+  "guard_hold_released_on_stop": true,
+  "source_copy_completed": false,
+  "resource_and_remote_ID_state": "NOT_CHECKED; no remote idle/health/absence claim",
+  "style_review": "Original ruanyf README and six chapters previously read; headings/spacing/numbers/punctuation/paragraphs/structure checked",
+  "scope": "Source review issue, no build/core/mock/network outcome claimed"
+}

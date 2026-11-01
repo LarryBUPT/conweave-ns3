@@ -1,0 +1,30 @@
+{
+  "recorded_utc": "2026-11-01T03:28:51.646713+00:00",
+  "source_sha": "4605fa32af440998f4280b641e5c2de2195ea4c3",
+  "parent_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "status": "IMPLEMENTED_PUSHED_LOCAL_PROCESS_TESTS_PASS_CXX_PENDING",
+  "source_changes_sha256": {
+    "scratch/network-load-balance.cc": "979fb36fc283f71dd9191f791ab6f3fefc6be67b1e58a37e7dfa42ad078ca528",
+    "scripts/remote_experiment.py": "ddece27d0fef1d06c5b031567723074165a0cfbed0839cb067ed0f6adcba26c4",
+    "scripts/remote_worker.py": "f0c68d9528838a1dbc471d201173c30de5b3a9ca9ed06332d79b62816e858424",
+    "src/applications/model/rdma-client.cc": "61078c7032766549cde90a10f736298f7596c08615e23fd3f52bb029c07602c8",
+    "src/point-to-point/model/rdma-hw.cc": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+    "src/point-to-point/model/ws30-observer.h": "74ffc38379b22ad16053e1644698702d392aca646a760381a841dcca3a1b6a3d",
+    "src/point-to-point/model/ws31-label-fixture.h": "11550887bf5231f3fbb6fa4b8b960f47a5ff689f4970e398bf4ad20bbe2bb713",
+    "src/point-to-point/wscript": "be74564c38eddaa31fa8540cb8bd324b841539919d72f03a8c4a7a134f90fbd9",
+    "tests/ws31_label_runner_test.py": "870d48eb2d6a117a7703fcf3c4742947ecce4d60ad18cdbd4dfec9869d5115a6",
+    "tests/ws31_label_test.cc": "8c1a78fe17f6355892a406669363962c8aaa806c7bfeedc24d7e035af21062dc"
+  },
+  "local_checks": {
+    "git_diff_check": "PASS",
+    "python_runner_test_methods": 4,
+    "cases": "Profiles0..3 controller->worker metadata/env;12conflicts atboth entrypoints; inherited profile cleared; Python3.5 grammar",
+    "remote_operations_in_tests": 0,
+    "local_CXX_compiler_available": false,
+    "CXX_build_or_core_claimed": false
+  },
+  "scope": "Label visibility and passive provenance only; mechanism algorithms unchanged; full adapter lifecycle remains open",
+  "review_acceptance": "evidence/label-lifecycle-review-main-acceptance-r1.json",
+  "contract": "label-lifecycle-boundary-contract-r2.md",
+  "plan_sha256": "73a2c400edb72bcc1331de467832eaca99101eba255bab5484dd5d74562022bb"
+}
