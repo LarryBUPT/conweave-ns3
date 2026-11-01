@@ -1,0 +1,65 @@
+{
+  "status": "PASS_FOR_C2_LABEL_TECHNICAL_SCOPE",
+  "id": "20261101-074000-ws31-c2tag-r1-unknown-c2",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "flow_count": 6,
+  "payload_bytes": 28278,
+  "original_business_tags": {
+    "0": 2,
+    "7": 2,
+    "99": 2
+  },
+  "packet_tag_data_hops": {
+    "0": 33,
+    "7": 33,
+    "99": 33
+  },
+  "transform": 0,
+  "c2_exact_hash_waits_verified": 6,
+  "positive_waits": 0,
+  "delay_sum_ns": 0,
+  "delay_max_ns": 0,
+  "queue_summary": {
+    "enqueued": 95526,
+    "dequeued": 95526,
+    "dropped": 0,
+    "current": 0,
+    "admission_dropped_bytes": 0,
+    "queue_rejected_bytes": 0,
+    "violations": 0
+  },
+  "path_summary": {
+    "switch_qps": 18,
+    "data_hops": 99,
+    "changed_qps": 0,
+    "port_changes": 0,
+    "rejected": 0,
+    "full_rows": 99
+  },
+  "observation_counts": {
+    "WS31_C2_DEMAND": 6,
+    "WS31_C2_LAUNCH": 6,
+    "WS30_CHOICE": 18,
+    "WS30_ROUTE": 99,
+    "WS30_QP": 6,
+    "WS31_C2_FINISH": 6,
+    "WS31_C2_STATE": 1,
+    "WS30_QUEUE": 1,
+    "WS30_PATH": 1
+  },
+  "fct_sha256": "73c06eefabea64948fee03f7305ab0e89c455bf4dbc8df4374d6962565a5cf12",
+  "log_sha256": "1109dd757227c534a8c2c42685c6a8f53375a193df493e03f38deb34c9aa584d",
+  "ordered_hashes_remove_uid_only": {
+    "WS30_CHOICE": "4812f0d0ce58ec1b4dd1b6abe5446efb35974e9f82fd6b1bf0610ebd7fbe88ce",
+    "WS30_ROUTE": "b5db993ce565b24bd2c6fc6a82ddf4932ef02b5d4b2e79115f8ba1de5ee0568d"
+  },
+  "regression": {
+    "reference_id": "20261101-074000-ws31-c2tag-r1-unknown-q12",
+    "full_fct_equal": true,
+    "ordered_choice_route_equal": true,
+    "removed_comparison_fields": [
+      "uid"
+    ]
+  },
+  "scope": "Technical label/default/fallback only; no effects or additional baseline admission"
+}

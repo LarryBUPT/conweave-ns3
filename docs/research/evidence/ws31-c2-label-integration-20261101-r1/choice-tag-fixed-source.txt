@@ -1,0 +1,5 @@
+source=50603927fc09a68d9f2e038129aaee3a3d021081:src/point-to-point/model/switch-node.cc:1384
+    // Tag is deliberately absent from routing and choice records in these arms.
+    if (fresh) Ws30Choice(m_id,ch,0,pair.first,pair.second,a,b,0,0,pair.chosen,p->GetSize());
+    observePair(pair);
+    return pair.chosen;

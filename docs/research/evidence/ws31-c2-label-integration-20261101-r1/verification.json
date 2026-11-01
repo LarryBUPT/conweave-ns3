@@ -1,0 +1,287 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "observed_utc": "2026-11-01T00:29:40.814995+00:00",
+  "scope": "Integration local C2 five-cell technical acceptance and checker-schema reconciliation; not candidate effect or overall closure",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "raw_verification": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/raw-verification.json",
+  "raw_verification_sha256": "a3b78aaa93dfa01abc2f1a17a9ad92cbebf8f260d9ca71230e4d1684276f7c40",
+  "snapshots": [
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-pilot-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-pilot-main-acceptance-r1.json",
+      "sha256": "2fd7eaa6ec91bd471f69299ff5c832464f4e65fb4784d6d1efe7b7af3d4e49e8",
+      "bytes": 23082
+    },
+    {
+      "source": "docs/research/ws31/main/c2-label-node5-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/c2-label-node5-handoff.md",
+      "sha256": "df2a1a577798e0df6536ccc8923d3ad0fc2c0f5d7237a9cd79167ef83a6a7dc8",
+      "bytes": 5269
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-main-verifier-schema-correction-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-main-verifier-schema-correction-r1.json",
+      "sha256": "78d6708b642a43c902c0ef6126bc6402b19745e1954ff683a61b556cabe67ea3",
+      "bytes": 1270
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-main-verifier-pre-correction-r1.py",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-main-verifier-pre-correction-r1.py",
+      "sha256": "a82973483555df87beebf4948a275072d4b7047bb36852405e0948520d2cb7c5",
+      "bytes": 12168
+    },
+    {
+      "source": "docs/research/ws31/main/scripts/verify_c2_label_raw_r1.py",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/scripts/verify_c2_label_raw_r1.py",
+      "sha256": "9c9dc9b575bd60223279e8d1ab8e7fde46bed815b9fa6fcfec1194126dca1932",
+      "bytes": 12610
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-attempt2-recovery-main-check-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-attempt2-recovery-main-check-r1.json",
+      "sha256": "ad5ba6b0bb7fc30c850ec465f4e751e4bcd2ac3a608d5be3b736cd46c4cd5f06",
+      "bytes": 1022
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-node5-reference-review-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-node5-reference-review-r1.json",
+      "sha256": "1bce8c70ff7a5df57cdad86a2a38872eed339ad35f638ad456d29a2e6cdd5e03",
+      "bytes": 1257
+    },
+    {
+      "source": "docs/research/ws31/main/c1-controls-validation-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/c1-controls-validation-r1.json",
+      "sha256": "115a840e86a8829d6e74923c077579963290514c9704b846efa366b086106297",
+      "bytes": 7933
+    },
+    {
+      "source": "docs/research/ws31/main/c1-controls-validation-r1.md",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/c1-controls-validation-r1.md",
+      "sha256": "c98ab759a38322089225859b51518a1fc8954ffcc5718b90df73c653b47872d9",
+      "bytes": 2909
+    },
+    {
+      "source": "docs/research/ws31/main/current-status.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/current-status.json",
+      "sha256": "6ea01fe0787b72737f54d327a9538f159b5e2e0505dafb02e00b50867fb9eb05",
+      "bytes": 13869
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-attempt2-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-attempt2-receipt.json",
+      "sha256": "128ecd2a4109815086ad42334052d2d3dd9d4487ddb822b5e12913fac7922677",
+      "bytes": 242151
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-attempt2-core-receipt.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-attempt2-core-receipt.json",
+      "sha256": "44d4c9191e0f0d38e341008311f3cddffbe5905130de4be8735d70b326d01752",
+      "bytes": 1543
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-default-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-default-main-acceptance-r1.json",
+      "sha256": "b52021601b1dabd76c054c3fb7d42e6b073c385246b860e64175e4304e441c56",
+      "bytes": 1814
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-remove-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-remove-main-acceptance-r1.json",
+      "sha256": "253a1b2da6c237ea64fb9302715e8e73535bbe4a6ab706fcb66d9414844d323f",
+      "bytes": 1802
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-swap-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-swap-main-acceptance-r1.json",
+      "sha256": "98c3473df5f691e002cc7be0b3fd7a0214274f2190e8dd82dfb817f19d6962fb",
+      "bytes": 1625
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-unknown-q12-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-unknown-q12-main-acceptance-r1.json",
+      "sha256": "c334c281862c108065a9a7706751860f7e0986a8ccfdb6922444a3882cad5e30",
+      "bytes": 1506
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-unknown-c2-main-acceptance-r1.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-unknown-c2-main-acceptance-r1.json",
+      "sha256": "3374ea671da13cc8f668b0af2a9969b89c452a868bc67910c05afd2c4259f2c4",
+      "bytes": 1804
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-default/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-default/remote-manifest.json",
+      "sha256": "1c51cbcfe3dbca77aa24909f3311f6ec6417929ab8175cb031737be5dc4785d6",
+      "bytes": 9135
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-remove/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-remove/remote-manifest.json",
+      "sha256": "39ae4fab80208ec9b50e9068be2547a93e422a4880f1d3c05793255ba1d8345c",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-swap/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-swap/remote-manifest.json",
+      "sha256": "89392ad83a0ed5c22ba6fffd045d3d0730ff726a8b5dfe8d365dba4a3db0ab79",
+      "bytes": 8049
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-unknown-q12/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-unknown-q12/remote-manifest.json",
+      "sha256": "860d2ccb7b302416b4c807ad0ead38693e508e91b55dadb017bc41cb2dc41a46",
+      "bytes": 6969
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-unknown-c2/remote-manifest.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-unknown-c2/remote-manifest.json",
+      "sha256": "c31cabe94dde52bbe41b33388f92bb6d1003c0ae067476574dc7f6dc3a3d18f0",
+      "bytes": 6969
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-default/results/logs/c2-core-run.log",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-default/results/logs/c2-core-run.log",
+      "sha256": "f1cae45d4d08597db90b3997c5d67518dd481f11fcdc20b53cb22e847349c493",
+      "bytes": 81
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-default/results/technical/c2-core/receipt.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-evidence/attempt2/20261101-074000-ws31-c2tag-r1-default/results/technical/c2-core/receipt.json",
+      "sha256": "4c17668a6895c8ae5015eeaf2e427b0a284fb33c1cccae0a51fca0f60ed1f5df",
+      "bytes": 1503
+    },
+    {
+      "source": "docs/research/ws31/main/evidence/c2-label-delivery-main-acceptance-r2.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/evidence/c2-label-delivery-main-acceptance-r2.json",
+      "sha256": "61c19226b403c5a0e3f7dc8621893fa781903d0c062ece2e7956e9807218ec0b",
+      "bytes": 825
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-attempt2-index.json",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-attempt2-index.json",
+      "sha256": "f4fdfa1088da83e4b06e17e83071d55056c58c80456917a9b689571f84dff112",
+      "bytes": 14633
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-attempt2-report.md",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-attempt2-report.md",
+      "sha256": "1a17c7f12d2f007b25eed9213de0bd3efe6e42d0c9147260b65a8273137c3ec5",
+      "bytes": 6659
+    },
+    {
+      "source": "docs/research/ws31/independent/c2-label-validation-r1-attempt2-handoff.md",
+      "snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/independent/c2-label-validation-r1-attempt2-handoff.md",
+      "sha256": "70e45d36685496597cdf5bced69e0c823056bb75ed786fdb2c86b1267e1d7784",
+      "bytes": 4483
+    }
+  ],
+  "raw_scope": {
+    "result_files_hashed": 120,
+    "support_files_hashed": 59,
+    "complete_flow_and_label_timing_cells": 5,
+    "source_map": "35 unique mapping composed from prior frozen c4 plus previously verified three-file506 diff; no repeated175 object claim",
+    "old_fixtures_off_metadata_checked": 5,
+    "saved_preexecution_gates_pass_checked": 9
+  },
+  "outcomes": {
+    "cells_passed": 5,
+    "completed_flow_records": 324,
+    "completed_payload_bytes": 606002412,
+    "default": "FCT and only-uid normalized choices/routes equal accepted c4 C2",
+    "remove": "Waits and packet labels0; FCT equals Q12; comparison removes uid/tag exactly as frozen plan, actual labels separately checked",
+    "swap": "24 original tag1 requests wait, sum5771ns/max467ns; original business grouping retained",
+    "unknown": "Six unknown requests and28278B per cell; C2 zero waits and full FCT/ordered events equal new Q12"
+  },
+  "core": {
+    "copied_core_binary_digest_checked": true,
+    "raw_policy_tag_PASS_checked": true,
+    "command_no_DNDEBUG_and_assert_fail_receipt_checked": true,
+    "executed_by_root": false
+  },
+  "checker_correction": {
+    "source": {
+      "recorded_utc": "2026-11-01T00:18:05.243705+00:00",
+      "kind": "Main verifier schema correction; no simulation/code/result change",
+      "old_verifier_sha256": "a82973483555df87beebf4948a275072d4b7047bb36852405e0948520d2cb7c5",
+      "new_verifier_sha256": "9c9dc9b575bd60223279e8d1ab8e7fde46bed815b9fa6fcfec1194126dca1932",
+      "old_script_snapshot": "evidence/c2-label-main-verifier-pre-correction-r1.py",
+      "finding": "QueuePin DoLbWs30V13 intentionally calls Ws30Choice with literal0; WS30_ROUTE reads actual packet WorkloadTag. Initial main checker incorrectly required CHOICE tag to equal packet tag.",
+      "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+      "source_locator": "src/point-to-point/model/switch-node.cc:1384 and model/ws30-observer.h Ws30Choice/Ws30Route",
+      "observed": "default first CHOICE tag0 vs business/policy tag1; all actual ROUTE tags match expected intervention in default/swap/unknown scans",
+      "correction": "Require CHOICE tag0 and ROUTE tag==policy label. Keep all raw FCT/ordered-stream regression requirements unchanged.",
+      "prior_runs": "default/swap/unknown checks failed early in checker; no acceptance receipts written; remove already passed and identical tag0 condition remains",
+      "scientific_failure": false
+    },
+    "old_and_new_script_hashes_checked": true,
+    "literal_zero_source_snippet": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/choice-tag-fixed-source.txt",
+    "simulation_source_plan_raw_changed": false,
+    "root_interpretation": "CHOICE literal0; actual ROUTE packet tag checked against transformed policy label; original business tag checked at demand/input"
+  },
+  "environment_history": {
+    "attempt1": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/verification.json",
+    "recovery": "docs/research/ws31/main/evidence/c2-label-attempt2-recovery-main-check-r1.json",
+    "preserved": true,
+    "not_a_candidate_runtime_failure": true
+  },
+  "reference_review": {
+    "source": "docs/research/ws31/main/evidence/c2-label-node5-reference-review-r1.json",
+    "owner": "WS31 main; CASSINI final section6 and Karuna author abstract targeted reading",
+    "integration_scope": "Preserve version, borrowed point, difference and no-effect-extrapolation record; not an independent publisher-PDF rereading or admission audit",
+    "baseline_additions": []
+  },
+  "next_plan": {
+    "path": "docs/research/ws31/main/c1-controls-validation-r1.json",
+    "sha256": "115a840e86a8829d6e74923c077579963290514c9704b846efa366b086106297",
+    "cells": 7,
+    "scope": "Bounded technical matched-control/fallback node only; not calibration or effects, no threshold changes or Ofan/RR/new baselines",
+    "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+    "main_observed_state": "DISPATCHED_SOLE_INDEPENDENT_ACTIVE",
+    "dispatch_gate": "Prior independent terminal and idle; complete final delivery/hash QA first; active no duplicate dispatch",
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "all_seven_builds_before_serial_runs": true,
+    "dispatch_evidence": "Main coordination message after prior sole-independent terminal+idle cursor31fad034-fb0d-4f4c-9201-83aa5f24890e:55; same frozen seven-cell plan",
+    "actual_remote_execution_status_checked_by_root": false
+  },
+  "coordination_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:8",
+  "boundaries": {
+    "remote_access": false,
+    "simulations_or_core_executed_by_root": false,
+    "main_or_independent_owned_files_modified": false,
+    "Ofan_admitted": false,
+    "independent_effects_validated": false,
+    "combined_baseline_established": false
+  },
+  "final_delivery": {
+    "source": "docs/research/ws31/main/evidence/c2-label-delivery-main-acceptance-r2.json",
+    "index": "docs/research/ws31/independent/c2-label-validation-r1-attempt2-index.json",
+    "index_sha256": "f4fdfa1088da83e4b06e17e83071d55056c58c80456917a9b689571f84dff112",
+    "root_index_hash_checked": true,
+    "main_reported_checks": {
+      "documents_hashed": 17,
+      "dependencies_hashed": 2,
+      "per_cell_support_files_hashed": 30,
+      "reference_files_hashed": 4,
+      "attempt1_historical_snapshots_hashed": 9
+    },
+    "changes": "Delivery documentation and schema note corrected; raw/source/criteria unchanged; older delivery observation retained",
+    "attribution": "Detailed final document/dependency/reference QA by main; Integration checks and snapshots final index identity"
+  },
+  "audit_code_sha256": "dadc038b9320bb124c4226f321493c3c50eecd0746f4dc545fd8663d23b99c7c",
+  "audit_helper_dependency": {
+    "path": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/audit_local_raw.py",
+    "sha256": "f1f610145a615f837a254dcf99f43f04fbee05a1fb28da7b7d20e49804f33c2a",
+    "reused": "digest and previously checked StartHash only"
+  },
+  "validation": {
+    "json_files_valid": 24,
+    "new_markdown_links_valid": 9,
+    "frozen_snapshot_hashes_valid": 28,
+    "raw_receipt_hash_valid": true,
+    "C2_scoped_runtime_acceptance_and_C1_successor_consistent": true,
+    "no_combined_baseline_or_effects_inferred": true
+  }
+}

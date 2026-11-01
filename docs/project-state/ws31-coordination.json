@@ -20,7 +20,7 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:7"
+    "last_cursor": "f7a3a118-6bff-483e-a32e-333396ead68d:8"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -80,24 +80,22 @@
   "execution_status_source": "docs/research/ws31/main/current-status.json",
   "last_verified_engineering_checkpoint": {
     "date": "2026-11-01",
-    "handoff": "docs/handoffs/2026-11-01-ws31-c4-build-and-c2-lifecycle.md",
-    "verification": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/verification.json",
-    "cores_passed": [
-      "C1",
-      "C2",
-      "C3"
+    "handoff": "docs/handoffs/2026-11-01-ws31-c2-label-integration.md",
+    "verification": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/verification.json",
+    "full_build_pass_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "full_build_id": "20261101-074000-ws31-c2tag-r1-default",
+    "full_build_ids": [
+      "20261101-074000-ws31-c2tag-r1-default",
+      "20261101-074000-ws31-c2tag-r1-remove",
+      "20261101-074000-ws31-c2tag-r1-swap",
+      "20261101-074000-ws31-c2tag-r1-unknown-q12",
+      "20261101-074000-ws31-c2tag-r1-unknown-c2"
     ],
-    "full_build_pass_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
-    "full_build_id": "20261101-061544-ws31-ofan-preflight-r1",
-    "tasks": 1463,
-    "duration_seconds": 354.785,
-    "C2_nonnetwork_stop": "PASS",
-    "C2_nonnetwork_dispose": "PASS",
-    "integration_fixed_source_hashes": 33,
-    "integration_evidence_hashes": 15,
+    "modified_C2_portable_core": "PASS with policy-tag assertions; prior C1/C3 core checkpoints retained in history",
+    "C2_label_subset_passed": true,
     "network_correctness_complete": false,
     "independent_performance_complete": false,
-    "Ofan": "PAUSED_BY_USER; no dedicated test or formal admission",
+    "scope": "Full builds and modified C2 core plus five label/default/unknown technical cases; full candidate correctness remains incomplete",
     "live_execution_status_source": "docs/research/ws31/main/current-status.json"
   },
   "baseline_admission_policy": {
@@ -146,40 +144,57 @@
       "formal_Ofan_admission": "pending correctness and dynamic coverage",
       "live_execution_status_source": "docs/research/ws31/main/current-status.json",
       "additional_baseline_decision_superseded_by": "baseline_admission_policy; original checkpoint retained as historical observation"
+    },
+    {
+      "date": "2026-11-01",
+      "handoff": "docs/handoffs/2026-11-01-ws31-c4-build-and-c2-lifecycle.md",
+      "verification": "docs/research/evidence/ws31-engineering-checkpoint-20261101-r2/verification.json",
+      "cores_passed": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "full_build_pass_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+      "full_build_id": "20261101-061544-ws31-ofan-preflight-r1",
+      "tasks": 1463,
+      "duration_seconds": 354.785,
+      "C2_nonnetwork_stop": "PASS",
+      "C2_nonnetwork_dispose": "PASS",
+      "integration_fixed_source_hashes": 33,
+      "integration_evidence_hashes": 15,
+      "network_correctness_complete": false,
+      "independent_performance_complete": false,
+      "Ofan": "PAUSED_BY_USER; no dedicated test or formal admission",
+      "live_execution_status_source": "docs/research/ws31/main/current-status.json"
     }
   ],
   "next_registered_pilot": {
-    "plan": "docs/research/ws31/main/c2-label-validation-r1.json",
-    "fixed_snapshot": "docs/research/evidence/ws31-dynamic-integration-20261101-r1/snapshots/main/c2-label-validation-r1.json",
-    "plan_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
-    "status": "ATTEMPT1_PREFLIGHT_ENVIRONMENT_GATE_STOP; SAME_ACTIVE_GOAL_CONDITIONAL_RECOVERY_AUTHORIZED",
+    "plan": "docs/research/ws31/main/c1-controls-validation-r1.json",
+    "fixed_snapshot": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/snapshots/main/c1-controls-validation-r1.json",
+    "plan_sha256": "115a840e86a8829d6e74923c077579963290514c9704b846efa366b086106297",
+    "status": "DISPATCHED_AFTER_PRIOR_FINAL_QA_TERMINAL_IDLE_NOT_INTEGRATION_ACCEPTED",
     "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
-    "cells": 5,
+    "cells": 7,
     "order": [
-      "default",
-      "remove",
-      "swap",
-      "unknown-q12",
-      "unknown-c2"
+      "unified",
+      "count",
+      "history",
+      "size",
+      "unified-count",
+      "unknown-class",
+      "unknown-unified"
     ],
-    "modified_core_required": true,
-    "all_five_builds_before_runs": true,
+    "core_or_main_or_zero_reruns": false,
+    "all_seven_builds_before_serial_runs": true,
     "max_parallel_builds": 3,
     "jobs_per_build": 2,
     "max_total_compile_jobs": 6,
     "simulation_concurrency": 1,
     "fresh_resource_gate_required": true,
     "root_remote_execution_status_checked": false,
-    "scope": "C2 fix/default and label/unknown correctness only; matched controls lifecycle independent V0 and effects remain",
+    "scope": "C1 matched-control and unknown technical coverage only; later C2/C3 controls, labels/lifecycle, independent V0 and effects remain",
     "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "pause_evidence": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/verification.json",
-    "attempt1_counts": {
-      "core_started": false,
-      "builds_started": 0,
-      "network_runs_started": 0,
-      "five_cells_not_started_in_receipt": true
-    },
-    "attempt2": "Preserve attempt1 and separate attempt2 logs; reconfirm IDs/live processes/cache identity and full resource/unknown-job gate; no repeat network fetch; gate failure stops without automatic retry; execution not observed by Integration"
+    "main_observed_prior_independent_idle_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:55"
   },
   "last_verified_zero_control_checkpoint": {
     "date": "2026-11-01",
@@ -216,12 +231,14 @@
   "C2_tag_intervention_gap": {
     "evidence": "docs/research/ws31/main/evidence/c2-tag-intervention-source-gap-r1.json",
     "owner": "WS31 main",
-    "status": "SOURCE_FIX_COMMITTED_PUSHED_RUNTIME_VALIDATION_PENDING",
+    "status": "VALIDATED_AT506_FOR_DEFAULT_REMOVE_SWAP_UNKNOWN_TECHNICAL_SCOPE",
     "current_transform0_runs_affected": false,
     "wrong_transformed_runs_executed": 0,
     "fix_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "fix_evidence": "docs/research/ws31/main/evidence/c2-policy-tag-source-fix-r1.json",
-    "validation_plan": "docs/research/ws31/main/c2-label-validation-r1.json"
+    "validation_plan": "docs/research/ws31/main/c2-label-validation-r1.json",
+    "runtime_acceptance": "docs/research/ws31/main/evidence/c2-label-pilot-main-acceptance-r1.json",
+    "remaining": "Other erroneous/delayed-label and lifecycle controls, independent effects remain"
   },
   "last_verified_dynamic_checkpoint": {
     "date": "2026-11-01",
@@ -242,23 +259,55 @@
   "latest_implemented_source": {
     "sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
     "purpose": "C2 decision-visible policy label fix",
-    "validation": "Static three-file object/diff audit only; executable build/default/tag runtime pending",
-    "last_network_validated_source": "c4b6039beb47e667e6954b56ec770cb6038082fa"
+    "validation": "Modified C2 core, five builds and five label/default/unknown network technical cells accepted; broader controls, lifecycle and effects pending",
+    "last_network_validated_source": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "network_validation_scopes": {
+      "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
+      "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 modified core and five label/default/unknown technical cells"
+    }
   },
   "last_material_event": {
     "date": "2026-11-01",
-    "kind": "preflight environment/unknown-job gate stop before execution",
-    "incident": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/incident.md",
-    "main_review": "docs/research/ws31/main/evidence/c2-label-preflight-pause-main-review-r1.json",
-    "saved_unknown_pids": [
-      196056,
-      196096
-    ],
-    "later_saved_audit_utc": "2026-10-31T23:56:32.029763Z",
-    "later_saved_audit_both_absent": true,
-    "new_gate_pass_not_inferred": true,
-    "correctness_failure": false,
+    "kind": "C2 five-cell technical interface acceptance with final delivery QA complete",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "record": "docs/handoffs/2026-11-01-ws31-c2-label-integration.md",
     "user_decision_required": false,
-    "same_goal_conditional_recovery_authorized": true
-  }
+    "independent_effects_validated": false,
+    "new_baseline_established": false
+  },
+  "last_verified_C2_label_checkpoint": {
+    "date": "2026-11-01",
+    "handoff": "docs/handoffs/2026-11-01-ws31-c2-label-integration.md",
+    "verification": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/verification.json",
+    "raw_verification": "docs/research/evidence/ws31-c2-label-integration-20261101-r1/raw-verification.json",
+    "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+    "cells_passed": 5,
+    "modified_core_and_all_five_builds_passed": true,
+    "completed_flow_records": 324,
+    "completed_payload_bytes": 606002412,
+    "root_result_file_hash_checks": 120,
+    "root_support_file_hash_checks": 59,
+    "source_map": "35 unique map from prior fixed c4 plus previously verified3-file506 diff; not175 independent root checks",
+    "checker_correction_preserved": true,
+    "attempt1_environment_stop_and_attempt2_recovery_preserved": true,
+    "scope": "C2 default/remove/swap/unknown technical interface only; no independent effects"
+  },
+  "material_event_history": [
+    {
+      "date": "2026-11-01",
+      "kind": "preflight environment/unknown-job gate stop before execution",
+      "incident": "docs/research/evidence/ws31-c2-preflight-pause-integration-20261101-r1/incident.md",
+      "main_review": "docs/research/ws31/main/evidence/c2-label-preflight-pause-main-review-r1.json",
+      "saved_unknown_pids": [
+        196056,
+        196096
+      ],
+      "later_saved_audit_utc": "2026-10-31T23:56:32.029763Z",
+      "later_saved_audit_both_absent": true,
+      "new_gate_pass_not_inferred": true,
+      "correctness_failure": false,
+      "user_decision_required": false,
+      "same_goal_conditional_recovery_authorized": true
+    }
+  ]
 }

@@ -1,0 +1,155 @@
+{
+  "workstream": "WS-31",
+  "stage": "C1 matched controls and unknown-label technical coverage r1",
+  "status_at_freeze": "FROZEN_NOT_DISPATCHED",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "branch": "feature/ws31-candidates",
+  "sole_executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "prerequisite": "evidence/c2-label-pilot-main-acceptance-r1.json",
+  "inputs": {
+    "config/leaf_spine_128_100G_OS2.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "config/ws31_correctness_r1.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+    "config/ws31_unknown_r1.txt": "0dc3245f6a534ab8f1bd2dfbc4ada4cceeb2e3c3b8e8b8875fdb4f7c71b89126"
+  },
+  "cells": [
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unified",
+      "order": 1,
+      "lb": "ws31-c1-unified",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-count",
+      "order": 2,
+      "lb": "ws31-c1-count",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-history",
+      "order": 3,
+      "lb": "ws31-c1-history",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-size",
+      "order": 4,
+      "lb": "ws31-c1-size",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unified-count",
+      "order": 5,
+      "lb": "ws31-c1-unified-count",
+      "flow_file": "ws31_correctness_r1.txt",
+      "flow_count": 104,
+      "payload_bytes": 201981952,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unknown-class",
+      "order": 6,
+      "lb": "ws31-c1",
+      "flow_file": "ws31_unknown_r1.txt",
+      "flow_count": 6,
+      "payload_bytes": 28278,
+      "ws30_tag_transform": 0
+    },
+    {
+      "id": "20261101-083000-ws31-c1ctrl-r1-unknown-unified",
+      "order": 7,
+      "lb": "ws31-c1-unified",
+      "flow_file": "ws31_unknown_r1.txt",
+      "flow_count": 6,
+      "payload_bytes": 28278,
+      "ws30_tag_transform": 0
+    }
+  ],
+  "common": {
+    "topo": "leaf_spine_128_100G_OS2",
+    "simul_time": "0.01",
+    "netload": 10,
+    "bw": 100,
+    "buffer": 9,
+    "pfc": 0,
+    "irn": 1,
+    "simulation_seed": 1,
+    "ws30_observe": 2,
+    "max_concurrent": 1
+  },
+  "build_resources": {
+    "max_parallel_builds": 3,
+    "jobs_per_build": 2,
+    "max_total_compile_jobs": 6,
+    "rationale": "Previous c4 three-build pilot: all3 isolated optimized -j2 builds completed before serial simulation, max6 sampled cc1plus, min120.956GiB available memory, max6.14 sampled load; no other-user/unknown-project work. Reuse cap3/six compile tasks only after fresh gate; samples are not exact peaks.",
+    "fresh_batch_admission": {
+      "no_other_user_or_unknown_project_jobs": true,
+      "min_available_gib": 64,
+      "min_disk_gib": 100,
+      "max_initial_load_1m": 4
+    },
+    "during_batch": "Record sampled load/memory/free disk at modest intervals; keep existing guarded worker checks; no simultaneous simulation. If unavailable/contended, fall back to one build, pause new work as required.",
+    "after_builds": "All seven independent builds accepted before serial simulations in cells order: unified, count, history, size, unified-count, unknown-class, unknown-unified; no build/simulation overlap."
+  },
+  "core_tests": "No algorithm source changed; do not repeat accepted C1/C2/C3 or Ofan cores. New isolated full build per cell only.",
+  "source_cache": "Reuse already synchronized exact5060392 only after personal origin/clean/exact commit/fork ref/full cache tree audit; if absent use prescribed sync/bundle workflow, preserve attempts and never weaken unknown-job gate.",
+  "execution": "Wait prior goal terminal and idle; first fresh resources/other jobs/new ID existence checks, then <=3 concurrent guarded -j2 builds in waves (<=6 compile tasks). All7 builds accepted before fixed serial7 runs. Do not repeat existing main/zero cells.",
+  "required_common": [
+    "Exact fixed source/input/topology/config/seed; all old fixtures/lifecycle/composition/tag-transform/faults off",
+    "All input identities and original demand origins/bytes complete once; no dropped/rejected/changed-QP path, queue violation or observation overflow",
+    "Fixed source-switch template/TTL/state bounds and final conservation; preserve all counters including0 and route table retention",
+    "Each source first choice chosen by saturating(Q+R), tie-first, same12B tuple/two hashes; secondary hops retain QueuePin",
+    "Record per-packet source arrivals and full dedicated first decisions to independently replay ledger/history; resources are sampled not exact peaks"
+  ],
+  "required_by_cell": {
+    "unified": [
+      "Predicted payload8192 for every source fresh key; positive R; unique payload deduction>0; source route keys104"
+    ],
+    "count": [
+      "Tag1 template65536 and others8192; unique_payload=0 and duplicate/range work skipped by design; pressure positive, expiry/state peaks recorded without equal-cost claim"
+    ],
+    "history": [
+      "All predicted=0; R estimates positive at least once and selected scores correct; verify recursive aggregate decay on already observed packet bytes, not per-packet fixed expiry or full SRv6 paper reproduction"
+    ],
+    "size": [
+      "8MiB maps65536 and8192B maps8192 exactly; fullFCT byte-identical and ordered ROUTE equal after removing onlyuid to acceptedc4 C1 main; dedicated source decisions equal including all score fields; no size semantic-value claim"
+    ],
+    "unified-count": [
+      "Predicted8192 every source key; unique_payload=0, positiveR; completes2x2 class/unified by progress/count alongside acceptedC1 main. No end-to-end efficacy interpretation from technical sample"
+    ],
+    "unknown-class": [
+      "Original labels0/7/99 retained in packet observations; all predictor templates8192; all6 complete; save paired reference for nextcell"
+    ],
+    "unknown-unified": [
+      "FullFCT byte-identical and ordered ROUTE equal to unknown-class after removing onlyuid; dedicated source decisions equal after removing onlycategory, preserve all times/tuple/candidate/queue/R/chosen/predicted fields; original packet labels unchanged"
+    ]
+  },
+  "references": {
+    "size": "20261101-071042-ws31-dyn-r1-c1",
+    "unknown-unified": "20261101-083000-ws31-c1ctrl-r1-unknown-class"
+  },
+  "stop_conditions": [
+    "Any build/core/run/identity/time/bytes/path/accounting/hash/default-regression failure; preserve ID and stop remaining runs",
+    "Any required dynamic/label branch missing; report coverage gap before additional runs, no threshold retuning",
+    "Unknown other-user/project work or resource contention; pause new work or lower to one build per existing policy"
+  ],
+  "scope": "Bounded technical matched-control/fallback node only; not calibration or effects, no threshold changes or Ofan/RR/new baselines",
+  "still_required_after": [
+    "C2 unified/size and C3 fixed/size/unknown controls",
+    "C1/C3 remove/swap and remaining error/delayed-label conditions",
+    "C1 expiry/capacity/range/duplicate/wrap and full adapter lifecycle coverage, C3 full transition/lifecycle conditions",
+    "Independent C1 V0 and all three two-sided effect/state/runtime-cost protocols and necessary new experiments",
+    "User final adoption decision"
+  ]
+}

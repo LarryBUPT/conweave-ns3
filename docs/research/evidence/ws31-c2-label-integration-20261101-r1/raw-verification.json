@@ -1,0 +1,165 @@
+{
+  "scope": "Integration local all-input labels, exact waits, timing, paths, regression and copied core artifacts; no remote execution or independent efficacy",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "result_files_hashed": 120,
+  "support_files_hashed": 59,
+  "fixed_35_object_map_composed_from_prior_c4_and_three_verified_506_changes": true,
+  "cells": {
+    "default": {
+      "id": "20261101-074000-ws31-c2tag-r1-default",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf",
+      "ordered_hashes": {
+        "uid": {
+          "WS30_CHOICE": "db851f248b3cac3b04391d2e406726a0da730e969fef7834ce458cb237600ec5",
+          "WS30_ROUTE": "e71095603c738b4a6cf9bf5cf3e35c49ab58f905b8e21143e91c8d343f661275"
+        },
+        "uid_tag": {
+          "WS30_CHOICE": "4aa2097dd21ce81b046cfc4c4986c20ad0efe720ee096ca54afd72d1c4de7818",
+          "WS30_ROUTE": "a77cec7e7f0c89a40188558c9f8218ef87d5e61663024243db7ae66f2c486022"
+        }
+      },
+      "original_business_tags": {
+        "1": 24,
+        "2": 80
+      },
+      "actual_route_tag_hops": {
+        "1": 604008,
+        "2": 2160
+      },
+      "C2_exact_rows": 104,
+      "positive_waits": 80,
+      "wait_sum_ns": 18002,
+      "wait_max_ns": 497,
+      "choice_tag_literal_zero_checked": true
+    },
+    "remove": {
+      "id": "20261101-074000-ws31-c2tag-r1-remove",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+      "ordered_hashes": {
+        "uid": {
+          "WS30_CHOICE": "abaa81171db56b88a46eb360a8b7cebff20cd7ba4d60a45ab4e2480896a8732b",
+          "WS30_ROUTE": "4b6ac805c0198c79f5367524149a9c9b425a3f81e328796b76dd53ebd576bbba"
+        },
+        "uid_tag": {
+          "WS30_CHOICE": "f5efde4da9b2cedac9f7e661faf984d8c195b99457e9f86279c0f1ff23b133fb",
+          "WS30_ROUTE": "623d63f66a6372d993ecc43d86d1bf6591cc1749da78b6835b92a4edce469c35"
+        }
+      },
+      "original_business_tags": {
+        "1": 24,
+        "2": 80
+      },
+      "actual_route_tag_hops": {
+        "0": 606168
+      },
+      "C2_exact_rows": 104,
+      "positive_waits": 0,
+      "wait_sum_ns": 0,
+      "wait_max_ns": 0,
+      "choice_tag_literal_zero_checked": true
+    },
+    "swap": {
+      "id": "20261101-074000-ws31-c2tag-r1-swap",
+      "flows": 104,
+      "payload_bytes": 201981952,
+      "fct_sha256": "063d85d752706a71bbdb2a485d11c3dcaa3c86683efc2e70e13ac859e2a0504c",
+      "ordered_hashes": {
+        "uid": {
+          "WS30_CHOICE": "8b94b63b6585e07067ce198611a606c1548ff9df7c53b8ddf77a121e26dbee90",
+          "WS30_ROUTE": "34f1ebd3f7918f5282dd5e38913bacced41e21304faa15c9e56e0a069c96de61"
+        },
+        "uid_tag": {
+          "WS30_CHOICE": "5a828690587439f29255bf0d22377c14ecb2feb5139cef86dc9bdc4302e9bc73",
+          "WS30_ROUTE": "b80866ea3171ece4f96b2f13235dd8635f1cbe4064325ecf751abf085cadf857"
+        }
+      },
+      "original_business_tags": {
+        "1": 24,
+        "2": 80
+      },
+      "actual_route_tag_hops": {
+        "2": 604008,
+        "1": 2160
+      },
+      "C2_exact_rows": 104,
+      "positive_waits": 24,
+      "wait_sum_ns": 5771,
+      "wait_max_ns": 467,
+      "choice_tag_literal_zero_checked": true
+    },
+    "unknown-q12": {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-q12",
+      "flows": 6,
+      "payload_bytes": 28278,
+      "fct_sha256": "73c06eefabea64948fee03f7305ab0e89c455bf4dbc8df4374d6962565a5cf12",
+      "ordered_hashes": {
+        "uid": {
+          "WS30_CHOICE": "4812f0d0ce58ec1b4dd1b6abe5446efb35974e9f82fd6b1bf0610ebd7fbe88ce",
+          "WS30_ROUTE": "b5db993ce565b24bd2c6fc6a82ddf4932ef02b5d4b2e79115f8ba1de5ee0568d"
+        },
+        "uid_tag": {
+          "WS30_CHOICE": "82515bad802319dddb6dab7f219d39d644e905fce7d39494a0df37a93c272fd1",
+          "WS30_ROUTE": "6d2c7e9f5ff6b36d8a60f810e61142b2a4260c6ff4e2e8c4fc31fe22708e0bbe"
+        }
+      },
+      "original_business_tags": {
+        "0": 2,
+        "7": 2,
+        "99": 2
+      },
+      "actual_route_tag_hops": {
+        "0": 33,
+        "7": 33,
+        "99": 33
+      },
+      "C2_exact_rows": 0,
+      "positive_waits": 0,
+      "wait_sum_ns": 0,
+      "wait_max_ns": 0,
+      "choice_tag_literal_zero_checked": true
+    },
+    "unknown-c2": {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-c2",
+      "flows": 6,
+      "payload_bytes": 28278,
+      "fct_sha256": "73c06eefabea64948fee03f7305ab0e89c455bf4dbc8df4374d6962565a5cf12",
+      "ordered_hashes": {
+        "uid": {
+          "WS30_CHOICE": "4812f0d0ce58ec1b4dd1b6abe5446efb35974e9f82fd6b1bf0610ebd7fbe88ce",
+          "WS30_ROUTE": "b5db993ce565b24bd2c6fc6a82ddf4932ef02b5d4b2e79115f8ba1de5ee0568d"
+        },
+        "uid_tag": {
+          "WS30_CHOICE": "82515bad802319dddb6dab7f219d39d644e905fce7d39494a0df37a93c272fd1",
+          "WS30_ROUTE": "6d2c7e9f5ff6b36d8a60f810e61142b2a4260c6ff4e2e8c4fc31fe22708e0bbe"
+        }
+      },
+      "original_business_tags": {
+        "0": 2,
+        "7": 2,
+        "99": 2
+      },
+      "actual_route_tag_hops": {
+        "0": 33,
+        "7": 33,
+        "99": 33
+      },
+      "C2_exact_rows": 6,
+      "positive_waits": 0,
+      "wait_sum_ns": 0,
+      "wait_max_ns": 0,
+      "choice_tag_literal_zero_checked": true
+    }
+  },
+  "completed_flow_records": 324,
+  "completed_payload_bytes": 606002412,
+  "all_five_builds_before_any_run": true,
+  "core_artifacts_and_PASS_checked": true,
+  "copied_core_binary_hash_checked": true,
+  "core_binary_executed_by_root": false,
+  "old_q12_log_read_only_for_new_planned_uid_tag_normalization": true,
+  "new_or_repeated_simulations": false
+}

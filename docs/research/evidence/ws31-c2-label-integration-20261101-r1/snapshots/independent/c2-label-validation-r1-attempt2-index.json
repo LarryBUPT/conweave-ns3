@@ -1,0 +1,246 @@
+{
+  "status": "COMPLETE_FOR_C2_DECISION_LABEL_TECHNICAL_ACCEPTANCE_ONLY",
+  "scope": "Technical fix acceptance only, no performance ranking, new baseline or Ofan/RR work",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "plan_sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46",
+  "verified_result_files": 120,
+  "exact_C2_requests_checked": 318,
+  "source_objects_per_cell_per_phase": 35,
+  "source_git_tree_entries": 4836,
+  "build_details": [
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-default",
+      "duration": "6m42.248s",
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-remove",
+      "duration": "6m40.945s",
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-swap",
+      "duration": "6m42.921s",
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-q12",
+      "duration": "6m21.889s",
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-c2",
+      "duration": "6m16.509s",
+      "warnings": [
+        "../scratch/network-load-balance.cc:2083:66: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2113:70: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]",
+        "../scratch/network-load-balance.cc:2148:74: warning: dereferencing type-punned pointer will break strict-aliasing rules [-Wstrict-aliasing]"
+      ]
+    }
+  ],
+  "cells": [
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-default",
+      "name": "default",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\attempt2\\20261101-074000-ws31-c2tag-r1-default\\results",
+      "binary_sha256": "c5765571149df402a568b0d238b578b6f55b5bfb2faeafaad5ed76234b4dec66",
+      "fct_sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf",
+      "supporting_files": {
+        "remote-manifest.json": "1c51cbcfe3dbca77aa24909f3311f6ec6417929ab8175cb031737be5dc4785d6",
+        "acceptance.json": "2c96269d3de3830902baccc47dfdb7c046f608f23a1171fb0b051befea18883f",
+        "run-monitor.json": "c678be55e2bc2d6c5af48fb3ac038523452e6be9a85c6d2c164d8d3a1f1f8cdd",
+        "all-input-verifier.log": "01f0a24282f50ea6365d3235dec4a1f79dd11b96063df705019e769b5aa8b021",
+        "resources-before-run.json": "bbe4ec92abac14585672b22b99a7096c14f1f7554c81559eff781436caf6d6be",
+        "resources-after-run.json": "1788d877cb2af82f35150deba2adbb7ceff5c0e9f2b3a7b1c0ca6cd61bae5777"
+      }
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-remove",
+      "name": "remove",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\attempt2\\20261101-074000-ws31-c2tag-r1-remove\\results",
+      "binary_sha256": "705074994f5224db5089d372803580643f16c775eaf398421f9e3e0c3f80b1ff",
+      "fct_sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+      "supporting_files": {
+        "remote-manifest.json": "39ae4fab80208ec9b50e9068be2547a93e422a4880f1d3c05793255ba1d8345c",
+        "acceptance.json": "6f83de282fef5d4f360b00381da462c9591228c5a53cd0d436479f56c14764a8",
+        "run-monitor.json": "2930ac74598b7f969086a6b62ea15cd51e764e4f1f76fe75042e7974bf513fa7",
+        "all-input-verifier.log": "099502bf062ee70b3cf32e46d686424f980c8ee78827a92aafde86b05d5c83f2",
+        "resources-before-run.json": "076d9e5be102111c066d8383641baf0e0bd84251ab019270f176f90055157c6c",
+        "resources-after-run.json": "2f061e3b5f9cd2b54d6204b242541216ab76cad54fe052b86c951ee17c2b57e9"
+      }
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-swap",
+      "name": "swap",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\attempt2\\20261101-074000-ws31-c2tag-r1-swap\\results",
+      "binary_sha256": "64e30a1622dde3a024710f5799cec433594ab7f6740f7b674cff85a578dd861d",
+      "fct_sha256": "063d85d752706a71bbdb2a485d11c3dcaa3c86683efc2e70e13ac859e2a0504c",
+      "supporting_files": {
+        "remote-manifest.json": "89392ad83a0ed5c22ba6fffd045d3d0730ff726a8b5dfe8d365dba4a3db0ab79",
+        "acceptance.json": "77e1b1e79b9ba424c3c00e43e9b0e4704f8741bf19b9c20759064a60bd046515",
+        "run-monitor.json": "890140675979cb13bd2ac2818746aef2830f1ee867bbb6d7f4ceb1bf492893a1",
+        "all-input-verifier.log": "6a9c65f999275d7eca05b66566e2744dead54a768360cad3ded7d5ecabde909a",
+        "resources-before-run.json": "0293eb4ccbcac5bf04cc074b34f67a4b333027bb85650e9cbffe814a63a1653f",
+        "resources-after-run.json": "075a2cb5385cca125935bea28d9a538d3ba02e286e5acbac72bca24414cf009b"
+      }
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-q12",
+      "name": "unknown-q12",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\attempt2\\20261101-074000-ws31-c2tag-r1-unknown-q12\\results",
+      "binary_sha256": "286eae6a9d73df5ff1016558ffb228baf805f7a4fd1d995a33cf20d5ac6ab278",
+      "fct_sha256": "73c06eefabea64948fee03f7305ab0e89c455bf4dbc8df4374d6962565a5cf12",
+      "supporting_files": {
+        "remote-manifest.json": "860d2ccb7b302416b4c807ad0ead38693e508e91b55dadb017bc41cb2dc41a46",
+        "acceptance.json": "6c60f74886c6621871e8315ac813312e837d506ba0ceebe606d760ddede58f13",
+        "run-monitor.json": "3acc4b420a192a28ebad99a7898cfe34a9f1bb4d866b755c13869a076b16227a",
+        "all-input-verifier.log": "24c0dd077251e435256ae2749c71e108006f8775ed2bf2651dde1d6622229061",
+        "resources-before-run.json": "efd3f92682381c89081947020334c50f57087cf45ce5e721d0a58c25faa1a0bf",
+        "resources-after-run.json": "cc6c748daabcca06d6fdface710267e76fe0ba9a0ad4130caad2079b0d4abb85"
+      }
+    },
+    {
+      "id": "20261101-074000-ws31-c2tag-r1-unknown-c2",
+      "name": "unknown-c2",
+      "status": "PASS",
+      "results_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\c2-label-validation-r1-evidence\\attempt2\\20261101-074000-ws31-c2tag-r1-unknown-c2\\results",
+      "binary_sha256": "169a293407047fbf06f8446b5a38f07f1c05daa041ef4f2301e4e8c815eb79a3",
+      "fct_sha256": "73c06eefabea64948fee03f7305ab0e89c455bf4dbc8df4374d6962565a5cf12",
+      "supporting_files": {
+        "remote-manifest.json": "c31cabe94dde52bbe41b33388f92bb6d1003c0ae067476574dc7f6dc3a3d18f0",
+        "acceptance.json": "6a9143c4e297c305b741c535e6039a9b249ac28e391bfff9f3a2ffc967944c79",
+        "run-monitor.json": "d0c3d8f36437b5ce69718ab7e25dd1496b21621976541cef5c9a7a4f8b846778",
+        "all-input-verifier.log": "7e77c4f5ea6871fd66803cd1939470798abbd8534db1f697126452a2414f7487",
+        "resources-before-run.json": "9a2df4ae20bf917a6ee7a4679d9cee06de129030081deb8e6a304afc09409e00",
+        "resources-after-run.json": "5f52ed326655b66f5418e2b8219f11eaca3f3eb238203d842d4e937849e9cbc5"
+      }
+    }
+  ],
+  "documents": {
+    "c2-label-validation-r1-attempt2-receipt.json": {
+      "bytes": 242151,
+      "sha256": "128ecd2a4109815086ad42334052d2d3dd9d4487ddb822b5e12913fac7922677"
+    },
+    "c2-label-validation-r1-attempt2-report.md": {
+      "bytes": 6659,
+      "sha256": "1a17c7f12d2f007b25eed9213de0bd3efe6e42d0c9147260b65a8273137c3ec5"
+    },
+    "c2-label-validation-r1-attempt2-handoff.md": {
+      "bytes": 4483,
+      "sha256": "70e45d36685496597cdf5bced69e0c823056bb75ed786fdb2c86b1267e1d7784"
+    },
+    "c2-label-validation-r1-attempt2-driver.py": {
+      "bytes": 22362,
+      "sha256": "8ebceb21f9228d9d6a4ab1de8f92ee04599df5b96f7113e3eaf8038806678c4a"
+    },
+    "c2-label-validation-r1-attempt2-core-receipt.json": {
+      "bytes": 1543,
+      "sha256": "44d4c9191e0f0d38e341008311f3cddffbe5905130de4be8735d70b326d01752"
+    },
+    "c2-label-validation-r1-attempt2-phase-order.json": {
+      "bytes": 15190,
+      "sha256": "cb70e8ce8001af822d6d185f7a46a19d5ce942b82f99efeb8d9dbd75f1ba8cbc"
+    },
+    "c2-label-validation-r1-attempt2-cache-prerequisite.json": {
+      "bytes": 751,
+      "sha256": "3642dfe9cd7d61ab2ffd406962f30c5f452d337d66a921b3ca94a05825f8c7e4"
+    },
+    "c2-label-validation-r1-attempt2-sources-established.json": {
+      "bytes": 4034,
+      "sha256": "d35f895d56737d352a98155641cb5cc34cba6b2b7946f2489effa606beb1540e"
+    },
+    "c2-label-validation-r1-attempt2-all-builds-verified.json": {
+      "bytes": 23926,
+      "sha256": "103c20b245215f853ac7c37038cfcb6cc598e42d0dcdebf4b482f28bb02b559b"
+    },
+    "c2-label-validation-r1-attempt2-build-resources.json": {
+      "bytes": 429,
+      "sha256": "8c39c2e5cad3900ca4aa54f90f77786c3926d920d4b0961bb6912692cee5ac5a"
+    },
+    "c2-label-validation-r1-attempt2-frozen-plan.json": {
+      "bytes": 7358,
+      "sha256": "96f81afe9eca873ab79faca540a14416c2421a420fc9eb81c96d1a0d0fbc3e46"
+    },
+    "c2-label-validation-r1-attempt2-frozen-plan.md": {
+      "bytes": 2596,
+      "sha256": "fcdecd5347d494f54af0a0f3ddb5e12a11a4ffe594c4d966869402f9bf98fb6d"
+    },
+    "c2-label-validation-r1-attempt2-verifier.py": {
+      "bytes": 4364,
+      "sha256": "35bc985fc4089e847bda69f155e4d8d9f8d0cbb0199a53bb1c56086277bddfdf"
+    },
+    "c2-label-validation-r1-attempt2-source-git-tree.txt": {
+      "bytes": 467881,
+      "sha256": "4a099c8adbb23f483f31af1d5f6d803e067e1b34d25627b1828bc458eb92ccfa"
+    },
+    "c2-label-validation-r1-attempt2-reference-review.json": {
+      "bytes": 1842,
+      "sha256": "42eebe047a5eb79e1aeeba28c53fe30044a16eef229e8846ef98cffa518769eb"
+    },
+    "c2-label-validation-r1-attempt2-reference-integrity.json": {
+      "bytes": 1265,
+      "sha256": "755a50d0f826ee97e50e0b44216d0117045977f8473ac6f0884fea5ce3a9120f"
+    },
+    "c2-label-validation-r1-attempt2-ignore-policy.txt": {
+      "bytes": 99,
+      "sha256": "2dc50db3e09cb8dd2e82dcfb948052103e1647bff6cd783f73f704f6219b9349"
+    }
+  },
+  "dependencies": {
+    "main-mode-dynamic-r1-driver.py": "88924fa381dfba6f25b73a35d2d2eb6c63787c22e4242b95692d99dbd52d6443",
+    "zero-control-pilot-r1-driver.py": "77ca3d6d444464be5a26a292f3eafebb3995c2e04198791c9bb888d3ba2985a5"
+  },
+  "environment_pause": {
+    "attempt1_manifest": "c2-label-validation-r1-evidence\\attempt1\\manifest.json",
+    "manifest_sha256": "c12a6616ecded93b244d3e004952fb17d6e2f94e1a8464470e88efb38340de72",
+    "snapshot_count": 9,
+    "meaning": "Pre-experiment environment pause, no core/build/run failure; no remote ID had existed",
+    "attempt2_cache_reuse": "c2-label-validation-r1-attempt2-cache-prerequisite.json",
+    "network_fetch_repeated_in_attempt2": false
+  },
+  "references": {
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c2\\results\\raw\\872773244\\872773244_out_fct.txt": {
+      "bytes": 4571,
+      "sha256": "95383071a639da873649c8597b6044082ce768d4539d0728a64cfe66dfa0fbdf"
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c2\\results\\raw\\872773244\\config.log": {
+      "bytes": 77151174,
+      "sha256": "5e4b45e1a9661067b472c40e3438a4b50c4a4c44e2b46542e273ac1d2616386f"
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results\\raw\\556477970\\556477970_out_fct.txt": {
+      "bytes": 4569,
+      "sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616"
+    },
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results\\raw\\556477970\\config.log": {
+      "bytes": 77121236,
+      "sha256": "300c728daa973ecae2ba825106f76ca007bf579665b62534ed6c717e3a580d5a"
+    }
+  },
+  "created_utc": "2026-11-01T00:23:47.428226+00:00",
+  "main_acceptance": {
+    "receipt": "../main/evidence/c2-label-pilot-main-acceptance-r1.json",
+    "schema_correction": "../main/evidence/c2-label-main-verifier-schema-correction-r1.json",
+    "schema": "CHOICE tag is literal0; actual policy packet tags checked only on ROUTE",
+    "raw_or_source_changes": false
+  }
+}

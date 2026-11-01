@@ -1,0 +1,27 @@
+{
+  "date_utc": "2026-11-01T00:22:31.583002+00:00",
+  "node": "C2 label/default/unknown technical main acceptance",
+  "entry_points": [
+    "E:/研/毕业论文/参考文献/候选/README.md",
+    "E:/研/毕业论文/参考文献/候选/reading-log.md"
+  ],
+  "sources": [
+    {
+      "version": "CASSINI NSDI2024 final19-page PDF, section6 PDFpage13",
+      "url": "https://www.usenix.org/system/files/nsdi24-rajasekaran.pdf",
+      "borrow": "Time shifts and explicit legacy-background assumptions; C2 keeps original request origin and tests background costs",
+      "difference": "Job period/global placement vs already-arrived local QP hash delay"
+    },
+    {
+      "version": "Karuna SIGCOMM2016 author14-page PDF, abstract",
+      "url": "https://cse.hkust.edu.hk/~kaichen/papers/karuna-sigcomm16.pdf",
+      "borrow": "Joint criteria for mixed traffic; retain non-target costs",
+      "difference": "Deadline/rate/priority control vs unchanged DCQCN and bounded launch delay"
+    }
+  ],
+  "baseline_additions": [],
+  "Ofan": "paused",
+  "effects_extrapolated": false,
+  "applied_next": "C1 remaining controls; C2 unified/size timing and background effects remain required",
+  "node_report": "c2-label-node5-handoff.md"
+}

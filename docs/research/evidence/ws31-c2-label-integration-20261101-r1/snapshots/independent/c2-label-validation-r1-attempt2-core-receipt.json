@@ -1,0 +1,39 @@
+{
+  "compiler_version": "g++ (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609",
+  "steps": [
+    {
+      "name": "c2-core-compile",
+      "exit_code": 0,
+      "cwd": "/home/fnl/lzy/runs/20261101-074000-ws31-c2tag-r1-default/source",
+      "argv": [
+        "g++",
+        "-std=c++11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-pedantic",
+        "tests/ws31_start_test.cc",
+        "-o",
+        "/home/fnl/lzy/results/20261101-074000-ws31-c2tag-r1-default/technical/c2-core/ws31-start-test"
+      ],
+      "log": "/home/fnl/lzy/results/20261101-074000-ws31-c2tag-r1-default/logs/c2-core-compile.log"
+    },
+    {
+      "name": "c2-core-run",
+      "exit_code": 0,
+      "cwd": "/home/fnl/lzy/runs/20261101-074000-ws31-c2tag-r1-default/source",
+      "argv": [
+        "/home/fnl/lzy/results/20261101-074000-ws31-c2tag-r1-default/technical/c2-core/ws31-start-test"
+      ],
+      "log": "/home/fnl/lzy/results/20261101-074000-ws31-c2tag-r1-default/logs/c2-core-run.log"
+    }
+  ],
+  "assertions_enabled_symbol": "__assert_fail",
+  "source_hashes": {
+    "src/point-to-point/model/ws31-start.h": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba",
+    "tests/ws31_start_test.cc": "5f523030e5050e44aa1128a242a9cf5ac7499027bc7da1b3bf4c99d903c4c4b1"
+  },
+  "binary": "/home/fnl/lzy/results/20261101-074000-ws31-c2tag-r1-default/technical/c2-core/ws31-start-test",
+  "status": "PASS",
+  "binary_sha256": "2592280229337566ea98bd6218a19523143ae521b5fbb9b69dcb529ba3c31238"
+}

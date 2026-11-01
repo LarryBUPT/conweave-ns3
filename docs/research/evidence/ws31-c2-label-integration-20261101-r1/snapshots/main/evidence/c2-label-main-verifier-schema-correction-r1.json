@@ -1,0 +1,14 @@
+{
+  "recorded_utc": "2026-11-01T00:18:05.243705+00:00",
+  "kind": "Main verifier schema correction; no simulation/code/result change",
+  "old_verifier_sha256": "a82973483555df87beebf4948a275072d4b7047bb36852405e0948520d2cb7c5",
+  "new_verifier_sha256": "9c9dc9b575bd60223279e8d1ab8e7fde46bed815b9fa6fcfec1194126dca1932",
+  "old_script_snapshot": "evidence/c2-label-main-verifier-pre-correction-r1.py",
+  "finding": "QueuePin DoLbWs30V13 intentionally calls Ws30Choice with literal0; WS30_ROUTE reads actual packet WorkloadTag. Initial main checker incorrectly required CHOICE tag to equal packet tag.",
+  "source_sha": "50603927fc09a68d9f2e038129aaee3a3d021081",
+  "source_locator": "src/point-to-point/model/switch-node.cc:1384 and model/ws30-observer.h Ws30Choice/Ws30Route",
+  "observed": "default first CHOICE tag0 vs business/policy tag1; all actual ROUTE tags match expected intervention in default/swap/unknown scans",
+  "correction": "Require CHOICE tag0 and ROUTE tag==policy label. Keep all raw FCT/ordered-stream regression requirements unchanged.",
+  "prior_runs": "default/swap/unknown checks failed early in checker; no acceptance receipts written; remove already passed and identical tag0 condition remains",
+  "scientific_failure": false
+}
