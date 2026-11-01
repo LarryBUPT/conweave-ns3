@@ -1,0 +1,10 @@
+{
+  "status": "LOCAL_LOG_EXTRACTOR_STDOUT_ONLY_ASSUMPTION_FAILED",
+  "command_kind": "read-only Python artifact extraction",
+  "failed_assertion": "any(-std=gnu++11 in command for command in stdout-only matches)",
+  "traceback": "File <stdin>, line 8: AssertionError",
+  "actual_stdout_command_matches": 0,
+  "diagnosis": "Waf verbose runner argv records are in original build.stderr; original build and fixture exits remain 0",
+  "correction": "Parse both saved stdout and stderr; exact argv from runner list via ast.literal_eval",
+  "scientific_reruns_or_source_plan_changes": 0
+}

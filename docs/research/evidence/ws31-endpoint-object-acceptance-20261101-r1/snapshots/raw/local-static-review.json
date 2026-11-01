@@ -1,0 +1,108 @@
+{
+  "at_utc": "2026-11-01T09:22:29.961141+00:00",
+  "status": "PASS_STATIC_REVIEW_FOR_ONE_ISOLATED_BUILD_AND_NEW_OBJECT_FIXTURE",
+  "plan_sha256": "d91892f73bc6a6b45c0541f2c588ba59ba3fd3694ec75a75e35be5265dd5b255",
+  "source_sha": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "parent_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "branch": "feature/ws31-candidates",
+  "local_status": "clean",
+  "origin": "https://github.com/LarryBUPT/conweave-ns3.git",
+  "origin_tracking_ref": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "tree_entries": 4847,
+  "tree_sha256": "8096510b5b068ef31269f88d836112a6e53b2b351984694bc796a0a4a4c05855",
+  "source_files": {
+    "scratch/ws31-endpoint-object-test.cc": {
+      "working_sha256": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5",
+      "git_blob_sha256": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5",
+      "git_blob": "f9d52c17d22eace4260932867d9c509815486197",
+      "CRLF_normalized_bytes_equal_blob": true,
+      "working_bytes": 15767,
+      "git_bytes": 15767
+    },
+    "src/point-to-point/model/qbb-net-device.h": {
+      "working_sha256": "7007de27f3a3faae3411e171b35c109099df3a3f3a62f84e294e2de6ee1f602c",
+      "git_blob_sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+      "git_blob": "8b649b24fd831af40a67c4d229b9eae27719e4cb",
+      "CRLF_normalized_bytes_equal_blob": true,
+      "working_bytes": 7514,
+      "git_bytes": 7283
+    },
+    "src/point-to-point/model/ws31-endpoint-probe.h": {
+      "working_sha256": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892",
+      "git_blob_sha256": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892",
+      "git_blob": "41658298f15420089ff397b6b99a7b597d0b6b29",
+      "CRLF_normalized_bytes_equal_blob": true,
+      "working_bytes": 19658,
+      "git_bytes": 19658
+    }
+  },
+  "accepted_core_inputs_unchanged": {
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+    "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+  },
+  "diff_name_status": [
+    "A\tscratch/ws31-endpoint-object-test.cc",
+    "M\tsrc/point-to-point/model/qbb-net-device.h",
+    "A\tsrc/point-to-point/model/ws31-endpoint-probe.h"
+  ],
+  "prior_artifacts_sha256": {
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-qa.json": "8df86482836a2f4850dace134930eba9df20bfdac6be0610574a2c3c62d865b5",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-report.md": "f35beedb11fbb40e2c07121d8156360e1c88f968ebb871090d4fe1910103ce30",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-review.json": "e401fcc8f2c4b2954224d228d4891b07280d4341f03b09ae9e987753d6cb5ff9",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-qa.json": "bc2a8f6c30d18c48cc04502c98fc64ad0786a73b457694004bf76ad28f90bcfe",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-report.md": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-review.json": "aa54af2b05c870e356e32e53d855c0a4175d4e00b38a314d39cad35a84cad12c",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-index.json": "5c8fd34433da0d8d5d317f5c2d4b545e8e2a6657834af67b856a7d778a194b68",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-qa.json": "16a64faf700cfecdd14e6a10a4cfd90698cc7b3c2094f2af1394f76ce81e7ce4",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-guards-released.json": "c683329580d2b1cd7dd2918cb5655f5c60e79363d45e1168d83f4a29389a4917",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-probe-wip-r1-preserved\\qbb-net-device.h": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-probe-wip-r1-preserved\\ws31-endpoint-probe.h": "708149f395414868b15a98f5cf56e1d8cd8b75d158649393ee36990ce258a75f",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-ledger-wip-r1-preserved\\ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-ledger-wip-r1-preserved\\ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+  },
+  "local_verifier_correction": {
+    "status": "LOCAL_VERIFIER_ASSUMPTION_FAILED_NOT_SOURCE_CHANGE",
+    "before_remote_actions": true,
+    "command": [
+      "python",
+      "-"
+    ],
+    "failed_assertion": "sha(working)==plan_hash and working==git_blob",
+    "traceback": "File <stdin>, line 16: AssertionError",
+    "file": "src/point-to-point/model/qbb-net-device.h",
+    "working_sha256": "7007de27f3a3faae3411e171b35c109099df3a3f3a62f84e294e2de6ee1f602c",
+    "fixed_blob_and_plan_sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+    "working_bytes": 7514,
+    "git_bytes": 7283,
+    "diagnosis": "231 CRLF sequences versus LF; otherwise exactly equal; Git working tree clean",
+    "correction": "Check frozen plan hashes against fixed Git blobs; separately record working-byte hashes and prove exact CRLF normalization equivalence",
+    "source_main_plan_or_criteria_changes": 0,
+    "partial_original_output_preserved": "frozen-source/scratch/ws31-endpoint-object-test.cc from initial attempt, unchanged"
+  },
+  "static_review": {
+    "material_defects": [],
+    "P1": "actual setup driver/HW/NIC/group bindings; savedTX independent completion/pending/timers plus exactly one selected-group occurrence",
+    "P2": "frozen nodes/types/interfaces/physical queues and all host driver/NIC bindings; loopback only exclusion and empty nonsend group; no sharing or duplicate QP",
+    "P3": "live TX/RX Ptr checked before dereference and live addresses recorded",
+    "old_NS3_CXX": "module exports and helper APIs verified; private Scope types have outer friend access; both friend classes in ns3; inherited protected accesses through Qbb device; gnu++11 selected by waf-tools/cflags.py",
+    "fixture_count": "8 paired=16 Read;14 refused Read;1 incomplete-mask Read;1 Capture refusal without Read:31 reads/16 total refusals",
+    "protocol_purity": "explicit state strings compared before/middle/after; FNV display only; capture GetObject outside fingerprints; Read avoids mutable getters",
+    "initialization": "all fields used in current fingerprints have ctor/default/setup initialization; queue RR/last fields initialized",
+    "events": "four future Noop callbacks not run; Simulator::Destroy may run teardown callbacks but not those future events; no Simulator::Run/AddQueuePair",
+    "mask": "127 excludes SWITCH_STATE and deliberate core refusal",
+    "nonblocking_limits": [
+      "defined fields only, not arbitrary scheduler-state purity",
+      "normal output equality compares selected fields; no natural transport proof",
+      "new slot manually appended, not second-generation sending"
+    ]
+  },
+  "execution_counts": {
+    "remote": 0,
+    "sync": 0,
+    "build": 0,
+    "new_fixture": 0,
+    "network": 0,
+    "old_core_rerun": 0
+  },
+  "guard": "held until terminal calls and explicit release"
+}

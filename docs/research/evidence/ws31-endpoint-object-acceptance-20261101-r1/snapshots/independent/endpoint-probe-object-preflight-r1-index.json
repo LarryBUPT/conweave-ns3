@@ -1,0 +1,1916 @@
+{
+  "schema_version": 1,
+  "at_utc": "2026-11-01T09:54:17.188998+00:00",
+  "status": "PASS_ACTUAL_OBJECT_PROBE_PREFLIGHT_ONLY",
+  "id": "20261101-173000-ws31-endpoint-object-r1",
+  "source_sha": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "parent_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "branch": "feature/ws31-candidates",
+  "plan": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\endpoint-probe-object-preflight-r1.json",
+    "sha256": "d91892f73bc6a6b45c0541f2c588ba59ba3fd3694ec75a75e35be5265dd5b255"
+  },
+  "source": {
+    "tree_entries": 4847,
+    "source_bytes": 284719415,
+    "tree_sha256": "8096510b5b068ef31269f88d836112a6e53b2b351984694bc796a0a4a4c05855",
+    "source_files_manifest_sha256": "925ad9febf1da78b33a87af8898f44485c376336d73743371e788f3917d7119f",
+    "Git_fixed_source_sha256": {
+      "scratch/ws31-endpoint-object-test.cc": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5",
+      "src/point-to-point/model/qbb-net-device.h": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+      "src/point-to-point/model/ws31-endpoint-probe.h": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892"
+    },
+    "working_and_blob_provenance": {
+      "scratch/ws31-endpoint-object-test.cc": {
+        "working_sha256": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5",
+        "git_blob_sha256": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5",
+        "git_blob": "f9d52c17d22eace4260932867d9c509815486197",
+        "CRLF_normalized_bytes_equal_blob": true,
+        "working_bytes": 15767,
+        "git_bytes": 15767
+      },
+      "src/point-to-point/model/qbb-net-device.h": {
+        "working_sha256": "7007de27f3a3faae3411e171b35c109099df3a3f3a62f84e294e2de6ee1f602c",
+        "git_blob_sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+        "git_blob": "8b649b24fd831af40a67c4d229b9eae27719e4cb",
+        "CRLF_normalized_bytes_equal_blob": true,
+        "working_bytes": 7514,
+        "git_bytes": 7283
+      },
+      "src/point-to-point/model/ws31-endpoint-probe.h": {
+        "working_sha256": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892",
+        "git_blob_sha256": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892",
+        "git_blob": "41658298f15420089ff397b6b99a7b597d0b6b29",
+        "CRLF_normalized_bytes_equal_blob": true,
+        "working_bytes": 19658,
+        "git_bytes": 19658
+      }
+    },
+    "isolated_source": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+    "local_status_before_after": "clean",
+    "all_source_hashes_unchanged_after_build_and_fixture": true,
+    "accepted_core_inputs_unchanged": {
+      "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "tests/ws31_endpoint_ledger_test.cc": "da24c329cff2c8e118fe19653e9b76a1926fd9a295b55009a11b4b7a0765ba49"
+    }
+  },
+  "static_review": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\local-static-review.json",
+  "commands": {
+    "sync": {
+      "argv": [
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=10",
+        "-o",
+        "ConnectionAttempts=1",
+        "-o",
+        "ServerAliveInterval=15",
+        "-o",
+        "ServerAliveCountMax=2",
+        "-o",
+        "ClearAllForwardings=yes",
+        "fnl@10.112.14.167",
+        "python3 /home/fnl/lzy/.research-workflow/remote_worker.py sync --repo https://github.com/LarryBUPT/conweave-ns3.git --sha 8cd1ba69469bf80143d5c89edc17fa72611018e8"
+      ],
+      "start_utc": "2026-11-01T09:26:21.197490+00:00",
+      "authorized_sync_number": 1,
+      "deploy_count": 0,
+      "exit": 0,
+      "end_utc": "2026-11-01T09:26:24.641481+00:00",
+      "terminal": true
+    },
+    "source_build_driver": {
+      "argv": [
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=10",
+        "-o",
+        "ServerAliveInterval=15",
+        "-o",
+        "ServerAliveCountMax=2",
+        "-o",
+        "ClearAllForwardings=yes",
+        "fnl@10.112.14.167",
+        "python3 -"
+      ],
+      "stdin_script": "remote-source-build.py",
+      "stdin_sha256": "6e5018a24dd08cd074f8ce61785f351ffdaa8e7a779d29bee17ba4f4ca0c9d57",
+      "start_utc": "2026-11-01T09:28:40.681834+00:00",
+      "configure_argv": [
+        "./waf",
+        "configure",
+        "--build-profile=optimized"
+      ],
+      "full_build_argv": [
+        "./waf",
+        "-j2",
+        "-v"
+      ],
+      "verbosity_flag": "records compiler commands; no build/criteria/source change",
+      "one_build_authorized": true,
+      "exit": 0,
+      "end_utc": "2026-11-01T09:35:10.742954+00:00",
+      "terminal": true
+    },
+    "configure": {
+      "argv": [
+        "./waf",
+        "configure",
+        "--build-profile=optimized"
+      ],
+      "cwd": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+      "elapsed_seconds": 14.214014176279306,
+      "end_utc": "2026-11-01T09:29:12Z",
+      "environment": {
+        "HOME": "/home/fnl",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "LOGNAME": "fnl",
+        "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "PWD": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+        "TMPDIR": "/home/fnl/lzy/results/20261101-173000-ws31-endpoint-object-r1/tmp",
+        "TZ": "UTC",
+        "USER": "fnl",
+        "WS30_COMPOSITION": "0",
+        "WS30_LIFECYCLE": "0",
+        "WS30_LIFE_PROFILE": "0",
+        "WS30_OBSERVE": "0",
+        "WS30_TAG_TRANSFORM": "0",
+        "WS31_LABEL_PROFILE": "0"
+      },
+      "exit": 0,
+      "pid": 308120,
+      "resources_after": {
+        "at_utc": "2026-11-01T09:29:12Z",
+        "disk_available_gib": 2290.444221496582,
+        "load": [
+          0.49,
+          0.11,
+          0.04
+        ],
+        "mem_available_gib": 122.51343536376953
+      },
+      "resources_before": {
+        "at_utc": "2026-11-01T09:28:58Z",
+        "disk_available_gib": 2290.446075439453,
+        "load": [
+          0.16,
+          0.03,
+          0.01
+        ],
+        "mem_available_gib": 122.51364517211914
+      },
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kib": 33780,
+        "minor_faults": 255298,
+        "system_seconds": 1.068,
+        "user_seconds": 1.924
+      },
+      "start_utc": "2026-11-01T09:28:58Z",
+      "stderr": "logs/configure.stderr",
+      "stderr_sha256": "d2d7c82bcfaca878427f09b2ffb5030237ce5c7c6863b5df27a24fbcb407d0af",
+      "stdout": "logs/configure.stdout",
+      "stdout_sha256": "903c2bdecfef6a3c621bd490b46ca71b687d3faaff4bb202121af764fe0b64b7",
+      "wait_status": 0
+    },
+    "full_build": {
+      "argv": [
+        "./waf",
+        "-j2",
+        "-v"
+      ],
+      "cwd": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+      "elapsed_seconds": 358.50653789937496,
+      "end_utc": "2026-11-01T09:35:10Z",
+      "environment": {
+        "HOME": "/home/fnl",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "LOGNAME": "fnl",
+        "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "PWD": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+        "TMPDIR": "/home/fnl/lzy/results/20261101-173000-ws31-endpoint-object-r1/tmp",
+        "TZ": "UTC",
+        "USER": "fnl",
+        "WS30_COMPOSITION": "0",
+        "WS30_LIFECYCLE": "0",
+        "WS30_LIFE_PROFILE": "0",
+        "WS30_OBSERVE": "0",
+        "WS30_TAG_TRANSFORM": "0",
+        "WS31_LABEL_PROFILE": "0"
+      },
+      "exit": 0,
+      "pid": 308359,
+      "resources_after": {
+        "at_utc": "2026-11-01T09:35:10Z",
+        "disk_available_gib": 2289.8296089172363,
+        "load": [
+          2.03,
+          1.5,
+          0.71
+        ],
+        "mem_available_gib": 122.50623321533203
+      },
+      "resources_before": {
+        "at_utc": "2026-11-01T09:29:12Z",
+        "disk_available_gib": 2290.4442176818848,
+        "load": [
+          0.49,
+          0.11,
+          0.04
+        ],
+        "mem_available_gib": 122.51343536376953
+      },
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kib": 603088,
+        "minor_faults": 35828335,
+        "system_seconds": 72.984,
+        "user_seconds": 660.54
+      },
+      "start_utc": "2026-11-01T09:29:12Z",
+      "stderr": "logs/build.stderr",
+      "stderr_sha256": "2e2f6b7eb7490ce52b147cebc6ee2e63f15614b5b20453b2a2be9377411193e7",
+      "stdout": "logs/build.stdout",
+      "stdout_sha256": "100b1e8cdb41279d009f14362524831b7b2a2b036fdecfcc0e7bc6ae2cd93d9c",
+      "wait_status": 0
+    },
+    "fixture": {
+      "argv": [
+        "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/scratch/ws31-endpoint-object-test"
+      ],
+      "cwd": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+      "elapsed_seconds": 0.046228863298892975,
+      "end_utc": "2026-11-01T09:37:08Z",
+      "environment": {
+        "HOME": "/home/fnl",
+        "LANG": "C",
+        "LC_ALL": "C",
+        "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build",
+        "LOGNAME": "fnl",
+        "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "PWD": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+        "TMPDIR": "/home/fnl/lzy/results/20261101-173000-ws31-endpoint-object-r1/tmp",
+        "TZ": "UTC",
+        "USER": "fnl",
+        "WS30_COMPOSITION": "0",
+        "WS30_LIFECYCLE": "0",
+        "WS30_LIFE_PROFILE": "0",
+        "WS30_OBSERVE": "0",
+        "WS30_TAG_TRANSFORM": "0",
+        "WS31_LABEL_PROFILE": "0"
+      },
+      "exit": 0,
+      "pid": 310625,
+      "resources_after": {
+        "at_utc": "2026-11-01T09:37:08Z",
+        "disk_available_gib": 2289.6606979370117,
+        "load": [
+          0.29,
+          1.01,
+          0.62
+        ],
+        "mem_available_gib": 122.49424362182617
+      },
+      "resources_before": {
+        "at_utc": "2026-11-01T09:37:08Z",
+        "disk_available_gib": 2289.660713195801,
+        "load": [
+          0.29,
+          1.01,
+          0.62
+        ],
+        "mem_available_gib": 122.49480438232422
+      },
+      "rusage": {
+        "major_faults": 0,
+        "max_rss_kib": 26084,
+        "minor_faults": 885,
+        "system_seconds": 0.012,
+        "user_seconds": 0.032
+      },
+      "start_utc": "2026-11-01T09:37:08Z",
+      "stderr": "logs/fixture.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "logs/fixture.stdout",
+      "stdout_sha256": "f46d2331a9a542b8f7a2e6526dedf168131c4a1fee5d0ec7c44a8e1320419aa6",
+      "wait_status": 0
+    },
+    "exact_compiler_link": {
+      "status": "PASS_EXACT_FIXTURE_COMPILER_AND_LINK_ARGV_EXTRACTION",
+      "build_stdout_sha256": "100b1e8cdb41279d009f14362524831b7b2a2b036fdecfcc0e7bc6ae2cd93d9c",
+      "build_stderr_sha256": "2e2f6b7eb7490ce52b147cebc6ee2e63f15614b5b20453b2a2be9377411193e7",
+      "runner_command_records": 724,
+      "fixture_compile": {
+        "stream": "stderr",
+        "argv": [
+          "/usr/bin/g++",
+          "-O3",
+          "-g",
+          "-std=gnu++11",
+          "-march=native",
+          "-Wno-error=deprecated-declarations",
+          "-fstrict-aliasing",
+          "-Wstrict-aliasing",
+          "-pthread",
+          "-I.",
+          "-I..",
+          "-DHAVE_PACKET_H=1",
+          "-DHAVE_SQLITE3=1",
+          "-DHAVE_IF_TUN_H=1",
+          "../scratch/ws31-endpoint-object-test.cc",
+          "-c",
+          "-o",
+          "scratch/ws31-endpoint-object-test.cc.5.o"
+        ],
+        "line": "09:30:06 runner ['/usr/bin/g++', '-O3', '-g', '-std=gnu++11', '-march=native', '-Wno-error=deprecated-declarations', '-fstrict-aliasing', '-Wstrict-aliasing', '-pthread', '-I.', '-I..', '-DHAVE_PACKET_H=1', '-DHAVE_SQLITE3=1', '-DHAVE_IF_TUN_H=1', '../scratch/ws31-endpoint-object-test.cc', '-c', '-o', 'scratch/ws31-endpoint-object-test.cc.5.o']"
+      },
+      "fixture_link": {
+        "stream": "stderr",
+        "argv": [
+          "/usr/bin/g++",
+          "-pthread",
+          "scratch/ws31-endpoint-object-test.cc.5.o",
+          "-o",
+          "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/scratch/ws31-endpoint-object-test",
+          "-Wl,-Bstatic",
+          "-Wl,-Bdynamic",
+          "-Wl,--no-as-needed",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-L.",
+          "-lns3.19-test-optimized",
+          "-lns3.19-csma-layout-optimized",
+          "-lns3.19-point-to-point-layout-optimized",
+          "-lns3.19-netanim-optimized",
+          "-lns3.19-lte-optimized",
+          "-lns3.19-spectrum-optimized",
+          "-lns3.19-antenna-optimized",
+          "-lns3.19-aodv-optimized",
+          "-lns3.19-dsdv-optimized",
+          "-lns3.19-dsr-optimized",
+          "-lns3.19-mesh-optimized",
+          "-lns3.19-olsr-optimized",
+          "-lns3.19-csma-optimized",
+          "-lns3.19-wimax-optimized",
+          "-lns3.19-applications-optimized",
+          "-lns3.19-point-to-point-optimized",
+          "-lns3.19-virtual-net-device-optimized",
+          "-lns3.19-uan-optimized",
+          "-lns3.19-energy-optimized",
+          "-lns3.19-flow-monitor-optimized",
+          "-lns3.19-nix-vector-routing-optimized",
+          "-lns3.19-tap-bridge-optimized",
+          "-lns3.19-internet-optimized",
+          "-lns3.19-bridge-optimized",
+          "-lns3.19-mpi-optimized",
+          "-lns3.19-wifi-optimized",
+          "-lns3.19-buildings-optimized",
+          "-lns3.19-propagation-optimized",
+          "-lns3.19-mobility-optimized",
+          "-lns3.19-config-store-optimized",
+          "-lns3.19-tools-optimized",
+          "-lns3.19-stats-optimized",
+          "-lns3.19-emu-optimized",
+          "-lns3.19-topology-read-optimized",
+          "-lns3.19-network-optimized",
+          "-lns3.19-core-optimized",
+          "-lrt",
+          "-lsqlite3"
+        ],
+        "line": "09:35:08 runner ['/usr/bin/g++', '-pthread', 'scratch/ws31-endpoint-object-test.cc.5.o', '-o', '/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/scratch/ws31-endpoint-object-test', '-Wl,-Bstatic', '-Wl,-Bdynamic', '-Wl,--no-as-needed', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-L.', '-lns3.19-test-optimized', '-lns3.19-csma-layout-optimized', '-lns3.19-point-to-point-layout-optimized', '-lns3.19-netanim-optimized', '-lns3.19-lte-optimized', '-lns3.19-spectrum-optimized', '-lns3.19-antenna-optimized', '-lns3.19-aodv-optimized', '-lns3.19-dsdv-optimized', '-lns3.19-dsr-optimized', '-lns3.19-mesh-optimized', '-lns3.19-olsr-optimized', '-lns3.19-csma-optimized', '-lns3.19-wimax-optimized', '-lns3.19-applications-optimized', '-lns3.19-point-to-point-optimized', '-lns3.19-virtual-net-device-optimized', '-lns3.19-uan-optimized', '-lns3.19-energy-optimized', '-lns3.19-flow-monitor-optimized', '-lns3.19-nix-vector-routing-optimized', '-lns3.19-tap-bridge-optimized', '-lns3.19-internet-optimized', '-lns3.19-bridge-optimized', '-lns3.19-mpi-optimized', '-lns3.19-wifi-optimized', '-lns3.19-buildings-optimized', '-lns3.19-propagation-optimized', '-lns3.19-mobility-optimized', '-lns3.19-config-store-optimized', '-lns3.19-tools-optimized', '-lns3.19-stats-optimized', '-lns3.19-emu-optimized', '-lns3.19-topology-read-optimized', '-lns3.19-network-optimized', '-lns3.19-core-optimized', '-lrt', '-lsqlite3']"
+      },
+      "new_fixture_or_probe_diagnostic_lines": [],
+      "build_stderr_is_not_required_empty": true,
+      "fixture_stderr_empty": true,
+      "initial_failure": {
+        "status": "LOCAL_LOG_EXTRACTOR_STDOUT_ONLY_ASSUMPTION_FAILED",
+        "command_kind": "read-only Python artifact extraction",
+        "failed_assertion": "any(-std=gnu++11 in command for command in stdout-only matches)",
+        "traceback": "File <stdin>, line 8: AssertionError",
+        "actual_stdout_command_matches": 0,
+        "diagnosis": "Waf verbose runner argv records are in original build.stderr; original build and fixture exits remain 0",
+        "correction": "Parse both saved stdout and stderr; exact argv from runner list via ast.literal_eval",
+        "scientific_reruns_or_source_plan_changes": 0
+      },
+      "scientific_rerun_count": 0
+    },
+    "fetch": {
+      "argv": [
+        "scp",
+        "-r",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=yes",
+        "-o",
+        "ConnectTimeout=10",
+        "fnl@10.112.14.167:/home/fnl/lzy/results/20261101-173000-ws31-endpoint-object-r1",
+        "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results"
+      ],
+      "start_utc": "2026-11-01T09:39:44.201859+00:00",
+      "new_destination_absent_before": true,
+      "exit": 0,
+      "end_utc": "2026-11-01T09:40:04.165778+00:00",
+      "terminal": true
+    }
+  },
+  "counts": {
+    "sync": 1,
+    "deploy": 0,
+    "full_optimized_j2_build": 1,
+    "new_object_fixture": 1,
+    "standalone_core_compile": 0,
+    "old_core_adapter_reference_rerun": 0,
+    "network_run": 0
+  },
+  "binary": {
+    "bytes": 1709032,
+    "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/scratch/ws31-endpoint-object-test",
+    "sha256": "06bbe540d28f35571502e0b4189c1029e2282fae179402443f43dc1258e099ef"
+  },
+  "toolchain": {
+    "cc1plus": {
+      "bytes": 22444288,
+      "path": "/usr/lib/gcc/x86_64-linux-gnu/5/cc1plus",
+      "realpath": "/usr/lib/gcc/x86_64-linux-gnu/5/cc1plus",
+      "sha256": "01acaabe1e854aa5572c3404656c3a260a81e94b6e8e8d51125f1a8e6d9a42b8"
+    },
+    "compiler": {
+      "bytes": 919832,
+      "path": "/usr/bin/g++",
+      "realpath": "/usr/bin/g++-5",
+      "sha256": "a98ee2dd501beee05b3d10d5acd6deb3a75471c5be2b5c92a94f9fd24808ff62"
+    },
+    "compiler_target": "x86_64-linux-gnu",
+    "compiler_version": "g++ (Ubuntu 5.4.0-6ubuntu1~16.04.12) 5.4.0 20160609\nCopyright (C) 2015 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "linker": {
+      "bytes": 1220040,
+      "path": "/usr/bin/ld",
+      "realpath": "/usr/bin/x86_64-linux-gnu-ld.bfd",
+      "sha256": "a47f15dc67ca11ae79a4c688827474a2c5d719ac467dda3cc7b66fc6b2aab5ee"
+    },
+    "python3": "3.5.2 (default, Jan 26 2021, 13:30:48) \n[GCC 5.4.0 20160609]",
+    "uname": [
+      "Linux",
+      "ns3host",
+      "4.4.0-186-generic",
+      "#216-Ubuntu SMP Wed Jul 1 05:34:05 UTC 2020",
+      "x86_64"
+    ]
+  },
+  "runtime_libraries": [
+    {
+      "bytes": 7448,
+      "local_artifact": "artifacts/libraries/libns3.19-test-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-test-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-test-optimized.so",
+      "sha256": "b312c0f74539e678a5280d9c15552bdd69f524e13677f804cb196c267f79b499"
+    },
+    {
+      "bytes": 247696,
+      "local_artifact": "artifacts/libraries/libns3.19-csma-layout-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-csma-layout-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-csma-layout-optimized.so",
+      "sha256": "db9c844d55102ea82cd3c72d39fab1b8e43d7fb0d8ea4dde4c5943d70b4c8cd0"
+    },
+    {
+      "bytes": 920352,
+      "local_artifact": "artifacts/libraries/libns3.19-point-to-point-layout-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-point-to-point-layout-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-point-to-point-layout-optimized.so",
+      "sha256": "c45260d16686da9daa0c63b4fca49dd4dbb6f33fd4ebcb89ff128dab8e213365"
+    },
+    {
+      "bytes": 1874024,
+      "local_artifact": "artifacts/libraries/libns3.19-netanim-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-netanim-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-netanim-optimized.so",
+      "sha256": "c0e80933ac45e7c0114e0fc70c37b0d0ea86f7c072f1f8682b2b52944f5f4d18"
+    },
+    {
+      "bytes": 17812344,
+      "local_artifact": "artifacts/libraries/libns3.19-lte-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-lte-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-lte-optimized.so",
+      "sha256": "6f4891a3a4ccc100f0742d25493a72b1f1cd413637591ed31ee6458ab05d0c17"
+    },
+    {
+      "bytes": 6930320,
+      "local_artifact": "artifacts/libraries/libns3.19-spectrum-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-spectrum-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-spectrum-optimized.so",
+      "sha256": "265dc2c8df5d013fbdb6fa8001cd4b729292c0ba47a1230b70b39e07d250aa99"
+    },
+    {
+      "bytes": 408880,
+      "local_artifact": "artifacts/libraries/libns3.19-antenna-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-antenna-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-antenna-optimized.so",
+      "sha256": "dd094d9c180e8bc34affc4a84d87f046015ca9e90a8e866c97f6543fbf50abbf"
+    },
+    {
+      "bytes": 2856696,
+      "local_artifact": "artifacts/libraries/libns3.19-aodv-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-aodv-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-aodv-optimized.so",
+      "sha256": "9082460e8af297af4457aea6cf3a021c1c2381c5511a3e3df3ed368d87292001"
+    },
+    {
+      "bytes": 1765248,
+      "local_artifact": "artifacts/libraries/libns3.19-dsdv-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-dsdv-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-dsdv-optimized.so",
+      "sha256": "071653eb29ed8298960cfe7aa989c377d7d2aedf6cdf13c89437788155b1455a"
+    },
+    {
+      "bytes": 6860496,
+      "local_artifact": "artifacts/libraries/libns3.19-dsr-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-dsr-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-dsr-optimized.so",
+      "sha256": "cf48dce8ff14b01dca994075b503ed23378dc12ebf2a5dfd59703513e27a76f9"
+    },
+    {
+      "bytes": 7251584,
+      "local_artifact": "artifacts/libraries/libns3.19-mesh-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-mesh-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-mesh-optimized.so",
+      "sha256": "4a569734a91082045e74c5259cf609aa8fddf806d118cfca8e0c26e7468dd494"
+    },
+    {
+      "bytes": 2952120,
+      "local_artifact": "artifacts/libraries/libns3.19-olsr-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-olsr-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-olsr-optimized.so",
+      "sha256": "0fc18b34d53c2d7b91f3c8c8640da5e93d78e956db1170de0db987c0b55a1361"
+    },
+    {
+      "bytes": 1847784,
+      "local_artifact": "artifacts/libraries/libns3.19-csma-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-csma-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-csma-optimized.so",
+      "sha256": "4ca663cbb205de4982c6d50232080afac0468d8cd869b2fe5a6215edbb3d4766"
+    },
+    {
+      "bytes": 12334296,
+      "local_artifact": "artifacts/libraries/libns3.19-wimax-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-wimax-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-wimax-optimized.so",
+      "sha256": "4adae746d40be0cb93b8fab15895c301342fca20f6d399c7d8b81424e7fa5164"
+    },
+    {
+      "bytes": 6843448,
+      "local_artifact": "artifacts/libraries/libns3.19-applications-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-applications-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-applications-optimized.so",
+      "sha256": "57fb86887198bad0b9dfb5fec5a24952f68a6cc782d03d8f65028577c281fe81"
+    },
+    {
+      "bytes": 13324808,
+      "local_artifact": "artifacts/libraries/libns3.19-point-to-point-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-point-to-point-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-point-to-point-optimized.so",
+      "sha256": "5e184bdff5f3abb3a29924f0d494ae30132326d32b0a700bce7c251b7099a653"
+    },
+    {
+      "bytes": 617728,
+      "local_artifact": "artifacts/libraries/libns3.19-virtual-net-device-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-virtual-net-device-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-virtual-net-device-optimized.so",
+      "sha256": "bf436d4b3f1c8726003a29bcb4b1c430f4b23e7f24ca533cb2525bdc1f12a81d"
+    },
+    {
+      "bytes": 9526840,
+      "local_artifact": "artifacts/libraries/libns3.19-uan-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-uan-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-uan-optimized.so",
+      "sha256": "b8bff550581f7ab0a826c54db3a08cf5460b0e80456d2ac9ef4f0981e95f947c"
+    },
+    {
+      "bytes": 3455312,
+      "local_artifact": "artifacts/libraries/libns3.19-energy-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-energy-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-energy-optimized.so",
+      "sha256": "4460edcf442f60e5f6e5e700901770dd9f759ea9d8f4b8fe97a5c085a7a9e3df"
+    },
+    {
+      "bytes": 1791024,
+      "local_artifact": "artifacts/libraries/libns3.19-flow-monitor-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-flow-monitor-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-flow-monitor-optimized.so",
+      "sha256": "7b49ae486393ef0b9e22c33d1fd23e7b30c078a36cb7655948062ea7ba58786d"
+    },
+    {
+      "bytes": 866464,
+      "local_artifact": "artifacts/libraries/libns3.19-nix-vector-routing-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-nix-vector-routing-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-nix-vector-routing-optimized.so",
+      "sha256": "f8f4eede5f3a923fe33f80c4a11161ffa1b79d9ac113ec3255b500b6af5254aa"
+    },
+    {
+      "bytes": 1088200,
+      "local_artifact": "artifacts/libraries/libns3.19-tap-bridge-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-tap-bridge-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-tap-bridge-optimized.so",
+      "sha256": "3bcf52b77e09c23c35c8cdf8479e0b46efbb69d03e98c3dc56955c4f890656b9"
+    },
+    {
+      "bytes": 24100048,
+      "local_artifact": "artifacts/libraries/libns3.19-internet-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-internet-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-internet-optimized.so",
+      "sha256": "7c8416d736d873fd0f331a49ad39ccef25c1b13acf1801bc78a223daf4b0ca86"
+    },
+    {
+      "bytes": 789808,
+      "local_artifact": "artifacts/libraries/libns3.19-bridge-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-bridge-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-bridge-optimized.so",
+      "sha256": "8ad953be2a3f1bbcc352a57d616141780a1b942c731dde2d0bb8072ecd0baa07"
+    },
+    {
+      "bytes": 443072,
+      "local_artifact": "artifacts/libraries/libns3.19-mpi-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-mpi-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-mpi-optimized.so",
+      "sha256": "b277d537fe38526d75cb1d1753e39eb99acd83d11a66cd43a5956ca864111e46"
+    },
+    {
+      "bytes": 16438296,
+      "local_artifact": "artifacts/libraries/libns3.19-wifi-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-wifi-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-wifi-optimized.so",
+      "sha256": "a6cbf59161455972d5474056e29355051d22f8ccacf60d13de6765ea7a76621a"
+    },
+    {
+      "bytes": 2505880,
+      "local_artifact": "artifacts/libraries/libns3.19-buildings-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-buildings-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-buildings-optimized.so",
+      "sha256": "b35313875ef4f4ba97312adf5dbc846a5e6996d767ef13535d49d179721025a3"
+    },
+    {
+      "bytes": 2245952,
+      "local_artifact": "artifacts/libraries/libns3.19-propagation-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-propagation-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-propagation-optimized.so",
+      "sha256": "975786cc92b81a749a8dbb04cce765926c8432c71bc62aad9c195238a0bb92b8"
+    },
+    {
+      "bytes": 5522192,
+      "local_artifact": "artifacts/libraries/libns3.19-mobility-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-mobility-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-mobility-optimized.so",
+      "sha256": "c0d58e88b0c775c934876a037f2f183b5f74866d53d489fd59dd1e4acb981683"
+    },
+    {
+      "bytes": 975008,
+      "local_artifact": "artifacts/libraries/libns3.19-config-store-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-config-store-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-config-store-optimized.so",
+      "sha256": "b7c6fe980b28cc111ee8d9e7d172d1f80062bf6975cd4ae148994edf4a38c20d"
+    },
+    {
+      "bytes": 763896,
+      "local_artifact": "artifacts/libraries/libns3.19-tools-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-tools-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-tools-optimized.so",
+      "sha256": "a69eeecfcc390d7c1b0e2f11ede7df74e5585b82fdec2af0a77d9c4825c6f766"
+    },
+    {
+      "bytes": 1262360,
+      "local_artifact": "artifacts/libraries/libns3.19-stats-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-stats-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-stats-optimized.so",
+      "sha256": "71988d469676e35dd898900aaf5236b1678d6cd6d341dd144cda690b5b2a8fe3"
+    },
+    {
+      "bytes": 1573936,
+      "local_artifact": "artifacts/libraries/libns3.19-emu-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-emu-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-emu-optimized.so",
+      "sha256": "479f096d02472ce577e0db593a371beebc3e30a258a18148de515cccc1e3c1ed"
+    },
+    {
+      "bytes": 1336720,
+      "local_artifact": "artifacts/libraries/libns3.19-topology-read-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-topology-read-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-topology-read-optimized.so",
+      "sha256": "a6633ec87dda4fa1122bbc3c3a932fe80b76a069060dcaea099b9e869c824613"
+    },
+    {
+      "bytes": 10341904,
+      "local_artifact": "artifacts/libraries/libns3.19-network-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-network-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-network-optimized.so",
+      "sha256": "c901db7e2181dc582c9afb2af5c2f3670d948330f9af36027769d5a68c187ddc"
+    },
+    {
+      "bytes": 9423560,
+      "local_artifact": "artifacts/libraries/libns3.19-core-optimized.so",
+      "path": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-core-optimized.so",
+      "project_library": true,
+      "realpath": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build/libns3.19-core-optimized.so",
+      "sha256": "ca372aada15e0a9dbf0b3c1c1f9fb726d135015ebb67d2c536e101f33068f99e"
+    },
+    {
+      "bytes": 31712,
+      "path": "/lib/x86_64-linux-gnu/librt.so.1",
+      "project_library": false,
+      "realpath": "/lib/x86_64-linux-gnu/librt-2.23.so",
+      "sha256": "97102fcbd34df37c70d09863902122d7331720e9bb0d6d22a7f8d04d21630432"
+    },
+    {
+      "bytes": 870240,
+      "path": "/usr/lib/x86_64-linux-gnu/libsqlite3.so.0",
+      "project_library": false,
+      "realpath": "/usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6",
+      "sha256": "bc874f3940825757ac8d189bfc30e979dc8064afc8b2e936d706b11ee5d30a60"
+    },
+    {
+      "bytes": 1566440,
+      "path": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+      "project_library": false,
+      "realpath": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.21",
+      "sha256": "5bb102af724c5974df826f7322cd972f7e9b6b9bdd469232f8dc7b0cb1086085"
+    },
+    {
+      "bytes": 1088952,
+      "path": "/lib/x86_64-linux-gnu/libm.so.6",
+      "project_library": false,
+      "realpath": "/lib/x86_64-linux-gnu/libm-2.23.so",
+      "sha256": "2d5265db67e91ccafe79ecc36196923a4ea5672fc0fcce86cad6e06942911b05"
+    },
+    {
+      "bytes": 89696,
+      "path": "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "project_library": false,
+      "realpath": "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "sha256": "c77f8044b4f8ae7166e5b0968204a4624529bfc4f42f29180ba62eccbb8ce8b5"
+    },
+    {
+      "bytes": 138696,
+      "path": "/lib/x86_64-linux-gnu/libpthread.so.0",
+      "project_library": false,
+      "realpath": "/lib/x86_64-linux-gnu/libpthread-2.23.so",
+      "sha256": "9272417d33eed8b5814eb63ea64850394589a2a3a0231fa6f1f0465ca5030962"
+    },
+    {
+      "bytes": 1868984,
+      "path": "/lib/x86_64-linux-gnu/libc.so.6",
+      "project_library": false,
+      "realpath": "/lib/x86_64-linux-gnu/libc-2.23.so",
+      "sha256": "926ee3653de7b71c8567061f3a4dfbc2ea91b6df2b49a05f11351fe1addf20cf"
+    },
+    {
+      "bytes": 14608,
+      "path": "/lib/x86_64-linux-gnu/libdl.so.2",
+      "project_library": false,
+      "realpath": "/lib/x86_64-linux-gnu/libdl-2.23.so",
+      "sha256": "a24a22a0103b18af04f677ae82c1c309e0c6b8e7bd05d1b895b0a3ea84608b82"
+    },
+    {
+      "bytes": 162632,
+      "path": "/lib64/ld-linux-x86-64.so.2",
+      "project_library": false,
+      "realpath": "/lib/x86_64-linux-gnu/ld-2.23.so",
+      "sha256": "bda7f01fd4270e84a0f56bb7f4432c5f35793f1bd688d52aa6ac0038506b0875"
+    }
+  ],
+  "copied_project_libraries": 36,
+  "system_libraries_fingerprinted_not_copied": 9,
+  "exact_build_environment": {
+    "HOME": "/home/fnl",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "LOGNAME": "fnl",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+    "TMPDIR": "/home/fnl/lzy/results/20261101-173000-ws31-endpoint-object-r1/tmp",
+    "TZ": "UTC",
+    "USER": "fnl",
+    "WS30_COMPOSITION": "0",
+    "WS30_LIFECYCLE": "0",
+    "WS30_LIFE_PROFILE": "0",
+    "WS30_OBSERVE": "0",
+    "WS30_TAG_TRANSFORM": "0",
+    "WS31_LABEL_PROFILE": "0"
+  },
+  "exact_fixture_environment": {
+    "HOME": "/home/fnl",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build",
+    "LOGNAME": "fnl",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+    "TMPDIR": "/home/fnl/lzy/results/20261101-173000-ws31-endpoint-object-r1/tmp",
+    "TZ": "UTC",
+    "USER": "fnl",
+    "WS30_COMPOSITION": "0",
+    "WS30_LIFECYCLE": "0",
+    "WS30_LIFE_PROFILE": "0",
+    "WS30_OBSERVE": "0",
+    "WS30_TAG_TRANSFORM": "0",
+    "WS31_LABEL_PROFILE": "0"
+  },
+  "raw_validation": {
+    "status": "PASS_OBJECT_FIXTURE_RAW_CASE_AND_PURITY_CHECKS",
+    "normal_cases": [
+      "complete-unmarked",
+      "complete-marked",
+      "irn-two-sack-blocks",
+      "retain-old-append-new",
+      "completion-history-present",
+      "live-rx",
+      "physical-and-ack-queues",
+      "events-and-serialization"
+    ],
+    "read_refusals": [
+      "missing-saved-qp",
+      "duplicate-qp-slot",
+      "device-group-binding",
+      "hardware-group-binding",
+      "missing-physical-queue",
+      "empty-live-tx",
+      "empty-live-rx",
+      "wrong-saved-flow",
+      "wrong-reversed-rx",
+      "wrong-original-clock",
+      "paused-device",
+      "down-device",
+      "changed-shared-queue",
+      "changed-device-scope"
+    ],
+    "other_refusals": [
+      "incomplete-mask",
+      "unknown-non-qbb"
+    ],
+    "record_counts": {
+      "case": 8,
+      "device": 16,
+      "slot": 13,
+      "sack": 8,
+      "refuse": 16,
+      "summary": 1
+    },
+    "summary": "WS31_ENDPOINT_OBJECT_SUMMARY PASS reads=31 refusals=16 network_runs=0 event_calls=0 actual_network_completions=0",
+    "read_calls": 31,
+    "refusals": 16,
+    "mask": 127,
+    "nodes": 2,
+    "devices": 2,
+    "normal_protocol_string_equality_asserted": 8,
+    "refused_read_protocol_string_equality_asserted": 14,
+    "full_string_comparison_is_in_fixed_source": true,
+    "FNV_display_is_not_sole_purity_test": true,
+    "SACK_state_and_slot_details_checked": true,
+    "stable_bound_device_objects_checked": true,
+    "other_stdout_lines": [],
+    "no_binary_invoked_by_this_verifier": true,
+    "scope": "real NS3 objects with manually assigned states; no natural network completions or complete ALL certificate"
+  },
+  "refusal_mapping": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\refusal-guard-mapping.json",
+  "read_outcomes": {
+    "calls": 31,
+    "successful_returns_derived": 17,
+    "Read_refusals": 14,
+    "other_refusals": 2,
+    "total_refusals": 16,
+    "derivation": "31 total Read increments minus 14 throwing Read cases; successful mask case is then rejected by ledger"
+  },
+  "boundaries": {
+    "manual_real_NS3_object_states": true,
+    "natural_network_completions": 0,
+    "network_runs": 0,
+    "Noop_calls": 0,
+    "Simulator_Run_calls": 0,
+    "Simulator_Destroy_teardown_is_expected": true,
+    "mask": 127,
+    "complete_ALL_certificates": 0,
+    "actual_second_generation_sending_proved": false,
+    "algorithm_effect_or_cost_claimed": false
+  },
+  "resources": {
+    "status": "VERIFIED_DISCRETE_RESOURCE_RECEIPTS",
+    "samples": 202,
+    "max_sampled_load_1m": 2.24,
+    "min_sampled_available_gib": 121.7578125,
+    "min_sampled_disk_gib": 2289.8296089172363,
+    "build_rusage": {
+      "major_faults": 0,
+      "max_rss_kib": 603088,
+      "minor_faults": 35828335,
+      "system_seconds": 72.984,
+      "user_seconds": 660.54
+    },
+    "build_elapsed_seconds": 358.50653789937496,
+    "fixture_rusage": {
+      "major_faults": 0,
+      "max_rss_kib": 26084,
+      "minor_faults": 885,
+      "system_seconds": 0.012,
+      "user_seconds": 0.032
+    },
+    "fixture_elapsed_seconds": 0.046228863298892975,
+    "scope": "2-second samples during source/configure/build commands and wait4 usage; not continuous peak or algorithm cost"
+  },
+  "raw_fetch": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results",
+    "verified_files": 109,
+    "verified_bytes": 183766520,
+    "manifest_sha256": "eaf043c82eae689e869e5b5377c32efe2b09e349fbbd833c04d6d5229976b978"
+  },
+  "auxiliary_checker_corrections": [
+    {
+      "status": "LOCAL_VERIFIER_ASSUMPTION_FAILED_NOT_SOURCE_CHANGE",
+      "before_remote_actions": true,
+      "command": [
+        "python",
+        "-"
+      ],
+      "failed_assertion": "sha(working)==plan_hash and working==git_blob",
+      "traceback": "File <stdin>, line 16: AssertionError",
+      "file": "src/point-to-point/model/qbb-net-device.h",
+      "working_sha256": "7007de27f3a3faae3411e171b35c109099df3a3f3a62f84e294e2de6ee1f602c",
+      "fixed_blob_and_plan_sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+      "working_bytes": 7514,
+      "git_bytes": 7283,
+      "diagnosis": "231 CRLF sequences versus LF; otherwise exactly equal; Git working tree clean",
+      "correction": "Check frozen plan hashes against fixed Git blobs; separately record working-byte hashes and prove exact CRLF normalization equivalence",
+      "source_main_plan_or_criteria_changes": 0,
+      "partial_original_output_preserved": "frozen-source/scratch/ws31-endpoint-object-test.cc from initial attempt, unchanged"
+    },
+    {
+      "status": "LOCAL_LOG_EXTRACTOR_STDOUT_ONLY_ASSUMPTION_FAILED",
+      "command_kind": "read-only Python artifact extraction",
+      "failed_assertion": "any(-std=gnu++11 in command for command in stdout-only matches)",
+      "traceback": "File <stdin>, line 8: AssertionError",
+      "actual_stdout_command_matches": 0,
+      "diagnosis": "Waf verbose runner argv records are in original build.stderr; original build and fixture exits remain 0",
+      "correction": "Parse both saved stdout and stderr; exact argv from runner list via ast.literal_eval",
+      "scientific_reruns_or_source_plan_changes": 0
+    }
+  ],
+  "scientific_retries": 0,
+  "old_artifacts_preserved": {
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-qa.json": "8df86482836a2f4850dace134930eba9df20bfdac6be0610574a2c3c62d865b5",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-report.md": "f35beedb11fbb40e2c07121d8156360e1c88f968ebb871090d4fe1910103ce30",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-local-review-r1-review.json": "e401fcc8f2c4b2954224d228d4891b07280d4341f03b09ae9e987753d6cb5ff9",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-qa.json": "bc2a8f6c30d18c48cc04502c98fc64ad0786a73b457694004bf76ad28f90bcfe",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-report.md": "72c32b5136e5e72a2eb1070b9bbd69a3f79502007b5e90c6b5d1681bac7d6eaa",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-local-review-r1-review.json": "aa54af2b05c870e356e32e53d855c0a4175d4e00b38a314d39cad35a84cad12c",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-index.json": "5c8fd34433da0d8d5d317f5c2d4b545e8e2a6657834af67b856a7d778a194b68",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-qa.json": "16a64faf700cfecdd14e6a10a4cfd90698cc7b3c2094f2af1394f76ce81e7ce4",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-guards-released.json": "c683329580d2b1cd7dd2918cb5655f5c60e79363d45e1168d83f4a29389a4917",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-probe-wip-r1-preserved\\qbb-net-device.h": "4623738f839def3628ece335b8008233be8148c219e82deb6c64c4f78e2c7a0d",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-probe-wip-r1-preserved\\ws31-endpoint-probe.h": "708149f395414868b15a98f5cf56e1d8cd8b75d158649393ee36990ce258a75f",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-ledger-wip-r1-preserved\\ws31-endpoint-ledger.h": "1ee4067888f0ef41a7fa8288a966c4a21f31797af753a4d5b94acb37827f1cd5",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-ledger-wip-r1-preserved\\ws31_endpoint_ledger_test.cc": "af6cd22240241dbc26a2c64e376e2c069daa6c9961ef176c8081e8ea082d7c32"
+  },
+  "guards": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-guards-released.json",
+    "status": "EXPLICITLY_RELEASED_AFTER_ALL_TERMINAL_CALLS_AND_VERIFIED_RAW"
+  },
+  "report": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+  "handoff": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-handoff.md",
+  "reference_review": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-reference-review.json",
+  "remaining_required": [
+    "Actual switch coverage and defaultoffchannel originaleventtoken/postReceiveclose",
+    "SavedRXcapture before completiondeletion, actualhistorycleanup and retainold/append networkbranch",
+    "ActualcontextG1/two-generationnetworkpositive/refusal underseparatefrozenplan",
+    "IndependentC1V0 and allthree business/background/state/runtime-cost validation; CCFAB-only additionalbaseline gate; Ofanpaused; finaladoptionuser"
+  ],
+  "remote_metadata_status": "OBJECT_FIXTURE_PASSED_RAW_PENDING_CHECK",
+  "local_raw_acceptance_completed": true,
+  "artifacts": [
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-guards-released.json",
+      "bytes": 2785,
+      "sha256": "01465b5a2bdddad26bfd5dec90850cb51558d8814f8823989c7a2828309e77f0"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-handoff.md",
+      "bytes": 5639,
+      "sha256": "b8449bb2c53cd2c7d0e01319a5607344af6b1013f3a6f047577fab131c67946f"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\after-fetch-command.json",
+      "bytes": 412,
+      "sha256": "690d75d30e136571de4eedca1080b5d84858b64ccb84aa26cc89ad26beabb246"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\after-fetch-gate.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\after-fetch-gate.stdout.json",
+      "bytes": 97850,
+      "sha256": "86be9c89289342d551f71682280c11452dc0fa50cdda9bffd0d2a51d3aac6568"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\before-fetch-command.json",
+      "bytes": 383,
+      "sha256": "7edf2a38e1e878bff518cf79140891136131b52d69fc4594e87bfa35ce0e491a"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\before-fetch.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\before-fetch.stdout.json",
+      "bytes": 3406,
+      "sha256": "899a4d4e25676ca548cb04499fde9b53130303b3fad2c1c6e58503f58be8273b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\before-sync-gate-review.json",
+      "bytes": 985,
+      "sha256": "af650fcb77a6d3a2118ddd581c0a0af299e7b8f0b6ee41c2d17e9c669ab45754"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\before-sync-gate.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\before-sync-gate.stdout.json",
+      "bytes": 97822,
+      "sha256": "ec0565ca455a62babed9281bc09de998793dbd5bd5e4c4af488690ef1fbd08ec"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\compiler-command-verification.json",
+      "bytes": 5910,
+      "sha256": "b00954fffc905a5623cac9e138320d64486377573f057ff9d0d8a7a6b91a6a23"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\fetch-command.json",
+      "bytes": 599,
+      "sha256": "58d4c8387c1c9766a591ba67b0e2997e2d04d7f72b83a8255d35dccbe0c0c9c0"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\fetch.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\fetch.stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\fetched-integrity.json",
+      "bytes": 487,
+      "sha256": "af23816b2e529a147de54854910d6dab94d8c2d25996a18113d116a5331afe38"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\fixture-local-process.json",
+      "bytes": 63,
+      "sha256": "a689dff8ff9d8680d6d203bba34afe0f8c6b6902e94a5e21e6f82442f2660b2b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\fixture-output-verification.json",
+      "bytes": 1641,
+      "sha256": "70aa485cfec9a9729a167914ec5635532ec8893ae6595219d88bfc39b9954ee1"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\fixture-ssh-command.json",
+      "bytes": 653,
+      "sha256": "40a6517080f5e0cd3f43a4028fb46bbaededfc6033af05b5b4b6d8d094b4d089"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\fixture-ssh.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\fixture-ssh.stdout.json",
+      "bytes": 1735,
+      "sha256": "dc57bc9e363807c88804380417f72d08b20d5f78ff27fe9cbee1767b350e8500"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\frozen-contract.md",
+      "bytes": 6402,
+      "sha256": "18b732251b5b2cf73d92e04198d1636460b97eaa1ac20f17c5850fbfe6c275d2"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\frozen-plan.json",
+      "bytes": 5954,
+      "sha256": "d91892f73bc6a6b45c0541f2c588ba59ba3fd3694ec75a75e35be5265dd5b255"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\frozen-source\\scratch\\ws31-endpoint-object-test.cc",
+      "bytes": 15767,
+      "sha256": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\frozen-source\\src\\point-to-point\\model\\qbb-net-device.h",
+      "bytes": 7283,
+      "sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\frozen-source\\src\\point-to-point\\model\\ws31-endpoint-probe.h",
+      "bytes": 19658,
+      "sha256": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\initial-local-verifier-failure.json",
+      "bytes": 999,
+      "sha256": "02f82d326056ed38eda1352d7c5a3ee865a0d2c31abcfd79920daee4c62c8d10"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\initial-log-extractor-failure.json",
+      "bytes": 593,
+      "sha256": "7b49a6f26c3dba2e8657e08dcc77749227fdc812024dea266898b2544daf8ff3"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\initial-remote-gate-command.json",
+      "bytes": 415,
+      "sha256": "0d50c5e46bc1c242bf1d8aec4a6016577ecc17a697cbcca0ff35df20bbb3aa1e"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\initial-remote-gate.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\initial-remote-gate.stdout.json",
+      "bytes": 97360,
+      "sha256": "7687891ff9cde0938b46e41c97f2bc69b39bd1857deb90764e827805d062d1a0"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\local-processes-after.json",
+      "bytes": 962,
+      "sha256": "fd99eb3d70ca32ad7b8cc79a6e8e496bb630e1316da22a3196e7862baf459dbb"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\local-processes-initial.json",
+      "bytes": 7695,
+      "sha256": "d0ad06193da1abd1f3cce57c109d591f010874fbed73ffbb185a6ad0f3c69f06"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\local-source-diff.patch",
+      "bytes": 37065,
+      "sha256": "f32204ddae1950a725603b56d3a1c5922e4273ffb2e23cf0c256a13200d359e9"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\local-source-tree.txt",
+      "bytes": 468862,
+      "sha256": "8096510b5b068ef31269f88d836112a6e53b2b351984694bc796a0a4a4c05855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\local-static-review.json",
+      "bytes": 8343,
+      "sha256": "2b6498c1a741b8cc5aac08659f09b045084aa7b1c52a40bd7b6a7492a68d4066"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\local-working-bytes\\scratch\\ws31-endpoint-object-test.cc",
+      "bytes": 15767,
+      "sha256": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\local-working-bytes\\src\\point-to-point\\model\\qbb-net-device.h",
+      "bytes": 7514,
+      "sha256": "7007de27f3a3faae3411e171b35c109099df3a3f3a62f84e294e2de6ee1f602c"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\local-working-bytes\\src\\point-to-point\\model\\ws31-endpoint-probe.h",
+      "bytes": 19658,
+      "sha256": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\pushed-ref.json",
+      "bytes": 335,
+      "sha256": "d9d842d57e1c78b6d741753ad4d112bc7b03a9f7c6436b9ede0e964c8046f622"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\pushed-ref.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\pushed-ref.stdout.txt",
+      "bytes": 76,
+      "sha256": "1ae7f70e93d2003ab4417a22f39e1144c883c733bb671c76d289dd12db064ba4"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\refusal-guard-mapping.json",
+      "bytes": 2742,
+      "sha256": "0b9406d6cf219641e50a9567c789da97d9ea869b518f6b7a196aed1d5d642454"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-after-fetch.py",
+      "bytes": 5626,
+      "sha256": "478afe1acab28b59fbedfb9115945cf36bcb0aea362d77e20a9d387b52b38845"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-before-fetch.py",
+      "bytes": 6316,
+      "sha256": "cc609ce625581dcc9de6d01795ce0008bc5e30fffcf2494171e1f3f8f777526f"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-fixture-once.py",
+      "bytes": 11078,
+      "sha256": "1e7fc42fd5db607942ec61a912c554bcd9662d2103919136a1b135e710b2756e"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-gate.py",
+      "bytes": 3193,
+      "sha256": "4097ce92681ecb42f62a30827a1c2dbf53d7a4d031a2730a16f13c86d1b56132"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-antenna-optimized.so",
+      "bytes": 408880,
+      "sha256": "dd094d9c180e8bc34affc4a84d87f046015ca9e90a8e866c97f6543fbf50abbf"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-aodv-optimized.so",
+      "bytes": 2856696,
+      "sha256": "9082460e8af297af4457aea6cf3a021c1c2381c5511a3e3df3ed368d87292001"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-applications-optimized.so",
+      "bytes": 6843448,
+      "sha256": "57fb86887198bad0b9dfb5fec5a24952f68a6cc782d03d8f65028577c281fe81"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-bridge-optimized.so",
+      "bytes": 789808,
+      "sha256": "8ad953be2a3f1bbcc352a57d616141780a1b942c731dde2d0bb8072ecd0baa07"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-buildings-optimized.so",
+      "bytes": 2505880,
+      "sha256": "b35313875ef4f4ba97312adf5dbc846a5e6996d767ef13535d49d179721025a3"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-config-store-optimized.so",
+      "bytes": 975008,
+      "sha256": "b7c6fe980b28cc111ee8d9e7d172d1f80062bf6975cd4ae148994edf4a38c20d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-core-optimized.so",
+      "bytes": 9423560,
+      "sha256": "ca372aada15e0a9dbf0b3c1c1f9fb726d135015ebb67d2c536e101f33068f99e"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-csma-layout-optimized.so",
+      "bytes": 247696,
+      "sha256": "db9c844d55102ea82cd3c72d39fab1b8e43d7fb0d8ea4dde4c5943d70b4c8cd0"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-csma-optimized.so",
+      "bytes": 1847784,
+      "sha256": "4ca663cbb205de4982c6d50232080afac0468d8cd869b2fe5a6215edbb3d4766"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-dsdv-optimized.so",
+      "bytes": 1765248,
+      "sha256": "071653eb29ed8298960cfe7aa989c377d7d2aedf6cdf13c89437788155b1455a"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-dsr-optimized.so",
+      "bytes": 6860496,
+      "sha256": "cf48dce8ff14b01dca994075b503ed23378dc12ebf2a5dfd59703513e27a76f9"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-emu-optimized.so",
+      "bytes": 1573936,
+      "sha256": "479f096d02472ce577e0db593a371beebc3e30a258a18148de515cccc1e3c1ed"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-energy-optimized.so",
+      "bytes": 3455312,
+      "sha256": "4460edcf442f60e5f6e5e700901770dd9f759ea9d8f4b8fe97a5c085a7a9e3df"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-flow-monitor-optimized.so",
+      "bytes": 1791024,
+      "sha256": "7b49ae486393ef0b9e22c33d1fd23e7b30c078a36cb7655948062ea7ba58786d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-internet-optimized.so",
+      "bytes": 24100048,
+      "sha256": "7c8416d736d873fd0f331a49ad39ccef25c1b13acf1801bc78a223daf4b0ca86"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-lte-optimized.so",
+      "bytes": 17812344,
+      "sha256": "6f4891a3a4ccc100f0742d25493a72b1f1cd413637591ed31ee6458ab05d0c17"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-mesh-optimized.so",
+      "bytes": 7251584,
+      "sha256": "4a569734a91082045e74c5259cf609aa8fddf806d118cfca8e0c26e7468dd494"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-mobility-optimized.so",
+      "bytes": 5522192,
+      "sha256": "c0d58e88b0c775c934876a037f2f183b5f74866d53d489fd59dd1e4acb981683"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-mpi-optimized.so",
+      "bytes": 443072,
+      "sha256": "b277d537fe38526d75cb1d1753e39eb99acd83d11a66cd43a5956ca864111e46"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-netanim-optimized.so",
+      "bytes": 1874024,
+      "sha256": "c0e80933ac45e7c0114e0fc70c37b0d0ea86f7c072f1f8682b2b52944f5f4d18"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-network-optimized.so",
+      "bytes": 10341904,
+      "sha256": "c901db7e2181dc582c9afb2af5c2f3670d948330f9af36027769d5a68c187ddc"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-nix-vector-routing-optimized.so",
+      "bytes": 866464,
+      "sha256": "f8f4eede5f3a923fe33f80c4a11161ffa1b79d9ac113ec3255b500b6af5254aa"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-olsr-optimized.so",
+      "bytes": 2952120,
+      "sha256": "0fc18b34d53c2d7b91f3c8c8640da5e93d78e956db1170de0db987c0b55a1361"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-point-to-point-layout-optimized.so",
+      "bytes": 920352,
+      "sha256": "c45260d16686da9daa0c63b4fca49dd4dbb6f33fd4ebcb89ff128dab8e213365"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-point-to-point-optimized.so",
+      "bytes": 13324808,
+      "sha256": "5e184bdff5f3abb3a29924f0d494ae30132326d32b0a700bce7c251b7099a653"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-propagation-optimized.so",
+      "bytes": 2245952,
+      "sha256": "975786cc92b81a749a8dbb04cce765926c8432c71bc62aad9c195238a0bb92b8"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-spectrum-optimized.so",
+      "bytes": 6930320,
+      "sha256": "265dc2c8df5d013fbdb6fa8001cd4b729292c0ba47a1230b70b39e07d250aa99"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-stats-optimized.so",
+      "bytes": 1262360,
+      "sha256": "71988d469676e35dd898900aaf5236b1678d6cd6d341dd144cda690b5b2a8fe3"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-tap-bridge-optimized.so",
+      "bytes": 1088200,
+      "sha256": "3bcf52b77e09c23c35c8cdf8479e0b46efbb69d03e98c3dc56955c4f890656b9"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-test-optimized.so",
+      "bytes": 7448,
+      "sha256": "b312c0f74539e678a5280d9c15552bdd69f524e13677f804cb196c267f79b499"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-tools-optimized.so",
+      "bytes": 763896,
+      "sha256": "a69eeecfcc390d7c1b0e2f11ede7df74e5585b82fdec2af0a77d9c4825c6f766"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-topology-read-optimized.so",
+      "bytes": 1336720,
+      "sha256": "a6633ec87dda4fa1122bbc3c3a932fe80b76a069060dcaea099b9e869c824613"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-uan-optimized.so",
+      "bytes": 9526840,
+      "sha256": "b8bff550581f7ab0a826c54db3a08cf5460b0e80456d2ac9ef4f0981e95f947c"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-virtual-net-device-optimized.so",
+      "bytes": 617728,
+      "sha256": "bf436d4b3f1c8726003a29bcb4b1c430f4b23e7f24ca533cb2525bdc1f12a81d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-wifi-optimized.so",
+      "bytes": 16438296,
+      "sha256": "a6cbf59161455972d5474056e29355051d22f8ccacf60d13de6765ea7a76621a"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\libraries\\libns3.19-wimax-optimized.so",
+      "bytes": 12334296,
+      "sha256": "4adae746d40be0cb93b8fab15895c301342fca20f6d399c7d8b81424e7fa5164"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\artifacts\\ws31-endpoint-object-test",
+      "bytes": 1709032,
+      "sha256": "06bbe540d28f35571502e0b4189c1029e2282fae179402443f43dc1258e099ef"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\build.stderr",
+      "bytes": 510532,
+      "sha256": "2e2f6b7eb7490ce52b147cebc6ee2e63f15614b5b20453b2a2be9377411193e7"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\build.stdout",
+      "bytes": 1087,
+      "sha256": "100b1e8cdb41279d009f14362524831b7b2a2b036fdecfcc0e7bc6ae2cd93d9c"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\checkout.stderr",
+      "bytes": 570,
+      "sha256": "f239955143ada70ad1652182cfb16a021693b8f4b7e92295a4253e13e5c392e6"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\checkout.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\clone.stderr",
+      "bytes": 90,
+      "sha256": "7125fdfba5697c235a9350807861253e44948743530277852d12b7f84b82c018"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\clone.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\compiler-cc1plus.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\compiler-cc1plus.stdout",
+      "bytes": 40,
+      "sha256": "8e9a37942d2409f2227955efe222919fccd922de919bc23a564a2b9331964efd"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\compiler-target.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\compiler-target.stdout",
+      "bytes": 17,
+      "sha256": "08cababdf891ccbf96eb376f1e84f279f70302fb13d84e5f98637becdfc6d989"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\compiler-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\compiler-version.stdout",
+      "bytes": 254,
+      "sha256": "fcfb9ab05d71b825f45bf95cf07f94160b2f47361d15b98053fe8ea05c43a058"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\configure.stderr",
+      "bytes": 5494,
+      "sha256": "d2d7c82bcfaca878427f09b2ffb5030237ce5c7c6863b5df27a24fbcb407d0af"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\configure.stdout",
+      "bytes": 1361,
+      "sha256": "903c2bdecfef6a3c621bd490b46ca71b687d3faaff4bb202121af764fe0b64b7"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\fixture-ldd.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\fixture-ldd.stdout",
+      "bytes": 6462,
+      "sha256": "2f33ed4253d0ebdc3245db9d020e36ea5a610e7a1b98b9b13684bd42cc69ba8c"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\fixture.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\fixture.stdout",
+      "bytes": 10500,
+      "sha256": "f46d2331a9a542b8f7a2e6526dedf168131c4a1fee5d0ec7c44a8e1320419aa6"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\protect-reference-maplerime.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\protect-reference-maplerime.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\protect-upstream.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\protect-upstream.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\source-origin.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\source-origin.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\source-reference-maplerime.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\source-reference-maplerime.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\source-upstream.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\logs\\source-upstream.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\metadata.json",
+      "bytes": 1827,
+      "sha256": "ec2a5d16cbc0f785d5845952de60bf10e2b8f68b2570665dae1f0863dc3dae66"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\after-fixture-gate.json",
+      "bytes": 126834,
+      "sha256": "ff5fb4941de76ddb64487d1b7dac3a96634f2e885fbc74eb440c51f68594582d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\before-fixture-gate.json",
+      "bytes": 126245,
+      "sha256": "9f5bb7594f29cac884f3b7b210fdf21226557ef01f65a2c194a995aa5141f53a"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\before-source-gate.json",
+      "bytes": 126236,
+      "sha256": "2d463ca5a7d06c873472ece2b257137b0ebaa894edd03f4a0a412f64ef80513d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\binary-before-fixture.json",
+      "bytes": 345,
+      "sha256": "a629119dc4ba02a68f5386593afc8bb2bd183ed3ebf3535733598630b328f682"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\build-c4che-_cache.py",
+      "bytes": 8062,
+      "sha256": "47166d7a8c5e743731d932740b1a7739873fdd316f28d3b6e2472f60ab48b21e"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\build-command-list.json",
+      "bytes": 16815,
+      "sha256": "d17b90d2b0e000601453ab38d4c95006a9ccaf73d161db4fb93e0c3b7deee067"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\build-config.log",
+      "bytes": 41510,
+      "sha256": "094f91dfd0e428da366d1c0ea4c245360aebf30851a3fd0c73e86814f226b3fd"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\build-environment.json",
+      "bytes": 504,
+      "sha256": "78bffffc134033e07d189250ea0629a349207d73babb0dc7a3dde9f596ea5ffd"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\build-resources.jsonl",
+      "bytes": 29863,
+      "sha256": "ef625f9b363eab37d35540a8a1594481f87eefdb0648f2e3108787363c7a26ee"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\build-result.json",
+      "bytes": 1672,
+      "sha256": "349a09b49afbca96a06c4778f388da560d09cd6a997e052ecf110c4fc1c405cd"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\build-started.json",
+      "bytes": 1003,
+      "sha256": "556347eac24adc8cb98a1bb25c2f4c5ecef799e2a53ed8ea89794db6f1967eb2"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\checkout-resources.jsonl",
+      "bytes": 326,
+      "sha256": "852f2774801559a9f561e5b4253978e6cd7a2754f915440c05aaef6a3bb70c38"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\checkout-result.json",
+      "bytes": 1721,
+      "sha256": "bdd88f29bde15af25cc0a4b93a37cbcd5686349433814a9944c15712e94154c1"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\checkout-started.json",
+      "bytes": 1062,
+      "sha256": "a02635a76aa39ef6e64f9bb90c577a7a2ffcf073688e2fd0a31b8bb986253f79"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\clone-resources.jsonl",
+      "bytes": 325,
+      "sha256": "e5e6fed5952735a0dd49e411e830c0436e5e293e18e62d72f680ee1fd03fc9a3"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\clone-result.json",
+      "bytes": 1763,
+      "sha256": "08e9778a8c70221f20d36219850551ed893e8e53e27cd82f75645a5c6b0e6592"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\clone-started.json",
+      "bytes": 1108,
+      "sha256": "5e28b6d4c68a8186a0a82b7c8c400403fc851255a2ba34bd5187bba2bfaa1026"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\configure-resources.jsonl",
+      "bytes": 1329,
+      "sha256": "611933e4ec153f9a0f2edc20f576bc338d44f23b7827f7e84757168010608dfb"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\configure-result.json",
+      "bytes": 1703,
+      "sha256": "ac55a2d1d827ab81ad564e9eede99d1947485ee5f9584d966ba8f9524268f620"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\configure-started.json",
+      "bytes": 1039,
+      "sha256": "5fb8c5594d7bba4a9440550f520c39bc84570a1b258ad257a619ca950ba3334b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\fixture-environment.json",
+      "bytes": 600,
+      "sha256": "470f0291a4f244e90df375a0c38dfae511d4740e7e3e027937a88578c3aada14"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\fixture-result.json",
+      "bytes": 1847,
+      "sha256": "e675ca6806cbf6b71694336208c08fc187905443bda04679ce26af6672472d16"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\fixture-started.json",
+      "bytes": 1183,
+      "sha256": "8234b18c340e0323ed59f0d509d21eb8ac7e60d01853fd44a8f25421d6200b5b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\protect-reference-maplerime-resources.jsonl",
+      "bytes": 327,
+      "sha256": "751cd15cd7a208fe68f4a77d69735fff7c726f5b74d411ec1c8d71b6ee2a0e0e"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\protect-reference-maplerime-result.json",
+      "bytes": 1781,
+      "sha256": "831f6eb2329eab5d380553fb36c120ed45dbb0c872ad1a1d0dde0c68f4fbcb26"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\protect-reference-maplerime-started.json",
+      "bytes": 1127,
+      "sha256": "81d875c974bdede3a4c93e149fc2ca68ae8994660630ca7fee3287f5f5683585"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\protect-upstream-resources.jsonl",
+      "bytes": 325,
+      "sha256": "a4120628573268257b81bdfb7a57409b919ccf83437c045956586c5a054076f1"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\protect-upstream-result.json",
+      "bytes": 1746,
+      "sha256": "c1e3977802b44e27544163ef283b0b4b627c17c5e0dc929e6e9ad62425aabd5b"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\protect-upstream-started.json",
+      "bytes": 1094,
+      "sha256": "d3a07edb889dc32ef380c32214f76057b54f81b8f5ed6e659b978ee1945207fd"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\runtime-libraries.json",
+      "bytes": 18767,
+      "sha256": "12db73afc3acf1a70edcc3aade0bf93398238ebeaf70ff8400ac6111d26a2d1d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-files.json",
+      "bytes": 1211822,
+      "sha256": "925ad9febf1da78b33a87af8898f44485c376336d73743371e788f3917d7119f"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-origin-resources.jsonl",
+      "bytes": 325,
+      "sha256": "078f5cdf822faa31f3ec71c68df33dc991be6ce7a02640553f45a3e6f75c3256"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-origin-result.json",
+      "bytes": 1741,
+      "sha256": "ab160c7c9b2133abb1062c9027151952eaa4d922d2ff8c929491e58efbc0005d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-origin-started.json",
+      "bytes": 1088,
+      "sha256": "58a3046b470ab1dcf09b289d114edcdbb6e2558f65a42a46b10298ae9a2f0865"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-reference-maplerime-resources.jsonl",
+      "bytes": 328,
+      "sha256": "2b8c4ef1b46009abe4af50a024b1e26dec1480578590267d919f7f124bb99562"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-reference-maplerime-result.json",
+      "bytes": 1777,
+      "sha256": "fd491236de07e201df0321278bfae53c343db1db5dfde0ed963063777b725d59"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-reference-maplerime-started.json",
+      "bytes": 1123,
+      "sha256": "76d3aaba263dcce978a9fa5ffadcb269772c1c5cdbb543467d9ae74502973c14"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-tree.txt",
+      "bytes": 468862,
+      "sha256": "8096510b5b068ef31269f88d836112a6e53b2b351984694bc796a0a4a4c05855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-upstream-resources.jsonl",
+      "bytes": 325,
+      "sha256": "1292ec166fe2489a0ea7ab313da5409a7bfdb1f72ef46726116fe26372e6c2ee"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-upstream-result.json",
+      "bytes": 1749,
+      "sha256": "a999f5d765f3fa5c4db5d4df33080d1f001b9a4856bc49b29a95c6b8234c37bf"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\source-upstream-started.json",
+      "bytes": 1097,
+      "sha256": "d19a0c805fdd1f7b4a0c308c76f1e5471efc1693f8455f704a1c8e596d250943"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\toolchain-query-commands.json",
+      "bytes": 3845,
+      "sha256": "9285062325490b2a698e0d4dda5f745a0b1745e636a308cf4c2e75ab5b3c7536"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\provenance\\toolchain.json",
+      "bytes": 1166,
+      "sha256": "16cec936b633c304cde9844dc73f49daeb1859f860238e2a46e59f03e290f94e"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results\\receipt-manifest.json",
+      "bytes": 17824,
+      "sha256": "eaf043c82eae689e869e5b5377c32efe2b09e349fbbd833c04d6d5229976b978"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-source-build.py",
+      "bytes": 11311,
+      "sha256": "6e5018a24dd08cd074f8ce61785f351ffdaa8e7a779d29bee17ba4f4ca0c9d57"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-validation.py",
+      "bytes": 1535,
+      "sha256": "f40156b5d68595e32fb96314262927c9a6781699d18744e96caf0553c4640c27"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\resource-summary.json",
+      "bytes": 758,
+      "sha256": "a03ecbeb6b5309a8fcb686a8614fa042fc5f1c25538411f8117f849501cea667"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\source-build-command.json",
+      "bytes": 865,
+      "sha256": "ff0c1cc3df0430b13e5061f1baae0cd5799e47b39e648d88b1641ffa0162c25a"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\source-build-local-process.json",
+      "bytes": 112,
+      "sha256": "9662856023d4cc9bf2569681d610cab432d3de8681ec4b7e948c90bc3b688485"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\source-build.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\source-build.stdout.jsonl",
+      "bytes": 1595,
+      "sha256": "9f3a8ee747054d4c3ca75c7e83372eee9968bf2e4100eb326043955bfe7a3343"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\sync-command.json",
+      "bytes": 704,
+      "sha256": "8694b4f03b0ac6610c7b8651916713ae20ecfa260aa3d905edc93e3bf1767afb"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\sync.stderr.txt",
+      "bytes": 235,
+      "sha256": "96c1f58eaa5cbf712379fdde31dac2d4dca86bb338745c5321b41ed4c449e16e"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\sync.stdout.txt",
+      "bytes": 60,
+      "sha256": "a8fe491b631afe93e88884c7ea3534493759bc058c854d6336889fad1a4df6cb"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\verify_fixture_output.py",
+      "bytes": 5562,
+      "sha256": "e65ccd63591c244af665aaf620a05e8c0c39572b23aa07d5c4a1fef74c3a5a0d"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-reference-review.json",
+      "bytes": 1693,
+      "sha256": "d4526fc89a4e599a6fb45613ea62e6afacb369558d39ffb67e7ab7059f022b9e"
+    },
+    {
+      "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "bytes": 15048,
+      "sha256": "6fd11619bc2a79cc39b306c197ff6ad943cd8e0fad3f548a33a69f4fdd14d4d2"
+    }
+  ],
+  "manifest_excludes": "index and QA themselves to avoid circular hashes"
+}

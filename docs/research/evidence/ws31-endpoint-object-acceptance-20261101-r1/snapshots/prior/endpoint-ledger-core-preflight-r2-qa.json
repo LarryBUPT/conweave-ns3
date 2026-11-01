@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "at_utc": "2026-11-01T08:23:19.160111+00:00",
+  "status": "PASS_PORTABLE_CORE_PREFLIGHT_DELIVERY",
+  "id": "20261101-163000-ws31-endpoint-core-r2",
+  "index": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-index.json",
+    "sha256": "5c8fd34433da0d8d5d317f5c2d4b545e8e2a6657834af67b856a7d778a194b68"
+  },
+  "artifact_count_indexed": 90,
+  "all_indexed_artifact_hashes_verified": true,
+  "source_tree_entries": 4845,
+  "all_source_files_verified_before_compile_and_after_run": true,
+  "remote_raw_manifest_files_verified": 41,
+  "compile_exact_argv_and_env": true,
+  "run_exact_argv_and_env": true,
+  "compile_exit": 0,
+  "run_exit": 0,
+  "stdout_exact_bytes": true,
+  "stderr_empty": true,
+  "compiler_stderr_empty": true,
+  "binary_fingerprint_verified_before_after_run_and_after_fetch": true,
+  "standard_assert_disabled": true,
+  "one_new_compile_one_new_run": true,
+  "no_local_binary_execution": true,
+  "no_full_build_deploy_network_or_old_rerun": true,
+  "sync_count": 1,
+  "source_guard_head_and_inputs_unchanged": true,
+  "original_r1_artifacts_verified": 5,
+  "source_entry_env_guards_explicitly_released": true,
+  "no_active_remote_or_local_driver": true,
+  "nine_handoff_sections": true,
+  "links_checked": 22,
+  "links": [
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/main/endpoint-ledger-core-preflight-r2.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/remote-results/provenance/source-files.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/local-static-review.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/frozen-source",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/main/endpoint-lifecycle-design-r2.md",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/remote-results/provenance/exact-compile-run-environment.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/remote-results/provenance/toolchain.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/remote-results/provenance/runtime-libraries.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/remote-results/provenance/compile-result.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/remote-results/provenance/run-result.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/remote-results/logs/run.stdout",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/remote-results/logs/run.stderr",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-raw/fetched-integrity.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-guards-released.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-reference-review.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-index.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-handoff.md",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-handoff.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/main/endpoint-ledger-core-preflight-r2.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-handoff.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-report.md",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-handoff.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-index.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-handoff.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-guards-released.json",
+      "exists": true
+    },
+    {
+      "document": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-ledger-core-preflight-r2-handoff.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-ledger-core-preflight-r2-reference-review.json",
+      "exists": true
+    }
+  ],
+  "chinese_style": {
+    "original_rules": "README and six chapters read earlier in the same conversation",
+    "final_checks": "heading levels, spacing, paragraphs, numbers/units, punctuation, structure"
+  },
+  "literature_node_review": true,
+  "scope_claims": {
+    "real_endpoint_snapshots": 0,
+    "network_runs": 0,
+    "production_finished_bitmap_coverage": false,
+    "WS31_full_closure_claimed": false,
+    "remaining_required_owned_by_main": true
+  },
+  "raw_and_artifact_hashes_in_index": true,
+  "qa_self_hash": "not embedded"
+}

@@ -1,0 +1,607 @@
+diff --git a/scratch/ws31-endpoint-object-test.cc b/scratch/ws31-endpoint-object-test.cc
+new file mode 100644
+index 0000000..f9d52c1
+--- /dev/null
++++ b/scratch/ws31-endpoint-object-test.cc
+@@ -0,0 +1,236 @@
++#include "ns3/core-module.h"
++#include "ns3/network-module.h"
++#include "ns3/internet-module.h"
++#include "ns3/point-to-point-module.h"
++#include "../src/point-to-point/model/ws31-endpoint-probe.h"
++#include <iostream>
++#include <sstream>
++#include <stdexcept>
++#include <cstring>
++
++using namespace ns3;
++using namespace ns3::ws31;
++
++namespace ns3 {
++// Test setup and explicit protocol fingerprints only. Normal code never calls
++// these setters. The production probe itself provides no mutation interface.
++class Ws31EndpointSnapshotFixture {
++public:
++    static void Activity(Ptr<QbbNetDevice> d,EventId pacing,EventId resume,Ptr<Packet> packet) {
++        d->m_nextSend=pacing; d->m_resumeEvt[1]=resume;
++        d->m_txMachineState=QbbNetDevice::BUSY; d->m_currentPkt=packet;
++    }
++    static void Pause(Ptr<QbbNetDevice> d,bool value) { d->m_paused[1]=value; }
++    static void Link(Ptr<QbbNetDevice> d,bool value) { d->m_linkUp=value; }
++    static void Event(std::ostream &out,const EventId &e) {
++        out << e.GetUid() << ':' << e.GetTs() << ':' << e.GetContext() << ':' << e.IsRunning() << ';';
++    }
++    static void QpState(std::ostream &out,Ptr<RdmaQueuePair> qp) {
++        out << PeekPointer(qp) << ':' << qp->sip.Get() << ':' << qp->dip.Get() << ':'
++            << qp->sport << ':' << qp->dport << ':' << qp->m_pg << ':' << qp->m_flow_id << ':'
++            << qp->m_workload_tag << ':' << qp->startTime.GetTimeStep() << ':' << qp->m_ws31LaunchDelayNs << ':'
++            << qp->snd_nxt << ':' << qp->snd_una << ':' << qp->m_size << ':' << qp->irn.m_enabled << ':'
++            << qp->m_nextAvail.GetTimeStep() << ':' << qp->m_ws30Persistent << ':' << qp->m_ws30Released << ':'
++            << qp->irn.m_sack;
++        Event(out,qp->m_retransmit); Event(out,qp->mlx.m_eventUpdateAlpha);
++        Event(out,qp->mlx.m_eventDecreaseRate); Event(out,qp->mlx.m_rpTimer);
++    }
++    static void DeviceState(std::ostream &out,Ptr<QbbNetDevice> d) {
++        out << d->GetNode()->GetId() << ':' << d->GetIfIndex() << ':' << d->m_linkUp << ':'
++            << d->m_txMachineState << ':' << PeekPointer(d->m_currentPkt) << ':';
++        if (d->m_currentPkt) out << d->m_currentPkt->GetUid() << ':' << d->m_currentPkt->GetSize();
++        Event(out,d->m_nextSend);
++        for (uint32_t i=0;i<QbbNetDevice::qCnt;++i) {
++            out << d->m_paused[i] << ':'; Event(out,d->m_resumeEvt[i]);
++        }
++        out << PeekPointer(d->m_queue) << ':';
++        if (d->m_queue) out << d->m_queue->GetNBytesTotal();
++        Ptr<RdmaEgressQueue> eq=d->m_rdmaEQ;
++        out << ':' << PeekPointer(eq) << ':' << eq->m_rrlast << ':' << eq->m_qlast << ':'
++            << eq->current_pause_time.size() << ':' << PeekPointer(eq->m_ackQ) << ':'
++            << eq->m_ackQ->GetNBytes() << ':' << eq->m_ackQ->GetNPackets() << ':' << PeekPointer(eq->m_qpGrp);
++        Ptr<RdmaQueuePairGroup> group=eq->m_qpGrp;
++        out << ':' << group->m_qps.size() << ':';
++        // Only the protocol bitmap, not the bytes of an entire C++ object.
++        out.write(group->m_qp_finished,sizeof(group->m_qp_finished));
++        for (auto qp:group->m_qps) QpState(out,qp);
++        for (const auto &paused:eq->current_pause_time)
++            out << paused.first << ':' << paused.second.GetTimeStep() << ';';
++    }
++};
++}
++
++static void Require(bool ok,const char *message) { if (!ok) throw std::runtime_error(message); }
++static uint32_t eventCalls=0,reads=0,refusals=0;
++static void Noop() { ++eventCalls; }
++template<class F> static std::string Reject(F action) {
++    bool rejected=false; std::string reason;
++    try { action(); } catch (const std::logic_error &error) { rejected=true; reason=error.what(); }
++    Require(rejected,"Object coverage refusal was not enforced"); ++refusals;
++    return reason;
++}
++static uint64_t Fingerprint(const std::string &s) {
++    uint64_t hash=14695981039346656037ULL;
++    for (unsigned char c:s) { hash^=c; hash*=1099511628211ULL; }
++    return hash;
++}
++
++int main() {
++    NodeContainer nodes; nodes.Create(2);
++    InternetStackHelper internet; internet.Install(nodes);
++    QbbHelper qbb;
++    NetDeviceContainer link=qbb.Install(nodes.Get(0),nodes.Get(1));
++    Ptr<QbbNetDevice> a=DynamicCast<QbbNetDevice>(link.Get(0));
++    Ptr<QbbNetDevice> b=DynamicCast<QbbNetDevice>(link.Get(1));
++    std::vector<Ptr<RdmaDriver> > drivers;
++    for (uint32_t i=0;i<2;++i) {
++        Ptr<RdmaDriver> driver=CreateObject<RdmaDriver>();
++        driver->SetNode(nodes.Get(i)); driver->SetRdmaHw(CreateObject<RdmaHw>());
++        nodes.Get(i)->AggregateObject(driver); driver->Init(); drivers.push_back(driver);
++    }
++    Ptr<RdmaHw> tx=drivers[0]->m_rdma,rx=drivers[1]->m_rdma;
++    const uint32_t txNic=a->GetIfIndex(),rxNic=b->GetIfIndex();
++    const uint32_t sip=0x0a000001,dip=0x0a000002;
++    const uint16_t sport=1000,dport=100,pg=3;
++    const EndpointKey tuple(sip,dip,sport,dport,pg);
++    EndpointResources resources;
++    resources.sourceNode=nodes.Get(0)->GetId(); resources.destinationNode=nodes.Get(1)->GetId();
++    resources.txKey=RdmaHw::GetQpKey(dip,sport,dport,pg);
++    resources.rxKey=RdmaHw::GetRxQpKey(sip,sport,dport,pg);
++    EndpointLedger ledger; ledger.Begin(tuple,resources,0,0,8192,1,0); ledger.Launch(0,0);
++    Ptr<RdmaQueuePair> qp=CreateObject<RdmaQueuePair>(pg,Ipv4Address(sip),Ipv4Address(dip),sport,dport);
++    qp->SetSize(8192); qp->SetFlowId(0); qp->m_workload_tag=1; qp->snd_nxt=qp->snd_una=8192;
++    Ptr<RdmaRxQueuePair> receiver=CreateObject<RdmaRxQueuePair>();
++    receiver->m_flow_id=0; receiver->sip=dip; receiver->dip=sip;
++    receiver->sport=dport; receiver->dport=sport; receiver->m_ecn_source.qIndex=pg;
++    Ptr<RdmaQueuePairGroup> group=tx->m_nic[txNic].qpGrp;
++    group->AddQp(qp);
++    // Capture performs setup-only aggregate lookups. Initialize Now/NodeList
++    // before fingerprints; never run events between the two observations.
++    Ws31EndpointProbe::Scope scope=Ws31EndpointProbe::Capture(drivers);
++    (void)Simulator::Now();
++    auto state=[&]() {
++        std::ostringstream out;
++        out << Simulator::Now().GetTimeStep() << ':' << NodeList::GetNNodes() << ':'
++            << tx->m_qpMap.size() << ':' << rx->m_rxQpMap.size() << ':'
++            << tx->akashic_Qp.size() << ':' << rx->akashic_RxQp.size() << ':'
++            << receiver->m_flow_id << ':' << receiver->sip << ':' << receiver->dip << ':'
++            << receiver->sport << ':' << receiver->dport << ':' << receiver->m_ipid << ':'
++            << receiver->ReceiverNextExpectedSeq << ':' << receiver->m_nackTimer.GetTimeStep() << ':'
++            << receiver->m_milestone_rx << ':' << receiver->m_lastNACK << ':'
++            << receiver->m_ecn_source.qIndex << ':' << uint32_t(receiver->m_ecn_source.ecnbits) << ':'
++            << receiver->m_ecn_source.qfb << ':' << receiver->m_ecn_source.total << ':' << receiver->m_irn_sack_;
++        Ws31EndpointSnapshotFixture::QpState(out,qp);
++        for (const auto &p:tx->m_qpMap) out << p.first << ':' << PeekPointer(p.second) << ';';
++        for (const auto &p:rx->m_rxQpMap) out << p.first << ':' << PeekPointer(p.second) << ';';
++        for (auto key:tx->akashic_Qp) out << key << ';';
++        for (auto key:rx->akashic_RxQp) out << key << ';';
++        for (auto driver:drivers) {
++            out << PeekPointer(driver) << ':' << PeekPointer(driver->m_node) << ':' << PeekPointer(driver->m_rdma) << ':';
++            for (const auto &nic:driver->m_rdma->m_nic)
++                out << PeekPointer(nic.dev) << ':' << PeekPointer(nic.qpGrp) << ':' << nic.qpGrp->m_qps.size() << ';';
++        }
++        Ws31EndpointSnapshotFixture::Event(out,receiver->QcnTimerEvent);
++        Ws31EndpointSnapshotFixture::DeviceState(out,a);
++        Ws31EndpointSnapshotFixture::DeviceState(out,b);
++        return out.str();
++    };
++    auto observe=[&]() { ++reads; return Ws31EndpointProbe::Read(0,ledger.Get(0),tx,rx,qp,receiver,scope,txNic,rxNic); };
++    auto pair=[&](const char *name) {
++        const std::string before=state(); auto first=observe(); const std::string middle=state();
++        auto second=observe(); const std::string after=state();
++        Require(before==middle && middle==after,"Probe changed explicit protocol state");
++        const auto &s=first.snapshot; const auto &t=second.snapshot;
++        Require(s.observedNs==t.observedNs && s.observedFields==127 && t.observedFields==127 &&
++            s.pendingPayloadBytes==t.pendingPayloadBytes && s.retainedQpsFinished==t.retainedQpsFinished &&
++            s.txTimers==t.txTimers && s.rxTimers==t.rxTimers && s.deviceTimers==t.deviceTimers &&
++            s.dataQueueBytes==t.dataQueueBytes && s.ackQueueBytes==t.ackQueueBytes && s.transmitting==t.transmitting,
++            "Repeated same-event probe output differs");
++        std::cout << "WS31_ENDPOINT_OBJECT case=" << name << " mask=" << s.observedFields
++            << " finished=" << s.retainedQpsFinished << " pending=" << s.pendingPayloadBytes
++            << " tx_timers=" << s.txTimers << " rx_timers=" << s.rxTimers << " device_timers=" << s.deviceTimers
++            << " data=" << s.dataQueueBytes << " ack=" << s.ackQueueBytes << " transmitting=" << s.transmitting
++            << " history_released=" << s.completionHistoryReleased << " before=" << Fingerprint(before)
++            << " after=" << Fingerprint(after) << " full_protocol_bytes_equal=1"
++            << " nodes=" << first.nodes << " devices=" << first.devices.size()
++            << " saved_tx=" << first.savedTxObject << " saved_rx=" << first.savedRxObject
++            << " live_tx=" << first.liveTxObject << " live_rx=" << first.liveRxObject << std::endl;
++        for (const auto &device:first.devices) {
++            std::cout << "WS31_ENDPOINT_OBJECT_DEVICE case=" << name << " node=" << device.node
++                << " interface=" << device.interface << " object=" << device.deviceObject
++                << " physical=" << device.physicalObject << " egress=" << device.egressObject
++                << " ack=" << device.ackObject << " group=" << device.groupObject << std::endl;
++            for (uint32_t i=0;i<device.retained.size();++i) {
++                const auto &retained=device.retained[i];
++                std::cout << "WS31_ENDPOINT_OBJECT_SLOT case=" << name << " node=" << device.node
++                    << " interface=" << device.interface << " slot=" << i << " object=" << retained.object
++                    << " flow_id=" << retained.flowId << " finished_bit=" << retained.finishedBit
++                    << " completed=" << retained.completed << " next=" << retained.next
++                    << " acknowledged=" << retained.acknowledged << " size=" << retained.size
++                    << " pending=" << retained.pendingPayload << " timers=" << retained.timers << std::endl;
++            }
++        }
++        std::cout << "WS31_ENDPOINT_OBJECT_SACK case=" << name << " next=" << qp->snd_nxt
++            << " acknowledged=" << qp->snd_una << " state=\"" << qp->irn.m_sack << "\"" << std::endl;
++        return first;
++    };
++    auto deny=[&](const char *name) {
++        const std::string before=state(); const std::string reason=Reject([&]{ observe(); });
++        Require(before==state(),"Rejected probe changed protocol state");
++        std::cout << "WS31_ENDPOINT_OBJECT_REFUSE case=" << name << " full_protocol_bytes_equal=1 reason=\""
++            << reason << "\"" << std::endl;
++    };
++    Require(pair("complete-unmarked").snapshot.Quiet(),"Completed unmarked QP not quiet");
++    ledger.AckComplete(0,8192,0);
++    std::cout << "WS31_ENDPOINT_OBJECT_REFUSE case=incomplete-mask reason=\""
++        << Reject([&]{ ledger.Retire(0,observe().snapshot,0); }) << "\"" << std::endl;
++    group->SetQpFinished(0);
++    Require(pair("complete-marked").snapshot.Quiet(),"Completed marked retained QP not quiet");
++    qp->irn.m_enabled=true; qp->snd_nxt=qp->snd_una=0;
++    qp->irn.m_sack.sack(0,1024); qp->irn.m_sack.sack(2048,1024);
++    auto pending=pair("irn-two-sack-blocks");
++    Require(!pending.snapshot.retainedQpsFinished && pending.snapshot.pendingPayloadBytes==8192,
++            "Finished bit hid unfinished QP or mutable SACK getter changed pending");
++    qp->snd_nxt=qp->snd_una=8192;
++    Ptr<RdmaQueuePair> next=CreateObject<RdmaQueuePair>(pg,Ipv4Address(sip),Ipv4Address(dip),sport+1,dport);
++    next->SetSize(4096); next->SetFlowId(1); group->AddQp(next);
++    Require(pair("retain-old-append-new").snapshot.pendingPayloadBytes==4096,"New slot payload omitted or double counted");
++    group->m_qps.erase(group->m_qps.begin()); deny("missing-saved-qp"); group->m_qps.insert(group->m_qps.begin(),qp);
++    group->m_qps.push_back(qp); deny("duplicate-qp-slot"); group->m_qps.pop_back();
++    a->m_rdmaEQ->m_qpGrp=CreateObject<RdmaQueuePairGroup>(); deny("device-group-binding"); a->m_rdmaEQ->m_qpGrp=group;
++    tx->m_nic[txNic].qpGrp=CreateObject<RdmaQueuePairGroup>(); deny("hardware-group-binding"); tx->m_nic[txNic].qpGrp=group;
++    Ptr<BEgressQueue> physical=a->GetQueue(); a->SetQueue(Ptr<BEgressQueue>()); deny("missing-physical-queue"); a->SetQueue(physical);
++    tx->m_qpMap[resources.txKey]=Ptr<RdmaQueuePair>(); deny("empty-live-tx"); tx->m_qpMap.erase(resources.txKey);
++    rx->m_rxQpMap[resources.rxKey]=Ptr<RdmaRxQueuePair>(); deny("empty-live-rx"); rx->m_rxQpMap.erase(resources.rxKey);
++    qp->m_flow_id=99; deny("wrong-saved-flow"); qp->m_flow_id=0;
++    ++receiver->dip; deny("wrong-reversed-rx"); --receiver->dip;
++    qp->startTime=NanoSeconds(1); deny("wrong-original-clock"); qp->startTime=NanoSeconds(0);
++    tx->akashic_Qp.insert(resources.txKey); rx->akashic_RxQp.insert(resources.rxKey);
++    Require(!pair("completion-history-present").snapshot.completionHistoryReleased,"Completion histories not observed");
++    rx->m_rxQpMap[resources.rxKey]=receiver;
++    Require(!pair("live-rx").snapshot.rxAbsent,"Live RX treated as absent"); rx->m_rxQpMap.erase(resources.rxKey);
++    Require(physical->Enqueue(Create<Packet>(32),1),"Physical queue setup failed");
++    Require(a->m_rdmaEQ->m_ackQ->Enqueue(Create<Packet>(48)),"ACK queue setup failed");
++    auto queued=pair("physical-and-ack-queues");
++    Require(queued.snapshot.dataQueueBytes==32 && queued.snapshot.ackQueueBytes==48,"Physical/ACK byte accounting wrong");
++    qp->m_retransmit=Simulator::Schedule(NanoSeconds(100),&Noop);
++    receiver->QcnTimerEvent=Simulator::Schedule(NanoSeconds(100),&Noop);
++    Ws31EndpointSnapshotFixture::Activity(a,Simulator::Schedule(NanoSeconds(100),&Noop),
++        Simulator::Schedule(NanoSeconds(100),&Noop),Create<Packet>(20));
++    auto active=pair("events-and-serialization");
++    Require(active.snapshot.txTimers==1 && active.snapshot.rxTimers==1 && active.snapshot.deviceTimers==2 &&
++            active.snapshot.transmitting==1,"QP/device events or current serialization omitted");
++    Ws31EndpointSnapshotFixture::Pause(a,true); deny("paused-device"); Ws31EndpointSnapshotFixture::Pause(a,false);
++    Ws31EndpointSnapshotFixture::Link(a,false); deny("down-device"); Ws31EndpointSnapshotFixture::Link(a,true);
++    Ptr<BEgressQueue> physicalB=b->GetQueue(); b->SetQueue(physical); deny("changed-shared-queue"); b->SetQueue(physicalB);
++    // Last setup deliberately adds an unexpected non-Qbb data-plane device.
++    nodes.Get(1)->AddDevice(CreateObject<PointToPointNetDevice>()); deny("changed-device-scope");
++    std::cout << "WS31_ENDPOINT_OBJECT_REFUSE case=unknown-non-qbb reason=\""
++        << Reject([&]{ Ws31EndpointProbe::Capture(drivers); }) << "\"" << std::endl;
++    Require(eventCalls==0,"Object fixture unexpectedly advanced scheduled events");
++    Simulator::Destroy();
++    Require(eventCalls==0,"Scheduled protocol fixture events executed");
++    std::cout << "WS31_ENDPOINT_OBJECT_SUMMARY PASS reads=" << reads << " refusals=" << refusals
++        << " network_runs=0 event_calls=0 actual_network_completions=0" << std::endl;
++    return 0;
++}
+diff --git a/src/point-to-point/model/qbb-net-device.h b/src/point-to-point/model/qbb-net-device.h
+index a6e3d25..8b649b2 100644
+--- a/src/point-to-point/model/qbb-net-device.h
++++ b/src/point-to-point/model/qbb-net-device.h
+@@ -74,6 +74,9 @@ public:
+  */
+ class QbbNetDevice : public PointToPointNetDevice 
+ {
++  // Read-only WS-31 endpoint evidence adapter; never called by normal routing.
++  friend class Ws31EndpointProbe;
++  friend class Ws31EndpointSnapshotFixture;
+ public:
+   static const uint32_t qCnt = 8;	// Number of queues/priorities used
+   static const uint32_t pCnt = 257;	// Number of ports used
+diff --git a/src/point-to-point/model/ws31-endpoint-probe.h b/src/point-to-point/model/ws31-endpoint-probe.h
+new file mode 100644
+index 0000000..4165829
+--- /dev/null
++++ b/src/point-to-point/model/ws31-endpoint-probe.h
+@@ -0,0 +1,345 @@
++#ifndef WS31_ENDPOINT_PROBE_H
++#define WS31_ENDPOINT_PROBE_H
++
++// Incomplete integration WIP. This adapter observes actual NS-3 objects, but
++// only when explicitly invoked by a later fixture. No normal code includes it.
++// SWITCH_STATE is deliberately not certified here: real per-switch reads and
++// the default-off channel token hook remain separate integration obligations.
++#include "ws31-endpoint-ledger.h"
++#include "rdma-hw.h"
++#include "rdma-driver.h"
++#include "ns3/node-list.h"
++#include "ns3/simulator.h"
++#include "ns3/loopback-net-device.h"
++#include <set>
++#include <vector>
++
++namespace ns3 {
++
++class Ws31EndpointProbe {
++public:
++    struct RetainedQp {
++        int32_t flowId=-1;
++        uintptr_t object=0;
++        uint64_t size=0, next=0, acknowledged=0, pendingPayload=0, timers=0;
++        bool completed=false, finishedBit=false;
++    };
++    struct Device {
++        uint32_t node=0, interface=0;
++        uintptr_t deviceObject=0, physicalObject=0, egressObject=0, ackObject=0, groupObject=0;
++        bool host=false, linkUp=false, physicalQueuePresent=false;
++        bool ackQueuePresent=false, qpGroupPresent=false;
++        bool busy=false, currentPacket=false;
++        uint64_t currentUid=0, currentBytes=0, dataQueueBytes=0, ackQueueBytes=0;
++        uint64_t pacingEvents=0, resumeEvents=0, pausedPriorities=0;
++        std::vector<RetainedQp> retained;
++    };
++    class Scope {
++        friend class Ws31EndpointProbe;
++        struct NodeBinding {
++            Ptr<Node> node;
++            uint32_t type=0;
++            std::vector<Ptr<NetDevice> > devices;
++            std::vector<Ptr<BEgressQueue> > physical;
++        };
++        struct NicBinding {
++            Ptr<QbbNetDevice> device;
++            Ptr<BEgressQueue> physical;
++            Ptr<RdmaEgressQueue> egress;
++            Ptr<DropTailQueue> ack;
++            Ptr<RdmaQueuePairGroup> group;
++        };
++        struct HostBinding {
++            Ptr<RdmaDriver> driver;
++            Ptr<RdmaHw> hw;
++            Ptr<Node> node;
++            std::vector<NicBinding> nics;
++        };
++        std::vector<NodeBinding> nodes;
++        std::vector<HostBinding> hosts;
++    };
++    struct Observation {
++        ws31::EndpointSnapshot snapshot;
++        uintptr_t savedTxObject=0, savedRxObject=0;
++        uintptr_t liveTxObject=0, liveRxObject=0;
++        int32_t liveTxFlowId=-1, liveRxFlowId=-1;
++        bool txHistory=false, rxHistory=false;
++        uint32_t nodes=0;
++        std::vector<Device> devices;
++    };
++private:
++    static void Need(bool ok,const char *message) {
++        if (!ok) throw std::logic_error(message);
++    }
++    static uint64_t Timers(Ptr<RdmaQueuePair> qp) {
++        return uint64_t(qp->mlx.m_eventUpdateAlpha.IsRunning())+
++               uint64_t(qp->mlx.m_eventDecreaseRate.IsRunning())+
++               uint64_t(qp->mlx.m_rpTimer.IsRunning())+
++               uint64_t(qp->m_retransmit.IsRunning());
++    }
++    static uint64_t Pending(Ptr<RdmaQueuePair> qp) {
++        // GetBytesLeft() is NOT a pure getter under IRN: it may advance
++        // snd_nxt and discard SACK entries. Read a conservative field bound.
++        const uint64_t limit=qp->m_ws30Persistent ? qp->m_ws30Released : qp->m_size;
++        return limit>=qp->snd_nxt ? limit-qp->snd_nxt : 0;
++    }
++    static const Scope::HostBinding &Host(const Scope &scope,Ptr<RdmaHw> hw) {
++        for (const auto &host:scope.hosts) if (host.hw==hw) return host;
++        throw std::logic_error("Endpoint hardware was not captured from its actual driver");
++    }
++    static void ValidateScope(const Scope &scope) {
++        Need(!scope.nodes.empty() && !scope.hosts.empty(),"Endpoint scope has no setup provenance");
++        uint32_t index=0;
++        for (auto it=NodeList::Begin();it!=NodeList::End();++it,++index) {
++            Need(index<scope.nodes.size() && *it==scope.nodes[index].node,
++                 "NodeList differs from the frozen endpoint scope");
++            const auto &record=scope.nodes[index];
++            Need(record.node->GetNodeType()==record.type,"Frozen node type changed");
++            Need(record.node->GetNDevices()==record.devices.size(),"Frozen device count changed");
++            for (uint32_t i=0;i<record.devices.size();++i) {
++                Need(record.node->GetDevice(i)==record.devices[i],"Frozen interface identity changed");
++                Ptr<QbbNetDevice> device=DynamicCast<QbbNetDevice>(record.devices[i]);
++                if (device) Need(device->m_queue==record.physical[i],"Frozen physical queue identity changed");
++            }
++        }
++        Need(index==scope.nodes.size(),"Frozen node is missing from NodeList");
++        for (const auto &host:scope.hosts) {
++            Need(host.driver && host.hw && host.driver->m_rdma==host.hw &&
++                 host.driver->m_node==host.node && host.hw->m_node==host.node,
++                 "Captured actual driver/hardware/node binding changed");
++            Need(host.hw->m_nic.size()==host.nics.size(),"Captured NIC count changed");
++            for (uint32_t i=0;i<host.nics.size();++i) {
++                const auto &nic=host.nics[i]; const auto &actual=host.hw->m_nic[i];
++                Need(actual.dev==nic.device && actual.qpGrp==nic.group,"Hardware NIC/group binding changed");
++                if (!nic.device) {
++                    Need(nic.group && nic.group->m_qps.empty(),"Loopback slot has unexpected retained QPs");
++                    continue;
++                }
++                Need(nic.device->GetNode()==host.node && nic.device->GetIfIndex()==i &&
++                     nic.device->m_rdmaEQ==nic.egress && nic.device->m_queue==nic.physical &&
++                     nic.egress && nic.egress->m_ackQ==nic.ack && nic.egress->m_qpGrp==nic.group,
++                     "Actual device/egress/ACK/retained-group binding changed");
++            }
++        }
++    }
++public:
++    // Setup only: GetObject may change ns-3 aggregate lookup bookkeeping.
++    // Call Capture after actual driver Init, before any purity fingerprint.
++    // Observation below never calls GetObject or rediscovers driver ownership.
++    static Scope Capture(const std::vector<Ptr<RdmaDriver> > &drivers) {
++        Scope scope;
++        std::set<uintptr_t> devices,physical,egress,ack,groups,hardware,hostNodes;
++        for (auto it=NodeList::Begin();it!=NodeList::End();++it) {
++            Scope::NodeBinding record; record.node=*it; record.type=record.node->GetNodeType();
++            for (uint32_t i=0;i<record.node->GetNDevices();++i) {
++                Ptr<NetDevice> device=record.node->GetDevice(i);
++                Need(device && device->GetNode()==record.node && device->GetIfIndex()==i &&
++                     devices.insert(reinterpret_cast<uintptr_t>(PeekPointer(device))).second,
++                     "Duplicate or wrongly indexed device in endpoint scope");
++                record.devices.push_back(device);
++                Ptr<QbbNetDevice> qbb=DynamicCast<QbbNetDevice>(device);
++                record.physical.push_back(qbb ? qbb->m_queue : Ptr<BEgressQueue>());
++                if (!qbb) {
++                    Need(DynamicCast<LoopbackNetDevice>(device)!=nullptr,
++                         "Unknown non-Qbb data-plane device in endpoint scope");
++                    continue;
++                }
++                Need(qbb->m_queue && physical.insert(reinterpret_cast<uintptr_t>(PeekPointer(qbb->m_queue))).second,
++                     "Missing or shared physical queue in standard endpoint scope");
++            }
++            scope.nodes.push_back(record);
++        }
++        for (auto driver:drivers) {
++            Need(driver && driver->m_node && driver->m_rdma,"Incomplete setup driver provenance");
++            Scope::HostBinding host;
++            host.driver=driver; host.node=driver->m_node; host.hw=driver->m_rdma;
++            Need(host.node->GetNodeType()==0 && host.node->GetObject<RdmaDriver>()==driver &&
++                 host.hw->m_node==host.node && hardware.insert(reinterpret_cast<uintptr_t>(PeekPointer(host.hw))).second &&
++                 hostNodes.insert(reinterpret_cast<uintptr_t>(PeekPointer(host.node))).second,
++                 "Setup provenance is not the unique actual host driver/hardware");
++            Need(host.hw->m_nic.size()==host.node->GetNDevices(),"Setup NIC vector does not cover all interfaces");
++            for (uint32_t i=0;i<host.hw->m_nic.size();++i) {
++                Scope::NicBinding nic;
++                const auto &actual=host.hw->m_nic[i];
++                nic.device=actual.dev; nic.group=actual.qpGrp;
++                Ptr<NetDevice> device=host.node->GetDevice(i);
++                if (!nic.device) {
++                    Need(DynamicCast<LoopbackNetDevice>(device)!=nullptr,"Missing actual Qbb NIC binding");
++                } else {
++                    Need(device==nic.device && nic.device->m_rdmaEQ && nic.group,
++                         "Actual NIC identity/egress/group is absent");
++                    nic.physical=nic.device->m_queue; nic.egress=nic.device->m_rdmaEQ;
++                    nic.ack=nic.egress->m_ackQ;
++                    Need(nic.physical && nic.ack && nic.egress->m_qpGrp==nic.group,
++                         "Actual hardware and device do not share the recorded QP group");
++                    Need(egress.insert(reinterpret_cast<uintptr_t>(PeekPointer(nic.egress))).second &&
++                         ack.insert(reinterpret_cast<uintptr_t>(PeekPointer(nic.ack))).second &&
++                         groups.insert(reinterpret_cast<uintptr_t>(PeekPointer(nic.group))).second,
++                         "Shared egress, ACK queue, or retained group is outside the standard fixture contract");
++                }
++                host.nics.push_back(nic);
++            }
++            scope.hosts.push_back(host);
++        }
++        for (const auto &node:scope.nodes)
++            if (node.node->GetNodeType()==0)
++                Need(hostNodes.count(reinterpret_cast<uintptr_t>(PeekPointer(node.node)))==1,
++                     "Expected host has no captured actual driver");
++        ValidateScope(scope);
++        return scope;
++    }
++    static Device ReadDevice(Ptr<QbbNetDevice> device) {
++        Need(device && device->GetNode(),"Endpoint probe requires an attached real device");
++        Device result;
++        result.node=device->GetNode()->GetId(); result.interface=device->GetIfIndex();
++        result.deviceObject=reinterpret_cast<uintptr_t>(PeekPointer(device));
++        result.host=device->GetNode()->GetNodeType()==0;
++        result.linkUp=device->m_linkUp;
++        result.busy=device->m_txMachineState==QbbNetDevice::BUSY;
++        result.currentPacket=device->m_currentPkt!=nullptr;
++        if (result.currentPacket) {
++            result.currentUid=device->m_currentPkt->GetUid();
++            result.currentBytes=device->m_currentPkt->GetSize();
++        }
++        result.pacingEvents=device->m_nextSend.IsRunning();
++        for (uint32_t i=0;i<QbbNetDevice::qCnt;++i) {
++            result.resumeEvents+=device->m_resumeEvt[i].IsRunning();
++            result.pausedPriorities+=device->m_paused[i];
++        }
++        result.physicalQueuePresent=device->m_queue!=nullptr;
++        result.physicalObject=reinterpret_cast<uintptr_t>(PeekPointer(device->m_queue));
++        if (result.physicalQueuePresent) result.dataQueueBytes=device->m_queue->GetNBytesTotal();
++        Need(result.physicalQueuePresent,"Standard endpoint scope has no physical queue");
++        if (result.host) {
++            Need(device->m_rdmaEQ!=nullptr,"Host has no actual RDMA queue");
++            Ptr<RdmaEgressQueue> queue=device->m_rdmaEQ;
++            result.egressObject=reinterpret_cast<uintptr_t>(PeekPointer(queue));
++            result.ackQueuePresent=queue->m_ackQ!=nullptr;
++            result.qpGroupPresent=queue->m_qpGrp!=nullptr;
++            result.ackObject=reinterpret_cast<uintptr_t>(PeekPointer(queue->m_ackQ));
++            result.groupObject=reinterpret_cast<uintptr_t>(PeekPointer(queue->m_qpGrp));
++            Need(result.ackQueuePresent && result.qpGroupPresent,"Host queue setup is incomplete");
++            result.ackQueueBytes=queue->m_ackQ->GetNBytes();
++            for (uint32_t i=0;i<queue->m_qpGrp->m_qps.size();++i) {
++                Ptr<RdmaQueuePair> qp=queue->m_qpGrp->m_qps[i];
++                Need(qp!=nullptr,"Retained group has an empty QP reference");
++                RetainedQp retained;
++                retained.flowId=qp->m_flow_id;
++                retained.object=reinterpret_cast<uintptr_t>(PeekPointer(qp));
++                retained.size=qp->m_size; retained.next=qp->snd_nxt;
++                retained.acknowledged=qp->snd_una;
++                retained.pendingPayload=Pending(qp); retained.timers=Timers(qp);
++                retained.completed=qp->IsFinishedConst();
++                // IsQpFinished only reads the existing bit; do not call
++                // GetNextQindex, IsFinished, GetNBytes, or GetBytesLeft here.
++                retained.finishedBit=queue->m_qpGrp->IsQpFinished(i);
++                result.retained.push_back(retained);
++            }
++        }
++        return result;
++    }
++
++    static Observation Read(int32_t id,const ws31::EndpointLedger::Entry &entry,
++                            Ptr<RdmaHw> tx,Ptr<RdmaHw> rx,
++                            Ptr<RdmaQueuePair> savedTx,Ptr<RdmaRxQueuePair> savedRx,
++                            const Scope &scope,uint32_t txNic,uint32_t rxNic) {
++        ValidateScope(scope);
++        const auto &txBinding=Host(scope,tx); const auto &rxBinding=Host(scope,rx);
++        Need(txNic<txBinding.nics.size() && rxNic<rxBinding.nics.size() &&
++             txBinding.nics[txNic].device && rxBinding.nics[rxNic].device,
++             "Selected endpoint NIC is outside its setup binding");
++        Need(tx && rx && tx->m_node && rx->m_node && savedTx && savedRx,
++             "Endpoint observation needs saved actual TX/RX objects");
++        const auto &tuple=entry.tuple;
++        const uint32_t sip=std::get<0>(tuple), dip=std::get<1>(tuple);
++        const uint16_t sport=std::get<2>(tuple), dport=std::get<3>(tuple), pg=std::get<4>(tuple);
++        const uint64_t txKey=RdmaHw::GetQpKey(dip,sport,dport,pg);
++        const uint64_t rxKey=RdmaHw::GetRxQpKey(sip,sport,dport,pg);
++        Need(tx->m_node->GetId()==entry.resources.sourceNode && rx->m_node->GetId()==entry.resources.destinationNode &&
++             txKey==entry.resources.txKey && rxKey==entry.resources.rxKey,
++             "Endpoint resource keys differ from actual transport functions");
++        Need(savedTx->m_flow_id==id && savedTx->sip.Get()==sip && savedTx->dip.Get()==dip &&
++             savedTx->sport==sport && savedTx->dport==dport && savedTx->m_pg==pg &&
++             savedTx->m_size==entry.bytes && savedTx->m_workload_tag==entry.originalTag &&
++             uint64_t(savedTx->startTime.GetNanoSeconds())==entry.demandNs &&
++             entry.launchNs>=entry.demandNs && savedTx->m_ws31LaunchDelayNs==entry.launchNs-entry.demandNs,
++             "Saved sender object does not belong to the requested generation");
++        Need(savedRx->m_flow_id==id && savedRx->sip==dip && savedRx->dip==sip &&
++             savedRx->sport==dport && savedRx->dport==sport && savedRx->m_ecn_source.qIndex==pg,
++             "Saved receiver object has the wrong reversed endpoint identity");
++        Observation result;
++        result.savedTxObject=reinterpret_cast<uintptr_t>(PeekPointer(savedTx));
++        result.savedRxObject=reinterpret_cast<uintptr_t>(PeekPointer(savedRx));
++        auto &s=result.snapshot;
++        s.flowId=id; s.tuple=tuple; s.generation=entry.generation;
++        s.observedNs=Simulator::Now().GetNanoSeconds();
++        auto liveTx=tx->m_qpMap.find(txKey);
++        auto liveRx=rx->m_rxQpMap.find(rxKey);
++        s.txAbsent=liveTx==tx->m_qpMap.end(); s.rxAbsent=liveRx==rx->m_rxQpMap.end();
++        if (!s.txAbsent) {
++            Need(liveTx->second!=nullptr,"Live sender map contains an empty QP reference");
++            result.liveTxFlowId=liveTx->second->m_flow_id;
++            result.liveTxObject=reinterpret_cast<uintptr_t>(PeekPointer(liveTx->second));
++        }
++        if (!s.rxAbsent) {
++            Need(liveRx->second!=nullptr,"Live receiver map contains an empty QP reference");
++            result.liveRxFlowId=liveRx->second->m_flow_id;
++            result.liveRxObject=reinterpret_cast<uintptr_t>(PeekPointer(liveRx->second));
++        }
++        s.txTimers=Timers(savedTx); s.rxTimers=savedRx->QcnTimerEvent.IsRunning();
++        if (!s.rxAbsent && liveRx->second!=savedRx) s.rxTimers+=liveRx->second->QcnTimerEvent.IsRunning();
++        result.txHistory=tx->akashic_Qp.count(txKey)!=0;
++        result.rxHistory=rx->akashic_RxQp.count(rxKey)!=0;
++        s.completionHistoryReleased=!result.txHistory && !result.rxHistory;
++        s.retainedQpsFinished=savedTx->IsFinishedConst();
++        s.pendingPayloadBytes=Pending(savedTx);
++        bool txNodeSeen=false, rxNodeSeen=false;
++        std::set<uintptr_t> timerObjects;
++        std::set<uintptr_t> payloadObjects,groupObjects;
++        timerObjects.insert(result.savedTxObject);
++        payloadObjects.insert(result.savedTxObject);
++        uint32_t savedTxOccurrences=0;
++        if (!s.txAbsent) {
++            const uintptr_t object=reinterpret_cast<uintptr_t>(PeekPointer(liveTx->second));
++            if (timerObjects.insert(object).second) s.txTimers+=Timers(liveTx->second);
++        }
++        for (auto it=NodeList::Begin();it!=NodeList::End();++it) {
++            Ptr<Node> node=*it; ++result.nodes;
++            for (uint32_t i=0;i<node->GetNDevices();++i) {
++                Ptr<QbbNetDevice> device=DynamicCast<QbbNetDevice>(node->GetDevice(i));
++                if (!device) continue;
++                Device observation=ReadDevice(device);
++                Need(observation.linkUp && observation.pausedPriorities==0,
++                     "Endpoint fixture scope contains a down or paused device");
++                txNodeSeen|=observation.node==entry.resources.sourceNode;
++                rxNodeSeen|=observation.node==entry.resources.destinationNode;
++                s.deviceTimers+=observation.pacingEvents+observation.resumeEvents;
++                s.dataQueueBytes+=observation.dataQueueBytes;
++                s.ackQueueBytes+=observation.ackQueueBytes;
++                s.transmitting+=observation.busy || observation.currentPacket;
++                for (const auto &qp:observation.retained) {
++                    Need(groupObjects.insert(qp.object).second,"Duplicate QP in retained groups or slots");
++                    s.retainedQpsFinished &= qp.completed;
++                    if (payloadObjects.insert(qp.object).second) s.pendingPayloadBytes+=qp.pendingPayload;
++                    if (timerObjects.insert(qp.object).second) s.txTimers+=qp.timers;
++                    if (qp.object==result.savedTxObject) {
++                        Need(device==txBinding.nics[txNic].device &&
++                             device->m_rdmaEQ->m_qpGrp==txBinding.nics[txNic].group,
++                             "Saved sender QP is outside its selected actual NIC/group");
++                        ++savedTxOccurrences;
++                    }
++                }
++                result.devices.push_back(observation);
++            }
++        }
++        Need(txNodeSeen && rxNodeSeen && !result.devices.empty(),"Actual endpoint device scope was not observed");
++        Need(savedTxOccurrences==1,"Saved sender QP missing from its actual retained group");
++        s.observedFields=ws31::EndpointSnapshot::MAPS | ws31::EndpointSnapshot::QP_TIMERS |
++            ws31::EndpointSnapshot::DEVICE_TIMERS | ws31::EndpointSnapshot::RETAINED_QPS |
++            ws31::EndpointSnapshot::QUEUES | ws31::EndpointSnapshot::SERIALIZATION |
++            ws31::EndpointSnapshot::HISTORY;
++        return result;
++    }
++};
++} // namespace ns3
++#endif

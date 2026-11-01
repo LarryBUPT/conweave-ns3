@@ -1,0 +1,18 @@
+---- Summary of optional NS-3 features:
+Python Bindings               : [01;31mnot enabled (PyBindGen missing)[0m
+NS-3 Click Integration        : [01;31mnot enabled (nsclick not enabled (see option --with-nsclick))[0m
+GtkConfigStore                : [01;31mnot enabled (library 'gtk+-2.0 >= 2.12' not found)[0m
+XmlIo                         : [01;31mnot enabled (library 'libxml-2.0 >= 2.7' not found)[0m
+Threading Primitives          : [32menabled[0m
+Real Time Simulator           : [32menabled[0m
+Emulated Net Device           : [32menabled[0m
+Network Simulation Cradle     : [01;31mnot enabled (NSC not found (see option --with-nsc))[0m
+MPI Support                   : [01;31mnot enabled (option --enable-mpi not selected)[0m
+NS-3 OpenFlow Integration     : [01;31mnot enabled (Required boost libraries not found)[0m
+SQlite stats data output      : [32menabled[0m
+Tap Bridge                    : [32menabled[0m
+PyViz visualizer              : [01;31mnot enabled (Python Bindings are needed but not enabled)[0m
+Use sudo to set suid bit      : [01;31mnot enabled (option --enable-sudo not selected)[0m
+Build tests                   : [01;31mnot enabled (defaults to disabled)[0m
+Build examples                : [01;31mnot enabled (defaults to disabled)[0m
+GNU Scientific Library (GSL)  : [01;31mnot enabled (GSL not found)[0m

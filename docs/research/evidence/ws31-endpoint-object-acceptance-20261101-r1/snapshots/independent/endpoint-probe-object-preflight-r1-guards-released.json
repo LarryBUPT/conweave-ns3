@@ -1,0 +1,71 @@
+{
+  "at_utc": "2026-11-01T09:47:46.296398+00:00",
+  "status": "EXPLICITLY_RELEASED_AFTER_ALL_TERMINAL_CALLS_AND_VERIFIED_RAW",
+  "scope": "endpoint-probe-object-preflight-r1",
+  "source_guard": "released",
+  "entry_guard": "released",
+  "environment_guard": "released",
+  "head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "local_status": "clean",
+  "working_source_files": {
+    "scratch/ws31-endpoint-object-test.cc": {
+      "working_sha256": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5",
+      "git_blob_sha256": "9bd087245c57721340df041d3d993a3a37f40a74f0356a37a1c46c6eb4c56af5",
+      "git_blob": "f9d52c17d22eace4260932867d9c509815486197",
+      "CRLF_normalized_bytes_equal_blob": true,
+      "working_bytes": 15767,
+      "git_bytes": 15767
+    },
+    "src/point-to-point/model/qbb-net-device.h": {
+      "working_sha256": "7007de27f3a3faae3411e171b35c109099df3a3f3a62f84e294e2de6ee1f602c",
+      "git_blob_sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+      "git_blob": "8b649b24fd831af40a67c4d229b9eae27719e4cb",
+      "CRLF_normalized_bytes_equal_blob": true,
+      "working_bytes": 7514,
+      "git_bytes": 7283
+    },
+    "src/point-to-point/model/ws31-endpoint-probe.h": {
+      "working_sha256": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892",
+      "git_blob_sha256": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892",
+      "git_blob": "41658298f15420089ff397b6b99a7b597d0b6b29",
+      "CRLF_normalized_bytes_equal_blob": true,
+      "working_bytes": 19658,
+      "git_bytes": 19658
+    }
+  },
+  "accepted_core_inputs_unchanged": true,
+  "prior_artifacts_unchanged": 13,
+  "plan_sha256": "d91892f73bc6a6b45c0541f2c588ba59ba3fd3694ec75a75e35be5265dd5b255",
+  "environment_compatible": {
+    "REMOTE_HOST": "10.112.14.167",
+    "REMOTE_USER": "fnl",
+    "REMOTE_ROOT": "/home/fnl/lzy"
+  },
+  "no_persistent_driver": true,
+  "remote_task_pids_absent": [
+    308083,
+    310589,
+    310625,
+    308120,
+    308359
+  ],
+  "owned_local_git_ssh_scp_calls_terminal": true,
+  "counts": {
+    "sync": 1,
+    "deploy": 0,
+    "full_optimized_j2_build": 1,
+    "new_object_fixture": 1,
+    "standalone_core_compile": 0,
+    "old_core_adapter_reference_rerun": 0,
+    "network_run": 0
+  },
+  "source_build_fixture_raw_and_library_integrity_verified": true,
+  "successful_read_returns_derived": 17,
+  "failed_Read_calls": 14,
+  "total_Read_calls": 31,
+  "total_refusals": 16,
+  "complete_ALL_certificates": 0,
+  "actual_network_completions": 0,
+  "future_execution_authority": false,
+  "remaining_owner": "main: actual switch/channel/complete callback/history/G1/network fixtures, V0/effects/cost remain mandatory"
+}

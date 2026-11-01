@@ -1,0 +1,55 @@
+Setting top to                           : /home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source 
+Setting out to                           : /home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source/build 
+Checking for 'gcc' (c compiler)          : /usr/bin/gcc 
+Checking for 'g++' (c++ compiler)        : /usr/bin/g++ 
+Checking for compilation flag -march=native... support : ok 
+Checking for compilation flag -Wl,--soname=foo... support : ok 
+Checking for program python                               : /usr/bin/python 
+Checking for python version                               : (2, 7, 12, 'final', 0) 
+Checking for library python2.7 in LIBDIR                  : yes 
+Checking for program /usr/bin/python-config,python2.7-config,python-config-2.7,python2.7m-config : /usr/bin/python-config 
+Checking for header Python.h                                                                     : yes 
+Checking for compilation flag -fvisibility=hidden... support                                     : ok 
+Checking for compilation flag -Wno-array-bounds... support                                       : ok 
+Checking for pybindgen location                                                                  : not found 
+Python module pybindgen                                                                          : not found 
+pybindgen missing => no python bindings
+Checking boost includes                                                                          : 1_58 
+Checking boost libs                                                                              : not found 
+Checking boost includes                                                                          : 1_58 
+Checking boost libs                                                                              : not found 
+Checking for click location                                                                      : not found 
+Checking for program pkg-config                                                                  : /usr/bin/pkg-config 
+Checking for 'gtk+-2.0' >= 2.12                                                                  : not found 
+Checking for 'libxml-2.0' >= 2.7                                                                 : not found 
+Checking for type uint128_t                                                                      : not found 
+Checking for type __uint128_t                                                                    : yes 
+Checking high precision time implementation                                                      : 128-bit integer 
+Checking for header stdint.h                                                                     : yes 
+Checking for header inttypes.h                                                                   : yes 
+Checking for header sys/inttypes.h                                                               : not found 
+Checking for header sys/types.h                                                                  : yes 
+Checking for header sys/stat.h                                                                   : yes 
+Checking for header dirent.h                                                                     : yes 
+Checking for header stdlib.h                                                                     : yes 
+Checking for header signal.h                                                                     : yes 
+Checking for header pthread.h                                                                    : yes 
+Checking for header stdint.h                                                                     : yes 
+Checking for header inttypes.h                                                                   : yes 
+Checking for header sys/inttypes.h                                                               : not found 
+Checking for library rt                                                                          : yes 
+Checking for header netpacket/packet.h                                                           : yes 
+Checking for NSC location                                                                        : not found 
+Checking for 'sqlite3'                                                                           : yes 
+Checking for header linux/if_tun.h                                                               : yes 
+Checking for program sudo                                                                        : /usr/bin/sudo 
+Checking for program valgrind                                                                    : /usr/bin/valgrind 
+Checking for 'gsl'                                                                               : not found 
+Checking for compilation flag -Wno-error=deprecated-d... support                                 : ok 
+Checking for compilation flag -Wno-error=deprecated-d... support                                 : ok 
+Checking for compilation flag -fstrict-aliasing... support                                       : ok 
+Checking for compilation flag -fstrict-aliasing... support                                       : ok 
+Checking for compilation flag -Wstrict-aliasing... support                                       : ok 
+Checking for compilation flag -Wstrict-aliasing... support                                       : ok 
+Checking for program doxygen                                                                     : not found 
+'configure' finished successfully (11.771s)

@@ -1,0 +1,39 @@
+{
+  "at_utc": "2026-11-01T09:26:21.197490+00:00",
+  "status": "PASS_FRESH_PROCESS_RESOURCE_ID_CACHE_WORKER_GATE",
+  "resource": {
+    "load": [
+      0.0,
+      0.01,
+      0.0
+    ],
+    "mem_available_gib": 122.52153778076172,
+    "disk_available_gib": 2291.8095779418945
+  },
+  "id_absent": {
+    "results": true,
+    "runs": true
+  },
+  "own_ancestry": [
+    1,
+    277741,
+    307916,
+    307956,
+    307957
+  ],
+  "known_nonproject_sleeping": [
+    215645,
+    302325,
+    348833,
+    377959,
+    397391,
+    415208,
+    420873,
+    420878,
+    457365
+  ],
+  "unknown_jobs": [],
+  "worker_verified": true,
+  "local_parallel_probe_processes": "initial Windows snapshot contains only owned just-completed git/SSH probes and ElectricBillMonitor services; no persistent project driver",
+  "source_copy_build_recipe": "new isolated clone/checkout and full optimized configure, then ./waf -j2 -v; verbose output records compiler commands only"
+}

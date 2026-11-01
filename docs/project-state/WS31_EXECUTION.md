@@ -155,7 +155,15 @@ Integration 核 90 项索引文件、41 项 raw、5 项原审查／WIP、4 参�
 
 新源 `8cd1ba69469bf80143d5c89edc17fa72611018e8` 已固定并推送，父源 20bc，恰三文件／4,847 树项：新 probe、新 `scratch/ws31-endpoint-object-test.cc`，以及 Qbb 头的注释和两个 friend。生产 cc、对象数据成员、虚函数与原核心两输入均不改，独占树干净。[对象契约](../research/evidence/ws31-endpoint-object-integration-20261101-r1/snapshots/main/endpoint-probe-object-contract-r1.md)规定八组同刻双读、十四组 Read 拒绝和两项额外拒绝；计划 31 次 Read 含故意失败调用，不能写成 31 份成功快照。完整协议字符串／SACK／槽位／位图逐字节比较，展示哈希不代替比较。对象状态手工设置，不调用 Simulator::Run，mask 仍为 127，没有自然完成或完整 ALL 证书。
 
-主在 idle102 后另派[对象预检](../research/evidence/ws31-endpoint-object-integration-20261101-r1/snapshots/main/endpoint-probe-object-preflight-r1.json)，哈希 `d91892f73bc6a6b45c0541f2c588ba59ba3fd3694ec75a75e35be5265dd5b255`，新 ID `20261101-173000-ws31-endpoint-object-r1`。先独立审源，再过新进程／缓存／worker／资源／ID 门；至多一次同步、一次 optimized `-j2` 全构建和一次新对象夹具直接调用，无部署、网络、旧核心／适配器／参考重跑。当前结果待验，源码／入口／环境约束保持至明确释放，active 不重复派发。真实 switch／channel／完成回调／history／G1／两代网络正反例及独立 V0／双侧效果成本继续必做。
+主在 idle102 后另派[对象预检](../research/evidence/ws31-endpoint-object-integration-20261101-r1/snapshots/main/endpoint-probe-object-preflight-r1.json)，哈希 `d91892f73bc6a6b45c0541f2c588ba59ba3fd3694ec75a75e35be5265dd5b255`，ID `20261101-173000-ws31-endpoint-object-r1`。实际经独立审源及新门完成一次同步、一次 optimized `-j2` 全构建和一次新夹具；部署、网络、独立核心编译及旧测试重跑均为 0。现已主验并经 Integration 独核，见[第十七节点](../handoffs/2026-11-01-ws31-endpoint-object-acceptance.md)。
+
+构建为 1,470 项，外层耗时 358.507 s、Waf 内层 5m57.379s，计时范围分列。夹具实际编译为 -O3／-g／gnu++11，无 -DNDEBUG；不能沿用此前独立核心编译参数。主事前冻结的输出核验器哈希未变，62 行逐核；Integration 另从原行核对象绑定、八组观察、16 条设备、13 条槽位、8 条 SACK、16 条拒绝和 1 条汇总。31 次 Read 含 14 次 Read 拒绝、17 次返回成功；其中一次返回后因 mask 不完整被账本拒绝，另一次为 Capture 拒绝。协议字符串比较位于固定 C++ 内，展示 FNV 不作唯一纯度依据；观察仅覆盖明确列出的协议字段，非整个对象内存。
+
+Integration 核 170 项索引文件、109 项 raw、13 项旧文件，以及完整 4,847 条 Git 源码路径的 blob／模式／大小／SHA-256，合计 284,719,415 B。实际 ELF 为 1,709,032 B，SHA-256 `06bbe540d28f35571502e0b4189c1029e2282fae179402443f43dc1258e099ef`；36 项工程库副本也在本地核字节，9 项系统库仅远端指纹。库记录为 ldd 解析和保存副本，不称 /proc/maps 实采。大型 ELF 留原本地结果目录，Git 保存来源及哈希，不重复加入大文件。
+
+两处副侧辅助 checker 的工作字节等于 Git LF、仅 stdout 含 Waf argv 假设失败均保留；修正分别核 CRLF 等价和同时读取原 stdout／stderr，无科学重试、源码或判据变化。全部调用终态后于 09:47:46 UTC 显式释放源码／入口／环境约束，副 completed／idle107、无持久驱动或新执行授权。固定实现树干净 8cd，本节点无新科学源修改；网络仍为 43 格，另 17 例适配器及两个工程预检分列。
+
+主下一步按[接线设计](../research/evidence/ws31-endpoint-object-acceptance-20261101-r1/snapshots/main/endpoint-channel-integration-design-r1.md)实现默认关闭的原事件 channel token、接收返回后闭合、真实交换机纯读、完成回调 RX 捕获和历史清理，再冻结新源、实际上下文 G1 及两代网络正反例。该文当前只是设计，不构成新执行授权。独立 V0、三候选匹配消融、业务／背景双侧效果和状态／运行成本仍必做，副 idle 不重复派发旧格。
 
 真实端点／定时器／队列快照、Receive 返回后的原交付 token 闭合、条件标签存在性检查、实际上下文 G1 及两代网络正例／拒绝例仍须实现和独立验证。EndpointSnapshot 仍为待适配器提供的参数，手工字段覆盖不当作测量，held copy 丢弃不当作原生旧包接收隔离。generation=0 或固定等待时长均不代替排空证明。独立 V0、双侧效果及状态／运行成本继续必做。
 

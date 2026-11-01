@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "ConnectionAttempts=1",
+    "-o",
+    "ClearAllForwardings=yes",
+    "fnl@10.112.14.167",
+    "python3 -"
+  ],
+  "stdin_script": "remote-gate.py",
+  "stdin_sha256": "e2c67fc31df525df1f52c6e70b1623447b106def1f200253bd41ac25e8e50f48",
+  "exit": 0
+}

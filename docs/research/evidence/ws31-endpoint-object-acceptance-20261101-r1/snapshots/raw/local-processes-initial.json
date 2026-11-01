@@ -1,0 +1,128 @@
+[
+  {
+    "pid": 1504,
+    "ppid": 1316,
+    "name": "wininit.exe",
+    "created": "2026-10-31T22:32:13.432377+08:00",
+    "command": null
+  },
+  {
+    "pid": 1628,
+    "ppid": 1504,
+    "name": "services.exe",
+    "created": "2026-10-31T22:32:13.720012+08:00",
+    "command": null
+  },
+  {
+    "pid": 2348,
+    "ppid": 1628,
+    "name": "svchost.exe",
+    "created": "2026-10-31T22:32:14.206319+08:00",
+    "command": "C:\\Windows\\system32\\svchost.exe -k netsvcs -p -s Schedule"
+  },
+  {
+    "pid": 2508,
+    "ppid": 1628,
+    "name": "svchost.exe",
+    "created": "2026-10-31T22:32:14.224995+08:00",
+    "command": "C:\\Windows\\system32\\svchost.exe -k netsvcs -p -s UserManager"
+  },
+  {
+    "pid": 9772,
+    "ppid": 2508,
+    "name": "sihost.exe",
+    "created": "2026-10-31T22:32:16.123254+08:00",
+    "command": "sihost.exe"
+  },
+  {
+    "pid": 10176,
+    "ppid": 2348,
+    "name": "pythonw.exe",
+    "created": "2026-10-31T22:32:16.200285+08:00",
+    "command": "\"E:\\ElectricBillMonitor\\.venv\\Scripts\\pythonw.exe\" app.py"
+  },
+  {
+    "pid": 5528,
+    "ppid": 10176,
+    "name": "pythonw.exe",
+    "created": "2026-10-31T22:32:16.67814+08:00",
+    "command": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\pythonw.exe\" app.py"
+  },
+  {
+    "pid": 20132,
+    "ppid": 9772,
+    "name": "ChatGPT.exe",
+    "created": "2026-10-31T22:33:11.719818+08:00",
+    "command": "\"C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.1027.3384.0_x64__2p2nqsd0c76g0\\app\\ChatGPT.exe\" "
+  },
+  {
+    "pid": 32680,
+    "ppid": 20132,
+    "name": "codex.exe",
+    "created": "2026-10-31T22:33:16.379978+08:00",
+    "command": "C:\\Users\\Administrator\\AppData\\Local\\OpenAI\\Codex\\bin\\22cfb1d302613eae\\codex.exe -c features.code_mode_host=true app-server --analytics-default-enabled -c features.prefer_mxc=true -c plugins.codex-app-tools@openai-bundled.mcp_servers.codex_app.enabled=true"
+  },
+  {
+    "pid": 24024,
+    "ppid": 32680,
+    "name": "pwsh.exe",
+    "created": "2026-11-01T17:23:14.563698+08:00",
+    "command": "\"C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe\" -Command \"try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}\n@'\nfrom pathlib import Path\nimport subprocess,json,hashlib,sys\nsys.stdout.reconfigure(encoding='utf-8')\no=Path(r'E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent'); raw=o/'endpoint-probe-object-preflight-r1-raw'; r=Path(r'E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation')\ncode=(o/'endpoint-ledger-core-preflight-r2-raw/remote-readonly-gate.py').read_text().replace('20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da','8cd1ba69469bf80143d5c89edc17fa72611018e8').replace('20261101-163000-ws31-endpoint-core-r2','20261101-173000-ws31-endpoint-object-r1')\ncode=code.rsplit('print(json.dumps(result',1)[0]+\\\"\\nworker='/home/fnl/lzy/.research-workflow/remote_worker.py'\\nb=open(worker,'rb').read()\\nresult['worker']={'path':worker,'symlink':os.path.islink(worker),'realpath':os.path.realpath(worker),'sha256':hashlib.sha256(b).hexdigest(),'LF_sha256':hashlib.sha256(b.replace(b'\\\\r\\\\n',b'\\\\n')).hexdigest()}\\nprint(json.dumps(result,sort_keys=True))\\n\\\"\n(raw/'remote-gate.py').write_text(code,encoding='utf-8')\nargv=['ssh','-o','BatchMode=yes','-o','StrictHostKeyChecking=yes','-o','ConnectTimeout=10','-o','ConnectionAttempts=1','-o','ClearAllForwardings=yes','fnl@10.112.14.167','python3 -']\np=subprocess.run(argv,input=code.encode(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=50)\n(raw/'initial-remote-gate.stdout.json').write_bytes(p.stdout); (raw/'initial-remote-gate.stderr.txt').write_bytes(p.stderr)\n(raw/'initial-remote-gate-command.json').write_text(json.dumps({'argv':argv,'stdin_script':'remote-gate.py','stdin_sha256':hashlib.sha256(code.encode()).hexdigest(),'exit':p.returncode},indent=2)+'\\n',encoding='utf-8')\nassert p.returncode==0,p.stderr.decode(); d=json.loads(p.stdout)\nblob=subprocess.check_output(['git','show','8cd1ba69469bf80143d5c89edc17fa72611018e8:scripts/remote_worker.py'],cwd=r)\nassert d['worker']['LF_sha256']==hashlib.sha256(blob.replace(b'\\r\\n',b'\\n')).hexdigest() and not d['worker']['symlink']\nprint(json.dumps({k:d[k] for k in ('at_utc','pid','ppid','load','mem_available_gib','disk_available_gib','id_absent','old_driver_22440_present','cache','worker')},ensure_ascii=True))\nprint(json.dumps({'all_users':sorted(set((x['user'],x['uid']) for x in d['processes'])),'ordinary_processes':[x for x in d['processes'] if x['uid']>=1000],'root_non_kernel':[x for x in d['processes'] if x['uid']<1000 and x['argv']]},ensure_ascii=True))\n'@ | python -\""
+  },
+  {
+    "pid": 5308,
+    "ppid": 32680,
+    "name": "pwsh.exe",
+    "created": "2026-11-01T17:23:14.573701+08:00",
+    "command": "\"C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe\" -Command \"try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}\n@'\nfrom pathlib import Path\nimport subprocess,json,sys\nsys.stdout.reconfigure(encoding='utf-8')\nr=Path(r'E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation'); raw=Path(r'E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw')\nargv=['git','ls-remote','--heads','origin','feature/ws31-candidates']; p=subprocess.run(argv,cwd=r,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=40)\n(raw/'pushed-ref.stdout.txt').write_bytes(p.stdout); (raw/'pushed-ref.stderr.txt').write_bytes(p.stderr)\nd={'argv':argv,'cwd':str(r),'exit':p.returncode,'stdout':p.stdout.decode(),'stderr':p.stderr.decode()}; (raw/'pushed-ref.json').write_text(json.dumps(d,indent=2)+'\\n',encoding='utf-8')\nassert p.returncode==0 and p.stdout.decode().split()[0]=='8cd1ba69469bf80143d5c89edc17fa72611018e8'; print(json.dumps(d,ensure_ascii=True))\n'@ | python -\""
+  },
+  {
+    "pid": 45872,
+    "ppid": 5308,
+    "name": "python.exe",
+    "created": "2026-11-01T17:23:14.824615+08:00",
+    "command": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" -"
+  },
+  {
+    "pid": 47016,
+    "ppid": 24024,
+    "name": "python.exe",
+    "created": "2026-11-01T17:23:14.825848+08:00",
+    "command": "\"C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python312\\python.exe\" -"
+  },
+  {
+    "pid": 40764,
+    "ppid": 45872,
+    "name": "git.exe",
+    "created": "2026-11-01T17:23:14.886102+08:00",
+    "command": "git ls-remote --heads origin feature/ws31-candidates"
+  },
+  {
+    "pid": 6508,
+    "ppid": 47016,
+    "name": "ssh.exe",
+    "created": "2026-11-01T17:23:14.892591+08:00",
+    "command": "ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=10 -o ConnectionAttempts=1 -o ClearAllForwardings=yes fnl@10.112.14.167 \"python3 -\""
+  },
+  {
+    "pid": 45268,
+    "ppid": 40764,
+    "name": "git.exe",
+    "created": "2026-11-01T17:23:14.894284+08:00",
+    "command": "git.exe ls-remote --heads origin feature/ws31-candidates"
+  },
+  {
+    "pid": 41920,
+    "ppid": 45268,
+    "name": "git.exe",
+    "created": "2026-11-01T17:23:14.90794+08:00",
+    "command": "git remote-https origin https://github.com/LarryBUPT/conweave-ns3.git"
+  },
+  {
+    "pid": 35832,
+    "ppid": 41920,
+    "name": "git-remote-https.exe",
+    "created": "2026-11-01T17:23:14.920546+08:00",
+    "command": "git-remote-https origin https://github.com/LarryBUPT/conweave-ns3.git"
+  }
+]

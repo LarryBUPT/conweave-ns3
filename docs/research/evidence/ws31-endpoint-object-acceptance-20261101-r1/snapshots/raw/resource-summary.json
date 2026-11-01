@@ -1,0 +1,24 @@
+{
+  "status": "VERIFIED_DISCRETE_RESOURCE_RECEIPTS",
+  "samples": 202,
+  "max_sampled_load_1m": 2.24,
+  "min_sampled_available_gib": 121.7578125,
+  "min_sampled_disk_gib": 2289.8296089172363,
+  "build_rusage": {
+    "major_faults": 0,
+    "max_rss_kib": 603088,
+    "minor_faults": 35828335,
+    "system_seconds": 72.984,
+    "user_seconds": 660.54
+  },
+  "build_elapsed_seconds": 358.50653789937496,
+  "fixture_rusage": {
+    "major_faults": 0,
+    "max_rss_kib": 26084,
+    "minor_faults": 885,
+    "system_seconds": 0.012,
+    "user_seconds": 0.032
+  },
+  "fixture_elapsed_seconds": 0.046228863298892975,
+  "scope": "2-second samples during source/configure/build commands and wait4 usage; not continuous peak or algorithm cost"
+}

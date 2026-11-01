@@ -1,0 +1,63 @@
+{
+  "argv": [
+    "git",
+    "checkout",
+    "--detach",
+    "8cd1ba69469bf80143d5c89edc17fa72611018e8"
+  ],
+  "cwd": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+  "elapsed_seconds": 2.0058677345514297,
+  "end_utc": "2026-11-01T09:28:46Z",
+  "environment": {
+    "HOME": "/home/fnl",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "LOGNAME": "fnl",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+    "TMPDIR": "/home/fnl/lzy/results/20261101-173000-ws31-endpoint-object-r1/tmp",
+    "TZ": "UTC",
+    "USER": "fnl",
+    "WS30_COMPOSITION": "0",
+    "WS30_LIFECYCLE": "0",
+    "WS30_LIFE_PROFILE": "0",
+    "WS30_OBSERVE": "0",
+    "WS30_TAG_TRANSFORM": "0",
+    "WS31_LABEL_PROFILE": "0"
+  },
+  "exit": 0,
+  "pid": 308101,
+  "resources_after": {
+    "at_utc": "2026-11-01T09:28:46Z",
+    "disk_available_gib": 2290.4477043151855,
+    "load": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "mem_available_gib": 122.5201187133789
+  },
+  "resources_before": {
+    "at_utc": "2026-11-01T09:28:44Z",
+    "disk_available_gib": 2290.7249641418457,
+    "load": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "mem_available_gib": 122.5210952758789
+  },
+  "rusage": {
+    "major_faults": 0,
+    "max_rss_kib": 74048,
+    "minor_faults": 8536,
+    "system_seconds": 0.208,
+    "user_seconds": 0.856
+  },
+  "start_utc": "2026-11-01T09:28:44Z",
+  "stderr": "logs/checkout.stderr",
+  "stderr_sha256": "f239955143ada70ad1652182cfb16a021693b8f4b7e92295a4253e13e5c392e6",
+  "stdout": "logs/checkout.stdout",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "wait_status": 0
+}

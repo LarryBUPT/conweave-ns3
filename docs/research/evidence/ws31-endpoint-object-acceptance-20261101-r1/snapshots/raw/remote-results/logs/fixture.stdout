@@ -1,0 +1,62 @@
+WS31_ENDPOINT_OBJECT case=complete-unmarked mask=127 finished=1 pending=0 tx_timers=0 rx_timers=0 device_timers=0 data=0 ack=0 transmitting=0 history_released=1 before=4697279184725298750 after=4697279184725298750 full_protocol_bytes_equal=1 nodes=2 devices=2 saved_tx=39653072 saved_rx=39393424 live_tx=0 live_rx=0
+WS31_ENDPOINT_OBJECT_DEVICE case=complete-unmarked node=0 interface=1 object=39393584 physical=39399808 egress=39394880 ack=39395088 group=39641376
+WS31_ENDPOINT_OBJECT_SLOT case=complete-unmarked node=0 interface=1 slot=0 object=39653072 flow_id=0 finished_bit=0 completed=1 next=8192 acknowledged=8192 size=8192 pending=0 timers=0
+WS31_ENDPOINT_OBJECT_DEVICE case=complete-unmarked node=1 interface=1 object=39397088 physical=39513728 egress=39398384 ack=39398592 group=39651856
+WS31_ENDPOINT_OBJECT_SACK case=complete-unmarked next=8192 acknowledged=8192 state=""
+WS31_ENDPOINT_OBJECT_REFUSE case=incomplete-mask reason="Endpoint snapshot is incomplete, stale, or belongs to another generation"
+WS31_ENDPOINT_OBJECT case=complete-marked mask=127 finished=1 pending=0 tx_timers=0 rx_timers=0 device_timers=0 data=0 ack=0 transmitting=0 history_released=1 before=12601490618727058495 after=12601490618727058495 full_protocol_bytes_equal=1 nodes=2 devices=2 saved_tx=39653072 saved_rx=39393424 live_tx=0 live_rx=0
+WS31_ENDPOINT_OBJECT_DEVICE case=complete-marked node=0 interface=1 object=39393584 physical=39399808 egress=39394880 ack=39395088 group=39641376
+WS31_ENDPOINT_OBJECT_SLOT case=complete-marked node=0 interface=1 slot=0 object=39653072 flow_id=0 finished_bit=1 completed=1 next=8192 acknowledged=8192 size=8192 pending=0 timers=0
+WS31_ENDPOINT_OBJECT_DEVICE case=complete-marked node=1 interface=1 object=39397088 physical=39513728 egress=39398384 ack=39398592 group=39651856
+WS31_ENDPOINT_OBJECT_SACK case=complete-marked next=8192 acknowledged=8192 state=""
+WS31_ENDPOINT_OBJECT case=irn-two-sack-blocks mask=127 finished=0 pending=8192 tx_timers=0 rx_timers=0 device_timers=0 data=0 ack=0 transmitting=0 history_released=1 before=11816752210460844039 after=11816752210460844039 full_protocol_bytes_equal=1 nodes=2 devices=2 saved_tx=39653072 saved_rx=39393424 live_tx=0 live_rx=0
+WS31_ENDPOINT_OBJECT_DEVICE case=irn-two-sack-blocks node=0 interface=1 object=39393584 physical=39399808 egress=39394880 ack=39395088 group=39641376
+WS31_ENDPOINT_OBJECT_SLOT case=irn-two-sack-blocks node=0 interface=1 slot=0 object=39653072 flow_id=0 finished_bit=1 completed=0 next=0 acknowledged=0 size=8192 pending=8192 timers=0
+WS31_ENDPOINT_OBJECT_DEVICE case=irn-two-sack-blocks node=1 interface=1 object=39397088 physical=39513728 egress=39398384 ack=39398592 group=39651856
+WS31_ENDPOINT_OBJECT_SACK case=irn-two-sack-blocks next=0 acknowledged=0 state="[0-1024] [2048-3072] "
+WS31_ENDPOINT_OBJECT case=retain-old-append-new mask=127 finished=0 pending=4096 tx_timers=0 rx_timers=0 device_timers=0 data=0 ack=0 transmitting=0 history_released=1 before=5944987013355299160 after=5944987013355299160 full_protocol_bytes_equal=1 nodes=2 devices=2 saved_tx=39653072 saved_rx=39393424 live_tx=0 live_rx=0
+WS31_ENDPOINT_OBJECT_DEVICE case=retain-old-append-new node=0 interface=1 object=39393584 physical=39399808 egress=39394880 ack=39395088 group=39641376
+WS31_ENDPOINT_OBJECT_SLOT case=retain-old-append-new node=0 interface=1 slot=0 object=39653072 flow_id=0 finished_bit=1 completed=1 next=8192 acknowledged=8192 size=8192 pending=0 timers=0
+WS31_ENDPOINT_OBJECT_SLOT case=retain-old-append-new node=0 interface=1 slot=1 object=39654640 flow_id=1 finished_bit=0 completed=0 next=0 acknowledged=0 size=4096 pending=4096 timers=0
+WS31_ENDPOINT_OBJECT_DEVICE case=retain-old-append-new node=1 interface=1 object=39397088 physical=39513728 egress=39398384 ack=39398592 group=39651856
+WS31_ENDPOINT_OBJECT_SACK case=retain-old-append-new next=8192 acknowledged=8192 state="[0-1024] [2048-3072] "
+WS31_ENDPOINT_OBJECT_REFUSE case=missing-saved-qp full_protocol_bytes_equal=1 reason="Saved sender QP missing from its actual retained group"
+WS31_ENDPOINT_OBJECT_REFUSE case=duplicate-qp-slot full_protocol_bytes_equal=1 reason="Duplicate QP in retained groups or slots"
+WS31_ENDPOINT_OBJECT_REFUSE case=device-group-binding full_protocol_bytes_equal=1 reason="Actual device/egress/ACK/retained-group binding changed"
+WS31_ENDPOINT_OBJECT_REFUSE case=hardware-group-binding full_protocol_bytes_equal=1 reason="Hardware NIC/group binding changed"
+WS31_ENDPOINT_OBJECT_REFUSE case=missing-physical-queue full_protocol_bytes_equal=1 reason="Frozen physical queue identity changed"
+WS31_ENDPOINT_OBJECT_REFUSE case=empty-live-tx full_protocol_bytes_equal=1 reason="Live sender map contains an empty QP reference"
+WS31_ENDPOINT_OBJECT_REFUSE case=empty-live-rx full_protocol_bytes_equal=1 reason="Live receiver map contains an empty QP reference"
+WS31_ENDPOINT_OBJECT_REFUSE case=wrong-saved-flow full_protocol_bytes_equal=1 reason="Saved sender object does not belong to the requested generation"
+WS31_ENDPOINT_OBJECT_REFUSE case=wrong-reversed-rx full_protocol_bytes_equal=1 reason="Saved receiver object has the wrong reversed endpoint identity"
+WS31_ENDPOINT_OBJECT_REFUSE case=wrong-original-clock full_protocol_bytes_equal=1 reason="Saved sender object does not belong to the requested generation"
+WS31_ENDPOINT_OBJECT case=completion-history-present mask=127 finished=0 pending=4096 tx_timers=0 rx_timers=0 device_timers=0 data=0 ack=0 transmitting=0 history_released=0 before=3055608208921226149 after=3055608208921226149 full_protocol_bytes_equal=1 nodes=2 devices=2 saved_tx=39653072 saved_rx=39393424 live_tx=0 live_rx=0
+WS31_ENDPOINT_OBJECT_DEVICE case=completion-history-present node=0 interface=1 object=39393584 physical=39399808 egress=39394880 ack=39395088 group=39641376
+WS31_ENDPOINT_OBJECT_SLOT case=completion-history-present node=0 interface=1 slot=0 object=39653072 flow_id=0 finished_bit=1 completed=1 next=8192 acknowledged=8192 size=8192 pending=0 timers=0
+WS31_ENDPOINT_OBJECT_SLOT case=completion-history-present node=0 interface=1 slot=1 object=39654640 flow_id=1 finished_bit=0 completed=0 next=0 acknowledged=0 size=4096 pending=4096 timers=0
+WS31_ENDPOINT_OBJECT_DEVICE case=completion-history-present node=1 interface=1 object=39397088 physical=39513728 egress=39398384 ack=39398592 group=39651856
+WS31_ENDPOINT_OBJECT_SACK case=completion-history-present next=8192 acknowledged=8192 state="[0-1024] [2048-3072] "
+WS31_ENDPOINT_OBJECT case=live-rx mask=127 finished=0 pending=4096 tx_timers=0 rx_timers=0 device_timers=0 data=0 ack=0 transmitting=0 history_released=0 before=1731739246542351279 after=1731739246542351279 full_protocol_bytes_equal=1 nodes=2 devices=2 saved_tx=39653072 saved_rx=39393424 live_tx=0 live_rx=39393424
+WS31_ENDPOINT_OBJECT_DEVICE case=live-rx node=0 interface=1 object=39393584 physical=39399808 egress=39394880 ack=39395088 group=39641376
+WS31_ENDPOINT_OBJECT_SLOT case=live-rx node=0 interface=1 slot=0 object=39653072 flow_id=0 finished_bit=1 completed=1 next=8192 acknowledged=8192 size=8192 pending=0 timers=0
+WS31_ENDPOINT_OBJECT_SLOT case=live-rx node=0 interface=1 slot=1 object=39654640 flow_id=1 finished_bit=0 completed=0 next=0 acknowledged=0 size=4096 pending=4096 timers=0
+WS31_ENDPOINT_OBJECT_DEVICE case=live-rx node=1 interface=1 object=39397088 physical=39513728 egress=39398384 ack=39398592 group=39651856
+WS31_ENDPOINT_OBJECT_SACK case=live-rx next=8192 acknowledged=8192 state="[0-1024] [2048-3072] "
+WS31_ENDPOINT_OBJECT case=physical-and-ack-queues mask=127 finished=0 pending=4096 tx_timers=0 rx_timers=0 device_timers=0 data=32 ack=48 transmitting=0 history_released=0 before=3953563089489814181 after=3953563089489814181 full_protocol_bytes_equal=1 nodes=2 devices=2 saved_tx=39653072 saved_rx=39393424 live_tx=0 live_rx=0
+WS31_ENDPOINT_OBJECT_DEVICE case=physical-and-ack-queues node=0 interface=1 object=39393584 physical=39399808 egress=39394880 ack=39395088 group=39641376
+WS31_ENDPOINT_OBJECT_SLOT case=physical-and-ack-queues node=0 interface=1 slot=0 object=39653072 flow_id=0 finished_bit=1 completed=1 next=8192 acknowledged=8192 size=8192 pending=0 timers=0
+WS31_ENDPOINT_OBJECT_SLOT case=physical-and-ack-queues node=0 interface=1 slot=1 object=39654640 flow_id=1 finished_bit=0 completed=0 next=0 acknowledged=0 size=4096 pending=4096 timers=0
+WS31_ENDPOINT_OBJECT_DEVICE case=physical-and-ack-queues node=1 interface=1 object=39397088 physical=39513728 egress=39398384 ack=39398592 group=39651856
+WS31_ENDPOINT_OBJECT_SACK case=physical-and-ack-queues next=8192 acknowledged=8192 state="[0-1024] [2048-3072] "
+WS31_ENDPOINT_OBJECT case=events-and-serialization mask=127 finished=0 pending=4096 tx_timers=1 rx_timers=1 device_timers=2 data=32 ack=48 transmitting=1 history_released=0 before=7698308119214577795 after=7698308119214577795 full_protocol_bytes_equal=1 nodes=2 devices=2 saved_tx=39653072 saved_rx=39393424 live_tx=0 live_rx=0
+WS31_ENDPOINT_OBJECT_DEVICE case=events-and-serialization node=0 interface=1 object=39393584 physical=39399808 egress=39394880 ack=39395088 group=39641376
+WS31_ENDPOINT_OBJECT_SLOT case=events-and-serialization node=0 interface=1 slot=0 object=39653072 flow_id=0 finished_bit=1 completed=1 next=8192 acknowledged=8192 size=8192 pending=0 timers=1
+WS31_ENDPOINT_OBJECT_SLOT case=events-and-serialization node=0 interface=1 slot=1 object=39654640 flow_id=1 finished_bit=0 completed=0 next=0 acknowledged=0 size=4096 pending=4096 timers=0
+WS31_ENDPOINT_OBJECT_DEVICE case=events-and-serialization node=1 interface=1 object=39397088 physical=39513728 egress=39398384 ack=39398592 group=39651856
+WS31_ENDPOINT_OBJECT_SACK case=events-and-serialization next=8192 acknowledged=8192 state="[0-1024] [2048-3072] "
+WS31_ENDPOINT_OBJECT_REFUSE case=paused-device full_protocol_bytes_equal=1 reason="Endpoint fixture scope contains a down or paused device"
+WS31_ENDPOINT_OBJECT_REFUSE case=down-device full_protocol_bytes_equal=1 reason="Endpoint fixture scope contains a down or paused device"
+WS31_ENDPOINT_OBJECT_REFUSE case=changed-shared-queue full_protocol_bytes_equal=1 reason="Frozen physical queue identity changed"
+WS31_ENDPOINT_OBJECT_REFUSE case=changed-device-scope full_protocol_bytes_equal=1 reason="Frozen device count changed"
+WS31_ENDPOINT_OBJECT_REFUSE case=unknown-non-qbb reason="Unknown non-Qbb data-plane device in endpoint scope"
+WS31_ENDPOINT_OBJECT_SUMMARY PASS reads=31 refusals=16 network_runs=0 event_calls=0 actual_network_completions=0

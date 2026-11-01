@@ -1,0 +1,30 @@
+{
+  "at_utc": "2026-11-01T09:31:20.610270+00:00",
+  "status": "PREPARED_FROZEN_OBJECT_TRANSCRIPT_CHECKER_AND_CHANNEL_DESIGN_ONLY",
+  "source_sha": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "plan_sha256": "d91892f73bc6a6b45c0541f2c588ba59ba3fd3694ec75a75e35be5265dd5b255",
+  "raw_verifier": "scripts/verify_endpoint_object_raw_r1.py",
+  "raw_verifier_sha256": "cac9e289b7cfbdf5884f20adf65fa38af9a8728c974a9f8c0ba0960be185f147",
+  "normal_pairs_expected": 8,
+  "refusals_expected": 16,
+  "stdout_rows_expected": 62,
+  "SACK_print_format": "[begin-end] derived from fixed rdma-queue-pair.cc operator<<; intervals [0-1024] [2048-3072]",
+  "actual_result_not_read_or_accepted": true,
+  "channel_design": "endpoint-channel-integration-design-r1.md",
+  "channel_design_sha256": "c017ff09e1e6c6ba3c44b7e1672dc64e0815d9b10951cbb792863898241f1a54",
+  "source_files_git_LF_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "fd2830eadfb0b6b43e4798b39b14f0af270f64ce886bbce8f0fa5a838f0e9421",
+    "src/point-to-point/model/qbb-channel.cc": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1",
+    "src/point-to-point/model/qbb-net-device.cc": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+    "src/core/model/simulator.h": "bbd76551e7da0ed1efc89f147d9d73af2becf93386c7510888b0eb07316ecda3",
+    "src/core/model/make-event.h": "59dada1e851b4c7d0eca508ffd96274d762d565f335655a101d42ea09e890465",
+    "src/point-to-point/model/rdma-hw.cc": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+    "src/point-to-point/model/rdma-queue-pair.cc": "c7f06fa16c6bef60e2671ded84daa3009ed3312a7bfc55f8afbec7d28c004d20",
+    "src/point-to-point/model/switch-node.cc": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+    "src/point-to-point/model/ws31-quota.h": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+    "src/point-to-point/model/ws31-budget.h": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c"
+  },
+  "source_edits_or_main_remote_calls": 0,
+  "exclusive_checkout_clean": true,
+  "guard": "Current sole independent objectpreflight active, do not mutate source/runner/plan/env or redispatch"
+}

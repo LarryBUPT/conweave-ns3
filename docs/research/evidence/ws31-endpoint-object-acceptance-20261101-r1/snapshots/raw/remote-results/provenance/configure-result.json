@@ -1,0 +1,62 @@
+{
+  "argv": [
+    "./waf",
+    "configure",
+    "--build-profile=optimized"
+  ],
+  "cwd": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+  "elapsed_seconds": 14.214014176279306,
+  "end_utc": "2026-11-01T09:29:12Z",
+  "environment": {
+    "HOME": "/home/fnl",
+    "LANG": "C",
+    "LC_ALL": "C",
+    "LOGNAME": "fnl",
+    "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PWD": "/home/fnl/lzy/runs/20261101-173000-ws31-endpoint-object-r1/source",
+    "TMPDIR": "/home/fnl/lzy/results/20261101-173000-ws31-endpoint-object-r1/tmp",
+    "TZ": "UTC",
+    "USER": "fnl",
+    "WS30_COMPOSITION": "0",
+    "WS30_LIFECYCLE": "0",
+    "WS30_LIFE_PROFILE": "0",
+    "WS30_OBSERVE": "0",
+    "WS30_TAG_TRANSFORM": "0",
+    "WS31_LABEL_PROFILE": "0"
+  },
+  "exit": 0,
+  "pid": 308120,
+  "resources_after": {
+    "at_utc": "2026-11-01T09:29:12Z",
+    "disk_available_gib": 2290.444221496582,
+    "load": [
+      0.49,
+      0.11,
+      0.04
+    ],
+    "mem_available_gib": 122.51343536376953
+  },
+  "resources_before": {
+    "at_utc": "2026-11-01T09:28:58Z",
+    "disk_available_gib": 2290.446075439453,
+    "load": [
+      0.16,
+      0.03,
+      0.01
+    ],
+    "mem_available_gib": 122.51364517211914
+  },
+  "rusage": {
+    "major_faults": 0,
+    "max_rss_kib": 33780,
+    "minor_faults": 255298,
+    "system_seconds": 1.068,
+    "user_seconds": 1.924
+  },
+  "start_utc": "2026-11-01T09:28:58Z",
+  "stderr": "logs/configure.stderr",
+  "stderr_sha256": "d2d7c82bcfaca878427f09b2ffb5030237ce5c7c6863b5df27a24fbcb407d0af",
+  "stdout": "logs/configure.stdout",
+  "stdout_sha256": "903c2bdecfef6a3c621bd490b46ca71b687d3faaff4bb202121af764fe0b64b7",
+  "wait_status": 0
+}

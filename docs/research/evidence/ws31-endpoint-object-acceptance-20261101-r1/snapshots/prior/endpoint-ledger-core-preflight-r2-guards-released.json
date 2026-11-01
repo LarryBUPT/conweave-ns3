@@ -1,0 +1,39 @@
+{
+  "at_utc": "2026-11-01T08:19:32.242773+00:00",
+  "status": "EXPLICITLY_RELEASED_AFTER_TERMINAL_CALLS_AND_FETCH_INTEGRITY",
+  "scope": "only endpoint-ledger-core-preflight-r2",
+  "source_guard": "released",
+  "entry_guard": "released",
+  "environment_guard": "released",
+  "local_checkout_head": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+  "local_checkout_status": "clean",
+  "plan_sha256": "57ee56f60e6406dfaeab8e317910423e53fdb87e46982be6bf730dd4823fae47",
+  "source_and_old_artifact_hashes_unchanged": true,
+  "remote_environment_compatible": {
+    "REMOTE_HOST": "10.112.14.167",
+    "REMOTE_USER": "fnl",
+    "REMOTE_ROOT": "/home/fnl/lzy"
+  },
+  "terminal_receipts": [
+    "after-fetch-gate.stdout.json",
+    "fetched-integrity.json"
+  ],
+  "remote_source_compile_run_pids_absent": [
+    307479,
+    307553,
+    307587,
+    307592
+  ],
+  "no_persistent_driver": true,
+  "exact_authorized_counts": {
+    "sync": 1,
+    "deploy": 0,
+    "full_ns3_build": 0,
+    "new_core_compile": 1,
+    "new_core_run": 1,
+    "network_run": 0,
+    "old_core_or_fixture_rerun": 0
+  },
+  "future_execution_authorized": false,
+  "remaining": "Actual endpoint adapters and network fixtures remain required and owned by main; release does not accept them"
+}

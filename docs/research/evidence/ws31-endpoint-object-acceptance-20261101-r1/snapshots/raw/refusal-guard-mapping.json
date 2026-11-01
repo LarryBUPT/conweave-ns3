@@ -1,0 +1,40 @@
+{
+  "status": "PASS_ALL16_REFUSALS_MATCH_INTENDED_FIXED_SOURCE_GUARD",
+  "actual_reasons": {
+    "incomplete-mask": "Endpoint snapshot is incomplete, stale, or belongs to another generation",
+    "missing-saved-qp": "Saved sender QP missing from its actual retained group",
+    "duplicate-qp-slot": "Duplicate QP in retained groups or slots",
+    "device-group-binding": "Actual device/egress/ACK/retained-group binding changed",
+    "hardware-group-binding": "Hardware NIC/group binding changed",
+    "missing-physical-queue": "Frozen physical queue identity changed",
+    "empty-live-tx": "Live sender map contains an empty QP reference",
+    "empty-live-rx": "Live receiver map contains an empty QP reference",
+    "wrong-saved-flow": "Saved sender object does not belong to the requested generation",
+    "wrong-reversed-rx": "Saved receiver object has the wrong reversed endpoint identity",
+    "wrong-original-clock": "Saved sender object does not belong to the requested generation",
+    "paused-device": "Endpoint fixture scope contains a down or paused device",
+    "down-device": "Endpoint fixture scope contains a down or paused device",
+    "changed-shared-queue": "Frozen physical queue identity changed",
+    "changed-device-scope": "Frozen device count changed",
+    "unknown-non-qbb": "Unknown non-Qbb data-plane device in endpoint scope"
+  },
+  "expected_from_fixed_source": {
+    "missing-saved-qp": "Saved sender QP missing from its actual retained group",
+    "duplicate-qp-slot": "Duplicate QP in retained groups or slots",
+    "device-group-binding": "Actual device/egress/ACK/retained-group binding changed",
+    "hardware-group-binding": "Hardware NIC/group binding changed",
+    "missing-physical-queue": "Frozen physical queue identity changed",
+    "empty-live-tx": "Live sender map contains an empty QP reference",
+    "empty-live-rx": "Live receiver map contains an empty QP reference",
+    "wrong-saved-flow": "Saved sender object does not belong to the requested generation",
+    "wrong-reversed-rx": "Saved receiver object has the wrong reversed endpoint identity",
+    "wrong-original-clock": "Saved sender object does not belong to the requested generation",
+    "paused-device": "Endpoint fixture scope contains a down or paused device",
+    "down-device": "Endpoint fixture scope contains a down or paused device",
+    "changed-shared-queue": "Frozen physical queue identity changed",
+    "changed-device-scope": "Frozen device count changed",
+    "unknown-non-qbb": "Unknown non-Qbb data-plane device in endpoint scope",
+    "incomplete-mask": "Endpoint snapshot is incomplete, stale, or belongs to another generation"
+  },
+  "read_calls_executed_by_verifier": 0
+}

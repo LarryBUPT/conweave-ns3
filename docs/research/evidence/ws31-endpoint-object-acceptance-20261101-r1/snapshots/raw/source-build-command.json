@@ -1,0 +1,37 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "ServerAliveInterval=15",
+    "-o",
+    "ServerAliveCountMax=2",
+    "-o",
+    "ClearAllForwardings=yes",
+    "fnl@10.112.14.167",
+    "python3 -"
+  ],
+  "stdin_script": "remote-source-build.py",
+  "stdin_sha256": "6e5018a24dd08cd074f8ce61785f351ffdaa8e7a779d29bee17ba4f4ca0c9d57",
+  "start_utc": "2026-11-01T09:28:40.681834+00:00",
+  "configure_argv": [
+    "./waf",
+    "configure",
+    "--build-profile=optimized"
+  ],
+  "full_build_argv": [
+    "./waf",
+    "-j2",
+    "-v"
+  ],
+  "verbosity_flag": "records compiler commands; no build/criteria/source change",
+  "one_build_authorized": true,
+  "exit": 0,
+  "end_utc": "2026-11-01T09:35:10.742954+00:00",
+  "terminal": true
+}

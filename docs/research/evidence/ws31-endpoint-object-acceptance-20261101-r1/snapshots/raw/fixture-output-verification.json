@@ -1,0 +1,56 @@
+{
+  "status": "PASS_OBJECT_FIXTURE_RAW_CASE_AND_PURITY_CHECKS",
+  "normal_cases": [
+    "complete-unmarked",
+    "complete-marked",
+    "irn-two-sack-blocks",
+    "retain-old-append-new",
+    "completion-history-present",
+    "live-rx",
+    "physical-and-ack-queues",
+    "events-and-serialization"
+  ],
+  "read_refusals": [
+    "missing-saved-qp",
+    "duplicate-qp-slot",
+    "device-group-binding",
+    "hardware-group-binding",
+    "missing-physical-queue",
+    "empty-live-tx",
+    "empty-live-rx",
+    "wrong-saved-flow",
+    "wrong-reversed-rx",
+    "wrong-original-clock",
+    "paused-device",
+    "down-device",
+    "changed-shared-queue",
+    "changed-device-scope"
+  ],
+  "other_refusals": [
+    "incomplete-mask",
+    "unknown-non-qbb"
+  ],
+  "record_counts": {
+    "case": 8,
+    "device": 16,
+    "slot": 13,
+    "sack": 8,
+    "refuse": 16,
+    "summary": 1
+  },
+  "summary": "WS31_ENDPOINT_OBJECT_SUMMARY PASS reads=31 refusals=16 network_runs=0 event_calls=0 actual_network_completions=0",
+  "read_calls": 31,
+  "refusals": 16,
+  "mask": 127,
+  "nodes": 2,
+  "devices": 2,
+  "normal_protocol_string_equality_asserted": 8,
+  "refused_read_protocol_string_equality_asserted": 14,
+  "full_string_comparison_is_in_fixed_source": true,
+  "FNV_display_is_not_sole_purity_test": true,
+  "SACK_state_and_slot_details_checked": true,
+  "stable_bound_device_objects_checked": true,
+  "other_stdout_lines": [],
+  "no_binary_invoked_by_this_verifier": true,
+  "scope": "real NS3 objects with manually assigned states; no natural network completions or complete ALL certificate"
+}

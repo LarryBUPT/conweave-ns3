@@ -1,0 +1,19 @@
+{
+  "status": "LOCAL_VERIFIER_ASSUMPTION_FAILED_NOT_SOURCE_CHANGE",
+  "before_remote_actions": true,
+  "command": [
+    "python",
+    "-"
+  ],
+  "failed_assertion": "sha(working)==plan_hash and working==git_blob",
+  "traceback": "File <stdin>, line 16: AssertionError",
+  "file": "src/point-to-point/model/qbb-net-device.h",
+  "working_sha256": "7007de27f3a3faae3411e171b35c109099df3a3f3a62f84e294e2de6ee1f602c",
+  "fixed_blob_and_plan_sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+  "working_bytes": 7514,
+  "git_bytes": 7283,
+  "diagnosis": "231 CRLF sequences versus LF; otherwise exactly equal; Git working tree clean",
+  "correction": "Check frozen plan hashes against fixed Git blobs; separately record working-byte hashes and prove exact CRLF normalization equivalence",
+  "source_main_plan_or_criteria_changes": 0,
+  "partial_original_output_preserved": "frozen-source/scratch/ws31-endpoint-object-test.cc from initial attempt, unchanged"
+}

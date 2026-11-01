@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "scp",
+    "-r",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "fnl@10.112.14.167:/home/fnl/lzy/results/20261101-173000-ws31-endpoint-object-r1",
+    "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-raw\\remote-results"
+  ],
+  "start_utc": "2026-11-01T09:39:44.201859+00:00",
+  "new_destination_absent_before": true,
+  "exit": 0,
+  "end_utc": "2026-11-01T09:40:04.165778+00:00",
+  "terminal": true
+}

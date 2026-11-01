@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "at_utc": "2026-11-01T09:54:17.308464+00:00",
+  "status": "PASS_ACTUAL_OBJECT_PREFLIGHT_DELIVERY",
+  "id": "20261101-173000-ws31-endpoint-object-r1",
+  "index": {
+    "path": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-index.json",
+    "sha256": "11137470407f9fc587971e8ad6ec2cb0000699a9959cf19166aabd2431751f5f"
+  },
+  "indexed_artifacts": 170,
+  "all_indexed_artifact_hashes_verified": true,
+  "raw_files_verified": 109,
+  "source_entries": 4847,
+  "source_bytes": 284719415,
+  "project_libraries_copied_and_verified": 36,
+  "dependency_library_records": 45,
+  "fixed_source_blob_plan_hashes_match": true,
+  "Windows_CRLF_equivalence_and_raw_working_bytes_preserved": true,
+  "working_head_and_files_before_after_unchanged": true,
+  "prior_artifacts_unchanged": 13,
+  "accepted_core_inputs_unchanged": true,
+  "static_review_passed_before_remote": true,
+  "fresh_gate_and_worker_provenance_verified": true,
+  "newID_and_local_fetch_destination_absent_before": true,
+  "exact_optimized_configure_build_argv": true,
+  "compiler_argv_GNU_CXX11_O3_recorded": true,
+  "compiler_logs_both_streams_preserved": true,
+  "no_new_probe_fixture_diagnostics": true,
+  "exact_direct_fixture_argv_and_sanitized_env": true,
+  "full_build_exit": 0,
+  "fixture_exit": 0,
+  "fixture_stderr_empty": true,
+  "expected_summary_exact": true,
+  "normal_paired_cases": 8,
+  "Read_refusal_cases": 14,
+  "other_refusals": 2,
+  "total_Read_calls": 31,
+  "successful_returns_derived": 17,
+  "all16_refusal_reasons_match_intended_guards": true,
+  "device_slot_SACK_records": {
+    "device": 16,
+    "slot": 13,
+    "SACK": 8
+  },
+  "full_protocol_string_checks_are_in_fixed_program": true,
+  "display_hash_is_not_sole_purity_check": true,
+  "FNV_same_case_values_verified": true,
+  "no_other_stdout": true,
+  "auxiliary_checker_errors_preserved_and_corrected_without_scientific_rerun": true,
+  "scientific_retry_count": 0,
+  "source_entry_env_guards_explicitly_released": true,
+  "all_owned_remote_and_local_calls_terminal": true,
+  "no_persistent_driver": true,
+  "counts": {
+    "sync": 1,
+    "deploy": 0,
+    "full_optimized_j2_build": 1,
+    "new_object_fixture": 1,
+    "standalone_core_compile": 0,
+    "old_core_adapter_reference_rerun": 0,
+    "network_run": 0
+  },
+  "no_natural_network_or_ALL_or_algorithm_cost_claims": true,
+  "literature_node_review_included": true,
+  "nine_section_handoff": true,
+  "links_checked": 30,
+  "links": [
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/main/endpoint-probe-object-preflight-r1.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/provenance/source-files.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/provenance/source-tree.txt",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/frozen-source",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/local-working-bytes",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/local-static-review.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/fetched-integrity.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/local-static-review.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/compiler-command-verification.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/provenance/build-environment.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/provenance/fixture-environment.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/provenance/toolchain.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/provenance/runtime-libraries.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/provenance/build-result.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/provenance/fixture-result.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/refusal-guard-mapping.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/logs/fixture.stdout",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/remote-results/logs/fixture.stderr",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/fixture-output-verification.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/resource-summary.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/initial-local-verifier-failure.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-raw/initial-log-extractor-failure.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-guards-released.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-reference-review.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-index.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-report.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-handoff.md",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-handoff.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/main/endpoint-probe-object-preflight-r1.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-handoff.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-report.md",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-handoff.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-index.json",
+      "exists": true
+    },
+    {
+      "doc": "E:\\\u7814\\\u6bd5\u4e1a\u8bba\u6587\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-probe-object-preflight-r1-handoff.md",
+      "target": "E:/\u7814/\u6bd5\u4e1a\u8bba\u6587/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/independent/endpoint-probe-object-preflight-r1-guards-released.json",
+      "exists": true
+    }
+  ],
+  "style": {
+    "original_Chinese_rules": "README and six chapters read earlier in the same conversation",
+    "final_check": "heading levels, spacing, paragraphs, numbers/units, punctuation and document structure"
+  },
+  "output_prefix_only": true,
+  "QA_self_hash": "not embedded"
+}

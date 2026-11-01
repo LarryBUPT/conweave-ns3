@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "ssh",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "ServerAliveInterval=15",
+    "-o",
+    "ServerAliveCountMax=2",
+    "-o",
+    "ClearAllForwardings=yes",
+    "fnl@10.112.14.167",
+    "python3 -"
+  ],
+  "stdin_script": "remote-fixture-once.py",
+  "stdin_sha256": "1e7fc42fd5db607942ec61a912c554bcd9662d2103919136a1b135e710b2756e",
+  "start_utc": "2026-11-01T09:37:06.124458+00:00",
+  "authorized_fixture_commands": 1,
+  "binary_arguments": [],
+  "exit": 0,
+  "end_utc": "2026-11-01T09:37:08.847137+00:00",
+  "terminal": true
+}
