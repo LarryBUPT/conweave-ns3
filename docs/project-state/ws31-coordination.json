@@ -20,8 +20,8 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f13c4cd1-6458-4d58-888a-76f78e636578:3",
-    "last_observed_status": "idle after completed finite local screen and demand design; HOLD"
+    "last_cursor": "ac23a010-c95a-43f7-b707-45f6631a7c2e:1",
+    "last_observed_status": "idle after finite screen and heartbeat deletion; HOLD retained"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -44,20 +44,19 @@
   "heartbeat": {
     "automation_id": "ws-31",
     "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
-    "interval_minutes": 30,
-    "status": "ACTIVE",
-    "scope": "HOLD: finite screen and D1/D2 design complete; no repeat analysis, sweep, dispatch, config/input generation or engineering without new evidence/current-scope update",
-    "prior_proposal_heartbeat": "deleted by WS31 main at proposal handoff; new scope heartbeat recreated under new user authorization",
-    "latest_policy_turn_id": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
-    "policy_sync_date": "2026-11-04",
-    "policy_source": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
-    "prompt_sha256": "b04b0901d0d06f37ef73fd2be47364743c5e28e9ed883f8ca2bb72636d2de4ec",
-    "saved_before": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/automation-before.toml",
-    "saved_after": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/automation-after.toml",
-    "tool_updated_and_saved_file_reloaded": true,
-    "no_automatic_engineering_or_remote_resumption": true,
+    "status": "DELETED_AFTER_FINITE_SCREEN_HOLD_RETAINED",
+    "interval_minutes": null,
+    "former_interval_minutes": 30,
+    "deleted_at_utc_reported_by_main": "2026-11-04T12:12:42.581713+00:00",
+    "main_deletion_receipt": "docs/research/ws31/main/evidence/finite-screen-heartbeat-stop-r1.json",
+    "integration_verification": "docs/research/evidence/ws31-heartbeat-stop-integration-20261104-r1/verification.json",
+    "policy_source": "docs/handoffs/2026-11-04-ws31-heartbeat-stop-integration.md",
+    "configuration_absent_independently_observed": true,
+    "recreate_without_new_instruction": false,
     "finite_scope_completed": true,
-    "no_automatic_continuation": true
+    "no_automatic_continuation": true,
+    "unfinished_scientific_obligations_retained": true,
+    "workstream_closed_or_archived": false
   },
   "new_mechanism_selected": false,
   "default_model_policy": "Created without model overrides; use actual turn context, not prompt assertions.",
@@ -301,14 +300,14 @@
   },
   "last_material_event": {
     "date": "2026-11-04",
-    "kind": "FINITE_LOCAL_SCREEN_AND_DEMAND_DESIGN_ACCEPTED_HOLD_ACTUALLY_SYNCED_TO_HEARTBEAT",
-    "record": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
-    "verification": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/verification.json",
+    "kind": "HEARTBEAT_DELETION_INTEGRATED_HOLD_RETAINED",
+    "record": "docs/handoffs/2026-11-04-ws31-heartbeat-stop-integration.md",
+    "verification": "docs/research/evidence/ws31-heartbeat-stop-integration-20261104-r1/verification.json",
+    "scientific_scope_changed": false,
     "new_engineering_runtime_acceptance": false,
     "new_network_acceptance": false,
-    "network_technical_total": 43,
-    "user_decision_required": false,
-    "new_baseline_established": false
+    "new_baseline_established": false,
+    "user_decision_required": false
   },
   "last_verified_C2_label_checkpoint": {
     "date": "2026-11-01",
@@ -525,6 +524,17 @@
       "kind": "USER_AUTHORIZED_REVIEW_INFORMED_RESCOPE_AND_ACTUAL_HEARTBEAT_SCOPE_UPDATE",
       "record": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
       "verification": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json",
+      "new_engineering_runtime_acceptance": false,
+      "new_network_acceptance": false,
+      "network_technical_total": 43,
+      "user_decision_required": false,
+      "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-04",
+      "kind": "FINITE_LOCAL_SCREEN_AND_DEMAND_DESIGN_ACCEPTED_HOLD_ACTUALLY_SYNCED_TO_HEARTBEAT",
+      "record": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
+      "verification": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/verification.json",
       "new_engineering_runtime_acceptance": false,
       "new_network_acceptance": false,
       "network_technical_total": 43,
@@ -1139,7 +1149,7 @@
     "source_entry_env_guard": "HELD, carried into r2",
     "source_copy_established": false
   },
-  "integration_observed_utc": "2026-11-04T10:56:55.721819+00:00",
+  "integration_observed_utc": "2026-11-04T12:18:59.547090+00:00",
   "last_completed_registered_preflight_history": [
     {
       "kind": "SOURCE_REVIEW_THEN_SINGLE_BUILD_NEW_CORE_AND_MOCK_ONLY",
@@ -2395,6 +2405,24 @@
       "saved_after": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-after.toml",
       "tool_updated_and_saved_file_reloaded": true,
       "no_automatic_engineering_or_remote_resumption": true
+    },
+    {
+      "automation_id": "ws-31",
+      "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "interval_minutes": 30,
+      "status": "ACTIVE",
+      "scope": "HOLD: finite screen and D1/D2 design complete; no repeat analysis, sweep, dispatch, config/input generation or engineering without new evidence/current-scope update",
+      "prior_proposal_heartbeat": "deleted by WS31 main at proposal handoff; new scope heartbeat recreated under new user authorization",
+      "latest_policy_turn_id": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
+      "policy_sync_date": "2026-11-04",
+      "policy_source": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
+      "prompt_sha256": "b04b0901d0d06f37ef73fd2be47364743c5e28e9ed883f8ca2bb72636d2de4ec",
+      "saved_before": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/automation-before.toml",
+      "saved_after": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/automation-after.toml",
+      "tool_updated_and_saved_file_reloaded": true,
+      "no_automatic_engineering_or_remote_resumption": true,
+      "finite_scope_completed": true,
+      "no_automatic_continuation": true
     }
   ],
   "foreground_background_coordination_history": [

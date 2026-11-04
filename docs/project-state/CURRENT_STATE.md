@@ -2,7 +2,7 @@
 
 ## 当前阶段（2026-11-04）
 
-本轮有限筛查和 D1／D2 需求设计已经完成，当前执行状态为 `HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION`，见[分析节点整合](../handoffs/2026-11-04-ws31-finite-screen-hold.md)。工程、测试、效果矩阵及远端继续暂缓；没有新的需求／观测证据或明确范围更新时，不重复分析、扫参、派副、创建配置／输入或续接旧接线。心跳已实际补入本 HOLD，保留原周期与静默规则。
+本轮有限筛查和 D1／D2 需求设计已经完成，当前执行状态为 `HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION`，见[分析节点整合](../handoffs/2026-11-04-ws31-finite-screen-hold.md)。工程、测试、效果矩阵及远端继续暂缓；没有新的需求／观测证据或明确范围更新时，不重复分析、扫参、派副、创建配置／输入或续接旧接线。`ws-31` 心跳已由主对话删除；Integration 已核删除收据和本地配置缺失，见[运行状态同步](../handoffs/2026-11-04-ws31-heartbeat-stop-integration.md)。未经新指示不重建，HOLD 与全部未完成义务保持。
 
 Integration 已从两份旧原始日志独立核验新分析：固定 c4 输入的 104 次决定、四规则共 416 行，原载荷预算、逐条报文换算及 Q＋R 选择均对应；类别扣减与计数有 3 次选择不同，类别与统一扣减有 21 次不同。Q、旧分配与到达始终沿 QueuePin 轨迹，因此不构成动态反事实、独立 V0、收益或方向正确性。C3 的 4 个借用者、7 个借用者×主人阶段组、546 包／572,208 B 及最大源到达跨度 24,507 ns 均核；滚动活动续期不等于固定 20 μs 阶段，日志不能认证物理出队／在途闭合或容量归还。
 
@@ -10,13 +10,13 @@ D1 仅设计两类同为 16 KiB、保留同步组与独立背景行为；D2 仅�
 
 ### 外评范围与保留义务
 
-最新范围已按用户在主对话的直接要求调整，见[评审后范围整合](../handoffs/2026-11-04-ws31-review-informed-rescope.md)和[用户原文](../research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json)。当前为 `ACTIVE_REVIEW_INFORMED_RESCOPING_CANDIDATE_ENGINEERING_PAUSED`：C1 条件保留信息与完整评分动作检验；C2 保留错峰／原需求起点计时对照，暂缓独立创新扩展；C3 暂缓效果与配额调优，先查逐端口、逐借用 QP 的实际回收区间。共同端点新增接线、科学源码及配置修改、构建、测试、夹具、网络和效果矩阵均暂缓，只允许有限本地只读证据清点、规则核查和有业务依据的类别／大小解耦需求设计。未完成正确性、V0、消融、双侧效果与成本义务保留，暂停不等于取消或闭环。
+最新范围已按用户在主对话的直接要求调整，见[评审后范围整合](../handoffs/2026-11-04-ws31-review-informed-rescope.md)和[用户原文](../research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json)。外评后的研究范围记录为 `ACTIVE_REVIEW_INFORMED_RESCOPING_CANDIDATE_ENGINEERING_PAUSED`，当前执行状态以上方 HOLD 为准：C1 条件保留信息与完整评分动作检验；C2 保留错峰／原需求起点计时对照，暂缓独立创新扩展；C3 暂缓效果与配额调优，先查逐端口、逐借用 QP 的实际回收区间。共同端点新增接线、科学源码及配置修改、构建、测试、夹具、网络和效果矩阵均暂缓，只允许有限本地只读证据清点、规则核查和有业务依据的类别／大小解耦需求设计。未完成正确性、V0、消融、双侧效果与成本义务保留，暂停不等于取消或闭环。
 
 [三份评审综合报告](../research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/report/c123-review-synthesis-and-action-plan-20261104-r1.md)已交付。九个提案不批量实现：CCB／CCPB 即时版仅先查动作机会，MACA／CGQ 条件保留，CQT／CLC／CDLC／BCS 暂缓，原样 CCL 与 CCPB 批量持包扩展不采用。启发式 oracle 不是理论上界，残留总字节不是每次回收时长，8 KiB 请求不是一个 MTU 包；C1 混合技术结果和旧固定配额反例均不证明动态候选已被正式证伪。
 
 Integration 已核三份评审原文、主五份产物、副三份产物及 19 个 WIP 路径哈希，并按原哈希恢复转换前完整状态的 CRLF 字节。科学 HEAD／个人 tracking 仍为 8cd，新字节未编译或运行。此前 r3 差分和身份／完成草稿审查已由主验收并释放；本次 Integration 只核这些收据与 WIP 身份，不把未重验的完整静态分析升级为自身验收。唯一副文档目标完成、主报告 idle cursor `d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14`，不重复派发；Integration 观察主 idle cursor `f13c4cd1-6458-4d58-888a-76f78e636578:2`。
 
-`ws-31` 心跳已通过应用工具实际更新并回读保存文件，保留 ACTIVE、原主对话和 30 分钟周期，只改变任务范围及更新时间。旧自动接线入口被覆盖，无实质变化时静默；没有存活候选依据、新契约、固定独立计划和资源门，不自动恢复工程或远端。43 格技术网络、17 例适配器和旧工程验收保持各自范围，无新组合基线。下方历史实施授权、工程下一步和 active cursor 均为当时快照，不能覆盖本条范围。
+历史上，`ws-31` 心跳曾通过应用工具更新为有限范围，保留当时 ACTIVE、原主对话和 30 分钟周期；这些原配置仍作为历史证据保留。主对话随后于 2026 年 11 月 4 日 12:12:42 UTC 记录删除完成，当前不再有该心跳配置。旧自动接线入口被覆盖，无实质变化时静默；没有存活候选依据、新契约、固定独立计划和资源门，不自动恢复工程或远端。43 格技术网络、17 例适配器和旧工程验收保持各自范围，无新组合基线。下方历史实施授权、工程下一步和 active cursor 均为当时快照，不能覆盖本条范围。
 
 ### 已完成历史与工程证据
 
