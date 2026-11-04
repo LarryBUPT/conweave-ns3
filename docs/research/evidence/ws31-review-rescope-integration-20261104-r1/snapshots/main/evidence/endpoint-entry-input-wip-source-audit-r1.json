@@ -1,0 +1,96 @@
+{
+  "at_utc": "2026-11-04T09:18:55.367443+00:00",
+  "status": "UNCOMPILED_UNEXECUTED_ENTRY_INPUT_STAGE_WIP",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "new5_working_sha256": {
+    "scratch/ws31-endpoint-network-test.cc": "277114be4dc77046a14224fbd6df8b66a1685be8c1e83ec20892961151be1bc3",
+    "config/ws31_endpoint_input_c1_r1.cfg": "8df9d1a031a7a79f19cb500fcc82da32b516e12bdc37682d03c83a780c335dbf",
+    "config/ws31_endpoint_input_c2_r1.cfg": "92338691c8bd3e19588c96a1064a096ac9fdfdfcac9533fdd5da2c3f7d065dd2",
+    "config/ws31_endpoint_input_c3_r1.cfg": "2413896e9f861b31054ccbab4a1d43fade7c7d56da0282d8aef4c353d949c572",
+    "config/ws31_endpoint_input_two_generations_r1.txt": "4a64365d11c3003f6b2f2696222e187b165f4c568190b036753f492352cfbf61"
+  },
+  "prior14_accepted_bytes_unchanged": true,
+  "preserved": "evidence/endpoint-entry-input-wip-r1-preserved/",
+  "exact_source_anchors": [
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 34,
+      "contains": "uint64_t Unsigned("
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 57,
+      "contains": "Configuration ReadConfiguration("
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 90,
+      "contains": "void CheckEnvironment("
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 118,
+      "contains": "std::vector<Request> ReadAllRequests("
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 143,
+      "contains": "const uint16_t pg=Unsigned("
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 165,
+      "contains": "manifest.Declare(request.id,e);"
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 171,
+      "contains": "manifest.Seal(rows); manifest.RequireHealthy();"
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 163,
+      "contains": "ESTIMATED_MAX_FLOW_PER_HOST"
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 155,
+      "contains": "wait<c.stopNs-e.demandNs"
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 184,
+      "contains": "const auto config=ReadConfiguration(argv[2]); CheckEnvironment(config);"
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 185,
+      "contains": "const auto requests=ReadAllRequests(config);"
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 186,
+      "contains": "Require(inputOnly,"
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "line": 192,
+      "contains": "actual_objects=0 network=0 full_runtime_G1=0"
+    }
+  ],
+  "input_rows": 2,
+  "input_bytes": 16384,
+  "new_context_modes": [
+    36,
+    43,
+    47
+  ],
+  "actual_text_parsing_implemented": true,
+  "actual_cpp_parser_executed": false,
+  "objects_binder_callback_event_health_full_G1_network_implemented": false,
+  "network_entry_default_refuses": true,
+  "only_explicit_input_only_option_can_return_success": true,
+  "new_CXX_build_test_network_or_remote": 0,
+  "commit_push": 0,
+  "next": "Complete actual topology/driver/config verification, same-ledger binder and health/session failure gate; preserve native event Unref on exceptions; then natural completion/successor/two-generation integration."
+}

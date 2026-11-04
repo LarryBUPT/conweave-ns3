@@ -1,0 +1,57 @@
+{
+  "at_utc": "2026-11-04T09:06:00.182750+00:00",
+  "status": "MAIN_ACCEPTED_BOUNDED_STATIC_DRAFT_WITH_CALLER_PRECONDITIONS",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "verified": {
+    "artifacts": 7,
+    "prior_deliveries_preserved": 16,
+    "main_materials_preserved": 4,
+    "incomplete_checkpoint_correction_and_resume_preserved": 4,
+    "fixed_parent": 12,
+    "evidence": 43,
+    "exact_current_source_anchors": 57
+  },
+  "all14_current_and_preserved_match": true,
+  "prior11_unchanged": true,
+  "production_insert_only_restoration": {
+    "src/point-to-point/model/rdma-hw.h": {
+      "inserted_lines": 9,
+      "insert_only": true,
+      "delete_insertions_restores_parent_LF": true
+    },
+    "src/point-to-point/model/rdma-hw.cc": {
+      "inserted_lines": 41,
+      "insert_only": true,
+      "delete_insertions_restores_parent_LF": true
+    }
+  },
+  "review_sha256": "5a3113fa8c0de8b8de3e64cd0e05dee74780286277780c295f45811aeb7dd56d",
+  "QA_sha256": "29c4c27df41158a62231310152b864b03d8a65d9492b9f66c0859cdc84309977",
+  "caller_preconditions": [
+    "identity RequireHealthy and channel failure/owner/Pending/Open checks with same ledger",
+    "catch and latch all completion/launch/timer/production failures inside event invocation",
+    "invoke capture before original RX deletion and retain original handler/FCT/TX deletion",
+    "observe only from successor event after whole Receive/token wrapper returns",
+    "new fresh composite Read after history erasure before ledger SwitchCleared/reuse"
+  ],
+  "remaining_mandatory": [
+    "actual parsed-context G1 and full input parser/binder before any request",
+    "same sealed identity guard, channel adapter and ledger on every actual endpoint/link",
+    "explicit caller health/failure/owner/pending/open checks before certification and history release",
+    "original completion/FCT/RX deletion callback wiring with saved actual RX",
+    "successor-event evidence after complete original Receive and token closure",
+    "launch/timer/production event-local exception containment and original Unref return",
+    "new fixed source, independent execution plan and actual toolchain/build acceptance",
+    "original-ID/size/tuple/direction/launch/live-binding/tag and stale-generation negative cases",
+    "default-empty guard regression and memory/runtime cost",
+    "shared PFC/control and actual ACK/NACK/CNP flag/retransmit coverage",
+    "actual channel/held-copy and two-generation network positive/negative cases",
+    "independent C1 V0 and three-candidate matched ablation",
+    "business/background two-sided effects and state/runtime costs"
+  ],
+  "explicit_release": "2026-11-04T09:04:12.284115+00:00",
+  "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:11",
+  "new_execution_authority": false,
+  "runtime_network_or_measured_mask255_accepted": false,
+  "next": "Implement shared session health/failure checks plus actual parsed G1/full input/binder/callback entry before freezing new scientific execution source."
+}

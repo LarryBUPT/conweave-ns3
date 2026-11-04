@@ -1,0 +1,195 @@
+{
+  "recorded_utc": "2026-11-04T10:02:09.542118+00:00",
+  "scope": "Document and source-preservation QA only; no scientific run, build or test",
+  "report": "E:\\研\\毕业论文\\paper review\\c123-review-synthesis-and-action-plan-20261104-r1.md",
+  "outputs": [
+    {
+      "path": "E:\\研\\毕业论文\\paper review\\c123-review-synthesis-and-action-plan-20261104-r1.md",
+      "sha256": "9aa191df7c91c1d90651ea8bfb2d5d2436e66d2dda35ec1fb42f731157829f4e"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\external-review-action-plan-r1.md",
+      "sha256": "f35587b11ca02c46b1ea4105bc0cccf97f109f59ae7516c06d7b3f1f75366163"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\topic-map.md",
+      "sha256": "1354878a119f9c8462f6913ff12e6cc709c7cddfb1ae84b4455e17934fad9002"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\implementation-plan-r1.md",
+      "sha256": "937c815b7509d7f60509dfa6d21903b62956e04aec4c60caefd3944603efde80"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\current-status.json",
+      "sha256": "f990bed6830852beb449945bd9d6313b20b8e7471080149a03c3e7dea69fdc66"
+    }
+  ],
+  "reviews": [
+    {
+      "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\c123-review.md",
+      "sha256": "db477bc2a75c65c200f183a63c941a9d995302e38d012c7a4c3a15bf2aaac232",
+      "unchanged": true
+    },
+    {
+      "path": "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\c123-review.md",
+      "sha256": "66bbfd5a1b052d3f5f897961aa0f672e329b0b310ac05eebdefc7963b50a5edb",
+      "unchanged": true
+    },
+    {
+      "path": "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\c123-review.md",
+      "sha256": "fb6bb4e40cc7bd4dc051b998854ad6503109600e39b427a410c5eccea921aa8e",
+      "unchanged": true
+    }
+  ],
+  "sole_independent_artifacts": [
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\external-c123-review-audit-r1-report.md",
+      "sha256": "a0d1e2b7463efe20494dcfcb821c1a52e75ca39ebd9f9a83619f19b3cc8e5878",
+      "match": true
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\external-c123-review-audit-r1-extraction.json",
+      "sha256": "75f067b8cb7572cfbca006e0a2ca7bf6ecfa483e0ad8093b3c228cb2160d3860",
+      "match": true
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\external-c123-review-audit-r1-source-hashes.json",
+      "sha256": "c85485b5442a2e98cdfadfd012727edd94d65f044e41ddd9f1777ebe40d0ac22",
+      "match": true
+    }
+  ],
+  "independent_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
+  "source_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "nineteen_existing_WIP_match_pre_review_audits": [
+    {
+      "path": "src/point-to-point/model/qbb-channel.h",
+      "expected": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+      "actual": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "expected": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+      "actual": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "expected": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "actual": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "match": true
+    },
+    {
+      "path": "src/network/model/flow-id-num-tag.h",
+      "expected": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "actual": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "match": true
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "expected": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+      "actual": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/ws31-budget.h",
+      "expected": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+      "actual": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "expected": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+      "actual": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.h",
+      "expected": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+      "actual": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "expected": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+      "actual": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+      "match": true
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "expected": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8",
+      "actual": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "expected": "e5b944081f579495db3d30ef8306bef2d458e2eda8ed69ce5b38a1ee51cbd631",
+      "actual": "e5b944081f579495db3d30ef8306bef2d458e2eda8ed69ce5b38a1ee51cbd631",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "expected": "000366ac4d9508c281ad48be7be857bebfe38ec6b99af58e4be183f8d35583f2",
+      "actual": "000366ac4d9508c281ad48be7be857bebfe38ec6b99af58e4be183f8d35583f2",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.h",
+      "expected": "60158d9872291c829fa13d1ba52c4fbd05e4b9a7229f66f270a7eaa4a73ac699",
+      "actual": "60158d9872291c829fa13d1ba52c4fbd05e4b9a7229f66f270a7eaa4a73ac699",
+      "match": true
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "expected": "22237ebaf5385c7fed7bda1477f051a2f7fc16de460edc213df7caef53f20411",
+      "actual": "22237ebaf5385c7fed7bda1477f051a2f7fc16de460edc213df7caef53f20411",
+      "match": true
+    },
+    {
+      "path": "scratch/ws31-endpoint-network-test.cc",
+      "expected": "277114be4dc77046a14224fbd6df8b66a1685be8c1e83ec20892961151be1bc3",
+      "actual": "277114be4dc77046a14224fbd6df8b66a1685be8c1e83ec20892961151be1bc3",
+      "match": true
+    },
+    {
+      "path": "config/ws31_endpoint_input_c1_r1.cfg",
+      "expected": "8df9d1a031a7a79f19cb500fcc82da32b516e12bdc37682d03c83a780c335dbf",
+      "actual": "8df9d1a031a7a79f19cb500fcc82da32b516e12bdc37682d03c83a780c335dbf",
+      "match": true
+    },
+    {
+      "path": "config/ws31_endpoint_input_c2_r1.cfg",
+      "expected": "92338691c8bd3e19588c96a1064a096ac9fdfdfcac9533fdd5da2c3f7d065dd2",
+      "actual": "92338691c8bd3e19588c96a1064a096ac9fdfdfcac9533fdd5da2c3f7d065dd2",
+      "match": true
+    },
+    {
+      "path": "config/ws31_endpoint_input_c3_r1.cfg",
+      "expected": "2413896e9f861b31054ccbab4a1d43fade7c7d56da0282d8aef4c353d949c572",
+      "actual": "2413896e9f861b31054ccbab4a1d43fade7c7d56da0282d8aef4c353d949c572",
+      "match": true
+    },
+    {
+      "path": "config/ws31_endpoint_input_two_generations_r1.txt",
+      "expected": "4a64365d11c3003f6b2f2696222e187b165f4c568190b036753f492352cfbf61",
+      "actual": "4a64365d11c3003f6b2f2696222e187b165f4c568190b036753f492352cfbf61",
+      "match": true
+    }
+  ],
+  "nine_mechanisms_covered": [
+    "CCB",
+    "CGQ",
+    "CCPB",
+    "MACA",
+    "CQT",
+    "CLC",
+    "CDLC",
+    "BCS",
+    "CCL"
+  ],
+  "absolute_local_links_checked": 14,
+  "missing_local_links": 0,
+  "new_compile_test_network_SSH": 0,
+  "new_formal_baseline": false,
+  "canonical_registry_mutated_by_main": false
+}

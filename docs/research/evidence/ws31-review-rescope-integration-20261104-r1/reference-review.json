@@ -1,0 +1,44 @@
+{
+  "at_utc": "2026-11-04T10:14:42.863542+00:00",
+  "scope": "Completed user-authorized prioritization node: local records only, no fresh venue qualification or paper reproduction",
+  "sources": [
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\README.md",
+      "sha256": "533f502cf943a6014b79b7288fba457c9512c319b481bd80be46444371eb6997"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\reading-log.md",
+      "sha256": "c12e74207090daac8d898a964085763ae0e68032520a417cb549cef64f2b150e"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\aps-2020\\analysis-technical.md",
+      "sha256": "0e8cf08aaa5cd1a4dd3d0a62e722869d594436ef027afe0cfa4be357f397290f"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\aps-2020\\verification.md",
+      "sha256": "4d6fd3a164c3b4d955d81aaa3d445d6feca0db6248436aa31d2d9d3891ad3226"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\ethereal-2024\\analysis-technical.md",
+      "sha256": "621cefe94a31be53f64362885875d7507fe3a4b289ecf1e5ba7f056562d27ad2"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\参考文献\\候选\\papers\\ethereal-2024\\verification.md",
+      "sha256": "270a420c54f002c851e2e647197c5adabdfa5cda752d9eec742736a362ec5f78"
+    }
+  ],
+  "APS": {
+    "version": "2020 author accepted manuscript, 14 pages; journal volume2022",
+    "lesson": "Separate activity detection, empty-capacity borrowing and dual-side/reordering costs",
+    "conditions_and_difference": "TCP and RPS/ECMP switching differ from fixed RDMA QPs that do not migrate; aggregate residual is not a per-borrower recovery interval",
+    "not_supported": "No project throughput/FCT/correctness inference and no new baseline admission"
+  },
+  "Ethereal": {
+    "version": "arXiv:2407.00550v2, 15 pages",
+    "lesson": "Known communication batches and input structure must justify scheduling/planning",
+    "conditions_and_difference": "Application-side splitting with known batch/topology differs from source-switch observation and fixed QPs; time bucket is not a real business group",
+    "not_supported": "No Astra-Sim training number as project MoE/background benefit; current official publication qualification remains unverified in local records"
+  },
+  "new_formal_baseline_admission": false,
+  "scientific_execution": 0
+}

@@ -1,0 +1,157 @@
+{
+  "at_utc": "2026-11-04T08:19:29.502872+00:00",
+  "status": "UNCOMPILED_UNREVIEWED_IDENTITY_PRODUCTION_DELTA_AND_COMPLETION_HELPER",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "focus_paths": [
+    "src/point-to-point/model/ws31-endpoint-identity.h",
+    "src/point-to-point/model/rdma-hw.h",
+    "src/point-to-point/model/rdma-hw.cc",
+    "src/point-to-point/model/ws31-endpoint-completion.h"
+  ],
+  "all14_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+    "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+    "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8",
+    "src/point-to-point/model/ws31-endpoint-completion.h": "e5b944081f579495db3d30ef8306bef2d458e2eda8ed69ce5b38a1ee51cbd631",
+    "src/point-to-point/model/ws31-endpoint-identity.h": "000366ac4d9508c281ad48be7be857bebfe38ec6b99af58e4be183f8d35583f2",
+    "src/point-to-point/model/rdma-hw.h": "60158d9872291c829fa13d1ba52c4fbd05e4b9a7229f66f270a7eaa4a73ac699",
+    "src/point-to-point/model/rdma-hw.cc": "22237ebaf5385c7fed7bda1477f051a2f7fc16de460edc213df7caef53f20411"
+  },
+  "prior11_exact_bytes": true,
+  "preserved_WIP": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-identity-wip-r1-preserved",
+  "production_deletion_restorations": {
+    "src/point-to-point/model/rdma-hw.h": {
+      "parent_blob": "c5e681905b82da4e3d3639b3e112430d8d7ef746",
+      "parent_sha256": "13a3be27e5fbac2528612afa87172b4460e88c2c4ea73d356b9d428e655c9750",
+      "insert_only_against_parent": true,
+      "delete_added_lines_restores_parent_LF": true,
+      "inserted_lines": 9
+    },
+    "src/point-to-point/model/rdma-hw.cc": {
+      "parent_blob": "0a171097e402cc1182394c7b0d09f2ba3e0f72ec",
+      "parent_sha256": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+      "insert_only_against_parent": true,
+      "delete_added_lines_restores_parent_LF": true,
+      "inserted_lines": 41
+    }
+  },
+  "exact_source_anchors": [
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "line": 15,
+      "contains": "class Ws31EndpointIdentity"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "line": 64,
+      "contains": "void Declare("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "line": 82,
+      "contains": "void Seal("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "line": 96,
+      "contains": "void Sender("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "line": 120,
+      "contains": "void FeedbackSource("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "line": 126,
+      "contains": "int32_t Ack("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "line": 135,
+      "contains": "void ReceiverBinding("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "line": 25,
+      "contains": "const ws31::EndpointLedger::Entry &Active("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-identity.h",
+      "line": 55,
+      "contains": "WS31 full input aliases an actual packed key or switch fourtuple"
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.h",
+      "line": 205,
+      "contains": "friend class Ws31EndpointNetworkFixture;"
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.h",
+      "line": 206,
+      "contains": "std::shared_ptr<Ws31EndpointIdentity> m_ws31EndpointIdentity;"
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "line": 279,
+      "contains": "WS31 sender creation replaces live QP or unreleased history"
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "line": 519,
+      "contains": "ws31IncomingIdentity=m_ws31EndpointIdentity->Data("
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "line": 643,
+      "contains": "m_ws31EndpointIdentity->FeedbackSource("
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "line": 721,
+      "contains": "ws31IncomingIdentity=m_ws31EndpointIdentity->Ack("
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "line": 746,
+      "contains": "m_ws31EndpointIdentity->SenderBinding("
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "line": 911,
+      "contains": "if (m_ws31EndpointIdentity) m_ws31EndpointIdentity->Protocol("
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "line": 1133,
+      "contains": "WS31 data producer is not the actual live sender QP"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 64,
+      "contains": "void CaptureBeforeReceiverDeletion("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 109,
+      "contains": "void ReleaseHistoryAfterCertifiedDrain("
+    }
+  ],
+  "static_order_checks": {
+    "data_guard_before_GetBytesLeft": true,
+    "incoming_guard_before_GetRxQp": true
+  },
+  "new_guard_installed_anywhere": false,
+  "actual_G1_or_full_input_parser_implemented": false,
+  "shared_PFC_covered": false,
+  "new_CXX_build_fixture_network": 0,
+  "commit_push_remote": 0,
+  "baseline_or_efficacy_claim": false
+}

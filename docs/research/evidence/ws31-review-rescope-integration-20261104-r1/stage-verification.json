@@ -1,0 +1,304 @@
+{
+  "at_utc": "2026-11-04T10:17:34.058051+00:00",
+  "status": "PASS_EXACT_SCOPE_AND_IMMUTABLE_BYTE_STAGING",
+  "staged_before_self": 55,
+  "forced_missing": [],
+  "scope": "Five canonical states, one new rescope handoff and Integration-owned evidence only; scientific/main/independent files not staged",
+  "receipt_self_excluded": true,
+  "files": [
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/.gitattributes",
+      "bytes": 97,
+      "sha256": "245f8ffe8bbf457cbe3decddf03a899e907e063300f10754888b339bb1076d0a",
+      "git_blob": "d95ed0b6685d1ef421a1db7bef325799219d063c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/audit_local_evidence.py",
+      "bytes": 10899,
+      "sha256": "e4b835ba522a06e5a5e017861578f9be44cb7016b03f52b96917a3d80eaec7e8",
+      "git_blob": "7cf1dd43bea739e2489105a224257d24f6386830"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-after.toml",
+      "bytes": 3069,
+      "sha256": "d61c352a819d1716a5d35842d62dd3e4ef60cbf1965e74491ef2149261f222f5",
+      "git_blob": "0c4d12185067593a387ce13c27f21a81135831b1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-before.toml",
+      "bytes": 2401,
+      "sha256": "faf96a955dc7e3824bab36c393b7d003a2b8cf549c4b6dbcd7ebcbdb69505cc7",
+      "git_blob": "cfa90ceea9a17fbbb9858b549d8b59174a3e9cb8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/check_delivery.py",
+      "bytes": 4826,
+      "sha256": "67404d971bf9d4878cbe018a3cf1e9d22287a5abdbe9dc7d0518415f6cd406fc",
+      "git_blob": "1b51bf2817f2f9f2ebe18f4b8e2e00c1da5f7aa9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/delivery-qa-r2.json",
+      "bytes": 7509,
+      "sha256": "01d8dcd3f848429101e29b5e04a1afb081de6ab909d121496c3933527100e9c7",
+      "git_blob": "23e77718514ef203753fbe1e95e6a769cf1fdcba"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/delivery-qa.json",
+      "bytes": 7416,
+      "sha256": "b06524281984a4853c1ee22289911dc5015fd2e6a6291ce307f0f594ad8d37a8",
+      "git_blob": "b788cb1162f38bf1d45a7df7a4299b8237ff22b4"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/reference-review.json",
+      "bytes": 2433,
+      "sha256": "ac6177732ca0bbb98047e5e64cc4ebf2a07a5b4addd45164ec573816ff564ddd",
+      "git_blob": "40213deb7f8a02c3d66775ccef915ad4d2e88a18"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/config/ws31_endpoint_input_c1_r1.cfg",
+      "bytes": 172,
+      "sha256": "8df9d1a031a7a79f19cb500fcc82da32b516e12bdc37682d03c83a780c335dbf",
+      "git_blob": "051ae29109c3f6206575735d39a515b1d7647f99"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/config/ws31_endpoint_input_c2_r1.cfg",
+      "bytes": 172,
+      "sha256": "92338691c8bd3e19588c96a1064a096ac9fdfdfcac9533fdd5da2c3f7d065dd2",
+      "git_blob": "a386b1bb97b2a0bd1f12931625c5c74a684a35a6"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/config/ws31_endpoint_input_c3_r1.cfg",
+      "bytes": 172,
+      "sha256": "2413896e9f861b31054ccbab4a1d43fade7c7d56da0282d8aef4c353d949c572",
+      "git_blob": "c02cf559df610b8818e2c37059b3baf1fe548f27"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/config/ws31_endpoint_input_two_generations_r1.txt",
+      "bytes": 66,
+      "sha256": "4a64365d11c3003f6b2f2696222e187b165f4c568190b036753f492352cfbf61",
+      "git_blob": "a3ec8f68c239ba668daef682133a33207fa94f05"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/scratch/ws31-endpoint-channel-test.cc",
+      "bytes": 17059,
+      "sha256": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+      "git_blob": "dbdc9628baaf4567050bc50c3795f8e871251346"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/scratch/ws31-endpoint-network-test.cc",
+      "bytes": 11218,
+      "sha256": "277114be4dc77046a14224fbd6df8b66a1685be8c1e83ec20892961151be1bc3",
+      "git_blob": "18be2bb9290a9164a53f8364084fd8896fc5e731"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/scratch/ws31-endpoint-switch-test.cc",
+      "bytes": 25620,
+      "sha256": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8",
+      "git_blob": "250088599be85e05715ca3b81ca1906bcd0e62c7"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/network/model/flow-id-num-tag.h",
+      "bytes": 945,
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "git_blob": "80d6c47ad1f2cb59bdea22cf0c259d3f2ae5d20c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/qbb-channel.cc",
+      "bytes": 6788,
+      "sha256": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+      "git_blob": "02851d068cfa81b6e31f698a83e99ae29d88d8c2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/qbb-channel.h",
+      "bytes": 5853,
+      "sha256": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+      "git_blob": "dd7514b14607ca83d66f849203ae814966ba33da"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/rdma-hw.cc",
+      "bytes": 82014,
+      "sha256": "22237ebaf5385c7fed7bda1477f051a2f7fc16de460edc213df7caef53f20411",
+      "git_blob": "4cef5cb0df345e2109197b09533472c34f286ee0"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/rdma-hw.h",
+      "bytes": 9000,
+      "sha256": "60158d9872291c829fa13d1ba52c4fbd05e4b9a7229f66f270a7eaa4a73ac699",
+      "git_blob": "701e8126d12bc187f54077350fe3c753219a4c73"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/switch-node.h",
+      "bytes": 10652,
+      "sha256": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+      "git_blob": "40c031f26417cd45edf132833a01e454db72d32e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/ws31-budget.h",
+      "bytes": 7113,
+      "sha256": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+      "git_blob": "703d0c1f3200370ebc798f5e96a0b5370c46d20a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/ws31-endpoint-channel.h",
+      "bytes": 11607,
+      "sha256": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "git_blob": "1152413800936fceca2c2215fa1bcfee3e6174e8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/ws31-endpoint-completion.h",
+      "bytes": 6962,
+      "sha256": "e5b944081f579495db3d30ef8306bef2d458e2eda8ed69ce5b38a1ee51cbd631",
+      "git_blob": "3de0f1330f9bbd2e2532b65fc1cbc11a5612faea"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/ws31-endpoint-identity.h",
+      "bytes": 8486,
+      "sha256": "000366ac4d9508c281ad48be7be857bebfe38ec6b99af58e4be183f8d35583f2",
+      "git_blob": "0825a2b3a16c037f8b33f716eb25d841b6e1699e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "bytes": 7904,
+      "sha256": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+      "git_blob": "69b8e74ddb955c6c64a4c75dfc04da1deb430396"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/WIP/src/point-to-point/model/ws31-quota.h",
+      "bytes": 6248,
+      "sha256": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+      "git_blob": "12fbd2024c99e013428ce1bc1af66fb3514fda8d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/independent/external-c123-review-audit-r1-extraction.json",
+      "bytes": 45742,
+      "sha256": "75f067b8cb7572cfbca006e0a2ca7bf6ecfa483e0ad8093b3c228cb2160d3860",
+      "git_blob": "cb69134388116b1a27a052a6523e7cd439f2f04f"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/independent/external-c123-review-audit-r1-report.md",
+      "bytes": 17130,
+      "sha256": "a0d1e2b7463efe20494dcfcb821c1a52e75ca39ebd9f9a83619f19b3cc8e5878",
+      "git_blob": "045996d7a3b22b778624a7f41911993bf9d39745"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/independent/external-c123-review-audit-r1-source-hashes.json",
+      "bytes": 1510,
+      "sha256": "c85485b5442a2e98cdfadfd012727edd94d65f044e41ddd9f1777ebe40d0ac22",
+      "git_blob": "c68691070836f58bd3848d1f8e83abe3f4066e3c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/current-status.json",
+      "bytes": 48119,
+      "sha256": "f990bed6830852beb449945bd9d6313b20b8e7471080149a03c3e7dea69fdc66",
+      "git_blob": "9df1906c311fd4a78cac352b1fb8541f35b4a3e9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/endpoint-completion-wip-source-audit-r1.json",
+      "bytes": 5501,
+      "sha256": "6ca6c8164eacc3433a9abf14858d6cd1333bf7d2a07e55d6a057253d25e6aadd",
+      "git_blob": "83b80c0202a2c87ffda1919092c0424e54ecc2ff"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/endpoint-entry-input-wip-source-audit-r1.json",
+      "bytes": 3503,
+      "sha256": "1af42ee1a8651e11f725f613268a24bbe381a12580c57ad0c327001091637436",
+      "git_blob": "2d28732425c5193f7aeb66e3fcbeded764611c88"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/endpoint-identity-local-review-main-acceptance-r1.json",
+      "bytes": 3077,
+      "sha256": "59ddb2ba07baa94a174c71a7a0bc8fa3c2884f8104568dd607c9650f7a3a0d8f",
+      "git_blob": "8e8a0dbb904e9abb6b28f66a9a23a1b44d06687a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/endpoint-identity-wip-source-audit-r1.json",
+      "bytes": 6521,
+      "sha256": "9223a9aafb5eb61ec004037b198582951b4f202fa401c553d6d36b0bcf3842db",
+      "git_blob": "ce6f9b896e70e64e187cbf3b4bef3927a1716c1c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-local-review-main-acceptance-r3.json",
+      "bytes": 2194,
+      "sha256": "2a2f94b7b93511aa34e420abaea276fbfc5dae9787b75607ad39b2bf701bcbd1",
+      "git_blob": "bab1fbea118ec8bab6cd9a602084c17841bea087"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/external-review-scope-transition-r1.json",
+      "bytes": 49581,
+      "sha256": "3b387f0e64549acfa95e3905a16a8b805d71b82728351fbaa2f59504399177b2",
+      "git_blob": "8334b93774071272197285dee06091e586167f58"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/external-review-synthesis-main-qa-r1.json",
+      "bytes": 8520,
+      "sha256": "7e4d7a235bc0186623bee5d01ce7aef8ac30bfe7a184e5a974c3e5203d629a67",
+      "git_blob": "725726040d6c3cdb69249f8b56aa5a34c46d51a5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/external-review-action-plan-r1.md",
+      "bytes": 5551,
+      "sha256": "f35587b11ca02c46b1ea4105bc0cccf97f109f59ae7516c06d7b3f1f75366163",
+      "git_blob": "b0ae40cc4f5ec4db0e48cb296879995a5994e413"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/implementation-plan-r1.md",
+      "bytes": 9960,
+      "sha256": "937c815b7509d7f60509dfa6d21903b62956e04aec4c60caefd3944603efde80",
+      "git_blob": "8afcc73c53c696acb27cc1771df211773438706e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/report/c123-review-synthesis-and-action-plan-20261104-r1.md",
+      "bytes": 37014,
+      "sha256": "9aa191df7c91c1d90651ea8bfb2d5d2436e66d2dda35ec1fb42f731157829f4e",
+      "git_blob": "85d699f333c474956dcf30b0c2be2a8f8217a99b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/topic-map.md",
+      "bytes": 7711,
+      "sha256": "1354878a119f9c8462f6913ff12e6cc709c7cddfb1ae84b4455e17934fad9002",
+      "git_blob": "e9ef0d44016d9e01749686756656cd317c77ba67"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/prior/current-status-before-scope.json",
+      "bytes": 46659,
+      "sha256": "07dbc09b2f6799c1899a66a0a8395de528270a8caa713b2c2e851c49b6f2fafb",
+      "git_blob": "b79a89e055afdd42b86c3cc9404bd3bba1eda9f5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/reviews/1-c123-review.md",
+      "bytes": 182547,
+      "sha256": "db477bc2a75c65c200f183a63c941a9d995302e38d012c7a4c3a15bf2aaac232",
+      "git_blob": "52bf86ac40cd5a238dc16a38be2cc918161d8c3a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/reviews/2-c123-review.md",
+      "bytes": 93665,
+      "sha256": "66bbfd5a1b052d3f5f897961aa0f672e329b0b310ac05eebdefc7963b50a5edb",
+      "git_blob": "13f225a82c0307ecb8dcc4c4a78712ab1428c1ce"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/reviews/3-c123-review.md",
+      "bytes": 116205,
+      "sha256": "fb6bb4e40cc7bd4dc051b998854ad6503109600e39b427a410c5eccea921aa8e",
+      "git_blob": "fdbcbb2d8391f44fe705ad8d8f49ad5a7fc0f061"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/source-manifest.json",
+      "bytes": 14251,
+      "sha256": "aebad3c99eccc9cddf8f4cedc8cd5f341203fa2cb4166cd671fe530abe41c951",
+      "git_blob": "a9f71c3f1b0da0e8bc51cc223ecbd3b06c6b4eb9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json",
+      "bytes": 730,
+      "sha256": "da5f716f93b0c09f311f72a0deefd9070a3c7f9565a93ae5533e282c1dffaa12",
+      "git_blob": "2270a20a1f0988abc1370f7959c452384dd8c55a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json",
+      "bytes": 6882,
+      "sha256": "65183e931902fa1c0ee39aa8f11c4d87ae2dc52ecbb430a251ab70b24cf47bbe",
+      "git_blob": "616920528dbb6e3c955b0a53e5cb57d3ee915a46"
+    }
+  ]
+}

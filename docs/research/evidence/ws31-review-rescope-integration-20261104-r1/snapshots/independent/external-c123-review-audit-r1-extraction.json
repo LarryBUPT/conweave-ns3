@@ -1,0 +1,1154 @@
+{
+  "schema": "ws31-external-c123-document-audit-v1",
+  "at_utc": "2026-11-04T09:56:21.287299+00:00",
+  "client_timezone": "Asia/Shanghai",
+  "status": "COMPLETE_FOR_BOUNDED_DOCUMENT_LOGIC_AUDIT",
+  "source_manifest": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\external-c123-review-audit-r1-source-hashes.json",
+  "source_manifest_sha256": "c85485b5442a2e98cdfadfd012727edd94d65f044e41ddd9f1777ebe40d0ac22",
+  "sources": {
+    "A": {
+      "path": "E:\\研\\毕业论文\\paper review\\claude+dsv4.1flash\\c123-review.md",
+      "snapshot": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\external-c123-review-audit-r1-sources\\a-c123-review.md",
+      "sha256": "db477bc2a75c65c200f183a63c941a9d995302e38d012c7a4c3a15bf2aaac232",
+      "bytes": 182547,
+      "lines": 1957,
+      "read_scope": "ENTIRE_DOCUMENT"
+    },
+    "B": {
+      "path": "E:\\研\\毕业论文\\paper review\\dsh+dsv4pro\\c123-review.md",
+      "snapshot": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\external-c123-review-audit-r1-sources\\b-c123-review.md",
+      "sha256": "66bbfd5a1b052d3f5f897961aa0f672e329b0b310ac05eebdefc7963b50a5edb",
+      "bytes": 93665,
+      "lines": 658,
+      "read_scope": "HEADINGS_AND_DESIGN_PROPOSALS_PLUS_TARGETED_SUMMARY_PASSAGES"
+    },
+    "C": {
+      "path": "E:\\研\\毕业论文\\paper review\\workbuddy+hy4preview\\c123-review.md",
+      "snapshot": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\external-c123-review-audit-r1-sources\\c-c123-review.md",
+      "sha256": "fb6bb4e40cc7bd4dc051b998854ad6503109600e39b427a410c5eccea921aa8e",
+      "bytes": 116205,
+      "lines": 970,
+      "read_scope": "HEADINGS_AND_DESIGN_PROPOSALS_PLUS_TARGETED_SUMMARY_PASSAGES"
+    }
+  },
+  "read_coverage": {
+    "A": {
+      "entire_document": true,
+      "line_ranges": [
+        [
+          1,
+          220
+        ],
+        [
+          221,
+          500
+        ],
+        [
+          501,
+          902
+        ],
+        [
+          903,
+          1235
+        ],
+        [
+          1236,
+          1510
+        ],
+        [
+          1511,
+          1957
+        ]
+      ],
+      "truncation_repaired_by_reread": [
+        [
+          1748,
+          1781
+        ]
+      ]
+    },
+    "B": {
+      "entire_document": false,
+      "headings_all": true,
+      "ranges_read": [
+        [
+          1,
+          16
+        ],
+        [
+          109,
+          116
+        ],
+        [
+          213,
+          231
+        ],
+        [
+          309,
+          411
+        ],
+        [
+          415,
+          497
+        ],
+        [
+          501,
+          517
+        ],
+        [
+          518,
+          617
+        ]
+      ]
+    },
+    "C": {
+      "entire_document": false,
+      "headings_all": true,
+      "ranges_read": [
+        [
+          1,
+          38
+        ],
+        [
+          198,
+          248
+        ],
+        [
+          473,
+          514
+        ],
+        [
+          515,
+          734
+        ],
+        [
+          735,
+          951
+        ]
+      ],
+      "note": "targeted comparison; no claim entire C or B read",
+      "truncation_repaired_by_reread": [
+        [
+          231,
+          248
+        ],
+        [
+          473,
+          491
+        ]
+      ]
+    }
+  },
+  "evidence_classes": {
+    "directly_verified": "three review bytes/line anchors and internal logic only",
+    "reviewer_reported": "all cited historical numeric/source/runtime observations, not independently revalidated in this task",
+    "independent_inference": "mathematical/causal critique and handworked counterexamples; not runtime reproduction",
+    "proposal": "all nine named new mechanisms and all suggested checks unimplemented/untested"
+  },
+  "criticisms": [
+    {
+      "id": "K01",
+      "candidate": "共同",
+      "title": "类别与大小完全绑定",
+      "evidence_level": "reported_observation_and_identifiability_argument",
+      "reviewer_statement": "条件于大小在同一时刻可见，C=g(B)使类别分支可由大小映射复制。",
+      "independent_assessment": "接受作为当前输入识别限制，不推出类别整体无用；新标签敏感性不是效用。",
+      "cheapest_check_proposed_not_run": "固定其它状态与信息时刻，对照大小映射；保持真实业务分组。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 265,
+          "end_line": 273,
+          "section": "2.1.2"
+        }
+      ]
+    },
+    {
+      "id": "K02",
+      "candidate": "共同",
+      "title": "源端首包可能无可改变空间",
+      "evidence_level": "reviewer_hypothesis",
+      "reviewer_statement": "末跳或后续瓶颈可能支配批尾，历史改路径不改完成值得追因。",
+      "independent_assessment": "风险合理；旧案例不能证明所有源端动作无用，按跳观察不等于可消除延迟。",
+      "cheapest_check_proposed_not_run": "先检查入队/出队/序列与批尾字段是否充足。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 275,
+          "end_line": 284,
+          "section": "2.1.3"
+        }
+      ]
+    },
+    {
+      "id": "K03",
+      "candidate": "C1",
+      "title": "扣减与计数结果方向混合",
+      "evidence_level": "reported_numeric_observation",
+      "reviewer_statement": "报告class_progress/count MAE120894.73/81501.63，strict order76/83及74/83，progress全非零误差为低估。",
+      "independent_assessment": "不足以支持稳定进度优势，也不足以普遍反证进度；误差与排序目标不同。",
+      "cheapest_check_proposed_not_run": "逐决定看ΔR、Δ(Q+R)、动作、两侧误差相关和预算有效窗口。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 174,
+          "end_line": 178,
+          "section": "1.3.5"
+        }
+      ]
+    },
+    {
+      "id": "K04",
+      "candidate": "C1",
+      "title": "模板上限和TTL可能提前消除信号",
+      "evidence_level": "reviewer_inference",
+      "reviewer_statement": "64KiB预算对8MiB可能早耗尽，过期/耗尽使R归零，可能退化活动记忆。",
+      "independent_assessment": "保留有效覆盖率问题；声称整个预算是二值信号忽略耗尽前连续扣减。",
+      "cheapest_check_proposed_not_run": "统计零/非零、耗尽/到期及新QP决策之前的预算变化。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 301,
+          "end_line": 318,
+          "section": "2.2.1"
+        }
+      ]
+    },
+    {
+      "id": "K05",
+      "candidate": "C1",
+      "title": "观察前置于准入和逐QP状态成本",
+      "evidence_level": "reported_source_observation",
+      "reviewer_statement": "评审报告丢弃到达也已算已见，容量65536条、每条32区间。",
+      "independent_assessment": "需核扣减对象是已见或已服务，并计去重/重传/撤销/容量回退成本；本轮不复验代码。",
+      "cheapest_check_proposed_not_run": "先写单位、准入/扣减顺序及去重状态表。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 61,
+          "end_line": 73,
+          "section": "1.2B"
+        }
+      ]
+    },
+    {
+      "id": "K06",
+      "candidate": "C1",
+      "title": "近邻增量和MAE因果关系未立",
+      "evidence_level": "reviewer_judgment",
+      "reviewer_statement": "与活跃数/常量权重等近邻区别被归为逐QP进度预算。",
+      "independent_assessment": "最近工作与唯一新要素需原文核验；MAE不可直接变成创新性定论。",
+      "cheapest_check_proposed_not_run": "以同候选/键/时刻的计数、扣减、通用记忆控制拆开信息与动作。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 303,
+          "end_line": 309,
+          "section": "2.2.1"
+        }
+      ]
+    },
+    {
+      "id": "K07",
+      "candidate": "C2",
+      "title": "固定哈希等待的类别贡献未识别",
+      "evidence_level": "reported_rule_and_inference",
+      "reviewer_statement": "tag2延迟0–500ns，无拥塞反馈；统一/大小/零等待可解释。",
+      "independent_assessment": "接受对照要求；所有流统一等待不与子集等待同成本，也不逐事件复制。",
+      "cheapest_check_proposed_not_run": "匹配哈希、等待资格/数目/总预算，保留原需求计时。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 320,
+          "end_line": 336,
+          "section": "2.2.2"
+        }
+      ]
+    },
+    {
+      "id": "K08",
+      "candidate": "C2",
+      "title": "500ns量级与网络竞争的关系未知",
+      "evidence_level": "reviewer_inference",
+      "reviewer_statement": "抖动小于8KiB请求整体串行时间，可能抵消网络收益。",
+      "independent_assessment": "不能整请求错开不等于无益；实际约1000B载荷包时隙约84ns。",
+      "cheapest_check_proposed_not_run": "测需求间隔、首包顺序、实际包时隙、尾流主动等待。",
+      "references": [
+        {
+          "source": "C",
+          "start_line": 198,
+          "end_line": 220,
+          "section": "4.2"
+        }
+      ]
+    },
+    {
+      "id": "K09",
+      "candidate": "C3",
+      "title": "非迁移借用无法即时召回",
+      "evidence_level": "reported_rule_and_structural_inference",
+      "reviewer_statement": "已有借用QP继续原路径；所有者活跃仅影响新QP。",
+      "independent_assessment": "接受无法即时召回的结构限制，不接受借用普遍无效。",
+      "cheapest_check_proposed_not_run": "逐借用QP和owner-reactivation事件记录actual end、竞争重叠与空闲利用。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 338,
+          "end_line": 355,
+          "section": "2.2.3"
+        }
+      ]
+    },
+    {
+      "id": "K10",
+      "candidate": "C3",
+      "title": "全ToR活动与2:6分割可能重演固定配额",
+      "evidence_level": "reviewer_inference",
+      "reviewer_statement": "全局活动可能压缩全部新MoE的可选出口，旧v4失败是警示。",
+      "independent_assessment": "跨目的活动不等于同一资源竞争；旧实验仅作经验，不作新机制否决。",
+      "cheapest_check_proposed_not_run": "分目的和端口看受限、借用机会与实际容量使用。",
+      "references": [
+        {
+          "source": "C",
+          "start_line": 222,
+          "end_line": 248,
+          "section": "4.3"
+        }
+      ]
+    },
+    {
+      "id": "K11",
+      "candidate": "C3",
+      "title": "残留聚合量被当作回收时长",
+      "evidence_level": "reviewer_numeric_inference",
+      "reviewer_statement": "3301200B/100G=264.096us，与20us窗/另一实验批次比较。",
+      "independent_assessment": "算术成立，时间下界推论不成立；须知端口、时段、代际和事件分布。",
+      "cheapest_check_proposed_not_run": "按端口/QP/reactivation重建时间区间，区分含重传总工作量与唯一负载。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 168,
+          "end_line": 172,
+          "section": "1.3.4"
+        }
+      ]
+    },
+    {
+      "id": "K12",
+      "candidate": "共同",
+      "title": "技术格/适配器/构建不是独立性能重复",
+      "evidence_level": "reported_status_and_methodology",
+      "reviewer_statement": "构建按SHA/范围；43技术格和17非网络例不同；QA自查及动态状态哈希变化。",
+      "independent_assessment": "接受证据分层；可变状态更新不是当时证据伪造。",
+      "cheapest_check_proposed_not_run": "不可变快照+claim/格/SHA台账；原数值由主核。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 180,
+          "end_line": 208,
+          "section": "1.3.6–1.3.9"
+        }
+      ]
+    },
+    {
+      "id": "K13",
+      "candidate": "共同",
+      "title": "旧完整策略与匹配类别增量被混淆",
+      "evidence_level": "reported_history_and_inference",
+      "reviewer_statement": "完整CR可有MoE改善，匹配C16/Q16增量未稳；v3/v4NO-GO及背景尾风险应披露。",
+      "independent_assessment": "保留具体比较身份；Q12规则同构未证明等于当前QueuePin。",
+      "cheapest_check_proposed_not_run": "同输入同SHA对照，不将旧归因臂绝对位置当当前基线。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 134,
+          "end_line": 166,
+          "section": "1.3.1–1.3.3"
+        }
+      ]
+    },
+    {
+      "id": "K14",
+      "candidate": "共同",
+      "title": "统计与成本仍缺独立确认",
+      "evidence_level": "reviewer_methodology",
+      "reviewer_statement": "独立需求为重复单位，逐需求背景尾、未完成、校准分离、状态操作与运行成本。",
+      "independent_assessment": "接受原则；单输入无差异不是统计等价，确认样本不能事后挑子群。",
+      "cheapest_check_proposed_not_run": "冻结主比较及风险线，保留全部未完成/取消。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 385,
+          "end_line": 441,
+          "section": "2.3.2–2.3.8"
+        }
+      ]
+    },
+    {
+      "id": "K15",
+      "candidate": "共同",
+      "title": "文献和写作不足",
+      "evidence_level": "reviewer_judgment",
+      "reviewer_statement": "近邻遗漏、版本和准入未核；防御重复，建议分主张/证据/否证。",
+      "independent_assessment": "本轮只提取，不替主对话核文献或采纳venue预测。",
+      "cheapest_check_proposed_not_run": "主核最邻近原文，文本减少重复但保留必要证据边界。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 443,
+          "end_line": 554,
+          "section": "2.4–2.6"
+        }
+      ]
+    }
+  ],
+  "internal_inconsistencies_and_gaps": [
+    {
+      "id": "I01",
+      "title": "启发式分配被称上界",
+      "classification": "mathematical_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "坐标下降/分组最优/近似ILP给可行解；最小化时f_feasible>=f_opt，所以改善_feasible<=改善_opt。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "只称启发式参考；要一票否决需对全部合法动作的可证明界或匹配精确优化。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 720,
+          "end_line": 727,
+          "section": "3.2 GateA"
+        }
+      ]
+    },
+    {
+      "id": "I02",
+      "title": "旧未来量oracle一次运行否决全部在线策略",
+      "classification": "causal_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "true1/true2来自原策略未来状态，新路由会改变未来队列/CC/IRN/到达。该heuristic也未优化双主目标。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "改称clairvoyant heuristic；不能作为所有策略或C2的普遍上界。",
+      "references": [
+        {
+          "source": "B",
+          "start_line": 223,
+          "end_line": 225,
+          "section": "3.2 G1/G2"
+        }
+      ]
+    },
+    {
+      "id": "I03",
+      "title": "新尺寸输入却声称零新仿真重放",
+      "classification": "data_availability_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "F1/F2改尺寸/时序后，旧包日志不再是新输入的基线网络过程；仅重贴标签可作固定行为筛查。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "先判字段与基线过程可用；缺失记不可重放，不填造packet trace。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 730,
+          "end_line": 738,
+          "section": "3.2 GateB"
+        }
+      ]
+    },
+    {
+      "id": "I04",
+      "title": "共同门与候选门、阈值不一致",
+      "classification": "protocol_inconsistency",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "全P1–P4过关与允许C2/C3退出相冲突；最终任意1–2条件升级又与共同前提不一致。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "主对话按存活候选拆门；不直接继承2%/5%/95%等初值。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 822,
+          "end_line": 867,
+          "section": "3.2P5/3.3"
+        }
+      ]
+    },
+    {
+      "id": "I05",
+      "title": "分类计数共用时间戳",
+      "classification": "static_counterexample",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "tau20，B1(t0)=100，class2在t10更新last_B，t20B1读为50而非按龄归零。CDLC与MACA同类问题。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "每(端口,类别)或(端口,目的,类别)独立时间戳；或所有类先统一衰减。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1031,
+          "end_line": 1061,
+          "section": "4.1.4"
+        }
+      ]
+    },
+    {
+      "id": "I06",
+      "title": "递归线性衰减语义未闭合",
+      "classification": "mathematical_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "value*(1-dt/tau)无半群性：100经5/10两段剩25，直接10/10为0；不是严格固定窗或精确指数EWMA。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "明确要递归滤波还是按事件年龄的核；定义读时是否提交状态、整数舍入/溢出。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1057,
+          "end_line": 1072,
+          "section": "4.1.4"
+        }
+      ]
+    },
+    {
+      "id": "I07",
+      "title": "MACA读取未显式衰减",
+      "classification": "specification_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "首次选择直接取B/U数组，只有admit/dequeue更新；空闲之后无事件时会保留旧值。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "首包读时按Now做只读惰性投影并保证更新时间语义。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1589,
+          "end_line": 1629,
+          "section": "4.4.5"
+        }
+      ]
+    },
+    {
+      "id": "I08",
+      "title": "类别字典序压过任意队列差",
+      "classification": "static_counterexample",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "B2(p1)=1,Q1=100000；B2(p2)=2,Q2=0；短流选p1。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "把绝对优先级作为待检假设，不称队列回退；与一致加权/门控控制分开。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1037,
+          "end_line": 1045,
+          "section": "4.1.4"
+        }
+      ]
+    },
+    {
+      "id": "I09",
+      "title": "MACA零状态不回归QueuePin",
+      "classification": "static_counterexample",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "q1=1000,q2=0,theta>=1000,B/U全0，MACA选p1，QueuePin选p2；与L1741冲突。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "无效/相等辅助键回Q比较，或撤回零状态回归承诺；尚未授权改设计。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1589,
+          "end_line": 1609,
+          "section": "4.4.5"
+        }
+      ]
+    },
+    {
+      "id": "I10",
+      "title": "瞬时门控不保证QP级风险有界",
+      "classification": "causal_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "只界定决定时ΔQ≤theta；之后固定一整条QP和拥塞反馈可产生更大尾部变化。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "分别陈述即时局部差界与待验证动态性能，不能继承全部安全属性。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1632,
+          "end_line": 1659,
+          "section": "4.4.5–4.4.6"
+        }
+      ]
+    },
+    {
+      "id": "I11",
+      "title": "缺失、零和回退矛盾",
+      "classification": "specification_inconsistency",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "开头缺状态QueuePin，说明缺状态按0，不变量异常又回退；语义不等价。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "分别定义valid/zero/stale/missing/overflow与原回退。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1064,
+          "end_line": 1088,
+          "section": "4.1.4–4.1.5"
+        }
+      ]
+    },
+    {
+      "id": "I12",
+      "title": "CDLC漏计时间戳",
+      "classification": "arithmetic_inconsistency",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "128D+128分类时间戳+16U字段=272新增标量，而表中160；未计映射/容器/路由缓存。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "先冻结各字段维度/字节宽度，按实际模型重算。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1349,
+          "end_line": 1360,
+          "section": "4.2.6"
+        }
+      ]
+    },
+    {
+      "id": "I13",
+      "title": "CDLC对照同时改变键序",
+      "classification": "identifiability_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "CLC长流(U,Q,B1)，CDLC长流(U,D1,Q)；统一聚合仍可按类选序。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "控制目的维度时保持键序；真正无类别臂也禁用类别条件键序。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1362,
+          "end_line": 1382,
+          "section": "4.2.7"
+        }
+      ]
+    },
+    {
+      "id": "I14",
+      "title": "目的历史代理缺因果桥",
+      "classification": "causal_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "同目的流跨脊仍汇合相同最后链路，本源历史看不到其他源；ToR聚合也不同于单host拥塞。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "区分可绕行中间资源与不可绕行末跳；不以D差异推性能。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1245,
+          "end_line": 1270,
+          "section": "4.2.2–4.2.3"
+        }
+      ]
+    },
+    {
+      "id": "I15",
+      "title": "MACA完整2x2重复臂",
+      "classification": "experimental_design_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "gate off两格均QueuePin，与L1679门控vs全局比较含义不同。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "可称嵌套开启设计；若检验门控vs全局，四臂要独立定义无门控仲裁。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1686,
+          "end_line": 1693,
+          "section": "4.4.8"
+        }
+      ]
+    },
+    {
+      "id": "I16",
+      "title": "类别与时间尺度/利用率解释未验证",
+      "classification": "untested_assumption",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "tag2不必等于短流/同步/某时标；B按类历史与U出队率同20us不支持短长时间尺度分离。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "固定/反向/统一信号映射对照；检验跨类竞争与U是否补Q信息。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 978,
+          "end_line": 1004,
+          "section": "4.1.2–4.1.3"
+        }
+      ]
+    },
+    {
+      "id": "I17",
+      "title": "到达滤波被称平滑队列，tau0退化错误",
+      "classification": "static_counterexample",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "S更新为衰减S+包字节，不读Q形成平均；tau=0进入S=wireBytes分支，不能得到Q。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "精确命名到达记忆；设显式Q回退，查询时衰减。",
+      "references": [
+        {
+          "source": "B",
+          "start_line": 424,
+          "end_line": 457,
+          "section": "4.3 CQT"
+        }
+      ]
+    },
+    {
+      "id": "I18",
+      "title": "死区命中分母不等于改动作",
+      "classification": "measurement_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "CCB只在0<q1-q2<=epsilon改变原决定；abs差<=epsilon还含本来就p1的事件。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "分开near-tie、eligible和changed；8KiB请求阈值不是一包误差。",
+      "references": [
+        {
+          "source": "B",
+          "start_line": 334,
+          "end_line": 387,
+          "section": "4.2 CCB"
+        }
+      ]
+    },
+    {
+      "id": "I19",
+      "title": "钉扎生命周期与批量持包未闭合",
+      "classification": "specification_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "按原始/当前类别如何清理未定义；P_c若长留只是历史键；pending后续包/重复首包/取消/释放顺序需明确。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "先纸面状态表与守恒，成本含pending逐请求项和持包期间处理。",
+      "references": [
+        {
+          "source": "B",
+          "start_line": 529,
+          "end_line": 600,
+          "section": "4.5 CCPB"
+        }
+      ]
+    },
+    {
+      "id": "I20",
+      "title": "背景/未知近tie回退错误",
+      "classification": "static_counterexample",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "近tie分支背景直接p1；q1>q2但差小于theta时QueuePin应p2；零梯度对已知class2可Q比较但未知仍错。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "所有非激活/无效分支调用真实QueuePin比较；统一稀疏采样/同ns语义。",
+      "references": [
+        {
+          "source": "C",
+          "start_line": 524,
+          "end_line": 568,
+          "section": "12.1 CGQ"
+        }
+      ]
+    },
+    {
+      "id": "I21",
+      "title": "组推断和不可大小复制论证不足",
+      "classification": "identifiability_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "g=(ToR,class,timebucket)不是job/phase；若class=g(size)，原输入下资格同样可复制；b_hat为包长不是流长。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "先核分组含义/桶边界/更新口径；仅以解耦且有业务语义输入验证信息。",
+      "references": [
+        {
+          "source": "C",
+          "start_line": 623,
+          "end_line": 649,
+          "section": "12.2 BCS"
+        }
+      ]
+    },
+    {
+      "id": "I22",
+      "title": "聚合截断不能建立逐流承诺守恒",
+      "classification": "static_counterexample",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "A/B各100，A到150后U仅50，B仍应有100；重复同一60B包可二次核销，取消信用无法仅从总数恢复。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "要归属/唯一字节/每流余额或明确放弃每流守恒主张；重算元数据成本。",
+      "references": [
+        {
+          "source": "C",
+          "start_line": 756,
+          "end_line": 795,
+          "section": "13.2 CCL"
+        }
+      ]
+    },
+    {
+      "id": "I23",
+      "title": "CCL新流域归属和回退需要不可见信息",
+      "classification": "causal_and_state_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "S/L按完成后W内兑现定义；新流“沿用同域最近样本”未给可因果确定的域。已知合法错标签不能在线一律检测回退。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "定义首包可见分类器/先验及错误可检测条件；记录已有路由表新增元数据。",
+      "references": [
+        {
+          "source": "C",
+          "start_line": 806,
+          "end_line": 840,
+          "section": "13.2.4–13.2.6"
+        }
+      ]
+    },
+    {
+      "id": "I24",
+      "title": "CCL残差恒等式不等于预测误差上界",
+      "classification": "mathematical_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "增记-兑现包含真实未偿余额、截断误差和撤销；账面自洽不界定未来未见需求误差。Q/U全零臂也只是p1而非QueuePin。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "区分余额/估计误差/去重/丢弃/撤销；未来性能或残差界需额外模型假设。",
+      "references": [
+        {
+          "source": "C",
+          "start_line": 851,
+          "end_line": 894,
+          "section": "13.4–13.6"
+        }
+      ]
+    },
+    {
+      "id": "I25",
+      "title": "少量动作可支配批尾",
+      "classification": "causal_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "2%机会阈值不是收益上界；高/低相关和大小克隆一致率均需按有两候选及eligible分母拆。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "保留逐决策/QP/批尾对应；没有统计等价证据不要从差异不显著宣称等价。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1138,
+          "end_line": 1170,
+          "section": "4.1.9"
+        }
+      ]
+    },
+    {
+      "id": "I26",
+      "title": "字典序不可表示为权重的说法过强",
+      "classification": "mathematical_scope_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "在有界离散状态上可用足够大层级权重编码字典序；一般无界或连续情形另论。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "将贡献检验限定实际决策边界和信息作用，不凭形式命名推创新。",
+      "references": [
+        {
+          "source": "A",
+          "start_line": 961,
+          "end_line": 967,
+          "section": "4.0.4"
+        }
+      ]
+    },
+    {
+      "id": "I27",
+      "title": "借用率分母与出口比例误述",
+      "classification": "denominator_and_arithmetic_inconsistency",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "C L233以4次首次借用/80受限准入写5%，但借用发生于对方不活跃、候选全集可用的事件，两者不是同一资格分母；L239把8到2出口称减半，实为剩四分之一。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "借用率按可借用新请求或全部新请求定义，另列restricted；出口比例显式2/8。",
+      "references": [
+        {
+          "source": "C",
+          "start_line": 231,
+          "end_line": 239,
+          "section": "4.3"
+        }
+      ]
+    },
+    {
+      "id": "I28",
+      "title": "字节域的时间/语义差异被写成不同量纲",
+      "classification": "dimensional_analysis_scope_gap",
+      "evidence_level": "independent_document_logic_analysis_not_runtime_evidence",
+      "analysis": "C L746中Q与R都是B，问题是当前存量与未来20us量的口径/重叠/服务投影，不是物理量纲不同。CCL Q+U同字节也不能自动证明同观测时域或无重复。",
+      "minimum_resolution_or_falsifier_proposed_not_run": "逐项列观测点、已入队/未见定义、时间核和扣减归属，分别验证量纲与语义。",
+      "references": [
+        {
+          "source": "C",
+          "start_line": 742,
+          "end_line": 766,
+          "section": "13.1–13.2.1"
+        }
+      ]
+    }
+  ],
+  "mechanism_inventory": [
+    {
+      "name": "CLC",
+      "identity": "UNIMPLEMENTED_UNTESTED_REVIEWER_PROPOSAL",
+      "rule": "class2:(B2,Q,U); class1:(U,Q,B1) lexicographic",
+      "update_decrement_decay_cleanup": "admit adds visible-class bytes; dequeue updates U_num; time decay; no service decrement of B; per-QP cleanup retains aggregates",
+      "state_and_cost_as_proposed_with_qualifications": "O(ports*classes+ports) plus existing route cache; aggregate counters/timestamps; claimed about56 scalar slots includes inconsistent counting conventions",
+      "untested_assumptions": "past own-class arrivals and local service rate predict future competition; category determines priority",
+      "issue_ids": [
+        "I05",
+        "I06",
+        "I08",
+        "I11",
+        "I16",
+        "I26"
+      ],
+      "references": [
+        {
+          "source": "A",
+          "start_line": 969,
+          "end_line": 1234,
+          "section": "4.1"
+        }
+      ]
+    },
+    {
+      "name": "CDLC",
+      "identity": "UNIMPLEMENTED_UNTESTED_REVIEWER_PROPOSAL",
+      "rule": "class2:(D2[p,d],Q,U); class1:(U,D1[p,d],Q)",
+      "update_decrement_decay_cleanup": "admit increments class/destination aggregate; time decay; QP cleanup retains shared history",
+      "state_and_cost_as_proposed_with_qualifications": "O(ports*destToR*classes);128 D+128 timestamps+16 U=272 new scalars before metadata",
+      "untested_assumptions": "own-source destination history proxies downstream competition; all same-dest paths may still share bottleneck",
+      "issue_ids": [
+        "I05",
+        "I06",
+        "I11",
+        "I12",
+        "I13",
+        "I14"
+      ],
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1236,
+          "end_line": 1471,
+          "section": "4.2"
+        }
+      ]
+    },
+    {
+      "name": "MACA",
+      "identity": "UNIMPLEMENTED_UNTESTED_REVIEWER_PROPOSAL",
+      "rule": "abs(q1-q2)>theta or unknown ->QueuePin; else class2 compares B2 thenU, class1 U thenB1; ties p1",
+      "update_decrement_decay_cleanup": "admit B_c +=wire_bytes after decay; dequeue U numerator after decay; direct B/U read lacks explicit current-time projection",
+      "state_and_cost_as_proposed_with_qualifications": "O(ports*classes+ports); theta aboutone wirepacket and tau_B=tau_U=20000ns are proposals",
+      "untested_assumptions": "small Q margin means low confidence; auxiliary class signal predicts direction; no dynamic risk bound proven",
+      "issue_ids": [
+        "I05",
+        "I06",
+        "I07",
+        "I09",
+        "I10",
+        "I11",
+        "I15",
+        "I16"
+      ],
+      "references": [
+        {
+          "source": "A",
+          "start_line": 1510,
+          "end_line": 1814,
+          "section": "4.4"
+        }
+      ]
+    },
+    {
+      "name": "CCB",
+      "identity": "UNIMPLEMENTED_UNTESTED_REVIEWER_PROPOSAL",
+      "rule": "choose p2 iff q2+epsilon_c<q1; epsilon2=8192,epsilon1/unknown=0",
+      "update_decrement_decay_cleanup": "constant thresholds; existing route cache only; no packet update",
+      "state_and_cost_as_proposed_with_qualifications": "3 constants; no new dynamic prediction state",
+      "untested_assumptions": "small Q difference is noise for shortclass; p1 preference useful",
+      "issue_ids": [
+        "I18"
+      ],
+      "references": [
+        {
+          "source": "B",
+          "start_line": 325,
+          "end_line": 411,
+          "section": "4.2"
+        }
+      ]
+    },
+    {
+      "name": "CQT",
+      "identity": "UNIMPLEMENTED_UNTESTED_REVIEWER_PROPOSAL",
+      "rule": "class1 compares S; class2/unknown Q; strict less/tie p1",
+      "update_decrement_decay_cleanup": "S<-linear_decay(S,dt,tau)+admitted wire_bytes; perport timestamp; no decrement on service or per-QP completion",
+      "state_and_cost_as_proposed_with_qualifications": "2 fields perport; perpacket update; tau20000ns tentative",
+      "untested_assumptions": "background should compare persistent pressure while shortclass uses instantaneous queue",
+      "issue_ids": [
+        "I06",
+        "I16",
+        "I17"
+      ],
+      "references": [
+        {
+          "source": "B",
+          "start_line": 415,
+          "end_line": 497,
+          "section": "4.3"
+        }
+      ]
+    },
+    {
+      "name": "CCPB",
+      "identity": "UNIMPLEMENTED_UNTESTED_REVIEWER_PROPOSAL",
+      "rule": "class2 lex(Q,P2) on exact Q tie; otherclasses QueuePin; optional500ns batchhold",
+      "update_decrement_decay_cleanup": "pin+1 and pathcleanup-1 byclass; pending up to1024; cancellation must unlink/release safely",
+      "state_and_cost_as_proposed_with_qualifications": "perport*class counts plus existing cache attribution; optional per-request pending/packet refs/timer",
+      "untested_assumptions": "empty-wave Q tie hides persistent polarity; historical or active pin count can improve allocation",
+      "issue_ids": [
+        "I19"
+      ],
+      "references": [
+        {
+          "source": "B",
+          "start_line": 518,
+          "end_line": 617,
+          "section": "4.5"
+        }
+      ]
+    },
+    {
+      "name": "CGQ",
+      "identity": "UNIMPLEMENTED_UNTESTED_REVIEWER_PROPOSAL",
+      "rule": "near Q tie class2 compares max(0,Q+tau*d); otherwiseQueuePin; pseudo unknown branch wronglyp1",
+      "update_decrement_decay_cleanup": "d EWMA from sparse Q reads; Q_last,t_last; clear invalid gradient; route stays pinned",
+      "state_and_cost_as_proposed_with_qualifications": "3 fields perport; tau about0.7–1us,theta1–2wirepackets,lambda0.5 proposed",
+      "untested_assumptions": "local first derivative complements Q over short horizon; sparse sampling valid",
+      "issue_ids": [
+        "I20"
+      ],
+      "references": [
+        {
+          "source": "C",
+          "start_line": 515,
+          "end_line": 611,
+          "section": "12.1"
+        }
+      ]
+    },
+    {
+      "name": "BCS",
+      "identity": "UNIMPLEMENTED_UNTESTED_REVIEWER_PROPOSAL",
+      "rule": "class2 Q+rho*C(group,port)*b_hat; othersQueuePin; group=(ToR,class,timebucket)",
+      "update_decrement_decay_cleanup": "firstpin count+1; two slidingbucket aging; packet/firstpacket b_hat rule unresolved; no completion decrement",
+      "state_and_cost_as_proposed_with_qualifications": "8ports*2buckets+globalb_hat stated; group dimensions/epoch IDs need specification",
+      "untested_assumptions": "timebucket and class recover useful co-occurrence; packet-size estimate represents allocation burden",
+      "issue_ids": [
+        "I21"
+      ],
+      "references": [
+        {
+          "source": "C",
+          "start_line": 613,
+          "end_line": 730,
+          "section": "12.2"
+        }
+      ]
+    },
+    {
+      "name": "CCL",
+      "identity": "UNIMPLEMENTED_UNTESTED_REVIEWER_PROPOSAL",
+      "rule": "class chooses S/L query domain; scoreQ+U(domain); pin adds estimated b_hat toflowdomain",
+      "update_decrement_decay_cleanup": "aggregate saturating packet debit; completion/cohort calibration; perflowcancel/unique byte/domain ownership unresolved; W not expiry",
+      "state_and_cost_as_proposed_with_qualifications": "claimed24–30scalars; missing perflow bookkeeping/provenance andK32completed sample cost",
+      "untested_assumptions": "S/L known causally; pooled credits can be debited without per-flow attribution; observed accounting residual bounds useful prediction error",
+      "issue_ids": [
+        "I22",
+        "I23",
+        "I24"
+      ],
+      "references": [
+        {
+          "source": "C",
+          "start_line": 734,
+          "end_line": 948,
+          "section": "13"
+        }
+      ]
+    }
+  ],
+  "proposed_cheapest_checks": [
+    {
+      "id": "P1",
+      "priority": 1,
+      "action": "纸面单步反例与状态定义闭合",
+      "cases": [
+        "MACA/CGQ未知或零辅助状态与QueuePin对比",
+        "分类时间戳交替更新",
+        "idle>=tau后读历史",
+        "tau0信号退化",
+        "CCL双流/重复包/取消信用",
+        "CCPB待决包和清理顺序"
+      ],
+      "execution": "NOT_RUN; manual reasoning only"
+    },
+    {
+      "id": "P2",
+      "priority": 2,
+      "action": "只盘点日志字段与原固定源/输入身份，不执行机制",
+      "fields": [
+        "decision candidates",
+        "admission/dequeue time and ordering",
+        "policy/business/packet labels",
+        "wire/payload lengths",
+        "QP generation",
+        "finish/cancel/drop/retransmit"
+      ],
+      "execution": "PROPOSED_NOT_RUN"
+    },
+    {
+      "id": "P3",
+      "priority": 3,
+      "action": "因果一致的原策略状态离线信息筛查；不称端到端反事实或oracle上界",
+      "denominators": [
+        "all source firstdecisions",
+        "two distinct candidates",
+        "eligible label",
+        "near tie",
+        "changed decision",
+        "tail-influencing request"
+      ],
+      "execution": "PROPOSED_NOT_RUN"
+    },
+    {
+      "id": "P4",
+      "priority": 4,
+      "action": "C3按port/QP/owner-reactivation事件测持续区间与重叠资源",
+      "prohibition": "do not convert aggregate all-port bytes to per-event duration",
+      "execution": "PROPOSED_NOT_RUN"
+    },
+    {
+      "id": "P5",
+      "priority": 5,
+      "action": "先明确C1差值信息、C2等待资格与预算、C3可回收域；新提案只保留候选假设",
+      "decision_owner": "WS31 main/human",
+      "execution": "PROPOSED_NOT_RUN"
+    },
+    {
+      "id": "P6",
+      "priority": 6,
+      "action": "若主对话授权接入，另冻结源和新正确性/网络计划，保留独立需求与双主成本验证",
+      "execution": "NO_EXECUTION_AUTHORITY_FROM_THIS_TASK"
+    }
+  ],
+  "recommended_work_disposition": {
+    "decision_owner": "main/human",
+    "implemented_here": false,
+    "suggestion": "Pause new efficacy matrices and candidate expansion pending paper-rule consistency and evidence availability; do not cancel existing correctness/validation tasks. C1 information audit, C2 matched timing controls, C3 event-duration measurement; all new mechanisms remain hypotheses.",
+    "mandatory_existing_work_not_cancelled": [
+      "endpoint identity/completion/shared protocol/two-generation correctness",
+      "independent V0",
+      "matched ablation",
+      "business/background two-sided effects",
+      "costs"
+    ]
+  },
+  "guard_and_authority": {
+    "main_entry_source_guard": "MAIN_OWNED_UNCHANGED_NOT_RELEASED_BY_THIS_DOCUMENT_TASK",
+    "scientific_source_edits": 0,
+    "main_directory_edits": 0,
+    "compile_test_network_ssh_commit_push": 0,
+    "extra_agents_or_chats": 0,
+    "candidate_implementation_or_adoption_authority": false,
+    "owned_background_work": false
+  },
+  "limitations": [
+    "No scientific source or raw reread in this task",
+    "No new literature search or primary-source verification; main owns those",
+    "No mechanism execution, offline scientific replay, build or simulation",
+    "No actual pause/optimization decision applied on behalf of main",
+    "B/C are targeted comparisons, A full read",
+    "Missing performance results alone do not disprove design novelty; primary mechanism comparison remains required."
+  ],
+  "qa": {
+    "source_bytes_unchanged_and_snapshots_equal": true,
+    "line_range_references_validated": true,
+    "exact_rule_anchors_verified": 12,
+    "local_links_checked": 5,
+    "report_sections": 8,
+    "report_sha256": "a0d1e2b7463efe20494dcfcb821c1a52e75ca39ebd9f9a83619f19b3cc8e5878",
+    "critic_count": 15,
+    "gap_count": 28,
+    "mechanism_count": 9,
+    "no_scientific_tests_performed": true
+  }
+}

@@ -3,7 +3,7 @@
   "created_date": "2026-11-01",
   "project_id": "4e32290d-ff2c-4e0e-9f4f-96318021748e",
   "project_label": "科研",
-  "status": "ACTIVE_FOR_C1_C2_C3_IMPLEMENTATION_AND_VALIDATION",
+  "status": "ACTIVE_REVIEW_INFORMED_RESCOPING_CANDIDATE_ENGINEERING_PAUSED",
   "integration": {
     "thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
     "host_id": "local",
@@ -20,8 +20,8 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f13c4cd1-6458-4d58-888a-76f78e636578:1",
-    "last_observed_status": "idle; cursor reset after completed node20"
+    "last_cursor": "f13c4cd1-6458-4d58-888a-76f78e636578:2",
+    "last_observed_status": "idle after user-requested review synthesis and work adjustment"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -31,8 +31,8 @@
     "write_directory": "docs/research/ws31/independent",
     "first_goal": "independent audit of category-increment and ablation failure evidence",
     "last_cursor": null,
-    "last_reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:4",
-    "last_reported_state": "active; sole minimal r3 one-fixture delta review; main reported, not directly polled by Integration"
+    "last_reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
+    "last_reported_state": "completed/idle external-document audit; main reported, no direct Integration poll or redispatch"
   },
   "deferred_ws29": {
     "main_thread_id": "01a1625a-d557-71c1-a90a-258c289ef43e",
@@ -46,39 +46,38 @@
     "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
     "interval_minutes": 30,
     "status": "ACTIVE",
-    "scope": "Sequential C1 C2 C3 implementation and gated validation; Ofan paused; new external formal methods require verified CCF A/B publication",
+    "scope": "Bounded local read-only evidence/logic and business-grounded decoupled-demand design; endpoint engineering/build/test/network and effect matrices paused",
     "prior_proposal_heartbeat": "deleted by WS31 main at proposal handoff; new scope heartbeat recreated under new user authorization",
-    "latest_policy_turn_id": "01a1940b-da42-7d93-ac39-164e1a614ffb",
-    "policy_sync_date": "2026-11-01"
+    "latest_policy_turn_id": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
+    "policy_sync_date": "2026-11-04",
+    "policy_source": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+    "prompt_sha256": "78ed3b749aaf16e67bdce92d2a08848ad3b67548d16994feed4a85e719651eea",
+    "saved_before": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-before.toml",
+    "saved_after": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-after.toml",
+    "tool_updated_and_saved_file_reloaded": true,
+    "no_automatic_engineering_or_remote_resumption": true
   },
   "new_mechanism_selected": false,
   "default_model_policy": "Created without model overrides; use actual turn context, not prompt assertions.",
-  "experiment_gate": "New implementation contract, correctness, frozen independent plan and resource gate; candidate implementation order already authorized by user.",
+  "experiment_gate": "PAUSED_BY_CURRENT_USER_REVIEW_SCOPE. First candidate survival reasons, then corresponding new contract, correctness, frozen independent plan/resource gate and explicit current-scope update; no heartbeat auto-resume.",
   "notifications": "Report complete stages, material findings, failures or user decisions; keep unchanged state quiet.",
   "scope_authorization": {
     "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
-    "turn_id": "01a193ea-2ccf-79d0-959c-d375143f95e4",
-    "evidence": "docs/research/evidence/ws31-implementation-authorization-20261101/user-instruction.json",
-    "implementation_order": [
+    "turn_id": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
+    "message_id": "01a1a5f0-a660-7e23-ba5e-95c6a0c88b0c",
+    "evidence": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json",
+    "decision_owner": "WS31 main acting on explicit human request to pause or optimize according to the three reviews",
+    "current_scope": "Bounded read-only evidence/logic inventory and business-grounded category/size-decoupled demand design; analysis/design documents allowed",
+    "supersedes_automatic_implementation_entry": true,
+    "old_order_retained_for_later_candidate_judgment": [
       "C1",
       "C2",
       "C3"
     ],
-    "candidate_decision_received": true,
-    "existing_baselines": [
-      "DRILL",
-      "ConWeave",
-      "CONGA",
-      "ECMP",
-      "LetFlow"
-    ],
-    "category_increment_control": "QueuePin",
-    "additional_baselines_consider": [
-      "Gemma"
-    ],
-    "additional_baseline_cost_and_necessity_owner": "WS-31 main"
+    "science_code_config_build_test_network_and_effect_matrix_authorized_now": false,
+    "unfinished_debt_cancelled": false
   },
-  "candidate_implementation_authorized": true,
+  "candidate_implementation_authorized": false,
   "validated_combined_baseline_established": false,
   "execution_status_source": "docs/research/ws31/main/current-status.json",
   "last_verified_engineering_checkpoint": {
@@ -265,7 +264,7 @@
     "parent_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
     "purpose": "Actual-object endpoint probe with binding/coverage guards and one new scratch object fixture; Qbb header only comment/two friends",
     "validation": "One1470task optimized-j2 fullbuild and one controlled actual-object fixture accepted at8cd.62rawrows/8double-read groups/16refusals,31Readcalls/17successfulreturns. Mask127/noeventexecution/no natural network completion. FullGitpath and36project ELF byte provenance verified.",
-    "mutable_worktree_status": "NODE20_TEN_R3_WIP_SIX_TRACKED_FOUR_UNTRACKED_UNCOMPILED_UNCOMMITTED",
+    "mutable_worktree_status": "NINETEEN_WIP_PRESERVED_ENGINEERING_PAUSED_NO_NEW_COMPILE_OR_RUNTIME_ACCEPTANCE",
     "last_network_validated_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
@@ -274,7 +273,7 @@
       "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy",
       "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e": "Q12andC2 default dispatch full FCT/orderedCHOICE_ROUTE and dedicatedC2 events with exact104 waits; only two technical cells at unchanged input, not endpoint lifecycle or efficacy"
     },
-    "new_network_approval_scope": "None; sole r3 one-fixture static delta review only. Old fixed 8cd runtime acceptance does not cover these WIP bytes.",
+    "new_network_approval_scope": "None; current human-authorized rescope pauses scientific code/config/build/test/network. Prior 43 cells and 17 adapters remain historical technical evidence only.",
     "current_WIP_hashes": {
       "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
       "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
@@ -285,15 +284,24 @@
       "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
       "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
       "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
-      "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8"
+      "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8",
+      "src/point-to-point/model/ws31-endpoint-completion.h": "e5b944081f579495db3d30ef8306bef2d458e2eda8ed69ce5b38a1ee51cbd631",
+      "src/point-to-point/model/ws31-endpoint-identity.h": "000366ac4d9508c281ad48be7be857bebfe38ec6b99af58e4be183f8d35583f2",
+      "src/point-to-point/model/rdma-hw.h": "60158d9872291c829fa13d1ba52c4fbd05e4b9a7229f66f270a7eaa4a73ac699",
+      "src/point-to-point/model/rdma-hw.cc": "22237ebaf5385c7fed7bda1477f051a2f7fc16de460edc213df7caef53f20411",
+      "scratch/ws31-endpoint-network-test.cc": "277114be4dc77046a14224fbd6df8b66a1685be8c1e83ec20892961151be1bc3",
+      "config/ws31_endpoint_input_c1_r1.cfg": "8df9d1a031a7a79f19cb500fcc82da32b516e12bdc37682d03c83a780c335dbf",
+      "config/ws31_endpoint_input_c2_r1.cfg": "92338691c8bd3e19588c96a1064a096ac9fdfdfcac9533fdd5da2c3f7d065dd2",
+      "config/ws31_endpoint_input_c3_r1.cfg": "2413896e9f861b31054ccbab4a1d43fade7c7d56da0282d8aef4c353d949c572",
+      "config/ws31_endpoint_input_two_generations_r1.txt": "4a64365d11c3003f6b2f2696222e187b165f4c568190b036753f492352cfbf61"
     },
-    "current_WIP_source_audit": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-wip-source-audit-r3.json"
+    "current_WIP_source_audit": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json"
   },
   "last_material_event": {
     "date": "2026-11-04",
-    "kind": "NODES19_20 switch static reviews integrated; S1/S2 source-confirmed, R2-F1 one-fixture repair pending sole delta review",
-    "record": "docs/handoffs/2026-11-04-ws31-endpoint-switch-integration.md",
-    "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+    "kind": "USER_AUTHORIZED_REVIEW_INFORMED_RESCOPE_AND_ACTUAL_HEARTBEAT_SCOPE_UPDATE",
+    "record": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+    "verification": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json",
     "new_engineering_runtime_acceptance": false,
     "new_network_acceptance": false,
     "network_technical_total": 43,
@@ -498,6 +506,17 @@
       "network_technical_total": 43,
       "user_decision_required": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-04",
+      "kind": "NODES19_20 switch static reviews integrated; S1/S2 source-confirmed, R2-F1 one-fixture repair pending sole delta review",
+      "record": "docs/handoffs/2026-11-04-ws31-endpoint-switch-integration.md",
+      "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+      "new_engineering_runtime_acceptance": false,
+      "new_network_acceptance": false,
+      "network_technical_total": 43,
+      "user_decision_required": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -536,10 +555,12 @@
     "not_equal_computational_cost": true
   },
   "foreground_background_coordination": {
-    "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
-    "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
+    "main_observed": "idle at f13c4cd1-6458-4d58-888a-76f78e636578:2",
+    "independent_main_reported": "completed/idle at d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
+    "rule": "No idle redispatch or old engineering continuation; only finite read-only scope. No remote runtime inspection in this node.",
     "root_restarted_jobs": false,
-    "phase_update": "Object8cd preflight fully accepted; soleindependent completed/idle107 and five task PIDs absent in final saved gate. All source/entry/env guards explicitly released09:47:46Z; no persistentdriver or newexecutionauthority. Mainidle24 observed, sourceclean8cd/noWIP. Next main local implementation, no repeat old jobs or idle wake to fill waiting."
+    "current_engineering_and_effect_matrix_scope": "PAUSED",
+    "old_driver_restart_authorized": false
   },
   "last_verified_C23_controls_checkpoint": {
     "date": "2026-11-01",
@@ -602,46 +623,28 @@
     "completed_payload_bytes": 403963904
   },
   "next_registered_goal": {
-    "kind": "ENDPOINT_SWITCH_R3_SINGLE_FIXTURE_READONLY_DELTA_REVIEW",
-    "status": "ACTIVE_SOLE_INDEPENDENT_MAIN_REPORTED_CURSOR4",
-    "owner": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "plan": "docs/research/ws31/main/endpoint-switch-local-review-r3.json",
-    "fixed_plan_snapshot": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-local-review-r3.json",
-    "plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
-    "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
-    "files_working_sha256": {
-      "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
-      "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
-      "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
-      "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
-      "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
-      "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
-      "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
-      "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
-      "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
-      "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8"
-    },
-    "preserved_WIP": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/",
-    "reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:4",
-    "pre_dispatch_idle_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:3",
-    "current_new_WIP": true,
-    "changed_paths": [
-      "scratch/ws31-endpoint-switch-test.cc"
+    "kind": "BOUNDED_MAIN_READONLY_EVIDENCE_AND_DECOUPLED_DEMAND_DESIGN",
+    "status": "PERMITTED_NO_NEW_SOLE_INDEPENDENT_DISPATCH",
+    "owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+    "scope_source": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+    "write_scope": "Analysis/design documents only; Integration owns canonical files",
+    "permitted_work": [
+      "Bounded local read-only evidence/logic inventory",
+      "Business-grounded category/size-decoupled demand design",
+      "Evidence and design documents"
     ],
-    "unchanged_WIP_files": 9,
-    "reuse_completed_r2_review_only_analyze_affected_delta": true,
     "remote_build_fixture_network_execution_authorized": false,
-    "source_or_main_edits_by_independent_authorized": false,
-    "source_guard": "Exactly ten r3 WIP files frozen until complete bounded review and explicit release",
-    "outcomes_accepted_by_Integration": false,
+    "scientific_source_or_config_edits_authorized": false,
+    "old_successful_tests_or_raw_recomputations_to_fill_waiting_authorized": false,
+    "candidate_focus": {
+      "C1": "conditional information/full-Q+R action vs simple count/size/unified, with cost",
+      "C2": "staggering/original-demand-start timing and matched eligibility/wait budget control",
+      "C3": "per-port/per-borrower/per-reactivation actual recovery intervals; no effect/quota tuning"
+    },
+    "stop": "Finite inventory complete and no supported opportunity: retain evidence and stop this expansion round; no endless windows/parameters/candidates",
+    "resume_gate": "Surviving candidate reason, corresponding new contract, frozen independent plan and resource gate, explicit current-scope update",
     "no_duplicate_sole_independent_dispatch": true,
-    "requirements_after_review": [
-      "Main accepts minimum delta review and repairs necessary issues; no repeated full unchanged analysis",
-      "Complete actual completion callback savedRX, history release and real G1 before all traffic",
-      "All identity producers and explicit shared PFC/ACK/NACK/CNP/retransmission coverage",
-      "New frozen source, independent plan and resource gates before two-generation network positive/refusal validation",
-      "Independent C1 V0, matched ablation, business/background effects and state/runtime costs"
-    ]
+    "unfinished_correctness_V0_ablations_dual_effects_costs_retained": true
   },
   "last_verified_C13_labels_checkpoint": {
     "date": "2026-11-01",
@@ -694,49 +697,16 @@
     "scope": "Per-node technical coverage, repeated small inputs are not independent workloads or efficacy samples"
   },
   "last_completed_local_review": {
-    "name": "endpoint-switch-local-review-r2",
-    "status": "COMPLETE_STATIC_REVIEW_MAIN_ACCEPTED_INTEGRATION_VERIFIED_R2_F1_P1_REPAIR_REQUIRED",
-    "evidence": 62,
-    "fixed_parent_copies": 28,
-    "exact_anchors": 68,
-    "WIP_preserved": 10,
-    "review_sha256": "1a2826d74059ef9f0f217b07c4213dcff17e0e0256691e69243ed07c15cac109",
-    "QA_sha256": "9aa5810e02aff47bfa7825a622a0cae269dbd55da81dd9df1161bf44015e430b",
-    "finding": "R2-F1/P1",
-    "S1_S2_addressed_in_source_not_run": true,
-    "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
-    "runtime_accepted": false,
-    "measured_mask255": 0,
-    "prior_usage_failure_and_stage_receipts_preserved": true,
-    "planned_not_executed_counts": {
-      "paired_reads": 25,
-      "composite_Read_calls": 63,
-      "successful_returns": 53,
-      "Read_refusals": 10,
-      "all_refusals": 19,
-      "standalone_endpoint_Read": 1
-    },
-    "fingerprint_scope": {
-      "switch_pin_budget_quota_observed_core_state_covered": true,
-      "complete_strings_compared_not_only_display_hashes": true,
-      "captures_before_purity_interval": true,
-      "endpoint_scope": "listed protocol fields only, not whole object memory or all queue/QP state",
-      "missing_broader_queue_fields": [
-        "physical queue packet identities",
-        "RR cursor",
-        "all queue statistics",
-        "all QP protocol fields"
-      ],
-      "pair_compares_full_observation": false,
-      "pair_compared_result_fields": [
-        "target pin count",
-        "target budget count",
-        "target quota count"
-      ],
-      "owner_malformed_state_safety": "FAIL_R2_F1",
-      "duplicate_case_branch_limit": "AddDevice also changes interface count and index; does not independently isolate seen.insert refusal"
-    },
-    "explicit_release": "2026-11-04T06:58:12.280951+00:00"
+    "name": "external-c123-review-audit-r1",
+    "status": "COMPLETE_DOCUMENT_LOGIC_AUDIT_MAIN_SYNTHESIS_DELIVERED_INTEGRATION_IDENTITY_VERIFIED",
+    "main_QA": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/external-review-synthesis-main-qa-r1.json",
+    "independent_report": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/independent/external-c123-review-audit-r1-report.md",
+    "three_original_reviews_match": true,
+    "nine_proposals_evaluated": true,
+    "novelty_or_efficacy_certification": false,
+    "scientific_execution": 0,
+    "verification": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json",
+    "reported_terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14"
   },
   "implemented_source_history": [
     {
@@ -1160,7 +1130,7 @@
     "source_entry_env_guard": "HELD, carried into r2",
     "source_copy_established": false
   },
-  "integration_observed_utc": "2026-11-04T07:23:24.892661+00:00",
+  "integration_observed_utc": "2026-11-04T10:09:55.853792+00:00",
   "last_completed_registered_preflight_history": [
     {
       "kind": "SOURCE_REVIEW_THEN_SINGLE_BUILD_NEW_CORE_AND_MOCK_ONLY",
@@ -1327,7 +1297,7 @@
     "preflight_guards_explicitly_released": true
   },
   "endpoint_lifecycle_design_checkpoint": {
-    "state": "SWITCH_R1_R2_STATIC_REVIEWS_ACCEPTED_R3_FIXTURE_REPAIR_PENDING_DELTA_REVIEW_ACTUAL_PRODUCTION_LIFECYCLE_PENDING",
+    "state": "ENGINEERING_PAUSED_BY_REVIEW_SCOPE_NINETEEN_WIP_AND_CORRECTNESS_DEBT_RETAINED",
     "design": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r2.md",
     "original_WIP_preserved_and_matched": true,
     "review": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/evidence/endpoint-ledger-local-review-main-acceptance-r1.json",
@@ -1429,8 +1399,6 @@
     "actual_switch_composite_WIP_written": true,
     "switch_measured_ALL_mask": 0,
     "new_network_completions": 0,
-    "r3_plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
-    "r3_delta_sha256": "86bd98a9bc94307e337b3491385e051dd4581d6dcc198c5869392350e9c3abd7",
     "r3_single_fixture_only_other_nine_unchanged": true,
     "current_fingerprint_scope": {
       "switch_pin_budget_quota_observed_core_state_covered": true,
@@ -1459,7 +1427,31 @@
       "Read_refusals": 10,
       "all_refusals": 19,
       "standalone_endpoint_Read": 1
-    }
+    },
+    "automatic_implementation_next_step": false,
+    "scope_source": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+    "historical_r3_metadata": {
+      "r3_plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
+      "r3_delta_sha256": "86bd98a9bc94307e337b3491385e051dd4581d6dcc198c5869392350e9c3abd7"
+    },
+    "r3_followup_main_acceptance_receipt_only": {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-switch-local-review-main-acceptance-r3.json",
+      "sha256": "2a2f94b7b93511aa34e420abaea276fbfc5dae9787b75607ad39b2bf701bcbd1",
+      "status": "MAIN_ACCEPTED_STATIC_DELTA_R2_F1_SOURCE_REPAIR_ONLY",
+      "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:5",
+      "explicit_release": "2026-11-04T07:23:35.989395+00:00",
+      "scope": "Main acceptance receipt identity only; full independent static review not repeated by Integration in this rescope"
+    },
+    "identity_completion_draft_main_acceptance_receipt_only": {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-identity-local-review-main-acceptance-r1.json",
+      "sha256": "59ddb2ba07baa94a174c71a7a0bc8fa3c2884f8104568dd607c9650f7a3a0d8f",
+      "status": "MAIN_ACCEPTED_BOUNDED_STATIC_DRAFT_WITH_CALLER_PRECONDITIONS",
+      "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:11",
+      "explicit_release": "2026-11-04T09:04:12.284115+00:00",
+      "scope": "Main acceptance receipt identity only; full independent static review not repeated by Integration in this rescope"
+    },
+    "new_measured_mask255_or_network_acceptance": false,
+    "remaining_tasks_status": "Retained incomplete; paused work does not cancel or close correctness/independent effects/cost obligations"
   },
   "completed_registered_pilot_history": [
     {
@@ -1857,6 +1849,51 @@
       ],
       "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
       "runtime_accepted": false
+    },
+    {
+      "name": "endpoint-switch-local-review-r2",
+      "status": "COMPLETE_STATIC_REVIEW_MAIN_ACCEPTED_INTEGRATION_VERIFIED_R2_F1_P1_REPAIR_REQUIRED",
+      "evidence": 62,
+      "fixed_parent_copies": 28,
+      "exact_anchors": 68,
+      "WIP_preserved": 10,
+      "review_sha256": "1a2826d74059ef9f0f217b07c4213dcff17e0e0256691e69243ed07c15cac109",
+      "QA_sha256": "9aa5810e02aff47bfa7825a622a0cae269dbd55da81dd9df1161bf44015e430b",
+      "finding": "R2-F1/P1",
+      "S1_S2_addressed_in_source_not_run": true,
+      "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+      "runtime_accepted": false,
+      "measured_mask255": 0,
+      "prior_usage_failure_and_stage_receipts_preserved": true,
+      "planned_not_executed_counts": {
+        "paired_reads": 25,
+        "composite_Read_calls": 63,
+        "successful_returns": 53,
+        "Read_refusals": 10,
+        "all_refusals": 19,
+        "standalone_endpoint_Read": 1
+      },
+      "fingerprint_scope": {
+        "switch_pin_budget_quota_observed_core_state_covered": true,
+        "complete_strings_compared_not_only_display_hashes": true,
+        "captures_before_purity_interval": true,
+        "endpoint_scope": "listed protocol fields only, not whole object memory or all queue/QP state",
+        "missing_broader_queue_fields": [
+          "physical queue packet identities",
+          "RR cursor",
+          "all queue statistics",
+          "all QP protocol fields"
+        ],
+        "pair_compares_full_observation": false,
+        "pair_compared_result_fields": [
+          "target pin count",
+          "target budget count",
+          "target quota count"
+        ],
+        "owner_malformed_state_safety": "FAIL_R2_F1",
+        "duplicate_case_branch_limit": "AddDevice also changes interface count and index; does not independently isolate seen.insert refusal"
+      },
+      "explicit_release": "2026-11-04T06:58:12.280951+00:00"
     }
   ],
   "completed_registered_local_goal_history": [
@@ -2097,6 +2134,52 @@
       "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:3",
       "source_guard_explicitly_released": "2026-11-04T06:58:12.280951+00:00",
       "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json"
+    },
+    {
+      "kind": "ENDPOINT_SWITCH_R3_SINGLE_FIXTURE_READONLY_DELTA_REVIEW",
+      "status": "SUPERSEDED_BY_REVIEW_SCOPE_R3_REPORTED_COMPLETE_MAIN_RECEIPT_IDENTITY_CHECKED",
+      "owner": "01a19323-2201-7b23-a0f1-905c71496d38",
+      "plan": "docs/research/ws31/main/endpoint-switch-local-review-r3.json",
+      "fixed_plan_snapshot": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-local-review-r3.json",
+      "plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
+      "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+      "files_working_sha256": {
+        "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+        "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+        "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+        "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+        "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+        "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+        "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+        "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+        "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+        "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8"
+      },
+      "preserved_WIP": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/",
+      "reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:4",
+      "pre_dispatch_idle_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:3",
+      "current_new_WIP": true,
+      "changed_paths": [
+        "scratch/ws31-endpoint-switch-test.cc"
+      ],
+      "unchanged_WIP_files": 9,
+      "reuse_completed_r2_review_only_analyze_affected_delta": true,
+      "remote_build_fixture_network_execution_authorized": false,
+      "source_or_main_edits_by_independent_authorized": false,
+      "source_guard": "Exactly ten r3 WIP files frozen until complete bounded review and explicit release",
+      "outcomes_accepted_by_Integration": false,
+      "no_duplicate_sole_independent_dispatch": true,
+      "requirements_after_review": [
+        "Main accepts minimum delta review and repairs necessary issues; no repeated full unchanged analysis",
+        "Complete actual completion callback savedRX, history release and real G1 before all traffic",
+        "All identity producers and explicit shared PFC/ACK/NACK/CNP/retransmission coverage",
+        "New frozen source, independent plan and resource gates before two-generation network positive/refusal validation",
+        "Independent C1 V0, matched ablation, business/background effects and state/runtime costs"
+      ],
+      "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:5",
+      "main_acceptance_snapshot": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-local-review-main-acceptance-r3.json",
+      "full_r3_static_evidence_reaudit_by_Integration": false,
+      "engineering_next_step_paused": true
     }
   ],
   "last_verified_endpoint_channel_static_checkpoint": {
@@ -2184,7 +2267,6 @@
     "r3_unchanged_files": 9,
     "r3_plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
     "r3_runtime_accepted": false,
-    "r3_review_pending": true,
     "source_snapshot_files": 213,
     "planned_not_executed_counts": {
       "paired_reads": 25,
@@ -2199,7 +2281,12 @@
     "nonnetwork_adapter_conditions_unchanged": 17,
     "prior_usage_failure_turn": "01a19786-5399-7631-a7c8-c0517ab25c14",
     "old_failed_resume_progress_records_preserved": true,
-    "new_baseline_admission": false
+    "new_baseline_admission": false,
+    "r3_review_pending_at_node20_observation": true,
+    "r3_review_pending": false,
+    "r3_main_reported_complete_receipt_identity_verified": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-local-review-main-acceptance-r3.json",
+    "full_r3_static_reaudit_by_Integration": false,
+    "post_review_engineering_status": "PAUSED_BY_LATEST_HUMAN_REVIEW_SCOPE"
   },
   "external_review_material_checkpoint": {
     "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\ws31-c123-external-review-brief-20261104-r1.md",
@@ -2210,6 +2297,109 @@
     "QA_snapshot": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/ws31-c123-external-review-brief-20261104-r1-qa.json",
     "external_review_performed": false,
     "novelty_or_efficacy_certified": false,
-    "parameters_or_authority_changed": false
-  }
+    "parameters_or_authority_changed": false,
+    "followup_user_provided_review_documents": 3,
+    "followup_assessment": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md"
+  },
+  "scope_authorization_history": [
+    {
+      "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "turn_id": "01a193ea-2ccf-79d0-959c-d375143f95e4",
+      "evidence": "docs/research/evidence/ws31-implementation-authorization-20261101/user-instruction.json",
+      "implementation_order": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "candidate_decision_received": true,
+      "existing_baselines": [
+        "DRILL",
+        "ConWeave",
+        "CONGA",
+        "ECMP",
+        "LetFlow"
+      ],
+      "category_increment_control": "QueuePin",
+      "additional_baselines_consider": [
+        "Gemma"
+      ],
+      "additional_baseline_cost_and_necessity_owner": "WS-31 main"
+    }
+  ],
+  "heartbeat_scope_history": [
+    {
+      "automation_id": "ws-31",
+      "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "interval_minutes": 30,
+      "status": "ACTIVE",
+      "scope": "Bounded local read-only evidence/logic and business-grounded decoupled-demand design; endpoint engineering/build/test/network and effect matrices paused",
+      "prior_proposal_heartbeat": "deleted by WS31 main at proposal handoff; new scope heartbeat recreated under new user authorization",
+      "latest_policy_turn_id": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
+      "policy_sync_date": "2026-11-04",
+      "policy_source": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+      "prompt_sha256": "78ed3b749aaf16e67bdce92d2a08848ad3b67548d16994feed4a85e719651eea",
+      "saved_before": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-before.toml",
+      "saved_after": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-after.toml",
+      "tool_updated_and_saved_file_reloaded": true,
+      "no_automatic_engineering_or_remote_resumption": true
+    }
+  ],
+  "foreground_background_coordination_history": [
+    {
+      "main_report": "Independent cursor58 foreground idle while background driver already completed7/7 at01:07Z; cursor59 active final delivery only",
+      "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
+      "root_restarted_jobs": false,
+      "phase_update": "Object8cd preflight fully accepted; soleindependent completed/idle107 and five task PIDs absent in final saved gate. All source/entry/env guards explicitly released09:47:46Z; no persistentdriver or newexecutionauthority. Mainidle24 observed, sourceclean8cd/noWIP. Next main local implementation, no repeat old jobs or idle wake to fill waiting."
+    }
+  ],
+  "review_rescope_checkpoint": {
+    "record": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+    "verification": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json",
+    "direct_user_turn": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
+    "full_prior_status_original_hash": "07dbc09b2f6799c1899a66a0a8395de528270a8caa713b2c2e851c49b6f2fafb",
+    "three_original_reviews_preserved": true,
+    "main_outputs_verified": 5,
+    "independent_outputs_verified": 3,
+    "WIP_paths_preserved": 19,
+    "candidate_decisions": {
+      "C1": "conditional information/full-Q+R action vs simple count/size/unified, with cost",
+      "C2": "staggering/original-demand-start timing and matched eligibility/wait budget control",
+      "C3": "per-port/per-borrower/per-reactivation actual recovery intervals; no effect/quota tuning"
+    },
+    "proposal_disposition": {
+      "CCB": "OPPORTUNITY_CHECK_ONLY",
+      "CCPB_immediate": "OPPORTUNITY_CHECK_ONLY",
+      "MACA": "CONDITIONAL_DESIGN_ONLY",
+      "CGQ": "CONDITIONAL_DESIGN_ONLY",
+      "CQT": "PAUSED",
+      "CLC": "PAUSED",
+      "CDLC": "PAUSED",
+      "BCS": "PAUSED",
+      "CCL_original": "NOT_ADOPTED",
+      "CCPB_batch_hold": "NOT_ADOPTED"
+    },
+    "heartbeat_actual_prompt_updated": true,
+    "science_engineering_and_effect_matrix_paused": true,
+    "unfinished_scientific_debt_cancelled": false,
+    "new_formal_baseline": false,
+    "prior_main_static_acceptances_receipt_identity_only": [
+      {
+        "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-switch-local-review-main-acceptance-r3.json",
+        "sha256": "2a2f94b7b93511aa34e420abaea276fbfc5dae9787b75607ad39b2bf701bcbd1",
+        "status": "MAIN_ACCEPTED_STATIC_DELTA_R2_F1_SOURCE_REPAIR_ONLY",
+        "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:5",
+        "explicit_release": "2026-11-04T07:23:35.989395+00:00",
+        "scope": "Main acceptance receipt identity only; full independent static review not repeated by Integration in this rescope"
+      },
+      {
+        "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-identity-local-review-main-acceptance-r1.json",
+        "sha256": "59ddb2ba07baa94a174c71a7a0bc8fa3c2884f8104568dd607c9650f7a3a0d8f",
+        "status": "MAIN_ACCEPTED_BOUNDED_STATIC_DRAFT_WITH_CALLER_PRECONDITIONS",
+        "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:11",
+        "explicit_release": "2026-11-04T09:04:12.284115+00:00",
+        "scope": "Main acceptance receipt identity only; full independent static review not repeated by Integration in this rescope"
+      }
+    ]
+  },
+  "current_scope_precedence": "The latest human review-informed rescope overrides all historical ACTIVE implementation, endpoint next-step and execution-plan entries. Finite read-only evidence/design only until an explicit current-scope update with resume gates."
 }

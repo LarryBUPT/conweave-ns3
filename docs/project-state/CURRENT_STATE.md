@@ -2,6 +2,16 @@
 
 ## 当前阶段（2026-11-04）
 
+最新范围已按用户在主对话的直接要求调整，见[评审后范围整合](../handoffs/2026-11-04-ws31-review-informed-rescope.md)和[用户原文](../research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json)。当前为 `ACTIVE_REVIEW_INFORMED_RESCOPING_CANDIDATE_ENGINEERING_PAUSED`：C1 条件保留信息与完整评分动作检验；C2 保留错峰／原需求起点计时对照，暂缓独立创新扩展；C3 暂缓效果与配额调优，先查逐端口、逐借用 QP 的实际回收区间。共同端点新增接线、科学源码及配置修改、构建、测试、夹具、网络和效果矩阵均暂缓，只允许有限本地只读证据清点、规则核查和有业务依据的类别／大小解耦需求设计。未完成正确性、V0、消融、双侧效果与成本义务保留，暂停不等于取消或闭环。
+
+[三份评审综合报告](../research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/report/c123-review-synthesis-and-action-plan-20261104-r1.md)已交付。九个提案不批量实现：CCB／CCPB 即时版仅先查动作机会，MACA／CGQ 条件保留，CQT／CLC／CDLC／BCS 暂缓，原样 CCL 与 CCPB 批量持包扩展不采用。启发式 oracle 不是理论上界，残留总字节不是每次回收时长，8 KiB 请求不是一个 MTU 包；C1 混合技术结果和旧固定配额反例均不证明动态候选已被正式证伪。
+
+Integration 已核三份评审原文、主五份产物、副三份产物及 19 个 WIP 路径哈希，并按原哈希恢复转换前完整状态的 CRLF 字节。科学 HEAD／个人 tracking 仍为 8cd，新字节未编译或运行。此前 r3 差分和身份／完成草稿审查已由主验收并释放；本次 Integration 只核这些收据与 WIP 身份，不把未重验的完整静态分析升级为自身验收。唯一副文档目标完成、主报告 idle cursor `d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14`，不重复派发；Integration 观察主 idle cursor `f13c4cd1-6458-4d58-888a-76f78e636578:2`。
+
+`ws-31` 心跳已通过应用工具实际更新并回读保存文件，保留 ACTIVE、原主对话和 30 分钟周期，只改变任务范围及更新时间。旧自动接线入口被覆盖，无实质变化时静默；没有存活候选依据、新契约、固定独立计划和资源门，不自动恢复工程或远端。43 格技术网络、17 例适配器和旧工程验收保持各自范围，无新组合基线。下方历史实施授权、工程下一步和 active cursor 均为当时快照，不能覆盖本条范围。
+
+### 已完成历史与工程证据
+
 用户已确认执行“历史归并 → WS-30/v13 归档 → WS-31 类别感知新机制构思 → 验证后建立新基线 → 后置接续 WS-29”。本次基线审计读取 33 份对话的最新两至三轮及相关交接，覆盖 WS-01～28 和 WS-30；WS-29 仅登记元数据，未读、未唤醒、未归档。详情见 [WS 覆盖表](WS_HISTORY_COVERAGE.md)与 [来源收据](../research/evidence/ws-history-20261101/coverage-and-source-manifest.json)，不把范围审计说成逐条穷尽全部历史消息或新一轮 raw 数值复验。
 
 WS-30/v13 已完成的实验和证据保持原样；旧 v14 P0 的 52 次保留为历史补充，未执行的 840 次按用户确认的新范围结束自动续作，不写成已完成，也不混入已投稿 v13。两个实验对话已在交接、状态提交后归档，并在活动与归档目录分别复核，见 [归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)。旧 `ws-30-v13` 自动化保持 PAUSED。处置依据见 [ADR-011](../decisions/ADR-011-ws30-closure-ws31-and-ws29-deferral.md)和 [WS-30 收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)。

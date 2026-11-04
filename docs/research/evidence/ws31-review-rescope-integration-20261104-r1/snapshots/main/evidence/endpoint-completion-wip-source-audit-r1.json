@@ -1,0 +1,110 @@
+{
+  "at_utc": "2026-11-04T07:49:47.666504+00:00",
+  "status": "UNCOMPILED_UNREVIEWED_LOCAL_COMPLETION_ADAPTER_DRAFT",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source": "src/point-to-point/model/ws31-endpoint-completion.h",
+  "working_sha256": "e5b944081f579495db3d30ef8306bef2d458e2eda8ed69ce5b38a1ee51cbd631",
+  "preserved": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\endpoint-completion-wip-r1-preserved\\src\\point-to-point\\model\\ws31-endpoint-completion.h",
+  "preserved_sha256": "e5b944081f579495db3d30ef8306bef2d458e2eda8ed69ce5b38a1ee51cbd631",
+  "prior_ten_WIP_unchanged": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+    "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+    "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8"
+  },
+  "exact_source_anchors": [
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 64,
+      "contains": "void CaptureBeforeReceiverDeletion("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 74,
+      "contains": "actualTx!=tx->m_qpMap.end() && actualTx->second==sender"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 77,
+      "contains": "Identity(id,entry,tx,rx,sender,actualRx->second);"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 78,
+      "contains": "sender->snd_una==entry.bytes && sender->IsFinishedConst()"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 84,
+      "contains": "record.receiver=actualRx->second; record.capturedNs=now;"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 89,
+      "contains": "ledger.AckComplete(id,sender->snd_una,now);"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 96,
+      "contains": "Ws31EndpointSwitchProbe::Observation Read("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 101,
+      "contains": "return Ws31EndpointSwitchProbe::Read("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 109,
+      "contains": "void ReleaseHistoryAfterCertifiedDrain("
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 112,
+      "contains": "entry.state==ws31::EndpointLedger::DRAINED && ledger.OutstandingTokens()==0"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 114,
+      "contains": "const auto observation=Read(id,scope,txNic,rxNic);"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 115,
+      "contains": "observation.snapshot.Quiet() && observation.endpoint.txHistory && observation.endpoint.rxHistory"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 121,
+      "contains": "record.tx->akashic_Qp.erase(entry.resources.txKey);"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-completion.h",
+      "line": 122,
+      "contains": "record.rx->akashic_RxQp.erase(entry.resources.rxKey);"
+    }
+  ],
+  "production_or_fixture_includes": [],
+  "source_behavior": {
+    "captures_live_RX_before_existing_callback_deletion": "IMPLEMENTED_HELPER_NOT_WIRED",
+    "checks_actual_TX_RX_maps_and_full_ledger_generation_identity": "DRAFT_SOURCE_ONLY",
+    "exact_cumulative_ACK_then_ledger_ACK_COMPLETE": "DRAFT_SOURCE_ONLY",
+    "fresh_composite_read_before_target_history_erasure": "DRAFT_SOURCE_ONLY",
+    "requires_DRAINED_conserved_zero_token_ledger": "DRAFT_SOURCE_ONLY",
+    "saved_old_TX_RX_references_retained": true,
+    "changes_production_completion_or_transport_semantics": false,
+    "proves_original_callback_or_Receive_return": false,
+    "implements_actual_G1_or_identity_producers": false
+  },
+  "new_CXX_build_fixture_network_execution": 0,
+  "commit_push_remote_actions": 0,
+  "measured_mask255_certificates": 0,
+  "independent_dispatch": false,
+  "next": "Wire a new fixture completion callback around its original FCT/RX deletion handler; successor observation after Receive/token return; implement actual parsed G1 and all identity producers before frozen independent execution."
+}

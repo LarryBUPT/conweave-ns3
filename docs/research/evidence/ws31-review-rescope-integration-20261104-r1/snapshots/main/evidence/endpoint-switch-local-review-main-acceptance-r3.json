@@ -1,0 +1,59 @@
+{
+  "at_utc": "2026-11-04T07:46:29.097748+00:00",
+  "status": "MAIN_ACCEPTED_STATIC_DELTA_R2_F1_SOURCE_REPAIR_ONLY",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "verified": {
+    "artifacts": 6,
+    "prior_deliveries_preserved": 9,
+    "fixed_parent": 3,
+    "evidence": 28,
+    "source_anchors": 16
+  },
+  "current_and_preserved_WIP": 10,
+  "other_nine_exact_r2_bytes": true,
+  "exact_patch_reproduced": true,
+  "plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
+  "review_sha256": "2983500603be9e84403a072e87c7ca82eb59481501e43786f18f09e4c12f4568",
+  "QA_sha256": "c9d9afe598041f38ca440bc4fe9758c28d3b3934c3a0695bda7ce77b1fce524a",
+  "explicit_release": "2026-11-04T07:23:35.989395+00:00",
+  "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:5",
+  "owned_background_execution": false,
+  "new_execution_authority": false,
+  "execution_counts": {
+    "ssh_remote": 0,
+    "sync_deploy": 0,
+    "compile_build": 0,
+    "CXX_test_fixture": 0,
+    "network": 0,
+    "old_successful_test_rerun": 0,
+    "source_edits": 0,
+    "main_edits": 0,
+    "commit": 0,
+    "push": 0,
+    "subagents": 0
+  },
+  "planned_not_executed_counts": {
+    "pairs": 25,
+    "composite_Read": 63,
+    "returns": 53,
+    "Read_refusals": 10,
+    "total_refusals": 19,
+    "extra_direct_endpoint_Read": 1,
+    "executed": false
+  },
+  "runtime_network_or_measured_mask255_accepted": false,
+  "remaining_mandatory": [
+    "new fixed source and independent execution plan before any dynamic action",
+    "actual new fixture build/reachability/raw verification",
+    "completion callback and savedRX",
+    "history release",
+    "actual G1 and all identity producers",
+    "shared PFC/ACK/NACK/CNP/retransmit coverage",
+    "actual channel/held-copy and two-generation network positive/negative cases",
+    "independent C1 V0",
+    "three-candidate matched ablation",
+    "business/background two-sided effects",
+    "state/runtime costs"
+  ],
+  "next": "Continue callback/history/G1/producer/shared-protocol integration in exclusive checkout; freeze a new source and independent plan before execution."
+}

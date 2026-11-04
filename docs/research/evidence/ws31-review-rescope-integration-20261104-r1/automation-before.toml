@@ -1,0 +1,10 @@
+version = 1
+id = "ws-31"
+kind = "heartbeat"
+name = "WS-31 类别感知机制顺序实现与验证"
+prompt = "继续 WS-31，按用户在主对话 turn 01a193ea-2ccf-79d0-959c-d375143f95e4 的明确授权，依 C1 → C2 → C3 顺序进行提案判断、实现和相应验证。先依次读取 E:/研/毕业论文/docs/REMOTE_EXPERIMENT_WORKFLOW.md、个人 fork docs/project-state/WS31_EXECUTION.md、ws31-coordination.json 与 main/current-status.json，以实际文件和最新 cursor 为准。旧“仅提案、等待用户选择、不进入实现”已被新授权覆盖，不重复询问候选许可。遵守用户 turn 01a1940b-da42-7d93-ac39-164e1a614ffb 的新决定：Ofan 暂缓，已有 Ofan/RR 代码与完成证据保留为未准入原型，不启动新的专门实现、测试或网络比较；已在途且承载 C1/C2/C3 的共同构建及 C2 非网络取消测试可以收尾。新增正式基线必须先核实正式发表记录及 CCF 官方目录中的 A/B 类会议或期刊资格；仅有预印本、资格未知或不符条件的机制不准入，再由主判断相关性、成本、必要性、兼容性与忠实实现条件并记录理由。DRILL、ConWeave、CONGA、ECMP、LetFlow 为既有对照，并保留 QueuePin 作为类别增量对照，不按新增门槛擅自删除。主在隔离实现工作树开发并独立核本地 raw；只协调 registry 中唯一副，active 不重复派发，compact wait_threads 携最新 cursor。远端仍先完成新契约、正确性、固定独立计划和资源门，再由唯一执行者开展新 ID 实验；build、单测和启动不代替性能验收。每候选保留匹配消融、实际行为、业务批次与背景代价、正负结果和源数据。重要节点复核文献，完善选题地图与交接。Integration 维护权威基线与历史归档；WS-29 后置保留，不读取或唤醒，旧 WS-26～30 控制器及矩阵不恢复、成功 ID 不覆盖，旧 840 次不继承。每轮推进必要的实质工作并落盘，状态无实质变化或不可行动时静默，仅完整阶段完成、新失败、实质阻塞或确需用户决定时通知。未经验证不宣布形成新基线，不为追求正收益改阈值或扩充无限候选。"
+status = "ACTIVE"
+rrule = "FREQ=MINUTELY;INTERVAL=30"
+target_thread_id = "01a19322-95a5-76e3-a4f5-1f1e9dde81ce"
+created_at = 1793483292066
+updated_at = 1793485476270

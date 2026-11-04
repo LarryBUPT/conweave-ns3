@@ -1,8 +1,26 @@
-# WS-31：类别感知新机制构思、顺序实现与验证
+# WS-31：类别感知机制研究与验证
 
-建立日期：2026 年 11 月 1 日。当前状态：ACTIVE FOR SEQUENTIAL C1/C2/C3 ASSESSMENT, IMPLEMENTATION AND VALIDATION。
+建立日期：2026 年 11 月 1 日。范围更新：2026 年 11 月 4 日。当前状态：ACTIVE_REVIEW_INFORMED_RESCOPING_CANDIDATE_ENGINEERING_PAUSED。
 
-## 0. 最新用户授权
+## 0. 当前执行范围：外评后的有限筛查
+
+用户在主对话 turn `01a1a5ef-431a-7e63-92f7-3173dde91e74` 直接要求阅读三份 C123-review、自然语言总结、据评审暂缓或优化工作，并评价新机制。Integration 已读原消息，见[原文证据](../research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json)和[整合交接](../handoffs/2026-11-04-ws31-review-informed-rescope.md)。本节优先于下方旧实施入口；原授权与工程节点保留历史，不自动恢复接线。
+
+| 对象 | 当前安排 |
+| --- | --- |
+| C1 | 条件保留信息与完整 Q＋R 动作检验，先比较简单计数、大小／统一信息及成本；暂缓工程扩展和效果矩阵。 |
+| C2 | 保留错峰和原需求起点计时对照，先区分普通错峰与类别资格增量；暂缓独立创新扩展。 |
+| C3 | 暂缓效果与配额调优，先查逐端口、逐借用 QP、逐次重激活的实际占用和回收区间。 |
+| 共同端点 | 保留 HEAD 8cd／19 WIP，暂缓科学源码和配置修改、新增接线、构建、测试、夹具及网络；全部未完成正确性债务保留。 |
+| 九提案 | CCB／CCPB 即时版仅先查动作机会；MACA／CGQ 条件保留；CQT／CLC／CDLC／BCS 暂缓；原样 CCL 和 CCPB 批量持包扩展不采用，不批量实现。 |
+
+只允许有限本地只读证据、规则清点及有业务行为依据的类别／大小解耦需求设计，可写分析和设计文档。有限清点后无新依据则停止该轮扩展，不靠重算旧 raw、重复派副或不断加窗口／候选填充监督。不能只换标签制造语义，不能把旧轨迹重放当动态反事实／理论上界，不能用聚合残留字节代替回收时长。
+
+恢复必要工程须先有存活候选理由、对应新契约、固定独立计划及资源门，并明确更新当前范围；本次心跳不授予恢复权。身份、完成／取消、saved RX、history、共享协议、两代网络、独立 V0、匹配消融、双侧效果及成本继续为未完成项，暂停不等于取消或闭环。原六对照保留，Ofan 暂缓，WS-29 和旧控制器／矩阵不动。
+
+`ws-31` 原 30 分钟 ACTIVE 心跳已通过应用工具更新并回读，其目标仍为主对话，只允许本节范围。唯一副本轮文档审读完成、主报告 idle cursor `d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14`，不重复派发。Integration 只观察主 idle cursor `f13c4cd1-6458-4d58-888a-76f78e636578:2`。
+
+### 0.1 历史实施授权（已由当前范围限制）
 
 用户在 WS-31 主对话 `01a19322-95a5-76e3-a4f5-1f1e9dde81ce` 的 turn `01a193ea-2ccf-79d0-959c-d375143f95e4` 明确指示：按 C1、C2、C3 顺序进行提案判断并实现；正式对照在 DRILL、ConWeave、CONGA、ECMP、LetFlow 上考虑补充 Gemma 等值得实现的负载均衡机制，成本与必要性由主对话判断。Integration 已读取该直接用户消息，见[授权原文](../research/evidence/ws31-implementation-authorization-20261101/user-instruction.json)。
 
