@@ -1,0 +1,220 @@
+{
+  "at_utc": "2026-11-04T11:02:25.843078+00:00",
+  "status": "PASS_EXACT_SCOPE_AND_IMMUTABLE_BYTE_STAGING",
+  "staged_before_self": 41,
+  "forced_missing": [],
+  "scope": "Five canonical states, one finite-screen/HOLD handoff and new Integration evidence; no scientific or main/independent files staged",
+  "receipt_self_excluded": true,
+  "files": [
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/.gitattributes",
+      "bytes": 97,
+      "sha256": "245f8ffe8bbf457cbe3decddf03a899e907e063300f10754888b339bb1076d0a",
+      "git_blob": "d95ed0b6685d1ef421a1db7bef325799219d063c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/audit_local_evidence.py",
+      "bytes": 18199,
+      "sha256": "5d17a2ae7758980fe06ab405725456326419e6b0373cafaf11f58ff19f2fc152",
+      "git_blob": "dc72a333426a9a8f3f325b46d76a9f1d9834b73b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/automation-after.toml",
+      "bytes": 4015,
+      "sha256": "dc71850d986f8e4e52e6dc0d9f9ee74a6d3f669ddead645330c70b5f65122987",
+      "git_blob": "fd597f1812c1ff5678fd704f8011d2957e085986"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/automation-before.toml",
+      "bytes": 3069,
+      "sha256": "d61c352a819d1716a5d35842d62dd3e4ef60cbf1965e74491ef2149261f222f5",
+      "git_blob": "0c4d12185067593a387ce13c27f21a81135831b1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/check_delivery.py",
+      "bytes": 4740,
+      "sha256": "a8e537079acb6606c37bcef77b2da35e16aa1efa6e18478fbf3afe12b685bad9",
+      "git_blob": "99cbc34d6b07630c7e1c123e3017d414d4129519"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/delivery-qa.json",
+      "bytes": 5572,
+      "sha256": "d4e128acdedd5870edf02b9662955942a9b9e1336270fe3a23e6af7517aebcd2",
+      "git_blob": "c75d7cf9b724147f28922dddbef650fa93020dfc"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/reference-and-config-check.json",
+      "bytes": 3103,
+      "sha256": "3f96373698c5cbec46eb95014e0651b7c38d2a963ef9f2c00878899ceca607b7",
+      "git_blob": "a284bff8c90e24915e10a91124ae30c063196996"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/fixed-source/switch-node.cc",
+      "bytes": 117655,
+      "sha256": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+      "git_blob": "c6f2b0ae68aeabf25f49112d23faef2509230c84"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/fixed-source/ws30-observer.h",
+      "bytes": 5328,
+      "sha256": "26b117b02d147b9874dc9b13d5eb8c3a6a46d694c928da889cab36077c271dbf",
+      "git_blob": "7b777290c4e260abb78e4a758224b4f80c8928d3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/fixed-source/ws31-budget.h",
+      "bytes": 6850,
+      "sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+      "git_blob": "6ab6410f4f74b7a623cb7c45d989b5c8227cdcc6"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/fixed-source/ws31-quota.h",
+      "bytes": 5714,
+      "sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+      "git_blob": "64ae3d803093c61a51bd3c7f61545af31623944e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/current-status.json",
+      "bytes": 49581,
+      "sha256": "2b580b769eb895918f4cd5a10c5c378ddb4daf2608580ab32dae59b93c2b116b",
+      "git_blob": "00e81b5a9c600bdff0386e00c75e340d98bf8826"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/evidence/c3-source-interval-screen-r1.csv",
+      "bytes": 938,
+      "sha256": "cf5b945c44deb2de55d73306251650e4ec25c6129724c691208149a1d0d801d7",
+      "git_blob": "8991e73ee56abd527d111cf8f2b2c4e1765a2fc4"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/evidence/c3-source-interval-screen-r1.json",
+      "bytes": 3086,
+      "sha256": "854a9e91f27c45b509ee7ef5fde15442012785a3dc39c805c56c439b8216ec8e",
+      "git_blob": "6e56631c525f1017730698d7b5e6eb57658b5056"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/evidence/full-score-reference-screen-r1.csv",
+      "bytes": 41049,
+      "sha256": "29a2af7b1bc4c95054a29f251f0323d46331e590f3a4a9e5c0c8b8bf791d44e6",
+      "git_blob": "0854ae7e70537b891a5123ccef31a108f2b6373c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/evidence/full-score-reference-screen-r1.json",
+      "bytes": 4579,
+      "sha256": "f04621a801de17b4db2f131871b619e062681e34947267e4df9abffb356c5a83",
+      "git_blob": "a5904b6863b85a27044813088d2689e0d2284781"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/evidence/review-finite-screen-main-qa-r1.json",
+      "bytes": 1395,
+      "sha256": "1117da526ec6389b19e3d0ecc6c1cf67a1f88d680c28a14f69d6ce59666009ba",
+      "git_blob": "ad1a5650407ba7afa0aa24cab41a54443b0c9532"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/evidence/review-finite-screen-writing-audit-r1.json",
+      "bytes": 1322,
+      "sha256": "a903bd612861ebc111c779f46964611fd1e73289ff68a55634dfdfa30388f15a",
+      "git_blob": "d6a25ee75262957e3125ed9bc9ca678a00978d4b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/evidence/review-opportunity-screen-r1.csv",
+      "bytes": 9672,
+      "sha256": "956f701f16bf7460415f578b999d44e1b209a3a6d8aeee52eb8f5d25180688f7",
+      "git_blob": "d0f4cb7653bbac08eb960a77beffe452307151f8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/evidence/review-opportunity-screen-r1.json",
+      "bytes": 3332,
+      "sha256": "82af06599a20c8615edb7ba4d479dedc278f5f0a307e55e48f1c925ea5d38b6b",
+      "git_blob": "c63a4e4de521a30d497783cbf83110fb94728423"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/review-finite-screen-and-demand-design-r1.md",
+      "bytes": 13334,
+      "sha256": "8372df144ac63b95dc144abc36eca07bea00e9bdada396efd2e824d1790d4d0f",
+      "git_blob": "789a7af58a5491b696b001659a552a34dccbf00b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/review-opportunity-screen-r1.md",
+      "bytes": 4893,
+      "sha256": "99866d50fb49b1970f817ec3727094482f49d47fd9193a90aa971dd9b9a0d656",
+      "git_blob": "520daadd8836a7137e7ef8f3220e511aec0ce975"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/scripts/audit_c3_source_intervals_r1.py",
+      "bytes": 7608,
+      "sha256": "e0106b43c3d0ec28a7edbdc5a155f56a05cc66e2cc7d73f9242a08907cb6b5e7",
+      "git_blob": "ef6566ebfa7cae3d163b07839054c37a476847cc"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/main/scripts/audit_full_score_reference_r1.py",
+      "bytes": 8627,
+      "sha256": "e1368c16b86ec996e379866447f200acc11ba0a3077af14089404aff4f6bbc0c",
+      "git_blob": "21c1d259c634d34a7987d3fce737d8c94d2e323c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/support/09da999d4ff0b887-main-mode-dynamic-r1-index.json",
+      "bytes": 9764,
+      "sha256": "09da999d4ff0b8870472922036268e0ace11b4cad02fcf2a369f3a3d30a1102a",
+      "git_blob": "8015ac5d7ac673a7f7d5cbc392dd3a685547f704"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/support/0d8f81aca432cfc2-zero-control-q12-main-acceptance-r1.json",
+      "bytes": 1740,
+      "sha256": "0d8f81aca432cfc23e6e8e704251d4a8540754c70b8fe37f6f7d14e5155ab261",
+      "git_blob": "8e33affc0e788c138c9926e09bff2d51ecbd8c8c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/support/0dddc4f3ae673139-topology.txt",
+      "bytes": 4994,
+      "sha256": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+      "git_blob": "8c38bbb7e24c377d2449642a420a437eaef45815"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/support/2ee3657bee24859b-v0-technical-replay-r1.csv",
+      "bytes": 37692,
+      "sha256": "2ee3657bee24859b0a50b85a50770a98d8aafb09445eb2f9c2e03f5ba96c9fec",
+      "git_blob": "bbcffcf9eed1e20be64898d5d0190b1a0327d512"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/support/42957a57e0eff37e-556477970_out_fct.txt",
+      "bytes": 4569,
+      "sha256": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+      "git_blob": "9f27cbf24aa425ea0b667ade20e9c73a2298b6c1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/support/48f15669e6efba8f-dynamic-c3-main-acceptance-r1.json",
+      "bytes": 2105,
+      "sha256": "48f15669e6efba8f9b484ff46bde2153b425f4094073b9340830f4f49a6ef2f4",
+      "git_blob": "7bb32ff8c822215897af34793ebf272187d8ed70"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/support/82af06599a20c861-review-opportunity-screen-r1.json",
+      "bytes": 3332,
+      "sha256": "82af06599a20c8615edb7ba4d479dedc278f5f0a307e55e48f1c925ea5d38b6b",
+      "git_blob": "c63a4e4de521a30d497783cbf83110fb94728423"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/support/956f701f16bf7460-review-opportunity-screen-r1.csv",
+      "bytes": 9672,
+      "sha256": "956f701f16bf7460415f578b999d44e1b209a3a6d8aeee52eb8f5d25180688f7",
+      "git_blob": "d0f4cb7653bbac08eb960a77beffe452307151f8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/snapshots/support/d45a80a288e97b8e-traffic_trace.txt",
+      "bytes": 2816,
+      "sha256": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+      "git_blob": "63f6cb16418eac07c759dc42f715d4f49558fc4f"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/source-manifest.json",
+      "bytes": 10119,
+      "sha256": "0c0007fb49740855f4044c81b0cd25207b80187892d711af759bf07ad20aaac2",
+      "git_blob": "3f149143e48aa1a9c4dae75e23daee947ce7fe47"
+    },
+    {
+      "path": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/verification.json",
+      "bytes": 4550,
+      "sha256": "139505ce54d483dc6b37a849fd54804eccb9e0217e514971381f3791ad1a633c",
+      "git_blob": "3e2e6b8eb905e82af953ab383a875f06aee14be8"
+    }
+  ]
+}

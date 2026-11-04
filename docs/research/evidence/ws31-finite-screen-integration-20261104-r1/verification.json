@@ -1,0 +1,143 @@
+{
+  "at_utc": "2026-11-04T10:56:55.721819+00:00",
+  "status": "PASS_NEW_FINITE_SCREEN_RAW_ACCEPTANCE_AND_HOLD_SCOPE",
+  "fixed_analysis_source": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "fixed_source_blobs_hashed": 4,
+  "raw_logs_streamed_once_each": [
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results\\raw\\556477970\\config.log",
+      "sha256": "300c728daa973ecae2ba825106f76ca007bf579665b62534ed6c717e3a580d5a",
+      "bytes": 77121236
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c3\\results\\raw\\847634392\\config.log",
+      "sha256": "8af4edcc02919730ab975071d41ca9f7d6abca5f73ccdd91eeecea09e29d53e7",
+      "bytes": 77263729
+    }
+  ],
+  "C1": {
+    "decisions": 104,
+    "rows_verified": 416,
+    "prior_payload_rows_verified": 416,
+    "source_arrivals": 202056,
+    "totals": {
+      "class_progress": {
+        "decisions": 104,
+        "nonzero_pressure": 93,
+        "different_from_reference": 12
+      },
+      "class_count": {
+        "decisions": 104,
+        "nonzero_pressure": 93,
+        "different_from_reference": 9
+      },
+      "unified_progress": {
+        "decisions": 104,
+        "nonzero_pressure": 87,
+        "different_from_reference": 19
+      },
+      "unified_count": {
+        "decisions": 104,
+        "nonzero_pressure": 93,
+        "different_from_reference": 17
+      }
+    },
+    "contrasts": {
+      "class_progress_vs_class_count": {
+        "different_decisions": 3,
+        "reference_lines": [
+          910,
+          1070,
+          1250
+        ]
+      },
+      "unified_progress_vs_unified_count": {
+        "different_decisions": 4,
+        "reference_lines": [
+          220,
+          444,
+          663,
+          1140
+        ]
+      },
+      "class_progress_vs_unified_progress": {
+        "different_decisions": 21,
+        "reference_lines": [
+          220,
+          444,
+          470,
+          551,
+          554,
+          635,
+          726,
+          762,
+          768,
+          804,
+          869,
+          910,
+          977,
+          1070,
+          1075,
+          1250,
+          1290,
+          1367,
+          10256,
+          10258,
+          10276
+        ]
+      },
+      "class_count_vs_unified_count": {
+        "different_decisions": 18,
+        "reference_lines": [
+          470,
+          551,
+          554,
+          635,
+          663,
+          726,
+          762,
+          768,
+          804,
+          869,
+          977,
+          1075,
+          1140,
+          1290,
+          1367,
+          10256,
+          10258,
+          10276
+        ]
+      }
+    },
+    "prior_CCB_changes": 9,
+    "prior_CCPB_changes": 3,
+    "trajectory": "All old Q, arrivals and assignments unchanged; no candidate feedback or dynamic counterfactual"
+  },
+  "C3": {
+    "source_arrivals": 202056,
+    "borrowers": 4,
+    "groups": 7,
+    "packets": 546,
+    "wire_bytes": 572208,
+    "max_source_arrival_span_ns": 24507,
+    "activity": "Rolling last-arrival lease",
+    "physical_recovery_duration_observable": false
+  },
+  "D1_D2": "Design only, no config/input/scientific code generation, run or future group information supplied online",
+  "scientific_implementation_HEAD": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "nineteen_science_WIP_unchanged": true,
+  "main_observed_cursor": "f13c4cd1-6458-4d58-888a-76f78e636578:3",
+  "sole_independent_last_reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
+  "HOLD": "Finite screen complete; no automatic repetition or engineering continuation without new evidence/scope update",
+  "heartbeat": {
+    "status": "ACTIVE",
+    "rrule_unchanged": "FREQ=MINUTELY;INTERVAL=30",
+    "prompt_sha256": "b04b0901d0d06f37ef73fd2be47364743c5e28e9ed883f8ca2bb72636d2de4ec",
+    "live_saved_file_reloaded": true
+  },
+  "new_cpp_build_test_fixture_network_SSH_source_config": 0,
+  "new_independent_V0_or_effect_or_combined_baseline": false,
+  "unfinished_correctness_V0_ablations_dual_effects_costs": "Retained incomplete; engineering and remote paused",
+  "acceptance_scope": "One necessary independent verification of newly delivered analysis, not a repeated main analysis entry or new simulator run"
+}

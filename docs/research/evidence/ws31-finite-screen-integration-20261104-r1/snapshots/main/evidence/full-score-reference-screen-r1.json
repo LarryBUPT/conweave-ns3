@@ -1,0 +1,129 @@
+{
+  "scope": "ONE TECHNICAL REFERENCE: fixed-source numerical Q+R action accounting, not dynamic policy effects",
+  "reference_id": "20261101-062753-ws31-zr1-q12",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "decisions": 104,
+  "state_position": "Before first-choice event; earlier allocations and all Q/arrival events stay baseline",
+  "R_definition": "Sum remaining+ceil(remaining/1000)*48 per live prediction entry; class template65536/8192, unified8192, TTL20000ns",
+  "Q_definition": "Exact CalculateInterfaceLoad value recorded by baseline; no rescaling or reinterpretation of its queue framing",
+  "aggregate_payload_rows_crosschecked": 416,
+  "rows": 416,
+  "source_route_fields": [
+    "dip",
+    "dport",
+    "port",
+    "seq",
+    "sip",
+    "sport",
+    "switch",
+    "tag",
+    "time_ns",
+    "uid"
+  ],
+  "totals": {
+    "class_progress": {
+      "decisions": 104,
+      "nonzero_pressure": 93,
+      "different_from_reference": 12
+    },
+    "class_count": {
+      "decisions": 104,
+      "nonzero_pressure": 93,
+      "different_from_reference": 9
+    },
+    "unified_progress": {
+      "decisions": 104,
+      "nonzero_pressure": 87,
+      "different_from_reference": 19
+    },
+    "unified_count": {
+      "decisions": 104,
+      "nonzero_pressure": 93,
+      "different_from_reference": 17
+    }
+  },
+  "contrasts": {
+    "class_progress_vs_class_count": {
+      "different_decisions": 3,
+      "reference_lines": [
+        910,
+        1070,
+        1250
+      ]
+    },
+    "unified_progress_vs_unified_count": {
+      "different_decisions": 4,
+      "reference_lines": [
+        220,
+        444,
+        663,
+        1140
+      ]
+    },
+    "class_progress_vs_unified_progress": {
+      "different_decisions": 21,
+      "reference_lines": [
+        220,
+        444,
+        470,
+        551,
+        554,
+        635,
+        726,
+        762,
+        768,
+        804,
+        869,
+        910,
+        977,
+        1070,
+        1075,
+        1250,
+        1290,
+        1367,
+        10256,
+        10258,
+        10276
+      ]
+    },
+    "class_count_vs_unified_count": {
+      "different_decisions": 18,
+      "reference_lines": [
+        470,
+        551,
+        554,
+        635,
+        663,
+        726,
+        762,
+        768,
+        804,
+        869,
+        977,
+        1075,
+        1140,
+        1290,
+        1367,
+        10256,
+        10258,
+        10276
+      ]
+    }
+  },
+  "nonclaims": [
+    "No altered past assignments, no new run, no independent demand or semantic evidence.",
+    "No optimization bound, performance gain, action-direction correctness, or revival permission.",
+    "48B framing is fixed-source source-side prediction framing; queue accounting is preserved as implemented.",
+    "Contiguous first-seen packet segments and zero drops are specific to this old input; no general overlap/drop/lifecycle proof."
+  ],
+  "input_sha256": {
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results\\config\\traffic_trace.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results\\raw\\556477970\\config.log": "300c728daa973ecae2ba825106f76ca007bf579665b62534ed6c717e3a580d5a",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\zero-control-q12-main-acceptance-r1.json": "0d8f81aca432cfc23e6e8e704251d4a8540754c70b8fe37f6f7d14e5155ab261",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\v0-technical-replay-r1.csv": "2ee3657bee24859b0a50b85a50770a98d8aafb09445eb2f9c2e03f5ba96c9fec",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\review-opportunity-screen-r1.json": "82af06599a20c8615edb7ba4d479dedc278f5f0a307e55e48f1c925ea5d38b6b",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\review-opportunity-screen-r1.csv": "956f701f16bf7460415f578b999d44e1b209a3a6d8aeee52eb8f5d25180688f7"
+  },
+  "script_sha256": "e1368c16b86ec996e379866447f200acc11ba0a3077af14089404aff4f6bbc0c",
+  "rows_csv_sha256": "29a2af7b1bc4c95054a29f251f0323d46331e590f3a4a9e5c0c8b8bf791d44e6"
+}

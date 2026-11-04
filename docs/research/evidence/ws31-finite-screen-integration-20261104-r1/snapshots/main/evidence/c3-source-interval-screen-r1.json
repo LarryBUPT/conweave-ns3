@@ -1,0 +1,56 @@
+{
+  "scope": "Source-arrival overlap intervals in one existing technical C3 run; NOT physical recovery times",
+  "reference_id": "20261101-071042-ws31-dyn-r1-c3",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "activity_window_ns": 20000,
+  "source_arrivals": 202056,
+  "borrowed_entries": 4,
+  "owner_activation_episodes": [
+    {
+      "switch": 128,
+      "owner": 1,
+      "activation_id": 1,
+      "activation_ns": 2005001082,
+      "last_owner_arrival_ns": 2008731390
+    },
+    {
+      "switch": 128,
+      "owner": 2,
+      "activation_id": 1,
+      "activation_ns": 2005001663,
+      "last_owner_arrival_ns": 2005006553
+    },
+    {
+      "switch": 128,
+      "owner": 2,
+      "activation_id": 2,
+      "activation_ns": 2005041083,
+      "last_owner_arrival_ns": 2005043121
+    }
+  ],
+  "borrower_episode_groups": 7,
+  "residual_packets": 546,
+  "residual_wire_bytes": 572208,
+  "max_observed_span_ns": 24507,
+  "max_last_residual_minus_activation_ns": 24507,
+  "physical_recovery_duration_observable": false,
+  "missing": [
+    "Per-packet actual egress service/dequeue interval and downstream/in-flight closure.",
+    "Proof of when owner traffic can obtain reclaimed capacity; last source residual arrival is not that proof."
+  ],
+  "interpretation": [
+    "Owner activity is a rolling last-arrival lease, not a fixed20us episode.",
+    "Rows ending before an activity lease do not prove borrower completion or physical queue empty.",
+    "Long inactive gaps can split the same borrower into multiple owner episodes.",
+    "Actual completion/capacity and independent effects remain unverified."
+  ],
+  "inputs_sha256": {
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c3\\results\\raw\\847634392\\config.log": "8af4edcc02919730ab975071d41ca9f7d6abca5f73ccdd91eeecea09e29d53e7",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c3\\results\\config\\traffic_trace.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-evidence\\20261101-071042-ws31-dyn-r1-c3\\results\\config\\topology.txt": "0dddc4f3ae673139b895ff2f875befe82b234cc48e325bd8a164d9cddedc12e2",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\dynamic-c3-main-acceptance-r1.json": "48f15669e6efba8f9b484ff46bde2153b425f4094073b9340830f4f49a6ef2f4",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\main-mode-dynamic-r1-index.json": "09da999d4ff0b8870472922036268e0ace11b4cad02fcf2a369f3a3d30a1102a"
+  },
+  "script_sha256": "e0106b43c3d0ec28a7edbdc5a155f56a05cc66e2cc7d73f9242a08907cb6b5e7",
+  "rows_csv_sha256": "cf5b945c44deb2de55d73306251650e4ec25c6129724c691208149a1d0d801d7"
+}

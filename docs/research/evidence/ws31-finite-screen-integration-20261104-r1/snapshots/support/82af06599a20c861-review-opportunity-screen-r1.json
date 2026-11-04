@@ -1,0 +1,67 @@
+{
+  "scope": "ONE OLD TECHNICAL INPUT: reference-state opportunities only; no dynamic counterfactual or effects",
+  "reference_id": "20261101-062753-ws31-zr1-q12",
+  "source_sha": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+  "ccb_probe_epsilon_wire_bytes": 8192,
+  "epsilon_origin": "Value suggested in external CCB proposal, used once for accounting; not adopted, calibrated or searched",
+  "ccpb_count_semantics": "All preceding source assignments in the same switch/class under the reference; no QP-completion cleanup; NOT active-load inference",
+  "input_tag2": 80,
+  "input_tag1": 24,
+  "exact_request_identity_and_first_route_tag_verified": 104,
+  "src_dst_pairs_with_multiple_tags": [
+    [
+      0,
+      64
+    ],
+    [
+      8,
+      72
+    ],
+    [
+      0,
+      80
+    ]
+  ],
+  "totals": {
+    "all": {
+      "requests": 104,
+      "distinct": 92,
+      "strict_tie": 13,
+      "abs_gap_le_8192": 38,
+      "ccb_change_on_reference": 9,
+      "ccpb_assignment_count_change_on_reference": 3
+    },
+    "tag1": {
+      "requests": 24,
+      "distinct": 21,
+      "strict_tie": 8,
+      "abs_gap_le_8192": 15,
+      "ccb_change_on_reference": 0,
+      "ccpb_assignment_count_change_on_reference": 0
+    },
+    "tag2": {
+      "requests": 80,
+      "distinct": 71,
+      "strict_tie": 5,
+      "abs_gap_le_8192": 23,
+      "ccb_change_on_reference": 9,
+      "ccpb_assignment_count_change_on_reference": 3
+    }
+  },
+  "limitations": [
+    "No candidate execution; later states keep original allocations.",
+    "Class is size-bound in this input; no semantic increment established.",
+    "The CCPB tally means prior assignments, not active QPs or unfinished bytes.",
+    "No full Q+R action replay, C3 residual-duration inference or end-to-end effects.",
+    "No pass/fail percentage or engineering-resumption permission follows."
+  ],
+  "input_hashes": {
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results\\config\\traffic_trace.txt": "d45a80a288e97b8e6ce5af478446dd252cc5db4070f269d90eae3a4eae3a9a30",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results\\raw\\556477970\\config.log": "300c728daa973ecae2ba825106f76ca007bf579665b62534ed6c717e3a580d5a",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\zero-control-pilot-r1-evidence\\20261101-062753-ws31-zr1-q12\\results\\raw\\556477970\\556477970_out_fct.txt": "42957a57e0eff37eaef945ec3385747555072627666e92bdd15158d500492616",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\v0-technical-replay-r1.csv": "2ee3657bee24859b0a50b85a50770a98d8aafb09445eb2f9c2e03f5ba96c9fec",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\zero-control-q12-main-acceptance-r1.json": "0d8f81aca432cfc23e6e8e704251d4a8540754c70b8fe37f6f7d14e5155ab261"
+  },
+  "script_sha256": "d65a3a16f3cf100193d718b6da133acd6976e4ae36a3db288b29fd8993a8e0e4",
+  "rows_csv_sha256": "956f701f16bf7460415f578b999d44e1b209a3a6d8aeee52eb8f5d25180688f7"
+}

@@ -3,7 +3,7 @@
   "created_date": "2026-11-01",
   "project_id": "4e32290d-ff2c-4e0e-9f4f-96318021748e",
   "project_label": "科研",
-  "status": "ACTIVE_REVIEW_INFORMED_RESCOPING_CANDIDATE_ENGINEERING_PAUSED",
+  "status": "HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION",
   "integration": {
     "thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
     "host_id": "local",
@@ -20,8 +20,8 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "f13c4cd1-6458-4d58-888a-76f78e636578:2",
-    "last_observed_status": "idle after user-requested review synthesis and work adjustment"
+    "last_cursor": "f13c4cd1-6458-4d58-888a-76f78e636578:3",
+    "last_observed_status": "idle after completed finite local screen and demand design; HOLD"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -32,7 +32,7 @@
     "first_goal": "independent audit of category-increment and ablation failure evidence",
     "last_cursor": null,
     "last_reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
-    "last_reported_state": "completed/idle external-document audit; main reported, no direct Integration poll or redispatch"
+    "last_reported_state": "Known completed/idle external document review; no new dispatch or direct Integration poll"
   },
   "deferred_ws29": {
     "main_thread_id": "01a1625a-d557-71c1-a90a-258c289ef43e",
@@ -46,20 +46,22 @@
     "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
     "interval_minutes": 30,
     "status": "ACTIVE",
-    "scope": "Bounded local read-only evidence/logic and business-grounded decoupled-demand design; endpoint engineering/build/test/network and effect matrices paused",
+    "scope": "HOLD: finite screen and D1/D2 design complete; no repeat analysis, sweep, dispatch, config/input generation or engineering without new evidence/current-scope update",
     "prior_proposal_heartbeat": "deleted by WS31 main at proposal handoff; new scope heartbeat recreated under new user authorization",
     "latest_policy_turn_id": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
     "policy_sync_date": "2026-11-04",
-    "policy_source": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
-    "prompt_sha256": "78ed3b749aaf16e67bdce92d2a08848ad3b67548d16994feed4a85e719651eea",
-    "saved_before": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-before.toml",
-    "saved_after": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-after.toml",
+    "policy_source": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
+    "prompt_sha256": "b04b0901d0d06f37ef73fd2be47364743c5e28e9ed883f8ca2bb72636d2de4ec",
+    "saved_before": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/automation-before.toml",
+    "saved_after": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/automation-after.toml",
     "tool_updated_and_saved_file_reloaded": true,
-    "no_automatic_engineering_or_remote_resumption": true
+    "no_automatic_engineering_or_remote_resumption": true,
+    "finite_scope_completed": true,
+    "no_automatic_continuation": true
   },
   "new_mechanism_selected": false,
   "default_model_policy": "Created without model overrides; use actual turn context, not prompt assertions.",
-  "experiment_gate": "PAUSED_BY_CURRENT_USER_REVIEW_SCOPE. First candidate survival reasons, then corresponding new contract, correctness, frozen independent plan/resource gate and explicit current-scope update; no heartbeat auto-resume.",
+  "experiment_gate": "HOLD_FINITE_SCREEN_COMPLETE. No repeat analysis, sweep, new source/config/input, build/test/network or redispatch by heartbeat. New evidence or explicit scope update first; engineering/remote additionally require surviving rationale, contract, frozen independent plan and resource gate.",
   "notifications": "Report complete stages, material findings, failures or user decisions; keep unchanged state quiet.",
   "scope_authorization": {
     "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
@@ -67,7 +69,7 @@
     "message_id": "01a1a5f0-a660-7e23-ba5e-95c6a0c88b0c",
     "evidence": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json",
     "decision_owner": "WS31 main acting on explicit human request to pause or optimize according to the three reviews",
-    "current_scope": "Bounded read-only evidence/logic inventory and business-grounded category/size-decoupled demand design; analysis/design documents allowed",
+    "current_scope": "Finite authorized local evidence screen and D1/D2 design complete; HOLD with no automatic continuation. Original engineering/experiment pause and all unfinished debts remain.",
     "supersedes_automatic_implementation_entry": true,
     "old_order_retained_for_later_candidate_judgment": [
       "C1",
@@ -264,7 +266,7 @@
     "parent_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
     "purpose": "Actual-object endpoint probe with binding/coverage guards and one new scratch object fixture; Qbb header only comment/two friends",
     "validation": "One1470task optimized-j2 fullbuild and one controlled actual-object fixture accepted at8cd.62rawrows/8double-read groups/16refusals,31Readcalls/17successfulreturns. Mask127/noeventexecution/no natural network completion. FullGitpath and36project ELF byte provenance verified.",
-    "mutable_worktree_status": "NINETEEN_WIP_PRESERVED_ENGINEERING_PAUSED_NO_NEW_COMPILE_OR_RUNTIME_ACCEPTANCE",
+    "mutable_worktree_status": "NINETEEN_WIP_UNCHANGED_FINITE_ANALYSIS_COMPLETE_HOLD_NO_NEW_BUILD_OR_RUNTIME",
     "last_network_validated_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
@@ -273,7 +275,7 @@
       "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy",
       "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e": "Q12andC2 default dispatch full FCT/orderedCHOICE_ROUTE and dedicatedC2 events with exact104 waits; only two technical cells at unchanged input, not endpoint lifecycle or efficacy"
     },
-    "new_network_approval_scope": "None; current human-authorized rescope pauses scientific code/config/build/test/network. Prior 43 cells and 17 adapters remain historical technical evidence only.",
+    "new_network_approval_scope": "None: finite analysis complete and HOLD; new demand/observation evidence or explicit scope update required before any next action, plus resume gates for engineering/remote.",
     "current_WIP_hashes": {
       "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
       "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
@@ -299,9 +301,9 @@
   },
   "last_material_event": {
     "date": "2026-11-04",
-    "kind": "USER_AUTHORIZED_REVIEW_INFORMED_RESCOPE_AND_ACTUAL_HEARTBEAT_SCOPE_UPDATE",
-    "record": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
-    "verification": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json",
+    "kind": "FINITE_LOCAL_SCREEN_AND_DEMAND_DESIGN_ACCEPTED_HOLD_ACTUALLY_SYNCED_TO_HEARTBEAT",
+    "record": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
+    "verification": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/verification.json",
     "new_engineering_runtime_acceptance": false,
     "new_network_acceptance": false,
     "network_technical_total": 43,
@@ -517,6 +519,17 @@
       "network_technical_total": 43,
       "user_decision_required": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-04",
+      "kind": "USER_AUTHORIZED_REVIEW_INFORMED_RESCOPE_AND_ACTUAL_HEARTBEAT_SCOPE_UPDATE",
+      "record": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+      "verification": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json",
+      "new_engineering_runtime_acceptance": false,
+      "new_network_acceptance": false,
+      "network_technical_total": 43,
+      "user_decision_required": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -555,9 +568,9 @@
     "not_equal_computational_cost": true
   },
   "foreground_background_coordination": {
-    "main_observed": "idle at f13c4cd1-6458-4d58-888a-76f78e636578:2",
-    "independent_main_reported": "completed/idle at d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
-    "rule": "No idle redispatch or old engineering continuation; only finite read-only scope. No remote runtime inspection in this node.",
+    "main_observed": "idle f13c4cd1-6458-4d58-888a-76f78e636578:3",
+    "independent_known_last_reported": "idle d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
+    "rule": "Finite scope complete: HOLD. No repeated local analysis or idle redispatch; engineering/remote pause remains. No new remote job state queried.",
     "root_restarted_jobs": false,
     "current_engineering_and_effect_matrix_scope": "PAUSED",
     "old_driver_restart_authorized": false
@@ -623,27 +636,23 @@
     "completed_payload_bytes": 403963904
   },
   "next_registered_goal": {
-    "kind": "BOUNDED_MAIN_READONLY_EVIDENCE_AND_DECOUPLED_DEMAND_DESIGN",
-    "status": "PERMITTED_NO_NEW_SOLE_INDEPENDENT_DISPATCH",
+    "kind": "HOLD_NO_AUTOMATIC_FOLLOWUP",
+    "status": "HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION",
     "owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
-    "scope_source": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
-    "write_scope": "Analysis/design documents only; Integration owns canonical files",
-    "permitted_work": [
-      "Bounded local read-only evidence/logic inventory",
-      "Business-grounded category/size-decoupled demand design",
-      "Evidence and design documents"
+    "scope_source": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
+    "completed_finite_work": [
+      "CCB/CCPB old-state opportunity inventory",
+      "C1 full-score old-reference analysis",
+      "C3 source-arrival overlap groups",
+      "D1/D2 design only"
     ],
+    "trigger_for_next_action": "New demand/measurement evidence or explicit current-scope update; determine a bounded justified action first",
     "remote_build_fixture_network_execution_authorized": false,
     "scientific_source_or_config_edits_authorized": false,
-    "old_successful_tests_or_raw_recomputations_to_fill_waiting_authorized": false,
-    "candidate_focus": {
-      "C1": "conditional information/full-Q+R action vs simple count/size/unified, with cost",
-      "C2": "staggering/original-demand-start timing and matched eligibility/wait budget control",
-      "C3": "per-port/per-borrower/per-reactivation actual recovery intervals; no effect/quota tuning"
-    },
-    "stop": "Finite inventory complete and no supported opportunity: retain evidence and stop this expansion round; no endless windows/parameters/candidates",
-    "resume_gate": "Surviving candidate reason, corresponding new contract, frozen independent plan and resource gate, explicit current-scope update",
+    "repeat_old_analysis_or_sweeps_authorized": false,
+    "new_sole_independent_dispatch_authorized_now": false,
     "no_duplicate_sole_independent_dispatch": true,
+    "resume_gate": "Surviving-candidate rationale, corresponding new contract, fixed independent plan and resource gate, explicit scope update before engineering/remote",
     "unfinished_correctness_V0_ablations_dual_effects_costs_retained": true
   },
   "last_verified_C13_labels_checkpoint": {
@@ -1130,7 +1139,7 @@
     "source_entry_env_guard": "HELD, carried into r2",
     "source_copy_established": false
   },
-  "integration_observed_utc": "2026-11-04T10:09:55.853792+00:00",
+  "integration_observed_utc": "2026-11-04T10:56:55.721819+00:00",
   "last_completed_registered_preflight_history": [
     {
       "kind": "SOURCE_REVIEW_THEN_SINGLE_BUILD_NEW_CORE_AND_MOCK_ONLY",
@@ -1297,7 +1306,7 @@
     "preflight_guards_explicitly_released": true
   },
   "endpoint_lifecycle_design_checkpoint": {
-    "state": "ENGINEERING_PAUSED_BY_REVIEW_SCOPE_NINETEEN_WIP_AND_CORRECTNESS_DEBT_RETAINED",
+    "state": "ENGINEERING_PAUSED_FINITE_LOCAL_SCREEN_COMPLETE_HOLD_CORRECTNESS_DEBT_RETAINED",
     "design": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r2.md",
     "original_WIP_preserved_and_matched": true,
     "review": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/evidence/endpoint-ledger-local-review-main-acceptance-r1.json",
@@ -2180,6 +2189,33 @@
       "main_acceptance_snapshot": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-local-review-main-acceptance-r3.json",
       "full_r3_static_evidence_reaudit_by_Integration": false,
       "engineering_next_step_paused": true
+    },
+    {
+      "kind": "BOUNDED_MAIN_READONLY_EVIDENCE_AND_DECOUPLED_DEMAND_DESIGN",
+      "status": "COMPLETE_BOUNDED_LOCAL_SCREEN_AND_DESIGN_NOT_SCIENTIFIC_VALIDATION",
+      "owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "scope_source": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+      "write_scope": "Analysis/design documents only; Integration owns canonical files",
+      "permitted_work": [
+        "Bounded local read-only evidence/logic inventory",
+        "Business-grounded category/size-decoupled demand design",
+        "Evidence and design documents"
+      ],
+      "remote_build_fixture_network_execution_authorized": false,
+      "scientific_source_or_config_edits_authorized": false,
+      "old_successful_tests_or_raw_recomputations_to_fill_waiting_authorized": false,
+      "candidate_focus": {
+        "C1": "conditional information/full-Q+R action vs simple count/size/unified, with cost",
+        "C2": "staggering/original-demand-start timing and matched eligibility/wait budget control",
+        "C3": "per-port/per-borrower/per-reactivation actual recovery intervals; no effect/quota tuning"
+      },
+      "stop": "Finite inventory complete and no supported opportunity: retain evidence and stop this expansion round; no endless windows/parameters/candidates",
+      "resume_gate": "Surviving candidate reason, corresponding new contract, frozen independent plan and resource gate, explicit current-scope update",
+      "no_duplicate_sole_independent_dispatch": true,
+      "unfinished_correctness_V0_ablations_dual_effects_costs_retained": true,
+      "completion_record": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
+      "completion_verification": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/verification.json",
+      "new_simulation_or_independent_effects": false
     }
   ],
   "last_verified_endpoint_channel_static_checkpoint": {
@@ -2299,7 +2335,8 @@
     "novelty_or_efficacy_certified": false,
     "parameters_or_authority_changed": false,
     "followup_user_provided_review_documents": 3,
-    "followup_assessment": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md"
+    "followup_assessment": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+    "finite_followup": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md"
   },
   "scope_authorization_history": [
     {
@@ -2342,6 +2379,22 @@
       "saved_after": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-after.toml",
       "tool_updated_and_saved_file_reloaded": true,
       "no_automatic_engineering_or_remote_resumption": true
+    },
+    {
+      "automation_id": "ws-31",
+      "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "interval_minutes": 30,
+      "status": "ACTIVE",
+      "scope": "Bounded local read-only evidence/logic and business-grounded decoupled-demand design; endpoint engineering/build/test/network and effect matrices paused",
+      "prior_proposal_heartbeat": "deleted by WS31 main at proposal handoff; new scope heartbeat recreated under new user authorization",
+      "latest_policy_turn_id": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
+      "policy_sync_date": "2026-11-04",
+      "policy_source": "docs/handoffs/2026-11-04-ws31-review-informed-rescope.md",
+      "prompt_sha256": "78ed3b749aaf16e67bdce92d2a08848ad3b67548d16994feed4a85e719651eea",
+      "saved_before": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-before.toml",
+      "saved_after": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/automation-after.toml",
+      "tool_updated_and_saved_file_reloaded": true,
+      "no_automatic_engineering_or_remote_resumption": true
     }
   ],
   "foreground_background_coordination_history": [
@@ -2350,6 +2403,14 @@
       "rule": "Check persisted driver/receipt and actual background state before dispatch; foreground idle does not authorize experiment restart",
       "root_restarted_jobs": false,
       "phase_update": "Object8cd preflight fully accepted; soleindependent completed/idle107 and five task PIDs absent in final saved gate. All source/entry/env guards explicitly released09:47:46Z; no persistentdriver or newexecutionauthority. Mainidle24 observed, sourceclean8cd/noWIP. Next main local implementation, no repeat old jobs or idle wake to fill waiting."
+    },
+    {
+      "main_observed": "idle at f13c4cd1-6458-4d58-888a-76f78e636578:2",
+      "independent_main_reported": "completed/idle at d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
+      "rule": "No idle redispatch or old engineering continuation; only finite read-only scope. No remote runtime inspection in this node.",
+      "root_restarted_jobs": false,
+      "current_engineering_and_effect_matrix_scope": "PAUSED",
+      "old_driver_restart_authorized": false
     }
   ],
   "review_rescope_checkpoint": {
@@ -2401,5 +2462,141 @@
       }
     ]
   },
-  "current_scope_precedence": "The latest human review-informed rescope overrides all historical ACTIVE implementation, endpoint next-step and execution-plan entries. Finite read-only evidence/design only until an explicit current-scope update with resume gates."
+  "current_scope_precedence": "Latest HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION overrides all historical next implementation or permitted finite-analysis entries. Completed analysis is not an automatic new goal; unfinished scientific debt retained.",
+  "research_scope_status": "ACTIVE_REVIEW_INFORMED_RESCOPING_CANDIDATE_ENGINEERING_PAUSED",
+  "last_verified_finite_screen_checkpoint": {
+    "record": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
+    "verification": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/verification.json",
+    "fixed_analysis_source": "c4b6039beb47e667e6954b56ec770cb6038082fa",
+    "reference_ids": [
+      "20261101-062753-ws31-zr1-q12",
+      "20261101-071042-ws31-dyn-r1-c3"
+    ],
+    "C1": {
+      "decisions": 104,
+      "rows_verified": 416,
+      "prior_payload_rows_verified": 416,
+      "source_arrivals": 202056,
+      "totals": {
+        "class_progress": {
+          "decisions": 104,
+          "nonzero_pressure": 93,
+          "different_from_reference": 12
+        },
+        "class_count": {
+          "decisions": 104,
+          "nonzero_pressure": 93,
+          "different_from_reference": 9
+        },
+        "unified_progress": {
+          "decisions": 104,
+          "nonzero_pressure": 87,
+          "different_from_reference": 19
+        },
+        "unified_count": {
+          "decisions": 104,
+          "nonzero_pressure": 93,
+          "different_from_reference": 17
+        }
+      },
+      "contrasts": {
+        "class_progress_vs_class_count": {
+          "different_decisions": 3,
+          "reference_lines": [
+            910,
+            1070,
+            1250
+          ]
+        },
+        "unified_progress_vs_unified_count": {
+          "different_decisions": 4,
+          "reference_lines": [
+            220,
+            444,
+            663,
+            1140
+          ]
+        },
+        "class_progress_vs_unified_progress": {
+          "different_decisions": 21,
+          "reference_lines": [
+            220,
+            444,
+            470,
+            551,
+            554,
+            635,
+            726,
+            762,
+            768,
+            804,
+            869,
+            910,
+            977,
+            1070,
+            1075,
+            1250,
+            1290,
+            1367,
+            10256,
+            10258,
+            10276
+          ]
+        },
+        "class_count_vs_unified_count": {
+          "different_decisions": 18,
+          "reference_lines": [
+            470,
+            551,
+            554,
+            635,
+            663,
+            726,
+            762,
+            768,
+            804,
+            869,
+            977,
+            1075,
+            1140,
+            1290,
+            1367,
+            10256,
+            10258,
+            10276
+          ]
+        }
+      },
+      "prior_CCB_changes": 9,
+      "prior_CCPB_changes": 3,
+      "trajectory": "All old Q, arrivals and assignments unchanged; no candidate feedback or dynamic counterfactual"
+    },
+    "C3": {
+      "source_arrivals": 202056,
+      "borrowers": 4,
+      "groups": 7,
+      "packets": 546,
+      "wire_bytes": 572208,
+      "max_source_arrival_span_ns": 24507,
+      "activity": "Rolling last-arrival lease",
+      "physical_recovery_duration_observable": false
+    },
+    "D1": {
+      "status": "DESIGN_ONLY",
+      "both_categories_request_bytes": 16384,
+      "business_group_vs_independent_background": true,
+      "config_or_input_created": false
+    },
+    "D2": {
+      "status": "DESIGN_ONLY",
+      "common_overlapping_size_distribution": "Not yet numerically frozen/calibrated",
+      "within_complete_demand_pairing": true,
+      "config_or_input_created": false
+    },
+    "future_group_or_completion_information_available_online": false,
+    "independent_V0_or_dynamic_counterfactual_or_effects": false,
+    "nineteen_WIP_unchanged": true,
+    "engineering_and_remote_paused": true,
+    "new_formal_baseline": false
+  }
 }

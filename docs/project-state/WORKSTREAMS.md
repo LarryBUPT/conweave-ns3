@@ -4,7 +4,7 @@
 
 | ID | 工作流 | 状态 | 已交付 / 下一门槛 | 依赖与归属 |
 | --- | --- | --- | --- | --- |
-| WS-31 | 类别感知机制的外评、证据筛查与有条件验证 | ACTIVE_REVIEW_INFORMED_RESCOPING; ENGINEERING_AND_EFFECT_MATRICES_PAUSED | [最新范围整合](../handoffs/2026-11-04-ws31-review-informed-rescope.md)：三份原评审、主副产物、九提案评价和 19 WIP 身份已核；C1 条件检验、C2 对照角色、C3 回收区间；旧 43 网络／17 适配器分列，无新效果 | 仅有限本地只读证据／规则清点及有依据的类别／大小解耦需求设计。副文档目标完成 idle14，不重派；心跳已实际更新，禁止旧自动接线。正确性／V0／消融／双侧效果／成本保留未完；存活理由、新契约／计划／资源门前不恢复工程／远端。Ofan 暂缓，无新基线 |
+| WS-31 | 类别感知机制的外评、证据筛查与有条件验证 | HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION | [有限筛查已整合](../handoffs/2026-11-04-ws31-finite-screen-hold.md)：C1 104 决定／416 行评分与旧载荷均核；类别扣减／计数 3 次不同。C3 4 借用者／7 阶段组／546 包／572,208 B、最长源到达跨度 24,507 ns，不是回收时长。D1／D2 仅设计 | 工程、测试、效果矩阵及远端暂缓；无新需求／观测证据或范围更新，不重复分析、扫参、派副、造输入或接线。19 WIP／43 网络／17 适配器及全部正确性／V0／消融／双侧效果／成本保留，未闭环；副沿已知 idle14，无新派发，心跳已写 HOLD，无新基线 |
 | WS-30 | ClassReserve 补正、QueuePin v13 与投稿前修订 | COMPLETE FOR VERIFIED V13 AND DELIVERY; V14 CLOSED BY USER SCOPE CHANGE | [收束交接](../handoffs/2026-11-01-ws30-v13-closure.md)：v13 预设证据已验；r12 本地六页、两作者，EDAS 记录已上传；P0 52 次保留，840 次未执行并结束旧自动续作 | 旧监督 PAUSED；两个实验对话已归档并复核，见[归档收据](../research/evidence/ws-history-20261101/ws30-archive.json)；投稿待核及返修留 Integration |
 | WS-01 | 科研 Skill 导航 | COMPLETE | [Handoff](../handoffs/2026-09-24-01-research-skills-navigation.md)；论文项目的 15 个 Skill 导航是资料，不是科研结果 | 独立资料工作流 |
 | WS-02 | Research Discovery | CHECKPOINTED | [初轮 Handoff](../handoffs/2026-09-24-02-research-discovery.md)、[ANT 交接](../handoffs/2026-09-25-07-ant-project-experience.md)；最新静态画像与双侧损害问题将 GuardHash 本地双候选 v0 列为条件性优先原型，仍待实验否证 | WS-07、WS-08 提供证据；研究选择不启动机制实现 |

@@ -1,0 +1,10 @@
+version = 1
+id = "ws-31"
+kind = "heartbeat"
+name = "WS-31 类别感知机制顺序实现与验证"
+prompt = "当前优先状态为 HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION。2026年11月4日有限筛查和D1/D2两族需求设计已经完成，先读 main/review-finite-screen-and-demand-design-r1.md 及其 QA 和权威状态。C1的104次旧状态决定/416行、C3的7组源到达重叠以及先前CCB/CCPB机会均已分析；没有新的需求或观测证据和明确范围更新时，不再次运行这些分析，不扫描参数，不扩充候选，不创建配置或输入，不重复派副，不自动接线或恢复工程/远端。只保持当前HOLD与暂停边界，无实质变化静默。D1/D2只是设计，原始业务分组/未来请求/完成信息不得自动进入在线规则；3次选择差异不证明无效，21次差异不证明类别语义，24507ns不证明物理回收。下列前一轮范围仍有效，但其中“有限证据清点和需求设计”已完成，不能作为重复续作入口：\n\n继续 WS-31，但以 2026 年 11 月 4 日用户要求阅读三份 C123-review 并据评审暂缓或优化工作的最新范围为准，覆盖旧心跳的自动接线与实验续作入口。先依次读取 E:/研/毕业论文/docs/REMOTE_EXPERIMENT_WORKFLOW.md、个人 fork docs/project-state/WS31_EXECUTION.md、ws31-coordination.json、main/current-status.json、main/external-review-action-plan-r1.md，以及 E:/研/毕业论文/paper review/c123-review-synthesis-and-action-plan-20261104-r1.md；以实际文件和最新 cursor 为准。当前只允许有限的本地只读证据清点、规则核查和有业务行为依据的类别/大小解耦需求设计，可写分析与设计文档。C1 条件保留信息与完整 Q+R 动作检验，暂缓扩大工程和效果矩阵；C2 保留错峰与原需求起点计时对照，暂缓独立创新扩展；C3 暂缓效果和配额调优，先查逐端口、逐借用 QP、逐次所有者重新活跃的实际回收区间。共同端点新增接线、科学源码/配置修改、构建、C++ 测试、夹具和网络均暂缓，不 SSH、不同步部署，不因旧实施授权、旧下一步或副 idle 自动恢复。19 个现有 WIP 路径及全部身份/完成/savedRX/history/共享协议/真实两代网络/独立V0/匹配消融/双侧效果/成本义务保留为未完成，不把暂停写成取消、闭环或新基线。恢复工程或远端前，须有存活候选理由、对应新契约、固定独立计划及资源门，并由主明确更新当前工作范围；本心跳本身不提供恢复授权。九个提案不批量实现：CCB、CCPB 即时版只先查实际动作机会，MACA/CGQ 条件保留，CQT/CLC/CDLC/BCS 暂缓，原样 CCL 和 CCPB 批量持包扩展不采用。旧轨迹重放不是动态反事实或理论上界，残留总字节不是每次回收时间，历史小样不能证伪全部动态候选；评审建议阈值和投稿预测不自动成为判据。唯一副当前文档审读已完成，最后报告 idle cursor d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14，不重复派发或为等待重算旧 raw；必要状态观察仅单目标 compact wait_threads 带最新 cursor。有限清点完成且无新证据时保持当前范围，不无限增加候选、参数或窗口。既有 DRILL、ConWeave、CONGA、ECMP、LetFlow、QueuePin 保留，Ofan 暂缓，新增正式基线仍须正式发表及官方 CCF A/B 和必要性/成本/忠实性门。WS-29 后置，不读取、不唤醒、不归档；旧 WS-26～30 控制器、矩阵及840次不恢复，成功ID和原失败收据不改。Integration 维护权威基线，主只维护自身目录与受准许的分析设计。状态无实质变化或不可行动时静默，仅完整阶段完成、新失败、实质阻塞或确需用户决定时通知。"
+status = "ACTIVE"
+rrule = "FREQ=MINUTELY;INTERVAL=30"
+target_thread_id = "01a19322-95a5-76e3-a4f5-1f1e9dde81ce"
+created_at = 1793483292066
+updated_at = 1793789649639
