@@ -1,0 +1,1327 @@
+{
+  "at_utc": "2026-11-04T07:30:13.999095+00:00",
+  "status": "PASS_EXACT_STAGED_SCOPE_AND_BYTE_IDENTITY",
+  "staged_files_before_self": 225,
+  "evidence_files_before_self": 219,
+  "forced_known_missing": [],
+  "r3_source_hashes_still_match": true,
+  "scope": "five states, one combined node19/20 handoff, new Integration-owned evidence only",
+  "scientific_main_independent_files_staged": false,
+  "self_excluded": true,
+  "files": [
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/.gitattributes",
+      "bytes": 97,
+      "sha256": "245f8ffe8bbf457cbe3decddf03a899e907e063300f10754888b339bb1076d0a",
+      "git_blob": "d95ed0b6685d1ef421a1db7bef325799219d063c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/audit_local_evidence.py",
+      "bytes": 18690,
+      "sha256": "4ba4a98e97d838c86798012aac6c82da8582e80d6d0edb8669892998dc17fdc1",
+      "git_blob": "932d8706cba897805fd4c1ec4a4bc1b874ff32da"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/check_delivery.py",
+      "bytes": 4158,
+      "sha256": "bef00f3eaec1cce0ab956962e86caf1c1280be7013f81b5f4577138d6f517498",
+      "git_blob": "0f7de30bf7afe444cffd6ad7bb96df5b13bc03b7"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/delivery-qa.json",
+      "bytes": 32168,
+      "sha256": "2baa9205427e99028c74c545f73858286672f8c1b3d2a6b6ec73ba39bd821ff6",
+      "git_blob": "87815f685842400e01d08c44b25f585ff4837a72"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/artifacts/endpoint-channel-local-review-r2-audit.py",
+      "bytes": 23437,
+      "sha256": "03e28f74ddab6e138e11fb02396a82ddd7349e4371fed92f25804841401a7ead",
+      "git_blob": "064174b19755b07c9aab1e367d05b2fd590d2317"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/artifacts/endpoint-channel-local-review-r2-evidence-index.json",
+      "bytes": 19866,
+      "sha256": "d01f41602d8d249ef463f59134c5b162de124f73d3fbe768b62a0dbb4b8d33a1",
+      "git_blob": "cc87657d0756af6497d5784c271c0eeb89873c9a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/artifacts/endpoint-channel-local-review-r2-guards-released.json",
+      "bytes": 1684,
+      "sha256": "5237972d95ceb6eb0cc3c8c06ef5b51b70f6e72865605a912e6af09247dd3c36",
+      "git_blob": "aabe3281032f70aceaebf1eab417a3b894823f5b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/artifacts/endpoint-channel-local-review-r2-handoff.md",
+      "bytes": 4617,
+      "sha256": "746c274ddb897d571642476294bed834765e9e1045d58c5b4985a1650339f9a9",
+      "git_blob": "dc62a0c64661f4355a6bc2f6893b1ca94b3cb218"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/artifacts/endpoint-channel-local-review-r2-qa.json",
+      "bytes": 5930,
+      "sha256": "5f7c160612ee3ec3fc43458a56bfc2c897201051dbe1613ca523da0aeb919662",
+      "git_blob": "ef2065c0be82eeee8cfb1e18ea37d670c4a0f266"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/artifacts/endpoint-channel-local-review-r2-report.md",
+      "bytes": 12330,
+      "sha256": "46f1e5e7fe3b0f29cfcd214f2bf29c9ebed8f400d534c919b0fd2e40e7d3371f",
+      "git_blob": "802ec2395e53759265df8714547a8c3b18958b93"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/artifacts/endpoint-channel-local-review-r2-review.json",
+      "bytes": 24209,
+      "sha256": "cf9deb2b6207231a707953b76d182beabe2de2c3d40e9b0bf29ec4c2889d2536",
+      "git_blob": "dea34a6d82e90056447580fe8ea2e99b3dade0ee"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/main_materials_unchanged/endpoint-channel-contract-r2.md",
+      "bytes": 4117,
+      "sha256": "bd0ba6e0d5b225fa3f093561481cb6da3ebc841fe70701d2fd4476dbfe8eba66",
+      "git_blob": "287e9987d714b3f60e4eb79c7b358d76edfafbf2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/main_materials_unchanged/endpoint-channel-local-review-r2.json",
+      "bytes": 3051,
+      "sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+      "git_blob": "f2d752269b9f123b125127e70d25d3627a0c9060"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/main_materials_unchanged/endpoint-channel-wip-source-audit-r2.json",
+      "bytes": 2409,
+      "sha256": "549c6448a8c1cf39bab939456d8e7ef7b03bd456c7fa132e006ee5d211f30ec4",
+      "git_blob": "d2689b43b9cf4c995cafedd6a61fc442a26334c9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/old_r1_artifacts_unchanged/endpoint-channel-local-review-r1-final-audit.py",
+      "bytes": 25311,
+      "sha256": "3bbca5377f689059ad7ee85db018733d633b679b66ca5990ec5d3f4c1d3a0fd9",
+      "git_blob": "c37940b7769e817709ef8e0bfa2dac820835b703"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/old_r1_artifacts_unchanged/endpoint-channel-local-review-r1-final-evidence-index.json",
+      "bytes": 15602,
+      "sha256": "cdade4187c9d6fe50bcde6d74f57b3d2803578649651a84f31aaf1929f08c7d3",
+      "git_blob": "bb0a5534e71ceb67f7fdd7161b7640042701a360"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/old_r1_artifacts_unchanged/endpoint-channel-local-review-r1-final-guards-released.json",
+      "bytes": 1772,
+      "sha256": "19f45db3ac67fb4621246c858245a1be267b838041f2a04de599be0f3ba9add9",
+      "git_blob": "8ce7132eb3540a7091a8a96cf2637b1b20d4bcf5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/old_r1_artifacts_unchanged/endpoint-channel-local-review-r1-final-handoff.md",
+      "bytes": 5523,
+      "sha256": "a56cf991ef48be548bdca711454f88b01c48fde7f3699ec59f48d5295543523d",
+      "git_blob": "a8c00328d643e8dbf9f7bccc298f6950bc33cc13"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/old_r1_artifacts_unchanged/endpoint-channel-local-review-r1-final-qa.json",
+      "bytes": 4382,
+      "sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
+      "git_blob": "e0559f25b5bd54570ddc76763d762d3c3ce48c01"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/old_r1_artifacts_unchanged/endpoint-channel-local-review-r1-final-report.md",
+      "bytes": 17773,
+      "sha256": "c3572092a097e1aa2f757a4dc7b9447c9256864f3310ac49a7db533c27a04381",
+      "git_blob": "386f1bf9479aa9ce64a0fb8eb93f8bac8cd5facf"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/preserved/old_r1_artifacts_unchanged/endpoint-channel-local-review-r1-final-review.json",
+      "bytes": 29737,
+      "sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+      "git_blob": "ca74c544cc5cc9457f2736f3a7dc54c4f69184fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/wip/flow-id-num-tag.h",
+      "bytes": 945,
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "git_blob": "80d6c47ad1f2cb59bdea22cf0c259d3f2ae5d20c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/wip/qbb-channel.cc",
+      "bytes": 6781,
+      "sha256": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+      "git_blob": "61788fd82fcd7625abcb0015de62ee9e613b179b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/wip/qbb-channel.h",
+      "bytes": 5846,
+      "sha256": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+      "git_blob": "5900978556de21004f34d1037b2d6adbeabccdb3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/wip/ws31-endpoint-channel-test.cc",
+      "bytes": 16384,
+      "sha256": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698",
+      "git_blob": "47ae46320c1f30a629709be5595a96cbc7ca17ff"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/channel-r2/wip/ws31-endpoint-channel.h",
+      "bytes": 11607,
+      "sha256": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "git_blob": "1152413800936fceca2c2215fa1bcfee3e6174e8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/flow-id-num-tag.h",
+      "bytes": 945,
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "git_blob": "80d6c47ad1f2cb59bdea22cf0c259d3f2ae5d20c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/qbb-channel.cc",
+      "bytes": 6788,
+      "sha256": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+      "git_blob": "02851d068cfa81b6e31f698a83e99ae29d88d8c2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/qbb-channel.h",
+      "bytes": 5853,
+      "sha256": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+      "git_blob": "dd7514b14607ca83d66f849203ae814966ba33da"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/switch-node.h",
+      "bytes": 10652,
+      "sha256": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+      "git_blob": "40c031f26417cd45edf132833a01e454db72d32e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/ws31-budget.h",
+      "bytes": 7113,
+      "sha256": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+      "git_blob": "703d0c1f3200370ebc798f5e96a0b5370c46d20a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/ws31-endpoint-channel-test.cc",
+      "bytes": 17059,
+      "sha256": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+      "git_blob": "dbdc9628baaf4567050bc50c3795f8e871251346"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/ws31-endpoint-channel.h",
+      "bytes": 11607,
+      "sha256": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "git_blob": "1152413800936fceca2c2215fa1bcfee3e6174e8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/ws31-endpoint-switch-probe.h",
+      "bytes": 7904,
+      "sha256": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+      "git_blob": "69b8e74ddb955c6c64a4c75dfc04da1deb430396"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/ws31-endpoint-switch-test.cc",
+      "bytes": 25620,
+      "sha256": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8",
+      "git_blob": "250088599be85e05715ca3b81ca1906bcd0e62c7"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/ws31-quota.h",
+      "bytes": 6248,
+      "sha256": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+      "git_blob": "12fbd2024c99e013428ce1bc1af66fb3514fda8d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/06014ce0f439523e-4-current-status.json",
+      "bytes": 37887,
+      "sha256": "06014ce0f439523eea3ccf3395e088247b8e47dbd58debd90c06b811ef6d71a1",
+      "git_blob": "f73966103e99a97ad9f898e6e71972f60b7b26d5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/105b7ced338b85e1-ws31-endpoint-ledger.h",
+      "bytes": 11658,
+      "sha256": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+      "git_blob": "f3d0fff5bebaa52bb8f28948277f50198fc6fe6b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/12d3bb0310965a78-cflags.py",
+      "bytes": 5105,
+      "sha256": "12d3bb0310965a78256e3644e22d19d1195739ad80f3372c9019e11b88744a47",
+      "git_blob": "b0f46d11812db4da5dd0987ce57b52051575bb92"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/13a3be27e5fbac25-rdma-hw.h",
+      "bytes": 8457,
+      "sha256": "13a3be27e5fbac2528612afa87172b4460e88c2c4ea73d356b9d428e655c9750",
+      "git_blob": "c5e681905b82da4e3d3639b3e112430d8d7ef746"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/15bf37f1bd0297de-ws31-endpoint-switch-test.cc",
+      "bytes": 25036,
+      "sha256": "15bf37f1bd0297de3933253f6ac771883f88a0cb031c633f75ea1d75cce4ffee",
+      "git_blob": "501a49bd91c5d3bbe5135052ef4e33b058a3a782"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/15d4aea0854ba97b-node.h",
+      "bytes": 11537,
+      "sha256": "15d4aea0854ba97b16b5156309050e2092d6a1e78f78c6ab32de9e4d117e6861",
+      "git_blob": "d3b7031a1983a457bb33a9f47548b8f7c6ad3e37"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/1822d4c1d0de0ac1-qbb-channel.h",
+      "bytes": 5846,
+      "sha256": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+      "git_blob": "5900978556de21004f34d1037b2d6adbeabccdb3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/1f12748726301519-ws31-endpoint-channel.h",
+      "bytes": 11607,
+      "sha256": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "git_blob": "1152413800936fceca2c2215fa1bcfee3e6174e8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/210166cbd71fda71-ws31-endpoint-probe.h",
+      "bytes": 19658,
+      "sha256": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892",
+      "git_blob": "41658298f15420089ff397b6b99a7b597d0b6b29"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/212595f46f9d9df8-qbb-channel.cc",
+      "bytes": 4063,
+      "sha256": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1",
+      "git_blob": "3354e70db29f7087239d616ffbdcc266af164715"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/2714cb52b2ecda25-object.cc",
+      "bytes": 11533,
+      "sha256": "2714cb52b2ecda25da8cacfc23a9cbfa88d832b84f4489483e6c8c6adc17da4d",
+      "git_blob": "d1bb52856893e0c4b50681d2773c90b0314928ba"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/2a65ae73fbf76523-reading-log.md",
+      "bytes": 130321,
+      "sha256": "2a65ae73fbf76523d0d39bf8860d653f69caaa190de8b1085ae2ba063bc22e6d",
+      "git_blob": "989da6438cf79eca535936c35dddecac28e11a2c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/2d864a36eddd257d-type-traits.h",
+      "bytes": 15549,
+      "sha256": "2d864a36eddd257d3de04c2da8dec3dc12266ca4dea76636923888efaeadb5be",
+      "git_blob": "3ced4b63e583d6664b5112481c8e10ee64b24b80"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/33790c047ddc8a4e-endpoint-switch-local-review-r2-resume-receipt.json",
+      "bytes": 2974,
+      "sha256": "33790c047ddc8a4e78d6b9c67b15782a19dd6491e63932d7d1449a020bb5b7d1",
+      "git_blob": "022b2fccfcb5d31ba18166d65be574761d5a3de0"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/346306c135c999c8-endpoint-switch-wip-source-audit-r2.json",
+      "bytes": 3611,
+      "sha256": "346306c135c999c8a87bd78630beb7679132efccc3046a5f2ecaba54102a4a70",
+      "git_blob": "e24619a3229bfe4cfa3c08950e7f8bc40b975c4c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/349267ec7a0415f6-node.cc",
+      "bytes": 10050,
+      "sha256": "349267ec7a0415f6bc42f37eb6146927ebf25c935c15081f68f0d1668d401b63",
+      "git_blob": "304273649885822decbc5ff122442b8896e28436"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/34da0b2f8f62df2d-ws31-endpoint-switch-probe.h",
+      "bytes": 7904,
+      "sha256": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+      "git_blob": "69b8e74ddb955c6c64a4c75dfc04da1deb430396"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/37108f15d0421006-simulator.cc",
+      "bytes": 8045,
+      "sha256": "37108f15d04210066c45d66d57534f528c9f8d0e0b1ea303d011ff46c9b42de1",
+      "git_blob": "3e9646921f330ff6bd699eea96127ae94ad15555"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/3d936dcc57d5dfd4-switch-node.h",
+      "bytes": 10607,
+      "sha256": "3d936dcc57d5dfd40985cc345235d6d4540b1597b4e0edd63e0554e6b15d5e0f",
+      "git_blob": "47329ff4ba35343cddf3285826b683970671658d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/41394125ead04a92-flow-id-num-tag.h",
+      "bytes": 808,
+      "sha256": "41394125ead04a92f735627dfd9c9e9f49a37ac62687eb4210e56629008ec89f",
+      "git_blob": "ad7225f8acfd7ca1bd16e031ce2f4cc77fabfbfe"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/4451d4be25379945-node-list.h",
+      "bytes": 1945,
+      "sha256": "4451d4be253799453e461cc8befbead453c3d9a5d1b6c6581e2076282a9f3902",
+      "git_blob": "65988c02a3d295f8e511491ed6a23d7957d1c44d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/4be8807edf01758e-default-simulator-impl.cc",
+      "bytes": 10417,
+      "sha256": "4be8807edf01758e322707a51c1329303f54fb482723c3d7c32fb7e88dbddf90",
+      "git_blob": "3823f1485c280eab458c6cbf6c75f2e07f41d8af"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/533f502cf943a601-README.md",
+      "bytes": 33232,
+      "sha256": "533f502cf943a6014b79b7288fba457c9512c319b481bd80be46444371eb6997",
+      "git_blob": "f6a3d6b67f5209bd3a1b78716e8ea27ba770878e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/549c6448a8c1cf39-endpoint-channel-wip-source-audit-r2.json",
+      "bytes": 2409,
+      "sha256": "549c6448a8c1cf39bab939456d8e7ef7b03bd456c7fa132e006ee5d211f30ec4",
+      "git_blob": "d2689b43b9cf4c995cafedd6a61fc442a26334c9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/54c1313967d9f583-endpoint-channel-local-review-main-acceptance-r2.json",
+      "bytes": 1084,
+      "sha256": "54c1313967d9f58393e89d3597a21344fb9a960abf77ab45b5119a0684ef6a18",
+      "git_blob": "b32f7e2abb1ac4435953be27652190f2296facf3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/59dada1e851b4c7d-make-event.h",
+      "bytes": 11382,
+      "sha256": "59dada1e851b4c7d0eca508ffd96274d762d565f335655a101d42ea09e890465",
+      "git_blob": "66b50c6cf63f09f227458e5fc8aad33496e5d0ea"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/5af315750ab914d7-ws31-endpoint-switch-probe.h",
+      "bytes": 6267,
+      "sha256": "5af315750ab914d7a629470bfcf4ba2e16f9799205bf491fc5037617b0a9711c",
+      "git_blob": "10fe2487cfd73589202c594d225b743d93eb8a90"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/5ba1bdff9015000b-scheduler.h",
+      "bytes": 4006,
+      "sha256": "5ba1bdff9015000b6919087dce3dc83ab4e26d166c99d1cddee85c566dfc6ccb",
+      "git_blob": "a66fa341f89bec23db02dbbaa868de1569dc1941"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/5e6bfcb19011bff0-attribute-accessor-helper.h",
+      "bytes": 8132,
+      "sha256": "5e6bfcb19011bff0488bcff15ac00f01624909a1a033754c418e2daad61be649",
+      "git_blob": "2f0d75b1c53344348eff12314d28a7b7e576dc62"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/5f7c160612ee3ec3-endpoint-channel-local-review-r2-qa.json",
+      "bytes": 5930,
+      "sha256": "5f7c160612ee3ec3fc43458a56bfc2c897201051dbe1613ca523da0aeb919662",
+      "git_blob": "ef2065c0be82eeee8cfb1e18ea37d670c4a0f266"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/6161cd3608b9ed3e-endpoint-switch-wip-source-audit-r1.json",
+      "bytes": 3830,
+      "sha256": "6161cd3608b9ed3eeabed5680dd875ee1a7a32a5e61b60dec250a6e16b642d6f",
+      "git_blob": "075e2c3011ed9e23f39cda74aaed443d60c6d4e1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/6562ce1cb84f6b1b-endpoint-channel-local-review-r2.json",
+      "bytes": 3051,
+      "sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+      "git_blob": "f2d752269b9f123b125127e70d25d3627a0c9060"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/6564f30ea34699f0-qbb-net-device.h",
+      "bytes": 7283,
+      "sha256": "6564f30ea34699f0c30c37a7178261252c14908a304a8e8aa5d279210752d15f",
+      "git_blob": "8b649b24fd831af40a67c4d229b9eae27719e4cb"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/662521b9553b167e-rdma-hw.cc",
+      "bytes": 77720,
+      "sha256": "662521b9553b167ecd9ade8d224cdf27de067abf70707c6c016459d948e1325a",
+      "git_blob": "0a171097e402cc1182394c7b0d09f2ba3e0f72ec"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/672058dbd8fa6ef9-broadcom-egress-queue.h",
+      "bytes": 2205,
+      "sha256": "672058dbd8fa6ef99cb5be3df5a7e01d7809fd32f9bf0b4fef7d08c865a2b3a6",
+      "git_blob": "b2ada9951980f31012460d43222a9976083f8703"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/67304776fa8a3158-qbb-channel.cc",
+      "bytes": 6788,
+      "sha256": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+      "git_blob": "02851d068cfa81b6e31f698a83e99ae29d88d8c2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/6750803859f3f8fa-switch-node.cc",
+      "bytes": 117655,
+      "sha256": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+      "git_blob": "c6f2b0ae68aeabf25f49112d23faef2509230c84"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/69274f22f9ac56bc-endpoint-channel-r2-requested-repair-r1.patch",
+      "bytes": 3965,
+      "sha256": "69274f22f9ac56bc8b1bb5fc28910a7cf6aed3d4e8d56737aa8d665c882929aa",
+      "git_blob": "e4c45fa22813392e821714c09e909e7570084713"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/728a26f076559fd1-endpoint-switch-local-review-r1.json",
+      "bytes": 3441,
+      "sha256": "728a26f076559fd10165798a6d934994ad3c538a2a1a1f5692a19c3f1d485a2c",
+      "git_blob": "111b0a7e924f27373e15e42f565fe006e325df2a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/729d83611051788e-qbb-remote-channel.cc",
+      "bytes": 2058,
+      "sha256": "729d83611051788e24971f9586489a98006df8aff5019a49e1a6df516ad409b3",
+      "git_blob": "87ecfd4c8b2925c0dacedd5102908ae0276f1b66"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/73fbdc5714834aae-event-impl.cc",
+      "bytes": 1337,
+      "sha256": "73fbdc5714834aaedbe045e1c09530d298766e11b55f1dc1cbb170e8fa1c0738",
+      "git_blob": "b759ad05c660a0bcbdfe593693c8f4db15efc751"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/7700b31866bae5ff-ptr.h",
+      "bytes": 11505,
+      "sha256": "7700b31866bae5ffb97c556afcb24b2e84030022571daa0f7e51546b7ab9bd55",
+      "git_blob": "e60c59f5b52f662419c77e46bcc4fb037d3fb5bb"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/78605eeea73a55f3-qbb-channel.cc",
+      "bytes": 6781,
+      "sha256": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+      "git_blob": "61788fd82fcd7625abcb0015de62ee9e613b179b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/79f9e756a15fda27-3-ws31-coordination.json",
+      "bytes": 109077,
+      "sha256": "79f9e756a15fda2741156790a14fdecb68487527b7dd577065b66d2f3a17b525",
+      "git_blob": "ccb0af7bfe51a58a99b298e68c115f1ab7ff16f1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/7aaf76b89a1e76bf-point-to-point-net-device.cc",
+      "bytes": 17785,
+      "sha256": "7aaf76b89a1e76bf23b58b759fed09ac7c0261b5d1b598d14681871bc14f4013",
+      "git_blob": "5828dfd90bc563a9471e4f916e82252f0a59882d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/7b2225edb0acf079-analysis-technical.md",
+      "bytes": 16637,
+      "sha256": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+      "git_blob": "67ee675475902c7a97dcb94e14735c997eca756f"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/7b603c37c4cec54a-ws31-quota.h",
+      "bytes": 5714,
+      "sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1",
+      "git_blob": "64ae3d803093c61a51bd3c7f61545af31623944e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/7d8385ba543b0d29-README.md",
+      "bytes": 32337,
+      "sha256": "7d8385ba543b0d29970f438a4f1627422b1eae3195e4201bd8790c189a26c88f",
+      "git_blob": "e994f6c36627b71741de1699af291bfbfcbee489"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/85b22cc6a3393d2f-endpoint-channel-local-review-r1-final-review.json",
+      "bytes": 29737,
+      "sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+      "git_blob": "ca74c544cc5cc9457f2736f3a7dc54c4f69184fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/865ae7cef8359333-endpoint-switch-local-review-r2-interruption-recovery-r1.json",
+      "bytes": 2102,
+      "sha256": "865ae7cef83593338d17656589983348c7c4ba0ce745d317943afe9c608ee1f8",
+      "git_blob": "ea516cc6e328b98366c4921a15f41f00305a7e3d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/8ec0ab1523d73400-endpoint-switch-local-review-r1-review.json",
+      "bytes": 23882,
+      "sha256": "8ec0ab1523d7340049e51be5f774f32a4eadf13439475c7cbcc7116363a0b029",
+      "git_blob": "8dfff8b24549451ad555f61056802b90aa7ee9f6"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/912011f77104ceda-ws31-quota.h",
+      "bytes": 6164,
+      "sha256": "912011f77104ceda72242dda5d5f5aa06356bc4b49e5e7257fd8c8a23858e8e7",
+      "git_blob": "a84a93826b11fd4b5760686c6d3537023c3722f4"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/950104b5c2680543-endpoint-switch-local-review-r2.json",
+      "bytes": 3995,
+      "sha256": "950104b5c26805437f7dab8a877176a20ae9dd2be15d0ab1a65b75488780b775",
+      "git_blob": "ae1567a2bf06c47332311e12d53dd63881a70e22"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/9538ae51b9d04765-ws31-budget.h",
+      "bytes": 7113,
+      "sha256": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+      "git_blob": "703d0c1f3200370ebc798f5e96a0b5370c46d20a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/956a8840c6c039ad-ws31-budget.h",
+      "bytes": 6850,
+      "sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c",
+      "git_blob": "6ab6410f4f74b7a623cb7c45d989b5c8227cdcc6"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/9ded64db7698e0c6-verification.md",
+      "bytes": 9075,
+      "sha256": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e",
+      "git_blob": "ddbde05a1604f5b3fe3830fd3c1a5cebce97c792"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/9e96f3f9480a0f88-endpoint-channel-local-review-r1-final-qa.json",
+      "bytes": 4382,
+      "sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
+      "git_blob": "e0559f25b5bd54570ddc76763d762d3c3ce48c01"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/a32957876f96288c-qbb-channel.h",
+      "bytes": 5853,
+      "sha256": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+      "git_blob": "dd7514b14607ca83d66f849203ae814966ba33da"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/a630e9dfa46ede63-endpoint-switch-contract-r1.md",
+      "bytes": 3505,
+      "sha256": "a630e9dfa46ede6375f3ee73d46faf7042f6c12cb5594619463ece580c0901e4",
+      "git_blob": "59f566b5c5d0e6e4e79293641f809b1d7713c2f5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/ad777bc39a417b17-point-to-point-net-device.h",
+      "bytes": 14947,
+      "sha256": "ad777bc39a417b17edb73203f811c8546ce0bed3ad7fbd2311354768ea04a0e1",
+      "git_blob": "46afafa8d7fbbfa70a5375e84bf60ee8122709b7"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/af0cd68358e75603-event-id.h",
+      "bytes": 2834,
+      "sha256": "af0cd68358e75603c3c2680a661012593ee185100caac342e3f0fd3993064313",
+      "git_blob": "5bad1e19edeb8b4aa32f06f7e587d438182d2dc5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/b3704ee90cf4cebc-rdma-driver.cc",
+      "bytes": 2157,
+      "sha256": "b3704ee90cf4cebc8e81d8e22501e56224cfa03677ac845af6cf11c35d8beb34",
+      "git_blob": "8084842cdbec506da2f4b87e112a7f45287adc93"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/b70b6189232d4c69-object.h",
+      "bytes": 14706,
+      "sha256": "b70b6189232d4c69d7814a5320286b40b027bd0f3bd8a7d4e9f460c0e790cf2a",
+      "git_blob": "ea966edbd2a438024d1aa630453a7f4854f98342"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/bbd76551e7da0ed1-simulator.h",
+      "bytes": 44722,
+      "sha256": "bbd76551e7da0ed1efc89f147d9d73af2becf93386c7510888b0eb07316ecda3",
+      "git_blob": "9e4b04959bc95495bda92a8cc19565f28256154a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/bd0ba6e0d5b225fa-endpoint-channel-contract-r2.md",
+      "bytes": 4117,
+      "sha256": "bd0ba6e0d5b225fa3f093561481cb6da3ebc841fe70701d2fd4476dbfe8eba66",
+      "git_blob": "287e9987d714b3f60e4eb79c7b358d76edfafbf2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/c0641c74a0010440-rdma-driver.h",
+      "bytes": 1284,
+      "sha256": "c0641c74a0010440948f6c797c6443dfec52fc150e1f03e6e4a74225536b895f",
+      "git_blob": "717df7a5fd550189a756ae6b59b1ecc57e7e0184"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/c12e74207090daac-reading-log.md",
+      "bytes": 133838,
+      "sha256": "c12e74207090daac8d898a964085763ae0e68032520a417cb549cef64f2b150e",
+      "git_blob": "01c85684bf8cd05a9be0e2f8fc2d51414e1b9f42"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/c2eb097968550e19-endpoint-switch-local-review-r2-progress-r1.json",
+      "bytes": 2013,
+      "sha256": "c2eb097968550e19f5d0f095d0efad94db2f70766b8d42fe9e8980823430a1ad",
+      "git_blob": "1f88290fb7640c7c8329af286f68f1c5b914c222"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/c591b66654ec19b0-packet-tag-list.cc",
+      "bytes": 4393,
+      "sha256": "c591b66654ec19b015ea73893978b06f9ddac9ac85b65d0d7ef231e722fab2c5",
+      "git_blob": "c311a0f8107e96ac04c979b8d9548a99a1b4e760"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/c7f06fa16c6bef60-rdma-queue-pair.cc",
+      "bytes": 11568,
+      "sha256": "c7f06fa16c6bef60e2671ded84daa3009ed3312a7bfc55f8afbec7d28c004d20",
+      "git_blob": "acf4e542092298e98b914834ccaf8a18a2dbd5e8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/cb6c8b128f885190-analysis-technical.md",
+      "bytes": 14135,
+      "sha256": "cb6c8b128f88519004f12bb11497a49d019fab0e9c386bf0591a4899e255cc88",
+      "git_blob": "db4c0542b3ccb047085b1fec0e5ee229e91580fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/cbdd1624162b6a75-broadcom-egress-queue.cc",
+      "bytes": 7886,
+      "sha256": "cbdd1624162b6a75ff952e2dbf3801c46c5426f6fbbd9533683f793a3e294cc8",
+      "git_blob": "483b71cc5af0c0fbbee7b1d529ca99f7e3cd5ca2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/cd9067c043d5664d-packet.cc",
+      "bytes": 24133,
+      "sha256": "cd9067c043d5664d41a33a26a9f9971699d0d65c4cb44558abb17674c7bb0cb1",
+      "git_blob": "8701bb167635b9e01508ae32b40a4f252a66d987"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/cf9deb2b6207231a-endpoint-channel-local-review-r2-review.json",
+      "bytes": 24209,
+      "sha256": "cf9deb2b6207231a707953b76d182beabe2de2c3d40e9b0bf29ec4c2889d2536",
+      "git_blob": "dea34a6d82e90056447580fe8ea2e99b3dade0ee"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/d10b589ba7bec4d6-flow-id-num-tag.h",
+      "bytes": 945,
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "git_blob": "80d6c47ad1f2cb59bdea22cf0c259d3f2ae5d20c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/da47473d94952c6b-endpoint-switch-contract-r2.md",
+      "bytes": 3903,
+      "sha256": "da47473d94952c6b403752175a5e052cdb01103c5cb144206a51cb87f85f27d1",
+      "git_blob": "f98bc4db03caae86a799dd85222f98b32f3df43d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/dcd7990cda83ff78-1-REMOTE_EXPERIMENT_WORKFLOW.md",
+      "bytes": 15420,
+      "sha256": "dcd7990cda83ff7829567b4054f568b9deec3b30bb8dee63472f3300ea8cb331",
+      "git_blob": "7ff74b57ad56758c2107da6a2a935c105c09e451"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/dea2ef1a86b6d5ad-2-WS31_EXECUTION.md",
+      "bytes": 37343,
+      "sha256": "dea2ef1a86b6d5ada04fa572d30420735f6322358cce057c65a7e374325b9fde",
+      "git_blob": "a12eafb574a7db4c9eac86343cc55c4ffdc3cc68"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/deb46197256d719c-ws31-endpoint-channel-test.cc",
+      "bytes": 16384,
+      "sha256": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698",
+      "git_blob": "47ae46320c1f30a629709be5595a96cbc7ca17ff"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/df4a666079bc5f4e-qbb-helper.cc",
+      "bytes": 14796,
+      "sha256": "df4a666079bc5f4ed1d9c5320154ed9db33f158838ab46e15b49a814d877e085",
+      "git_blob": "a51b1695a42873de3d767c3dadeb9426fe8c2f1d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/df97d94de8347b47-flow-id-num-tag.cc",
+      "bytes": 1338,
+      "sha256": "df97d94de8347b47e185ac0e14a2782ffe3d336345170281216cdc1ec03f82ce",
+      "git_blob": "15dbd804540355e984e7a19082c532115e16e6e1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/dfdf44bbfae98df0-switch-node.h",
+      "bytes": 10652,
+      "sha256": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+      "git_blob": "40c031f26417cd45edf132833a01e454db72d32e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/dfff1651230f6898-node-list.cc",
+      "bytes": 4221,
+      "sha256": "dfff1651230f6898e5f03a9d26e0b8b242b45f431e7a582f50a39457806836cc",
+      "git_blob": "7b972dead7929643422293dd7d0512632a393ad5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/e2389625e2eb5fb9-switch-node.h",
+      "bytes": 10356,
+      "sha256": "e2389625e2eb5fb9acd583eec996b4ba2a69427343d2e42e271780e6c1b5ebac",
+      "git_blob": "926a1388b95e2574bb9b2575ad6063e1841735f8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/e35728536ece107b-endpoint-switch-local-review-main-acceptance-r1.json",
+      "bytes": 4405,
+      "sha256": "e35728536ece107b3329501e43f8d9aad655fb55d3bba9ee0161488de61b68c4",
+      "git_blob": "0e2ec4a73f208798ccb78a8da63e6e13a939e810"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/e7db79776f5c14bd-endpoint-switch-local-review-r1-qa.json",
+      "bytes": 6365,
+      "sha256": "e7db79776f5c14bd48d3dac02ca47be069f8cc2ebd386125b5a0fb2f1ef01bd4",
+      "git_blob": "3e2f9983035d7f4980b79c2c31027dc7e17b51fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/e8a62d5c7766f377-ws31-endpoint-channel-test.cc",
+      "bytes": 17059,
+      "sha256": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+      "git_blob": "dbdc9628baaf4567050bc50c3795f8e871251346"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/e950051b11bf246f-rdma-queue-pair.h",
+      "bytes": 7871,
+      "sha256": "e950051b11bf246f1af4ee264a1a437b8655370a2209b38ba01a797d768c042d",
+      "git_blob": "046e396738da830991728af55d2fe7b796c35f33"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/eb2d79facb32abd9-qbb-net-device.cc",
+      "bytes": 24342,
+      "sha256": "eb2d79facb32abd9e3a3af2ff766f501cef1e5b3fc6e51a3ebf5f8abe2521b35",
+      "git_blob": "5ec636e196d536d40c563bc0719315aaeb037b77"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/eb93e690f74e2827-verification.md",
+      "bytes": 5623,
+      "sha256": "eb93e690f74e282799e59f1204a5fcdcc754001fea1d67cd5853aed9a7d73789",
+      "git_blob": "d08ce09ed10fbd47bdb64be0377c6a9bf03cc448"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/ed8dbf4e41cc5e73-qbb-remote-channel.h",
+      "bytes": 1381,
+      "sha256": "ed8dbf4e41cc5e7366b07fcc7396a1f42ed31979a0cce1a03176a361fe1bc590",
+      "git_blob": "edabe693f85baf42bff34e6bff97c34a71a5b4d9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/f255f4c7c3c5a349-ws31-budget.h",
+      "bytes": 6978,
+      "sha256": "f255f4c7c3c5a3493fe030d51f65406d040ceff1d8aa47bec8b3afec8519a672",
+      "git_blob": "28a7b5de33919c37eb1005c19e95a468a051a5c3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/fd18f3b2d56b1836-ws31-quota.h",
+      "bytes": 6248,
+      "sha256": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+      "git_blob": "12fbd2024c99e013428ce1bc1af66fb3514fda8d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/fd2830eadfb0b6b4-qbb-channel.h",
+      "bytes": 4856,
+      "sha256": "fd2830eadfb0b6b43e4798b39b14f0af270f64ce886bbce8f0fa5a838f0e9421",
+      "git_blob": "1348081b19960be7a684d1400a88618d996cb885"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/indexed/fddce9e8e5861a40-endpoint-switch-r1-to-r2.patch",
+      "bytes": 33543,
+      "sha256": "fddce9e8e5861a40aed1eeb33a032319a9f053cc10dd71590683fb4e4b0b3bf3",
+      "git_blob": "8c95706e1c4e2b0a8925a44439eaf8e5b92d0072"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/literature-current/533f502cf943a601-README.md",
+      "bytes": 33232,
+      "sha256": "533f502cf943a6014b79b7288fba457c9512c319b481bd80be46444371eb6997",
+      "git_blob": "f6a3d6b67f5209bd3a1b78716e8ea27ba770878e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/literature-current/7b2225edb0acf079-analysis-technical.md",
+      "bytes": 16637,
+      "sha256": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+      "git_blob": "67ee675475902c7a97dcb94e14735c997eca756f"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/literature-current/9ded64db7698e0c6-verification.md",
+      "bytes": 9075,
+      "sha256": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e",
+      "git_blob": "ddbde05a1604f5b3fe3830fd3c1a5cebce97c792"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/literature-current/c12e74207090daac-reading-log.md",
+      "bytes": 133838,
+      "sha256": "c12e74207090daac8d898a964085763ae0e68032520a417cb549cef64f2b150e",
+      "git_blob": "01c85684bf8cd05a9be0e2f8fc2d51414e1b9f42"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/literature-current/cb6c8b128f885190-analysis-technical.md",
+      "bytes": 14135,
+      "sha256": "cb6c8b128f88519004f12bb11497a49d019fab0e9c386bf0591a4899e255cc88",
+      "git_blob": "db4c0542b3ccb047085b1fec0e5ee229e91580fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/literature-current/eb93e690f74e2827-verification.md",
+      "bytes": 5623,
+      "sha256": "eb93e690f74e282799e59f1204a5fcdcc754001fea1d67cd5853aed9a7d73789",
+      "git_blob": "d08ce09ed10fbd47bdb64be0377c6a9bf03cc448"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/current-status.json",
+      "bytes": 38951,
+      "sha256": "1282d51b9ed093f1cb667f547f51c93cb68e0a99568a9a9891dfa879f0f84567",
+      "git_blob": "ee9c2925c4ae1fa9b0c74c1d51444a0d84a7e2ab"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-channel-local-review-r2.json",
+      "bytes": 3051,
+      "sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+      "git_blob": "f2d752269b9f123b125127e70d25d3627a0c9060"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-contract-r1.md",
+      "bytes": 3505,
+      "sha256": "a630e9dfa46ede6375f3ee73d46faf7042f6c12cb5594619463ece580c0901e4",
+      "git_blob": "59f566b5c5d0e6e4e79293641f809b1d7713c2f5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-contract-r2.md",
+      "bytes": 3903,
+      "sha256": "da47473d94952c6b403752175a5e052cdb01103c5cb144206a51cb87f85f27d1",
+      "git_blob": "f98bc4db03caae86a799dd85222f98b32f3df43d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-fixture-repair-r3.md",
+      "bytes": 2451,
+      "sha256": "cbe29558a425b4e40edd230f726b7a70435ddcea93f622f7182d8557edce9a94",
+      "git_blob": "573a8e2f6466224957eafcdd86cc3b4ea10c8450"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-local-review-r1.json",
+      "bytes": 3441,
+      "sha256": "728a26f076559fd10165798a6d934994ad3c538a2a1a1f5692a19c3f1d485a2c",
+      "git_blob": "111b0a7e924f27373e15e42f565fe006e325df2a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-local-review-r2.json",
+      "bytes": 3995,
+      "sha256": "950104b5c26805437f7dab8a877176a20ae9dd2be15d0ab1a65b75488780b775",
+      "git_blob": "ae1567a2bf06c47332311e12d53dd63881a70e22"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-local-review-r3.json",
+      "bytes": 4070,
+      "sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
+      "git_blob": "c0724d6afd7b387d8d91c1cabdc8d37b84b2fc87"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-node19-handoff.md",
+      "bytes": 3418,
+      "sha256": "0cd3fba147502568a1e1b920d05395cf7de6784aaaf34f594a491f9512d50e0a",
+      "git_blob": "ca1ee190f9b88459c0dcb6ad0458bbc1a1092013"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-node20-handoff.md",
+      "bytes": 3186,
+      "sha256": "2807d54d5aa80886c7a69d95828c6855e7e11e7e1d12c49880732d378ce56ecc",
+      "git_blob": "fdcdaa46431c8f94b18664a7e6bff6ca30ab9fc8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-channel-local-review-main-acceptance-r2.json",
+      "bytes": 1084,
+      "sha256": "54c1313967d9f58393e89d3597a21344fb9a960abf77ab45b5119a0684ef6a18",
+      "git_blob": "b32f7e2abb1ac4435953be27652190f2296facf3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-local-review-main-acceptance-r2.json",
+      "bytes": 4866,
+      "sha256": "0691d3fef476cf1a0be5393a33c4c9d59c22737d964429879f1888cbb35109b0",
+      "git_blob": "e168184c337a0addc1b5495c6d28b102772e1c26"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-local-review-r2-interruption-recovery-r1.json",
+      "bytes": 2102,
+      "sha256": "865ae7cef83593338d17656589983348c7c4ba0ce745d317943afe9c608ee1f8",
+      "git_blob": "ea516cc6e328b98366c4921a15f41f00305a7e3d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-node19-main-QA-r1.json",
+      "bytes": 1174,
+      "sha256": "078bf977803e0ebbe2c9a87f32611ecca760ec717f2858346293f112eaf3c032",
+      "git_blob": "b32013683f968e42971f89f89212e76436a112e4"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-node19-reference-review-r1.json",
+      "bytes": 2552,
+      "sha256": "833ea1c200932496096a61765110087909a26c9471f5095406f7e96dc098fcf5",
+      "git_blob": "6d2dd4aca254ccbda723581f89834a5c1d935fdb"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-node20-main-QA-r1.json",
+      "bytes": 1555,
+      "sha256": "51f0469523d67635f50e47fb1afb835b24bac62299aec26328452cc013c96946",
+      "git_blob": "f859d1b0b18c2213fc8955bb182085261a24af74"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-node20-reference-review-r1.json",
+      "bytes": 1784,
+      "sha256": "c4221451d52b22b655edd41738539610195ac8a430dfb313b0ebcde6dfa8b3ca",
+      "git_blob": "e1202e8877b9eb97ddddef0b0bd4f7a9878b56f9"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-r1-to-r2.patch",
+      "bytes": 33543,
+      "sha256": "fddce9e8e5861a40aed1eeb33a032319a9f053cc10dd71590683fb4e4b0b3bf3",
+      "git_blob": "8c95706e1c4e2b0a8925a44439eaf8e5b92d0072"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-r2-to-r3-fixture.patch",
+      "bytes": 4010,
+      "sha256": "86bd98a9bc94307e337b3491385e051dd4581d6dcc198c5869392350e9c3abd7",
+      "git_blob": "fa3794281c397c870386f9ae6001952cb669268a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-wip-source-audit-r1.json",
+      "bytes": 3830,
+      "sha256": "6161cd3608b9ed3eeabed5680dd875ee1a7a32a5e61b60dec250a6e16b642d6f",
+      "git_blob": "075e2c3011ed9e23f39cda74aaed443d60c6d4e1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-wip-source-audit-r2.json",
+      "bytes": 3611,
+      "sha256": "346306c135c999c8a87bd78630beb7679132efccc3046a5f2ecaba54102a4a70",
+      "git_blob": "e24619a3229bfe4cfa3c08950e7f8bc40b975c4c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-wip-source-audit-r3.json",
+      "bytes": 2516,
+      "sha256": "2095ff866982a14ff27fd4d73a83786497b294a6f05ed2a4444bf0c44aec01ae",
+      "git_blob": "ac109101b4587e6b664fd0f2b31820432f85a58b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/ws31-c123-external-review-brief-20261104-r1-qa.json",
+      "bytes": 9030,
+      "sha256": "c03657be9a87df6f5bcdc925be8b3c0a72b5f7d112b9697c6b226b759f10ec0d",
+      "git_blob": "cd52dd9b46600de7f10148c6bf7ed352c9bb285d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/ws31-c123-external-review-brief-20261104-r1.md",
+      "bytes": 30029,
+      "sha256": "058c6c54ad80de584481ae5551731771e09e143b10d20309d113217c6e9b8244",
+      "git_blob": "beccbaca33ec06e1a34be931cf1981daae626812"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/artifacts/endpoint-switch-local-review-r1-audit.py",
+      "bytes": 24910,
+      "sha256": "042c0f998186bcae392c8238cf22651f2d687c334da8139631323f632a4b0e49",
+      "git_blob": "4dce7be167f5dc7c434a601ceed9685a73b319e1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/artifacts/endpoint-switch-local-review-r1-evidence-index.json",
+      "bytes": 19801,
+      "sha256": "2045480395945d1e4d9750f64a9b85b569c9109f511d6245e22aa03a04bc3e40",
+      "git_blob": "b7b31a298940bf23a1a189c85a1c9aa2a700c820"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/artifacts/endpoint-switch-local-review-r1-guards-released.json",
+      "bytes": 2295,
+      "sha256": "e31dec1dfa68607cb1b0d3bd0a8e830456940b3c8c7c7d168e10841f163fa1e6",
+      "git_blob": "21e65856b5a939d024bbefda1241672872dddbf5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/artifacts/endpoint-switch-local-review-r1-handoff.md",
+      "bytes": 4623,
+      "sha256": "00846270453e418db8547b20ac093e6020ca3ec6994521cfb492169cc35641b3",
+      "git_blob": "44fc3f7cba40762ec2889195d9bf32e80513d45a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/artifacts/endpoint-switch-local-review-r1-qa.json",
+      "bytes": 6365,
+      "sha256": "e7db79776f5c14bd48d3dac02ca47be069f8cc2ebd386125b5a0fb2f1ef01bd4",
+      "git_blob": "3e2f9983035d7f4980b79c2c31027dc7e17b51fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/artifacts/endpoint-switch-local-review-r1-report.md",
+      "bytes": 13108,
+      "sha256": "9c0817a4e8172a6c2c0541f7069a879d886bc64cd615c854d9e1593d61ab652d",
+      "git_blob": "4e73f8bb903dac97c8f18c41860298a8968d1911"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/artifacts/endpoint-switch-local-review-r1-review.json",
+      "bytes": 23882,
+      "sha256": "8ec0ab1523d7340049e51be5f774f32a4eadf13439475c7cbcc7116363a0b029",
+      "git_blob": "8dfff8b24549451ad555f61056802b90aa7ee9f6"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/accepted_R2_artifacts_unchanged/endpoint-channel-local-review-r2-audit.py",
+      "bytes": 23437,
+      "sha256": "03e28f74ddab6e138e11fb02396a82ddd7349e4371fed92f25804841401a7ead",
+      "git_blob": "064174b19755b07c9aab1e367d05b2fd590d2317"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/accepted_R2_artifacts_unchanged/endpoint-channel-local-review-r2-evidence-index.json",
+      "bytes": 19866,
+      "sha256": "d01f41602d8d249ef463f59134c5b162de124f73d3fbe768b62a0dbb4b8d33a1",
+      "git_blob": "cc87657d0756af6497d5784c271c0eeb89873c9a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/accepted_R2_artifacts_unchanged/endpoint-channel-local-review-r2-guards-released.json",
+      "bytes": 1684,
+      "sha256": "5237972d95ceb6eb0cc3c8c06ef5b51b70f6e72865605a912e6af09247dd3c36",
+      "git_blob": "aabe3281032f70aceaebf1eab417a3b894823f5b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/accepted_R2_artifacts_unchanged/endpoint-channel-local-review-r2-handoff.md",
+      "bytes": 4617,
+      "sha256": "746c274ddb897d571642476294bed834765e9e1045d58c5b4985a1650339f9a9",
+      "git_blob": "dc62a0c64661f4355a6bc2f6893b1ca94b3cb218"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/accepted_R2_artifacts_unchanged/endpoint-channel-local-review-r2-qa.json",
+      "bytes": 5930,
+      "sha256": "5f7c160612ee3ec3fc43458a56bfc2c897201051dbe1613ca523da0aeb919662",
+      "git_blob": "ef2065c0be82eeee8cfb1e18ea37d670c4a0f266"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/accepted_R2_artifacts_unchanged/endpoint-channel-local-review-r2-report.md",
+      "bytes": 12330,
+      "sha256": "46f1e5e7fe3b0f29cfcd214f2bf29c9ebed8f400d534c919b0fd2e40e7d3371f",
+      "git_blob": "802ec2395e53759265df8714547a8c3b18958b93"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/accepted_R2_artifacts_unchanged/endpoint-channel-local-review-r2-review.json",
+      "bytes": 24209,
+      "sha256": "cf9deb2b6207231a707953b76d182beabe2de2c3d40e9b0bf29ec4c2889d2536",
+      "git_blob": "dea34a6d82e90056447580fe8ea2e99b3dade0ee"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/main_materials_unchanged/endpoint-channel-local-review-main-acceptance-r2.json",
+      "bytes": 1084,
+      "sha256": "54c1313967d9f58393e89d3597a21344fb9a960abf77ab45b5119a0684ef6a18",
+      "git_blob": "b32f7e2abb1ac4435953be27652190f2296facf3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/main_materials_unchanged/endpoint-channel-r2-requested-repair-r1.patch",
+      "bytes": 3965,
+      "sha256": "69274f22f9ac56bc8b1bb5fc28910a7cf6aed3d4e8d56737aa8d665c882929aa",
+      "git_blob": "e4c45fa22813392e821714c09e909e7570084713"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/main_materials_unchanged/endpoint-switch-contract-r1.md",
+      "bytes": 3505,
+      "sha256": "a630e9dfa46ede6375f3ee73d46faf7042f6c12cb5594619463ece580c0901e4",
+      "git_blob": "59f566b5c5d0e6e4e79293641f809b1d7713c2f5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/main_materials_unchanged/endpoint-switch-local-review-r1.json",
+      "bytes": 3441,
+      "sha256": "728a26f076559fd10165798a6d934994ad3c538a2a1a1f5692a19c3f1d485a2c",
+      "git_blob": "111b0a7e924f27373e15e42f565fe006e325df2a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/preserved/main_materials_unchanged/endpoint-switch-wip-source-audit-r1.json",
+      "bytes": 3830,
+      "sha256": "6161cd3608b9ed3eeabed5680dd875ee1a7a32a5e61b60dec250a6e16b642d6f",
+      "git_blob": "075e2c3011ed9e23f39cda74aaed443d60c6d4e1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/wip/flow-id-num-tag.h",
+      "bytes": 945,
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "git_blob": "80d6c47ad1f2cb59bdea22cf0c259d3f2ae5d20c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/wip/qbb-channel.cc",
+      "bytes": 6788,
+      "sha256": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+      "git_blob": "02851d068cfa81b6e31f698a83e99ae29d88d8c2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/wip/qbb-channel.h",
+      "bytes": 5853,
+      "sha256": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+      "git_blob": "dd7514b14607ca83d66f849203ae814966ba33da"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/wip/switch-node.h",
+      "bytes": 10607,
+      "sha256": "3d936dcc57d5dfd40985cc345235d6d4540b1597b4e0edd63e0554e6b15d5e0f",
+      "git_blob": "47329ff4ba35343cddf3285826b683970671658d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/wip/ws31-budget.h",
+      "bytes": 6978,
+      "sha256": "f255f4c7c3c5a3493fe030d51f65406d040ceff1d8aa47bec8b3afec8519a672",
+      "git_blob": "28a7b5de33919c37eb1005c19e95a468a051a5c3"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/wip/ws31-endpoint-channel-test.cc",
+      "bytes": 17059,
+      "sha256": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+      "git_blob": "dbdc9628baaf4567050bc50c3795f8e871251346"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/wip/ws31-endpoint-channel.h",
+      "bytes": 11607,
+      "sha256": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "git_blob": "1152413800936fceca2c2215fa1bcfee3e6174e8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/wip/ws31-endpoint-switch-probe.h",
+      "bytes": 6267,
+      "sha256": "5af315750ab914d7a629470bfcf4ba2e16f9799205bf491fc5037617b0a9711c",
+      "git_blob": "10fe2487cfd73589202c594d225b743d93eb8a90"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r1/wip/ws31-quota.h",
+      "bytes": 6164,
+      "sha256": "912011f77104ceda72242dda5d5f5aa06356bc4b49e5e7257fd8c8a23858e8e7",
+      "git_blob": "a84a93826b11fd4b5760686c6d3537023c3722f4"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/artifacts/endpoint-switch-local-review-r2-audit.py",
+      "bytes": 23310,
+      "sha256": "438ab9a38d1083aecadff2f96a02218764f9e1a02dca0fd4fe3285db4bd3570b",
+      "git_blob": "426a0e02684a3c484e347ab5a36ab67546c534ee"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/artifacts/endpoint-switch-local-review-r2-evidence-index.json",
+      "bytes": 29279,
+      "sha256": "c998221d2840227467d36fe6ae428a91e1d4159e0ddd7e99b595a953803550b2",
+      "git_blob": "f95818ecb853e947509b40a2dc98c7db3ca8ef14"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/artifacts/endpoint-switch-local-review-r2-guards-released.json",
+      "bytes": 2633,
+      "sha256": "fe097402101e109368d1477dac2d09e477316923aafc0583896faa376b87a55f",
+      "git_blob": "4b4e3cabd1d6f3b07c8310658ad62ae40f456ac6"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/artifacts/endpoint-switch-local-review-r2-handoff.md",
+      "bytes": 4566,
+      "sha256": "c798bdcb015359de80f58f17f778beb683d2159547550b464e76f455f3bd45ce",
+      "git_blob": "569a9b539c23b418ed20379f75c62f20b565f066"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/artifacts/endpoint-switch-local-review-r2-progress-r1.json",
+      "bytes": 2013,
+      "sha256": "c2eb097968550e19f5d0f095d0efad94db2f70766b8d42fe9e8980823430a1ad",
+      "git_blob": "1f88290fb7640c7c8329af286f68f1c5b914c222"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/artifacts/endpoint-switch-local-review-r2-qa.json",
+      "bytes": 6184,
+      "sha256": "9aa5810e02aff47bfa7825a622a0cae269dbd55da81dd9df1161bf44015e430b",
+      "git_blob": "7a258797a4d04f4d822d617fa692d4fcb27caaa4"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/artifacts/endpoint-switch-local-review-r2-report.md",
+      "bytes": 11966,
+      "sha256": "fbf55acfcb66ece228462fbe4aa0821a7d0b0c8c752b0093b9f79a7076536f55",
+      "git_blob": "2bef524f9b3b48f41dbe42fab3686f981c20ad8d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/artifacts/endpoint-switch-local-review-r2-resume-receipt.json",
+      "bytes": 2974,
+      "sha256": "33790c047ddc8a4e78d6b9c67b15782a19dd6491e63932d7d1449a020bb5b7d1",
+      "git_blob": "022b2fccfcb5d31ba18166d65be574761d5a3de0"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/artifacts/endpoint-switch-local-review-r2-review.json",
+      "bytes": 22533,
+      "sha256": "1a2826d74059ef9f0f217b07c4213dcff17e0e0256691e69243ed07c15cac109",
+      "git_blob": "a5776539bfd8bb74b9e0c9cd96b2f268970d1687"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/preserved/incomplete_stage_receipts_unchanged/endpoint-switch-local-review-r2-progress-r1.json",
+      "bytes": 2013,
+      "sha256": "c2eb097968550e19f5d0f095d0efad94db2f70766b8d42fe9e8980823430a1ad",
+      "git_blob": "1f88290fb7640c7c8329af286f68f1c5b914c222"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/preserved/incomplete_stage_receipts_unchanged/endpoint-switch-local-review-r2-resume-receipt.json",
+      "bytes": 2974,
+      "sha256": "33790c047ddc8a4e78d6b9c67b15782a19dd6491e63932d7d1449a020bb5b7d1",
+      "git_blob": "022b2fccfcb5d31ba18166d65be574761d5a3de0"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/preserved/prior_switch_r1_artifacts_unchanged/endpoint-switch-local-review-r1-audit.py",
+      "bytes": 24910,
+      "sha256": "042c0f998186bcae392c8238cf22651f2d687c334da8139631323f632a4b0e49",
+      "git_blob": "4dce7be167f5dc7c434a601ceed9685a73b319e1"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/preserved/prior_switch_r1_artifacts_unchanged/endpoint-switch-local-review-r1-evidence-index.json",
+      "bytes": 19801,
+      "sha256": "2045480395945d1e4d9750f64a9b85b569c9109f511d6245e22aa03a04bc3e40",
+      "git_blob": "b7b31a298940bf23a1a189c85a1c9aa2a700c820"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/preserved/prior_switch_r1_artifacts_unchanged/endpoint-switch-local-review-r1-guards-released.json",
+      "bytes": 2295,
+      "sha256": "e31dec1dfa68607cb1b0d3bd0a8e830456940b3c8c7c7d168e10841f163fa1e6",
+      "git_blob": "21e65856b5a939d024bbefda1241672872dddbf5"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/preserved/prior_switch_r1_artifacts_unchanged/endpoint-switch-local-review-r1-handoff.md",
+      "bytes": 4623,
+      "sha256": "00846270453e418db8547b20ac093e6020ca3ec6994521cfb492169cc35641b3",
+      "git_blob": "44fc3f7cba40762ec2889195d9bf32e80513d45a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/preserved/prior_switch_r1_artifacts_unchanged/endpoint-switch-local-review-r1-qa.json",
+      "bytes": 6365,
+      "sha256": "e7db79776f5c14bd48d3dac02ca47be069f8cc2ebd386125b5a0fb2f1ef01bd4",
+      "git_blob": "3e2f9983035d7f4980b79c2c31027dc7e17b51fd"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/preserved/prior_switch_r1_artifacts_unchanged/endpoint-switch-local-review-r1-report.md",
+      "bytes": 13108,
+      "sha256": "9c0817a4e8172a6c2c0541f7069a879d886bc64cd615c854d9e1593d61ab652d",
+      "git_blob": "4e73f8bb903dac97c8f18c41860298a8968d1911"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/preserved/prior_switch_r1_artifacts_unchanged/endpoint-switch-local-review-r1-review.json",
+      "bytes": 23882,
+      "sha256": "8ec0ab1523d7340049e51be5f774f32a4eadf13439475c7cbcc7116363a0b029",
+      "git_blob": "8dfff8b24549451ad555f61056802b90aa7ee9f6"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/flow-id-num-tag.h",
+      "bytes": 945,
+      "sha256": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+      "git_blob": "80d6c47ad1f2cb59bdea22cf0c259d3f2ae5d20c"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/qbb-channel.cc",
+      "bytes": 6788,
+      "sha256": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+      "git_blob": "02851d068cfa81b6e31f698a83e99ae29d88d8c2"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/qbb-channel.h",
+      "bytes": 5853,
+      "sha256": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+      "git_blob": "dd7514b14607ca83d66f849203ae814966ba33da"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/switch-node.h",
+      "bytes": 10652,
+      "sha256": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+      "git_blob": "40c031f26417cd45edf132833a01e454db72d32e"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/ws31-budget.h",
+      "bytes": 7113,
+      "sha256": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+      "git_blob": "703d0c1f3200370ebc798f5e96a0b5370c46d20a"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/ws31-endpoint-channel-test.cc",
+      "bytes": 17059,
+      "sha256": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+      "git_blob": "dbdc9628baaf4567050bc50c3795f8e871251346"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/ws31-endpoint-channel.h",
+      "bytes": 11607,
+      "sha256": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+      "git_blob": "1152413800936fceca2c2215fa1bcfee3e6174e8"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/ws31-endpoint-switch-probe.h",
+      "bytes": 7904,
+      "sha256": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+      "git_blob": "69b8e74ddb955c6c64a4c75dfc04da1deb430396"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/ws31-endpoint-switch-test.cc",
+      "bytes": 25036,
+      "sha256": "15bf37f1bd0297de3933253f6ac771883f88a0cb031c633f75ea1d75cce4ffee",
+      "git_blob": "501a49bd91c5d3bbe5135052ef4e33b058a3a782"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/switch-r2/wip/ws31-quota.h",
+      "bytes": 6248,
+      "sha256": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+      "git_blob": "12fbd2024c99e013428ce1bc1af66fb3514fda8d"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/source-manifest.json",
+      "bytes": 93441,
+      "sha256": "8d6f2c0ac4b8d9e5a9343bcb59eaa2a42d9a99e6339b4242735fe99696cf6f93",
+      "git_blob": "c4e7ca8564748a0398ea1ac7edf89d2d51ce423b"
+    },
+    {
+      "path": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+      "bytes": 6738,
+      "sha256": "5b8287ac01a3b356f2865b3daa021e61cb047bc51a9099eaa4a1530bfa5d56b3",
+      "git_blob": "08ca140c634a7feda9ed4b30e78b8766a7b51b30"
+    }
+  ]
+}

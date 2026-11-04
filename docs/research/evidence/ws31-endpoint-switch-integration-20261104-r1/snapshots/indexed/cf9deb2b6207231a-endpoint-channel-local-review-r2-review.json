@@ -1,0 +1,719 @@
+{
+  "at_utc": "2026-11-01T13:09:02.558477+00:00",
+  "client_date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "target": "endpoint-channel-local-review-r2",
+  "source_chat": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "parent_chat": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "status": "COMPLETE_FOR_LOCAL_R2_STATIC_REVIEW_FIX_REQUIRED",
+  "review_complete": true,
+  "implementation_or_dynamic_validation_complete": false,
+  "verdict": "FIX_REQUIRED_R2_01_OPEN_C2_PRODUCTION_SCOPE_STILL_OPEN",
+  "new_finding_counts": {
+    "P1": 0,
+    "P2": 1
+  },
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "observed_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "branch": "feature/ws31-candidates",
+  "git_status": [
+    " M src/network/model/flow-id-num-tag.h",
+    " M src/point-to-point/model/qbb-channel.cc",
+    " M src/point-to-point/model/qbb-channel.h",
+    "?? scratch/ws31-endpoint-channel-test.cc",
+    "?? src/point-to-point/model/ws31-endpoint-channel.h"
+  ],
+  "plan": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\endpoint-channel-local-review-r2.json",
+    "sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0"
+  },
+  "five_WIP_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+    "src/point-to-point/model/qbb-channel.cc": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698"
+  },
+  "main_preserved_WIP_match": true,
+  "findings": [
+    {
+      "id": "R2-01",
+      "priority": 2,
+      "severity": "P2",
+      "status": "OPEN_MUST_FIX_BEFORE_NEW_FROZEN_EXECUTION",
+      "title": "By-value leave parameter can throw before DeliverWs31 body enters its catch",
+      "anchors": [
+        {
+          "path": "src/point-to-point/model/qbb-channel.h",
+          "line": 143,
+          "contains": "Ws31Leave leave"
+        },
+        {
+          "path": "src/point-to-point/model/qbb-channel.cc",
+          "line": 153,
+          "contains": "Ws31Leave leave"
+        },
+        {
+          "path": "src/point-to-point/model/qbb-channel.cc",
+          "line": 155,
+          "contains": "try"
+        },
+        {
+          "path": "src/core/model/make-event.h",
+          "line": 430,
+          "contains": "(*m_function)(m_a1, m_a2, m_a3, m_a4, m_a5)"
+        },
+        {
+          "path": "src/core/model/default-simulator-impl.cc",
+          "line": 142,
+          "contains": "Invoke"
+        },
+        {
+          "path": "src/core/model/default-simulator-impl.cc",
+          "line": 143,
+          "contains": "Unref"
+        }
+      ],
+      "trigger": "Event Notify passes saved std::function m_a5 lvalue to by-value Ws31Leave; copy construction throws before target function body",
+      "consequence": "No channel failure capture/Stop occurs; exception again skips current-event Unref in old simulator. Pending/open stay positive, so fabricated closure is not asserted.",
+      "minimum_action": "Use const Ws31Leave & in both declaration and definition, retaining event-owned function value while binding reference at invocation; or move every throwing copy within a protected event boundary. No simulator baseline edit needed.",
+      "old_template_reason": "U5 (function signature) and T5 (stored call argument) are separate template parameters. T5 remains function value, while U5 may be const reference.",
+      "evidence_level": "conditional static failure path; allocation/copy failure not executed"
+    }
+  ],
+  "r1_resolution": [
+    {
+      "id": "C1",
+      "status": "ADDRESSED_IN_SOURCE_NOT_BUILT",
+      "reason": "exact dynamic type plus TypeId; complete inherited-TypeId override refusal written; actual build flags remain a gate"
+    },
+    {
+      "id": "C2",
+      "prior_priority": 1,
+      "status": "PARTIAL_CONTROLLED_ENCODER_ONLY_PRODUCTION_CONTRACT_OPEN",
+      "reason": "range checking before new encoder serialization and Register; cannot recover already-truncated tags; actual G1 and every producer remain mandatory"
+    },
+    {
+      "id": "C3",
+      "status": "ADDRESSED_IN_NEW_FIXTURE_SOURCE_NOT_RUN",
+      "reason": "EncodeIdentity and raw alias examples initialize flow_size; original tag body unchanged"
+    },
+    {
+      "id": "C4",
+      "status": "PARTIAL_BODY_EXCEPTION_PATH_ADDRESSED_R2_01_OPEN",
+      "reason": "body-caught Receive/leave exceptions Stop and return to Unref; pre-body argument copy still escapes"
+    },
+    {
+      "id": "C5",
+      "status": "ADDRESSED_FOR_INSPECTED_MUTATION_PATHS_NOT_RUN",
+      "reason": "State latch after ledger mutation; channel latch for schedule/animation; staged Bind then swaps/owner. Actual allocator/scheduler failure handling not dynamically proved."
+    },
+    {
+      "id": "I1",
+      "status": "ADDRESSED_FOR_LOCAL_CHANNEL_ADMISSION_NOT_RUN",
+      "reason": "EverTransmitted blocks old default events and used rebind; global G1 coverage and default cost remain open"
+    }
+  ],
+  "plan_question_coverage": [
+    {
+      "question": "C1 exacttypeid plus inheritedTypeId overriding completechannel rejection; actual old C++/RTTI compatibility",
+      "analysis_complete": true,
+      "report_sections": [
+        "2:C1"
+      ]
+    },
+    {
+      "question": "C2/C3 EncodeIdentity pre-serialization0..65535 bounds andinitializedflow_size, legalboundaryroundtrip/negativehighaliasdemonstration, registrationuniqueness; explicitly keep actualG1/allproductionproducers unresolved",
+      "analysis_complete": true,
+      "report_sections": [
+        "2:C2,C3"
+      ]
+    },
+    {
+      "question": "C4 eventinternalcatch preserves originalexception andopen token,Stop returns to ProcessOneEventUnref; Runoutsidefailurequery, no fake closure or wholeteardownclaim",
+      "analysis_complete": true,
+      "report_sections": [
+        "1",
+        "2:C4"
+      ]
+    },
+    {
+      "question": "C5 Enter/history/open, schedule andrealanimationfailure latches; Bind allallocatingstage precedesnoexceptcommit; no normalFinish/rebind afterpartialfailure; premutationrefusalsremainrecoverable",
+      "analysis_complete": true,
+      "report_sections": [
+        "2:C5",
+        "3"
+      ]
+    },
+    {
+      "question": "I1 reject every usedchannel/defaultpreexistingevent andusedrebind; defaultmarkerwrite is realcost, originalPkt/context/delay/traceorder unchanged nominally",
+      "analysis_complete": true,
+      "report_sections": [
+        "2:I1",
+        "4"
+      ]
+    },
+    {
+      "question": "Independently trace all newsubstitutedReceive cases, owner-loss lifetime, faultinjectionscope vs actualallocator/scheduler; identify minimal necessary repairs, no productionReceive/network acceptance",
+      "analysis_complete": true,
+      "report_sections": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "question": "Record all remaining switch/callback/history/G1/sharedcontrol/twogeneration/V0/matchedablation/effects/cost obligations; sourcecode not measured evidence",
+      "analysis_complete": true,
+      "report_sections": [
+        "5"
+      ]
+    }
+  ],
+  "fixture_cases": [
+    {
+      "case": "default-off",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 72,
+      "end": 84,
+      "static_expectation": "one original-pointer delivery at 13 ns, correct context; marker adds no event",
+      "executed": false
+    },
+    {
+      "case": "observed-nested-and-refusals",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 85,
+      "end": 166,
+      "static_expectation": "13/13/16 ns, serials 1/2/3, pending 2/2/1, nested peak 3; pre-mutation refusals token-free; used rebind rejected",
+      "executed": false
+    },
+    {
+      "case": "receive-error",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 167,
+      "end": 183,
+      "static_expectation": "body-caught logic_error, Stop/normal Run return, open=1 token=1; Finish denied",
+      "executed": false
+    },
+    {
+      "case": "late-bind",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 184,
+      "end": 194,
+      "static_expectation": "Bind rejected before and after old default delivery; default callback called once",
+      "executed": false
+    },
+    {
+      "case": "after-ledger-enter",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 197,
+      "end": 206,
+      "static_expectation": "State failed, token=1 history=0 open=0; pending not increased; Finish denied",
+      "executed": false
+    },
+    {
+      "case": "after-history-append",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 197,
+      "end": 206,
+      "static_expectation": "State failed, token=1 history=1 open=0; pending not increased; Finish denied",
+      "executed": false
+    },
+    {
+      "case": "staged-bind",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 207,
+      "end": 217,
+      "static_expectation": "fault before vector push, healthy empty session; retry and unused-object next owner allowed",
+      "executed": false
+    },
+    {
+      "case": "pre-schedule-boundary",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 218,
+      "end": 226,
+      "static_expectation": "channel failed, token=1 open=1, no actual schedule; Finish denied",
+      "executed": false
+    },
+    {
+      "case": "animation",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 227,
+      "end": 240,
+      "static_expectation": "actual trace throws runtime_error after schedule; delivery guard denies Receive, retains first error, token=1 open=1",
+      "executed": false
+    },
+    {
+      "case": "leave-before-close",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 241,
+      "end": 252,
+      "static_expectation": "Receive returned, leave throws runtime_error, token=1 open=1, no closure evidence",
+      "executed": false
+    },
+    {
+      "case": "owner-lost-idle",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 253,
+      "end": 268,
+      "static_expectation": "callbacks retain State, no event or normal Finish, takeover denied",
+      "executed": false
+    },
+    {
+      "case": "owner-lost-inflight",
+      "source": "scratch/ws31-endpoint-channel-test.cc",
+      "start": 253,
+      "end": 268,
+      "static_expectation": "callbacks avoid session this; one token can close, takeover denied, no normal Finish",
+      "executed": false
+    }
+  ],
+  "fixture_boundaries": {
+    "simulator_lifetime_segments_in_source": 12,
+    "all_results_are_static_expectations": true,
+    "production_receive_or_transport_completion": false,
+    "allocation_schedule_bind_faults": "controlled throws at selected transaction boundaries, not actual allocator/scheduler exhaustion",
+    "animation_fault": "actual TxRxQbb callback throws after scheduling",
+    "original_exception_assertions": "helper checks exception class family only; recommend exact message/type marker checks"
+  },
+  "restoration_checks": {
+    "src/point-to-point/model/qbb-channel.cc": {
+      "exact_parent_git_LF": true,
+      "sha256": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1"
+    },
+    "src/point-to-point/model/qbb-channel.h": {
+      "exact_parent_git_LF": true,
+      "sha256": "fd2830eadfb0b6b43e4798b39b14f0af270f64ce886bbce8f0fa5a838f0e9421"
+    },
+    "src/network/model/flow-id-num-tag.h": {
+      "exact_parent_git_LF": true,
+      "sha256": "41394125ead04a92f735627dfd9c9e9f49a37ac62687eb4210e56629008ec89f"
+    }
+  },
+  "guard_macro_collision_in_src_scratch": false,
+  "nominal_success_path": {
+    "original_packet_context_delay_preserved_in_source": true,
+    "delivery_event_count": "one replacement event",
+    "animation_order": "schedule then animation",
+    "closure_order": [
+      "Receive returns",
+      "leave closes ledger",
+      "pending decreases"
+    ],
+    "normal_fixture_return_ns": [
+      13,
+      13,
+      16
+    ],
+    "normal_receive_visible_pending": [
+      2,
+      2,
+      1
+    ],
+    "execution_evidence": false
+  },
+  "rtti_cpp11": {
+    "source_support": "waf GccTraits gnu++11 and existing dynamic_cast; no disable RTTI/exception option found in inspected configuration sources",
+    "actual_r2_compilation_and_final_flags_verified": false
+  },
+  "lifetime": {
+    "callbacks_capture_shared_State_not_session_this": true,
+    "state_has_no_direct_channel_device_members": true,
+    "owner_loss_is_not_normal_finish": true,
+    "preexisting_qbb_device_channel_strong_references_remain": true,
+    "no_whole_teardown_reclamation_claim": true
+  },
+  "exact_source_anchors": [
+    {
+      "path": "src/point-to-point/model/qbb-channel.h",
+      "line": 142,
+      "contains": "static void DeliverWs31"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.h",
+      "line": 143,
+      "contains": "Ws31Leave leave"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 153,
+      "contains": "Ws31Leave leave"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 155,
+      "contains": "try"
+    },
+    {
+      "path": "src/core/model/make-event.h",
+      "line": 430,
+      "contains": "(*m_function)(m_a1, m_a2, m_a3, m_a4, m_a5)"
+    },
+    {
+      "path": "src/core/model/make-event.h",
+      "line": 437,
+      "contains": "ReferencedType m_a5"
+    },
+    {
+      "path": "src/core/model/default-simulator-impl.cc",
+      "line": 142,
+      "contains": "Invoke"
+    },
+    {
+      "path": "src/core/model/default-simulator-impl.cc",
+      "line": 143,
+      "contains": "Unref"
+    },
+    {
+      "path": "src/core/model/default-simulator-impl.cc",
+      "line": 211,
+      "contains": "m_stop = true"
+    },
+    {
+      "path": "src/core/model/type-traits.h",
+      "line": 21,
+      "contains": "typedef U ReferencedType"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 156,
+      "contains": "typeid(*PeekPointer(channel))==typeid(QbbChannel)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 157,
+      "contains": "GetInstanceTypeId"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 43,
+      "contains": "UnregisteredOverride"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 94,
+      "contains": "Pair overriding"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 95,
+      "contains": "GetInstanceTypeId"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 97,
+      "contains": "unregistered-overriding-channel"
+    },
+    {
+      "path": "waf-tools/cflags.py",
+      "line": 26,
+      "contains": "-std=gnu++11"
+    },
+    {
+      "path": "src/core/model/ptr.h",
+      "line": 375,
+      "contains": "dynamic_cast"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 127,
+      "contains": "id>=0 && id<=65535"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 130,
+      "contains": "ValidateIdentity(id)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 134,
+      "contains": "tag.SetId(id); tag.SetFlowSize(flowBytes)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 135,
+      "contains": "AddPacketTag"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 146,
+      "contains": "Healthy(); ValidateIdentity(id)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 149,
+      "contains": "registered.count"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 64,
+      "contains": "EncodeIdentity(packet,id,8)"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 112,
+      "contains": "tag.SetFlowSize(8)"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 114,
+      "contains": "decoded.GetId()==(id==-1?65535:0)"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 160,
+      "contains": "destination->Receive"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 162,
+      "contains": "leave (serial)"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 163,
+      "contains": "--channel->m_ws31Pending"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 168,
+      "contains": "m_ws31Failed = true"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 169,
+      "contains": "if (!channel->m_ws31Failure)"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 172,
+      "contains": "Simulator::Stop"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 94,
+      "contains": "ledger->Enter"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 96,
+      "contains": "history.push_back"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 98,
+      "contains": "open.insert"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 102,
+      "contains": "s->failure=std::current_exception"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 55,
+      "contains": "void Healthy"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 185,
+      "contains": "Healthy()"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 224,
+      "contains": "Pending()==0"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 122,
+      "contains": "++m_ws31Pending"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 124,
+      "contains": "try"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 131,
+      "contains": "ScheduleWithContext"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 135,
+      "contains": "m_txrxQbb"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 140,
+      "contains": "if (!m_ws31Failure)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 173,
+      "contains": "Ws31Enter enter="
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 177,
+      "contains": "Ws31Leave leave="
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 179,
+      "contains": "channels.push_back"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 180,
+      "contains": "m_ws31Enter.swap"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 181,
+      "contains": "m_ws31Leave.swap"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 182,
+      "contains": "m_ws31Owner="
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 106,
+      "contains": "m_ws31EverTransmitted = true"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 121,
+      "contains": "m_ws31EverTransmitted = true"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 162,
+      "contains": "!channel->m_ws31EverTransmitted"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 189,
+      "contains": "bind-after-default-scheduled"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 191,
+      "contains": "bind-after-default-returned"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 197,
+      "contains": "AFTER_LEDGER_ENTER"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 209,
+      "contains": "BEFORE_BIND_COMMIT"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 220,
+      "contains": "FailNextScheduleForTesting"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 231,
+      "contains": "TraceConnectWithoutContext"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 245,
+      "contains": "LEAVE_BEFORE_CLOSE"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 259,
+      "contains": "owner.reset"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 263,
+      "contains": "ledger->Get(8).closed"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 20,
+      "contains": "catch (const std::logic_error"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 26,
+      "contains": "catch (const std::runtime_error"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 218,
+      "contains": "std::rethrow_exception(state->failure)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-channel.h",
+      "line": 220,
+      "contains": "std::rethrow_exception(channel->m_ws31Failure)"
+    }
+  ],
+  "evidence_index": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r2-evidence-index.json",
+  "evidence_items": 42,
+  "literature_recheck": {
+    "completed_for_r2_review_node": true,
+    "readme_reading_log_and_four_records_unchanged_from_r1": true,
+    "focused_recheck": [
+      "DiffFlow technical section 8 and verification boundaries",
+      "Flowcut technical section 9 and verification evidence boundaries"
+    ],
+    "versions": [
+      {
+        "name": "DiffFlow",
+        "version": "arXiv:1604.05107v1",
+        "pdf_sha256_previously_verified": "f552fcb75a0cec582286db0032c81660ff161fe475609ae5e79ad7075a0ae164",
+        "lesson": "separate classification, activation and actual transport; Java/no-full-TCP/separate-queue evidence is not RDMA G1 proof"
+      },
+      {
+        "name": "Flowcut",
+        "version": "arXiv:2506.21406v2",
+        "pdf_sha256_previously_verified": "1ba1e8cbad41973d3b42112a1a33876629541da814ac56bd06132439704fd1a1",
+        "lesson": "explicit in-flight closure and state/pause costs; ACK-byte closure is not Receive-return evidence and does not prove project reuse/effects"
+      }
+    ],
+    "new_baseline_or_mechanism_admission": false
+  },
+  "remaining_mandatory": [
+    "R2-01 parameter-boundary repair and new frozen source",
+    "actual parsed G1 before all traffic",
+    "all identity producers before serialization and cross-generation uniqueness",
+    "shared PFC/ACK/NACK/CNP/retransmit coverage",
+    "real switch read-only snapshot",
+    "completion callback and savedRX",
+    "history release",
+    "real two-generation positive and negative network cases",
+    "independent C1 V0",
+    "three-candidate matched ablation",
+    "business/background two-sided effects",
+    "state/runtime costs"
+  ],
+  "execution_counts": {
+    "ssh_remote": 0,
+    "sync_deploy": 0,
+    "compile": 0,
+    "cpp_test_fixture": 0,
+    "network": 0,
+    "old_accepted_test_rerun": 0,
+    "scientific_source_edits": 0,
+    "main_edits": 0,
+    "commit": 0,
+    "push": 0,
+    "subagents": 0
+  },
+  "owned_background_execution": false,
+  "new_execution_authority": false,
+  "five_file_read_only_guard": "EXPLICITLY_RELEASED_AT_DELIVERY",
+  "old_r1_artifacts_preserved": true
+}

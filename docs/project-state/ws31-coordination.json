@@ -20,8 +20,8 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "30516c1d-6c65-4481-bd73-77602ce15c3a:1",
-    "last_observed_status": "idle; cursorReset after completed node18"
+    "last_cursor": "f13c4cd1-6458-4d58-888a-76f78e636578:1",
+    "last_observed_status": "idle; cursor reset after completed node20"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -31,8 +31,8 @@
     "write_directory": "docs/research/ws31/independent",
     "first_goal": "independent audit of category-increment and ablation failure evidence",
     "last_cursor": null,
-    "last_reported_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:4",
-    "last_reported_state": "active; sole r2 local read-only review, reported by main; not directly polled by Integration"
+    "last_reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:4",
+    "last_reported_state": "active; sole minimal r3 one-fixture delta review; main reported, not directly polled by Integration"
   },
   "deferred_ws29": {
     "main_thread_id": "01a1625a-d557-71c1-a90a-258c289ef43e",
@@ -265,7 +265,7 @@
     "parent_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
     "purpose": "Actual-object endpoint probe with binding/coverage guards and one new scratch object fixture; Qbb header only comment/two friends",
     "validation": "One1470task optimized-j2 fullbuild and one controlled actual-object fixture accepted at8cd.62rawrows/8double-read groups/16refusals,31Readcalls/17successfulreturns. Mask127/noeventexecution/no natural network completion. FullGitpath and36project ELF byte provenance verified.",
-    "mutable_worktree_status": "NODE18_FIVE_FILE_R2_WIP_THREE_TRACKED_TWO_UNTRACKED_UNCOMPILED_UNCOMMITTED",
+    "mutable_worktree_status": "NODE20_TEN_R3_WIP_SIX_TRACKED_FOUR_UNTRACKED_UNCOMPILED_UNCOMMITTED",
     "last_network_validated_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
@@ -274,21 +274,26 @@
       "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy",
       "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e": "Q12andC2 default dispatch full FCT/orderedCHOICE_ROUTE and dedicatedC2 events with exact104 waits; only two technical cells at unchanged input, not endpoint lifecycle or efficacy"
     },
-    "new_network_approval_scope": "None; sole r2 static read-only review active. Old 8cd runtime acceptance does not cover new WIP.",
+    "new_network_approval_scope": "None; sole r3 one-fixture static delta review only. Old fixed 8cd runtime acceptance does not cover these WIP bytes.",
     "current_WIP_hashes": {
-      "src/point-to-point/model/qbb-channel.h": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
-      "src/point-to-point/model/qbb-channel.cc": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+      "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+      "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
       "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
       "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
-      "scratch/ws31-endpoint-channel-test.cc": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698"
+      "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+      "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+      "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+      "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+      "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+      "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8"
     },
-    "current_WIP_source_audit": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/evidence/endpoint-channel-wip-source-audit-r2.json"
+    "current_WIP_source_audit": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/endpoint-switch-wip-source-audit-r3.json"
   },
   "last_material_event": {
-    "date": "2026-11-01",
-    "kind": "NODE18 channel r1 complete static review accepted; r2 five-file uncompiled WIP under sole read-only review",
-    "record": "docs/handoffs/2026-11-01-ws31-endpoint-channel-integration.md",
-    "verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
+    "date": "2026-11-04",
+    "kind": "NODES19_20 switch static reviews integrated; S1/S2 source-confirmed, R2-F1 one-fixture repair pending sole delta review",
+    "record": "docs/handoffs/2026-11-04-ws31-endpoint-switch-integration.md",
+    "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
     "new_engineering_runtime_acceptance": false,
     "new_network_acceptance": false,
     "network_technical_total": 43,
@@ -482,6 +487,17 @@
       "network_technical_total": 43,
       "user_decision_required": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-01",
+      "kind": "NODE18 channel r1 complete static review accepted; r2 five-file uncompiled WIP under sole read-only review",
+      "record": "docs/handoffs/2026-11-01-ws31-endpoint-channel-integration.md",
+      "verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
+      "new_engineering_runtime_acceptance": false,
+      "new_network_acceptance": false,
+      "network_technical_total": 43,
+      "user_decision_required": false,
+      "new_baseline_established": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -586,36 +602,45 @@
     "completed_payload_bytes": 403963904
   },
   "next_registered_goal": {
-    "kind": "ENDPOINT_CHANNEL_R2_LOCAL_READONLY_REVIEW",
+    "kind": "ENDPOINT_SWITCH_R3_SINGLE_FIXTURE_READONLY_DELTA_REVIEW",
     "status": "ACTIVE_SOLE_INDEPENDENT_MAIN_REPORTED_CURSOR4",
     "owner": "01a19323-2201-7b23-a0f1-905c71496d38",
-    "plan": "docs/research/ws31/main/endpoint-channel-local-review-r2.json",
-    "fixed_plan_snapshot": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-local-review-r2.json",
-    "plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+    "plan": "docs/research/ws31/main/endpoint-switch-local-review-r3.json",
+    "fixed_plan_snapshot": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-local-review-r3.json",
+    "plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
     "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
     "files_working_sha256": {
-      "src/point-to-point/model/qbb-channel.h": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
-      "src/point-to-point/model/qbb-channel.cc": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+      "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+      "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
       "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
       "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
-      "scratch/ws31-endpoint-channel-test.cc": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698"
+      "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+      "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+      "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+      "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+      "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+      "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8"
     },
-    "preserved_WIP": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r2-wip/",
-    "reported_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:4",
-    "pre_dispatch_idle_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:3",
+    "preserved_WIP": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/current-r3/",
+    "reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:4",
+    "pre_dispatch_idle_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:3",
     "current_new_WIP": true,
+    "changed_paths": [
+      "scratch/ws31-endpoint-switch-test.cc"
+    ],
+    "unchanged_WIP_files": 9,
+    "reuse_completed_r2_review_only_analyze_affected_delta": true,
     "remote_build_fixture_network_execution_authorized": false,
     "source_or_main_edits_by_independent_authorized": false,
-    "new_commit_or_push_authorized_by_review_plan": false,
-    "source_guard": "Exactly five r2 files frozen until sole read-only review returns",
+    "source_guard": "Exactly ten r3 WIP files frozen until complete bounded review and explicit release",
     "outcomes_accepted_by_Integration": false,
     "no_duplicate_sole_independent_dispatch": true,
     "requirements_after_review": [
-      "Main accepts review and fixes necessary issues before freezing a new source",
-      "Actual switch pure-read, completion callback savedRX, history cleanup and actual parsed G1",
-      "All production identity producers before U16 serialization; explicit shared PFC/CNP/ACK/NACK/retransmission coverage",
-      "Real two-generation network positive/refusal cases under new independent plan and resource gates",
-      "Independent C1 V0; three-candidate matched ablation; business/background effects and state/runtime costs"
+      "Main accepts minimum delta review and repairs necessary issues; no repeated full unchanged analysis",
+      "Complete actual completion callback savedRX, history release and real G1 before all traffic",
+      "All identity producers and explicit shared PFC/ACK/NACK/CNP/retransmission coverage",
+      "New frozen source, independent plan and resource gates before two-generation network positive/refusal validation",
+      "Independent C1 V0, matched ablation, business/background effects and state/runtime costs"
     ]
   },
   "last_verified_C13_labels_checkpoint": {
@@ -669,46 +694,49 @@
     "scope": "Per-node technical coverage, repeated small inputs are not independent workloads or efficacy samples"
   },
   "last_completed_local_review": {
-    "name": "endpoint-channel-local-review-r1",
-    "status": "COMPLETE_STATIC_REVIEW_MAIN_ACCEPTED_INTEGRATION_PROVENANCE_VERIFIED_FIX_REQUIRED",
-    "review_sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
-    "QA_sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
-    "indexed_evidence": 36,
-    "fixed_parent_source_copies": 22,
-    "additional_fixed_parent_fingerprints": 1,
-    "exact_source_anchors": 55,
-    "original_WIP_preserved": 5,
-    "findings": [
-      {
-        "id": "C1",
-        "severity": "P1",
-        "title": "TypeId equality does not prove exact C++ dynamic channel type"
-      },
-      {
-        "id": "C2",
-        "severity": "P1",
-        "title": "U16 tag serialization aliases signed and high int32 flow identities"
-      },
-      {
-        "id": "C3",
-        "severity": "P1",
-        "title": "New Tagged helper serializes uninitialized flow_size"
-      },
-      {
-        "id": "C4",
-        "severity": "P2",
-        "title": "Rethrow through old simulator event loop skips current event Unref"
-      },
-      {
-        "id": "C5",
-        "severity": "P1",
-        "title": "Postmutation failures can leave partial accounting without terminal failure latching"
-      }
-    ],
-    "execution_counts_all_zero": true,
-    "guard_released": "2026-11-01T12:34:40.443287+00:00",
-    "verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
-    "integration_scope": "Review provenance, original source anchors, frozen bytes and written repair order; no new runtime or default compatibility approval"
+    "name": "endpoint-switch-local-review-r2",
+    "status": "COMPLETE_STATIC_REVIEW_MAIN_ACCEPTED_INTEGRATION_VERIFIED_R2_F1_P1_REPAIR_REQUIRED",
+    "evidence": 62,
+    "fixed_parent_copies": 28,
+    "exact_anchors": 68,
+    "WIP_preserved": 10,
+    "review_sha256": "1a2826d74059ef9f0f217b07c4213dcff17e0e0256691e69243ed07c15cac109",
+    "QA_sha256": "9aa5810e02aff47bfa7825a622a0cae269dbd55da81dd9df1161bf44015e430b",
+    "finding": "R2-F1/P1",
+    "S1_S2_addressed_in_source_not_run": true,
+    "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+    "runtime_accepted": false,
+    "measured_mask255": 0,
+    "prior_usage_failure_and_stage_receipts_preserved": true,
+    "planned_not_executed_counts": {
+      "paired_reads": 25,
+      "composite_Read_calls": 63,
+      "successful_returns": 53,
+      "Read_refusals": 10,
+      "all_refusals": 19,
+      "standalone_endpoint_Read": 1
+    },
+    "fingerprint_scope": {
+      "switch_pin_budget_quota_observed_core_state_covered": true,
+      "complete_strings_compared_not_only_display_hashes": true,
+      "captures_before_purity_interval": true,
+      "endpoint_scope": "listed protocol fields only, not whole object memory or all queue/QP state",
+      "missing_broader_queue_fields": [
+        "physical queue packet identities",
+        "RR cursor",
+        "all queue statistics",
+        "all QP protocol fields"
+      ],
+      "pair_compares_full_observation": false,
+      "pair_compared_result_fields": [
+        "target pin count",
+        "target budget count",
+        "target quota count"
+      ],
+      "owner_malformed_state_safety": "FAIL_R2_F1",
+      "duplicate_case_branch_limit": "AddDevice also changes interface count and index; does not independently isolate seen.insert refusal"
+    },
+    "explicit_release": "2026-11-04T06:58:12.280951+00:00"
   },
   "implemented_source_history": [
     {
@@ -1132,7 +1160,7 @@
     "source_entry_env_guard": "HELD, carried into r2",
     "source_copy_established": false
   },
-  "integration_observed_utc": "2026-11-01T13:01:03.623481+00:00",
+  "integration_observed_utc": "2026-11-04T07:23:24.892661+00:00",
   "last_completed_registered_preflight_history": [
     {
       "kind": "SOURCE_REVIEW_THEN_SINGLE_BUILD_NEW_CORE_AND_MOCK_ONLY",
@@ -1299,7 +1327,7 @@
     "preflight_guards_explicitly_released": true
   },
   "endpoint_lifecycle_design_checkpoint": {
-    "state": "CHANNEL_R1_STATIC_REVIEW_ACCEPTED_R2_WIP_UNDER_REVIEW_ACTUAL_SWITCH_CALLBACK_HISTORY_G1_PENDING",
+    "state": "SWITCH_R1_R2_STATIC_REVIEWS_ACCEPTED_R3_FIXTURE_REPAIR_PENDING_DELTA_REVIEW_ACTUAL_PRODUCTION_LIFECYCLE_PENDING",
     "design": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/endpoint-lifecycle-design-r2.md",
     "original_WIP_preserved_and_matched": true,
     "review": "docs/research/evidence/ws31-endpoint-core-integration-20261101-r1/snapshots/main/evidence/endpoint-ledger-local-review-main-acceptance-r1.json",
@@ -1388,12 +1416,50 @@
     "channel_WIP_written_not_compiled": true,
     "channel_r1_review_verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
     "channel_r2_contract": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-contract-r2.md",
-    "channel_r2_plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
-    "channel_r2_readonly_review_main_reported_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:4",
     "channel_G1_and_all_production_identity_integrated": false,
     "channel_shared_control_coverage_accepted": false,
     "channel_default_usage_marker_cost_pending": true,
-    "scope_of_tree_entries_and_tree_sha256": "Historical 20bc portable-core freeze; object 8cd full tree is in last_verified_endpoint_object_checkpoint"
+    "scope_of_tree_entries_and_tree_sha256": "Historical 20bc portable-core freeze; object 8cd full tree is in last_verified_endpoint_object_checkpoint",
+    "historical_channel_r2_review_metadata": {
+      "channel_r2_plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+      "channel_r2_readonly_review_main_reported_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:4"
+    },
+    "channel_R2_01_const_reference_source_fix_confirmed": true,
+    "switch_r1_r2_Integration_verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+    "actual_switch_composite_WIP_written": true,
+    "switch_measured_ALL_mask": 0,
+    "new_network_completions": 0,
+    "r3_plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
+    "r3_delta_sha256": "86bd98a9bc94307e337b3491385e051dd4581d6dcc198c5869392350e9c3abd7",
+    "r3_single_fixture_only_other_nine_unchanged": true,
+    "current_fingerprint_scope": {
+      "switch_pin_budget_quota_observed_core_state_covered": true,
+      "complete_strings_compared_not_only_display_hashes": true,
+      "captures_before_purity_interval": true,
+      "endpoint_scope": "listed protocol fields only, not whole object memory or all queue/QP state",
+      "missing_broader_queue_fields": [
+        "physical queue packet identities",
+        "RR cursor",
+        "all queue statistics",
+        "all QP protocol fields"
+      ],
+      "pair_compares_full_observation": false,
+      "pair_compared_result_fields": [
+        "target pin count",
+        "target budget count",
+        "target quota count"
+      ],
+      "owner_malformed_state_safety": "FAIL_R2_F1",
+      "duplicate_case_branch_limit": "AddDevice also changes interface count and index; does not independently isolate seen.insert refusal"
+    },
+    "planned_switch_fixture_counts_not_runtime": {
+      "paired_reads": 25,
+      "composite_Read_calls": 63,
+      "successful_returns": 53,
+      "Read_refusals": 10,
+      "all_refusals": 19,
+      "standalone_endpoint_Read": 1
+    }
   },
   "completed_registered_pilot_history": [
     {
@@ -1721,6 +1787,76 @@
       "all_executions": 0,
       "verification": "docs/research/evidence/ws31-endpoint-object-integration-20261101-r1/verification.json",
       "integration_scope": "Source/provenance/preservation plus repair/test anchors; new independent source and runtime purity pending"
+    },
+    {
+      "name": "endpoint-channel-local-review-r1",
+      "status": "COMPLETE_STATIC_REVIEW_MAIN_ACCEPTED_INTEGRATION_PROVENANCE_VERIFIED_FIX_REQUIRED",
+      "review_sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+      "QA_sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
+      "indexed_evidence": 36,
+      "fixed_parent_source_copies": 22,
+      "additional_fixed_parent_fingerprints": 1,
+      "exact_source_anchors": 55,
+      "original_WIP_preserved": 5,
+      "findings": [
+        {
+          "id": "C1",
+          "severity": "P1",
+          "title": "TypeId equality does not prove exact C++ dynamic channel type"
+        },
+        {
+          "id": "C2",
+          "severity": "P1",
+          "title": "U16 tag serialization aliases signed and high int32 flow identities"
+        },
+        {
+          "id": "C3",
+          "severity": "P1",
+          "title": "New Tagged helper serializes uninitialized flow_size"
+        },
+        {
+          "id": "C4",
+          "severity": "P2",
+          "title": "Rethrow through old simulator event loop skips current event Unref"
+        },
+        {
+          "id": "C5",
+          "severity": "P1",
+          "title": "Postmutation failures can leave partial accounting without terminal failure latching"
+        }
+      ],
+      "execution_counts_all_zero": true,
+      "guard_released": "2026-11-01T12:34:40.443287+00:00",
+      "verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
+      "integration_scope": "Review provenance, original source anchors, frozen bytes and written repair order; no new runtime or default compatibility approval"
+    },
+    {
+      "name": "endpoint-channel-local-review-r2",
+      "status": "COMPLETE_STATIC_REVIEW_MAIN_ACCEPTED_INTEGRATION_PROVENANCE_VERIFIED_REPAIRS_SOURCE_ONLY",
+      "evidence": 42,
+      "fixed_parent_copies": 26,
+      "exact_anchors": 67,
+      "review_sha256": "cf9deb2b6207231a707953b76d182beabe2de2c3d40e9b0bf29ec4c2889d2536",
+      "new_finding": "R2-01/P2",
+      "const_reference_repair_source_confirmed": true,
+      "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+      "runtime_accepted": false
+    },
+    {
+      "name": "endpoint-switch-local-review-r1",
+      "status": "COMPLETE_STATIC_REVIEW_MAIN_ACCEPTED_INTEGRATION_PROVENANCE_VERIFIED_REPAIRS_SOURCE_ONLY",
+      "evidence": 43,
+      "fixed_parent_copies": 16,
+      "exact_anchors": 68,
+      "WIP_preserved": 9,
+      "review_sha256": "8ec0ab1523d7340049e51be5f774f32a4eadf13439475c7cbcc7116363a0b029",
+      "QA_sha256": "e7db79776f5c14bd48d3dac02ca47be069f8cc2ebd386125b5a0fb2f1ef01bd4",
+      "findings": [
+        "S1/P1",
+        "S2/P2"
+      ],
+      "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+      "runtime_accepted": false
     }
   ],
   "completed_registered_local_goal_history": [
@@ -1769,6 +1905,42 @@
       "no_duplicate_sole_independent_dispatch": true,
       "terminal_cursor": "31fad034-fb0d-4f4c-9201-83aa5f24890e:102",
       "verification": "docs/research/evidence/ws31-endpoint-object-integration-20261101-r1/verification.json"
+    },
+    {
+      "kind": "ENDPOINT_CHANNEL_R2_LOCAL_READONLY_REVIEW",
+      "status": "COMPLETE_STATIC_REVIEW_FIX_REQUIRED_NO_EXECUTION",
+      "owner": "01a19323-2201-7b23-a0f1-905c71496d38",
+      "plan": "docs/research/ws31/main/endpoint-channel-local-review-r2.json",
+      "fixed_plan_snapshot": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-local-review-r2.json",
+      "plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+      "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+      "files_working_sha256": {
+        "src/point-to-point/model/qbb-channel.h": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+        "src/point-to-point/model/qbb-channel.cc": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+        "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+        "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+        "scratch/ws31-endpoint-channel-test.cc": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698"
+      },
+      "preserved_WIP": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/r2-wip/",
+      "reported_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:4",
+      "pre_dispatch_idle_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:3",
+      "current_new_WIP": true,
+      "remote_build_fixture_network_execution_authorized": false,
+      "source_or_main_edits_by_independent_authorized": false,
+      "new_commit_or_push_authorized_by_review_plan": false,
+      "source_guard": "Exactly five r2 files frozen until sole read-only review returns",
+      "outcomes_accepted_by_Integration": true,
+      "no_duplicate_sole_independent_dispatch": true,
+      "requirements_after_review": [
+        "Main accepts review and fixes necessary issues before freezing a new source",
+        "Actual switch pure-read, completion callback savedRX, history cleanup and actual parsed G1",
+        "All production identity producers before U16 serialization; explicit shared PFC/CNP/ACK/NACK/retransmission coverage",
+        "Real two-generation network positive/refusal cases under new independent plan and resource gates",
+        "Independent C1 V0; three-candidate matched ablation; business/background effects and state/runtime costs"
+      ],
+      "terminal_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:5",
+      "completion_scope": "Channel r2 review only; R2-01 repaired in source and reviewed as minimal delta by switch r1",
+      "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json"
     }
   ],
   "last_verified_endpoint_static_checkpoint": {
@@ -1910,44 +2082,134 @@
       ],
       "no_duplicate_sole_independent_dispatch": true,
       "superseded_at_node18": "Channel WIP now authored and reviewed once; switch/callback/history/G1 implementation remains incomplete"
+    },
+    {
+      "kind": "ENDPOINT_SWITCH_R1_READONLY_REVIEW",
+      "status": "COMPLETE_STATIC_REVIEW_S1_P1_S2_P2_NO_RUNTIME",
+      "terminal_cursor": "e16696ac-9cfa-4eb6-8915-a12c49082377:1",
+      "source_guard_explicitly_released": true,
+      "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json"
+    },
+    {
+      "kind": "ENDPOINT_SWITCH_R2_READONLY_REVIEW",
+      "status": "COMPLETE_AFTER_SAME_GOAL_USAGE_LIMIT_RESUME_R2_F1_P1_NO_RUNTIME",
+      "failed_prior_turn": "01a19786-5399-7631-a7c8-c0517ab25c14",
+      "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:3",
+      "source_guard_explicitly_released": "2026-11-04T06:58:12.280951+00:00",
+      "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json"
     }
   ],
   "last_verified_endpoint_channel_static_checkpoint": {
-    "record": "docs/handoffs/2026-11-01-ws31-endpoint-channel-integration.md",
-    "verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
-    "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
-    "review_sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
-    "QA_sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
-    "indexed_evidence": 36,
-    "fixed_parent_copies": 22,
-    "additional_fixed_parent_fingerprints": 1,
-    "exact_source_anchors": 55,
-    "r1_WIP_preserved": 5,
-    "r2_current_and_frozen_WIP": 5,
-    "r1_to_r2_changed_files": [
-      "src/point-to-point/model/qbb-channel.h",
-      "src/point-to-point/model/qbb-channel.cc",
-      "src/point-to-point/model/ws31-endpoint-channel.h",
-      "scratch/ws31-endpoint-channel-test.cc"
-    ],
-    "deletion_restoration_checks": {
-      "r1": 3,
-      "r2": 3
-    },
-    "snapshots": 78,
-    "finding_counts": {
-      "P1": 4,
-      "P2": 1
-    },
-    "r1_guard_released": "2026-11-01T12:34:40.443287+00:00",
-    "r2_plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
-    "r2_review_main_reported_active": true,
+    "record": "docs/handoffs/2026-11-04-ws31-endpoint-switch-integration.md",
+    "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+    "evidence": 42,
+    "fixed_parent_copies": 26,
+    "exact_anchors": 67,
+    "review_sha256": "cf9deb2b6207231a707953b76d182beabe2de2c3d40e9b0bf29ec4c2889d2536",
+    "new_finding": "R2-01/P2",
+    "const_reference_repair_source_confirmed": true,
+    "minimal_source_repair_reviewed_by": "endpoint-switch-local-review-r1",
     "runtime_accepted": false,
-    "G1_and_all_production_identity_integrated": false,
-    "already_truncated_external_identity_aliases_detectable": false,
+    "G1_and_all_production_identity_integrated": false
+  },
+  "last_updated_date": "2026-11-04",
+  "endpoint_channel_static_history": [
+    {
+      "record": "docs/handoffs/2026-11-01-ws31-endpoint-channel-integration.md",
+      "verification": "docs/research/evidence/ws31-endpoint-channel-integration-20261101-r1/verification.json",
+      "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+      "review_sha256": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+      "QA_sha256": "9e96f3f9480a0f88feb76f94fd0d9299985afc9db9cfa8750bd97b7e825141fe",
+      "indexed_evidence": 36,
+      "fixed_parent_copies": 22,
+      "additional_fixed_parent_fingerprints": 1,
+      "exact_source_anchors": 55,
+      "r1_WIP_preserved": 5,
+      "r2_current_and_frozen_WIP": 5,
+      "r1_to_r2_changed_files": [
+        "src/point-to-point/model/qbb-channel.h",
+        "src/point-to-point/model/qbb-channel.cc",
+        "src/point-to-point/model/ws31-endpoint-channel.h",
+        "scratch/ws31-endpoint-channel-test.cc"
+      ],
+      "deletion_restoration_checks": {
+        "r1": 3,
+        "r2": 3
+      },
+      "snapshots": 78,
+      "finding_counts": {
+        "P1": 4,
+        "P2": 1
+      },
+      "r1_guard_released": "2026-11-01T12:34:40.443287+00:00",
+      "r2_plan_sha256": "6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0",
+      "r2_review_main_reported_active": true,
+      "runtime_accepted": false,
+      "G1_and_all_production_identity_integrated": false,
+      "already_truncated_external_identity_aliases_detectable": false,
+      "network_total_unchanged": 43,
+      "nonnetwork_adapter_conditions_unchanged": 17,
+      "new_baseline_admission": false,
+      "Flowcut_current_title_CCF_qualification": "UNKNOWN_REFERENCE_ONLY"
+    }
+  ],
+  "last_verified_endpoint_switch_static_checkpoint": {
+    "record": "docs/handoffs/2026-11-04-ws31-endpoint-switch-integration.md",
+    "verification": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/verification.json",
+    "r1": {
+      "evidence": 43,
+      "fixed_parent_copies": 16,
+      "exact_anchors": 68,
+      "WIP_preserved": 9,
+      "review_sha256": "8ec0ab1523d7340049e51be5f774f32a4eadf13439475c7cbcc7116363a0b029",
+      "QA_sha256": "e7db79776f5c14bd48d3dac02ca47be069f8cc2ebd386125b5a0fb2f1ef01bd4",
+      "findings": [
+        "S1/P1",
+        "S2/P2"
+      ]
+    },
+    "r2": {
+      "evidence": 62,
+      "fixed_parent_copies": 28,
+      "exact_anchors": 68,
+      "WIP_preserved": 10,
+      "review_sha256": "1a2826d74059ef9f0f217b07c4213dcff17e0e0256691e69243ed07c15cac109",
+      "QA_sha256": "9aa5810e02aff47bfa7825a622a0cae269dbd55da81dd9df1161bf44015e430b",
+      "finding": "R2-F1/P1",
+      "S1_S2_addressed_in_source_not_run": true
+    },
+    "r3_changed_files": [
+      "scratch/ws31-endpoint-switch-test.cc"
+    ],
+    "r3_unchanged_files": 9,
+    "r3_plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
+    "r3_runtime_accepted": false,
+    "r3_review_pending": true,
+    "source_snapshot_files": 213,
+    "planned_not_executed_counts": {
+      "paired_reads": 25,
+      "composite_Read_calls": 63,
+      "successful_returns": 53,
+      "Read_refusals": 10,
+      "all_refusals": 19,
+      "standalone_endpoint_Read": 1
+    },
+    "mask255_measured": 0,
     "network_total_unchanged": 43,
     "nonnetwork_adapter_conditions_unchanged": 17,
-    "new_baseline_admission": false,
-    "Flowcut_current_title_CCF_qualification": "UNKNOWN_REFERENCE_ONLY"
+    "prior_usage_failure_turn": "01a19786-5399-7631-a7c8-c0517ab25c14",
+    "old_failed_resume_progress_records_preserved": true,
+    "new_baseline_admission": false
+  },
+  "external_review_material_checkpoint": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\ws31-c123-external-review-brief-20261104-r1.md",
+    "sha256": "058c6c54ad80de584481ae5551731771e09e143b10d20309d113217c6e9b8244",
+    "bytes": 30029,
+    "scope": "Delivered review document identity only; not external review/novelty/efficacy certification or new implementation authority",
+    "fixed_document_snapshot": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/ws31-c123-external-review-brief-20261104-r1.md",
+    "QA_snapshot": "docs/research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/evidence/ws31-c123-external-review-brief-20261104-r1-qa.json",
+    "external_review_performed": false,
+    "novelty_or_efficacy_certified": false,
+    "parameters_or_authority_changed": false
   }
 }

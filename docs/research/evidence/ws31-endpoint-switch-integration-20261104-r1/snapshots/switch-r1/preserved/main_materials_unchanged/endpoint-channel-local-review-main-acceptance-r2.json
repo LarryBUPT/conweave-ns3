@@ -1,0 +1,21 @@
+{
+  "at_utc": "2026-11-01T13:16:06.317498+00:00",
+  "status": "MAIN_ACCEPTED_COMPLETE_R2_STATIC_REVIEW_ONE_P2_REQUESTED_FIX_AND_C2_INTEGRATION_OPEN",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "review_sha256": "cf9deb2b6207231a707953b76d182beabe2de2c3d40e9b0bf29ec4c2889d2536",
+  "QA_sha256": "5f7c160612ee3ec3fc43458a56bfc2c897201051dbe1613ca523da0aeb919662",
+  "evidence_items_verified": 42,
+  "fixed_parent_copies_verified": 26,
+  "exact_source_anchors_verified": 67,
+  "WIP_unchanged": 5,
+  "new_findings": {
+    "P1": 0,
+    "P2": 1
+  },
+  "old_R1_review_QA_report_unchanged": true,
+  "guard_released": "EXPLICITLY_RELEASED_AFTER_COMPLETED_LOCAL_R2_STATIC_REVIEW",
+  "terminal_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:5",
+  "execution_counts_all_zero": true,
+  "minimum_fix": "DeliverWs31 declaration and definition fifth argument const Ws31Leave &; event still owns stored callback value",
+  "scope": "Static review acceptance only; no C++ execution or effects; actual G1/producers/sharedcontrol/endpoint network still required"
+}

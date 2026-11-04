@@ -1,0 +1,26 @@
+{
+  "at_utc": "2026-11-04T06:41:38.164328+00:00",
+  "status": "PRIOR_R2_READONLY_TURN_USAGE_LIMIT_FAILED_SAME_GOAL_RESUMED",
+  "failed_turn": "01a19786-5399-7631-a7c8-c0517ab25c14",
+  "observed_terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:1",
+  "failure": "Usage limit; no r2-prefixed delivery found. Tool indicated retry availability 2026-11-04 14:38 local. No successful review is inferred.",
+  "plan_sha256": "950104b5c26805437f7dab8a877176a20ae9dd2be15d0ab1a65b75488780b775",
+  "source_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "ten_current_and_preserved_WIP_hashes": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+    "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+    "scratch/ws31-endpoint-switch-test.cc": "15bf37f1bd0297de3933253f6ac771883f88a0cb031c633f75ea1d75cce4ffee"
+  },
+  "source_guard": "HELD_CONTINUOUSLY_NO_RELEASE_INFERRED_FROM_FAILED_TURN",
+  "resumption": "Same sole registered independent, same plan and scope, one follow-up after confirmed failed terminal state",
+  "scientific_execution_or_source_edits_by_main": 0,
+  "old_test_repeats": 0,
+  "new_execution_authority": false
+}

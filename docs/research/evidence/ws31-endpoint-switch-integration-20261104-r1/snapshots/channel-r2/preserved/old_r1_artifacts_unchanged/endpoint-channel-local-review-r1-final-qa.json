@@ -1,0 +1,86 @@
+{
+  "at_utc": "2026-11-01T12:34:40.443287+00:00",
+  "status": "PASS_LOCAL_STATIC_REVIEW_ARTIFACT_QA_FIXES_REQUIRED",
+  "scope": "source identity, static source anchors, deletion-only restoration, artifact hashes/links/sections; not a C++ test or scientific execution",
+  "review_completed": true,
+  "implementation_or_validation_completed": false,
+  "verdict": "FIX_REQUIRED_NOT_APPROVED_FOR_UNCHANGED_ENGINEERING_EXECUTION",
+  "finding_counts": {
+    "P1": 4,
+    "P2": 1
+  },
+  "plan_sha256": "5e73c6e98844c393dc63f6e2a1d141d6116af2466b8426156d6378da2c85d20d",
+  "head_unchanged": true,
+  "five_WIP_bytes_unchanged": true,
+  "git_status_unchanged": true,
+  "main_materials_unchanged": true,
+  "old_checkpoint_and_release_unchanged": true,
+  "old_checkpoint_qa_sha256_observed": "df7c5445ff0d50cf454c7feb8f6c44baa8f4f59c4ff1f3db3e353cbbc18f6071",
+  "old_checkpoint_evidence_items_verified": 23,
+  "new_evidence_items_verified": 13,
+  "total_evidence_items_verified": 36,
+  "fixed_parent_git_blob_ids_verified": true,
+  "source_anchor_count_verified": 55,
+  "plan_questions_answered": 6,
+  "restoration_checks": {
+    "src/point-to-point/model/qbb-channel.cc": {
+      "exact_parent_git_LF": true,
+      "sha256": "212595f46f9d9df8bcae6512c2009bda20bc22f9f57067a9c53a0f4fae756ba1"
+    },
+    "src/point-to-point/model/qbb-channel.h": {
+      "exact_parent_git_LF": true,
+      "sha256": "fd2830eadfb0b6b43e4798b39b14f0af270f64ce886bbce8f0fa5a838f0e9421"
+    },
+    "src/network/model/flow-id-num-tag.h": {
+      "exact_parent_git_LF": true,
+      "sha256": "41394125ead04a92f735627dfd9c9e9f49a37ac62687eb4210e56629008ec89f"
+    }
+  },
+  "guard_macro_collision_in_src_scratch": false,
+  "nine_handoff_sections": true,
+  "local_links_checked": 31,
+  "local_links_valid": true,
+  "chinese_style": {
+    "original_readme_and_six_chapters_read": true,
+    "original_url": "https://github.com/ruanyf/document-style-guide",
+    "manual_checks": [
+      "heading hierarchy",
+      "spacing",
+      "sentences/paragraphs",
+      "numbers/units",
+      "punctuation",
+      "document structure"
+    ],
+    "basic_format_checks": true
+  },
+  "important_node_literature_recheck_complete": true,
+  "audit_tool_corrections": [
+    "Initial document-audit invocation stopped on a mistyped rdma-hw.cc path (network/model instead of point-to-point/model); corrected only this audit script, then read the same frozen source bytes. No C++ or scientific retry."
+  ],
+  "execution_counts": {
+    "ssh_remote_experiment": 0,
+    "sync_deploy": 0,
+    "compile": 0,
+    "cpp_test_fixture": 0,
+    "network_simulation": 0,
+    "old_accepted_test_rerun": 0,
+    "scientific_source_edits": 0,
+    "main_edits": 0,
+    "commit": 0,
+    "push": 0,
+    "subagents": 0
+  },
+  "owned_background_execution": false,
+  "five_file_read_only_guard_explicitly_released": true,
+  "new_execution_authority": false,
+  "only_allowed_prefix_written": true,
+  "artifacts": {
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-final-report.md": "c3572092a097e1aa2f757a4dc7b9447c9256864f3310ac49a7db533c27a04381",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-final-handoff.md": "a56cf991ef48be548bdca711454f88b01c48fde7f3699ec59f48d5295543523d",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-final-review.json": "85b22cc6a3393d2f4d07d597d32128864aa2e95eb06e6c20481b01c208e7f1f9",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-final-guards-released.json": "19f45db3ac67fb4621246c858245a1be267b838041f2a04de599be0f3ba9add9",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-final-evidence-index.json": "cdade4187c9d6fe50bcde6d74f57b3d2803578649651a84f31aaf1929f08c7d3",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-channel-local-review-r1-final-audit.py": "3bbca5377f689059ad7ee85db018733d633b679b66ca5990ec5d3f4c1d3a0fd9"
+  },
+  "QA_self_hash": "not embedded"
+}

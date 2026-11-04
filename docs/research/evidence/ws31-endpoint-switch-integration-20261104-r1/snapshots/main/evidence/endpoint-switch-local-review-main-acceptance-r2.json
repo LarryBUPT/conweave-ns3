@@ -1,0 +1,123 @@
+{
+  "at_utc": "2026-11-04T07:13:24.293867+00:00",
+  "status": "MAIN_ACCEPTED_COMPLETE_STATIC_REVIEW_R2_F1_P1_FIXTURE_REPAIR_REQUIRED",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "verified": {
+    "artifacts": 8,
+    "prior_switch_r1_artifacts_unchanged": 7,
+    "incomplete_stage_receipts_unchanged": 2,
+    "fixed_parent": 28,
+    "evidence": 62,
+    "source_anchors": 68
+  },
+  "unchanged_current_and_preserved_WIP": 10,
+  "plan_sha256": "950104b5c26805437f7dab8a877176a20ae9dd2be15d0ab1a65b75488780b775",
+  "review_sha256": "1a2826d74059ef9f0f217b07c4213dcff17e0e0256691e69243ed07c15cac109",
+  "QA_sha256": "9aa5810e02aff47bfa7825a622a0cae269dbd55da81dd9df1161bf44015e430b",
+  "prior_resolution": [
+    {
+      "id": "S1",
+      "status": "ADDRESSED_IN_SOURCE_NOT_RUN",
+      "reason": "private combined endpoint Scope, internal actual synchronous Read, no external Observation upgrade argument"
+    },
+    {
+      "id": "S2",
+      "status": "ADDRESSED_IN_SOURCE_NOT_RUN",
+      "reason": "nonnull/owner/index/global device uniqueness/type checked both Capture and Validate"
+    }
+  ],
+  "findings": [
+    {
+      "id": "R2-F1",
+      "priority": 1,
+      "severity": "P1",
+      "status": "OPEN_MUST_FIX_BEFORE_NEW_EXECUTABLE_SLICE",
+      "title": "Owner-refusal purity fingerprint dereferences an unbound switch QP group before invoking Read",
+      "anchors": [
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 303
+        },
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 267
+        },
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 223
+        },
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 134
+        },
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 139
+        },
+        {
+          "path": "src/point-to-point/model/qbb-net-device.cc",
+          "line": 91
+        },
+        {
+          "path": "src/point-to-point/model/rdma-hw.cc",
+          "line": 231
+        }
+      ],
+      "source_chain": [
+        "middle-link switch device starts with RdmaEgressQueue whose default Ptr qpGrp is null",
+        "only the two host drivers call Init/Setup and bind groups",
+        "SetNode(host) changes the role seen by Device fingerprint",
+        "denyRead invokes state() before observe()",
+        "host branch dereferences qpGrp before the intended owner/index guard"
+      ],
+      "consequence": "Undefined behavior/null-group access before expected refusal; later history/queue/manual-token/cleanup/scope cases cannot be accepted as reachable",
+      "minimum_action": "Safely fingerprint malformed ownership without selecting protocol layout from the mutated owner: use captured/iterated role and optional-object presence checks, preserving before/after comparisons. Do not fill groups or repair owner during fingerprint. Assert intended refusal cause.",
+      "evidence_level": "static source finding, not observed crash or runtime failure"
+    }
+  ],
+  "fingerprint_scope": {
+    "switch_pin_budget_quota_observed_core_state_covered": true,
+    "complete_strings_compared_not_only_display_hashes": true,
+    "captures_before_purity_interval": true,
+    "endpoint_scope": "listed protocol fields only, not whole object memory or all queue/QP state",
+    "missing_broader_queue_fields": [
+      "physical queue packet identities",
+      "RR cursor",
+      "all queue statistics",
+      "all QP protocol fields"
+    ],
+    "pair_compares_full_observation": false,
+    "pair_compared_result_fields": [
+      "target pin count",
+      "target budget count",
+      "target quota count"
+    ],
+    "owner_malformed_state_safety": "FAIL_R2_F1",
+    "duplicate_case_branch_limit": "AddDevice also changes interface count and index; does not independently isolate seen.insert refusal"
+  },
+  "planned_not_executed_counts": {
+    "paired_reads": 25,
+    "composite_Read_calls": 63,
+    "successful_returns": 53,
+    "Read_refusals": 10,
+    "all_refusals": 19,
+    "standalone_endpoint_Read": 1
+  },
+  "explicit_release": "2026-11-04T06:58:12.280951+00:00",
+  "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:3",
+  "runtime_network_or_measured_mask255_accepted": false,
+  "execution_counts": {
+    "ssh_remote": 0,
+    "sync_deploy": 0,
+    "compile_build": 0,
+    "CXX_test_fixture": 0,
+    "network": 0,
+    "old_accepted_test_rerun": 0,
+    "scientific_source_edits": 0,
+    "main_edits": 0,
+    "commit": 0,
+    "push": 0,
+    "subagents": 0
+  },
+  "next": "Safe optional-object fingerprint independent of malformed owner; assert actual refusal reason; new frozen source before any dynamic validation"
+}

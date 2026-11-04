@@ -1,0 +1,30 @@
+{
+  "at_utc": "2026-11-04T07:17:19.341689+00:00",
+  "status": "PASS_SOURCE_SEAL_LINKS_AND_SCOPE_ONLY_NO_CPP_EXECUTION",
+  "artifacts": {
+    "endpoint-switch-fixture-repair-r3.md": "cbe29558a425b4e40edd230f726b7a70435ddcea93f622f7182d8557edce9a94",
+    "endpoint-switch-node20-handoff.md": "2807d54d5aa80886c7a69d95828c6855e7e11e7e1d12c49880732d378ce56ecc",
+    "endpoint-switch-local-review-r3.json": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
+    "evidence/endpoint-switch-local-review-main-acceptance-r2.json": "0691d3fef476cf1a0be5393a33c4c9d59c22737d964429879f1888cbb35109b0",
+    "evidence/endpoint-switch-wip-source-audit-r3.json": "2095ff866982a14ff27fd4d73a83786497b294a6f05ed2a4444bf0c44aec01ae",
+    "evidence/endpoint-switch-node20-reference-review-r1.json": "c4221451d52b22b655edd41738539610195ac8a430dfb313b0ebcde6dfa8b3ca",
+    "evidence/endpoint-switch-r2-to-r3-fixture.patch": "86bd98a9bc94307e337b3491385e051dd4581d6dcc198c5869392350e9c3abd7"
+  },
+  "local_links": 4,
+  "handoff_sections": 9,
+  "changed_source_files": 1,
+  "unchanged_WIP_files": 9,
+  "prior_review_verified_evidence": 62,
+  "prior_review_verified_anchors": 68,
+  "prior_review_verified_fixed_parent": 28,
+  "planned_counts_not_runtime": {
+    "pairs": 25,
+    "Read": 63,
+    "returns": 53,
+    "Read_refusals": 10,
+    "all_refusals": 19
+  },
+  "protocol_scope": "Listed semantic fields, not whole memory/all queue state/full Observation comparison",
+  "new_execution_authority": false,
+  "new_baseline": false
+}

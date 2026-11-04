@@ -1,0 +1,177 @@
+{
+  "at_utc": "2026-11-04T07:10:25.769166+00:00",
+  "client_date": "2026-11-04",
+  "status": "COMPLETE_FOR_EXTERNAL_REVIEW_BRIEF_SELF_CHECKED_NOT_NOVELTY_OR_EFFICACY_CERTIFICATION",
+  "candidate": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\ws31-c123-external-review-brief-20261104-r1.md",
+    "sha256": "058c6c54ad80de584481ae5551731771e09e143b10d20309d113217c6e9b8244",
+    "bytes": 30029,
+    "characters": 13877,
+    "lines": 327
+  },
+  "scope": "One self-contained Markdown research brief; no scientific source edits, remote work or other-model dispatch",
+  "writing_contract": {
+    "reader": "Networking researcher or model with no prior chat; technical terms introduced and all core mechanisms stated inline",
+    "route": "Question -> synthetic setting and QueuePin -> information contract -> each mechanism/control/evidence -> nearest work -> remaining validation -> review prompt",
+    "allowed_claims": "Actual source rules and accepted technical evidence, hypotheses and explicitly unimplemented suggestions",
+    "nonclaims": "No verified innovation, independent efficacy, real training benefit, new baseline or automatic mechanism changes"
+  },
+  "meaning_and_evidence": {
+    "outcome": "checked",
+    "locations": [
+      "sections2-6",
+      "section8",
+      "section9"
+    ],
+    "finding": "Parameters compared with actual source; all four V0 rows rechecked against machine summary. Wording tightened so all-underestimation applies only to class_progress, not all arms. Dynamic16KiB fixture separated from two-size main input. Technical43 and adapter17 kept separate."
+  },
+  "reader_walkthrough": {
+    "type": "self-check",
+    "outcome": "checked",
+    "locations": [
+      "2.1",
+      "4.2",
+      "4.4",
+      "6.2",
+      "7-9"
+    ],
+    "finding": "Added topology, QP/ToR and MAE definitions, V0 first-use explanation, hand-worked decision example and token meaning; each paragraph moves from premise or mechanism to control/evidence/question. No independent cold reader was claimed."
+  },
+  "progression_and_framing": {
+    "outcome": "checked",
+    "finding": "Three candidates use comparable problem/rule/control/evidence/risk progression. Shared correctness work is separated from proposed scientific contributions; improvement questions do not silently change frozen plans."
+  },
+  "limitations_framing": {
+    "outcome": "checked",
+    "finding": "Unknown novelty and unfinished lifecycle/effect validation remain pending work; size-label confounding tied to particular input; engineering defects are not presented as paper contributions."
+  },
+  "language_structure_scan": {
+    "outcome": "checked",
+    "h1": 1,
+    "h2": 12,
+    "code_fences_balanced": true,
+    "consistent_table_widths": true,
+    "prose_clauses_over40_Chinese_characters": 0,
+    "unfilled_placeholders": 0,
+    "finding": "Chinese/Latin spacing, quantities/units, punctuation and heading hierarchy inspected against original ruanyf README and six chapters. Technical compound names in cited paper titles retained."
+  },
+  "delivery_checks": {
+    "local_links": 16,
+    "local_link_details": [
+      {
+        "target": "current-status.json",
+        "sha256": "06014ce0f439523eea3ccf3395e088247b8e47dbd58debd90c06b811ef6d71a1"
+      },
+      {
+        "target": "implementation-plan-r1.md",
+        "sha256": "9aad32bc5314c1aa84e9828d468b053b0efadd7580c7dacc8a7fd70634d9d08f"
+      },
+      {
+        "target": "c1-information-contract.md",
+        "sha256": "78744df82b138f7fb319f02268f23a5032d5c003d4cec103153293b156415c82"
+      },
+      {
+        "target": "c2-implementation-contract-r1.md",
+        "sha256": "4c1ee77a7eb11426a872dc3a20276d7bc3b646c54486c52ef81f7189b66a845e"
+      },
+      {
+        "target": "c3-implementation-contract-r1.md",
+        "sha256": "f726e7e2dcae8964601527c71f6edd5ba530f3389f61b1875ff204f7e0e8ae6e"
+      },
+      {
+        "target": "failure-lessons.md",
+        "sha256": "8dc79267bef205854397e4dab25ad6be350319a547ff772b102496b37e140254"
+      },
+      {
+        "target": "literature-evidence.md",
+        "sha256": "2826b91217266f912ac2e350751ae27d9b98f76cd1c7ba9888b4848431a10e1a"
+      },
+      {
+        "target": "../independent/c1-neighbor-review-r1.md",
+        "sha256": "ceee2be34c7e38291b5612999be6cbe22c9c6090b2145f833926ad05c3de670e"
+      },
+      {
+        "target": "v0-technical-replay-r1.md",
+        "sha256": "dba28023f000794f92adb3b60128c280fe2bcc49e94d3a185c091e58ae742841"
+      },
+      {
+        "target": "evidence/v0-technical-replay-r1.json",
+        "sha256": "63b81ca195046597ce5cb4ca0657819377b83be7f250d2932c70331bb7b907a4"
+      },
+      {
+        "target": "c1-v0-protocol-r1.md",
+        "sha256": "346e2e064718da56a3e14e1b926291a9ded7d5657cf3882e374b2519f259f699"
+      },
+      {
+        "target": "c13-label-node8-handoff.md",
+        "sha256": "a1fe3d49eae5516d9938f1a8b6ae03c0f2702b218fa3e4e9fef0682856af68c8"
+      },
+      {
+        "target": "label-dynamic-node11-handoff.md",
+        "sha256": "3f2a2fb6da78f82d4d1aaee21826e7817e0caac76f6b25ab2e85ca57bc644a9e"
+      },
+      {
+        "target": "adapter-default-node13-handoff.md",
+        "sha256": "f4fd41d28b33dd58b8a424980f4dd5715c56aee895da8b41bfc6d771af28ef41"
+      },
+      {
+        "target": "endpoint-switch-contract-r2.md",
+        "sha256": "da47473d94952c6b403752175a5e052cdb01103c5cb144206a51cb87f85f27d1"
+      },
+      {
+        "target": "evidence/endpoint-g1-input-producer-audit-r1/audit.json",
+        "sha256": "c4e946b9d44afab3519ee5ca62d8a34b3a0a7b29b828143bbbac35f7eb24593e"
+      }
+    ],
+    "public_reference_entries": 10,
+    "frozen_WIP_hashes_unchanged": 10,
+    "source_HEAD": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+    "formatted_layout_rendering": "not_applicable_MD",
+    "revision_author_identity": "not_applicable_no_tracked_changes",
+    "venue_compliance": "not_applicable_not_submission_manuscript",
+    "independent_novelty_review": "not_run_user_will_share_document"
+  },
+  "authority_sources": {
+    "implementation-plan-r1.md": "9aad32bc5314c1aa84e9828d468b053b0efadd7580c7dacc8a7fd70634d9d08f",
+    "c1-information-contract.md": "78744df82b138f7fb319f02268f23a5032d5c003d4cec103153293b156415c82",
+    "c2-implementation-contract-r1.md": "4c1ee77a7eb11426a872dc3a20276d7bc3b646c54486c52ef81f7189b66a845e",
+    "c3-implementation-contract-r1.md": "f726e7e2dcae8964601527c71f6edd5ba530f3389f61b1875ff204f7e0e8ae6e",
+    "failure-lessons.md": "8dc79267bef205854397e4dab25ad6be350319a547ff772b102496b37e140254",
+    "literature-evidence.md": "2826b91217266f912ac2e350751ae27d9b98f76cd1c7ba9888b4848431a10e1a",
+    "v0-technical-replay-r1.md": "dba28023f000794f92adb3b60128c280fe2bcc49e94d3a185c091e58ae742841",
+    "c1-v0-protocol-r1.md": "346e2e064718da56a3e14e1b926291a9ded7d5657cf3882e374b2519f259f699",
+    "c13-label-node8-handoff.md": "a1fe3d49eae5516d9938f1a8b6ae03c0f2702b218fa3e4e9fef0682856af68c8",
+    "label-dynamic-node11-handoff.md": "3f2a2fb6da78f82d4d1aaee21826e7817e0caac76f6b25ab2e85ca57bc644a9e",
+    "adapter-default-node13-handoff.md": "f4fd41d28b33dd58b8a424980f4dd5715c56aee895da8b41bfc6d771af28ef41",
+    "current-status.json": "06014ce0f439523eea3ccf3395e088247b8e47dbd58debd90c06b811ef6d71a1"
+  },
+  "source_code_fingerprints": {
+    "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\switch-node.cc": "a3b7bff4090990b9acb08e931687eee9a3f3796823b94c4b5037639b908f74f9",
+    "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\ws31-start.h": "94cf4206ec23ab5b373117544c67ca10409da8a0a5d03fbd87c49c0f4fa372ba",
+    "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\src\\point-to-point\\model\\ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation\\config\\leaf_spine_128_100G_OS2.txt": "ee784ffc0035de84fa9b9f64a4634952f63ee10224c6ffe58e63a7842d8e42ef"
+  },
+  "new_web_checks": [
+    "TR official publisher record",
+    "CASSINI USENIX publication page",
+    "Karuna author PDF",
+    "SRv6 arXiv version/publication-reference page"
+  ],
+  "reference_limits": [
+    "Not a fresh exhaustive novelty search",
+    "FAMG full algorithm remains unavailable",
+    "Related final versions not silently substituted for read versions",
+    "New-baseline CCF admission unchanged"
+  ],
+  "functional_retrospective": {
+    "background": true,
+    "all_three_actual_mechanisms": true,
+    "matched_controls": true,
+    "nearest_work_differences_and_reading_depth": true,
+    "positive_and_negative_technical_evidence": true,
+    "future_validation": true,
+    "unimplemented_improvement_questions": true,
+    "copyable_review_prompt": true,
+    "one_absolute_path_deliverable": true
+  }
+}

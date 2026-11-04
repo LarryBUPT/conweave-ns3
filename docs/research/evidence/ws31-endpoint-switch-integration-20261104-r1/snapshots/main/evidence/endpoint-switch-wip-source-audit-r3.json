@@ -1,0 +1,36 @@
+{
+  "at_utc": "2026-11-04T07:16:33.566282+00:00",
+  "status": "UNCOMPILED_R2_F1_P1_MINIMUM_FIXTURE_REPAIR_ONLY",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+    "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+    "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8"
+  },
+  "changed_paths": [
+    "scratch/ws31-endpoint-switch-test.cc"
+  ],
+  "other_WIP_unchanged": 9,
+  "patch": "evidence/endpoint-switch-r2-to-r3-fixture.patch",
+  "patch_sha256": "86bd98a9bc94307e337b3491385e051dd4581d6dcc198c5869392350e9c3abd7",
+  "r2_main_acceptance": "evidence/endpoint-switch-local-review-main-acceptance-r2.json",
+  "r2_main_acceptance_sha256": "0691d3fef476cf1a0be5393a33c4c9d59c22737d964429879f1888cbb35109b0",
+  "static_checks": [
+    "Stored optional egress/ACK/group/slot state guarded before member access",
+    "No role branch using mutated owner",
+    "Expected owner-guard exception message checked",
+    "No setters or cleanup in fingerprint",
+    "Same planned25pairs/63compositeRead/10ReadRefusal/53return/19allRefusal; not run"
+  ],
+  "fingerprint_scope": "Only explicitly listed protocol fields/core semantic strings; not whole memory, all queue state or full Observation equality",
+  "CXX_compile_fixture_or_network": 0,
+  "guard_release_before_edit": "2026-11-04T06:58:12.280951+00:00 and idle cursor d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:3",
+  "new_execution_authority": false
+}

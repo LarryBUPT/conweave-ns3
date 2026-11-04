@@ -1,0 +1,26 @@
+{
+  "at_utc": "2026-11-04T07:16:33.566282+00:00",
+  "local_records": {
+    "E:\\研\\毕业论文\\参考文献\\候选\\README.md": "533f502cf943a6014b79b7288fba457c9512c319b481bd80be46444371eb6997",
+    "E:\\研\\毕业论文\\参考文献\\候选\\reading-log.md": "c12e74207090daac8d898a964085763ae0e68032520a417cb549cef64f2b150e",
+    "E:\\研\\毕业论文\\参考文献\\候选\\papers\\diffflow-2016\\analysis-technical.md": "7b2225edb0acf0794c7faa9f87b796e9320d84c8683f1cecf52fe12cec64de84",
+    "E:\\研\\毕业论文\\参考文献\\候选\\papers\\diffflow-2016\\verification.md": "9ded64db7698e0c6f33bd5dd61da86a850621bd04459e935d2a59767c704ad5e",
+    "E:\\研\\毕业论文\\参考文献\\候选\\papers\\flowcut-2026\\analysis-technical.md": "cb6c8b128f88519004f12bb11497a49d019fab0e9c386bf0591a4899e255cc88",
+    "E:\\研\\毕业论文\\参考文献\\候选\\papers\\flowcut-2026\\verification.md": "eb93e690f74e282799e59f1204a5fcdcc754001fea1d67cd5853aed9a7d73789"
+  },
+  "DiffFlow": {
+    "version": "arXiv1604.05107v1",
+    "lesson": "Separate setup/activation from transport and retirement",
+    "application": "Malformed-state fingerprints must not bypass actual rejection gate",
+    "difference": "Local NS3 object/Receive event versus SDN activation and simplified Java transport",
+    "boundary": "No reclamation or RDMA efficacy proof from paper"
+  },
+  "Flowcut": {
+    "version": "arXiv2506.21406v2",
+    "lesson": "Explicit ownership/closure/shared state and drain cost",
+    "difference": "ACK byte window closure is not test-assigned state or manual event token closure",
+    "boundary": "SST/Slingshot/FGFC conditions do not certify this fixture or dual metrics"
+  },
+  "new_baseline_admission": false,
+  "new_remote_work": 0
+}

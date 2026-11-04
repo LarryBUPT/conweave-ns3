@@ -1,0 +1,663 @@
+{
+  "at_utc": "2026-11-04T06:58:12.280951+00:00",
+  "client_date": "2026-11-04",
+  "timezone": "Asia/Shanghai",
+  "target": "endpoint-switch-local-review-r2",
+  "source_chat": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "parent_chat": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "status": "COMPLETE_FOR_LOCAL_STATIC_R2_REVIEW_FIX_REQUIRED",
+  "review_complete": true,
+  "implementation_or_dynamic_validation_complete": false,
+  "verdict": "FIX_REQUIRED_ONE_P1_IN_NEW_FIXTURE",
+  "finding_counts": {
+    "P1": 1,
+    "P2": 0
+  },
+  "plan": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\endpoint-switch-local-review-r2.json",
+    "sha256": "950104b5c26805437f7dab8a877176a20ae9dd2be15d0ab1a65b75488780b775"
+  },
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "observed_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "git_status": [
+    " M src/network/model/flow-id-num-tag.h",
+    " M src/point-to-point/model/qbb-channel.cc",
+    " M src/point-to-point/model/qbb-channel.h",
+    " M src/point-to-point/model/switch-node.h",
+    " M src/point-to-point/model/ws31-budget.h",
+    " M src/point-to-point/model/ws31-quota.h",
+    "?? scratch/ws31-endpoint-channel-test.cc",
+    "?? scratch/ws31-endpoint-switch-test.cc",
+    "?? src/point-to-point/model/ws31-endpoint-channel.h",
+    "?? src/point-to-point/model/ws31-endpoint-switch-probe.h"
+  ],
+  "ten_WIP_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+    "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+    "scratch/ws31-endpoint-switch-test.cc": "15bf37f1bd0297de3933253f6ac771883f88a0cb031c633f75ea1d75cce4ffee"
+  },
+  "main_preserved_ten_match": true,
+  "recovery": {
+    "same_goal_not_new_dispatch": true,
+    "failed_prior_turn": "01a19786-5399-7631-a7c8-c0517ab25c14",
+    "prior_failure_preserved": true,
+    "terminal_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:1",
+    "original_guard_held_through_failed_turn": true,
+    "resume_receipt": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-switch-local-review-r2-resume-receipt.json",
+    "progress_receipt": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-switch-local-review-r2-progress-r1.json",
+    "incomplete_receipts_not_overwritten": true
+  },
+  "prior_resolution": [
+    {
+      "id": "S1",
+      "status": "ADDRESSED_IN_SOURCE_NOT_RUN",
+      "reason": "private combined endpoint Scope, internal actual synchronous Read, no external Observation upgrade argument"
+    },
+    {
+      "id": "S2",
+      "status": "ADDRESSED_IN_SOURCE_NOT_RUN",
+      "reason": "nonnull/owner/index/global device uniqueness/type checked both Capture and Validate"
+    }
+  ],
+  "findings": [
+    {
+      "id": "R2-F1",
+      "priority": 1,
+      "severity": "P1",
+      "status": "OPEN_MUST_FIX_BEFORE_NEW_EXECUTABLE_SLICE",
+      "title": "Owner-refusal purity fingerprint dereferences an unbound switch QP group before invoking Read",
+      "anchors": [
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 303
+        },
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 267
+        },
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 223
+        },
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 134
+        },
+        {
+          "path": "scratch/ws31-endpoint-switch-test.cc",
+          "line": 139
+        },
+        {
+          "path": "src/point-to-point/model/qbb-net-device.cc",
+          "line": 91
+        },
+        {
+          "path": "src/point-to-point/model/rdma-hw.cc",
+          "line": 231
+        }
+      ],
+      "source_chain": [
+        "middle-link switch device starts with RdmaEgressQueue whose default Ptr qpGrp is null",
+        "only the two host drivers call Init/Setup and bind groups",
+        "SetNode(host) changes the role seen by Device fingerprint",
+        "denyRead invokes state() before observe()",
+        "host branch dereferences qpGrp before the intended owner/index guard"
+      ],
+      "consequence": "Undefined behavior/null-group access before expected refusal; later history/queue/manual-token/cleanup/scope cases cannot be accepted as reachable",
+      "minimum_action": "Safely fingerprint malformed ownership without selecting protocol layout from the mutated owner: use captured/iterated role and optional-object presence checks, preserving before/after comparisons. Do not fill groups or repair owner during fingerprint. Assert intended refusal cause.",
+      "evidence_level": "static source finding, not observed crash or runtime failure"
+    }
+  ],
+  "plan_question_coverage": [
+    {
+      "question": "Verify S1 fixed by private actual EndpointProbe Scope and fresh internal actual Read; no old external Observation upgrade, no event/callback interleaving or setup GetObject inside read",
+      "analysis_complete": true,
+      "report_sections": [
+        "2:S1"
+      ]
+    },
+    {
+      "question": "Verify S2 nonnull owner/index/global uniqueness at both capture and every Validate, explicit loopback, same node/device/mode/exact-switch scope",
+      "analysis_complete": true,
+      "report_sections": [
+        "2:S2"
+      ]
+    },
+    {
+      "question": "Review new fixture C++11/old ns3 API compatibility; actual switch/driver/queue/savedTXRX bindings and two-switch target accumulation; no fabricated endpoint snapshot",
+      "analysis_complete": true,
+      "report_sections": [
+        "1",
+        "3"
+      ]
+    },
+    {
+      "question": "Inspect full semantic before/after purity fingerprint: pins, budget entry/ranges/deadlines/totals/counters, quota decisions/deadlines/activity/liveBorrowed, observed bytes/time and bindings; no size-only or mutating diagnostic",
+      "analysis_complete": true,
+      "report_sections": [
+        "1",
+        "3"
+      ]
+    },
+    {
+      "question": "Check miss/overdue/no-cleanup, K/K2/shared preservation through legal original Reset and exact liveBorrowed/totals consequences; every mode33..50 and PG-excluded key coverage",
+      "analysis_complete": true,
+      "report_sections": [
+        "4"
+      ]
+    },
+    {
+      "question": "Check stale same-nanosecond queue/interface, owner/index/duplicate/nodes/roles/subclass/mode/identity refusal, mask vs queue/history/manual channel+held tokens; no claimed real network completion",
+      "analysis_complete": true,
+      "report_sections": [
+        "4",
+        "5"
+      ]
+    },
+    {
+      "question": "Reuse prior channel findings; only check five channel/tag/fixture bytes unchanged. Identify minimum remaining blockers for complete new executable slice, not old accepted test reruns",
+      "analysis_complete": true,
+      "report_sections": [
+        "2",
+        "5"
+      ]
+    }
+  ],
+  "five_channel_files": {
+    "unchanged_from_accepted_prior_switch_r1": true,
+    "files": [
+      "src/point-to-point/model/qbb-channel.h",
+      "src/point-to-point/model/qbb-channel.cc",
+      "src/point-to-point/model/ws31-endpoint-channel.h",
+      "src/network/model/flow-id-num-tag.h",
+      "scratch/ws31-endpoint-channel-test.cc"
+    ],
+    "prior_review_sha256": "8ec0ab1523d7340049e51be5f774f32a4eadf13439475c7cbcc7116363a0b029",
+    "analysis_reused_not_repeated": true,
+    "no_old_test_rerun": true
+  },
+  "restoration_checks": {
+    "src/point-to-point/model/ws31-budget.h": {
+      "exact_reviewed_r1_after_removing_only_new_friends": true,
+      "normalized_r1_sha256": "f255f4c7c3c5a3493fe030d51f65406d040ceff1d8aa47bec8b3afec8519a672"
+    },
+    "src/point-to-point/model/ws31-quota.h": {
+      "exact_reviewed_r1_after_removing_only_new_friends": true,
+      "normalized_r1_sha256": "912011f77104ceda72242dda5d5f5aa06356bc4b49e5e7257fd8c8a23858e8e7"
+    },
+    "src/point-to-point/model/switch-node.h": {
+      "exact_reviewed_r1_after_removing_only_new_friends": true,
+      "normalized_r1_sha256": "6230eadccc8210b490c1595873adca2524525453c8c8840e78f4e7a0e67bdba2"
+    }
+  },
+  "CXX11_old_API_static_review": {
+    "new_friend_access_and_forward_declarations_consistent": true,
+    "event_id_getters_declared": true,
+    "savedTX_group_bitmap_and_egress_fields_accessible": true,
+    "no_other_confirmed_compile_blocker_found_by_reading": true,
+    "actual_compilation_verified": false
+  },
+  "fingerprint_review": {
+    "switch_pin_budget_quota_observed_core_state_covered": true,
+    "complete_strings_compared_not_only_display_hashes": true,
+    "captures_before_purity_interval": true,
+    "endpoint_scope": "listed protocol fields only, not whole object memory or all queue/QP state",
+    "missing_broader_queue_fields": [
+      "physical queue packet identities",
+      "RR cursor",
+      "all queue statistics",
+      "all QP protocol fields"
+    ],
+    "pair_compares_full_observation": false,
+    "pair_compared_result_fields": [
+      "target pin count",
+      "target budget count",
+      "target quota count"
+    ],
+    "owner_malformed_state_safety": "FAIL_R2_F1",
+    "duplicate_case_branch_limit": "AddDevice also changes interface count and index; does not independently isolate seen.insert refusal"
+  },
+  "static_fixture_chronology": {
+    "evidence_level": "not_executed_conditional_after_R2_F1_repair",
+    "planned_pairs": 25,
+    "planned_composite_Read_calls": 63,
+    "planned_Read_refusals": 10,
+    "planned_Read_returns": 53,
+    "planned_total_refusals": 19,
+    "extra_direct_endpoint_Read": 1,
+    "manual_tokens": 2,
+    "protocol_state_assignment_manual": true,
+    "mode_coverage": "18 supported read-admission modes, not production routing executions",
+    "PG_case": "projection-only copy of Entry with actual saved object fields adjusted; not cross-PG ledger admission",
+    "per_switch_seed": {
+      "target_remaining_payload": 896,
+      "target_wire_budget": 928,
+      "K2_wire_budget": 2112,
+      "target_budget_deadline_ns": 1,
+      "quota_deadline_ns": 10,
+      "clock_target_ns": 20,
+      "stored_liveBorrowed2": 1
+    },
+    "two_switch_target_counts": {
+      "pins": 4,
+      "budget": 2,
+      "quota": 2
+    },
+    "cleanup_per_switch": {
+      "K_absent": true,
+      "K2_four_table_entries_retained": true,
+      "budget_port1": 0,
+      "budget_port4": 2112,
+      "budget_deadlines": 1,
+      "quota_deadlines": 1,
+      "stored_liveBorrowed2": 0,
+      "shared_history_retained": true
+    },
+    "mask255_measured": false,
+    "natural_network_completion": false
+  },
+  "important_node_literature_recheck": {
+    "complete": true,
+    "entry_points": [
+      "candidate README",
+      "reading-log"
+    ],
+    "versions": [
+      {
+        "paper": "DiffFlow",
+        "version": "arXiv:1604.05107v1",
+        "lesson": "separate activation, actual transport and reclamation evidence",
+        "boundary": "simplified Java and class queues do not establish RDMA correctness/effects"
+      },
+      {
+        "paper": "Flowcut",
+        "version": "arXiv:2506.21406v2",
+        "lesson": "explicit in-flight closure and state/cost accounting",
+        "boundary": "ACK byte closure differs from manual token assignments; SST/Slingshot results do not certify this fixture or dual metrics"
+      }
+    ],
+    "record_snapshots": 6,
+    "new_baseline_admission": false
+  },
+  "remaining_mandatory": [
+    "R2-F1 repair and new fixed source/execution plan",
+    "actual new fixture build/reachability/raw verification",
+    "completion callback and savedRX",
+    "history release",
+    "actual G1 and all identity producers",
+    "shared PFC/ACK/NACK/CNP/retransmit coverage",
+    "actual channel/held-copy and two-generation network positive/negative cases",
+    "independent C1 V0",
+    "three-candidate matched ablation",
+    "business/background two-sided effects",
+    "state/runtime costs"
+  ],
+  "evidence_index": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-switch-local-review-r2-evidence-index.json",
+  "evidence_items": 62,
+  "exact_source_anchors": [
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 36,
+      "contains": "Ws31EndpointProbe::Scope endpoint;"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 55,
+      "contains": "device && device->GetNode()==node && device->GetIfIndex()==slot"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 56,
+      "contains": "seen.insert"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 58,
+      "contains": "DynamicCast<QbbNetDevice>"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 59,
+      "contains": "DynamicCast<LoopbackNetDevice>"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 74,
+      "contains": "DeviceBinding"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 85,
+      "contains": "Settings::lb_mode>=33"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 96,
+      "contains": "typeid"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 102,
+      "contains": "DeviceBinding"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 107,
+      "contains": "switches>0"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 108,
+      "contains": "Ws31EndpointProbe::Capture(drivers)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 115,
+      "contains": "Validate(scope)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 120,
+      "contains": "Ws31EndpointProbe::Read"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 127,
+      "contains": "EndpointSnapshot::ALL ^"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 131,
+      "contains": "const ws31::Key key"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 139,
+      "contains": "m_ws30V13Pairs.count"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 141,
+      "contains": "m_ws31Budget.Contains"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 145,
+      "contains": "allBudget"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 148,
+      "contains": "liveBorrowed"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 154,
+      "contains": "observedFields|="
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 46,
+      "contains": "Insert(k,1,1024,512,16,0,1)"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 47,
+      "contains": "Insert(other,4,2048,1024,32,0,1000)"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 50,
+      "contains": "QuotaAdmission(10)"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 55,
+      "contains": "target.borrowed"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 76,
+      "contains": "static std::string State"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 88,
+      "contains": "b.entries"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 89,
+      "contains": "b.deadlines"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 90,
+      "contains": "b.totals"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 96,
+      "contains": "q.entries"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 97,
+      "contains": "q.deadlines"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 104,
+      "contains": "deadline->first==1"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 113,
+      "contains": "totals.at(4)==2112"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 134,
+      "contains": "d->GetNode()->GetNodeType()!=0"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 139,
+      "contains": "eq->m_qpGrp->m_qp_finished"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 163,
+      "contains": "static_assert"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 196,
+      "contains": "i<2"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 198,
+      "contains": "d->Init()"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 215,
+      "contains": "SetQpFinished(0)"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 223,
+      "contains": "Ws31EndpointSnapshotFixture::Device"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 247,
+      "contains": "before=state()"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 248,
+      "contains": "before==between"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 251,
+      "contains": "x.snapshot.pinnedEntries==y.snapshot.pinnedEntries"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 267,
+      "contains": "before=state(); Deny"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 274,
+      "contains": "Simulator::Run()"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 275,
+      "contains": "GetNanoSeconds()==20"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 277,
+      "contains": "pinnedEntries==4"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 281,
+      "contains": "std::get<4>(pgEntry.tuple)=4"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 293,
+      "contains": "mode<=50"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 301,
+      "contains": "SetIfIndex(slot+10)"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 303,
+      "contains": "swDevice->SetNode(hosts.Get(0))"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 316,
+      "contains": "auto oldEndpoint=Ws31EndpointProbe::Read"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 318,
+      "contains": "Enqueue(Create<Packet>(32),1)"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 322,
+      "contains": "ledger.AckComplete"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 326,
+      "contains": "HELD_TEST_COPY"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 329,
+      "contains": "RECEIVE_RETURNED"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 331,
+      "contains": "HELD_DISCARDED"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 335,
+      "contains": "ResetWs30V13Tuple"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 337,
+      "contains": "sharedLeft=="
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 343,
+      "contains": "liveBorrowed[2]==0"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 348,
+      "contains": "recaptured-composite-scope"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 349,
+      "contains": "left->AddDevice(swDevice)"
+    },
+    {
+      "path": "scratch/ws31-endpoint-switch-test.cc",
+      "line": 363,
+      "contains": "SUMMARY PASS"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-net-device.cc",
+      "line": 91,
+      "contains": "RdmaEgressQueue::RdmaEgressQueue()"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-net-device.cc",
+      "line": 249,
+      "contains": "m_rdmaEQ = CreateObject<RdmaEgressQueue>()"
+    },
+    {
+      "path": "src/point-to-point/model/rdma-driver.cc",
+      "line": 52,
+      "contains": "m_rdma->Setup"
+    },
+    {
+      "path": "src/point-to-point/model/rdma-hw.cc",
+      "line": 231,
+      "contains": "m_rdmaEQ->m_qpGrp = m_nic[i].qpGrp"
+    },
+    {
+      "path": "src/core/model/ptr.h",
+      "line": 416,
+      "contains": ": m_ptr (0)"
+    },
+    {
+      "path": "src/core/model/event-id.h",
+      "line": 75,
+      "contains": "GetContext"
+    }
+  ],
+  "execution_counts": {
+    "ssh_remote": 0,
+    "sync_deploy": 0,
+    "compile_build": 0,
+    "CXX_test_fixture": 0,
+    "network": 0,
+    "old_accepted_test_rerun": 0,
+    "scientific_source_edits": 0,
+    "main_edits": 0,
+    "commit": 0,
+    "push": 0,
+    "subagents": 0
+  },
+  "owned_background_execution": false,
+  "new_execution_authority": false,
+  "ten_file_guard": "EXPLICITLY_RELEASED_AT_FINAL_DELIVERY"
+}

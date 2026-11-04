@@ -1,0 +1,59 @@
+--- r2/scratch/ws31-endpoint-switch-test.cc
++++ r3/scratch/ws31-endpoint-switch-test.cc
+@@ -131,15 +131,24 @@
+         for (uint32_t i=0;i<QbbNetDevice::qCnt;++i) { o << d->m_paused[i] << ';'; Event(o,d->m_resumeEvt[i]); }
+         o << PeekPointer(d->m_queue) << ';';
+         if (d->m_queue) for (uint32_t i=0;i<BEgressQueue::qCnt;++i) o << d->m_queue->GetNBytes(i) << ';';
+-        if (d->GetNode()->GetNodeType()!=0) return;
++        // Fingerprint the stored optional bindings, independently of GetNode().
++        // A refusal case deliberately reparents a switch device to a host;
++        // that mutation must not make an unbound switch group look like a NIC.
+         const auto eq=d->m_rdmaEQ;
+-        o << PeekPointer(eq) << ',' << eq->m_rrlast << ',' << eq->m_qlast << ','
+-          << PeekPointer(eq->m_ackQ) << ',' << eq->m_ackQ->GetNBytes() << ',' << eq->m_ackQ->GetNPackets()
+-          << ',' << PeekPointer(eq->m_qpGrp) << ';';
+-        o.write(eq->m_qpGrp->m_qp_finished,sizeof(eq->m_qpGrp->m_qp_finished));
++        o << "egress=" << PeekPointer(eq) << ';';
++        if (!eq) return;
++        o << eq->m_rrlast << ',' << eq->m_qlast << ";ack=" << PeekPointer(eq->m_ackQ) << ';';
++        if (eq->m_ackQ) o << eq->m_ackQ->GetNBytes() << ',' << eq->m_ackQ->GetNPackets() << ';';
+         for (const auto &p:eq->current_pause_time) o << p.first << ',' << p.second.GetTimeStep() << ';';
+-        for (auto qp:eq->m_qpGrp->m_qps) {
+-            o << PeekPointer(qp) << ',' << qp->m_flow_id << ',' << qp->sip.Get() << ',' << qp->dip.Get() << ','
++        const auto group=eq->m_qpGrp;
++        o << ";group=" << PeekPointer(group) << ';';
++        if (!group) return;
++        o << group->m_qps.size() << ';';
++        o.write(group->m_qp_finished,sizeof(group->m_qp_finished));
++        for (auto qp:group->m_qps) {
++            o << "qp=" << PeekPointer(qp) << ';';
++            if (!qp) continue;
++            o << qp->m_flow_id << ',' << qp->sip.Get() << ',' << qp->dip.Get() << ','
+               << qp->sport << ',' << qp->dport << ',' << qp->m_pg << ',' << qp->m_size << ','
+               << qp->snd_nxt << ',' << qp->snd_una << ',' << qp->m_workload_tag << ','
+               << qp->startTime.GetTimeStep() << ',' << qp->m_ws31LaunchDelayNs << ','
+@@ -263,11 +272,12 @@
+           << " window=" << s.sharedActivity.windowNs << " seen1=" << s.sharedActivity.seen[1] << " last1=" << s.sharedActivity.last[1] << std::endl;
+         return x;
+     };
+-    auto denyRead=[&](const char *name) {
+-        const auto before=state(); Deny(name,[&]{ observe(); });
++    auto denyReadBecause=[&](const char *name,const char *expected) {
++        const auto before=state(); Deny(name,[&]{ observe(); },expected);
+         Require(before==state(),"Rejected composite read changed semantic state");
+         std::cout << "WS31_ENDPOINT_SWITCH_REFUSE_PURITY case=" << name << " semantic_bytes_equal=1" << std::endl;
+     };
++    auto denyRead=[&](const char *name) { denyReadBecause(name,""); };
+     auto empty=pair("empty-miss-no-insertion");
+     Require(empty.snapshot.Reusable(),"Actually empty scope was not reusable");
+     Ws31EndpointSwitchFixture::Seed(left,key,other); Ws31EndpointSwitchFixture::Seed(right,key,other);
+@@ -300,7 +310,8 @@
+     const auto owner=swDevice->GetNode(); const auto slot=swDevice->GetIfIndex();
+     swDevice->SetIfIndex(slot+10); denyRead("switch-index-changed");
+     Deny("bad-index-capture",[&]{ Probe::Capture(drivers); }); swDevice->SetIfIndex(slot);
+-    swDevice->SetNode(hosts.Get(0)); denyRead("switch-owner-changed");
++    swDevice->SetNode(hosts.Get(0));
++    denyReadBecause("switch-owner-changed","WS31 switch scope device owner/index/uniqueness changed");
+     Deny("bad-owner-capture",[&]{ Probe::Capture(drivers); }); swDevice->SetNode(owner);
+     qp->m_flow_id=7; denyRead("wrong-saved-identity"); qp->m_flow_id=0;
+     ++receiver->dip; denyRead("wrong-saved-rx"); --receiver->dip;

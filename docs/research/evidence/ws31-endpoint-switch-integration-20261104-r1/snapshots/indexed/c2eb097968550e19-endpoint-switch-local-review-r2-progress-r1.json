@@ -1,0 +1,46 @@
+{
+  "at_utc": "2026-11-04T06:48:39.343550+00:00",
+  "status": "INCOMPLETE_STATIC_REVIEW_PROGRESS",
+  "prior_usage_limit_failure_preserved": true,
+  "guard": "STILL_HELD",
+  "review_completed": false,
+  "source_repairs_reviewed": {
+    "S1": "private composite endpoint Scope and synchronous internal actual Read addresses old external Observation upgrade",
+    "S2": "both Capture/Validate enforce actual owner/index/non-null/global pointer uniqueness and Qbb/loopback"
+  },
+  "new_source_finding": {
+    "id": "R2-F1",
+    "priority": "P1",
+    "fixture": "scratch/ws31-endpoint-switch-test.cc",
+    "trigger_line": 303,
+    "pre_read_state_lines": [
+      267,
+      223,
+      134,
+      139
+    ],
+    "reason": "After switch device SetNode(host), fingerprint chooses host branch via mutable owner and dereferences switch RDMA egress qpGrp, which is unbound because only the two host drivers are initialized. UB/null dereference occurs before observe()/expected owner guard. Static path, not observed crash.",
+    "minimum_fix": "Fingerprint malformed ownership without classifying protocol layout from changed owner; use captured/iterated role and serialize optional queue/group presence before dereference. Do not repair production state inside fingerprint."
+  },
+  "completed": [
+    "bootstrap in requested order",
+    "plan/head/10WIP/main-preserved identities matched",
+    "previously truncated helpers and probe tail read",
+    "transaction seed/expiry/cleanup arithmetic and manual ledger chronology traced"
+  ],
+  "remaining": [
+    "finish compatibility and all assertion reachability review",
+    "document fingerprint exact scope and coverage limits",
+    "collect fixed-source evidence and literature-node recheck",
+    "final report/review/QA/handoff/release"
+  ],
+  "execution_counts": {
+    "ssh_remote": 0,
+    "compile": 0,
+    "CXX_test_fixture": 0,
+    "network": 0,
+    "source_main_edits": 0,
+    "commit_push": 0,
+    "subagents": 0
+  }
+}

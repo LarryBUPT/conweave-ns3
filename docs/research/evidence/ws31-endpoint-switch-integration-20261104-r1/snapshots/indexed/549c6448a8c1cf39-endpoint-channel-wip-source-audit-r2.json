@@ -1,0 +1,28 @@
+{
+  "at_utc": "2026-11-01T12:51:49.254482+00:00",
+  "status": "FROZEN_R2_UNCOMPILED_CHANNEL_REPAIRS_FOR_READONLY_REVIEW",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "1822d4c1d0de0ac1a3c9efe99b219e87d760eeddcc13509817696f05ca794baf",
+    "src/point-to-point/model/qbb-channel.cc": "78605eeea73a55f31a033988ee5cda04deece1a364fdfda87c115eb2450c5297",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "deb46197256d719cf329f050818612ce215d17d004811943a80489413f2b3698"
+  },
+  "original_R1_WIP_unchanged": 5,
+  "review_acceptance": "evidence/endpoint-channel-local-review-main-acceptance-r1.json",
+  "deletion_restoration_checks_passed": 3,
+  "C1": "Exact C++ typeid plus NS3TypeId; inherited-overriding subclass rejection written",
+  "C2": "Register/EncodeIdentity domain0..65535 plus explicitproducer/G1 obligation; illegalalias demonstration doesnottransmit; actualnetworkG1/producers notyetimplemented",
+  "C3": "Newencoder setsIDandflow_size beforepacketTag serialization; originaltagbodyunchanged",
+  "C4": "Eventcatches/savefailure/Stop/normalreturn, postRunfailurequery; no Invoke-stackrethrow",
+  "C5": "Postledgerhistory/open/schedule/animation failure latches; Bind allocateslocals/vector before no-throw swap+ownercommit; prefailrecoverable",
+  "I1": "EverTransmitted guard rejects bindingafteranydefaultorobservedsend; addsnormalpathstatewritewithcostpending",
+  "written_fixture_cases": "Defaultoff/nested/sameUID/type/ID/bind/ownerloss/Receive-leavefail/partialstate/schedulingboundary/actualanimationtracefail; allunexecuted",
+  "fault_scope": "Controlledthrowatexacttransactionboundaries; notactualallocatororschedulerexhaustion",
+  "local_CPP_build_run_remote_network_calls": 0,
+  "default_network_or_cost_acceptance": false,
+  "remaining": "actualswitch/completecallback/history/G1/sharedPFC/CNPcoverage/twogenerationnetwork/V0/matchedablation/dualeffects/cost",
+  "source_guard": "R2 fivepaths frozen for sole readonlyreview; no compile or remoteauthority"
+}

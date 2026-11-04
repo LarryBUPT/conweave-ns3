@@ -169,7 +169,7 @@ Integration 核 170 项索引文件、109 项 raw、13 项旧文件，以及完�
 
 r2 身份范围仅约束受控新编码器／登记；实际 G1 和全部生产构包入口未接入，已被截断的外来身份不能靠 Peek 恢复。部分故障为指定变更边界处的受控抛出，不是分配器耗尽或调度器插入失败；动画故障通过真实 trace 回调编写。夹具仍替代 Receive，没有进入生产 NIC／交换机／RDMA 接收，全部尚未执行。
 
-实现 HEAD 与个人 origin tracking 仍为 8cd，三份 tracked 修改和两份新增未提交。唯一副按[新只读计划](../research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-local-review-r2.json)审 r2，主报告 active4；计划 SHA-256 为 `6562ce1cb84f6b1b942b0d2e61982d86203371fc7f977e85e459bbb767b975e0`，五文件冻结，远端／构建／测试授权均为 0。Integration 只观察主 idle 新 cursor `30516c1d-6c65-4481-bd73-77602ce15c3a:1`，不直查或重复唤醒副。
+第十八节点时，实现树为五份未提交 WIP，唯一副按[原只读计划](../research/evidence/ws31-endpoint-channel-integration-20261101-r1/snapshots/main/endpoint-channel-local-review-r2.json)审 channel r2。计划、active4 与 Integration 当时的主 cursor 均保留在该节点；后继完整审查、修订和当前十文件冻结见第 8 节。
 
 主接收 r2 复核后处理必要问题，继续真实交换机纯读、完成回调 RX 捕获、历史清理、实际 G1、全生产者身份与共享 PFC／CNP／ACK/NACK／重传覆盖，再冻结新源和真实两代网络正反例。独立 V0、三候选匹配消融、业务／背景双侧效果和状态／运行成本仍必做，不重跑旧格。本节点重读 DiffFlow v1／Flowcut v2 的技术与核验记录，分别借鉴控制生效条件与在途闭合／排空成本；Receive 返回不是 ACK 字节闭合。Flowcut 现刊名 CCF 资格仍未知，不准入正式基线。
 
@@ -180,3 +180,19 @@ r2 身份范围仅约束受控新编码器／登记；实际 G1 和全部生产�
 单输入 V0 技术重放中，类别扣减的排序为 76/83，高于类别不扣减的 74/83，但载荷 MAE 为 120,894.73 B，高于 81,501.63 B；两侧同时保留，不据此挑选参数或宣布预测胜出。C2 决策标签接口已在 506 的五格条件下实际验收；其余错误／延迟标签及完整生命周期边界仍有明确后继。
 
 首版历史断点及当时的主状态滞后说明保留在[旧工程阶段记录](../handoffs/2026-11-01-ws31-first-implementation-and-build.md)。当前已验 43 格的范围按各节点保留；17 例适配器另计工程条件，本小输入技术覆盖不作为真实分类质量或效果。端点排空复用、独立 V0、业务／背景双侧效果及状态／运行成本仍待完成。新组合基线尚未形成，WS-31 继续 ACTIVE。
+
+## 8. 交换机复合读取与夹具修订（2026 年 11 月 4 日）
+
+第十九、二十节点已一并完成[Integration 核验](../handoffs/2026-11-04-ws31-endpoint-switch-integration.md)。补核 channel r2 的 42 项证据、26 份父源副本和 67 锚点：新 R2-01／P2 是事件调用前复制 std::function 可能先于 catch 抛出；声明和定义改用 const 引用，事件仍持有值。switch r1 审查确认该最小差异，并增强 Receive／leave／动画的原异常消息检查，尚未运行。
+
+switch r1 核 43 证据、16 父源副本、68 锚点及九份 WIP。S1／P1 指出旧端点结果可在同纳秒与新 switch 范围拼接；S2／P2 指出设备 owner、index 和唯一性未查。副显式释放后，r2 使用私有复合 Scope，Read 内直接调用实际端点读取，捕获及验证均检查接口归属／编号／全范围唯一性，并限制 Qbb 或 loopback。三头删除新增 const 查询／friend 后恢复父源；后加夹具 friend 又可精确恢复已审 r1。switch-node.cc 及算法规则没有因此改变。
+
+新夹具使用两个实际 SwitchNode、两个 host、三条 Qbb 链路及真实 driver／队列／保存 TX/RX；协议状态和两个 token 由夹具赋值。拟验证 K／K2／共享历史、到期不清理、原 Reset、同纳秒队列／接口、模式 33～50 和覆盖位与排空条件。模式仅作查询准入，不是十八种选路行为实测；两个 token 不是原生事件或 held copy 生命周期证据。
+
+同一 r2 审查因 usage limit 中断后恢复，原失败 turn、恢复及中间收据保留。完整审查已主验并经 Integration 核 62 证据、28 父源副本、68 锚点、十份封存 WIP；S1／S2 在源码层确认。新增 R2-F1／P1：malformed owner 例在指纹中先进入错误分支并访问空 QP group，尚未执行目标 Read 守卫；本轮没有实测崩溃。
+
+11 月 4 日 06:58:12 UTC 显式释放、副 idle3 后，主只改 `scratch/ws31-endpoint-switch-test.cc`。指纹按实际存储的可选 egress／ACK／group／QP 逐级判空，不依赖改坏的 owner 判断布局；owner 拒绝要求目标异常消息。另九份字节不变。HEAD／个人 tracking 仍 8cd，六份 tracked 修改、四份新增未提交；十份 r3 当前与封存一致。唯一副只读审[单文件差分计划](../research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/endpoint-switch-local-review-r3.json)，SHA-256 `b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04`，主报告 cursor `d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:4`；十文件冻结，执行授权均为 0。
+
+端点指纹只覆盖列出的协议字段，不是全对象／全部队列状态或完整 Observation 比较；重复设备用例也不能独立隔离唯一性分支。25 组双读、63 次组合 Read／53 次返回／10 次 Read 拒绝、19 次总拒绝及一次额外端点读取均为静态计划，mask 255 实测 0。修订不继承旧核心、8cd 对象夹具或 43 格网络的运行验收。
+
+外部创新性[审阅材料](../research/evidence/ws31-endpoint-switch-integration-20261104-r1/snapshots/main/ws31-c123-external-review-brief-20261104-r1.md)已交付，Integration 核其文档身份；尚无外部审阅或新颖性认证，不修改科学参数或授权。主继续实际完成回调／saved RX、历史清理、实际 G1／全部生产者和共享协议、真实两代网络正反例，继而完成独立 V0、三候选匹配消融、业务／背景双侧效果与成本。Ofan 暂缓，WS-29 不动，新组合基线未形成。

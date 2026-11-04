@@ -1,0 +1,39 @@
+{
+  "workstream": "WS-31",
+  "scope": "Local readonly new actual-switch observer review plus minimal requested constref channel correction; no execution",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "f255f4c7c3c5a3493fe030d51f65406d040ceff1d8aa47bec8b3afec8519a672",
+    "src/point-to-point/model/ws31-quota.h": "912011f77104ceda72242dda5d5f5aa06356bc4b49e5e7257fd8c8a23858e8e7",
+    "src/point-to-point/model/switch-node.h": "3d936dcc57d5dfd40985cc345235d6d4540b1597b4e0edd63e0554e6b15d5e0f",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "5af315750ab914d7a629470bfcf4ba2e16f9799205bf491fc5037617b0a9711c"
+  },
+  "preserved_WIP": "evidence/endpoint-switch-wip-r1-preserved/",
+  "source_audit": "evidence/endpoint-switch-wip-source-audit-r1.json",
+  "contract": "endpoint-switch-contract-r1.md",
+  "prior_review": "../independent/endpoint-channel-local-review-r2-review.json",
+  "prior_main_acceptance": "evidence/endpoint-channel-local-review-main-acceptance-r2.json",
+  "pre_dispatch_idle_cursor": "e48b2fab-5538-4004-8e5d-575b33e8e994:5",
+  "questions": [
+    "Reuse acceptedR2sourceanalysis; check minimal qbb declaration+definition constWs31Leave reference followsU5/T5/eventvaluestorage and exact3exceptionmessage assertions; do not redo unchangedchannelcases",
+    "Review new const Budget/Quota Contains, ObservedMemory PortCount and copiedQuotaSharedActivity: no expiry/insertion/cleanup, originalclasslayout/behavior unchanged",
+    "Check actualNodeList/node-role/type/device/mode scope and missing/shared/changed-scope pitfalls; exactSwitchNode and at leastone switch, modes33..50 only",
+    "Check freshactualendpointObservation127 identity/time/generation/nodes and zero switchcounters before supplementing targetfourtuple entries; no vacuous ALL or conflating endpointPG with switch4tuple",
+    "Review targetcounts vs global/sharedmemory/activity/liveBorrowed: never claim whole switchzero after pertuplecleanup; no Expire/Pressure/Value/GetObject/Reset during read",
+    "Give minimal actualswitchobjectpurity/refusal/cleanupevidence fixture cases and remaining realcallback/history/G1/production/sharedprotocol/twogeneration/effects obligations; sourceheader is not measuredALLcertificate"
+  ],
+  "write_prefix": "endpoint-switch-local-review-r1",
+  "prohibited": [
+    "No source/main edits, commit/push",
+    "No SSH/remote/sync/deploy/compile/test/fixture/network",
+    "No acceptedtestrepeat, Ofan/WS29/oldcontroller/matrix or newbaseline work"
+  ],
+  "source_guard": "Keep exactly9WIPpathsunchanged until reviewreturned; no broader guard or executionauthority",
+  "at_utc": "2026-11-01T13:24:04.843419+00:00"
+}

@@ -1,0 +1,68 @@
+--- reviewed-r2/src/point-to-point/model/qbb-channel.h
++++ current/src/point-to-point/model/qbb-channel.h
+@@ -140,7 +140,7 @@
+   std::exception_ptr m_ws31Failure;
+   bool m_ws31FailScheduleForTest = false;
+   static void DeliverWs31 (Ptr<QbbChannel> channel, Ptr<QbbNetDevice> destination,
+-                          Ptr<Packet> packet, uint64_t serial, Ws31Leave leave);
++                          Ptr<Packet> packet, uint64_t serial, const Ws31Leave &leave);
+ 
+   // Each point to point link has exactly two net devices
+   static const int N_DEVICES = 2;
+--- reviewed-r2/src/point-to-point/model/qbb-channel.cc
++++ current/src/point-to-point/model/qbb-channel.cc
+@@ -150,7 +150,7 @@
+ 
+ void
+ QbbChannel::DeliverWs31 (Ptr<QbbChannel> channel, Ptr<QbbNetDevice> destination,
+-                        Ptr<Packet> packet, uint64_t serial, Ws31Leave leave)
++                        Ptr<Packet> packet, uint64_t serial, const Ws31Leave &leave)
+ {
+   try
+     {
+--- reviewed-r2/scratch/ws31-endpoint-channel-test.cc
++++ current/scratch/ws31-endpoint-channel-test.cc
+@@ -26,6 +26,14 @@
+     try { operation(); } catch (const std::runtime_error &) { caught=true; }
+     Require(caught,"Expected controlled failure was not observed");
+     std::cout << "WS31_ENDPOINT_CHANNEL_FAILURE case=" << name << '\n';
++}
++template<class F> void FailureMessage(const char *name,const char *expected,F operation) {
++    bool caught=false;
++    try { operation(); } catch (const std::exception &error) {
++        caught=true; Require(std::string(error.what())==expected,"Original failure message was replaced");
++    }
++    Require(caught,"Expected original saved failure was not observed");
++    std::cout << "WS31_ENDPOINT_CHANNEL_FAILURE case=" << name << " original_message=\"" << expected << "\"\n";
+ }
+ void FailAnimation(Ptr<const Packet>,Ptr<NetDevice>,Ptr<NetDevice>,Time,Time) {
+     throw std::runtime_error("Controlled WS31 animation trace failure");
+@@ -171,7 +179,7 @@
+             pair.channel->TransmitStart(Tagged(1),pair.x,NanoSeconds(1));
+             Simulator::Run();
+             Require(session.Failed(),"Receive exception was not retained outside the event");
+-            Refuse("receive-failure-after-run",[&](){ session.RethrowFailure(); });
++            FailureMessage("receive-failure-after-run","controlled Receive failure",[&](){ session.RethrowFailure(); });
+             Require(session.Open()==1 && ledger->OutstandingTokens()==1 &&
+                     session.History().size()==1 && !session.History()[0].receiveReturned,
+                     "Receive exception fabricated closure");
+@@ -234,7 +242,8 @@
+             Simulator::Run();
+             Require(session.Failed() && calls==0 && session.Open()==1 && ledger->OutstandingTokens()==1,
+                     "Animation failure was forgotten by a later delivery");
+-            Fail("animation-original-failure-retained",[&](){ session.RethrowFailure(); });
++            FailureMessage("animation-original-failure-retained","Controlled WS31 animation trace failure",
++                           [&](){ session.RethrowFailure(); });
+             Refuse("failed-animation-finish",[&](){ session.Finish(); });
+             Simulator::Destroy();
+         }
+@@ -246,7 +255,8 @@
+             pair.channel->TransmitStart(Tagged(7),pair.x,NanoSeconds(1)); Simulator::Run();
+             Require(session.Failed() && session.Open()==1 && ledger->OutstandingTokens()==1 &&
+                     !session.History()[0].receiveReturned,"Leave failure fabricated a returned token");
+-            Fail("leave-failure-after-run",[&](){ session.RethrowFailure(); });
++            FailureMessage("leave-failure-after-run","Controlled WS31 observer boundary failure",
++                           [&](){ session.RethrowFailure(); });
+             Refuse("failed-leave-finish",[&](){ session.Finish(); });
+             Simulator::Destroy();
+         }

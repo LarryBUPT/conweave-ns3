@@ -1,0 +1,44 @@
+{
+  "at_utc": "2026-11-01T14:31:07.921058+00:00",
+  "workstream": "WS-31",
+  "scope": "Local readonly S1/S2 repair and new actual-switch fixture static review only",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+    "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+    "scratch/ws31-endpoint-switch-test.cc": "15bf37f1bd0297de3933253f6ac771883f88a0cb031c633f75ea1d75cce4ffee"
+  },
+  "preserved_WIP": "evidence/endpoint-switch-wip-r2-preserved/",
+  "source_audit": "evidence/endpoint-switch-wip-source-audit-r2.json",
+  "contract": "endpoint-switch-contract-r2.md",
+  "contract_sha256": "da47473d94952c6b403752175a5e052cdb01103c5cb144206a51cb87f85f27d1",
+  "prior_review": "../independent/endpoint-switch-local-review-r1-review.json",
+  "prior_main_acceptance": "evidence/endpoint-switch-local-review-main-acceptance-r1.json",
+  "pre_dispatch_idle_cursor": "e16696ac-9cfa-4eb6-8915-a12c49082377:1",
+  "questions": [
+    "Verify S1 fixed by private actual EndpointProbe Scope and fresh internal actual Read; no old external Observation upgrade, no event/callback interleaving or setup GetObject inside read",
+    "Verify S2 nonnull owner/index/global uniqueness at both capture and every Validate, explicit loopback, same node/device/mode/exact-switch scope",
+    "Review new fixture C++11/old ns3 API compatibility; actual switch/driver/queue/savedTXRX bindings and two-switch target accumulation; no fabricated endpoint snapshot",
+    "Inspect full semantic before/after purity fingerprint: pins, budget entry/ranges/deadlines/totals/counters, quota decisions/deadlines/activity/liveBorrowed, observed bytes/time and bindings; no size-only or mutating diagnostic",
+    "Check miss/overdue/no-cleanup, K/K2/shared preservation through legal original Reset and exact liveBorrowed/totals consequences; every mode33..50 and PG-excluded key coverage",
+    "Check stale same-nanosecond queue/interface, owner/index/duplicate/nodes/roles/subclass/mode/identity refusal, mask vs queue/history/manual channel+held tokens; no claimed real network completion",
+    "Reuse prior channel findings; only check five channel/tag/fixture bytes unchanged. Identify minimum remaining blockers for complete new executable slice, not old accepted test reruns"
+  ],
+  "write_prefix": "endpoint-switch-local-review-r2",
+  "prohibited": [
+    "No source/main edits, commit/push",
+    "No SSH/remote/sync/deploy/compile/C++ tests/fixtures/network",
+    "No accepted test repeats, Ofan/WS29/old controllers/matrix or new baseline work",
+    "No subagents or other task dispatch"
+  ],
+  "source_guard": "Exactly10 WIP paths unchanged until complete review and explicit release; all execution authority remains0",
+  "terminal_delivery": "Complete report/review/QA/evidence/handoff; explicit release and no background execution, including findings if any"
+}

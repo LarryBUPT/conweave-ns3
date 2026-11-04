@@ -1,0 +1,46 @@
+{
+  "at_utc": "2026-11-01T13:40:01.313939+00:00",
+  "target": "endpoint-switch-local-review-r1",
+  "status": "EXPLICITLY_RELEASED_AFTER_COMPLETED_LOCAL_STATIC_REVIEW",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "scope": [
+    "src/point-to-point/model/qbb-channel.h",
+    "src/point-to-point/model/qbb-channel.cc",
+    "src/point-to-point/model/ws31-endpoint-channel.h",
+    "src/network/model/flow-id-num-tag.h",
+    "scratch/ws31-endpoint-channel-test.cc",
+    "src/point-to-point/model/ws31-budget.h",
+    "src/point-to-point/model/ws31-quota.h",
+    "src/point-to-point/model/switch-node.h",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h"
+  ],
+  "working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "f255f4c7c3c5a3493fe030d51f65406d040ceff1d8aa47bec8b3afec8519a672",
+    "src/point-to-point/model/ws31-quota.h": "912011f77104ceda72242dda5d5f5aa06356bc4b49e5e7257fd8c8a23858e8e7",
+    "src/point-to-point/model/switch-node.h": "3d936dcc57d5dfd40985cc345235d6d4540b1597b4e0edd63e0554e6b15d5e0f",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "5af315750ab914d7a629470bfcf4ba2e16f9799205bf491fc5037617b0a9711c"
+  },
+  "reason": "Static review delivered; S1 P1 and S2 P2 remain for main repair",
+  "no_broader_guard_held": true,
+  "owned_background_execution": false,
+  "execution_counts": {
+    "ssh_remote": 0,
+    "sync_deploy": 0,
+    "compile": 0,
+    "cpp_test_fixture": 0,
+    "network": 0,
+    "old_accepted_test_rerun": 0,
+    "scientific_source_edits": 0,
+    "main_edits": 0,
+    "commit": 0,
+    "push": 0,
+    "subagents": 0
+  },
+  "new_execution_authority": false
+}

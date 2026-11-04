@@ -1,0 +1,57 @@
+{
+  "at_utc": "2026-11-04T07:16:33.566282+00:00",
+  "workstream": "WS-31",
+  "scope": "Local readonly minimum R2-F1 fixture delta review; reuse completed r2 analysis",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+    "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+    "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8"
+  },
+  "changed_paths": [
+    "scratch/ws31-endpoint-switch-test.cc"
+  ],
+  "unchanged_paths": [
+    "src/point-to-point/model/qbb-channel.h",
+    "src/point-to-point/model/qbb-channel.cc",
+    "src/point-to-point/model/ws31-endpoint-channel.h",
+    "src/network/model/flow-id-num-tag.h",
+    "scratch/ws31-endpoint-channel-test.cc",
+    "src/point-to-point/model/ws31-budget.h",
+    "src/point-to-point/model/ws31-quota.h",
+    "src/point-to-point/model/switch-node.h",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h"
+  ],
+  "preserved_WIP": "evidence/endpoint-switch-wip-r3-preserved/",
+  "source_audit": "evidence/endpoint-switch-wip-source-audit-r3.json",
+  "contract": "endpoint-switch-fixture-repair-r3.md",
+  "contract_sha256": "cbe29558a425b4e40edd230f726b7a70435ddcea93f622f7182d8557edce9a94",
+  "delta": "evidence/endpoint-switch-r2-to-r3-fixture.patch",
+  "delta_sha256": "86bd98a9bc94307e337b3491385e051dd4581d6dcc198c5869392350e9c3abd7",
+  "prior_review": "../independent/endpoint-switch-local-review-r2-review.json",
+  "prior_main_acceptance": "evidence/endpoint-switch-local-review-main-acceptance-r2.json",
+  "pre_dispatch_idle_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:3",
+  "questions": [
+    "Verify only one fixture changed and other9 WIP remain exact r2 bytes; reuse prior completed source review and evidence",
+    "Verify malformed-owner fingerprint follows stored bindings with explicit null guards before optional egress/ACK/group/QP fields; no object repair or mutating query",
+    "Verify R2-F1 owner refusal reaches actual Read and asserts intended guard message; original before/after string comparison retained; inspect affected old ns3/C++11 declarations only",
+    "Confirm no new cases/scientific execution or widened coverage claim; planned63/53/10/19 counts remain source expectations; list remaining callback/G1/history/sharedprotocol/twogeneration/V0/effects obligations"
+  ],
+  "write_prefix": "endpoint-switch-local-review-r3",
+  "prohibited": [
+    "No source/main edits, commit/push",
+    "No SSH/sync/deploy/compile/test/fixture/network",
+    "No repeats of accepted tests or unchanged full source analysis",
+    "No Ofan,WS29,old controller/matrix,extra agents or task dispatch"
+  ],
+  "source_guard": "All10 WIP unchanged until delta review completed and explicit release; only1changedfile needs new analysis",
+  "terminal_delivery": "Complete bounded report/review/QA/evidence/handoff, explicit guard release, no background/new execution authority"
+}

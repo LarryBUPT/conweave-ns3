@@ -1,0 +1,44 @@
+{
+  "at_utc": "2026-11-01T13:22:02.266090+00:00",
+  "status": "UNCOMPILED_SWITCH_OBSERVER_WIP_AND_REQUESTED_CHANNEL_CONSTREF_REPAIR_FROZEN",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "f255f4c7c3c5a3493fe030d51f65406d040ceff1d8aa47bec8b3afec8519a672",
+    "src/point-to-point/model/ws31-quota.h": "912011f77104ceda72242dda5d5f5aa06356bc4b49e5e7257fd8c8a23858e8e7",
+    "src/point-to-point/model/switch-node.h": "3d936dcc57d5dfd40985cc345235d6d4540b1597b4e0edd63e0554e6b15d5e0f",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "5af315750ab914d7a629470bfcf4ba2e16f9799205bf491fc5037617b0a9711c"
+  },
+  "fixed_parent_Git_LF_source_links": {
+    "src/network/model/node.cc": "349267ec7a0415f6bc42f37eb6146927ebf25c935c15081f68f0d1668d401b63",
+    "src/network/model/node-list.h": "4451d4be253799453e461cc8befbead453c3d9a5d1b6c6581e2076282a9f3902",
+    "src/point-to-point/model/switch-node.cc": "6750803859f3f8fa46bc68dedbfcc9e9c1fe2808148d3beb974919d0f4c5490b",
+    "src/point-to-point/model/ws31-endpoint-probe.h": "210166cbd71fda71d3367a427352839efd63410489a5aed0cf057e89f296e892",
+    "src/point-to-point/model/ws31-endpoint-ledger.h": "105b7ced338b85e12ddb87f0235ab9bfff1ac0444a34584a9127cb6cbe944524",
+    "src/core/model/make-event.h": "59dada1e851b4c7d0eca508ffd96274d762d565f335655a101d42ea09e890465",
+    "src/core/model/simulator.h": "bbd76551e7da0ed1efc89f147d9d73af2becf93386c7510888b0eb07316ecda3",
+    "src/core/model/type-traits.h": "2d864a36eddd257d3de04c2da8dec3dc12266ca4dea76636923888efaeadb5be"
+  },
+  "channel_R2_review_acceptance": "evidence/endpoint-channel-local-review-main-acceptance-r2.json",
+  "channel_correction": "Exactlyconstreference fifthargument in declaration+definition; event stillstorescallbackbyvalue; strengthen3originalexceptionmessagechecks",
+  "channel_diff_from_reviewed_R2": "evidence\\endpoint-channel-r2-requested-repair-r1.patch",
+  "channel_patch_sha256": "69274f22f9ac56bc8b1bb5fc28910a7cf6aed3d4e8d56737aa8d665c882929aa",
+  "switch_original_body_restoration_checks": 3,
+  "switch_changes": "Budget/Quota constContains, ObservedMemory constPortCount, Quota copiedSharedActivity, SwitchNode narrowfriend; no newlayoutdata or productioncc changes",
+  "switch_observer": "FrozenallNodeList/node/device/role/exactSwitchscope, routingmode33..50 bound; matchingfresh actualendpointobservation127 plus target4tuple entries andseparateglobal/sharedcounts; proposedmask255onlyfromRead",
+  "important_boundary": "Newmask255code is uncompiled, unexecuted; no complete certificate measured; channel/queues/protocol/G1 stillseparate",
+  "read_purity_static_checks": [
+    "NoGetObject",
+    "NoExpirePressureValueEraseReset",
+    "NodeGetNodeTypereadsfieldonly",
+    "Allnewaccountingqueriesconst"
+  ],
+  "source_state": "Nineuncommittedpaths, oldHEAD8cd; no scientificexecution",
+  "CPP_compile_fixture_network_remote_calls": 0,
+  "remaining": "Actualswitchobjectpurityfixture, parsedG1/allproducers/sharedcontrol, completioncallback/history/twogenerationnetwork/V0/effects/cost"
+}

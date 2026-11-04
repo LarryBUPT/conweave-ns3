@@ -1,0 +1,53 @@
+{
+  "at_utc": "2026-11-01T14:31:07.921058+00:00",
+  "status": "SOURCE_ONLY_COMPOSITE_SCOPE_BINDING_REPAIRS_AND_NEW_ACTUAL_SWITCH_FIXTURE",
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "branch": "feature/ws31-candidates",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "files_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+    "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+    "scratch/ws31-endpoint-switch-test.cc": "15bf37f1bd0297de3933253f6ac771883f88a0cb031c633f75ea1d75cce4ffee"
+  },
+  "preserved_WIP": "evidence/endpoint-switch-wip-r2-preserved/",
+  "r1_to_r2_patch_sha256": "fddce9e8e5861a40aed1eeb33a032319a9f053cc10dd71590683fb4e4b0b3bf3",
+  "channel_files_unchanged": [
+    "src/point-to-point/model/qbb-channel.h",
+    "src/point-to-point/model/qbb-channel.cc",
+    "src/point-to-point/model/ws31-endpoint-channel.h",
+    "src/network/model/flow-id-num-tag.h",
+    "scratch/ws31-endpoint-channel-test.cc"
+  ],
+  "three_headers_restore_to_reviewed_r1_after_removing_only_new_friends": [
+    "src/point-to-point/model/ws31-budget.h",
+    "src/point-to-point/model/ws31-quota.h",
+    "src/point-to-point/model/switch-node.h"
+  ],
+  "r1_parent_restoration_checks_carried_from_verified_review": 3,
+  "main_review_acceptance_sha256": "e35728536ece107b3329501e43f8d9aad655fb55d3bba9ee0161488de61b68c4",
+  "S1_source_action": "Private combined endpoint/switch scope; internal actual endpoint Read, no public external Observation upgrade entry",
+  "S2_source_action": "Capture and Validate enforce nonnull actual owner/index/global unique devices, explicit Qbb or loopback",
+  "fixture": "scratch/ws31-endpoint-switch-test.cc",
+  "fixture_scope": "2 actual SwitchNodes/2 hosts/3 Qbb links, actual drivers and saved TX/RX, manually assigned protocol state, manual2tokens",
+  "fixture_obligations": [
+    "25 paired reads planned; semantic state bytes equality",
+    "overdue budget/quota not cleaned",
+    "targetK/K2/shared and original ResetWs30V13Tuple",
+    "same-nanosecond queue/interface and owner/index/duplicate scope refusal",
+    "mode33..50, PG excluded from switch key",
+    "mask255 does not bypass queue/history/channel/held drain conditions"
+  ],
+  "git_diff_check": "PASS; line-ending warnings only",
+  "CXX_compile_or_execution": 0,
+  "network_runs": 0,
+  "measured_mask255_certificates": 0,
+  "new_source_commit_push_or_remote_authority": false,
+  "remaining": "Independent static review, actual callback/savedRX/history/G1/allidentityproducers/sharedprotocol/twogenerationnetwork, independentV0/effects/cost"
+}

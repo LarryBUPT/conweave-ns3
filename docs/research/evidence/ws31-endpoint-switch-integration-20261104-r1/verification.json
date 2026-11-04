@@ -1,0 +1,135 @@
+{
+  "at_utc": "2026-11-04T07:23:24.892661+00:00",
+  "client_date": "2026-11-04",
+  "status": "PASS_NODES19_20_STATIC_PROVENANCE_R3_FIXTURE_DELTA_WRITTEN_NOT_EXECUTED",
+  "fixed_parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "channel_r2": {
+    "evidence": 42,
+    "fixed_parent_copies": 26,
+    "exact_anchors": 67,
+    "review_sha256": "cf9deb2b6207231a707953b76d182beabe2de2c3d40e9b0bf29ec4c2889d2536",
+    "new_finding": "R2-01/P2",
+    "const_reference_repair_source_confirmed": true
+  },
+  "switch_r1": {
+    "evidence": 43,
+    "fixed_parent_copies": 16,
+    "exact_anchors": 68,
+    "WIP_preserved": 9,
+    "review_sha256": "8ec0ab1523d7340049e51be5f774f32a4eadf13439475c7cbcc7116363a0b029",
+    "QA_sha256": "e7db79776f5c14bd48d3dac02ca47be069f8cc2ebd386125b5a0fb2f1ef01bd4",
+    "findings": [
+      "S1/P1",
+      "S2/P2"
+    ]
+  },
+  "switch_r2": {
+    "evidence": 62,
+    "fixed_parent_copies": 28,
+    "exact_anchors": 68,
+    "WIP_preserved": 10,
+    "review_sha256": "1a2826d74059ef9f0f217b07c4213dcff17e0e0256691e69243ed07c15cac109",
+    "QA_sha256": "9aa5810e02aff47bfa7825a622a0cae269dbd55da81dd9df1161bf44015e430b",
+    "finding": "R2-F1/P1",
+    "S1_S2_addressed_in_source_not_run": true
+  },
+  "overlapping_index_counts_are_separate_not_unique_union": true,
+  "r1_switch_headers_restore_to_fixed_parent": 3,
+  "r2_switch_headers_restore_to_r1_after_friend_removal": 3,
+  "r3_changed_files": [
+    "scratch/ws31-endpoint-switch-test.cc"
+  ],
+  "r3_unchanged_files": 9,
+  "r3_current_and_preserved_files": 10,
+  "r3_plan_sha256": "b508f333802b730fbd8ab98229b7c9a161e4b2ffee276e75c5db9e45af735e04",
+  "r3_working_hashes": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+    "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+    "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+    "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8"
+  },
+  "r3_delta_sha256": "86bd98a9bc94307e337b3491385e051dd4581d6dcc198c5869392350e9c3abd7",
+  "r3_source_check_scope": "Frozen byte identities, complete one-file diff and affected null checks/guard message; no C++ approval",
+  "r3_independent_review_main_reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:4",
+  "main_observed_cursor": "f13c4cd1-6458-4d58-888a-76f78e636578:1",
+  "incomplete_review_failure_and_resume_receipts_preserved": true,
+  "prior_usage_failure_turn": "01a19786-5399-7631-a7c8-c0517ab25c14",
+  "failure_verification_scope": "Preserved main recovery and independent resume/progress/final receipts; no new platform failure inspection",
+  "r2_guard_released": "2026-11-04T06:58:12.280951+00:00",
+  "fingerprint_scope": {
+    "switch_pin_budget_quota_observed_core_state_covered": true,
+    "complete_strings_compared_not_only_display_hashes": true,
+    "captures_before_purity_interval": true,
+    "endpoint_scope": "listed protocol fields only, not whole object memory or all queue/QP state",
+    "missing_broader_queue_fields": [
+      "physical queue packet identities",
+      "RR cursor",
+      "all queue statistics",
+      "all QP protocol fields"
+    ],
+    "pair_compares_full_observation": false,
+    "pair_compared_result_fields": [
+      "target pin count",
+      "target budget count",
+      "target quota count"
+    ],
+    "owner_malformed_state_safety": "FAIL_R2_F1",
+    "duplicate_case_branch_limit": "AddDevice also changes interface count and index; does not independently isolate seen.insert refusal"
+  },
+  "planned_not_executed_counts": {
+    "paired_reads": 25,
+    "composite_Read_calls": 63,
+    "successful_returns": 53,
+    "Read_refusals": 10,
+    "all_refusals": 19,
+    "standalone_endpoint_Read": 1
+  },
+  "measured_mask255": 0,
+  "new_cpp_build_fixture_or_network_execution": 0,
+  "runtime_default_compatibility_cost_or_complete_lifecycle_accepted": false,
+  "network_technical_total_unchanged": 43,
+  "nonnetwork_adapter_conditions_unchanged": 17,
+  "current_implementation_git_status": [
+    " M src/network/model/flow-id-num-tag.h",
+    " M src/point-to-point/model/qbb-channel.cc",
+    " M src/point-to-point/model/qbb-channel.h",
+    " M src/point-to-point/model/switch-node.h",
+    " M src/point-to-point/model/ws31-budget.h",
+    " M src/point-to-point/model/ws31-quota.h",
+    "?? scratch/ws31-endpoint-channel-test.cc",
+    "?? scratch/ws31-endpoint-switch-test.cc",
+    "?? src/point-to-point/model/ws31-endpoint-channel.h",
+    "?? src/point-to-point/model/ws31-endpoint-switch-probe.h"
+  ],
+  "external_brief": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\ws31-c123-external-review-brief-20261104-r1.md",
+    "sha256": "058c6c54ad80de584481ae5551731771e09e143b10d20309d113217c6e9b8244",
+    "bytes": 30029,
+    "scope": "Delivered review document identity only; not external review/novelty/efficacy certification or new implementation authority"
+  },
+  "literature_current_records_verified": 6,
+  "earlier_literature_records_preserved": true,
+  "Flowcut_current_title_CCF_status": "UNRESOLVED_REFERENCE_ONLY",
+  "new_baseline_admission": false,
+  "remaining_mandatory": [
+    "R2-F1 repair and new fixed source/execution plan",
+    "actual new fixture build/reachability/raw verification",
+    "completion callback and savedRX",
+    "history release",
+    "actual G1 and all identity producers",
+    "shared PFC/ACK/NACK/CNP/retransmit coverage",
+    "actual channel/held-copy and two-generation network positive/negative cases",
+    "independent C1 V0",
+    "three-candidate matched ablation",
+    "business/background two-sided effects",
+    "state/runtime costs"
+  ],
+  "sole_independent_directly_polled_or_redispatched": false,
+  "source_snapshot_files": 213
+}

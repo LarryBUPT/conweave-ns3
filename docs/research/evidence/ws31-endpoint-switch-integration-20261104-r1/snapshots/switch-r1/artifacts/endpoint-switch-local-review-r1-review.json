@@ -1,0 +1,671 @@
+{
+  "at_utc": "2026-11-01T13:40:01.313939+00:00",
+  "client_date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "target": "endpoint-switch-local-review-r1",
+  "source_chat": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "parent_chat": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "status": "COMPLETE_FOR_LOCAL_STATIC_REVIEW_FIX_REQUIRED",
+  "review_complete": true,
+  "implementation_or_dynamic_validation_complete": false,
+  "verdict": "FIX_REQUIRED_SCOPE_PROVENANCE_AND_INTERFACE_BINDING",
+  "finding_counts": {
+    "P1": 1,
+    "P2": 1
+  },
+  "parent_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "observed_head": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-candidates-implementation",
+  "branch": "feature/ws31-candidates",
+  "git_status": [
+    " M src/network/model/flow-id-num-tag.h",
+    " M src/point-to-point/model/qbb-channel.cc",
+    " M src/point-to-point/model/qbb-channel.h",
+    " M src/point-to-point/model/switch-node.h",
+    " M src/point-to-point/model/ws31-budget.h",
+    " M src/point-to-point/model/ws31-quota.h",
+    "?? scratch/ws31-endpoint-channel-test.cc",
+    "?? src/point-to-point/model/ws31-endpoint-channel.h",
+    "?? src/point-to-point/model/ws31-endpoint-switch-probe.h"
+  ],
+  "plan": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\endpoint-switch-local-review-r1.json",
+    "sha256": "728a26f076559fd10165798a6d934994ad3c538a2a1a1f5692a19c3f1d485a2c"
+  },
+  "nine_WIP_working_sha256": {
+    "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+    "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+    "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+    "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+    "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+    "src/point-to-point/model/ws31-budget.h": "f255f4c7c3c5a3493fe030d51f65406d040ceff1d8aa47bec8b3afec8519a672",
+    "src/point-to-point/model/ws31-quota.h": "912011f77104ceda72242dda5d5f5aa06356bc4b49e5e7257fd8c8a23858e8e7",
+    "src/point-to-point/model/switch-node.h": "3d936dcc57d5dfd40985cc345235d6d4540b1597b4e0edd63e0554e6b15d5e0f",
+    "src/point-to-point/model/ws31-endpoint-switch-probe.h": "5af315750ab914d7a629470bfcf4ba2e16f9799205bf491fc5037617b0a9711c"
+  },
+  "main_preserved_WIP_match": true,
+  "channel_delta_review": {
+    "prior_review_sha256": "cf9deb2b6207231a707953b76d182beabe2de2c3d40e9b0bf29ec4c2889d2536",
+    "prior_QA_sha256": "5f7c160612ee3ec3fc43458a56bfc2c897201051dbe1613ca523da0aeb919662",
+    "prior_analysis_reused_not_repeated": true,
+    "qbb_two_signature_changes_only": true,
+    "channel_adapter_and_tag_header_unchanged": true,
+    "fixture_changes_only_new_helper_and_three_exact_messages": true,
+    "R2_01_status": "ADDRESSED_IN_SOURCE_NOT_BUILT_OR_RUN",
+    "template_argument_proof": "U5 const-reference invocation, T5 event-owned function value retained",
+    "C2_actual_G1_all_producers_shared_protocol_status": "INCOMPLETE"
+  },
+  "findings": [
+    {
+      "id": "S1",
+      "priority": 1,
+      "severity": "P1",
+      "status": "OPEN_MUST_FIX",
+      "title": "Endpoint observation is not bound to the same switch scope and mutation-free read step",
+      "anchors": [
+        {
+          "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+          "line": 95
+        },
+        {
+          "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+          "line": 99
+        },
+        {
+          "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+          "line": 103
+        },
+        {
+          "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+          "line": 124
+        },
+        {
+          "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+          "line": 61
+        }
+      ],
+      "counterexamples": [
+        "Real endpoint Read E, add an interface without advancing time, Capture fresh switch scope B with same node count, then Read(E,B): existing checks accept stale endpoint coverage",
+        "Real endpoint Read E then enqueue at same nanosecond before switch Read: old queue values are copied because time equality is not a state freshness proof"
+      ],
+      "minimum_action": "Share and validate complete scope provenance and enforce one mutation-free combined actual endpoint/switch read. Prefer a combined entry that performs actual endpoint Read immediately with switch read; alternatively use enforced provenance/state versions. Timestamp/context alone is insufficient.",
+      "claim_boundary": "Static conditional counterexamples only; no false drain or mask255 execution claimed"
+    },
+    {
+      "id": "S2",
+      "priority": 2,
+      "severity": "P2",
+      "status": "OPEN_MUST_FIX",
+      "title": "Captured interface pointer slots omit actual owner/index/non-null/unique binding validation",
+      "anchors": [
+        {
+          "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+          "line": 60
+        },
+        {
+          "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+          "line": 84
+        },
+        {
+          "path": "src/point-to-point/model/point-to-point-net-device.cc",
+          "line": 370
+        },
+        {
+          "path": "src/point-to-point/model/point-to-point-net-device.cc",
+          "line": 543
+        }
+      ],
+      "counterexample": "Capture, change a switch device's public ifIndex without changing Node device vector; current Validate still accepts. A reparented/shared device is not independently excluded either.",
+      "minimum_action": "At Capture and Validate require non-null device, GetNode()==captured node and GetIfIndex()==slot; deduplicate over the full scope at Capture and preserve unique binding. Align allowed interface types with endpoint scope; do not repair bad objects during read.",
+      "claim_boundary": "Upstream endpoint validation may reject some bad shapes, but it does not establish this new scope's own binding contract"
+    }
+  ],
+  "plan_question_coverage": [
+    {
+      "question": "Reuse acceptedR2sourceanalysis; check minimal qbb declaration+definition constWs31Leave reference followsU5/T5/eventvaluestorage and exact3exceptionmessage assertions; do not redo unchangedchannelcases",
+      "analysis_complete": true,
+      "report_sections": [
+        "2"
+      ]
+    },
+    {
+      "question": "Review new const Budget/Quota Contains, ObservedMemory PortCount and copiedQuotaSharedActivity: no expiry/insertion/cleanup, originalclasslayout/behavior unchanged",
+      "analysis_complete": true,
+      "report_sections": [
+        "3"
+      ]
+    },
+    {
+      "question": "Check actualNodeList/node-role/type/device/mode scope and missing/shared/changed-scope pitfalls; exactSwitchNode and at leastone switch, modes33..50 only",
+      "analysis_complete": true,
+      "report_sections": [
+        "1:S1,S2",
+        "3"
+      ]
+    },
+    {
+      "question": "Check freshactualendpointObservation127 identity/time/generation/nodes and zero switchcounters before supplementing targetfourtuple entries; no vacuous ALL or conflating endpointPG with switch4tuple",
+      "analysis_complete": true,
+      "report_sections": [
+        "1:S1",
+        "3"
+      ]
+    },
+    {
+      "question": "Review targetcounts vs global/sharedmemory/activity/liveBorrowed: never claim whole switchzero after pertuplecleanup; no Expire/Pressure/Value/GetObject/Reset during read",
+      "analysis_complete": true,
+      "report_sections": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "question": "Give minimal actualswitchobjectpurity/refusal/cleanupevidence fixture cases and remaining realcallback/history/G1/production/sharedprotocol/twogeneration/effects obligations; sourceheader is not measuredALLcertificate",
+      "analysis_complete": true,
+      "report_sections": [
+        "4",
+        "5"
+      ]
+    }
+  ],
+  "static_positive_findings": {
+    "new_queries_const_no_expiry_insertion_cleanup": true,
+    "three_header_restorations": {
+      "src/point-to-point/model/ws31-budget.h": {
+        "exact_parent_git_LF": true,
+        "sha256": "956a8840c6c039ad2144def0fb6c69bd59609b2e8a9642344c762d9335a0821c"
+      },
+      "src/point-to-point/model/ws31-quota.h": {
+        "exact_parent_git_LF": true,
+        "sha256": "7b603c37c4cec54a5bcebe65151c39c97cc03400afdf192ab28458639b2155a1"
+      },
+      "src/point-to-point/model/switch-node.h": {
+        "exact_parent_git_LF": true,
+        "sha256": "e2389625e2eb5fb9acd583eec996b4ba2a69427343d2e42e271780e6c1b5ebac"
+      }
+    },
+    "no_new_data_members_or_virtual_functions_in_three_modified_switch_headers": true,
+    "new_probe_forbidden_mutating_call_tokens_absent": true,
+    "guard_macro_collision": false,
+    "exact_SwitchNode_and_role_check": true,
+    "at_least_one_switch": true,
+    "current_mode_bound_to_setup": true,
+    "mode_coverage": {
+      "Q12": [
+        33,
+        34,
+        35,
+        43,
+        44,
+        45,
+        46
+      ],
+      "C1": [
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42
+      ],
+      "C3": [
+        47,
+        48,
+        49,
+        50
+      ]
+    },
+    "key": [
+      "sip",
+      "dip",
+      "sport",
+      "dport"
+    ],
+    "endpoint_PG_excluded_from_switch_key": true,
+    "target_and_global_shared_counts_separate": true,
+    "mask_precondition": 127,
+    "supplement_bit": 128,
+    "nonempty_switch_rows_required": true,
+    "mask255_measured": false,
+    "liveBorrowed_semantics": "copied stored count without expiry, not recomputed active lease count"
+  },
+  "minimal_actual_switch_fixture_requirements": [
+    {
+      "id": "F1",
+      "topic": "actual objects/key coverage",
+      "required": "Real drivers, savedTX/RX and EndpointProbe::Read127; at least one switch and a two-switch sum case; exact fourtuple excluding PG",
+      "implemented_or_executed_in_this_review": false
+    },
+    {
+      "id": "F2",
+      "topic": "purity",
+      "required": "Capture before purity fingerprint; before/after successful and rejected reads fingerprint pin contents, budget entries/deadlines/totals/counters, quota entries/deadlines/activity/liveBorrowed, observed bytes/time and bindings, not only Size/Contains",
+      "implemented_or_executed_in_this_review": false
+    },
+    {
+      "id": "F3",
+      "topic": "miss/expiry",
+      "required": "Missing key does not insert; overdue entries and stored liveBorrowed stay until production mutation; no Pressure/Value/WriteWs30V13State as a supposedly pure diagnostic",
+      "implemented_or_executed_in_this_review": false
+    },
+    {
+      "id": "F4",
+      "topic": "targeted cleanup",
+      "required": "K plus unrelated K2 and shared history; after valid drain gate call original tuple cleanup and show K removed, K2/shared observed/seen/last retained, liveBorrowed changes only per original Erase",
+      "implemented_or_executed_in_this_review": false
+    },
+    {
+      "id": "F5",
+      "topic": "scope refusal",
+      "required": "Default scope, no switch, unknown/false role, subclass, unsupported/changed mode, changed node/device shape, owner/index/shared-device failures",
+      "implemented_or_executed_in_this_review": false
+    },
+    {
+      "id": "F6",
+      "topic": "provenance/freshness refusal",
+      "required": "Wrong identity/time/mask/prepopulated counts/node count; same-count recaptured scope with stale endpoint and same-nanosecond queue/interface changes",
+      "implemented_or_executed_in_this_review": false
+    },
+    {
+      "id": "F7",
+      "topic": "coverage versus lifecycle",
+      "required": "Mask supplement does not override outstanding channel/held tokens, actual queues/events/history or endpoint state; no complete certificate merely from 255",
+      "implemented_or_executed_in_this_review": false
+    }
+  ],
+  "important_node_literature_recheck": {
+    "complete": true,
+    "entry_records": "candidate README and reading-log",
+    "unchanged_record_snapshots_reused": 6,
+    "versions": [
+      {
+        "paper": "DiffFlow",
+        "version": "arXiv:1604.05107v1",
+        "specific_lesson": "state activation order and retirement proof are distinct; no complete reclaim protocol in read version",
+        "scope_boundary": "simplified Java/no-full-TCP/separate queues do not prove RDMA state/effects"
+      },
+      {
+        "paper": "Flowcut",
+        "version": "arXiv:2506.21406v2",
+        "specific_lesson": "explicit in-flight/state ownership and protocol closure; retain shared history beyond one tuple",
+        "scope_boundary": "ACK byte accounting and SST/Slingshot assumptions differ from map presence and do not prove generation reuse/effects"
+      }
+    ],
+    "new_mechanism_or_baseline_admission": false
+  },
+  "remaining_mandatory": [
+    "S1/S2 repairs and new frozen source",
+    "actual switch purity/refusal/cleanup fixture",
+    "actual parsed G1 and every identity producer",
+    "shared PFC/ACK/NACK/CNP/retransmit coverage",
+    "completion callback and savedRX",
+    "history release",
+    "channel/held copy and real two-generation positive/negative cases",
+    "independent C1 V0",
+    "three-candidate matched ablation",
+    "business/background two-sided effects",
+    "state/runtime costs"
+  ],
+  "exact_source_anchors": [
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 51,
+      "contains": "scope.captured && scope.mode==Settings::lb_mode"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 57,
+      "contains": "node==binding.node"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 58,
+      "contains": "GetNDevices()==binding.devices.size()"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 60,
+      "contains": "GetDevice(i)==binding.devices[i]"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 63,
+      "contains": "typeid"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 70,
+      "contains": "lb_mode>=33 && Settings::lb_mode<=50"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 76,
+      "contains": "binding.type==0 || binding.type==1"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 78,
+      "contains": "binding.type==1"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 80,
+      "contains": "typeid"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 84,
+      "contains": "binding.devices.push_back(node->GetDevice(i))"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 87,
+      "contains": "switches>0"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 95,
+      "contains": "base.observedNs==uint64_t(now)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 96,
+      "contains": "base.tuple==entry.tuple && base.generation==entry.generation"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 97,
+      "contains": "EndpointSnapshot::ALL ^"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 98,
+      "contains": "base.pinnedEntries==0"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 99,
+      "contains": "endpoint.nodes==scope.nodes.size()"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 101,
+      "contains": "const ws31::Key key"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 103,
+      "contains": "result.snapshot=base"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 109,
+      "contains": "m_ws30V13Pairs.count(key)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 110,
+      "contains": "m_ws31Pairs.count(key)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 111,
+      "contains": "m_ws31Budget.Contains(key)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 112,
+      "contains": "m_ws31Quota.Contains(key)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 114,
+      "contains": "allQ12Pins="
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 115,
+      "contains": "allBudget="
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 116,
+      "contains": "PortCount()"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 117,
+      "contains": "SharedActivity()"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 118,
+      "contains": "liveBorrowed"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 119,
+      "contains": "snapshot.pinnedEntries"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 120,
+      "contains": "snapshot.budgetEntries"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 123,
+      "contains": "!result.switches.empty()"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-switch-probe.h",
+      "line": 124,
+      "contains": "observedFields|=ws31::EndpointSnapshot::SWITCH_STATE"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-budget.h",
+      "line": 131,
+      "contains": "Contains(const Key &key) const"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-budget.h",
+      "line": 146,
+      "contains": "PortCount() const"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "line": 112,
+      "contains": "Contains(const QuotaKey &key) const"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "line": 118,
+      "contains": "ActivitySnapshot SharedActivity() const"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "line": 120,
+      "contains": "snapshot.seen[i]=seen[i]"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "line": 45,
+      "contains": "void Expire"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "line": 49,
+      "contains": "--liveBorrowed"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-quota.h",
+      "line": 103,
+      "contains": "void Erase"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+      "line": 61,
+      "contains": "struct Observation"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+      "line": 67,
+      "contains": "uint32_t nodes=0"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+      "line": 90,
+      "contains": "static void ValidateScope"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+      "line": 99,
+      "contains": "record.devices.size()"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+      "line": 100,
+      "contains": "record.node->GetDevice(i)==record.devices[i]"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+      "line": 118,
+      "contains": "nic.device->GetNode()==host.node"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+      "line": 246,
+      "contains": "ValidateScope(scope)"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+      "line": 275,
+      "contains": "observedNs=Simulator::Now()"
+    },
+    {
+      "path": "src/point-to-point/model/ws31-endpoint-probe.h",
+      "line": 307,
+      "contains": "++result.nodes"
+    },
+    {
+      "path": "src/network/model/node.cc",
+      "line": 112,
+      "contains": "device->SetNode (this)"
+    },
+    {
+      "path": "src/network/model/node.cc",
+      "line": 113,
+      "contains": "device->SetIfIndex (index)"
+    },
+    {
+      "path": "src/network/model/node.cc",
+      "line": 125,
+      "contains": "return m_devices[index]"
+    },
+    {
+      "path": "src/network/model/node.cc",
+      "line": 130,
+      "contains": "return m_devices.size"
+    },
+    {
+      "path": "src/network/model/node.cc",
+      "line": 338,
+      "contains": "return m_node_type"
+    },
+    {
+      "path": "src/point-to-point/model/point-to-point-net-device.cc",
+      "line": 370,
+      "contains": "m_ifIndex = index"
+    },
+    {
+      "path": "src/point-to-point/model/point-to-point-net-device.cc",
+      "line": 543,
+      "contains": "m_node = node"
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.cc",
+      "line": 1344,
+      "contains": "ch.sip, ch.dip, ch.udp.sport, ch.udp.dport"
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.cc",
+      "line": 1390,
+      "contains": "m_ws30V13Pairs.erase"
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.cc",
+      "line": 1392,
+      "contains": "m_ws31Pairs.erase"
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.cc",
+      "line": 1393,
+      "contains": "m_ws31Budget.Erase"
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.cc",
+      "line": 1394,
+      "contains": "m_ws31Quota.Erase"
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.cc",
+      "line": 1459,
+      "contains": "ws31::Key key(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport)"
+    },
+    {
+      "path": "src/point-to-point/model/switch-node.cc",
+      "line": 1538,
+      "contains": "ws31::QuotaKey(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport)"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.h",
+      "line": 143,
+      "contains": "const Ws31Leave &leave"
+    },
+    {
+      "path": "src/point-to-point/model/qbb-channel.cc",
+      "line": 153,
+      "contains": "const Ws31Leave &leave"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 33,
+      "contains": "std::string(error.what())==expected"
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 182,
+      "contains": "\"controlled Receive failure\""
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 245,
+      "contains": "\"Controlled WS31 animation trace failure\""
+    },
+    {
+      "path": "scratch/ws31-endpoint-channel-test.cc",
+      "line": 258,
+      "contains": "\"Controlled WS31 observer boundary failure\""
+    }
+  ],
+  "evidence_index": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\endpoint-switch-local-review-r1-evidence-index.json",
+  "evidence_items": 43,
+  "execution_counts": {
+    "ssh_remote": 0,
+    "sync_deploy": 0,
+    "compile": 0,
+    "cpp_test_fixture": 0,
+    "network": 0,
+    "old_accepted_test_rerun": 0,
+    "scientific_source_edits": 0,
+    "main_edits": 0,
+    "commit": 0,
+    "push": 0,
+    "subagents": 0
+  },
+  "owned_background_execution": false,
+  "new_execution_authority": false,
+  "nine_file_read_only_guard": "EXPLICITLY_RELEASED_AT_DELIVERY",
+  "old_deliveries_preserved": true
+}

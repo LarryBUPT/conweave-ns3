@@ -1,0 +1,20 @@
+{
+  "at_utc": "2026-11-01T14:32:41.502417+00:00",
+  "status": "PASS_SOURCE_SEAL_AND_DOCUMENT_LINKS_ONLY_NO_CPP_VALIDATION",
+  "source_files_current_and_preserved": 10,
+  "plan_sha256": "950104b5c26805437f7dab8a877176a20ae9dd2be15d0ab1a65b75488780b775",
+  "main_review_acceptance_sha256": "e35728536ece107b3329501e43f8d9aad655fb55d3bba9ee0161488de61b68c4",
+  "links_checked": 5,
+  "handoff_sections": 9,
+  "artifacts": {
+    "endpoint-switch-contract-r2.md": "da47473d94952c6b403752175a5e052cdb01103c5cb144206a51cb87f85f27d1",
+    "endpoint-switch-node19-handoff.md": "0cd3fba147502568a1e1b920d05395cf7de6784aaaf34f594a491f9512d50e0a",
+    "evidence/endpoint-switch-wip-source-audit-r2.json": "346306c135c999c8a87bd78630beb7679132efccc3046a5f2ecaba54102a4a70",
+    "evidence/endpoint-switch-node19-reference-review-r1.json": "833ea1c200932496096a61765110087909a26c9471f5095406f7e96dc098fcf5",
+    "evidence/endpoint-switch-r1-to-r2.patch": "fddce9e8e5861a40aed1eeb33a032319a9f053cc10dd71590683fb4e4b0b3bf3"
+  },
+  "scientific_compile_fixture_network_execution": 0,
+  "new_baseline": false,
+  "measured_mask255": false,
+  "independent_dispatch_count": 1
+}
