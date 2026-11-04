@@ -1,0 +1,71 @@
+{
+  "recorded_at_utc": "2026-11-04T15:19:18.431788+00:00",
+  "kind": "COMPACTION_CONTINUATION_CHRONOLOGY_CORRECTION",
+  "source_session": "C:\\Users\\Administrator\\.codex\\sessions\\2026\\10\\30\\rollout-2026-10-30T07-34-01-01a0cfac-3176-7590-bf34-c0f176a45118_01a18a03-69ba-7470-ba5d-337494ce43ef.jsonl",
+  "source_records": {
+    "6065": {
+      "line": 6065,
+      "timestamp_utc": "2026-10-31T18:42:15.562Z",
+      "timestamp_beijing": "2026-11-01T02:42:15.562000+08:00",
+      "record_sha256": "5489d55e2c73a365cecd43d7d1a7278f6975cebbd2c186b36f51587244e12592",
+      "original_user_text": "前序工作例如WS-26-28工作确认无误后，进行归档。\n"
+    },
+    "10173": {
+      "line": 10173,
+      "timestamp_utc": "2026-11-04T12:15:05.323Z",
+      "timestamp_beijing": "2026-11-04T20:15:05.323000+08:00",
+      "record_sha256": "62c1e0070231a59592272ece6d86ebe100e47d6ad1f5c9e927262523a6955c75",
+      "summary_sha256": "fde4c7a93f593f59ab8d4ba92479035fb534544414bd278bd9327c307294ef0c",
+      "pending_action": "Sync the already-deleted WS31 heartbeat only; HOLD remains",
+      "history_explicitly_marked_complete": true
+    },
+    "10281": {
+      "line": 10281,
+      "timestamp_utc": "2026-11-04T15:15:48.098Z",
+      "timestamp_beijing": "2026-11-04T23:15:48.098000+08:00",
+      "record_sha256": "ab54045f5eadc6a599bb9c4f952302caf654fe75f3613d7ba2f056fb4901e420",
+      "original_user_text": "怎么还在核实并归档，确认上下文压缩细节，不要再出现时间类型的错误\n"
+    }
+  },
+  "archive_completion": {
+    "source": "docs/research/evidence/ws26-ws28-archive-20261101/archive-results.json",
+    "date": "2026-11-01",
+    "precision": "date_only",
+    "timezone_not_in_source": true,
+    "never_promote_date_only_to_fabricated_timestamp": true
+  },
+  "heartbeat_deletion_event": {
+    "source": "docs/research/ws31/main/evidence/finite-screen-heartbeat-stop-r1.json",
+    "event_at_utc": "2026-11-04T12:12:42.581713+00:00"
+  },
+  "metadata_sync_commit": {
+    "commit": "ab4f41da2b587b56ce4116a4d84d8741e78a4d5a",
+    "committed_at": "2026-11-04T20:19:54+08:00",
+    "is_archive_completion_time": false
+  },
+  "finding": "The compaction summary correctly retained the pending action and completed archive status. Integration incorrectly treated an old archive instruction as current and redundantly listed archived chats. This is a continuation interpretation and reporting error, not evidence that compaction lost the chronology.",
+  "actual_previous_operation": {
+    "repeated_archive_directory_reads": true,
+    "archive_mutation_repeated": false,
+    "correct_heartbeat_metadata_sync_completed": true
+  },
+  "correction": "Archive work and heartbeat metadata sync are completed history. Current work is only this chronology correction. WS31 remains HOLD; no automatic research action is pending.",
+  "guard_rules": [
+    "Separate latest actual human message, retained history, environment messages and forwarded handoffs.",
+    "Resume only the evidence-backed unfinished checkpoint; do not restart completed instructions.",
+    "Repeating a completed action requires new evidence or explicit instruction, not compaction alone.",
+    "Separate event, receipt, observation and report times; preserve precision and timezone.",
+    "Keep source UTC; display Beijing with date conversion; do not invent unknown times."
+  ],
+  "time_conversion": {
+    "display_timezone": "Asia/Shanghai",
+    "offset_for_selected_2026_dates": "+08:00",
+    "local_ZoneInfo_tzdata_available": false,
+    "fallback": "Explicit UTC+08:00 for these 2026 timestamps only; no package or system setting change",
+    "first_attempt_wrote_files": false
+  },
+  "scope_unchanged": true,
+  "new_thread_or_automation_actions": false,
+  "archive_status_polled_this_turn": false,
+  "remote_experiment_access": false
+}
