@@ -24,6 +24,8 @@
 #include "ns3/log.h"
 #include <iostream>
 #include <fstream>
+#include <limits>
+#include <stdexcept>
 
 NS_LOG_COMPONENT_DEFINE ("QbbChannel");
 
@@ -99,13 +101,76 @@ QbbChannel::TransmitStart (
 
   uint32_t wire = src == m_link[0].m_src ? 0 : 1;
 
-  Simulator::ScheduleWithContext (m_link[wire].m_dst->GetNode ()->GetId (),
+  if (!m_ws31Enter)
+    {
+      m_ws31EverTransmitted = true;
+      Simulator::ScheduleWithContext (m_link[wire].m_dst->GetNode ()->GetId (),
                                   txTime + m_delay, &QbbNetDevice::Receive,
                                   m_link[wire].m_dst, p);
+    }
+  else
+    {
+      if (!m_ws31Leave || !m_ws31Owner || m_ws31Failed ||
+          m_nDevices != N_DEVICES ||
+          (src != m_link[0].m_src && src != m_link[1].m_src) ||
+          m_ws31Pending == std::numeric_limits<uint64_t>::max ())
+        throw std::logic_error ("Invalid WS31 channel observer or source");
+      const uint64_t serial = m_ws31Enter (p, src, m_link[wire].m_dst);
+      if (serial == 0)
+        throw std::logic_error ("WS31 channel observer returned an empty token");
+      m_ws31EverTransmitted = true;
+      ++m_ws31Pending;
+      // Exactly one delivery event, with the original delay, context and packet.
+      try
+        {
+          if (m_ws31FailScheduleForTest)
+            {
+              m_ws31FailScheduleForTest = false;
+              throw std::runtime_error ("Controlled WS31 pre-schedule failure");
+            }
+          Simulator::ScheduleWithContext (m_link[wire].m_dst->GetNode ()->GetId (),
+                                      txTime + m_delay, &QbbChannel::DeliverWs31,
+                                      Ptr<QbbChannel> (this), m_link[wire].m_dst,
+                                      p, serial, m_ws31Leave);
+          m_txrxQbb (p, src, m_link[wire].m_dst, txTime, txTime + m_delay);
+        }
+      catch (...)
+        {
+          m_ws31Failed = true;
+          if (!m_ws31Failure) m_ws31Failure = std::current_exception ();
+          throw;
+        }
+      return true;
+    }
 
   // Call the tx anim callback on the net device
   m_txrxQbb (p, src, m_link[wire].m_dst, txTime, txTime + m_delay);
   return true;
+}
+
+void
+QbbChannel::DeliverWs31 (Ptr<QbbChannel> channel, Ptr<QbbNetDevice> destination,
+                        Ptr<Packet> packet, uint64_t serial, const Ws31Leave &leave)
+{
+  try
+    {
+      if (!channel->m_ws31Owner || channel->m_ws31Failed ||
+          channel->m_ws31Pending == 0 || !leave)
+        throw std::logic_error ("WS31 delivery lost its channel observer");
+      destination->Receive (packet);
+      // A completion callback inside Receive is still part of the open token.
+      leave (serial);
+      --channel->m_ws31Pending;
+    }
+  catch (...)
+    {
+      // Do not manufacture closure if Receive or the evidence callback failed.
+      channel->m_ws31Failed = true;
+      if (!channel->m_ws31Failure) channel->m_ws31Failure = std::current_exception ();
+      // Old ProcessOneEvent must return from Invoke to reach its Unref.
+      // Report the saved failure outside Run, not through the event stack.
+      Simulator::Stop ();
+    }
 }
 
 uint32_t 

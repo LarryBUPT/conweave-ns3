@@ -8,12 +8,17 @@
 
 #include <unordered_map>
 #include <unordered_set>
+#include <memory>
 
 #include "qbb-net-device.h"
 #include "rdma-queue-pair.h"
 #include "ws30-endpoint-generation.h"
 
 namespace ns3 {
+
+class Ws31EndpointIdentity;
+class Ws31V2NativeSession;
+class Ws31V2NativeRequest;
 
 struct RdmaInterfaceMgr {
     Ptr<QbbNetDevice> dev;
@@ -51,6 +56,10 @@ class RdmaHw : public Object {
 
     void SetNode(Ptr<Node> node);
     void Setup(QpCompleteCallback cb);  // setup shared data and callbacks with the QbbNetDevice
+    void RequireWs31V2Input(std::shared_ptr<Ws31V2NativeSession> session);
+    void AddQueuePairV2(uint64_t size,uint16_t pg,Ipv4Address sip,Ipv4Address dip,
+        uint16_t sport,uint16_t dport,uint32_t win,uint64_t baseRtt,int32_t flowId,
+        uint32_t originalTag,uint64_t demandNs,std::shared_ptr<Ws31V2NativeRequest> request);
 
     /* Akashic Record of finished QP */
     std::unordered_set<uint64_t> akashic_Qp;    // instance for each src
@@ -195,6 +204,18 @@ class RdmaHw : public Object {
     Time m_irn_rtoLow;
     Time m_irn_rtoHigh;
     uint32_t m_irn_bdp;
+
+   private:
+    bool m_ws31V2Required=false, m_ws31V2Failed=false;
+    std::shared_ptr<Ws31V2NativeSession> m_ws31V2Session;
+    void FailWs31V2();
+    void AddQueuePairWithNative(uint64_t size,uint16_t pg,Ipv4Address sip,Ipv4Address dip,
+        uint16_t sport,uint16_t dport,uint32_t win,uint64_t baseRtt,int32_t flowId,
+        uint32_t originalTag,uint64_t demandNs,std::shared_ptr<Ws31V2NativeRequest> request);
+    // Only the new endpoint fixture may install this default-empty guard after
+    // actual parsed-context/input validation. No environment switch enables it.
+    friend class Ws31EndpointNetworkFixture;
+    std::shared_ptr<Ws31EndpointIdentity> m_ws31EndpointIdentity;
 };
 
 } /* namespace ns3 */

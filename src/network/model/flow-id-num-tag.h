@@ -3,6 +3,9 @@
 * Author: Youngmok Jung <tom418@kaist.ac.kr>
 */
 
+#ifndef NS3_FLOW_ID_NUM_TAG_H
+#define NS3_FLOW_ID_NUM_TAG_H
+
 #include "ns3/tag.h"
 
 namespace ns3 {
@@ -35,4 +38,6 @@ namespace ns3 {
 	};
 
 } // namespace ns3
+
+#endif // NS3_FLOW_ID_NUM_TAG_H
 

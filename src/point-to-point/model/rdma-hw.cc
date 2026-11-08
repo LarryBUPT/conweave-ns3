@@ -2,6 +2,8 @@
 #include "ws30-v13-fixture.h"
 #include "ws30-observer.h"
 #include "ws31-label-fixture.h"
+#include "ws31-endpoint-identity.h"
+#include "ws31-v2-native-session.h"
 
 #include <ns3/ipv4-header.h>
 #include <ns3/seq-ts-header.h>
@@ -268,6 +270,55 @@ Ptr<RdmaQueuePair> RdmaHw::GetQp(uint64_t key) {
 void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Address dip,
                           uint16_t sport, uint16_t dport, uint32_t win, uint64_t baseRtt,
                           int32_t flow_id, uint32_t workload_tag, uint64_t demand_start_ns) {
+    AddQueuePairWithNative(size,pg,sip,dip,sport,dport,win,baseRtt,flow_id,workload_tag,
+                          demand_start_ns,std::shared_ptr<Ws31V2NativeRequest>());
+}
+
+void RdmaHw::FailWs31V2() {
+    if (m_ws31V2Required) m_ws31V2Failed=true;
+    if (m_ws31V2Session) m_ws31V2Session->Fail("V2 hardware boundary failed");
+}
+
+void RdmaHw::RequireWs31V2Input(std::shared_ptr<Ws31V2NativeSession> session) try {
+    if (m_ws31V2Required) throw std::logic_error("V2 hardware configuration repeated");
+    m_ws31V2Required=true; m_ws31V2Session=session;
+    if (!session || !m_node || !m_qpMap.empty() || !akashic_Qp.empty() || Ws30V13Life()!=0)
+        throw std::logic_error("V2 hardware lacks clean node/session");
+    session->RequireHealthy();
+} catch (...) { FailWs31V2(); throw; }
+
+void RdmaHw::AddQueuePairV2(uint64_t size,uint16_t pg,Ipv4Address sip,Ipv4Address dip,
+        uint16_t sport,uint16_t dport,uint32_t win,uint64_t baseRtt,int32_t flowId,
+        uint32_t originalTag,uint64_t demandNs,std::shared_ptr<Ws31V2NativeRequest> request) {
+    if (!m_ws31V2Required) {
+        m_ws31V2Required=true; m_ws31V2Failed=true;
+        Ws31V2NativeSession::FailHandle(request,"V2 hardware was not configured");
+        throw std::logic_error("V2 hardware was not configured");
+    }
+    AddQueuePairWithNative(size,pg,sip,dip,sport,dport,win,baseRtt,flowId,originalTag,demandNs,request);
+}
+
+void RdmaHw::AddQueuePairWithNative(uint64_t size,uint16_t pg,Ipv4Address sip,Ipv4Address dip,
+        uint16_t sport,uint16_t dport,uint32_t win,uint64_t baseRtt,int32_t flow_id,
+        uint32_t workload_tag,uint64_t demand_start_ns,std::shared_ptr<Ws31V2NativeRequest> request) try {
+    if (m_ws31V2Required) {
+        if (m_ws31V2Failed || !m_ws31V2Session || !m_node)
+            throw std::logic_error("V2 QP creation lacks healthy configured hardware");
+        m_ws31V2Session->ValidateLaunch(request,m_node->GetId(),flow_id,sip.Get(),dip.Get(),
+            sport,dport,pg,size,workload_tag,demand_start_ns);
+        const uint64_t key=GetQpKey(dip.Get(),sport,dport,pg);
+        if (m_qpMap.count(key) || akashic_Qp.count(key))
+            throw std::logic_error("V2 creation replaces live QP/history");
+    } else if (request) throw std::logic_error("Legacy hardware received V2 handle");
+    if (m_ws31EndpointIdentity) {
+        if (!m_node) m_ws31EndpointIdentity->Reject("WS31 sender hardware has no node");
+        const uint64_t key=GetQpKey(dip.Get(),sport,dport,pg);
+        m_ws31EndpointIdentity->Sender(m_node->GetId(),flow_id,
+            ws31::EndpointKey(sip.Get(),dip.Get(),sport,dport,pg),key,size,
+            workload_tag,demand_start_ns,Simulator::Now().GetNanoSeconds(),true);
+        if (m_qpMap.count(key) || akashic_Qp.count(key))
+            m_ws31EndpointIdentity->Reject("WS31 sender creation replaces live QP or unreleased history");
+    }
     // create qp
     Ptr<RdmaQueuePair> qp = CreateObject<RdmaQueuePair>(pg, sip, dip, sport, dport);
     if (demand_start_ns != uint64_t(-1)) {
@@ -342,7 +393,10 @@ void RdmaHw::AddQueuePair(uint64_t size, uint16_t pg, Ipv4Address sip, Ipv4Addre
                   << qp->startTime.GetNanoSeconds() << " released=" << qp->m_ws30Released
                   << " snd_nxt=0 snd_una=0 rate=" << qp->m_rate.GetBitRate() << " alpha=" << qp->mlx.m_alpha << std::endl;
     }
+    if (m_ws31V2Required) m_ws31V2Session->BindActual(request,m_node->GetId(),qp);
     m_nic[nic_idx].dev->NewQp(qp);
+} catch (...) {
+    FailWs31V2(); Ws31V2NativeSession::FailHandle(request,"V2 QP creation failed"); throw;
 }
 
 void RdmaHw::ReleaseWs30Round(Ptr<RdmaQueuePair> qp, uint32_t round) {
@@ -503,6 +557,12 @@ void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t p
 }
 
 int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
+    int32_t ws31IncomingIdentity=-1;
+    if (m_ws31EndpointIdentity) {
+        if (!m_node) m_ws31EndpointIdentity->Reject("WS31 receiver hardware has no node");
+        ws31IncomingIdentity=m_ws31EndpointIdentity->Data(m_node->GetId(),
+            GetRxQpKey(ch.sip,ch.udp.sport,ch.udp.dport,ch.udp.pg),p,ch);
+    }
     if (!AcceptWs30DataGeneration(p, ch)) return 1;
     uint8_t ecnbits = ch.GetIpv4EcnBits();
 
@@ -522,6 +582,9 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
             exit(1);
         }
     }
+
+    if (m_ws31EndpointIdentity)
+        m_ws31EndpointIdentity->ReceiverBinding(ws31IncomingIdentity,rxQp->m_flow_id);
 
     if (ecnbits != 0) {
         rxQp->m_ecn_source.ecnbits |= ecnbits;
@@ -620,6 +683,9 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
         {
             FlowIDNUMTag fit;
+            if (m_ws31EndpointIdentity)
+                m_ws31EndpointIdentity->FeedbackSource(m_node->GetId(),
+                    GetRxQpKey(ch.sip,ch.udp.sport,ch.udp.dport,ch.udp.pg),p,ch,rxQp->m_flow_id);
             if (p->PeekPacketTag(fit)) {
                 newp->AddPacketTag(fit);
             }
@@ -693,6 +759,12 @@ int RdmaHw::ReceiveCnp(Ptr<Packet> p, CustomHeader &ch) {
 }
 
 int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
+    int32_t ws31IncomingIdentity=-1;
+    if (m_ws31EndpointIdentity) {
+        if (!m_node) m_ws31EndpointIdentity->Reject("WS31 feedback hardware has no node");
+        ws31IncomingIdentity=m_ws31EndpointIdentity->Ack(m_node->GetId(),
+            GetQpKey(ch.sip,ch.ack.dport,ch.ack.sport,ch.ack.pg),p,ch);
+    }
     uint16_t qIndex = ch.ack.pg;
     uint16_t port = ch.ack.dport;   // sport for this host
     uint16_t sport = ch.ack.sport;  // dport for this host (sport of ACK packet)
@@ -714,6 +786,8 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         }
     }
 
+    if (m_ws31EndpointIdentity)
+        m_ws31EndpointIdentity->SenderBinding(ws31IncomingIdentity,qp->m_flow_id);
     if (!AcceptWs30AckGeneration(p, qp)) return 1;
 
     if (Ws25DiagnosticEnabled()) {
@@ -878,6 +952,7 @@ size_t RdmaHw::getIrnBufferOverhead() {
 }
 
 int RdmaHw::Receive(Ptr<Packet> p, CustomHeader &ch) {
+    if (m_ws31EndpointIdentity) m_ws31EndpointIdentity->Protocol(ch.l3Prot);
     // #if (SLB_DEBUG == true)
     //     std::cout << "[RdmaHw::Receive] Node(" << m_node->GetId() << ")," << PARSE_FIVE_TUPLE(ch)
     //     << "l3Prot:" << ch.l3Prot << ",at" << Simulator::Now() << std::endl;
@@ -1090,7 +1165,28 @@ void RdmaHw::RedistributeQp() {
     }
 }
 
-Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) {
+Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) try {
+    ws31::VisibleLabel nativePolicy(0,false);
+    if (m_ws31V2Required) {
+        if (m_ws31V2Failed || !m_ws31V2Session || !m_node || !qp)
+            throw std::logic_error("V2 data producer lacks healthy actual hardware/QP");
+        const uint64_t key=GetQpKey(qp->dip.Get(),qp->sport,qp->dport,qp->m_pg);
+        auto live=m_qpMap.find(key);
+        if (live==m_qpMap.end() || live->second!=qp)
+            throw std::logic_error("V2 data producer is not live actual QP");
+        const auto p=m_ws31V2Session->Packet(m_node->GetId(),qp);
+        nativePolicy=ws31::VisibleLabel(p.value,p.present);
+    }
+    if (m_ws31EndpointIdentity) {
+        if (!m_node || !qp) m_ws31EndpointIdentity->Reject("WS31 data producer lacks actual node/QP");
+        m_ws31EndpointIdentity->Sender(m_node->GetId(),qp->m_flow_id,
+            ws31::EndpointKey(qp->sip.Get(),qp->dip.Get(),qp->sport,qp->dport,qp->m_pg),
+            GetQpKey(qp->dip.Get(),qp->sport,qp->dport,qp->m_pg),qp->m_size,
+            qp->m_workload_tag,qp->startTime.GetNanoSeconds(),Simulator::Now().GetNanoSeconds());
+        auto live=m_qpMap.find(GetQpKey(qp->dip.Get(),qp->sport,qp->dport,qp->m_pg));
+        if (live==m_qpMap.end() || live->second!=qp)
+            m_ws31EndpointIdentity->Reject("WS31 data producer is not the actual live sender QP");
+    }
     uint32_t payload_size = qp->GetBytesLeft();
     if (m_mtu < payload_size) {  // possibly last packet
         payload_size = m_mtu;
@@ -1102,8 +1198,8 @@ Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) {
 
     Ptr<Packet> p = Create<Packet>(payload_size);
     WorkloadTag label;
-    const unsigned labelProfile=ws31::LabelProfile();
-    const ws31::VisibleLabel visible=ws31::LabelAt(labelProfile,qp->m_workload_tag,
+    const unsigned labelProfile=m_ws31V2Required?0:ws31::LabelProfile();
+    const ws31::VisibleLabel visible=m_ws31V2Required?nativePolicy:ws31::LabelAt(labelProfile,qp->m_workload_tag,
         qp->startTime.GetNanoSeconds(),Simulator::Now().GetNanoSeconds(),
         qp->sip.Get(),qp->dip.Get(),qp->sport,qp->dport,Ws30V13TagTransform());
     label.SetValue(visible.value);
@@ -1180,7 +1276,7 @@ Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) {
 
     // return
     return p;
-}
+} catch (...) { FailWs31V2(); throw; }
 
 void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap) {
     qp->lastPktSize = pkt->GetSize();

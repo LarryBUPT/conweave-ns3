@@ -12,7 +12,7 @@
 #include <utility>
 #include <vector>
 
-namespace ns3 { namespace ws31 {
+namespace ns3 { class Ws31EndpointSwitchFixture; namespace ws31 {
 typedef std::tuple<uint32_t, uint32_t, uint16_t, uint16_t> Key;
 
 inline uint64_t Add(uint64_t a, uint64_t b) {
@@ -28,6 +28,7 @@ inline uint64_t Framed(uint64_t payload, uint32_t mtu, uint32_t overhead) {
 }
 
 class BudgetLedger {
+    friend class ::ns3::Ws31EndpointSwitchFixture;
     typedef std::multimap<uint64_t, Key> Deadlines;
     struct Entry {
         uint32_t port, mtu, overhead;
@@ -128,6 +129,7 @@ class BudgetLedger {
         if (it != entries.end()) Remove(it);
     }
     size_t Size() const { return entries.size(); }
+    bool Contains(const Key &key) const { return entries.count(key)!=0; }
     bool Conserved() const {
         std::map<uint32_t,uint64_t> sum;
         for (typename std::map<Key,Entry>::const_iterator i=entries.begin(); i!=entries.end(); ++i)
@@ -139,9 +141,11 @@ class BudgetLedger {
 };
 
 class ObservedMemory {
+    friend class ::ns3::Ws31EndpointSwitchFixture;
     struct State { uint64_t bytes = 0, time = 0; };
     std::map<uint32_t,State> ports;
   public:
+    size_t PortCount() const { return ports.size(); }
     uint64_t Value(uint32_t port, uint64_t now, uint64_t ttl) {
         State &s=ports[port];
         const uint64_t elapsed=now>=s.time ? now-s.time : 0;

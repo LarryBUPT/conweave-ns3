@@ -28,11 +28,14 @@
 #include "ns3/ptr.h"
 #include "ns3/ipv4-address.h"
 #include <ns3/rdma.h>
+#include <memory>
 
 namespace ns3 {
 
 class Socket;
 class Packet;
+class Ws31V2NativeSession;
+class Ws31V2NativeRequest;
 
 /**
  * \ingroup rdmaclientserver
@@ -59,6 +62,8 @@ public:
   void SetLocal (Ipv4Address ip, uint16_t port);
   void SetPG (uint16_t pg);
   void SetSize(uint64_t size);
+  void RequireWs31V2Input(std::shared_ptr<Ws31V2NativeSession> session);
+  void BindWs31V2Current(std::shared_ptr<Ws31V2NativeRequest> request);
 
 protected:
   virtual void DoDispose (void);
@@ -68,6 +73,12 @@ protected:
 
 private:
   friend class Ws31StartBoundaryProbe;
+  friend class Ws31V2NativeBindingFixture;
+
+  bool m_ws31V2Required=false, m_ws31V2Failed=false, m_ws31V2Started=false;
+  std::shared_ptr<Ws31V2NativeSession> m_ws31V2Session;
+  std::shared_ptr<Ws31V2NativeRequest> m_ws31V2Request;
+  void FailWs31V2();
 
   virtual void StartApplication (void);
   virtual void StopApplication (void);

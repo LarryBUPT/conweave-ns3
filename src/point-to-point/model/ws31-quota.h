@@ -9,7 +9,7 @@
 #include <tuple>
 #include <vector>
 
-namespace ns3 { namespace ws31 {
+namespace ns3 { class Ws31EndpointSwitchFixture; namespace ws31 {
 typedef std::tuple<uint32_t,uint32_t,uint16_t,uint16_t> QuotaKey;
 
 inline uint32_t QuotaClass(uint32_t tag) { return tag==1 || tag==2 ? tag : 0; }
@@ -18,6 +18,7 @@ inline uint32_t QuotaSizeClass(uint64_t size) { return size==8192 ? 2 : size==83
 // Quotas constrain NEW admission only. Entries retain their first route even
 // after an activity lease expires or a borrowed lane's owner becomes active.
 class QuotaAdmission {
+    friend class ::ns3::Ws31EndpointSwitchFixture;
 public:
     struct Decision {
         uint32_t category=0, first=0, second=0, chosen=0, owner=0, eligible=0;
@@ -109,6 +110,17 @@ public:
         entries.erase(it);
     }
     size_t Size() const { return entries.size(); }
+    bool Contains(const QuotaKey &key) const { return entries.count(key)!=0; }
+    struct ActivitySnapshot {
+        uint64_t windowNs=0;
+        bool seen[3]={false,false,false};
+        uint64_t last[3]={0,0,0};
+    };
+    ActivitySnapshot SharedActivity() const {
+        ActivitySnapshot snapshot; snapshot.windowNs=window;
+        for (unsigned i=0;i<3;++i) { snapshot.seen[i]=seen[i]; snapshot.last[i]=last[i]; }
+        return snapshot;
+    }
     bool Conserved() const {
         uint64_t count[3]={0,0,0}; size_t live=0;
         for (const auto &p : entries) if (p.second.live) {

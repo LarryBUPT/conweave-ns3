@@ -20,6 +20,8 @@
 #define QBB_CHANNEL_H
 
 #include <list>
+#include <functional>
+#include <exception>
 #include "ns3/channel.h"
 #include "ns3/point-to-point-channel.h"
 #include "ns3/ptr.h"
@@ -31,6 +33,7 @@ namespace ns3 {
 
 class QbbNetDevice;
 class Packet;
+class Ws31EndpointChannel;
 
 /**
  * \ingroup point-to-point
@@ -123,6 +126,22 @@ protected:
   Ptr<QbbNetDevice> GetDestination (uint32_t i) const;
 
 private:
+  // Empty for ordinary simulations. Only the endpoint fixture may bind these.
+  friend class Ws31EndpointChannel;
+  typedef std::function<uint64_t (Ptr<const Packet>, Ptr<QbbNetDevice>,
+                                  Ptr<QbbNetDevice>)> Ws31Enter;
+  typedef std::function<void (uint64_t)> Ws31Leave;
+  Ws31Enter m_ws31Enter;
+  Ws31Leave m_ws31Leave;
+  const void *m_ws31Owner = nullptr;
+  uint64_t m_ws31Pending = 0;
+  bool m_ws31Failed = false;
+  bool m_ws31EverTransmitted = false;
+  std::exception_ptr m_ws31Failure;
+  bool m_ws31FailScheduleForTest = false;
+  static void DeliverWs31 (Ptr<QbbChannel> channel, Ptr<QbbNetDevice> destination,
+                          Ptr<Packet> packet, uint64_t serial, const Ws31Leave &leave);
+
   // Each point to point link has exactly two net devices
   static const int N_DEVICES = 2;
 

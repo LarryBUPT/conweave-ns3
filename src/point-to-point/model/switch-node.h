@@ -21,6 +21,8 @@ class Packet;
 
 class SwitchNode : public Node {
     friend class Ws31SwitchBoundaryProbe;
+    friend class Ws31EndpointSwitchProbe;
+    friend class Ws31EndpointSwitchFixture;
     static const unsigned qCnt = 8;    // Number of queues/priorities used
     static const unsigned pCnt = 128;  // port 0 is not used so + 1	// Number of ports used
     uint32_t m_ecmpSeed;
