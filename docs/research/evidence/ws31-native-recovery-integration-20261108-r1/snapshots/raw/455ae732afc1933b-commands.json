@@ -1,0 +1,359 @@
+[
+  {
+    "actual_exit": 0,
+    "argv": [
+      "g++",
+      "--version"
+    ],
+    "elapsed_s": 0.006275653839111328,
+    "name": "compiler-version",
+    "pid": 328137,
+    "started_epoch_s": 1794122974.2718854,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "fcfb9ab05d71b825f45bf95cf07f94160b2f47361d15b98053fe8ea05c43a058",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "./waf",
+      "configure",
+      "--build-profile=optimized"
+    ],
+    "elapsed_s": 3.0754549503326416,
+    "name": "configure",
+    "pid": 328138,
+    "started_epoch_s": 1794122974.2789636,
+    "stderr_sha256": "a339c0f4df69b411af6de353debe9269376a84f6bbc54001b5c88bb3fbd1ad42",
+    "stdout_sha256": "903c2bdecfef6a3c621bd490b46ca71b687d3faaff4bb202121af764fe0b64b7",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "./waf",
+      "-j2"
+    ],
+    "elapsed_s": 368.178094625473,
+    "name": "build",
+    "pid": 328377,
+    "started_epoch_s": 1794122977.356225,
+    "stderr_sha256": "3f6e1212f72bed75d3f9dfda4a88f1f29aaf2a60a08c6713d429afddc1e84903",
+    "stdout_sha256": "100b1e8cdb41279d009f14362524831b7b2a2b036fdecfcc0e7bc6ae2cd93d9c",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "ldd",
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check"
+    ],
+    "elapsed_s": 0.019350528717041016,
+    "name": "ldd",
+    "pid": 330712,
+    "started_epoch_s": 1794123345.5380502,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "6b594b1b58f59410767c4b9ac007a0607104c0f521acd6b3c84b894783f5af9d",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=entry-d1",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.11732792854309082,
+    "name": "case-entry-d1",
+    "pid": 330808,
+    "started_epoch_s": 1794123396.3321693,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "079395423bbd664ac020f031fed37a78b110d6aa256caf26758f86eaab468b26",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=entry-d2",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D2-5310001.native"
+    ],
+    "elapsed_s": 0.11697816848754883,
+    "name": "case-entry-d2",
+    "pid": 330809,
+    "started_epoch_s": 1794123396.4753041,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "e988febbd4c3e816fd992efed63ca02d9d827579216e6ab6f5241767f813e999",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=nonzero-install",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.11675691604614258,
+    "name": "case-nonzero-install",
+    "pid": 330810,
+    "started_epoch_s": 1794123396.6170738,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "4a1f676843d8d62c7d17d1fe16d65b982a2425e7a623e744e6e460b64fd80d72",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=bad-final-declaration",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06667304039001465,
+    "name": "case-bad-final-declaration",
+    "pid": 330811,
+    "started_epoch_s": 1794123396.758346,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "37cda4797f707add0a764b1dcb4c9e37cc10bb0376b10e2ee69cc5dce35306dd",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=duplicate-install",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06700301170349121,
+    "name": "case-duplicate-install",
+    "pid": 330812,
+    "started_epoch_s": 1794123396.8294232,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "209af1d043a40d2d645ac8d6058da6f70a070a14e3a4ded9127b8c27bb424bfd",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=late-install",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.0670006275177002,
+    "name": "case-late-install",
+    "pid": 330813,
+    "started_epoch_s": 1794123396.9010081,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "3d86063dc9fd66a20ac5919b88dbccac11daf0e096581cc12af52f38739d2596",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=wrong-address",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06724429130554199,
+    "name": "case-wrong-address",
+    "pid": 330814,
+    "started_epoch_s": 1794123396.9726703,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "2c239a9b2a18b24360fc59b0073b48be93e977aacf527c13db9ee8d8a511bd4b",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=wrong-hw-owner",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06695270538330078,
+    "name": "case-wrong-hw-owner",
+    "pid": 330815,
+    "started_epoch_s": 1794123397.044685,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "206acfc26323c205feeb8fbaed4625191d18e4a16a51e67304808b96a04edabf",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=bad-reverse-route",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06701469421386719,
+    "name": "case-bad-reverse-route",
+    "pid": 330816,
+    "started_epoch_s": 1794123397.116446,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "73731d4e186d51c34bd62e131847a9ba050347183d5650540a9a4799732f5053",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=missing-pair-timing",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06704521179199219,
+    "name": "case-missing-pair-timing",
+    "pid": 330817,
+    "started_epoch_s": 1794123397.1883698,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "11b8d88dbbf1add9084a639a584ca8325738950309292b5797e2f8e5babb8c8b",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=repeated-run",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06710553169250488,
+    "name": "case-repeated-run",
+    "pid": 330818,
+    "started_epoch_s": 1794123397.2604022,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "fab3e1d2fac95a0a27b9d0169824713be05759e3d19a82d3cc6fa602c24140c7",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=early-stop",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06708693504333496,
+    "name": "case-early-stop",
+    "pid": 330819,
+    "started_epoch_s": 1794123397.3326228,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "044b470cd90a827704fe7bd5258d4963d17209316fe28e7ee9afcd6fab9104d3",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=pending-producer-failure",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.0670464038848877,
+    "name": "case-pending-producer-failure",
+    "pid": 330820,
+    "started_epoch_s": 1794123397.4049296,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "59208f3a3c42bfb177cf234637160999d794e995fbaaea24ef78aae88c63f39b",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=terminal-mtu",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06679058074951172,
+    "name": "case-terminal-mtu",
+    "pid": 330821,
+    "started_epoch_s": 1794123397.4772944,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "37bc4151b2309b7fd81613b4022b3ebfc1b9afff0ee18509416b1ab324dc1eb7",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=terminal-route",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06675243377685547,
+    "name": "case-terminal-route",
+    "pid": 330822,
+    "started_epoch_s": 1794123397.5497897,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "29b50bc9cba91ff5b66c85827d3d4bb71093a317a6c817209c5d19af5cb8bd7e",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=postrun-live-map",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06666779518127441,
+    "name": "case-postrun-live-map",
+    "pid": 330823,
+    "started_epoch_s": 1794123397.6220198,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "ceb587a44cfe01921cedebfa793942b5200a0ac484d55d9b7c7cfc64757df6a2",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=dispose-before-run",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06703615188598633,
+    "name": "case-dispose-before-run",
+    "pid": 330824,
+    "started_epoch_s": 1794123397.6942348,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "fc6f23b80b8325c0775e722fe793da6609646c22b17c727abd1c4245170ffa37",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=diagnostic-before-terminal",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06701898574829102,
+    "name": "case-diagnostic-before-terminal",
+    "pid": 330825,
+    "started_epoch_s": 1794123397.7669072,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "134f826fa24dea0f9c1c17a6512d45fd33515adc16a0bb7ca7952b54f2507fec",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=policy-variants",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.1171560287475586,
+    "name": "case-policy-variants",
+    "pid": 330826,
+    "started_epoch_s": 1794123397.839669,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "bb44c2fdfb8febc7bf325dfb4585ba1e01b3cd478d78da866f79b7a8f7154b01",
+    "timeout": false
+  },
+  {
+    "actual_exit": 0,
+    "argv": [
+      "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+      "--case=postrun-context",
+      "--input=/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    ],
+    "elapsed_s": 0.06657242774963379,
+    "name": "case-postrun-context",
+    "pid": 330827,
+    "started_epoch_s": 1794123397.981145,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "0fa050a044aa3a363d2753f1cbb72f4879234a996295e3b39d61af8e291a53a2",
+    "timeout": false
+  }
+]

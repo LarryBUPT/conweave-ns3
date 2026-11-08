@@ -1,6 +1,16 @@
 # ConWeave 毕业论文项目状态
 
-## 当前阶段（2026-11-04）
+## 当前阶段（2026-11-08）
+
+WS-31 已按 11 月 8 日的新直接用户指令恢复，当前为 `ACTIVE_NATIVE_ENTRY_R2_ACCEPTED_NEXT_G2_BOUNDED_DESIGN_REQUIRED`，见[恢复节点整合](../handoffs/2026-11-08-ws31-native-recovery-integration.md)与[真实用户消息](../research/evidence/ws31-native-recovery-integration-20261108-r1/user-instruction.json)。原主、副各一项 Codex 原生心跳均为 ACTIVE、30 分钟，ID 分别为 `ws-31`、`ws-31-2`；实际创建收据、回读和配置哈希已核。当前不据配置存在宣称已观察到定时触发。11 月 4 日的 HOLD、删除和压缩纠错保留为历史，不覆盖本次新授权。
+
+旧 R1 构建失败与完整失败材料保留，主修复了验收消费者的清单字段；源码仅一行 Waf 头导出修复。新固定源 `21b440985f90d2081438e435ef640adc9f43a42d` 的 R2 ID `20261108-152638-ws31-native-entry-r2` 已完成一次完整 `-j2` 构建和 20 个非网络对象案例。Integration 从本地独核 R1 的 65 raw／25 归档成员、R2 的 202 raw／147 归档成员、4,870 个 Git／源码归档与终态指纹、24 条实际命令、4,482 条包记录、两输入及 ELF／36 项目库；没有执行科学代码、构建、夹具、仿真或 SSH。
+
+R2 完成事件是北京时间 15:36:38.050986，主完整验收观察是 15:47:06.250075，Integration 观察另存[本次收据](../research/evidence/ws31-native-recovery-integration-20261108-r1/verification.json)。主已显式释放有限约束；唯一副沿主报告 completed／idle cursor `3dadc2c4-3e49-4c0c-9ee1-13940917f98a:136`，未新派发。下一步由原主形成剩余 G2 的有界设计及独立单目标计划；已终态 R1／R2 不由心跳重跑。
+
+通过范围仅限入口工程。OS2／framing、完整完成／共享协议、真实超时两代、独立 V0、匹配消融、业务／背景双侧效果与成本均未完成；历史 43 网络、17 适配器与本次 20 对象案例分列，无新组合基线。群端附加检查因桌面缺 `CC_SESSION_KEY` 失败，原生监督检查实际通过；不据此要求用户补 Codex 权限。原 WIP、Ofan 暂缓、六基线、WS-29 后置及旧控制器边界保持。下方历史“当前”与下一步均限于其记录日期，不能恢复旧任务或覆盖新状态。
+
+## 历史阶段（2026-11-04）
 
 本轮有限筛查和 D1／D2 需求设计已经完成，当前执行状态为 `HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION`，见[分析节点整合](../handoffs/2026-11-04-ws31-finite-screen-hold.md)。工程、测试、效果矩阵及远端继续暂缓；没有新的需求／观测证据或明确范围更新时，不重复分析、扫参、派副、创建配置／输入或续接旧接线。`ws-31` 心跳已由主对话删除；Integration 已核删除收据和本地配置缺失，见[运行状态同步](../handoffs/2026-11-04-ws31-heartbeat-stop-integration.md)。未经新指示不重建，HOLD 与全部未完成义务保持。
 

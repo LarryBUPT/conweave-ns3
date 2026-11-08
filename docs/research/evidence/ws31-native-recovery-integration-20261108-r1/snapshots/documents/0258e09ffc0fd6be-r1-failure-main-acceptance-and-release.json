@@ -1,0 +1,19 @@
+{
+  "status": "MAIN_ACCEPTED_FAILURE_FULL_RAW_ARCHIVE_TERMINAL_SOURCE_AND_LOCAL_GUARDS",
+  "observed_at_utc": "2026-11-08T07:21:10.963413+00:00",
+  "failed_run_id": "20261108-122127-ws31-native-entry-r1",
+  "failed_source": "cf54734ced37d1754bfa840bf1c52596b57522f1",
+  "raw_files": 65,
+  "transfer_members": 25,
+  "source_git_archive_members": 4870,
+  "terminal_source_identities": 4870,
+  "local_protected_files": {
+    "published": 4870,
+    "original_WIP": 4868
+  },
+  "failure_receipt_time": "2026-11-08T04:28:29.803984Z",
+  "cases_executed": 0,
+  "network_runs": 0,
+  "accepted_failure_not_scientific_success": true,
+  "guard_release": "R1 execution freeze explicitly released after complete main acceptance; only one-path declarations Waf export repair and new-ID plan permitted. Original WIP, inputs and failed artifacts remain preserved."
+}

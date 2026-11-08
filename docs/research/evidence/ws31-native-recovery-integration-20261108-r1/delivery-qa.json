@@ -1,0 +1,20 @@
+{
+  "observed_at_utc": "2026-11-08T07:59:13.421664+00:00",
+  "status": "PASS_NATIVE_RECOVERY_INTEGRATION_DELIVERY_QA",
+  "links_checked": 389,
+  "JSON_files_checked": 42,
+  "nine_handoff_sections": true,
+  "exact_five_authority_files_changed": true,
+  "two_native_timers_configuration_verified": true,
+  "new_actual_user_authorization_checked": true,
+  "old_deletion_and_HOLD_preserved_as_history": true,
+  "event_main_acceptance_and_Integration_observation_separate": true,
+  "source_UTC_offset_normalized_from_value": true,
+  "source_snapshots_hash_verified": true,
+  "scientific_reexecution_by_Integration": false,
+  "new_network_or_effects_accepted": false,
+  "new_baseline": false,
+  "intermediate_native_stages_claimed_fully_reaccepted": false,
+  "local_raw_reader_attempts_preserved": 2,
+  "first_inline_delivery_QA_error": "Expected integer43; registry actually stores total43 and stages. Corrected reader to total; registry count and scope unchanged."
+}

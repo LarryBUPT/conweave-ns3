@@ -1,0 +1,617 @@
+{
+  "schema_version": 1,
+  "goal_id": "WS31-G2-NATIVE-ENTRY-EXECUTION-R1",
+  "status": "ACTUAL_BUILD_FAILED_NO_CASES_NO_ADMISSION_REPAIR_REQUIRED",
+  "run_id": "20261108-122127-ws31-native-entry-r1",
+  "source_commit": "cf54734ced37d1754bfa840bf1c52596b57522f1",
+  "plan": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\native-entry-execution-plan-r1.json",
+    "sha256": "685b6530ee160404d4113a51523aa9a7641142c5e91a6841c75787940a8c190a"
+  },
+  "authority": "E:/研/毕业论文/dev-group/state/group-communication/user-instruction-20261108-raw.json",
+  "publication": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-entry-stage4-20261108-r1\\publication-r1\\source-publication.json",
+    "sha256": "b9b86c6a70b424917590cfc3db976c112e4e4026095781d88efe3439bd1a231b"
+  },
+  "source_archive": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-entry-stage4-20261108-r1\\publication-r1\\source-fixed-git-bytes.tar.gz",
+    "sha256": "975ecba7086388ba533d92736204b80fa8245c4aa1b8a0469c672ffa3a31b590",
+    "bytes": 36445294
+  },
+  "tree_manifest": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-entry-stage4-20261108-r1\\publication-r1\\source-tree-manifest.json",
+    "sha256": "be75002010ae409327a22fd6cc3b5a7782a5e3ac79f8704799222b6fb4a6500f",
+    "files": 4870
+  },
+  "source_four": {
+    "src/applications/model/ws31-v2-native-entry.h": {
+      "mode": "100644",
+      "git_blob": "11ba21b319143b52a88ac7befde8e9c7276501c8",
+      "bytes": 15316,
+      "sha256": "95235193b36620f6b0743c51914af22cedf6fa49babd31ddb57d50187c8669d3"
+    },
+    "scratch/ws31-v2-native-entry-check.cc": {
+      "mode": "100644",
+      "git_blob": "4d30d5639fa4b07e7188ade637c300ba35e52251",
+      "bytes": 25708,
+      "sha256": "2885de526928dea17430970fdf387e33ece3f225992ef48754c9e4f0a3a78427"
+    },
+    "src/applications/model/rdma-client.h": {
+      "mode": "100644",
+      "git_blob": "432b59d2f44a210680c982c35ec71b7ee5c7d4ae",
+      "bytes": 3016,
+      "sha256": "14d0ba941c3b45f1a2f944af8b2aaeb11d414fa8571f3f3b93e28cbbc9ca3def"
+    },
+    "src/applications/wscript": {
+      "mode": "100644",
+      "git_blob": "4c9db7947130340eff8e6c28ae7eebb72c2ea8d2",
+      "bytes": 2367,
+      "sha256": "7a51108ba4f536debbca888abac64e0cbddc74bf56dc96f68f81c103cc388464"
+    }
+  },
+  "runner": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-entry-runtime-20261108-r1\\native_entry_runner_r1.py",
+    "sha256": "c3ab5849970c472901ba2a6a537385d4584ddf36f4e8a76dfd84c8701d31e992",
+    "remote_path": "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/native_entry_runner_r1.py"
+  },
+  "input_files": {
+    "D1": {
+      "remote_path": "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/inputs/D1-5310001.native",
+      "family": "D1",
+      "seed": 5310001,
+      "bytes": 79077,
+      "sha256": "087141cb78b092524ff9b9d573fc91c1f5bd49e8490d4f169b717da0fddc4595",
+      "t0_ns": 2005000000,
+      "horizon_ns": 550400,
+      "stop_ns": 2015550400
+    },
+    "D2": {
+      "remote_path": "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/inputs/D2-5310001.native",
+      "family": "D2",
+      "seed": 5310001,
+      "bytes": 79638,
+      "sha256": "c28cb253d8bf6f7ba9e6b746da048f49df2f860731ad5ccce92fdf902627493c",
+      "t0_ns": 2005000000,
+      "horizon_ns": 4671488,
+      "stop_ns": 2056386368
+    }
+  },
+  "input_binding_sha256": "8c5a25c2c12a702c047715ae78b1e8b25b1afd23a3798c3a3059ac3f3247cfde",
+  "local_preflight": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\local-preflight.json",
+    "sha256": "3bac69f2a32640eb7d3bf0a91daf36cd68eb1baad02bf2b1e5b6b3f4620ba731",
+    "git_blob_mode_all4870": true,
+    "old_admission_function_identical": true,
+    "main_synthetic_control_checks_inspected": 18,
+    "CPP_checks_here": 0
+  },
+  "actual_validation": {
+    "status": "PASS_INDEPENDENT_VALIDATION_OF_REAL_BUILD_FAILURE",
+    "run_id": "20261108-122127-ws31-native-entry-r1",
+    "source_commit": "cf54734ced37d1754bfa840bf1c52596b57522f1",
+    "commands": [
+      {
+        "actual_exit": 0,
+        "argv": [
+          "g++",
+          "--version"
+        ],
+        "elapsed_s": 0.006192684173583984,
+        "name": "compiler-version",
+        "pid": 326960,
+        "started_epoch_s": 1794112083.3212562,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "fcfb9ab05d71b825f45bf95cf07f94160b2f47361d15b98053fe8ea05c43a058",
+        "timeout": false
+      },
+      {
+        "actual_exit": 0,
+        "argv": [
+          "./waf",
+          "configure",
+          "--build-profile=optimized"
+        ],
+        "elapsed_s": 3.828390121459961,
+        "name": "configure",
+        "pid": 326961,
+        "started_epoch_s": 1794112083.3284297,
+        "stderr_sha256": "df0a9d8370e046789ff397926d3d1f67b2977f03d05e1fe46f30e165528c0dcd",
+        "stdout_sha256": "903c2bdecfef6a3c621bd490b46ca71b687d3faaff4bb202121af764fe0b64b7",
+        "timeout": false
+      },
+      {
+        "actual_exit": 1,
+        "argv": [
+          "./waf",
+          "-j2"
+        ],
+        "elapsed_s": 22.642640590667725,
+        "name": "build",
+        "pid": 327200,
+        "started_epoch_s": 1794112087.158631,
+        "stderr_sha256": "d491d5d2723b6375f09bf160bec992532e22eeb3b74b5427c78ca23710334087",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "timeout": false
+      }
+    ],
+    "failure": {
+      "at_utc": "2026-11-08T04:28:29.803984Z",
+      "completed_cases": [],
+      "error": "build failed: 1",
+      "phase": "BUILD",
+      "run_id": "20261108-122127-ws31-native-entry-r1",
+      "status": "FAIL",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/native_entry_runner_r1.py\", line 166, in main\n    current='BUILD';run('build',['./waf','-j2'],1200)\n  File \"/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/native_entry_runner_r1.py\", line 160, in run\n    if code!=0 or timedout: raise RuntimeError(name+' failed: '+str(code))\nRuntimeError: build failed: 1\n"
+    },
+    "state": {
+      "completed_cases": [],
+      "observed_utc": "2026-11-08T04:28:29.804190Z",
+      "phase": "BUILD",
+      "run_id": "20261108-122127-ws31-native-entry-r1",
+      "source_commit": "cf54734ced37d1754bfa840bf1c52596b57522f1",
+      "status": "FAIL",
+      "worker_pid": 326959
+    },
+    "worker_identity": {
+      "LC_ALL": "C",
+      "LD_LIBRARY_PATH": "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/source/build",
+      "pid": 326959,
+      "plan_sha256": "685b6530ee160404d4113a51523aa9a7641142c5e91a6841c75787940a8c190a",
+      "removed_environment_key_names": [],
+      "runner_sha256": "c3ab5849970c472901ba2a6a537385d4584ddf36f4e8a76dfd84c8701d31e992",
+      "started_utc": "2026-11-08T04:28:02.298697Z"
+    },
+    "launch": {
+      "argv": [
+        "env",
+        "-u",
+        "PYTHONOPTIMIZE",
+        "python3",
+        "-B",
+        "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/native_entry_runner_r1.py",
+        "--source",
+        "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/source",
+        "--output",
+        "/home/fnl/lzy/results/20261108-122127-ws31-native-entry-r1/execution",
+        "--plan",
+        "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/execution-plan.json"
+      ],
+      "launched_epoch_s": 1794112082.248209,
+      "launched_utc": "2026-11-08T04:28:02.248228Z",
+      "optimization_disabled": true,
+      "pid": 326959
+    },
+    "remote_source_verified_count": 4870,
+    "input_files_verified_count": 2,
+    "ELF": "NOT_PRODUCED",
+    "project_libraries": "NONE_LINKED_OBSERVED",
+    "ldd_invocations": 0,
+    "cases_executed": 0,
+    "request_gate_receipt_absent": true,
+    "direct_subcommands_used": 3,
+    "source_anchors": {
+      "wscript": {
+        "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\wscript",
+        "sha256": "8181e57af3cfcfc4e80d720cf2b5df7da0adb1630d027c20007907ea71240fd6",
+        "export_session_present": true,
+        "export_declarations_absent": true,
+        "start": 59,
+        "end": 76,
+        "lines": [
+          {
+            "n": 59,
+            "text": "\t\t'model/rdma-hw.h',"
+          },
+          {
+            "n": 60,
+            "text": "\t\t'model/irn-pfc-timeout.h',"
+          },
+          {
+            "n": 61,
+            "text": "\t\t'model/switch-node.h',"
+          },
+          {
+            "n": 62,
+            "text": "\t\t'model/switch-mmu.h',"
+          },
+          {
+            "n": 63,
+            "text": "        'model/settings.h',"
+          },
+          {
+            "n": 64,
+            "text": "\t\t'helper/sim-setting.h',"
+          },
+          {
+            "n": 65,
+            "text": "\t\t'model/flow-stat-tag.h',"
+          },
+          {
+            "n": 66,
+            "text": "        'model/workload-tag.h',"
+          },
+          {
+            "n": 67,
+            "text": "        'model/ws31-budget.h',"
+          },
+          {
+            "n": 68,
+            "text": "        'model/ws31-start.h',"
+          },
+          {
+            "n": 69,
+            "text": "        'model/ws31-v2-native-session.h',"
+          },
+          {
+            "n": 70,
+            "text": "        'model/ws31-label-fixture.h',"
+          },
+          {
+            "n": 71,
+            "text": "        'model/ws31-quota.h',"
+          },
+          {
+            "n": 72,
+            "text": "        'model/ws31-ofan.h',"
+          },
+          {
+            "n": 73,
+            "text": "        'model/ws30-v13-fixture.h',"
+          },
+          {
+            "n": 74,
+            "text": "        'model/ws30-endpoint-generation.h',"
+          },
+          {
+            "n": 75,
+            "text": "        'model/ws30-observer.h',"
+          },
+          {
+            "n": 76,
+            "text": "        'model/ws30-cw-observer.h',"
+          }
+        ]
+      },
+      "Entry": {
+        "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+        "sha256": "95235193b36620f6b0743c51914af22cedf6fa49babd31ddb57d50187c8669d3",
+        "start": 6,
+        "end": 15,
+        "lines": [
+          {
+            "n": 6,
+            "text": "#include \"ns3/rdma-client.h\""
+          },
+          {
+            "n": 7,
+            "text": "#include \"ns3/rdma-driver.h\""
+          },
+          {
+            "n": 8,
+            "text": "#include \"ns3/ipv4.h\""
+          },
+          {
+            "n": 9,
+            "text": "#include \"ns3/integer.h\""
+          },
+          {
+            "n": 10,
+            "text": "#include \"ns3/uinteger.h\""
+          },
+          {
+            "n": 11,
+            "text": "#include \"ns3/simulator.h\""
+          },
+          {
+            "n": 12,
+            "text": "#include \"ns3/settings.h\""
+          },
+          {
+            "n": 13,
+            "text": "#include \"ns3/ws31-v2-native-declarations.h\""
+          },
+          {
+            "n": 14,
+            "text": "#include \"ns3/ws31-v2-native-session.h\""
+          },
+          {
+            "n": 15,
+            "text": "#include \"ns3/ws31-label-fixture.h\""
+          }
+        ]
+      }
+    },
+    "compiler_error_anchor": {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\remote-result\\execution\\build.stderr",
+      "sha256": "d491d5d2723b6375f09bf160bec992532e22eeb3b74b5427c78ca23710334087",
+      "start": 751,
+      "end": 759,
+      "lines": [
+        {
+          "n": 751,
+          "text": "In file included from ./ns3/applications-module.h:35:0,"
+        },
+        {
+          "n": 752,
+          "text": "                 from ../scratch/network-load-balance.cc:41:"
+        },
+        {
+          "n": 753,
+          "text": "./ns3/ws31-v2-native-entry.h:13:45: fatal error: ns3/ws31-v2-native-declarations.h: No such file or directory"
+        },
+        {
+          "n": 754,
+          "text": "compilation terminated."
+        },
+        {
+          "n": 755,
+          "text": "Waf: Leaving directory `/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/source/build'"
+        },
+        {
+          "n": 756,
+          "text": "Build failed"
+        },
+        {
+          "n": 757,
+          "text": " -> task in 'network-load-balance' failed (exit status 1): "
+        },
+        {
+          "n": 758,
+          "text": "\t{task 140141934049808: cxx network-load-balance.cc -> network-load-balance.cc.13.o}"
+        },
+        {
+          "n": 759,
+          "text": "['/usr/bin/g++', '-O3', '-g', '-std=gnu++11', '-march=native', '-Wno-error=deprecated-declarations', '-fstrict-aliasing', '-Wstrict-aliasing', '-pthread', '-I.', '-I..', '-DHAVE_PACKET_H=1', '-DHAVE_SQLITE3=1', '-DHAVE_IF_TUN_H=1', '../scratch/network-load-balance.cc', '-c', '-o', 'scratch/network-load-balance.cc.13.o']"
+        }
+      ]
+    },
+    "diagnosis": "declarations source header exists in fixed Git tree but not point-to-point exported header list; applications module now transitively includes Entry, exposing missing ns3 header in full build. Session already exported.",
+    "minimal_repair_entry": "Main new contract: add declarations header export to src/point-to-point/wscript, preserve this failed ID; then new fixed publication and new ID/full build/admission20. No repair applied here.",
+    "prior_static_boundary": "Prior static include/API review did not detect this generated-header export gap; actual build result takes precedence.",
+    "worker_OS_exit_code": "Not separately captured by detached launcher; worker FAIL receipt and process absence observed. Build subprocess exit1 is recorded.",
+    "observed_utc": "2026-11-08T04:33:18.683530+00:00"
+  },
+  "actual_command_budget": {
+    "compiler_version": 1,
+    "configure_invocations": 1,
+    "full_build_invocations": 1,
+    "jobs_per_build": 2,
+    "ldd_invocations": 0,
+    "CPP_fixture_processes": 0,
+    "direct_subcommands": 3,
+    "planned_direct_subcommands": 24,
+    "retries_within_ID": 0,
+    "gate_refreshes": 0,
+    "scientific_network_runs": 0,
+    "new_scientific_demands": 0
+  },
+  "case_dispositions": [
+    {
+      "case": "entry-d1",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "entry-d2",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "nonzero-install",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "bad-final-declaration",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "duplicate-install",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "late-install",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "wrong-address",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "wrong-hw-owner",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "bad-reverse-route",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "missing-pair-timing",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "repeated-run",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "early-stop",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "pending-producer-failure",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "terminal-mtu",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "terminal-route",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "postrun-live-map",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "dispose-before-run",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "diagnostic-before-terminal",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "policy-variants",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    },
+    {
+      "case": "postrun-context",
+      "status": "NOT_EXECUTED_BUILD_FAILED",
+      "actual_pid": null,
+      "exit_code": null
+    }
+  ],
+  "admission": {
+    "request_created": false,
+    "resource_receipt_created": false,
+    "gate_created": false,
+    "accepted": false,
+    "reason": "Actual full build failed before ELF provenance and worker request."
+  },
+  "remote_resource_audits": [
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\initial-resource-audit.stdout.json",
+      "sha256": "b721f85f15ad1bf8a7dfd3868e71bb433c01bfc1b1922d206d96212acd92cb89"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\initial-resource-decision.json",
+      "sha256": "171d4936c6d962872dc21edfc64d5859619a7f00516a8b8d8cc67429ee9755d7"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\prelaunch-resource-audit.stdout.json",
+      "sha256": "c71287360f19bc503808ce804e0b4a6b127aa4cd9cfd4b1c7d20aae174f2d963"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\prelaunch-resource-decision.json",
+      "sha256": "f858adeba9061b2ae456a947e798566908d81c52301785ad4e5f5ad8bc160a8e"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\terminal-resource-audit.stdout.json",
+      "sha256": "eadbcd24da5c14b1b1284f723fa5eacc7c3295c10a4787d4768be7114e4db2cc"
+    }
+  ],
+  "remote_paths": {
+    "remote_run": "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1",
+    "remote_source": "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/source",
+    "remote_result": "/home/fnl/lzy/results/20261108-122127-ws31-native-entry-r1"
+  },
+  "transfer": {
+    "actual_ELF_status": "NOT_PRODUCED",
+    "actual_cases": 0,
+    "actual_commands": 3,
+    "actual_ns3libs": 0,
+    "archive_bytes": 36738192,
+    "archive_path": "/home/fnl/lzy/runs/20261108-122127-ws31-native-entry-r1/terminal-result-transfer.tar.gz",
+    "archive_sha256": "9afb159c480f57d4d44afe19c99b8421976206d8d763c7cde0d2875cbdd71707",
+    "gate": false,
+    "indexed_result_files": 24,
+    "inventory_sha256": "4f4d86ce9ecd155628352c241b5a102169de4a341d0394386b04ed4dd49a69aa",
+    "ldd": 0,
+    "status": "FAILED_ID_PRESERVED_AND_SAFE_RESULT_ARCHIVED",
+    "tar_regular_files": 25,
+    "terminal_source_files_checked": 4870,
+    "local_archive": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\terminal-result-transfer.tar.gz",
+    "local_archive_sha256": "9afb159c480f57d4d44afe19c99b8421976206d8d763c7cde0d2875cbdd71707",
+    "inventory_path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\remote-result\\transfer-inventory.json",
+    "members_all_hash_verified": true
+  },
+  "guard": {
+    "status": "PASS_FINAL_ALL_LOCAL_PROTECTED_BYTES_AND_GIT",
+    "observed_utc": "2026-11-08T04:33:20.874783+00:00",
+    "observed_beijing": "2026-11-08T12:33:20.874783+08:00",
+    "counts": {
+      "published": 4870,
+      "original_WIP": 4868
+    },
+    "bound_artifacts": 12,
+    "source_head": "cf54734ced37d1754bfa840bf1c52596b57522f1",
+    "source_index_sha256": "e3c905478f4731962f9aece377b009422344f9f954bbd855f4650327720ffe27",
+    "original_WIP_HEAD": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+    "original_WIP_index_sha256": "28a299afac67a7f0b2499858a0bf4732586b1287a8eb2352b9d389c8265886f4",
+    "guard_released": false
+  },
+  "guard_artifact": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\final-guard.json",
+    "sha256": "78c75f9bd2805bee5474bb97ae6f770b1090b9d26de0267eedb51b9a43bf19b2"
+  },
+  "raw_manifest": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\raw-manifest.json",
+    "sha256": "52846d56f556d70d5342d4abeb5255f1291a81bbf0deebe21f0c61b3115d43e1",
+    "indexed_files": 64,
+    "total_raw_files_including_manifest": 65
+  },
+  "report_artifact": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-report.md",
+    "sha256": "31a6d6da1f3c6caab98ddb26462974a513e854cd484184532b3ea65661e94de3",
+    "lines": 59
+  },
+  "times": {
+    "failure_receipt_generated_utc": "2026-11-08T04:28:29.803984Z",
+    "failure_receipt_generated_beijing": "2026-11-08T12:28:29.803984+08:00",
+    "terminal_guard_observed_utc": "2026-11-08T04:33:20.874783+00:00",
+    "report_generated_utc": "2026-11-08T04:36:44.165669+00:00",
+    "report_generated_beijing": "2026-11-08T12:36:44.165669+08:00",
+    "note": "Receipt/invocation/observation times retained separately; no invented worker OS final exit code."
+  },
+  "reference_review": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw\\reference-node-review.json",
+    "sha256": "99b74d0e03bb5d66295f50af082c0aedec2adde1a118321a8db6309f7d9c26b6",
+    "result": "No new paper borrowing applicable to missing Waf header export."
+  },
+  "local_delivery_correction": "First inline report/evidence assembly had a Python SyntaxError before any statement executed; corrected in this new local delivery helper. No source/control or remote execution changed.",
+  "scope": "Finite engineering build failure; no scientific performance, completion, OS2 or generation acceptance.",
+  "handoff_owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+  "remaining": "Main accepts failed raw, minimal wscript export repair under new contract, new fixed publication and new run ID/fullbuild/postbuild admission20. Overall G2 remains open.",
+  "only_outputs": [
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-report.md",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-evidence.json",
+    "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r1-raw"
+  ],
+  "evidence_self_hash": "Excluded; final tool and handoff provide digest."
+}

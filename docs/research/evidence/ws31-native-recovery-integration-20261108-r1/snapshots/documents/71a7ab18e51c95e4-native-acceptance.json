@@ -1,0 +1,49 @@
+{
+  "original_main_continuation_delivered": true,
+  "observed_at_utc": "2026-11-08T15:18:35.525835+08:00",
+  "main_turn_id": "01a1ba03-e440-7853-a726-eb9f829b6a2d",
+  "activation_readback": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\main-activation-readback.json",
+  "activation_sha256": "17f3888911c6bc9cfdde5b143cc65e8b508d02bb4e513763855d8571f2c6eb0a",
+  "verified_timers": [
+    {
+      "automation_id": "ws-31",
+      "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "interval_minutes": 30,
+      "status": "ACTIVE",
+      "tool_receipt": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\main-readback.json",
+      "tool_receipt_sha256": "668809d6b7bc030330be24990a7af50e26f7ac3e195278ecc1ac8d915ce85c18",
+      "creation_receipt": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\main-create.json",
+      "creation_receipt_sha256": "5fb13c47140ad4e40f07e26447c40faab981a200fa1c0de987a485fef1cfc949",
+      "configuration_snapshot": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\main-configuration.toml",
+      "configuration_sha256": "2f1d5cea7ba8f2d90f0069d0204723816e3e4c098f8c036015ad956c4eb33aad",
+      "created_at_epoch_ms": 1794122233107,
+      "updated_at_epoch_ms": 1794122233107
+    },
+    {
+      "automation_id": "ws-31-2",
+      "target_thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
+      "interval_minutes": 30,
+      "status": "ACTIVE",
+      "tool_receipt": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\deputy-readback.json",
+      "tool_receipt_sha256": "668809d6b7bc030330be24990a7af50e26f7ac3e195278ecc1ac8d915ce85c18",
+      "creation_receipt": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\deputy-create.json",
+      "creation_receipt_sha256": "5dfbea31aca7edc3e2c4ad10cd5e3f1400ea2c09dde7d6be3c47b8b26e6f3ffb",
+      "configuration_snapshot": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\deputy-configuration.toml",
+      "configuration_sha256": "794ec23bd25294b98a79378829238c6c544bfc79f5890ce9d9079c78b9d978dd",
+      "created_at_epoch_ms": 1794122241312,
+      "updated_at_epoch_ms": 1794122241312
+    }
+  ],
+  "current_failure_recovery": "COMPLETED_BOUNDED_NODE: strict raw_manifest consumer repaired; R1 full failed raw independently accepted and guard released; one Waf export fixed and independently reviewed/published as21b440985f90d2081438e435ef640adc9f43a42d; new ID20261108-152638-ws31-native-entry-r2 full build plus20 nonnetwork object cases main accepted from complete raw and provenance. Full G2/effects remain incomplete.",
+  "native_view_limit": "Tool view rendered cards only; actual persisted TOML independently parsed and snapshotted; no scheduler firing yet claimed.",
+  "recovery_evidence": "E:/研/毕业论文/workspace/LarryBUPT-conweave-ns3/docs/research/ws31/main/evidence/native-supervision-r2/r1-failure-main-acceptance-and-release.json",
+  "recovery_updated_at_utc": "2026-11-08T07:47:48.970386+00:00",
+  "recovery_terminal_acceptance": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\r2-terminal-main-acceptance.json",
+    "sha256": "a3487160db7e7675f28c1732368c32138d19eefa9940388667e5d86a12f03b9d"
+  },
+  "supervision_qa": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\supervision-acceptance-qa.json",
+    "sha256": "578cf340328a7664c6183ece2f64a99a9a03f6f6c1b1dafb60964e6b6489c5c1"
+  }
+}

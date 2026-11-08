@@ -1,0 +1,5 @@
+ASYNC_PRODUCER_FAULT id=13 pending=15 before_seq=0 after_seq=0 before_tx=0 after_tx=0
+EXPECTED_REJECT V2 data producer is not live actual QP
+ENTRY_FAILURE_DRAIN from_ns=2005000093 to_ns=2015550400 pending=0 bindings=1 ledger_unchanged=1 original_error_preserved=1
+WS31_V2_NATIVE_ENTRY_PASS case=pending-producer-failure expected_reject=1 failure_observations=1 session_failed=1 diag_observed=1 issued=16 demand_reads=16 bindings=1 packet_reads=0 cancellations=0 entry_run_calls=1 cancel_bytes=0 entry_finished=0 failed=1 pending=0 not_admitted=1104 live_qps=0 network=0 completion=0 generation=0
+ENTRY_DIAGNOSTIC first_error=V2 data producer is not live actual QP

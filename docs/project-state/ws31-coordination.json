@@ -3,7 +3,7 @@
   "created_date": "2026-11-01",
   "project_id": "4e32290d-ff2c-4e0e-9f4f-96318021748e",
   "project_label": "科研",
-  "status": "HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION",
+  "status": "ACTIVE_NATIVE_ENTRY_R2_ACCEPTED_NEXT_G2_BOUNDED_DESIGN_REQUIRED",
   "integration": {
     "thread_id": "01a0cfac-3176-7590-bf34-c0f176a45118",
     "host_id": "local",
@@ -20,8 +20,8 @@
     "title": "WS-31 主对话：类别感知新机制构思与论证",
     "project_membership_verified": true,
     "write_directory": "docs/research/ws31/main",
-    "last_cursor": "ac23a010-c95a-43f7-b707-45f6631a7c2e:1",
-    "last_observed_status": "idle after finite screen and heartbeat deletion; HOLD retained"
+    "last_cursor": "2acc5049-f8d1-4cbf-83e2-7786ea26ee23:14",
+    "last_observed_status": "idle after native recovery r2 accepted; next bounded G2 design"
   },
   "independent": {
     "thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
@@ -31,8 +31,8 @@
     "write_directory": "docs/research/ws31/independent",
     "first_goal": "independent audit of category-increment and ablation failure evidence",
     "last_cursor": null,
-    "last_reported_cursor": "d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
-    "last_reported_state": "Known completed/idle external document review; no new dispatch or direct Integration poll"
+    "last_reported_cursor": "3dadc2c4-3e49-4c0c-9ee1-13940917f98a:136",
+    "last_reported_state": "Main-reported completed/idle native-entry R2; no new dispatch or direct Integration poll"
   },
   "deferred_ws29": {
     "main_thread_id": "01a1625a-d557-71c1-a90a-258c289ef43e",
@@ -43,42 +43,57 @@
   },
   "heartbeat": {
     "automation_id": "ws-31",
+    "deputy_automation_id": "ws-31-2",
     "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
-    "status": "DELETED_AFTER_FINITE_SCREEN_HOLD_RETAINED",
-    "interval_minutes": null,
-    "former_interval_minutes": 30,
-    "deleted_at_utc_reported_by_main": "2026-11-04T12:12:42.581713+00:00",
-    "main_deletion_receipt": "docs/research/ws31/main/evidence/finite-screen-heartbeat-stop-r1.json",
-    "integration_verification": "docs/research/evidence/ws31-heartbeat-stop-integration-20261104-r1/verification.json",
-    "policy_source": "docs/handoffs/2026-11-04-ws31-heartbeat-stop-integration.md",
-    "configuration_absent_independently_observed": true,
-    "recreate_without_new_instruction": false,
-    "finite_scope_completed": true,
-    "no_automatic_continuation": true,
-    "unfinished_scientific_obligations_retained": true,
-    "workstream_closed_or_archived": false
+    "status": "ACTIVE_TWO_NATIVE_HEARTBEATS_READBACK_VERIFIED",
+    "interval_minutes": 30,
+    "timers": [
+      {
+        "automation_id": "ws-31",
+        "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+        "status": "ACTIVE",
+        "interval_minutes": 30,
+        "created_at_utc": "2026-11-08T07:17:13.107000+00:00",
+        "configuration_sha256": "2f1d5cea7ba8f2d90f0069d0204723816e3e4c098f8c036015ad956c4eb33aad",
+        "creation_receipt": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\main-create.json",
+        "native_view_limit": "Rendered card only; persisted configuration separately verified",
+        "scheduler_firing_observed_by_Integration": false
+      },
+      {
+        "automation_id": "ws-31-2",
+        "target_thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
+        "status": "ACTIVE",
+        "interval_minutes": 30,
+        "created_at_utc": "2026-11-08T07:17:21.312000+00:00",
+        "configuration_sha256": "794ec23bd25294b98a79378829238c6c544bfc79f5890ce9d9079c78b9d978dd",
+        "creation_receipt": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\deputy-create.json",
+        "native_view_limit": "Rendered card only; persisted configuration separately verified",
+        "scheduler_firing_observed_by_Integration": false
+      }
+    ],
+    "source": "docs/research/ws31/main/evidence/native-supervision-r2/native-acceptance.json",
+    "verification": "docs/research/evidence/ws31-native-recovery-integration-20261108-r1/verification.json",
+    "actual_native_create_and_view": true,
+    "integration_did_not_create_update_or_delete": true,
+    "automatic_continuation_authorized": true,
+    "completed_R1_R2_must_not_rerun": true,
+    "old_deletion_history_preserved": true
   },
   "new_mechanism_selected": false,
   "default_model_policy": "Created without model overrides; use actual turn context, not prompt assertions.",
-  "experiment_gate": "HOLD_FINITE_SCREEN_COMPLETE. No repeat analysis, sweep, new source/config/input, build/test/network or redispatch by heartbeat. New evidence or explicit scope update first; engineering/remote additionally require surviving rationale, contract, frozen independent plan and resource gate.",
+  "experiment_gate": "ACTIVE_BOUNDED_CONTINUATION: R1/R2 accepted terminal, no replay. Original main must design remaining G2 and fix a distinct source/input/single-deputy plan plus resource gates before new execution. No scientific effect or baseline acceptance.",
   "notifications": "Report complete stages, material findings, failures or user decisions; keep unchanged state quiet.",
   "scope_authorization": {
     "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
-    "turn_id": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
-    "message_id": "01a1a5f0-a660-7e23-ba5e-95c6a0c88b0c",
-    "evidence": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json",
-    "decision_owner": "WS31 main acting on explicit human request to pause or optimize according to the three reviews",
-    "current_scope": "Finite authorized local evidence screen and D1/D2 design complete; HOLD with no automatic continuation. Original engineering/experiment pause and all unfinished debts remain.",
-    "supersedes_automatic_implementation_entry": true,
-    "old_order_retained_for_later_candidate_judgment": [
-      "C1",
-      "C2",
-      "C3"
-    ],
-    "science_code_config_build_test_network_and_effect_matrix_authorized_now": false,
-    "unfinished_debt_cancelled": false
+    "turn_id": "01a1ba03-e440-7853-a726-eb9f829b6a2d",
+    "event_time_utc": "2026-11-08T07:16:20.167Z",
+    "evidence": "docs/research/evidence/ws31-native-recovery-integration-20261108-r1/user-instruction.json",
+    "current_scope": "New explicit user authorization for native supervision, bounded failure repair and continuation. R1/R2 terminal; next remaining G2 bounded design required before new execution.",
+    "overrides_Nov4_HOLD_for_newly_authorized_work": true,
+    "does_not_close_or_cancel_unfinished_science": true,
+    "unbounded_effect_matrix_or_old_controller_authorized": false
   },
-  "candidate_implementation_authorized": false,
+  "candidate_implementation_authorized": true,
   "validated_combined_baseline_established": false,
   "execution_status_source": "docs/research/ws31/main/current-status.json",
   "last_verified_engineering_checkpoint": {
@@ -261,11 +276,13 @@
     "scope": "Initial dynamic technical coverage only; no independent effects"
   },
   "latest_implemented_source": {
-    "sha": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
-    "parent_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
-    "purpose": "Actual-object endpoint probe with binding/coverage guards and one new scratch object fixture; Qbb header only comment/two friends",
-    "validation": "One1470task optimized-j2 fullbuild and one controlled actual-object fixture accepted at8cd.62rawrows/8double-read groups/16refusals,31Readcalls/17successfulreturns. Mask127/noeventexecution/no natural network completion. FullGitpath and36project ELF byte provenance verified.",
-    "mutable_worktree_status": "NINETEEN_WIP_UNCHANGED_FINITE_ANALYSIS_COMPLETE_HOLD_NO_NEW_BUILD_OR_RUNTIME",
+    "sha": "21b440985f90d2081438e435ef640adc9f43a42d",
+    "parent_sha": "cf54734ced37d1754bfa840bf1c52596b57522f1",
+    "branch": "experiment/ws31-native-entry-r2",
+    "purpose": "One-line declarations Waf header export; native entry bounded object validation",
+    "validation": "R2 one full -j2 build and20 nonnetwork object cases accepted by main and independently locally checked by Integration; no transport completion or scientific efficacy acceptance.",
+    "fixed_source_not_claim_of_mutable_checkout_HEAD": true,
+    "original_WIP_preservation": "Main/deputy complete published4870/original4868 byte audits bound in snapshots; original WIP preserved.",
     "last_network_validated_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
     "network_validation_scopes": {
       "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
@@ -274,37 +291,17 @@
       "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy",
       "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e": "Q12andC2 default dispatch full FCT/orderedCHOICE_ROUTE and dedicatedC2 events with exact104 waits; only two technical cells at unchanged input, not endpoint lifecycle or efficacy"
     },
-    "new_network_approval_scope": "None: finite analysis complete and HOLD; new demand/observation evidence or explicit scope update required before any next action, plus resume gates for engineering/remote.",
-    "current_WIP_hashes": {
-      "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
-      "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
-      "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
-      "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
-      "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
-      "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
-      "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
-      "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
-      "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
-      "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8",
-      "src/point-to-point/model/ws31-endpoint-completion.h": "e5b944081f579495db3d30ef8306bef2d458e2eda8ed69ce5b38a1ee51cbd631",
-      "src/point-to-point/model/ws31-endpoint-identity.h": "000366ac4d9508c281ad48be7be857bebfe38ec6b99af58e4be183f8d35583f2",
-      "src/point-to-point/model/rdma-hw.h": "60158d9872291c829fa13d1ba52c4fbd05e4b9a7229f66f270a7eaa4a73ac699",
-      "src/point-to-point/model/rdma-hw.cc": "22237ebaf5385c7fed7bda1477f051a2f7fc16de460edc213df7caef53f20411",
-      "scratch/ws31-endpoint-network-test.cc": "277114be4dc77046a14224fbd6df8b66a1685be8c1e83ec20892961151be1bc3",
-      "config/ws31_endpoint_input_c1_r1.cfg": "8df9d1a031a7a79f19cb500fcc82da32b516e12bdc37682d03c83a780c335dbf",
-      "config/ws31_endpoint_input_c2_r1.cfg": "92338691c8bd3e19588c96a1064a096ac9fdfdfcac9533fdd5da2c3f7d065dd2",
-      "config/ws31_endpoint_input_c3_r1.cfg": "2413896e9f861b31054ccbab4a1d43fade7c7d56da0282d8aef4c353d949c572",
-      "config/ws31_endpoint_input_two_generations_r1.txt": "4a64365d11c3003f6b2f2696222e187b165f4c568190b036753f492352cfbf61"
-    },
-    "current_WIP_source_audit": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json"
+    "new_network_approval_scope": "None supplied by this Integration handoff; distinct bounded design/frozen plan/resource gates required"
   },
   "last_material_event": {
-    "date": "2026-11-04",
-    "kind": "HEARTBEAT_DELETION_INTEGRATED_HOLD_RETAINED",
-    "record": "docs/handoffs/2026-11-04-ws31-heartbeat-stop-integration.md",
-    "verification": "docs/research/evidence/ws31-heartbeat-stop-integration-20261104-r1/verification.json",
-    "scientific_scope_changed": false,
-    "new_engineering_runtime_acceptance": false,
+    "date": "2026-11-08",
+    "kind": "NATIVE_SUPERVISION_RESTORED_AND_R2_BOUNDED_ENTRY_ACCEPTED",
+    "record": "docs/handoffs/2026-11-08-ws31-native-recovery-integration.md",
+    "verification": "docs/research/evidence/ws31-native-recovery-integration-20261108-r1/verification.json",
+    "completed_event_time_utc": "2026-11-08T07:36:38.050986Z",
+    "main_acceptance_observed_at_utc": "2026-11-08T07:47:06.250075+00:00",
+    "integration_observed_at_utc": "2026-11-08T07:54:43.268606+00:00",
+    "new_engineering_runtime_acceptance": true,
     "new_network_acceptance": false,
     "new_baseline_established": false,
     "user_decision_required": false
@@ -540,6 +537,17 @@
       "network_technical_total": 43,
       "user_decision_required": false,
       "new_baseline_established": false
+    },
+    {
+      "date": "2026-11-04",
+      "kind": "HEARTBEAT_DELETION_INTEGRATED_HOLD_RETAINED",
+      "record": "docs/handoffs/2026-11-04-ws31-heartbeat-stop-integration.md",
+      "verification": "docs/research/evidence/ws31-heartbeat-stop-integration-20261104-r1/verification.json",
+      "scientific_scope_changed": false,
+      "new_engineering_runtime_acceptance": false,
+      "new_network_acceptance": false,
+      "new_baseline_established": false,
+      "user_decision_required": false
     }
   ],
   "last_verified_C1_controls_checkpoint": {
@@ -578,11 +586,11 @@
     "not_equal_computational_cost": true
   },
   "foreground_background_coordination": {
-    "main_observed": "idle f13c4cd1-6458-4d58-888a-76f78e636578:3",
-    "independent_known_last_reported": "idle d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
-    "rule": "Finite scope complete: HOLD. No repeated local analysis or idle redispatch; engineering/remote pause remains. No new remote job state queried.",
+    "main_observed": "idle 2acc5049-f8d1-4cbf-83e2-7786ea26ee23:14",
+    "independent_known_last_reported": "completed/idle 3dadc2c4-3e49-4c0c-9ee1-13940917f98a:136",
+    "rule": "Original main owns next bounded design and any single-target dispatch; active deputy not duplicated, terminal R1/R2 never restarted by timer.",
     "root_restarted_jobs": false,
-    "current_engineering_and_effect_matrix_scope": "PAUSED",
+    "next_execution_plan_fixed": false,
     "old_driver_restart_authorized": false
   },
   "last_verified_C23_controls_checkpoint": {
@@ -646,23 +654,15 @@
     "completed_payload_bytes": 403963904
   },
   "next_registered_goal": {
-    "kind": "HOLD_NO_AUTOMATIC_FOLLOWUP",
-    "status": "HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION",
+    "kind": "MAIN_BOUNDED_G2_DESIGN_BEFORE_NEW_EXECUTION_PLAN",
+    "status": "MAIN_DESIGN_NEXT_BOUNDED_G2_TARGET_NO_EXECUTION_PLAN_YET",
     "owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
-    "scope_source": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
-    "completed_finite_work": [
-      "CCB/CCPB old-state opportunity inventory",
-      "C1 full-score old-reference analysis",
-      "C3 source-arrival overlap groups",
-      "D1/D2 design only"
-    ],
-    "trigger_for_next_action": "New demand/measurement evidence or explicit current-scope update; determine a bounded justified action first",
-    "remote_build_fixture_network_execution_authorized": false,
-    "scientific_source_or_config_edits_authorized": false,
-    "repeat_old_analysis_or_sweeps_authorized": false,
-    "new_sole_independent_dispatch_authorized_now": false,
-    "no_duplicate_sole_independent_dispatch": true,
-    "resume_gate": "Surviving-candidate rationale, corresponding new contract, fixed independent plan and resource gate, explicit scope update before engineering/remote",
+    "source": "docs/handoffs/2026-11-08-ws31-native-recovery-integration.md",
+    "main_status_snapshot": "docs/research/evidence/ws31-native-recovery-integration-20261108-r1/snapshots/documents/840943aa0a8110fc-current-status.json",
+    "next": "Map remaining lifecycle/OS2/framing/shared-protocol requirements and freeze the next bounded design plus sole independent plan.",
+    "new_execution_plan_fixed": false,
+    "restart_R1_R2_authorized": false,
+    "new_sole_independent_dispatch_by_Integration": false,
     "unfinished_correctness_V0_ablations_dual_effects_costs_retained": true
   },
   "last_verified_C13_labels_checkpoint": {
@@ -801,6 +801,44 @@
         },
         "new_network_approval_scope": "None; previous core guards released, current only readonly probe review with frozen2WIP bytes"
       }
+    },
+    {
+      "sha": "8cd1ba69469bf80143d5c89edc17fa72611018e8",
+      "parent_sha": "20bc2d9f7c7c435bf832ba2fcaf0e07df00cf5da",
+      "purpose": "Actual-object endpoint probe with binding/coverage guards and one new scratch object fixture; Qbb header only comment/two friends",
+      "validation": "One1470task optimized-j2 fullbuild and one controlled actual-object fixture accepted at8cd.62rawrows/8double-read groups/16refusals,31Readcalls/17successfulreturns. Mask127/noeventexecution/no natural network completion. FullGitpath and36project ELF byte provenance verified.",
+      "mutable_worktree_status": "NINETEEN_WIP_UNCHANGED_FINITE_ANALYSIS_COMPLETE_HOLD_NO_NEW_BUILD_OR_RUNTIME",
+      "last_network_validated_source": "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e",
+      "network_validation_scopes": {
+        "c4b6039beb47e667e6954b56ec770cb6038082fa": "four zero controls and three initial main-mode technical cells",
+        "50603927fc09a68d9f2e038129aaee3a3d021081": "C2 labels5, C1 matched/unknown7, C23 matched/unknown5, C13 remove/swap4 technical cases; full candidate validation incomplete",
+        "2ed7d342d0713a5667f43c7730ca5bc5a6a67150": "C1/C2/C3 default-profile0 full FCT/common+dedicated-event compatibility only",
+        "1ec5eedc24cd863a289b7493e8b3865c70592ab5": "15-request synthetic dynamic-label Q12+C1/C2/C3p1/p2/p3 technical coverage only; no full lifecycle or efficacy",
+        "1f917f44fcfb88e61f3ad22c5cc75fa3a06b6c0e": "Q12andC2 default dispatch full FCT/orderedCHOICE_ROUTE and dedicatedC2 events with exact104 waits; only two technical cells at unchanged input, not endpoint lifecycle or efficacy"
+      },
+      "new_network_approval_scope": "None: finite analysis complete and HOLD; new demand/observation evidence or explicit scope update required before any next action, plus resume gates for engineering/remote.",
+      "current_WIP_hashes": {
+        "src/point-to-point/model/qbb-channel.h": "a32957876f96288cf88b0b5fff4e638388dacb3115eb6841bdb51ec6a4bc8913",
+        "src/point-to-point/model/qbb-channel.cc": "67304776fa8a31580ff165d6771e9e1cdcc0e2a9bdf35c2d2cb93e5ecfa91655",
+        "src/point-to-point/model/ws31-endpoint-channel.h": "1f12748726301519cd7b08ea03b191b21d70fc09b72465bb3bf6792b0f32cc84",
+        "src/network/model/flow-id-num-tag.h": "d10b589ba7bec4d6cfd4635162c70e615e9a78dbdd664f31737e0496c9d8d181",
+        "scratch/ws31-endpoint-channel-test.cc": "e8a62d5c7766f377ce5511af3fcd0ba5ee221117cde2947a028c558795ee45fe",
+        "src/point-to-point/model/ws31-budget.h": "9538ae51b9d04765c56ba8ff5044d8a385f7b8d9d3cb33e9dbca0bcfa58796d8",
+        "src/point-to-point/model/ws31-quota.h": "fd18f3b2d56b18367f2eb87e8a988597dc99ca9c2418535a424326698c2bec82",
+        "src/point-to-point/model/switch-node.h": "dfdf44bbfae98df0ae6e3f4aeacab98a105053e506368e60925ef86a13834532",
+        "src/point-to-point/model/ws31-endpoint-switch-probe.h": "34da0b2f8f62df2d6040b2d97fa41e7dde8429c11dcc49a975b3b75af8a2312f",
+        "scratch/ws31-endpoint-switch-test.cc": "5a95c34102a4d87b305f71f8e21b72715cffe8fdd5238dfd01a5d6ba856b08c8",
+        "src/point-to-point/model/ws31-endpoint-completion.h": "e5b944081f579495db3d30ef8306bef2d458e2eda8ed69ce5b38a1ee51cbd631",
+        "src/point-to-point/model/ws31-endpoint-identity.h": "000366ac4d9508c281ad48be7be857bebfe38ec6b99af58e4be183f8d35583f2",
+        "src/point-to-point/model/rdma-hw.h": "60158d9872291c829fa13d1ba52c4fbd05e4b9a7229f66f270a7eaa4a73ac699",
+        "src/point-to-point/model/rdma-hw.cc": "22237ebaf5385c7fed7bda1477f051a2f7fc16de460edc213df7caef53f20411",
+        "scratch/ws31-endpoint-network-test.cc": "277114be4dc77046a14224fbd6df8b66a1685be8c1e83ec20892961151be1bc3",
+        "config/ws31_endpoint_input_c1_r1.cfg": "8df9d1a031a7a79f19cb500fcc82da32b516e12bdc37682d03c83a780c335dbf",
+        "config/ws31_endpoint_input_c2_r1.cfg": "92338691c8bd3e19588c96a1064a096ac9fdfdfcac9533fdd5da2c3f7d065dd2",
+        "config/ws31_endpoint_input_c3_r1.cfg": "2413896e9f861b31054ccbab4a1d43fade7c7d56da0282d8aef4c353d949c572",
+        "config/ws31_endpoint_input_two_generations_r1.txt": "4a64365d11c3003f6b2f2696222e187b165f4c568190b036753f492352cfbf61"
+      },
+      "current_WIP_source_audit": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/verification.json"
     }
   ],
   "label_fixture_G1_checkpoint": {
@@ -1149,7 +1187,7 @@
     "source_entry_env_guard": "HELD, carried into r2",
     "source_copy_established": false
   },
-  "integration_observed_utc": "2026-11-04T12:18:59.547090+00:00",
+  "integration_observed_utc": "2026-11-08T07:54:43.268606+00:00",
   "last_completed_registered_preflight_history": [
     {
       "kind": "SOURCE_REVIEW_THEN_SINGLE_BUILD_NEW_CORE_AND_MOCK_ONLY",
@@ -2226,6 +2264,26 @@
       "completion_record": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
       "completion_verification": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/verification.json",
       "new_simulation_or_independent_effects": false
+    },
+    {
+      "kind": "HOLD_NO_AUTOMATIC_FOLLOWUP",
+      "status": "HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION",
+      "owner": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "scope_source": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
+      "completed_finite_work": [
+        "CCB/CCPB old-state opportunity inventory",
+        "C1 full-score old-reference analysis",
+        "C3 source-arrival overlap groups",
+        "D1/D2 design only"
+      ],
+      "trigger_for_next_action": "New demand/measurement evidence or explicit current-scope update; determine a bounded justified action first",
+      "remote_build_fixture_network_execution_authorized": false,
+      "scientific_source_or_config_edits_authorized": false,
+      "repeat_old_analysis_or_sweeps_authorized": false,
+      "new_sole_independent_dispatch_authorized_now": false,
+      "no_duplicate_sole_independent_dispatch": true,
+      "resume_gate": "Surviving-candidate rationale, corresponding new contract, fixed independent plan and resource gate, explicit scope update before engineering/remote",
+      "unfinished_correctness_V0_ablations_dual_effects_costs_retained": true
     }
   ],
   "last_verified_endpoint_channel_static_checkpoint": {
@@ -2241,7 +2299,7 @@
     "runtime_accepted": false,
     "G1_and_all_production_identity_integrated": false
   },
-  "last_updated_date": "2026-11-04",
+  "last_updated_date": "2026-11-08",
   "endpoint_channel_static_history": [
     {
       "record": "docs/handoffs/2026-11-01-ws31-endpoint-channel-integration.md",
@@ -2371,6 +2429,22 @@
         "Gemma"
       ],
       "additional_baseline_cost_and_necessity_owner": "WS-31 main"
+    },
+    {
+      "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "turn_id": "01a1a5ef-431a-7e63-92f7-3173dde91e74",
+      "message_id": "01a1a5f0-a660-7e23-ba5e-95c6a0c88b0c",
+      "evidence": "docs/research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json",
+      "decision_owner": "WS31 main acting on explicit human request to pause or optimize according to the three reviews",
+      "current_scope": "Finite authorized local evidence screen and D1/D2 design complete; HOLD with no automatic continuation. Original engineering/experiment pause and all unfinished debts remain.",
+      "supersedes_automatic_implementation_entry": true,
+      "old_order_retained_for_later_candidate_judgment": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "science_code_config_build_test_network_and_effect_matrix_authorized_now": false,
+      "unfinished_debt_cancelled": false
     }
   ],
   "heartbeat_scope_history": [
@@ -2423,6 +2497,23 @@
       "no_automatic_engineering_or_remote_resumption": true,
       "finite_scope_completed": true,
       "no_automatic_continuation": true
+    },
+    {
+      "automation_id": "ws-31",
+      "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "status": "DELETED_AFTER_FINITE_SCREEN_HOLD_RETAINED",
+      "interval_minutes": null,
+      "former_interval_minutes": 30,
+      "deleted_at_utc_reported_by_main": "2026-11-04T12:12:42.581713+00:00",
+      "main_deletion_receipt": "docs/research/ws31/main/evidence/finite-screen-heartbeat-stop-r1.json",
+      "integration_verification": "docs/research/evidence/ws31-heartbeat-stop-integration-20261104-r1/verification.json",
+      "policy_source": "docs/handoffs/2026-11-04-ws31-heartbeat-stop-integration.md",
+      "configuration_absent_independently_observed": true,
+      "recreate_without_new_instruction": false,
+      "finite_scope_completed": true,
+      "no_automatic_continuation": true,
+      "unfinished_scientific_obligations_retained": true,
+      "workstream_closed_or_archived": false
     }
   ],
   "foreground_background_coordination_history": [
@@ -2436,6 +2527,14 @@
       "main_observed": "idle at f13c4cd1-6458-4d58-888a-76f78e636578:2",
       "independent_main_reported": "completed/idle at d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
       "rule": "No idle redispatch or old engineering continuation; only finite read-only scope. No remote runtime inspection in this node.",
+      "root_restarted_jobs": false,
+      "current_engineering_and_effect_matrix_scope": "PAUSED",
+      "old_driver_restart_authorized": false
+    },
+    {
+      "main_observed": "idle f13c4cd1-6458-4d58-888a-76f78e636578:3",
+      "independent_known_last_reported": "idle d0b9dd1a-3dbb-4cea-9a35-6aefe1b3ed0d:14",
+      "rule": "Finite scope complete: HOLD. No repeated local analysis or idle redispatch; engineering/remote pause remains. No new remote job state queried.",
       "root_restarted_jobs": false,
       "current_engineering_and_effect_matrix_scope": "PAUSED",
       "old_driver_restart_authorized": false
@@ -2490,8 +2589,8 @@
       }
     ]
   },
-  "current_scope_precedence": "Latest HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION overrides all historical next implementation or permitted finite-analysis entries. Completed analysis is not an automatic new goal; unfinished scientific debt retained.",
-  "research_scope_status": "ACTIVE_REVIEW_INFORMED_RESCOPING_CANDIDATE_ENGINEERING_PAUSED",
+  "current_scope_precedence": "November8 actual direct user recovery instruction and current frozen stage gates override historical November4 HOLD/deletion. R1/R2 terminal; next bounded design before a distinct execution plan. All historical receipts and unfinished obligations retained.",
+  "research_scope_status": "ACTIVE_NATIVE_ENTRY_R2_ACCEPTED_NEXT_G2_BOUNDED_DESIGN_REQUIRED",
   "last_verified_finite_screen_checkpoint": {
     "record": "docs/handoffs/2026-11-04-ws31-finite-screen-hold.md",
     "verification": "docs/research/evidence/ws31-finite-screen-integration-20261104-r1/verification.json",
@@ -2626,5 +2725,18 @@
     "nineteen_WIP_unchanged": true,
     "engineering_and_remote_paused": true,
     "new_formal_baseline": false
+  },
+  "last_verified_native_entry_recovery_checkpoint": {
+    "source": "21b440985f90d2081438e435ef640adc9f43a42d",
+    "run_id": "20261108-152638-ws31-native-entry-r2",
+    "actual_fullbuilds": 1,
+    "actual_nonnetwork_object_cases": 20,
+    "independently_checked_packet_rows": 4482,
+    "verification": "docs/research/evidence/ws31-native-recovery-integration-20261108-r1/verification.json",
+    "main_acceptance": "docs/research/ws31/main/evidence/native-supervision-r2/r2-terminal-main-acceptance.json",
+    "source_archive_Git_and_terminal_paths": 4870,
+    "complete_G2": false,
+    "new_baseline": false,
+    "intermediate_native_lexical_policy_stages_full_Integration_reacceptance": false
   }
 }

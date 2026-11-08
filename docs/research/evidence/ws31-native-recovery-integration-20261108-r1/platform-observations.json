@@ -1,0 +1,32 @@
+{
+  "main_snapshot": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"timedOut\":false,\"wake\":{\"reason\":\"turnCompleted\",\"turnId\":\"01a1ba03-e440-7853-a726-eb9f829b6a2d\",\"threadId\":\"01a19322-95a5-76e3-a4f5-1f1e9dde81ce\",\"hostId\":\"local\"},\"polls\":[{\"schemaVersion\":1,\"cursor\":\"2acc5049-f8d1-4cbf-83e2-7786ea26ee23:14\",\"revision\":14,\"changed\":true,\"cursorReset\":true,\"thread\":{\"id\":\"01a19322-95a5-76e3-a4f5-1f1e9dde81ce\",\"hostId\":\"local\",\"status\":{\"type\":\"idle\"}},\"latestTurn\":{\"id\":\"01a1ba03-e440-7853-a726-eb9f829b6a2d\",\"status\":\"completed\",\"error\":null,\"startedAt\":1794122180,\"completedAt\":1794124169,\"durationMs\":1989869},\"latestAssistantMessageId\":\"msg_0dc602ec282cc9c8016af0298ae98087d0848e91c9930bc279\",\"latestAssistantMessage\":{\"id\":\"msg_0dc602ec282cc9c8016af0298ae98087d0848e91c9930bc279\",\"turnId\":\"01a1ba03-e440-7853-a726-eb9f829b6a2d\",\"phase\":\"final_answer\",\"text\":\"已完成： 原主、副各启用一项 30 分钟 Codex 内部监督，均为 ACTIVE，已回读验证。 已修复验收脚本字段错误和头文件导出缺失；新 ID 的完整构建及 20 个非网络案例均通过主独立验收，旧失败记录保留。 后续按剩余 G2 阶段门继续，不重跑已完成案例。 恢复与验收记录 · 监督收据 Codex 侧无需补权限。群端附加检查因缺少 CC_SESSION_KEY 未通过，已留证；不影响上述内部监督。\"},\"latestToolMarkerId\":\"exec-9ed213e7-acf3-4a25-8872-51ac7e688127\",\"latestToolMarker\":{\"id\":\"exec-9ed213e7-acf3-4a25-8872-51ac7e688127\",\"turnId\":\"01a1ba03-e440-7853-a726-eb9f829b6a2d\",\"type\":\"fileChange\",\"name\":\"fileChange\",\"status\":\"completed\"}}]}"
+      }
+    ],
+    "isError": false
+  },
+  "main_timer_view": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Rendered automation card in the app."
+      }
+    ],
+    "isError": false
+  },
+  "deputy_timer_view": {
+    "content": [
+      {
+        "type": "text",
+        "text": "Rendered automation card in the app."
+      }
+    ],
+    "isError": false
+  },
+  "view_limit": "Native view returned rendered-card acknowledgement only; actual configuration bytes are independently verified by audit_local_evidence.py.",
+  "direct_deputy_poll": false,
+  "no_thread_or_automation_mutation_by_Integration": true
+}

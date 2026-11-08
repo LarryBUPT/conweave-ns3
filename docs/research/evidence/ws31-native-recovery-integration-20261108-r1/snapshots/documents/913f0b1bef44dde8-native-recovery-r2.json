@@ -1,0 +1,117 @@
+{
+  "id": "WS31-NATIVE-SUPERVISION-RECOVERY-20261108-R2",
+  "project": "conweave",
+  "recorded_at_utc": "2026-11-08T07:03:10.779268+00:00",
+  "direct_user_instruction": {
+    "text": "在codex中设立监督，不仅群端，明确权限问题原因以及需要我做的操作，不要直接放在那不管了",
+    "event_time": "unknown; no timestamp supplied",
+    "scope": "Explicitly establish supervision inside Codex, diagnose permission cause, and provide necessary human action. Prior WS31 continuation and fault-repair authorization retained."
+  },
+  "intended_executor": {
+    "thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+    "name": "WS-31 主对话：类别感知新机制构思与论证",
+    "entry": "Human sends the one-time activation instruction in this existing Codex desktop conversation; no new thread or replacement CLI session."
+  },
+  "bootstrap": [
+    "先读E:/研/毕业论文/docs/REMOTE_EXPERIMENT_WORKFLOW.md，再按项目规则读baseline审计和当前WS31执行/协调/main状态。",
+    "本文件是直接用户授权的具体执行包；旧11月4日删除心跳是历史，本次已明确重新授权Codex内部监督。科学操作仍按当前有界阶段准入。",
+    "用原生Codex桌面工具先查实际automation和原主/副实时状态。若已有对应监督，更新而不重复创建；原主和唯一副ID保持。使用当前工具schema，不直接写automation.toml、数据库或改ACL。"
+  ],
+  "timers": [
+    {
+      "role": "main",
+      "name": "WS-31 主对话持续监督",
+      "kind": "heartbeat",
+      "target_thread_id": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "interval_minutes": 30,
+      "rrule": "FREQ=MINUTELY;INTERVAL=30",
+      "status": "ACTIVE",
+      "prompt": "继续WS-31原主任务。依次读远程工作流、WS31_EXECUTION、coordination与main/current-status及本恢复任务；真实最近原日志和收据优先，保留事件/观察时间。核对唯一副实际状态及后台进程；active时不重派。已终态失败先核完整raw、修复验收器/脚本或源码后用新固定SHA、新ID重验，不因可恢复报错结束任务，不降低检查、不覆盖旧失败。每轮推进一项必要实质工作并落盘；确实缺权限或需人类操作时给出具体原因和最小操作，同时继续可做部分。保持原19WIP、Ofan暂停、六基线、正确性/V0/消融/双侧效果/成本义务和阶段准入。长矩阵遵守实际模型切换与约30分钟精简监督；常态静默，完整节点或新实质故障才集中报告。全部任务闭环前不把阶段完成当整体完成。"
+    },
+    {
+      "role": "deputy",
+      "name": "WS-31 唯一副对话持续监督",
+      "kind": "heartbeat",
+      "target_thread_id": "01a19323-2201-7b23-a0f1-905c71496d38",
+      "interval_minutes": 30,
+      "rrule": "FREQ=MINUTELY;INTERVAL=30",
+      "status": "ACTIVE",
+      "prompt": "WS-31唯一副自监督。只继续原主当前已登记的单目标；先核主current-status、最近分派、冻结源码/输入/计划与真实后台收据。foreground idle不等于后台停止；不重复启动或重跑已完成格，不自行新增目标或松开主guard。可恢复错误先诊断，按已授权单目标修复允许范围并继续；原源/输入冻结期间把必要源码修复交主，不原地修改。完整失败raw和终态及时交原主，保留事件时间、SHA、ID和哈希；终态后无新目标时只检查交付，不自动重启旧实验。不得创建额外副或代理。遵守资源安全、真实模型策略和常态静默规则；需要账号/权限操作时明确最小步骤，不无限等待陈旧状态。"
+    }
+  ],
+  "failure_recovery": [
+    "先核副报告native-entry-execution-r1-report.md、evidence.json及完整raw，与最新原日志对齐。构建FAIL的ID20261108-122127-ws31-native-entry-r1保留，20案均未运行。",
+    "主验收器静态缺口：verify_build_failure_main.py和verify_terminal_main.py使用ev[raw_inventory]，副交付字段实际为raw_manifest。先独核此差异；若属实，修正主消费者读取raw_manifest.path的files，并验证清单自身、成员路径/长度/SHA256，保留旧evidence/report/raw；不降低验收或冒称已验。",
+    "主独立验收终态raw并显式释放对应guard后，才执行src/point-to-point/wscript导出ws31-v2-native-declarations.h的最小修复。使用新固定SHA/新ID、fresh资源和postbuild门，继续原20案。静态检查/配置通过不当运行通过。",
+    "逐阶段继续原WS31未完成项；不把timer建成当G2正确性/新基线/效果成功。"
+  ],
+  "review_evidence": {
+    "flash": "E:/研/毕业论文/dev-group/state/ws31-supervision/reviewer-flash-oversight.json",
+    "status": "首轮Flash已交CHANGES_REQUIRED，DSH已按原生渠道排队，WorkBuddy待DSH终态；首轮未齐不集中裁决。Flash的session字段存在沿用旧profile的限制，不升级其运行身份认证。"
+  },
+  "acceptance": [
+    {
+      "id": "N1",
+      "description": "原生工具实际创建或更新两个heartbeat，均为ACTIVE、30分钟、精确原主副目标。"
+    },
+    {
+      "id": "N2",
+      "description": "用原生工具回读两份automation并保存原始结果，另核实际配置。记录创建/更新时间与观察时间；不把已有旧配置读取时间当创建时间。"
+    },
+    {
+      "id": "N3",
+      "description": "当前原主实际收到恢复任务并推进失败raw验收或必要修复；保存真实turn ID及下一目标，active副不重复派发。"
+    },
+    {
+      "id": "N4",
+      "description": "原主自己的current-status.heartbeat_monitor按新授权和真实工具结果更新；被动群端读取收据，用户不转发报告。"
+    }
+  ],
+  "receipt_contract": {
+    "write_only_in_original_main_scope": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\native-acceptance.json",
+    "format": {
+      "original_main_continuation_delivered": true,
+      "observed_at_utc": "actual UTC observation time",
+      "main_turn_id": "actual native turn id",
+      "verified_timers": [
+        {
+          "automation_id": "actual native ID",
+          "target_thread_id": "exact main/deputy ID",
+          "interval_minutes": 30,
+          "status": "ACTIVE",
+          "tool_receipt": "absolute path to saved actual native tool creation/readback result within this main evidence directory",
+          "tool_receipt_sha256": "actual SHA256 of that saved raw tool result"
+        }
+      ],
+      "current_failure_recovery": "actual completed/pending action and evidence, never invented"
+    },
+    "important": "必须亲自实际调用工具后再写true/ACTIVE；原始工具结果与回读文件分别保存。若工具仍缺失，记录缺哪项和准确用户操作，不写成功。"
+  },
+  "human_activation_text": "请读取 E:/研/毕业论文/dev-group/state/ws31-supervision/native-recovery-r2.json，执行本次监督恢复任务：用Codex原生工具给原主副各建立30分钟监督并回读验证，随后恢复当前失败节点；可修复故障自行处理后继续。",
+  "does_not_authorize": [
+    "关闭沙箱或放宽全盘权限",
+    "改写旧raw或旧科学WIP",
+    "绕过source guard或资源门",
+    "替代三个指定原生审阅者",
+    "恢复WS29/旧矩阵或旧控制器"
+  ],
+  "goal": "在现有Codex原主副对话实际启用30分钟持续监督，验收原始工具回读，并接续当前真实失败节点。",
+  "final_checks": [
+    {
+      "id": "group-local-supervision-configuration",
+      "argv": [
+        "E:\\研\\毕业论文\\dev-group\\.venv\\Scripts\\python.exe",
+        "E:\\研\\毕业论文\\dev-group\\state\\ws31-supervision\\supervision.py",
+        "verify-local"
+      ]
+    },
+    {
+      "id": "native-timer-readbacks",
+      "argv": [
+        "E:\\研\\毕业论文\\dev-group\\.venv\\Scripts\\python.exe",
+        "E:\\研\\毕业论文\\dev-group\\state\\ws31-supervision\\native_receipt.py"
+      ]
+    }
+  ],
+  "schema_gap_independent_confirmation": "E:\\研\\毕业论文\\dev-group\\state\\ws31-supervision\\schema-gap-independent-check-r2.json"
+}

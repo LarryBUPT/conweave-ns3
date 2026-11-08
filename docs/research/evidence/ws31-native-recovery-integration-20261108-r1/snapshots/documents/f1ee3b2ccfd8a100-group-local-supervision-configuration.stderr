@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "E:\研\毕业论文\dev-group\state\ws31-supervision\supervision.py", line 153, in <module>
+    else:sys.exit(verify(a.action=='verify-complete'))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\研\毕业论文\dev-group\state\ws31-supervision\supervision.py", line 126, in verify
+    assert ours[0]['session_key']==os.environ['CC_SESSION_KEY']
+                                   ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 714, in __getitem__
+KeyError: 'CC_SESSION_KEY'

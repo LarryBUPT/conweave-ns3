@@ -1,0 +1,67 @@
+{
+  "actual_input_files": {
+    "D1": {
+      "bytes": 79077,
+      "header": [
+        "WS31_V2_DECL_R1",
+        "K0",
+        "D1",
+        "5310001",
+        "1120",
+        "2005000000",
+        "550400",
+        "2015550400",
+        "1000",
+        "48"
+      ],
+      "path": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native",
+      "sha256": "087141cb78b092524ff9b9d573fc91c1f5bd49e8490d4f169b717da0fddc4595"
+    },
+    "D2": {
+      "bytes": 79638,
+      "header": [
+        "WS31_V2_DECL_R1",
+        "K0",
+        "D2",
+        "5310001",
+        "1120",
+        "2005000000",
+        "4671488",
+        "2056386368",
+        "1000",
+        "48"
+      ],
+      "path": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D2-5310001.native",
+      "sha256": "c28cb253d8bf6f7ba9e6b746da048f49df2f860731ad5ccce92fdf902627493c"
+    }
+  },
+  "agent_resource_job_decision": "Fresh all-user/PID/start-ticks/CPU attribution independently inspected; only worker, current audit and passive preflight processes.",
+  "all_built_ns3_library_files_checked": 36,
+  "binary_sha256": "f3cf6e5f443219e8dbbcda5c8aa76eabb3b1b78d3d9d2b6e58f94da923be713c",
+  "disk_free_bytes": 2454984769536,
+  "evidence": {
+    "actual_binary": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source/build/scratch/ws31-v2-native-entry-check",
+    "actual_process_resource_observation_epoch_s": 1794123374.665239,
+    "actual_request_sha256": "b9cba59751aa38b87c291649f7f8e748da529a16872cbdec0adad246382f9ef3",
+    "actual_source": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source",
+    "path": "/home/fnl/lzy/results/20261108-152638-ws31-native-entry-r2/post-build-observation.json",
+    "sha256": "96d3f1260c58e82ca801705b9db5785357aff236585f502cadc8724090c346c9"
+  },
+  "input_binding_sha256": "f8a2320c727d3bc168c27b58de34b7df69e72ee383a59fca7bdc66becc09b045",
+  "input_files_checked": 2,
+  "load1": 1.46,
+  "loaded_ns3_library_files_checked": 36,
+  "memory_available_bytes": 131536105472,
+  "observed_epoch_s": 1794123374.665239,
+  "other_active_jobs": [],
+  "plan_sha256": "fd69aae2be8c852c82ae1fbcc32a77e66905da6b8e9e9661e4fbc4c2d7f02c14",
+  "request_nonce": "db0a3f6a087a2550ca7da87fdcf777e3",
+  "run_id": "20261108-152638-ws31-native-entry-r2",
+  "source_commit": "21b440985f90d2081438e435ef640adc9f43a42d",
+  "source_files_checked": 4870,
+  "source_unchanged": true,
+  "status": "PASS",
+  "tree_manifest_sha256": "35030f84cce0d85c47630930053093075279359745fb5d762bb6e42627618454",
+  "unknown_jobs": [],
+  "worker_pid": 328136
+}

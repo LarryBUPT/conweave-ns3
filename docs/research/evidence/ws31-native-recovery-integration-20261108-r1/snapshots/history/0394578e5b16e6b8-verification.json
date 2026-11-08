@@ -1,0 +1,50 @@
+{
+  "at_utc": "2026-11-04T12:18:59.547090+00:00",
+  "status": "PASS_OPERATIONAL_METADATA_INTEGRATION_ONLY",
+  "base_commit": "69d4be02e80fbfedb9b3c4c80162cc4bad0c6961",
+  "main_deletion_receipt": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\finite-screen-heartbeat-stop-r1.json",
+    "sha256": "6491389ecaf29ef7f59a6eb5554098ce37fcc5e9a89c360d5f296c20183adc94"
+  },
+  "main_status": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\current-status.json",
+    "sha256": "ba34955511c2cfc99118310b2e9d27cf640e81d6db1e590cc59ba8a93b341749",
+    "heartbeat_monitor": {
+      "automation_id": "ws-31",
+      "status": "DELETED_AFTER_FINITE_SCREEN_HOLD_RETAINED",
+      "source": "Integration registry after implementation authorization",
+      "interval_minutes": 30,
+      "record": "evidence/finite-screen-heartbeat-stop-r1.json",
+      "automatic_continuation_authorized": false
+    }
+  },
+  "automation_config_absent": true,
+  "main_idle_cursor": "ac23a010-c95a-43f7-b707-45f6631a7c2e:1",
+  "archived_targets_observed": 5,
+  "archive_actions_repeated": false,
+  "prior_heartbeat_preserved_in_history": true,
+  "HOLD_unchanged": true,
+  "next_registered_goal_unchanged": true,
+  "independent_record_unchanged_no_direct_poll": true,
+  "scientific_source_results_WIP_modified_by_this_operation": false,
+  "raw_or_scientific_audits_repeated": false,
+  "unfinished_obligations_retained": true,
+  "new_dispatch_or_remote_execution": false,
+  "source_receipt_and_status_unchanged": true,
+  "before_sha256": {
+    "docs/project-state/CURRENT_STATE.md": "8bc0bbe706becf23b172b3bde0ee53e1bf3ad68263a42919b41c26726a997e21",
+    "docs/project-state/ROADMAP.md": "5194e2571517112ec9c08e9846b3e75831ff0f3e39b6c0b3bbd815fb594cde29",
+    "docs/project-state/WORKSTREAMS.md": "9fd580954e130ac9a68095a7fd01dad3393cadeb44777fda2e04229df2772aca",
+    "docs/project-state/WS31_EXECUTION.md": "8b78a91d02e36929a532b3867c3b58ceaa330bdfc6096558c45a0bf83284d86b",
+    "docs/project-state/ws31-coordination.json": "cc5798ae44fd4ad02016a53e872467732701d2b2424f4a0dfa36ce8c35c544bc"
+  },
+  "after_sha256": {
+    "docs/project-state/CURRENT_STATE.md": "2003ee6f260ac4d1c5a5ea91737de5fbcb92c4036572e173dedeebd41946b8df",
+    "docs/project-state/ROADMAP.md": "73a4284ab44143277973c5a7c74430538bc47d9d31cc90c20386df658d63d962",
+    "docs/project-state/WORKSTREAMS.md": "fe5bc949603b8ee1412be7b141eb67ca6de7564e199abfa676675906e0b264a8",
+    "docs/project-state/WS31_EXECUTION.md": "338b11c6f31191dcad38c17645766fd2feb59ecfff4c4c219d7826729569dc05",
+    "docs/project-state/ws31-coordination.json": "281248295d49f8e8ff81c217a45670d3649b7232f5942a7e008b50abf47c9cf4",
+    "docs/handoffs/2026-11-04-ws31-heartbeat-stop-integration.md": "d294de32f0a57e7f22dedf62edfb02893c0f1579c3c5b1811feeab5edfe623c0"
+  },
+  "style_check": "Original README and all six Ruanyf chapters read; headings, spacing, paragraphs, quantities, punctuation and structure checked."
+}

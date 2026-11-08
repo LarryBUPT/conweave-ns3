@@ -1,0 +1,4 @@
+ENTRY_PACKET ordinal=0 id=0 src=1 dst=74 sport=10000 dport=100 pg=3 bytes=16384 original=2 present=1 policy=2 demand_ns=2005000000 delay_ns=0 uid=0
+EXPECTED_FAILED_EXPORT V2 entry actual transport configuration mismatch
+WS31_V2_NATIVE_ENTRY_PASS case=postrun-context expected_reject=1 failure_observations=1 session_failed=1 diag_observed=1 issued=1120 demand_reads=1120 bindings=1120 packet_reads=1 cancellations=0 entry_run_calls=1 cancel_bytes=0 entry_finished=0 failed=1 pending=0 not_admitted=0 live_qps=1120 network=0 completion=0 generation=0
+ENTRY_DIAGNOSTIC first_error=V2 entry actual transport configuration mismatch

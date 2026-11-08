@@ -1,8 +1,18 @@
 # WS-31：类别感知机制研究与验证
 
-建立日期：2026 年 11 月 1 日。范围更新：2026 年 11 月 4 日。当前执行状态：`HOLD_CURRENT_SCOPE_FINITE_SCREEN_COMPLETE_NO_AUTOMATIC_CONTINUATION`；研究范围沿用外评后的暂停安排。
+建立日期：2026 年 11 月 1 日。范围更新：2026 年 11 月 8 日。当前执行状态：`ACTIVE_NATIVE_ENTRY_R2_ACCEPTED_NEXT_G2_BOUNDED_DESIGN_REQUIRED`。
 
-## 0. 当前执行范围：外评后的有限筛查
+## 0. 当前执行范围：原生监督恢复后的 G2 有界设计
+
+原主 11 月 8 日 15:16:20.167 的[真实用户指令](../research/evidence/ws31-native-recovery-integration-20261108-r1/user-instruction.json)重新授权内部监督、当前故障修复和继续推进，覆盖下方历史 HOLD。两项原生心跳均已创建并回读：主 `ws-31`、副 `ws-31-2`，ACTIVE／30 分钟；原创建时间、实际配置与核验范围见[整合交接](../handoffs/2026-11-08-ws31-native-recovery-integration.md)。不因摘要保留旧 HOLD 而撤销新授权，也不因本阶段通过而自动取消剩余义务。
+
+R1 失败材料完整保留；主修复验收消费者读取字段后，独立接受失败来源并显式释放。副审／主验通过的一行 Waf 头导出修复形成固定源 `21b440985f90d2081438e435ef640adc9f43a42d`、个人分支 `experiment/ws31-native-entry-r2`。R2 ID `20261108-152638-ws31-native-entry-r2` 一次完整构建和 20 个非网络对象案例已主验，Integration 独核全部 202 raw／147 归档成员、4,870 个 Git／源码归档与终态指纹、24 实际命令和 4,482 包记录，输入／ELF／36 库与一次性 gate 对应。完成事件、主验收观察与 Integration 观察分别记录。
+
+主已显式释放 R2 的有限约束。唯一副沿主报告 idle cursor `3dadc2c4-3e49-4c0c-9ee1-13940917f98a:136`，无新派发；Integration 不直查副或接管远端。当前下一目标为原主梳理剩余 G2 的有界设计，尚无下一个执行计划。新执行须固定源码、输入、唯一副计划与资源门；两条监督均不得重跑已终态 R1／R2。
+
+OS2、实际 framing、完整完成及共享协议、真实超时与两代边界、独立 V0、匹配消融、业务／背景双侧效果和实际成本仍未完成。20 对象案例不并入历史 43 格网络或 17 例适配器；无新基线。群端检查缺少 `CC_SESSION_KEY` 的原失败与原生监督核验通过分列，不伪造群身份或要求用户放宽权限。原 WIP、Ofan 暂缓、六基线、后置 WS-29 和旧控制器边界保持。
+
+## 历史执行范围（2026-11-04）：外评后的有限筛查
 
 用户在主对话 turn `01a1a5ef-431a-7e63-92f7-3173dde91e74` 直接要求阅读三份 C123-review、自然语言总结、据评审暂缓或优化工作，并评价新机制。Integration 已读原消息，见[原文证据](../research/evidence/ws31-review-rescope-integration-20261104-r1/user-instruction.json)和[整合交接](../handoffs/2026-11-04-ws31-review-informed-rescope.md)。本节优先于下方旧实施入口；原授权与工程节点保留历史，不自动恢复接线。
 

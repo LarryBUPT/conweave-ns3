@@ -1,0 +1,241 @@
+{
+  "goal_id": "WS31-G2-NATIVE-ENTRY-EXECUTION-R2",
+  "status": "FROZEN_FIXED_SOURCE_FULLBUILD_POSTBUILD_ADMISSION_TWENTY_OBJECT_CASES",
+  "registered_utc": "2026-11-08T07:26:38.217532+00:00",
+  "registered_beijing": "2026-11-08T15:26:38.217532+08:00",
+  "authority": "Original main user turn 01a1ba03-e440-7853-a726-eb9f829b6a2d; native-recovery-r2.json",
+  "protocol_sha256": "5d676baeb674f488fe25686207be3fb9925b007d238c1fa1f340e04d1c9310c8",
+  "constructor_sha256": "261cee65f90dd72119694f00d93778e705ec59fa84b302984cc64000b1ebdc8d",
+  "source_commit": "21b440985f90d2081438e435ef640adc9f43a42d",
+  "source_branch": "experiment/ws31-native-entry-r2",
+  "source_root": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source",
+  "publication": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\publication-r2\\source-publication.json",
+    "sha256": "e473d1ec6784c81543a664c8e3b2a8c98c417b22b181f98097ce7ad2ff1e0119"
+  },
+  "source_archive": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\publication-r2\\source-fixed-git-bytes.tar.gz",
+    "sha256": "3a75e9b5f2894ad86030ea7d4b9dc89f13b86f1b0b9f7563ff96e95ede10e811",
+    "bytes": 36445638
+  },
+  "tree_manifest": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\publication-r2\\source-tree-manifest.json",
+    "sha256": "35030f84cce0d85c47630930053093075279359745fb5d762bb6e42627618454",
+    "files": 4870
+  },
+  "source_four": {
+    "src/applications/model/ws31-v2-native-entry.h": {
+      "mode": "100644",
+      "git_blob": "11ba21b319143b52a88ac7befde8e9c7276501c8",
+      "bytes": 15316,
+      "sha256": "95235193b36620f6b0743c51914af22cedf6fa49babd31ddb57d50187c8669d3"
+    },
+    "scratch/ws31-v2-native-entry-check.cc": {
+      "mode": "100644",
+      "git_blob": "4d30d5639fa4b07e7188ade637c300ba35e52251",
+      "bytes": 25708,
+      "sha256": "2885de526928dea17430970fdf387e33ece3f225992ef48754c9e4f0a3a78427"
+    },
+    "src/applications/model/rdma-client.h": {
+      "mode": "100644",
+      "git_blob": "432b59d2f44a210680c982c35ec71b7ee5c7d4ae",
+      "bytes": 3016,
+      "sha256": "14d0ba941c3b45f1a2f944af8b2aaeb11d414fa8571f3f3b93e28cbbc9ca3def"
+    },
+    "src/applications/wscript": {
+      "mode": "100644",
+      "git_blob": "4c9db7947130340eff8e6c28ae7eebb72c2ea8d2",
+      "bytes": 2367,
+      "sha256": "7a51108ba4f536debbca888abac64e0cbddc74bf56dc96f68f81c103cc388464"
+    }
+  },
+  "run_id": "20261108-152638-ws31-native-entry-r2",
+  "remote_run": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2",
+  "remote_source": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source",
+  "remote_result": "/home/fnl/lzy/results/20261108-152638-ws31-native-entry-r2",
+  "remote_tree_manifest": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/source-tree-manifest.json",
+  "runner": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-entry-runtime-20261108-r1\\native_entry_runner_r1.py",
+    "sha256": "c3ab5849970c472901ba2a6a537385d4584ddf36f4e8a76dfd84c8701d31e992",
+    "remote_path": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/native_entry_runner_r1.py"
+  },
+  "runner_preparation": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-entry-runtime-20261108-r1\\runner-preparation.json",
+    "sha256": "1c8c78b16bf2c80ef456dac6292c6aa4e664c0a4d7102f3e8aac582a2097434e"
+  },
+  "controller_checks": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-entry-runtime-20261108-r1\\control-checks.json",
+    "sha256": "cfdf891bda8b53f325ca2d5bac85b14ba08bddc3fe74501f8656cd22fb8373df",
+    "scope": "18 pure control checks, not C++ cases; inherited R4 admission function byte-identical."
+  },
+  "input_sources": [
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-lexical-execution-r3-raw\\remote-result\\corpus\\valid-D1-5310001.native",
+      "sha256": "087141cb78b092524ff9b9d573fc91c1f5bd49e8490d4f169b717da0fddc4595",
+      "family": "D1",
+      "remote_path": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-lexical-execution-r3-raw\\remote-result\\corpus\\valid-D2-5310001.native",
+      "sha256": "c28cb253d8bf6f7ba9e6b746da048f49df2f860731ad5ccce92fdf902627493c",
+      "family": "D2",
+      "remote_path": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D2-5310001.native"
+    }
+  ],
+  "input_files": {
+    "D1": {
+      "remote_path": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D1-5310001.native",
+      "family": "D1",
+      "seed": 5310001,
+      "bytes": 79077,
+      "sha256": "087141cb78b092524ff9b9d573fc91c1f5bd49e8490d4f169b717da0fddc4595",
+      "t0_ns": 2005000000,
+      "horizon_ns": 550400,
+      "stop_ns": 2015550400
+    },
+    "D2": {
+      "remote_path": "/home/fnl/lzy/runs/20261108-152638-ws31-native-entry-r2/inputs/D2-5310001.native",
+      "family": "D2",
+      "seed": 5310001,
+      "bytes": 79638,
+      "sha256": "c28cb253d8bf6f7ba9e6b746da048f49df2f860731ad5ccce92fdf902627493c",
+      "t0_ns": 2005000000,
+      "horizon_ns": 4671488,
+      "stop_ns": 2056386368
+    }
+  },
+  "input_binding_sha256": "f8a2320c727d3bc168c27b58de34b7df69e72ee383a59fca7bdc66becc09b045",
+  "fixture_cases": [
+    "entry-d1",
+    "entry-d2",
+    "nonzero-install",
+    "bad-final-declaration",
+    "duplicate-install",
+    "late-install",
+    "wrong-address",
+    "wrong-hw-owner",
+    "bad-reverse-route",
+    "missing-pair-timing",
+    "repeated-run",
+    "early-stop",
+    "pending-producer-failure",
+    "terminal-mtu",
+    "terminal-route",
+    "postrun-live-map",
+    "dispose-before-run",
+    "diagnostic-before-terminal",
+    "policy-variants",
+    "postrun-context"
+  ],
+  "case_family": {
+    "entry-d1": "D1",
+    "entry-d2": "D2",
+    "nonzero-install": "D1",
+    "bad-final-declaration": "D1",
+    "duplicate-install": "D1",
+    "late-install": "D1",
+    "wrong-address": "D1",
+    "wrong-hw-owner": "D1",
+    "bad-reverse-route": "D1",
+    "missing-pair-timing": "D1",
+    "repeated-run": "D1",
+    "early-stop": "D1",
+    "pending-producer-failure": "D1",
+    "terminal-mtu": "D1",
+    "terminal-route": "D1",
+    "postrun-live-map": "D1",
+    "dispose-before-run": "D1",
+    "diagnostic-before-terminal": "D1",
+    "policy-variants": "D1",
+    "postrun-context": "D1"
+  },
+  "object_parameters": {
+    "mtu": 1000,
+    "rate_bps": 100000000000,
+    "cc_mode": 1,
+    "irn": false,
+    "bdp_bytes": 12500,
+    "rtt_ns": 1000,
+    "mode43_cases": [
+      "nonzero-install",
+      "pending-producer-failure",
+      "policy-variants"
+    ],
+    "scope": "Explicit unattached-object constants, not measured OS2 parameters."
+  },
+  "budget": {
+    "configure_invocations": 1,
+    "full_build_invocations": 1,
+    "jobs_per_build": 2,
+    "ldd_invocations": 1,
+    "fixture_case_invocations": 20,
+    "expected_direct_subcommands": 24,
+    "configure_timeout_s": 180,
+    "build_timeout_s": 1200,
+    "case_timeout_s": 15,
+    "postbuild_wait_timeout_s": 600,
+    "resource_admission_max_age_s": 60,
+    "gate_refreshes": 0,
+    "retries_within_ID": 0,
+    "scientific_network_runs": 0,
+    "new_scientific_demands": 0
+  },
+  "executor": "01a19323-2201-7b23-a0f1-905c71496d38",
+  "required_preflight": [
+    "Verify exact clean local fixed source/branch/personal remote, complete4870 archive manifest/Git blobs/modes and both input byte hashes; no source/config edits.",
+    "Fresh remote users/all-job/PID ancestry and CPU attribution, load/memory/disk/maintenance/ns3 status; unknown or other active jobs block launch. No stale dormant-PID assumptions.",
+    "New run/result/inputs only, absolute verified paths under /home/fnl/lzy; refuse existing ID/paths; safe regular extraction, no links/traversal; no shared cache/sync/deploy mutation.",
+    "Verify Python3.5/GCC5.4 environment, exact worker SHA, Python optimization disabled (env -u PYTHONOPTIMIZE python3 -B), cleaned scientific env; preserve full compiler and Waf flags.",
+    "Independently inspect new runner input binding/output selector/drain checks and pure-control results before launch; discrepancies stop before compile for main repair."
+  ],
+  "postbuild_admission": {
+    "owner": "same sole executor; no human approval",
+    "request": "Actual worker/execution/case-admission-request.json after successful build and actual new ELF/ldd; completed_cases must be[].",
+    "fresh_audit": "Only after request: recheck jobs/PID/CPU/resources,4870 actual source bytes, actual target ELF+all ns3 libs and both actual input files.",
+    "resource_receipt_extra": {
+      "input_binding_sha256": "f8a2320c727d3bc168c27b58de34b7df69e72ee383a59fca7bdc66becc09b045",
+      "input_files_checked": 2,
+      "evidence": "paths and hashes of actual post-request input/source/ELF/process/resource observations"
+    },
+    "legacy_required_fields": "run_id/source_commit/worker_pid/request_nonce/plan_sha256/status PASS/unknown_jobs[]/other_active_jobs[]/source_unchanged true/source_files_checked4870/tree_manifest_sha256/binary_sha256/observed_epoch/load1<=20/memory>=8GiB/disk>=2GiB",
+    "gate": "allow_cases true plus raw request_sha256 and resource_receipt_sha256, issued after observed after request; fresh <=60s before each case.",
+    "publish": "exclusive temporary regular files, flush/fsync, same-directory atomic non-overwrite link; never prepublish/refresh/revoke/reuse an old gate."
+  },
+  "required_actual_acceptance": [
+    "One full optimized-j2 build includes the new Entry/fixture translation unit; real ELF and all loaded ns3 libs copied/hash-bound to the new build.",
+    "20 separate actual PIDs in exact registered order; final exit0/timeoutsfalse plus unique matching native-entry PASS and complete stdout/stderr. No waf--run/rebuild or repeated case.",
+    "Four healthy cases retain1120 demand/QP/Packet mappings; negative and not-sampled diagnostics distinguished; input family/path/hash and original request time/identity retained.",
+    "Pending producer fault is actual genuine QP at2005000093 with other requests pending; exactly one actual ENTRY_FAILURE_DRAIN to2015550400, full ledger/firsterror retained before Dispose/Destroy, final exit0.",
+    "Corrected source archive/old failed first archive/old R3-R4 failure/raw/source all preserved; original WIP HEAD/index and other local source/inputs/control bytes preserved."
+  ],
+  "local_raw_root": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r2-raw",
+  "local_write_prefix": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\independent\\native-entry-execution-r2-",
+  "outputs": [
+    "native-entry-execution-r2-report.md",
+    "native-entry-execution-r2-evidence.json",
+    "native-entry-execution-r2-raw/"
+  ],
+  "report_max_lines": 180,
+  "guard": "Hold new R2 fixed source, original WIP, inputs, worker and plan until main accepts terminal raw; no source or plan edits by executor.",
+  "forbidden": [
+    "new source/config/seed/threshold edits",
+    "scientific network or performance run",
+    "old fixture/controller/matrix repeat",
+    "shared cache/worker/sync/deploy",
+    "WS29/Ofan/new agents/chats/model/preset/project changes",
+    "overwriting IDs/raw or failure receipts",
+    "claiming full G2 or new baseline"
+  ],
+  "deputy_idle_cursor_before_dispatch": "Filled in separate actual pre-dispatch snapshot, not inferred.",
+  "completion": "Deliver complete raw/report/hashes and terminal-send original main for independent raw acceptance and autonomous continuation; failures retain evidence and exact repair entry, no human confirmation.",
+  "predecessor_failed_plan": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\native-entry-execution-plan-r1.json",
+    "sha256": "685b6530ee160404d4113a51523aa9a7641142c5e91a6841c75787940a8c190a"
+  },
+  "predecessor_failure_acceptance": {
+    "path": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\r1-failure-main-acceptance-and-release.json",
+    "sha256": "0258e09ffc0fd6beff401866b6508dab3ea7a75dd83ca298957e4d700b143d18"
+  },
+  "scientific_delta": "Exactly one declarations header export; all other source/fixture/inputs/worker/control checks unchanged.",
+  "repair_source_path": "src/point-to-point/wscript"
+}

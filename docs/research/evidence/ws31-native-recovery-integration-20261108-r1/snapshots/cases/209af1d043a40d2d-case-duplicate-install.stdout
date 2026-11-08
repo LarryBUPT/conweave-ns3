@@ -1,0 +1,3 @@
+EXPECTED_REJECT V2 entry installation repeated or failed
+WS31_V2_NATIVE_ENTRY_PASS case=duplicate-install expected_reject=1 failure_observations=1 session_failed=1 diag_observed=1 issued=0 demand_reads=0 bindings=0 packet_reads=0 cancellations=0 entry_run_calls=0 cancel_bytes=0 entry_finished=0 failed=1 pending=0 not_admitted=1120 live_qps=0 network=0 completion=0 generation=0
+ENTRY_DIAGNOSTIC first_error=V2 entry installation repeated or failed

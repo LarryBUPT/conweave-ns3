@@ -1,0 +1,32 @@
+{
+  "observed_at_utc": "2026-11-08T07:24:20.668730+00:00",
+  "checks": [
+    {
+      "id": "group-local-supervision-configuration",
+      "argv": [
+        "E:\\研\\毕业论文\\dev-group\\.venv\\Scripts\\python.exe",
+        "E:\\研\\毕业论文\\dev-group\\state\\ws31-supervision\\supervision.py",
+        "verify-local"
+      ],
+      "actual_exit": 1,
+      "stdout": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\group-local-supervision-configuration.stdout",
+      "stderr": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\group-local-supervision-configuration.stderr",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "f1ee3b2ccfd8a10010c9bfd0556567d7239c5e8924de87e22a018d8f7690f037"
+    },
+    {
+      "id": "native-timer-readbacks",
+      "argv": [
+        "E:\\研\\毕业论文\\dev-group\\.venv\\Scripts\\python.exe",
+        "E:\\研\\毕业论文\\dev-group\\state\\ws31-supervision\\native_receipt.py"
+      ],
+      "actual_exit": 0,
+      "stdout": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\native-timer-readbacks.stdout",
+      "stderr": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-supervision-r2\\native-timer-readbacks.stderr",
+      "stdout_sha256": "ad8c79024bb7a3f4e36f3aff752d10fe19e9ef11305cfcad3268187855b954cd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "group_context_limit": "verify-local requires CC_SESSION_KEY from cc-connect harness. It is absent in actual native Codex desktop context; no substitute identity was injected. Native timer verifier is independently meaningful and may pass.",
+  "native_tool_permission": "Native automation create/view succeeded. No ACL/database/manual TOML mutation, new account permission or user action required for the native path."
+}

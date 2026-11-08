@@ -1,0 +1,18 @@
+{
+  "recorded_date_beijing": "2026-11-08",
+  "node": "WS31 native supervision and finite entry recovery",
+  "entry_points": [
+    "E:/研/毕业论文/参考文献/候选/README.md",
+    "E:/研/毕业论文/参考文献/候选/reading-log.md"
+  ],
+  "paper_version": "SeqBalance, arXiv:2407.09808v1",
+  "sources": [
+    "E:/研/毕业论文/参考文献/候选/papers/seqbalance-2024/analysis-technical.md",
+    "E:/研/毕业论文/参考文献/候选/papers/seqbalance-2024/verification.md"
+  ],
+  "borrowed": "Keep original request identity, actual QP identity, per-child work and final parent completion distinct.",
+  "applicable_conditions": "Do not count issued/constructed packets or a completed entry method as transport completion. Parent completion requires all relevant child completions.",
+  "difference": "The current R2 is an unattached-object/native-entry engineering check with network/completion/generation counters zero; it implements neither the paper's WQE splitting nor CQE aggregation.",
+  "non_extrapolation": "Author-reported performance and hardware/resource costs are not this project's evidence; no new baseline admitted.",
+  "new_literature_search_or_external_performance_verification": false
+}

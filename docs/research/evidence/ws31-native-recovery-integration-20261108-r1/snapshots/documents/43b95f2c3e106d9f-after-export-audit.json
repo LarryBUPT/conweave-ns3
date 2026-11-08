@@ -1,0 +1,269 @@
+{
+  "status": "DIRECT_NS3_INCLUDE_EXPORT_AUDIT",
+  "observed_utc": "2026-11-08T07:21:39.082316+00:00",
+  "scripts": [
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\core\\wscript",
+      "sha256": "32f81750c58e66772b6a4a240217825e10f18078e489ec9d9dfbc8c8e7a1df8b"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\network\\wscript",
+      "sha256": "dbc446b96f071097cf7fe1b8364d7f4ddd8fee99282b329446301b293c177f16"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\internet\\wscript",
+      "sha256": "380fdc4dcf3136ff979b59363110c7a717d1b3fd46fe54decf99b87655b9e7b6"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\wscript",
+      "sha256": "f4b1dcf9b64411cec337d40499c4058119747bacce5cab9962a287892cab1627"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\wscript",
+      "sha256": "701214f3360aae8d827384403a97e39370ca2b161355aa1f0764d04253619446"
+    }
+  ],
+  "consumer_sources": [
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "sha256": "95235193b36620f6b0743c51914af22cedf6fa49babd31ddb57d50187c8669d3"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\scratch\\ws31-v2-native-entry-check.cc",
+      "sha256": "2885de526928dea17430970fdf387e33ece3f225992ef48754c9e4f0a3a78427"
+    },
+    {
+      "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\ws31-v2-native-session.h",
+      "sha256": "efd3d22a9b416424af9a8a8ff46f0fdd150339a9eda14a1e9939abb84720262e"
+    }
+  ],
+  "include_checks": [
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "rdma-client.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "applications",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\rdma-client.h",
+          "sha256": "14d0ba941c3b45f1a2f944af8b2aaeb11d414fa8571f3f3b93e28cbbc9ca3def"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "rdma-driver.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\rdma-driver.h",
+          "sha256": "6b1de3ad4d4a6b4d069aea1aad6b71e4b9f3f7f36bd43387730b3f00d8ff39b7"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "ipv4.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "internet",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\internet\\model\\ipv4.h",
+          "sha256": "d840ed31caff7b646aac984c5498f693f29b280b935add40511c4247ce4fa35b"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "integer.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "core",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\core\\model\\integer.h",
+          "sha256": "25ef8c3d9452ee3d7d5818174a8d9a7fd1ca8433182c4e0989367ae3df287ef0"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "uinteger.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "core",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\core\\model\\uinteger.h",
+          "sha256": "4d2687afd097e18d75f8388a61c8f3d282292585b3e5fe6ed3090f4f187f6645"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "simulator.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "core",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\core\\model\\simulator.h",
+          "sha256": "62708de25f287b60e043c1c7efdf5a7f101a97594c6f74fb0abb60711d6bc264"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "settings.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\settings.h",
+          "sha256": "fec0c93ba3b3d1bfe5fc9df217c38a98452793724a550e9c74c274f958e30841"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "ws31-v2-native-declarations.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\ws31-v2-native-declarations.h",
+          "sha256": "9bd5fbfa083d19656d277d68f022a10e246fc3ece8cbaea2f476fe18d49ebcb5"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "ws31-v2-native-session.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\ws31-v2-native-session.h",
+          "sha256": "efd3d22a9b416424af9a8a8ff46f0fdd150339a9eda14a1e9939abb84720262e"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "ws31-label-fixture.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\ws31-label-fixture.h",
+          "sha256": "ea2afaf49200bbbb35d184991ad77ce74880e47ca54d3183d2692d1c13d243a4"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+      "include": "ws30-v13-fixture.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\ws30-v13-fixture.h",
+          "sha256": "caf41d2ff06fc72ee613931a3b4ca4aabc3141f2e0751b770831fd2aafa1063b"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\scratch\\ws31-v2-native-entry-check.cc",
+      "include": "core-module.h",
+      "generated_module": true,
+      "exports": []
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\scratch\\ws31-v2-native-entry-check.cc",
+      "include": "network-module.h",
+      "generated_module": true,
+      "exports": []
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\scratch\\ws31-v2-native-entry-check.cc",
+      "include": "internet-module.h",
+      "generated_module": true,
+      "exports": []
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\scratch\\ws31-v2-native-entry-check.cc",
+      "include": "rdma-driver.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\rdma-driver.h",
+          "sha256": "6b1de3ad4d4a6b4d069aea1aad6b71e4b9f3f7f36bd43387730b3f00d8ff39b7"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\scratch\\ws31-v2-native-entry-check.cc",
+      "include": "workload-tag.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\workload-tag.h",
+          "sha256": "9642615d66b25a94e3a88d4f7a7a7e5585e7c6572ed8f18b7b487dd01be3a999"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\scratch\\ws31-v2-native-entry-check.cc",
+      "include": "ws31-start.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\ws31-start.h",
+          "sha256": "f23b0204f5ece9fd3ffd228620d4b7226f9460995a085ecde70bd57531ff2f45"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\scratch\\ws31-v2-native-entry-check.cc",
+      "include": "ws31-v2-native-entry.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "applications",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\applications\\model\\ws31-v2-native-entry.h",
+          "sha256": "95235193b36620f6b0743c51914af22cedf6fa49babd31ddb57d50187c8669d3"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\ws31-v2-native-session.h",
+      "include": "rdma-queue-pair.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "point-to-point",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\rdma-queue-pair.h",
+          "sha256": "e97ab209034ff59b11255a2385672cbae6516bbf162329f6625b6edb69d54e8f"
+        }
+      ]
+    },
+    {
+      "consumer": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\point-to-point\\model\\ws31-v2-native-session.h",
+      "include": "simulator.h",
+      "generated_module": false,
+      "exports": [
+        {
+          "module": "core",
+          "path": "E:\\研\\毕业论文\\workspace\\ws31-native-lexical-r2-source\\src\\core\\model\\simulator.h",
+          "sha256": "62708de25f287b60e043c1c7efdf5a7f101a97594c6f74fb0abb60711d6bc264"
+        }
+      ]
+    }
+  ],
+  "missing": [],
+  "scope": "Static direct-consumer Waf export audit, not preprocessing/compilation or transitive-completeness certification.",
+  "analysis_view": "Tabs expanded to8 spaces for Python3 AST only; source files and their hashes unchanged.",
+  "source_or_config_edits": 0,
+  "CPP_builds": 0
+}

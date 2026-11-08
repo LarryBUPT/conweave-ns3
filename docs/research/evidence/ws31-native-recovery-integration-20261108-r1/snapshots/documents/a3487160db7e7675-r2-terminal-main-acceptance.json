@@ -1,0 +1,22 @@
+{
+  "status": "MAIN_ACCEPTED_R2_FULLBUILD_AND20_OBJECT_CASES_WITH_COMPLETE_PROVENANCE",
+  "observed_at_utc": "2026-11-08T07:47:06.250075+00:00",
+  "run_id": "20261108-152638-ws31-native-entry-r2",
+  "source_commit": "21b440985f90d2081438e435ef640adc9f43a42d",
+  "actual_fullbuilds": 1,
+  "actual_case_executions": 20,
+  "packet_rows_independently_checked": 4482,
+  "source_members": 4870,
+  "transfer_members": 147,
+  "local_protected_files": {
+    "published": 4870,
+    "original_WIP": 4868
+  },
+  "main_raw_verification": "E:\\研\\毕业论文\\workspace\\LarryBUPT-conweave-ns3\\docs\\research\\ws31\\main\\evidence\\native-entry-runtime-20261108-r2\\raw-main-verification.json",
+  "main_raw_verification_sha256": "8e8b7a45f4e58556d40cb8a54c4214d4f95e1f60c8b0fc5b3c35d3e1c88536d5",
+  "network_runs": 0,
+  "full_G2_complete": false,
+  "scientific_effects_accepted": false,
+  "new_baseline": false,
+  "guard_release": "R2 finite execution source/entry/environment guards explicitly released after main raw and provenance acceptance. Preserve failed R1 and original WIP. Broader G2 lifecycle/OS2/real generations, V0/ablations/effects/cost still required."
+}

@@ -1,0 +1,10 @@
+version = 1
+id = "ws-31"
+kind = "heartbeat"
+name = "WS-31 主对话持续监督"
+prompt = "继续WS-31原主任务。依次读远程工作流、WS31_EXECUTION、coordination与main/current-status及本恢复任务；真实最近原日志和收据优先，保留事件/观察时间。核对唯一副实际状态及后台进程；active时不重派。已终态失败先核完整raw、修复验收器/脚本或源码后用新固定SHA、新ID重验，不因可恢复报错结束任务，不降低检查、不覆盖旧失败。每轮推进一项必要实质工作并落盘；确实缺权限或需人类操作时给出具体原因和最小操作，同时继续可做部分。保持原19WIP、Ofan暂停、六基线、正确性/V0/消融/双侧效果/成本义务和阶段准入。长矩阵遵守实际模型切换与约30分钟精简监督；常态静默，完整节点或新实质故障才集中报告。全部任务闭环前不把阶段完成当整体完成。"
+status = "ACTIVE"
+rrule = "FREQ=MINUTELY;INTERVAL=30"
+target_thread_id = "01a19322-95a5-76e3-a4f5-1f1e9dde81ce"
+created_at = 1794122233107
+updated_at = 1794122233107

@@ -1,0 +1,24 @@
+{
+  "status": "PASS_SUPERVISION_N1_N2_N3_N4_AND_ACTUAL_FAILURE_RECOVERY_CONTINUATION",
+  "observed_at_utc": "2026-11-08T07:32:28.239811+00:00",
+  "N1": "Two actual native ACTIVE 30-minute heartbeats on exact original targets.",
+  "N2": "Separate native create/view outputs saved; actual persisted configurations independently parsed, copied and hashed.",
+  "N3": "Actual original-main user turn observed; failed raw accepted, minimal repair reviewed/published, new worker actually launched.",
+  "N4": "Original main current-status heartbeat_monitor contains both actual native IDs and receipt bindings.",
+  "timers": [
+    {
+      "id": "ws-31",
+      "target": "01a19322-95a5-76e3-a4f5-1f1e9dde81ce",
+      "created_at_utc": "2026-11-08T07:17:13.107000+00:00"
+    },
+    {
+      "id": "ws-31-2",
+      "target": "01a19323-2201-7b23-a0f1-905c71496d38",
+      "created_at_utc": "2026-11-08T07:17:21.312000+00:00"
+    }
+  ],
+  "first_scheduled_firing_observed": false,
+  "scientific_runtime_acceptance_separate": true,
+  "bridge_local_check": "Context unavailable: CC_SESSION_KEY absent in native desktop harness. Original failure preserved; no false group session identity or permission bypass.",
+  "manual_user_action_required_for_native_tools": false
+}
