@@ -174,7 +174,7 @@ static_assert(std::is_same<decltype(&Probe::Read),CompositeRead>::value,
 
 static uint32_t reads=0,refusals=0,pairs=0,clockEvents=0;
 static void Advance() { ++clockEvents; }
-static uint64_t Hash(const std::string &s) {
+static uint64_t Ws31FixtureStateHash(const std::string &s) {
     uint64_t h=14695981039346656037ULL;
     for (unsigned char c:s) { h^=c; h*=1099511628211ULL; } return h;
 }
@@ -264,7 +264,7 @@ int main() {
           << " endpoint_mask=" << x.endpoint.snapshot.observedFields << " switches=" << x.switches.size()
           << " pins=" << x.snapshot.pinnedEntries << " budget=" << x.snapshot.budgetEntries << " quota=" << x.snapshot.quotaEntries
           << " data=" << x.snapshot.dataQueueBytes << " quiet=" << x.snapshot.Quiet() << " reusable=" << x.snapshot.Reusable()
-          << " before=" << Hash(before) << " after=" << Hash(state()) << " semantic_bytes_equal=1" << std::endl;
+          << " before=" << Ws31FixtureStateHash(before) << " after=" << Ws31FixtureStateHash(state()) << " semantic_bytes_equal=1" << std::endl;
         for (const auto &s:x.switches) std::cout << "WS31_ENDPOINT_SWITCH_ROW case=" << name << " node=" << s.node
           << " object=" << s.object << " q12=" << s.q12Pins << " c1=" << s.ws31Pins << " budget=" << s.budget << " quota=" << s.quota
           << " all_q12=" << s.allQ12Pins << " all_c1=" << s.allWs31Pins << " all_budget=" << s.allBudget << " all_quota=" << s.allQuota
