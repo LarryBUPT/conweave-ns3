@@ -74,6 +74,7 @@ protected:
 private:
   friend class Ws31StartBoundaryProbe;
   friend class Ws31V2NativeBindingFixture;
+  friend class Ws31V2NativeEntry;
 
   bool m_ws31V2Required=false, m_ws31V2Failed=false, m_ws31V2Started=false;
   std::shared_ptr<Ws31V2NativeSession> m_ws31V2Session;
