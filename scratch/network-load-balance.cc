@@ -60,6 +60,18 @@
 #include "ns3/ws31-label-fixture.h"
 #include "ns3/ws31-ofan.h"
 #include "ws30-composition-fixture.h"
+#include "ns3/ws31-v2-native-entry.h"
+#include "ns3/qbb-channel.h"
+#include "ns3/ppp-header.h"
+#include "ns3/seq-ts-header.h"
+#include "ns3/qbb-header.h"
+#include "ns3/pause-header.h"
+#include "ns3/flow-id-num-tag.h"
+#include <algorithm>
+#include <cstdio>
+#include <memory>
+#include <stdexcept>
+#include <vector>
 
 using namespace ns3;
 using namespace std;
@@ -129,6 +141,9 @@ uint64_t cnp_mon_start;                // ns
 uint64_t cnp_monitor_bucket = 100000;  // ns
 uint64_t irn_mon_start;                // ns
 uint64_t irn_monitor_bucket = 100000;  // ns
+
+bool ws31_native_declarations_seen=false, ws31_native_output_seen=false;
+std::string ws31_native_declarations, ws31_native_output_prefix;
 
 FILE *pfc_file = NULL;
 FILE *fct_output = NULL;
@@ -1094,6 +1109,440 @@ uint64_t get_nic_rate(NodeContainer &n) {
 //                                                                      //
 /************************************************************************/
 
+// WS31_NATIVE_OS2_BEGIN: default-off entry and read-only device observations.
+namespace {
+bool Ws31NativeRequested() {
+    return ws31_native_declarations_seen || ws31_native_output_seen;
+}
+void Ws31NativeNeed(bool ok, const std::string &message) {
+    if (!ok) throw std::logic_error("WS31_NATIVE_OS2 " + message);
+}
+void Ws31NativeValidate() {
+    Ws31NativeNeed(ws31_native_declarations_seen && ws31_native_output_seen &&
+        !ws31_native_declarations.empty() && !ws31_native_output_prefix.empty(),
+        "both native keys are required");
+    Ws31NativeNeed(lb_mode==12 && cc_mode==1 && !enable_irn &&
+        packet_payload_size==1000 && has_win==0 && global_t==1,
+        "unsupported native mode/transport/window");
+    Ws31NativeNeed(!ws18_admission && !ws18_path && !ws21_identity &&
+        !ws21_feedback && !ws21_heartbeat && !ws21_port_events &&
+        !ws21_heartbeat_fault_mode && !ws21_heartbeat_fault_tor &&
+        !ws21_heartbeat_fault_port && !ws21_heartbeat_fault_start_ns &&
+        !ws21_heartbeat_fault_end_ns && ws23_pfc_probe_host<0 &&
+        !ws23_pfc_probe_start_ns && !ws23_pfc_probe_end_ns && !link_down_time &&
+        error_rate_per_link==0.0, "legacy diagnostic or fault enabled");
+    const char *keys[]={"WS30_OBSERVE","WS30_COMPOSITION","WS30_LIFECYCLE",
+        "WS30_LIFE_PROFILE","WS30_TAG_TRANSFORM","WS31_LABEL_PROFILE",
+        "WS13_DIAG","WS25_DIAG","WS28_TAIL_DIAG","IRN_PFC_DROP_DIAG",
+        "WS23_RECOVERY_DIAG","WS26_MOE_HOP_DIAG","WS26_QUEUE_FRONT_DIAG",
+        "WS26_TIME_PROBE","WS26_SEED97_TIME_DIAG"};
+    for (const char *key:keys) {
+        const char *value=std::getenv(key);
+        Ws31NativeNeed(!value || !*value || std::string(value)=="0",
+            std::string("conflicting environment ")+key);
+    }
+}
+
+class Ws31NativeObserver {
+public:
+    enum Output { MAP, PACKETS, ARRIVALS, TERMINAL, CLEANUP, ERRORS, OUTPUTS };
+    struct Device {
+        Ws31NativeObserver *owner=nullptr;
+        Ptr<QbbNetDevice> dev;
+        uint32_t node=0, index=0, peer=0, peerIndex=0;
+        int32_t ipv4Interface=-1;
+        bool host=false, dequeueConnected=false, dropConnected=false, dataConnected=false;
+        uint64_t dequeues=0, dequeueBytes=0, drops=0, dropBytes=0, data=0, dataBytes=0;
+        Callback<void,Ptr<const Packet>,uint32_t> dequeue, drop;
+        Callback<void,Ptr<const Packet>,Ptr<RdmaQueuePair>> qp;
+    };
+    struct Parsed {
+        bool ok=false;
+        std::string error, kind="MALFORMED", raw;
+        int64_t protocol=-1, sip=-1, dip=-1, sport=-1, dport=-1, pg=-1;
+        int64_t seq=-1, cnp=-1, header=-1, payload=-1, ipPayload=-1, udpLength=-1;
+        int64_t padding=-1, pause=-1, qlen=-1;
+    };
+private:
+    FILE *files[OUTPUTS]={};
+    uint64_t bytes=0, sequence=0, copiedBytes=0, sealedSequence=0;
+    bool sealed=false;
+    std::string firstError;
+    std::vector<std::unique_ptr<Device>> devices;
+    static uint16_t U16(const uint8_t *p) { return uint16_t((uint16_t(p[0])<<8)|p[1]); }
+    void Write(Output file,const std::string &text) {
+        const uint64_t cap=512ULL*1024*1024;
+        Ws31NativeNeed(files[file]!=nullptr,"output not open");
+        Ws31NativeNeed(text.size()<=cap && bytes<=cap-text.size(),"output byte cap reached");
+        Ws31NativeNeed(std::fwrite(text.data(),1,text.size(),files[file])==text.size(),"output write failed");
+        bytes+=text.size();
+    }
+    static Parsed Bad(Parsed r,const std::string &why,const std::vector<uint8_t> &raw) {
+        r.error=why;
+        static const char hex[]="0123456789abcdef";
+        r.raw.reserve(raw.size()*2);
+        for (uint8_t b:raw) { r.raw.push_back(hex[b>>4]); r.raw.push_back(hex[b&15]); }
+        return r;
+    }
+    Parsed Parse(Ptr<const Packet> packet) {
+        Parsed r;
+        if (!packet) { r.error="null packet"; return r; }
+        const uint32_t size=packet->GetSize();
+        // The bounded prefix is still retained when even IPv4's maximum is exceeded.
+        std::vector<uint8_t> raw(std::min(size,uint32_t(65549)));
+        if (!raw.empty()) {
+            Ws31NativeNeed(packet->CopyData(raw.data(),raw.size())==raw.size(),"CopyData length mismatch");
+            copiedBytes+=raw.size();
+        }
+        if (size>65549 || size<34) return Bad(r,"PPP/IPv4 length outside bounds",raw);
+        if (U16(raw.data())!=0x0021) return Bad(r,"unsupported PPP protocol",raw);
+        const uint8_t *ip=raw.data()+14;
+        if ((ip[0]>>4)!=4 || (ip[0]&15)!=5)
+            return Bad(r,"unsupported IPv4 version/IHL",raw);
+        const uint16_t total=U16(ip+2);
+        if (total<20 || uint32_t(total)!=size-14 || (U16(ip+6)&0x3fff))
+            return Bad(r,"IPv4 total length/fragment mismatch",raw);
+        Ptr<Packet> copy=packet->Copy();
+        PppHeader ppp;
+        if (copy->RemoveHeader(ppp)!=14 || ppp.GetProtocol()!=0x0021)
+            return Bad(r,"actual PPP consumption mismatch",raw);
+        Ipv4Header ipv4;
+        if (copy->GetSize()<20 || copy->RemoveHeader(ipv4)!=20 ||
+            ipv4.GetPayloadSize()!=copy->GetSize())
+            return Bad(r,"actual IPv4 consumption mismatch",raw);
+        r.protocol=ipv4.GetProtocol(); r.sip=ipv4.GetSource().Get(); r.dip=ipv4.GetDestination().Get();
+        r.ipPayload=copy->GetSize();
+        if (r.protocol==0x11) {
+            if (copy->GetSize()<14) return Bad(r,"short UDP/SeqTs",raw);
+            uint8_t udpWire[8];
+            if (copy->CopyData(udpWire,8)!=8) return Bad(r,"short UDP copy",raw);
+            r.udpLength=U16(udpWire+4);
+            if (r.udpLength<14 || r.udpLength!=r.ipPayload)
+                return Bad(r,"UDP/IP length mismatch",raw);
+            UdpHeader udp;
+            if (copy->RemoveHeader(udp)!=8) return Bad(r,"UDP consumption mismatch",raw);
+            if (IntHeader::mode!=5 || SeqTsHeader::GetHeaderSize()!=6 || copy->GetSize()<6)
+                return Bad(r,"unsupported actual SeqTs mode/size",raw);
+            SeqTsHeader seq;
+            if (copy->RemoveHeader(seq)!=6) return Bad(r,"SeqTs consumption mismatch",raw);
+            r.sport=udp.GetSourcePort(); r.dport=udp.GetDestinationPort();
+            r.pg=seq.GetPG(); r.seq=seq.GetSeq(); r.payload=copy->GetSize();
+            r.header=size-r.payload; r.padding=0; r.kind="DATA";
+            if (r.header!=48 || r.payload<=0 || r.payload>1000 || r.pg!=3)
+                return Bad(r,"native data framing/PG mismatch",raw);
+        } else if (r.protocol==0xfc || r.protocol==0xfd) {
+            qbbHeader ack;
+            const uint32_t length=ack.GetSerializedSize();
+            if (IntHeader::mode!=5 || length!=18 || copy->GetSize()<length)
+                return Bad(r,"short/unsupported actual qbb header",raw);
+            if (copy->RemoveHeader(ack)!=length) return Bad(r,"qbb consumption mismatch",raw);
+            r.sport=ack.GetSport(); r.dport=ack.GetDport(); r.pg=ack.GetPG();
+            r.seq=ack.GetSeq(); r.cnp=ack.GetCnp(); r.padding=copy->GetSize();
+            r.header=14+20+length; r.payload=0;
+            r.kind=r.protocol==0xfc?"ACK":"NACK";
+            // IRN-only serialized fields are opaque; no zero-value/IRN assertion.
+            if (r.padding!=std::max(60-14-20-int(length),0))
+                return Bad(r,"control padding mismatch",raw);
+        } else if (r.protocol==0xfe) {
+            PauseHeader pause;
+            if (copy->GetSize()<pause.GetSerializedSize()) return Bad(r,"short PFC",raw);
+            const uint32_t length=pause.GetSerializedSize();
+            if (copy->RemoveHeader(pause)!=length) return Bad(r,"PFC consumption mismatch",raw);
+            r.pg=pause.GetQIndex(); r.pause=pause.GetTime(); r.qlen=pause.GetQLen();
+            r.padding=copy->GetSize(); r.header=14+20+length; r.payload=0; r.kind="PFC";
+        } else return Bad(r,"unexpected protocol retained",raw);
+        r.ok=true;
+        return r;
+    }
+    static void Data(Device *d,Ptr<const Packet> p,Ptr<RdmaQueuePair> qp) {
+        d->owner->Observe(*d,"H-DATA",p,-1,qp);
+    }
+    static void Dequeue(Device *d,Ptr<const Packet> p,uint32_t queue) {
+        d->owner->Observe(*d,d->host?"H-CONTROL":"S-EGRESS",p,queue,nullptr);
+    }
+    static void Drop(Device *d,Ptr<const Packet> p,uint32_t queue) {
+        d->owner->Observe(*d,"DROP",p,queue,nullptr);
+    }
+    void Observe(Device &d,const char *point,Ptr<const Packet> packet,int64_t queue,Ptr<RdmaQueuePair> qp) {
+        Ws31NativeNeed(sequence<2000000,"packet row cap reached");
+        ++sequence;
+        Parsed r=Parse(packet);
+        const uint64_t size=packet?packet->GetSize():0;
+        if (std::string(point)=="DROP") { ++d.drops; d.dropBytes+=size; }
+        else if (std::string(point)=="H-DATA") { ++d.data; d.dataBytes+=size; }
+        else { ++d.dequeues; d.dequeueBytes+=size; }
+        bool qpOK=true;
+        if (std::string(point)=="H-DATA") {
+            qpOK=qp && r.ok && r.protocol==0x11 && qp->sip.Get()==uint32_t(r.sip) &&
+                qp->dip.Get()==uint32_t(r.dip) && qp->sport==r.sport && qp->dport==r.dport &&
+                qp->m_pg==r.pg && r.seq>=0 && uint64_t(r.seq)+uint64_t(r.payload)<=qp->m_size &&
+                qp->startTime.GetNanoSeconds()<=Simulator::Now().GetNanoSeconds();
+        }
+        WorkloadTag label; FlowIDNUMTag flow;
+        const bool hasLabel=packet && packet->PeekPacketTag(label);
+        const bool hasFlow=packet && packet->PeekPacketTag(flow);
+        std::ostringstream out;
+        out<<sequence<<'\t'<<Simulator::Now().GetNanoSeconds()<<'\t'<<point<<'\t'
+           <<(sealed?"POST_SEAL":"RUN")<<'\t'<<d.node<<'\t'<<d.index<<'\t'
+           <<d.ipv4Interface<<'\t'<<d.peer<<'\t'<<d.peerIndex<<'\t'<<queue<<'\t'
+           <<(packet?int64_t(packet->GetUid()):-1)<<'\t'<<size<<'\t'<<r.protocol<<'\t'
+           <<r.kind<<'\t'<<r.sip<<'\t'<<r.dip<<'\t'<<r.sport<<'\t'<<r.dport<<'\t'
+           <<r.pg<<'\t'<<r.seq<<'\t'<<r.cnp<<'\t'<<r.header<<'\t'<<r.payload<<'\t'
+           <<r.ipPayload<<'\t'<<r.udpLength<<'\t'<<r.padding<<'\t'<<r.pause<<'\t'<<r.qlen<<'\t'
+           <<hasLabel<<'\t'<<(hasLabel?int64_t(label.GetValue()):-1)<<'\t'
+           <<hasFlow<<'\t'<<(hasFlow?int64_t(flow.GetId()):-1)<<'\t'
+           <<(hasFlow?int64_t(flow.GetFlowSize()):-1)<<'\t'
+           <<(qp?int64_t(qp->m_flow_id):-1)<<'\t'<<(qp?int64_t(qp->m_size):-1)<<'\t'
+           <<(qp?qp->startTime.GetNanoSeconds():-1)<<'\t'<<(qp?int64_t(qp->m_workload_tag):-1)<<'\t'
+           <<(r.ok && qpOK?"PARSED":"MALFORMED")<<'\t'<<r.error<<'\t'<<r.raw<<'\n';
+        Write(PACKETS,out.str());
+        Ws31NativeNeed(r.ok && qpOK,r.ok?"current QP/header mismatch":r.error);
+    }
+public:
+    void Open(const std::string &prefix) {
+        const char *suffix[]={".map.tsv",".packets.tsv",".arrivals.tsv",".terminal.tsv",".cleanup.tsv",".errors.tsv"};
+        for (unsigned i=0;i<OUTPUTS;++i) {
+            files[i]=std::fopen((prefix+suffix[i]).c_str(),"wx");
+            Ws31NativeNeed(files[i]!=nullptr,std::string("cannot exclusively create ")+suffix[i]);
+        }
+        Write(MAP,"node\tdevice\tif_index\tipv4_interface\tpeer_node\tpeer_device\trate_bps\tdelay_ns\thost\n");
+        Write(PACKETS,"event\ttime_ns\tpoint\twindow\tnode\tdevice\tipv4_interface\tpeer\tpeer_device\tqueue\tuid\tpacket_bytes\tprotocol\tkind\tsip\tdip\tsport\tdport\tpg\tseq_ack\tcnp_flag\theader_bytes\tapplication_payload\tip_payload\tudp_wire_length\tpadding\tpause_us\tpfc_qlen\tlabel_present\tlabel\tflow_tag_present\tflow_tag_id\tflow_tag_size\tqp_flow_id\tqp_size\tdemand_ns\tqp_original_tag\tparse_status\terror\traw_hex\n");
+        Write(ARRIVALS,"ordinal\trequest_id\tactual_ns\tclient_created\tclient_started\n");
+    }
+    void Connect() {
+        Ws31NativeNeed(n.GetN()==144 && Settings::host_num==128 && Settings::switch_num==16,
+            "wrong actual OS2 node counts");
+        for (uint32_t i=0;i<n.GetN();++i) {
+            Ptr<Node> node=n.Get(i); uint32_t businessLinks=0;
+            for (uint32_t index=0;index<node->GetNDevices();++index) {
+                auto dev=DynamicCast<QbbNetDevice>(node->GetDevice(index));
+                if (!dev) continue;
+                auto channel=DynamicCast<QbbChannel>(dev->GetChannel());
+                Ws31NativeNeed(channel && channel->GetNDevices()==2 && dev->GetNode()==node &&
+                    dev->GetIfIndex()==index,"invalid actual channel/device owner");
+                Ptr<NetDevice> peer;
+                for (uint32_t j=0;j<channel->GetNDevices();++j) {
+                    auto candidate=channel->GetDevice(j);
+                    if (candidate!=dev) { Ws31NativeNeed(!peer,"ambiguous peer"); peer=candidate; }
+                }
+                Ws31NativeNeed(peer && peer->GetNode(),"missing actual peer");
+                Ptr<Node> other=peer->GetNode(); uint32_t peerIndex=other->GetNDevices();
+                for (uint32_t j=0;j<other->GetNDevices();++j)
+                    if (other->GetDevice(j)==peer) { Ws31NativeNeed(peerIndex==other->GetNDevices(),"duplicate peer device"); peerIndex=j; }
+                auto outward=nbr2if.find(node), inward=nbr2if.find(other);
+                Ws31NativeNeed(outward!=nbr2if.end() && inward!=nbr2if.end(),"missing adjacency owner");
+                auto forward=outward->second.find(other), reverse=inward->second.find(node);
+                auto peerQbb=DynamicCast<QbbNetDevice>(peer);
+                Ws31NativeNeed(forward!=outward->second.end() && reverse!=inward->second.end() &&
+                    forward->second.idx==index && reverse->second.idx==peerIndex &&
+                    forward->second.up && reverse->second.up && peerQbb &&
+                    forward->second.bw==dev->GetDataRate().GetBitRate() &&
+                    reverse->second.bw==peerQbb->GetDataRate().GetBitRate() &&
+                    forward->second.delay==uint64_t(channel->GetDelay().GetNanoSeconds()) &&
+                    reverse->second.delay==forward->second.delay,"actual adjacency inconsistency");
+                auto ipv4=node->GetObject<Ipv4>();
+                Ws31NativeNeed(ipv4!=nullptr,"missing actual IPv4");
+                int32_t iface=ipv4->GetInterfaceForDevice(dev);
+                Ws31NativeNeed(iface>=0 && ipv4->GetNetDevice(iface)==dev && ipv4->IsUp(iface),
+                    "actual IPv4/device association mismatch");
+                const bool host=node->GetNodeType()==0;
+                if (host) {
+                    ++businessLinks;
+                    Ws31NativeNeed(i<serverAddress.size() && other->GetNodeType()==1,"host peer/address missing");
+                    uint32_t matches=0;
+                    for (uint32_t a=0;a<ipv4->GetNAddresses(iface);++a)
+                        matches+=ipv4->GetAddress(iface,a).GetLocal()==serverAddress[i];
+                    auto tor=Settings::hostIp2SwitchId.find(serverAddress[i].Get());
+                    Ws31NativeNeed(matches==1 && tor!=Settings::hostIp2SwitchId.end() &&
+                        tor->second==other->GetId(),"business address/ToR mismatch");
+                }
+                std::unique_ptr<Device> context(new Device());
+                context->owner=this; context->dev=dev; context->node=node->GetId(); context->index=index;
+                context->peer=other->GetId(); context->peerIndex=peerIndex; context->ipv4Interface=iface; context->host=host;
+                Device *d=context.get(); devices.push_back(std::move(context));
+                std::ostringstream out;
+                out<<d->node<<'\t'<<index<<'\t'<<dev->GetIfIndex()<<'\t'<<iface<<'\t'
+                   <<d->peer<<'\t'<<peerIndex<<'\t'<<dev->GetDataRate().GetBitRate()<<'\t'
+                   <<channel->GetDelay().GetNanoSeconds()<<'\t'<<host<<'\n';
+                Write(MAP,out.str());
+                d->dequeue=MakeBoundCallback(&Ws31NativeObserver::Dequeue,d);
+                d->drop=MakeBoundCallback(&Ws31NativeObserver::Drop,d);
+                d->dequeueConnected=dev->TraceConnectWithoutContext("QbbDequeue",d->dequeue);
+                Ws31NativeNeed(d->dequeueConnected,"QbbDequeue connection failed");
+                d->dropConnected=dev->TraceConnectWithoutContext("QbbDrop",d->drop);
+                Ws31NativeNeed(d->dropConnected,"QbbDrop connection failed");
+                if (host) {
+                    d->qp=MakeBoundCallback(&Ws31NativeObserver::Data,d);
+                    d->dataConnected=dev->TraceConnectWithoutContext("RdmaQpDequeue",d->qp);
+                    Ws31NativeNeed(d->dataConnected,"RdmaQpDequeue connection failed");
+                }
+            }
+            if (node->GetNodeType()==0) Ws31NativeNeed(businessLinks==1,"ambiguous business host link");
+        }
+        Ws31NativeNeed(devices.size()==384,"actual directed device count mismatch");
+    }
+    void Remember(const std::string &error) {
+        if (firstError.empty()) firstError=error;
+        std::cerr<<"WS31_NATIVE_OS2_ERROR "<<error<<std::endl;
+        try { if (files[ERRORS]) Write(ERRORS,error+"\n"); } catch (...) {}
+    }
+    bool Failed() const { return !firstError.empty(); }
+    long OriginalBoundary(const char *phase,FILE *file) {
+        if (!file) return -1;
+        Ws31NativeNeed(std::fflush(file)==0 && !std::ferror(file),"original output boundary flush failed");
+        const long position=std::ftell(file);
+        Ws31NativeNeed(position>=0,"original output boundary position failed");
+        std::ostringstream row;
+        row<<phase<<'\t'<<position<<'\n'; Write(CLEANUP,row.str());
+        return position;
+    }
+    void Terminal(const Ws31V2NativeEntry::Diagnostics &d) {
+        for (const auto &arrival:d.arrivals) {
+            std::ostringstream out;
+            out<<arrival.ordinal<<'\t'<<arrival.id<<'\t'<<arrival.actualNs<<'\t'
+               <<arrival.clientCreated<<'\t'<<arrival.clientStarted<<'\n'; Write(ARRIVALS,out.str());
+        }
+        std::ostringstream out;
+        out<<"entry_finished\t"<<d.entryFinished<<"\nentry_failed\t"<<d.failed
+           <<"\ndeclared\t"<<d.declared<<"\nentered\t"<<d.entered<<"\nissued\t"<<d.issued
+           <<"\ndemand_reads\t"<<d.demandReads<<"\nbindings\t"<<d.bindings
+           <<"\npacket_reads\t"<<d.packetReads<<"\npending\t"<<d.pending<<"\nunentered\t"<<d.unentered
+           <<"\ncancellations\t"<<d.cancellations<<"\nlive_qps\t"<<d.liveQPs
+           <<"\nclients\t"<<d.clients<<"\ndeclaration_capacity\t"<<d.declarationCapacity
+           <<"\nevent_capacity\t"<<d.eventCapacity<<"\nclient_capacity\t"<<d.clientCapacity
+           <<"\nderived_session_retained_bound_qp_refs\t"<<d.bindings
+           <<"\nretained_ref_evidence\tsource-derived bindings; not measured release or heap bytes"
+           <<"\nobserved_packet_rows\t"<<sequence<<"\ncopied_bytes\t"<<copiedBytes
+           <<"\noutput_bytes_at_terminal\t"<<bytes<<"\ndevice_contexts\t"<<devices.size()
+           <<"\ndevice_vector_capacity\t"<<devices.capacity()<<"\ndevice_element_bytes\t"<<sizeof(Device)<<'\n';
+        Write(TERMINAL,out.str());
+        for (const auto &device:devices) {
+            const auto &v=*device; std::ostringstream row;
+            row<<"device\t"<<v.node<<'\t'<<v.index<<'\t'<<(v.host?"HOST_CONTROL":"SWITCH_BYTE_HOP")
+               <<'\t'<<v.dequeues<<'\t'<<v.dequeueBytes<<'\t'<<v.data<<'\t'<<v.dataBytes
+               <<'\t'<<v.drops<<'\t'<<v.dropBytes<<'\n'; Write(TERMINAL,row.str());
+        }
+        for (uint32_t i=0;i<n.GetN();++i) if (n.Get(i)->GetNodeType()==0) {
+            auto hw=n.Get(i)->GetObject<RdmaDriver>()->m_rdma; std::ostringstream row;
+            row<<"host_maps\t"<<i<<'\t'<<hw->m_qpMap.size()<<'\t'<<hw->m_rxQpMap.size()
+               <<'\t'<<hw->akashic_Qp.size()<<'\t'<<hw->akashic_RxQp.size()<<'\n'; Write(TERMINAL,row.str());
+        }
+    }
+    void SealAndDisconnect() {
+        sealed=true; sealedSequence=sequence;
+        for (const auto &context:devices) {
+            auto &d=*context;
+            if (d.dataConnected) {
+                const bool ok=d.dev->TraceDisconnectWithoutContext("RdmaQpDequeue",d.qp);
+                if (!ok) Remember("RdmaQpDequeue disconnect failed");
+                d.dataConnected=!ok;
+            }
+            if (d.dequeueConnected) {
+                const bool ok=d.dev->TraceDisconnectWithoutContext("QbbDequeue",d.dequeue);
+                if (!ok) Remember("QbbDequeue disconnect failed");
+                d.dequeueConnected=!ok;
+            }
+            if (d.dropConnected) {
+                const bool ok=d.dev->TraceDisconnectWithoutContext("QbbDrop",d.drop);
+                if (!ok) Remember("QbbDrop disconnect failed");
+                d.dropConnected=!ok;
+            }
+            std::ostringstream row;
+            row<<"disconnect\t"<<d.node<<'\t'<<d.index<<'\t'<<!d.dataConnected<<'\t'
+               <<!d.dequeueConnected<<'\t'<<!d.dropConnected<<'\n';
+            try { Write(CLEANUP,row.str()); } catch (const std::exception &e) { Remember(e.what()); }
+        }
+    }
+    void Finish() {
+        try {
+            std::ostringstream out;
+            out<<"sealed_sequence\t"<<sealedSequence<<"\nlast_sequence\t"<<sequence
+               <<"\npost_seal_observations\t"<<(sequence-sealedSequence)
+               <<"\noutput_bytes_before_close\t"<<bytes<<"\nfirst_error\t"<<firstError<<'\n';
+            Write(CLEANUP,out.str());
+            if (sequence!=sealedSequence) Remember("observations occurred after seal");
+        } catch (const std::exception &e) { Remember(e.what()); }
+        for (unsigned i=0;i<OUTPUTS;++i) if (files[i]) {
+            FILE *file=files[i]; files[i]=nullptr;
+            const bool flushFailed=std::fflush(file)!=0 || std::ferror(file);
+            const bool closeFailed=std::fclose(file)!=0;
+            if (flushFailed || closeFailed) Remember("native output flush/close failed");
+        }
+    }
+};
+
+int RunWs31NativeOs2() {
+    Ws31NativeObserver observer;
+    std::unique_ptr<Ws31V2NativeEntry> entry;
+    bool terminalWritten=false;
+    try {
+        Ws31NativeValidate();
+        Ws31NativeNeed(IntHeader::mode==5 && fct_output && pfc_file,"actual INT/FCT/PFC setup missing");
+        observer.Open(ws31_native_output_prefix);
+        observer.Connect();
+        Ws31V2NativeEntry::Hosts hosts;
+        Ws31V2NativeEntry::PairTimings pairs;
+        for (uint32_t i=0;i<n.GetN();++i)
+            if (n.Get(i)->GetNodeType()==0) hosts.emplace(n.Get(i)->GetId(),n.Get(i));
+        for (const auto &source:pairRtt) for (const auto &destination:source.second) {
+            auto bdpSource=pairBdp.find(source.first);
+            Ws31NativeNeed(bdpSource!=pairBdp.end(),"pair BDP owner missing");
+            auto bdp=bdpSource->second.find(destination.first);
+            Ws31NativeNeed(bdp!=bdpSource->second.end(),"pair BDP missing");
+            pairs.emplace(std::make_pair(source.first->GetId(),destination.first->GetId()),
+                Ws31V2NativeEntry::PairTiming(bdp->second,destination.second));
+        }
+        Ws31V2NativeEntry::RunConfig config(lb_mode,has_win,global_t,maxBdp,maxRtt,pairs,
+            packet_payload_size,cc_mode,enable_irn);
+        std::ifstream declarations(ws31_native_declarations.c_str());
+        Ws31NativeNeed(bool(declarations),"cannot open native declarations");
+        entry.reset(new Ws31V2NativeEntry());
+        entry->Install(declarations,hosts,config);
+        entry->Run();
+        const auto diagnostics=entry->GetDiagnostics();
+        observer.Terminal(diagnostics); terminalWritten=true;
+        Ws31NativeNeed(diagnostics.entryFinished && !diagnostics.failed &&
+            diagnostics.entered==1120 && diagnostics.issued==1120 &&
+            diagnostics.bindings==1120 && diagnostics.pending==0 && diagnostics.cancellations==0,
+            "entry demand ledger did not complete");
+    } catch (const std::exception &e) { observer.Remember(e.what()); }
+      catch (...) { observer.Remember("non-standard native run exception"); }
+    if (entry && !terminalWritten) {
+        try { observer.Terminal(entry->GetDiagnostics()); }
+        catch (const std::exception &e) { observer.Remember(e.what()); }
+        catch (...) { observer.Remember("terminal diagnostics failed"); }
+    }
+    long beforeFct=-1,beforePfc=-1;
+    try {
+        beforeFct=observer.OriginalBoundary("pre_cleanup_fct_bytes",fct_output);
+        beforePfc=observer.OriginalBoundary("pre_cleanup_pfc_bytes",pfc_file);
+    } catch (const std::exception &e) { observer.Remember(e.what()); }
+    // Observer and original FCT contexts survive disconnect failure and all cleanup.
+    try { observer.SealAndDisconnect(); }
+    catch (const std::exception &e) { observer.Remember(e.what()); }
+    entry.reset();
+    try { Simulator::Destroy(); }
+    catch (const std::exception &e) { observer.Remember(e.what()); }
+    catch (...) { observer.Remember("Destroy non-standard exception"); }
+    try {
+        const long afterFct=observer.OriginalBoundary("post_destroy_fct_bytes",fct_output);
+        const long afterPfc=observer.OriginalBoundary("post_destroy_pfc_bytes",pfc_file);
+        if ((beforeFct>=0 && beforeFct!=afterFct) || (beforePfc>=0 && beforePfc!=afterPfc))
+            observer.Remember("original FCT/PFC writes occurred during cleanup/Destroy");
+    } catch (const std::exception &e) { observer.Remember(e.what()); }
+    for (FILE **slot:{&fct_output,&pfc_file}) if (*slot) {
+        FILE *file=*slot; *slot=nullptr;
+        const bool flushFailed=std::fflush(file)!=0 || std::ferror(file);
+        const bool closeFailed=std::fclose(file)!=0;
+        if (flushFailed || closeFailed) observer.Remember("original FCT/PFC output flush/close failed");
+    }
+    observer.Finish();
+    return observer.Failed()?2:0;
+}
+} // namespace
+// WS31_NATIVE_OS2_END
+
+
 int main(int argc, char *argv[]) {
     uint32_t *workload_cdf = nullptr;
     clock_t begint, endt;
@@ -1114,7 +1563,15 @@ int main(int argc, char *argv[]) {
         while (!conf.eof()) {
             std::string key;
             conf >> key;
-            if (key.compare("FLOW_INPUT_FILE") == 0) {
+            if (key.compare("WS31_NATIVE_DECLARATIONS") == 0) {
+                Ws31NativeNeed(!ws31_native_declarations_seen,"repeated native declarations key");
+                ws31_native_declarations_seen=true;
+                Ws31NativeNeed(bool(conf >> ws31_native_declarations),"missing native declarations value");
+            } else if (key.compare("WS31_NATIVE_OUTPUT_PREFIX") == 0) {
+                Ws31NativeNeed(!ws31_native_output_seen,"repeated native output key");
+                ws31_native_output_seen=true;
+                Ws31NativeNeed(bool(conf >> ws31_native_output_prefix),"missing native output value");
+            } else if (key.compare("FLOW_INPUT_FILE") == 0) {
                 std::string v;
                 conf >> v;
                 flow_input_file = v;
@@ -1516,6 +1973,11 @@ int main(int argc, char *argv[]) {
 
     /******************* READING CONFIG FILE IS DONE ***********************/
 
+    if (Ws31NativeRequested()) {
+        try { Ws31NativeValidate(); }
+        catch (const std::exception &e) { std::cerr << e.what() << std::endl; return 2; }
+    }
+
     // Check the actual parsed configuration, even when invoking this binary
     // directly rather than through the guarded Python launcher.
     ws31::ValidateLabelProfile(ws31::LabelProfile(),lb_mode,Ws30V13TagTransform(),
@@ -1585,26 +2047,29 @@ int main(int argc, char *argv[]) {
      * @brief open topology config, input-flows config.
      */
     topof.open(topology_file.c_str());
-    flowf.open(flow_file.c_str());
+    if (!Ws31NativeRequested()) flowf.open(flow_file.c_str());
     uint32_t node_num, switch_num, link_num;
-    if (!topof || !flowf) {
+    if (!topof || (!Ws31NativeRequested() && !flowf)) {
         std::cerr << "INPUT_ERROR cannot open topology or flow file: " << topology_file
                   << " / " << flow_file << std::endl;
         return 1;
     }
-    int64_t declared_flows;
+    int64_t declared_flows=0;
     if (!(topof >> node_num >> switch_num >> link_num) ||
-        !(flowf >> declared_flows) || node_num <= switch_num || link_num == 0 ||
+        (!Ws31NativeRequested() && !(flowf >> declared_flows)) ||
+        node_num <= switch_num || link_num == 0 ||
         declared_flows < 0 || declared_flows > std::numeric_limits<uint32_t>::max()) {
         std::cerr << "INPUT_ERROR invalid topology or flow header" << std::endl;
         return 1;
     }
-    flow_num = static_cast<uint32_t>(declared_flows);
-    std::string header_remainder;
-    std::getline(flowf, header_remainder);
-    if (header_remainder.find_first_not_of(" \t\r") != std::string::npos) {
-        std::cerr << "FLOW_INPUT_ERROR line 1: expected only a flow count" << std::endl;
-        return 1;
+    if (!Ws31NativeRequested()) {
+        flow_num = static_cast<uint32_t>(declared_flows);
+        std::string header_remainder;
+        std::getline(flowf, header_remainder);
+        if (header_remainder.find_first_not_of(" \t\r") != std::string::npos) {
+            std::cerr << "FLOW_INPUT_ERROR line 1: expected only a flow count" << std::endl;
+            return 1;
+        }
     }
 
     /*-------Parameter of Settings-------*/
@@ -1682,7 +2147,7 @@ int main(int argc, char *argv[]) {
     rem->SetAttribute("ErrorRate", DoubleValue(error_rate_per_link));
     rem->SetAttribute("ErrorUnit", StringValue("ERROR_UNIT_PACKET"));
 
-    pfc_file = fopen(pfc_output_file.c_str(), "w");
+    pfc_file = fopen(pfc_output_file.c_str(), Ws31NativeRequested()?"wx":"w");
 
     QbbHelper qbb;
     Ipv4AddressHelper ipv4;
@@ -1833,15 +2298,15 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    fct_output = fopen(fct_output_file.c_str(), "w");
+    fct_output = fopen(fct_output_file.c_str(), Ws31NativeRequested()?"wx":"w");
     if (lb_mode == 20) ws18_output = fopen(ws18_output_file.c_str(), "w");
     if (ws21_port_events) {
         ws21_port_output = fopen(ws21_port_output_file.c_str(), "w");
         NS_ASSERT_MSG(ws21_port_output, "WS-21 cannot open port-event output");
         SwitchNode::ConfigureWs21PortEvents(ws21_port_output, ws21_port_max_bytes);
     }
-    flow_input_stream = fopen(flow_input_file.c_str(), "w");
-    if (cc_mode == 1) {
+    if (!Ws31NativeRequested()) flow_input_stream = fopen(flow_input_file.c_str(), "w");
+    if (cc_mode == 1 && !Ws31NativeRequested()) {
         cnp_output = fopen(cnp_output_file.c_str(), "w");
     }
 
@@ -1938,7 +2403,7 @@ int main(int argc, char *argv[]) {
             rdmaHw->SetAttribute("IrnRtoLow", TimeValue(MicroSeconds(100)));   // 454
             rdmaHw->SetAttribute("IrnBdp", UintegerValue(irn_bdp_lookup));
             // Monitoring CNP Marking frequency of DCQCN
-            if (cc_mode == 1) {
+            if (cc_mode == 1 && !Ws31NativeRequested()) {
                 Simulator::Schedule(NanoSeconds(cnp_mon_start), &cnp_freq_monitoring, cnp_output,
                                     rdmaHw);
             }
@@ -1951,8 +2416,13 @@ int main(int argc, char *argv[]) {
 
             node->AggregateObject(rdma);
             rdma->Init();
-            rdma->TraceConnectWithoutContext("QpComplete",
+            const bool completionConnected=rdma->TraceConnectWithoutContext("QpComplete",
                                              MakeBoundCallback(qp_finish, fct_output));
+            if (Ws31NativeRequested() && !completionConnected) {
+                std::cerr << "WS31_NATIVE_OS2 original QpComplete connection failed" << std::endl;
+                Simulator::Destroy();
+                return 2;
+            }
         }
     }
 
@@ -2017,7 +2487,7 @@ int main(int argc, char *argv[]) {
             sw->m_isToR = true;
             uint32_t hostIP = serverAddress[pair.first].Get();
             sw->m_isToR_hostIP.insert(hostIP);
-            if (ws21_identity || lb_mode==51 || lb_mode==52) {
+            if (ws21_identity || lb_mode==51 || lb_mode==52 || Ws31NativeRequested()) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
                 if (ws21_identity) SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
@@ -2256,23 +2726,26 @@ int main(int argc, char *argv[]) {
     // populate routing tables (although we use our custom impl in switch_node.cc)
     Ipv4GlobalRoutingHelper::PopulateRoutingTables();
 
-    // maintain port number for each host
-    for (uint32_t i = 0; i < node_num; i++) {
-        if (n.Get(i)->GetNodeType() == 0) {
-            portNumber[i] = 10000;  // each host use port number from 10000
-            dportNumber[i] = 100;
+    if (!Ws31NativeRequested()) {
+        // maintain port number for each host
+        for (uint32_t i = 0; i < node_num; i++) {
+            if (n.Get(i)->GetNodeType() == 0) {
+                portNumber[i] = 10000;  // each host use port number from 10000
+                dportNumber[i] = 100;
+            }
+        }
+
+        flow_input.idx = 0;
+        port_per_host = new uint16_t[node_num - switch_num];
+        if (flow_num > 0) {
+            // generate flows
+            ReadFlowInput();
+            Simulator::Schedule(Seconds(0), &ScheduleFlowInputs, flow_input_stream);
         }
     }
 
-    flow_input.idx = 0;
-    port_per_host = new uint16_t[node_num - switch_num];
-    if (flow_num > 0) {
-        // generate flows
-        ReadFlowInput();
-        Simulator::Schedule(Seconds(0), &ScheduleFlowInputs, flow_input_stream);
-    }
-
     topof.close();
+    if (Ws31NativeRequested()) return RunWs31NativeOs2();
 
     // schedule link down
     if (link_down_time > 0) {
