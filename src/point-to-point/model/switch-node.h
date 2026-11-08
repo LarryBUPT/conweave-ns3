@@ -2,6 +2,7 @@
 #define SWITCH_NODE_H
 
 #include <ns3/node.h>
+#include <ns3/traced-callback.h>
 
 #include <unordered_map>
 #include <unordered_set>
@@ -20,6 +21,14 @@ namespace ns3 {
 class Packet;
 
 class SwitchNode : public Node {
+   public:
+    struct Ws31SourceDecision {
+        bool fresh;
+        uint32_t first, second, chosen;
+        uint64_t q1, q2, r1, r2, predicted;
+    };
+
+   private:
     friend class Ws31SwitchBoundaryProbe;
     friend class Ws31EndpointSwitchProbe;
     friend class Ws31EndpointSwitchFixture;
@@ -74,6 +83,9 @@ class SwitchNode : public Node {
     uint64_t m_ws31Fresh{0}, m_ws31Hits{0};
     uint32_t DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
                         const std::vector<int> &nexthops);
+    TracedCallback<Ptr<const Packet>, const Ws31SourceDecision &> m_ws31SourceDecision;
+    void TraceWs31Source(Ptr<const Packet> p, const CustomHeader &ch,
+                         const Ws31SourceDecision &decision);
     ws31::QuotaAdmission m_ws31Quota;
     ws31::OfanScheduler m_ws31Ofan;
     std::map<uint32_t,uint32_t> m_ws31OfanDestination;

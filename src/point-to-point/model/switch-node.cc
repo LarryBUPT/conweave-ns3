@@ -1009,7 +1009,9 @@ TypeId SwitchNode::GetTypeId(void) {
                           MakeUintegerChecker<uint32_t>())
             .AddAttribute("AckHighPrio", "Set high priority for ACK/NACK or not", UintegerValue(0),
                           MakeUintegerAccessor(&SwitchNode::m_ackHighPrio),
-                          MakeUintegerChecker<uint32_t>());
+                          MakeUintegerChecker<uint32_t>())
+            .AddTraceSource("Ws31SourceDecision", "Source ToR data arrival before queue admission.",
+                            MakeTraceSourceAccessor(&SwitchNode::m_ws31SourceDecision));
     return tid;
 }
 
@@ -1337,6 +1339,11 @@ uint32_t SwitchNode::DoLbWs30(Ptr<const Packet> p, const CustomHeader &ch,
     return chosen;
 }
 
+void SwitchNode::TraceWs31Source(Ptr<const Packet> p, const CustomHeader &ch,
+                               const Ws31SourceDecision &decision) {
+    if (m_isToR && m_isToR_hostIP.count(ch.sip)) m_ws31SourceDecision(p,decision);
+}
+
 // No WorkloadTag is read here: every UDP data flow uses the same key/rule.
 uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
                                  const std::vector<int> &nexthops) {
@@ -1362,7 +1369,12 @@ uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
                       << " q2=" << CalculateInterfaceLoad(pair.second)
                       << " chosen=" << pair.chosen << std::endl;
     };
-    if (!fresh && Settings::lb_mode != 35) { observePair(hit->second); return hit->second.chosen; }
+    if (!fresh && Settings::lb_mode != 35) {
+        const Ws30Pair &pair=hit->second;
+        TraceWs31Source(p,ch,{false,pair.first,pair.second,pair.chosen,0,0,0,0,0});
+        observePair(pair);
+        return pair.chosen;
+    }
     if (fresh) {
         const uint32_t bytes[3] = {ch.sip, ch.dip,
             uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16)};
@@ -1382,6 +1394,7 @@ uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
     if (Settings::lb_mode != 34) pair.chosen = b < a ? pair.second : pair.first;
     // Tag is deliberately absent from routing and choice records in these arms.
     if (fresh) Ws30Choice(m_id,ch,0,pair.first,pair.second,a,b,0,0,pair.chosen,p->GetSize());
+    TraceWs31Source(p,ch,{fresh,pair.first,pair.second,pair.chosen,a,b,0,0,0});
     observePair(pair);
     return pair.chosen;
 }
@@ -1428,7 +1441,8 @@ void SwitchNode::WriteWs30V13State() {
                   << " conserved=" << m_ws31Quota.Conserved()
                   << " activity_ns=20000 moe_lane_fraction=1/4 pinning=1" << std::endl;
     }
-    if (Settings::lb_mode>=36 && Settings::lb_mode<=42) {
+    if ((Settings::lb_mode>=36 && Settings::lb_mode<=42) ||
+        Settings::lb_mode==53 || Settings::lb_mode==54) {
         if (!m_ws31Budget.Conserved()) NS_FATAL_ERROR("WS31 prediction accounting mismatch");
         std::cout << "WS31_C1_STATE switch=" << m_id << " entries=" << m_ws31Pairs.size()
                   << " fresh=" << m_ws31Fresh << " hits=" << m_ws31Hits
@@ -1450,7 +1464,8 @@ void SwitchNode::WriteWs30V13State() {
 }
 
 // C1 and controls: 36 category/progress, 37 pooled/progress, 38 category/count,
-// 39 observed-byte history, 40 size-template clone, 41 exact QueuePin, 42 pooled/count.
+// 39 observed-byte history, 40 legacy size-template clone, 41 exact QueuePin,
+// 42 pooled/count, 53 capped exact-size/progress, 54 capped exact-size/count.
 uint32_t SwitchNode::DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
                                const std::vector<int> &nexthops) {
     if (Settings::lb_mode==41 || ch.l3Prot!=0x11 || !m_isToR ||
@@ -1460,6 +1475,7 @@ uint32_t SwitchNode::DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
     m_ws31Budget.Expire(now);
     auto hit=m_ws31Pairs.find(key);
     const bool fresh=hit==m_ws31Pairs.end();
+    Ws31SourceDecision observation={};
     if (fresh) {
         const uint32_t words[3]={ch.sip,ch.dip,
             uint32_t(ch.udp.sport)|(uint32_t(ch.udp.dport)<<16)};
@@ -1486,7 +1502,17 @@ uint32_t SwitchNode::DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
                 else if (tag.GetFlowSize()==8388608) category=1;
             }
         }
-        const uint64_t predicted=category==1?65536:8192;
+        uint64_t predicted=category==1?65536:8192;
+        if (Settings::lb_mode==53 || Settings::lb_mode==54) {
+            // v2 S-P/S-C: exact size is simulator-visible only in these controls.
+            // Missing size metadata keeps the common unknown-template fallback.
+            FlowIDNUMTag size;
+            if (p->PeekPacketTag(size))
+                predicted=std::min<uint64_t>(size.GetFlowSize(),65536);
+        }
+        observation.q1=q1; observation.q2=q2;
+        observation.r1=r1; observation.r2=r2;
+        observation.predicted=history?0:predicted;
         CustomHeader full(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
         full.brief=0; p->PeekHeader(full);
         const uint32_t udpHeader=CustomHeader::GetUdpHeaderSize();
@@ -1503,6 +1529,10 @@ uint32_t SwitchNode::DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
                       << " chosen=" << pair.chosen << std::endl;
     } else ++m_ws31Hits;
     const uint32_t chosen=hit->second.chosen;
+    observation.fresh=fresh;
+    observation.first=hit->second.first; observation.second=hit->second.second;
+    observation.chosen=chosen;
+    TraceWs31Source(p,ch,observation);
     if (Settings::lb_mode==39) m_ws31Observed.Observe(chosen,p->GetSize(),now,ttl);
     else {
         // CustomHeader's normal fast parse deliberately skips the UDP length.
@@ -1511,7 +1541,7 @@ uint32_t SwitchNode::DoLbWs31C1(Ptr<const Packet> p, const CustomHeader &ch,
         const uint32_t header=CustomHeader::GetUdpHeaderSize();
         const uint32_t payload=full.udp.payload_size>=header?full.udp.payload_size-header:0;
         m_ws31Budget.Observe(key,ch.udp.seq,payload,now,
-                            Settings::lb_mode!=38 && Settings::lb_mode!=42);
+                            Settings::lb_mode!=38 && Settings::lb_mode!=42 && Settings::lb_mode!=54);
     }
     return chosen;
 }
@@ -2004,6 +2034,7 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         case 43: case 44: case 45: case 46:
             return DoLbWs30V13(p, ch, nexthops);
         case 36: case 37: case 38: case 39: case 40: case 41: case 42:
+        case 53: case 54:
             return DoLbWs31C1(p, ch, nexthops);
         case 47: case 48: case 49: case 50:
             return DoLbWs31C3(p, ch, nexthops);

@@ -1121,7 +1121,9 @@ void Ws31NativeValidate() {
     Ws31NativeNeed(ws31_native_declarations_seen && ws31_native_output_seen &&
         !ws31_native_declarations.empty() && !ws31_native_output_prefix.empty(),
         "both native keys are required");
-    Ws31NativeNeed(lb_mode==33 && cc_mode==1 && !enable_irn &&
+    const bool c1Mode=lb_mode==36 || lb_mode==37 || lb_mode==38 ||
+        lb_mode==42 || lb_mode==53 || lb_mode==54;
+    Ws31NativeNeed((lb_mode==33 || c1Mode) && cc_mode==1 && !enable_irn &&
         packet_payload_size==1000 && has_win==0 && global_t==1,
         "unsupported native mode/transport/window");
     Ws31NativeNeed(!ws18_admission && !ws18_path && !ws21_identity &&
@@ -1145,7 +1147,7 @@ void Ws31NativeValidate() {
 
 class Ws31NativeObserver {
 public:
-    enum Output { MAP, PACKETS, ARRIVALS, TERMINAL, CLEANUP, ERRORS, OUTPUTS };
+    enum Output { MAP, PACKETS, ARRIVALS, TERMINAL, CLEANUP, ERRORS, SOURCE, OUTPUTS };
     struct Device {
         Ws31NativeObserver *owner=nullptr;
         Ptr<QbbNetDevice> dev;
@@ -1163,12 +1165,20 @@ public:
         int64_t seq=-1, cnp=-1, header=-1, payload=-1, ipPayload=-1, udpLength=-1;
         int64_t padding=-1, pause=-1, qlen=-1;
     };
+    struct SourceSwitch {
+        Ws31NativeObserver *owner=nullptr;
+        Ptr<SwitchNode> node;
+        bool connected=false;
+        Callback<void,Ptr<const Packet>,const SwitchNode::Ws31SourceDecision &> callback;
+    };
 private:
     FILE *files[OUTPUTS]={};
     uint64_t bytes=0, sequence=0, copiedBytes=0, sealedSequence=0;
     bool sealed=false;
+    uint64_t sourceSequence=0;
     std::string firstError;
     std::vector<std::unique_ptr<Device>> devices;
+    std::vector<std::unique_ptr<SourceSwitch>> sourceSwitches;
     static uint16_t U16(const uint8_t *p) { return uint16_t((uint16_t(p[0])<<8)|p[1]); }
     void Write(Output file,const std::string &text) {
         const uint64_t cap=512ULL*1024*1024;
@@ -1263,6 +1273,36 @@ private:
     static void Drop(Device *d,Ptr<const Packet> p,uint32_t queue) {
         d->owner->Observe(*d,"DROP",p,queue,nullptr);
     }
+    static void Source(SourceSwitch *context,Ptr<const Packet> packet,
+                       const SwitchNode::Ws31SourceDecision &decision) {
+        context->owner->ObserveSource(*context,packet,decision);
+    }
+    void ObserveSource(SourceSwitch &context,Ptr<const Packet> packet,
+                       const SwitchNode::Ws31SourceDecision &decision) {
+        Ws31NativeNeed(!sealed && sourceSequence<2000000,"source observation phase/row cap");
+        const Parsed parsed=Parse(packet);
+        Ws31NativeNeed(parsed.ok && parsed.protocol==0x11 &&
+            context.node->m_isToR_hostIP.count(uint32_t(parsed.sip)),
+            "source observation framing/owner mismatch");
+        WorkloadTag label; FlowIDNUMTag flow;
+        const bool hasLabel=packet->PeekPacketTag(label);
+        const bool hasFlow=packet->PeekPacketTag(flow);
+        std::ostringstream out;
+        out<<++sourceSequence<<'\t'<<Simulator::Now().GetNanoSeconds()<<'\t'
+           <<context.node->GetId()<<'\t'<<packet->GetUid()<<'\t'<<parsed.sip<<'\t'
+           <<parsed.dip<<'\t'<<parsed.sport<<'\t'<<parsed.dport<<'\t'<<parsed.pg<<'\t'
+           <<parsed.seq<<'\t'<<parsed.payload<<'\t'<<packet->GetSize()<<'\t'
+           <<hasLabel<<'\t'<<(hasLabel?int64_t(label.GetValue()):-1)<<'\t'
+           <<hasFlow<<'\t'<<(hasFlow?int64_t(flow.GetId()):-1)<<'\t'
+           <<(hasFlow?int64_t(flow.GetFlowSize()):-1)<<'\t'
+           <<decision.fresh<<'\t'<<decision.first<<'\t'<<decision.second<<'\t'
+           <<decision.chosen<<'\t'<<(decision.fresh?int64_t(decision.q1):-1)<<'\t'
+           <<(decision.fresh?int64_t(decision.q2):-1)<<'\t'
+           <<(decision.fresh?int64_t(decision.r1):-1)<<'\t'
+           <<(decision.fresh?int64_t(decision.r2):-1)<<'\t'
+           <<(decision.fresh?int64_t(decision.predicted):-1)<<'\n';
+        Write(SOURCE,out.str());
+    }
     void Observe(Device &d,const char *point,Ptr<const Packet> packet,int64_t queue,Ptr<RdmaQueuePair> qp) {
         Ws31NativeNeed(sequence<2000000,"packet row cap reached");
         ++sequence;
@@ -1300,7 +1340,7 @@ private:
     }
 public:
     void Open(const std::string &prefix) {
-        const char *suffix[]={".map.tsv",".packets.tsv",".arrivals.tsv",".terminal.tsv",".cleanup.tsv",".errors.tsv"};
+        const char *suffix[]={".map.tsv",".packets.tsv",".arrivals.tsv",".terminal.tsv",".cleanup.tsv",".errors.tsv",".source.tsv"};
         for (unsigned i=0;i<OUTPUTS;++i) {
             files[i]=std::fopen((prefix+suffix[i]).c_str(),"wx");
             Ws31NativeNeed(files[i]!=nullptr,std::string("cannot exclusively create ")+suffix[i]);
@@ -1308,12 +1348,23 @@ public:
         Write(MAP,"node\tdevice\tif_index\tipv4_interface\tpeer_node\tpeer_device\trate_bps\tdelay_ns\thost\n");
         Write(PACKETS,"event\ttime_ns\tpoint\twindow\tnode\tdevice\tipv4_interface\tpeer\tpeer_device\tqueue\tuid\tpacket_bytes\tprotocol\tkind\tsip\tdip\tsport\tdport\tpg\tseq_ack\tcnp_flag\theader_bytes\tapplication_payload\tip_payload\tudp_wire_length\tpadding\tpause_us\tpfc_qlen\tlabel_present\tlabel\tflow_tag_present\tflow_tag_id\tflow_tag_size\tqp_flow_id\tqp_size\tdemand_ns\tqp_original_tag\tparse_status\terror\traw_hex\n");
         Write(ARRIVALS,"ordinal\trequest_id\tactual_ns\tclient_created\tclient_started\n");
+        Write(SOURCE,"event\ttime_ns\tswitch\tuid\tsip\tdip\tsport\tdport\tpg\tseq\tpayload\tpacket_bytes\tlabel_present\tpolicy_tag\tflow_tag_present\tflow_id\ttotal_size\tfresh\tfirst\tsecond\tchosen\tq1\tq2\tr1\tr2\tpredicted\n");
     }
     void Connect() {
         Ws31NativeNeed(n.GetN()==144 && Settings::host_num==128 && Settings::switch_num==16,
             "wrong actual OS2 node counts");
         for (uint32_t i=0;i<n.GetN();++i) {
             Ptr<Node> node=n.Get(i); uint32_t businessLinks=0;
+            auto sw=DynamicCast<SwitchNode>(node);
+            if (sw) {
+                std::unique_ptr<SourceSwitch> source(new SourceSwitch());
+                source->owner=this; source->node=sw;
+                SourceSwitch *context=source.get();
+                sourceSwitches.push_back(std::move(source));
+                context->callback=MakeBoundCallback(&Ws31NativeObserver::Source,context);
+                context->connected=sw->TraceConnectWithoutContext("Ws31SourceDecision",context->callback);
+                Ws31NativeNeed(context->connected,"source observation connection failed");
+            }
             for (uint32_t index=0;index<node->GetNDevices();++index) {
                 auto dev=DynamicCast<QbbNetDevice>(node->GetDevice(index));
                 if (!dev) continue;
@@ -1414,7 +1465,9 @@ public:
            <<"\nretained_ref_evidence\tsource-derived bindings; not measured release or heap bytes"
            <<"\nobserved_packet_rows\t"<<sequence<<"\ncopied_bytes\t"<<copiedBytes
            <<"\noutput_bytes_at_terminal\t"<<bytes<<"\ndevice_contexts\t"<<devices.size()
-           <<"\ndevice_vector_capacity\t"<<devices.capacity()<<"\ndevice_element_bytes\t"<<sizeof(Device)<<'\n';
+            <<"\ndevice_vector_capacity\t"<<devices.capacity()<<"\ndevice_element_bytes\t"<<sizeof(Device)
+            <<"\nsource_rows\t"<<sourceSequence<<"\nsource_switch_contexts\t"<<sourceSwitches.size()
+            <<"\nsource_context_element_bytes\t"<<sizeof(SourceSwitch)<<'\n';
         Write(TERMINAL,out.str());
         for (const auto &device:devices) {
             const auto &v=*device; std::ostringstream row;
@@ -1422,6 +1475,7 @@ public:
                <<'\t'<<v.dequeues<<'\t'<<v.dequeueBytes<<'\t'<<v.data<<'\t'<<v.dataBytes
                <<'\t'<<v.drops<<'\t'<<v.dropBytes<<'\n'; Write(TERMINAL,row.str());
         }
+        for (const auto &source:sourceSwitches) source->node->WriteWs30V13State();
         for (uint32_t i=0;i<n.GetN();++i) if (n.Get(i)->GetNodeType()==0) {
             auto hw=n.Get(i)->GetObject<RdmaDriver>()->m_rdma; std::ostringstream row;
             row<<"host_maps\t"<<i<<'\t'<<hw->m_qpMap.size()<<'\t'<<hw->m_rxQpMap.size()
@@ -1430,6 +1484,11 @@ public:
     }
     void SealAndDisconnect() {
         sealed=true; sealedSequence=sequence;
+        for (const auto &source:sourceSwitches) if (source->connected) {
+            const bool ok=source->node->TraceDisconnectWithoutContext("Ws31SourceDecision",source->callback);
+            if (!ok) Remember("source observation disconnect failed");
+            source->connected=!ok;
+        }
         for (const auto &context:devices) {
             auto &d=*context;
             if (d.dataConnected) {
