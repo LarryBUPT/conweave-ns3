@@ -1121,7 +1121,7 @@ void Ws31NativeValidate() {
     Ws31NativeNeed(ws31_native_declarations_seen && ws31_native_output_seen &&
         !ws31_native_declarations.empty() && !ws31_native_output_prefix.empty(),
         "both native keys are required");
-    Ws31NativeNeed(lb_mode==12 && cc_mode==1 && !enable_irn &&
+    Ws31NativeNeed(lb_mode==33 && cc_mode==1 && !enable_irn &&
         packet_payload_size==1000 && has_win==0 && global_t==1,
         "unsupported native mode/transport/window");
     Ws31NativeNeed(!ws18_admission && !ws18_path && !ws21_identity &&

@@ -225,7 +225,7 @@ public:
         Need(phase==NEW,"V2 entry installation repeated or failed");
         session->RequireHealthy();
         config.reset(new RunConfig(runConfig));
-        Need((config->mode==12 || config->mode==43) && config->hasWindow<=1 &&
+        Need((config->mode==12 || config->mode==33 || config->mode==43) && config->hasWindow<=1 &&
              config->globalTiming<=1 && config->mtu==1000 && config->ccMode==1 && !config->irn,
              "V2 entry unsupported finite configuration");
         input.reset(new ws31v2::DeclaredInput(ws31v2::ReadDeclarations(declarations)));
