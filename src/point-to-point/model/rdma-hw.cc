@@ -1,6 +1,7 @@
 #include "rdma-hw.h"
 #include "ws30-v13-fixture.h"
 #include "ws30-observer.h"
+#include "ws31-c3-observation.h"
 #include "ws31-label-fixture.h"
 #include "ws31-endpoint-identity.h"
 #include "ws31-v2-native-session.h"
@@ -33,6 +34,13 @@
 #include "qbb-header.h"
 
 namespace ns3 {
+
+static bool Ws31C3ObserveQp() {
+    return Ws30Level()==2 && Settings::lb_mode>=47 && Settings::lb_mode<=49;
+}
+
+static uint64_t ws31C3QpGeneration=0;
+static std::map<const RdmaQueuePair*,uint64_t> ws31C3QpGenerations;
 
 // Passive snapshots of real protocol state. No GetBytesLeft/IsFinished calls:
 // those helpers can consume SACK blocks in this simulator.
@@ -394,7 +402,26 @@ void RdmaHw::AddQueuePairWithNative(uint64_t size,uint16_t pg,Ipv4Address sip,Ip
                   << " snd_nxt=0 snd_una=0 rate=" << qp->m_rate.GetBitRate() << " alpha=" << qp->mlx.m_alpha << std::endl;
     }
     if (m_ws31V2Required) m_ws31V2Session->BindActual(request,m_node->GetId(),qp);
+    if (Ws31C3ObserveQp()) {
+        const uint64_t generation=++ws31C3QpGeneration;
+        ws31C3QpGenerations[PeekPointer(qp)]=generation;
+        std::cout << "WS31_C3_QP_REGISTER time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " event=" << NextWs31C3ObservationEvent()
+                  << " generation=" << generation << " host=" << m_node->GetId()
+                  << " flow_id=" << qp->m_flow_id
+                  << " sip=" << qp->sip.Get() << " dip=" << qp->dip.Get()
+                  << " sport=" << qp->sport << " dport=" << qp->dport
+                  << " pg=" << qp->m_pg << " tag=" << qp->m_workload_tag
+                  << " size=" << qp->m_size << " demand_ns="
+                  << qp->startTime.GetNanoSeconds() << std::endl;
+    }
     m_nic[nic_idx].dev->NewQp(qp);
+    if (Ws31C3ObserveQp())
+        std::cout << "WS31_C3_QP_LAUNCH time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " event=" << NextWs31C3ObservationEvent()
+                  << " generation=" << ws31C3QpGenerations.at(PeekPointer(qp))
+                  << " host=" << m_node->GetId() << " flow_id=" << qp->m_flow_id
+                  << std::endl;
 } catch (...) {
     FailWs31V2(); Ws31V2NativeSession::FailHandle(request,"V2 QP creation failed"); throw;
 }
@@ -1096,6 +1123,19 @@ void RdmaHw::RecoverQueue(Ptr<RdmaQueuePair> qp) {
 
 void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
     NS_ASSERT(!m_qpCompleteCallback.IsNull());
+    const bool observeC3=Ws31C3ObserveQp();
+    const auto c3Generation=observeC3 ? ws31C3QpGenerations.find(PeekPointer(qp)) :
+        ws31C3QpGenerations.end();
+    if (observeC3)
+        std::cout << "WS31_C3_QP_ACK_COMPLETE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " event=" << NextWs31C3ObservationEvent()
+                  << " generation=" << (c3Generation==ws31C3QpGenerations.end() ? 0 : c3Generation->second)
+                  << " host=" << m_node->GetId() << " flow_id=" << qp->m_flow_id
+                  << " sip=" << qp->sip.Get() << " dip=" << qp->dip.Get()
+                  << " sport=" << qp->sport << " dport=" << qp->dport
+                  << " pg=" << qp->m_pg << " size=" << qp->m_size
+                  << " snd_una=" << qp->snd_una << " snd_nxt=" << qp->snd_nxt
+                  << std::endl;
     if (Ws25DiagnosticEnabled()) {
         const Ws25QpDiagnostic &s = ws25_qp_diagnostics[qp->m_flow_id];
         std::cout << "WS25_QP flow_id=" << qp->m_flow_id
@@ -1133,8 +1173,15 @@ void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
 
     // This callback will log info. It also calls deletetion the rxQp on the receiver
     m_qpCompleteCallback(qp);
+    if (observeC3)
+        std::cout << "WS31_C3_QP_CALLBACK_RETURN time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " event=" << NextWs31C3ObservationEvent()
+                  << " generation=" << (c3Generation==ws31C3QpGenerations.end() ? 0 : c3Generation->second)
+                  << " host=" << m_node->GetId() << " flow_id=" << qp->m_flow_id
+                  << std::endl;
     // delete TxQueuePair
     DeleteQueuePair(qp);
+    if (c3Generation!=ws31C3QpGenerations.end()) ws31C3QpGenerations.erase(c3Generation);
 }
 
 void RdmaHw::SetLinkDown(Ptr<QbbNetDevice> dev) {

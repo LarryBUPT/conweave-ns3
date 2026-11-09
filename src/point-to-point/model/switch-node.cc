@@ -1,6 +1,7 @@
 #include "switch-node.h"
 #include "ws30-observer.h"
 #include "ws30-v13-fixture.h"
+#include "ws31-c3-observation.h"
 
 #include "assert.h"
 #include "ns3/boolean.h"
@@ -1565,20 +1566,57 @@ uint32_t SwitchNode::DoLbWs31C3(Ptr<const Packet> p, const CustomHeader &ch,
     const uint8_t *data=reinterpret_cast<const uint8_t *>(words);
     const std::vector<uint32_t> ports(nexthops.begin(),nexthops.end());
     const uint64_t now=Simulator::Now().GetNanoSeconds();
+    const bool observeActivation=Ws30Level()==2;
+    const auto activityBefore=observeActivation ? m_ws31Quota.SharedActivity() :
+        ws31::QuotaAdmission::ActivitySnapshot();
+    const uint64_t activationBefore1=observeActivation ? m_ws31Quota.activations[1] : 0;
+    const uint64_t activationBefore2=observeActivation ? m_ws31Quota.activations[2] : 0;
+    const uint64_t borrowersBefore1=observeActivation ? m_ws31Quota.borrowedAtActivation[1] : 0;
+    const uint64_t borrowersBefore2=observeActivation ? m_ws31Quota.borrowedAtActivation[2] : 0;
     const auto d=m_ws31Quota.Admit(ws31::QuotaKey(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport),
         category,ports,EcmpHash(data,12,m_ecmpSeed),EcmpHash(data,12,m_ecmpSeed^0x9e3779b9U),
         now,p->GetSize(),Settings::lb_mode==48,
         [this](uint32_t port) { return uint64_t(CalculateInterfaceLoad(port)); });
-    if (Ws30Level() && (d.fresh || (Ws30Level()==2 && d.residual)))
-        std::cout << "WS31_C3_ROUTE time_ns=" << now << " switch=" << m_id
+    if (observeActivation && d.category &&
+        m_ws31Quota.activations[d.category] !=
+            (d.category==1 ? activationBefore1 : activationBefore2))
+        std::cout << "WS31_C3_ACTIVATION time_ns=" << now
+                  << " event=" << NextWs31C3ObservationEvent()
+                  << " switch=" << m_id
+                  << " category=" << d.category
+                  << " activation=" << m_ws31Quota.activations[d.category]
+                  << " prior_seen=" << activityBefore.seen[d.category]
+                  << " prior_last_arrival_ns=" << activityBefore.last[d.category]
+                  << " borrowed_at_activation=" <<
+                     (m_ws31Quota.borrowedAtActivation[d.category]-
+                      (d.category==1 ? borrowersBefore1 : borrowersBefore2))
+                  << " triggering_sip=" << ch.sip << " triggering_dip=" << ch.dip
+                  << " triggering_sport=" << ch.udp.sport
+                  << " triggering_dport=" << ch.udp.dport
+                  << " triggering_pg=" << ch.udp.pg
+                  << " triggering_seq=" << ch.udp.seq
+                  << " triggering_uid=" << p->GetUid() << std::endl;
+    if (Ws30Level() && (d.fresh || (Ws30Level()==2 && d.residual))) {
+        std::cout << "WS31_C3_ROUTE time_ns=" << now;
+        if (observeActivation)
+            std::cout << " event=" << NextWs31C3ObservationEvent();
+        std::cout << " switch=" << m_id
                   << " sip=" << ch.sip << " dip=" << ch.dip << " sport=" << ch.udp.sport
-                  << " dport=" << ch.udp.dport << " seq=" << ch.udp.seq
+                  << " dport=" << ch.udp.dport << " seq=" << ch.udp.seq;
+        if (observeActivation)
+            std::cout << " uid=" << p->GetUid()
+                      << " pg=" << ch.udp.pg
+                      << " payload_bytes=" <<
+                         (ch.udp.payload_size>=CustomHeader::GetUdpHeaderSize() ?
+                          ch.udp.payload_size-CustomHeader::GetUdpHeaderSize() : 0);
+        std::cout
                   << " category=" << d.category << " fresh=" << d.fresh
                   << " eligible=" << d.eligible << " restricted=" << d.restricted
                   << " first=" << d.first << " second=" << d.second
                   << " q1=" << d.q1 << " q2=" << d.q2 << " chosen=" << d.chosen
                   << " owner=" << d.owner << " borrowed=" << d.borrowed
                   << " residual=" << d.residual << " wire_bytes=" << p->GetSize() << std::endl;
+    }
     return d.chosen;
 }
 
@@ -2399,6 +2437,22 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         }
     }
     m_txBytes[ifIndex] += p->GetSize();
+    if (Ws30Level()==2 && Settings::lb_mode>=47 && Settings::lb_mode<=49 && m_isToR) {
+        CustomHeader ch(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
+        if (p->PeekHeader(ch) && ch.l3Prot==0x11 && m_isToR_hostIP.count(ch.sip)) {
+            Ptr<QbbNetDevice> dev=DynamicCast<QbbNetDevice>(m_devices[ifIndex]);
+            if (dev && dev->GetQueue())
+                std::cout << "WS31_C3_DEQUEUE time_ns=" << Simulator::Now().GetNanoSeconds()
+                          << " event=" << NextWs31C3ObservationEvent()
+                          << " switch=" << m_id << " port=" << ifIndex
+                          << " pg=" << qIndex << " sip=" << ch.sip << " dip=" << ch.dip
+                          << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
+                          << " seq=" << ch.udp.seq << " uid=" << p->GetUid()
+                          << " wire_bytes=" << p->GetSize()
+                          << " queue_after_bytes=" << dev->GetQueue()->GetNBytesTotal()
+                          << std::endl;
+        }
+    }
 }
 
 uint32_t SwitchNode::EcmpHash(const uint8_t *key, size_t len, uint32_t seed) {

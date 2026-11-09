@@ -18,6 +18,10 @@
 
 #include "qbb-channel.h"
 #include "qbb-net-device.h"
+#include "ws30-observer.h"
+#include "ws31-c3-observation.h"
+#include "ns3/custom-header.h"
+#include "ns3/settings.h"
 #include "ns3/trace-source-accessor.h"
 #include "ns3/packet.h"
 #include "ns3/simulator.h"
@@ -30,6 +34,34 @@
 NS_LOG_COMPONENT_DEFINE ("QbbChannel");
 
 namespace ns3 {
+
+static bool Ws31C3ObserveChannelPacket(Ptr<Packet> packet, Ptr<QbbNetDevice> source)
+{
+  if (Ws30Level()!=2 || Settings::lb_mode<47 || Settings::lb_mode>49 ||
+      !source || source->GetNode()->GetNodeType()!=1) return false;
+  CustomHeader ch(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
+  if (!packet->PeekHeader(ch) || ch.l3Prot!=0x11) return false;
+  const auto owner=Settings::hostIp2SwitchId.find(ch.sip);
+  return owner!=Settings::hostIp2SwitchId.end() &&
+         owner->second==source->GetNode()->GetId();
+}
+
+static void Ws31C3DeliverObserved(Ptr<QbbNetDevice> destination, Ptr<Packet> packet,
+                                  uint64_t token, uint32_t sourceNode, uint32_t sourcePort)
+{
+  std::cout << "WS31_C3_CHANNEL_DELIVER time_ns=" << Simulator::Now().GetNanoSeconds()
+            << " event=" << NextWs31C3ObservationEvent()
+            << " token=" << token << " token_kind=observation"
+            << " source_switch=" << sourceNode
+            << " source_port=" << sourcePort << " destination_node="
+            << destination->GetNode()->GetId() << " destination_port="
+            << destination->GetIfIndex() << " uid=" << packet->GetUid() << std::endl;
+  destination->Receive(packet);
+  std::cout << "WS31_C3_CHANNEL_RETURN time_ns=" << Simulator::Now().GetNanoSeconds()
+            << " event=" << NextWs31C3ObservationEvent()
+            << " token=" << token << " token_kind=observation"
+            << " uid=" << packet->GetUid() << std::endl;
+}
 
 NS_OBJECT_ENSURE_REGISTERED (QbbChannel);
 
@@ -104,9 +136,25 @@ QbbChannel::TransmitStart (
   if (!m_ws31Enter)
     {
       m_ws31EverTransmitted = true;
-      Simulator::ScheduleWithContext (m_link[wire].m_dst->GetNode ()->GetId (),
-                                  txTime + m_delay, &QbbNetDevice::Receive,
-                                  m_link[wire].m_dst, p);
+      if (Ws31C3ObserveChannelPacket(p,src))
+        {
+          const uint64_t token=NextWs31C3DeliveryToken();
+          Simulator::ScheduleWithContext (m_link[wire].m_dst->GetNode ()->GetId (),
+                                      txTime + m_delay, &Ws31C3DeliverObserved,
+                                      m_link[wire].m_dst, p, token,
+                                      src->GetNode()->GetId(), src->GetIfIndex());
+          std::cout << "WS31_C3_CHANNEL_SCHEDULE time_ns=" << Simulator::Now().GetNanoSeconds()
+                    << " event=" << NextWs31C3ObservationEvent()
+                    << " token=" << token << " token_kind=observation"
+                    << " source_switch=" << src->GetNode()->GetId()
+                    << " source_port=" << src->GetIfIndex() << " uid=" << p->GetUid()
+                    << " delivery_due_ns=" <<
+                       (Simulator::Now()+txTime+m_delay).GetNanoSeconds() << std::endl;
+        }
+      else
+        Simulator::ScheduleWithContext (m_link[wire].m_dst->GetNode ()->GetId (),
+                                    txTime + m_delay, &QbbNetDevice::Receive,
+                                    m_link[wire].m_dst, p);
     }
   else
     {
@@ -133,6 +181,14 @@ QbbChannel::TransmitStart (
                                       Ptr<QbbChannel> (this), m_link[wire].m_dst,
                                       p, serial, m_ws31Leave);
           m_txrxQbb (p, src, m_link[wire].m_dst, txTime, txTime + m_delay);
+          if (Ws31C3ObserveChannelPacket(p,src))
+            std::cout << "WS31_C3_CHANNEL_SCHEDULE time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " event=" << NextWs31C3ObservationEvent()
+                      << " token=" << serial << " token_kind=endpoint_observer"
+                      << " source_switch=" << src->GetNode()->GetId()
+                      << " source_port=" << src->GetIfIndex() << " uid=" << p->GetUid()
+                      << " delivery_due_ns=" <<
+                         (Simulator::Now()+txTime+m_delay).GetNanoSeconds() << std::endl;
         }
       catch (...)
         {
@@ -157,10 +213,32 @@ QbbChannel::DeliverWs31 (Ptr<QbbChannel> channel, Ptr<QbbNetDevice> destination,
       if (!channel->m_ws31Owner || channel->m_ws31Failed ||
           channel->m_ws31Pending == 0 || !leave)
         throw std::logic_error ("WS31 delivery lost its channel observer");
+      Ptr<QbbNetDevice> source=channel->m_link[0].m_dst==destination ?
+          channel->m_link[0].m_src : channel->m_link[1].m_src;
+      const bool observe=Ws31C3ObserveChannelPacket(packet,source);
+      if (observe)
+        std::cout << "WS31_C3_CHANNEL_DELIVER time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " event=" << NextWs31C3ObservationEvent()
+                  << " token=" << serial << " token_kind=endpoint_observer"
+                  << " source_switch=" << source->GetNode()->GetId()
+                  << " source_port=" << source->GetIfIndex() << " destination_node="
+                  << destination->GetNode()->GetId() << " destination_port="
+                  << destination->GetIfIndex() << " uid=" << packet->GetUid() << std::endl;
       destination->Receive (packet);
+      if (observe)
+        std::cout << "WS31_C3_CHANNEL_RETURN time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " event=" << NextWs31C3ObservationEvent()
+                  << " token=" << serial << " token_kind=endpoint_observer"
+                  << " uid=" << packet->GetUid() << std::endl;
       // A completion callback inside Receive is still part of the open token.
       leave (serial);
       --channel->m_ws31Pending;
+      if (observe)
+        std::cout << "WS31_C3_CHANNEL_OBSERVER_CLOSED time_ns="
+                  << Simulator::Now().GetNanoSeconds()
+                  << " event=" << NextWs31C3ObservationEvent()
+                  << " token=" << serial << " token_kind=endpoint_observer"
+                  << " uid=" << packet->GetUid() << std::endl;
     }
   catch (...)
     {

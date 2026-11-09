@@ -21,12 +21,14 @@
 #define __STDC_LIMIT_MACROS 1
 #include "ns3/qbb-net-device.h"
 #include "ws30-observer.h"
+#include "ws31-c3-observation.h"
 
 #include <stdint.h>
 #include <stdio.h>
 #include <cstdlib>
 
 #include <iostream>
+#include <map>
 #include <unordered_map>
 
 #include "ns3/assert.h"
@@ -71,6 +73,17 @@ static bool Ws23RecoveryDiagnosticEnabled() {
     }();
     return enabled;
 }
+
+static bool Ws31C3ObserveSourceTx(Ptr<Packet> packet, Ptr<Node> node) {
+    if (Ws30Level()!=2 || Settings::lb_mode<47 || Settings::lb_mode>49 ||
+        !node || node->GetNodeType()!=1) return false;
+    CustomHeader ch(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
+    if (!packet->PeekHeader(ch) || ch.l3Prot!=0x11) return false;
+    const auto source=Settings::hostIp2SwitchId.find(ch.sip);
+    return source!=Settings::hostIp2SwitchId.end() && source->second==node->GetId();
+}
+
+static std::map<const QbbNetDevice*,uint64_t> ws31C3ServiceUid;
 
 extern std::unordered_map<unsigned, Time> acc_pause_time;
 
@@ -262,6 +275,16 @@ void QbbNetDevice::TransmitComplete(void) {
     NS_ASSERT_MSG(m_txMachineState == BUSY, "Must be BUSY if transmitting");
     m_txMachineState = READY;
     NS_ASSERT_MSG(m_currentPkt != 0, "QbbNetDevice::TransmitComplete(): m_currentPkt zero");
+    if (Ws30Level()==2 && Settings::lb_mode>=47 && Settings::lb_mode<=49) {
+        auto c3Service=ws31C3ServiceUid.find(this);
+        if (c3Service!=ws31C3ServiceUid.end()) {
+            std::cout << "WS31_C3_DEVICE_READY time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " event=" << NextWs31C3ObservationEvent()
+                      << " switch=" << m_node->GetId() << " port=" << m_ifIndex
+                      << " uid=" << c3Service->second << std::endl;
+            ws31C3ServiceUid.erase(c3Service);
+        }
+    }
     m_phyTxEndTrace(m_currentPkt);
     m_currentPkt = 0;
     DequeueAndTransmit();
@@ -517,6 +540,10 @@ bool QbbNetDevice::TransmitStart(Ptr<Packet> p) {
     NS_ASSERT_MSG(m_txMachineState == READY, "Must be READY to transmit");
     m_txMachineState = BUSY;
     m_currentPkt = p;
+    const bool observeC3=Ws31C3ObserveSourceTx(p,m_node);
+    const uint64_t observedUid=observeC3 ? p->GetUid() : 0;
+    const uint32_t observedWireBytes=observeC3 ? p->GetSize() : 0;
+    if (observeC3) ws31C3ServiceUid[this]=observedUid;
     m_phyTxBeginTrace(m_currentPkt);
     Time txTime = Seconds(m_bps.CalculateTxTime(p->GetSize()));
     Time txCompleteTime = txTime + m_tInterframeGap;
@@ -524,6 +551,14 @@ bool QbbNetDevice::TransmitStart(Ptr<Packet> p) {
     Simulator::Schedule(txCompleteTime, &QbbNetDevice::TransmitComplete, this);
 
     bool result = m_channel->TransmitStart(p, this, txTime);
+    if (observeC3)
+        std::cout << "WS31_C3_SERVICE_START time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " event=" << NextWs31C3ObservationEvent()
+                  << " switch=" << m_node->GetId() << " port=" << m_ifIndex
+                  << " uid=" << observedUid << " wire_bytes=" << observedWireBytes
+                  << " tx_duration_ns=" << txTime.GetNanoSeconds()
+                  << " interframe_gap_ns=" << m_tInterframeGap.GetNanoSeconds()
+                  << " channel_accepted=" << result << std::endl;
     if (result == false) {
         if (Ws23RecoveryDiagnosticEnabled())
             std::cout << "WS23_PHY_TX_DROP time_ns=" << Simulator::Now().GetNanoSeconds()
