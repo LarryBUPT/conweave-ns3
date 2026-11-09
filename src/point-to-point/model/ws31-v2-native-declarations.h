@@ -101,7 +101,9 @@ inline DeclaredInput ReadDeclarations(std::istream &in) {
     input.t0=Number(header[5]); input.horizon=Number(header[6]); input.stop=Number(header[7]);
     const bool registeredSeed=input.stage=="K0"
         ? (input.seed>=5310001 && input.seed<=5310008)
-        : (input.seed>=5310101 && input.seed<=5310124);
+        : ((input.seed>=5310101 && input.seed<=5310124) ||
+           (input.seed>=5310151 && input.seed<=5310158) ||
+           (input.seed>=5310201 && input.seed<=5310248));
     Need(registeredSeed && count==1120, "registered seed/count");
     Need(input.t0==2005000000ULL && input.horizon==(input.family=="D1"?550400ULL:4671488ULL), "reference times");
     const uint64_t tail=input.horizon*10>10000000ULL?input.horizon*10:10000000ULL;
