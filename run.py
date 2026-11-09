@@ -156,6 +156,7 @@ lb_modes = {
     "ws31-c2-unified": 44,
     "ws31-c2-size": 45,
     "ws31-c2-zero": 46,
+    "ws31-c2-hash": 55,
     "ws31-c3": 47,
     "ws31-c3-fixed": 48,
     "ws31-c3-size": 49,

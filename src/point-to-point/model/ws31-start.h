@@ -5,7 +5,7 @@
 
 namespace ns3 { namespace ws31 {
 
-inline bool StartMode(uint32_t mode) { return mode >= 43 && mode <= 46; }
+inline bool StartMode(uint32_t mode) { return (mode >= 43 && mode <= 46) || mode == 55; }
 
 // Match the packet-label intervention without changing the business label
 // retained by the QP and completion metrics. Missing packet tags read as zero.
@@ -25,12 +25,27 @@ inline uint32_t StartHash(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t d
     return h;
 }
 
+// The category-blind eligibility draw uses a separate hash domain from delay.
+inline uint32_t StartEligibilityHash(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport) {
+    const uint32_t words[3] = {sip, dip, uint32_t(sport) | (uint32_t(dport) << 16)};
+    uint32_t h = 2166136261U ^ 0x53c2a517U;
+    for (unsigned i=0; i<3; ++i)
+        for (unsigned j=0; j<4; ++j) { h ^= (words[i] >> (8*j)) & 255U; h *= 16777619U; }
+    h ^= h >> 16; h *= 0x85ebca6bU; h ^= h >> 13;
+    return h;
+}
+
+inline bool StartHashEligible(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport) {
+    return StartEligibilityHash(sip,dip,sport,dport) % 35U < 3U;
+}
+
 inline uint64_t StartDelay(uint32_t mode, uint32_t tag, uint64_t size,
                            uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport,
                            uint32_t maxNs=500) {
     // Only the explicit size control consults size. Unknown labels fall back
     // to immediate launch in the class arm, not to a guessed class.
-    const bool eligible = mode==43 ? tag==2 : mode==44 ? true : mode==45 ? size==8192 : false;
+    const bool eligible = mode==43 ? tag==2 : mode==44 ? true : mode==45 ? size==8192
+                          : mode==55 ? StartHashEligible(sip,dip,sport,dport) : false;
     if (!eligible || !maxNs) return 0;
     return uint64_t(StartHash(sip,dip,sport,dport)) % (uint64_t(maxNs)+1);
 }
