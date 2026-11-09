@@ -656,7 +656,7 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
             NS_FATAL_ERROR("C2 completion precedes demand or launch");
         ws31::StartCounters &s=ws31::StartData();
         ++s.finished; s.finishBytes+=q->m_size;
-        if (Ws30Level())
+        if (Ws30Level() || ws31_native_declarations_seen)
             std::cout << "WS31_C2_FINISH flow_id=" << q->m_flow_id
                       << " demand_ns=" << demand << " launch_ns=" << demand+q->m_ws31LaunchDelayNs
                       << " finish_ns=" << finish << " wait_ns=" << q->m_ws31LaunchDelayNs
@@ -1125,7 +1125,9 @@ void Ws31NativeValidate() {
         "both native keys are required");
     const bool c1Mode=lb_mode==36 || lb_mode==37 || lb_mode==38 ||
         lb_mode==42 || lb_mode==53 || lb_mode==54;
-    Ws31NativeNeed((lb_mode==33 || c1Mode) && cc_mode==1 && !enable_irn &&
+    const bool c2Mode=lb_mode==43 || lb_mode==44 || lb_mode==46 ||
+        lb_mode==55 || lb_mode==56;
+    Ws31NativeNeed((lb_mode==33 || c1Mode || c2Mode) && cc_mode==1 && !enable_irn &&
         packet_payload_size==1000 && has_win==0 && global_t==1,
         "unsupported native mode/transport/window");
     Ws31NativeNeed(!ws18_admission && !ws18_path && !ws21_identity &&
@@ -1560,6 +1562,24 @@ int RunWs31NativeOs2() {
         entry.reset(new Ws31V2NativeEntry());
         entry->Install(declarations,hosts,config);
         entry->Run();
+        if (ws31::StartMode(lb_mode)) {
+            const ws31::StartCounters &s=ws31::StartData();
+            Ws31NativeNeed(s.launched+s.cancelled==s.demanded && s.finished==s.launched &&
+                s.launchBytes+s.cancelBytes==s.demandBytes && s.finishBytes==s.launchBytes,
+                "C2 request or byte accounting is inconsistent");
+            std::cout << "WS31_C2_STATE demanded=" << s.demanded << " launched=" << s.launched
+                      << " cancelled=" << s.cancelled << " finished=" << s.finished
+                      << " demand_bytes=" << s.demandBytes << " launch_bytes=" << s.launchBytes
+                      << " cancel_bytes=" << s.cancelBytes << " finish_bytes=" << s.finishBytes
+                      << " eligible=" << s.eligible << " planned_waited=" << s.plannedWaited
+                      << " planned_delay_sum_ns=" << s.plannedDelaySum
+                      << " planned_delay_max_ns=" << s.plannedDelayMax
+                      << " waited=" << s.waited << " delay_sum_ns=" << s.delaySum
+                      << " delay_max_ns=" << s.delayMax
+                      << " eligibility_hashes=" << s.eligibilityHashes
+                      << " delay_hashes=" << s.delayHashes
+                      << " size_comparisons=" << s.sizeComparisons << std::endl;
+        }
         const auto diagnostics=entry->GetDiagnostics();
         observer.Terminal(diagnostics); terminalWritten=true;
         Ws31NativeNeed(diagnostics.entryFinished && !diagnostics.failed &&

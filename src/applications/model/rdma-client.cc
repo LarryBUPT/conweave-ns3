@@ -203,7 +203,7 @@ void RdmaClient::StartApplication (void) try
     s.delayHashes += decision.delayHashes;
     s.sizeComparisons += decision.sizeComparisons;
     m_ws31Pending = true;
-    if (Ws30Level())
+    if (Ws30Level() || m_ws31V2Required)
       std::cout << "WS31_C2_DEMAND flow_id=" << m_flow_id << " demand_ns=" << m_ws31DemandNs
                 << " size=" << m_size << " tag=" << m_workload_tag
                 << " delay_ns=" << delay << " eligible=" << decision.eligible
@@ -244,7 +244,7 @@ void RdmaClient::StartRequest (void) try
     ws31::StartCounters &s = ws31::StartData();
     ++s.launched; s.launchBytes += m_size; s.waited += delay!=0;
     s.delaySum += delay; if (delay>s.delayMax) s.delayMax=delay;
-    if (Ws30Level())
+    if (Ws30Level() || m_ws31V2Required)
       std::cout << "WS31_C2_LAUNCH flow_id=" << m_flow_id << " demand_ns=" << demand
                 << " launch_ns=" << now << " wait_ns=" << delay
                 << " size=" << m_size << std::endl;
@@ -280,7 +280,7 @@ void RdmaClient::CancelPendingRequest (void) try
   m_ws31Pending = false;
   ws31::StartCounters &s = ws31::StartData();
   ++s.cancelled; s.cancelBytes += m_size;
-  if (Ws30Level())
+  if (Ws30Level() || m_ws31V2Required)
     std::cout << "WS31_C2_CANCEL flow_id=" << m_flow_id << " demand_ns=" << m_ws31DemandNs
               << " time_ns=" << Simulator::Now().GetNanoSeconds() << " size=" << m_size << std::endl;
 } catch (...) { FailWs31V2(); throw; }
