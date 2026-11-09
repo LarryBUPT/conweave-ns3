@@ -46,6 +46,8 @@ BUFFER_SIZE {buffer_size}
 
 CC_MODE {cc_mode}
 LB_MODE {lb_mode}
+WS31_C2_SIZE_TARGET_BYTES {ws31_c2_size_target_bytes}
+WS31_C2_SIZE_CUTOFF {ws31_c2_size_cutoff}
 WS18_ADMISSION {ws18_admission}
 WS18_PATH {ws18_path}
 WS18_ADMISSION_RATE_GBPS {ws18_admission_rate_gbps}
@@ -157,6 +159,7 @@ lb_modes = {
     "ws31-c2-size": 45,
     "ws31-c2-zero": 46,
     "ws31-c2-hash": 55,
+    "ws31-c2-size-v4": 56,
     "ws31-c3": 47,
     "ws31-c3-fixed": 48,
     "ws31-c3-size": 49,
@@ -225,6 +228,8 @@ def main():
                         default='AliStorage2019', help="the name of the cdf file (default: AliStorage2019)")
     parser.add_argument('--flow-file', '--flow_file', dest='flow_file',
                         help="existing flow trace inside config/ (five or six columns)")
+    parser.add_argument('--ws31-c2-size-target-bytes', type=int, default=0)
+    parser.add_argument('--ws31-c2-size-cutoff', type=int, default=0)
     parser.add_argument('--ws13-diag', dest='ws13_diag', type=int, choices=(0, 1), default=0,
                         help='opt-in flow-hop and QP diagnostic for WS-13 tail probes')
     parser.add_argument('--ws25-diag', dest='ws25_diag', type=int, choices=(0, 1), default=0,
@@ -279,6 +284,10 @@ def main():
     # input parameters
     cc_mode = cc_modes[args.cc]
     lb_mode = lb_modes[args.lb]
+    size_pair = (args.ws31_c2_size_target_bytes, args.ws31_c2_size_cutoff)
+    if (lb_mode == 56 and size_pair not in ((16384, 3), (262144, 6)) or
+            lb_mode != 56 and size_pair != (0, 0)):
+        parser.error('WS-31 C2 size control requires mode 56 and a registered D1/D2 parameter pair')
     enabled_pfc = int(args.pfc)
     enabled_irn = int(args.irn)
     bw = int(args.bw)
@@ -522,6 +531,8 @@ def main():
                                         qlen_mon_start=qlen_mon_start, qlen_mon_end=qlen_mon_end, flowgen_start_time=flowgen_start_time,
                                         flowgen_stop_time=flowgen_stop_time, sw_monitoring_interval=sw_monitoring_interval,
                                         load=netload, buffer_size=buffer, lb_mode=lb_mode, cwh_tx_expiry_time=cwh_tx_expiry_time,
+                                        ws31_c2_size_target_bytes=args.ws31_c2_size_target_bytes,
+                                        ws31_c2_size_cutoff=args.ws31_c2_size_cutoff,
                                         ws18_admission=args.ws18_admission, ws18_path=args.ws18_path,
                                         ws18_admission_rate_gbps=args.ws18_admission_rate_gbps,
                                         ws21_identity=args.ws21_identity,

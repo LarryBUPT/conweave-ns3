@@ -190,15 +190,27 @@ void RdmaClient::StartApplication (void) try
     const ws31::VisibleLabel visible = m_ws31V2Required?nativePolicy:ws31::LabelAt(labelProfile,m_workload_tag,
         m_ws31DemandNs,m_ws31DemandNs,m_sip.Get(),m_dip.Get(),m_sport,m_dport,tagTransform);
     const uint32_t policyTag = m_ws31V2Required?(visible.present?visible.value:0):visible.value;
-    const uint64_t delay = ws31::StartDelay(Settings::lb_mode,policyTag,m_size,
-                                           m_sip.Get(),m_dip.Get(),m_sport,m_dport);
+    const ws31::StartDecision decision=ws31::DecideStart(Settings::lb_mode,policyTag,m_size,
+                                                         m_sip.Get(),m_dip.Get(),m_sport,m_dport);
+    const uint64_t delay=decision.delayNs;
     ws31::StartCounters &s = ws31::StartData();
     ++s.demanded; s.demandBytes += m_size;
+    s.eligible += decision.eligible;
+    s.plannedWaited += delay!=0;
+    s.plannedDelaySum += delay;
+    if (delay>s.plannedDelayMax) s.plannedDelayMax=delay;
+    s.eligibilityHashes += decision.eligibilityHashes;
+    s.delayHashes += decision.delayHashes;
+    s.sizeComparisons += decision.sizeComparisons;
     m_ws31Pending = true;
     if (Ws30Level())
       std::cout << "WS31_C2_DEMAND flow_id=" << m_flow_id << " demand_ns=" << m_ws31DemandNs
                 << " size=" << m_size << " tag=" << m_workload_tag
-                << " delay_ns=" << delay << " policy_tag=" << policyTag
+                << " delay_ns=" << delay << " eligible=" << decision.eligible
+                << " eligibility_hashes=" << decision.eligibilityHashes
+                << " delay_hashes=" << decision.delayHashes
+                << " size_comparisons=" << decision.sizeComparisons
+                << " policy_tag=" << policyTag
                 << " tag_transform=" << tagTransform << std::endl;
     if (labelProfile && Ws30Level())
       std::cout << "WS31_LABEL_DEMAND flow_id=" << m_flow_id << " generation=0"

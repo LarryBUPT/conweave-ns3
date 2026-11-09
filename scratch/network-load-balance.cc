@@ -81,6 +81,8 @@ NS_LOG_COMPONENT_DEFINE("GENERIC_SIMULATION");
 /*------Load balancing parameters-----*/
 // mode for load balancer, 0: flow ECMP, 2: DRILL, 3: Conga, 6: Letflow, 9: ConWeave
 uint32_t lb_mode = 0;
+uint64_t ws31_c2_size_target_bytes = 0;
+uint32_t ws31_c2_size_cutoff = 0;
 uint32_t guardhash_lambda = 1;
 uint32_t guardhash_tau_bytes = 0;
 uint32_t harm_gate_on_bytes = 8192;
@@ -1650,6 +1652,10 @@ int main(int argc, char *argv[]) {
                 conf >> v;
                 lb_mode = v;
                 std::cerr << "LB_MODE\t\t\t" << lb_mode << "\n";
+            } else if (key.compare("WS31_C2_SIZE_TARGET_BYTES") == 0) {
+                conf >> ws31_c2_size_target_bytes;
+            } else if (key.compare("WS31_C2_SIZE_CUTOFF") == 0) {
+                conf >> ws31_c2_size_cutoff;
             } else if (key.compare("WS18_ADMISSION") == 0) {
                 uint32_t value; conf >> value; ws18_admission = value != 0;
             } else if (key.compare("WS18_PATH") == 0) {
@@ -2031,6 +2037,18 @@ int main(int argc, char *argv[]) {
     }
 
     /******************* READING CONFIG FILE IS DONE ***********************/
+
+    if (lb_mode==56) {
+        if (!((ws31_c2_size_target_bytes==16384 && ws31_c2_size_cutoff==3) ||
+              (ws31_c2_size_target_bytes==262144 && ws31_c2_size_cutoff==6))) {
+            std::cerr << "WS31 C2 size control requires a registered D1 or D2 parameter pair" << std::endl;
+            return 2;
+        }
+    } else if (ws31_c2_size_target_bytes || ws31_c2_size_cutoff) {
+        std::cerr << "WS31 C2 size parameters require mode 56" << std::endl;
+        return 2;
+    }
+    ws31::ConfigureStartSizeControl(ws31_c2_size_target_bytes,ws31_c2_size_cutoff);
 
     if (Ws31NativeRequested()) {
         try { Ws31NativeValidate(); }
@@ -2901,7 +2919,14 @@ int main(int argc, char *argv[]) {
                   << " demand_bytes=" << s.demandBytes << " launch_bytes=" << s.launchBytes
                   << " cancel_bytes=" << s.cancelBytes << " finish_bytes=" << s.finishBytes
                   << " waited=" << s.waited << " delay_sum_ns=" << s.delaySum
-                  << " delay_max_ns=" << s.delayMax << " frozen_max_ns=500" << std::endl;
+                  << " delay_max_ns=" << s.delayMax
+                  << " eligible=" << s.eligible << " planned_waited=" << s.plannedWaited
+                  << " planned_delay_sum_ns=" << s.plannedDelaySum
+                  << " planned_delay_max_ns=" << s.plannedDelayMax
+                  << " eligibility_hashes=" << s.eligibilityHashes
+                  << " delay_hashes=" << s.delayHashes
+                  << " size_comparisons=" << s.sizeComparisons
+                  << " frozen_max_ns=500" << std::endl;
     }
     if (lb_mode == 9) Ws30CwPrint();
     Ws30CompositionFinish();

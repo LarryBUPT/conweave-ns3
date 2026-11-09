@@ -2031,7 +2031,7 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
         case 28: case 29: case 30: case 31: case 32:
             return DoLbWs30(p, ch, nexthops);
         case 33: case 34: case 35:
-        case 43: case 44: case 45: case 46: case 55:
+        case 43: case 44: case 45: case 46: case 55: case 56:
             return DoLbWs30V13(p, ch, nexthops);
         case 36: case 37: case 38: case 39: case 40: case 41: case 42:
         case 53: case 54:
