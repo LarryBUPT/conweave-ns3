@@ -29,6 +29,7 @@
 #include "log.h"
 
 #include <cmath>
+#include <iostream>
 
 // Note:  Logging in this file is largely avoided due to the
 // number of calls that are made to these functions and the possibility
@@ -193,11 +194,15 @@ DefaultSimulatorImpl::Run (void)
 #endif
   ProcessEventsWithContext ();
   m_stop = false;
+  uint64_t processedEvents = 0;
 
   while (!m_events->IsEmpty () && !m_stop) 
     {
       ProcessOneEvent ();
+      ++processedEvents;
     }
+
+  std::cerr << "WS31_NS3_PROCESSED_EVENTS " << processedEvents << std::endl;
 
   // If the simulator stopped naturally by lack of events, make a
   // consistency test to check that we didn't lose any events along the way.
