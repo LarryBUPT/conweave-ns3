@@ -81,7 +81,7 @@ struct Declaration {
     uint16_t sport, dport, flowId;
 };
 struct DeclaredInput {
-    std::string family;
+    std::string stage, family;
     uint64_t seed, t0, horizon, stop, referenceWireBytes;
     std::vector<Declaration> requests;
 };
@@ -90,14 +90,19 @@ inline DeclaredInput ReadDeclarations(std::istream &in) {
     std::string line;
     Need(ReadLine(in,line), "missing header");
     const auto header=Words(line);
-    Need(header.size()==10 && header[0]=="WS31_V2_DECL_R1" && header[1]=="K0", "schema/stage");
+    Need(header.size()==10 && header[0]=="WS31_V2_DECL_R1" &&
+         (header[1]=="K0" || header[1]=="K1"), "schema/stage");
     DeclaredInput input;
+    input.stage=header[1];
     input.family=header[2];
     Need(input.family=="D1" || input.family=="D2", "family");
     input.seed=Number(header[3]);
     const uint64_t count=Number(header[4]);
     input.t0=Number(header[5]); input.horizon=Number(header[6]); input.stop=Number(header[7]);
-    Need(input.seed>=5310001 && input.seed<=5310008 && count==1120, "K0 seed/count");
+    const bool registeredSeed=input.stage=="K0"
+        ? (input.seed>=5310001 && input.seed<=5310008)
+        : (input.seed>=5310101 && input.seed<=5310124);
+    Need(registeredSeed && count==1120, "registered seed/count");
     Need(input.t0==2005000000ULL && input.horizon==(input.family=="D1"?550400ULL:4671488ULL), "reference times");
     const uint64_t tail=input.horizon*10>10000000ULL?input.horizon*10:10000000ULL;
     Need(input.stop==input.t0+input.horizon+tail &&
