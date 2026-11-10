@@ -659,6 +659,11 @@ void conweave_history_print() {
  * @brief When one RDMA is finished, so does (1) QP, (2) RxQP, (3) write it on file fct.txt.
  */
 void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
+    if (lb_mode == 57 && ws31_c3r_reuse_tuple)
+        std::cout << "WS31_C3R_GENERATION event=finish time_ns="
+                  << Simulator::Now().GetNanoSeconds() << " flow_id=" << q->m_flow_id
+                  << " sport=" << q->sport << " dport=" << q->dport
+                  << " size=" << q->m_size << std::endl;
     if (ws31::StartMode(lb_mode)) {
         const uint64_t demand=q->startTime.GetNanoSeconds();
         const uint64_t finish=Simulator::Now().GetNanoSeconds();
