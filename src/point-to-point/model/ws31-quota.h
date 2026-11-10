@@ -109,6 +109,18 @@ public:
         }
         entries.erase(it);
     }
+    // C3R only: an acknowledged old QP is now pinned to its own-category port.
+    void RepinDrained(const QuotaKey &key, uint32_t port, uint32_t category) {
+        auto it=entries.find(key);
+        if (it==entries.end() || !it->second.d.borrowed ||
+            it->second.d.category!=category || it->second.d.owner==category)
+            throw std::logic_error("C3R repin lacks a live borrowed quota entry");
+        Entry &e=it->second;
+        if (e.live) --liveBorrowed[e.d.owner];
+        e.d.chosen=port;
+        e.d.owner=category;
+        e.d.borrowed=false;
+    }
     size_t Size() const { return entries.size(); }
     bool Contains(const QuotaKey &key) const { return entries.count(key)!=0; }
     struct ActivitySnapshot {

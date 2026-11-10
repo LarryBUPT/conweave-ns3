@@ -2,6 +2,7 @@
 #include "ws30-observer.h"
 #include "ws30-v13-fixture.h"
 #include "ws31-c3-observation.h"
+#include "ws31-c3r-control.h"
 
 #include "assert.h"
 #include "ns3/boolean.h"
@@ -1057,6 +1058,8 @@ uint32_t SwitchNode::DoLbFlowECMP(Ptr<const Packet> p, const CustomHeader &ch,
         buf.u32[2] = ch.ack.sport | ((uint32_t)ch.ack.dport << 16);
     else if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL)
         buf.u32[2] = Ws21FeedbackHeader::IP_PROTOCOL;
+    else if (ch.l3Prot == Ws31C3rControl::IP_PROTOCOL)
+        buf.u32[2] = Ws31C3rControl::IP_PROTOCOL;
     else {
         std::cout << "[ERROR] Sw(" << m_id << ")," << PARSE_FIVE_TUPLE(ch)
                   << "Cannot support other protoocls than TCP/UDP (l3Prot:" << ch.l3Prot << ")"
@@ -1442,6 +1445,24 @@ void SwitchNode::WriteWs30V13State() {
                   << " conserved=" << m_ws31Quota.Conserved()
                   << " activity_ns=20000 moe_lane_fraction=1/4 pinning=1" << std::endl;
     }
+    if (Settings::lb_mode == 57) {
+        m_ws31Quota.Expire(Simulator::Now().GetNanoSeconds());
+        if (!m_ws31Quota.Conserved()) NS_FATAL_ERROR("C3R quota accounting mismatch");
+        uint64_t pending = 0, committed = 0;
+        for (const auto &entry : m_ws31C3rRoutes) {
+            pending += entry.second.pending;
+            committed += entry.second.committed;
+        }
+        std::cout << "WS31_C3R_STATE switch=" << m_id
+                  << " routes=" << m_ws31C3rRoutes.size()
+                  << " peak_routes=" << m_ws31C3rPeakRoutes
+                  << " admissions=" << m_ws31C3rAdmissions
+                  << " pending=" << pending << " committed=" << committed
+                  << " pauses=" << m_ws31C3rPausePackets
+                  << " skipped=" << m_ws31C3rSkippedAtActivation
+                  << " quota_entries=" << m_ws31Quota.Size()
+                  << " quota_conserved=" << m_ws31Quota.Conserved() << std::endl;
+    }
     if ((Settings::lb_mode>=36 && Settings::lb_mode<=42) ||
         Settings::lb_mode==53 || Settings::lb_mode==54) {
         if (!m_ws31Budget.Conserved()) NS_FATAL_ERROR("WS31 prediction accounting mismatch");
@@ -1618,6 +1639,244 @@ uint32_t SwitchNode::DoLbWs31C3(Ptr<const Packet> p, const CustomHeader &ch,
                   << " residual=" << d.residual << " wire_bytes=" << p->GetSize() << std::endl;
     }
     return d.chosen;
+}
+
+uint32_t SwitchNode::DoLbWs31C3r(Ptr<const Packet> p, const CustomHeader &ch,
+                                  const std::vector<int> &nexthops) {
+    if (ch.l3Prot != 0x11 || !m_isToR || !m_isToR_hostIP.count(ch.sip))
+        return DoLbWs30V13(p, ch, nexthops);
+    FlowIDNUMTag flow;
+    if (!p->PeekPacketTag(flow) || flow.GetId() < 0 || flow.GetFlowSize() == 0)
+        NS_FATAL_ERROR("C3R source data lacks actual QP identity and size");
+    // QuotaAdmission is keyed by the four transport fields. A second PG with
+    // the same tuple would alias its live quota state in this mode.
+    if (ch.udp.pg != 3)
+        NS_FATAL_ERROR("C3R requires PG 3 for its four-tuple quota identity");
+    const uint32_t flowId = uint32_t(flow.GetId());
+    const Ws31C3rKey key(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport,
+                         ch.udp.pg, flowId);
+    const ws31::QuotaKey tuple(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    auto existing = m_ws31C3rRoutes.find(key);
+    auto current = m_ws31C3rCurrentGeneration.find(tuple);
+    if (existing != m_ws31C3rRoutes.end() && current != m_ws31C3rCurrentGeneration.end() &&
+        current->second != flowId) {
+        const Ws31C3rRoute &old = existing->second;
+        return old.committed && ch.udp.seq >= old.cut ? old.newPort : old.oldPort;
+    }
+    if (existing == m_ws31C3rRoutes.end() && current != m_ws31C3rCurrentGeneration.end() &&
+        current->second != flowId)
+        m_ws31Quota.Erase(tuple);
+    m_ws31C3rCurrentGeneration[tuple] = flowId;
+
+    WorkloadTag label;
+    const uint32_t category = p->PeekPacketTag(label) ?
+        ws31::QuotaClass(label.GetValue()) : 0;
+    const uint32_t words[3] = {ch.sip, ch.dip,
+        uint32_t(ch.udp.sport) | (uint32_t(ch.udp.dport) << 16)};
+    const uint8_t *hashKey = reinterpret_cast<const uint8_t *>(words);
+    const std::vector<uint32_t> ports(nexthops.begin(), nexthops.end());
+    const uint64_t before1 = m_ws31Quota.activations[1];
+    const uint64_t before2 = m_ws31Quota.activations[2];
+    const auto d = m_ws31Quota.Admit(tuple, category, ports,
+        EcmpHash(hashKey, 12, m_ecmpSeed),
+        EcmpHash(hashKey, 12, m_ecmpSeed ^ 0x9e3779b9U), now, p->GetSize(), false,
+        [this](uint32_t port) { return uint64_t(CalculateInterfaceLoad(port)); });
+    if (existing == m_ws31C3rRoutes.end()) {
+        if (!d.fresh) NS_FATAL_ERROR("C3R new QP inherited an old tuple route");
+        if (m_ws31C3rRoutes.size() >= 65536)
+            NS_FATAL_ERROR("C3R route generation record capacity exceeded");
+        Ws31C3rRoute route;
+        route.category = d.category;
+        route.owner = d.owner;
+        route.oldPort = d.chosen;
+        route.borrowed = d.borrowed;
+        route.size = flow.GetFlowSize();
+        route.admissionSerial = ++m_ws31C3rAdmissions;
+        existing = m_ws31C3rRoutes.insert(std::make_pair(key, route)).first;
+        m_ws31C3rPeakRoutes = std::max(m_ws31C3rPeakRoutes,
+                                        uint64_t(m_ws31C3rRoutes.size()));
+    } else if ((existing->second.committed ? existing->second.newPort :
+                existing->second.oldPort) != d.chosen ||
+               existing->second.size != flow.GetFlowSize() ||
+               existing->second.category != d.category) {
+        NS_FATAL_ERROR("C3R live QP identity or initial route changed");
+    }
+    Ws31C3rRoute &route = existing->second;
+    route.lastArrivalNs = now;
+    if (d.category && m_ws31Quota.activations[d.category] !=
+        (d.category == 1 ? before1 : before2)) {
+        std::vector<std::pair<uint64_t,Ws31C3rKey> > borrowers;
+        for (const auto &entry : m_ws31C3rRoutes) {
+            const Ws31C3rRoute &old = entry.second;
+            const ws31::QuotaKey oldTuple(std::get<0>(entry.first), std::get<1>(entry.first),
+                                           std::get<2>(entry.first), std::get<3>(entry.first));
+            auto live = m_ws31C3rCurrentGeneration.find(oldTuple);
+            if (old.borrowed && old.owner == d.category && !old.pending &&
+                !old.committed && live != m_ws31C3rCurrentGeneration.end() &&
+                live->second == std::get<5>(entry.first) && now >= old.lastArrivalNs &&
+                now - old.lastArrivalNs < 20000)
+                borrowers.push_back(std::make_pair(old.admissionSerial, entry.first));
+        }
+        std::sort(borrowers.begin(), borrowers.end());
+        if (borrowers.size() > 64) m_ws31C3rSkippedAtActivation += borrowers.size() - 64;
+        for (size_t i = 0; i < borrowers.size() && i < 64; ++i) {
+            Ws31C3rRoute &old = m_ws31C3rRoutes.at(borrowers[i].second);
+            ++old.epoch;
+            old.pending = true;
+            old.deadlineNs = now + 100000;
+            SendWs31C3rControl(borrowers[i].second, Ws31C3rControl::PAUSE,
+                                old.epoch, 0);
+            ++m_ws31C3rPausePackets;
+            Simulator::Schedule(NanoSeconds(100000),
+                &SwitchNode::ExpireWs31C3rPause, this, borrowers[i].second, old.epoch);
+        }
+        std::cout << "WS31_C3R_OWNER_ACTIVATE time_ns=" << now << " switch=" << m_id
+                  << " category=" << d.category << " borrowers=" << borrowers.size()
+                  << " attempted=" << std::min(size_t(64), borrowers.size()) << std::endl;
+    }
+    const uint32_t chosen = route.committed && ch.udp.seq >= route.cut ?
+        route.newPort : route.oldPort;
+    if (Ws30Level() == 2 && (d.fresh || route.pending || route.committed))
+        std::cout << "WS31_C3R_DATA time_ns=" << now << " switch=" << m_id
+                  << " flow_id=" << flowId << " pg=" << ch.udp.pg
+                  << " seq=" << ch.udp.seq << " uid=" << p->GetUid()
+                  << " port=" << chosen << " pending=" << route.pending
+                  << " committed=" << route.committed << " cut=" << route.cut
+                  << " wire_bytes=" << p->GetSize() << std::endl;
+    return chosen;
+}
+
+void SwitchNode::SendWs31C3rControl(const Ws31C3rKey &key, uint8_t type,
+                                    uint32_t epoch, uint64_t cut) {
+    Ws31C3rControl control;
+    control.type = type;
+    control.sip = std::get<0>(key);
+    control.dip = std::get<1>(key);
+    control.sport = std::get<2>(key);
+    control.dport = std::get<3>(key);
+    control.pg = std::get<4>(key);
+    control.flowId = std::get<5>(key);
+    control.epoch = epoch;
+    control.cut = cut;
+    control.generatedNs = Simulator::Now().GetNanoSeconds();
+    if (!control.IsValid() || !m_isToR_hostIP.count(control.sip))
+        NS_FATAL_ERROR("C3R ToR generated invalid host control");
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(control);
+    Ipv4Header ip;
+    ip.SetSource(Ipv4Address(m_id + 1));
+    ip.SetDestination(Ipv4Address(control.sip));
+    ip.SetProtocol(Ws31C3rControl::IP_PROTOCOL);
+    ip.SetTtl(1);
+    ip.SetPayloadSize(packet->GetSize());
+    ip.SetIdentification(uint16_t(epoch));
+    packet->AddHeader(ip);
+    PppHeader ppp;
+    ppp.SetProtocol(0x0021);
+    packet->AddHeader(ppp);
+    packet->AddPacketTag(FlowIdTag(Settings::CONWEAVE_CTRL_DUMMY_INDEV));
+    CustomHeader ch(CustomHeader::L2_Header | CustomHeader::L3_Header |
+                    CustomHeader::L4_Header);
+    packet->PeekHeader(ch);
+    std::cout << "WS31_C3R_TOR_CONTROL time_ns=" << control.generatedNs
+              << " switch=" << m_id << " type=" << unsigned(type)
+              << " flow_id=" << control.flowId << " epoch=" << epoch
+              << " cut=" << cut << " wire_bytes=" << packet->GetSize() << std::endl;
+    SendToDevContinue(packet, ch);
+}
+
+void SwitchNode::ExpireWs31C3rPause(Ws31C3rKey key, uint32_t epoch) {
+    auto it = m_ws31C3rRoutes.find(key);
+    if (it == m_ws31C3rRoutes.end() || !it->second.pending ||
+        it->second.epoch != epoch) return;
+    it->second.pending = false;
+    std::cout << "WS31_C3R_TOR_LEASE_EXPIRE time_ns="
+              << Simulator::Now().GetNanoSeconds() << " switch=" << m_id
+              << " flow_id=" << std::get<5>(key) << " epoch=" << epoch << std::endl;
+}
+
+bool SwitchNode::ReceiveWs31C3rControl(Ptr<NetDevice> device, Ptr<Packet> p,
+                                        const CustomHeader &ch) {
+    if (!m_isToR || Ws21Peer(device).nodeType != 0) return true;
+    Ptr<Packet> copy = p->Copy();
+    PppHeader ppp;
+    Ipv4Header ip;
+    Ws31C3rControl control;
+    if (copy->GetSize() < ppp.GetSerializedSize() + ip.GetSerializedSize() +
+                          control.GetSerializedSize()) return true;
+    copy->RemoveHeader(ppp);
+    copy->RemoveHeader(ip);
+    copy->RemoveHeader(control);
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    if (!control.IsValid() || copy->GetSize() != 0 ||
+        ip.GetProtocol() != Ws31C3rControl::IP_PROTOCOL ||
+        ip.GetPayloadSize() != control.GetSerializedSize() ||
+        ip.GetSource().Get() != ch.sip || ip.GetDestination().Get() != ch.dip ||
+        ch.sip != control.sip || ch.dip != m_id + 1 ||
+        !m_isToR_hostIP.count(control.sip) || control.pg != 3 ||
+        control.generatedNs > now)
+        return true;
+    auto hostRoute = m_rtTable.find(control.sip);
+    if (hostRoute == m_rtTable.end() ||
+        std::find(hostRoute->second.begin(), hostRoute->second.end(),
+                  int(device->GetIfIndex())) == hostRoute->second.end()) return true;
+    const Ws31C3rKey key(control.sip, control.dip, control.sport,
+                         control.dport, control.pg, control.flowId);
+    auto it = m_ws31C3rRoutes.find(key);
+    if (it == m_ws31C3rRoutes.end()) return true;
+    Ws31C3rRoute &route = it->second;
+    if (control.epoch != route.epoch) return true;
+    if (control.type == Ws31C3rControl::ABORT && route.pending) {
+        route.pending = false;
+        std::cout << "WS31_C3R_TOR_ABORT time_ns=" << now << " switch=" << m_id
+                  << " flow_id=" << control.flowId << " epoch=" << control.epoch
+                  << std::endl;
+        return true;
+    }
+    if (control.type != Ws31C3rControl::DRAIN) return true;
+    if (route.committed && control.cut == route.cut) {
+        SendWs31C3rControl(key, Ws31C3rControl::RESUME, route.epoch, route.cut);
+        return true;
+    }
+    if (!route.pending || now >= route.deadlineNs || control.cut == 0 ||
+        control.cut >= route.size) return true;
+    const ws31::QuotaKey tuple(control.sip, control.dip, control.sport, control.dport);
+    auto current = m_ws31C3rCurrentGeneration.find(tuple);
+    if (current == m_ws31C3rCurrentGeneration.end() ||
+        current->second != control.flowId) {
+        route.pending = false;
+        return true;
+    }
+    auto rt = m_rtTable.find(control.dip);
+    if (rt == m_rtTable.end()) return true;
+    const std::vector<uint32_t> ports(rt->second.begin(), rt->second.end());
+    std::vector<uint32_t> own;
+    for (uint32_t port : ports)
+        if (ws31::QuotaAdmission::Owner(port, ports) == route.category)
+            own.push_back(port);
+    if (own.empty()) {
+        route.pending = false;
+        SendWs31C3rControl(key, Ws31C3rControl::ABORT, route.epoch, 0);
+        return true;
+    }
+    const uint32_t words[3] = {control.sip, control.dip,
+        uint32_t(control.sport) | (uint32_t(control.dport) << 16)};
+    const uint8_t *hashKey = reinterpret_cast<const uint8_t *>(words);
+    const uint32_t first = own[EcmpHash(hashKey, 12, m_ecmpSeed) % own.size()];
+    const uint32_t second = own[EcmpHash(hashKey, 12, m_ecmpSeed ^ 0x9e3779b9U) % own.size()];
+    route.newPort = CalculateInterfaceLoad(second) < CalculateInterfaceLoad(first) ?
+        second : first;
+    route.cut = control.cut;
+    route.pending = false;
+    route.committed = true;
+    m_ws31Quota.RepinDrained(tuple, route.newPort, route.category);
+    std::cout << "WS31_C3R_COMMIT time_ns=" << now << " switch=" << m_id
+              << " flow_id=" << control.flowId << " epoch=" << route.epoch
+              << " old=" << route.oldPort << " new=" << route.newPort
+              << " cut=" << route.cut << std::endl;
+    SendWs31C3rControl(key, Ws31C3rControl::RESUME, route.epoch, route.cut);
+    return true;
 }
 
 void SwitchNode::AddWs31OfanDestination(uint32_t dip, uint32_t mandatory,
@@ -1942,6 +2201,8 @@ void SwitchNode::CheckAndSendResume(uint32_t inDev, uint32_t qIndex) {
 // This function can only be called in switch mode
 bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet,
                                          CustomHeader &ch) {
+    if (Settings::lb_mode == 57 && ch.l3Prot == Ws31C3rControl::IP_PROTOCOL)
+        return ReceiveWs31C3rControl(device, packet, ch);
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL &&
         ReceiveWs21Heartbeat(device, packet, ch)) return true;
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL && ReceiveWs21Feedback(packet, ch))
@@ -1996,6 +2257,8 @@ void SwitchNode::SendToDevContinue(Ptr<Packet> p, CustomHeader &ch) {
             qIndex = 0;               // high priority
         } else if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL) {
             qIndex = 3;  // normal data priority; feedback competes for queue service
+        } else if (ch.l3Prot == Ws31C3rControl::IP_PROTOCOL) {
+            qIndex = 3;
         } else {
             qIndex = (ch.l3Prot == 0x06 ? 1 : ch.udp.pg);  // if TCP, put to queue 1. Otherwise, it
                                                            // would be 3 (refer to trafficgen)
@@ -2024,7 +2287,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
     const auto &nexthops = entry->second;
     bool control_pkt =
         (ch.l3Prot == 0xFF || ch.l3Prot == 0xFE || ch.l3Prot == 0xFD || ch.l3Prot == 0xFC ||
-         ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL);
+         ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL ||
+         ch.l3Prot == Ws31C3rControl::IP_PROTOCOL);
 
     // Ofan's packet-size pointers must also schedule transport feedback.
     // Link-local PFC and unrelated controls keep their common behavior.
@@ -2076,6 +2340,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbWs31C1(p, ch, nexthops);
         case 47: case 48: case 49: case 50:
             return DoLbWs31C3(p, ch, nexthops);
+        case 57:
+            return DoLbWs31C3r(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
         case 23:
@@ -2111,7 +2377,8 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
     if (locallyGenerated) { // sanity check
         // ConWeave reply is on ACK protocol with high priority, so qIndex should be 0
         assert((qIndex == 0 && m_ackHighPrio == 1) ||
-               (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL && qIndex == 3));
+               ((ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL ||
+                 ch.l3Prot == Ws31C3rControl::IP_PROTOCOL) && qIndex == 3));
     }
 
     if (qIndex != 0) {  // not highest priority

@@ -19,6 +19,7 @@ namespace ns3 {
 class Ws31EndpointIdentity;
 class Ws31V2NativeSession;
 class Ws31V2NativeRequest;
+class Ws31C3rControl;
 
 struct RdmaInterfaceMgr {
     Ptr<QbbNetDevice> dev;
@@ -97,6 +98,11 @@ class RdmaHw : public Object {
     int ReceiveUdp(Ptr<Packet> p, CustomHeader &ch);
     int ReceiveCnp(Ptr<Packet> p, CustomHeader &ch);
     int ReceiveAck(Ptr<Packet> p, CustomHeader &ch);  // handle both ACK and NACK
+    int ReceiveWs31C3rControl(Ptr<Packet> p, const CustomHeader &ch);
+    void SendWs31C3rControl(Ptr<RdmaQueuePair> qp, uint8_t type, uint32_t epoch,
+                            uint64_t cut, uint32_t torIp);
+    void MaybeSendWs31C3rDrain(Ptr<RdmaQueuePair> qp);
+    void ExpireWs31C3rPause(Ptr<RdmaQueuePair> qp, uint32_t epoch);
     int Receive(Ptr<Packet> p,
                 CustomHeader &
                     ch);  // callback function that the QbbNetDevice should use when receive

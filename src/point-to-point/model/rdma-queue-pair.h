@@ -77,6 +77,14 @@ class RdmaQueuePair : public Object {
     uint64_t m_ws30SackEvents{0}, m_ws30CnpEvents{0}, m_ws30RecoveryEvents{0};
     uint32_t m_ws13_maxSentSeq{0};  // diagnostic high-water mark for retransmission events
     bool m_ws13FirstIrnAckLogged{false};  // keep one ordinary ACK per QP, not every packet ACK
+    // Only a C3R control transition may set this. The ceiling limits new bytes;
+    // recovery can still rewind snd_nxt and resend bytes below it.
+    bool m_ws31C3rCeilingActive{false};
+    uint64_t m_ws31C3rCeiling{0};
+    uint64_t m_ws31C3rMaxIssuedEnd{0};
+    uint32_t m_ws31C3rEpoch{0}, m_ws31C3rTorIp{0};
+    bool m_ws31C3rPending{false}, m_ws31C3rDrainSent{false};
+    EventId m_ws31C3rLease;
     Time m_timeout;
 
     /******************************
@@ -160,6 +168,8 @@ class RdmaQueuePair : public Object {
     void SetTimeout(Time v);
 
     uint64_t GetBytesLeft();
+    void SetWs31C3rSendCeiling(uint64_t cut);
+    void ClearWs31C3rSendCeiling();
     uint32_t GetHash(void);
     void Acknowledge(uint64_t ack);
     uint64_t GetOnTheFly();

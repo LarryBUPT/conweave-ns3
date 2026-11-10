@@ -2,6 +2,7 @@
 #include "ws30-v13-fixture.h"
 #include "ws30-observer.h"
 #include "ws31-c3-observation.h"
+#include "ws31-c3r-control.h"
 #include "ws31-label-fixture.h"
 #include "ws31-endpoint-identity.h"
 #include "ws31-v2-native-session.h"
@@ -445,6 +446,9 @@ void RdmaHw::ReleaseWs30Round(Ptr<RdmaQueuePair> qp, uint32_t round) {
 }
 
 void RdmaHw::DeleteQueuePair(Ptr<RdmaQueuePair> qp) {
+    if (qp->m_ws31C3rLease.IsRunning()) qp->m_ws31C3rLease.Cancel();
+    if (qp->m_ws31C3rCeilingActive) qp->ClearWs31C3rSendCeiling();
+    qp->m_ws31C3rPending = false;
     // remove qp from the m_qpMap
     uint64_t key = GetQpKey(qp->dip.Get(), qp->sport, qp->dport, qp->m_pg);
     if (qp->m_ws30Serial)
@@ -873,6 +877,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
                 qp->snd_nxt = qp->snd_una;
             }
         }
+        if (Settings::lb_mode == 57) MaybeSendWs31C3rDrain(qp);
         if (qp->m_ws30Serial) {
             const uint32_t rounds = qp->m_ws30Persistent ? 3 : 1;
             while (qp->m_ws30RoundDone < rounds &&
@@ -978,7 +983,130 @@ size_t RdmaHw::getIrnBufferOverhead() {
     return overhead;
 }
 
+void RdmaHw::SendWs31C3rControl(Ptr<RdmaQueuePair> qp, uint8_t type,
+                                uint32_t epoch, uint64_t cut, uint32_t torIp) {
+    Ws31C3rControl control;
+    control.type = type;
+    control.pg = qp->m_pg;
+    control.sip = qp->sip.Get();
+    control.dip = qp->dip.Get();
+    control.sport = qp->sport;
+    control.dport = qp->dport;
+    control.flowId = qp->m_flow_id;
+    control.epoch = epoch;
+    control.cut = cut;
+    control.generatedNs = Simulator::Now().GetNanoSeconds();
+    if (!control.IsValid()) NS_FATAL_ERROR("C3R sender generated invalid control");
+
+    Ptr<Packet> packet = Create<Packet>();
+    packet->AddHeader(control);
+    Ipv4Header ip;
+    ip.SetSource(qp->sip);
+    ip.SetDestination(Ipv4Address(torIp));
+    ip.SetProtocol(Ws31C3rControl::IP_PROTOCOL);
+    ip.SetTtl(1);
+    ip.SetPayloadSize(packet->GetSize());
+    ip.SetIdentification(uint16_t(epoch));
+    packet->AddHeader(ip);
+    AddHeader(packet, 0x800);
+    m_nic[GetNicIdxOfQp(qp)].dev->RdmaEnqueueHighPrioQ(packet);
+    m_nic[GetNicIdxOfQp(qp)].dev->TriggerTransmit();
+    std::cout << "WS31_C3R_HOST_CONTROL time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " type=" << unsigned(type) << " flow_id=" << qp->m_flow_id
+              << " epoch=" << epoch << " cut=" << cut
+              << " wire_bytes=" << packet->GetSize() << std::endl;
+}
+
+void RdmaHw::MaybeSendWs31C3rDrain(Ptr<RdmaQueuePair> qp) {
+    if (!qp->m_ws31C3rPending || qp->m_ws31C3rDrainSent ||
+        qp->snd_una < qp->m_ws31C3rCeiling) return;
+    qp->m_ws31C3rDrainSent = true;
+    SendWs31C3rControl(qp, Ws31C3rControl::DRAIN, qp->m_ws31C3rEpoch,
+                       qp->m_ws31C3rCeiling, qp->m_ws31C3rTorIp);
+}
+
+void RdmaHw::ExpireWs31C3rPause(Ptr<RdmaQueuePair> qp, uint32_t epoch) {
+    if (!qp->m_ws31C3rPending || qp->m_ws31C3rEpoch != epoch) return;
+    qp->ClearWs31C3rSendCeiling();
+    qp->m_ws31C3rPending = false;
+    qp->m_ws31C3rDrainSent = false;
+    std::cout << "WS31_C3R_HOST_LEASE_EXPIRE time_ns="
+              << Simulator::Now().GetNanoSeconds() << " flow_id=" << qp->m_flow_id
+              << " epoch=" << epoch << std::endl;
+    m_nic[GetNicIdxOfQp(qp)].dev->TriggerTransmit();
+}
+
+int RdmaHw::ReceiveWs31C3rControl(Ptr<Packet> p, const CustomHeader &ch) {
+    if (m_ws31EndpointIdentity) m_ws31EndpointIdentity->RequireHealthy();
+    Ptr<Packet> copy = p->Copy();
+    PppHeader ppp;
+    Ipv4Header ip;
+    Ws31C3rControl control;
+    if (copy->GetSize() < ppp.GetSerializedSize() + ip.GetSerializedSize() +
+                          control.GetSerializedSize()) return 1;
+    copy->RemoveHeader(ppp);
+    copy->RemoveHeader(ip);
+    copy->RemoveHeader(control);
+    if (!control.IsValid() || copy->GetSize() != 0 ||
+        ip.GetProtocol() != Ws31C3rControl::IP_PROTOCOL ||
+        ip.GetPayloadSize() != control.GetSerializedSize() ||
+        ip.GetSource().Get() != ch.sip || ip.GetDestination().Get() != ch.dip ||
+        control.sip != ch.dip || control.generatedNs > uint64_t(Simulator::Now().GetNanoSeconds()))
+        return 1;
+    auto tor = Settings::hostIp2SwitchId.find(control.sip);
+    if (tor == Settings::hostIp2SwitchId.end() || ch.sip != tor->second + 1)
+        return 1;
+    Ptr<RdmaQueuePair> qp;
+    for (const auto &entry : m_qpMap) {
+        Ptr<RdmaQueuePair> candidate = entry.second;
+        if (candidate->m_flow_id == int32_t(control.flowId) &&
+            candidate->sip.Get() == control.sip && candidate->dip.Get() == control.dip &&
+            candidate->sport == control.sport && candidate->dport == control.dport &&
+            candidate->m_pg == control.pg) {
+            qp = candidate;
+            break;
+        }
+    }
+    if (!qp) return 1;
+    if (control.type == Ws31C3rControl::PAUSE) {
+        if (control.cut != 0 || control.epoch <= qp->m_ws31C3rEpoch ||
+            qp->m_ws31C3rPending) return 1;
+        qp->m_ws31C3rEpoch = control.epoch;
+        const uint64_t cut = std::max(qp->snd_nxt, qp->m_ws31C3rMaxIssuedEnd);
+        if (cut == 0 || cut >= qp->m_size) {
+            SendWs31C3rControl(qp, Ws31C3rControl::ABORT, control.epoch, 0, ch.sip);
+            return 1;
+        }
+        qp->SetWs31C3rSendCeiling(cut);
+        qp->m_ws31C3rTorIp = ch.sip;
+        qp->m_ws31C3rPending = true;
+        qp->m_ws31C3rDrainSent = false;
+        qp->m_ws31C3rLease = Simulator::Schedule(NanoSeconds(100000),
+            &RdmaHw::ExpireWs31C3rPause, this, qp, control.epoch);
+        std::cout << "WS31_C3R_HOST_PAUSE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " flow_id=" << qp->m_flow_id << " epoch=" << control.epoch
+                  << " cut=" << cut << " snd_una=" << qp->snd_una << std::endl;
+        MaybeSendWs31C3rDrain(qp);
+    } else if ((control.type == Ws31C3rControl::RESUME ||
+                control.type == Ws31C3rControl::ABORT) &&
+               qp->m_ws31C3rPending && control.epoch == qp->m_ws31C3rEpoch &&
+               (control.type == Ws31C3rControl::ABORT ||
+                (qp->m_ws31C3rDrainSent && control.cut == qp->m_ws31C3rCeiling))) {
+        if (qp->m_ws31C3rLease.IsRunning()) qp->m_ws31C3rLease.Cancel();
+        qp->ClearWs31C3rSendCeiling();
+        qp->m_ws31C3rPending = false;
+        qp->m_ws31C3rDrainSent = false;
+        std::cout << "WS31_C3R_HOST_RESUME time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " type=" << unsigned(control.type) << " flow_id=" << qp->m_flow_id
+                  << " epoch=" << control.epoch << std::endl;
+        m_nic[GetNicIdxOfQp(qp)].dev->TriggerTransmit();
+    }
+    return 1;
+}
+
 int RdmaHw::Receive(Ptr<Packet> p, CustomHeader &ch) {
+    if (Settings::lb_mode == 57 && ch.l3Prot == Ws31C3rControl::IP_PROTOCOL)
+        return ReceiveWs31C3rControl(p, ch);
     if (m_ws31EndpointIdentity) m_ws31EndpointIdentity->Protocol(ch.l3Prot);
     // #if (SLB_DEBUG == true)
     //     std::cout << "[RdmaHw::Receive] Node(" << m_node->GetId() << ")," << PARSE_FIVE_TUPLE(ch)
@@ -1359,6 +1487,9 @@ void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap)
                 Ws13LogQp("retransmit", qp);
             qp->m_ws13_maxSentSeq =
                 std::max(qp->m_ws13_maxSentSeq, ch.udp.seq + payload_size);
+            if (Settings::lb_mode == 57)
+                qp->m_ws31C3rMaxIssuedEnd = std::max(qp->m_ws31C3rMaxIssuedEnd,
+                    uint64_t(ch.udp.seq) + payload_size);
             // Update Timer
             if (qp->m_retransmit.IsRunning()) qp->m_retransmit.Cancel();
             qp->m_retransmit = Simulator::Schedule(qp->GetRto(m_mtu), &RdmaHw::HandleTimeout, this,

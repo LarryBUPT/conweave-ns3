@@ -1,5 +1,7 @@
 #include "rdma-queue-pair.h"
 
+#include <stdexcept>
+
 #include <ns3/hash.h>
 #include <ns3/ipv4-header.h>
 #include <ns3/log.h>
@@ -93,6 +95,18 @@ void RdmaQueuePair::SetFlowId(int32_t v) {
 
 void RdmaQueuePair::SetTimeout(Time v) { m_timeout = v; }
 
+void RdmaQueuePair::SetWs31C3rSendCeiling(uint64_t cut) {
+    if (m_ws31C3rCeilingActive || cut > m_size || cut < snd_una)
+        throw std::logic_error("C3R send ceiling is not a live QP cut");
+    m_ws31C3rCeiling = cut;
+    m_ws31C3rCeilingActive = true;
+}
+
+void RdmaQueuePair::ClearWs31C3rSendCeiling() {
+    m_ws31C3rCeilingActive = false;
+    m_ws31C3rCeiling = 0;
+}
+
 uint64_t RdmaQueuePair::GetBytesLeft() {
     if (irn.m_enabled) {
         uint32_t sack_seq, sack_sz;
@@ -104,7 +118,9 @@ uint64_t RdmaQueuePair::GetBytesLeft() {
         }
     }
 
-    const uint64_t limit = m_ws30Persistent ? m_ws30Released : m_size;
+    const uint64_t released = m_ws30Persistent ? m_ws30Released : m_size;
+    const uint64_t limit = m_ws31C3rCeilingActive && m_ws31C3rCeiling < released ?
+        m_ws31C3rCeiling : released;
     return limit >= snd_nxt ? limit - snd_nxt : 0;
 }
 

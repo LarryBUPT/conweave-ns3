@@ -548,6 +548,24 @@ bool QbbNetDevice::TransmitStart(Ptr<Packet> p) {
     Simulator::Schedule(txCompleteTime, &QbbNetDevice::TransmitComplete, this);
 
     bool result = m_channel->TransmitStart(p, this, txTime);
+    if (result && Settings::lb_mode == 57 && Ws30Level() == 2 &&
+        m_node->GetNodeType() == 1) {
+        Ptr<SwitchNode> sw = m_node->GetObject<SwitchNode>();
+        CustomHeader data(CustomHeader::L2_Header | CustomHeader::L3_Header |
+                          CustomHeader::L4_Header);
+        FlowIDNUMTag flow;
+        if (sw && sw->m_isToR && p->PeekHeader(data) && data.l3Prot == 0x11 &&
+            sw->m_isToR_hostIP.count(data.sip) && p->PeekPacketTag(flow)) {
+            std::cout << "WS31_C3R_SOURCE_WIRE time_ns="
+                      << Simulator::Now().GetNanoSeconds()
+                      << " wire_end_ns="
+                      << (Simulator::Now() + txTime).GetNanoSeconds()
+                      << " switch=" << m_node->GetId() << " port=" << m_ifIndex
+                      << " flow_id=" << flow.GetId() << " pg=" << data.udp.pg
+                      << " seq=" << data.udp.seq << " uid=" << p->GetUid()
+                      << " wire_bytes=" << p->GetSize() << std::endl;
+        }
+    }
     if (observeC3) ForgetWs31C3SourcePacket(p);
     if (observeC3)
         std::cout << "WS31_C3_SERVICE_START time_ns=" << Simulator::Now().GetNanoSeconds()

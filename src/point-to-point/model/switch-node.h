@@ -19,6 +19,7 @@
 namespace ns3 {
 
 class Packet;
+class Ws31C3rControl;
 
 class SwitchNode : public Node {
    public:
@@ -87,6 +88,24 @@ class SwitchNode : public Node {
     void TraceWs31Source(Ptr<const Packet> p, const CustomHeader &ch,
                          const Ws31SourceDecision &decision);
     ws31::QuotaAdmission m_ws31Quota;
+    typedef std::tuple<uint32_t,uint32_t,uint16_t,uint16_t,uint16_t,uint32_t>
+        Ws31C3rKey;
+    struct Ws31C3rRoute {
+        uint32_t category=0, owner=0, oldPort=0, newPort=0, epoch=0;
+        uint64_t size=0, cut=0, lastArrivalNs=0, deadlineNs=0, admissionSerial=0;
+        bool borrowed=false, pending=false, committed=false;
+    };
+    std::map<Ws31C3rKey,Ws31C3rRoute> m_ws31C3rRoutes;
+    std::map<ws31::QuotaKey,uint32_t> m_ws31C3rCurrentGeneration;
+    uint64_t m_ws31C3rAdmissions=0, m_ws31C3rPeakRoutes=0;
+    uint64_t m_ws31C3rPausePackets=0, m_ws31C3rSkippedAtActivation=0;
+    uint32_t DoLbWs31C3r(Ptr<const Packet> p, const CustomHeader &ch,
+                          const std::vector<int> &nexthops);
+    bool ReceiveWs31C3rControl(Ptr<NetDevice> device, Ptr<Packet> p,
+                                const CustomHeader &ch);
+    void SendWs31C3rControl(const Ws31C3rKey &key, uint8_t type,
+                            uint32_t epoch, uint64_t cut);
+    void ExpireWs31C3rPause(Ws31C3rKey key, uint32_t epoch);
     ws31::OfanScheduler m_ws31Ofan;
     std::map<uint32_t,uint32_t> m_ws31OfanDestination;
     std::map<uint32_t,std::vector<uint32_t> > m_ws31OfanGroupPorts;
