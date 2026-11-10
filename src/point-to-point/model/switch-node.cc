@@ -1712,7 +1712,8 @@ uint32_t SwitchNode::DoLbWs31C3r(Ptr<const Packet> p, const CustomHeader &ch,
             const ws31::QuotaKey oldTuple(std::get<0>(entry.first), std::get<1>(entry.first),
                                            std::get<2>(entry.first), std::get<3>(entry.first));
             auto live = m_ws31C3rCurrentGeneration.find(oldTuple);
-            if (old.borrowed && old.owner == d.category && !old.pending &&
+            if (old.borrowed && old.owner == d.category &&
+                old.oldPort == d.chosen && !old.pending &&
                 !old.committed && live != m_ws31C3rCurrentGeneration.end() &&
                 live->second == std::get<5>(entry.first) && now >= old.lastArrivalNs &&
                 now - old.lastArrivalNs < 20000)
