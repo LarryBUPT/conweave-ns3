@@ -2584,7 +2584,8 @@ int main(int argc, char *argv[]) {
             sw->m_isToR = true;
             uint32_t hostIP = serverAddress[pair.first].Get();
             sw->m_isToR_hostIP.insert(hostIP);
-            if (ws21_identity || lb_mode==51 || lb_mode==52 || Ws31NativeRequested()) {
+            if (ws21_identity || lb_mode==51 || lb_mode==52 || lb_mode==57 ||
+                Ws31NativeRequested()) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
                 if (ws21_identity) SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
