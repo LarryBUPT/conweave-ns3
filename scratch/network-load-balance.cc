@@ -145,6 +145,8 @@ uint64_t irn_mon_start;                // ns
 uint64_t irn_monitor_bucket = 100000;  // ns
 
 bool ws31_native_declarations_seen=false, ws31_native_output_seen=false;
+bool ws31_c3r_reuse_tuple=false;
+bool ws31_c3r_replay_stale=false;
 std::string ws31_native_declarations, ws31_native_output_prefix;
 
 FILE *pfc_file = NULL;
@@ -378,6 +380,9 @@ void ScheduleFlowInputs(FILE *infile) {
         } else if (Ws30V13Life() >= 3 && flow_input.workload_tag == 2) {
             sport = 10000;
             dport = 100;
+        } else if (lb_mode == 57 && ws31_c3r_reuse_tuple) {
+            sport = 10000;
+            dport = 100;
         }
 
         target_len = flow_input.maxPacketCount;  // this is actually not packet-count, but bytes
@@ -452,6 +457,11 @@ void ScheduleFlowInputs(FILE *infile) {
             Ptr<RdmaDriver> receiver = n.Get(dst)->GetObject<RdmaDriver>();
             receiver->m_rdma->BeginWs30RxGeneration(serverAddress[dst].Get(), serverAddress[src].Get(),
                                                    dport, sport, pg, flow_input.idx);
+        } else if (lb_mode == 57) {
+            Ptr<RdmaDriver> receiver = n.Get(dst)->GetObject<RdmaDriver>();
+            receiver->m_rdma->BeginWs31C3rRxGeneration(
+                serverAddress[dst].Get(), serverAddress[src].Get(),
+                dport, sport, pg, flow_input.idx);
         }
         RdmaClientHelper clientHelper(
             pg, serverAddress[src], serverAddress[dst], sport, dport, target_len,
@@ -676,7 +686,7 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
     Ptr<Node> dstNode = n.Get(did);
     Ptr<RdmaDriver> rdma = dstNode->GetObject<RdmaDriver>();
     rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->sport, q->dport, q->m_pg,
-                            Ws30V13Life() >= 3 ? q->m_flow_id : -1);
+                            Ws30V13Life() >= 3 || lb_mode == 57 ? q->m_flow_id : -1);
     if (Ws30V13Life() == 4 && q->m_ws30Serial) {
         // Only after this request's cumulative ACK, with 100 us before reuse.
         // This is an explicit test intervention, not a timeout eviction policy.
@@ -1652,6 +1662,22 @@ int main(int argc, char *argv[]) {
                 Ws31NativeNeed(!ws31_native_output_seen,"repeated native output key");
                 ws31_native_output_seen=true;
                 Ws31NativeNeed(bool(conf >> ws31_native_output_prefix),"missing native output value");
+            } else if (key.compare("WS31_C3R_REUSE_TUPLE") == 0) {
+                uint32_t enabled=0;
+                conf >> enabled;
+                if (!conf || enabled != 1 || ws31_c3r_reuse_tuple) {
+                    std::cerr << "WS31_C3R_REUSE_TUPLE requires one value of 1" << std::endl;
+                    return 2;
+                }
+                ws31_c3r_reuse_tuple=true;
+            } else if (key.compare("WS31_C3R_REPLAY_STALE") == 0) {
+                uint32_t enabled=0;
+                conf >> enabled;
+                if (!conf || enabled != 1 || ws31_c3r_replay_stale) {
+                    std::cerr << "WS31_C3R_REPLAY_STALE requires one value of 1" << std::endl;
+                    return 2;
+                }
+                ws31_c3r_replay_stale=true;
             } else if (key.compare("FLOW_INPUT_FILE") == 0) {
                 std::string v;
                 conf >> v;
@@ -2057,6 +2083,15 @@ int main(int argc, char *argv[]) {
     }
 
     /******************* READING CONFIG FILE IS DONE ***********************/
+
+    if (ws31_c3r_reuse_tuple && lb_mode != 57) {
+        std::cerr << "WS31_C3R_REUSE_TUPLE requires mode 57" << std::endl;
+        return 2;
+    }
+    if (ws31_c3r_replay_stale && !ws31_c3r_reuse_tuple) {
+        std::cerr << "WS31_C3R_REPLAY_STALE requires tuple reuse" << std::endl;
+        return 2;
+    }
 
     if (lb_mode==56) {
         if (!((ws31_c2_size_target_bytes==16384 && ws31_c2_size_cutoff==3) ||
@@ -2472,6 +2507,7 @@ int main(int argc, char *argv[]) {
         if (n.Get(i)->GetNodeType() == 0) {  // is server
             // create RdmaHw
             Ptr<RdmaHw> rdmaHw = CreateObject<RdmaHw>();
+            if (ws31_c3r_replay_stale) rdmaHw->EnableWs31C3rReplayStale();
             rdmaHw->SetAttribute("ClampTargetRate", BooleanValue(clamp_target_rate));
             rdmaHw->SetAttribute("AlphaResumInterval", DoubleValue(alpha_resume_interval));
             rdmaHw->SetAttribute("RPTimer", DoubleValue(rp_timer));

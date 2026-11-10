@@ -48,6 +48,12 @@ class RdmaHw : public Object {
     std::unordered_map<uint64_t, Ptr<RdmaQueuePair>> m_qpMap;      // mapping from uint64_t to qp
     std::unordered_map<uint64_t, Ptr<RdmaRxQueuePair>> m_rxQpMap;  // mapping from uint64_t to rx qp
     Ws30EndpointGeneration m_ws30RxGeneration;  // synthetic endpoint-recreation fixture only
+    Ws30EndpointGeneration m_ws31C3rRxGeneration;  // mode 57 receiver incarnations
+    uint64_t m_ws31C3rStaleDataDrops=0, m_ws31C3rStaleFeedbackDrops=0;
+    bool m_ws31C3rReplayStale=false;
+    Ptr<Packet> m_ws31C3rSavedData, m_ws31C3rSavedFeedback;
+    CustomHeader m_ws31C3rSavedDataHeader, m_ws31C3rSavedFeedbackHeader;
+    uint64_t m_ws31C3rSavedDataKey=0, m_ws31C3rSavedFeedbackKey=0;
     std::unordered_map<uint32_t, std::vector<int>>
         m_rtTable;  // map from ip address (u32) to possible ECMP port (index of dev)
 
@@ -92,6 +98,11 @@ class RdmaHw : public Object {
                     int32_t flow_id = -1);  // delete RxQP
     void BeginWs30RxGeneration(uint32_t sip, uint32_t dip, uint16_t sport,
                                 uint16_t dport, uint16_t pg, int32_t flow_id);
+    void BeginWs31C3rRxGeneration(uint32_t sip, uint32_t dip, uint16_t sport,
+                                  uint16_t dport, uint16_t pg, int32_t flow_id);
+    void EnableWs31C3rReplayStale() { m_ws31C3rReplayStale=true; }
+    void ReplayWs31C3rStaleData();
+    void ReplayWs31C3rStaleFeedback();
     bool AcceptWs30DataGeneration(Ptr<Packet> p, const CustomHeader &ch);
     bool AcceptWs30AckGeneration(Ptr<Packet> p, Ptr<RdmaQueuePair> qp);
 

@@ -372,12 +372,22 @@ void RdmaHw::AddQueuePairWithNative(uint64_t size,uint16_t pg,Ipv4Address sip,Ip
     uint32_t nic_idx = GetNicIdxOfQp(qp);
     m_nic[nic_idx].qpGrp->AddQp(qp);
     uint64_t key = GetQpKey(dip.Get(), sport, dport, pg);
+    if (Settings::lb_mode == 57) {
+        if (m_qpMap.count(key)) NS_FATAL_ERROR("C3R sender generation overlaps a live QP");
+        // The former QP completed before the scheduler may reuse this tuple.
+        // Late feedback is checked against the new flow ID below.
+        akashic_Qp.erase(key);
+    }
     if (Ws30V13Life() >= 3) {
         if (m_qpMap.count(key)) NS_FATAL_ERROR("Tuple fixture attempted to replace a live QP");
         // Explicit test-only recreation after final ACK and receiver deletion.
         akashic_Qp.erase(key);
     }
     m_qpMap[key] = qp;
+    if (Settings::lb_mode == 57 && m_ws31C3rReplayStale &&
+        m_ws31C3rSavedFeedback && m_ws31C3rSavedFeedbackKey == key) {
+        Simulator::Schedule(NanoSeconds(1), &RdmaHw::ReplayWs31C3rStaleFeedback, this);
+    }
 
     // set init variables
     DataRate m_bps = m_nic[nic_idx].dev->GetDataRate();
@@ -480,6 +490,9 @@ Ptr<RdmaRxQueuePair> RdmaHw::GetRxQp(uint32_t sip, uint32_t dip, uint16_t sport,
     if (it != m_rxQpMap.end()) return it->second;
 
     if (create) {
+        if (Settings::lb_mode == 57 &&
+            !m_ws31C3rRxGeneration.Accept(rxKey, m_ws31C3rRxGeneration.Current(rxKey)))
+            return NULL;
         // Recreated endpoints are activated by the request scheduler, never by
         // a delayed data packet after cumulative completion.
         if (Ws30V13Life() >= 3 && !m_ws30RxGeneration.Accept(rxKey, m_ws30RxGeneration.Current(rxKey)))
@@ -530,6 +543,49 @@ void RdmaHw::BeginWs30RxGeneration(uint32_t sip, uint32_t dip, uint16_t sport,
                   << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(q)) << std::endl;
 }
 
+void RdmaHw::BeginWs31C3rRxGeneration(uint32_t sip, uint32_t dip, uint16_t sport,
+                                       uint16_t dport, uint16_t pg, int32_t flow_id) {
+    if (Settings::lb_mode != 57) NS_FATAL_ERROR("C3R receiver generation outside mode 57");
+    const uint64_t key = GetRxQpKey(dip, dport, sport, pg);
+    const int32_t previous = m_ws31C3rRxGeneration.Current(key);
+    if (m_rxQpMap.count(key) || !m_ws31C3rRxGeneration.Begin(key, flow_id))
+        NS_FATAL_ERROR("C3R receiver generation overlaps an active QP");
+    akashic_RxQp.erase(key);
+    Ptr<RdmaRxQueuePair> q = GetRxQp(sip, dip, sport, dport, pg, true);
+    if (!q) NS_FATAL_ERROR("C3R receiver generation was not created");
+    q->m_flow_id = flow_id;
+    if (previous >= 0)
+        std::cout << "WS31_C3R_GENERATION event=reuse time_ns="
+                  << Simulator::Now().GetNanoSeconds() << " host=" << m_node->GetId()
+                  << " previous=" << previous << " flow_id=" << flow_id
+                  << " key=" << key << std::endl;
+    if (previous >= 0 && m_ws31C3rReplayStale &&
+        m_ws31C3rSavedData && m_ws31C3rSavedDataKey == key)
+        Simulator::Schedule(NanoSeconds(1), &RdmaHw::ReplayWs31C3rStaleData, this);
+}
+
+void RdmaHw::ReplayWs31C3rStaleData() {
+    if (!m_ws31C3rSavedData) NS_FATAL_ERROR("C3R stale data replay has no packet");
+    Ptr<Packet> old = m_ws31C3rSavedData;
+    CustomHeader header = m_ws31C3rSavedDataHeader;
+    m_ws31C3rSavedData = NULL;
+    const uint64_t before = m_ws31C3rStaleDataDrops;
+    ReceiveUdp(old, header);
+    if (m_ws31C3rStaleDataDrops != before + 1)
+        NS_FATAL_ERROR("C3R stale data replay reached the new receiver");
+}
+
+void RdmaHw::ReplayWs31C3rStaleFeedback() {
+    if (!m_ws31C3rSavedFeedback) NS_FATAL_ERROR("C3R stale feedback replay has no packet");
+    Ptr<Packet> old = m_ws31C3rSavedFeedback;
+    CustomHeader header = m_ws31C3rSavedFeedbackHeader;
+    m_ws31C3rSavedFeedback = NULL;
+    const uint64_t before = m_ws31C3rStaleFeedbackDrops;
+    ReceiveAck(old, header);
+    if (m_ws31C3rStaleFeedbackDrops != before + 1)
+        NS_FATAL_ERROR("C3R stale feedback replay reached the new sender");
+}
+
 bool RdmaHw::AcceptWs30DataGeneration(Ptr<Packet> p, const CustomHeader &ch) {
     if (Ws30V13Life() < 3) return true;
     FlowIDNUMTag fit;
@@ -565,6 +621,14 @@ bool RdmaHw::AcceptWs30AckGeneration(Ptr<Packet> p, Ptr<RdmaQueuePair> qp) {
 void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t pg, int32_t flow_id) {
     uint64_t key = GetRxQpKey(dip, dport, sport, pg);
 
+    if (Settings::lb_mode == 57) {
+        auto it = m_rxQpMap.find(key);
+        if (it == m_rxQpMap.end() || it->second->m_flow_id != flow_id ||
+            !m_ws31C3rRxGeneration.Close(key, flow_id))
+            NS_FATAL_ERROR("C3R receiver completion has wrong generation");
+        it->second->QcnTimerEvent.Cancel();
+    }
+
     if (Ws30V13Life() >= 3) {
         auto it = m_rxQpMap.find(key);
         if (it == m_rxQpMap.end() || it->second->m_flow_id != flow_id ||
@@ -588,6 +652,24 @@ void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t p
 }
 
 int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
+    if (Settings::lb_mode == 57) {
+        FlowIDNUMTag tag;
+        const int32_t incoming = p->PeekPacketTag(tag) ? tag.GetId() : -1;
+        const uint64_t key = GetRxQpKey(ch.sip, ch.udp.sport, ch.udp.dport, ch.udp.pg);
+        if (!m_ws31C3rRxGeneration.Accept(key, incoming)) {
+            if (++m_ws31C3rStaleDataDrops <= 8)
+                std::cout << "WS31_C3R_STALE_DATA time_ns=" << Simulator::Now().GetNanoSeconds()
+                          << " host=" << m_node->GetId() << " incoming=" << incoming
+                          << " current=" << m_ws31C3rRxGeneration.Current(key)
+                          << " key=" << key << std::endl;
+            return 1;
+        }
+        if (m_ws31C3rReplayStale && !m_ws31C3rSavedData) {
+            m_ws31C3rSavedData = p->Copy();
+            m_ws31C3rSavedDataHeader = ch;
+            m_ws31C3rSavedDataKey = key;
+        }
+    }
     int32_t ws31IncomingIdentity=-1;
     if (m_ws31EndpointIdentity) {
         if (!m_node) m_ws31EndpointIdentity->Reject("WS31 receiver hardware has no node");
@@ -790,6 +872,27 @@ int RdmaHw::ReceiveCnp(Ptr<Packet> p, CustomHeader &ch) {
 }
 
 int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
+    if (Settings::lb_mode == 57) {
+        const uint64_t key = GetQpKey(ch.sip,ch.ack.dport,ch.ack.sport,ch.ack.pg);
+        Ptr<RdmaQueuePair> live = GetQp(key);
+        if (live) {
+            FlowIDNUMTag tag;
+            const int32_t incoming = p->PeekPacketTag(tag) ? tag.GetId() : -1;
+            if (incoming != live->m_flow_id) {
+                if (++m_ws31C3rStaleFeedbackDrops <= 8)
+                    std::cout << "WS31_C3R_STALE_FEEDBACK time_ns="
+                              << Simulator::Now().GetNanoSeconds() << " host=" << m_node->GetId()
+                              << " incoming=" << incoming << " current=" << live->m_flow_id
+                              << " key=" << key << std::endl;
+                return 1;
+            }
+            if (m_ws31C3rReplayStale && !m_ws31C3rSavedFeedback) {
+                m_ws31C3rSavedFeedback = p->Copy();
+                m_ws31C3rSavedFeedbackHeader = ch;
+                m_ws31C3rSavedFeedbackKey = key;
+            }
+        }
+    }
     int32_t ws31IncomingIdentity=-1;
     if (m_ws31EndpointIdentity) {
         if (!m_node) m_ws31EndpointIdentity->Reject("WS31 feedback hardware has no node");
