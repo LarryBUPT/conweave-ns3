@@ -2441,7 +2441,8 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
         CustomHeader ch(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
         if (p->PeekHeader(ch) && ch.l3Prot==0x11 && m_isToR_hostIP.count(ch.sip)) {
             Ptr<QbbNetDevice> dev=DynamicCast<QbbNetDevice>(m_devices[ifIndex]);
-            if (dev && dev->GetQueue())
+            if (dev && dev->GetQueue()) {
+                MarkWs31C3SourcePacket(p,m_id,ifIndex);
                 std::cout << "WS31_C3_DEQUEUE time_ns=" << Simulator::Now().GetNanoSeconds()
                           << " event=" << NextWs31C3ObservationEvent()
                           << " switch=" << m_id << " port=" << ifIndex
@@ -2451,6 +2452,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
                           << " wire_bytes=" << p->GetSize()
                           << " queue_after_bytes=" << dev->GetQueue()->GetNBytesTotal()
                           << std::endl;
+            }
         }
     }
 }

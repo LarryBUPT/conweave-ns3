@@ -39,11 +39,7 @@ static bool Ws31C3ObserveChannelPacket(Ptr<Packet> packet, Ptr<QbbNetDevice> sou
 {
   if (Ws30Level()!=2 || Settings::lb_mode<47 || Settings::lb_mode>49 ||
       !source || source->GetNode()->GetNodeType()!=1) return false;
-  CustomHeader ch(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
-  if (!packet->PeekHeader(ch) || ch.l3Prot!=0x11) return false;
-  const auto owner=Settings::hostIp2SwitchId.find(ch.sip);
-  return owner!=Settings::hostIp2SwitchId.end() &&
-         owner->second==source->GetNode()->GetId();
+  return IsWs31C3SourcePacket(packet,source->GetNode()->GetId(),source->GetIfIndex());
 }
 
 static void Ws31C3DeliverObserved(Ptr<QbbNetDevice> destination, Ptr<Packet> packet,

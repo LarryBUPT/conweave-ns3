@@ -74,13 +74,10 @@ static bool Ws23RecoveryDiagnosticEnabled() {
     return enabled;
 }
 
-static bool Ws31C3ObserveSourceTx(Ptr<Packet> packet, Ptr<Node> node) {
+static bool Ws31C3ObserveSourceTx(Ptr<Packet> packet, Ptr<Node> node, uint32_t port) {
     if (Ws30Level()!=2 || Settings::lb_mode<47 || Settings::lb_mode>49 ||
         !node || node->GetNodeType()!=1) return false;
-    CustomHeader ch(CustomHeader::L2_Header|CustomHeader::L3_Header|CustomHeader::L4_Header);
-    if (!packet->PeekHeader(ch) || ch.l3Prot!=0x11) return false;
-    const auto source=Settings::hostIp2SwitchId.find(ch.sip);
-    return source!=Settings::hostIp2SwitchId.end() && source->second==node->GetId();
+    return IsWs31C3SourcePacket(packet,node->GetId(),port);
 }
 
 static std::map<const QbbNetDevice*,uint64_t> ws31C3ServiceUid;
@@ -540,7 +537,7 @@ bool QbbNetDevice::TransmitStart(Ptr<Packet> p) {
     NS_ASSERT_MSG(m_txMachineState == READY, "Must be READY to transmit");
     m_txMachineState = BUSY;
     m_currentPkt = p;
-    const bool observeC3=Ws31C3ObserveSourceTx(p,m_node);
+    const bool observeC3=Ws31C3ObserveSourceTx(p,m_node,m_ifIndex);
     const uint64_t observedUid=observeC3 ? p->GetUid() : 0;
     const uint32_t observedWireBytes=observeC3 ? p->GetSize() : 0;
     if (observeC3) ws31C3ServiceUid[this]=observedUid;
@@ -551,6 +548,7 @@ bool QbbNetDevice::TransmitStart(Ptr<Packet> p) {
     Simulator::Schedule(txCompleteTime, &QbbNetDevice::TransmitComplete, this);
 
     bool result = m_channel->TransmitStart(p, this, txTime);
+    if (observeC3) ForgetWs31C3SourcePacket(p);
     if (observeC3)
         std::cout << "WS31_C3_SERVICE_START time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " event=" << NextWs31C3ObservationEvent()
