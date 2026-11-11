@@ -1403,8 +1403,68 @@ uint32_t SwitchNode::DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
     return pair.chosen;
 }
 
+// Four matched granularity arms share QueuePin's fixed two-hash candidate set.
+// 58: business flow/background packet; 59: reverse; 60: all flow; 61: all packet.
+uint32_t SwitchNode::DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
+                                const std::vector<int> &nexthops) {
+    if (ch.l3Prot != 0x11 || !m_isToR || !m_isToR_hostIP.count(ch.sip))
+        return DoLbWs30V13(p, ch, nexthops);
+    WorkloadTag tag;
+    if (!p->PeekPacketTag(tag) || (tag.GetValue()!=1 && tag.GetValue()!=2))
+        NS_FATAL_ERROR("WS31 M1 requires an explicit business/background packet tag");
+    const uint32_t category=tag.GetValue();
+    const auto key=std::make_tuple(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport);
+    auto hit=m_ws31M1Pairs.find(key);
+    const bool fresh=hit==m_ws31M1Pairs.end();
+    if (fresh) {
+        const uint32_t words[3]={ch.sip,ch.dip,
+            uint32_t(ch.udp.sport)|(uint32_t(ch.udp.dport)<<16)};
+        const uint8_t *data=reinterpret_cast<const uint8_t *>(words);
+        Ws30Pair pair;
+        pair.first=nexthops[EcmpHash(data,12,m_ecmpSeed)%nexthops.size()];
+        pair.second=nexthops[EcmpHash(data,12,m_ecmpSeed^0x9e3779b9U)%nexthops.size()];
+        pair.chosen=pair.first;
+        hit=m_ws31M1Pairs.insert(std::make_pair(key,pair)).first;
+        m_ws31M1PeakPairs=std::max<uint64_t>(m_ws31M1PeakPairs,m_ws31M1Pairs.size());
+    }
+    Ws30Pair &pair=hit->second;
+    const bool packetArm=Settings::lb_mode==61 ||
+        (Settings::lb_mode==58 && category==1) ||
+        (Settings::lb_mode==59 && category==2);
+    uint64_t a=0,b=0;
+    const uint32_t previous=pair.chosen;
+    if (fresh || packetArm) {
+        a=CalculateInterfaceLoad(pair.first);
+        b=CalculateInterfaceLoad(pair.second);
+        m_ws31M1QueueReads[category]+=2;
+        pair.chosen=b<a?pair.second:pair.first;
+    }
+    ++m_ws31M1Packets[category];
+    m_ws31M1WireBytes[category]+=p->GetSize();
+    if (pair.first!=pair.second) ++m_ws31M1Distinct[category];
+    if (!fresh && pair.chosen!=previous) ++m_ws31M1Switches[category];
+    if (fresh)
+        Ws30Choice(m_id,ch,category,pair.first,pair.second,a,b,0,0,
+                   pair.chosen,p->GetSize());
+    if (Ws30Level()==2)
+        std::cout << "WS31_M1_ROUTE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " mode=" << Settings::lb_mode
+                  << " tag=" << category << " uid=" << p->GetUid()
+                  << " sip=" << ch.sip << " dip=" << ch.dip
+                  << " sport=" << ch.udp.sport << " dport=" << ch.udp.dport
+                  << " seq=" << ch.udp.seq << " fresh=" << fresh
+                  << " packet_arm=" << packetArm
+                  << " first=" << pair.first << " second=" << pair.second
+                  << " previous=" << previous << " chosen=" << pair.chosen
+                  << " q1=" << a << " q2=" << b
+                  << " wire_bytes=" << p->GetSize() << std::endl;
+    TraceWs31Source(p,ch,{fresh,pair.first,pair.second,pair.chosen,a,b,0,0,0});
+    return pair.chosen;
+}
+
 void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport) {
     const size_t erased = m_ws30V13Pairs.erase(std::make_tuple(sip,dip,sport,dport));
+    m_ws31M1Pairs.erase(std::make_tuple(sip,dip,sport,dport));
     const ws31::Key key(sip,dip,sport,dport);
     m_ws31Pairs.erase(key);
     m_ws31Budget.Erase(key);
@@ -1413,6 +1473,17 @@ void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, u
 }
 
 void SwitchNode::WriteWs30V13State() {
+    if (Settings::lb_mode>=58 && Settings::lb_mode<=61) {
+        for (uint32_t tag=1; tag<=2; ++tag)
+            std::cout << "WS31_M1_STATE switch=" << m_id << " mode=" << Settings::lb_mode
+                      << " tag=" << tag << " packets=" << m_ws31M1Packets[tag]
+                      << " distinct_candidate_packets=" << m_ws31M1Distinct[tag]
+                      << " route_switches=" << m_ws31M1Switches[tag]
+                      << " queue_reads=" << m_ws31M1QueueReads[tag]
+                      << " wire_bytes=" << m_ws31M1WireBytes[tag]
+                      << " active_pairs=" << m_ws31M1Pairs.size()
+                      << " peak_pairs=" << m_ws31M1PeakPairs << std::endl;
+    }
     if (Settings::lb_mode==51 || Settings::lb_mode==52) {
         std::cout << "WS31_OFAN_STATE switch=" << m_id
                   << " mapped_destinations=" << m_ws31OfanDestination.size()
@@ -2343,6 +2414,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbWs31C3(p, ch, nexthops);
         case 57:
             return DoLbWs31C3r(p, ch, nexthops);
+        case 58: case 59: case 60: case 61:
+            return DoLbWs31M1(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
         case 23:

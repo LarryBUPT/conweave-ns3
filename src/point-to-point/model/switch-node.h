@@ -78,6 +78,15 @@ class SwitchNode : public Node {
     uint64_t m_ws30V13Hits{0}, m_ws30V13Misses{0}, m_ws30V13Peak{0};
     uint32_t DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
                          const std::vector<int> &nexthops);
+    std::map<std::tuple<uint32_t,uint32_t,uint16_t,uint16_t>,Ws30Pair> m_ws31M1Pairs;
+    uint64_t m_ws31M1PeakPairs{0};
+    uint64_t m_ws31M1Packets[3]{0,0,0};
+    uint64_t m_ws31M1Distinct[3]{0,0,0};
+    uint64_t m_ws31M1Switches[3]{0,0,0};
+    uint64_t m_ws31M1QueueReads[3]{0,0,0};
+    uint64_t m_ws31M1WireBytes[3]{0,0,0};
+    uint32_t DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
+                        const std::vector<int> &nexthops);
     std::map<ws31::Key,Ws30Pair> m_ws31Pairs;
     ws31::BudgetLedger m_ws31Budget;
     ws31::ObservedMemory m_ws31Observed;
