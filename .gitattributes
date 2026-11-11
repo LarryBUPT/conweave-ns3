@@ -11,6 +11,7 @@ config/ws30v13_*.txt -text whitespace=-blank-at-eol
 config/ws30v14_*.txt -text whitespace=-blank-at-eol
 config/ws30w5_*.txt -text whitespace=-blank-at-eol
 config/ws31_m1_technical13_r1.txt -text whitespace=-blank-at-eol
+config/ws31_m1_demand_*.txt -text whitespace=-blank-at-eol
 # Frozen artifact hashes include their original line endings; accept CRLF in QA.
 docs/research/evidence/ws30-*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # WS-17 manifest is itself SHA-256 checked; keep the generated LF bytes.

@@ -78,6 +78,8 @@ struct Ws25QpDiagnostic {
     uint64_t rx_ooo_packets = 0, sack_feedback = 0, cnp_feedback = 0;
     uint64_t repeated_sends = 0, timeout_recovery = 0;
     uint64_t rx_duplicate=0, repeated_bytes=0, nack_feedback=0;
+    uint64_t rx_ooo_payload_bytes=0, rx_sack_pending_peak_bytes=0;
+    uint64_t feedback_wire_bytes=0;
 };
 static std::map<int32_t, Ws25QpDiagnostic> ws25_qp_diagnostics;
 static bool Ws25DiagnosticEnabled() {
@@ -723,6 +725,12 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                   << " seq=" << ch.udp.seq << " expected=" << expected_before << std::endl;
     }
     int x = ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
+    if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0) {
+        Ws25QpDiagnostic &cost=ws25_qp_diagnostics[rxQp->m_flow_id];
+        if (ch.udp.seq>expected_before) cost.rx_ooo_payload_bytes+=payload_size;
+        cost.rx_sack_pending_peak_bytes=std::max<uint64_t>(
+            cost.rx_sack_pending_peak_bytes,rxQp->m_irn_sack_.getSackBufferOverhead());
+    }
     if (Ws30V13Life() >= 3 && Ws30Level()) {
         FlowIDNUMTag fit;
         if (!p->PeekPacketTag(fit) || fit.GetId()!=rxQp->m_flow_id)
@@ -806,6 +814,8 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
         newp->AddHeader(head);
         AddHeader(newp, 0x800);  // Attach PPP header
+        if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0)
+            ws25_qp_diagnostics[rxQp->m_flow_id].feedback_wire_bytes+=newp->GetSize();
 
         // send
         uint32_t nic_idx = GetNicIdxOfRxQp(rxQp);
@@ -1376,7 +1386,7 @@ void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
                   << " cnp_feedback=" << s.cnp_feedback
                   << " repeated_sends=" << s.repeated_sends
                   << " timeout_recovery=" << s.timeout_recovery << std::endl;
-        if (Ws30Level())
+        if (Ws30Level()) {
             std::cout << "WS30_QP flow_id=" << qp->m_flow_id
                       << " tag=" << uint32_t(qp->m_workload_tag)
                       << " rx_gap=" << s.rx_ooo_packets << " rx_below_expected=" << s.rx_duplicate
@@ -1385,7 +1395,13 @@ void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
                       << " sack_feedback=" << s.sack_feedback
                       << " cnp_feedback=" << s.cnp_feedback << " retransmit_packets=" << s.repeated_sends
                       << " retransmit_bytes=" << s.repeated_bytes
-                      << " timeout=" << s.timeout_recovery << std::endl;
+                      << " timeout=" << s.timeout_recovery;
+            if (Settings::lb_mode>=58 && Settings::lb_mode<=61)
+                std::cout << " rx_ooo_payload_bytes=" << s.rx_ooo_payload_bytes
+                          << " rx_sack_pending_peak_bytes=" << s.rx_sack_pending_peak_bytes
+                          << " feedback_wire_bytes=" << s.feedback_wire_bytes;
+            std::cout << std::endl;
+        }
         ws25_qp_diagnostics.erase(qp->m_flow_id);
     }
     if (qp->irn.m_enabled && m_nic[GetNicIdxOfQp(qp)].dev->IsQbbEnabled()) {
