@@ -1446,7 +1446,7 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
     if (fresh)
         Ws30Choice(m_id,ch,category,pair.first,pair.second,a,b,0,0,
                    pair.chosen,p->GetSize());
-    if (Ws30Level()==2)
+    if (Ws30Level()>=1)
         std::cout << "WS31_M1_ROUTE time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " switch=" << m_id << " mode=" << Settings::lb_mode
                   << " tag=" << category << " uid=" << p->GetUid()
