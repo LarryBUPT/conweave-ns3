@@ -170,6 +170,8 @@ lb_modes = {
     "ws31-m1-all-flow": 60,
     "ws31-m1-all-packet": 61,
     "ws31-m2": 62,
+    "ws31-m2-no-cap": 63,
+    "ws31-m2-queue-only": 64,
     "ofan-v2": 51,
     "ofan-rr": 52,
     "cr-a0-b0": 25,

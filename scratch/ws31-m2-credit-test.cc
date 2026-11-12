@@ -1,6 +1,7 @@
 #include "../src/point-to-point/model/ws31-m2-credit.h"
 
 #include <iostream>
+#include <limits>
 #include <stdexcept>
 
 static void Require(bool value) {
@@ -39,5 +40,18 @@ int main() {
     Require(credit.Acknowledge(nextGeneration, 60) == 60);
     Require(credit.Used(4) == 0);
     Require(credit.PeakTotalUsed() == 80);
+
+    M2Credit noCap(100);
+    noCap.SetCapBeforeUse(std::numeric_limits<uint64_t>::max());
+    Require(noCap.TryReserve(first, 4, 21, 0, 80));
+    noCap.FinishAdmission(21, true);
+    Require(noCap.TryReserve(first, 4, 22, 80, 80));
+    noCap.FinishAdmission(22, true);
+    Require(noCap.Used(4) == 160);
+    Require(noCap.Acknowledge(first, 160) == 160);
+    bool lateCapChangeRejected=false;
+    try { noCap.SetCapBeforeUse(100); }
+    catch (const std::logic_error &) { lateCapChangeRejected=true; }
+    Require(lateCapChangeRejected);
     std::cout << "WS31_M2_CREDIT_TEST pass" << std::endl;
 }

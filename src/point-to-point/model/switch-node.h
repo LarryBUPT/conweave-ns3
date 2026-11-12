@@ -93,6 +93,10 @@ class SwitchNode : public Node {
     uint64_t m_ws31M2BorrowPackets{0}, m_ws31M2BorrowBytes{0};
     uint64_t m_ws31M2AckReleaseBytes{0}, m_ws31M2PermitRefusals{0};
     uint64_t m_ws31M2QueueReads{0};
+    uint64_t m_ws31M2EligiblePackets[3]{0,0,0};
+    uint64_t m_ws31M2ShorterAlternate[3]{0,0,0};
+    uint64_t m_ws31M2ReservedPackets[3]{0,0,0};
+    uint64_t m_ws31M2BusinessRouteDeviations{0};
     uint64_t m_ws31M2BusinessQueueBlocks{0};
     uint64_t m_ws31M2FeedbackSeen{0}, m_ws31M2FeedbackMissingIdentity{0};
     uint32_t DoLbWs31M2(Ptr<const Packet> p, const CustomHeader &ch,

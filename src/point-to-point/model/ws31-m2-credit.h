@@ -23,6 +23,13 @@ public:
         if (!m_cap) throw std::invalid_argument("M2 credit cap must be positive");
     }
 
+    void SetCapBeforeUse(uint64_t capBytes) {
+        if (!capBytes || !m_highestEnd.empty() || !m_pending.empty() ||
+            !m_sent.empty() || m_totalUsed)
+            throw std::logic_error("M2 credit cap must be set before use");
+        m_cap = capBytes;
+    }
+
     // Call for background packets sent on the original pinned path. This makes
     // later retransmissions ineligible for a new alternate-path permit.
     void MarkPinned(const M2Key &key, uint64_t seq, uint64_t payloadBytes) {

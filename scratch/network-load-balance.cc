@@ -3073,11 +3073,11 @@ int main(int argc, char *argv[]) {
     /*----- we don't need below. Just we can enforce to close this simulation. -----*/
     /*-----------------------------------------------------------------------------*/
     Simulator::Destroy();
-    if (lb_mode>=58 && lb_mode<=62) {
+    if ((lb_mode>=58 && lb_mode<=64) || lb_mode==33) {
         struct rusage usage;
         if (getrusage(RUSAGE_SELF,&usage)!=0)
             NS_FATAL_ERROR("WS31 simulator resource accounting failed");
-        std::cout << (lb_mode==62 ? "WS31_M2_RESOURCE peak_rss_kib=" :
+        std::cout << (lb_mode>=62 || lb_mode==33 ? "WS31_M2_RESOURCE peak_rss_kib=" :
                                    "WS31_M1_RESOURCE peak_rss_kib=") << usage.ru_maxrss
                   << " user_cpu_sec=" << usage.ru_utime.tv_sec
                   << " user_cpu_usec=" << usage.ru_utime.tv_usec

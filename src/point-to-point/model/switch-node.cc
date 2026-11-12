@@ -1462,8 +1462,9 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
     return pair.chosen;
 }
 
-// M2 WIP: a background packet may use the other QueuePin candidate only when
-// its new payload fits the outstanding alternate-path credit on that port.
+// M2 and its matched ablations share candidates, feedback, and accounting.
+// 62: bounded background borrowing; 63: same rule without a finite cap;
+// 64: bounded queue-only borrowing without the category gate.
 uint32_t SwitchNode::DoLbWs31M2(Ptr<const Packet> p, const CustomHeader &ch,
                                 const std::vector<int> &nexthops) {
     if (ch.l3Prot != 0x11 || !m_isToR || !m_isToR_hostIP.count(ch.sip))
@@ -1474,6 +1475,9 @@ uint32_t SwitchNode::DoLbWs31M2(Ptr<const Packet> p, const CustomHeader &ch,
         !p->PeekPacketTag(flow) || flow.GetId()<0 ||
         p->GetSize()<=ch.GetSerializedSize())
         NS_FATAL_ERROR("WS31 M2 needs category, request identity and payload");
+    if (Settings::lb_mode==63 &&
+        m_ws31M2Credit.Cap()!=std::numeric_limits<uint64_t>::max())
+        m_ws31M2Credit.SetCapBeforeUse(std::numeric_limits<uint64_t>::max());
     const ws31::M2Key key(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport,
                           ch.udp.pg,flow.GetId());
     auto hit=m_ws31M2Pairs.find(key);
@@ -1501,21 +1505,28 @@ uint32_t SwitchNode::DoLbWs31M2(Ptr<const Packet> p, const CustomHeader &ch,
     const uint64_t payload=p->GetSize()-ch.GetSerializedSize();
     bool borrowed=false;
     uint64_t businessQueued=0;
-    if (tag.GetValue()==1) {
+    if (tag.GetValue()==1 || Settings::lb_mode==64) {
         if (!fresh && alternate!=pair.chosen) {
+            ++m_ws31M2EligiblePackets[tag.GetValue()];
             q1=CalculateInterfaceLoad(pair.chosen);
             q2=CalculateInterfaceLoad(alternate);
             m_ws31M2QueueReads+=2;
             if (q2<q1) {
-                auto busy=guard_queue_stats.find(std::make_tuple(m_id,alternate,2U));
-                businessQueued=busy==guard_queue_stats.end()?0:busy->second.current;
+                ++m_ws31M2ShorterAlternate[tag.GetValue()];
+                if (Settings::lb_mode!=64) {
+                    auto busy=guard_queue_stats.find(std::make_tuple(m_id,alternate,2U));
+                    businessQueued=busy==guard_queue_stats.end()?0:busy->second.current;
+                }
                 if (businessQueued) {
                     ++m_ws31M2BusinessQueueBlocks;
                     m_ws31M2Credit.MarkPinned(key,ch.udp.seq,payload);
                 } else {
                     borrowed=m_ws31M2Credit.TryReserve(key,alternate,p->GetUid(),
                                                          ch.udp.seq,payload);
-                    if (borrowed) chosen=alternate;
+                    if (borrowed) {
+                        chosen=alternate;
+                        ++m_ws31M2ReservedPackets[tag.GetValue()];
+                    }
                     else ++m_ws31M2PermitRefusals;
                 }
             } else {
@@ -1525,9 +1536,12 @@ uint32_t SwitchNode::DoLbWs31M2(Ptr<const Packet> p, const CustomHeader &ch,
             m_ws31M2Credit.MarkPinned(key,ch.udp.seq,payload);
         }
     }
-    if (Ws30Level()>=1)
+    if (tag.GetValue()==2 && chosen!=pair.chosen)
+        ++m_ws31M2BusinessRouteDeviations;
+    if (Ws30Level()>=2)
         std::cout << "WS31_M2_ROUTE time_ns=" << Simulator::Now().GetNanoSeconds()
-                  << " switch=" << m_id << " uid=" << p->GetUid()
+                  << " switch=" << m_id << " mode=" << Settings::lb_mode
+                  << " uid=" << p->GetUid()
                   << " flow_id=" << flow.GetId() << " tag=" << tag.GetValue()
                   << " seq=" << ch.udp.seq << " payload=" << payload
                   << " fresh=" << fresh << " first=" << pair.first
@@ -1551,7 +1565,7 @@ void SwitchNode::ObserveWs31M2Feedback(Ptr<const Packet> p,
     FlowIDNUMTag flow;
     if (!p->PeekPacketTag(flow) || flow.GetId()<0) {
         ++m_ws31M2FeedbackMissingIdentity;
-        if (Ws30Level()>=1)
+        if (Ws30Level()>=2)
             std::cout << "WS31_M2_FEEDBACK_RX time_ns=" << Simulator::Now().GetNanoSeconds()
                       << " switch=" << m_id << " uid=" << p->GetUid()
                       << " sip=" << ch.sip << " dip=" << ch.dip
@@ -1565,7 +1579,7 @@ void SwitchNode::ObserveWs31M2Feedback(Ptr<const Packet> p,
                           ch.ack.pg,flow.GetId());
     const uint64_t released=m_ws31M2Credit.Acknowledge(key,ch.ack.seq);
     m_ws31M2AckReleaseBytes+=released;
-    if (Ws30Level()>=1)
+    if (Ws30Level()>=2)
         std::cout << "WS31_M2_FEEDBACK_RX time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " switch=" << m_id << " uid=" << p->GetUid()
                   << " sip=" << ch.sip << " dip=" << ch.dip
@@ -1574,7 +1588,7 @@ void SwitchNode::ObserveWs31M2Feedback(Ptr<const Packet> p,
                   << " ack=" << ch.ack.seq << " flow_id_present=1"
                   << " flow_id=" << flow.GetId() << " released=" << released
                   << std::endl;
-    if (released && Ws30Level()>=1)
+    if (released && Ws30Level()>=2)
         std::cout << "WS31_M2_RELEASE time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " switch=" << m_id << " flow_id=" << flow.GetId()
                   << " ack=" << ch.ack.seq << " released=" << released << std::endl;
@@ -1591,8 +1605,9 @@ void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, u
 }
 
 void SwitchNode::WriteWs30V13State() {
-    if (Settings::lb_mode==62)
+    if (Settings::lb_mode>=62 && Settings::lb_mode<=64)
         std::cout << "WS31_M2_STATE switch=" << m_id
+                  << " mode=" << Settings::lb_mode
                   << " pairs=" << m_ws31M2Pairs.size()
                   << " borrow_packets=" << m_ws31M2BorrowPackets
                   << " borrow_payload_bytes=" << m_ws31M2BorrowBytes
@@ -1602,6 +1617,13 @@ void SwitchNode::WriteWs30V13State() {
                   << " feedback_seen=" << m_ws31M2FeedbackSeen
                   << " feedback_missing_identity=" << m_ws31M2FeedbackMissingIdentity
                   << " queue_reads=" << m_ws31M2QueueReads
+                  << " eligible_background=" << m_ws31M2EligiblePackets[1]
+                  << " eligible_business=" << m_ws31M2EligiblePackets[2]
+                  << " shorter_background=" << m_ws31M2ShorterAlternate[1]
+                  << " shorter_business=" << m_ws31M2ShorterAlternate[2]
+                  << " reserved_background=" << m_ws31M2ReservedPackets[1]
+                  << " reserved_business=" << m_ws31M2ReservedPackets[2]
+                  << " business_route_deviations=" << m_ws31M2BusinessRouteDeviations
                   << " outstanding_payload_bytes=" << m_ws31M2Credit.TotalUsed()
                   << " peak_outstanding_payload_bytes=" << m_ws31M2Credit.PeakTotalUsed()
                   << " pending_reservations=" << m_ws31M2Credit.PendingCount()
@@ -2407,7 +2429,8 @@ void SwitchNode::CheckAndSendResume(uint32_t inDev, uint32_t qIndex) {
 // This function can only be called in switch mode
 bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet,
                                          CustomHeader &ch) {
-    if (Settings::lb_mode == 62) ObserveWs31M2Feedback(packet, ch);
+    if (Settings::lb_mode>=62 && Settings::lb_mode<=64)
+        ObserveWs31M2Feedback(packet, ch);
     if (Settings::lb_mode == 57 && ch.l3Prot == Ws31C3rControl::IP_PROTOCOL)
         return ReceiveWs31C3rControl(device, packet, ch);
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL &&
@@ -2551,7 +2574,7 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbWs31C3r(p, ch, nexthops);
         case 58: case 59: case 60: case 61:
             return DoLbWs31M1(p, ch, nexthops);
-        case 62:
+        case 62: case 63: case 64:
             return DoLbWs31M2(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
@@ -2573,11 +2596,12 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
  */
 void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, uint32_t qIndex) {
     auto finishM2 = [&](bool accepted) {
-        if (Settings::lb_mode != 62 || !m_ws31M2Credit.HasPending(p->GetUid())) return;
+        if (Settings::lb_mode < 62 || Settings::lb_mode > 64 ||
+            !m_ws31M2Credit.HasPending(p->GetUid())) return;
         const uint64_t before=m_ws31M2Credit.TotalUsed();
         const size_t pendingBefore=m_ws31M2Credit.PendingCount();
         m_ws31M2Credit.FinishAdmission(p->GetUid(), accepted);
-        if (Ws30Level()>=1)
+        if (Ws30Level()>=2)
             std::cout << "WS31_M2_ADMISSION time_ns=" << Simulator::Now().GetNanoSeconds()
                       << " switch=" << m_id << " uid=" << p->GetUid()
                       << " port=" << outDev << " accepted=" << accepted
@@ -2635,7 +2659,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                     if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                     else ++ws21_feedback_hop_rejects;
                 }
-                if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || Settings::lb_mode == 62)
+                if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || (Settings::lb_mode>=62 && Settings::lb_mode<=64))
                     SwitchNotifyAdmissionDrop(outDev, p);
                 finishM2(false);
                 return;  // drop
@@ -2654,7 +2678,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                 else ++ws21_feedback_hop_rejects;
             }
-            if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || Settings::lb_mode == 62)
+            if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || (Settings::lb_mode>=62 && Settings::lb_mode<=64))
                 SwitchNotifyAdmissionDrop(outDev, p);
             finishM2(false);
             return;  // drop
@@ -2743,7 +2767,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         } else {
             // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
             // Release the admission reservation made above for this packet.
-            if (qIndex != 0 && !(Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || Settings::lb_mode == 62)) {
+            if (qIndex != 0 && !(Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || (Settings::lb_mode>=62 && Settings::lb_mode<=64))) {
                 if (!locallyGenerated)
                     m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
@@ -2883,7 +2907,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             ws13_inflight.erase(hit);
         }
     }
-    if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || Settings::lb_mode == 62) {
+    if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || (Settings::lb_mode>=62 && Settings::lb_mode<=64)) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
         s.current -= p->GetSize();
