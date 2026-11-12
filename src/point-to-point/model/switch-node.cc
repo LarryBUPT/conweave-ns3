@@ -1551,12 +1551,29 @@ void SwitchNode::ObserveWs31M2Feedback(Ptr<const Packet> p,
     FlowIDNUMTag flow;
     if (!p->PeekPacketTag(flow) || flow.GetId()<0) {
         ++m_ws31M2FeedbackMissingIdentity;
+        if (Ws30Level()>=1)
+            std::cout << "WS31_M2_FEEDBACK_RX time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " switch=" << m_id << " uid=" << p->GetUid()
+                      << " sip=" << ch.sip << " dip=" << ch.dip
+                      << " sport=" << ch.ack.sport << " dport=" << ch.ack.dport
+                      << " pg=" << ch.ack.pg << " protocol=" << unsigned(ch.l3Prot)
+                      << " ack=" << ch.ack.seq << " flow_id_present=0 flow_id=-1 released=0"
+                      << std::endl;
         return;
     }
     const ws31::M2Key key(ch.dip,ch.sip,ch.ack.dport,ch.ack.sport,
                           ch.ack.pg,flow.GetId());
     const uint64_t released=m_ws31M2Credit.Acknowledge(key,ch.ack.seq);
     m_ws31M2AckReleaseBytes+=released;
+    if (Ws30Level()>=1)
+        std::cout << "WS31_M2_FEEDBACK_RX time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " uid=" << p->GetUid()
+                  << " sip=" << ch.sip << " dip=" << ch.dip
+                  << " sport=" << ch.ack.sport << " dport=" << ch.ack.dport
+                  << " pg=" << ch.ack.pg << " protocol=" << unsigned(ch.l3Prot)
+                  << " ack=" << ch.ack.seq << " flow_id_present=1"
+                  << " flow_id=" << flow.GetId() << " released=" << released
+                  << std::endl;
     if (released && Ws30Level()>=1)
         std::cout << "WS31_M2_RELEASE time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " switch=" << m_id << " flow_id=" << flow.GetId()

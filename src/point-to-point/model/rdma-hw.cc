@@ -814,6 +814,19 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
         newp->AddHeader(head);
         AddHeader(newp, 0x800);  // Attach PPP header
+        if (Settings::lb_mode == 62 && Ws30Level() >= 1) {
+            FlowIDNUMTag emitted;
+            const bool present = newp->PeekPacketTag(emitted);
+            std::cout << "WS31_M2_FEEDBACK_TX time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " data_uid=" << p->GetUid() << " feedback_uid=" << newp->GetUid()
+                      << " sip=" << ch.dip << " dip=" << ch.sip
+                      << " sport=" << ch.udp.dport << " dport=" << ch.udp.sport
+                      << " pg=" << ch.udp.pg << " protocol=" << (x == 1 ? 0xFC : 0xFD)
+                      << " ack=" << rxQp->ReceiverNextExpectedSeq
+                      << " flow_id_present=" << present
+                      << " flow_id=" << (present ? emitted.GetId() : -1)
+                      << std::endl;
+        }
         if (Settings::lb_mode>=58 && Settings::lb_mode<=62 && rxQp->m_flow_id>=0)
             ws25_qp_diagnostics[rxQp->m_flow_id].feedback_wire_bytes+=newp->GetSize();
 
