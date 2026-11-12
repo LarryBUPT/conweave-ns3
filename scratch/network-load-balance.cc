@@ -23,6 +23,7 @@
 #include <ns3/rdma-client.h>
 #include <ns3/rdma-driver.h>
 #include <ns3/rdma.h>
+#include <ns3/node-list.h>
 #include <ns3/sim-setting.h>
 #include <ns3/switch-node.h>
 #include <ns3/ws30-cw-observer.h>
