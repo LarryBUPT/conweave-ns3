@@ -474,6 +474,13 @@ bool QbbNetDevice::SwitchSend(uint32_t qIndex, Ptr<Packet> packet, CustomHeader 
         if (accepted)
             m_node->GetObject<SwitchNode>()->SwitchNotifyEnqueue(m_ifIndex, packet);
         else {
+            if (Settings::lb_mode == 62)
+                std::cout << "WS31_M2_QUEUE_REJECT time_ns="
+                          << Simulator::Now().GetNanoSeconds()
+                          << " switch=" << m_node->GetId()
+                          << " port=" << m_ifIndex
+                          << " uid=" << packet->GetUid()
+                          << " bytes=" << packet->GetSize() << std::endl;
             m_node->GetObject<SwitchNode>()->SwitchNotifyQueueDrop(m_ifIndex, qIndex, packet, false);
             m_traceDrop(packet, qIndex);
             return false;
