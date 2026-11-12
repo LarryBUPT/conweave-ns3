@@ -999,6 +999,7 @@ def main():
                         'ws28_tail_diag': args.ws28_tail_diag,
                         'simulation_seed': args.simulation_seed, 'demand_seed': args.demand_seed,
                         'ws30_observe': args.ws30_observe,
+                        'ws31_m2_queue_reject_fixture': args.ws31_m2_queue_reject_fixture,
                         'ws30_composition': args.ws30_composition,
                         'ws30_lifecycle': args.ws30_lifecycle,
                         'ws30_life_profile': args.ws30_life_profile,
