@@ -1462,6 +1462,107 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
     return pair.chosen;
 }
 
+// M2 WIP: a background packet may use the other QueuePin candidate only when
+// its new payload fits the outstanding alternate-path credit on that port.
+uint32_t SwitchNode::DoLbWs31M2(Ptr<const Packet> p, const CustomHeader &ch,
+                                const std::vector<int> &nexthops) {
+    if (ch.l3Prot != 0x11 || !m_isToR || !m_isToR_hostIP.count(ch.sip))
+        return DoLbWs30V13(p, ch, nexthops);
+    WorkloadTag tag;
+    FlowIDNUMTag flow;
+    if (!p->PeekPacketTag(tag) || (tag.GetValue()!=1 && tag.GetValue()!=2) ||
+        !p->PeekPacketTag(flow) || flow.GetId()<0 ||
+        p->GetSize()<=ch.GetSerializedSize())
+        NS_FATAL_ERROR("WS31 M2 needs category, request identity and payload");
+    const ws31::M2Key key(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport,
+                          ch.udp.pg,flow.GetId());
+    auto hit=m_ws31M2Pairs.find(key);
+    const bool fresh=hit==m_ws31M2Pairs.end();
+    uint64_t q1=0,q2=0;
+    if (fresh) {
+        const uint32_t words[3]={ch.sip,ch.dip,
+            uint32_t(ch.udp.sport)|(uint32_t(ch.udp.dport)<<16)};
+        const uint8_t *data=reinterpret_cast<const uint8_t *>(words);
+        Ws30Pair pair;
+        pair.first=nexthops[EcmpHash(data,12,m_ecmpSeed)%nexthops.size()];
+        pair.second=nexthops[EcmpHash(data,12,m_ecmpSeed^0x9e3779b9U)%nexthops.size()];
+        q1=CalculateInterfaceLoad(pair.first);
+        q2=CalculateInterfaceLoad(pair.second);
+        m_ws31M2QueueReads+=2;
+        pair.chosen=q2<q1?pair.second:pair.first;
+        hit=m_ws31M2Pairs.emplace(key,pair).first;
+        Ws30Choice(m_id,ch,tag.GetValue(),pair.first,pair.second,q1,q2,0,0,
+                   pair.chosen,p->GetSize());
+    }
+    const Ws30Pair &pair=hit->second;
+    uint32_t chosen=pair.chosen;
+    uint32_t alternate=pair.chosen==pair.first?pair.second:pair.first;
+    if (fresh && pair.chosen==pair.second) std::swap(q1,q2);
+    const uint64_t payload=p->GetSize()-ch.GetSerializedSize();
+    bool borrowed=false;
+    uint64_t businessQueued=0;
+    if (tag.GetValue()==1) {
+        if (!fresh && alternate!=pair.chosen) {
+            q1=CalculateInterfaceLoad(pair.chosen);
+            q2=CalculateInterfaceLoad(alternate);
+            m_ws31M2QueueReads+=2;
+            if (q2<q1) {
+                auto busy=guard_queue_stats.find(std::make_tuple(m_id,alternate,2U));
+                businessQueued=busy==guard_queue_stats.end()?0:busy->second.current;
+                if (businessQueued) {
+                    ++m_ws31M2BusinessQueueBlocks;
+                    m_ws31M2Credit.MarkPinned(key,ch.udp.seq,payload);
+                } else {
+                    borrowed=m_ws31M2Credit.TryReserve(key,alternate,p->GetUid(),
+                                                         ch.udp.seq,payload);
+                    if (borrowed) chosen=alternate;
+                    else ++m_ws31M2PermitRefusals;
+                }
+            } else {
+                m_ws31M2Credit.MarkPinned(key,ch.udp.seq,payload);
+            }
+        } else {
+            m_ws31M2Credit.MarkPinned(key,ch.udp.seq,payload);
+        }
+    }
+    if (Ws30Level()>=1)
+        std::cout << "WS31_M2_ROUTE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " uid=" << p->GetUid()
+                  << " flow_id=" << flow.GetId() << " tag=" << tag.GetValue()
+                  << " seq=" << ch.udp.seq << " payload=" << payload
+                  << " fresh=" << fresh << " first=" << pair.first
+                  << " second=" << pair.second << " pinned=" << pair.chosen
+                  << " alternate=" << alternate << " chosen=" << chosen
+                  << " borrow_reserved=" << borrowed << " q_pinned=" << q1
+                  << " q_alternate=" << q2 << " business_queued=" << businessQueued
+                  << " credit_used="
+                  << m_ws31M2Credit.Used(alternate) << std::endl;
+    TraceWs31Source(p,ch,{fresh,pair.first,pair.second,chosen,
+                          pair.chosen==pair.first?q1:q2,
+                          pair.chosen==pair.first?q2:q1,0,0,0});
+    return chosen;
+}
+
+void SwitchNode::ObserveWs31M2Feedback(Ptr<const Packet> p,
+                                       const CustomHeader &ch) {
+    if (!m_isToR || !m_isToR_hostIP.count(ch.dip) ||
+        (ch.l3Prot!=0xFC && ch.l3Prot!=0xFD)) return;
+    ++m_ws31M2FeedbackSeen;
+    FlowIDNUMTag flow;
+    if (!p->PeekPacketTag(flow) || flow.GetId()<0) {
+        ++m_ws31M2FeedbackMissingIdentity;
+        return;
+    }
+    const ws31::M2Key key(ch.dip,ch.sip,ch.ack.dport,ch.ack.sport,
+                          ch.ack.pg,flow.GetId());
+    const uint64_t released=m_ws31M2Credit.Acknowledge(key,ch.ack.seq);
+    m_ws31M2AckReleaseBytes+=released;
+    if (released && Ws30Level()>=1)
+        std::cout << "WS31_M2_RELEASE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " flow_id=" << flow.GetId()
+                  << " ack=" << ch.ack.seq << " released=" << released << std::endl;
+}
+
 void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport) {
     const size_t erased = m_ws30V13Pairs.erase(std::make_tuple(sip,dip,sport,dport));
     m_ws31M1Pairs.erase(std::make_tuple(sip,dip,sport,dport));
@@ -1473,6 +1574,22 @@ void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, u
 }
 
 void SwitchNode::WriteWs30V13State() {
+    if (Settings::lb_mode==62)
+        std::cout << "WS31_M2_STATE switch=" << m_id
+                  << " pairs=" << m_ws31M2Pairs.size()
+                  << " borrow_packets=" << m_ws31M2BorrowPackets
+                  << " borrow_payload_bytes=" << m_ws31M2BorrowBytes
+                  << " released_payload_bytes=" << m_ws31M2AckReleaseBytes
+                  << " permit_refusals=" << m_ws31M2PermitRefusals
+                  << " business_queue_blocks=" << m_ws31M2BusinessQueueBlocks
+                  << " feedback_seen=" << m_ws31M2FeedbackSeen
+                  << " feedback_missing_identity=" << m_ws31M2FeedbackMissingIdentity
+                  << " queue_reads=" << m_ws31M2QueueReads
+                  << " outstanding_payload_bytes=" << m_ws31M2Credit.TotalUsed()
+                  << " peak_outstanding_payload_bytes=" << m_ws31M2Credit.PeakTotalUsed()
+                  << " pending_reservations=" << m_ws31M2Credit.PendingCount()
+                  << " cap_payload_bytes_per_port=" << m_ws31M2Credit.Cap()
+                  << std::endl;
     if (Settings::lb_mode>=58 && Settings::lb_mode<=61) {
         for (uint32_t tag=1; tag<=2; ++tag)
             std::cout << "WS31_M1_STATE switch=" << m_id << " mode=" << Settings::lb_mode
@@ -2273,6 +2390,7 @@ void SwitchNode::CheckAndSendResume(uint32_t inDev, uint32_t qIndex) {
 // This function can only be called in switch mode
 bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet,
                                          CustomHeader &ch) {
+    if (Settings::lb_mode == 62) ObserveWs31M2Feedback(packet, ch);
     if (Settings::lb_mode == 57 && ch.l3Prot == Ws31C3rControl::IP_PROTOCOL)
         return ReceiveWs31C3rControl(device, packet, ch);
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL &&
@@ -2416,6 +2534,8 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
             return DoLbWs31C3r(p, ch, nexthops);
         case 58: case 59: case 60: case 61:
             return DoLbWs31M1(p, ch, nexthops);
+        case 62:
+            return DoLbWs31M2(p, ch, nexthops);
         case 22:
             return DoLbDestSpread(p, ch, nexthops);
         case 23:
@@ -2435,6 +2555,14 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
  * The (possible) callback point when conweave dequeues packets from buffer
  */
 void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, uint32_t qIndex) {
+    auto finishM2 = [&](bool accepted) {
+        if (Settings::lb_mode != 62 || !m_ws31M2Credit.HasPending(p->GetUid())) return;
+        m_ws31M2Credit.FinishAdmission(p->GetUid(), accepted);
+        if (accepted) {
+            ++m_ws31M2BorrowPackets;
+            m_ws31M2BorrowBytes += p->GetSize()-ch.GetSerializedSize();
+        }
+    };
     const uint8_t heartbeatType = ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL &&
                                           ws21_heartbeat_enabled ?
                                       Ws21HeartbeatPacketType(p) : 0;
@@ -2478,8 +2606,9 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                     if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                     else ++ws21_feedback_hop_rejects;
                 }
-                if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
+                if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || Settings::lb_mode == 62)
                     SwitchNotifyAdmissionDrop(outDev, p);
+                finishM2(false);
                 return;  // drop
             }
         } else { /** DROP: At Egress */
@@ -2496,8 +2625,9 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                 if (heartbeatPacket) ++ws21_heartbeat_hop_rejects;
                 else ++ws21_feedback_hop_rejects;
             }
-            if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)
+            if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || Settings::lb_mode == 62)
                 SwitchNotifyAdmissionDrop(outDev, p);
+            finishM2(false);
             return;  // drop
         }
 
@@ -2548,6 +2678,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
                       << std::endl;
     }
     const bool accepted = m_devices[outDev]->SwitchSend(qIndex, p, ch);
+    finishM2(accepted);
     Ws30Route(m_id, p, ch, outDev, accepted);
     // ECMP does not invoke SwitchNotifyEnqueue; record its successful queue
     // acceptance here. A synchronous dequeue may already have been logged.
@@ -2583,7 +2714,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         } else {
             // Non-Guard modes do not call SwitchNotifyQueueDrop on queue refusal.
             // Release the admission reservation made above for this packet.
-            if (qIndex != 0 && !(Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24)) {
+            if (qIndex != 0 && !(Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || Settings::lb_mode == 62)) {
                 if (!locallyGenerated)
                     m_mmu->RemoveFromIngressAdmission(inDev, qIndex, p->GetSize());
                 m_mmu->RemoveFromEgressAdmission(outDev, qIndex, p->GetSize());
@@ -2723,7 +2854,7 @@ void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Pack
             ws13_inflight.erase(hit);
         }
     }
-    if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24) {
+    if (Ws30Level() || (Settings::lb_mode >= 13 && Settings::lb_mode <= 15) || ClassReserveFamilyMode() || Settings::lb_mode == 22 || Settings::lb_mode == 23 || Settings::lb_mode == 24 || Settings::lb_mode == 62) {
         GuardQueueStat &s = guard_queue_stats[std::make_tuple(m_id, ifIndex, GuardTag(p))];
         NS_ASSERT_MSG(s.current >= p->GetSize(), "GuardHash dequeue underflow");
         s.current -= p->GetSize();

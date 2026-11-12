@@ -725,7 +725,7 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                   << " seq=" << ch.udp.seq << " expected=" << expected_before << std::endl;
     }
     int x = ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
-    if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0) {
+    if (Settings::lb_mode>=58 && Settings::lb_mode<=62 && rxQp->m_flow_id>=0) {
         Ws25QpDiagnostic &cost=ws25_qp_diagnostics[rxQp->m_flow_id];
         if (ch.udp.seq>expected_before) cost.rx_ooo_payload_bytes+=payload_size;
         cost.rx_sack_pending_peak_bytes=std::max<uint64_t>(
@@ -814,7 +814,7 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
         newp->AddHeader(head);
         AddHeader(newp, 0x800);  // Attach PPP header
-        if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0)
+        if (Settings::lb_mode>=58 && Settings::lb_mode<=62 && rxQp->m_flow_id>=0)
             ws25_qp_diagnostics[rxQp->m_flow_id].feedback_wire_bytes+=newp->GetSize();
 
         // send
@@ -1396,7 +1396,7 @@ void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
                       << " cnp_feedback=" << s.cnp_feedback << " retransmit_packets=" << s.repeated_sends
                       << " retransmit_bytes=" << s.repeated_bytes
                       << " timeout=" << s.timeout_recovery;
-            if (Settings::lb_mode>=58 && Settings::lb_mode<=61)
+            if (Settings::lb_mode>=58 && Settings::lb_mode<=62)
                 std::cout << " rx_ooo_payload_bytes=" << s.rx_ooo_payload_bytes
                           << " rx_sack_pending_peak_bytes=" << s.rx_sack_pending_peak_bytes
                           << " feedback_wire_bytes=" << s.feedback_wire_bytes;

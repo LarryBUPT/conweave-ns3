@@ -13,6 +13,7 @@
 #include "qbb-net-device.h"
 #include "switch-mmu.h"
 #include "ws31-budget.h"
+#include "ws31-m2-credit.h"
 #include "ws31-quota.h"
 #include "ws31-ofan.h"
 
@@ -87,6 +88,16 @@ class SwitchNode : public Node {
     uint64_t m_ws31M1WireBytes[3]{0,0,0};
     uint32_t DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
                         const std::vector<int> &nexthops);
+    std::map<ws31::M2Key,Ws30Pair> m_ws31M2Pairs;
+    ws31::M2Credit m_ws31M2Credit{65536};  // WIP cap; freeze before any effect run.
+    uint64_t m_ws31M2BorrowPackets{0}, m_ws31M2BorrowBytes{0};
+    uint64_t m_ws31M2AckReleaseBytes{0}, m_ws31M2PermitRefusals{0};
+    uint64_t m_ws31M2QueueReads{0};
+    uint64_t m_ws31M2BusinessQueueBlocks{0};
+    uint64_t m_ws31M2FeedbackSeen{0}, m_ws31M2FeedbackMissingIdentity{0};
+    uint32_t DoLbWs31M2(Ptr<const Packet> p, const CustomHeader &ch,
+                        const std::vector<int> &nexthops);
+    void ObserveWs31M2Feedback(Ptr<const Packet> p, const CustomHeader &ch);
     std::map<ws31::Key,Ws30Pair> m_ws31Pairs;
     ws31::BudgetLedger m_ws31Budget;
     ws31::ObservedMemory m_ws31Observed;
