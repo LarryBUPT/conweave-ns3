@@ -161,6 +161,29 @@ FILE *uplink_output = NULL;
 FILE *conn_output = NULL;
 
 std::string data_rate, link_delay, topology_file, flow_file;
+static double ws31_m2_queue_cap_before_fixture = 0;
+
+void Ws31M2SetTechnicalQueueCap(bool constrain) {
+    NS_ASSERT_MSG(NodeList::GetNNodes() > 1378, "M2 fixture source ToR missing");
+    Ptr<SwitchNode> tor = DynamicCast<SwitchNode>(NodeList::GetNode(1378));
+    NS_ASSERT_MSG(tor && tor->GetNDevices() > 15, "M2 fixture uplink missing");
+    Ptr<QbbNetDevice> device = DynamicCast<QbbNetDevice>(tor->GetDevice(15));
+    NS_ASSERT_MSG(device && device->GetQueue(), "M2 fixture egress queue missing");
+    Ptr<BEgressQueue> queue = device->GetQueue();
+    if (constrain) {
+        DoubleValue oldCap;
+        queue->GetAttribute("MaxBytes", oldCap);
+        ws31_m2_queue_cap_before_fixture = oldCap.Get();
+        queue->SetAttribute("MaxBytes", DoubleValue(1048.0));
+    } else {
+        NS_ASSERT_MSG(ws31_m2_queue_cap_before_fixture > 0, "M2 fixture cap not saved");
+        queue->SetAttribute("MaxBytes", DoubleValue(ws31_m2_queue_cap_before_fixture));
+    }
+    std::cout << "WS31_M2_QUEUE_CAP_FIXTURE time_ns="
+              << Simulator::Now().GetNanoSeconds() << " node=1378 port=15"
+              << " max_bytes=" << (constrain ? 1048.0 : ws31_m2_queue_cap_before_fixture)
+              << std::endl;
+}
 std::string flow_input_file = "flow.txt";
 std::string fct_output_file = "fct.txt";
 std::string pfc_output_file = "pfc.txt";
@@ -2969,6 +2992,20 @@ int main(int argc, char *argv[]) {
         for (const auto &entry : idxNodeToR)
             entry.second->RecordWs21PortBoundary('B');
     Ws30CompositionInstall(n, flowgen_start_time);
+    const char *m2QueueFixture = std::getenv("WS31_M2_QUEUE_REJECT_FIXTURE");
+    if (m2QueueFixture) {
+        if (std::string(m2QueueFixture)!="1" ||
+            (lb_mode!=62 && lb_mode!=33) ||
+            topology_file!="config/topo_1280_400G_400G_OS1.txt" ||
+            flow_file!="config/ws31_m1_technical13_r1.txt" ||
+            flowgen_start_time!=2.0 || random_seed!=1 ||
+            enable_pfc || !enable_irn || buffer_size!=9 || Ws30Level()!=2)
+            NS_FATAL_ERROR("M2 queue rejection fixture contract mismatch");
+        Simulator::Schedule(Seconds(flowgen_start_time)+NanoSeconds(129),
+                            &Ws31M2SetTechnicalQueueCap, true);
+        Simulator::Schedule(Seconds(flowgen_start_time)+NanoSeconds(131),
+                            &Ws31M2SetTechnicalQueueCap, false);
+    }
     Simulator::Run();
     if (ws31::StartMode(lb_mode)) {
         const ws31::StartCounters &s=ws31::StartData();

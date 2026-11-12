@@ -591,6 +591,10 @@ def execute(experiment_id):
         simulation_env['WS30_LIFECYCLE'] = str(params.get('ws30_lifecycle', 0))
         simulation_env['WS30_LIFE_PROFILE'] = str(params.get('ws30_life_profile', 0))
         simulation_env['WS30_TAG_TRANSFORM'] = str(params.get('ws30_tag_transform', 0))
+        if params.get('ws31_m2_queue_reject_fixture'):
+            simulation_env['WS31_M2_QUEUE_REJECT_FIXTURE'] = '1'
+        else:
+            simulation_env.pop('WS31_M2_QUEUE_REJECT_FIXTURE', None)
         if params.get('ws28_tail_diag'):
             simulation_env['WS28_TAIL_DIAG'] = '1'
         else:
@@ -855,6 +859,7 @@ def main():
     run_cmd.add_argument('--ws30-life-profile', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws31-label-profile', type=int, choices=(0, 1, 2, 3), default=0)
+    run_cmd.add_argument('--ws31-m2-queue-reject-fixture', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-moe-hop-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-queue-front-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws26-time-probe', type=int, choices=(0, 1), default=0)
@@ -900,6 +905,13 @@ def main():
         build(args.id, args.sha, args.branch)
     elif args.command == 'run':
         validate_ws31_label_params(vars(args))
+        if args.ws31_m2_queue_reject_fixture and (
+                args.lb not in ('ws31-m2', 'ws30v13-q12') or
+                args.topo != 'topo_1280_400G_400G_OS1' or
+                args.flow_file != 'ws31_m1_technical13_r1.txt' or
+                args.simulation_seed != 1 or args.pfc != 0 or args.irn != 1 or
+                args.buffer != 9 or args.ws30_observe != 2):
+            raise RuntimeError('M2 queue rejection fixture requires its fixed technical pair')
         if args.ws30_lifecycle in (1,2,3,4) and (args.topo != 'ws30_composition8' or args.pfc != 0 or args.irn != 1 or args.lb not in ('fecmp','ws30v13-q12','ws30v13-u12') or not args.flow_file or not args.flow_file.startswith('ws30v13_life_')):
             raise RuntimeError('Lifecycle fixture requires its explicit trace, topology and admitted arms')
         if args.ws30_lifecycle>=5:

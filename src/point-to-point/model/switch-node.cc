@@ -2574,7 +2574,19 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
 void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, uint32_t qIndex) {
     auto finishM2 = [&](bool accepted) {
         if (Settings::lb_mode != 62 || !m_ws31M2Credit.HasPending(p->GetUid())) return;
+        const uint64_t before=m_ws31M2Credit.TotalUsed();
+        const size_t pendingBefore=m_ws31M2Credit.PendingCount();
         m_ws31M2Credit.FinishAdmission(p->GetUid(), accepted);
+        if (Ws30Level()>=1)
+            std::cout << "WS31_M2_ADMISSION time_ns=" << Simulator::Now().GetNanoSeconds()
+                      << " switch=" << m_id << " uid=" << p->GetUid()
+                      << " port=" << outDev << " accepted=" << accepted
+                      << " payload=" << p->GetSize()-ch.GetSerializedSize()
+                      << " outstanding_before=" << before
+                      << " outstanding_after=" << m_ws31M2Credit.TotalUsed()
+                      << " pending_before=" << pendingBefore
+                      << " pending_after=" << m_ws31M2Credit.PendingCount()
+                      << std::endl;
         if (accepted) {
             ++m_ws31M2BorrowPackets;
             m_ws31M2BorrowBytes += p->GetSize()-ch.GetSerializedSize();

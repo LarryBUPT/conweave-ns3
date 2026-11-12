@@ -381,6 +381,7 @@ def main():
     run_cmd.add_argument('--ws30-life-profile', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws30-tag-transform', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ws31-label-profile', type=int, choices=(0, 1, 2, 3), default=0)
+    run_cmd.add_argument('--ws31-m2-queue-reject-fixture', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-path', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws18-admission-rate-gbps', type=int, default=400)
@@ -449,6 +450,13 @@ def main():
             print('Experiment ID: ' + experiment_id)
     elif args.command == 'run':
         validate_ws31_label_params(vars(args))
+        if args.ws31_m2_queue_reject_fixture and (
+                args.lb not in ('ws31-m2', 'ws30v13-q12') or
+                args.topo != 'topo_1280_400G_400G_OS1' or
+                args.flow_file != 'ws31_m1_technical13_r1.txt' or
+                args.simulation_seed != 1 or args.pfc != 0 or args.irn != 1 or
+                args.buffer != 9 or args.ws30_observe != 2):
+            parser.error('M2 queue rejection fixture requires its fixed technical pair')
         if args.pfc + args.irn != 1 and not args.factorial_pilot:
             parser.error('Exactly one of --pfc and --irn must be enabled')
         if args.factorial_drop_diag and not args.factorial_pilot:
@@ -517,6 +525,8 @@ def main():
         if args.demand_seed is not None: command.extend(['--demand-seed', str(args.demand_seed)])
         command.extend(['--ws30-observe', str(args.ws30_observe)])
         command.extend(['--ws31-label-profile', str(args.ws31_label_profile)])
+        command.extend(['--ws31-m2-queue-reject-fixture',
+                        str(args.ws31_m2_queue_reject_fixture)])
         command.extend(['--ws30-composition', str(args.ws30_composition)])
         command.extend(['--ws30-life-profile', str(args.ws30_life_profile), '--ws30-lifecycle', str(args.ws30_lifecycle), '--ws30-tag-transform', str(args.ws30_tag_transform)])
         if args.factorial_pilot:
