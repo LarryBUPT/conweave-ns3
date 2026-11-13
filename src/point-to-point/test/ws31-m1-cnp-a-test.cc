@@ -199,8 +199,9 @@ class Ws31M1CnpAProtocolCase : public TestCase {
                                 "sender DCQCN did not receive the serialized flag");
           Simulator::Stop(MicroSeconds(5));
           Simulator::Run();
-          NS_TEST_ASSERT_MSG_EQ(fixture.qp->m_rate.GetBitRate() < 100000000000ULL,
-                                expectedCnp, "CE/OOO CNP did not control sender rate");
+          const bool rateReduced = fixture.qp->m_rate.GetBitRate() < 100000000000ULL;
+          NS_TEST_ASSERT_MSG_EQ(rateReduced, expectedCnp,
+                                "CE/OOO CNP did not control sender rate");
           Simulator::Destroy();
         }
       }
