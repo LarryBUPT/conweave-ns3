@@ -626,6 +626,18 @@ bool RdmaHw::AcceptWs30AckGeneration(Ptr<Packet> p, Ptr<RdmaQueuePair> qp) {
 void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t pg, int32_t flow_id) {
     uint64_t key = GetRxQpKey(dip, dport, sport, pg);
 
+    if (Settings::lb_mode >= 58 && Settings::lb_mode <= 61) {
+        auto it = m_rxQpMap.find(key);
+        if (it == m_rxQpMap.end() || it->second->m_flow_id != flow_id)
+            NS_FATAL_ERROR("M1 receiver completion has wrong request identity");
+        std::cout << "WS31_M1_RX_COMPLETE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " flow_id=" << flow_id << " sip=" << dip << " sport=" << dport
+                  << " dport=" << sport << " pg=" << pg
+                  << " receiver_cum_bytes=" << it->second->ReceiverNextExpectedSeq
+                  << " receiver_sack_bytes=" << it->second->m_irn_sack_.getSackBufferOverhead()
+                  << std::endl;
+    }
+
     if (Settings::lb_mode == 57) {
         auto it = m_rxQpMap.find(key);
         if (it == m_rxQpMap.end() || it->second->m_flow_id != flow_id ||

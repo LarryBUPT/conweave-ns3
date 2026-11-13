@@ -694,7 +694,10 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
     Ptr<Node> dstNode = n.Get(did);
     Ptr<RdmaDriver> rdma = dstNode->GetObject<RdmaDriver>();
     rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->sport, q->dport, q->m_pg,
-                            Ws30V13Life() >= 3 || lb_mode == 57 ? q->m_flow_id : -1);
+                            Ws30V13Life() >= 3 || lb_mode == 57 ||
+                                    (lb_mode >= 58 && lb_mode <= 61)
+                                ? q->m_flow_id
+                                : -1);
     if (Ws30V13Life() == 4 && q->m_ws30Serial) {
         // Only after this request's cumulative ACK, with 100 us before reuse.
         // This is an explicit test intervention, not a timeout eviction policy.
