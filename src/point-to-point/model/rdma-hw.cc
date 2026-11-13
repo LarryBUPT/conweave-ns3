@@ -217,6 +217,9 @@ TypeId RdmaHw::GetTypeId(void) {
                           MakeDataRateAccessor(&RdmaHw::m_dctcp_rai), MakeDataRateChecker())
             .AddAttribute("IrnEnable", "Enable IRN", BooleanValue(false),
                           MakeBooleanAccessor(&RdmaHw::m_irn), MakeBooleanChecker())
+            .AddAttribute("OoOCnpEnabled", "Emit CNP for IRN out-of-order feedback",
+                          BooleanValue(true), MakeBooleanAccessor(&RdmaHw::m_oooCnpEnabled),
+                          MakeBooleanChecker())
             .AddAttribute("IrnRtoLow", "Low RTO for IRN", TimeValue(MicroSeconds(454)),
                           MakeTimeAccessor(&RdmaHw::m_irn_rtoLow), MakeTimeChecker())
             .AddAttribute("IrnRtoHigh", "High RTO for IRN", TimeValue(MicroSeconds(1350)),
@@ -1295,7 +1298,7 @@ int RdmaHw::ReceiverCheckSeq(uint32_t seq, Ptr<RdmaRxQueuePair> q, uint32_t size
             q->m_irn_sack_.sack(seq, size);  // set SACK
             NS_ASSERT(q->m_irn_sack_.discardUpTo(expected) ==
                       0);  // SACK blocks must be larger than expected
-            cnp = true;    // XXX: out-of-order should accompany with CNP (?) TODO: Check on CX6
+            cnp = m_oooCnpEnabled;  // Only the IRN out-of-order CNP reason is optional.
             return 2;      // generate SACK
         }
         if (Simulator::Now() >= q->m_nackTimer || q->m_lastNACK != expected) {  // new NACK

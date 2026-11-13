@@ -202,6 +202,8 @@ uint32_t buffer_size = 0;  // 0 to set buffer size automatically
 // Added from Here
 double load = 10.0;
 int enable_irn = 0;
+bool ooo_cnp_enabled = true;
+bool ooo_cnp_seen = false;
 int random_seed = 1;  // change this randomly if you want random expt
 
 uint64_t maxRtt, maxBdp;
@@ -2071,6 +2073,15 @@ int main(int argc, char *argv[]) {
                 conf >> v;
                 enable_irn = v;
                 std::cerr << "ENABLE_IRN\t\t" << enable_irn << "\n";
+            } else if (key.compare("OOO_CNP_ENABLED") == 0) {
+                int v = -1;
+                conf >> v;
+                if (!conf || (v != 0 && v != 1) || ooo_cnp_seen) {
+                    std::cerr << "OOO_CNP_ENABLED requires one value of 0 or 1" << std::endl;
+                    return 2;
+                }
+                ooo_cnp_seen = true;
+                ooo_cnp_enabled = (v == 1);
             } else if (key.compare("RANDOM_SEED") == 0) {
                 int v;
                 conf >> v;
@@ -2089,6 +2100,14 @@ int main(int argc, char *argv[]) {
     }
 
     /******************* READING CONFIG FILE IS DONE ***********************/
+
+    std::cerr << "OOO_CNP_ENABLED\t" << ooo_cnp_enabled
+              << (ooo_cnp_seen ? " explicit" : " legacy-default") << "\n";
+
+    if (!ooo_cnp_enabled && !enable_irn) {
+        std::cerr << "OOO_CNP_ENABLED=0 requires ENABLE_IRN=1" << std::endl;
+        return 2;
+    }
 
     if (ws31_c3r_reuse_tuple && lb_mode != 57) {
         std::cerr << "WS31_C3R_REUSE_TUPLE requires mode 57" << std::endl;
@@ -2537,6 +2556,7 @@ int main(int argc, char *argv[]) {
             rdmaHw->SetAttribute("RateBound", BooleanValue(rate_bound));
             rdmaHw->SetAttribute("DctcpRateAI", DataRateValue(DataRate(dctcp_rate_ai)));
             rdmaHw->SetAttribute("IrnEnable", BooleanValue(enable_irn));
+            rdmaHw->SetAttribute("OoOCnpEnabled", BooleanValue(ooo_cnp_enabled));
             // topo2bdpMap (e.g., longest BDP 25000: 8us * 25Gbps)
             rdmaHw->SetAttribute("IrnRtoHigh", TimeValue(MicroSeconds(320)));  // 1930
             rdmaHw->SetAttribute("IrnRtoLow", TimeValue(MicroSeconds(100)));   // 454

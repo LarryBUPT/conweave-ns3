@@ -37,6 +37,7 @@ def build(bld):
     module_test = bld.create_ns3_module_test_library('point-to-point')
     module_test.source = [
         'test/point-to-point-test.cc',
+        'test/ws31-m1-cnp-a-test.cc',
         ]
 
     headers = bld(features='ns3header')
