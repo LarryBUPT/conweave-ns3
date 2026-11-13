@@ -73,8 +73,9 @@ class Ws31M1CnpAProtocolCase : public TestCase {
     const Ipv4Address destination = Ipv4Address("11.0.0.2");
     uint32_t completed = 0;
     int32_t completedFlow = -1;
+    uint64_t observedNext = 0;
 
-    Fixture(int setting, uint64_t bytes) {
+    Fixture(int setting, uint64_t bytes, bool boundedRecovery = false) {
       txNode->AddDevice(txDev);
       rxNode->AddDevice(rxDev);
       txDev->SetDataRate(DataRate("100Gbps"));
@@ -87,6 +88,7 @@ class Ws31M1CnpAProtocolCase : public TestCase {
       tx->SetAttribute("IrnBdp", UintegerValue(30000));
       tx->SetAttribute("IrnRtoLow", TimeValue(MicroSeconds(100)));
       tx->SetAttribute("IrnRtoHigh", TimeValue(MicroSeconds(320)));
+      tx->SetAttribute("Ws31M1BoundedRecovery", BooleanValue(boundedRecovery));
       if (setting != 0)
         rx->SetAttribute("OoOCnpEnabled", BooleanValue(setting == 1));
 
@@ -121,6 +123,9 @@ class Ws31M1CnpAProtocolCase : public TestCase {
       tx->PktSent(qp, packet, NanoSeconds(0));
       return packet;
     }
+
+    void SendOne() { SendNext(); }
+    void CaptureNext() { observedNext = qp->snd_nxt; }
 
     Ptr<Packet> ReceiveData(Ptr<Packet> packet, bool ce) {
       Ptr<Packet> incoming = packet->Copy();
@@ -250,11 +255,100 @@ class Ws31M1CnpAProtocolCase : public TestCase {
   }
 };
 
+class Ws31M1BoundedRecoveryCase : public TestCase {
+ public:
+  Ws31M1BoundedRecoveryCase()
+      : TestCase("M1 bounded IRN recovery keeps one deadline per oldest gap") {}
+
+  void DoRun() override {
+    // A repeated SACK and a later send cannot postpone recovery of byte zero.
+    {
+      Ws31M1CnpAProtocolCase::Fixture fixture(2, 3000, true);
+      fixture.SendNext();
+      Ptr<Packet> later = fixture.SendNext();
+      Ptr<Packet> sack = fixture.ReceiveData(later, false);
+      fixture.ReceiveFeedback(sack);
+      NS_TEST_ASSERT_MSG_EQ(fixture.qp->snd_nxt, 2000u,
+                            "first SACK must not immediately rewind the sender");
+      Simulator::Schedule(MicroSeconds(50),
+                          &Ws31M1CnpAProtocolCase::Fixture::ReceiveFeedback, &fixture, sack);
+      Simulator::Schedule(MicroSeconds(60),
+                          &Ws31M1CnpAProtocolCase::Fixture::SendOne, &fixture);
+      Simulator::Stop(MicroSeconds(101));
+      Simulator::Run();
+      NS_TEST_ASSERT_MSG_EQ(fixture.qp->snd_nxt, 0u,
+                            "same-gap feedback or new data postponed the RTO");
+      Ptr<Packet> retry = fixture.SendNext();
+      CustomHeader data(CustomHeader::L2_Header | CustomHeader::L3_Header |
+                        CustomHeader::L4_Header);
+      retry->PeekHeader(data);
+      NS_TEST_ASSERT_MSG_EQ(data.udp.seq, 0u, "RTO must retransmit the unsacked gap");
+      Ptr<Packet> ack = fixture.ReceiveData(retry, false);
+      fixture.ReceiveFeedback(ack);
+      NS_TEST_ASSERT_MSG_EQ(fixture.qp->snd_una, 2000u,
+                            "SACKed byte range must advance after the missing gap arrives");
+      Simulator::Destroy();
+    }
+
+    // Only cumulative progress moves the deadline to the next missing byte.
+    {
+      Ws31M1CnpAProtocolCase::Fixture fixture(2, 3000, true);
+      Ptr<Packet> first = fixture.SendNext();
+      fixture.SendNext();
+      Ptr<Packet> progress = fixture.ReceiveData(first, false);
+      Simulator::Schedule(MicroSeconds(50),
+                          &Ws31M1CnpAProtocolCase::Fixture::ReceiveFeedback, &fixture, progress);
+      Simulator::Schedule(MicroSeconds(101),
+                          &Ws31M1CnpAProtocolCase::Fixture::CaptureNext, &fixture);
+      Simulator::Stop(MicroSeconds(151));
+      Simulator::Run();
+      NS_TEST_ASSERT_MSG_EQ(fixture.observedNext, 2000u,
+                            "old gap timer fired after cumulative progress");
+      NS_TEST_ASSERT_MSG_EQ(fixture.qp->snd_nxt, 1000u,
+                            "new oldest gap did not recover at its own deadline");
+      Simulator::Destroy();
+    }
+
+    // Repeating a pure cumulative ACK without new bytes cannot move that deadline.
+    {
+      Ws31M1CnpAProtocolCase::Fixture fixture(2, 2000, true);
+      Ptr<Packet> first = fixture.SendNext();
+      fixture.SendNext();
+      Ptr<Packet> ack = fixture.ReceiveData(first, false);
+      fixture.ReceiveFeedback(ack);
+      Simulator::Schedule(MicroSeconds(50),
+                          &Ws31M1CnpAProtocolCase::Fixture::ReceiveFeedback, &fixture, ack);
+      Simulator::Stop(MicroSeconds(101));
+      Simulator::Run();
+      NS_TEST_ASSERT_MSG_EQ(fixture.qp->snd_nxt, 1000u,
+                            "duplicate cumulative ACK postponed the next-gap RTO");
+      Simulator::Destroy();
+    }
+
+    // A delivered tail with a lost ACK has no SACK, but still recovers.
+    {
+      Ws31M1CnpAProtocolCase::Fixture fixture(2, 1000, true);
+      Ptr<Packet> tail = fixture.SendNext();
+      fixture.ReceiveData(tail, false);
+      Simulator::Stop(MicroSeconds(101));
+      Simulator::Run();
+      NS_TEST_ASSERT_MSG_EQ(fixture.qp->snd_nxt, 0u,
+                            "lost tail ACK did not trigger bounded recovery");
+      Ptr<Packet> retry = fixture.SendNext();
+      fixture.ReceiveFeedback(fixture.ReceiveData(retry, false));
+      NS_TEST_ASSERT_MSG_EQ(fixture.completed, 1u,
+                            "tail ACK recovery did not complete the request");
+      Simulator::Destroy();
+    }
+  }
+};
+
 class Ws31M1CnpASuite : public TestSuite {
  public:
   Ws31M1CnpASuite() : TestSuite("ws31-m1-cnp-a", UNIT) {
     AddTestCase(new Ws31M1CnpAReceiverCase());
     AddTestCase(new Ws31M1CnpAProtocolCase());
+    AddTestCase(new Ws31M1BoundedRecoveryCase());
   }
 };
 

@@ -518,6 +518,9 @@ def execute(experiment_id):
                '--topo', params['topo'], '--cdf', params['cdf']]
     if 'ooo_cnp' in params:
         command.extend(['--ooo-cnp', str(params['ooo_cnp'])])
+    if 'ws31_m1_bounded_recovery' in params:
+        command.extend(['--ws31-m1-bounded-recovery',
+                        str(params['ws31_m1_bounded_recovery'])])
     if params.get('flow_file'):
         command.extend(['--flow-file', 'config/' + params['flow_file']])
     if params.get('ws13_diag'):
@@ -851,6 +854,7 @@ def main():
     run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
     run_cmd.add_argument('--ooo-cnp', type=int, choices=(0, 1), default=1)
+    run_cmd.add_argument('--ws31-m1-bounded-recovery', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-composition', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-lifecycle', type=int, choices=(0, 1, 2, 3, 4, 5, 6, 7, 8), default=0)
     run_cmd.add_argument('--simulation-seed', type=int, choices=(1,), default=1)
@@ -976,6 +980,8 @@ def main():
             raise RuntimeError('Small-run safety bounds: load 1-50, simulation time 0.005-0.1 s')
         if args.ooo_cnp == 0 and args.irn != 1:
             raise RuntimeError('OOO CNP off requires IRN enabled')
+        if args.ws31_m1_bounded_recovery == 1 and args.irn != 1:
+            raise RuntimeError('WS-31 M1 bounded recovery requires IRN enabled')
         if not re.match(r'^[A-Za-z0-9_-]+$', args.topo) or not re.match(r'^[A-Za-z0-9_-]+$', args.cdf):
             raise RuntimeError('Invalid topology or CDF name')
         flow_file = args.flow_file
@@ -985,6 +991,7 @@ def main():
             raise RuntimeError('Flow file must be a config/*.txt basename')
         start(args.id, {'lb': args.lb, 'pfc': args.pfc, 'irn': args.irn,
                         'ooo_cnp': args.ooo_cnp,
+                        'ws31_m1_bounded_recovery': args.ws31_m1_bounded_recovery,
                         'simul_time': args.simul_time,
                         'netload': args.netload, 'bw': args.bw, 'buffer': args.buffer,
                         'topo': args.topo, 'cdf': args.cdf,

@@ -204,6 +204,8 @@ double load = 10.0;
 int enable_irn = 0;
 bool ooo_cnp_enabled = true;
 bool ooo_cnp_seen = false;
+bool ws31_m1_bounded_recovery = false;
+bool ws31_m1_bounded_recovery_seen = false;
 int random_seed = 1;  // change this randomly if you want random expt
 
 uint64_t maxRtt, maxBdp;
@@ -2086,6 +2088,15 @@ int main(int argc, char *argv[]) {
                 }
                 ooo_cnp_seen = true;
                 ooo_cnp_enabled = (v == 1);
+            } else if (key.compare("WS31_M1_BOUNDED_RECOVERY") == 0) {
+                int v = -1;
+                conf >> v;
+                if (!conf || (v != 0 && v != 1) || ws31_m1_bounded_recovery_seen) {
+                    std::cerr << "WS31_M1_BOUNDED_RECOVERY requires one value of 0 or 1" << std::endl;
+                    return 2;
+                }
+                ws31_m1_bounded_recovery_seen = true;
+                ws31_m1_bounded_recovery = (v == 1);
             } else if (key.compare("RANDOM_SEED") == 0) {
                 int v;
                 conf >> v;
@@ -2110,6 +2121,10 @@ int main(int argc, char *argv[]) {
 
     if (!ooo_cnp_enabled && !enable_irn) {
         std::cerr << "OOO_CNP_ENABLED=0 requires ENABLE_IRN=1" << std::endl;
+        return 2;
+    }
+    if (ws31_m1_bounded_recovery && !enable_irn) {
+        std::cerr << "WS31_M1_BOUNDED_RECOVERY=1 requires ENABLE_IRN=1" << std::endl;
         return 2;
     }
 
@@ -2561,6 +2576,7 @@ int main(int argc, char *argv[]) {
             rdmaHw->SetAttribute("DctcpRateAI", DataRateValue(DataRate(dctcp_rate_ai)));
             rdmaHw->SetAttribute("IrnEnable", BooleanValue(enable_irn));
             rdmaHw->SetAttribute("OoOCnpEnabled", BooleanValue(ooo_cnp_enabled));
+            rdmaHw->SetAttribute("Ws31M1BoundedRecovery", BooleanValue(ws31_m1_bounded_recovery));
             // topo2bdpMap (e.g., longest BDP 25000: 8us * 25Gbps)
             rdmaHw->SetAttribute("IrnRtoHigh", TimeValue(MicroSeconds(320)));  // 1930
             rdmaHw->SetAttribute("IrnRtoLow", TimeValue(MicroSeconds(100)));   // 454

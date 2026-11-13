@@ -219,6 +219,7 @@ class RdmaHw : public Object {
      *********************/
     bool m_irn;
     bool m_oooCnpEnabled;
+    bool m_ws31M1BoundedRecovery;
     Time m_irn_rtoLow;
     Time m_irn_rtoHigh;
     uint32_t m_irn_bdp;

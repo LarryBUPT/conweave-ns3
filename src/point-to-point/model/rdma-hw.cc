@@ -220,6 +220,9 @@ TypeId RdmaHw::GetTypeId(void) {
             .AddAttribute("OoOCnpEnabled", "Emit CNP for IRN out-of-order feedback",
                           BooleanValue(true), MakeBooleanAccessor(&RdmaHw::m_oooCnpEnabled),
                           MakeBooleanChecker())
+            .AddAttribute("Ws31M1BoundedRecovery", "Keep the oldest outstanding IRN gap on a fixed RTO until cumulative progress",
+                          BooleanValue(false), MakeBooleanAccessor(&RdmaHw::m_ws31M1BoundedRecovery),
+                          MakeBooleanChecker())
             .AddAttribute("IrnRtoLow", "Low RTO for IRN", TimeValue(MicroSeconds(454)),
                           MakeTimeAccessor(&RdmaHw::m_irn_rtoLow), MakeTimeChecker())
             .AddAttribute("IrnRtoHigh", "High RTO for IRN", TimeValue(MicroSeconds(1350)),
@@ -957,6 +960,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         if (cnp) ++s.cnp_feedback;
     }
 
+    const uint64_t unaBeforeFeedback = qp->snd_una;
     uint32_t nic_idx = GetNicIdxOfQp(qp);
     Ptr<QbbNetDevice> dev = m_nic[nic_idx].dev;
 
@@ -1038,17 +1042,24 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
      * packet, but rather simply detects the persistent absence of response
      * packets.
      * */
+    if (m_ws31M1BoundedRecovery && qp->GetOnTheFly() == 0 &&
+        qp->m_retransmit.IsRunning()) {
+        qp->m_retransmit.Cancel();
+    }
     if (!qp->IsFinished() && qp->GetOnTheFly() > 0) {
-        if (qp->m_retransmit.IsRunning()) qp->m_retransmit.Cancel();
-        qp->m_retransmit = Simulator::Schedule(qp->GetRto(m_mtu), &RdmaHw::HandleTimeout, this, qp,
-                                               qp->GetRto(m_mtu));
+        if (!m_ws31M1BoundedRecovery || qp->snd_una > unaBeforeFeedback ||
+            !qp->m_retransmit.IsRunning()) {
+            if (qp->m_retransmit.IsRunning()) qp->m_retransmit.Cancel();
+            const Time rto = qp->GetRto(m_mtu);
+            qp->m_retransmit = Simulator::Schedule(rto, &RdmaHw::HandleTimeout, this, qp, rto);
+        }
     }
 
     if (m_irn) {
         if (ch.ack.irnNackSize != 0) {
             if (!qp->irn.m_recovery) {
                 qp->irn.m_recovery_seq = qp->snd_nxt;
-                RecoverQueue(qp);
+                if (!m_ws31M1BoundedRecovery) RecoverQueue(qp);
                 qp->irn.m_recovery = true;
                 if (Ws30V14Enabled() && Ws30Level() && qp->m_ws30Serial) {
                     ++qp->m_ws30RecoveryEvents;
@@ -1626,9 +1637,11 @@ void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap)
                 qp->m_ws31C3rMaxIssuedEnd = std::max(qp->m_ws31C3rMaxIssuedEnd,
                     uint64_t(ch.udp.seq) + payload_size);
             // Update Timer
-            if (qp->m_retransmit.IsRunning()) qp->m_retransmit.Cancel();
-            qp->m_retransmit = Simulator::Schedule(qp->GetRto(m_mtu), &RdmaHw::HandleTimeout, this,
-                                                   qp, qp->GetRto(m_mtu));
+            if (!m_ws31M1BoundedRecovery || !qp->m_retransmit.IsRunning()) {
+                if (qp->m_retransmit.IsRunning()) qp->m_retransmit.Cancel();
+                const Time rto = qp->GetRto(m_mtu);
+                qp->m_retransmit = Simulator::Schedule(rto, &RdmaHw::HandleTimeout, this, qp, rto);
+            }
         } else if (ch.l3Prot == 0xFC || ch.l3Prot == 0xFD || ch.l3Prot == 0xFF) {  // ACK, NACK, CNP
         } else if (ch.l3Prot == 0xFE) {                                            // PFC
         }

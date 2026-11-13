@@ -71,6 +71,7 @@ HARM_GATE_OFF_BYTES 4096
 ENABLE_PFC {enabled_pfc}
 ENABLE_IRN {enabled_irn}
 OOO_CNP_ENABLED {ooo_cnp_enabled}
+WS31_M1_BOUNDED_RECOVERY {ws31_m1_bounded_recovery}
 PAUSE_TIME {pause_time_us}
 
 CONWEAVE_TX_EXPIRY_TIME {cwh_tx_expiry_time}
@@ -213,6 +214,7 @@ def main():
                         type=int, default=0, help="enable IRN (default: 0)")
     parser.add_argument('--ooo-cnp', type=int, choices=(0, 1), default=1,
                         help='emit CNP for IRN out-of-order feedback (default: 1)')
+    parser.add_argument('--ws31-m1-bounded-recovery', type=int, choices=(0, 1), default=0)
     parser.add_argument('--factorial-pilot', action='store_true',
                         help='allow exploratory IRN/PFC 00 and 11 configurations')
     parser.add_argument('--factorial-drop-diag', action='store_true',
@@ -300,6 +302,8 @@ def main():
     enabled_irn = int(args.irn)
     if args.ooo_cnp == 0 and enabled_irn != 1:
         parser.error('--ooo-cnp 0 requires --irn 1')
+    if args.ws31_m1_bounded_recovery == 1 and enabled_irn != 1:
+        parser.error('--ws31-m1-bounded-recovery 1 requires --irn 1')
     bw = int(args.bw)
     buffer = args.buffer
     topo = args.topo
@@ -566,6 +570,7 @@ def main():
                                         cwh_path_pause_time=cwh_path_pause_time, cwh_extra_voq_flush_time=cwh_extra_voq_flush_time,
                                         enabled_pfc=enabled_pfc, enabled_irn=enabled_irn,
                                         ooo_cnp_enabled=args.ooo_cnp,
+                                        ws31_m1_bounded_recovery=args.ws31_m1_bounded_recovery,
                                         cc_mode=cc_mode,
                                         ai=ai, hai=hai, dctcp_ai=dctcp_ai,
                                         has_win=has_win, var_win=var_win,
