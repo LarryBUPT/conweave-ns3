@@ -516,6 +516,8 @@ def execute(experiment_id):
                '--netload', str(params['netload']), '--bw', str(params['bw']),
                '--buffer', str(params.get('buffer', 9)),
                '--topo', params['topo'], '--cdf', params['cdf']]
+    if 'ooo_cnp' in params:
+        command.extend(['--ooo-cnp', str(params['ooo_cnp'])])
     if params.get('flow_file'):
         command.extend(['--flow-file', 'config/' + params['flow_file']])
     if params.get('ws13_diag'):
@@ -848,6 +850,7 @@ def main():
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ooo-cnp', type=int, choices=(0, 1), default=1)
     run_cmd.add_argument('--ws30-composition', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-lifecycle', type=int, choices=(0, 1, 2, 3, 4, 5, 6, 7, 8), default=0)
     run_cmd.add_argument('--simulation-seed', type=int, choices=(1,), default=1)
@@ -971,6 +974,8 @@ def main():
             raise RuntimeError('WS-18 admission rate must be positive')
         if args.netload < 1 or args.netload > 50 or not 0.005 <= float(args.simul_time) <= 0.1:
             raise RuntimeError('Small-run safety bounds: load 1-50, simulation time 0.005-0.1 s')
+        if args.ooo_cnp == 0 and args.irn != 1:
+            raise RuntimeError('OOO CNP off requires IRN enabled')
         if not re.match(r'^[A-Za-z0-9_-]+$', args.topo) or not re.match(r'^[A-Za-z0-9_-]+$', args.cdf):
             raise RuntimeError('Invalid topology or CDF name')
         flow_file = args.flow_file
@@ -979,6 +984,7 @@ def main():
         if flow_file and not re.match(r'^[A-Za-z0-9_.-]+[.]txt$', flow_file):
             raise RuntimeError('Flow file must be a config/*.txt basename')
         start(args.id, {'lb': args.lb, 'pfc': args.pfc, 'irn': args.irn,
+                        'ooo_cnp': args.ooo_cnp,
                         'simul_time': args.simul_time,
                         'netload': args.netload, 'bw': args.bw, 'buffer': args.buffer,
                         'topo': args.topo, 'cdf': args.cdf,

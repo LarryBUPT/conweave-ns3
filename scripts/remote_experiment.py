@@ -374,6 +374,7 @@ def main():
     run_cmd.add_argument('--ws25-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws28-tail-diag', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-observe', type=int, choices=(0, 1, 2), default=0)
+    run_cmd.add_argument('--ooo-cnp', type=int, choices=(0, 1), default=1)
     run_cmd.add_argument('--ws30-composition', type=int, choices=(0, 1), default=0)
     run_cmd.add_argument('--ws30-lifecycle', type=int, choices=(0, 1, 2, 3, 4, 5, 6, 7, 8), default=0)
     run_cmd.add_argument('--simulation-seed', type=int, choices=(1,), default=1)
@@ -482,12 +483,15 @@ def main():
             parser.error('WS-21 heartbeat fault needs enabled heartbeat and a time window')
         if args.ws21_port_events and (args.lb != 'ws18' or args.ws21_port_max_bytes < 1024):
             parser.error('WS-21 port events require ws18 and a byte cap >= 1024')
+        if args.ooo_cnp == 0 and args.irn != 1:
+            parser.error('--ooo-cnp 0 requires --irn 1')
         command = ['run', '--id', args.id, '--lb', args.lb, '--simul-time', args.simul_time,
                     '--netload', str(args.netload), '--bw', str(args.bw),
                     '--max-concurrent', str(args.max_concurrent),
                     '--buffer', str(args.buffer),
                     '--topo', args.topo, '--cdf', args.cdf,
-                    '--pfc', str(args.pfc), '--irn', str(args.irn)]
+                    '--pfc', str(args.pfc), '--irn', str(args.irn),
+                    '--ooo-cnp', str(args.ooo_cnp)]
         if args.lb == 'ws18':
             command.extend(['--ws18-admission', str(args.ws18_admission),
                             '--ws18-path', str(args.ws18_path),
