@@ -695,6 +695,7 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
     Ptr<RdmaDriver> rdma = dstNode->GetObject<RdmaDriver>();
     rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->sport, q->dport, q->m_pg,
                             Ws30V13Life() >= 3 || lb_mode == 57 ||
+                                    (lb_mode == 33 && Ws30Level()) ||
                                     (lb_mode >= 58 && lb_mode <= 61)
                                 ? q->m_flow_id
                                 : -1);
@@ -3058,7 +3059,7 @@ int main(int argc, char *argv[]) {
     /*----- we don't need below. Just we can enforce to close this simulation. -----*/
     /*-----------------------------------------------------------------------------*/
     Simulator::Destroy();
-    if (lb_mode>=58 && lb_mode<=61) {
+    if ((lb_mode==33 && Ws30Level()) || (lb_mode>=58 && lb_mode<=61)) {
         struct rusage usage;
         if (getrusage(RUSAGE_SELF,&usage)!=0)
             NS_FATAL_ERROR("WS31 M1 simulator resource accounting failed");
