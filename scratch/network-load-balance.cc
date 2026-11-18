@@ -57,6 +57,7 @@
 #include "ns3/settings.h"
 #include "ns3/workload-tag.h"
 #include "ns3/ws30-v13-fixture.h"
+#include "ns3/ws30-observer.h"
 #include "ns3/ws31-start.h"
 #include "ns3/ws31-label-fixture.h"
 #include "ns3/ws31-ofan.h"
@@ -697,8 +698,7 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
     Ptr<RdmaDriver> rdma = dstNode->GetObject<RdmaDriver>();
     rdma->m_rdma->DeleteRxQp(q->sip.Get(), q->sport, q->dport, q->m_pg,
                             Ws30V13Life() >= 3 || lb_mode == 57 ||
-                                    (lb_mode == 33 && Ws30Level()) ||
-                                    (lb_mode >= 58 && lb_mode <= 61)
+                                    Ws31M1CompletionObserved(lb_mode, ws31_m1_bounded_recovery)
                                 ? q->m_flow_id
                                 : -1);
     if (Ws30V13Life() == 4 && q->m_ws30Serial) {
@@ -3075,7 +3075,7 @@ int main(int argc, char *argv[]) {
     /*----- we don't need below. Just we can enforce to close this simulation. -----*/
     /*-----------------------------------------------------------------------------*/
     Simulator::Destroy();
-    if ((lb_mode==33 && Ws30Level()) || (lb_mode>=58 && lb_mode<=61)) {
+    if (Ws31M1CompletionObserved(lb_mode, ws31_m1_bounded_recovery)) {
         struct rusage usage;
         if (getrusage(RUSAGE_SELF,&usage)!=0)
             NS_FATAL_ERROR("WS31 M1 simulator resource accounting failed");

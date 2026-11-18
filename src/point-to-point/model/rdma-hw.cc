@@ -629,8 +629,7 @@ bool RdmaHw::AcceptWs30AckGeneration(Ptr<Packet> p, Ptr<RdmaQueuePair> qp) {
 void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t pg, int32_t flow_id) {
     uint64_t key = GetRxQpKey(dip, dport, sport, pg);
 
-    if ((Settings::lb_mode == 33 && Ws30Level()) ||
-        (Settings::lb_mode >= 58 && Settings::lb_mode <= 61)) {
+    if (Ws31M1CompletionObserved(Settings::lb_mode, m_ws31M1BoundedRecovery)) {
         auto it = m_rxQpMap.find(key);
         if (it == m_rxQpMap.end() || it->second->m_flow_id != flow_id)
             NS_FATAL_ERROR("M1 receiver completion has wrong request identity");

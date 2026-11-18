@@ -20,6 +20,15 @@ inline uint32_t Ws30Level() {
     }();
     return level;
 }
+
+inline bool Ws31M1CompletionObserved(uint32_t mode, bool boundedRecovery) {
+    if (mode >= 58 && mode <= 61) return true;
+    if (!Ws30Level()) return false;
+    if (mode == 33) return true;
+    return boundedRecovery &&
+        (mode == 0 || mode == 2 || mode == 3 || mode == 6 || mode == 9);
+}
+
 struct Ws30RouteState { uint32_t first=0, last=0; uint64_t packets=0, changes=0; };
 struct Ws30ChoiceStat {
     uint64_t events=0, same=0, empty=0, background=0, equal=0, near=0;
