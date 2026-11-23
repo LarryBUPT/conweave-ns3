@@ -69,6 +69,7 @@
 #include "ns3/qbb-header.h"
 #include "ns3/pause-header.h"
 #include "ns3/flow-id-num-tag.h"
+#include "ws31-rx-reorder-fixture.h"
 #include <algorithm>
 #include <cstdio>
 #include <memory>
@@ -207,6 +208,10 @@ bool ooo_cnp_enabled = true;
 bool ooo_cnp_seen = false;
 bool ws31_m1_bounded_recovery = false;
 bool ws31_m1_bounded_recovery_seen = false;
+int64_t ws31_rx_reorder_connection_bytes = 0;
+int64_t ws31_rx_reorder_device_bytes = 0;
+int64_t ws31_rx_reorder_wait_ns = 0;
+std::string ws31_rx_reorder_case;
 int random_seed = 1;  // change this randomly if you want random expt
 
 uint64_t maxRtt, maxBdp;
@@ -2097,6 +2102,28 @@ int main(int argc, char *argv[]) {
                 }
                 ws31_m1_bounded_recovery_seen = true;
                 ws31_m1_bounded_recovery = (v == 1);
+            } else if (key.compare("WS31_RX_REORDER_LIMITS") == 0) {
+                std::string line, extra;
+                std::getline(conf, line);
+                std::istringstream limits(line);
+                if (ws31_rx_reorder_connection_bytes != 0 ||
+                    !(limits >> ws31_rx_reorder_connection_bytes >> ws31_rx_reorder_device_bytes >>
+                      ws31_rx_reorder_wait_ns) ||
+                    (limits >> extra) || ws31_rx_reorder_connection_bytes <= 0 ||
+                    ws31_rx_reorder_device_bytes < ws31_rx_reorder_connection_bytes ||
+                    ws31_rx_reorder_wait_ns <= 0) {
+                    std::cerr << "WS31_RX_REORDER_LIMITS requires connection bytes, "
+                              << "device bytes and wait in ns, all positive" << std::endl;
+                    return 2;
+                }
+            } else if (key.compare("WS31_RX_REORDER_CASE") == 0) {
+                conf >> ws31_rx_reorder_case;
+                if (!conf || (ws31_rx_reorder_case != "gap_closure" &&
+                              ws31_rx_reorder_case != "two_caps" &&
+                              ws31_rx_reorder_case != "receiver_deadline")) {
+                    std::cerr << "Unknown WS31_RX_REORDER_CASE" << std::endl;
+                    return 2;
+                }
             } else if (key.compare("RANDOM_SEED") == 0) {
                 int v;
                 conf >> v;
@@ -2125,6 +2152,22 @@ int main(int argc, char *argv[]) {
     }
     if (ws31_m1_bounded_recovery && !enable_irn) {
         std::cerr << "WS31_M1_BOUNDED_RECOVERY=1 requires ENABLE_IRN=1" << std::endl;
+        return 2;
+    }
+    if (ws31_rx_reorder_connection_bytes > 0) {
+        if (lb_mode != 58 || !enable_irn || !ws31_m1_bounded_recovery) {
+            std::cerr << "WS31_RX_REORDER_LIMITS requires mode 58 and bounded IRN recovery"
+                      << std::endl;
+            return 2;
+        }
+        std::cerr << "WS31_RX_REORDER_LIMITS\t" << ws31_rx_reorder_connection_bytes << " "
+                  << ws31_rx_reorder_device_bytes << " " << ws31_rx_reorder_wait_ns << "\n";
+    }
+
+    if (!ws31_rx_reorder_case.empty() &&
+        (lb_mode != 58 || !enable_irn || !ws31_m1_bounded_recovery || packet_payload_size != 1000)) {
+        std::cerr << "WS31_RX_REORDER_CASE requires mode 58, bounded IRN and 1000-byte payloads"
+                  << std::endl;
         return 2;
     }
 
@@ -2577,6 +2620,11 @@ int main(int argc, char *argv[]) {
             rdmaHw->SetAttribute("IrnEnable", BooleanValue(enable_irn));
             rdmaHw->SetAttribute("OoOCnpEnabled", BooleanValue(ooo_cnp_enabled));
             rdmaHw->SetAttribute("Ws31M1BoundedRecovery", BooleanValue(ws31_m1_bounded_recovery));
+            if (ws31_rx_reorder_connection_bytes > 0) {
+                rdmaHw->ConfigureWs31RxReorder(ws31_rx_reorder_connection_bytes,
+                                               ws31_rx_reorder_device_bytes,
+                                               NanoSeconds(ws31_rx_reorder_wait_ns));
+            }
             // topo2bdpMap (e.g., longest BDP 25000: 8us * 25Gbps)
             rdmaHw->SetAttribute("IrnRtoHigh", TimeValue(MicroSeconds(320)));  // 1930
             rdmaHw->SetAttribute("IrnRtoLow", TimeValue(MicroSeconds(100)));   // 454
@@ -2603,6 +2651,15 @@ int main(int argc, char *argv[]) {
                 return 2;
             }
         }
+    }
+
+    Ws31RxReorderFixture ws31RxReorderFixture;
+    if (!ws31_rx_reorder_case.empty()) {
+        NS_ABORT_MSG_IF(Settings::host_num <= 2 || n.Get(2)->GetNDevices() != 2,
+                        "WS-31 receiver fixture expects one data interface on host 2");
+        Ptr<QbbNetDevice> receiver = DynamicCast<QbbNetDevice>(n.Get(2)->GetDevice(1));
+        NS_ABORT_MSG_IF(!receiver, "WS-31 receiver fixture expected a Qbb receiver");
+        ws31RxReorderFixture.Install(receiver, ws31_rx_reorder_case);
     }
 
     /**
@@ -3010,6 +3067,8 @@ int main(int argc, char *argv[]) {
             entry.second->RecordWs21PortBoundary('B');
     Ws30CompositionInstall(n, flowgen_start_time);
     Simulator::Run();
+    NS_ABORT_MSG_IF(!ws31_rx_reorder_case.empty() && !ws31RxReorderFixture.Finished(),
+                    "WS-31 receiver fixture did not consume all scheduled original packets");
     if (ws31::StartMode(lb_mode)) {
         const ws31::StartCounters &s=ws31::StartData();
         if (s.launched+s.cancelled>s.demanded || s.finished>s.launched ||

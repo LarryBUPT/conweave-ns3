@@ -14,6 +14,7 @@
 
 #include <climits>
 #include <cstdlib>
+#include <iterator>
 #include <map>
 #include <iomanip>
 #include <sstream>
@@ -629,6 +630,12 @@ bool RdmaHw::AcceptWs30AckGeneration(Ptr<Packet> p, Ptr<RdmaQueuePair> qp) {
 void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t pg, int32_t flow_id) {
     uint64_t key = GetRxQpKey(dip, dport, sport, pg);
 
+    if (m_ws31RxConnectionCap) {
+        const auto rx = m_rxQpMap.find(key);
+        NS_ABORT_MSG_IF(rx == m_rxQpMap.end() || m_ws31RxGaps.count(PeekPointer(rx->second)),
+                        "Ordered receive completed before all retained payload was delivered");
+    }
+
     if (Ws31M1CompletionObserved(Settings::lb_mode, m_ws31M1BoundedRecovery)) {
         auto it = m_rxQpMap.find(key);
         if (it == m_rxQpMap.end() || it->second->m_flow_id != flow_id)
@@ -669,6 +676,140 @@ void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t p
 
     // delete
     m_rxQpMap.erase(key);
+}
+
+void RdmaHw::ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceBytes, Time wait) {
+    m_ws31RxConnectionCap = connectionBytes;
+    m_ws31RxDeviceCap = deviceBytes;
+    m_ws31RxWait = wait;
+}
+
+void RdmaHw::TraceWs31RxReorder(Ptr<RdmaRxQueuePair> qp, const char *event,
+                               uint32_t seq, uint32_t bytes) const {
+    if (!Ws30Level()) return;
+    const auto gap = m_ws31RxGaps.find(PeekPointer(qp));
+    std::cout << "WS31_RX_REORDER event=" << event
+              << " time_ns=" << Simulator::Now().GetNanoSeconds()
+              << " host=" << m_node->GetId() << " flow_id=" << qp->m_flow_id
+              << " seq=" << seq << " bytes=" << bytes
+              << " delivered_until=" << qp->ReceiverNextExpectedSeq
+              << " connection_resident_bytes=" << (gap == m_ws31RxGaps.end() ? 0 : gap->second.bytes)
+              << " device_resident_bytes=" << m_ws31RxDeviceBytes << std::endl;
+}
+
+void RdmaHw::ArmWs31RxGap(Ws31RxGap &gap, Ptr<RdmaRxQueuePair> qp) {
+    gap.deadline = Simulator::Now() + m_ws31RxWait;
+    gap.expiry = Simulator::Schedule(m_ws31RxWait, &RdmaHw::ExpireWs31RxGap, this, qp);
+    TraceWs31RxReorder(qp, "wait_start", qp->ReceiverNextExpectedSeq, 0);
+}
+
+void RdmaHw::ExpireWs31RxGap(Ptr<RdmaRxQueuePair> qp) {
+    // Byte ownership survives this deadline. The sender's existing RTO recovers the gap.
+    TraceWs31RxReorder(qp, "wait_expired", qp->ReceiverNextExpectedSeq, 0);
+}
+
+void RdmaHw::TraceWs31RxSenderDeadline(Ptr<RdmaQueuePair> qp, Time rto) const {
+    if (!m_ws31RxConnectionCap || !Ws30Level()) return;
+    const Time now = Simulator::Now();
+    std::cout << "WS31_RX_REORDER_SENDER_ARM"
+              << " time_ns=" << now.GetNanoSeconds()
+              << " host=" << m_node->GetId() << " flow_id=" << qp->m_flow_id
+              << " snd_una=" << qp->snd_una
+              << " deadline_ns=" << (now + rto).GetNanoSeconds() << std::endl;
+}
+
+int RdmaHw::ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,
+                                 Ptr<RdmaRxQueuePair> qp, uint32_t size, bool &cnp) {
+    const uint32_t seq = ch.udp.seq;
+    const uint32_t expected = qp->ReceiverNextExpectedSeq;
+    const uint64_t end = uint64_t(seq) + size;
+    const uint32_t headerBytes = ch.GetSerializedSize();
+    const RdmaRxQueuePair *key = PeekPointer(qp);
+    NS_ABORT_MSG_IF(qp->dip != ch.sip || qp->sip != ch.dip ||
+                        qp->dport != ch.udp.sport || qp->sport != ch.udp.dport ||
+                        qp->m_ecn_source.qIndex != ch.udp.pg,
+                    "Packet does not match the full ordered receive connection identity");
+    auto gap = m_ws31RxGaps.find(key);
+    TraceWs31RxReorder(qp, "arrival", seq, size);
+
+    if (end <= expected) {
+        TraceWs31RxReorder(qp, "duplicate_delivered", seq, size);
+        return 6;  // Repeat the cumulative ACK for bytes already delivered.
+    }
+    if (seq > expected) {
+        if (gap != m_ws31RxGaps.end()) {
+            auto &payload = gap->second.payload;
+            const auto following = payload.lower_bound(seq);
+            if (following != payload.end() && following->first == seq &&
+                following->second->GetSize() == size) {
+                TraceWs31RxReorder(qp, "duplicate_resident", seq, size);
+                return 2;  // Repeat a SACK only for a still-owned range.
+            }
+            if (Simulator::Now() >= gap->second.deadline) {
+                TraceWs31RxReorder(qp, "reject_wait", seq, size);
+                return 0;
+            }
+            const bool overlapsFollowing = following != payload.end() && following->first < end;
+            bool overlapsPrevious = false;
+            if (following != payload.begin()) {
+                const auto previous = std::prev(following);
+                overlapsPrevious = uint64_t(previous->first) + previous->second->GetSize() > seq;
+            }
+            if (overlapsFollowing || overlapsPrevious) {
+                TraceWs31RxReorder(qp, "reject_overlap", seq, size);
+                return 0;
+            }
+        }
+        const uint64_t connectionBytes = gap == m_ws31RxGaps.end() ? 0 : gap->second.bytes;
+        if (size > m_ws31RxConnectionCap - connectionBytes) {
+            TraceWs31RxReorder(qp, "reject_connection_cap", seq, size);
+            return 0;
+        }
+        if (size > m_ws31RxDeviceCap - m_ws31RxDeviceBytes) {
+            TraceWs31RxReorder(qp, "reject_device_cap", seq, size);
+            return 0;
+        }
+        const bool newGap = gap == m_ws31RxGaps.end();
+        auto &state = m_ws31RxGaps[key];
+        state.payload.emplace(seq, p->CreateFragment(headerBytes, size));
+        state.bytes += size;
+        m_ws31RxDeviceBytes += size;
+        qp->m_irn_sack_.sack(seq, size);
+        TraceWs31RxReorder(qp, "retain", seq, size);
+        if (newGap) ArmWs31RxGap(state, qp);
+        cnp = m_oooCnpEnabled;
+        return 2;
+    }
+
+    // The direct packet closes the gap. Append the owned suffix of each contiguous
+    // fragment before advancing the cumulative acknowledgement.
+    Ptr<Packet> delivery = p->CreateFragment(headerBytes + (expected - seq),
+                                              static_cast<uint32_t>(end - expected));
+    uint32_t cursor = static_cast<uint32_t>(end);
+    if (gap != m_ws31RxGaps.end()) {
+        auto &state = gap->second;
+        state.expiry.Cancel();
+        while (!state.payload.empty() && state.payload.begin()->first <= cursor) {
+            auto entry = state.payload.begin();
+            const uint32_t heldSize = entry->second->GetSize();
+            const uint32_t heldEnd = entry->first + heldSize;
+            if (heldEnd > cursor) {
+                delivery->AddAtEnd(entry->second->CreateFragment(cursor - entry->first,
+                                                                  heldEnd - cursor));
+                cursor = heldEnd;
+            }
+            state.bytes -= heldSize;
+            m_ws31RxDeviceBytes -= heldSize;
+            state.payload.erase(entry);
+        }
+        if (state.payload.empty()) m_ws31RxGaps.erase(gap);
+    }
+    qp->ReceiverNextExpectedSeq = cursor;
+    qp->m_irn_sack_.discardUpTo(cursor);
+    TraceWs31RxReorder(qp, "deliver", expected, delivery->GetSize());
+    const auto remaining = m_ws31RxGaps.find(key);
+    if (remaining != m_ws31RxGaps.end()) ArmWs31RxGap(remaining->second, qp);
+    return 6;
 }
 
 int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
@@ -742,7 +883,9 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                   << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(rxQp))
                   << " seq=" << ch.udp.seq << " expected=" << expected_before << std::endl;
     }
-    int x = ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
+    int x = m_ws31RxConnectionCap
+                ? ReceiveWs31Reordered(p, ch, rxQp, payload_size, cnp_check)
+                : ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
     if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0) {
         Ws25QpDiagnostic &cost=ws25_qp_diagnostics[rxQp->m_flow_id];
         if (ch.udp.seq>expected_before) cost.rx_ooo_payload_bytes+=payload_size;
@@ -832,6 +975,13 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
         newp->AddHeader(head);
         AddHeader(newp, 0x800);  // Attach PPP header
+        if (m_ws31RxConnectionCap) {
+            if (x == 2) {
+                TraceWs31RxReorder(rxQp, "sack", ch.udp.seq, payload_size);
+            } else {
+                TraceWs31RxReorder(rxQp, "cumulative_ack", rxQp->ReceiverNextExpectedSeq, 0);
+            }
+        }
         if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0)
             ws25_qp_diagnostics[rxQp->m_flow_id].feedback_wire_bytes+=newp->GetSize();
 
@@ -1051,6 +1201,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
             if (qp->m_retransmit.IsRunning()) qp->m_retransmit.Cancel();
             const Time rto = qp->GetRto(m_mtu);
             qp->m_retransmit = Simulator::Schedule(rto, &RdmaHw::HandleTimeout, this, qp, rto);
+            TraceWs31RxSenderDeadline(qp, rto);
         }
     }
 
@@ -1640,6 +1791,7 @@ void RdmaHw::PktSent(Ptr<RdmaQueuePair> qp, Ptr<Packet> pkt, Time interframeGap)
                 if (qp->m_retransmit.IsRunning()) qp->m_retransmit.Cancel();
                 const Time rto = qp->GetRto(m_mtu);
                 qp->m_retransmit = Simulator::Schedule(rto, &RdmaHw::HandleTimeout, this, qp, rto);
+                TraceWs31RxSenderDeadline(qp, rto);
             }
         } else if (ch.l3Prot == 0xFC || ch.l3Prot == 0xFD || ch.l3Prot == 0xFF) {  // ACK, NACK, CNP
         } else if (ch.l3Prot == 0xFE) {                                            // PFC

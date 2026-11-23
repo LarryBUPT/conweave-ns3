@@ -6,6 +6,7 @@
 #include <ns3/rdma.h>
 #include <ns3/selective-packet-queue.h>
 
+#include <map>
 #include <unordered_map>
 #include <unordered_set>
 #include <memory>
@@ -121,6 +122,7 @@ class RdmaHw : public Object {
 
     void CheckandSendQCN(Ptr<RdmaRxQueuePair> q);
     int ReceiverCheckSeq(uint32_t seq, Ptr<RdmaRxQueuePair> q, uint32_t size, bool &cnp);
+    void ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceBytes, Time wait);
     void AddHeader(Ptr<Packet> p, uint16_t protocolNumber);
     static uint16_t EtherToPpp(uint16_t protocol);
 
@@ -225,6 +227,25 @@ class RdmaHw : public Object {
     uint32_t m_irn_bdp;
 
    private:
+    struct Ws31RxGap {
+        std::map<uint32_t, Ptr<Packet>> payload;
+        uint64_t bytes = 0;
+        Time deadline;
+        EventId expiry;
+    };
+    uint64_t m_ws31RxConnectionCap = 0;
+    uint64_t m_ws31RxDeviceCap = 0;
+    uint64_t m_ws31RxDeviceBytes = 0;
+    Time m_ws31RxWait;
+    std::unordered_map<const RdmaRxQueuePair *, Ws31RxGap> m_ws31RxGaps;
+    int ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,
+                            Ptr<RdmaRxQueuePair> qp, uint32_t size, bool &cnp);
+    void ArmWs31RxGap(Ws31RxGap &gap, Ptr<RdmaRxQueuePair> qp);
+    void ExpireWs31RxGap(Ptr<RdmaRxQueuePair> qp);
+    void TraceWs31RxReorder(Ptr<RdmaRxQueuePair> qp, const char *event,
+                           uint32_t seq, uint32_t bytes) const;
+    void TraceWs31RxSenderDeadline(Ptr<RdmaQueuePair> qp, Time rto) const;
+
     bool m_ws31V2Required=false, m_ws31V2Failed=false;
     std::shared_ptr<Ws31V2NativeSession> m_ws31V2Session;
     void FailWs31V2();
