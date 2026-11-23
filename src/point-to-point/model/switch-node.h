@@ -93,12 +93,15 @@ class SwitchNode : public Node {
     struct Ws31C3rRoute {
         uint32_t category=0, owner=0, oldPort=0, newPort=0, epoch=0;
         uint64_t size=0, cut=0, lastArrivalNs=0, deadlineNs=0, admissionSerial=0;
+        // Committed means the drain handshake is complete. The selected
+        // port can remain unchanged in the pause-only comparison.
         bool borrowed=false, pending=false, committed=false;
     };
     std::map<Ws31C3rKey,Ws31C3rRoute> m_ws31C3rRoutes;
     std::map<ws31::QuotaKey,uint32_t> m_ws31C3rCurrentGeneration;
     uint64_t m_ws31C3rAdmissions=0, m_ws31C3rPeakRoutes=0;
     uint64_t m_ws31C3rPausePackets=0, m_ws31C3rSkippedAtActivation=0;
+    bool m_ws31C3rPauseOnly{false};
     uint32_t DoLbWs31C3r(Ptr<const Packet> p, const CustomHeader &ch,
                           const std::vector<int> &nexthops);
     bool ReceiveWs31C3rControl(Ptr<NetDevice> device, Ptr<Packet> p,

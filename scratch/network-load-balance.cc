@@ -147,6 +147,7 @@ uint64_t irn_monitor_bucket = 100000;  // ns
 bool ws31_native_declarations_seen=false, ws31_native_output_seen=false;
 bool ws31_c3r_reuse_tuple=false;
 bool ws31_c3r_replay_stale=false;
+bool ws31_c3r_pause_only=false;
 std::string ws31_native_declarations, ws31_native_output_prefix;
 
 FILE *pfc_file = NULL;
@@ -1683,6 +1684,14 @@ int main(int argc, char *argv[]) {
                     return 2;
                 }
                 ws31_c3r_replay_stale=true;
+            } else if (key.compare("WS31_C3R_PAUSE_ONLY") == 0) {
+                uint32_t enabled=0;
+                conf >> enabled;
+                if (!conf || enabled != 1 || ws31_c3r_pause_only) {
+                    std::cerr << "WS31_C3R_PAUSE_ONLY requires one value of 1" << std::endl;
+                    return 2;
+                }
+                ws31_c3r_pause_only=true;
             } else if (key.compare("FLOW_INPUT_FILE") == 0) {
                 std::string v;
                 conf >> v;
@@ -2097,6 +2106,10 @@ int main(int argc, char *argv[]) {
         std::cerr << "WS31_C3R_REPLAY_STALE requires tuple reuse" << std::endl;
         return 2;
     }
+    if (ws31_c3r_pause_only && lb_mode != 57) {
+        std::cerr << "WS31_C3R_PAUSE_ONLY requires mode 57" << std::endl;
+        return 2;
+    }
 
     if (lb_mode==56) {
         if (!((ws31_c2_size_target_bytes==16384 && ws31_c2_size_cutoff==3) ||
@@ -2253,6 +2266,8 @@ int main(int argc, char *argv[]) {
             Ptr<SwitchNode> sw = CreateObject<SwitchNode>();
             n.Add(sw);
             sw->SetAttribute("EcnEnabled", BooleanValue(enable_qcn));
+            if (ws31_c3r_pause_only)
+                sw->SetAttribute("Ws31C3rPauseOnly", BooleanValue(true));
         }
     }
     NS_LOG_INFO("Create nodes.");

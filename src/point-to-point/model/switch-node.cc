@@ -1012,6 +1012,9 @@ TypeId SwitchNode::GetTypeId(void) {
             .AddAttribute("AckHighPrio", "Set high priority for ACK/NACK or not", UintegerValue(0),
                           MakeUintegerAccessor(&SwitchNode::m_ackHighPrio),
                           MakeUintegerChecker<uint32_t>())
+            .AddAttribute("Ws31C3rPauseOnly", "Resume C3R borrowers on the original port.",
+                          BooleanValue(false), MakeBooleanAccessor(&SwitchNode::m_ws31C3rPauseOnly),
+                          MakeBooleanChecker())
             .AddTraceSource("Ws31SourceDecision", "Source ToR data arrival before queue admission.",
                             MakeTraceSourceAccessor(&SwitchNode::m_ws31SourceDecision));
     return tid;
@@ -1448,20 +1451,23 @@ void SwitchNode::WriteWs30V13State() {
     if (Settings::lb_mode == 57) {
         m_ws31Quota.Expire(Simulator::Now().GetNanoSeconds());
         if (!m_ws31Quota.Conserved()) NS_FATAL_ERROR("C3R quota accounting mismatch");
-        uint64_t pending = 0, committed = 0;
+        uint64_t pending = 0, completedDrains = 0;
         for (const auto &entry : m_ws31C3rRoutes) {
             pending += entry.second.pending;
-            committed += entry.second.committed;
+            completedDrains += entry.second.committed;
         }
         std::cout << "WS31_C3R_STATE switch=" << m_id
                   << " routes=" << m_ws31C3rRoutes.size()
                   << " peak_routes=" << m_ws31C3rPeakRoutes
                   << " admissions=" << m_ws31C3rAdmissions
-                  << " pending=" << pending << " committed=" << committed
+                  << " pending=" << pending
+                  << " committed=" << (m_ws31C3rPauseOnly ? 0 : completedDrains)
                   << " pauses=" << m_ws31C3rPausePackets
                   << " skipped=" << m_ws31C3rSkippedAtActivation
                   << " quota_entries=" << m_ws31Quota.Size()
-                  << " quota_conserved=" << m_ws31Quota.Conserved() << std::endl;
+                  << " quota_conserved=" << m_ws31Quota.Conserved();
+        if (m_ws31C3rPauseOnly) std::cout << " resumed_original=" << completedDrains;
+        std::cout << std::endl;
     }
     if ((Settings::lb_mode>=36 && Settings::lb_mode<=42) ||
         Settings::lb_mode==53 || Settings::lb_mode==54) {
@@ -1866,16 +1872,24 @@ bool SwitchNode::ReceiveWs31C3rControl(Ptr<NetDevice> device, Ptr<Packet> p,
     const uint8_t *hashKey = reinterpret_cast<const uint8_t *>(words);
     const uint32_t first = own[EcmpHash(hashKey, 12, m_ecmpSeed) % own.size()];
     const uint32_t second = own[EcmpHash(hashKey, 12, m_ecmpSeed ^ 0x9e3779b9U) % own.size()];
-    route.newPort = CalculateInterfaceLoad(second) < CalculateInterfaceLoad(first) ?
+    const uint32_t target = CalculateInterfaceLoad(second) < CalculateInterfaceLoad(first) ?
         second : first;
+    route.newPort = m_ws31C3rPauseOnly ? route.oldPort : target;
     route.cut = control.cut;
     route.pending = false;
     route.committed = true;
-    m_ws31Quota.RepinDrained(tuple, route.newPort, route.category);
-    std::cout << "WS31_C3R_COMMIT time_ns=" << now << " switch=" << m_id
-              << " flow_id=" << control.flowId << " epoch=" << route.epoch
-              << " old=" << route.oldPort << " new=" << route.newPort
-              << " cut=" << route.cut << std::endl;
+    if (m_ws31C3rPauseOnly) {
+        std::cout << "WS31_C3R_DRAIN_RESUME_ORIGINAL time_ns=" << now << " switch=" << m_id
+                  << " flow_id=" << control.flowId << " epoch=" << route.epoch
+                  << " old=" << route.oldPort << " alternative=" << target
+                  << " cut=" << route.cut << std::endl;
+    } else {
+        m_ws31Quota.RepinDrained(tuple, route.newPort, route.category);
+        std::cout << "WS31_C3R_COMMIT time_ns=" << now << " switch=" << m_id
+                  << " flow_id=" << control.flowId << " epoch=" << route.epoch
+                  << " old=" << route.oldPort << " new=" << route.newPort
+                  << " cut=" << route.cut << std::endl;
+    }
     SendWs31C3rControl(key, Ws31C3rControl::RESUME, route.epoch, route.cut);
     return true;
 }
