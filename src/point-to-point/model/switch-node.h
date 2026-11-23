@@ -13,6 +13,7 @@
 #include "qbb-net-device.h"
 #include "switch-mmu.h"
 #include "ws31-budget.h"
+#include "ws31-downstream-feedback.h"
 #include "ws31-quota.h"
 #include "ws31-ofan.h"
 
@@ -161,6 +162,21 @@ class SwitchNode : public Node {
     std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackState> m_ws21Feedback;
     std::map<std::pair<uint32_t, uint32_t>, Ws21FeedbackWindow> m_ws21FeedbackWindows;
     std::map<std::pair<uint32_t, uint32_t>, uint32_t> m_ws21FeedbackSequence;
+    struct Ws31DownstreamState {
+        Ws31DownstreamPath path;
+        uint64_t sampleNs = 0;
+        uint32_t queueBytes = 0;
+        bool present = false;
+        bool ambiguous = false;
+    };
+    std::map<std::pair<uint32_t, uint32_t>, Ws31DownstreamState> m_ws31Downstream;
+    uint64_t m_ws31DownstreamAgeNs = 0;
+    bool m_ws31DownstreamSends = false;
+    void SendWs31DownstreamFeedback(Ws31DownstreamFeedback report, uint32_t returnPort,
+                                    uint32_t sourceHost, uint32_t destinationHost);
+    void ReceiveWs31DownstreamFeedback(Ptr<NetDevice> ingress, Ptr<const Packet> frame);
+    uint32_t SelectWs31Downstream(uint32_t destinationHost, uint32_t first, uint32_t second,
+                                 uint64_t localFirst, uint64_t localSecond) const;
     std::unordered_set<uint32_t> m_ws21HostPorts;
     struct Ws21HeartbeatPort {
         uint32_t epoch = 0, nextSequence = 0, outstanding = 0, missed = 0;
@@ -228,6 +244,10 @@ class SwitchNode : public Node {
                                        uint32_t faultPort, uint64_t faultStartNs,
                                        uint64_t faultEndNs);
     static void ConfigureWs21Identity(bool enabled);
+    void ConfigureWs31Downstream(uint64_t maximumAgeNs);
+    void AddWs31DownstreamPath(const Ws31DownstreamPath &path);
+    void SampleWs31Downstream(const Ws31DownstreamPath &path, uint32_t returnPort,
+                              uint32_t sourceHost, uint32_t destinationHost, Time sendDelay);
     static void ConfigureWs21PortEvents(FILE *out, uint64_t maxBytes);
     static void FinishWs21PortEvents();
     static void SetWs21HostTor(uint32_t hostIp, uint32_t torId);

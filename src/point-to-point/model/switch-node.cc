@@ -501,6 +501,122 @@ void SwitchNode::FlushWs21Feedback(uint32_t sourceTor, uint32_t candidatePort) {
     SendToDevContinue(packet, ch);
 }
 
+void SwitchNode::ConfigureWs31Downstream(uint64_t maximumAgeNs) {
+    m_ws31DownstreamAgeNs = maximumAgeNs;
+}
+
+void SwitchNode::AddWs31DownstreamPath(const Ws31DownstreamPath &path) {
+    NS_ABORT_MSG_IF(path.sourceLeaf != m_id, "Downstream path has the wrong source leaf");
+    const auto key = std::make_pair(path.destinationLeaf, path.sourcePort);
+    auto found = m_ws31Downstream.find(key);
+    if (found == m_ws31Downstream.end()) {
+        m_ws31Downstream[key].path = path;
+    } else if (!(found->second.path == path)) {
+        found->second.ambiguous = true;
+    }
+}
+
+void SwitchNode::SampleWs31Downstream(const Ws31DownstreamPath &path, uint32_t returnPort,
+                                     uint32_t sourceHost, uint32_t destinationHost,
+                                     Time sendDelay) {
+    NS_ABORT_MSG_IF(path.measuredSwitch != m_id, "Downstream sample has the wrong measuring switch");
+    Ws31DownstreamFeedback report;
+    report.path = path;
+    report.queueBytes = CalculateInterfaceLoad(path.measuredPort);
+    report.sampleNs = Simulator::Now().GetNanoSeconds();
+    Simulator::Schedule(sendDelay, &SwitchNode::SendWs31DownstreamFeedback, this, report,
+                        returnPort, sourceHost, destinationHost);
+}
+
+void SwitchNode::SendWs31DownstreamFeedback(Ws31DownstreamFeedback report, uint32_t returnPort,
+                                           uint32_t sourceHost, uint32_t destinationHost) {
+    m_ws31DownstreamSends = true;
+    Ptr<Packet> frame = Create<Packet>();
+    frame->AddHeader(report);
+    Ipv4Header ipv4;
+    ipv4.SetProtocol(Ws31DownstreamFeedback::Protocol);
+    ipv4.SetSource(Ipv4Address(destinationHost));
+    ipv4.SetDestination(Ipv4Address(sourceHost));
+    ipv4.SetTtl(64);
+    ipv4.SetPayloadSize(frame->GetSize());
+    frame->AddHeader(ipv4);
+    PppHeader ppp;
+    ppp.SetProtocol(0x0021);
+    frame->AddHeader(ppp);
+    frame->AddPacketTag(FlowIdTag(Settings::CONWEAVE_CTRL_DUMMY_INDEV));
+
+    if (Ws30Level()) {
+        std::cout << "WS31_DOWNSTREAM_REPORT event=send time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " uid=" << frame->GetUid() << " return_port=" << returnPort
+                  << " frame_bytes=" << frame->GetSize() << " " << report << std::endl;
+    }
+    CustomHeader header(CustomHeader::L2_Header | CustomHeader::L3_Header);
+    frame->PeekHeader(header);
+    DoSwitchSend(frame, header, returnPort, 3);
+}
+
+void SwitchNode::ReceiveWs31DownstreamFeedback(Ptr<NetDevice> ingress, Ptr<const Packet> frame) {
+    PppHeader ppp;
+    Ipv4Header ipv4;
+    if (frame->GetSize() != ppp.GetSerializedSize() + ipv4.GetSerializedSize() +
+                                Ws31DownstreamFeedback::SerializedBytes) return;
+    Ptr<Packet> parsed = frame->Copy();
+    parsed->RemoveHeader(ppp);
+    parsed->RemoveHeader(ipv4);
+    Ws31DownstreamFeedback report;
+    parsed->RemoveHeader(report);
+    const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
+    auto found = m_ws31Downstream.find(std::make_pair(report.path.destinationLeaf,
+                                                     report.path.sourcePort));
+    const bool identityMatches = found != m_ws31Downstream.end() &&
+                                 !found->second.ambiguous && found->second.path == report.path &&
+                                 ingress->GetIfIndex() == report.path.sourcePort;
+    const bool newer = identityMatches && report.sampleNs <= nowNs &&
+                       (!found->second.present || found->second.sampleNs < report.sampleNs);
+    if (newer) {
+        found->second.present = true;
+        found->second.sampleNs = report.sampleNs;
+        found->second.queueBytes = report.queueBytes;
+    }
+    if (Ws30Level()) {
+        std::cout << "WS31_DOWNSTREAM_REPORT event=" << (newer ? "receive" : "reject")
+                  << " time_ns=" << nowNs << " uid=" << frame->GetUid()
+                  << " ingress=" << ingress->GetIfIndex() << " frame_bytes=" << frame->GetSize()
+                  << " identity_match=" << identityMatches << " " << report << std::endl;
+    }
+}
+
+uint32_t SwitchNode::SelectWs31Downstream(uint32_t destinationHost, uint32_t first, uint32_t second,
+                                         uint64_t localFirst, uint64_t localSecond) const {
+    const uint32_t local = localSecond < localFirst ? second : first;
+    auto leaf = Settings::hostIp2SwitchId.find(destinationHost);
+    if (leaf == Settings::hostIp2SwitchId.end()) return local;
+    auto a = m_ws31Downstream.find(std::make_pair(leaf->second, first));
+    auto b = m_ws31Downstream.find(std::make_pair(leaf->second, second));
+    const bool unique = first != second && a != m_ws31Downstream.end() &&
+                        b != m_ws31Downstream.end() && !a->second.ambiguous && !b->second.ambiguous;
+    const bool paired = unique && a->second.present && b->second.present;
+    const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
+    const uint64_t ageA = paired ? nowNs - a->second.sampleNs : 0;
+    const uint64_t ageB = paired ? nowNs - b->second.sampleNs : 0;
+    const bool use = paired && ageA <= m_ws31DownstreamAgeNs && ageB <= m_ws31DownstreamAgeNs;
+    uint32_t chosen = local;
+    if (use) {
+        const uint64_t scoreA = std::max(localFirst, uint64_t(a->second.queueBytes));
+        const uint64_t scoreB = std::max(localSecond, uint64_t(b->second.queueBytes));
+        chosen = scoreB < scoreA ? second : first;
+    }
+    if (Ws30Level()) {
+        const char *status = use ? "fresh" : (paired ? "stale" : (unique ? "missing" : "ambiguous"));
+        std::cout << "WS31_DOWNSTREAM_DECISION time_ns=" << nowNs << " switch=" << m_id
+                  << " destination_leaf=" << leaf->second << " status=" << status
+                  << " first=" << first << " second=" << second << " local=" << local
+                  << " chosen=" << chosen << " age_first_ns=" << ageA << " age_second_ns=" << ageB
+                  << std::endl;
+    }
+    return chosen;
+}
+
 bool SwitchNode::ReceiveWs21Feedback(Ptr<Packet> p, const CustomHeader &ch) {
     if (!Ws21FeedbackEnabled() || ch.l3Prot != Ws21FeedbackHeader::IP_PROTOCOL || !m_isToR)
         return false;
@@ -1438,6 +1554,9 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
         b=CalculateInterfaceLoad(pair.second);
         m_ws31M1QueueReads[category]+=2;
         pair.chosen=b<a?pair.second:pair.first;
+        if (Settings::lb_mode==58 && category==1 && m_ws31DownstreamAgeNs) {
+            pair.chosen = SelectWs31Downstream(ch.dip, pair.first, pair.second, a, b);
+        }
     }
     ++m_ws31M1Packets[category];
     m_ws31M1WireBytes[category]+=p->GetSize();
@@ -2273,6 +2392,10 @@ void SwitchNode::CheckAndSendResume(uint32_t inDev, uint32_t qIndex) {
 // This function can only be called in switch mode
 bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> packet,
                                          CustomHeader &ch) {
+    if (Settings::lb_mode == 58 && ch.l3Prot == Ws31DownstreamFeedback::Protocol) {
+        ReceiveWs31DownstreamFeedback(device, packet);
+        return true;
+    }
     if (Settings::lb_mode == 57 && ch.l3Prot == Ws31C3rControl::IP_PROTOCOL)
         return ReceiveWs31C3rControl(device, packet, ch);
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL &&
@@ -2452,6 +2575,7 @@ void SwitchNode::DoSwitchSend(Ptr<Packet> p, CustomHeader &ch, uint32_t outDev, 
         // ConWeave reply is on ACK protocol with high priority, so qIndex should be 0
         assert((qIndex == 0 && m_ackHighPrio == 1) ||
                ((ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL ||
+                 ch.l3Prot == Ws31DownstreamFeedback::Protocol ||
                  ch.l3Prot == Ws31C3rControl::IP_PROTOCOL) && qIndex == 3));
     }
 
@@ -2671,6 +2795,15 @@ void SwitchNode::SwitchNotifyQueueDrop(uint32_t ifIndex, uint32_t qIndex,
 }
 
 void SwitchNode::SwitchNotifyDequeue(uint32_t ifIndex, uint32_t qIndex, Ptr<Packet> p) {
+    if (m_ws31DownstreamSends && qIndex == 3 && Ws30Level()) {
+        CustomHeader header(CustomHeader::L2_Header | CustomHeader::L3_Header);
+        if (p->PeekHeader(header) && header.l3Prot == Ws31DownstreamFeedback::Protocol) {
+            std::cout << "WS31_DOWNSTREAM_REPORT event=dequeue time_ns="
+                      << Simulator::Now().GetNanoSeconds() << " switch=" << m_id
+                      << " port=" << ifIndex << " uid=" << p->GetUid()
+                      << " frame_bytes=" << p->GetSize() << std::endl;
+        }
+    }
     auto ws28Hit = ws28_tail_queued.find(std::make_pair(m_id, p->GetUid()));
     if (ws28Hit != ws28_tail_queued.end()) {
         const Ws28TailQueued item = ws28Hit->second;

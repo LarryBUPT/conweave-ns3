@@ -212,6 +212,8 @@ int64_t ws31_rx_reorder_connection_bytes = 0;
 int64_t ws31_rx_reorder_device_bytes = 0;
 int64_t ws31_rx_reorder_wait_ns = 0;
 std::string ws31_rx_reorder_case;
+std::string ws31_downstream_case;
+uint32_t ws31_downstream_max_age_ns = 0;
 int random_seed = 1;  // change this randomly if you want random expt
 
 uint64_t maxRtt, maxBdp;
@@ -906,6 +908,47 @@ void CalculateRoutes(NodeContainer &n) {
         if (node->GetNodeType() == 0) {
             CalculateRoute(node);
         }
+    }
+}
+
+static void ScheduleWs31DownstreamFixture() {
+    const Ptr<Node> sourceHost = n.Get(0);
+    const Ptr<Node> destinationHost = n.Get(2);
+    const uint32_t sourceIp = serverAddress[0].Get();
+    const uint32_t destinationIp = serverAddress[2].Get();
+    auto sourceLeaf = n.Get(Settings::hostIp2SwitchId.at(sourceIp));
+    auto destinationLeaf = n.Get(Settings::hostIp2SwitchId.at(destinationIp));
+    auto sourceSwitch = DynamicCast<SwitchNode>(sourceLeaf);
+    auto &candidates = nextHop.at(sourceLeaf).at(destinationHost);
+    NS_ABORT_MSG_IF(!sourceSwitch || sourceHost->GetNodeType() != 0 ||
+                        destinationHost->GetNodeType() != 0 || candidates.size() != 2,
+                    "The downstream fixture requires two unique source outputs");
+    sourceSwitch->ConfigureWs31Downstream(ws31_downstream_max_age_ns);
+    const uint32_t firstPort = nbr2if.at(sourceLeaf).at(candidates.front()).idx;
+    const uint64_t rate = nbr2if.at(sourceLeaf).at(candidates.front()).bw;
+    for (size_t i = 0; i < candidates.size(); ++i) {
+        const auto measuring = candidates[i];
+        Ptr<SwitchNode> spine = DynamicCast<SwitchNode>(measuring);
+        const auto &downstream = nextHop.at(measuring).at(destinationHost);
+        NS_ABORT_MSG_IF(!spine || downstream.size() != 1 || downstream.front() != destinationLeaf,
+                        "The downstream fixture requires one identified destination-leaf egress");
+        const Interface &candidate = nbr2if.at(sourceLeaf).at(measuring);
+        const Interface &measured = nbr2if.at(measuring).at(destinationLeaf);
+        const uint32_t returnPort = nbr2if.at(measuring).at(sourceLeaf).idx;
+        NS_ABORT_MSG_IF(candidate.bw != rate || measured.bw != rate,
+                        "The fixture uses equal-rate queue scores");
+        Ws31DownstreamPath path;
+        path.sourceLeaf = sourceLeaf->GetId();
+        path.destinationLeaf = destinationLeaf->GetId();
+        path.sourcePort = candidate.idx;
+        path.measuredSwitch = measuring->GetId();
+        path.measuredPort = measured.idx;
+        path.measuredPeer = destinationLeaf->GetId();
+        sourceSwitch->AddWs31DownstreamPath(path);
+        if (i == 1 && ws31_downstream_case == "missing") continue;
+        if (i == 1 && ws31_downstream_case == "wrong_path") path.sourcePort = firstPort;
+        Simulator::Schedule(NanoSeconds(2000005000), &SwitchNode::SampleWs31Downstream,
+                            spine, path, returnPort, sourceIp, destinationIp, NanoSeconds(0));
     }
 }
 
@@ -2124,6 +2167,23 @@ int main(int argc, char *argv[]) {
                     std::cerr << "Unknown WS31_RX_REORDER_CASE" << std::endl;
                     return 2;
                 }
+            } else if (key.compare("WS31_DOWNSTREAM_CASE") == 0) {
+                conf >> ws31_downstream_case;
+                if (!conf || (ws31_downstream_case != "fresh_then_expired" &&
+                              ws31_downstream_case != "missing" &&
+                              ws31_downstream_case != "wrong_path")) {
+                    std::cerr << "Unknown WS31_DOWNSTREAM_CASE" << std::endl;
+                    return 2;
+                }
+            } else if (key.compare("WS31_DOWNSTREAM_MAX_AGE_NS") == 0) {
+                int64_t ageNs = 0;
+                conf >> ageNs;
+                if (!conf || ageNs < 0 || ageNs > std::numeric_limits<uint32_t>::max()) {
+                    std::cerr << "WS31_DOWNSTREAM_MAX_AGE_NS requires a nonnegative ns value"
+                              << std::endl;
+                    return 2;
+                }
+                ws31_downstream_max_age_ns = static_cast<uint32_t>(ageNs);
             } else if (key.compare("RANDOM_SEED") == 0) {
                 int v;
                 conf >> v;
@@ -2168,6 +2228,11 @@ int main(int argc, char *argv[]) {
         (lb_mode != 58 || !enable_irn || !ws31_m1_bounded_recovery || packet_payload_size != 1000)) {
         std::cerr << "WS31_RX_REORDER_CASE requires mode 58, bounded IRN and 1000-byte payloads"
                   << std::endl;
+        return 2;
+    }
+    if ((!ws31_downstream_case.empty() && lb_mode != 58) ||
+        (ws31_downstream_max_age_ns && ws31_downstream_case.empty())) {
+        std::cerr << "Downstream sampling requires a fixture case and mode 58" << std::endl;
         return 2;
     }
 
@@ -2724,7 +2789,7 @@ int main(int argc, char *argv[]) {
             uint32_t hostIP = serverAddress[pair.first].Get();
             sw->m_isToR_hostIP.insert(hostIP);
             if (ws21_identity || lb_mode==51 || lb_mode==52 || lb_mode==57 ||
-                Ws31NativeRequested()) {
+                Ws31NativeRequested() || !ws31_downstream_case.empty()) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
                 if (ws21_identity) SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
@@ -2736,6 +2801,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    if (!ws31_downstream_case.empty()) ScheduleWs31DownstreamFixture();
     if (ws21_identity) BuildWs21IngressMapping();
     if (lb_mode==51 || lb_mode==52) BuildWs31OfanGroups();
 
