@@ -20,6 +20,7 @@
 namespace ns3 {
 
 class Packet;
+class Ipv4Header;
 class Ws31C3rControl;
 
 class SwitchNode : public Node {
@@ -171,6 +172,26 @@ class SwitchNode : public Node {
         bool ambiguous = false;
     };
     std::map<std::pair<uint32_t, uint32_t>, Ws31DownstreamState> m_ws31Downstream;
+    struct Ws31DownstreamPeer {
+        uint32_t node = 0, ingressPort = 0;
+        uint64_t rate = 0;
+    };
+    struct Ws31ObservedEgress {
+        Ws31DownstreamPath path;
+        uint32_t returnPort = 0;
+        uint64_t lastDataNs = 0;
+    };
+    std::map<uint32_t, Ws31DownstreamPeer> m_ws31DownstreamPeers;
+    std::map<Ws31M1FlowKey, Ws31ObservedEgress> m_ws31ObservedEgresses;
+    std::map<Ws31M1FlowKey, std::map<uint32_t, Ws31DownstreamState>> m_ws31ObservedSamples;
+    uint64_t m_ws31ObservedPeriodNs = 0, m_ws31ObservedIdleNs = 0;
+    void ObserveWs31Downstream(Ptr<const Packet> frame, const CustomHeader &ch, uint32_t chosen);
+    void TickWs31ObservedEgress(Ws31M1FlowKey flow);
+    Ws31DownstreamState *FindWs31ObservedSample(const Ws31DownstreamFeedback &report,
+                                                const Ipv4Header &ipv4, uint32_t ingress);
+    const Ws31DownstreamState *FindWs31DownstreamSample(const Ws31M1FlowKey &flow,
+                                                         uint32_t destinationLeaf,
+                                                         uint32_t candidate) const;
     struct Ws31NarrowPath {
         uint32_t port = 0;
         bool low = false;
@@ -257,6 +278,10 @@ class SwitchNode : public Node {
                                        uint64_t faultEndNs);
     static void ConfigureWs21Identity(bool enabled);
     void ConfigureWs31Downstream(uint64_t maximumAgeNs);
+    void ConfigureWs31ObservedDownstream(uint64_t periodNs, uint64_t idleNs);
+    void AddWs31DownstreamPeer(uint32_t port, uint32_t node, uint32_t receiverPort, uint64_t rate);
+    void FinishWs31ObservedFlow(uint32_t source, uint32_t destination, uint16_t sport,
+                                uint16_t dport);
     void ConfigureWs31DownstreamWidth(uint64_t narrowBytes, uint64_t reopenBytes,
                                       uint64_t reopenNs);
     void FinishWs31DownstreamWidth(uint32_t source, uint32_t destination, uint16_t sport,

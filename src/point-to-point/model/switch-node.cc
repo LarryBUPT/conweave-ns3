@@ -505,6 +505,99 @@ void SwitchNode::ConfigureWs31Downstream(uint64_t maximumAgeNs) {
     m_ws31DownstreamAgeNs = maximumAgeNs;
 }
 
+void SwitchNode::ConfigureWs31ObservedDownstream(uint64_t periodNs, uint64_t idleNs) {
+    m_ws31ObservedPeriodNs = periodNs;
+    m_ws31ObservedIdleNs = idleNs;
+}
+
+void SwitchNode::AddWs31DownstreamPeer(uint32_t port, uint32_t node, uint32_t receiverPort,
+                                       uint64_t rate) {
+    auto &peer = m_ws31DownstreamPeers[port];
+    peer.node = node;
+    peer.ingressPort = receiverPort;
+    peer.rate = rate;
+}
+
+void SwitchNode::FinishWs31ObservedFlow(uint32_t source, uint32_t destination, uint16_t sport,
+                                        uint16_t dport) {
+    const size_t erased = m_ws31ObservedSamples.erase(std::make_tuple(source, destination, sport, dport));
+    if (Ws30Level()) {
+        std::cout << "WS31_DOWNSTREAM_BOUND_DONE time_ns="
+                  << Simulator::Now().GetNanoSeconds() << " switch=" << m_id
+                  << " sip=" << source << " dip=" << destination << " sport=" << sport
+                  << " dport=" << dport << " erased=" << erased
+                  << " active_flows=" << m_ws31ObservedSamples.size() << std::endl;
+    }
+}
+
+void SwitchNode::ObserveWs31Downstream(Ptr<const Packet> frame, const CustomHeader &ch,
+                                        uint32_t chosen) {
+    auto source = Settings::hostIp2SwitchId.find(ch.sip);
+    auto destination = Settings::hostIp2SwitchId.find(ch.dip);
+    if (source == Settings::hostIp2SwitchId.end() ||
+        destination == Settings::hostIp2SwitchId.end() || source->second == m_id ||
+        source->second == destination->second) return;
+    FlowIdTag ingress;
+    if (!frame->PeekPacketTag(ingress)) return;
+    auto in = m_ws31DownstreamPeers.find(ingress.GetFlowId());
+    auto out = m_ws31DownstreamPeers.find(chosen);
+    if (in == m_ws31DownstreamPeers.end() || out == m_ws31DownstreamPeers.end() ||
+        in->second.node != source->second || in->second.rate != out->second.rate) return;
+    WorkloadTag tag;
+    if (!frame->PeekPacketTag(tag) || tag.GetValue() != 1) return;
+
+    const Ws31M1FlowKey flow(ch.sip, ch.dip, ch.udp.sport, ch.udp.dport);
+    Ws31DownstreamPath path;
+    path.sourceLeaf = source->second;
+    path.destinationLeaf = destination->second;
+    path.sourcePort = in->second.ingressPort;
+    path.measuredSwitch = m_id;
+    path.measuredPort = chosen;
+    path.measuredPeer = out->second.node;
+    auto inserted = m_ws31ObservedEgresses.emplace(flow, Ws31ObservedEgress());
+    auto &observation = inserted.first->second;
+    const bool changed = inserted.second || !(observation.path == path);
+    observation.path = path;
+    observation.returnPort = in->first;
+    observation.lastDataNs = Simulator::Now().GetNanoSeconds();
+    if (changed && Ws30Level()) {
+        std::cout << "WS31_DOWNSTREAM_BIND time_ns=" << observation.lastDataNs
+                  << " sip=" << ch.sip << " dip=" << ch.dip << " sport=" << ch.udp.sport
+                  << " dport=" << ch.udp.dport << " candidate_port=" << path.sourcePort
+                  << " measured_switch=" << path.measuredSwitch << " measured_port=" << chosen
+                  << " measured_peer=" << path.measuredPeer << std::endl;
+    }
+    if (inserted.second) {
+        Simulator::ScheduleNow(&SwitchNode::TickWs31ObservedEgress, this, flow);
+    }
+}
+
+void SwitchNode::TickWs31ObservedEgress(Ws31M1FlowKey flow) {
+    auto observed = m_ws31ObservedEgresses.find(flow);
+    if (observed == m_ws31ObservedEgresses.end()) return;
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    if (now - observed->second.lastDataNs >= m_ws31ObservedIdleNs) {
+        m_ws31ObservedEgresses.erase(observed);
+        if (Ws30Level()) {
+            std::cout << "WS31_DOWNSTREAM_BOUND_IDLE time_ns=" << now << " switch=" << m_id
+                      << " sip=" << std::get<0>(flow) << " dip=" << std::get<1>(flow)
+                      << " sport=" << std::get<2>(flow) << " dport=" << std::get<3>(flow)
+                      << " active_bindings=" << m_ws31ObservedEgresses.size() << std::endl;
+        }
+        return;
+    }
+    Ws31DownstreamFeedback report(true);
+    report.path = observed->second.path;
+    report.queueBytes = CalculateInterfaceLoad(report.path.measuredPort);
+    report.sampleNs = now;
+    report.sourceUdpPort = std::get<2>(flow);
+    report.destinationUdpPort = std::get<3>(flow);
+    SendWs31DownstreamFeedback(report, observed->second.returnPort, std::get<0>(flow),
+                               std::get<1>(flow));
+    Simulator::Schedule(NanoSeconds(m_ws31ObservedPeriodNs), &SwitchNode::TickWs31ObservedEgress,
+                        this, flow);
+}
+
 void SwitchNode::ConfigureWs31DownstreamWidth(uint64_t narrowBytes, uint64_t reopenBytes,
                                               uint64_t reopenNs) {
     m_ws31NarrowBytes = narrowBytes;
@@ -566,41 +659,71 @@ void SwitchNode::SendWs31DownstreamFeedback(Ws31DownstreamFeedback report, uint3
     if (Ws30Level()) {
         std::cout << "WS31_DOWNSTREAM_REPORT event=send time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " uid=" << frame->GetUid() << " return_port=" << returnPort
-                  << " frame_bytes=" << frame->GetSize() << " " << report << std::endl;
+                  << " frame_bytes=" << frame->GetSize() << " " << report;
+        if (report.flowBound) std::cout << " sip=" << sourceHost << " dip=" << destinationHost;
+        std::cout << std::endl;
     }
     CustomHeader header(CustomHeader::L2_Header | CustomHeader::L3_Header);
     frame->PeekHeader(header);
     DoSwitchSend(frame, header, returnPort, 3);
 }
 
+SwitchNode::Ws31DownstreamState *SwitchNode::FindWs31ObservedSample(
+    const Ws31DownstreamFeedback &report, const Ipv4Header &ipv4, uint32_t ingress) {
+    const uint32_t sip = ipv4.GetDestination().Get(), dip = ipv4.GetSource().Get();
+    const Ws31M1FlowKey flow(sip, dip, report.sourceUdpPort, report.destinationUdpPort);
+    auto samples = m_ws31ObservedSamples.find(flow);
+    auto pair = m_ws31M1Pairs.find(flow);
+    auto peer = m_ws31DownstreamPeers.find(ingress);
+    auto destination = Settings::hostIp2SwitchId.find(dip);
+    if (samples == m_ws31ObservedSamples.end() || pair == m_ws31M1Pairs.end() ||
+        peer == m_ws31DownstreamPeers.end() || destination == Settings::hostIp2SwitchId.end() ||
+        !m_isToR_hostIP.count(sip) || report.path.sourceLeaf != m_id ||
+        report.path.destinationLeaf != destination->second ||
+        report.path.sourcePort != ingress || report.path.measuredSwitch != peer->second.node ||
+        (ingress != pair->second.first && ingress != pair->second.second)) return nullptr;
+    return &samples->second[ingress];
+}
+
 void SwitchNode::ReceiveWs31DownstreamFeedback(Ptr<NetDevice> ingress, Ptr<const Packet> frame) {
     PppHeader ppp;
     Ipv4Header ipv4;
+    Ws31DownstreamFeedback report(m_ws31ObservedPeriodNs != 0);
     if (frame->GetSize() != ppp.GetSerializedSize() + ipv4.GetSerializedSize() +
-                                Ws31DownstreamFeedback::SerializedBytes) return;
+                                report.GetSerializedSize()) return;
     Ptr<Packet> parsed = frame->Copy();
     parsed->RemoveHeader(ppp);
     parsed->RemoveHeader(ipv4);
-    Ws31DownstreamFeedback report;
     parsed->RemoveHeader(report);
     const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
-    auto found = m_ws31Downstream.find(std::make_pair(report.path.destinationLeaf,
-                                                     report.path.sourcePort));
-    const bool identityMatches = found != m_ws31Downstream.end() &&
-                                 !found->second.ambiguous && found->second.path == report.path &&
-                                 ingress->GetIfIndex() == report.path.sourcePort;
-    const bool newer = identityMatches && report.sampleNs <= nowNs &&
-                       (!found->second.present || found->second.sampleNs < report.sampleNs);
+    Ws31DownstreamState *entry = nullptr;
+    if (report.flowBound) {
+        entry = FindWs31ObservedSample(report, ipv4, ingress->GetIfIndex());
+    } else {
+        auto found = m_ws31Downstream.find(std::make_pair(report.path.destinationLeaf,
+                                                         report.path.sourcePort));
+        if (found != m_ws31Downstream.end() && !found->second.ambiguous &&
+            found->second.path == report.path && ingress->GetIfIndex() == report.path.sourcePort) {
+            entry = &found->second;
+        }
+    }
+    const bool newer = entry && report.sampleNs <= nowNs &&
+                       (!entry->present || entry->sampleNs < report.sampleNs);
     if (newer) {
-        found->second.present = true;
-        found->second.sampleNs = report.sampleNs;
-        found->second.queueBytes = report.queueBytes;
+        entry->path = report.path;
+        entry->present = true;
+        entry->sampleNs = report.sampleNs;
+        entry->queueBytes = report.queueBytes;
     }
     if (Ws30Level()) {
         std::cout << "WS31_DOWNSTREAM_REPORT event=" << (newer ? "receive" : "reject")
                   << " time_ns=" << nowNs << " uid=" << frame->GetUid()
                   << " ingress=" << ingress->GetIfIndex() << " frame_bytes=" << frame->GetSize()
-                  << " identity_match=" << identityMatches << " " << report << std::endl;
+                  << " identity_match=" << (entry != nullptr) << " " << report;
+        if (report.flowBound) {
+            std::cout << " sip=" << ipv4.GetDestination().Get() << " dip=" << ipv4.GetSource().Get();
+        }
+        std::cout << std::endl;
     }
 }
 
@@ -655,28 +778,48 @@ uint32_t SwitchNode::ConstrainWs31DownstreamWidth(const Ws31M1FlowKey &flow, uin
     return chosen;
 }
 
+const SwitchNode::Ws31DownstreamState *SwitchNode::FindWs31DownstreamSample(
+    const Ws31M1FlowKey &flow, uint32_t destinationLeaf, uint32_t candidate) const {
+    if (m_ws31ObservedPeriodNs) {
+        auto samples = m_ws31ObservedSamples.find(flow);
+        if (samples == m_ws31ObservedSamples.end()) return nullptr;
+        auto sample = samples->second.find(candidate);
+        return sample == samples->second.end() ? nullptr : &sample->second;
+    }
+    auto sample = m_ws31Downstream.find(std::make_pair(destinationLeaf, candidate));
+    return sample == m_ws31Downstream.end() ? nullptr : &sample->second;
+}
+
 uint32_t SwitchNode::SelectWs31Downstream(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
                                           uint64_t localFirst, uint64_t localSecond) {
     const uint32_t local = localSecond < localFirst ? second : first;
     auto leaf = Settings::hostIp2SwitchId.find(std::get<1>(flow));
     if (leaf == Settings::hostIp2SwitchId.end()) return local;
-    auto a = m_ws31Downstream.find(std::make_pair(leaf->second, first));
-    auto b = m_ws31Downstream.find(std::make_pair(leaf->second, second));
-    const bool unique = first != second && a != m_ws31Downstream.end() &&
-                        b != m_ws31Downstream.end() && !a->second.ambiguous && !b->second.ambiguous;
-    const bool paired = unique && a->second.present && b->second.present;
+    const auto *a = FindWs31DownstreamSample(flow, leaf->second, first);
+    const auto *b = FindWs31DownstreamSample(flow, leaf->second, second);
+    bool unique = first != second;
+    if (m_ws31ObservedPeriodNs) {
+        auto firstPeer = m_ws31DownstreamPeers.find(first);
+        auto secondPeer = m_ws31DownstreamPeers.find(second);
+        unique = unique && firstPeer != m_ws31DownstreamPeers.end() &&
+                 secondPeer != m_ws31DownstreamPeers.end() &&
+                 firstPeer->second.rate == secondPeer->second.rate;
+    } else {
+        unique = unique && a && b && !a->ambiguous && !b->ambiguous;
+    }
+    const bool paired = unique && a && b && a->present && b->present;
     const uint64_t nowNs = Simulator::Now().GetNanoSeconds();
-    const uint64_t ageA = paired ? nowNs - a->second.sampleNs : 0;
-    const uint64_t ageB = paired ? nowNs - b->second.sampleNs : 0;
+    const uint64_t ageA = paired ? nowNs - a->sampleNs : 0;
+    const uint64_t ageB = paired ? nowNs - b->sampleNs : 0;
     const bool use = paired && ageA <= m_ws31DownstreamAgeNs && ageB <= m_ws31DownstreamAgeNs;
     uint32_t chosen = local;
     uint64_t spread = 0, sampleNs = 0;
     if (use) {
-        const uint64_t scoreA = std::max(localFirst, uint64_t(a->second.queueBytes));
-        const uint64_t scoreB = std::max(localSecond, uint64_t(b->second.queueBytes));
+        const uint64_t scoreA = std::max(localFirst, uint64_t(a->queueBytes));
+        const uint64_t scoreB = std::max(localSecond, uint64_t(b->queueBytes));
         chosen = scoreB < scoreA ? second : first;
         spread = scoreB < scoreA ? scoreA - scoreB : scoreB - scoreA;
-        sampleNs = std::min(a->second.sampleNs, b->second.sampleNs);
+        sampleNs = std::min(a->sampleNs, b->sampleNs);
     }
     if (m_ws31NarrowBytes) {
         chosen = ConstrainWs31DownstreamWidth(flow, chosen, use, spread, sampleNs, nowNs);
@@ -686,8 +829,12 @@ uint32_t SwitchNode::SelectWs31Downstream(const Ws31M1FlowKey &flow, uint32_t fi
         std::cout << "WS31_DOWNSTREAM_DECISION time_ns=" << nowNs << " switch=" << m_id
                   << " destination_leaf=" << leaf->second << " status=" << status
                   << " first=" << first << " second=" << second << " local=" << local
-                  << " chosen=" << chosen << " age_first_ns=" << ageA << " age_second_ns=" << ageB
-                  << std::endl;
+                  << " chosen=" << chosen << " age_first_ns=" << ageA << " age_second_ns=" << ageB;
+        if (m_ws31ObservedPeriodNs) {
+            std::cout << " sip=" << std::get<0>(flow) << " dip=" << std::get<1>(flow)
+                      << " sport=" << std::get<2>(flow) << " dport=" << std::get<3>(flow);
+        }
+        std::cout << std::endl;
     }
     return chosen;
 }
@@ -1607,6 +1754,9 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
     const auto key=std::make_tuple(ch.sip,ch.dip,ch.udp.sport,ch.udp.dport);
     auto hit=m_ws31M1Pairs.find(key);
     const bool fresh=hit==m_ws31M1Pairs.end();
+    if (fresh && m_ws31ObservedPeriodNs && category == 1) {
+        m_ws31ObservedSamples.emplace(key, std::map<uint32_t, Ws31DownstreamState>());
+    }
     if (fresh) {
         const uint32_t words[3]={ch.sip,ch.dip,
             uint32_t(ch.udp.sport)|(uint32_t(ch.udp.dport)<<16)};
@@ -1660,6 +1810,7 @@ void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, u
     const size_t erased = m_ws30V13Pairs.erase(std::make_tuple(sip,dip,sport,dport));
     m_ws31M1Pairs.erase(std::make_tuple(sip,dip,sport,dport));
     m_ws31NarrowPaths.erase(std::make_tuple(sip,dip,sport,dport));
+    m_ws31ObservedSamples.erase(std::make_tuple(sip,dip,sport,dport));
     const ws31::Key key(sip,dip,sport,dport);
     m_ws31Pairs.erase(key);
     m_ws31Budget.Erase(key);
@@ -2535,6 +2686,9 @@ void SwitchNode::SendToDevContinue(Ptr<Packet> p, CustomHeader &ch) {
                                                            // would be 3 (refer to trafficgen)
         }
 
+        if (m_ws31ObservedPeriodNs && ch.l3Prot == 0x11) {
+            ObserveWs31Downstream(p, ch, idx);
+        }
         DoSwitchSend(p, ch, idx, qIndex);  // m_devices[idx]->SwitchSend(qIndex, p, ch);
         return;
     }

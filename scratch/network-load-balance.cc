@@ -214,6 +214,8 @@ int64_t ws31_rx_reorder_wait_ns = 0;
 std::string ws31_rx_reorder_case;
 std::string ws31_downstream_case;
 uint32_t ws31_downstream_max_age_ns = 0;
+int64_t ws31_downstream_period_ns = 0;
+int64_t ws31_downstream_idle_ns = 0;
 int64_t ws31_downstream_narrow_bytes = 0;
 int64_t ws31_downstream_reopen_bytes = 0;
 int64_t ws31_downstream_reopen_ns = 0;
@@ -711,9 +713,14 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
                                     Ws31M1CompletionObserved(lb_mode, ws31_m1_bounded_recovery)
                                 ? q->m_flow_id
                                 : -1);
-    if (ws31_downstream_narrow_bytes && q->m_workload_tag == 1) {
+    if ((ws31_downstream_narrow_bytes || ws31_downstream_period_ns) && q->m_workload_tag == 1) {
         auto sourceLeaf = DynamicCast<SwitchNode>(n.Get(Settings::hostIp2SwitchId.at(q->sip.Get())));
-        sourceLeaf->FinishWs31DownstreamWidth(q->sip.Get(), q->dip.Get(), q->sport, q->dport);
+        if (ws31_downstream_narrow_bytes) {
+            sourceLeaf->FinishWs31DownstreamWidth(q->sip.Get(), q->dip.Get(), q->sport, q->dport);
+        }
+        if (ws31_downstream_period_ns) {
+            sourceLeaf->FinishWs31ObservedFlow(q->sip.Get(), q->dip.Get(), q->sport, q->dport);
+        }
     }
     if (Ws30V13Life() == 4 && q->m_ws30Serial) {
         // Only after this request's cumulative ACK, with 100 us before reuse.
@@ -963,6 +970,24 @@ static void ScheduleWs31DownstreamFixture() {
         for (uint64_t offsetNs = 5000; offsetNs <= lastOffsetNs; offsetNs += 4000) {
             Simulator::Schedule(NanoSeconds(2000000000 + offsetNs), &SwitchNode::SampleWs31Downstream,
                                 spine, path, returnPort, sourceIp, destinationIp, NanoSeconds(0));
+        }
+    }
+}
+
+static void ConfigureWs31ObservedDownstream() {
+    for (const auto &node : nbr2if) {
+        auto sw = DynamicCast<SwitchNode>(node.first);
+        if (!sw) continue;
+        sw->ConfigureWs31Downstream(ws31_downstream_max_age_ns);
+        sw->ConfigureWs31ObservedDownstream(ws31_downstream_period_ns, ws31_downstream_idle_ns);
+        if (ws31_downstream_narrow_bytes) {
+            sw->ConfigureWs31DownstreamWidth(ws31_downstream_narrow_bytes,
+                                              ws31_downstream_reopen_bytes,
+                                              ws31_downstream_reopen_ns);
+        }
+        for (const auto &edge : node.second) {
+            sw->AddWs31DownstreamPeer(edge.second.idx, edge.first->GetId(),
+                                      nbr2if.at(edge.first).at(node.first).idx, edge.second.bw);
         }
     }
 }
@@ -2215,6 +2240,18 @@ int main(int argc, char *argv[]) {
                               << "and a positive stable duration in ns" << std::endl;
                     return 2;
                 }
+            } else if (key.compare("WS31_DOWNSTREAM_OBSERVED") == 0) {
+                std::string line, extra;
+                std::getline(conf, line);
+                std::istringstream cadence(line);
+                if (ws31_downstream_period_ns ||
+                    !(cadence >> ws31_downstream_period_ns >> ws31_downstream_idle_ns) ||
+                    (cadence >> extra) || ws31_downstream_period_ns <= 0 ||
+                    ws31_downstream_idle_ns < ws31_downstream_period_ns) {
+                    std::cerr << "WS31_DOWNSTREAM_OBSERVED requires a positive sample period "
+                              << "and an idle lifetime at least that long, in ns" << std::endl;
+                    return 2;
+                }
             } else if (key.compare("RANDOM_SEED") == 0) {
                 int v;
                 conf >> v;
@@ -2261,9 +2298,11 @@ int main(int argc, char *argv[]) {
                   << std::endl;
         return 2;
     }
-    if ((!ws31_downstream_case.empty() && lb_mode != 58) ||
-        (ws31_downstream_max_age_ns && ws31_downstream_case.empty())) {
-        std::cerr << "Downstream sampling requires a fixture case and mode 58" << std::endl;
+    const bool hasDownstreamCase = !ws31_downstream_case.empty();
+    if ((hasDownstreamCase && ws31_downstream_period_ns) ||
+        ((hasDownstreamCase || ws31_downstream_period_ns) && lb_mode != 58) ||
+        (ws31_downstream_max_age_ns && !hasDownstreamCase && !ws31_downstream_period_ns)) {
+        std::cerr << "Downstream sampling requires one sampling mode in mode 58" << std::endl;
         return 2;
     }
     if (ws31_downstream_narrow_bytes && ws31_downstream_max_age_ns == 0) {
@@ -2825,7 +2864,7 @@ int main(int argc, char *argv[]) {
             uint32_t hostIP = serverAddress[pair.first].Get();
             sw->m_isToR_hostIP.insert(hostIP);
             if (ws21_identity || lb_mode==51 || lb_mode==52 || lb_mode==57 ||
-                Ws31NativeRequested() || !ws31_downstream_case.empty()) {
+                Ws31NativeRequested() || !ws31_downstream_case.empty() || ws31_downstream_period_ns) {
                 Settings::hostIp2SwitchId[hostIP] = sw->GetId();
                 if (ws21_identity) SwitchNode::SetWs21HostTor(hostIP, sw->GetId());
             }
@@ -2838,6 +2877,7 @@ int main(int argc, char *argv[]) {
     }
 
     if (!ws31_downstream_case.empty()) ScheduleWs31DownstreamFixture();
+    if (ws31_downstream_period_ns) ConfigureWs31ObservedDownstream();
     if (ws21_identity) BuildWs21IngressMapping();
     if (lb_mode==51 || lb_mode==52) BuildWs31OfanGroups();
 

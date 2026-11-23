@@ -20,6 +20,7 @@ class Ws31DownstreamFeedback : public Header {
   public:
     enum : uint8_t { Protocol = 0xF9 };
     enum : uint32_t { SerializedBytes = 36 };
+    explicit Ws31DownstreamFeedback(bool bound = false) : flowBound(bound) {}
 
     static TypeId GetTypeId();
     TypeId GetInstanceTypeId() const override;
@@ -31,6 +32,8 @@ class Ws31DownstreamFeedback : public Header {
     Ws31DownstreamPath path;
     uint32_t queueBytes = 0;
     uint64_t sampleNs = 0;
+    bool flowBound;
+    uint16_t sourceUdpPort = 0, destinationUdpPort = 0;
 };
 
 }  // namespace ns3

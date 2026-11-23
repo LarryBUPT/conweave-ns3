@@ -19,7 +19,9 @@ TypeId Ws31DownstreamFeedback::GetTypeId() {
 
 TypeId Ws31DownstreamFeedback::GetInstanceTypeId() const { return GetTypeId(); }
 
-uint32_t Ws31DownstreamFeedback::GetSerializedSize() const { return SerializedBytes; }
+uint32_t Ws31DownstreamFeedback::GetSerializedSize() const {
+    return SerializedBytes + (flowBound ? 4 : 0);
+}
 
 void Ws31DownstreamFeedback::Serialize(Buffer::Iterator out) const {
     out.WriteHtonU32(path.sourceLeaf);
@@ -30,6 +32,10 @@ void Ws31DownstreamFeedback::Serialize(Buffer::Iterator out) const {
     out.WriteHtonU32(path.measuredPeer);
     out.WriteHtonU32(queueBytes);
     out.WriteHtonU64(sampleNs);
+    if (flowBound) {
+        out.WriteHtonU16(sourceUdpPort);
+        out.WriteHtonU16(destinationUdpPort);
+    }
 }
 
 uint32_t Ws31DownstreamFeedback::Deserialize(Buffer::Iterator in) {
@@ -41,7 +47,11 @@ uint32_t Ws31DownstreamFeedback::Deserialize(Buffer::Iterator in) {
     path.measuredPeer = in.ReadNtohU32();
     queueBytes = in.ReadNtohU32();
     sampleNs = in.ReadNtohU64();
-    return SerializedBytes;
+    if (flowBound) {
+        sourceUdpPort = in.ReadNtohU16();
+        destinationUdpPort = in.ReadNtohU16();
+    }
+    return GetSerializedSize();
 }
 
 void Ws31DownstreamFeedback::Print(std::ostream &out) const {
@@ -49,6 +59,7 @@ void Ws31DownstreamFeedback::Print(std::ostream &out) const {
         << " candidate_port=" << path.sourcePort << " measured_switch=" << path.measuredSwitch
         << " measured_port=" << path.measuredPort << " measured_peer=" << path.measuredPeer
         << " queue_bytes=" << queueBytes << " sample_ns=" << sampleNs;
+    if (flowBound) out << " sport=" << sourceUdpPort << " dport=" << destinationUdpPort;
 }
 
 }  // namespace ns3
