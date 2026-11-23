@@ -214,6 +214,9 @@ int64_t ws31_rx_reorder_wait_ns = 0;
 std::string ws31_rx_reorder_case;
 std::string ws31_downstream_case;
 uint32_t ws31_downstream_max_age_ns = 0;
+int64_t ws31_downstream_narrow_bytes = 0;
+int64_t ws31_downstream_reopen_bytes = 0;
+int64_t ws31_downstream_reopen_ns = 0;
 int random_seed = 1;  // change this randomly if you want random expt
 
 uint64_t maxRtt, maxBdp;
@@ -708,6 +711,10 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
                                     Ws31M1CompletionObserved(lb_mode, ws31_m1_bounded_recovery)
                                 ? q->m_flow_id
                                 : -1);
+    if (ws31_downstream_narrow_bytes && q->m_workload_tag == 1) {
+        auto sourceLeaf = DynamicCast<SwitchNode>(n.Get(Settings::hostIp2SwitchId.at(q->sip.Get())));
+        sourceLeaf->FinishWs31DownstreamWidth(q->sip.Get(), q->dip.Get(), q->sport, q->dport);
+    }
     if (Ws30V13Life() == 4 && q->m_ws30Serial) {
         // Only after this request's cumulative ACK, with 100 us before reuse.
         // This is an explicit test intervention, not a timeout eviction policy.
@@ -924,6 +931,11 @@ static void ScheduleWs31DownstreamFixture() {
                         destinationHost->GetNodeType() != 0 || candidates.size() != 2,
                     "The downstream fixture requires two unique source outputs");
     sourceSwitch->ConfigureWs31Downstream(ws31_downstream_max_age_ns);
+    if (ws31_downstream_narrow_bytes) {
+        sourceSwitch->ConfigureWs31DownstreamWidth(ws31_downstream_narrow_bytes,
+                                                    ws31_downstream_reopen_bytes,
+                                                    ws31_downstream_reopen_ns);
+    }
     const uint32_t firstPort = nbr2if.at(sourceLeaf).at(candidates.front()).idx;
     const uint64_t rate = nbr2if.at(sourceLeaf).at(candidates.front()).bw;
     for (size_t i = 0; i < candidates.size(); ++i) {
@@ -947,8 +959,11 @@ static void ScheduleWs31DownstreamFixture() {
         sourceSwitch->AddWs31DownstreamPath(path);
         if (i == 1 && ws31_downstream_case == "missing") continue;
         if (i == 1 && ws31_downstream_case == "wrong_path") path.sourcePort = firstPort;
-        Simulator::Schedule(NanoSeconds(2000005000), &SwitchNode::SampleWs31Downstream,
-                            spine, path, returnPort, sourceIp, destinationIp, NanoSeconds(0));
+        const uint64_t lastOffsetNs = ws31_downstream_case == "width_recovery" ? 57000 : 5000;
+        for (uint64_t offsetNs = 5000; offsetNs <= lastOffsetNs; offsetNs += 4000) {
+            Simulator::Schedule(NanoSeconds(2000000000 + offsetNs), &SwitchNode::SampleWs31Downstream,
+                                spine, path, returnPort, sourceIp, destinationIp, NanoSeconds(0));
+        }
     }
 }
 
@@ -2171,7 +2186,8 @@ int main(int argc, char *argv[]) {
                 conf >> ws31_downstream_case;
                 if (!conf || (ws31_downstream_case != "fresh_then_expired" &&
                               ws31_downstream_case != "missing" &&
-                              ws31_downstream_case != "wrong_path")) {
+                              ws31_downstream_case != "wrong_path" &&
+                              ws31_downstream_case != "width_recovery")) {
                     std::cerr << "Unknown WS31_DOWNSTREAM_CASE" << std::endl;
                     return 2;
                 }
@@ -2184,6 +2200,21 @@ int main(int argc, char *argv[]) {
                     return 2;
                 }
                 ws31_downstream_max_age_ns = static_cast<uint32_t>(ageNs);
+            } else if (key.compare("WS31_DOWNSTREAM_WIDTH") == 0) {
+                std::string line, extra;
+                std::getline(conf, line);
+                std::istringstream policy(line);
+                if (ws31_downstream_narrow_bytes ||
+                    !(policy >> ws31_downstream_narrow_bytes >> ws31_downstream_reopen_bytes >>
+                      ws31_downstream_reopen_ns) ||
+                    (policy >> extra) || ws31_downstream_narrow_bytes <= 0 ||
+                    ws31_downstream_reopen_bytes < 0 ||
+                    ws31_downstream_reopen_bytes >= ws31_downstream_narrow_bytes ||
+                    ws31_downstream_reopen_ns <= 0) {
+                    std::cerr << "WS31_DOWNSTREAM_WIDTH requires narrow bytes, lower reopen bytes "
+                              << "and a positive stable duration in ns" << std::endl;
+                    return 2;
+                }
             } else if (key.compare("RANDOM_SEED") == 0) {
                 int v;
                 conf >> v;
@@ -2233,6 +2264,11 @@ int main(int argc, char *argv[]) {
     if ((!ws31_downstream_case.empty() && lb_mode != 58) ||
         (ws31_downstream_max_age_ns && ws31_downstream_case.empty())) {
         std::cerr << "Downstream sampling requires a fixture case and mode 58" << std::endl;
+        return 2;
+    }
+    if (ws31_downstream_narrow_bytes && ws31_downstream_max_age_ns == 0) {
+        std::cerr << "Adaptive path width requires downstream feedback with a positive age limit"
+                  << std::endl;
         return 2;
     }
 

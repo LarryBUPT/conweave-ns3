@@ -79,7 +79,8 @@ class SwitchNode : public Node {
     uint64_t m_ws30V13Hits{0}, m_ws30V13Misses{0}, m_ws30V13Peak{0};
     uint32_t DoLbWs30V13(Ptr<const Packet> p, const CustomHeader &ch,
                          const std::vector<int> &nexthops);
-    std::map<std::tuple<uint32_t,uint32_t,uint16_t,uint16_t>,Ws30Pair> m_ws31M1Pairs;
+    using Ws31M1FlowKey = std::tuple<uint32_t,uint32_t,uint16_t,uint16_t>;
+    std::map<Ws31M1FlowKey,Ws30Pair> m_ws31M1Pairs;
     uint64_t m_ws31M1PeakPairs{0};
     uint64_t m_ws31M1Packets[3]{0,0,0};
     uint64_t m_ws31M1Distinct[3]{0,0,0};
@@ -170,13 +171,24 @@ class SwitchNode : public Node {
         bool ambiguous = false;
     };
     std::map<std::pair<uint32_t, uint32_t>, Ws31DownstreamState> m_ws31Downstream;
+    struct Ws31NarrowPath {
+        uint32_t port = 0;
+        bool low = false;
+        uint64_t lowSinceSampleNs = 0;
+        uint64_t lastLowSampleNs = 0;
+    };
+    std::map<Ws31M1FlowKey, Ws31NarrowPath> m_ws31NarrowPaths;
+    uint64_t m_ws31NarrowBytes = 0, m_ws31ReopenBytes = 0, m_ws31ReopenNs = 0;
     uint64_t m_ws31DownstreamAgeNs = 0;
     bool m_ws31DownstreamSends = false;
     void SendWs31DownstreamFeedback(Ws31DownstreamFeedback report, uint32_t returnPort,
                                     uint32_t sourceHost, uint32_t destinationHost);
     void ReceiveWs31DownstreamFeedback(Ptr<NetDevice> ingress, Ptr<const Packet> frame);
-    uint32_t SelectWs31Downstream(uint32_t destinationHost, uint32_t first, uint32_t second,
-                                 uint64_t localFirst, uint64_t localSecond) const;
+    uint32_t SelectWs31Downstream(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
+                                  uint64_t localFirst, uint64_t localSecond);
+    uint32_t ConstrainWs31DownstreamWidth(const Ws31M1FlowKey &flow, uint32_t chosen,
+                                          bool fresh, uint64_t spread, uint64_t sampleNs,
+                                          uint64_t nowNs);
     std::unordered_set<uint32_t> m_ws21HostPorts;
     struct Ws21HeartbeatPort {
         uint32_t epoch = 0, nextSequence = 0, outstanding = 0, missed = 0;
@@ -245,6 +257,10 @@ class SwitchNode : public Node {
                                        uint64_t faultEndNs);
     static void ConfigureWs21Identity(bool enabled);
     void ConfigureWs31Downstream(uint64_t maximumAgeNs);
+    void ConfigureWs31DownstreamWidth(uint64_t narrowBytes, uint64_t reopenBytes,
+                                      uint64_t reopenNs);
+    void FinishWs31DownstreamWidth(uint32_t source, uint32_t destination, uint16_t sport,
+                                   uint16_t dport);
     void AddWs31DownstreamPath(const Ws31DownstreamPath &path);
     void SampleWs31Downstream(const Ws31DownstreamPath &path, uint32_t returnPort,
                               uint32_t sourceHost, uint32_t destinationHost, Time sendDelay);

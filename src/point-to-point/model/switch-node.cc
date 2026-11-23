@@ -505,6 +505,24 @@ void SwitchNode::ConfigureWs31Downstream(uint64_t maximumAgeNs) {
     m_ws31DownstreamAgeNs = maximumAgeNs;
 }
 
+void SwitchNode::ConfigureWs31DownstreamWidth(uint64_t narrowBytes, uint64_t reopenBytes,
+                                              uint64_t reopenNs) {
+    m_ws31NarrowBytes = narrowBytes;
+    m_ws31ReopenBytes = reopenBytes;
+    m_ws31ReopenNs = reopenNs;
+}
+
+void SwitchNode::FinishWs31DownstreamWidth(uint32_t source, uint32_t destination, uint16_t sport,
+                                           uint16_t dport) {
+    const size_t erased = m_ws31NarrowPaths.erase(std::make_tuple(source, destination, sport, dport));
+    if (Ws30Level()) {
+        std::cout << "WS31_DOWNSTREAM_WIDTH_DONE time_ns=" << Simulator::Now().GetNanoSeconds()
+                  << " switch=" << m_id << " sip=" << source << " dip=" << destination
+                  << " sport=" << sport << " dport=" << dport << " erased=" << erased
+                  << " active_narrowed=" << m_ws31NarrowPaths.size() << std::endl;
+    }
+}
+
 void SwitchNode::AddWs31DownstreamPath(const Ws31DownstreamPath &path) {
     NS_ABORT_MSG_IF(path.sourceLeaf != m_id, "Downstream path has the wrong source leaf");
     const auto key = std::make_pair(path.destinationLeaf, path.sourcePort);
@@ -586,10 +604,61 @@ void SwitchNode::ReceiveWs31DownstreamFeedback(Ptr<NetDevice> ingress, Ptr<const
     }
 }
 
-uint32_t SwitchNode::SelectWs31Downstream(uint32_t destinationHost, uint32_t first, uint32_t second,
-                                         uint64_t localFirst, uint64_t localSecond) const {
+uint32_t SwitchNode::ConstrainWs31DownstreamWidth(const Ws31M1FlowKey &flow, uint32_t chosen,
+                                                  bool fresh, uint64_t spread, uint64_t sampleNs,
+                                                  uint64_t nowNs) {
+    auto path = m_ws31NarrowPaths.find(flow);
+    const char *action = "open";
+    uint64_t lowSpanNs = 0;
+    if (!fresh) {
+        if (path != m_ws31NarrowPaths.end()) {
+            m_ws31NarrowPaths.erase(path);
+            path = m_ws31NarrowPaths.end();
+        }
+        action = "fallback";
+    } else if (path == m_ws31NarrowPaths.end()) {
+        if (spread >= m_ws31NarrowBytes) {
+            path = m_ws31NarrowPaths.emplace(flow, Ws31NarrowPath()).first;
+            path->second.port = chosen;
+            action = "narrow";
+        }
+    } else {
+        auto &state = path->second;
+        action = "hold";
+        if (spread > m_ws31ReopenBytes) {
+            state.low = false;
+        } else {
+            if (!state.low || sampleNs - state.lastLowSampleNs > m_ws31DownstreamAgeNs) {
+                state.low = true;
+                state.lowSinceSampleNs = sampleNs;
+            }
+            state.lastLowSampleNs = sampleNs;
+            lowSpanNs = sampleNs - state.lowSinceSampleNs;
+            if (lowSpanNs >= m_ws31ReopenNs) {
+                m_ws31NarrowPaths.erase(path);
+                path = m_ws31NarrowPaths.end();
+                action = "restore";
+            }
+        }
+    }
+    const bool narrowed = path != m_ws31NarrowPaths.end();
+    if (narrowed) chosen = path->second.port;
+    if (Ws30Level()) {
+        std::cout << "WS31_DOWNSTREAM_WIDTH time_ns=" << nowNs << " switch=" << m_id
+                  << " sip=" << std::get<0>(flow) << " dip=" << std::get<1>(flow)
+                  << " sport=" << std::get<2>(flow) << " dport=" << std::get<3>(flow)
+                  << " action=" << action << " width=" << (narrowed ? 1 : 2)
+                  << " chosen=" << chosen << " delta_bytes=" << spread
+                  << " oldest_sample_ns=" << sampleNs << " low_span_ns=" << lowSpanNs
+                  << " active_narrowed=" << m_ws31NarrowPaths.size() << std::endl;
+    }
+    return chosen;
+}
+
+uint32_t SwitchNode::SelectWs31Downstream(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
+                                          uint64_t localFirst, uint64_t localSecond) {
     const uint32_t local = localSecond < localFirst ? second : first;
-    auto leaf = Settings::hostIp2SwitchId.find(destinationHost);
+    auto leaf = Settings::hostIp2SwitchId.find(std::get<1>(flow));
     if (leaf == Settings::hostIp2SwitchId.end()) return local;
     auto a = m_ws31Downstream.find(std::make_pair(leaf->second, first));
     auto b = m_ws31Downstream.find(std::make_pair(leaf->second, second));
@@ -601,10 +670,16 @@ uint32_t SwitchNode::SelectWs31Downstream(uint32_t destinationHost, uint32_t fir
     const uint64_t ageB = paired ? nowNs - b->second.sampleNs : 0;
     const bool use = paired && ageA <= m_ws31DownstreamAgeNs && ageB <= m_ws31DownstreamAgeNs;
     uint32_t chosen = local;
+    uint64_t spread = 0, sampleNs = 0;
     if (use) {
         const uint64_t scoreA = std::max(localFirst, uint64_t(a->second.queueBytes));
         const uint64_t scoreB = std::max(localSecond, uint64_t(b->second.queueBytes));
         chosen = scoreB < scoreA ? second : first;
+        spread = scoreB < scoreA ? scoreA - scoreB : scoreB - scoreA;
+        sampleNs = std::min(a->second.sampleNs, b->second.sampleNs);
+    }
+    if (m_ws31NarrowBytes) {
+        chosen = ConstrainWs31DownstreamWidth(flow, chosen, use, spread, sampleNs, nowNs);
     }
     if (Ws30Level()) {
         const char *status = use ? "fresh" : (paired ? "stale" : (unique ? "missing" : "ambiguous"));
@@ -1555,7 +1630,7 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
         m_ws31M1QueueReads[category]+=2;
         pair.chosen=b<a?pair.second:pair.first;
         if (Settings::lb_mode==58 && category==1 && m_ws31DownstreamAgeNs) {
-            pair.chosen = SelectWs31Downstream(ch.dip, pair.first, pair.second, a, b);
+            pair.chosen = SelectWs31Downstream(key, pair.first, pair.second, a, b);
         }
     }
     ++m_ws31M1Packets[category];
@@ -1584,6 +1659,7 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
 void SwitchNode::ResetWs30V13Tuple(uint32_t sip, uint32_t dip, uint16_t sport, uint16_t dport) {
     const size_t erased = m_ws30V13Pairs.erase(std::make_tuple(sip,dip,sport,dport));
     m_ws31M1Pairs.erase(std::make_tuple(sip,dip,sport,dport));
+    m_ws31NarrowPaths.erase(std::make_tuple(sip,dip,sport,dport));
     const ws31::Key key(sip,dip,sport,dport);
     m_ws31Pairs.erase(key);
     m_ws31Budget.Erase(key);
