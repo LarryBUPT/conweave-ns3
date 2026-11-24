@@ -190,13 +190,16 @@ class SwitchNode : public Node {
     uint64_t m_ws31ObservedPeriodNs = 0, m_ws31ObservedIdleNs = 0;
     uint64_t m_ws31EventDelta = 0, m_ws31EventWater = 0, m_ws31EventInterval = 0;
     uint64_t m_ws31PersistNs = 0, m_ws31PressureAgeNs = 0;
+    uint64_t m_ws31RxHoldNs = 0;
     uint64_t m_ws31EventSentBytes = 0, m_ws31EventWireBytes = 0, m_ws31ShadowBytes = 0;
     struct Ws31Rc2Flow {
         uint64_t highSinceNs = 0, lowSinceNs = 0, pressureNs = 0, lastDecisionNs = 0;
+        uint64_t rxHighNs = 0;
         uint32_t betterPort = 0, pinnedPort = 0;
         uint16_t pressureId = 0;
+        uint8_t rxPressureEvents = 0;
         bool high = false, low = false, pressureSeen = false, pressure = false;
-        bool receiverPin = false;
+        bool receiverPin = false, rxReopened = false;
     };
     std::map<Ws31M1FlowKey, Ws31Rc2Flow> m_ws31Rc2Flows;
     void ObserveWs31Rc2Pressure(const CustomHeader &ch);
@@ -298,7 +301,7 @@ class SwitchNode : public Node {
     void ConfigureWs31Downstream(uint64_t maximumAgeNs);
     void ConfigureWs31ObservedDownstream(uint64_t periodNs, uint64_t idleNs);
     void ConfigureWs31Rc2(uint64_t delta, uint64_t water, uint64_t interval,
-                          uint64_t persistNs, uint64_t pressureAgeNs);
+                          uint64_t persistNs, uint64_t pressureAgeNs, uint64_t rxHoldNs);
     void AddWs31DownstreamPeer(uint32_t port, uint32_t node, uint32_t receiverPort, uint64_t rate);
     void FinishWs31ObservedFlow(uint32_t source, uint32_t destination, uint16_t sport,
                                 uint16_t dport);

@@ -512,12 +512,13 @@ void SwitchNode::ConfigureWs31ObservedDownstream(uint64_t periodNs, uint64_t idl
 }
 
 void SwitchNode::ConfigureWs31Rc2(uint64_t delta, uint64_t water, uint64_t interval,
-                                 uint64_t persistNs, uint64_t pressureAgeNs) {
+                                 uint64_t persistNs, uint64_t pressureAgeNs, uint64_t rxHoldNs) {
     m_ws31EventDelta = delta;
     m_ws31EventWater = water;
     m_ws31EventInterval = interval;
     m_ws31PersistNs = persistNs;
     m_ws31PressureAgeNs = pressureAgeNs;
+    m_ws31RxHoldNs = rxHoldNs;
 }
 
 void SwitchNode::AddWs31DownstreamPeer(uint32_t port, uint32_t node, uint32_t receiverPort,
@@ -842,8 +843,17 @@ void SwitchNode::ObserveWs31Rc2Pressure(const CustomHeader &ch) {
     state.pressureId = ch.ipid;
     state.pressureNs = now;
     const bool high = ch.ack.flags & qbbHeader::FLAG_WS31_PRESSURE_HIGH;
-    if (high || state.pressure != high) state.low = false;
     state.pressure = high;
+    if (high) {
+        state.rxHighNs = now;
+        // A refresh can start the hold if the first report was lost.
+        if (state.rxReopened) {
+            state.rxPressureEvents = 4;
+        } else if (state.rxPressureEvents < 4 &&
+                   (!state.rxPressureEvents || (ch.ack.flags & qbbHeader::FLAG_WS31_PRESSURE_EVENT))) {
+            ++state.rxPressureEvents;
+        }
+    }
 }
 
 uint32_t SwitchNode::SelectWs31Rc2(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
@@ -873,25 +883,35 @@ uint32_t SwitchNode::SelectWs31Rc2(const Ws31M1FlowKey &flow, uint32_t first, ui
     state.lastDecisionNs = now;
     const bool pressure = state.pressureSeen && state.pressure &&
                           now - state.pressureNs <= m_ws31PressureAgeNs;
+    // Retain width one for 1x, 2x, then 4x the base hold. A fourth event or
+    // renewed pressure after reopening pins until flow-completion cleanup.
+    const bool receiverHold = pressure || state.rxPressureEvents == 4 ||
+        (state.rxPressureEvents &&
+         now - state.rxHighNs < (m_ws31RxHoldNs << (state.rxPressureEvents - 1)));
     const bool persistent = state.high && now - state.highSinceNs >= m_ws31PersistNs;
     const char *action = nullptr;
-    if (!state.pinnedPort && (pressure || persistent)) {
+    if (!state.pinnedPort && (receiverHold || persistent)) {
         state.pinnedPort = persistent ? state.betterPort : first;
-        action = pressure ? "narrow_rx" : "narrow_queue";
+        action = receiverHold ? "narrow_rx" : "narrow_queue";
     }
     if (state.pinnedPort) {
-        if (pressure) state.receiverPin = true;
-        if (!paired && !state.receiverPin) {
+        if (receiverHold) {
+            state.receiverPin = true;
+            state.low = false;
+        } else if (state.receiverPin && !persistent) {
+            state.pinnedPort = 0;
+            state.receiverPin = false;
+            action = "restore_rx";
+        } else if (!paired) {
             state.pinnedPort = 0;
             state.low = false;
             action = "restore_stale";
-        } else if (!pressure && !state.receiverPin && state.high &&
-                   state.betterPort != state.pinnedPort) {
+        } else if (state.high && state.betterPort != state.pinnedPort) {
             state.pinnedPort = 0;
+            state.receiverPin = false;
             state.low = false;
             action = "restore_reversed";
-        } else if (!pressure && (!paired || spread <= m_ws31ReopenBytes ||
-                                 (state.receiverPin && !persistent))) {
+        } else if (spread <= m_ws31ReopenBytes) {
             if (!state.low) {
                 state.low = true;
                 state.lowSinceNs = now;
@@ -903,10 +923,12 @@ uint32_t SwitchNode::SelectWs31Rc2(const Ws31M1FlowKey &flow, uint32_t first, ui
                 action = "restore_low";
             }
         } else {
+            state.receiverPin = false;
             state.low = false;
         }
     }
     if (action) {
+        if (!state.pinnedPort && state.rxPressureEvents) state.rxReopened = true;
         std::cout << "WS31_RC2_WIDTH time_ns=" << now << " switch=" << m_id
                   << " sip=" << std::get<0>(flow) << " dip=" << std::get<1>(flow)
                   << " sport=" << std::get<2>(flow) << " dport=" << std::get<3>(flow)

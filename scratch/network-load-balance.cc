@@ -222,6 +222,7 @@ int64_t ws31_downstream_reopen_bytes = 0;
 int64_t ws31_downstream_reopen_ns = 0;
 int64_t ws31_rc2_delta = 0, ws31_rc2_water = 0, ws31_rc2_interval = 0, ws31_rc2_persist = 0;
 int64_t ws31_rc2_rx_high = 0, ws31_rc2_rx_low = 0, ws31_rc2_rx_interval = 0, ws31_rc2_rx_age = 0;
+int64_t ws31_rc2_rx_hold_ns = 120000;
 std::vector<std::pair<uint32_t, uint32_t>> ws31_rc2_queue_links;
 int random_seed = 1;  // change this randomly if you want random expt
 
@@ -986,7 +987,7 @@ static void ConfigureWs31ObservedDownstream() {
         sw->ConfigureWs31Downstream(ws31_downstream_max_age_ns);
         sw->ConfigureWs31ObservedDownstream(ws31_downstream_period_ns, ws31_downstream_idle_ns);
         sw->ConfigureWs31Rc2(ws31_rc2_delta, ws31_rc2_water, ws31_rc2_interval, ws31_rc2_persist,
-                           ws31_rc2_rx_age);
+                           ws31_rc2_rx_age, ws31_rc2_rx_hold_ns);
         if (ws31_downstream_narrow_bytes || ws31_rc2_rx_age) {
             sw->ConfigureWs31DownstreamWidth(ws31_downstream_narrow_bytes,
                                               ws31_downstream_reopen_bytes,
@@ -2273,11 +2274,17 @@ int main(int argc, char *argv[]) {
                 std::istringstream values(line);
                 if (ws31_rc2_rx_age ||
                     !(values >> ws31_rc2_rx_high >> ws31_rc2_rx_low >> ws31_rc2_rx_interval >>
-                      ws31_rc2_rx_age) || (values >> extra) || ws31_rc2_rx_high >= 100 ||
+                      ws31_rc2_rx_age) ||
+                    (!(values >> std::ws).eof() &&
+                     (!(values >> ws31_rc2_rx_hold_ns) || (values >> extra))) ||
+                    ws31_rc2_rx_high >= 100 ||
                     ws31_rc2_rx_low <= 0 || ws31_rc2_rx_low >= ws31_rc2_rx_high ||
-                    ws31_rc2_rx_interval <= 0 || ws31_rc2_rx_age <= ws31_rc2_rx_interval) {
+                    ws31_rc2_rx_interval <= 0 || ws31_rc2_rx_age <= ws31_rc2_rx_interval ||
+                    ws31_rc2_rx_hold_ns <= 0 ||
+                    ws31_rc2_rx_hold_ns > std::numeric_limits<int64_t>::max() / 4) {
                     std::cerr << "WS31_RC2_PRESSURE requires high and low percentages, minimum "
-                                 "interval ns and a larger age limit ns" << std::endl;
+                                 "interval ns, a larger age limit ns and an optional positive "
+                                 "base hold ns (default 120000)" << std::endl;
                     return 2;
                 }
             } else if (key == "WS31_RC2_QUEUE_PORT") {

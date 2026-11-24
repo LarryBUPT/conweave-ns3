@@ -244,10 +244,10 @@ class RdmaHw : public Object {
     uint32_t m_ws31Rc2PressureHigh = 0, m_ws31Rc2PressureLow = 0;
     struct Ws31Rc2Notice {
         uint64_t lastNs = 0;
-        bool high = false;
+        bool high = false, rejected = false;
     };
     std::unordered_map<const RdmaRxQueuePair *, Ws31Rc2Notice> m_ws31Rc2Notices;
-    bool MarkWs31Rc2Pressure(Ptr<RdmaRxQueuePair> qp, bool rejected, bool &high);
+    bool MarkWs31Rc2Pressure(Ptr<RdmaRxQueuePair> qp, bool rejected, bool &high, bool &event);
     Time m_ws31RxWait;
     std::unordered_map<const RdmaRxQueuePair *, Ws31RxGap> m_ws31RxGaps;
     int ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,

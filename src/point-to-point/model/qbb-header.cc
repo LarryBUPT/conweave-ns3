@@ -44,10 +44,11 @@ namespace ns3 {
 		NS_ASSERT_MSG(IntHeader::mode == 1, "qbbHeader cannot SetTs when IntHeader::mode != 1");
 		ih.ts = ts;
 	}
-    void qbbHeader::SetWs31Pressure(bool high, bool pressureOnly) {
+    void qbbHeader::SetWs31Pressure(bool high, bool pressureOnly, bool event) {
         flags |= FLAG_WS31_PRESSURE_VALID;
         if (high) flags |= FLAG_WS31_PRESSURE_HIGH;
         if (pressureOnly) flags |= FLAG_WS31_PRESSURE_ONLY;
+        if (event) flags |= FLAG_WS31_PRESSURE_EVENT;
     }
 
 	void qbbHeader::SetCnp(){

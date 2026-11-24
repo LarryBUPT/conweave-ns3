@@ -704,7 +704,7 @@ void RdmaHw::WriteWs31Rc2RxStats() const {
               << " extra_frame_bytes=" << m_ws31Rc2ExtraBytes << std::endl;
 }
 
-bool RdmaHw::MarkWs31Rc2Pressure(Ptr<RdmaRxQueuePair> qp, bool rejected, bool &high) {
+bool RdmaHw::MarkWs31Rc2Pressure(Ptr<RdmaRxQueuePair> qp, bool rejected, bool &high, bool &event) {
     const auto *key = PeekPointer(qp);
     auto notice = m_ws31Rc2Notices.find(key);
     const bool wasHigh = notice != m_ws31Rc2Notices.end() && notice->second.high;
@@ -717,11 +717,15 @@ bool RdmaHw::MarkWs31Rc2Pressure(Ptr<RdmaRxQueuePair> qp, bool rejected, bool &h
     high = rejected || connectionBytes >= threshold(m_ws31RxConnectionCap) ||
                        m_ws31RxDeviceBytes >= threshold(m_ws31RxDeviceCap);
     const uint64_t now = Simulator::Now().GetNanoSeconds();
-    if (high == wasHigh &&
-        (!high || now - notice->second.lastNs < m_ws31Rc2PressureInterval)) return false;
+    const bool refreshDue = wasHigh && now - notice->second.lastNs >= m_ws31Rc2PressureInterval;
+    // Signal a new pressure episode or its first reject immediately. Pace
+    // subsequent rejects at the same cadence as high-water refreshes.
+    event = high && (!wasHigh || (rejected && (!notice->second.rejected || refreshDue)));
+    if (!event && high == wasHigh && !refreshDue) return false;
     auto &state = m_ws31Rc2Notices[key];
     state.lastNs = now;
     state.high = high;
+    state.rejected = high && ((wasHigh && state.rejected) || rejected);
     return true;
 }
 
@@ -938,11 +942,11 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                       ? ReceiveWs31Reordered(p, ch, rxQp, payload_size, cnp_check, pressureReject)
                       : ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
     const bool ordinaryAck = x == 1 || x == 2 || x == 6;
-    bool highPressure = false, markPressure = false;
+    bool highPressure = false, pressureEvent = false, markPressure = false;
     WorkloadTag workload;
-    if (m_ws31Rc2PressureInterval && (ordinaryAck || pressureReject) &&
+    if (m_ws31Rc2PressureInterval &&
         p->PeekPacketTag(workload) && workload.GetValue() == 1) {
-        markPressure = MarkWs31Rc2Pressure(rxQp, pressureReject, highPressure);
+        markPressure = MarkWs31Rc2Pressure(rxQp, pressureReject, highPressure, pressureEvent);
     }
     const bool pressureOnly = markPressure && !ordinaryAck;
     if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0) {
@@ -986,7 +990,7 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
     if (ordinaryAck || pressureOnly) {
         qbbHeader seqh;
-        if (markPressure) seqh.SetWs31Pressure(highPressure, pressureOnly);
+        if (markPressure) seqh.SetWs31Pressure(highPressure, pressureOnly, pressureEvent);
         seqh.SetSeq(rxQp->ReceiverNextExpectedSeq);
         seqh.SetPG(ch.udp.pg);
         seqh.SetSport(ch.udp.dport);
