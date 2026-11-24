@@ -208,6 +208,7 @@ bool ooo_cnp_enabled = true;
 bool ooo_cnp_seen = false;
 bool ws31_m1_bounded_recovery = false;
 bool ws31_m1_bounded_recovery_seen = false;
+uint32_t ws31_expected_irn_bdp_bytes = 0;
 int64_t ws31_rx_reorder_connection_bytes = 0;
 int64_t ws31_rx_reorder_device_bytes = 0;
 int64_t ws31_rx_reorder_wait_ns = 0;
@@ -2185,6 +2186,15 @@ int main(int argc, char *argv[]) {
                 }
                 ws31_m1_bounded_recovery_seen = true;
                 ws31_m1_bounded_recovery = (v == 1);
+            } else if (key.compare("WS31_EXPECTED_IRN_BDP_BYTES") == 0) {
+                int64_t expected = 0;
+                if (ws31_expected_irn_bdp_bytes || !(conf >> expected) || expected <= 0 ||
+                    expected > std::numeric_limits<uint32_t>::max()) {
+                    std::cerr << "WS31_EXPECTED_IRN_BDP_BYTES requires one positive byte count"
+                              << std::endl;
+                    return 2;
+                }
+                ws31_expected_irn_bdp_bytes = static_cast<uint32_t>(expected);
             } else if (key.compare("WS31_RX_REORDER_LIMITS") == 0) {
                 std::string line, extra;
                 std::getline(conf, line);
@@ -2280,6 +2290,12 @@ int main(int argc, char *argv[]) {
     }
     if (ws31_m1_bounded_recovery && !enable_irn) {
         std::cerr << "WS31_M1_BOUNDED_RECOVERY=1 requires ENABLE_IRN=1" << std::endl;
+        return 2;
+    }
+    if (ws31_expected_irn_bdp_bytes &&
+        (lb_mode != 58 || !enable_irn || topology_file != "config/topo_1280_400G_400G_OS1.txt")) {
+        std::cerr << "WS31_EXPECTED_IRN_BDP_BYTES requires mode 58, IRN, and the WS-31 Clos topology path"
+                  << std::endl;
         return 2;
     }
     if (ws31_rx_reorder_connection_bytes > 0) {
@@ -2728,6 +2744,7 @@ int main(int argc, char *argv[]) {
                   << " ERROR - topo2bdpMap has no matched item with " << topology_file << std::endl;
         assert(false);
     }
+    if (ws31_expected_irn_bdp_bytes) irn_bdp_lookup = ws31_expected_irn_bdp_bytes;
 
     // rdmaHw config
     for (uint32_t i = 0; i < node_num; i++) {
@@ -2849,6 +2866,14 @@ int main(int argc, char *argv[]) {
         }
     }
     fprintf(stderr, "maxRtt: %lu, maxBdp: %lu\n", maxRtt, maxBdp);
+    if (ws31_expected_irn_bdp_bytes) {
+        if (maxBdp != ws31_expected_irn_bdp_bytes) {
+            std::cerr << "Declared IRN BDP " << ws31_expected_irn_bdp_bytes
+                      << " differs from calculated BDP " << maxBdp << std::endl;
+            return 2;
+        }
+        std::cerr << "WS31_EXPECTED_IRN_BDP_BYTES\t" << ws31_expected_irn_bdp_bytes << '\n';
+    }
     assert(maxBdp == irn_bdp_lookup);
 
     std::cout << "Configuring switches" << std::endl;
