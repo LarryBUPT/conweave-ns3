@@ -123,6 +123,7 @@ class RdmaHw : public Object {
     void CheckandSendQCN(Ptr<RdmaRxQueuePair> q);
     int ReceiverCheckSeq(uint32_t seq, Ptr<RdmaRxQueuePair> q, uint32_t size, bool &cnp);
     void ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceBytes, Time wait);
+    void EnableWs31ClassicFeedbackAccounting() { m_ws31ClassicFeedbackAccounting = true; }
     void ConfigureWs31Rc2Pressure(uint32_t highPercent, uint32_t lowPercent, uint64_t intervalNs);
     void WriteWs31Rc2RxStats() const;
     void AddHeader(Ptr<Packet> p, uint16_t protocolNumber);
@@ -224,6 +225,7 @@ class RdmaHw : public Object {
     bool m_irn;
     bool m_oooCnpEnabled;
     bool m_ws31M1BoundedRecovery;
+    bool m_ws31ClassicFeedbackAccounting = false;
     Time m_irn_rtoLow;
     Time m_irn_rtoHigh;
     uint32_t m_irn_bdp;

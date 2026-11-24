@@ -1050,7 +1050,8 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                 TraceWs31RxReorder(rxQp, "cumulative_ack", rxQp->ReceiverNextExpectedSeq, 0);
             }
         }
-        if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0)
+        if (((Settings::lb_mode >= 58 && Settings::lb_mode <= 61) ||
+             (m_ws31ClassicFeedbackAccounting && Ws25DiagnosticEnabled())) && rxQp->m_flow_id >= 0)
             ws25_qp_diagnostics[rxQp->m_flow_id].feedback_wire_bytes+=newp->GetSize();
 
         // send
@@ -1633,7 +1634,7 @@ void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
                   << " cnp_feedback=" << s.cnp_feedback
                   << " repeated_sends=" << s.repeated_sends
                   << " timeout_recovery=" << s.timeout_recovery;
-        if (Settings::lb_mode == 58)
+        if (Settings::lb_mode == 58 || m_ws31ClassicFeedbackAccounting)
             std::cout << " feedback_wire_bytes=" << s.feedback_wire_bytes;
         std::cout << std::endl;
         if (Ws30Level()) {

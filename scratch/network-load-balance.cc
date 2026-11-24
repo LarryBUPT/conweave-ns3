@@ -2373,9 +2373,14 @@ int main(int argc, char *argv[]) {
         std::cerr << "WS31_M1_BOUNDED_RECOVERY=1 requires ENABLE_IRN=1" << std::endl;
         return 2;
     }
+    const bool ws31ClassicBdpMode =
+        lb_mode == 0 || lb_mode == 2 || lb_mode == 3 || lb_mode == 6 || lb_mode == 33;
     if (ws31_expected_irn_bdp_bytes &&
-        (lb_mode != 58 || !enable_irn || topology_file != "config/topo_1280_400G_400G_OS1.txt")) {
-        std::cerr << "WS31_EXPECTED_IRN_BDP_BYTES requires mode 58, IRN, and the WS-31 Clos topology path"
+        ((!ws31ClassicBdpMode && lb_mode != 58) || !enable_irn ||
+         topology_file != "config/topo_1280_400G_400G_OS1.txt")) {
+        std::cerr << (lb_mode == 58
+                          ? "WS31_EXPECTED_IRN_BDP_BYTES requires mode 58, IRN, and the WS-31 Clos topology path"
+                          : "WS31_EXPECTED_IRN_BDP_BYTES requires mode 0, 2, 3, 6, 33, or 58, IRN, and the WS-31 Clos topology path")
                   << std::endl;
         return 2;
     }
@@ -2885,6 +2890,8 @@ int main(int argc, char *argv[]) {
             rdmaHw->SetAttribute("IrnRtoHigh", TimeValue(MicroSeconds(320)));  // 1930
             rdmaHw->SetAttribute("IrnRtoLow", TimeValue(MicroSeconds(100)));   // 454
             rdmaHw->SetAttribute("IrnBdp", UintegerValue(irn_bdp_lookup));
+            if (ws31_expected_irn_bdp_bytes && ws31ClassicBdpMode)
+                rdmaHw->EnableWs31ClassicFeedbackAccounting();
             // Monitoring CNP Marking frequency of DCQCN
             if (cc_mode == 1 && !Ws31NativeRequested()) {
                 Simulator::Schedule(NanoSeconds(cnp_mon_start), &cnp_freq_monitoring, cnp_output,
