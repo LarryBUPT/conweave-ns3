@@ -1012,38 +1012,56 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
     const double scoreB = pb.propagationNs + serializationNs(localSecond, pb.upstreamRate) +
                           serializationNs(qb, pb.downstreamRate);
     const auto &notice = m_ws31Rc2Flows.at(key);
-    constexpr uint64_t minPathSkewNs = 250;
-    const bool skew = std::max(pa.propagationNs, pb.propagationNs) -
-                      std::min(pa.propagationNs, pb.propagationNs) >= minPathSkewNs;
     const bool pressure = notice.pressure && now - notice.pressureNs <= m_ws31PressureAgeNs;
-    const bool recentPressure = notice.rxHighNs && now - notice.rxHighNs <= m_ws31PressureAgeNs;
+    const uint32_t previous = state.narrowPort;
+    if (pressure) {
+        if (!state.rxHoldUntilNs) {
+            state.rxHoldStartedNs = now;
+            state.rxHoldUntilNs = now + m_ws31RxHoldNs;
+        }
+        // Only a new high report can extend the hold, up to twice its base duration.
+        state.rxHoldUntilNs = std::max(state.rxHoldUntilNs,
+            std::min(notice.rxHighNs + m_ws31RxHoldNs, state.rxHoldStartedNs + 2 * m_ws31RxHoldNs));
+    }
+    const bool rxHold = now < state.rxHoldUntilNs;
+    const bool escapePause = previous && (pausedA != pausedB) &&
+                             (previous == first ? pausedA : pausedB);
+    const bool escapeHot = previous && (previous == first ? hotA && !pausedB : hotB && !pausedA);
 
     uint32_t preferred = 0;
     const char *reason = "queue";
-    if (pausedA != pausedB) {
+    if (previous && rxHold) {
+        preferred = previous;
+        reason = "rx";
+        if (escapePause || escapeHot) {
+            preferred = previous == first ? second : first;
+            reason = escapePause ? "pause" : "queue";
+        }
+    } else if (pausedA != pausedB) {
         preferred = pausedA ? second : first;
         reason = "pause";
+    } else if (pressure) {
+        if (scoreA < scoreB) preferred = first;
+        else if (scoreB < scoreA) preferred = second;
+        else preferred = state.lastPort ? state.lastPort : local;
+        reason = "rx";
     } else if (!pausedA && (hotA || hotB)) {
         preferred = hotA ? second : first;
-    } else if (!pausedA && pressure && skew) {
-        if (scoreA + minPathSkewNs <= scoreB) preferred = first;
-        if (scoreB + minPathSkewNs <= scoreA) preferred = second;
-        reason = "rx";
     }
 
     // A cumulative drain covers both paths, even when one is paused. The
     // flowlet heuristic is restricted to unpaused, fully sampled two-hop paths.
     const bool drained = state.ackedEnd >= state.sentEnd;
+    constexpr uint64_t idleGuardNs = 250;
     const bool idle = state.lastPort && pa.directToLeaf && pb.directToLeaf &&
         !devA->IsQbbEnabled() && !devB->IsQbbEnabled() && !pausedA && !pausedB &&
         fresh(pa) && fresh(pb) && std::max(std::max(qa, qb), std::max(localFirst, localSecond)) <= m_ws31ReopenBytes &&
-        now - state.lastSentNs >= std::max(scoreA, scoreB) + minPathSkewNs;
+        now - state.lastSentNs >= std::max(scoreA, scoreB) + idleGuardNs;
     const bool canMove = drained || idle;
-    const uint32_t previous = state.narrowPort;
     const char *action = nullptr;
     if (preferred) {
         state.low = false;
-        if (canMove || preferred == state.lastPort) {
+        if (!previous || preferred == previous || canMove || (rxHold && (escapePause || escapeHot))) {
             state.narrowPort = preferred;
             if (previous != preferred)
                 action = previous ? "escape" : "narrow";
@@ -1051,12 +1069,13 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
     } else if (previous) {
         const bool lowQueue = (!fresh(pa) || qa <= m_ws31ReopenBytes) &&
                               (!fresh(pb) || qb <= m_ws31ReopenBytes);
-        if (!recentPressure && (lowQueue || (fresh(pa) && fresh(pb) &&
+        if (!pressure && !pausedA && !pausedB && (lowQueue || (fresh(pa) && fresh(pb) &&
             std::max(qa, qb) - std::min(qa, qb) <= m_ws31ReopenBytes))) {
             if (!state.low) state.lowSinceNs = now;
             state.low = true;
             if (now - state.lowSinceNs >= m_ws31ReopenNs && canMove) {
                 state.narrowPort = 0;
+                state.rxHoldStartedNs = state.rxHoldUntilNs = 0;
                 action = "restore";
             }
         } else {
@@ -1064,8 +1083,6 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
         }
     }
 
-    // While waiting for a safe boundary, retain the last path only if already
-    // narrowed. A newly observed pressure signal does not create an unsafe pin.
     const uint32_t chosen = state.narrowPort ? state.narrowPort : local;
     if (action) {
         std::cout << "WS31_RC2_V3 time_ns=" << now << " switch=" << m_id
@@ -1075,6 +1092,9 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
                   << " previous=" << previous << " port=" << chosen
                   << " first=" << first << " second=" << second
                   << " qa=" << qa << " qb=" << qb
+                  << " local_a=" << localFirst << " local_b=" << localSecond
+                  << " score_a_ns=" << scoreA << " score_b_ns=" << scoreB
+                  << " rx_hold_until_ns=" << state.rxHoldUntilNs
                   << " fresh_a=" << fresh(pa) << " fresh_b=" << fresh(pb)
                   << " propagation_a_ns=" << pa.propagationNs
                   << " propagation_b_ns=" << pb.propagationNs

@@ -212,6 +212,7 @@ class SwitchNode : public Node {
     };
     struct Ws31Rc2V3Flow {
         uint64_t lastSentNs = 0, lowSinceNs = 0, sentEnd = 0, ackedEnd = 0;
+        uint64_t rxHoldStartedNs = 0, rxHoldUntilNs = 0;
         uint32_t lastPort = 0, narrowPort = 0;
         bool low = false, reserveSecond = false;
     };
