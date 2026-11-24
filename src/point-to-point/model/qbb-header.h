@@ -24,7 +24,10 @@ class qbbHeader : public Header
 public:
  
   enum {
-	  FLAG_CNP = 0
+	  FLAG_CNP = 0,
+      FLAG_WS31_PRESSURE_VALID = 1u << 1,
+      FLAG_WS31_PRESSURE_HIGH = 1u << 2,
+      FLAG_WS31_PRESSURE_ONLY = 1u << 3
   };
   qbbHeader (uint16_t pg);
   qbbHeader ();
@@ -40,6 +43,7 @@ public:
   void SetDport(uint32_t _dport);
   void SetTs(uint64_t ts);
   void SetCnp();
+  void SetWs31Pressure(bool high, bool pressureOnly);
   void SetIntHeader(const IntHeader &_ih);
   void SetIrnNack(uint32_t seq);
   void SetIrnNackSize(size_t sz);

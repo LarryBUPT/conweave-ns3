@@ -675,6 +675,9 @@ void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t p
     akashic_RxQp.insert(key);
 
     // delete
+    auto deleted = m_rxQpMap.find(key);
+    if (deleted != m_rxQpMap.end() && m_ws31Rc2PressureInterval)
+        m_ws31Rc2Notices.erase(PeekPointer(deleted->second));
     m_rxQpMap.erase(key);
 }
 
@@ -682,6 +685,44 @@ void RdmaHw::ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceByt
     m_ws31RxConnectionCap = connectionBytes;
     m_ws31RxDeviceCap = deviceBytes;
     m_ws31RxWait = wait;
+}
+
+void RdmaHw::ConfigureWs31Rc2Pressure(uint32_t highPercent, uint32_t lowPercent,
+                                        uint64_t intervalNs) {
+    m_ws31Rc2PressureHigh = highPercent;
+    m_ws31Rc2PressureLow = lowPercent;
+    m_ws31Rc2PressureInterval = intervalNs;
+}
+
+void RdmaHw::WriteWs31Rc2RxStats() const {
+    if (!m_ws31RxConnectionCap) return;
+    std::cout << "WS31_RC2_RX host=" << m_node->GetId()
+              << " connection_peak=" << m_ws31Rc2ConnectionPeak
+              << " device_peak=" << m_ws31Rc2DevicePeak
+              << " early_rejects=" << m_ws31Rc2Rejects
+              << " marked_frame_bytes=" << m_ws31Rc2MarkedBytes
+              << " extra_frame_bytes=" << m_ws31Rc2ExtraBytes << std::endl;
+}
+
+bool RdmaHw::MarkWs31Rc2Pressure(Ptr<RdmaRxQueuePair> qp, bool rejected, bool &high) {
+    const auto *key = PeekPointer(qp);
+    auto notice = m_ws31Rc2Notices.find(key);
+    const bool wasHigh = notice != m_ws31Rc2Notices.end() && notice->second.high;
+    const uint32_t percent = wasHigh ? m_ws31Rc2PressureLow : m_ws31Rc2PressureHigh;
+    const auto gap = m_ws31RxGaps.find(key);
+    const uint64_t connectionBytes = gap == m_ws31RxGaps.end() ? 0 : gap->second.bytes;
+    const auto threshold = [percent](uint64_t limit) {
+        return (limit / 100) * percent + ((limit % 100) * percent + 99) / 100;
+    };
+    high = rejected || connectionBytes >= threshold(m_ws31RxConnectionCap) ||
+                       m_ws31RxDeviceBytes >= threshold(m_ws31RxDeviceCap);
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    if (high == wasHigh &&
+        (!high || now - notice->second.lastNs < m_ws31Rc2PressureInterval)) return false;
+    auto &state = m_ws31Rc2Notices[key];
+    state.lastNs = now;
+    state.high = high;
+    return true;
 }
 
 void RdmaHw::TraceWs31RxReorder(Ptr<RdmaRxQueuePair> qp, const char *event,
@@ -719,7 +760,8 @@ void RdmaHw::TraceWs31RxSenderDeadline(Ptr<RdmaQueuePair> qp, Time rto) const {
 }
 
 int RdmaHw::ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,
-                                 Ptr<RdmaRxQueuePair> qp, uint32_t size, bool &cnp) {
+                                 Ptr<RdmaRxQueuePair> qp, uint32_t size, bool &cnp,
+                                 bool &pressureReject) {
     const uint32_t seq = ch.udp.seq;
     const uint32_t expected = qp->ReceiverNextExpectedSeq;
     const uint64_t end = uint64_t(seq) + size;
@@ -746,6 +788,8 @@ int RdmaHw::ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,
                 return 2;  // Repeat a SACK only for a still-owned range.
             }
             if (Simulator::Now() >= gap->second.deadline) {
+                pressureReject = true;
+                ++m_ws31Rc2Rejects;
                 TraceWs31RxReorder(qp, "reject_wait", seq, size);
                 return 0;
             }
@@ -762,10 +806,14 @@ int RdmaHw::ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,
         }
         const uint64_t connectionBytes = gap == m_ws31RxGaps.end() ? 0 : gap->second.bytes;
         if (size > m_ws31RxConnectionCap - connectionBytes) {
+            pressureReject = true;
+            ++m_ws31Rc2Rejects;
             TraceWs31RxReorder(qp, "reject_connection_cap", seq, size);
             return 0;
         }
         if (size > m_ws31RxDeviceCap - m_ws31RxDeviceBytes) {
+            pressureReject = true;
+            ++m_ws31Rc2Rejects;
             TraceWs31RxReorder(qp, "reject_device_cap", seq, size);
             return 0;
         }
@@ -774,6 +822,8 @@ int RdmaHw::ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,
         state.payload.emplace(seq, p->CreateFragment(headerBytes, size));
         state.bytes += size;
         m_ws31RxDeviceBytes += size;
+        m_ws31Rc2ConnectionPeak = std::max(m_ws31Rc2ConnectionPeak, state.bytes);
+        m_ws31Rc2DevicePeak = std::max(m_ws31Rc2DevicePeak, m_ws31RxDeviceBytes);
         qp->m_irn_sack_.sack(seq, size);
         TraceWs31RxReorder(qp, "retain", seq, size);
         if (newGap) ArmWs31RxGap(state, qp);
@@ -883,9 +933,18 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                   << " object=" << reinterpret_cast<uintptr_t>(PeekPointer(rxQp))
                   << " seq=" << ch.udp.seq << " expected=" << expected_before << std::endl;
     }
-    int x = m_ws31RxConnectionCap
-                ? ReceiveWs31Reordered(p, ch, rxQp, payload_size, cnp_check)
-                : ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
+    bool pressureReject = false;
+    const int x = m_ws31RxConnectionCap
+                      ? ReceiveWs31Reordered(p, ch, rxQp, payload_size, cnp_check, pressureReject)
+                      : ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
+    const bool ordinaryAck = x == 1 || x == 2 || x == 6;
+    bool highPressure = false, markPressure = false;
+    WorkloadTag workload;
+    if (m_ws31Rc2PressureInterval && (ordinaryAck || pressureReject) &&
+        p->PeekPacketTag(workload) && workload.GetValue() == 1) {
+        markPressure = MarkWs31Rc2Pressure(rxQp, pressureReject, highPressure);
+    }
+    const bool pressureOnly = markPressure && !ordinaryAck;
     if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0) {
         Ws25QpDiagnostic &cost=ws25_qp_diagnostics[rxQp->m_flow_id];
         if (ch.udp.seq>expected_before) cost.rx_ooo_payload_bytes+=payload_size;
@@ -925,8 +984,9 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                   << " expected=" << expected_before << " size=" << payload_size << std::endl;
     }
 
-    if (x == 1 || x == 2 || x == 6) {  // generate ACK or NACK
+    if (ordinaryAck || pressureOnly) {
         qbbHeader seqh;
+        if (markPressure) seqh.SetWs31Pressure(highPressure, pressureOnly);
         seqh.SetSeq(rxQp->ReceiverNextExpectedSeq);
         seqh.SetPG(ch.udp.pg);
         seqh.SetSport(ch.udp.dport);
@@ -943,7 +1003,7 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
             }
         }
 
-        if (ecnbits || cnp_check) {  // NACK accompanies with CNP packet
+        if (!pressureOnly && (ecnbits || cnp_check)) {  // NACK accompanies with CNP packet
             // XXX monitor CNP generation at sender
             cnp_total++;
             if (ecnbits) cnp_by_ecn++;
@@ -975,7 +1035,11 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
 
         newp->AddHeader(head);
         AddHeader(newp, 0x800);  // Attach PPP header
-        if (m_ws31RxConnectionCap) {
+        if (markPressure) {
+            m_ws31Rc2MarkedBytes += newp->GetSize();
+            if (pressureOnly) m_ws31Rc2ExtraBytes += newp->GetSize();
+        }
+        if (m_ws31RxConnectionCap && ordinaryAck) {
             if (x == 2) {
                 TraceWs31RxReorder(rxQp, "sack", ch.udp.seq, payload_size);
             } else {
@@ -1050,6 +1114,8 @@ int RdmaHw::ReceiveCnp(Ptr<Packet> p, CustomHeader &ch) {
 }
 
 int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
+    if (m_ws31Rc2PressureInterval && (ch.ack.flags & qbbHeader::FLAG_WS31_PRESSURE_ONLY))
+        return 0;
     if (Settings::lb_mode == 57) {
         const uint64_t key = GetQpKey(ch.sip,ch.ack.dport,ch.ack.sport,ch.ack.pg);
         Ptr<RdmaQueuePair> live = GetQp(key);
@@ -1562,7 +1628,10 @@ void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
                   << " sack_feedback=" << s.sack_feedback
                   << " cnp_feedback=" << s.cnp_feedback
                   << " repeated_sends=" << s.repeated_sends
-                  << " timeout_recovery=" << s.timeout_recovery << std::endl;
+                  << " timeout_recovery=" << s.timeout_recovery;
+        if (Settings::lb_mode == 58)
+            std::cout << " feedback_wire_bytes=" << s.feedback_wire_bytes;
+        std::cout << std::endl;
         if (Ws30Level()) {
             std::cout << "WS30_QP flow_id=" << qp->m_flow_id
                       << " tag=" << uint32_t(qp->m_workload_tag)

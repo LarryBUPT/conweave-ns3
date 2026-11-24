@@ -220,6 +220,9 @@ int64_t ws31_downstream_idle_ns = 0;
 int64_t ws31_downstream_narrow_bytes = 0;
 int64_t ws31_downstream_reopen_bytes = 0;
 int64_t ws31_downstream_reopen_ns = 0;
+int64_t ws31_rc2_delta = 0, ws31_rc2_water = 0, ws31_rc2_interval = 0, ws31_rc2_persist = 0;
+int64_t ws31_rc2_rx_high = 0, ws31_rc2_rx_low = 0, ws31_rc2_rx_interval = 0, ws31_rc2_rx_age = 0;
+std::vector<std::pair<uint32_t, uint32_t>> ws31_rc2_queue_links;
 int random_seed = 1;  // change this randomly if you want random expt
 
 uint64_t maxRtt, maxBdp;
@@ -714,9 +717,10 @@ void qp_finish(FILE *fout, Ptr<RdmaQueuePair> q) {
                                     Ws31M1CompletionObserved(lb_mode, ws31_m1_bounded_recovery)
                                 ? q->m_flow_id
                                 : -1);
-    if ((ws31_downstream_narrow_bytes || ws31_downstream_period_ns) && q->m_workload_tag == 1) {
+    if ((ws31_downstream_narrow_bytes || ws31_downstream_period_ns || ws31_rc2_rx_age) &&
+        q->m_workload_tag == 1) {
         auto sourceLeaf = DynamicCast<SwitchNode>(n.Get(Settings::hostIp2SwitchId.at(q->sip.Get())));
-        if (ws31_downstream_narrow_bytes) {
+        if (ws31_downstream_narrow_bytes || ws31_rc2_rx_age) {
             sourceLeaf->FinishWs31DownstreamWidth(q->sip.Get(), q->dip.Get(), q->sport, q->dport);
         }
         if (ws31_downstream_period_ns) {
@@ -981,16 +985,50 @@ static void ConfigureWs31ObservedDownstream() {
         if (!sw) continue;
         sw->ConfigureWs31Downstream(ws31_downstream_max_age_ns);
         sw->ConfigureWs31ObservedDownstream(ws31_downstream_period_ns, ws31_downstream_idle_ns);
-        if (ws31_downstream_narrow_bytes) {
+        sw->ConfigureWs31Rc2(ws31_rc2_delta, ws31_rc2_water, ws31_rc2_interval, ws31_rc2_persist,
+                           ws31_rc2_rx_age);
+        if (ws31_downstream_narrow_bytes || ws31_rc2_rx_age) {
             sw->ConfigureWs31DownstreamWidth(ws31_downstream_narrow_bytes,
                                               ws31_downstream_reopen_bytes,
-                                              ws31_downstream_reopen_ns);
+                                              ws31_downstream_reopen_ns
+                                                  ? ws31_downstream_reopen_ns : ws31_rc2_rx_interval);
         }
         for (const auto &edge : node.second) {
             sw->AddWs31DownstreamPeer(edge.second.idx, edge.first->GetId(),
                                       nbr2if.at(edge.first).at(node.first).idx, edge.second.bw);
         }
     }
+}
+
+static void SampleWs31Rc2Queues(
+    std::vector<std::pair<Ptr<QbbNetDevice>, uint32_t>> ports, uint32_t remaining) {
+    const auto now = Simulator::Now().GetNanoSeconds();
+    for (const auto &port : ports) {
+        std::cout << "WS31_RC2_QUEUE time_ns=" << now << " from=" << port.first->GetNode()->GetId()
+                  << " to=" << port.second << " bytes=" << port.first->GetQueue()->GetNBytes(3)
+                  << '\n';
+    }
+    if (remaining > 1)
+        Simulator::Schedule(MicroSeconds(1), &SampleWs31Rc2Queues, ports, remaining - 1);
+}
+
+static void ConfigureWs31Rc2QueueMonitoring() {
+    if (ws31_rc2_queue_links.empty()) return;
+    std::vector<std::pair<Ptr<QbbNetDevice>, uint32_t>> ports;
+    for (const auto &link : ws31_rc2_queue_links) {
+        NS_ABORT_MSG_IF(link.first >= n.GetN() || link.second >= n.GetN(),
+                        "WS31_RC2_QUEUE_PORT names an unknown node");
+        Ptr<Node> source = n.Get(link.first);
+        auto from = nbr2if.find(source);
+        NS_ABORT_MSG_IF(!DynamicCast<SwitchNode>(source) || from == nbr2if.end() ||
+                            !from->second.count(n.Get(link.second)),
+                        "WS31_RC2_QUEUE_PORT requires a directed switch link");
+        auto dev = DynamicCast<QbbNetDevice>(
+            source->GetDevice(from->second.at(n.Get(link.second)).idx));
+        NS_ABORT_MSG_IF(!dev || !dev->GetQueue(), "WS31_RC2_QUEUE_PORT has no data queue");
+        ports.emplace_back(dev, link.second);
+    }
+    Simulator::Schedule(Seconds(flowgen_start_time), &SampleWs31Rc2Queues, ports, 1500u);
 }
 
 /**
@@ -2217,6 +2255,42 @@ int main(int argc, char *argv[]) {
                     std::cerr << "Unknown WS31_RX_REORDER_CASE" << std::endl;
                     return 2;
                 }
+            } else if (key == "WS31_RC2_EVENT") {
+                std::string line, extra;
+                std::getline(conf, line);
+                std::istringstream values(line);
+                if (ws31_rc2_interval ||
+                    !(values >> ws31_rc2_delta >> ws31_rc2_water >> ws31_rc2_interval >>
+                      ws31_rc2_persist) || (values >> extra) || ws31_rc2_delta <= 0 ||
+                    ws31_rc2_water <= 0 || ws31_rc2_interval <= 0 || ws31_rc2_persist <= 0) {
+                    std::cerr << "WS31_RC2_EVENT requires delta bytes, water bytes, minimum "
+                                 "interval ns and persistence ns" << std::endl;
+                    return 2;
+                }
+            } else if (key == "WS31_RC2_PRESSURE") {
+                std::string line, extra;
+                std::getline(conf, line);
+                std::istringstream values(line);
+                if (ws31_rc2_rx_age ||
+                    !(values >> ws31_rc2_rx_high >> ws31_rc2_rx_low >> ws31_rc2_rx_interval >>
+                      ws31_rc2_rx_age) || (values >> extra) || ws31_rc2_rx_high >= 100 ||
+                    ws31_rc2_rx_low <= 0 || ws31_rc2_rx_low >= ws31_rc2_rx_high ||
+                    ws31_rc2_rx_interval <= 0 || ws31_rc2_rx_age <= ws31_rc2_rx_interval) {
+                    std::cerr << "WS31_RC2_PRESSURE requires high and low percentages, minimum "
+                                 "interval ns and a larger age limit ns" << std::endl;
+                    return 2;
+                }
+            } else if (key == "WS31_RC2_QUEUE_PORT") {
+                std::string line, extra;
+                std::getline(conf, line);
+                std::istringstream values(line);
+                uint32_t from, to;
+                if (!(values >> from >> to) || (values >> extra)) {
+                    std::cerr << "WS31_RC2_QUEUE_PORT requires a switch and adjacent node ID"
+                              << std::endl;
+                    return 2;
+                }
+                ws31_rc2_queue_links.emplace_back(from, to);
             } else if (key.compare("WS31_DOWNSTREAM_CASE") == 0) {
                 conf >> ws31_downstream_case;
                 if (!conf || (ws31_downstream_case != "fresh_then_expired" &&
@@ -2327,6 +2401,21 @@ int main(int argc, char *argv[]) {
         return 2;
     }
 
+    if (ws31_rc2_interval &&
+        (!ws31_downstream_period_ns || !ws31_downstream_narrow_bytes ||
+         ws31_downstream_idle_ns < ws31_rc2_interval || ws31_rc2_persist <= ws31_rc2_interval ||
+         ws31_rc2_persist - ws31_rc2_interval < ws31_downstream_period_ns ||
+         ws31_rc2_persist >= ws31_downstream_max_age_ns)) {
+        std::cerr << "WS31_RC2_EVENT requires observed feedback and width settings, with persistence "
+                     "between the report cadence and the sample age limit" << std::endl;
+        return 2;
+    }
+    if (ws31_rc2_rx_age && (!ws31_rx_reorder_connection_bytes || hasDownstreamCase ||
+                          (ws31_downstream_period_ns && !ws31_rc2_interval))) {
+        std::cerr << "WS31_RC2_PRESSURE requires a receive cache and, if used, v2 queue feedback"
+                  << std::endl;
+        return 2;
+    }
     if (ws31_c3r_reuse_tuple && lb_mode != 57) {
         std::cerr << "WS31_C3R_REUSE_TUPLE requires mode 57" << std::endl;
         return 2;
@@ -2781,6 +2870,9 @@ int main(int argc, char *argv[]) {
                 rdmaHw->ConfigureWs31RxReorder(ws31_rx_reorder_connection_bytes,
                                                ws31_rx_reorder_device_bytes,
                                                NanoSeconds(ws31_rx_reorder_wait_ns));
+                if (ws31_rc2_rx_age)
+                    rdmaHw->ConfigureWs31Rc2Pressure(ws31_rc2_rx_high, ws31_rc2_rx_low,
+                                                     ws31_rc2_rx_interval);
             }
             // topo2bdpMap (e.g., longest BDP 25000: 8us * 25Gbps)
             rdmaHw->SetAttribute("IrnRtoHigh", TimeValue(MicroSeconds(320)));  // 1930
@@ -2902,7 +2994,8 @@ int main(int argc, char *argv[]) {
     }
 
     if (!ws31_downstream_case.empty()) ScheduleWs31DownstreamFixture();
-    if (ws31_downstream_period_ns) ConfigureWs31ObservedDownstream();
+    if (ws31_downstream_period_ns || ws31_rc2_rx_age) ConfigureWs31ObservedDownstream();
+    ConfigureWs31Rc2QueueMonitoring();
     if (ws21_identity) BuildWs21IngressMapping();
     if (lb_mode==51 || lb_mode==52) BuildWs31OfanGroups();
 
@@ -3262,6 +3355,10 @@ int main(int argc, char *argv[]) {
     for (uint32_t i=0; i<n.GetN(); ++i) {
         Ptr<SwitchNode> sw = DynamicCast<SwitchNode>(n.Get(i));
         if (sw) sw->WriteWs30V13State();
+        else if (ws31_rx_reorder_connection_bytes) {
+            auto rdma = n.Get(i)->GetObject<RdmaDriver>();
+            if (rdma) rdma->m_rdma->WriteWs31Rc2RxStats();
+        }
     }
     if (ws21_port_events)
         for (const auto &entry : idxNodeToR)

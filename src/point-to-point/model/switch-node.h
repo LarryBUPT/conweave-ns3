@@ -180,11 +180,29 @@ class SwitchNode : public Node {
         Ws31DownstreamPath path;
         uint32_t returnPort = 0;
         uint64_t lastDataNs = 0;
+        uint64_t lastReportNs = 0, nextLegacyNs = 0;
+        uint32_t lastQueueBytes = 0;
+        bool reported = false;
     };
     std::map<uint32_t, Ws31DownstreamPeer> m_ws31DownstreamPeers;
     std::map<Ws31M1FlowKey, Ws31ObservedEgress> m_ws31ObservedEgresses;
     std::map<Ws31M1FlowKey, std::map<uint32_t, Ws31DownstreamState>> m_ws31ObservedSamples;
     uint64_t m_ws31ObservedPeriodNs = 0, m_ws31ObservedIdleNs = 0;
+    uint64_t m_ws31EventDelta = 0, m_ws31EventWater = 0, m_ws31EventInterval = 0;
+    uint64_t m_ws31PersistNs = 0, m_ws31PressureAgeNs = 0;
+    uint64_t m_ws31EventSentBytes = 0, m_ws31EventWireBytes = 0, m_ws31ShadowBytes = 0;
+    struct Ws31Rc2Flow {
+        uint64_t highSinceNs = 0, lowSinceNs = 0, pressureNs = 0, lastDecisionNs = 0;
+        uint32_t betterPort = 0, pinnedPort = 0;
+        uint16_t pressureId = 0;
+        bool high = false, low = false, pressureSeen = false, pressure = false;
+        bool receiverPin = false;
+    };
+    std::map<Ws31M1FlowKey, Ws31Rc2Flow> m_ws31Rc2Flows;
+    void ObserveWs31Rc2Pressure(const CustomHeader &ch);
+    uint32_t SelectWs31Rc2(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
+                          uint32_t local, const Ws31DownstreamState *a,
+                          const Ws31DownstreamState *b, uint64_t now);
     void ObserveWs31Downstream(Ptr<const Packet> frame, const CustomHeader &ch, uint32_t chosen);
     void TickWs31ObservedEgress(Ws31M1FlowKey flow);
     Ws31DownstreamState *FindWs31ObservedSample(const Ws31DownstreamFeedback &report,
@@ -279,6 +297,8 @@ class SwitchNode : public Node {
     static void ConfigureWs21Identity(bool enabled);
     void ConfigureWs31Downstream(uint64_t maximumAgeNs);
     void ConfigureWs31ObservedDownstream(uint64_t periodNs, uint64_t idleNs);
+    void ConfigureWs31Rc2(uint64_t delta, uint64_t water, uint64_t interval,
+                          uint64_t persistNs, uint64_t pressureAgeNs);
     void AddWs31DownstreamPeer(uint32_t port, uint32_t node, uint32_t receiverPort, uint64_t rate);
     void FinishWs31ObservedFlow(uint32_t source, uint32_t destination, uint16_t sport,
                                 uint16_t dport);

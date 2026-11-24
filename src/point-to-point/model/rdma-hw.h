@@ -123,6 +123,8 @@ class RdmaHw : public Object {
     void CheckandSendQCN(Ptr<RdmaRxQueuePair> q);
     int ReceiverCheckSeq(uint32_t seq, Ptr<RdmaRxQueuePair> q, uint32_t size, bool &cnp);
     void ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceBytes, Time wait);
+    void ConfigureWs31Rc2Pressure(uint32_t highPercent, uint32_t lowPercent, uint64_t intervalNs);
+    void WriteWs31Rc2RxStats() const;
     void AddHeader(Ptr<Packet> p, uint16_t protocolNumber);
     static uint16_t EtherToPpp(uint16_t protocol);
 
@@ -236,10 +238,20 @@ class RdmaHw : public Object {
     uint64_t m_ws31RxConnectionCap = 0;
     uint64_t m_ws31RxDeviceCap = 0;
     uint64_t m_ws31RxDeviceBytes = 0;
+    uint64_t m_ws31Rc2ConnectionPeak = 0, m_ws31Rc2DevicePeak = 0;
+    uint64_t m_ws31Rc2Rejects = 0, m_ws31Rc2MarkedBytes = 0, m_ws31Rc2ExtraBytes = 0;
+    uint64_t m_ws31Rc2PressureInterval = 0;
+    uint32_t m_ws31Rc2PressureHigh = 0, m_ws31Rc2PressureLow = 0;
+    struct Ws31Rc2Notice {
+        uint64_t lastNs = 0;
+        bool high = false;
+    };
+    std::unordered_map<const RdmaRxQueuePair *, Ws31Rc2Notice> m_ws31Rc2Notices;
+    bool MarkWs31Rc2Pressure(Ptr<RdmaRxQueuePair> qp, bool rejected, bool &high);
     Time m_ws31RxWait;
     std::unordered_map<const RdmaRxQueuePair *, Ws31RxGap> m_ws31RxGaps;
     int ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,
-                            Ptr<RdmaRxQueuePair> qp, uint32_t size, bool &cnp);
+                            Ptr<RdmaRxQueuePair> qp, uint32_t size, bool &cnp, bool &pressureReject);
     void ArmWs31RxGap(Ws31RxGap &gap, Ptr<RdmaRxQueuePair> qp);
     void ExpireWs31RxGap(Ptr<RdmaRxQueuePair> qp);
     void TraceWs31RxReorder(Ptr<RdmaRxQueuePair> qp, const char *event,
