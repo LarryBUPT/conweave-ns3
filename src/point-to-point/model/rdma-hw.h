@@ -122,7 +122,8 @@ class RdmaHw : public Object {
 
     void CheckandSendQCN(Ptr<RdmaRxQueuePair> q);
     int ReceiverCheckSeq(uint32_t seq, Ptr<RdmaRxQueuePair> q, uint32_t size, bool &cnp);
-    void ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceBytes, Time wait);
+    void ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceBytes, Time wait,
+                                bool diagnostics = false);
     void EnableWs31ClassicFeedbackAccounting() { m_ws31ClassicFeedbackAccounting = true; }
     void ConfigureWs31Rc2Pressure(uint32_t highPercent, uint32_t lowPercent, uint64_t intervalNs);
     void WriteWs31Rc2RxStats() const;
@@ -237,6 +238,7 @@ class RdmaHw : public Object {
         Time deadline;
         EventId expiry;
     };
+    bool m_ws31RxCapDiagnostics = false;
     uint64_t m_ws31RxConnectionCap = 0;
     uint64_t m_ws31RxDeviceCap = 0;
     uint64_t m_ws31RxDeviceBytes = 0;

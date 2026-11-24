@@ -202,6 +202,24 @@ class SwitchNode : public Node {
         bool receiverPin = false, rxReopened = false;
     };
     std::map<Ws31M1FlowKey, Ws31Rc2Flow> m_ws31Rc2Flows;
+    bool m_ws31Rc2V3 = false;
+    struct Ws31Rc2V3Path {
+        uint32_t spine;
+        uint64_t propagationNs, upstreamRate, downstreamRate;
+        uint64_t sampleNs = 0, highSinceNs = 0;
+        uint32_t queueBytes = 0;
+        bool sampled = false, directToLeaf = false;
+    };
+    struct Ws31Rc2V3Flow {
+        uint64_t lastSentNs = 0, lowSinceNs = 0, sentEnd = 0, ackedEnd = 0;
+        uint32_t lastPort = 0, narrowPort = 0;
+        bool low = false, reserveSecond = false;
+    };
+    std::map<std::pair<uint32_t, uint32_t>, Ws31Rc2V3Path> m_ws31Rc2V3Paths;
+    std::map<Ws31M1FlowKey, Ws31Rc2V3Flow> m_ws31Rc2V3Flows;
+    uint32_t SelectWs31Rc2V3(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
+                             uint64_t localFirst, uint64_t localSecond, uint16_t priority,
+                             uint64_t endSeq);
     void ObserveWs31Rc2Pressure(const CustomHeader &ch);
     uint32_t SelectWs31Rc2(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
                           uint32_t local, const Ws31DownstreamState *a,
@@ -300,6 +318,9 @@ class SwitchNode : public Node {
     static void ConfigureWs21Identity(bool enabled);
     void ConfigureWs31Downstream(uint64_t maximumAgeNs);
     void ConfigureWs31ObservedDownstream(uint64_t periodNs, uint64_t idleNs);
+    void EnableWs31Rc2V3() { m_ws31Rc2V3 = true; }
+    void AddWs31Rc2V3Path(uint32_t leaf, uint32_t port, uint32_t spine, uint64_t propagationNs,
+                         uint64_t upstreamRate, uint64_t downstreamRate, bool directToLeaf);
     void ConfigureWs31Rc2(uint64_t delta, uint64_t water, uint64_t interval,
                           uint64_t persistNs, uint64_t pressureAgeNs, uint64_t rxHoldNs);
     void AddWs31DownstreamPeer(uint32_t port, uint32_t node, uint32_t receiverPort, uint64_t rate);

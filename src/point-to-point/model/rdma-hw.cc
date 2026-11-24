@@ -81,6 +81,7 @@ struct Ws25QpDiagnostic {
     uint64_t rx_duplicate=0, repeated_bytes=0, nack_feedback=0;
     uint64_t rx_ooo_payload_bytes=0, rx_sack_pending_peak_bytes=0;
     uint64_t feedback_wire_bytes=0;
+    uint64_t rx_connection_overflow = 0, rx_device_overflow = 0, rx_wait_reject = 0;
 };
 static std::map<int32_t, Ws25QpDiagnostic> ws25_qp_diagnostics;
 static bool Ws25DiagnosticEnabled() {
@@ -681,7 +682,9 @@ void RdmaHw::DeleteRxQp(uint32_t dip, uint16_t dport, uint16_t sport, uint16_t p
     m_rxQpMap.erase(key);
 }
 
-void RdmaHw::ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceBytes, Time wait) {
+void RdmaHw::ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceBytes, Time wait,
+                                     bool diagnostics) {
+    m_ws31RxCapDiagnostics = diagnostics;
     m_ws31RxConnectionCap = connectionBytes;
     m_ws31RxDeviceCap = deviceBytes;
     m_ws31RxWait = wait;
@@ -794,6 +797,8 @@ int RdmaHw::ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,
             if (Simulator::Now() >= gap->second.deadline) {
                 pressureReject = true;
                 ++m_ws31Rc2Rejects;
+                if (m_ws31RxCapDiagnostics && Ws25DiagnosticEnabled() && qp->m_flow_id >= 0)
+                    ++ws25_qp_diagnostics[qp->m_flow_id].rx_wait_reject;
                 TraceWs31RxReorder(qp, "reject_wait", seq, size);
                 return 0;
             }
@@ -812,12 +817,16 @@ int RdmaHw::ReceiveWs31Reordered(Ptr<Packet> p, const CustomHeader &ch,
         if (size > m_ws31RxConnectionCap - connectionBytes) {
             pressureReject = true;
             ++m_ws31Rc2Rejects;
+            if (m_ws31RxCapDiagnostics && Ws25DiagnosticEnabled() && qp->m_flow_id >= 0)
+                ++ws25_qp_diagnostics[qp->m_flow_id].rx_connection_overflow;
             TraceWs31RxReorder(qp, "reject_connection_cap", seq, size);
             return 0;
         }
         if (size > m_ws31RxDeviceCap - m_ws31RxDeviceBytes) {
             pressureReject = true;
             ++m_ws31Rc2Rejects;
+            if (m_ws31RxCapDiagnostics && Ws25DiagnosticEnabled() && qp->m_flow_id >= 0)
+                ++ws25_qp_diagnostics[qp->m_flow_id].rx_device_overflow;
             TraceWs31RxReorder(qp, "reject_device_cap", seq, size);
             return 0;
         }
@@ -1637,6 +1646,14 @@ void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
         if (Settings::lb_mode == 58 || m_ws31ClassicFeedbackAccounting)
             std::cout << " feedback_wire_bytes=" << s.feedback_wire_bytes;
         std::cout << std::endl;
+        // Use a separate record so existing WS25_QP consumers keep their frozen schema.
+        if (m_ws31RxCapDiagnostics) {
+            std::cout << "WS31_RX_CAP_QP flow_id=" << qp->m_flow_id
+                      << " tag=" << uint32_t(qp->m_workload_tag)
+                      << " connection_overflow=" << s.rx_connection_overflow
+                      << " device_overflow=" << s.rx_device_overflow
+                      << " wait_reject=" << s.rx_wait_reject << std::endl;
+        }
         if (Ws30Level()) {
             std::cout << "WS30_QP flow_id=" << qp->m_flow_id
                       << " tag=" << uint32_t(qp->m_workload_tag)

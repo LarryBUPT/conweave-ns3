@@ -209,6 +209,9 @@ bool ooo_cnp_seen = false;
 bool ws31_m1_bounded_recovery = false;
 bool ws31_m1_bounded_recovery_seen = false;
 uint32_t ws31_expected_irn_bdp_bytes = 0;
+bool ws31_rc2_v3 = false;
+bool ws31_rc2_v3_seen = false;
+bool ws31_rx_cap_diag = false;
 int64_t ws31_rx_reorder_connection_bytes = 0;
 int64_t ws31_rx_reorder_device_bytes = 0;
 int64_t ws31_rx_reorder_wait_ns = 0;
@@ -997,6 +1000,56 @@ static void ConfigureWs31ObservedDownstream() {
         for (const auto &edge : node.second) {
             sw->AddWs31DownstreamPeer(edge.second.idx, edge.first->GetId(),
                                       nbr2if.at(edge.first).at(node.first).idx, edge.second.bw);
+        }
+        if (ws31_rc2_v3) sw->EnableWs31Rc2V3();
+    }
+}
+
+// Bound propagation below each first hop using the installed equal-hop route DAG.
+static uint64_t Ws31Rc2V3Propagation(Ptr<Node> node, Ptr<Node> host,
+                                      std::map<Ptr<Node>, uint64_t> &remaining) {
+    auto cached = remaining.find(node);
+    if (cached != remaining.end()) return cached->second;
+    uint64_t bound = 0;
+    for (const auto &next : nextHop.at(node).at(host)) {
+        const auto &edge = nbr2if.at(node).at(next);
+        bound = std::max(bound, edge.delay + Ws31Rc2V3Propagation(next, host, remaining));
+    }
+    remaining.emplace(node, bound);
+    return bound;
+}
+
+static void ConfigureWs31Rc2V3Paths() {
+    for (const auto &destination : idxNodeToR) {
+        Ptr<Node> leaf = destination.second;
+        Ptr<Node> host;
+        for (const auto &edge : nbr2if.at(leaf)) {
+            if (edge.first->GetNodeType() == 0 && edge.second.up) {
+                host = edge.first;
+                break;
+            }
+        }
+        if (!host) continue;
+        std::map<Ptr<Node>, uint64_t> remaining;
+        remaining.emplace(leaf, 0);
+        remaining.emplace(host, 0);
+        for (const auto &source : idxNodeToR) {
+            if (source.first == destination.first) continue;
+            auto routes = nextHop.find(source.second);
+            if (routes == nextHop.end()) continue;
+            auto candidates = routes->second.find(host);
+            if (candidates == routes->second.end()) continue;
+            for (const auto &peer : candidates->second) {
+                if (peer == leaf || peer == host) continue;
+                const auto &edge = nbr2if.at(source.second).at(peer);
+                uint64_t rate = edge.bw;
+                const auto &downstream = nextHop.at(peer).at(host);
+                for (const auto &next : downstream)
+                    rate = std::min(rate, nbr2if.at(peer).at(next).bw);
+                source.second->AddWs31Rc2V3Path(destination.first, edge.idx, peer->GetId(),
+                    edge.delay + Ws31Rc2V3Propagation(peer, host, remaining), edge.bw, rate,
+                    downstream.size() == 1 && downstream.front() == leaf);
+            }
         }
     }
 }
@@ -2256,6 +2309,21 @@ int main(int argc, char *argv[]) {
                     std::cerr << "Unknown WS31_RX_REORDER_CASE" << std::endl;
                     return 2;
                 }
+            } else if (key == "WS31_RX_CAP_DIAG") {
+                int enabled;
+                if (!(conf >> enabled) || enabled != 1 || ws31_rx_cap_diag) {
+                    std::cerr << "WS31_RX_CAP_DIAG requires one value of 1" << std::endl;
+                    return 2;
+                }
+                ws31_rx_cap_diag = true;
+            } else if (key == "WS31_RC2_V3") {
+                int enabled;
+                if (!(conf >> enabled) || ws31_rc2_v3_seen || (enabled != 0 && enabled != 1)) {
+                    std::cerr << "WS31_RC2_V3 requires one value of 0 or 1" << std::endl;
+                    return 2;
+                }
+                ws31_rc2_v3_seen = true;
+                ws31_rc2_v3 = enabled == 1;
             } else if (key == "WS31_RC2_EVENT") {
                 std::string line, extra;
                 std::getline(conf, line);
@@ -2385,8 +2453,8 @@ int main(int argc, char *argv[]) {
         return 2;
     }
     if (ws31_rx_reorder_connection_bytes > 0) {
-        if (lb_mode != 58 || !enable_irn || !ws31_m1_bounded_recovery) {
-            std::cerr << "WS31_RX_REORDER_LIMITS requires mode 58 and bounded IRN recovery"
+        if ((lb_mode != 58 && lb_mode != 2) || !enable_irn || !ws31_m1_bounded_recovery) {
+            std::cerr << "WS31_RX_REORDER_LIMITS requires mode 2 or 58 and bounded IRN recovery"
                       << std::endl;
             return 2;
         }
@@ -2394,6 +2462,10 @@ int main(int argc, char *argv[]) {
                   << ws31_rx_reorder_device_bytes << " " << ws31_rx_reorder_wait_ns << "\n";
     }
 
+    if (ws31_rx_cap_diag && !ws31_rx_reorder_connection_bytes) {
+        std::cerr << "WS31_RX_CAP_DIAG requires a receive cache" << std::endl;
+        return 2;
+    }
     if (!ws31_rx_reorder_case.empty() &&
         (lb_mode != 58 || !enable_irn || !ws31_m1_bounded_recovery || packet_payload_size != 1000)) {
         std::cerr << "WS31_RX_REORDER_CASE requires mode 58, bounded IRN and 1000-byte payloads"
@@ -2422,7 +2494,11 @@ int main(int argc, char *argv[]) {
                      "between the report cadence and the sample age limit" << std::endl;
         return 2;
     }
-    if (ws31_rc2_rx_age && (!ws31_rx_reorder_connection_bytes || hasDownstreamCase ||
+    if (ws31_rc2_v3 && (lb_mode != 58 || !ws31_rc2_interval || !ws31_rc2_rx_age)) {
+        std::cerr << "WS31_RC2_V3 requires mode 58, event feedback and receiver pressure" << std::endl;
+        return 2;
+    }
+    if (ws31_rc2_rx_age && (lb_mode != 58 || !ws31_rx_reorder_connection_bytes || hasDownstreamCase ||
                           (ws31_downstream_period_ns && !ws31_rc2_interval))) {
         std::cerr << "WS31_RC2_PRESSURE requires a receive cache and, if used, v2 queue feedback"
                   << std::endl;
@@ -2881,7 +2957,8 @@ int main(int argc, char *argv[]) {
             if (ws31_rx_reorder_connection_bytes > 0) {
                 rdmaHw->ConfigureWs31RxReorder(ws31_rx_reorder_connection_bytes,
                                                ws31_rx_reorder_device_bytes,
-                                               NanoSeconds(ws31_rx_reorder_wait_ns));
+                                               NanoSeconds(ws31_rx_reorder_wait_ns),
+                                               ws31_rx_cap_diag);
                 if (ws31_rc2_rx_age)
                     rdmaHw->ConfigureWs31Rc2Pressure(ws31_rc2_rx_high, ws31_rc2_rx_low,
                                                      ws31_rc2_rx_interval);
@@ -2890,7 +2967,7 @@ int main(int argc, char *argv[]) {
             rdmaHw->SetAttribute("IrnRtoHigh", TimeValue(MicroSeconds(320)));  // 1930
             rdmaHw->SetAttribute("IrnRtoLow", TimeValue(MicroSeconds(100)));   // 454
             rdmaHw->SetAttribute("IrnBdp", UintegerValue(irn_bdp_lookup));
-            if (ws31_expected_irn_bdp_bytes && ws31ClassicBdpMode)
+            if (ws31ClassicBdpMode && (ws31_expected_irn_bdp_bytes || ws31_rx_cap_diag))
                 rdmaHw->EnableWs31ClassicFeedbackAccounting();
             // Monitoring CNP Marking frequency of DCQCN
             if (cc_mode == 1 && !Ws31NativeRequested()) {
@@ -3009,6 +3086,7 @@ int main(int argc, char *argv[]) {
 
     if (!ws31_downstream_case.empty()) ScheduleWs31DownstreamFixture();
     if (ws31_downstream_period_ns || ws31_rc2_rx_age) ConfigureWs31ObservedDownstream();
+    if (ws31_rc2_v3) ConfigureWs31Rc2V3Paths();
     ConfigureWs31Rc2QueueMonitoring();
     if (ws21_identity) BuildWs21IngressMapping();
     if (lb_mode==51 || lb_mode==52) BuildWs31OfanGroups();
