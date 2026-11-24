@@ -211,6 +211,8 @@ bool ws31_m1_bounded_recovery_seen = false;
 uint32_t ws31_expected_irn_bdp_bytes = 0;
 bool ws31_rc2_v3 = false;
 bool ws31_rc2_v3_seen = false;
+constexpr uint32_t ws31_rc2_v3_pressure_high = 32;
+constexpr uint32_t ws31_rc2_v3_pressure_low = 12;
 bool ws31_rx_cap_diag = false;
 int64_t ws31_rx_reorder_connection_bytes = 0;
 int64_t ws31_rx_reorder_device_bytes = 0;
@@ -2959,9 +2961,12 @@ int main(int argc, char *argv[]) {
                                                ws31_rx_reorder_device_bytes,
                                                NanoSeconds(ws31_rx_reorder_wait_ns),
                                                ws31_rx_cap_diag);
-                if (ws31_rc2_rx_age)
-                    rdmaHw->ConfigureWs31Rc2Pressure(ws31_rc2_rx_high, ws31_rc2_rx_low,
-                                                     ws31_rc2_rx_interval);
+                if (ws31_rc2_rx_age) {
+                    rdmaHw->ConfigureWs31Rc2Pressure(
+                        ws31_rc2_v3 ? ws31_rc2_v3_pressure_high : ws31_rc2_rx_high,
+                        ws31_rc2_v3 ? ws31_rc2_v3_pressure_low : ws31_rc2_rx_low,
+                        ws31_rc2_rx_interval);
+                }
             }
             // topo2bdpMap (e.g., longest BDP 25000: 8us * 25Gbps)
             rdmaHw->SetAttribute("IrnRtoHigh", TimeValue(MicroSeconds(320)));  // 1930
