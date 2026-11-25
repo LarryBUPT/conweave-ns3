@@ -1,6 +1,12 @@
 #include "ns3/settings.h"
 
 namespace ns3 {
+
+Ws31V32Config &Ws31V32() {
+    static Ws31V32Config config;
+    return config;
+}
+
 /* helper function */
 Ipv4Address Settings::node_id_to_ip(uint32_t id) {
     return Ipv4Address(0x0b000001 + ((id / 256) * 0x00010000) + ((id % 256) * 0x00000100));

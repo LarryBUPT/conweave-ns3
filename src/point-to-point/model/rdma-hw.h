@@ -124,7 +124,11 @@ class RdmaHw : public Object {
     int ReceiverCheckSeq(uint32_t seq, Ptr<RdmaRxQueuePair> q, uint32_t size, bool &cnp);
     void ConfigureWs31RxReorder(uint64_t connectionBytes, uint64_t deviceBytes, Time wait,
                                 bool diagnostics = false);
+    static void WriteWs31V32OpenQps();
     void EnableWs31ClassicFeedbackAccounting() { m_ws31ClassicFeedbackAccounting = true; }
+    uint32_t SelectWs31RepsEntropy(Ptr<RdmaQueuePair> qp, uint32_t seq);
+    void FreezeWs31Reps(Ptr<RdmaQueuePair> qp);
+    bool FilterWs31BrbCnp(Ptr<RdmaQueuePair> qp, Ptr<const Packet> p, bool cnp);
     void ConfigureWs31Rc2Pressure(uint32_t highPercent, uint32_t lowPercent, uint64_t intervalNs);
     void WriteWs31Rc2RxStats() const;
     void AddHeader(Ptr<Packet> p, uint16_t protocolNumber);

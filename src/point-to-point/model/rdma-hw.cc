@@ -8,6 +8,7 @@
 #include "ws31-v2-native-session.h"
 
 #include <ns3/ipv4-header.h>
+#include <ns3/rng-seed-manager.h>
 #include <ns3/seq-ts-header.h>
 #include <ns3/simulator.h>
 #include <ns3/udp-header.h>
@@ -78,6 +79,7 @@ static void Ws30V14State(const char *event, Ptr<RdmaQueuePair> q) {
 struct Ws25QpDiagnostic {
     uint64_t rx_ooo_packets = 0, sack_feedback = 0, cnp_feedback = 0;
     uint64_t repeated_sends = 0, timeout_recovery = 0;
+    uint64_t v32OodBytes = 0, v32RboBytes = 0;
     uint64_t rx_duplicate=0, repeated_bytes=0, nack_feedback=0;
     uint64_t rx_ooo_payload_bytes=0, rx_sack_pending_peak_bytes=0;
     uint64_t feedback_wire_bytes=0;
@@ -952,12 +954,26 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
                       : ReceiverCheckSeq(ch.udp.seq, rxQp, payload_size, cnp_check);
     const bool ordinaryAck = x == 1 || x == 2 || x == 6;
     bool highPressure = false, pressureEvent = false, markPressure = false;
+    const auto &v32 = Ws31V32();
+    Ws31V32Tag metadata;
+    const bool hasMetadata = (v32.implicitBytes || v32.cnpWindow || v32.reps) && p->PeekPacketTag(metadata);
     WorkloadTag workload;
     if (m_ws31Rc2PressureInterval &&
-        p->PeekPacketTag(workload) && workload.GetValue() == 1) {
+        (v32.implicitBytes ? hasMetadata && (metadata.flags & Ws31V32Tag::Background)
+                           : p->PeekPacketTag(workload) && workload.GetValue() == 1)) {
         markPressure = MarkWs31Rc2Pressure(rxQp, pressureReject, highPressure, pressureEvent);
     }
     const bool pressureOnly = markPressure && !ordinaryAck;
+    if (v32.diagnostics && Ws25DiagnosticEnabled() && rxQp->m_flow_id >= 0) {
+        auto &stats = ws25_qp_diagnostics[rxQp->m_flow_id];
+        if (ch.udp.seq > expected_before)
+            stats.v32OodBytes = std::max<uint64_t>(stats.v32OodBytes, ch.udp.seq - expected_before);
+        if (m_ws31RxConnectionCap) {
+            auto gap = m_ws31RxGaps.find(PeekPointer(rxQp));
+            if (gap != m_ws31RxGaps.end())
+                stats.v32RboBytes = std::max(stats.v32RboBytes, gap->second.bytes);
+        }
+    }
     if (Settings::lb_mode>=58 && Settings::lb_mode<=61 && rxQp->m_flow_id>=0) {
         Ws25QpDiagnostic &cost=ws25_qp_diagnostics[rxQp->m_flow_id];
         if (ch.udp.seq>expected_before) cost.rx_ooo_payload_bytes+=payload_size;
@@ -1027,6 +1043,10 @@ int RdmaHw::ReceiveUdp(Ptr<Packet> p, CustomHeader &ch) {
         Ptr<Packet> newp =
             Create<Packet>(std::max(60 - 14 - 20 - (int)seqh.GetSerializedSize(), 0));
         newp->AddHeader(seqh);
+        if (ordinaryAck && hasMetadata && (v32.reps || v32.cnpWindow)) {
+            if (ecnbits) metadata.flags |= Ws31V32Tag::Ce;
+            newp->AddPacketTag(metadata);
+        }
 
         Ipv4Header head;  // Prepare IPv4 header
         head.SetDestination(Ipv4Address(ch.sip));
@@ -1189,6 +1209,28 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         if (cnp) ++s.cnp_feedback;
     }
 
+    if (Ws31V32().reps) {
+        Ws31V32Tag metadata;
+        if (p->PeekPacketTag(metadata)) {
+            auto &ring = qp->reps;
+            if (metadata.flags & Ws31V32Tag::Ce) {
+                for (auto &entry : ring.entries)
+                    if (entry.valid && entry.entropy == metadata.entropy) entry.valid = false;
+            } else if (m_irn || ch.l3Prot == 0xFC) {
+                auto &entry = ring.entries[ring.next];
+                entry.entropy = metadata.entropy;
+                entry.valid = true;
+                entry.used = false;
+                ring.next = (ring.next + 1) % ring.entries.size();
+            }
+        }
+    }
+    if (Ws31V32().reps) {
+        auto &outstanding = qp->reps.outstanding;
+        outstanding.erase(outstanding.begin(), outstanding.lower_bound(seq));
+        if (m_irn && ch.ack.irnNackSize) outstanding.erase(ch.ack.irnNack);
+    }
+    const bool applyCnp = m_cc_mode == 1 && FilterWs31BrbCnp(qp, p, cnp);
     const uint64_t unaBeforeFeedback = qp->snd_una;
     uint32_t nic_idx = GetNicIdxOfQp(qp);
     Ptr<QbbNetDevice> dev = m_nic[nic_idx].dev;
@@ -1289,7 +1331,10 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
         if (ch.ack.irnNackSize != 0) {
             if (!qp->irn.m_recovery) {
                 qp->irn.m_recovery_seq = qp->snd_nxt;
-                if (!m_ws31M1BoundedRecovery) RecoverQueue(qp);
+                if (!m_ws31M1BoundedRecovery) {
+                    if (Ws31V32().reps) FreezeWs31Reps(qp);
+                    RecoverQueue(qp);
+                }
                 qp->irn.m_recovery = true;
                 if (Ws30V14Enabled() && Ws30Level() && qp->m_ws30Serial) {
                     ++qp->m_ws30RecoveryEvents;
@@ -1307,6 +1352,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
                   << " flow_id=" << qp->m_flow_id << " ack=" << seq
                   << " snd_una=" << qp->snd_una << " snd_nxt=" << qp->snd_nxt
                   << std::endl;
+        if (Ws31V32().reps) FreezeWs31Reps(qp);
         RecoverQueue(qp);
     }
 
@@ -1326,7 +1372,7 @@ int RdmaHw::ReceiveAck(Ptr<Packet> p, CustomHeader &ch) {
     // handle cnp
     if (cnp) {
         if (Ws30V14Enabled() && Ws30Level() && qp->m_ws30Serial) ++qp->m_ws30CnpEvents;
-        if (m_cc_mode == 1) {  // mlx version
+        if (applyCnp) {  // mlx version
             cnp_received_mlx(qp);
         }
     }
@@ -1646,6 +1692,22 @@ void RdmaHw::QpComplete(Ptr<RdmaQueuePair> qp) {
         if (Settings::lb_mode == 58 || m_ws31ClassicFeedbackAccounting)
             std::cout << " feedback_wire_bytes=" << s.feedback_wire_bytes;
         std::cout << std::endl;
+        if (Ws31V32().diagnostics && Ws31V32().reps) {
+            const auto &ring = qp->reps;
+            std::cout << "WS31_REPS_QP flow_id=" << qp->m_flow_id
+                      << " explored=" << ring.explored << " recycled=" << ring.recycled
+                      << " frozen=" << ring.frozen << " freeze_events=" << ring.freezeEvents
+                      << std::endl;
+        }
+        if (Ws31V32().diagnostics) {
+            std::cout << "WS31_V32_QP flow_id=" << qp->m_flow_id
+                      << " ood_max_bytes=" << s.v32OodBytes << " rbo_peak_bytes=";
+            if (m_ws31RxConnectionCap) std::cout << s.v32RboBytes;
+            else std::cout << "NA";
+            std::cout << " cnp_suppressed=" << qp->brb.suppressed
+                      << " cnp_applied=" << qp->brb.applied
+                      << " cnp_last_hop=" << qp->brb.bypassed << std::endl;
+        }
         // Use a separate record so existing WS25_QP consumers keep their frozen schema.
         if (m_ws31RxCapDiagnostics) {
             std::cout << "WS31_RX_CAP_QP flow_id=" << qp->m_flow_id
@@ -1759,13 +1821,25 @@ Ptr<Packet> RdmaHw::GetNxtPacket(Ptr<RdmaQueuePair> qp) try {
     qp->stat.txTotalBytes += payload_size;
 
     Ptr<Packet> p = Create<Packet>(payload_size);
+    if (Ws31V32().reps || qp->m_ws31TimeoutProbe) {
+        Ws31V32Tag metadata;
+        if (Ws31V32().reps) {
+            metadata.entropy = SelectWs31RepsEntropy(qp, seq);
+            qp->reps.outstanding[seq] = metadata.entropy;
+        }
+        if (qp->m_ws31TimeoutProbe && seq == qp->m_ws31TimeoutSeq)
+            metadata.flags |= Ws31V32Tag::TimeoutProbe;
+        qp->m_ws31TimeoutProbe = false;
+        p->AddPacketTag(metadata);
+    }
     WorkloadTag label;
     const unsigned labelProfile=m_ws31V2Required?0:ws31::LabelProfile();
     const ws31::VisibleLabel visible=m_ws31V2Required?nativePolicy:ws31::LabelAt(labelProfile,qp->m_workload_tag,
         qp->startTime.GetNanoSeconds(),Simulator::Now().GetNanoSeconds(),
         qp->sip.Get(),qp->dip.Get(),qp->sport,qp->dport,Ws30V13TagTransform());
     label.SetValue(visible.value);
-    if (visible.present) p->AddPacketTag(label);
+    if (visible.present && !Ws31V32().implicitBytes && Settings::lb_mode != 62)
+        p->AddPacketTag(label);
     if (labelProfile && Ws30Level())
         std::cout << "WS31_LABEL_PACKET time_ns=" << Simulator::Now().GetNanoSeconds()
                   << " demand_ns=" << qp->startTime.GetNanoSeconds()
@@ -1940,8 +2014,115 @@ void RdmaHw::HandleTimeout(Ptr<RdmaQueuePair> qp, Time rto) {
         qp->irn.m_recovery = true;
     }
 
+    if (Ws31V32().reps) FreezeWs31Reps(qp);
+    if (Ws31V32().faultNs) {
+        qp->m_ws31TimeoutProbe = true;
+        qp->m_ws31TimeoutSeq = qp->snd_una;
+    }
     RecoverQueue(qp);
     dev->TriggerTransmit();
+}
+
+namespace {
+uint32_t NextWs31RepsEntropy(Ptr<RdmaQueuePair> qp) {
+    auto &rng = qp->reps.rng;
+    if (!rng) {
+        rng = (uint32_t(qp->m_flow_id) + 1) * 0x9e3779b9U ^ RngSeedManager::GetSeed();
+        if (!rng) rng = 1;
+    }
+    rng ^= rng << 13;
+    rng ^= rng >> 17;
+    rng ^= rng << 5;
+    return rng;
+}
+}
+
+uint32_t RdmaHw::SelectWs31RepsEntropy(Ptr<RdmaQueuePair> qp, uint32_t seq) {
+    auto &ring = qp->reps;
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    if (now < ring.frozenUntilNs) {
+        ++ring.frozen;
+        for (size_t i = 0; i < ring.entries.size(); ++i) {
+            auto &entry = ring.entries[ring.replay];
+            ring.replay = (ring.replay + 1) % ring.entries.size();
+            if (entry.valid) return entry.entropy;
+        }
+        return ring.coldEntropy;
+    }
+    if (seq >= m_irn_bdp) {
+        for (size_t i = 0; i < ring.entries.size(); ++i) {
+            auto &entry = ring.entries[(ring.next + i) % ring.entries.size()];
+            if (entry.valid && !entry.used) {
+                entry.used = true;
+                ++ring.recycled;
+                return entry.entropy;
+            }
+        }
+    }
+    ++ring.explored;
+    return NextWs31RepsEntropy(qp);
+}
+
+void RdmaHw::FreezeWs31Reps(Ptr<RdmaQueuePair> qp) {
+    auto &ring = qp->reps;
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    auto failed = ring.outstanding.find(qp->snd_una);
+    if (failed != ring.outstanding.end()) {
+        for (auto &entry : ring.entries)
+            if (entry.valid && entry.entropy == failed->second) entry.valid = false;
+    }
+    if (now >= ring.frozenUntilNs) {
+        ++ring.freezeEvents;
+        ring.frozenUntilNs = now + 120000;
+        ring.coldEntropy = NextWs31RepsEntropy(qp);
+    }
+}
+
+bool RdmaHw::FilterWs31BrbCnp(Ptr<RdmaQueuePair> qp, Ptr<const Packet> p, bool cnp) {
+    const uint32_t window = Ws31V32().cnpWindow;
+    if (!window) return cnp;
+    auto &state = qp->brb;
+    Ws31V32Tag metadata;
+    const bool spraying = p->PeekPacketTag(metadata) &&
+                          (metadata.flags & Ws31V32Tag::Spraying);
+    const uint64_t now = Simulator::Now().GetNanoSeconds();
+    if (!spraying || now - state.lastNs > 32000) {
+        state.samples = 0;
+        state.marks = 0;
+        state.next = 0;
+    }
+    if (!spraying) return cnp;
+    state.lastNs = now;
+    const bool lastHop = metadata.flags & Ws31V32Tag::LastHopCe;
+    const bool marked = metadata.flags & Ws31V32Tag::Ce;
+    const uint64_t bit = uint64_t(1) << state.next;
+    if (state.samples & bit) --state.marks;
+    if (marked) {
+        state.samples |= bit;
+        ++state.marks;
+    } else {
+        state.samples &= ~bit;
+    }
+    state.next = (state.next + 1) % window;
+    if (!cnp) return false;
+    if (lastHop) ++state.bypassed;
+    if (lastHop || state.marks >= std::max(2U, (window + 1) / 2)) {
+        ++state.applied;
+        return true;
+    }
+    ++state.suppressed;
+    return false;
+}
+
+void RdmaHw::WriteWs31V32OpenQps() {
+    if (!Ws31V32().diagnostics || !Ws25DiagnosticEnabled()) return;
+    for (const auto &entry : ws25_qp_diagnostics) {
+        const auto &stats = entry.second;
+        std::cout << "WS31_V32_OPEN_QP flow_id=" << entry.first
+                  << " rx_ooo_packets=" << stats.rx_ooo_packets
+                  << " repeated_sends=" << stats.repeated_sends
+                  << " timeout_recovery=" << stats.timeout_recovery << std::endl;
+    }
 }
 
 void RdmaHw::UpdateNextAvail(Ptr<RdmaQueuePair> qp, Time interframeGap, uint32_t pkt_size) {

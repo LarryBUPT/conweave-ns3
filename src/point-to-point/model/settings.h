@@ -105,6 +105,44 @@ class LastSendTimeTag : public Tag {
  * @brief Global setting parameters
  */
 
+struct Ws31V32Config {
+    uint64_t syncPenaltyNs = 0, implicitBytes = 0, faultNs = 0;
+    uint64_t drainNs = 0;
+    uint32_t cnpWindow = 0;
+    bool skewHold = false, firstPacketEdqf = false, reps = false, diagnostics = false;
+    bool referenceBdp = false;
+
+    bool EnhancedV3() const {
+        return syncPenaltyNs || skewHold || firstPacketEdqf || faultNs || cnpWindow;
+    }
+};
+
+Ws31V32Config &Ws31V32();
+
+// Simulation metadata carried on data and echoed with its ordinary feedback.
+class Ws31V32Tag : public Tag {
+  public:
+    enum Flag { Background = 1, Spraying = 2, LastHopCe = 4, TimeoutProbe = 8, Ce = 16 };
+    uint32_t entropy = 0;
+    uint8_t flags = 0;
+
+    static TypeId GetTypeId() {
+        static TypeId tid = TypeId("ns3::Ws31V32Tag").SetParent<Tag>().AddConstructor<Ws31V32Tag>();
+        return tid;
+    }
+    TypeId GetInstanceTypeId() const override { return GetTypeId(); }
+    uint32_t GetSerializedSize() const override { return 5; }
+    void Serialize(TagBuffer buffer) const override {
+        buffer.WriteU32(entropy);
+        buffer.WriteU8(flags);
+    }
+    void Deserialize(TagBuffer buffer) override {
+        entropy = buffer.ReadU32();
+        flags = buffer.ReadU8();
+    }
+    void Print(std::ostream &os) const override { os << entropy << ":" << unsigned(flags); }
+};
+
 class Settings {
    public:
     Settings() {}

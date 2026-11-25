@@ -10,7 +10,9 @@
 #include <ns3/packet.h>
 #include <ns3/selective-packet-queue.h>
 
+#include <array>
 #include <climits> /* for CHAR_BIT */
+#include <map>
 #include <vector>
 
 #define BITMASK(b) (1 << ((b) % CHAR_BIT))
@@ -84,6 +86,23 @@ class RdmaQueuePair : public Object {
     uint64_t m_ws31C3rMaxIssuedEnd{0};
     uint32_t m_ws31C3rEpoch{0}, m_ws31C3rTorIp{0};
     bool m_ws31C3rPending{false}, m_ws31C3rDrainSent{false};
+    struct RepsState {
+        struct Entry {
+            uint32_t entropy = 0;
+            bool valid = false, used = false;
+        };
+        std::array<Entry, 8> entries;
+        uint32_t next = 0, replay = 0, rng = 0, coldEntropy = 0;
+        uint64_t frozenUntilNs = 0;
+        std::map<uint32_t, uint32_t> outstanding;
+        uint64_t explored = 0, recycled = 0, frozen = 0, freezeEvents = 0;
+    } reps;
+    struct BrbState {
+        uint32_t next = 0, marks = 0, bypassed = 0, applied = 0, suppressed = 0;
+        uint64_t lastNs = 0, samples = 0;
+    } brb;
+    bool m_ws31TimeoutProbe = false;
+    uint32_t m_ws31TimeoutSeq = 0;
     EventId m_ws31C3rLease;
     Time m_timeout;
 

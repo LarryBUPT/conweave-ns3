@@ -1836,11 +1836,11 @@ int main(int argc, char *argv[]) {
     clock_t begint, endt;
     begint = clock();
 #ifndef PGO_TRAINING
-    if (argc > 1)
+    const bool readConfig = argc > 1;
 #else
-    if (true)
+    const bool readConfig = true;
 #endif
-    {
+    if (readConfig) {
         // Read the configuration file
         std::ifstream conf;
 #ifndef PGO_TRAINING
@@ -2318,6 +2318,40 @@ int main(int argc, char *argv[]) {
                     return 2;
                 }
                 ws31_rx_cap_diag = true;
+            } else if (key == "WS31_RC2_V32_SYNC_AVOID" || key == "WS31_IMPLICIT_CLASS_BYTES" ||
+                       key == "WS31_SYNC_FIRSTPKT_EDQF" || key == "WS31_FAULT_ISOLATE_NS" ||
+                       key == "WS31_BRB_CNP_SMOOTH" || key == "WS31_REPS" ||
+                       key == "WS31_V32_DIAG" || key == "WS31_V32_DRAIN_NS" ||
+                       key == "WS31_V32_REFERENCE_BDP") {
+                static std::set<std::string> seen;
+                std::string line, extra;
+                std::getline(conf, line);
+                std::istringstream values(line);
+                int64_t value = 0, skew = 0;
+                const bool sync = key == "WS31_RC2_V32_SYNC_AVOID";
+                const bool binary = key == "WS31_SYNC_FIRSTPKT_EDQF" ||
+                                    key == "WS31_REPS" || key == "WS31_V32_DIAG" ||
+                                    key == "WS31_V32_REFERENCE_BDP";
+                if (!seen.insert(key).second || !(values >> value) || value < 0 ||
+                    (sync && (!(values >> skew) || skew < 0 || skew > 1)) ||
+                    (binary && value > 1) ||
+                    (key == "WS31_BRB_CNP_SMOOTH" && (value == 1 || value > 64)) ||
+                    (values >> extra)) {
+                    std::cerr << "Invalid " << key << std::endl;
+                    return 2;
+                }
+                auto &v32 = Ws31V32();
+                if (sync) {
+                    v32.syncPenaltyNs = value;
+                    v32.skewHold = skew != 0;
+                } else if (key == "WS31_IMPLICIT_CLASS_BYTES") v32.implicitBytes = value;
+                else if (key == "WS31_SYNC_FIRSTPKT_EDQF") v32.firstPacketEdqf = value != 0;
+                else if (key == "WS31_FAULT_ISOLATE_NS") v32.faultNs = value;
+                else if (key == "WS31_BRB_CNP_SMOOTH") v32.cnpWindow = value;
+                else if (key == "WS31_REPS") v32.reps = value != 0;
+                else if (key == "WS31_V32_DIAG") v32.diagnostics = value != 0;
+                else if (key == "WS31_V32_REFERENCE_BDP") v32.referenceBdp = value != 0;
+                else v32.drainNs = value;
             } else if (key == "WS31_RC2_V3") {
                 int enabled;
                 if (!(conf >> enabled) || ws31_rc2_v3_seen || (enabled != 0 && enabled != 1)) {
@@ -2443,20 +2477,31 @@ int main(int argc, char *argv[]) {
         std::cerr << "WS31_M1_BOUNDED_RECOVERY=1 requires ENABLE_IRN=1" << std::endl;
         return 2;
     }
-    const bool ws31ClassicBdpMode =
+    const auto &v32 = Ws31V32();
+    if ((v32.EnhancedV3() && !ws31_rc2_v3) || (v32.reps && lb_mode != 61) ||
+        (v32.implicitBytes && lb_mode != 58 && lb_mode != 62)) {
+        std::cerr << "WS31 v3.2 tuning requires v3, REPS requires mode 61, and implicit classification "
+                     "requires mode 58 or 62" << std::endl;
+        return 2;
+    }
+    const bool ws31Sota = lb_mode == 9 || (lb_mode == 61 && v32.reps) || lb_mode == 62;
+    const bool ws31ClassicBdpMode = ws31Sota ||
         lb_mode == 0 || lb_mode == 2 || lb_mode == 3 || lb_mode == 6 || lb_mode == 33;
     if (ws31_expected_irn_bdp_bytes &&
-        ((!ws31ClassicBdpMode && lb_mode != 58) || !enable_irn ||
+        ((!ws31ClassicBdpMode && lb_mode != 58) || (!enable_irn && !v32.diagnostics) ||
          topology_file != "config/topo_1280_400G_400G_OS1.txt")) {
-        std::cerr << (lb_mode == 58
-                          ? "WS31_EXPECTED_IRN_BDP_BYTES requires mode 58, IRN, and the WS-31 Clos topology path"
-                          : "WS31_EXPECTED_IRN_BDP_BYTES requires mode 0, 2, 3, 6, 33, or 58, IRN, and the WS-31 Clos topology path")
-                  << std::endl;
+        std::cerr << "WS31_EXPECTED_IRN_BDP_BYTES requires a supported mode, IRN or v3.2 diagnostics, "
+                     "and the WS-31 Clos topology path" << std::endl;
+        return 2;
+    }
+    if (v32.referenceBdp && (!v32.diagnostics || !ws31_expected_irn_bdp_bytes)) {
+        std::cerr << "WS31_V32_REFERENCE_BDP requires diagnostics and an explicit IRN BDP" << std::endl;
         return 2;
     }
     if (ws31_rx_reorder_connection_bytes > 0) {
-        if ((lb_mode != 58 && lb_mode != 2) || !enable_irn || !ws31_m1_bounded_recovery) {
-            std::cerr << "WS31_RX_REORDER_LIMITS requires mode 2 or 58 and bounded IRN recovery"
+        if ((!ws31Sota && lb_mode != 58 && lb_mode != 2 && !(v32.diagnostics && ws31ClassicBdpMode)) ||
+            !enable_irn || !ws31_m1_bounded_recovery) {
+            std::cerr << "WS31_RX_REORDER_LIMITS requires a supported mode and bounded IRN recovery"
                       << std::endl;
             return 2;
         }
@@ -2496,7 +2541,8 @@ int main(int argc, char *argv[]) {
                      "between the report cadence and the sample age limit" << std::endl;
         return 2;
     }
-    if (ws31_rc2_v3 && (lb_mode != 58 || !ws31_rc2_interval || !ws31_rc2_rx_age)) {
+    if (ws31_rc2_v3 && (lb_mode != 58 || !ws31_rc2_interval ||
+        (!ws31_rc2_rx_age && (enable_irn || !v32.EnhancedV3())))) {
         std::cerr << "WS31_RC2_V3 requires mode 58, event feedback and receiver pressure" << std::endl;
         return 2;
     }
@@ -3055,14 +3101,16 @@ int main(int argc, char *argv[]) {
     }
     fprintf(stderr, "maxRtt: %lu, maxBdp: %lu\n", maxRtt, maxBdp);
     if (ws31_expected_irn_bdp_bytes) {
-        if (maxBdp != ws31_expected_irn_bdp_bytes) {
+        if (!v32.referenceBdp && maxBdp != ws31_expected_irn_bdp_bytes) {
             std::cerr << "Declared IRN BDP " << ws31_expected_irn_bdp_bytes
                       << " differs from calculated BDP " << maxBdp << std::endl;
             return 2;
         }
         std::cerr << "WS31_EXPECTED_IRN_BDP_BYTES\t" << ws31_expected_irn_bdp_bytes << '\n';
     }
-    assert(maxBdp == irn_bdp_lookup);
+    if (!v32.referenceBdp) assert(maxBdp == irn_bdp_lookup);
+    if (v32.diagnostics)
+        std::cerr << "WS31_V32_BDP effective=" << irn_bdp_lookup << " topology=" << maxBdp << '\n';
 
     std::cout << "Configuring switches" << std::endl;
     /* config ToR Switch */
@@ -3418,7 +3466,8 @@ int main(int argc, char *argv[]) {
     NS_LOG_INFO("Run Simulation.");
     Simulator::Schedule(Seconds(flowgen_start_time),
                         &stop_simulation_middle);  // check every 100us
-    Simulator::Stop(Seconds(flowgen_stop_time + 10.0));
+    Simulator::Stop(v32.drainNs ? Seconds(flowgen_stop_time) + NanoSeconds(v32.drainNs)
+                                : Seconds(flowgen_stop_time + 10.0));
     if (ws21_port_events)
         for (const auto &entry : idxNodeToR)
             entry.second->RecordWs21PortBoundary('B');
@@ -3489,6 +3538,7 @@ int main(int argc, char *argv[]) {
         SwitchNode::FinishWs21PortEvents();
         fclose(ws21_port_output);
     }
+    RdmaHw::WriteWs31V32OpenQps();
     SwitchNode::PrintWorkloadTagCounts();
 
     /*-----------------------------------------------------------------------------*/

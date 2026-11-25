@@ -88,7 +88,25 @@ class SwitchNode : public Node {
     uint64_t m_ws31M1Switches[3]{0,0,0};
     uint64_t m_ws31M1QueueReads[3]{0,0,0};
     uint64_t m_ws31M1WireBytes[3]{0,0,0};
-    uint32_t DoLbWs31M1(Ptr<const Packet> p, const CustomHeader &ch,
+    struct Ws31OnlineFlow {
+        uint64_t sentBytes = 0, lastNs = 0, cellEnd = 0;
+        uint32_t port = 0, timeoutSeq = 0, timeoutPort = 0, timeoutCount = 0;
+        std::map<uint32_t, uint32_t> outstandingPorts;
+    };
+    std::map<Ws31M1FlowKey, Ws31OnlineFlow> m_ws31Online;
+    std::map<uint32_t, uint64_t> m_ws31RecentSync;
+    std::map<std::pair<uint32_t, uint32_t>, uint64_t> m_ws31IsolatedUntil;
+    uint64_t m_ws31ImplicitPromotions = 0;
+    Ws31OnlineFlow &TouchWs31Online(const Ws31M1FlowKey &key, uint64_t now);
+    void ExpireWs31Online(Ws31M1FlowKey key);
+    uint32_t SelectWs31FaultPort(const CustomHeader &ch, Ws31OnlineFlow &flow,
+                                uint32_t first, uint32_t second, uint32_t chosen, bool timeoutProbe,
+                                const std::vector<int> &nexthops);
+    uint32_t SelectWs31SyncPort(uint32_t destination, uint16_t priority, uint32_t first,
+                               uint32_t second, uint32_t fallback, uint32_t packetBytes);
+    uint32_t DoLbWs31Tlb(Ptr<const Packet> p, const CustomHeader &ch,
+                         const std::vector<int> &nexthops);
+    uint32_t DoLbWs31M1(Ptr<Packet> p, const CustomHeader &ch,
                         const std::vector<int> &nexthops);
     std::map<ws31::Key,Ws30Pair> m_ws31Pairs;
     ws31::BudgetLedger m_ws31Budget;
@@ -214,13 +232,13 @@ class SwitchNode : public Node {
         uint64_t lastSentNs = 0, lowSinceNs = 0, sentEnd = 0, ackedEnd = 0;
         uint64_t rxHoldStartedNs = 0, rxHoldUntilNs = 0;
         uint32_t lastPort = 0, narrowPort = 0;
-        bool low = false, reserveSecond = false;
+        bool low = false, reserveSecond = false, rxNarrowed = false, skewHolding = false;
     };
     std::map<std::pair<uint32_t, uint32_t>, Ws31Rc2V3Path> m_ws31Rc2V3Paths;
     std::map<Ws31M1FlowKey, Ws31Rc2V3Flow> m_ws31Rc2V3Flows;
     uint32_t SelectWs31Rc2V3(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
                              uint64_t localFirst, uint64_t localSecond, uint16_t priority,
-                             uint64_t endSeq);
+                             uint64_t endSeq, bool *spraying);
     void ObserveWs31Rc2Pressure(const CustomHeader &ch);
     uint32_t SelectWs31Rc2(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
                           uint32_t local, const Ws31DownstreamState *a,
