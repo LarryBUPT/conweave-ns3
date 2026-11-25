@@ -95,10 +95,21 @@ class SwitchNode : public Node {
     };
     std::map<Ws31M1FlowKey, Ws31OnlineFlow> m_ws31Online;
     std::map<uint32_t, uint64_t> m_ws31RecentSync;
-    std::map<std::pair<uint32_t, uint32_t>, uint64_t> m_ws31IsolatedUntil;
+    struct Ws31DataUplink {
+        uint32_t port = 0;
+        uint64_t lastNs = 0;
+    };
+    std::map<Ws31M1FlowKey, Ws31DataUplink> m_ws31LastDataUplink;
+    struct Ws31Isolation {
+        uint64_t untilNs = 0, probeNs = 0;
+        uint32_t streak = 0;
+        bool probing = false;
+    };
+    std::map<std::pair<uint32_t, uint32_t>, Ws31Isolation> m_ws31IsolationStreak;
     uint64_t m_ws31ImplicitPromotions = 0;
     Ws31OnlineFlow &TouchWs31Online(const Ws31M1FlowKey &key, uint64_t now);
     void ExpireWs31Online(Ws31M1FlowKey key);
+    void ExpireWs31DataUplink(Ws31M1FlowKey key);
     uint32_t SelectWs31FaultPort(const CustomHeader &ch, Ws31OnlineFlow &flow,
                                 uint32_t first, uint32_t second, uint32_t chosen, bool timeoutProbe,
                                 const std::vector<int> &nexthops);
@@ -238,7 +249,7 @@ class SwitchNode : public Node {
     std::map<Ws31M1FlowKey, Ws31Rc2V3Flow> m_ws31Rc2V3Flows;
     uint32_t SelectWs31Rc2V3(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
                              uint64_t localFirst, uint64_t localSecond, uint16_t priority,
-                             uint64_t endSeq, bool *spraying);
+                             uint64_t endSeq, bool promoted, bool *spraying);
     void ObserveWs31Rc2Pressure(const CustomHeader &ch);
     uint32_t SelectWs31Rc2(const Ws31M1FlowKey &flow, uint32_t first, uint32_t second,
                           uint32_t local, const Ws31DownstreamState *a,

@@ -992,9 +992,9 @@ uint32_t SwitchNode::SelectWs31Rc2(const Ws31M1FlowKey &flow, uint32_t first, ui
 
 uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, uint32_t second,
                                       uint64_t localFirst, uint64_t localSecond, uint16_t priority,
-                                      uint64_t endSeq, bool *spraying) {
+                                      uint64_t endSeq, bool promoted, bool *spraying) {
     auto &state = m_ws31Rc2V3Flows.at(key);
-    uint32_t local = !state.reserveSecond && localSecond < localFirst ? second : first;
+    const uint32_t local = !state.reserveSecond && localSecond < localFirst ? second : first;
     if (first == second) return local;
     const auto devA = DynamicCast<QbbNetDevice>(m_devices[first]);
     const auto devB = DynamicCast<QbbNetDevice>(m_devices[second]);
@@ -1022,23 +1022,29 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
         return double(bytes) * 8e9 / rate;
     };
 
-    const uint64_t qa = fresh(pa) ? pa.queueBytes : 0;
-    const uint64_t qb = fresh(pb) ? pb.queueBytes : 0;
+    const bool freshA = fresh(pa), freshB = fresh(pb);
+    const uint64_t qa = freshA ? pa.queueBytes : 0;
+    const uint64_t qb = freshB ? pb.queueBytes : 0;
     const bool hotA = persistent(pa) && qa > qb && qa - qb >= m_ws31NarrowBytes;
     const bool hotB = persistent(pb) && qb > qa && qb - qa >= m_ws31NarrowBytes;
-    const auto syncBias = [this, now](uint32_t port) -> uint64_t {
-        if (!Ws31V32().syncPenaltyNs) return 0;
+    const auto recentSync = [this, now](uint32_t port) {
         auto recent = m_ws31RecentSync.find(port);
-        return recent != m_ws31RecentSync.end() && now - recent->second < 32000
-            ? Ws31V32().syncPenaltyNs : 0;
+        return recent != m_ws31RecentSync.end() && now - recent->second < 32000;
     };
-    const uint64_t biasA = syncBias(first), biasB = syncBias(second);
-    const double localScoreA = serializationNs(localFirst, pa.upstreamRate) + biasA;
-    const double localScoreB = serializationNs(localSecond, pb.upstreamRate) + biasB;
-    if ((biasA || biasB) && !state.reserveSecond)
-        local = localScoreB < localScoreA ? second : first;
-    const double scoreA = pa.propagationNs + localScoreA + serializationNs(qa, pa.downstreamRate);
-    const double scoreB = pb.propagationNs + localScoreB + serializationNs(qb, pb.downstreamRate);
+    const bool cleanA = devA->IsLinkUp() && !pausedA && !hotA && qa <= m_ws31EventWater &&
+                        localFirst <= m_ws31NarrowBytes;
+    const bool cleanB = devB->IsLinkUp() && !pausedB && !hotB && qb <= m_ws31EventWater &&
+                        localSecond <= m_ws31NarrowBytes;
+    const uint64_t penalty = Ws31V32().syncPenaltyNs;
+    const bool recentA = penalty && recentSync(first);
+    const bool recentB = penalty && recentSync(second);
+    const uint64_t biasA = recentA && !recentB && freshB && cleanB ? penalty : 0;
+    const uint64_t biasB = recentB && !recentA && freshA && cleanA ? penalty : 0;
+    const double pathA = pa.propagationNs + serializationNs(localFirst, pa.upstreamRate) +
+                         serializationNs(qa, pa.downstreamRate);
+    const double pathB = pb.propagationNs + serializationNs(localSecond, pb.upstreamRate) +
+                         serializationNs(qb, pb.downstreamRate);
+    const double scoreA = pathA + biasA, scoreB = pathB + biasB;
     const auto &notice = m_ws31Rc2Flows.at(key);
     const bool pressure = notice.pressure && now - notice.pressureNs <= m_ws31PressureAgeNs;
     const uint32_t previous = state.narrowPort;
@@ -1058,12 +1064,30 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
 
     const uint64_t skew = std::max(pa.propagationNs, pb.propagationNs) -
                           std::min(pa.propagationNs, pb.propagationNs);
-    const bool skewHold = Ws31V32().skewHold && previous && state.rxNarrowed && skew >= 250 &&
-                          !rxHold && !pressure &&
-                          !(previous == first ? pausedA || hotA : pausedB || hotB);
+    const bool skewHold = Ws31V32().skewHold && skew >= 250 && m_ws31PressureAgeNs > 0;
     uint32_t preferred = 0;
     const char *reason = "queue";
-    if (previous && rxHold) {
+    if (skewHold) {
+        reason = "skew";
+        if (!previous) {
+            // Keep the pre-promotion anchor while it can still carry the in-flight prefix.
+            if (promoted && cleanA) preferred = first;
+            else if (pausedA != pausedB) preferred = pausedA ? second : first;
+            else preferred = scoreA == scoreB ? local : (scoreA < scoreB ? first : second);
+        } else {
+            preferred = previous;
+            const bool onFirst = previous == first;
+            const uint64_t ownQueue = onFirst ? localFirst : localSecond;
+            const uint64_t otherQueue = onFirst ? localSecond : localFirst;
+            const bool localEscape = (onFirst ? cleanB : cleanA) &&
+                ownQueue > m_ws31NarrowBytes && ownQueue > otherQueue &&
+                ownQueue - otherQueue >= m_ws31NarrowBytes;
+            if (escapePause || escapeHot || localEscape) {
+                preferred = onFirst ? second : first;
+                reason = escapePause ? "pause" : "queue";
+            }
+        }
+    } else if (previous && rxHold) {
         preferred = previous;
         reason = "rx";
         if (escapePause || escapeHot) {
@@ -1078,9 +1102,6 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
         else if (scoreB < scoreA) preferred = second;
         else preferred = state.lastPort ? state.lastPort : local;
         reason = "rx";
-    } else if (skewHold) {
-        preferred = previous;
-        reason = "rx_skew";
     } else if (!pausedA && (hotA || hotB)) {
         preferred = hotA ? second : first;
     }
@@ -1092,15 +1113,14 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
     const bool idle = state.lastPort && pa.directToLeaf && pb.directToLeaf &&
         !devA->IsQbbEnabled() && !devB->IsQbbEnabled() && !pausedA && !pausedB &&
         fresh(pa) && fresh(pb) && std::max(std::max(qa, qb), std::max(localFirst, localSecond)) <= m_ws31ReopenBytes &&
-        now - state.lastSentNs >= std::max(scoreA, scoreB) + idleGuardNs;
+        now - state.lastSentNs >= std::max(pathA, pathB) + idleGuardNs;
     const bool canMove = drained || idle;
-    const bool holdSkew = skewHold && pausedA == pausedB;
-    const char *action = holdSkew && !state.skewHolding ? "hold" : nullptr;
-    state.skewHolding = holdSkew;
+    const char *action = nullptr;
+    state.skewHolding = skewHold;
     if (preferred) {
         state.low = false;
         if (!previous || preferred == previous || canMove || (rxHold && (escapePause || escapeHot)) ||
-            (Ws31V32().EnhancedV3() && (escapePause || (state.rxNarrowed && escapeHot)))) {
+            (Ws31V32().EnhancedV3() && (escapePause || ((skewHold || state.rxNarrowed) && escapeHot)))) {
             state.narrowPort = preferred;
             if (pressure && !(escapePause || escapeHot)) state.rxNarrowed = true;
             if (previous != preferred)
@@ -2131,6 +2151,18 @@ void SwitchNode::ExpireWs31Online(Ws31M1FlowKey key) {
     m_ws31NarrowPaths.erase(key);
 }
 
+void SwitchNode::ExpireWs31DataUplink(Ws31M1FlowKey key) {
+    auto entry = m_ws31LastDataUplink.find(key);
+    if (entry == m_ws31LastDataUplink.end()) return;
+    const uint64_t idle = Simulator::Now().GetNanoSeconds() - entry->second.lastNs;
+    if (idle < ws31FlowIdleNs) {
+        Simulator::Schedule(NanoSeconds(ws31FlowIdleNs - idle),
+                            &SwitchNode::ExpireWs31DataUplink, this, key);
+    } else {
+        m_ws31LastDataUplink.erase(entry);
+    }
+}
+
 uint32_t SwitchNode::SelectWs31SyncPort(uint32_t destination, uint16_t priority, uint32_t first,
                                        uint32_t second, uint32_t fallback, uint32_t packetBytes) {
     auto leaf = Settings::hostIp2SwitchId.find(destination);
@@ -2146,7 +2178,8 @@ uint32_t SwitchNode::SelectWs31SyncPort(uint32_t destination, uint16_t priority,
         const uint64_t queue = quality.sampled && now - quality.sampleNs <= m_ws31DownstreamAgeNs
             ? quality.queueBytes : 0;
         // The packet itself incurs serialization even before downstream telemetry is available.
-        return double(CalculateInterfaceLoad(port) + packetBytes) * 8e9 / quality.upstreamRate +
+        return quality.propagationNs +
+               double(CalculateInterfaceLoad(port) + packetBytes) * 8e9 / quality.upstreamRate +
                double(queue + packetBytes) * 8e9 / quality.downstreamRate;
     };
     const double a = score(first), b = score(second);
@@ -2162,11 +2195,11 @@ uint32_t SwitchNode::SelectWs31FaultPort(const CustomHeader &ch, Ws31OnlineFlow 
     const uint32_t leaf = destination->second;
     const uint64_t now = Simulator::Now().GetNanoSeconds();
     const auto healthy = [&](uint32_t port) {
-        auto isolation = m_ws31IsolatedUntil.find(std::make_pair(leaf, port));
+        auto isolation = m_ws31IsolationStreak.find(std::make_pair(leaf, port));
         return std::find(nexthops.begin(), nexthops.end(), int(port)) != nexthops.end() &&
                m_devices[port]->IsLinkUp() &&
                !DynamicCast<QbbNetDevice>(m_devices[port])->IsPaused(ch.udp.pg) &&
-               (isolation == m_ws31IsolatedUntil.end() || isolation->second <= now);
+               (isolation == m_ws31IsolationStreak.end() || isolation->second.untilNs <= now);
     };
     const auto alternate = [&](uint32_t port) {
         for (uint32_t other : {first, second})
@@ -2176,13 +2209,25 @@ uint32_t SwitchNode::SelectWs31FaultPort(const CustomHeader &ch, Ws31OnlineFlow 
         return uint32_t(0);
     };
     auto sent = flow.outstandingPorts.find(ch.udp.seq);
-    const auto isolate = [&](uint32_t port, const char *cause) {
-        auto &until = m_ws31IsolatedUntil[std::make_pair(leaf, port)];
-        if (until > now) return;
-        until = now + Ws31V32().faultNs;
+    constexpr uint64_t maxIsolationNs = 10000000;
+    const uint64_t baseNs = std::min<uint64_t>(Ws31V32().faultNs, maxIsolationNs);
+    const auto duration = [baseNs, maxIsolationNs](uint32_t streak) {
+        return std::min(baseNs << (streak - 1), maxIsolationNs);
+    };
+    const auto isolate = [&](uint32_t port, bool rto) {
+        auto &isolation = m_ws31IsolationStreak[std::make_pair(leaf, port)];
+        if (isolation.untilNs > now) return;
+        if (rto && isolation.probing && now - isolation.probeNs <= 2 * duration(isolation.streak))
+            isolation.streak = std::min(isolation.streak + 1, 5u);
+        else
+            isolation.streak = 1;
+        isolation.untilNs = now + duration(isolation.streak);
+        isolation.probing = false;
         std::cout << "WS31_FAULT_ISOLATE time_ns=" << now << " switch=" << m_id
-                  << " destination_leaf=" << leaf << " port=" << port << " cause=" << cause
-                  << " seq=" << ch.udp.seq << " until_ns=" << until << std::endl;
+                  << " destination_leaf=" << leaf << " port=" << port
+                  << " cause=" << (rto ? "rto" : "link")
+                  << " seq=" << ch.udp.seq << " until_ns=" << isolation.untilNs
+                  << " streak=" << isolation.streak << std::endl;
     };
     if (timeoutProbe && sent != flow.outstandingPorts.end()) {
         const uint32_t prior = sent->second;
@@ -2192,25 +2237,26 @@ uint32_t SwitchNode::SelectWs31FaultPort(const CustomHeader &ch, Ws31OnlineFlow 
             flow.timeoutCount = 0;
         }
         if (++flow.timeoutCount >= 2 && alternate(prior)) {
-            isolate(prior, "rto");
+            isolate(prior, true);
             flow.timeoutCount = 0;
         }
     }
     const bool linkAvailable = m_devices[chosen]->IsLinkUp() &&
         std::find(nexthops.begin(), nexthops.end(), int(chosen)) != nexthops.end();
-    if (!linkAvailable && alternate(chosen)) isolate(chosen, "link");
-    auto isolation = m_ws31IsolatedUntil.find(std::make_pair(leaf, chosen));
+    if (!linkAvailable && alternate(chosen)) isolate(chosen, false);
+    auto isolation = m_ws31IsolationStreak.find(std::make_pair(leaf, chosen));
     if (!linkAvailable ||
-        (isolation != m_ws31IsolatedUntil.end() && isolation->second > now)) {
+        (isolation != m_ws31IsolationStreak.end() && isolation->second.untilNs > now)) {
         const uint32_t other = alternate(chosen);
         if (other) chosen = other;
         else if (!linkAvailable) chosen = nexthops.front();
     }
-    if (linkAvailable && isolation != m_ws31IsolatedUntil.end() && isolation->second <= now) {
+    isolation = m_ws31IsolationStreak.find(std::make_pair(leaf, chosen));
+    if (isolation != m_ws31IsolationStreak.end() && !isolation->second.probing && healthy(chosen)) {
+        isolation->second.probing = true;
+        isolation->second.probeNs = now;
         std::cout << "WS31_FAULT_PROBE time_ns=" << now << " switch=" << m_id
-                  << " destination_leaf=" << leaf << " port=" << isolation->first.second
-                  << std::endl;
-        m_ws31IsolatedUntil.erase(isolation);
+                  << " destination_leaf=" << leaf << " port=" << chosen << std::endl;
     }
     flow.outstandingPorts[ch.udp.seq] = chosen;
     return chosen;
@@ -2341,13 +2387,14 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<Packet> p, const CustomHeader &ch,
             if (m_ws31Rc2V3) {
                 spraying = false;
                 pair.chosen = SelectWs31Rc2V3(key, pair.first, pair.second, a, b, ch.udp.pg,
-                                              endSeq, &spraying);
+                                              endSeq, promoted && !fresh, &spraying);
             } else {
                 pair.chosen = SelectWs31Downstream(key, pair.first, pair.second, a, b);
             }
         }
     }
-    if (promoted && !fresh && pair.chosen != pair.first) {
+    if (promoted && !fresh && pair.chosen != pair.first &&
+        (!m_ws31Rc2V3 || !m_ws31Rc2V3Flows.at(key).skewHolding)) {
         // Send the transition packet on the existing anchor; later packets can use both paths.
         pair.chosen = pair.first;
         if (m_ws31Rc2V3) m_ws31Rc2V3Flows.at(key).lastPort = pair.first;
@@ -2366,9 +2413,9 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<Packet> p, const CustomHeader &ch,
             const auto destination = Settings::hostIp2SwitchId.find(ch.dip);
             const uint32_t leaf = destination == Settings::hostIp2SwitchId.end() ? m_id : destination->second;
             for (uint32_t port : {pair.first, pair.second}) {
-                auto isolated = m_ws31IsolatedUntil.find(std::make_pair(leaf, port));
+                auto isolated = m_ws31IsolationStreak.find(std::make_pair(leaf, port));
                 if (!m_devices[port]->IsLinkUp() ||
-                    (isolated != m_ws31IsolatedUntil.end() && isolated->second > now))
+                    (isolated != m_ws31IsolationStreak.end() && isolated->second.untilNs > now))
                     spraying = false;
             }
         }
@@ -3230,7 +3277,18 @@ bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> pack
         ReceiveWs21Heartbeat(device, packet, ch)) return true;
     if (ch.l3Prot == Ws21FeedbackHeader::IP_PROTOCOL && ReceiveWs21Feedback(packet, ch))
         return true;
-    if ((m_ws31PressureAgeNs || (m_ws31Rc2V3 && Ws31V32().EnhancedV3())) &&
+    const bool faultAware = Settings::lb_mode == 58 && Ws31V32().faultNs;
+    if (faultAware && ch.l3Prot == 0x11 && m_isToR && m_isToR_hostIP.count(ch.dip) &&
+        Ws21Peer(device).nodeType == 1) {
+        const auto key = std::make_tuple(ch.dip, ch.sip, ch.udp.dport, ch.udp.sport);
+        auto entry = m_ws31LastDataUplink.emplace(key, Ws31DataUplink());
+        entry.first->second.port = device->GetIfIndex();
+        entry.first->second.lastNs = Simulator::Now().GetNanoSeconds();
+        if (entry.second)
+            Simulator::Schedule(NanoSeconds(ws31FlowIdleNs),
+                                &SwitchNode::ExpireWs31DataUplink, this, key);
+    }
+    if ((m_ws31PressureAgeNs || (m_ws31Rc2V3 && Ws31V32().EnhancedV3()) || faultAware) &&
         (ch.l3Prot == 0xFC || ch.l3Prot == 0xFD))
         ObserveWs31Rc2Pressure(ch);
     ObserveWs21Destination(packet, ch);
@@ -3325,6 +3383,23 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
     if ((Settings::lb_mode==51 || Settings::lb_mode==52) &&
         (ch.l3Prot==0x11 || ch.l3Prot==0xFC || ch.l3Prot==0xFD))
         return DoLbWs31Ofan(p,ch,nexthops);
+
+    // Mode 58 transport feedback is dispatched before the common control ECMP path.
+    if (Settings::lb_mode == 58 && Ws31V32().faultNs &&
+        (ch.l3Prot == 0xFC || ch.l3Prot == 0xFD) && nexthops.size() > 1 &&
+        m_isToR && m_isToR_hostIP.count(ch.sip)) {
+        const auto key = std::make_tuple(ch.sip, ch.dip, ch.ack.sport, ch.ack.dport);
+        auto entry = m_ws31LastDataUplink.find(key);
+        if (entry != m_ws31LastDataUplink.end() &&
+            Simulator::Now().GetNanoSeconds() - entry->second.lastNs < ws31FlowIdleNs) {
+            const uint32_t port = entry->second.port;
+            const uint16_t priority = m_ackHighPrio ? 0 : ch.ack.pg;
+            if (std::find(nexthops.begin(), nexthops.end(), int(port)) != nexthops.end() &&
+                m_devices[port]->IsLinkUp() &&
+                !DynamicCast<QbbNetDevice>(m_devices[port])->IsPaused(priority))
+                return port;
+        }
+    }
 
     if (Settings::lb_mode == 0 || control_pkt) {  // control packet (ACK, NACK, PFC, QCN)
         return DoLbFlowECMP(p, ch, nexthops);     // ECMP routing path decision (4-tuple)
