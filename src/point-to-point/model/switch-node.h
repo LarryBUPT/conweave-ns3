@@ -98,6 +98,8 @@ class SwitchNode : public Node {
     struct Ws31DataUplink {
         uint32_t port = 0;
         uint64_t lastNs = 0;
+        uint64_t faultBypassNs = 0;
+        bool faultBypass = false;
     };
     std::map<Ws31M1FlowKey, Ws31DataUplink> m_ws31LastDataUplink;
     struct Ws31Isolation {

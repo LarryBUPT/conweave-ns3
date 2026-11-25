@@ -1040,10 +1040,12 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
     const bool recentB = penalty && recentSync(second);
     const uint64_t biasA = recentA && !recentB && freshB && cleanB ? penalty : 0;
     const uint64_t biasB = recentB && !recentA && freshA && cleanA ? penalty : 0;
-    const double pathA = pa.propagationNs + serializationNs(localFirst, pa.upstreamRate) +
-                         serializationNs(qa, pa.downstreamRate);
-    const double pathB = pb.propagationNs + serializationNs(localSecond, pb.upstreamRate) +
-                         serializationNs(qb, pb.downstreamRate);
+    const double localNsA = serializationNs(localFirst, pa.upstreamRate);
+    const double localNsB = serializationNs(localSecond, pb.upstreamRate);
+    const double downstreamNsA = serializationNs(qa, pa.downstreamRate);
+    const double downstreamNsB = serializationNs(qb, pb.downstreamRate);
+    const double pathA = pa.propagationNs + localNsA + downstreamNsA;
+    const double pathB = pb.propagationNs + localNsB + downstreamNsB;
     const double scoreA = pathA + biasA, scoreB = pathB + biasB;
     const auto &notice = m_ws31Rc2Flows.at(key);
     const bool pressure = notice.pressure && now - notice.pressureNs <= m_ws31PressureAgeNs;
@@ -1071,9 +1073,13 @@ uint32_t SwitchNode::SelectWs31Rc2V3(const Ws31M1FlowKey &key, uint32_t first, u
         reason = "skew";
         if (!previous) {
             // Keep the pre-promotion anchor while it can still carry the in-flight prefix.
-            if (promoted && cleanA) preferred = first;
+            if (promoted && devA->IsLinkUp() && !pausedA && !hotA) preferred = first;
             else if (pausedA != pausedB) preferred = pausedA ? second : first;
-            else preferred = scoreA == scoreB ? local : (scoreA < scoreB ? first : second);
+            else {
+                const double queueScoreA = localNsA + downstreamNsA + biasA;
+                const double queueScoreB = localNsB + downstreamNsB + biasB;
+                preferred = queueScoreA == queueScoreB ? local : (queueScoreA < queueScoreB ? first : second);
+            }
         } else {
             preferred = previous;
             const bool onFirst = previous == first;
@@ -2367,7 +2373,11 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<Packet> p, const CustomHeader &ch,
         }
         pair.first = anchor;
         pair.second = alternate;
-        if (m_ws31Rc2V3) m_ws31Rc2V3Flows.at(key).lastPort = anchor;
+        if (m_ws31Rc2V3) {
+            auto &v3 = m_ws31Rc2V3Flows.at(key);
+            v3.lastPort = anchor;
+            v3.sentEnd = endSeq;
+        }
     }
     const bool packetArm=Settings::lb_mode==61 ||
         (Settings::lb_mode==58 && category==1) ||
@@ -2419,7 +2429,8 @@ uint32_t SwitchNode::DoLbWs31M1(Ptr<Packet> p, const CustomHeader &ch,
                     spraying = false;
             }
         }
-        metadata.flags = (category == 1 ? Ws31V32Tag::Background : 0) |
+        metadata.flags = (metadata.flags & Ws31V32Tag::TimeoutProbe) |
+                         (category == 1 ? Ws31V32Tag::Background : 0) |
                          (spraying ? Ws31V32Tag::Spraying : 0);
         p->AddPacketTag(metadata);
     }
@@ -3281,10 +3292,17 @@ bool SwitchNode::SwitchReceiveFromDevice(Ptr<NetDevice> device, Ptr<Packet> pack
     if (faultAware && ch.l3Prot == 0x11 && m_isToR && m_isToR_hostIP.count(ch.dip) &&
         Ws21Peer(device).nodeType == 1) {
         const auto key = std::make_tuple(ch.dip, ch.sip, ch.udp.dport, ch.udp.sport);
-        auto entry = m_ws31LastDataUplink.emplace(key, Ws31DataUplink());
-        entry.first->second.port = device->GetIfIndex();
-        entry.first->second.lastNs = Simulator::Now().GetNanoSeconds();
-        if (entry.second)
+        auto inserted = m_ws31LastDataUplink.emplace(key, Ws31DataUplink());
+        auto &entry = inserted.first->second;
+        const uint64_t now = Simulator::Now().GetNanoSeconds();
+        entry.port = device->GetIfIndex();
+        entry.lastNs = now;
+        Ws31V32Tag metadata;
+        if (packet->PeekPacketTag(metadata) && (metadata.flags & Ws31V32Tag::TimeoutProbe)) {
+            entry.faultBypass = true;
+            entry.faultBypassNs = now;
+        }
+        if (inserted.second)
             Simulator::Schedule(NanoSeconds(ws31FlowIdleNs),
                                 &SwitchNode::ExpireWs31DataUplink, this, key);
     }
@@ -3388,17 +3406,24 @@ int SwitchNode::GetOutDev(Ptr<Packet> p, CustomHeader &ch) {
     if (Settings::lb_mode == 58 && Ws31V32().faultNs &&
         (ch.l3Prot == 0xFC || ch.l3Prot == 0xFD) && nexthops.size() > 1 &&
         m_isToR && m_isToR_hostIP.count(ch.sip)) {
+        const uint32_t ecmpPort = DoLbFlowECMP(p, ch, nexthops);
         const auto key = std::make_tuple(ch.sip, ch.dip, ch.ack.sport, ch.ack.dport);
-        auto entry = m_ws31LastDataUplink.find(key);
-        if (entry != m_ws31LastDataUplink.end() &&
-            Simulator::Now().GetNanoSeconds() - entry->second.lastNs < ws31FlowIdleNs) {
-            const uint32_t port = entry->second.port;
-            const uint16_t priority = m_ackHighPrio ? 0 : ch.ack.pg;
-            if (std::find(nexthops.begin(), nexthops.end(), int(port)) != nexthops.end() &&
-                m_devices[port]->IsLinkUp() &&
-                !DynamicCast<QbbNetDevice>(m_devices[port])->IsPaused(priority))
-                return port;
+        const auto entry = m_ws31LastDataUplink.find(key);
+        if (entry != m_ws31LastDataUplink.end()) {
+            const auto &uplink = entry->second;
+            const uint64_t now = Simulator::Now().GetNanoSeconds();
+            const bool recentProbe = uplink.faultBypass && now - uplink.faultBypassNs < ws31FlowIdleNs;
+            if (now - uplink.lastNs < ws31FlowIdleNs &&
+                (recentProbe || !m_devices[ecmpPort]->IsLinkUp())) {
+                const uint32_t port = uplink.port;
+                const uint16_t priority = m_ackHighPrio ? 0 : ch.ack.pg;
+                if (std::find(nexthops.begin(), nexthops.end(), int(port)) != nexthops.end() &&
+                    m_devices[port]->IsLinkUp() &&
+                    !DynamicCast<QbbNetDevice>(m_devices[port])->IsPaused(priority))
+                    return port;
+            }
         }
+        return ecmpPort;
     }
 
     if (Settings::lb_mode == 0 || control_pkt) {  // control packet (ACK, NACK, PFC, QCN)
